@@ -1,0 +1,1 @@
+ALTER TYPE "tool_type" ADD VALUE 'accessibility_audit_helper';

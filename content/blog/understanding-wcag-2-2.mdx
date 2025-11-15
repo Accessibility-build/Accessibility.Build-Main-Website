@@ -1,0 +1,294 @@
+---
+title: "Understanding WCAG 2.2: What's New and How to Prepare"
+description: "A comprehensive guide to the latest Web Content Accessibility Guidelines and what they mean for your projects."
+date: "2023-05-10"
+author: "Alex Johnson"
+authorRole: "Accessibility Specialist"
+authorImage: "/images/authors/alex-johnson.png"
+tags: ["WCAG", "Guidelines", "Compliance"]
+image: "/images/blog/wcag-2-2-guide.png"
+published: true
+readingTime: "8 min read"
+---
+
+# Understanding WCAG 2.2: What's New and How to Prepare
+
+The Web Content Accessibility Guidelines (WCAG) are developed through the W3C process in cooperation with individuals and organizations around the world, with a goal of providing a single shared standard for web content accessibility that meets the needs of individuals, organizations, and governments internationally.
+
+For a more comprehensive understanding of implementing these guidelines, be sure to read our [complete WCAG 2.2 compliance guide 2025](/blog/complete-wcag-2-2-compliance-guide-2025).
+
+<Callout>
+  WCAG 2.2 became a W3C Recommendation on October 5, 2023, making it the latest official standard for web accessibility.
+</Callout>
+
+## What's New in WCAG 2.2?
+
+WCAG 2.2 builds on the foundation of WCAG 2.1, which was published in June 2018. While WCAG 2.1 added 17 new success criteria to address mobile accessibility, low vision, and cognitive and learning disabilities, WCAG 2.2 adds 9 additional success criteria to further address these areas.
+
+Let's explore the most significant new success criteria in WCAG 2.2:
+
+### 1. Focus Visible (Enhanced) - 2.4.11 (AA)
+
+This criterion requires that when a keyboard focus indicator is visible, it must have a minimum area of at least 2 CSS pixels in width and height, and the focus indication area must have a contrast ratio of at least 3:1 against the background adjacent to the focus indicator.
+
+<DemoContainer title="Focus Visible (Enhanced) Example">
+  <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-2">
+      <button className="px-4 py-2 bg-gray-200 text-gray-800 rounded border border-gray-300 focus:outline-[1px] focus:outline-dotted focus:outline-gray-400">
+        Poor Focus Indicator
+      </button>
+      <span className="text-sm text-red-500">❌ Fails WCAG 2.2</span>
+    </div>
+    
+    <div className="flex flex-col items-center gap-2">
+      <button className="px-4 py-2 bg-gray-200 text-gray-800 rounded border border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
+        Good Focus Indicator
+      </button>
+      <span className="text-sm text-green-500">✓ Passes WCAG 2.2</span>
+    </div>
+  </div>
+</DemoContainer>
+
+\`\`\`css
+/* Poor focus indicator */
+.button-poor:focus {
+  outline: 1px dotted gray; /* Low contrast, thin outline */
+}
+
+/* Good focus indicator */
+.button-good:focus-visible {
+  outline: 3px solid #1a73e8; /* High contrast, thick outline */
+  outline-offset: 2px;
+}
+\`\`\`
+
+### 2. Dragging Movements - 2.5.7 (AA)
+
+All functionality that uses a dragging movement for operation can be achieved by a single pointer without dragging, unless dragging is essential for the function or the functionality is determined by the user agent and not modified by the author.
+
+This is particularly important for users with motor disabilities who may have difficulty performing precise dragging movements. For comprehensive testing of these interactions, check out our [mobile accessibility testing guide](/blog/mobile-accessibility-testing).
+
+<DemoContainer title="Dragging vs. Alternative Controls">
+  <div className="flex flex-col items-center gap-6 w-full max-w-md">
+    <div className="w-full">
+      <label htmlFor="slider" className="block mb-2 font-medium">Slider with alternative controls:</label>
+      <input 
+        id="slider" 
+        type="range" 
+        className="w-full" 
+        aria-label="Slider example"
+      />
+      <div className="flex justify-between mt-2">
+        <button className="px-3 py-1 bg-primary text-primary-foreground rounded text-sm">
+          Decrease
+        </button>
+        <button className="px-3 py-1 bg-primary text-primary-foreground rounded text-sm">
+          Increase
+        </button>
+      </div>
+    </div>
+  </div>
+</DemoContainer>
+
+\`\`\`jsx
+// Accessible slider with both drag and button controls
+function AccessibleSlider() {
+  const [value, setValue] = useState(50);
+  
+  const increment = () => setValue(prev => Math.min(prev + 10, 100));
+  const decrement = () => setValue(prev => Math.max(prev - 10, 0));
+  
+  return (
+    <div>
+      {/* Draggable slider */}
+      <input 
+        type="range" 
+        value={value} 
+        onChange={(e) => setValue(Number(e.target.value))} 
+      />
+      
+      {/* Alternative controls */}
+      <div>
+        <button onClick={decrement}>Decrease</button>
+        <button onClick={increment}>Increase</button>
+      </div>
+    </div>
+  );
+}
+\`\`\`
+
+### 3. Target Size (Minimum) - 2.5.8 (AA)
+
+The size of the target for pointer inputs is at least 24 by 24 CSS pixels, except when:
+- The target is available through an equivalent link or control on the same page that is at least 24 by 24 CSS pixels
+- The target is in a sentence or block of text
+- The size of the target is determined by the user agent and is not modified by the author
+- A particular presentation of the target is essential to the information being conveyed
+
+<DemoContainer title="Target Size Examples">
+  <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-2">
+      <button className="w-4 h-4 bg-red-500 rounded-full" aria-label="Too small delete button" />
+      <span className="text-sm text-red-500">❌ Too small (4×4px)</span>
+    </div>
+    
+    <div className="flex flex-col items-center gap-2">
+      <button className="w-10 h-10 flex items-center justify-center bg-blue-500 rounded-full text-white" aria-label="Properly sized delete button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+      </button>
+      <span className="text-sm text-green-500">✓ Adequate size (40×40px)</span>
+    </div>
+  </div>
+</DemoContainer>
+
+\`\`\`jsx
+// Poor target size
+<button className="w-4 h-4 bg-red-500 rounded-full" aria-label="Delete" />
+
+// Good target size
+<button className="w-10 h-10 flex items-center justify-center bg-blue-500 rounded-full" aria-label="Delete">
+  <TrashIcon className="w-4 h-4" />
+</button>
+\`\`\`
+
+### 4. Consistent Help - 3.2.6 (A)
+
+For each web page within a set of web pages, if one of the following help mechanisms is available in multiple web pages, then it occurs in the same relative order to other page content, unless a change is initiated by the user:
+- Human contact details
+- Human contact mechanism
+- Self-help option
+- A fully automated contact mechanism
+
+This ensures that users can easily find help resources across different pages of a website.
+
+### 5. Accessible Authentication - 3.3.7 (A) & 3.3.8 (AA)
+
+These criteria address cognitive function tests in authentication:
+
+- **3.3.7 (A)**: Cognitive function tests (like remembering a password) are not required for authentication unless an alternative is available that doesn't rely on a cognitive function test.
+- **3.3.8 (AA)**: For authentication that relies on remembering information, at least one authentication method is available that doesn't require the user to remember information, or users can copy and paste or use password managers.
+
+<DemoContainer title="Accessible Authentication Example">
+  <div className="w-full max-w-md p-6 border rounded-lg shadow-sm">
+    <h3 className="text-xl font-bold mb-4">Sign In</h3>
+    <form className="space-y-4">
+      <div>
+        <label htmlFor="demo-email" className="block mb-1">Email</label>
+        <input 
+          id="demo-email" 
+          type="email" 
+          className="w-full p-2 border rounded" 
+          autoComplete="email"
+        />
+      </div>
+      
+      <div>
+        <label htmlFor="demo-password" className="block mb-1">Password</label>
+        <input 
+          id="demo-password" 
+          type="password" 
+          className="w-full p-2 border rounded" 
+          autoComplete="current-password"
+        />
+      </div>
+      
+      <div className="pt-2">
+        <button 
+          type="button"
+          className="w-full p-2 bg-secondary text-secondary-foreground rounded flex items-center justify-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+          Sign in with WebAuthn
+        </button>
+      </div>
+      
+      <button 
+        type="submit"
+        className="w-full p-2 bg-primary text-primary-foreground rounded"
+      >
+        Sign In
+      </button>
+    </form>
+  </div>
+</DemoContainer>
+
+\`\`\`jsx
+function AccessibleLogin() {
+  return (
+    <form>
+      <div>
+        <label htmlFor="email">Email</label>
+        <input 
+          id="email" 
+          type="email" 
+          autoComplete="email" 
+        />
+      </div>
+      
+      <div>
+        <label htmlFor="password">Password</label>
+        <input 
+          id="password" 
+          type="password" 
+          autoComplete="current-password" 
+        />
+      </div>
+      
+      <div>
+        <button type="button">
+          Sign in with WebAuthn
+        </button>
+      </div>
+      
+      <button type="submit">Sign In</button>
+    </form>
+  );
+}
+\`\`\`
+
+### 6. Redundant Entry - 3.3.9 (A)
+
+Information previously entered by or provided to the user that is required to be entered again in the same process is either:
+- Auto-populated, or
+- Available for the user to select
+
+This is particularly helpful for users with cognitive disabilities, as it reduces the memory load required to complete forms.
+
+## How to Prepare for WCAG 2.2
+
+As WCAG 2.2 builds upon WCAG 2.1, organizations that are already compliant with WCAG 2.1 will have a head start. Here are steps to prepare for WCAG 2.2:
+
+1. **Familiarize yourself with the new success criteria** in WCAG 2.2.
+2. **Conduct an audit** of your existing websites and applications against the new criteria.
+3. **Prioritize updates** based on the impact and complexity of implementation.
+4. **Update your design systems and development guidelines** to incorporate the new requirements.
+5. **Train your team** on the new success criteria and how to implement them.
+
+<Callout type="warning" title="Important Note">
+  While WCAG 2.2 is now the current standard, work is already underway on WCAG 3.0, which will represent a more significant overhaul of the guidelines. Organizations should implement WCAG 2.2 now while keeping an eye on the development of WCAG 3.0.
+</Callout>
+
+## Conclusion
+
+WCAG 2.2 represents an important step forward in making the web more accessible to users with disabilities. By understanding and implementing these new guidelines, organizations can ensure their digital products are inclusive and accessible to a wider audience.
+
+The new success criteria in WCAG 2.2 focus particularly on improving accessibility for users with cognitive disabilities, users with low vision, and users with disabilities on mobile devices. By addressing these areas, WCAG 2.2 helps create a more inclusive web for everyone.
+
+Remember that accessibility is not just about compliance—it's about providing equal access and opportunities to people with disabilities. By embracing these guidelines, you're contributing to a more inclusive digital world.
+
+## Related Articles
+
+- [Complete WCAG 2.2 Compliance Guide 2025](/blog/complete-wcag-2-2-compliance-guide-2025) - Step-by-step implementation guide for full compliance
+- [Creating Accessible Forms: Best Practices](/blog/creating-accessible-forms) - Apply WCAG 2.2 form guidelines in practice
+- [Mobile Accessibility Testing](/blog/mobile-accessibility-testing) - Test your mobile implementations against WCAG 2.2
+- [Accessibility Testing Tools](/blog/accessibility-testing-tools) - Tools to validate your WCAG 2.2 compliance
+- [Screen Reader Testing Guide](/blog/screen-reader-testing) - Test your WCAG 2.2 implementations with assistive technology
+
+## Tools to Help with WCAG 2.2 Compliance
+
+- [Contrast Checker](/tools/contrast-checker) - Verify color contrast meets WCAG 2.2 standards
+- [Accessibility Audit Helper](/tools/accessibility-audit-helper) - Comprehensive WCAG 2.2 compliance testing
+- [Heading Analyzer](/tools/heading-analyzer) - Ensure proper heading structure per WCAG guidelines
+\`\`\`
+
+Now, let's update the DemoContainer component to handle code blocks better:

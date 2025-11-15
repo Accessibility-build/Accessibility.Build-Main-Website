@@ -1,0 +1,21 @@
+{
+    "functions": {
+        "app/api/*/route.ts": {
+            "maxDuration": 60
+        },
+        "app/api/url-accessibility-audit/route.ts": {
+            "maxDuration": 300,
+            "memory": 1024
+        },
+        "app/api/url-accessibility-audit/[auditId]/route.ts": {
+            "maxDuration": 60
+        },
+        "app/api/health/route.ts": {
+            "maxDuration": 10
+        }
+    },
+    "rewrites": [{
+        "source": "/api/health",
+        "destination": "/api/health"
+    }]
+}

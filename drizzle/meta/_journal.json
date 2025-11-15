@@ -1,0 +1,41 @@
+{
+  "version": "6",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1750925564748,
+      "tag": "0000_loving_pyro",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1750929665366,
+      "tag": "0001_flawless_betty_ross",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1750971116322,
+      "tag": "0002_dashing_champions",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1751036766877,
+      "tag": "0003_true_alex_wilder",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1751478114137,
+      "tag": "0004_blushing_clea",
+      "breakpoints": true
+    }
+  ]
+}
