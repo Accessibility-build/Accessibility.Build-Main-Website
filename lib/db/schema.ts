@@ -83,19 +83,19 @@ export const toolUsage = pgTable('tool_usage', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
 
-// Payment records (for Cashfree integration)
+// Payment records (for Stripe integration - minimal local storage, details in Stripe)
 export const payments = pgTable('payments', {
   id: uuid('id').defaultRandom().primaryKey(),
   userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
-  packageId: uuid('package_id').notNull().references(() => creditPackages.id),
+  packageId: uuid('package_id').references(() => creditPackages.id), // Optional - null for dynamic pricing
   transactionId: uuid('transaction_id').references(() => creditTransactions.id),
-  paymentId: text('payment_id'), // Cashfree payment ID
-  orderId: text('order_id').notNull(), // Our internal order ID
+  paymentId: text('payment_id'), // Stripe payment intent ID
+  orderId: text('order_id').notNull(), // Stripe checkout session ID - check Stripe dashboard for full details
   amount: integer('amount').notNull(), // Amount in cents
   currency: text('currency').notNull().default('USD'),
   status: transactionStatusEnum('status').notNull().default('pending'),
   paymentMethod: text('payment_method'),
-  paymentData: jsonb('payment_data'), // Store Cashfree response data
+  paymentData: jsonb('payment_data'), // Minimal data - full details stored in Stripe metadata
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 })

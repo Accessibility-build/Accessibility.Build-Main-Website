@@ -448,6 +448,18 @@ FORMSPREE_ENDPOINT=https://formspree.io/f/xxxxxxxxxxxxx
 NEXT_PUBLIC_VERCEL_ANALYTICS_ID=your_analytics_id
 
 # ==========================================
+# PAYMENT PROCESSING (STRIPE)
+# ==========================================
+
+# Get from: https://dashboard.stripe.com/apikeys
+STRIPE_SECRET_KEY=sk_test_xxxxxxxxxxxxx
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_xxxxxxxxxxxxx
+
+# Stripe webhook secret (for payment confirmations)
+# Get from: https://dashboard.stripe.com/webhooks
+STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxx
+
+# ==========================================
 # ADMIN SYSTEM
 # ==========================================
 

@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   }
 }
 
+// Force dynamic rendering to avoid build-time Clerk initialization issues
+export const dynamic = 'force-dynamic'
+
 const onboardingSteps = [
   {
     id: 1,

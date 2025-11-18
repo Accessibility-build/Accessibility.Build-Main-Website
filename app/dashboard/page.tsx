@@ -28,6 +28,9 @@ import {
   Crown,
 } from "lucide-react";
 import Link from "next/link";
+
+// Force dynamic rendering to avoid build-time Clerk initialization issues
+export const dynamic = 'force-dynamic'
 import { formatDistanceToNow } from "date-fns";
 
 export default async function DashboardPage() {
@@ -150,128 +153,67 @@ export default async function DashboardPage() {
             </Card>
           </div>
 
-          {/* Purchase Credits Section */}
-          <Card className="mb-8 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-slate-900 dark:text-white">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-                  <ShoppingCart className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                </div>
-                Need More Credits?
-              </CardTitle>
-              <CardDescription className="text-slate-600 dark:text-slate-400">
-                Purchase credit packages to continue using our premium
-                accessibility tools.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                {/* Starter */}
-                <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-6 bg-slate-50 dark:bg-slate-800/50 h-full">
-                  {/* Spacer to align with 'Popular' badge column */}
-                  <div className="h-6 mb-2" aria-hidden="true"></div>
-                  <div className="flex flex-col h-full items-center text-center">
-                    <h3 className="font-semibold text-slate-900 dark:text-white min-h-[28px] mb-2">
-                      Starter Pack
-                    </h3>
-                    <div className="text-3xl font-bold text-slate-900 dark:text-white min-h-[40px] mb-2">
-                      50 Credits
-                    </div>
-                    <div className="text-xl text-slate-600 dark:text-slate-400 min-h-[28px] mb-4">
-                      $4.99
-                    </div>
-                    <div className="mb-1 w-full">
-                      <Button
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        asChild
-                      >
-                        <Link href="/contact">Contact Us</Link>
-                      </Button>
-                    </div>
+          {/* Quick Actions */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            {/* Buy Credits Card */}
+            <Card className="bg-gradient-to-br from-blue-600 to-blue-700 text-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-white/20 rounded-xl">
+                    <ShoppingCart className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">Need More Credits?</h3>
+                    <p className="text-blue-100 text-sm">Buy exactly what you need</p>
                   </div>
                 </div>
+                <p className="text-blue-50 mb-6">
+                  Choose any amount from 100 to 50,000 credits with automatic volume discounts up to 20% off. Credits never expire!
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button 
+                    asChild 
+                    className="bg-white text-blue-600 hover:bg-blue-50 flex-1"
+                    size="lg"
+                  >
+                    <Link href="/pricing" className="flex items-center justify-center gap-2">
+                      <Crown className="h-4 w-4" />
+                      Buy Credits
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
 
-                {/* Pro (featured) */}
-                <div className="border-2 border-blue-600 dark:border-blue-500 rounded-xl p-6 bg-blue-50 dark:bg-blue-900/20 h-full">
-                  <div className="flex justify-center mb-2">
-                    <Badge className="bg-blue-600 text-white">
-                      <Crown className="h-3 w-3 mr-1" />
-                      Popular
-                    </Badge>
+            {/* Purchase History Card */}
+            <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-xl">
+                    <Calendar className="h-6 w-6 text-slate-600 dark:text-slate-400" />
                   </div>
-                  <div className="flex flex-col h-full items-center text-center">
-                    <h3 className="font-semibold text-slate-900 dark:text-white min-h-[28px] mb-2">
-                      Pro Pack
-                    </h3>
-                    <div className="text-3xl font-bold text-slate-900 dark:text-white min-h-[40px] mb-2">
-                      200 Credits
-                    </div>
-                    <div className="text-xl text-slate-600 dark:text-slate-400 min-h-[28px] mb-4">
-                      $14.99
-                    </div>
-                    <div className="mb-1 w-full">
-                      <Button
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        asChild
-                      >
-                        <Link href="/contact">Contact Us</Link>
-                      </Button>
-                    </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">Purchase History</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">View all transactions</p>
                   </div>
                 </div>
-
-                {/* Business */}
-                <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-6 bg-slate-50 dark:bg-slate-800/50 h-full">
-                  {/* Spacer to align with 'Popular' badge column */}
-                  <div className="h-6 mb-2" aria-hidden="true"></div>
-                  <div className="flex flex-col h-full items-center text-center">
-                    <h3 className="font-semibold text-slate-900 dark:text-white min-h-[28px] mb-2">
-                      Business Pack
-                    </h3>
-                    <div className="text-3xl font-bold text-slate-900 dark:text-white min-h-[40px] mb-2">
-                      500 Credits
-                    </div>
-                    <div className="text-xl text-slate-600 dark:text-slate-400 min-h-[28px] mb-4">
-                      $29.99
-                    </div>
-                    <div className="mb-1 w-full">
-                      <Button
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        asChild
-                      >
-                        <Link href="/contact">Contact Us</Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Enterprise */}
-                <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-6 bg-slate-50 dark:bg-slate-800/50 h-full">
-                  {/* Spacer to align with 'Popular' badge column */}
-                  <div className="h-6 mb-2" aria-hidden="true"></div>
-                  <div className="flex flex-col h-full items-center text-center">
-                    <h3 className="font-semibold text-slate-900 dark:text-white min-h-[28px] mb-2">
-                      Enterprise Pack
-                    </h3>
-                    <div className="text-3xl font-bold text-slate-900 dark:text-white min-h-[40px] mb-2">
-                      Custom
-                    </div>
-                    <div className="text-xl text-slate-600 dark:text-slate-400 min-h-[28px] mb-4">
-                      Contact sales
-                    </div>
-                    <div className="w-full">
-                      <Button
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        asChild
-                      >
-                        <Link href="/contact">Contact Us</Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+                <p className="text-slate-600 dark:text-slate-400 mb-6">
+                  Access your complete purchase history, download invoices, and track your credit usage over time.
+                </p>
+                <Button 
+                  asChild 
+                  variant="outline" 
+                  className="w-full"
+                  size="lg"
+                >
+                  <Link href="/purchases" className="flex items-center justify-center gap-2">
+                    View History
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* History Tabs */}
           <Tabs defaultValue="transactions" className="space-y-6">

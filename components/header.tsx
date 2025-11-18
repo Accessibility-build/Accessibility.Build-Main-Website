@@ -87,6 +87,7 @@ const navItems: NavItem[] = [
     ],
   },
   { name: "WCAG 2.2 Checklist", href: "/checklists/wcag-2-2" },
+  { name: "Pricing", href: "/pricing" },
   { name: "Services", href: "/services" },
   { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
