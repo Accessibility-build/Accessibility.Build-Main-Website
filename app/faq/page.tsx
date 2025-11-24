@@ -3,12 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
-import { 
-  Shield, 
-  Code2, 
-  Zap, 
-  Users, 
-  FileText, 
+import {
+  Shield,
+  Code2,
+  Zap,
+  Users,
+  FileText,
   Lightbulb,
   CheckCircle,
   ArrowRight,
@@ -21,7 +21,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions | Accessibility.build - WCAG & Accessibility Tools",
-  description: 
+  description:
     "Get answers to common questions about web accessibility, WCAG compliance, accessibility testing tools, and building inclusive digital experiences. Expert guidance for developers and designers.",
   keywords: [
     "accessibility FAQ",
@@ -67,73 +67,73 @@ const breadcrumbs = [
 // Comprehensive FAQ data for structured markup
 const faqData = [
   {
-    question: "What is web accessibility and why is it important?",
-    answer: "Web accessibility ensures that websites and digital content are usable by people with disabilities. It's important because it promotes inclusivity, is often legally required, improves SEO, and enhances user experience for everyone. Following WCAG guidelines helps create digital experiences that work for users with visual, auditory, motor, or cognitive impairments."
+    question: "What is web accessibility and why is it important for my business?",
+    answer: "Web accessibility ensures that websites are usable by everyone, including people with disabilities. For businesses, it's essential for legal compliance (ADA, Equality Act), expanding market reach to 15% of the population, improving SEO rankings, and demonstrating social responsibility. Accessible sites also typically provide a better user experience for all visitors."
   },
   {
-    question: "What are WCAG guidelines and which version should I follow?",
-    answer: "WCAG (Web Content Accessibility Guidelines) are international standards for web accessibility. WCAG 2.2 is the current recommendation, building on WCAG 2.1 with additional success criteria. We recommend following WCAG 2.2 Level AA as the baseline for most websites, as it provides comprehensive accessibility coverage and is widely recognized for legal compliance."
+    question: "What are WCAG guidelines and which version should I follow in 2024?",
+    answer: "WCAG (Web Content Accessibility Guidelines) are the international standards. WCAG 2.2 is the current recommendation as of late 2023. Most businesses should aim for WCAG 2.2 Level AA compliance, as it is the standard referenced by most legal frameworks and provides a robust level of accessibility without the strict constraints of Level AAA."
   },
   {
-    question: "How do I test my website for accessibility compliance?",
-    answer: "Test your website using multiple approaches: automated tools like our URL Accessibility Auditor for quick scans, manual testing with keyboard navigation and screen readers, and real user testing with people who have disabilities. Use our comprehensive testing tools including heading structure analyzer, color contrast checker, and mobile accessibility checker for thorough evaluation."
+    question: "What are the most common web accessibility issues developers should fix?",
+    answer: "The most frequent violations include low contrast text, missing alt text for images, empty links/buttons, missing form labels, and poor keyboard navigation. Fixing these five issues can resolve a significant portion of accessibility barriers. Our automated tools can help identify these instantly."
+  },
+  {
+    question: "How do I implement WCAG 2.2 in my development workflow?",
+    answer: "Start with semantic HTML5 (using <nav>, <main>, <button> correctly). Ensure all interactive elements are keyboard accessible with visible focus states. Use ARIA labels only when native HTML isn't sufficient. Integrate automated accessibility testing into your CI/CD pipeline and perform manual keyboard testing before every release."
   },
   {
     question: "What is the difference between WCAG Level A, AA, and AAA?",
-    answer: "WCAG has three conformance levels: Level A (minimum), Level AA (standard), and Level AAA (enhanced). Level AA is the legal standard in most jurisdictions and provides good accessibility coverage. Level AAA has the strictest requirements and may not be practical for all content types. Most organizations aim for Level AA compliance."
+    answer: "Level A is the minimum baseline (essential for some users to access content). Level AA is the global standard for legal compliance and general usability. Level AAA is the highest standard, ideal for specialized content but often not feasible for entire complex web applications. We recommend targeting Level AA."
+  },
+  {
+    question: "How can I test my website for accessibility compliance?",
+    answer: "Use a hybrid approach: 1) Automated scanning (like our URL Auditor) to catch ~40% of issues. 2) Manual keyboard testing (Tab through every page). 3) Screen reader testing (NVDA, VoiceOver). 4) Color contrast analysis. 5) User testing with people with disabilities for the most accurate feedback."
   },
   {
     question: "Are your accessibility tools free to use?",
-    answer: "We offer both free and premium tools. Free tools include the heading structure analyzer, color palette generator, contrast checker, password generator, and JSON formatter. Premium tools that require credits include AI-powered features like alt text generation, comprehensive accessibility audits, and mobile accessibility checking."
+    answer: "We offer a robust suite of free tools including the Contrast Checker, Heading Analyzer, and Color Palette Generator. We also offer premium AI-powered features for deep auditing, alt text generation, and remediation suggestions for professional teams."
   },
   {
     question: "How accurate are AI-powered accessibility tools?",
-    answer: "Our AI tools achieve high accuracy rates for specific tasks like alt text generation and accessibility issue detection. However, AI should complement, not replace, manual testing and human judgment. We recommend using AI tools as a starting point, then validating results with manual testing and user feedback for comprehensive accessibility assurance."
+    answer: "AI tools are excellent for detecting programmatic errors and suggesting fixes (like alt text), but they cannot fully judge context or usability. Our tools use AI to speed up the process, but we always recommend human verification. Think of AI as a powerful assistant, not a replacement for human judgment."
   },
   {
     question: "What should I include in alt text for images?",
-    answer: "Alt text should concisely describe the image's content and function. For informative images, describe what's shown; for functional images like buttons, describe the action; for decorative images, use empty alt text (alt=\"\"). Keep descriptions under 125 characters when possible and avoid phrases like 'image of' or 'picture of'."
+    answer: "Context is key. For informative images, describe the content and meaning. For functional images (icons in buttons), describe the action (e.g., 'Search', not 'Magnifying glass'). For decorative images, use an empty alt attribute (alt='') so screen readers ignore them."
   },
   {
     question: "How do I make my website keyboard accessible?",
-    answer: "Ensure all interactive elements are reachable via Tab key, provide visible focus indicators, implement logical tab order, support keyboard shortcuts where appropriate, and avoid keyboard traps. Test by navigating your entire site using only the keyboard - you should be able to access all functionality without a mouse."
+    answer: "Ensure a logical tab order that follows the visual layout. Never trap the keyboard focus. Provide a clear, high-contrast visual focus indicator (outline) for all interactive elements. Ensure all custom widgets (modals, dropdowns) can be opened, navigated, and closed using only the keyboard."
   },
   {
-    question: "What color contrast ratio do I need for WCAG compliance?",
-    answer: "WCAG 2.2 Level AA requires a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text (18pt+ or 14pt+ bold). Level AAA requires 7:1 for normal text and 4.5:1 for large text. Use our color contrast checker to verify your color combinations meet these requirements."
-  },
-  {
-    question: "How often should I test my website for accessibility?",
-    answer: "Test accessibility regularly throughout development and after any content or design changes. Implement automated testing in your CI/CD pipeline, conduct monthly manual reviews, and perform comprehensive audits quarterly. For high-traffic or critical websites, consider continuous monitoring and user testing with people who have disabilities."
-  },
-  {
-    question: "What are the most common accessibility violations?",
-    answer: "The most common issues include missing alt text for images, insufficient color contrast, missing form labels, improper heading structure, keyboard navigation problems, and missing ARIA labels. Our accessibility audit tools can help identify and fix these common violations automatically."
+    question: "What color contrast ratio do I need for compliance?",
+    answer: "For WCAG 2.1/2.2 AA: Normal text needs 4.5:1. Large text (18pt+ or 14pt+ bold) needs 3:1. UI components and graphical objects also need 3:1. Use our Contrast Checker to verify your design tokens before implementation."
   },
   {
     question: "Do I need to make my mobile app accessible too?",
-    answer: "Yes, mobile accessibility is crucial and often legally required. Follow platform-specific guidelines (iOS Accessibility Guidelines, Android Accessibility Guidelines) along with WCAG principles. Our mobile accessibility checker helps ensure your mobile experiences work with screen readers, voice control, and other assistive technologies."
+    answer: "Yes. Mobile accessibility is critical. Follow platform specifics (iOS/Android accessibility APIs) and WCAG principles. Ensure touch targets are large enough (44x44px minimum), support dynamic type (text resizing), and work with mobile screen readers (VoiceOver/TalkBack)."
   }
 ]
 
 const categories = [
   {
-    title: "Getting Started",
+    title: "Business & Legal",
     icon: Shield,
     color: "blue",
-    questions: [0, 1, 2, 3]
+    questions: [0, 1, 4, 6]
   },
   {
-    title: "Tools & Testing",
+    title: "Development & Technical",
     icon: Code2,
     color: "green",
-    questions: [4, 5, 6, 10]
+    questions: [2, 3, 9, 11]
   },
   {
-    title: "Implementation",
+    title: "Testing & Tools",
     icon: Zap,
     color: "purple",
-    questions: [7, 8, 9, 11]
+    questions: [5, 7, 8, 10]
   }
 ]
 
@@ -155,7 +155,7 @@ export default function FAQPage() {
               </div>
             </div>
           </div>
-          
+
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
               Frequently Asked
@@ -163,12 +163,12 @@ export default function FAQPage() {
             <br />
             <span className="text-slate-900 dark:text-white">Questions</span>
           </h1>
-          
+
           <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Find expert answers to common questions about web accessibility, WCAG compliance, 
+            Find expert answers to common questions about web accessibility, WCAG compliance,
             and building inclusive digital experiences. Get the guidance you need to create accessible websites.
           </p>
-          
+
           {/* Quick Stats */}
           <div className="flex flex-wrap justify-center gap-6 mb-8">
             <div className="flex items-center gap-2">
@@ -194,7 +194,7 @@ export default function FAQPage() {
               Category
             </span>
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {categories.map((category, index) => {
               const IconComponent = category.icon
@@ -225,14 +225,14 @@ export default function FAQPage() {
               Answers
             </span>
           </h2>
-          
+
           {/* Featured Snippets Optimized Content */}
           <div className="featured-snippets-content mb-12">
             <Accordion type="single" collapsible className="space-y-4">
               {faqData.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg px-6">
                   <AccordionTrigger className="text-left hover:no-underline py-6">
-                    <h3 
+                    <h3
                       className="text-lg font-semibold text-slate-900 dark:text-white pr-4"
                       itemProp="name"
                       itemScope
@@ -242,7 +242,7 @@ export default function FAQPage() {
                     </h3>
                   </AccordionTrigger>
                   <AccordionContent className="pb-6">
-                    <div 
+                    <div
                       className="text-slate-600 dark:text-slate-300 leading-relaxed"
                       itemProp="acceptedAnswer"
                       itemScope
@@ -275,7 +275,7 @@ export default function FAQPage() {
 
         {/* Smart Related Content Section */}
         <div className="mt-20">
-          <RelatedContent 
+          <RelatedContent
             content="accessibility FAQ wcag compliance questions web accessibility testing tools inclusive design"
             title="Related Resources & Tools"
             maxItems={6}
@@ -291,7 +291,7 @@ export default function FAQPage() {
               Accessibility?
             </span>
           </h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <Card className="border-2 border-blue-100 dark:border-blue-900/20 hover:border-blue-200 dark:hover:border-blue-800/40 transition-all duration-200">
               <CardHeader className="text-center">
@@ -374,7 +374,7 @@ export default function FAQPage() {
             </CardHeader>
             <CardContent className="text-center space-y-4">
               <p className="text-slate-600 dark:text-slate-300">
-                Get personalized support for complex accessibility challenges, WCAG compliance requirements, 
+                Get personalized support for complex accessibility challenges, WCAG compliance requirements,
                 or custom tool development needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

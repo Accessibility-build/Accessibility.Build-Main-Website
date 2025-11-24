@@ -44,13 +44,13 @@ export const metadata: Metadata = {
   description:
     "Professional accessibility platform with AI-powered alt text generation, WCAG 2.2 & 3.0 compliance testing, color contrast analysis, and comprehensive accessibility resources for developers and designers.",
   keywords: [
-    "accessibility", 
-    "a11y", 
-    "WCAG", 
-    "WCAG 2.2", 
-    "WCAG 3.0", 
+    "accessibility",
+    "a11y",
+    "WCAG",
+    "WCAG 2.2",
+    "WCAG 3.0",
     "APCA",
-    "web accessibility", 
+    "web accessibility",
     "inclusive design",
     "accessibility testing",
     "color contrast checker",
@@ -247,7 +247,7 @@ const structuredData = {
           }
         },
         {
-          "@type": "Question", 
+          "@type": "Question",
           name: "How accurate is the AI alt text generator?",
           acceptedAnswer: {
             "@type": "Answer",
@@ -281,7 +281,7 @@ export default function RootLayout({
             }}
           />
           {/* End Google tag (gtag.js) */}
-          
+
           {/* Google Tag Manager */}
           <script
             dangerouslySetInnerHTML={{
@@ -295,13 +295,13 @@ export default function RootLayout({
             }}
           />
           {/* End Google Tag Manager */}
-          
+
           {/* Preconnect to external domains */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://api.openai.com" />
           <link rel="preconnect" href="https://clerk.com" />
-          
+
           {/* DNS prefetch for performance */}
           <link rel="dns-prefetch" href="//images.clerk.dev" />
           <link rel="dns-prefetch" href="//clerk.com" />
@@ -310,23 +310,23 @@ export default function RootLayout({
           <link rel="dns-prefetch" href="//vitals.vercel-insights.com" />
           <link rel="dns-prefetch" href="//analytics.ahrefs.com" />
           <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-          
+
           {/* Critical resource hints */}
           <link rel="prefetch" href="/tools" />
           <link rel="prefetch" href="/blog" />
           <link rel="prefetch" href="/faq" />
-          
+
           {/* Security and performance headers */}
           <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
           <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
           <meta httpEquiv="X-DNS-Prefetch-Control" content="on" />
-          
+
           {/* Performance optimization hints */}
           <meta httpEquiv="Accept-CH" content="DPR, Viewport-Width, Width" />
-          
+
           {/* Eliminate render-blocking for non-critical CSS */}
           <link rel="preload" href="/api/health" as="fetch" crossOrigin="anonymous" />
-          
+
           {/* Critical inline CSS for above-the-fold content */}
           <style dangerouslySetInnerHTML={{
             __html: `
@@ -343,15 +343,15 @@ export default function RootLayout({
         <body className={cn("min-h-screen font-sans antialiased", fontSans.variable)}>
           {/* Google Tag Manager (noscript) */}
           <noscript>
-            <iframe 
+            <iframe
               src="https://www.googletagmanager.com/ns.html?id=GTM-P22NZK7T"
-              height="0" 
-              width="0" 
-              style={{display:'none',visibility:'hidden'}}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
             />
           </noscript>
           {/* End Google Tag Manager (noscript) */}
-          
+
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <BrowserSafetyProvider />
             <SkipLink />
@@ -362,6 +362,12 @@ export default function RootLayout({
             <Analytics />
             <SpeedInsights />
           </ThemeProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(structuredData),
+            }}
+          />
         </body>
       </html>
     </ClerkProvider>
