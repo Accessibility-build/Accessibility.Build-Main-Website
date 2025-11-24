@@ -2,10 +2,10 @@ import type { Metadata } from "next"
 import HeadingAnalyzer from "@/components/tools/heading-analyzer"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { 
-  Hash, 
-  Search, 
-  Eye, 
+import {
+  Hash,
+  Search,
+  Eye,
   CheckCircle,
   AlertTriangle,
   Zap,
@@ -14,6 +14,7 @@ import {
   Target
 } from "lucide-react"
 import { ToolStructuredData, BreadcrumbStructuredData, HowToStructuredData } from "@/components/seo/structured-data"
+import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
   title: "Heading Structure Analyzer | SEO & Accessibility | Free Tool | Accessibility.build",
@@ -104,9 +105,9 @@ export default function Page() {
         }}
         steps={howToSteps}
       />
-      
+
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
-      
+
       <HowToStructuredData
         name="How to Analyze Heading Structure for SEO and Accessibility"
         description="Complete guide to analyzing and optimizing H1-H6 heading structure for better search rankings and accessibility compliance"
@@ -128,7 +129,7 @@ export default function Page() {
               </div>
             </div>
           </div>
-          
+
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
               Heading Structure
@@ -136,12 +137,12 @@ export default function Page() {
             <br />
             <span className="text-slate-900 dark:text-white">Analyzer</span>
           </h1>
-          
+
           <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Analyze your website's H1-H6 heading hierarchy for perfect SEO optimization and WCAG accessibility compliance. 
+            Analyze your website's H1-H6 heading hierarchy for perfect SEO optimization and WCAG accessibility compliance.
             Improve search rankings and screen reader navigation with proper semantic structure.
           </p>
-          
+
           {/* Feature Badges */}
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             <Badge className="bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400 px-4 py-2">
@@ -174,7 +175,7 @@ export default function Page() {
               Heading Analyzer?
             </span>
           </h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="border-2 border-blue-100 dark:border-blue-900/20 hover:border-blue-200 dark:hover:border-blue-800/40 transition-all duration-200">
               <CardHeader>
@@ -258,7 +259,7 @@ export default function Page() {
               Questions
             </span>
           </h2>
-          
+
           <div className="max-w-4xl mx-auto space-y-6">
             <Card>
               <CardHeader>
@@ -266,7 +267,7 @@ export default function Page() {
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600 dark:text-slate-300">
-                  Heading structure analysis examines the H1-H6 hierarchy on your webpage to ensure proper semantic organization, 
+                  Heading structure analysis examines the H1-H6 hierarchy on your webpage to ensure proper semantic organization,
                   SEO optimization, and accessibility compliance. It identifies missing heading levels, improper nesting, and opportunities for improvement.
                 </p>
               </CardContent>
@@ -278,7 +279,7 @@ export default function Page() {
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600 dark:text-slate-300">
-                  Search engines use heading structure to understand content hierarchy and context. Proper H1-H6 organization helps search engines 
+                  Search engines use heading structure to understand content hierarchy and context. Proper H1-H6 organization helps search engines
                   index your content more effectively, potentially improving rankings and featured snippet opportunities.
                 </p>
               </CardContent>
@@ -290,14 +291,23 @@ export default function Page() {
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600 dark:text-slate-300">
-                  Screen readers and assistive technologies rely on proper heading structure to navigate content efficiently. 
+                  Screen readers and assistive technologies rely on proper heading structure to navigate content efficiently.
                   Users can jump between headings to quickly find relevant sections, making your content more accessible to people with disabilities.
                 </p>
               </CardContent>
             </Card>
           </div>
         </div>
+
+        <div className="mt-16">
+          <RelatedContent
+            content="heading structure SEO accessibility semantic HTML"
+            title="Related Tools & Resources"
+            maxItems={3}
+            showDescriptions={true}
+          />
+        </div>
       </div>
     </>
   )
-} 
+}
