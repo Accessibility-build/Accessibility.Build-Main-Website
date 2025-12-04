@@ -42,10 +42,14 @@ interface ChecklistState {
   [key: string]: CriterionStatus
 }
 
-const InteractiveWCAGChecklist = () => {
+interface InteractiveWCAGChecklistProps {
+  initialLevelFilter?: string
+}
+
+const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGChecklistProps = {}) => {
   const [checklistState, setChecklistState] = useState<ChecklistState>({})
   const [searchTerm, setSearchTerm] = useState('')
-  const [levelFilter, setLevelFilter] = useState<string>('all')
+  const [levelFilter, setLevelFilter] = useState<string>(initialLevelFilter || 'all')
   const [principleFilter, setPrincipleFilter] = useState<string>('all')
   const [versionFilter, setVersionFilter] = useState<string>('all')
   const [introducedFilter, setIntroducedFilter] = useState<string>('all')
@@ -228,9 +232,41 @@ const InteractiveWCAGChecklist = () => {
       ]
       worksheet['!cols'] = columnWidths
 
+      // Add header styling (bold, background color)
+      const headerRange = XLSX.utils.decode_range(worksheet['!ref'] || 'A1')
+      for (let C = headerRange.s.c; C <= headerRange.e.c; ++C) {
+        const cellAddress = XLSX.utils.encode_cell({ c: C, r: 0 })
+        if (!worksheet[cellAddress]) continue
+        worksheet[cellAddress].s = {
+          font: { bold: true, color: { rgb: "FFFFFF" } },
+          fill: { fgColor: { rgb: "1E40AF" } },
+          alignment: { horizontal: "center", vertical: "center", wrapText: true }
+        }
+      }
+
+      // Add conditional formatting for status column (column H)
+      const statusCol = 7 // H column (0-indexed)
+      for (let R = 1; R <= checklistData.length; ++R) {
+        const cellAddress = XLSX.utils.encode_cell({ c: statusCol, r: R })
+        if (worksheet[cellAddress] && worksheet[cellAddress].v === 'COMPLETED') {
+          worksheet[cellAddress].s = {
+            fill: { fgColor: { rgb: "D1FAE5" } },
+            font: { color: { rgb: "065F46" }, bold: true }
+          }
+        } else if (worksheet[cellAddress] && worksheet[cellAddress].v === 'NOT COMPLETED') {
+          worksheet[cellAddress].s = {
+            fill: { fgColor: { rgb: "FEE2E2" } },
+            font: { color: { rgb: "991B1B" } }
+          }
+        }
+      }
+
       // Add autofilter for accessibility
       const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1')
       worksheet['!autofilter'] = { ref: XLSX.utils.encode_range(range) }
+      
+      // Freeze header row
+      worksheet['!freeze'] = { xSplit: 0, ySplit: 1, topLeftCell: 'A2', activePane: 'bottomLeft', state: 'frozen' }
 
       // Create workbook and add main sheet
       const workbook = XLSX.utils.book_new()

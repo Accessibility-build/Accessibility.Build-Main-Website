@@ -21,10 +21,19 @@ import {
 } from "lucide-react"
 
 export const metadata = createMetadata({
-  title: "Professional Accessibility Checklists - WCAG 2.2 & More",
+  title: "WCAG Checklist - Professional Accessibility Checklists | WCAG 2.2 & More",
   description:
-    "Access comprehensive, interactive accessibility checklists covering WCAG 2.2 and other standards. Professional tools for developers, designers, and QA teams to ensure digital inclusion.",
-  keywords: ["WCAG checklist", "accessibility checklist", "compliance audit", "digital accessibility", "inclusive design"]
+    "Access comprehensive, interactive WCAG checklist covering WCAG 2.2 and other standards. Professional tools for developers, designers, and QA teams to ensure digital inclusion. Export to Excel and PDF.",
+  keywords: [
+    "wcag checklist",
+    "WCAG checklist",
+    "accessibility checklist",
+    "compliance audit",
+    "digital accessibility",
+    "inclusive design",
+    "WCAG 2.2 checklist",
+    "WCAG checklist excel"
+  ]
 })
 
 export default function ChecklistsPage() {

@@ -4,9 +4,10 @@ import { ToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/s
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: 'URL Encoder/Decoder - Encode & Decode URLs Online | A11y Helper',
-  description: 'Free online URL encoder and decoder. Handle special characters, spaces, and international characters in URLs and query parameters safely.',
+  title: 'URL Encoder/Decoder by Alaikas - Encode & Decode URLs Online | Free Tool',
+  description: 'Free online URL encoder and decoder by Alaikas. Handle special characters, spaces, and international characters in URLs and query parameters safely. Professional web development tool.',
   keywords: [
+    'url encoder decoder by alaikas',
     'url encoder',
     'url decoder',
     'url encoding',
@@ -16,7 +17,8 @@ export const metadata: Metadata = {
     'special characters',
     'international characters',
     'web development',
-    'online converter'
+    'online converter',
+    'alaikas url tool'
   ],
   openGraph: {
     title: 'URL Encoder/Decoder - Encode & Decode URLs Online',
@@ -53,8 +55,8 @@ export default function URLEncoderDecoderPage() {
   return (
     <>
       <ToolStructuredData
-        name="URL Encoder/Decoder"
-        description="Free online URL encoder and decoder. Handle special characters, spaces, and international characters in URLs."
+        name="URL Encoder/Decoder by Alaikas"
+        description="Free online URL encoder and decoder by Alaikas. Handle special characters, spaces, and international characters in URLs and query parameters safely."
         url="https://accessibility.build/tools/url-encoder-decoder"
         applicationCategory="DeveloperApplication"
         operatingSystem="Any"

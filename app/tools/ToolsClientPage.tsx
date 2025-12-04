@@ -171,6 +171,48 @@ const accessibilityTools = [
         popular: false,
         stats: { users: "New!", scans: "Starting" }
     },
+    {
+        title: "Accessibility Report Generator",
+        shortTitle: "Report Generator",
+        description: "Create professional accessibility audit reports with executive summaries, technical details, and compliance documentation. Export to PDF, Excel, or HTML.",
+        features: ["Multiple Templates", "Executive Summary", "PDF/Excel Export", "Custom Branding"],
+        icon: FileText,
+        gradient: "from-emerald-500 to-teal-500",
+        bgPattern: "report-pattern",
+        slug: "accessibility-report-generator",
+        pricing: "Free",
+        credits: 0,
+        popular: true,
+        stats: { users: "New!", reports: "Growing" }
+    },
+    {
+        title: "Accessibility Statement Generator",
+        shortTitle: "Statement Generator",
+        description: "Generate WCAG-compliant accessibility statements for your website. Choose from multiple templates and customize for your organization's needs.",
+        features: ["Multiple Templates", "WCAG Compliant", "Multi-format Export", "Customizable"],
+        icon: FileText,
+        gradient: "from-violet-500 to-purple-500",
+        bgPattern: "statement-pattern",
+        slug: "accessibility-statement-generator",
+        pricing: "Free",
+        credits: 0,
+        popular: true,
+        stats: { users: "New!", statements: "Growing" }
+    },
+    {
+        title: "ADA Compliance Risk Assessment",
+        shortTitle: "ADA Risk Calculator",
+        description: "Assess your organization's ADA compliance risk level and get actionable recommendations. Understand legal exposure and financial impact.",
+        features: ["Risk Scoring", "Legal Analysis", "Financial Impact", "Action Plan"],
+        icon: Shield,
+        gradient: "from-amber-500 to-orange-500",
+        bgPattern: "risk-pattern",
+        slug: "ada-compliance-risks",
+        pricing: "Free",
+        credits: 0,
+        popular: true,
+        stats: { users: "New!", assessments: "Growing" }
+    },
 ]
 
 // General utility tools
