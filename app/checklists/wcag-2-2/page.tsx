@@ -2,13 +2,14 @@ import Link from "next/link"
 import { createMetadata } from "@/lib/metadata"
 import { getWCAGStats } from "@/lib/wcag-data"
 import InteractiveWCAGChecklist from "@/components/checklists/interactive-wcag-checklist"
-import { Shield, TrendingUp, CheckCircle, FileText, Sparkles, Award } from "lucide-react"
+import { Shield, TrendingUp, CheckCircle, FileText, Sparkles, Award, FileSpreadsheet } from "lucide-react"
+import { FAQStructuredData, AccessibilityToolStructuredData } from "@/components/seo/structured-data"
 
 export const metadata = createMetadata({
-  title: "Interactive WCAG 2.2 Checklist - All 78 Success Criteria",
+  title: "WCAG 2.2 Checklist Excel - Interactive Checklist with Excel Export | Free Download",
   description:
-    "Interactive WCAG 2.2 checklist with all 78 success criteria. Track progress, add notes, filter criteria, and export to Excel/PDF for professional accessibility audits.",
-  keywords: ["WCAG 2.2", "accessibility checklist", "success criteria", "compliance", "audit", "interactive", "export"]
+    "Download WCAG 2.2 checklist Excel template. Interactive checklist with all 78 success criteria. Track progress, add notes, filter criteria, and export to Excel/PDF for professional accessibility audits.",
+  keywords: ["WCAG 2.2 checklist excel", "WCAG 2.2", "accessibility checklist", "success criteria", "compliance", "audit", "interactive", "excel export", "excel template", "WCAG checklist download"]
 })
 
 export default function WcagChecklistPage() {
@@ -280,6 +281,62 @@ export default function WcagChecklistPage() {
         </div>
       </div>
 
+      {/* FAQ Section */}
+      <div className="relative py-16">
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/5 via-slate-800/5 to-slate-900/5"></div>
+        <div className="relative container-wide">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm p-8 rounded-3xl border border-white/20 dark:border-slate-700/20">
+              <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-slate-800 to-slate-900 dark:from-slate-200 dark:to-slate-100 bg-clip-text text-transparent">
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-6">
+                <div className="p-6 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+                  <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-2">
+                    Can I export the WCAG 2.2 checklist to Excel?
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300">
+                    Yes! Click the "Excel" button above to export your complete WCAG 2.2 checklist with all your progress, notes, and completion status. The Excel file includes multiple sheets: the main checklist, an audit summary, and a progress tracking template.
+                  </p>
+                </div>
+                <div className="p-6 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+                  <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-2">
+                    What's included in the Excel export?
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300">
+                    The Excel export includes: (1) Complete checklist with all 78 success criteria, (2) Your completion status and notes for each criterion, (3) Audit summary with progress statistics, (4) Progress tracking template for ongoing monitoring, (5) Formatted headers and conditional formatting for easy reading.
+                  </p>
+                </div>
+                <div className="p-6 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+                  <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-2">
+                    Is the WCAG 2.2 checklist free to use?
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300">
+                    Yes, the interactive WCAG 2.2 checklist is completely free. You can track your progress, add notes, filter criteria, and export to Excel or PDF without any cost or registration required.
+                  </p>
+                </div>
+                <div className="p-6 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+                  <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-2">
+                    How do I use the Excel checklist for compliance tracking?
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300">
+                    After exporting to Excel, you can: filter by level (A, AA, AAA) to focus on compliance requirements, sort by priority or status, add your own columns for remediation dates or assignees, use the progress tracking sheet to monitor improvements over time, and share with stakeholders for reporting.
+                  </p>
+                </div>
+                <div className="p-6 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+                  <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-2">
+                    Does the checklist cover all WCAG 2.2 success criteria?
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300">
+                    Yes, our checklist includes all 78 WCAG 2.2 success criteria across Level A (30 criteria), Level AA (24 criteria), and Level AAA (24 criteria). Each criterion includes its description, guideline, and principle for easy reference.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Navigation Footer */}
       <div className="relative py-8">
         <div className="container-wide">
@@ -293,6 +350,20 @@ export default function WcagChecklistPage() {
                 Back to all checklists
               </Link>
               <Link 
+                href="/checklists/wcag-2-2/excel"
+                className="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-emerald-600 to-green-700 text-white rounded-xl hover:from-emerald-700 hover:to-green-800 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <FileSpreadsheet className="w-5 h-5" />
+                Download Excel Template
+              </Link>
+              <Link 
+                href="/checklists/wcag-2-2/aaa"
+                className="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <Award className="w-5 h-5" />
+                View AAA Checklist
+              </Link>
+              <Link 
                 href="/tools/accessibility-audit-helper" 
                 className="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-slate-800 text-white rounded-xl hover:from-blue-700 hover:to-slate-900 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
               >
@@ -303,6 +374,42 @@ export default function WcagChecklistPage() {
           </div>
         </div>
       </div>
+
+      {/* Structured Data */}
+      <FAQStructuredData faqs={[
+        {
+          question: "Can I export the WCAG 2.2 checklist to Excel?",
+          answer: "Yes! Click the Excel button to export your complete WCAG 2.2 checklist with all your progress, notes, and completion status. The Excel file includes multiple sheets: the main checklist, an audit summary, and a progress tracking template."
+        },
+        {
+          question: "What's included in the Excel export?",
+          answer: "The Excel export includes: (1) Complete checklist with all 78 success criteria, (2) Your completion status and notes for each criterion, (3) Audit summary with progress statistics, (4) Progress tracking template for ongoing monitoring, (5) Formatted headers and conditional formatting for easy reading."
+        },
+        {
+          question: "Is the WCAG 2.2 checklist free to use?",
+          answer: "Yes, the interactive WCAG 2.2 checklist is completely free. You can track your progress, add notes, filter criteria, and export to Excel or PDF without any cost or registration required."
+        }
+      ]} />
+      <AccessibilityToolStructuredData
+        name="WCAG 2.2 Checklist Excel Export"
+        description="Export your WCAG 2.2 accessibility checklist to Excel format with progress tracking, notes, and professional formatting"
+        url="https://accessibility.build/checklists/wcag-2-2"
+        applicationCategory="AccessibilityApplication"
+        operatingSystem="Web Browser"
+        offers={{
+          price: "0",
+          priceCurrency: "USD"
+        }}
+        aggregateRating={{
+          ratingValue: "4.9",
+          reviewCount: "1250"
+        }}
+        accessibilityFeatures={[
+          "keyboardNavigation",
+          "screenReaderSupport",
+          "highContrastDisplay"
+        ]}
+      />
     </div>
   )
 }

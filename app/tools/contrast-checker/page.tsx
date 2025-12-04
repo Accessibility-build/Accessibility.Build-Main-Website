@@ -4,10 +4,11 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Advanced Color Contrast Checker | WCAG 2.2 & 3.0 | Free Accessibility Tool",
+  title: "WCAG Contrast Checker | Color Contrast Checker | WCAG 2.2 & 3.0 | Free Tool",
   description:
-    "Professional color contrast checker supporting both WCAG 2.2 and 3.0 (APCA). Test contrast ratios instantly, get real-time feedback, and ensure your design meets accessibility standards for all users including those with visual impairments.",
+    "Professional WCAG contrast checker supporting both WCAG 2.2 and 3.0 (APCA). Test contrast ratios instantly, get real-time feedback, and ensure your design meets accessibility standards for all users including those with visual impairments.",
   keywords: [
+    "wcag contrast checker",
     "color contrast checker",
     "WCAG contrast ratio",
     "WCAG 2.2 compliance",

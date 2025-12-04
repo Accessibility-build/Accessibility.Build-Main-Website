@@ -94,6 +94,7 @@ export default function URLEncoderDecoder() {
           </div>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Encode and decode URLs for safe transmission. Perfect for handling special characters in URLs and query parameters.
+            <span className="block mt-2 text-sm text-gray-500">by Alaikas</span>
           </p>
         </div>
 
