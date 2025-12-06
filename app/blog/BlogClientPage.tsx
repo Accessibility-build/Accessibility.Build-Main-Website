@@ -143,7 +143,7 @@ function FeaturedPostCard({ post }: { post: BlogPost }) {
   return (
     <Link href={`/blog/${post.slug.current}`}>
       <Card className="group overflow-hidden border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 bg-white dark:bg-slate-800">
-        <div className="p-6 pb-8 sm:p-8 sm:pb-10">
+        <div className="p-6 sm:p-8">
           <CardHeader className="p-0 mb-4">
             <div className="flex flex-wrap gap-2 mb-4">
               {post.categories?.map((category, index) => (
@@ -179,7 +179,7 @@ function FeaturedPostCard({ post }: { post: BlogPost }) {
 function RegularPostCard({ post }: { post: BlogPost }) {
   return (
     <Link href={`/blog/${post.slug.current}`}>
-      <Card className="group border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 bg-white dark:bg-slate-800 p-4 pb-6 sm:p-6 sm:pb-8">
+      <Card className="group border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 bg-white dark:bg-slate-800 p-4 sm:p-6">
         <div className="flex items-start gap-4 sm:gap-6">
           {/* Content */}
           <div className="flex-1 min-w-0">
