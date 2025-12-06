@@ -107,7 +107,7 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
   const regularPosts = posts.slice(3)
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-20">
       {/* Featured Articles */}
       {featuredPosts.length > 0 && (
         <section>
@@ -115,7 +115,7 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
             <TrendingUp className="h-5 w-5 text-blue-600 dark:text-blue-400" />
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Featured Articles</h2>
           </div>
-          <div className="space-y-8">
+          <div className="space-y-10">
             {featuredPosts.map((post) => (
               <FeaturedPostCard key={post._id} post={post} />
             ))}
@@ -129,7 +129,7 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
           <BookOpen className="h-5 w-5 text-slate-600 dark:text-slate-400" />
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">All Articles</h2>
         </div>
-        <div className="space-y-6">
+        <div className="space-y-8">
           {regularPosts.map((post) => (
             <RegularPostCard key={post._id} post={post} />
           ))}
@@ -275,7 +275,7 @@ function BlogSidebar({ posts }: { posts: BlogPost[] }) {
   const recentPosts = posts.slice(0, 5)
 
   return (
-    <div className="lg:sticky lg:top-24 space-y-6">
+    <div className="lg:sticky lg:top-24 space-y-8">
       {/* Categories */}
       <Card className="border border-slate-200 dark:border-slate-700 shadow-md bg-white dark:bg-slate-800 p-5 sm:p-6">
         <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
