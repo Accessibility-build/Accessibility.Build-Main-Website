@@ -233,28 +233,6 @@ const structuredData = {
         priceCurrency: "USD",
         description: "Pay per use with 100 free credits for new users"
       }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://accessibility.build/#faq",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What is WCAG 3.0?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "WCAG 3.0 is the upcoming version of Web Content Accessibility Guidelines that introduces the Advanced Perceptual Contrast Algorithm (APCA) for more accurate contrast testing."
-          }
-        },
-        {
-          "@type": "Question",
-          name: "How accurate is the AI alt text generator?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Our alt text generator uses OpenAI GPT-4 Vision, providing highly accurate and contextually relevant descriptions that meet WCAG 2.2 standards."
-          }
-        }
-      ]
     }
   ]
 }
