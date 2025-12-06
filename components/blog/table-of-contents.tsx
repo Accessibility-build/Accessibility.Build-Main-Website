@@ -217,7 +217,7 @@ export function TableOfContents({ content, className = '' }: TableOfContentsProp
                   <button
                     onClick={() => scrollToHeading(heading.id)}
                     className={cn(
-                      "group relative flex items-center gap-2.5 w-full text-left py-2.5 pl-3 pr-3 rounded-lg transition-all duration-200",
+                      "group relative flex items-center gap-2 w-full text-left py-2.5 pl-3 pr-3 rounded-lg transition-all duration-200",
                       isActive 
                         ? "bg-gradient-to-r from-blue-50 to-blue-50/50 dark:from-blue-900/30 dark:to-blue-900/10 text-blue-700 dark:text-blue-300 shadow-sm" 
                         : isNext
@@ -236,21 +236,12 @@ export function TableOfContents({ content, className = '' }: TableOfContentsProp
                       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-r-full shadow-sm" />
                     )}
 
-                    {/* Status icon */}
-                    <span className="flex-shrink-0">
-                      {isPassed ? (
+                    {/* Status icon - only show for passed sections */}
+                    {isPassed && (
+                      <span className="flex-shrink-0">
                         <CheckCircle2 className="w-3.5 h-3.5 text-green-500 dark:text-green-400" />
-                      ) : isActive ? (
-                        <Circle className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 fill-current" />
-                      ) : (
-                        <Circle className={cn(
-                          "w-3.5 h-3.5 transition-all duration-200",
-                          isNext 
-                            ? "text-blue-400 dark:text-blue-500" 
-                            : "text-slate-300 dark:text-slate-600 group-hover:text-slate-400 dark:group-hover:text-slate-500"
-                        )} />
-                      )}
-                    </span>
+                      </span>
+                    )}
                     
                     <span className={cn(
                       "flex-1 transition-all duration-200 leading-snug min-w-0",
