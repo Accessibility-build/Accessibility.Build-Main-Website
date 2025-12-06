@@ -294,7 +294,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
                 
                 {/* Article Content */}
-                <div className="lg:col-span-8 order-2 lg:order-1">
+                <div className="lg:col-span-8 order-1">
                   <div className="max-w-3xl">
                     {/* Content */}
                     <div className="prose-container">
@@ -342,7 +342,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </div>
 
                 {/* Sidebar */}
-                <aside className="lg:col-span-4 order-1 lg:order-2">
+                <aside className="lg:col-span-4 order-2">
                   <div className="lg:sticky lg:top-24 space-y-6 font-sans">
                     
                     {/* Table of Contents */}
