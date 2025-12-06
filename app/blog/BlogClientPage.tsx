@@ -1,12 +1,13 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { NewsletterSignup } from "@/components/newsletter-signup"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { Calendar, Clock, Search, ArrowRight } from "lucide-react"
+import { Calendar, Clock, Search, ArrowRight, BookOpen, TrendingUp } from "lucide-react"
 import { useState } from "react"
 
 interface BlogPost {
@@ -44,14 +45,18 @@ export default function BlogClientPage({ posts = [], categories = [] }: BlogClie
   const blogPosts = posts
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
       {/* Hero Section */}
-      <section className="py-20 px-4">
+      <section className="py-16 sm:py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/30 rounded-full mb-6">
+            <BookOpen className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+            <span className="text-sm font-medium text-blue-600 dark:text-blue-400">Accessibility Insights</span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
             Accessibility Blog
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
             Learn about web accessibility through our collection of articles, guides, and tutorials.
           </p>
           <BlogSearch />
@@ -61,7 +66,7 @@ export default function BlogClientPage({ posts = [], categories = [] }: BlogClie
       {/* Main Content - Two Column Layout */}
       <section className="pb-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Main Content - Left Column (2/3 width) */}
             <div className="lg:col-span-2">
               <BlogListing posts={blogPosts} />
@@ -87,7 +92,7 @@ function BlogSearch() {
         <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
         <Input
           placeholder="Search articles..."
-          className="pl-12 pr-4 py-3 text-base bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-full shadow-sm focus:shadow-md transition-shadow"
+          className="pl-12 pr-4 py-3 text-base bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl shadow-sm focus:shadow-md transition-shadow"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -102,12 +107,15 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
   const regularPosts = posts.slice(3)
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12">
       {/* Featured Articles */}
       {featuredPosts.length > 0 && (
         <section>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Featured Articles</h2>
-          <div className="space-y-8">
+          <div className="flex items-center gap-2 mb-6">
+            <TrendingUp className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Featured Articles</h2>
+          </div>
+          <div className="space-y-6">
             {featuredPosts.map((post) => (
               <FeaturedPostCard key={post._id} post={post} />
             ))}
@@ -117,8 +125,11 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
 
       {/* All Articles */}
       <section>
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">All Articles</h2>
-        <div className="space-y-6">
+        <div className="flex items-center gap-2 mb-6">
+          <BookOpen className="h-5 w-5 text-slate-600 dark:text-slate-400" />
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">All Articles</h2>
+        </div>
+        <div className="space-y-4">
           {regularPosts.map((post) => (
             <RegularPostCard key={post._id} post={post} />
           ))}
@@ -130,93 +141,107 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
 
 function FeaturedPostCard({ post }: { post: BlogPost }) {
   return (
-    <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white dark:bg-slate-800">
-      <div className="p-8">
-        <CardHeader className="p-0 mb-4">
-          <div className="flex flex-wrap gap-2 mb-4">
-            {post.categories?.map((category, index) => (
-              <Badge key={index} variant="secondary" className="text-xs font-medium">
-                {category.title}
-              </Badge>
-            ))}
-          </div>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
-            <Link href={`/blog/${post.slug.current}`}>
+    <Link href={`/blog/${post.slug.current}`}>
+      <Card className="group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-slate-800/50 backdrop-blur-sm">
+        <div className="p-6 sm:p-8">
+          <CardHeader className="p-0 mb-4">
+            <div className="flex flex-wrap gap-2 mb-4">
+              {post.categories?.map((category, index) => (
+                <Badge key={index} variant="secondary" className="text-xs font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border-0">
+                  {category.title}
+                </Badge>
+              ))}
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
               {post.title}
-            </Link>
-          </h3>
-        </CardHeader>
+            </h3>
+          </CardHeader>
 
-        <CardContent className="p-0">
-          <p className="text-slate-600 dark:text-slate-300 mb-6 text-base leading-relaxed">
-            {post.excerpt}
-          </p>
+          <CardContent className="p-0">
+            <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm sm:text-base leading-relaxed line-clamp-2">
+              {post.excerpt}
+            </p>
 
-          <div className="flex items-center justify-between">
-            <AuthorInfo author={post.author.name} role="Accessibility Expert" />
-            <PostMeta date={post.publishedAt} readingTime={`${post.estimatedReadingTime} min read`} />
-          </div>
-        </CardContent>
-      </div>
-    </Card>
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <AuthorInfo 
+                author={post.author.name} 
+                image={post.author.image}
+              />
+              <PostMeta date={post.publishedAt} readingTime={`${post.estimatedReadingTime} min read`} />
+            </div>
+          </CardContent>
+        </div>
+      </Card>
+    </Link>
   )
 }
 
 function RegularPostCard({ post }: { post: BlogPost }) {
   return (
-    <Card className="group border-0 shadow-sm hover:shadow-md transition-all duration-300 bg-white dark:bg-slate-800 p-6">
-      <div className="flex items-start gap-6">
-        {/* Content */}
-        <div className="flex-1">
-          <CardHeader className="p-0 mb-4">
-            <div className="flex flex-wrap gap-2 mb-3">
-              {post.categories?.map((category, index) => (
-                <Badge key={index} variant="outline" className="text-xs">
-                  {category.title}
-                </Badge>
-              ))}
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
-              <Link href={`/blog/${post.slug.current}`}>
+    <Link href={`/blog/${post.slug.current}`}>
+      <Card className="group border-0 shadow-sm hover:shadow-md transition-all duration-300 bg-white dark:bg-slate-800/50 backdrop-blur-sm p-4 sm:p-6">
+        <div className="flex items-start gap-4 sm:gap-6">
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <CardHeader className="p-0 mb-3">
+              <div className="flex flex-wrap gap-2 mb-2">
+                {post.categories?.slice(0, 2).map((category, index) => (
+                  <Badge key={index} variant="outline" className="text-xs border-slate-200 dark:border-slate-700">
+                    {category.title}
+                  </Badge>
+                ))}
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
                 {post.title}
-              </Link>
-            </h3>
-          </CardHeader>
+              </h3>
+            </CardHeader>
 
-          <CardContent className="p-0">
-            <p className="text-slate-600 dark:text-slate-300 mb-4 text-sm leading-relaxed">
-              {post.excerpt}
-            </p>
+            <CardContent className="p-0">
+              <p className="text-slate-600 dark:text-slate-300 mb-4 text-sm leading-relaxed line-clamp-2">
+                {post.excerpt}
+              </p>
 
-            <div className="flex items-center justify-between">
-              <AuthorInfo author={post.author.name} role="Accessibility Expert" size="sm" />
-              <PostMeta date={post.publishedAt} readingTime={`${post.estimatedReadingTime} min read`} size="sm" />
-            </div>
-          </CardContent>
+              <div className="flex items-center justify-between flex-wrap gap-3">
+                <AuthorInfo 
+                  author={post.author.name} 
+                  image={post.author.image}
+                  size="sm" 
+                />
+                <PostMeta date={post.publishedAt} readingTime={`${post.estimatedReadingTime} min read`} size="sm" />
+              </div>
+            </CardContent>
+          </div>
+
+          {/* Arrow */}
+          <div className="flex-shrink-0 pt-2">
+            <ArrowRight className="h-5 w-5 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:translate-x-1 transition-all duration-300" />
+          </div>
         </div>
-
-        {/* Arrow */}
-        <div className="flex-shrink-0 pt-2">
-          <ArrowRight className="h-5 w-5 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:translate-x-1 transition-all duration-300" />
-        </div>
-      </div>
-    </Card>
+      </Card>
+    </Link>
   )
 }
 
-function AuthorInfo({ author, role, size = "base" }: { author: string; role: string; size?: "sm" | "base" }) {
+function AuthorInfo({ author, image, size = "base" }: { author: string; image?: string; size?: "sm" | "base" }) {
   const avatarSize = size === "sm" ? "h-8 w-8" : "h-10 w-10"
   const textSize = size === "sm" ? "text-sm" : "text-base"
-  const roleSize = size === "sm" ? "text-xs" : "text-sm"
+  
+  // Generate DiceBear avatar URL
+  const defaultAvatar = `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(author)}&backgroundColor=b6e3f4,c0aede,d1d4f9&backgroundType=gradientLinear`
 
   return (
-    <div className="flex items-center gap-3">
-      <div className={`${avatarSize} rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-medium`}>
-        {author.split(" ").map((name) => name[0]).join("")}
+    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+      <div className={`${avatarSize} rounded-full overflow-hidden flex-shrink-0 ring-2 ring-slate-100 dark:ring-slate-700`}>
+        <Image
+          src={image || defaultAvatar}
+          alt={author}
+          width={40}
+          height={40}
+          className="w-full h-full object-cover"
+        />
       </div>
-      <div>
-        <div className={`font-medium text-slate-900 dark:text-white ${textSize}`}>{author}</div>
-        <div className={`text-slate-500 dark:text-slate-400 ${roleSize}`}>{role}</div>
+      <div className="min-w-0">
+        <div className={`font-medium text-slate-900 dark:text-white ${textSize} truncate`}>{author}</div>
       </div>
     </div>
   )
@@ -227,10 +252,15 @@ function PostMeta({ date, readingTime, size = "base" }: { date: string; readingT
   const iconSize = size === "sm" ? "h-3 w-3" : "h-4 w-4"
 
   return (
-    <div className={`flex items-center gap-4 text-slate-500 dark:text-slate-400 ${textSize}`}>
+    <div className={`flex items-center gap-3 sm:gap-4 text-slate-500 dark:text-slate-400 ${textSize} flex-shrink-0`}>
       <div className="flex items-center gap-1">
         <Calendar className={iconSize} />
-        <time dateTime={date}>{new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+        <time dateTime={date} className="hidden sm:inline">
+          {new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+        </time>
+        <time dateTime={date} className="sm:hidden">
+          {new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+        </time>
       </div>
       <div className="flex items-center gap-1">
         <Clock className={iconSize} />
@@ -245,13 +275,20 @@ function BlogSidebar({ posts }: { posts: BlogPost[] }) {
   const recentPosts = posts.slice(0, 5)
 
   return (
-    <div className="sticky top-8 space-y-8">
+    <div className="lg:sticky lg:top-24 space-y-6">
       {/* Categories */}
-      <Card className="border-0 shadow-sm bg-white dark:bg-slate-800 p-6">
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Categories</h3>
+      <Card className="border-0 shadow-sm bg-white dark:bg-slate-800/50 backdrop-blur-sm p-5 sm:p-6">
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <div className="w-1 h-5 bg-blue-600 rounded-full"></div>
+          Categories
+        </h3>
         <div className="flex flex-wrap gap-2">
           {allCategories.map((category, index) => (
-            <Badge key={index} variant="outline" className="hover:bg-blue-50 hover:border-blue-200 dark:hover:bg-blue-900/20 transition-colors cursor-pointer">
+            <Badge 
+              key={index} 
+              variant="outline" 
+              className="hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 dark:hover:bg-blue-900/30 dark:hover:border-blue-700 dark:hover:text-blue-300 transition-colors cursor-pointer border-slate-200 dark:border-slate-700"
+            >
               {category}
             </Badge>
           ))}
@@ -259,18 +296,25 @@ function BlogSidebar({ posts }: { posts: BlogPost[] }) {
       </Card>
 
       {/* Recent Posts */}
-      <Card className="border-0 shadow-sm bg-white dark:bg-slate-800 p-6">
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Recent Posts</h3>
+      <Card className="border-0 shadow-sm bg-white dark:bg-slate-800/50 backdrop-blur-sm p-5 sm:p-6">
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <div className="w-1 h-5 bg-green-600 rounded-full"></div>
+          Recent Posts
+        </h3>
         <div className="space-y-4">
           {recentPosts.map((post) => (
             <div key={post._id} className="group">
               <Link href={`/blog/${post.slug.current}`} className="block">
-                <h4 className="font-medium text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-sm leading-tight mb-1">
+                <h4 className="font-medium text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-sm leading-tight mb-1.5">
                   {post.title}
                 </h4>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} • {post.estimatedReadingTime} min read
-                </p>
+                <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                  <time dateTime={post.publishedAt}>
+                    {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  </time>
+                  <span>•</span>
+                  <span>{post.estimatedReadingTime} min read</span>
+                </div>
               </Link>
             </div>
           ))}
@@ -278,7 +322,11 @@ function BlogSidebar({ posts }: { posts: BlogPost[] }) {
       </Card>
 
       {/* Newsletter Signup */}
-      <Card className="border-0 shadow-sm bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6">
+      <Card className="border-0 shadow-sm bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-5 sm:p-6">
+        <div className="mb-4">
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Stay Updated</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400">Get the latest accessibility insights delivered to your inbox.</p>
+        </div>
         <NewsletterSignup 
           source="blog"
           compact={true}
