@@ -9,7 +9,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { 
   Search, 
@@ -28,7 +27,9 @@ import {
   Sparkles,
   Award,
   Eye,
-  Target
+  Target,
+  Filter,
+  Download
 } from 'lucide-react'
 import { wcagCriteria } from '@/lib/wcag-data'
 import * as XLSX from 'xlsx'
@@ -183,13 +184,13 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
   const getLevelBadge = (level: 'A' | 'AA' | 'AAA') => {
     const variants = {
-      'A': 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-200 shadow-sm',
-      'AA': 'bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 border-blue-200 shadow-sm', 
-      'AAA': 'bg-gradient-to-r from-purple-100 to-violet-100 text-purple-800 border-purple-200 shadow-sm'
+      'A': 'bg-gradient-to-r from-emerald-100 to-green-100 dark:from-emerald-900/40 dark:to-green-900/40 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-600/50',
+      'AA': 'bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-600/50', 
+      'AAA': 'bg-gradient-to-r from-purple-100 to-violet-100 dark:from-purple-900/40 dark:to-violet-900/40 text-purple-700 dark:text-purple-300 border-purple-300 dark:border-purple-600/50'
     }
     
     return (
-      <Badge variant="outline" className={`${variants[level]} font-mono text-xs font-bold`}>
+      <Badge variant="outline" className={`${variants[level]} font-mono text-xs font-bold shadow-sm`}>
         {level}
       </Badge>
     )
@@ -198,142 +199,269 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
   const exportToExcel = () => {
     setIsExporting(true)
     try {
-      // Main checklist data with proper formatting
-      const checklistData = wcagCriteria.map((criterion, index) => ({
-        'Row #': index + 1,
-        'SC Number': criterion.number,
-        'Success Criterion': criterion.title,
-        'Level': criterion.level,
-        'Principle': criterion.principle,
-        'Guideline': criterion.guideline,
-        'Description': criterion.description,
-        'Status': checklistState[criterion.number]?.checked ? 'COMPLETED' : 'NOT COMPLETED',
-        'Completion Date': checklistState[criterion.number]?.checked ? new Date().toLocaleDateString() : '',
-        'Notes': checklistState[criterion.number]?.note || '',
-        'Priority': criterion.level === 'AA' ? 'HIGH' : criterion.level === 'A' ? 'MEDIUM' : 'LOW'
-      }))
+      const workbook = XLSX.utils.book_new()
 
-      // Create main worksheet
-      const worksheet = XLSX.utils.json_to_sheet(checklistData)
-      
-      // Enhanced column widths for accessibility
-      const columnWidths = [
-        { wch: 8 },  // Row #
-        { wch: 12 }, // SC Number
-        { wch: 40 }, // Success Criterion
-        { wch: 8 },  // Level
-        { wch: 20 }, // Principle
-        { wch: 30 }, // Guideline
-        { wch: 60 }, // Description
-        { wch: 15 }, // Status
-        { wch: 15 }, // Completion Date
-        { wch: 40 }, // Notes
-        { wch: 10 }  // Priority
+      // ============================================
+      // SHEET 1: WCAG 2.2 CHECKLIST (Main Sheet)
+      // ============================================
+      const headers = [
+        '#',
+        'SC Number',
+        'Success Criterion',
+        'Level',
+        'Principle',
+        'Guideline',
+        'Description',
+        'Status',           // NOT STARTED, IN PROGRESS, COMPLETED
+        'Result',           // PENDING, PASS, FAIL, N/A (filterable)
+        'Notes & Findings',
+        'Priority',
+        'Assigned To',
+        'Completion Date',
+        'Test Date'
       ]
-      worksheet['!cols'] = columnWidths
 
-      // Add header styling (bold, background color)
-      const headerRange = XLSX.utils.decode_range(worksheet['!ref'] || 'A1')
-      for (let C = headerRange.s.c; C <= headerRange.e.c; ++C) {
-        const cellAddress = XLSX.utils.encode_cell({ c: C, r: 0 })
-        if (!worksheet[cellAddress]) continue
-        worksheet[cellAddress].s = {
-          font: { bold: true, color: { rgb: "FFFFFF" } },
-          fill: { fgColor: { rgb: "1E40AF" } },
-          alignment: { horizontal: "center", vertical: "center", wrapText: true }
-        }
-      }
+      const rows = wcagCriteria.map((criterion, index) => {
+        const isChecked = checklistState[criterion.number]?.checked || false
+        const note = checklistState[criterion.number]?.note || ''
+        const priority = criterion.level === 'AA' ? 'HIGH' : criterion.level === 'A' ? 'MEDIUM' : 'LOW'
+        
+        return [
+          index + 1,
+          criterion.number,
+          criterion.title,
+          criterion.level,
+          criterion.principle,
+          criterion.guideline,
+          criterion.description,
+          isChecked ? 'COMPLETED' : 'NOT STARTED',
+          isChecked ? 'PASS' : 'PENDING',  // Excel-native filterable values
+          note,
+          priority,
+          '',
+          isChecked ? new Date().toLocaleDateString() : '',
+          isChecked ? new Date().toLocaleDateString() : ''
+        ]
+      })
 
-      // Add conditional formatting for status column (column H)
-      const statusCol = 7 // H column (0-indexed)
-      for (let R = 1; R <= checklistData.length; ++R) {
-        const cellAddress = XLSX.utils.encode_cell({ c: statusCol, r: R })
-        if (worksheet[cellAddress] && worksheet[cellAddress].v === 'COMPLETED') {
-          worksheet[cellAddress].s = {
-            fill: { fgColor: { rgb: "D1FAE5" } },
-            font: { color: { rgb: "065F46" }, bold: true }
-          }
-        } else if (worksheet[cellAddress] && worksheet[cellAddress].v === 'NOT COMPLETED') {
-          worksheet[cellAddress].s = {
-            fill: { fgColor: { rgb: "FEE2E2" } },
-            font: { color: { rgb: "991B1B" } }
-          }
-        }
-      }
+      const wsData = [headers, ...rows]
+      const worksheet = XLSX.utils.aoa_to_sheet(wsData)
 
-      // Add autofilter for accessibility
+      // Professional column widths
+      worksheet['!cols'] = [
+        { wch: 5 },   // #
+        { wch: 10 },  // SC Number
+        { wch: 45 },  // Success Criterion
+        { wch: 8 },   // Level
+        { wch: 18 },  // Principle
+        { wch: 35 },  // Guideline
+        { wch: 70 },  // Description
+        { wch: 15 },  // Status (dropdown)
+        { wch: 12 },  // Result (dropdown: PENDING, PASS, FAIL, N/A)
+        { wch: 50 },  // Notes
+        { wch: 10 },  // Priority
+        { wch: 18 },  // Assigned To
+        { wch: 16 },  // Completion Date
+        { wch: 14 }   // Test Date
+      ]
+
+      // Set row heights for readability
+      worksheet['!rows'] = [
+        { hpt: 35 }, // Header row
+        ...rows.map(() => ({ hpt: 45 }))
+      ]
+
+      // Add autofilter
       const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1')
       worksheet['!autofilter'] = { ref: XLSX.utils.encode_range(range) }
-      
-      // Freeze header row
       worksheet['!freeze'] = { xSplit: 0, ySplit: 1, topLeftCell: 'A2', activePane: 'bottomLeft', state: 'frozen' }
 
-      // Create workbook and add main sheet
-      const workbook = XLSX.utils.book_new()
       XLSX.utils.book_append_sheet(workbook, worksheet, 'WCAG 2.2 Checklist')
       
-      // Create enhanced summary sheet
+      // ============================================
+      // SHEET 2: AUDIT SUMMARY
+      // ============================================
       const summaryData = [
-        ['WCAG 2.2 Accessibility Audit Report'],
-        ['Generated by Accessibility.build'],
-        [''],
-        ['AUDIT SUMMARY'],
-        ['Total Success Criteria:', stats.total],
-        ['Completed Criteria:', stats.completed],
-        ['Remaining Criteria:', stats.total - stats.completed],
-        ['Overall Progress:', `${stats.percentage}%`],
-        [''],
-        ['CONFORMANCE LEVEL BREAKDOWN'],
-        ['Level A - Total:', stats.byLevel.A.total],
-        ['Level A - Completed:', stats.byLevel.A.completed],
-        ['Level A - Progress:', `${stats.byLevel.A.total > 0 ? Math.round((stats.byLevel.A.completed / stats.byLevel.A.total) * 100) : 0}%`],
-        [''],
-        ['Level AA - Total:', stats.byLevel.AA.total],
-        ['Level AA - Completed:', stats.byLevel.AA.completed],
-        ['Level AA - Progress:', `${stats.byLevel.AA.total > 0 ? Math.round((stats.byLevel.AA.completed / stats.byLevel.AA.total) * 100) : 0}%`],
-        [''],
-        ['Level AAA - Total:', stats.byLevel.AAA.total],
-        ['Level AAA - Completed:', stats.byLevel.AAA.completed],
-        ['Level AAA - Progress:', `${stats.byLevel.AAA.total > 0 ? Math.round((stats.byLevel.AAA.completed / stats.byLevel.AAA.total) * 100) : 0}%`],
-        [''],
-        ['EXPORT INFORMATION'],
-        ['Export Date:', new Date().toLocaleDateString()],
-        ['Export Time:', new Date().toLocaleTimeString()],
-        ['Exported by:', 'Accessibility.build Platform'],
-        [''],
-        ['NEXT STEPS'],
-        ['1. Review all incomplete criteria'],
-        ['2. Prioritize Level AA criteria for compliance'],
-        ['3. Document implementation details in Notes'],
-        ['4. Test with assistive technologies'],
-        ['5. Conduct user testing with disabled users']
+        ['', '', ''],
+        ['', 'WCAG 2.2 ACCESSIBILITY AUDIT REPORT', ''],
+        ['', 'Generated by Accessibility.build', ''],
+        ['', '', ''],
+        ['', '═══════════════════════════════════════════', ''],
+        ['', '', ''],
+        ['', 'AUDIT PROGRESS', ''],
+        ['', '─────────────────────────────────────────', ''],
+        ['', 'Total Success Criteria:', stats.total],
+        ['', 'Completed Criteria:', stats.completed],
+        ['', 'Remaining Criteria:', stats.total - stats.completed],
+        ['', 'Overall Progress:', `${stats.percentage}%`],
+        ['', '', ''],
+        ['', '═══════════════════════════════════════════', ''],
+        ['', '', ''],
+        ['', 'CONFORMANCE LEVEL BREAKDOWN', ''],
+        ['', '─────────────────────────────────────────', ''],
+        ['', '', ''],
+        ['', 'Level A (Essential)', ''],
+        ['', '    Total:', stats.byLevel.A.total],
+        ['', '    Completed:', stats.byLevel.A.completed],
+        ['', '    Progress:', `${stats.byLevel.A.total > 0 ? Math.round((stats.byLevel.A.completed / stats.byLevel.A.total) * 100) : 0}%`],
+        ['', '', ''],
+        ['', 'Level AA (Required for Compliance)', ''],
+        ['', '    Total:', stats.byLevel.AA.total],
+        ['', '    Completed:', stats.byLevel.AA.completed],
+        ['', '    Progress:', `${stats.byLevel.AA.total > 0 ? Math.round((stats.byLevel.AA.completed / stats.byLevel.AA.total) * 100) : 0}%`],
+        ['', '', ''],
+        ['', 'Level AAA (Enhanced)', ''],
+        ['', '    Total:', stats.byLevel.AAA.total],
+        ['', '    Completed:', stats.byLevel.AAA.completed],
+        ['', '    Progress:', `${stats.byLevel.AAA.total > 0 ? Math.round((stats.byLevel.AAA.completed / stats.byLevel.AAA.total) * 100) : 0}%`],
+        ['', '', ''],
+        ['', '═══════════════════════════════════════════', ''],
+        ['', '', ''],
+        ['', 'EXPORT INFORMATION', ''],
+        ['', '─────────────────────────────────────────', ''],
+        ['', 'Export Date:', new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })],
+        ['', 'Export Time:', new Date().toLocaleTimeString()],
+        ['', 'Exported by:', 'Accessibility.build Platform'],
+        ['', '', ''],
+        ['', '═══════════════════════════════════════════', ''],
+        ['', '', ''],
+        ['', 'NEXT STEPS', ''],
+        ['', '─────────────────────────────────────────', ''],
+        ['', '1.', 'Review all incomplete criteria'],
+        ['', '2.', 'Prioritize Level AA criteria for compliance'],
+        ['', '3.', 'Document implementation details in Notes'],
+        ['', '4.', 'Test with screen readers and assistive technologies'],
+        ['', '5.', 'Conduct user testing with people with disabilities'],
+        ['', '6.', 'Create remediation plan for failed criteria'],
+        ['', '', ''],
+        ['', '═══════════════════════════════════════════', ''],
       ]
       
       const summarySheet = XLSX.utils.aoa_to_sheet(summaryData)
-      
-      // Set column widths for summary
-      summarySheet['!cols'] = [{ wch: 30 }, { wch: 25 }]
+      summarySheet['!cols'] = [{ wch: 5 }, { wch: 40 }, { wch: 30 }]
+      summarySheet['!rows'] = [
+        { hpt: 10 },
+        { hpt: 28 },
+        { hpt: 18 },
+        ...Array(summaryData.length - 3).fill({ hpt: 20 })
+      ]
       
       XLSX.utils.book_append_sheet(workbook, summarySheet, 'Audit Summary')
 
-      // Create progress tracking sheet
+      // ============================================
+      // SHEET 3: PROGRESS TRACKING
+      // ============================================
       const progressData = [
-        ['Progress Tracking'],
-        [''],
-        ['Date', 'Total Completed', 'Level A', 'Level AA', 'Level AAA', 'Notes'],
-        [new Date().toLocaleDateString(), stats.completed, stats.byLevel.A.completed, stats.byLevel.AA.completed, stats.byLevel.AAA.completed, 'Initial export']
+        ['', '', '', '', '', '', '', ''],
+        ['', 'PROGRESS TRACKING', '', '', '', '', '', ''],
+        ['', 'Track your audit progress over time', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '═════════════════════════════════════════════════════════════════', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', 'Date', 'Total Tested', 'Pass', 'Fail', 'N/A', 'Progress %', 'Notes'],
+        ['', '─────────────', '─────────────', '─────────', '─────────', '─────────', '─────────────', '─────────────────────────────'],
+        ['', new Date().toLocaleDateString(), stats.completed.toString(), stats.completed.toString(), '0', '0', `${stats.percentage}%`, 'Progress exported from interactive checklist'],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '═════════════════════════════════════════════════════════════════', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', 'LEVEL-SPECIFIC PROGRESS', '', '', '', '', '', ''],
+        ['', '─────────────────────────────────────────', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', 'Level', 'Total', 'Completed', 'Remaining', 'Progress', '', ''],
+        ['', 'Level A', stats.byLevel.A.total, stats.byLevel.A.completed, stats.byLevel.A.total - stats.byLevel.A.completed, `${stats.byLevel.A.total > 0 ? Math.round((stats.byLevel.A.completed / stats.byLevel.A.total) * 100) : 0}%`, '', ''],
+        ['', 'Level AA', stats.byLevel.AA.total, stats.byLevel.AA.completed, stats.byLevel.AA.total - stats.byLevel.AA.completed, `${stats.byLevel.AA.total > 0 ? Math.round((stats.byLevel.AA.completed / stats.byLevel.AA.total) * 100) : 0}%`, '', ''],
+        ['', 'Level AAA', stats.byLevel.AAA.total, stats.byLevel.AAA.completed, stats.byLevel.AAA.total - stats.byLevel.AAA.completed, `${stats.byLevel.AAA.total > 0 ? Math.round((stats.byLevel.AAA.completed / stats.byLevel.AAA.total) * 100) : 0}%`, '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '═════════════════════════════════════════════════════════════════', '', '', '', '', '', ''],
       ]
       
       const progressSheet = XLSX.utils.aoa_to_sheet(progressData)
-      progressSheet['!cols'] = [{ wch: 15 }, { wch: 15 }, { wch: 10 }, { wch: 10 }, { wch: 10 }, { wch: 30 }]
+      progressSheet['!cols'] = [
+        { wch: 3 },
+        { wch: 16 },
+        { wch: 14 },
+        { wch: 12 },
+        { wch: 12 },
+        { wch: 12 },
+        { wch: 14 },
+        { wch: 45 }
+      ]
+      progressSheet['!rows'] = [
+        { hpt: 10 },
+        { hpt: 28 },
+        { hpt: 18 },
+        ...Array(progressData.length - 3).fill({ hpt: 22 })
+      ]
       
       XLSX.utils.book_append_sheet(workbook, progressSheet, 'Progress Tracking')
 
-      const fileName = `WCAG-2.2-Accessibility-Audit-${new Date().toISOString().split('T')[0]}.xlsx`
+      // ============================================
+      // SHEET 4: COMPLETED CRITERIA
+      // ============================================
+      const completedCriteria = wcagCriteria.filter(c => checklistState[c.number]?.checked)
+      if (completedCriteria.length > 0) {
+        const completedData = [
+          ['', '', '', '', ''],
+          ['', 'COMPLETED CRITERIA', '', '', ''],
+          ['', `${completedCriteria.length} of ${stats.total} criteria completed`, '', '', ''],
+          ['', '', '', '', ''],
+          ['', '═══════════════════════════════════════════════════════════════════', '', '', ''],
+          ['', '', '', '', ''],
+          ['', 'SC #', 'Success Criterion', 'Level', 'Notes'],
+          ['', '─────────', '─────────────────────────────────────────', '─────────', '─────────────────────────────'],
+          ...completedCriteria.map(c => [
+            '',
+            c.number,
+            c.title,
+            c.level,
+            checklistState[c.number]?.note || ''
+          ]),
+          ['', '', '', '', ''],
+          ['', '═══════════════════════════════════════════════════════════════════', '', '', ''],
+        ]
+        
+        const completedSheet = XLSX.utils.aoa_to_sheet(completedData)
+        completedSheet['!cols'] = [{ wch: 3 }, { wch: 10 }, { wch: 50 }, { wch: 10 }, { wch: 50 }]
+        XLSX.utils.book_append_sheet(workbook, completedSheet, 'Completed')
+      }
+
+      // ============================================
+      // SHEET 5: REMAINING CRITERIA
+      // ============================================
+      const remainingCriteria = wcagCriteria.filter(c => !checklistState[c.number]?.checked)
+      if (remainingCriteria.length > 0) {
+        const remainingData = [
+          ['', '', '', '', ''],
+          ['', 'REMAINING CRITERIA', '', '', ''],
+          ['', `${remainingCriteria.length} criteria still need attention`, '', '', ''],
+          ['', '', '', '', ''],
+          ['', '═══════════════════════════════════════════════════════════════════', '', '', ''],
+          ['', '', '', '', ''],
+          ['', 'SC #', 'Success Criterion', 'Level', 'Priority'],
+          ['', '─────────', '─────────────────────────────────────────', '─────────', '─────────────'],
+          ...remainingCriteria.map(c => [
+            '',
+            c.number,
+            c.title,
+            c.level,
+            c.level === 'AA' ? '⚠️ HIGH - Required for compliance' : c.level === 'A' ? 'MEDIUM' : 'LOW'
+          ]),
+          ['', '', '', '', ''],
+          ['', '═══════════════════════════════════════════════════════════════════', '', '', ''],
+        ]
+        
+        const remainingSheet = XLSX.utils.aoa_to_sheet(remainingData)
+        remainingSheet['!cols'] = [{ wch: 3 }, { wch: 10 }, { wch: 50 }, { wch: 10 }, { wch: 30 }]
+        XLSX.utils.book_append_sheet(workbook, remainingSheet, 'Remaining')
+      }
+
+      const fileName = `WCAG-2.2-Audit-Report-${new Date().toISOString().split('T')[0]}.xlsx`
       XLSX.writeFile(workbook, fileName)
-      
-      // Show success message
-      alert(`✅ Excel report exported successfully!\n\nFile: ${fileName}\n\nThe report includes:\n• Complete checklist with your progress\n• Audit summary and statistics\n• Progress tracking template\n• Autofilters for easy sorting`)
       
     } catch (error) {
       console.error('Error exporting to Excel:', error)
@@ -447,9 +575,6 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
       const fileName = `WCAG-2.2-Accessibility-Audit-${new Date().toISOString().split('T')[0]}.pdf`
       doc.save(fileName)
       
-      // Show success message
-      alert(`✅ PDF report exported successfully!\n\nFile: ${fileName}\n\nThe report includes your complete audit progress with detailed formatting.`)
-      
     } catch (error) {
       console.error('Error exporting to PDF:', error)
       alert('❌ Error exporting to PDF. Please check your browser settings and try again.')
@@ -485,7 +610,6 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
       setChecklistState({})
       localStorage.removeItem('wcag-checklist-state')
       setExpandedRows(new Set())
-      alert('✅ All progress has been reset.')
     }
   }
 
@@ -504,55 +628,61 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
   return (
     <div className="space-y-8">
       {/* Enhanced Progress Overview */}
-      <Card className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-0 shadow-xl">
-        <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
+      <Card className="bg-white dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 shadow-xl overflow-hidden">
+        <CardHeader className="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-900/30 dark:via-indigo-900/30 dark:to-purple-900/30 border-b border-slate-200 dark:border-slate-700/50">
           <CardTitle className="flex items-center gap-3 text-2xl">
-            <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
+            <div className="p-2.5 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg">
               <BarChart3 className="w-6 h-6 text-white" />
             </div>
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent font-bold">
               Progress Overview
             </span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-8">
+            {/* Total Progress */}
             <div className="text-center group">
-              <div className="p-4 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-2xl border border-slate-200 dark:border-slate-600 group-hover:scale-105 transition-all duration-300">
-                <div className="text-3xl font-bold text-slate-700 dark:text-slate-300 mb-2">{stats.completed}/{stats.total}</div>
-                <div className="text-sm text-slate-500 dark:text-slate-400 font-medium">Total Progress</div>
+              <div className="p-5 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700/50 dark:to-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-600/50 group-hover:border-slate-300 dark:group-hover:border-slate-500 transition-all duration-300 group-hover:-translate-y-1">
+                <div className="text-3xl font-bold text-slate-800 dark:text-white mb-2">{stats.completed}/{stats.total}</div>
+                <div className="text-sm text-slate-600 dark:text-slate-300 font-medium">Total Progress</div>
               </div>
             </div>
+            {/* Percentage */}
             <div className="text-center group">
-              <div className="p-4 bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/30 rounded-2xl border border-green-200 dark:border-green-700 group-hover:scale-105 transition-all duration-300">
-                <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">{stats.percentage}%</div>
-                <div className="text-sm text-green-700 dark:text-green-300 font-medium">Complete</div>
+              <div className="p-5 bg-gradient-to-br from-emerald-50 to-green-100 dark:from-emerald-900/30 dark:to-green-900/30 rounded-2xl border border-emerald-200 dark:border-emerald-600/50 group-hover:border-emerald-300 dark:group-hover:border-emerald-500 transition-all duration-300 group-hover:-translate-y-1">
+                <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">{stats.percentage}%</div>
+                <div className="text-sm text-emerald-700 dark:text-emerald-300 font-medium">Complete</div>
               </div>
             </div>
+            {/* Level AA */}
             <div className="text-center group">
-              <div className="p-4 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/30 rounded-2xl border border-blue-200 dark:border-blue-700 group-hover:scale-105 transition-all duration-300">
+              <div className="p-5 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-2xl border border-blue-200 dark:border-blue-600/50 group-hover:border-blue-300 dark:group-hover:border-blue-500 transition-all duration-300 group-hover:-translate-y-1">
                 <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">{stats.byLevel.AA.completed}/{stats.byLevel.AA.total}</div>
                 <div className="text-sm text-blue-700 dark:text-blue-300 font-medium">Level AA</div>
               </div>
             </div>
+            {/* Level AAA */}
             <div className="text-center group">
-              <div className="p-4 bg-gradient-to-br from-purple-50 to-violet-100 dark:from-purple-900/20 dark:to-violet-900/30 rounded-2xl border border-purple-200 dark:border-purple-700 group-hover:scale-105 transition-all duration-300">
+              <div className="p-5 bg-gradient-to-br from-purple-50 to-violet-100 dark:from-purple-900/30 dark:to-violet-900/30 rounded-2xl border border-purple-200 dark:border-purple-600/50 group-hover:border-purple-300 dark:group-hover:border-purple-500 transition-all duration-300 group-hover:-translate-y-1">
                 <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">{stats.byLevel.AAA.completed}/{stats.byLevel.AAA.total}</div>
                 <div className="text-sm text-purple-700 dark:text-purple-300 font-medium">Level AAA</div>
               </div>
             </div>
           </div>
+          
+          {/* Progress Bar */}
           <div className="relative">
-            <div className="w-full h-4 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div className="w-full h-4 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden shadow-inner">
               <div 
-                className="h-full bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 rounded-full transition-all duration-500 ease-out relative"
+                className="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-full transition-all duration-700 ease-out relative"
                 style={{ width: `${stats.percentage}%` }}
               >
                 <div className="absolute inset-0 bg-white/20 animate-pulse rounded-full"></div>
               </div>
             </div>
-            <div className="mt-2 text-center">
-              <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
+            <div className="mt-3 text-center">
+              <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
                 {stats.completed} of {stats.total} criteria completed
               </span>
             </div>
@@ -561,34 +691,34 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
       </Card>
 
       {/* Enhanced Controls */}
-      <Card className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-0 shadow-xl">
-        <CardHeader className="bg-gradient-to-r from-indigo-50 to-teal-50 dark:from-indigo-900/20 dark:to-teal-900/20">
+      <Card className="bg-white dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 shadow-xl overflow-hidden">
+        <CardHeader className="bg-gradient-to-r from-indigo-50 via-blue-50 to-teal-50 dark:from-indigo-900/30 dark:via-blue-900/30 dark:to-teal-900/30 border-b border-slate-200 dark:border-slate-700/50">
           <CardTitle className="flex items-center gap-3">
-            <div className="p-2 bg-gradient-to-r from-indigo-600 to-teal-600 rounded-lg">
-              <Target className="w-5 h-5 text-white" />
+            <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-teal-500 rounded-xl shadow-lg">
+              <Filter className="w-5 h-5 text-white" />
             </div>
-            Filtering & Controls
+            <span className="font-bold text-slate-800 dark:text-white">Filtering & Controls</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
             {/* Search */}
             <div className="relative group">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-blue-600 transition-colors" />
+              <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
               <Input
                 placeholder="Search criteria..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 focus:border-blue-500 focus:ring-blue-500 rounded-xl transition-all"
+                className="pl-10 bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 focus:border-blue-500 focus:ring-blue-500/20 rounded-xl transition-all h-11"
               />
             </div>
 
             {/* Level Filter */}
             <Select value={levelFilter} onValueChange={setLevelFilter}>
-              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl">
+              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                 <SelectValue placeholder="Filter by level" />
               </SelectTrigger>
-              <SelectContent className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl">
+              <SelectContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl">
                 <SelectItem value="all">All Levels</SelectItem>
                 <SelectItem value="A">Level A</SelectItem>
                 <SelectItem value="AA">Level AA</SelectItem>
@@ -598,10 +728,10 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
             {/* Principle Filter */}
             <Select value={principleFilter} onValueChange={setPrincipleFilter}>
-              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl">
+              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                 <SelectValue placeholder="Filter by principle" />
               </SelectTrigger>
-              <SelectContent className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl">
+              <SelectContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl">
                 <SelectItem value="all">All Principles</SelectItem>
                 <SelectItem value="1. Perceivable">1. Perceivable</SelectItem>
                 <SelectItem value="2. Operable">2. Operable</SelectItem>
@@ -612,10 +742,10 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
             {/* Version Filter */}
             <Select value={versionFilter} onValueChange={setVersionFilter}>
-              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl">
+              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                 <SelectValue placeholder="Filter by version" />
               </SelectTrigger>
-              <SelectContent className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl">
+              <SelectContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl">
                 <SelectItem value="all">All Versions</SelectItem>
                 <SelectItem value="2.0">WCAG 2.0 Only</SelectItem>
                 <SelectItem value="2.1">WCAG 2.1 (includes 2.0)</SelectItem>
@@ -625,10 +755,10 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
             {/* Introduced Filter */}
             <Select value={introducedFilter} onValueChange={setIntroducedFilter}>
-              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl">
+              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                 <SelectValue placeholder="Filter by introduced" />
               </SelectTrigger>
-              <SelectContent className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl">
+              <SelectContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl">
                 <SelectItem value="all">All Versions</SelectItem>
                 <SelectItem value="2.0">Introduced in 2.0</SelectItem>
                 <SelectItem value="2.1">Introduced in 2.1</SelectItem>
@@ -642,10 +772,10 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
               setSortBy(newSortBy)
               setSortOrder(newSortOrder)
             }}>
-              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl">
+              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
-              <SelectContent className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl">
+              <SelectContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl">
                 <SelectItem value="number-asc">Number (A-Z)</SelectItem>
                 <SelectItem value="number-desc">Number (Z-A)</SelectItem>
                 <SelectItem value="title-asc">Title (A-Z)</SelectItem>
@@ -664,9 +794,9 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                   id="show-completed"
                   checked={showCompleted}
                   onCheckedChange={(checked) => setShowCompleted(checked === true)}
-                  className="border-green-300 data-[state=checked]:bg-green-600"
+                  className="border-emerald-400 dark:border-emerald-500 data-[state=checked]:bg-emerald-500 data-[state=checked]:border-emerald-500"
                 />
-                <label htmlFor="show-completed" className="text-sm font-medium cursor-pointer">
+                <label htmlFor="show-completed" className="text-sm font-medium cursor-pointer text-slate-700 dark:text-slate-200">
                   Show completed ({stats.completed})
                 </label>
               </div>
@@ -675,9 +805,9 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                   id="show-incomplete"
                   checked={showIncomplete}
                   onCheckedChange={(checked) => setShowIncomplete(checked === true)}
-                  className="border-orange-300 data-[state=checked]:bg-orange-600"
+                  className="border-amber-400 dark:border-amber-500 data-[state=checked]:bg-amber-500 data-[state=checked]:border-amber-500"
                 />
-                <label htmlFor="show-incomplete" className="text-sm font-medium cursor-pointer">
+                <label htmlFor="show-incomplete" className="text-sm font-medium cursor-pointer text-slate-700 dark:text-slate-200">
                   Show incomplete ({stats.total - stats.completed})
                 </label>
               </div>
@@ -685,23 +815,20 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-2">
-              {/* Bulk Actions */}
-              <Button variant="outline" size="sm" onClick={checkAll} className="hover:bg-green-50 hover:border-green-300 hover:text-green-700">
+              <Button variant="outline" size="sm" onClick={checkAll} className="bg-white dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:border-emerald-400 dark:hover:border-emerald-500 hover:text-emerald-700 dark:hover:text-emerald-300 transition-all">
                 <CheckSquare className="w-4 h-4 mr-2" />
                 Check All
               </Button>
-              <Button variant="outline" size="sm" onClick={uncheckAll} className="hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700">
+              <Button variant="outline" size="sm" onClick={uncheckAll} className="bg-white dark:bg-slate-800 hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:border-amber-400 dark:hover:border-amber-500 hover:text-amber-700 dark:hover:text-amber-300 transition-all">
                 <Square className="w-4 h-4 mr-2" />
                 Uncheck All
               </Button>
-
-              {/* Export & Reset */}
               <Button 
                 variant="outline" 
                 size="sm" 
                 onClick={exportToExcel}
                 disabled={isExporting}
-                className="hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700"
+                className="bg-white dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:border-emerald-400 dark:hover:border-emerald-500 hover:text-emerald-700 dark:hover:text-emerald-300 transition-all"
               >
                 <FileSpreadsheet className="w-4 h-4 mr-2" />
                 {isExporting ? 'Exporting...' : 'Excel'}
@@ -711,12 +838,12 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                 size="sm" 
                 onClick={exportToPDF}
                 disabled={isExporting}
-                className="hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700"
+                className="bg-white dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-700 dark:hover:text-blue-300 transition-all"
               >
                 <FileText className="w-4 h-4 mr-2" />
                 {isExporting ? 'Exporting...' : 'PDF'}
               </Button>
-              <Button variant="outline" size="sm" onClick={resetAll} className="hover:bg-red-50 hover:border-red-300 hover:text-red-700">
+              <Button variant="outline" size="sm" onClick={resetAll} className="bg-white dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-900/30 hover:border-red-400 dark:hover:border-red-500 hover:text-red-700 dark:hover:text-red-300 transition-all">
                 <RotateCcw className="w-4 h-4 mr-2" />
                 Reset
               </Button>
@@ -727,33 +854,33 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
       {/* Results Summary */}
       <div className="flex items-center justify-between px-4">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+        <div className="flex items-center gap-3">
+          <div className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-pulse"></div>
           <span className="text-sm text-slate-600 dark:text-slate-300 font-medium">
             Showing {filteredAndSortedData.length} of {wcagCriteria.length} criteria
           </span>
         </div>
         {isExporting && (
-          <div className="flex items-center gap-2 text-sm text-blue-600">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+          <div className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400">
+            <div className="animate-spin rounded-full h-4 w-4 border-2 border-blue-600 dark:border-blue-400 border-t-transparent"></div>
             <span className="font-medium">Generating export...</span>
           </div>
         )}
       </div>
 
       {/* Enhanced Checklist Table */}
-      <Card className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-0 shadow-xl overflow-hidden">
+      <Card className="bg-white dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 shadow-xl overflow-hidden">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-700 dark:to-slate-800 border-b border-slate-200 dark:border-slate-600">
-                  <th className="text-left p-4 w-12 font-semibold text-slate-700 dark:text-slate-300">#</th>
-                  <th className="text-left p-4 w-20 font-semibold text-slate-700 dark:text-slate-300">SC #</th>
-                  <th className="text-left p-4 font-semibold text-slate-700 dark:text-slate-300">Success Criterion</th>
-                  <th className="text-left p-4 w-16 font-semibold text-slate-700 dark:text-slate-300">Level</th>
-                  <th className="text-left p-4 font-semibold text-slate-700 dark:text-slate-300">Description</th>
-                  <th className="text-left p-4 w-32 font-semibold text-slate-700 dark:text-slate-300">Actions</th>
+                <tr className="bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100 dark:from-slate-700/80 dark:via-slate-800/80 dark:to-slate-700/80 border-b border-slate-200 dark:border-slate-600">
+                  <th className="text-left p-4 w-12 font-bold text-slate-700 dark:text-slate-200">#</th>
+                  <th className="text-left p-4 w-20 font-bold text-slate-700 dark:text-slate-200">SC #</th>
+                  <th className="text-left p-4 font-bold text-slate-700 dark:text-slate-200">Success Criterion</th>
+                  <th className="text-left p-4 w-16 font-bold text-slate-700 dark:text-slate-200">Level</th>
+                  <th className="text-left p-4 font-bold text-slate-700 dark:text-slate-200">Description</th>
+                  <th className="text-left p-4 w-32 font-bold text-slate-700 dark:text-slate-200">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -764,65 +891,65 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                   
                   return (
                     <React.Fragment key={criterion.number}>
-                      <tr className={`border-b border-slate-100 dark:border-slate-700 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-purple-50/50 dark:hover:from-blue-900/10 dark:hover:to-purple-900/10 transition-all duration-200 ${
-                        isChecked ? 'bg-gradient-to-r from-green-50/50 to-emerald-50/50 dark:from-green-900/10 dark:to-emerald-900/10' : ''
+                      <tr className={`border-b border-slate-100 dark:border-slate-700/50 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/50 dark:hover:from-blue-900/20 dark:hover:to-indigo-900/20 transition-all duration-200 ${
+                        isChecked ? 'bg-gradient-to-r from-emerald-50/60 to-green-50/60 dark:from-emerald-900/20 dark:to-green-900/20' : ''
                       }`}>
                         <td className="p-4">
                           <Checkbox
                             checked={isChecked}
                             onCheckedChange={() => toggleCriterion(criterion.number)}
-                            className="border-slate-300 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600"
+                            className="border-slate-400 dark:border-slate-500 data-[state=checked]:bg-emerald-500 data-[state=checked]:border-emerald-500"
                           />
                         </td>
-                        <td className="p-4 font-mono text-sm font-medium text-slate-600 dark:text-slate-400">{criterion.number}</td>
+                        <td className="p-4 font-mono text-sm font-semibold text-slate-600 dark:text-slate-300">{criterion.number}</td>
                         <td className="p-4 font-medium">
                           <div className="flex items-center gap-2">
                             {availableGuides.has(criterion.number) ? (
                               <Link 
                                 href={`/wcag/${criterion.number.replace(/\./g, '-')}`}
-                                className="text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 underline decoration-2 decoration-blue-500/30 hover:decoration-blue-500 transition-colors"
+                                className="text-slate-800 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 underline decoration-2 decoration-blue-400/30 hover:decoration-blue-500 transition-colors"
                                 title={`View interactive guide for ${criterion.title}`}
                               >
                                 {criterion.title}
                               </Link>
                             ) : (
-                              <span className="text-slate-800 dark:text-slate-200">{criterion.title}</span>
+                              <span className="text-slate-800 dark:text-slate-100">{criterion.title}</span>
                             )}
-                            {isChecked && <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />}
+                            {isChecked && <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0" />}
                             {hasNote && <MessageSquare className="w-4 h-4 text-blue-500 flex-shrink-0" />}
                           </div>
                         </td>
                         <td className="p-4">{getLevelBadge(criterion.level)}</td>
-                        <td className="p-4 text-sm text-slate-600 dark:text-slate-400 max-w-md">
+                        <td className="p-4 text-sm text-slate-600 dark:text-slate-300 max-w-md">
                           {criterion.description}
                         </td>
                         <td className="p-4">
                           <div className="flex items-center gap-2">
                             <Dialog>
                               <DialogTrigger asChild>
-                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-blue-100 hover:text-blue-700">
+                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-blue-100 dark:hover:bg-blue-900/40 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
                                   <MessageSquare className="w-4 h-4" />
                                 </Button>
                               </DialogTrigger>
-                              <DialogContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 max-w-2xl">
+                              <DialogContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 max-w-2xl shadow-2xl">
                                 <DialogHeader>
-                                  <DialogTitle className="text-lg font-semibold text-slate-800 dark:text-slate-200">
+                                  <DialogTitle className="text-lg font-bold text-slate-800 dark:text-white">
                                     Notes for {criterion.number}: {criterion.title}
                                   </DialogTitle>
                                 </DialogHeader>
                                 <div className="space-y-4">
                                   <div>
-                                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Implementation Notes</label>
+                                    <label className="text-sm font-medium text-slate-700 dark:text-slate-200">Implementation Notes</label>
                                     <Textarea
                                       placeholder="Add your notes, findings, implementation details, test results, or action items..."
                                       value={hasNote}
                                       onChange={(e) => updateNote(criterion.number, e.target.value)}
                                       rows={4}
-                                      className="mt-1 bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600"
+                                      className="mt-2 bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-600 focus:border-blue-500 focus:ring-blue-500/20"
                                     />
                                   </div>
-                                  <div className="text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700 p-3 rounded-lg">
-                                    <strong>Guideline:</strong> {criterion.guideline}
+                                  <div className="text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-700/50 p-4 rounded-xl border border-slate-100 dark:border-slate-600">
+                                    <strong className="text-slate-800 dark:text-white">Guideline:</strong> {criterion.guideline}
                                   </div>
                                 </div>
                               </DialogContent>
@@ -831,7 +958,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                               variant="ghost"
                               size="sm"
                               onClick={() => toggleExpanded(criterion.number)}
-                              className="h-8 w-8 p-0 hover:bg-purple-100 hover:text-purple-700"
+                              className="h-8 w-8 p-0 hover:bg-purple-100 dark:hover:bg-purple-900/40 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
                             >
                               {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                             </Button>
@@ -839,51 +966,53 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                         </td>
                       </tr>
                       {isExpanded && (
-                        <tr className="border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-slate-50/80 to-blue-50/40 dark:from-slate-800/80 dark:to-blue-900/20">
+                        <tr className="border-b border-slate-100 dark:border-slate-700/50 bg-gradient-to-r from-slate-50/90 via-blue-50/40 to-slate-50/90 dark:from-slate-800/90 dark:via-blue-900/20 dark:to-slate-800/90">
                           <td colSpan={6} className="p-6">
-                            <div className="space-y-4">
+                            <div className="space-y-5">
                               <div className="grid md:grid-cols-2 gap-6 text-sm">
                                 <div className="space-y-2">
                                   <div className="flex items-center gap-2">
-                                    <Eye className="w-4 h-4 text-blue-600" />
-                                    <strong className="text-slate-800 dark:text-slate-200">Principle:</strong>
+                                    <Eye className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                                    <strong className="text-slate-800 dark:text-white">Principle:</strong>
                                   </div>
-                                  <p className="text-slate-600 dark:text-slate-400 ml-6">{criterion.principle}</p>
+                                  <p className="text-slate-600 dark:text-slate-300 ml-6">{criterion.principle}</p>
                                 </div>
                                 <div className="space-y-2">
                                   <div className="flex items-center gap-2">
-                                    <Target className="w-4 h-4 text-purple-600" />
-                                    <strong className="text-slate-800 dark:text-slate-200">Guideline:</strong>
+                                    <Target className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                                    <strong className="text-slate-800 dark:text-white">Guideline:</strong>
                                   </div>
-                                  <p className="text-slate-600 dark:text-slate-400 ml-6">{criterion.guideline}</p>
+                                  <p className="text-slate-600 dark:text-slate-300 ml-6">{criterion.guideline}</p>
                                 </div>
                               </div>
                               <div className="space-y-2">
                                 <div className="flex items-center gap-2">
-                                  <Sparkles className="w-4 h-4 text-teal-600" />
-                                  <strong className="text-slate-800 dark:text-slate-200">Full Description:</strong>
+                                  <Sparkles className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+                                  <strong className="text-slate-800 dark:text-white">Full Description:</strong>
                                 </div>
-                                <p className="text-slate-600 dark:text-slate-400 ml-6 leading-relaxed">{criterion.description}</p>
+                                <p className="text-slate-600 dark:text-slate-300 ml-6 leading-relaxed">{criterion.description}</p>
                               </div>
                               {hasNote && (
-                                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-4 rounded-xl border border-blue-200 dark:border-blue-700">
+                                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 p-4 rounded-xl border border-blue-200 dark:border-blue-700/50">
                                   <div className="flex items-center gap-2 mb-2">
-                                    <MessageSquare className="w-4 h-4 text-blue-600" />
-                                    <strong className="text-blue-900 dark:text-blue-300">Your Notes:</strong>
+                                    <MessageSquare className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                                    <strong className="text-blue-900 dark:text-blue-200">Your Notes:</strong>
                                   </div>
-                                  <p className="text-blue-800 dark:text-blue-300 ml-6">{hasNote}</p>
+                                  <p className="text-blue-800 dark:text-blue-200 ml-6">{hasNote}</p>
                                 </div>
                               )}
                               <div className="flex items-center gap-3 pt-2">
-                                <div className={`flex items-center gap-2 text-xs px-3 py-2 rounded-full ${
-                                  isChecked ? 'bg-green-100 text-green-800 border border-green-200' : 'bg-orange-100 text-orange-800 border border-orange-200'
+                                <div className={`flex items-center gap-2 text-xs px-3.5 py-2 rounded-full ${
+                                  isChecked 
+                                    ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700/50' 
+                                    : 'bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-700/50'
                                 }`}>
-                                  {isChecked ? <CheckCircle className="w-3 h-3" /> : <AlertCircle className="w-3 h-3" />}
-                                  <span className="font-medium">{isChecked ? 'Completed' : 'Needs Attention'}</span>
+                                  {isChecked ? <CheckCircle className="w-3.5 h-3.5" /> : <AlertCircle className="w-3.5 h-3.5" />}
+                                  <span className="font-semibold">{isChecked ? 'Completed' : 'Needs Attention'}</span>
                                 </div>
                                 {criterion.level === 'AA' && (
-                                  <div className="text-xs px-3 py-2 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
-                                    <Award className="w-3 h-3 inline mr-1" />
+                                  <div className="text-xs px-3.5 py-2 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-700/50 font-semibold">
+                                    <Award className="w-3.5 h-3.5 inline mr-1.5" />
                                     Required for Legal Compliance
                                   </div>
                                 )}
@@ -904,4 +1033,4 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
   )
 }
 
-export default InteractiveWCAGChecklist 
+export default InteractiveWCAGChecklist
