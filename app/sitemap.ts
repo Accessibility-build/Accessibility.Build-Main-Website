@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next"
 import { getAllPosts } from "@/lib/mdx"
+import { getBlogPosts } from "@/lib/sanity"
 
 // Enhanced priority calculation based on strategic importance
 interface SitemapEntry {
@@ -15,8 +16,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://accessibility.build"
   const currentDate = new Date()
 
-  // Get all blog posts
-  const posts = await getAllPosts()
+  // Get all blog posts from MDX (legacy/static posts)
+  const mdxPosts = await getAllPosts()
+  
+  // Get all blog posts from Sanity CMS
+  let sanityPosts: any[] = []
+  try {
+    sanityPosts = await getBlogPosts()
+  } catch (error) {
+    console.error("Error fetching Sanity blog posts for sitemap:", error)
+  }
 
   // Enhanced static routes with strategic categorization
   const staticRoutes: SitemapEntry[] = [
@@ -449,8 +458,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority,
   }))
 
-  // Enhanced blog posts mapping with content analysis
-  const blogSitemapEntries = posts
+  // Enhanced MDX blog posts mapping with content analysis
+  const mdxBlogSitemapEntries = mdxPosts
     .filter((post): post is NonNullable<typeof post> => Boolean(post?.slug && post?.frontmatter?.date))
     .map((post) => {
       const postDate = new Date(post.frontmatter.date)
@@ -499,6 +508,60 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: Math.round(priority * 100) / 100, // Round to 2 decimal places
       }
     })
+
+  // Sanity CMS blog posts mapping
+  const sanityBlogSitemapEntries = (sanityPosts || [])
+    .filter((post: any) => Boolean(post?.slug?.current && post?.publishedAt))
+    .map((post: any) => {
+      const postDate = new Date(post.publishedAt)
+      
+      // Calculate base priority from post age
+      const ageInDays = (currentDate.getTime() - postDate.getTime()) / (1000 * 60 * 60 * 24)
+      let priority = 0.75
+      
+      // Age-based priority adjustment
+      if (ageInDays < 7) {
+        priority = 0.90 // Very recent posts
+      } else if (ageInDays < 30) {
+        priority = 0.85 // Recent posts
+      } else if (ageInDays < 90) {
+        priority = 0.80 // Recent posts
+      } else if (ageInDays < 365) {
+        priority = 0.75 // Moderately recent
+      } else {
+        priority = 0.70 // Older posts
+      }
+
+      // Content-based priority boosts
+      const title = post.title?.toLowerCase() || ""
+      const excerpt = post.excerpt?.toLowerCase() || ""
+      const content = (title + " " + excerpt).toLowerCase()
+
+      // High-value keyword boosts
+      const highValueKeywords = ["wcag 2.2", "accessibility", "compliance", "testing", "audit"]
+      const mediumValueKeywords = ["forms", "color", "contrast", "navigation", "aria"]
+      
+      let keywordBoost = 0
+      highValueKeywords.forEach(keyword => {
+        if (content.includes(keyword)) keywordBoost += 0.05
+      })
+      mediumValueKeywords.forEach(keyword => {
+        if (content.includes(keyword)) keywordBoost += 0.02
+      })
+
+      // Apply keyword boost but cap at 0.95 for blog posts
+      priority = Math.min(0.95, priority + keywordBoost)
+
+      return {
+        url: `${baseUrl}/blog/${post.slug.current}`,
+        lastModified: postDate,
+        changeFrequency: "monthly" as const,
+        priority: Math.round(priority * 100) / 100, // Round to 2 decimal places
+      }
+    })
+
+  // Combine and sort all blog entries by priority
+  const blogSitemapEntries = [...mdxBlogSitemapEntries, ...sanityBlogSitemapEntries]
     .sort((a, b) => b.priority - a.priority) // Sort by priority descending
 
   // Combine all sitemap entries, sorted by priority

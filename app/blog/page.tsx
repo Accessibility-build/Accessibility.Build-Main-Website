@@ -10,6 +10,32 @@ export const metadata: Metadata = {
   title: "Blog | Accessibility.build",
   description:
     "Explore articles, guides, and tutorials that break down web accessibility concepts into practical steps. Stay informed about best practices and WCAG updates.",
+  alternates: {
+    canonical: "https://accessibility.build/blog",
+  },
+  openGraph: {
+    title: "Accessibility Blog | Accessibility.build",
+    description: "Explore articles, guides, and tutorials that break down web accessibility concepts into practical steps. Stay informed about best practices and WCAG updates.",
+    url: "https://accessibility.build/blog",
+    type: "website",
+    siteName: "Accessibility.build",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accessibility Blog | Accessibility.build",
+    description: "Explore articles, guides, and tutorials that break down web accessibility concepts into practical steps.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 }
 
 const breadcrumbs = [

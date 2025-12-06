@@ -83,20 +83,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       }
     }
 
+    const currentUrl = `https://accessibility.build/blog/${slug}`
+
     return {
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.excerpt,
       keywords: post.seo?.keywords?.join(", ") || "",
       authors: [{ name: post.author?.name || "Accessibility.build Team" }],
+      alternates: {
+        canonical: currentUrl,
+      },
       openGraph: {
         title: post.seo?.metaTitle || post.title,
         description: post.seo?.metaDescription || post.excerpt,
         type: "article",
+        url: currentUrl,
         publishedTime: post.publishedAt,
         authors: [post.author?.name || "Accessibility.build Team"],
         images: [
           {
-            url: post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "/og-image.png",
+            url: post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "https://accessibility.build/og-image.png",
             width: 1200,
             height: 630,
             alt: post.title,
@@ -107,7 +113,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         card: "summary_large_image",
         title: post.seo?.metaTitle || post.title,
         description: post.seo?.metaDescription || post.excerpt,
-        images: [post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "/og-image.png"],
+        images: [post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "https://accessibility.build/og-image.png"],
+      },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-video-preview": -1,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
       },
     }
   } catch (error) {
