@@ -2,8 +2,18 @@
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
-import { Play, Pause, Volume2, VolumeX, Square, RotateCcw, Settings } from "lucide-react"
+import { Play, Pause, Volume2, VolumeX, Square, RotateCcw, Settings, Headphones } from "lucide-react"
 import { cn } from "@/lib/utils"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Label } from "@/components/ui/label"
+import { Slider } from "@/components/ui/slider"
 
 interface ListenFeatureProps {
   title: string
@@ -486,191 +496,247 @@ export function ListenFeature({ title, content }: ListenFeatureProps) {
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      {/* Main Controls */}
-      <div className="flex items-center gap-2 flex-wrap">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={toggleSpeech}
-          className="flex items-center gap-2 text-xs font-medium"
-          aria-label={isPlaying ? "Pause reading" : "Listen to article"}
-        >
-          {isPlaying ? (
-            <Pause className="h-3 w-3" />
-          ) : (
-            <Play className="h-3 w-3" />
-          )}
-          <span className="hidden sm:inline">
-            {isPlaying ? "Pause" : "Listen"}
-          </span>
-        </Button>
-
-        {/* Additional Controls */}
-        {(isPlaying || readingState.currentBlockIndex > -1) && (
-          <>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={stopSpeech}
-              className="text-xs"
-              aria-label="Stop reading"
-            >
-              <Square className="h-3 w-3" />
-            </Button>
-            
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={restartSpeech}
-              className="text-xs"
-              aria-label="Restart reading"
-            >
-              <RotateCcw className="h-3 w-3" />
-            </Button>
-            
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleMute}
-              className="text-xs"
-              aria-label={isMuted ? "Unmute" : "Mute"}
-            >
-              {isMuted ? <VolumeX className="h-3 w-3" /> : <Volume2 className="h-3 w-3" />}
-            </Button>
-          </>
+    <div className="flex items-center gap-2">
+      {/* Main Play/Pause Button */}
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={toggleSpeech}
+        className="flex items-center gap-2 font-medium border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800"
+        aria-label={isPlaying ? "Pause reading" : "Listen to article"}
+      >
+        {isPlaying ? (
+          <Pause className="h-4 w-4" />
+        ) : (
+          <Headphones className="h-4 w-4" />
         )}
+        <span className="hidden sm:inline text-sm">
+          {isPlaying ? "Pause" : "Listen"}
+        </span>
+      </Button>
 
-        {/* Settings Button */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setShowSettings(!showSettings)}
-          className="text-xs"
-          aria-label="Reading settings"
-        >
-          <Settings className="h-3 w-3" />
-        </Button>
-      </div>
-
-      {/* Settings Panel */}
-      {showSettings && (
-        <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 space-y-3 border border-slate-200 dark:border-slate-700">
-          <h4 className="font-medium text-sm">Reading Settings</h4>
+      {/* Additional Controls - Only show when playing */}
+      {(isPlaying || readingState.currentBlockIndex > -1) && (
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={stopSpeech}
+            className="h-8 w-8 p-0"
+            aria-label="Stop reading"
+          >
+            <Square className="h-3.5 w-3.5" />
+          </Button>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-medium mb-1">Speed</label>
-              <input
-                type="range"
-                min="0.5"
-                max="2"
-                step="0.1"
-                value={settings.rate}
-                onChange={(e) => updateSettings({ rate: parseFloat(e.target.value) })}
-                className="w-full"
-              />
-              <span className="text-xs text-slate-500">{settings.rate}x</span>
-            </div>
-            
-            <div>
-              <label className="block text-xs font-medium mb-1">Pitch</label>
-              <input
-                type="range"
-                min="0.5"
-                max="2"
-                step="0.1"
-                value={settings.pitch}
-                onChange={(e) => updateSettings({ pitch: parseFloat(e.target.value) })}
-                className="w-full"
-              />
-              <span className="text-xs text-slate-500">{settings.pitch}</span>
-            </div>
-            
-            <div>
-              <label className="block text-xs font-medium mb-1">Volume</label>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.1"
-                value={settings.volume}
-                onChange={(e) => updateSettings({ volume: parseFloat(e.target.value) })}
-                className="w-full"
-              />
-              <span className="text-xs text-slate-500">{Math.round(settings.volume * 100)}%</span>
-            </div>
-            
-            <div>
-              <label className="block text-xs font-medium mb-1">Pauses</label>
-              <input
-                type="range"
-                min="0.5"
-                max="2"
-                step="0.1"
-                value={settings.pauseMultiplier}
-                onChange={(e) => updateSettings({ pauseMultiplier: parseFloat(e.target.value) })}
-                className="w-full"
-              />
-              <span className="text-xs text-slate-500">{settings.pauseMultiplier}x</span>
-            </div>
-          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={restartSpeech}
+            className="h-8 w-8 p-0"
+            aria-label="Restart reading"
+          >
+            <RotateCcw className="h-3.5 w-3.5" />
+          </Button>
           
-          {availableVoices.length > 0 && (
-            <div>
-              <label className="block text-xs font-medium mb-1">Voice</label>
-              <select
-                value={settings.voiceIndex}
-                onChange={(e) => updateSettings({ voiceIndex: parseInt(e.target.value) })}
-                className="w-full text-xs p-2 border border-slate-200 dark:border-slate-600 rounded bg-white dark:bg-slate-700"
-              >
-                {availableVoices.map((voice, index) => (
-                  <option key={index} value={index}>
-                    {voice.name} ({voice.lang})
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={toggleMute}
+            className="h-8 w-8 p-0"
+            aria-label={isMuted ? "Unmute" : "Mute"}
+          >
+            {isMuted ? <VolumeX className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+          </Button>
         </div>
       )}
 
-      {/* Progress Indicator */}
+      {/* Settings Dialog */}
+      <Dialog open={showSettings} onOpenChange={setShowSettings}>
+        <DialogTrigger asChild>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8 w-8 p-0"
+            aria-label="Reading settings"
+          >
+            <Settings className="h-4 w-4" />
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <Headphones className="h-5 w-5 text-blue-600" />
+              Reading Settings
+            </DialogTitle>
+            <DialogDescription>
+              Customize your listening experience with these audio settings.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-6 py-4">
+            {/* Speed Control */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="speed" className="text-sm font-medium">
+                  Reading Speed
+                </Label>
+                <span className="text-sm text-slate-500 dark:text-slate-400 font-mono">
+                  {settings.rate.toFixed(1)}x
+                </span>
+              </div>
+              <Slider
+                id="speed"
+                min={0.5}
+                max={2}
+                step={0.1}
+                value={[settings.rate]}
+                onValueChange={(value) => updateSettings({ rate: value[0] })}
+                className="w-full"
+              />
+              <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>Slower</span>
+                <span>Faster</span>
+              </div>
+            </div>
+
+            {/* Pitch Control */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="pitch" className="text-sm font-medium">
+                  Voice Pitch
+                </Label>
+                <span className="text-sm text-slate-500 dark:text-slate-400 font-mono">
+                  {settings.pitch.toFixed(1)}
+                </span>
+              </div>
+              <Slider
+                id="pitch"
+                min={0.5}
+                max={2}
+                step={0.1}
+                value={[settings.pitch]}
+                onValueChange={(value) => updateSettings({ pitch: value[0] })}
+                className="w-full"
+              />
+              <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>Lower</span>
+                <span>Higher</span>
+              </div>
+            </div>
+
+            {/* Volume Control */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="volume" className="text-sm font-medium">
+                  Volume
+                </Label>
+                <span className="text-sm text-slate-500 dark:text-slate-400 font-mono">
+                  {Math.round(settings.volume * 100)}%
+                </span>
+              </div>
+              <Slider
+                id="volume"
+                min={0}
+                max={1}
+                step={0.1}
+                value={[settings.volume]}
+                onValueChange={(value) => updateSettings({ volume: value[0] })}
+                className="w-full"
+              />
+              <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>Quiet</span>
+                <span>Loud</span>
+              </div>
+            </div>
+
+            {/* Pause Control */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="pauses" className="text-sm font-medium">
+                  Pause Duration
+                </Label>
+                <span className="text-sm text-slate-500 dark:text-slate-400 font-mono">
+                  {settings.pauseMultiplier.toFixed(1)}x
+                </span>
+              </div>
+              <Slider
+                id="pauses"
+                min={0.5}
+                max={2}
+                step={0.1}
+                value={[settings.pauseMultiplier]}
+                onValueChange={(value) => updateSettings({ pauseMultiplier: value[0] })}
+                className="w-full"
+              />
+              <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span>Shorter</span>
+                <span>Longer</span>
+              </div>
+            </div>
+
+            {/* Voice Selection */}
+            {availableVoices.length > 0 && (
+              <div className="space-y-2">
+                <Label htmlFor="voice" className="text-sm font-medium">
+                  Voice Selection
+                </Label>
+                <select
+                  id="voice"
+                  value={settings.voiceIndex}
+                  onChange={(e) => updateSettings({ voiceIndex: parseInt(e.target.value) })}
+                  className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700 rounded-md bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  {availableVoices.map((voice, index) => (
+                    <option key={index} value={index}>
+                      {voice.name} {voice.lang && `(${voice.lang})`}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {/* Progress Indicator */}
+            {readingState.currentBlockIndex > -1 && (
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-slate-600 dark:text-slate-400">Reading Progress</span>
+                    <span className="font-medium text-slate-900 dark:text-white">
+                      {Math.round(readingState.progress)}%
+                    </span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                    <div 
+                      className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                      style={{ width: `${readingState.progress}%` }}
+                    />
+                  </div>
+                  {blocksRef.current.length > 0 && (
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      Section {readingState.currentBlockIndex + 1} of {blocksRef.current.length}
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Progress Indicator - Inline */}
       {readingState.currentBlockIndex > -1 && (
-        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-          <div className="flex-1 bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+        <div className="hidden md:flex items-center gap-2 min-w-[120px]">
+          <div className="flex-1 bg-slate-200 dark:bg-slate-700 rounded-full h-1.5 max-w-[80px]">
             <div 
-              className="bg-blue-500 h-1.5 rounded-full transition-all duration-300 reading-progress"
+              className="bg-blue-600 h-1.5 rounded-full transition-all duration-300"
               style={{ width: `${readingState.progress}%` }}
             />
           </div>
-          <span className="text-xs font-medium min-w-[40px]">
+          <span className="text-xs font-medium text-slate-600 dark:text-slate-400 tabular-nums">
             {Math.round(readingState.progress)}%
           </span>
         </div>
       )}
-
-      {/* Enhanced Reading Status */}
-      {readingState.currentBlockIndex > -1 && (
-        <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-          <div className="flex items-center gap-2">
-            <div className={cn(
-              "w-2 h-2 rounded-full",
-              isPlaying ? "bg-green-500 animate-pulse" : 
-              readingState.isPaused ? "bg-yellow-500" : "bg-red-500"
-            )} />
-            <span>
-              {isPlaying ? "Reading..." : readingState.isPaused ? "Paused" : "Stopped"}
-            </span>
-          </div>
-          
-          {readingState.currentBlockIndex >= 0 && blocksRef.current.length > 0 && (
-            <span className="font-medium">
-              {readingState.currentBlockIndex + 1} of {blocksRef.current.length} sections
-            </span>
-          )}
-        </div>
-      )}
     </div>
   )
-} 
+}

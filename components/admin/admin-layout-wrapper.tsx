@@ -14,9 +14,21 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
   
   // Check if we're on an admin route
   const isAdminRoute = pathname?.startsWith('/admin')
+  
+  // Check if we're on a blog post page (but not the blog listing page)
+  const isBlogPostPage = pathname?.startsWith('/blog/') && pathname !== '/blog'
 
   // For admin routes, render children directly (AdminLayout will handle its own layout)
   if (isAdminRoute) {
+    return (
+      <Suspense fallback={<div className="flex items-center justify-center min-h-[400px]">Loading...</div>}>
+        {children}
+      </Suspense>
+    )
+  }
+
+  // For blog post pages, render without header and footer (they have their own minimal header)
+  if (isBlogPostPage) {
     return (
       <Suspense fallback={<div className="flex items-center justify-center min-h-[400px]">Loading...</div>}>
         {children}

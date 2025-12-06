@@ -68,66 +68,81 @@
   }
 }
 
-/* Blog Content Styling */
+/* Blog Content Styling - Clean Serif Typography */
 @layer components {
+  /* Blog page serif font */
+  .font-serif {
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  
   .prose-content {
     @apply max-w-none;
   }
   
+  /* Blog content with elegant serif typography */
+  .blog-content {
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  
+  .blog-content h1,
+  .blog-content h2,
+  .blog-content h3,
+  .blog-content h4,
+  .blog-content h5,
+  .blog-content h6 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
   .prose-content h1 {
-    @apply text-4xl sm:text-5xl font-bold mt-16 mb-8 text-slate-900 dark:text-white leading-tight tracking-tight;
+    @apply text-3xl sm:text-4xl font-bold mt-14 mb-6 text-slate-900 dark:text-white leading-tight tracking-tight;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
   
   .prose-content h2 {
-    @apply text-3xl sm:text-4xl font-bold mt-14 mb-6 text-slate-900 dark:text-white leading-tight tracking-tight scroll-mt-20;
+    @apply text-2xl sm:text-3xl font-bold mt-12 mb-5 text-slate-900 dark:text-white leading-tight tracking-tight scroll-mt-24;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
   
   .prose-content h3 {
-    @apply text-2xl sm:text-3xl font-bold mt-12 mb-5 text-slate-900 dark:text-white leading-tight tracking-tight scroll-mt-20;
+    @apply text-xl sm:text-2xl font-bold mt-10 mb-4 text-slate-900 dark:text-white leading-tight tracking-tight scroll-mt-24;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
   
   .prose-content h4 {
-    @apply text-xl sm:text-2xl font-bold mt-10 mb-4 text-slate-900 dark:text-white leading-tight tracking-tight scroll-mt-20;
+    @apply text-lg sm:text-xl font-bold mt-8 mb-3 text-slate-900 dark:text-white leading-tight tracking-tight scroll-mt-24;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
   
   .prose-content p {
-    @apply text-lg sm:text-xl leading-relaxed mb-8 text-slate-700 dark:text-slate-300 font-normal;
+    @apply text-lg leading-[1.8] mb-6 text-slate-700 dark:text-slate-300;
   }
   
   .prose-content ul {
-    @apply list-none mb-8 space-y-3 text-lg sm:text-xl text-slate-700 dark:text-slate-300;
+    @apply list-disc mb-6 pl-6 space-y-2 text-lg text-slate-700 dark:text-slate-300;
   }
   
   .prose-content ol {
-    @apply list-none mb-8 space-y-3 text-lg sm:text-xl text-slate-700 dark:text-slate-300;
-    counter-reset: list-counter;
+    @apply list-decimal mb-6 pl-6 space-y-2 text-lg text-slate-700 dark:text-slate-300;
+    counter-reset: none;
   }
   
   .prose-content li {
-    @apply flex items-start gap-4 mb-3;
+    @apply mb-2 pl-2;
+    display: list-item;
   }
   
-  .prose-content ul li::before {
-    content: '';
-    @apply w-2 h-2 bg-blue-500 rounded-full mt-3 flex-shrink-0;
-  }
-  
-  .prose-content ol li {
-    counter-increment: list-counter;
-  }
-  
+  .prose-content ul li::before,
   .prose-content ol li::before {
-    content: counter(list-counter);
-    @apply w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-1 flex-shrink-0;
+    content: none;
+    display: none;
   }
   
   .prose-content blockquote {
-    @apply border-l-4 border-blue-500 pl-8 pr-6 my-10 italic text-xl sm:text-2xl text-slate-700 dark:text-slate-300 bg-gradient-to-r from-blue-50 to-transparent dark:from-blue-900/20 dark:to-transparent py-6 rounded-r-xl shadow-sm relative;
+    @apply border-l-4 border-slate-300 dark:border-slate-600 pl-6 my-8 italic text-xl text-slate-600 dark:text-slate-400;
   }
   
   .prose-content blockquote::before {
-    content: '"';
-    @apply text-6xl text-blue-500/20 absolute -top-4 -left-2 font-serif leading-none;
+    content: none;
   }
   
   .prose-content strong {
@@ -135,19 +150,28 @@
   }
   
   .prose-content em {
-    @apply italic text-slate-800 dark:text-slate-200;
+    @apply italic;
   }
   
   .prose-content code {
-    @apply bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-sm font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700;
+    @apply bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-[0.9em] font-mono text-slate-800 dark:text-slate-200;
   }
   
   .prose-content a {
-    @apply text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline underline-offset-2 decoration-2 decoration-blue-600/30 hover:decoration-blue-600 dark:decoration-blue-400/30 dark:hover:decoration-blue-400 font-medium transition-all duration-200;
+    @apply text-slate-900 dark:text-white underline underline-offset-4 decoration-slate-400 dark:decoration-slate-500 hover:decoration-slate-900 dark:hover:decoration-white transition-colors;
   }
   
   .prose-content img {
-    @apply rounded-xl shadow-lg my-8;
+    @apply rounded-lg my-8;
+  }
+  
+  .prose-content hr {
+    @apply my-12 border-slate-200 dark:border-slate-800;
+  }
+  
+  .prose-content pre {
+    @apply bg-slate-900 dark:bg-slate-800 text-slate-100 rounded-lg p-4 my-6 overflow-x-auto text-sm;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
   }
 }
 
