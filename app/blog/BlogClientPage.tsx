@@ -107,15 +107,15 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
   const regularPosts = posts.slice(3)
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-16">
       {/* Featured Articles */}
       {featuredPosts.length > 0 && (
         <section>
-          <div className="flex items-center gap-2 mb-6">
+          <div className="flex items-center gap-2 mb-8">
             <TrendingUp className="h-5 w-5 text-blue-600 dark:text-blue-400" />
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Featured Articles</h2>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-8">
             {featuredPosts.map((post) => (
               <FeaturedPostCard key={post._id} post={post} />
             ))}
@@ -125,11 +125,11 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
 
       {/* All Articles */}
       <section>
-        <div className="flex items-center gap-2 mb-6">
+        <div className="flex items-center gap-2 mb-8">
           <BookOpen className="h-5 w-5 text-slate-600 dark:text-slate-400" />
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">All Articles</h2>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-6">
           {regularPosts.map((post) => (
             <RegularPostCard key={post._id} post={post} />
           ))}
@@ -142,7 +142,7 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
 function FeaturedPostCard({ post }: { post: BlogPost }) {
   return (
     <Link href={`/blog/${post.slug.current}`}>
-      <Card className="group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-slate-800/50 backdrop-blur-sm">
+      <Card className="group overflow-hidden border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 bg-white dark:bg-slate-800">
         <div className="p-6 sm:p-8">
           <CardHeader className="p-0 mb-4">
             <div className="flex flex-wrap gap-2 mb-4">
@@ -179,7 +179,7 @@ function FeaturedPostCard({ post }: { post: BlogPost }) {
 function RegularPostCard({ post }: { post: BlogPost }) {
   return (
     <Link href={`/blog/${post.slug.current}`}>
-      <Card className="group border-0 shadow-sm hover:shadow-md transition-all duration-300 bg-white dark:bg-slate-800/50 backdrop-blur-sm p-4 sm:p-6">
+      <Card className="group border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 bg-white dark:bg-slate-800 p-4 sm:p-6">
         <div className="flex items-start gap-4 sm:gap-6">
           {/* Content */}
           <div className="flex-1 min-w-0">
@@ -277,7 +277,7 @@ function BlogSidebar({ posts }: { posts: BlogPost[] }) {
   return (
     <div className="lg:sticky lg:top-24 space-y-6">
       {/* Categories */}
-      <Card className="border-0 shadow-sm bg-white dark:bg-slate-800/50 backdrop-blur-sm p-5 sm:p-6">
+      <Card className="border border-slate-200 dark:border-slate-700 shadow-md bg-white dark:bg-slate-800 p-5 sm:p-6">
         <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
           <div className="w-1 h-5 bg-blue-600 rounded-full"></div>
           Categories
@@ -296,7 +296,7 @@ function BlogSidebar({ posts }: { posts: BlogPost[] }) {
       </Card>
 
       {/* Recent Posts */}
-      <Card className="border-0 shadow-sm bg-white dark:bg-slate-800/50 backdrop-blur-sm p-5 sm:p-6">
+      <Card className="border border-slate-200 dark:border-slate-700 shadow-md bg-white dark:bg-slate-800 p-5 sm:p-6">
         <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
           <div className="w-1 h-5 bg-green-600 rounded-full"></div>
           Recent Posts
@@ -322,7 +322,7 @@ function BlogSidebar({ posts }: { posts: BlogPost[] }) {
       </Card>
 
       {/* Newsletter Signup */}
-      <Card className="border-0 shadow-sm bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-5 sm:p-6">
+      <Card className="border border-blue-200 dark:border-blue-800 shadow-md bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 p-5 sm:p-6">
         <div className="mb-4">
           <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Stay Updated</h3>
           <p className="text-sm text-slate-600 dark:text-slate-400">Get the latest accessibility insights delivered to your inbox.</p>
