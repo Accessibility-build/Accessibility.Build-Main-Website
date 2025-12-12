@@ -47,7 +47,7 @@ export function ErrorReportClient() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="flex flex-col md:!flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Error Report</h1>
           <p className="text-slate-600 dark:text-slate-400 mt-1">
@@ -112,7 +112,7 @@ export function ErrorReportClient() {
       {/* Error Analysis */}
       <Card>
         <CardHeader>
-          <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
+          <div className="flex flex-col md:!flex-row justify-between md:items-center gap-4">
             <div>
               <h2 className="text-2xl font-semibold leading-none tracking-tight">
                 Error Analysis

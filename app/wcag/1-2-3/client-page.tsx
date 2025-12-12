@@ -285,7 +285,7 @@ export default function WCAG123ClientPage() {
 
         {/* Header Section */}
         <div className="mb-12">
-          <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+          <div className="flex flex-col md:!flex-row md:items-center gap-4 mb-6">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl">
                 <AudioWaveform className="h-8 w-8 text-white" />

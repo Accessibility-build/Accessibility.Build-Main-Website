@@ -454,13 +454,13 @@ export default function JsonFormatter() {
       {/* Header Controls */}
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:!flex-row items-start md:items-center justify-between gap-4 md:gap-0">
             <div className="flex items-center gap-2">
               <FileJson className="h-5 w-5" />
               <CardTitle>Advanced JSON Workspace</CardTitle>
-              <Badge variant="secondary">{files.length} files</Badge>
+              <Badge variant="secondary" className="whitespace-nowrap">{files.length} files</Badge>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="hidden md:!flex flex-row items-center gap-2">
               <Button onClick={addFile} size="sm" variant="outline">
                 <Plus className="h-4 w-4 mr-1" />
                 Add File
@@ -474,6 +474,16 @@ export default function JsonFormatter() {
           <CardDescription>
             Professional JSON editor with comparison, validation, and advanced analysis tools
           </CardDescription>
+          <div className="flex md:hidden flex-row items-center gap-2 mt-4">
+            <Button onClick={addFile} size="sm" variant="outline">
+              <Plus className="h-4 w-4 mr-1" />
+              Add File
+            </Button>
+            <Button onClick={mergeJsons} size="sm" variant="outline" disabled={files.filter(f => f.parsed).length < 2}>
+              <Merge className="h-4 w-4 mr-1" />
+              Merge
+            </Button>
+          </div>
         </CardHeader>
       </Card>
 

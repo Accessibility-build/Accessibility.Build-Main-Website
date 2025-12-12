@@ -1,27 +1,40 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useRef, useEffect, useCallback } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { 
-  Loader2, 
-  Upload, 
-  Link2, 
-  Copy, 
-  AlertCircle, 
-  CheckCircle, 
-  Info, 
-  CreditCard, 
+import type React from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Loader2,
+  Upload,
+  Link2,
+  Copy,
+  AlertCircle,
+  CheckCircle,
+  Info,
+  CreditCard,
   Coins,
   ImageIcon,
   Trash2,
@@ -30,204 +43,210 @@ import {
   Download,
   Sparkles,
   Zap,
-  ChevronRight
-} from "lucide-react"
-import { errorLogger } from "@/lib/error-logger"
-import { useUser } from '@clerk/nextjs'
-import { useCredits } from '@/hooks/use-credits'
-import Link from 'next/link'
+  ChevronRight,
+} from "lucide-react";
+import { errorLogger } from "@/lib/error-logger";
+import { useUser } from "@clerk/nextjs";
+import { useCredits } from "@/hooks/use-credits";
+import Link from "next/link";
 
 interface GenerationResult {
-  altText: string
-  creditsUsed?: number
-  remainingCredits?: number
-  timestamp: number
-  wordCount?: number
-  lengthPreference?: string
+  altText: string;
+  creditsUsed?: number;
+  remainingCredits?: number;
+  timestamp: number;
+  wordCount?: number;
+  lengthPreference?: string;
   trialStatus?: {
-    usageCount: number
-    remainingUses: number
-    limitReached: boolean
-  }
+    usageCount: number;
+    remainingUses: number;
+    limitReached: boolean;
+  };
 }
 
 export default function AltTextGenerator() {
-  const { isSignedIn, user } = useUser()
-  const { refreshCredits } = useCredits()
-  const [imageUrl, setImageUrl] = useState("")
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null)
-  const [context, setContext] = useState("")
-  const [lengthPreference, setLengthPreference] = useState<string>("medium")
-  const [customLength, setCustomLength] = useState<string>("50")
-  const [results, setResults] = useState<GenerationResult[]>([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [uploadProgress, setUploadProgress] = useState(0)
-  const [error, setError] = useState<string | null>(null)
-  const [copied, setCopied] = useState<number | null>(null)
-  const [activeTab, setActiveTab] = useState("upload")
-  const [imageLoading, setImageLoading] = useState(false)
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const [dragActive, setDragActive] = useState(false)
+  const { isSignedIn, user } = useUser();
+  const { refreshCredits } = useCredits();
+  const [imageUrl, setImageUrl] = useState("");
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [context, setContext] = useState("");
+  const [lengthPreference, setLengthPreference] = useState<string>("medium");
+  const [customLength, setCustomLength] = useState<string>("50");
+  const [results, setResults] = useState<GenerationResult[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState("upload");
+  const [imageLoading, setImageLoading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [dragActive, setDragActive] = useState(false);
 
   // Reset error when tab changes or image changes
   useEffect(() => {
-    setError(null)
-  }, [activeTab, uploadedImage])
+    setError(null);
+  }, [activeTab, uploadedImage]);
 
   // Handle drag and drop
   const handleDrag = useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
+    e.preventDefault();
+    e.stopPropagation();
     if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true)
+      setDragActive(true);
     } else if (e.type === "dragleave") {
-      setDragActive(false)
+      setDragActive(false);
     }
-  }, [])
+  }, []);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setDragActive(false)
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFile(e.dataTransfer.files[0])
+      handleFile(e.dataTransfer.files[0]);
     }
-  }, [])
+  }, []);
 
   const handleFile = (file: File) => {
     // Validate file type
     if (!file.type.startsWith("image/")) {
-      setError("Please upload an image file (JPEG, PNG, GIF, WebP, etc.)")
+      setError("Please upload an image file (JPEG, PNG, GIF, WebP, etc.)");
       errorLogger.logMinorError("Invalid file type uploaded", {
         component: "AltTextGenerator",
         context: { fileType: file.type },
-      })
-      return
+      });
+      return;
     }
 
     // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
-      setError("Image size should be less than 5MB")
+      setError("Image size should be less than 5MB");
       errorLogger.logMinorError("File too large", {
-        component: "AltTextGenerator", 
+        component: "AltTextGenerator",
         context: { fileSize: file.size },
-      })
-      return
+      });
+      return;
     }
 
-    setError(null)
-    setUploadProgress(0)
-    
-    const reader = new FileReader()
-    
+    setError(null);
+    setUploadProgress(0);
+
+    const reader = new FileReader();
+
     reader.onprogress = (event) => {
       if (event.lengthComputable) {
-        const progress = (event.loaded / event.total) * 100
-        setUploadProgress(progress)
+        const progress = (event.loaded / event.total) * 100;
+        setUploadProgress(progress);
       }
-    }
-    
+    };
+
     reader.onload = (event) => {
-      setUploadedImage(event.target?.result as string)
-      setUploadProgress(100)
-      setTimeout(() => setUploadProgress(0), 1000)
-    }
-    
+      setUploadedImage(event.target?.result as string);
+      setUploadProgress(100);
+      setTimeout(() => setUploadProgress(0), 1000);
+    };
+
     reader.onerror = () => {
-      setError("Failed to read the file. Please try again.")
-      setUploadProgress(0)
+      setError("Failed to read the file. Please try again.");
+      setUploadProgress(0);
       errorLogger.logMinorError("File read error", {
         component: "AltTextGenerator",
-      })
-    }
-    
-    reader.readAsDataURL(file)
-  }
+      });
+    };
+
+    reader.readAsDataURL(file);
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    handleFile(file)
-  }
+    const file = e.target.files?.[0];
+    if (!file) return;
+    handleFile(file);
+  };
 
   const handleUrlSubmit = async () => {
     if (!imageUrl) {
-      setError("Please enter an image URL")
-      return
+      setError("Please enter an image URL");
+      return;
     }
 
     // Basic URL validation
     try {
-      new URL(imageUrl)
+      new URL(imageUrl);
     } catch (e) {
-      setError("Please enter a valid URL")
+      setError("Please enter a valid URL");
       errorLogger.logMinorError("Invalid URL format", {
         component: "AltTextGenerator",
         context: { url: imageUrl },
-      })
-      return
+      });
+      return;
     }
 
-    setError(null)
-    setImageLoading(true)
-    
+    setError(null);
+    setImageLoading(true);
+
     // Test if image loads
-    const img = new window.Image()
+    const img = new window.Image();
     img.onload = () => {
-      setUploadedImage(imageUrl)
-      setImageLoading(false)
-    }
+      setUploadedImage(imageUrl);
+      setImageLoading(false);
+    };
     img.onerror = () => {
-      setError("Failed to load image from URL. Please check the URL and try again.")
-      setImageLoading(false)
+      setError(
+        "Failed to load image from URL. Please check the URL and try again."
+      );
+      setImageLoading(false);
       errorLogger.logMinorError("URL image load error", {
         component: "AltTextGenerator",
         context: { url: imageUrl },
-      })
-    }
-    img.src = imageUrl
-  }
+      });
+    };
+    img.src = imageUrl;
+  };
 
   const generateAltText = async () => {
     if (!uploadedImage) {
-      setError("Please upload an image or provide an image URL")
-      return
+      setError("Please upload an image or provide an image URL");
+      return;
     }
 
     // Validate custom length if selected
     if (lengthPreference === "custom") {
-      const customLengthNum = parseInt(customLength)
-      if (isNaN(customLengthNum) || customLengthNum < 5 || customLengthNum > 1000) {
-        setError("Custom word count must be between 5 and 1000 words")
-        return
+      const customLengthNum = parseInt(customLength);
+      if (
+        isNaN(customLengthNum) ||
+        customLengthNum < 5 ||
+        customLengthNum > 1000
+      ) {
+        setError("Custom word count must be between 5 and 1000 words");
+        return;
       }
     }
 
-    setIsLoading(true)
-    setError(null)
+    setIsLoading(true);
+    setError(null);
 
     try {
       // Determine target word count based on preference
-      let targetWordCount: number
+      let targetWordCount: number;
       switch (lengthPreference) {
         case "short":
-          targetWordCount = 20
-          break
+          targetWordCount = 20;
+          break;
         case "medium":
-          targetWordCount = 40
-          break
+          targetWordCount = 40;
+          break;
         case "long":
-          targetWordCount = 75
-          break
+          targetWordCount = 75;
+          break;
         case "comprehensive":
-          targetWordCount = 150
-          break
+          targetWordCount = 150;
+          break;
         case "custom":
-          targetWordCount = parseInt(customLength)
-          break
+          targetWordCount = parseInt(customLength);
+          break;
         default:
-          targetWordCount = 40
+          targetWordCount = 40;
       }
 
       const response = await fetch("/api/generate-alt-text", {
@@ -241,19 +260,23 @@ export default function AltTextGenerator() {
           lengthPreference: lengthPreference,
           targetWordCount: targetWordCount,
         }),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (!response.ok) {
-        if (data.code === 'INSUFFICIENT_CREDITS') {
-          setError(`${data.error} Visit your dashboard to purchase more credits.`)
-        } else if (data.code === 'TRIAL_LIMIT_EXCEEDED') {
-          setError(`${data.error} You've used all your trial generations for this tool. Sign up to get 100 free credits!`)
+        if (data.code === "INSUFFICIENT_CREDITS") {
+          setError(
+            `${data.error} Visit your dashboard to purchase more credits.`
+          );
+        } else if (data.code === "TRIAL_LIMIT_EXCEEDED") {
+          setError(
+            `${data.error} You've used all your trial generations for this tool. Sign up to get 100 free credits!`
+          );
         } else {
-          throw new Error(data.error || "Failed to generate alt text")
+          throw new Error(data.error || "Failed to generate alt text");
         }
-        return
+        return;
       }
 
       const newResult: GenerationResult = {
@@ -263,55 +286,55 @@ export default function AltTextGenerator() {
         timestamp: Date.now(),
         wordCount: data.wordCount,
         lengthPreference: data.lengthPreference,
-        trialStatus: data.trialStatus
-      }
+        trialStatus: data.trialStatus,
+      };
 
-      setResults(prev => [newResult, ...prev])
-      
+      setResults((prev) => [newResult, ...prev]);
+
       // Refresh credits in header after successful generation
-      refreshCredits()
-      
+      refreshCredits();
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "An unknown error occurred"
-      setError(errorMessage)
+      const errorMessage =
+        err instanceof Error ? err.message : "An unknown error occurred";
+      setError(errorMessage);
       errorLogger.logMinorError("Alt text generation failed", {
         component: "AltTextGenerator",
         context: { error: errorMessage },
-      })
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const copyToClipboard = (text: string, index: number) => {
     navigator.clipboard.writeText(text).then(
       () => {
-        setCopied(index)
-        setTimeout(() => setCopied(null), 2000)
+        setCopied(index);
+        setTimeout(() => setCopied(null), 2000);
       },
       (err) => {
-        setError("Failed to copy to clipboard")
+        setError("Failed to copy to clipboard");
         errorLogger.logMinorError("Clipboard copy failed", {
           component: "AltTextGenerator",
           context: { error: err },
-        })
-      },
-    )
-  }
+        });
+      }
+    );
+  };
 
   const clearImage = () => {
-    setUploadedImage(null)
-    setImageUrl("")
-    setResults([])
-    setError(null)
+    setUploadedImage(null);
+    setImageUrl("");
+    setResults([]);
+    setError(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""
+      fileInputRef.current.value = "";
     }
-  }
+  };
 
   const triggerFileInput = () => {
-    fileInputRef.current?.click()
-  }
+    fileInputRef.current?.click();
+  };
 
   return (
     <div className="space-y-8">
@@ -326,21 +349,36 @@ export default function AltTextGenerator() {
               Generate Alt Text
             </CardTitle>
             <CardDescription className="text-lg">
-              Upload an image or provide a URL to generate professional, accessible alt text using OpenAI GPT-4 Vision
+              Upload an image or provide a URL to generate professional,
+              accessible alt text using OpenAI GPT-4 Vision
             </CardDescription>
-            
+
             {!isSignedIn ? (
               <Alert className="border-blue-200 bg-blue-50 dark:bg-blue-950/20">
                 <Info className="h-4 w-4 text-blue-600" />
-                <AlertTitle className="text-blue-800 dark:text-blue-200">Free Trial Available</AlertTitle>
+                <AlertTitle className="text-blue-800 dark:text-blue-200">
+                  Free Trial Available
+                </AlertTitle>
+
                 <AlertDescription className="text-blue-700 dark:text-blue-300">
                   Try this tool up to 2 times for free! Then{" "}
-                  <Link href="/sign-in" className="underline font-medium">sign in</Link> or{" "}
-                  <Link href="/sign-up" className="underline font-medium">create an account</Link> to get unlimited access.
-                  <Badge variant="secondary" className="ml-2">100 free credits for new users!</Badge>
+                  <Link href="/sign-in" className="underline font-medium">
+                    sign in
+                  </Link>{" "}
+                  or{" "}
+                  <Link href="/sign-up" className="underline font-medium">
+                    create an account
+                  </Link>{" "}
+                  to get unlimited access.
+                  <div className="block md:inline-flex mt-2 md:mt-0 md:ml-2">
+                    <Badge variant="secondary" className="text-xs md:text-sm">
+                      100 free credits for new users!
+                    </Badge>
+                  </div>
                   {results.length > 0 && results[0].trialStatus && (
                     <div className="mt-2 text-sm">
-                      Trial uses: {results[0].trialStatus.usageCount}/2 • {results[0].trialStatus.remainingUses} remaining
+                      Trial uses: {results[0].trialStatus.usageCount}/2 •{" "}
+                      {results[0].trialStatus.remainingUses} remaining
                     </div>
                   )}
                 </AlertDescription>
@@ -349,7 +387,9 @@ export default function AltTextGenerator() {
               <div className="flex items-center gap-4 p-4 bg-background/50 rounded-lg border">
                 <div className="flex items-center gap-2">
                   <Coins className="h-5 w-5 text-primary" />
-                  <span className="font-medium">Cost: 1 credit per generation</span>
+                  <span className="font-medium">
+                    Cost: 1 credit per generation
+                  </span>
                 </div>
                 {results.length > 0 && (
                   <div className="text-sm text-muted-foreground">
@@ -362,15 +402,34 @@ export default function AltTextGenerator() {
         </div>
 
         <CardContent className="p-6">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="upload" className="flex items-center gap-2 text-base">
-                <Upload className="h-4 w-4" />
-                Upload Image
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
+          >
+            <TabsList className="flex w-full mb-6 items-stretch overflow-hidden">
+              <TabsTrigger
+                value="upload"
+                className={
+                  "flex-1 min-w-0 self-stretch flex items-center justify-center gap-2 " +
+                  "px-2 xs:px-2 xs2:px-3 xs3:px-4 py-2 leading-none " +
+                  "text-sm xs:text-sm xs2:text-sm xs3:text-base md:text-base"
+                }
+              >
+                <Upload className="h-4 w-4 xs:h-3 xs:w-3 xs2:h-3 xs2:w-3 xs3:h-4 xs3:w-4" />
+                <span className="min-w-0 truncate">Upload Image</span>
               </TabsTrigger>
-              <TabsTrigger value="url" className="flex items-center gap-2 text-base">
-                <Link2 className="h-4 w-4" />
-                Image URL
+
+              <TabsTrigger
+                value="url"
+                className={
+                  "flex-1 min-w-0 self-stretch flex items-center justify-center gap-2 " +
+                  "px-2 xs:px-2 xs2:px-3 xs3:px-4 py-2 leading-none " +
+                  "text-sm xs:text-sm xs2:text-sm xs3:text-base md:text-base"
+                }
+              >
+                <Link2 className="h-4 w-4 xs:h-3 xs:w-3 xs2:h-3 xs2:w-3 xs3:h-4 xs3:w-4" />
+                <span className="min-w-0 truncate">Image URL</span>
               </TabsTrigger>
             </TabsList>
 
@@ -380,8 +439,8 @@ export default function AltTextGenerator() {
                   dragActive
                     ? "border-primary bg-primary/5 scale-105"
                     : uploadedImage && activeTab === "upload"
-                    ? "border-primary/50 bg-primary/5"
-                    : "border-muted-foreground/25 hover:border-primary/50 hover:bg-primary/5"
+                      ? "border-primary/50 bg-primary/5"
+                      : "border-muted-foreground/25 hover:border-primary/50 hover:bg-primary/5"
                 }`}
                 onClick={triggerFileInput}
                 onDragEnter={handleDrag}
@@ -389,14 +448,14 @@ export default function AltTextGenerator() {
                 onDragOver={handleDrag}
                 onDrop={handleDrop}
               >
-                <input 
-                  ref={fileInputRef} 
-                  type="file" 
-                  accept="image/*" 
-                  className="hidden" 
-                  onChange={handleFileChange} 
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleFileChange}
                 />
-                
+
                 {uploadProgress > 0 && uploadProgress < 100 && (
                   <div className="absolute top-4 left-4 right-4">
                     <Progress value={uploadProgress} className="h-1" />
@@ -412,11 +471,13 @@ export default function AltTextGenerator() {
                         fill
                         className="object-contain"
                         onError={() => {
-                          setError("Failed to load image. Please try another image.")
-                          setUploadedImage(null)
+                          setError(
+                            "Failed to load image. Please try another image."
+                          );
+                          setUploadedImage(null);
                           errorLogger.logMinorError("Image load error", {
                             component: "AltTextGenerator",
-                          })
+                          });
                         }}
                       />
                     </div>
@@ -425,8 +486,8 @@ export default function AltTextGenerator() {
                         variant="outline"
                         size="sm"
                         onClick={(e) => {
-                          e.stopPropagation()
-                          clearImage()
+                          e.stopPropagation();
+                          clearImage();
                         }}
                       >
                         <Trash2 className="h-4 w-4 mr-2" />
@@ -441,13 +502,15 @@ export default function AltTextGenerator() {
                         <Upload className="h-12 w-12 text-primary" />
                       </div>
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">Upload Your Image</h3>
+                    <h3 className="text-xl font-semibold mb-2">
+                      Upload Your Image
+                    </h3>
                     <p className="text-muted-foreground mb-4">
                       Click to upload or drag and drop your image here
                     </p>
-                    <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
+                    <div className="flex flex-col xs3:!flex-row items-center justify-center xs3:gap-4 text-sm text-muted-foreground">
                       <span>PNG, JPG, GIF, WebP</span>
-                      <span>•</span>
+                      <span className="hidden xs3:block">•</span>
                       <span>Up to 5MB</span>
                     </div>
                   </div>
@@ -457,7 +520,9 @@ export default function AltTextGenerator() {
 
             <TabsContent value="url" className="space-y-6">
               <div className="space-y-4">
-                <Label htmlFor="image-url" className="text-base font-medium">Image URL</Label>
+                <Label htmlFor="image-url" className="text-base font-medium">
+                  Image URL
+                </Label>
                 <div className="flex gap-3">
                   <Input
                     id="image-url"
@@ -466,14 +531,14 @@ export default function AltTextGenerator() {
                     onChange={(e) => setImageUrl(e.target.value)}
                     className="text-base"
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        handleUrlSubmit()
+                      if (e.key === "Enter") {
+                        handleUrlSubmit();
                       }
                     }}
                     suppressHydrationWarning
                   />
-                  <Button 
-                    type="button" 
+                  <Button
+                    type="button"
                     onClick={handleUrlSubmit}
                     disabled={imageLoading}
                     size="lg"
@@ -497,21 +562,19 @@ export default function AltTextGenerator() {
                       fill
                       className="object-contain"
                       onError={() => {
-                        setError("Failed to load image from URL. Please check the URL and try again.")
-                        setUploadedImage(null)
+                        setError(
+                          "Failed to load image from URL. Please check the URL and try again."
+                        );
+                        setUploadedImage(null);
                         errorLogger.logMinorError("URL image load error", {
                           component: "AltTextGenerator",
                           context: { url: imageUrl },
-                        })
+                        });
                       }}
                     />
                   </div>
                   <div className="flex items-center justify-center">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={clearImage}
-                    >
+                    <Button variant="outline" size="sm" onClick={clearImage}>
                       <Trash2 className="h-4 w-4 mr-2" />
                       Clear Image
                     </Button>
@@ -523,12 +586,14 @@ export default function AltTextGenerator() {
 
           {/* Context Input */}
           <div className="space-y-3 mt-8">
-            <Label htmlFor="context" className="text-base font-medium">
-              Context (Optional)
-              <span className="text-sm font-normal text-muted-foreground ml-2">
+            <div className="flex flex-col md:!flex-row md:items-center">
+              <Label htmlFor="context" className="text-base font-medium">
+                Context (Optional)
+              </Label>
+              <span className="md:ml-2 text-sm font-normal text-muted-foreground">
                 Help our AI understand your image better
               </span>
-            </Label>
+            </div>
             <Textarea
               id="context"
               placeholder="Describe how this image will be used. For example: 'Product image for an online store', 'Blog post hero image about sustainability', or 'Team photo for company about page'"
@@ -542,32 +607,50 @@ export default function AltTextGenerator() {
 
           {/* Length Preference */}
           <div className="space-y-3 mt-6">
-            <Label className="text-base font-medium">
-              Alt Text Length
-              <span className="text-sm font-normal text-muted-foreground ml-2">
+            <div className="flex flex-col md:!flex-row md:items-center">
+              <Label className="text-base font-medium">Alt Text Length</Label>
+              <span className="text-sm font-normal text-muted-foreground md:ml-2">
                 Choose how detailed you want the description
               </span>
-            </Label>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="length-preference" className="text-sm">Length Style</Label>
-                <Select value={lengthPreference} onValueChange={setLengthPreference}>
-                  <SelectTrigger id="length-preference" suppressHydrationWarning>
+                <Label htmlFor="length-preference" className="text-sm">
+                  Length Style
+                </Label>
+                <Select
+                  value={lengthPreference}
+                  onValueChange={setLengthPreference}
+                >
+                  <SelectTrigger
+                    id="length-preference"
+                    suppressHydrationWarning
+                  >
                     <SelectValue placeholder="Select length preference" />
                   </SelectTrigger>
                   <SelectContent suppressHydrationWarning>
-                    <SelectItem value="short">Short & Concise (10-25 words)</SelectItem>
-                    <SelectItem value="medium">Medium Detail (25-50 words)</SelectItem>
-                    <SelectItem value="long">Long & Descriptive (50-100 words)</SelectItem>
-                    <SelectItem value="comprehensive">Comprehensive (100-200 words)</SelectItem>
+                    <SelectItem value="short">
+                      Short & Concise (10-25 words)
+                    </SelectItem>
+                    <SelectItem value="medium">
+                      Medium Detail (25-50 words)
+                    </SelectItem>
+                    <SelectItem value="long">
+                      Long & Descriptive (50-100 words)
+                    </SelectItem>
+                    <SelectItem value="comprehensive">
+                      Comprehensive (100-200 words)
+                    </SelectItem>
                     <SelectItem value="custom">Custom Word Count</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
-              
+
               {lengthPreference === "custom" && (
                 <div className="space-y-2">
-                  <Label htmlFor="custom-length" className="text-sm">Word Count (Max 1000)</Label>
+                  <Label htmlFor="custom-length" className="text-sm">
+                    Word Count (Max 1000)
+                  </Label>
                   <Input
                     id="custom-length"
                     type="number"
@@ -582,13 +665,18 @@ export default function AltTextGenerator() {
                 </div>
               )}
             </div>
-            
+
             <div className="text-xs text-muted-foreground mt-2">
-              {lengthPreference === "short" && "Perfect for simple images where brevity is key"}
-              {lengthPreference === "medium" && "Good balance of detail and conciseness for most use cases"}
-              {lengthPreference === "long" && "Detailed descriptions for complex images or artistic content"}
-              {lengthPreference === "comprehensive" && "Very detailed descriptions for educational or analytical purposes"}
-              {lengthPreference === "custom" && `Custom length of ${customLength} words - ideal for specific requirements`}
+              {lengthPreference === "short" &&
+                "Perfect for simple images where brevity is key"}
+              {lengthPreference === "medium" &&
+                "Good balance of detail and conciseness for most use cases"}
+              {lengthPreference === "long" &&
+                "Detailed descriptions for complex images or artistic content"}
+              {lengthPreference === "comprehensive" &&
+                "Very detailed descriptions for educational or analytical purposes"}
+              {lengthPreference === "custom" &&
+                `Custom length of ${customLength} words - ideal for specific requirements`}
             </div>
           </div>
 
@@ -619,26 +707,31 @@ export default function AltTextGenerator() {
             <Button
               onClick={generateAltText}
               disabled={isLoading || !uploadedImage}
-              className="w-full sm:w-auto sm:min-w-[280px] h-14 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500"
+              className="w-full sm:w-auto sm:min-w-[280px] h-12 xs2:h-14 text-sm xs2:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500"
               size="lg"
             >
               {isLoading ? (
                 <>
-                  <Loader2 className="mr-3 h-6 w-6 animate-spin" />
+                  <Loader2 className="mr-2 xs2:mr-3 h-5 w-5 xs2:h-6 xs2:w-6 animate-spin flex-shrink-0" />
                   Generating Alt Text...
                 </>
               ) : (
                 <>
-                  <Zap className="mr-3 h-6 w-6" />
-                  {isSignedIn ? "Generate Alt Text (1 Credit)" : "Generate Alt Text (Trial)"}
+                  <Zap className="mr-2 xs2:mr-3 h-5 w-5 xs2:h-6 xs2:w-6 flex-shrink-0" />
+                  {isSignedIn
+                    ? "Generate Alt Text (1 Credit)"
+                    : "Generate Alt Text (Trial)"}
                 </>
               )}
             </Button>
-            
+
             {!isSignedIn && (
               <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mt-2 sm:mt-0">
                 <span>
-                  <Link href="/sign-up" className="underline font-medium">Sign up</Link> to get 100 free credits
+                  <Link href="/sign-up" className="underline font-medium">
+                    Sign up
+                  </Link>{" "}
+                  to get 100 free credits
                 </span>
               </div>
             )}
@@ -648,10 +741,13 @@ export default function AltTextGenerator() {
 
       {/* Results */}
       {results.map((result, index) => (
-        <Card key={result.timestamp} className="border-2 border-green-200 dark:border-green-800">
+        <Card
+          key={result.timestamp}
+          className="border-2 border-green-200 dark:border-green-800"
+        >
           <CardHeader className="bg-green-50 dark:bg-green-950/20">
-            <CardTitle className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+            <CardTitle className="flex flex-wrap items-center justify-between gap-y-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-green-600" />
                 Generated Alt Text
                 <Badge variant="outline" className="text-xs">
@@ -659,7 +755,9 @@ export default function AltTextGenerator() {
                 </Badge>
                 {result.lengthPreference && (
                   <Badge variant="secondary" className="text-xs">
-                    {result.lengthPreference === "custom" ? `${result.wordCount} words` : result.lengthPreference}
+                    {result.lengthPreference === "custom"
+                      ? `${result.wordCount} words`
+                      : result.lengthPreference}
                   </Badge>
                 )}
               </div>
@@ -672,7 +770,8 @@ export default function AltTextGenerator() {
                 ) : result.trialStatus ? (
                   <>
                     <Info className="h-4 w-4" />
-                    Trial {result.trialStatus.usageCount}/2 • {result.trialStatus.remainingUses} remaining
+                    Trial {result.trialStatus.usageCount}/2 •{" "}
+                    {result.trialStatus.remainingUses} remaining
                   </>
                 ) : (
                   <>
@@ -685,13 +784,17 @@ export default function AltTextGenerator() {
             <CardDescription>
               Created on {new Date(result.timestamp).toLocaleString()}
               {result.wordCount && (
-                <span className="ml-2">• {result.wordCount} words generated</span>
+                <span className="ml-2">
+                  • {result.wordCount} words generated
+                </span>
               )}
             </CardDescription>
           </CardHeader>
           <CardContent className="p-6">
             <div className="bg-muted/30 p-4 rounded-lg relative group">
-              <p className="pr-12 text-base leading-relaxed">{result.altText}</p>
+              <p className="pr-12 text-base leading-relaxed">
+                {result.altText}
+              </p>
               <Button
                 variant="ghost"
                 size="icon"
@@ -706,9 +809,9 @@ export default function AltTextGenerator() {
                 )}
               </Button>
             </div>
-            
-            <div className="mt-4 flex items-center justify-between text-sm">
-              <div className="flex items-center gap-4">
+
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-4 text-sm">
+              <div className="flex flex-wrap items-center gap-4">
                 <span className="text-muted-foreground">
                   <strong>Characters:</strong> {result.altText.length}
                   {result.altText.length > 500 && (
@@ -716,19 +819,24 @@ export default function AltTextGenerator() {
                   )}
                 </span>
                 <span className="text-muted-foreground">
-                  <strong>Words:</strong> {result.wordCount || result.altText.split(' ').length}
+                  <strong>Words:</strong>{" "}
+                  {result.wordCount || result.altText.split(" ").length}
                 </span>
                 {result.lengthPreference && (
                   <span className="text-muted-foreground">
-                    <strong>Style:</strong> {result.lengthPreference === "custom" ? "Custom" : result.lengthPreference}
+                    <strong>Style:</strong>{" "}
+                    {result.lengthPreference === "custom"
+                      ? "Custom"
+                      : result.lengthPreference}
                   </span>
                 )}
               </div>
-              
+
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => copyToClipboard(result.altText, index)}
+                className="w-full md:w-auto"
               >
                 {copied === index ? (
                   <>
@@ -747,5 +855,5 @@ export default function AltTextGenerator() {
         </Card>
       ))}
     </div>
-  )
+  );
 }

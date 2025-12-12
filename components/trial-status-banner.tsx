@@ -82,16 +82,16 @@ export default function TrialStatusBanner() {
   const remainingTrials = totalTrials - usedTrials;
 
   return (
-    <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
+    <Card className="w-full max-w-full overflow-hidden border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
       <CardContent className="p-6">
-        <div className="flex items-start gap-4">
-          <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30">
+        <div className="flex items-start gap-2 xs3:gap-4 w-full min-w-0">
+          <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex-shrink-0">
             <Sparkles className="h-6 w-6 text-blue-600 dark:text-blue-400" />
           </div>
 
-          <div className="flex-1 space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          <div className="flex-1 space-y-4 min-w-0">
+            <div className="min-w-0">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">
                 Free Trial - Try Our Tools
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -109,32 +109,36 @@ export default function TrialStatusBanner() {
                   {usedTrials} / {totalTrials} trials used
                 </span>
               </div>
+
               <Progress
                 value={(usedTrials / totalTrials) * 100}
-                className="h-2"
+                className="h-2 w-full"
               />
+
               <div className="text-xs text-gray-500 dark:text-gray-400">
                 {remainingTrials} trials remaining across all tools
               </div>
             </div>
 
+            {/* trial status grid: keep grid cols but ensure min-w-0 on items */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {trialStatus.map((status) => (
                 <div
                   key={status.tool}
-                  className="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border"
+                  className="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border w-full min-w-0"
                 >
-                  <div className="flex-1">
-                    <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                       {TOOL_NAMES[status.tool] || status.tool}
                     </div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">
                       {5 - status.remaining}/5 used
                     </div>
                   </div>
+
                   <Badge
                     variant={status.allowed ? "destructive" : "secondary"}
-                    className="text-xs"
+                    className="text-xs flex-shrink-0 whitespace-nowrap ml-3"
                   >
                     {status.remaining == 0
                       ? "Used Up"
@@ -144,21 +148,36 @@ export default function TrialStatusBanner() {
               ))}
             </div>
 
+            {/* CTA buttons: full width on xs, auto on sm+ */}
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 asChild
                 size="sm"
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
               >
-                <Link href="/sign-up">
-                  <UserPlus className="h-4 w-4 mr-2" />
-                  Sign Up - Get 100 Free Credits
+                <Link
+                  href="/sign-up"
+                  className="inline-flex items-center justify-center xs:gap-1 xs2:gap-2 xs:p-2"
+                >
+                  <UserPlus className="xs:h-2 xs:w-2 h-4 w-4 " />
+                  <span className="xs:text-xs text-base">
+                    Sign Up - Get 100 Free Credits
+                  </span>
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="sm">
-                <Link href="/sign-in">
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Sign In
+
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="w-full sm:w-auto"
+              >
+                <Link
+                  href="/sign-in"
+                  className="inline-flex items-center justify-center gap-2"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                  <span>Sign In</span>
                 </Link>
               </Button>
             </div>

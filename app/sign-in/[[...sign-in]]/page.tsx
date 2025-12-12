@@ -1,17 +1,20 @@
-import { SignIn } from '@clerk/nextjs'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { 
-  Shield, 
-  Users, 
-  Sparkles
-} from 'lucide-react'
-import Link from 'next/link'
-import type { Metadata } from 'next'
+import { SignIn } from "@clerk/nextjs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Shield, Users, Sparkles } from "lucide-react";
+import Link from "next/link";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Sign In | Access Your Accessibility Dashboard | Accessibility.build",
-  description: "Sign in to your accessibility account. Access your credits, tools, and continue building more accessible digital experiences.",
-}
+  description:
+    "Sign in to your accessibility account. Access your credits, tools, and continue building more accessible digital experiences.",
+};
 
 export default function Page() {
   return (
@@ -50,8 +53,8 @@ export default function Page() {
               <p className="text-sm text-muted-foreground mb-2">
                 New to Accessibility.build?
               </p>
-              <Link 
-                href="/sign-up" 
+              <Link
+                href="/sign-up"
                 className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
               >
                 <Sparkles className="h-4 w-4" />
@@ -61,31 +64,34 @@ export default function Page() {
           </div>
 
           {/* Right Column - Sign In Form */}
-          <div className="lg:col-span-3 flex justify-center">
-            <Card className="w-full max-w-md">
+          <div className="lg:col-span-3 flex justify-center w-full">
+            <Card className="w-full max-w-sm mx-auto">
               <CardHeader className="text-center">
                 <CardTitle className="text-xl">Sign In</CardTitle>
                 <CardDescription>
                   Access your accessibility dashboard
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <SignIn 
-                  appearance={{
-                    elements: {
-                      rootBox: "w-full",
-                      cardBox: "shadow-none bg-transparent border-0",
-                      headerTitle: "hidden",
-                      headerSubtitle: "hidden",
-                      formButtonPrimary: "bg-primary hover:bg-primary/90 text-primary-foreground",
-                    }
-                  }}
-                />
+              <CardContent className="p-6">
+                <div className="w-full min-w-0 max-w-full">
+                  <SignIn
+                    appearance={{
+                      elements: {
+                        rootBox: "w-full min-w-0 max-w-full",
+                        cardBox: "w-full min-w-0 max-w-full overflow-hidden",
+                        headerTitle: "hidden",
+                        headerSubtitle: "hidden",
+                        formButtonPrimary:
+                          "bg-primary hover:bg-primary/90 text-primary-foreground",
+                      },
+                    }}
+                  />
+                </div>
               </CardContent>
             </Card>
           </div>
         </div>
       </div>
     </div>
-  )
-} 
+  );
+}

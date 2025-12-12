@@ -60,7 +60,7 @@ export default function WCAG141ClientPage() {
 
         {/* Header Section */}
         <div className="mb-12">
-          <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+          <div className="flex flex-col md:!flex-row md:items-center gap-4 mb-6">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-gradient-to-r from-red-600 to-pink-600 rounded-xl">
                 <Palette className="h-8 w-8 text-white" />

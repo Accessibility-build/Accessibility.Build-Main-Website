@@ -17,7 +17,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 import { ListenFeature } from "@/components/blog/listen-feature"
 
 // Enable static generation with revalidation every 24 hours
-export const revalidate = 86400
+export const revalidate = 86400;
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
@@ -26,16 +26,16 @@ export async function generateStaticParams() {
       *[_type == "post" && defined(slug.current)] {
         "slug": slug.current
       }
-    `
-    
-    const posts = await client.fetch(query)
-    
+    `;
+
+    const posts = await client.fetch(query);
+
     return posts.map((post: { slug: string }) => ({
       slug: post.slug,
-    }))
+    }));
   } catch (error) {
-    console.error("Error generating static params:", error)
-    return []
+    console.error("Error generating static params:", error);
+    return [];
   }
 }
 
@@ -63,23 +63,27 @@ async function getPost(slug: string) {
       accessibility,
       estimatedReadingTime
     }
-  `
-  
-  const post = await client.fetch(query, { slug })
-  return post
+  `;
+
+  const post = await client.fetch(query, { slug });
+  return post;
 }
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   try {
-    const { slug } = await params
-    const post = await getPost(slug)
+    const { slug } = await params;
+    const post = await getPost(slug);
 
     if (!post) {
       return {
         title: "Post Not Found",
         description: "The requested blog post could not be found.",
-      }
+      };
     }
 
     const currentUrl = `https://accessibility.build/blog/${slug}`
@@ -125,26 +129,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           "max-snippet": -1,
         },
       },
-    }
+    };
   } catch (error) {
-    console.error("Error generating metadata:", error)
+    console.error("Error generating metadata:", error);
     return {
       title: "Error Loading Post",
       description: "There was an error loading this blog post.",
-    }
+    };
   }
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   try {
-    const { slug } = await params
-    const post = await getPost(slug)
+    const { slug } = await params;
+    const post = await getPost(slug);
 
     if (!post) {
-      notFound()
+      notFound();
     }
 
-    const currentUrl = `https://accessibility.build/blog/${slug}`
+    const currentUrl = `https://accessibility.build/blog/${slug}`;
     const breadcrumbs = [
       { name: "Home", url: "https://accessibility.build" },
       { name: "Blog", url: "https://accessibility.build/blog" },
@@ -169,16 +177,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           }}
           publisher={{
             name: "Accessibility.build",
-            logo: "https://accessibility.build/android-chrome-512x512.png"
+            logo: "https://accessibility.build/android-chrome-512x512.png",
           }}
           datePublished={post.publishedAt}
           dateModified={post.publishedAt}
-          image={post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "https://accessibility.build/og-image.png"}
+          image={
+            post.mainImage
+              ? urlFor(post.mainImage).width(1200).height(630).url()
+              : "https://accessibility.build/og-image.png"
+          }
           url={currentUrl}
-          wordCount={post.estimatedReadingTime ? post.estimatedReadingTime * 250 : 1000}
+          wordCount={
+            post.estimatedReadingTime ? post.estimatedReadingTime * 250 : 1000
+          }
           keywords={post.seo?.keywords || []}
         />
-        
+
         <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
         {/* Minimal Header */}
@@ -331,8 +345,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             url={currentUrl}
                             title={post.title}
                             description={post.excerpt}
-                            tags={post.categories?.map((cat: any) => cat.title) || []}
-                            imageUrl={post.mainImage ? urlFor(post.mainImage).url() : undefined}
+                            tags={
+                              post.categories?.map((cat: any) => cat.title) ||
+                              []
+                            }
+                            imageUrl={
+                              post.mainImage
+                                ? urlFor(post.mainImage).url()
+                                : undefined
+                            }
                             showLabel={true}
                           />
                         </div>
@@ -346,7 +367,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   <div className="lg:sticky lg:top-24 space-y-6 font-sans">
                     
                     {/* Table of Contents */}
-                    <TableOfContents content={post.body} />
+                    <div className="hidden md:block">
+                      <TableOfContents content={post.body} />
+                    </div>
 
                     {/* Author Card */}
                     <Card className="bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 overflow-hidden">
@@ -390,8 +413,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </div>
     )
   } catch (error) {
-    console.error("Error loading blog post:", error)
-    notFound()
+    console.error("Error loading blog post:", error);
+    notFound();
   }
 }
 
@@ -423,5 +446,5 @@ function AuthorSidebarCard({
         </p>
       </div>
     </div>
-  )
+  );
 }

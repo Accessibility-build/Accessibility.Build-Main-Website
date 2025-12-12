@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@ai-sdk/anthropic": "^2.0.9",
-        "@ai-sdk/openai": "^0.0.66",
+        "@ai-sdk/openai": "^2.0.80",
         "@ai-sdk/xai": "latest",
         "@axe-core/puppeteer": "^4.10.2",
         "@clerk/nextjs": "^6.35.1",

@@ -89,7 +89,7 @@ export function BlogCard({ post, variant = "grid" }: BlogCardProps) {
   if (variant === "list") {
     return (
       <Card className="overflow-hidden border-none shadow-md hover:shadow-lg transition-shadow">
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:!flex-row">
           <div className="md:w-1/4 relative">
             <div className="aspect-video md:aspect-square relative">
               <Image

@@ -303,75 +303,75 @@ export default async function DashboardPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {stats.recentTransactions.length === 0 ? (
-                    <div className="text-center py-12">
-                      <div className="p-4 bg-slate-100 dark:bg-slate-700 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                        <Coins className="h-8 w-8 text-slate-400" />
-                      </div>
-                      <p className="text-slate-500 dark:text-slate-400 text-lg font-medium mb-2">
-                        No transactions yet
-                      </p>
-                      <p className="text-slate-400 dark:text-slate-500 text-sm">
-                        Your first transaction will appear here.
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="space-y-3">
-                      {stats.recentTransactions.map(
-                        (transaction: CreditTransaction) => (
-                          <div
-                            key={transaction.id}
-                            className="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
-                          >
-                            <div className="flex items-center gap-4">
-                              <div
-                                className={`p-3 rounded-xl ${
-                                  transaction.type === "usage"
-                                    ? "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400"
-                                    : transaction.type === "bonus"
-                                      ? "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400"
-                                      : "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
-                                }`}
-                              >
-                                {transaction.type === "usage" ? (
-                                  <ArrowDownRight className="h-5 w-5" />
-                                ) : transaction.type === "bonus" ? (
-                                  <Gift className="h-5 w-5" />
-                                ) : (
-                                  <ArrowUpRight className="h-5 w-5" />
-                                )}
-                              </div>
-                              <div>
-                                <p className="font-medium text-slate-900 dark:text-white">
-                                  {transaction.description}
-                                </p>
-                                <p className="text-sm text-slate-500 dark:text-slate-400">
-                                  {formatDistanceToNow(transaction.createdAt, {
-                                    addSuffix: true,
-                                  })}
-                                </p>
-                              </div>
+                  <div className="space-y-3">
+                    {stats.recentTransactions.map(
+                      (transaction: CreditTransaction) => (
+                        <div
+                          key={transaction.id}
+                          className="
+      flex items-center justify-between p-4
+      border border-slate-200 dark:border-slate-700 rounded-xl
+      hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors
+      min-w-0
+      max-[320px]:flex-col max-[320px]:items-start max-[320px]:gap-3
+    "
+                        >
+                          {/* left area: icon + title/time */}
+                          <div className="flex items-center gap-4 min-w-0 w-full">
+                            <div
+                              className={`flex-shrink-0 p-3 rounded-xl
+          ${
+            transaction.type === "usage"
+              ? "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400"
+              : transaction.type === "bonus"
+                ? "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400"
+                : "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+          }`}
+                            >
+                              {transaction.type === "usage" ? (
+                                <ArrowDownRight className="h-5 w-5 max-[320px]:h-4 max-[320px]:w-4" />
+                              ) : transaction.type === "bonus" ? (
+                                <Gift className="h-5 w-5 max-[320px]:h-4 max-[320px]:w-4" />
+                              ) : (
+                                <ArrowUpRight className="h-5 w-5 max-[320px]:h-4 max-[320px]:w-4" />
+                              )}
                             </div>
-                            <div className="text-right">
-                              <p
-                                className={`font-semibold text-lg ${
-                                  transaction.amount > 0
-                                    ? "text-green-600 dark:text-green-400"
-                                    : "text-red-600 dark:text-red-400"
-                                }`}
-                              >
-                                {transaction.amount > 0 ? "+" : ""}
-                                {transaction.amount}
+
+                            <div className="min-w-0 flex-1">
+                              <p className="font-medium text-slate-900 dark:text-white truncate">
+                                {transaction.description}
                               </p>
-                              <p className="text-sm text-slate-500 dark:text-slate-400">
-                                Balance: {transaction.balanceAfter}
+                              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 truncate">
+                                {formatDistanceToNow(transaction.createdAt, {
+                                  addSuffix: true,
+                                })}
                               </p>
                             </div>
                           </div>
-                        )
-                      )}
-                    </div>
-                  )}
+
+                          {/* right area: amount + balance */}
+                          <div
+                            className="ml-4 text-right flex-shrink-0
+                    max-[320px]:ml-0 max-[320px]:w-full max-[320px]:text-left max-[320px]:mt-1"
+                          >
+                            <p
+                              className={`font-semibold text-lg ${
+                                transaction.amount > 0
+                                  ? "text-green-600 dark:text-green-400"
+                                  : "text-red-600 dark:text-red-400"
+                              }`}
+                            >
+                              {transaction.amount > 0 ? "+" : ""}
+                              {transaction.amount}
+                            </p>
+                            <p className="text-sm text-slate-500 dark:text-slate-400">
+                              Balance: {transaction.balanceAfter}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -410,52 +410,108 @@ export default async function DashboardPage() {
                       {stats.recentUsage.map((usage: ToolUsage) => (
                         <div
                           key={usage.id}
-                          className="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                          className={`
+      p-4 border rounded-xl transition-colors
+      hover:bg-slate-50 dark:hover:bg-slate-800/50
+      border-slate-200 dark:border-slate-700
+      min-w-0
+      /* xs-xs2 → full column stacked */
+      flex flex-col items-start gap-2
+
+      /* xs3 */
+      xs3:!flex-row xs3:gap-4
+
+      /* md+ */
+      md:!flex-row md:items-center md:justify-between md:gap-4
+    `}
                         >
-                          <div className="flex items-center gap-4">
-                            <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+                          {/* ICON */}
+                          <div className="flex-shrink-0">
+                            <div
+                              className="
+        p-3 rounded-xl 
+        bg-blue-100 dark:bg-blue-900/30 
+        text-blue-600 dark:text-blue-400
+      "
+                            >
                               <Activity className="h-5 w-5" />
                             </div>
-                            <div>
-                              <p className="font-medium text-slate-900 dark:text-white capitalize">
+                          </div>
+
+                          {/* RIGHT CONTENT BLOCK */}
+                          <div className="flex-1 min-w-0 mt-3 xs3:mt-0 xs3:ml-2 md:ml-2">
+                            {/* ROW 1 — Heading + Credits */}
+                            <div
+                              className={`
+          flex items-start justify-between gap-2
+
+          /* stack on xs & xs2 */
+          xs:flex-col xs:items-start
+          xs2:flex-col xs2:items-start
+
+          /* row layout on xs3 & md+ */
+          xs3:!flex-row xs3:items-center xs3:gap-4
+          md:!flex-row md:items-center
+        `}
+                            >
+                              <p className="font-medium text-slate-900 dark:text-white break-words capitalize">
                                 {usage.tool.replace("_", " ")}
                               </p>
-                              <p className="text-sm text-slate-500 dark:text-slate-400">
-                                {formatDistanceToNow(usage.createdAt, {
-                                  addSuffix: true,
-                                })}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="text-right flex items-center gap-3">
-                            <div>
-                              <p className="font-medium text-slate-900 dark:text-white">
+
+                              <p className="font-medium text-slate-900 dark:text-white whitespace-nowrap">
                                 {usage.creditsUsed} credit
                                 {usage.creditsUsed !== 1 ? "s" : ""}
                               </p>
                             </div>
-                            <Badge
-                              variant={
-                                usage.success ? "default" : "destructive"
-                              }
-                              className={
-                                usage.success
-                                  ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
-                                  : ""
-                              }
+
+                            {/* ROW 2 — Time + Success Badge */}
+                            <div
+                              className={`
+          flex items-center justify-between gap-3 mt-2
+
+          /* stacked on xs & xs2 */
+          xs:flex-col xs:items-start
+          xs2:flex-col xs2:items-start
+
+          /* row layout on xs3 & md+ */
+          xs3:!flex-row xs3:items-center
+          md:!flex-row md:items-center
+      `}
                             >
-                              {usage.success ? (
-                                <>
-                                  <CheckCircle className="h-3 w-3 mr-1" />
-                                  Success
-                                </>
-                              ) : (
-                                <>
-                                  <AlertCircle className="h-3 w-3 mr-1" />
-                                  Failed
-                                </>
-                              )}
-                            </Badge>
+                              {/* TIME */}
+                              <p className="text-sm text-slate-500 dark:text-slate-400 whitespace-normal">
+                                {formatDistanceToNow(usage.createdAt, {
+                                  addSuffix: true,
+                                })}
+                              </p>
+
+                              {/* SUCCESS / FAILURE BADGE */}
+                              <Badge
+                                variant={
+                                  usage.success ? "default" : "destructive"
+                                }
+                                className={`
+            text-xs px-3 py-1 whitespace-nowrap
+            ${
+              usage.success
+                ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                : ""
+            }
+          `}
+                              >
+                                {usage.success ? (
+                                  <>
+                                    <CheckCircle className="h-3 w-3 mr-1 inline" />
+                                    Success
+                                  </>
+                                ) : (
+                                  <>
+                                    <AlertCircle className="h-3 w-3 mr-1 inline" />
+                                    Failed
+                                  </>
+                                )}
+                              </Badge>
+                            </div>
                           </div>
                         </div>
                       ))}

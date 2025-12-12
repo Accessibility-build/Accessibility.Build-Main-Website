@@ -292,11 +292,11 @@ export default function PasswordGenerator() {
           </div>
 
           {/* Generate Button */}
-          <div className="flex gap-2">
+          <div className="flex flex-col md:!flex-row gap-2">
             <Button
               onClick={generatePasswords}
               disabled={!hasValidOptions}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 w-full xs3:w-auto justify-center"
               size="lg"
             >
               <RefreshCw className="h-4 w-4" />
@@ -306,7 +306,7 @@ export default function PasswordGenerator() {
             <Button
               variant="outline"
               onClick={() => setShowPasswords(!showPasswords)}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 w-full xs3:w-auto justify-center"
             >
               {showPasswords ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               {showPasswords ? 'Hide' : 'Show'}
@@ -351,15 +351,15 @@ export default function PasswordGenerator() {
               return (
                 <div key={index} className="space-y-3 p-4 border rounded-lg">
                   {/* Password Display */}
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 font-mono text-lg bg-muted p-3 rounded border">
+                  <div className="flex flex-col md:!flex-row items-stretch md:items-center gap-2">
+                    <div className="flex-1 font-mono text-lg bg-muted p-3 rounded border break-all">
                       {showPasswords ? password : '•'.repeat(password.length)}
                     </div>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => copyToClipboard(password, index)}
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 sm:w-auto w-full justify-center"
                     >
                       {copied === index ? (
                         <Check className="h-4 w-4" />
