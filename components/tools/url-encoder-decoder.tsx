@@ -90,7 +90,7 @@ export default function URLEncoderDecoder() {
             <div className="p-3 bg-green-100 rounded-full">
               <Globe className="h-8 w-8 text-green-600" />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900">URL Encoder/Decoder</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 break-words">URL Encoder/Decoder</h1>
           </div>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Encode and decode URLs for safe transmission. Perfect for handling special characters in URLs and query parameters.

@@ -129,12 +129,12 @@ export default async function ProfilePage() {
                   Manage your personal information, security settings, and connected accounts.
                 </p>
               </div>
-              <div className="p-6">
+              <div className="p-0 xs:p-2 md:p-6 overflow-x-auto">
                 <UserProfile 
                   appearance={{
                     elements: {
-                      rootBox: "w-full",
-                      cardBox: "shadow-none border-0 bg-transparent",
+                      rootBox: "w-full max-w-full",
+                      cardBox: "shadow-none border-0 bg-transparent w-full max-w-full",
                       navbar: "border-b-0",
                       scrollBox: "max-h-none",
                       pageScrollBox: "max-h-none overflow-visible",

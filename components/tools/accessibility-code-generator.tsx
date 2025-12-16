@@ -375,12 +375,24 @@ export default function AccessibilityCodeGenerator() {
             }
             className="w-full"
           >
-            {isGenerating
-              ? "Generating Comprehensive Code..."
-              : "Generate Detailed Accessible Code"}
+            {isGenerating ? (
+              <>
+                <span className="md:hidden">Generating...</span>
+                <span className="hidden md:inline">
+                  Generating Comprehensive Code...
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="md:hidden">Generate</span>
+                <span className="hidden md:inline">
+                  Generate Detailed Accessible Code
+                </span>
+              </>
+            )}
             <Badge variant="secondary" className="ml-2">
-              2 Credits
-            </Badge>
+                2 Credits
+              </Badge>
           </Button>
         </CardContent>
       </Card>
@@ -406,7 +418,7 @@ export default function AccessibilityCodeGenerator() {
                 </TabsList>
 
                 <TabsContent value="code" className="space-y-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col md:!flex-row items-start md:items-center justify-between gap-4 md:gap-0">
                     <h4 className="font-semibold">{framework} Component</h4>
                     <div className="flex gap-2">
                       <Button
@@ -458,12 +470,12 @@ export default function AccessibilityCodeGenerator() {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="breakdown" className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="breakdown">Code Breakdown</TabsTrigger>
-                  <TabsTrigger value="context">
+                <TabsList className="flex w-full overflow-x-auto justify-start md:grid md:grid-cols-3 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  <TabsTrigger value="breakdown" className="flex-shrink-0">Code Breakdown</TabsTrigger>
+                  <TabsTrigger value="context" className="flex-shrink-0">
                     Accessibility Context
                   </TabsTrigger>
-                  <TabsTrigger value="example">Real-World Example</TabsTrigger>
+                  <TabsTrigger value="example" className="flex-shrink-0">Real-World Example</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="breakdown" className="space-y-4">
@@ -520,10 +532,10 @@ export default function AccessibilityCodeGenerator() {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="basic" className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="basic">Basic Usage</TabsTrigger>
-                  <TabsTrigger value="advanced">Advanced Usage</TabsTrigger>
-                  <TabsTrigger value="integration">
+                <TabsList className="flex w-full overflow-x-auto justify-start md:grid md:grid-cols-3 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  <TabsTrigger value="basic" className="flex-shrink-0">Basic Usage</TabsTrigger>
+                  <TabsTrigger value="advanced" className="flex-shrink-0">Advanced Usage</TabsTrigger>
+                  <TabsTrigger value="integration" className="flex-shrink-0">
                     Full Integration
                   </TabsTrigger>
                 </TabsList>

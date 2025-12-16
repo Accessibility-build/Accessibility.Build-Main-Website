@@ -11,38 +11,41 @@ import { Calendar, Clock, Search, ArrowRight, BookOpen, TrendingUp } from "lucid
 import { useState } from "react"
 
 interface BlogPost {
-  _id: string
-  title: string
-  slug: { current: string }
-  excerpt: string
-  publishedAt: string
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt: string;
+  publishedAt: string;
   author: {
-    name: string
-    image?: string
-  }
-  mainImage?: string
-  estimatedReadingTime: number
+    name: string;
+    image?: string;
+  };
+  mainImage?: string;
+  estimatedReadingTime: number;
   categories: Array<{
-    title: string
-    slug: { current: string }
-  }>
+    title: string;
+    slug: { current: string };
+  }>;
 }
 
 interface Category {
-  _id: string
-  title: string
-  slug: { current: string }
-  description?: string
+  _id: string;
+  title: string;
+  slug: { current: string };
+  description?: string;
 }
 
 interface BlogClientPageProps {
-  posts?: BlogPost[]
-  categories?: Category[]
+  posts?: BlogPost[];
+  categories?: Category[];
 }
 
-export default function BlogClientPage({ posts = [], categories = [] }: BlogClientPageProps) {
+export default function BlogClientPage({
+  posts = [],
+  categories = [],
+}: BlogClientPageProps) {
   // Use Sanity data, fallback to empty array if no posts
-  const blogPosts = posts
+  const blogPosts = posts;
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
@@ -59,7 +62,10 @@ export default function BlogClientPage({ posts = [], categories = [] }: BlogClie
           <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
             Learn about web accessibility through our collection of articles, guides, and tutorials.
           </p>
-          <BlogSearch />
+
+          <div className="max-w-md mx-auto w-full xs:max-w-md">
+            <BlogSearch />
+          </div>
         </div>
       </section>
 
@@ -80,11 +86,11 @@ export default function BlogClientPage({ posts = [], categories = [] }: BlogClie
         </div>
       </section>
     </main>
-  )
+  );
 }
 
 function BlogSearch() {
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="max-w-md mx-auto">
@@ -98,13 +104,13 @@ function BlogSearch() {
         />
       </div>
     </div>
-  )
+  );
 }
 
 function BlogListing({ posts }: { posts: BlogPost[] }) {
   // For now, show first 3 posts as featured, rest as regular
-  const featuredPosts = posts.slice(0, 3)
-  const regularPosts = posts.slice(3)
+  const featuredPosts = posts.slice(0, 3);
+  const regularPosts = posts.slice(3);
 
   return (
     <div className="space-y-20">
@@ -136,7 +142,7 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
 function FeaturedPostCard({ post }: { post: BlogPost }) {
@@ -244,12 +250,20 @@ function AuthorInfo({ author, image, size = "base" }: { author: string; image?: 
         <div className={`font-medium text-slate-900 dark:text-white ${textSize} truncate`}>{author}</div>
       </div>
     </div>
-  )
+  );
 }
 
-function PostMeta({ date, readingTime, size = "base" }: { date: string; readingTime: string; size?: "sm" | "base" }) {
-  const textSize = size === "sm" ? "text-xs" : "text-sm"
-  const iconSize = size === "sm" ? "h-3 w-3" : "h-4 w-4"
+function PostMeta({
+  date,
+  readingTime,
+  size = "base",
+}: {
+  date: string;
+  readingTime: string;
+  size?: "sm" | "base";
+}) {
+  const textSize = size === "sm" ? "text-xs" : "text-sm";
+  const iconSize = size === "sm" ? "h-3 w-3" : "h-4 w-4";
 
   return (
     <div className={`flex items-center gap-3 sm:gap-4 text-slate-500 dark:text-slate-400 ${textSize} flex-shrink-0`}>
@@ -262,17 +276,24 @@ function PostMeta({ date, readingTime, size = "base" }: { date: string; readingT
           {new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
         </time>
       </div>
-      <div className="flex items-center gap-1">
+
+      <div className="w-1 h-1 bg-slate-400 rounded-full hidden max-[320px]:hidden sm:block" />
+
+      <div className="flex items-center gap-1 whitespace-nowrap">
         <Clock className={iconSize} />
-        <span>{readingTime}</span>
+        <span className="truncate">{readingTime}</span>
       </div>
     </div>
-  )
+  );
 }
 
 function BlogSidebar({ posts }: { posts: BlogPost[] }) {
-  const allCategories = Array.from(new Set(posts.flatMap((post) => post.categories?.map(cat => cat.title) || [])))
-  const recentPosts = posts.slice(0, 5)
+  const allCategories = Array.from(
+    new Set(
+      posts.flatMap((post) => post.categories?.map((cat) => cat.title) || [])
+    )
+  );
+  const recentPosts = posts.slice(0, 5);
 
   return (
     <div className="lg:sticky lg:top-24 space-y-8">
@@ -336,5 +357,5 @@ function BlogSidebar({ posts }: { posts: BlogPost[] }) {
         />
       </Card>
     </div>
-  )
+  );
 }
