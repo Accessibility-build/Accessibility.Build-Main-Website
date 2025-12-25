@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -36,6 +37,11 @@ import {
   FileCode,
   Braces,
 } from "lucide-react";
+import {
+  hasUnlimitedAccess,
+  getUnlimitedAccessRemainingTime,
+  formatRemainingTime,
+} from "@/lib/unlimited-access";
 
 /**
  * Types describing the AI / backend output
@@ -151,6 +157,25 @@ export default function AccessibilityCodeGenerator() {
   );
   const [error, setError] = useState<string | null>(null);
   const [copiedTab, setCopiedTab] = useState<string | null>(null);
+  const [unlimitedAccess, setUnlimitedAccess] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(0);
+
+  // Check for unlimited access
+  useEffect(() => {
+    const checkUnlimitedAccess = () => {
+      const hasAccess = hasUnlimitedAccess();
+      setUnlimitedAccess(hasAccess);
+      if (hasAccess) {
+        setRemainingTime(getUnlimitedAccessRemainingTime());
+      }
+    };
+
+    checkUnlimitedAccess();
+    // Check every minute for expiration
+    const interval = setInterval(checkUnlimitedAccess, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   /**
    * Helper: copy to clipboard with visual feedback
@@ -236,6 +261,7 @@ export default function AccessibilityCodeGenerator() {
         framework,
         componentDescription: description,
         customRequirement: customRequirements || undefined,
+        unlimitedAccess: unlimitedAccess,
       };
 
       const res = await fetch("/api/accessibility-code-generator", {
@@ -274,6 +300,43 @@ export default function AccessibilityCodeGenerator() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
+      {/* Unlimited Access Banner */}
+      {unlimitedAccess && (
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 shadow-lg mb-8 rounded-lg overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2">
+                <Zap className="h-5 w-5 animate-pulse" />
+                <span className="font-bold">UNLIMITED ACCESS ACTIVE</span>
+              </div>
+              <Badge
+                variant="secondary"
+                className="bg-white/20 text-white border-white/30"
+              >
+                Premium
+              </Badge>
+            </div>
+            <div className="flex items-center space-x-4 text-sm">
+              <span className="hidden sm:inline">
+                Expires in: {formatRemainingTime(remainingTime)}
+              </span>
+              <Link href="/unlimitedaccess">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:text-green-600 hover:bg-white/20"
+                >
+                  Manage Access
+                </Button>
+              </Link>
+            </div>
+          </div>
+          <div className="mt-1 text-green-100 text-sm text-center sm:text-left">
+            🚀 Unlimited AI analyses • No usage limits • Priority processing
+          </div>
+        </div>
+      )}
+
       {/* Controls card */}
       <Card>
         <CardHeader>
@@ -358,15 +421,17 @@ export default function AccessibilityCodeGenerator() {
             </Alert>
           )}
 
-          <Alert>
-            <Lightbulb className="h-4 w-4" />
-            <AlertDescription>
-              <strong>Credits Required:</strong> This comprehensive AI-powered
-              code generation uses <strong>2 credits</strong> and provides
-              detailed accessible components with explanations, examples, and
-              implementation guides.
-            </AlertDescription>
-          </Alert>
+          {!unlimitedAccess && (
+            <Alert>
+              <Lightbulb className="h-4 w-4" />
+              <AlertDescription>
+                <strong>Credits Required:</strong> This comprehensive AI-powered
+                code generation uses <strong>2 credits</strong> and provides
+                detailed accessible components with explanations, examples, and
+                implementation guides.
+              </AlertDescription>
+            </Alert>
+          )}
 
           <Button
             onClick={generateCode}
@@ -386,13 +451,16 @@ export default function AccessibilityCodeGenerator() {
               <>
                 <span className="md:hidden">Generate</span>
                 <span className="hidden md:inline">
-                  Generate Detailed Accessible Code
+                  Generate Detailed Accessible Code (
+                  {unlimitedAccess ? "Unlimited" : "2 Credits"})
                 </span>
               </>
             )}
-            <Badge variant="secondary" className="ml-2">
+            {!unlimitedAccess && (
+              <Badge variant="secondary" className="ml-2">
                 2 Credits
               </Badge>
+            )}
           </Button>
         </CardContent>
       </Card>
