@@ -16,7 +16,15 @@ import {
 
 const CREDIT_COST = 2
 
-// --- Browser Management ---
+/**
+ * Create and launch a Puppeteer Browser instance appropriate for the runtime environment.
+ *
+ * In production this connects to Sparticuz Chromium via puppeteer-core; in development it dynamically imports
+ * the locally installed Puppeteer package and launches a browser with sandbox flags.
+ *
+ * @returns A Puppeteer `Browser` connected to the selected Chromium executable.
+ * @throws If the local Puppeteer package cannot be imported in development, an error is thrown.
+ */
 
 async function getBrowser(): Promise<Browser> {
   const isProduction = process.env.NODE_ENV === 'production'
@@ -45,7 +53,15 @@ async function getBrowser(): Promise<Browser> {
   }
 }
 
-// --- Audit Modules ---
+/**
+ * Configure a Puppeteer page for a mobile device and inject runtime performance observers for CLS and LCP.
+ *
+ * Sets viewport and mobile user agent based on the provided device configuration, and installs a
+ * PerformanceObserver in each new document that populates `window.__perfMetrics` with `cls` and `lcp`.
+ *
+ * @param page - The Puppeteer `Page` to configure.
+ * @param deviceConfig - Device settings used to set viewport and touch/mobile flags (`width`, `height`, `isMobile`, `hasTouch`, etc.).
+ */
 
 async function setupPage(page: Page, deviceConfig: DeviceConfig) {
   await page.setViewport({
@@ -96,6 +112,15 @@ async function setupPage(page: Page, deviceConfig: DeviceConfig) {
   });
 }
 
+/**
+ * Evaluates a page's accessibility using Axe (WCAG 2.2 and best-practice tags), extracts violations, and reports a simple screen-reader compatibility indicator.
+ *
+ * @param page - Puppeteer Page instance to analyze
+ * @returns An object with:
+ *  - `score`: numeric accessibility score (0–100)
+ *  - `issues`: array of Axe violation help strings
+ *  - `screenReaderCompatibility`: `true` if `score` is greater than 85 and common semantic landmarks are present, `false` otherwise
+ */
 async function analyzeAccessibility(page: Page) {
   // Use WCAG 2.2 tags explicitly
   // @ts-ignore - AxePuppeteer type compatibility
@@ -121,6 +146,17 @@ async function analyzeAccessibility(page: Page) {
   }
 }
 
+/**
+ * Analyzes interactive elements on the page for touch target size issues.
+ *
+ * Flags elements that are not visible or have zero area as ignored, marks targets smaller than 44×44 CSS pixels as warnings, and marks targets smaller than 24×24 CSS pixels as errors.
+ *
+ * @returns An object with:
+ *  - `total`: number of interactive targets inspected,
+ *  - `passing`: number of targets meeting the recommended size,
+ *  - `failing`: number of targets below the recommended size,
+ *  - `issues`: array of detected issues where each item includes `element` (identifier), `size` (`width`/`height` in CSS pixels), `position` (`x`/`y`), `severity` (`'warning'` or `'error'`), and `recommendation`.
+ */
 async function analyzeTouchTargets(page: Page) {
   return page.evaluate(() => {
     const interactiveSelectors = 'a, button, input, select, textarea, [role="button"]';
@@ -179,6 +215,16 @@ async function analyzeTouchTargets(page: Page) {
   });
 }
 
+/**
+ * Collects page performance metrics (CLS and LCP/FCP) and returns aggregated timing values.
+ *
+ * @param page - Puppeteer page instance from which metrics are retrieved
+ * @param loadTime - Navigation duration in milliseconds used as a fallback for missing paint timings
+ * @returns An object with:
+ *  - `loadTime`: the provided navigation duration in milliseconds,
+ *  - `cumulativeLayoutShift`: the page's cumulative layout shift (CLS) value,
+ *  - `firstContentfulPaint`: the largest-contentful/first-contentful paint time in milliseconds (falls back to `loadTime` if no paint timing is available)
+ */
 async function analyzePerformance(page: Page, loadTime: number) {
   // Retrieve captured metrics
   const metrics = await page.evaluate(() => {
@@ -201,6 +247,17 @@ async function analyzePerformance(page: Page, loadTime: number) {
   }
 }
 
+/**
+ * Evaluates whether a page is mobile-friendly by checking viewport meta, content fit, text readability, and link clickability.
+ *
+ * @param page - Puppeteer `Page` to inspect
+ * @param touchFailingCount - Number of touch targets that failed size checks; used to determine link clickability
+ * @returns An object with:
+ *  - `hasViewportMeta`: `true` if a `<meta name="viewport">` is present on the page.
+ *  - `textReadable`: `true` if inspected text elements have a computed font size of at least 12px.
+ *  - `linksClickable`: `true` if `touchFailingCount` equals 0 (strict: any failing touch target marks links as not clickable).
+ *  - `contentFitsViewport`: `true` if the document width is less than or equal to the window inner width (allows a 2px rounding tolerance).
+ */
 async function analyzeMobileFriendliness(page: Page, touchFailingCount: number) {
   const hasViewportMeta = !!(await page.$('meta[name="viewport"]'))
   
@@ -242,7 +299,18 @@ async function analyzeMobileFriendliness(page: Page, touchFailingCount: number) 
   }
 }
 
-// --- Main Action ---
+/**
+ * Run a headless-browser mobile accessibility audit for the given URL and return a consolidated report.
+ *
+ * Validates the URL, enforces credit or trial limits (unless bypassed), navigates the page using a device
+ * configuration, performs accessibility, touch target, performance, and mobile-friendliness audits, computes
+ * a composite accessibility score, records usage/credits or trial consumption, and ensures browser cleanup.
+ *
+ * @param url - The target page URL to audit; must be a valid absolute URL
+ * @param deviceName - The key identifying the device configuration to emulate (falls back to "iPhone 14" if unknown)
+ * @param unlimitedAccess - When true, bypasses authentication, credit checks, and trial limits for this run
+ * @returns The aggregated mobile accessibility audit result containing device, viewport, touchTargets, performance, accessibility (composite), and mobileFriendly data
+ */
 
 export async function runMobileAccessibilityChecker(
   url: string, 

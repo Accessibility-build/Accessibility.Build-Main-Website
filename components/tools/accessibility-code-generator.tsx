@@ -143,6 +143,19 @@ const frameworks = [
   { value: "angular", label: "Angular", icon: "🅰️" },
 ];
 
+/**
+ * Render the AI-powered Accessibility Code Generator UI and manage its state and interactions.
+ *
+ * This component provides a form for selecting a component type and framework, entering a description and optional
+ * custom requirements, and generating WCAG 2.2–aware component code via a backend AI service. It handles:
+ * - local form and UI state (inputs, loading, errors, generated output),
+ * - unlimited-access checks and remaining-time updates,
+ * - sending generation requests and mapping backend responses into UI-friendly structures,
+ * - copying and downloading generated code,
+ * - and rendering the full set of results (generated code, analysis, examples, accessibility summaries, and credits).
+ *
+ * @returns The JSX element for the accessibility code generator interface.
+ */
 export default function AccessibilityCodeGenerator() {
   // Form state
   const [componentType, setComponentType] = useState<string>("");

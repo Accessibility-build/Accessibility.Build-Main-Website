@@ -47,6 +47,15 @@ const devices = Object.entries(MOBILE_ACCESSIBILITY_AUDIT_DEVICES).map(([name, c
 })
 
 
+/**
+ * Render the mobile accessibility checker UI and manage the analysis workflow for device-aware accessibility audits.
+ *
+ * The component provides inputs for a target URL and test device, handles unlimited-access state and periodic checks,
+ * executes audits (including multi-device comparison when appropriate), displays progress and detailed results,
+ * and allows exporting a textual report to the clipboard.
+ *
+ * @returns A React element that renders the Mobile Accessibility Checker interface, including controls to start analyses, status indicators, detailed results per device, and export actions.
+ */
 export default function MobileAccessibilityChecker() {
   const [url, setUrl] = useState("")
   const [selectedDevice, setSelectedDevice] = useState(devices[0].name)
