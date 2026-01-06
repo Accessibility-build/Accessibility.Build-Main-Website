@@ -41,6 +41,12 @@ interface AiAnalysisDashboardProps {
   summaryString: string; // The raw string from the database (JSON)
 }
 
+/**
+ * Renders an AI analysis dashboard built from a JSON summary string, or a simple fallback view showing the raw summary when parsing fails.
+ *
+ * @param summaryString - Raw analysis string (typically JSON) sourced from storage; when it contains valid JSON matching the expected structure the component renders structured sections (classification, business impact, benchmarking, quick wins, recommendations), otherwise the raw string is displayed in a fallback block.
+ * @returns The rendered JSX element: a multi-section AI analysis dashboard when parsed data is available, or a compact fallback view containing the original summary string when parsing fails.
+ */
 export function AiAnalysisDashboard({ summaryString }: AiAnalysisDashboardProps) {
   
   // 1. Try to parse the JSON string into an object.
@@ -153,7 +159,15 @@ export function AiAnalysisDashboard({ summaryString }: AiAnalysisDashboardProps)
 }
 
 
-// --- Helper Components ---
+/**
+ * Render a labeled info cell for grid layouts when a value is present.
+ *
+ * @param label - The label text shown before the value (e.g., "Industry")
+ * @param value - The value to display; the component returns `null` if this is falsy
+ * @param capitalize - When true, apply CSS `capitalize` to the displayed value
+ * @param span - Number of grid columns the item should span (1 means no extra span class)
+ * @returns A JSX element containing the label and value styled for a grid column, or `null` if `value` is falsy
+ */
 
 function InfoItem({ label, value, capitalize = false, span = 1 }: { label: string, value?: string, capitalize?: boolean, span?: number }) {
     if (!value) return null;
@@ -165,6 +179,13 @@ function InfoItem({ label, value, capitalize = false, span = 1 }: { label: strin
     );
 }
 
+/**
+ * Render a compact titled card that displays provided content or a visible fallback.
+ *
+ * @param title - The card's title shown above the content
+ * @param content - The body text to display; shows `"N/A"` when falsy
+ * @returns A JSX element containing the titled, bordered card with the content or `"N/A"`
+ */
 function BusinessCard({ title, content }: { title: string, content?: string }) {
     return (
         <div className="p-3 bg-white rounded border">
@@ -174,6 +195,13 @@ function BusinessCard({ title, content }: { title: string, content?: string }) {
     )
 }
 
+/**
+ * Renders a small titled card showing a recommendation and its content.
+ *
+ * @param title - The card title shown in purple (e.g., "Priority Focus")
+ * @param content - The recommendation text; displays `"N/A"` when omitted or falsy
+ * @returns A JSX element containing the titled card with the provided content or `"N/A"`
+ */
 function RecommendationCard({ title, content }: { title: string, content?: string }) {
     return (
         <div className="p-3 bg-white rounded border">
@@ -183,6 +211,15 @@ function RecommendationCard({ title, content }: { title: string, content?: strin
     )
 }
 
+/**
+ * Renders a performance-styled Badge whose variant is inferred from the provided text.
+ *
+ * @param text - Optional performance description used to determine the badge variant:
+ *               - If it contains "Above Average", the default variant is used.
+ *               - If it contains "Average" but not "Below", the secondary variant is used.
+ *               - Otherwise the destructive variant is used.
+ * @returns A Badge React element displaying `text` or `"N/A"` with the inferred variant.
+ */
 function PerformanceBadge({ text }: { text?: string }) {
     const isGood = text?.includes('Above Average');
     const isAverage = text?.includes('Average') && !text?.includes('Below');
@@ -193,6 +230,17 @@ function PerformanceBadge({ text }: { text?: string }) {
     return <Badge variant={variant}>{text || "N/A"}</Badge>;
 }
 
+/**
+ * Render a risk-level Badge inferred from the provided risk text.
+ *
+ * The badge variant is chosen by scanning the `text` for specific keywords:
+ * - contains `"HIGH"` → `destructive`
+ * - contains `"MEDIUM"` → `secondary`
+ * - otherwise → `default`
+ *
+ * @param text - Optional risk description; matching is case-sensitive and performed by substring inclusion
+ * @returns A Badge element displaying `text` or `"N/A"` when `text` is falsy
+ */
 function RiskBadge({ text }: { text?: string }) {
     const isHigh = text?.includes('HIGH');
     const isMedium = text?.includes('MEDIUM');

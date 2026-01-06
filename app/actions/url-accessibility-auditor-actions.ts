@@ -29,7 +29,13 @@ const MAX_AI_TOKENS = 1000
 const MAX_AI_TEMP = 0.3
 
 /**
- * 1. GET BROWSER
+ * Create and return a Puppeteer Browser instance appropriate for the runtime environment.
+ *
+ * In production this will launch a serverless-optimized Chromium; in development it attempts to
+ * import and launch the locally installed Puppeteer binary.
+ *
+ * @returns A configured Puppeteer `Browser` instance for the current environment.
+ * @throws Error if launching the local Puppeteer fails (for example, when Puppeteer is not installed).
  */
 async function getBrowserInstance(): Promise<Browser> {
   const isProduction = process.env.NODE_ENV === 'production'
@@ -60,8 +66,13 @@ async function getBrowserInstance(): Promise<Browser> {
 }
 
 /**
- * 2. SCAN WITH AXE
-*/
+ * Runs an Axe accessibility scan against the provided Puppeteer page.
+ *
+ * Executes Axe with a tag set covering WCAG 2.x/2.1/2.2 and best-practice checks and returns the raw scan output.
+ *
+ * @param page - The Puppeteer `Page` to analyze
+ * @returns The AxePuppeteer `analyze()` result containing `violations`, `passes`, `incomplete`, and `inapplicable` sections
+ */
 async function performAxeScan(page: Page) {
   // @ts-ignore
   const results = await new AxePuppeteer(page)
@@ -72,8 +83,21 @@ async function performAxeScan(page: Page) {
 }
 
 /**
- * 3. AI ANALYSIS
- * Sends the audit results to ChatGPT (or OpenRouter) to get a business-friendly summary.
+ * Produce a business-oriented JSON summary derived from an accessibility audit.
+ *
+ * Sends audit metadata to an AI service and returns a JSON-formatted summary describing
+ * website classification, business impact, industry context, quick wins, and recommendations.
+ *
+ * @param auditData - Audit context object. Expected properties: `url`, `overallScore`, `totalViolations`, `criticalCount`, and `topViolations`.
+ * @returns A JSON string conforming to the schema:
+ * {
+ *   "websiteClassification": { "type": string, "industry": string, "targetAudience": string, "complianceRequirements": string },
+ *   "businessImpact": { "userExperience": string, "reach": string },
+ *   "industryContext": { "industryAverage": string, "yourPerformance": string, "complianceRisk": string },
+ *   "quickWins": string[],
+ *   "businessRecommendations": { "prioritize": string, "improvementPotential": string, "expectedROI": string }
+ * }
+ * or a JSON error object (e.g., `{"error":"AI Key missing"}` or `{"error":"AI Service Unavailable"}`) when the AI key/service is unavailable.
  */
 async function generateBusinessSummary(auditData: any): Promise<string> {
   if (!process.env.OPENAI_API_KEY) {
@@ -140,6 +164,15 @@ async function generateBusinessSummary(auditData: any): Promise<string> {
 }
 
 
+/**
+ * Performs a full accessibility audit of the given URL, runs axe-core in a headless browser, computes a weighted accessibility score, obtains an AI-generated business summary, and persists results when a user is signed in.
+ *
+ * @param url - The full URL to scan (must include scheme, e.g. `https://example.com`).
+ * @param unlimitedAccess - If `true`, skip credit deduction checks for authenticated users; does not grant extra behavior for unauthenticated users.
+ * @returns The completed or failed UrlAuditResult containing audit metadata, violation list, computed scores, AI summary, timestamps, and error information when applicable.
+ * @throws Error - If `url` is not a valid absolute URL (message: "Invalid URL. Please enter a full URL (e.g. https://google.com)").
+ * @throws Error - If an authenticated user is found but the account is missing (message: "User account not found.") or the user lacks sufficient credits (message: "You need 5 credits to run an audit.").
+ */
 export async function runUrlAccessibilityAudit(
   url: string,
   unlimitedAccess: boolean = false
@@ -351,6 +384,11 @@ export async function runUrlAccessibilityAudit(
 }
 
 
+/**
+ * Fetches the current user's most recent URL accessibility audits (up to 20).
+ *
+ * @returns An object with an `audits` array where each entry includes stored audit fields; `title` defaults to the URL when missing, `createdAt` is an ISO string, `overallScore` is included when defined, and `totalViolations` defaults to 0.
+ */
 export async function getAuditHistory(): Promise<AuditHistory> {
   const user = await currentUser()
   if (!user) return { audits: [] }
@@ -371,6 +409,13 @@ export async function getAuditHistory(): Promise<AuditHistory> {
   }
 }
 
+/**
+ * Deletes a saved URL accessibility audit belonging to the current user.
+ *
+ * @param auditId - The ID of the audit to delete.
+ * @returns An object with `success: true` when the audit was deleted.
+ * @throws Error if there is no authenticated user.
+ */
 export async function deleteAudit(auditId: string) {
   const user = await currentUser()
   if (!user) throw new Error("Please log in to delete audits.")
@@ -379,6 +424,14 @@ export async function deleteAudit(auditId: string) {
   return { success: true }
 }
 
+/**
+ * Retrieves a previously saved URL accessibility audit and its associated violations for the current authenticated user.
+ *
+ * Fetches the audit by `auditId` and returns a combined result containing audit metadata, counts, overall score, and a list of violations. Returns `null` if no user is signed in or if the requested audit does not exist.
+ *
+ * @param auditId - The identifier of the audit to retrieve
+ * @returns The audit and its violations as a `UrlAuditResult`, or `null` when not found or the user is not authenticated
+ */
 export async function getAudit(auditId: string): Promise<UrlAuditResult | null> {
   const user = await currentUser()
   if (!user) return null

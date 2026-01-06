@@ -53,6 +53,14 @@ const SEVERITY_CONFIG = {
   minor: { color: 'bg-blue-100 text-blue-800 border-blue-200', icon: Info, label: 'Minor' }
 }
 
+/**
+ * Render the URL Accessibility Auditor UI used to start audits, view live audit status and results, and browse audit history.
+ *
+ * The component manages form state, audit lifecycle (start, load, delete), unlimited-access checks, history loading, clipboard actions,
+ * and presents analysis results (score, violations, AI summary, recommendations) with export and copy controls.
+ *
+ * @returns A React element containing the auditor interface (new-audit form, enhanced status/result panels, AI analysis dashboard, and history list).
+ */
 export default function UrlAccessibilityAuditor() {
   const { isSignedIn, user } = useUser()
   const { refreshCredits } = useCredits()
