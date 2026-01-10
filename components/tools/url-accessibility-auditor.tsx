@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { useUser } from "@clerk/nextjs"
 import { useCredits } from "@/hooks/use-credits"
 import { Button } from "@/components/ui/button"
@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { AiAnalysisDashboard } from "@/components/tools/ai-analysis-dashboard"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
@@ -39,58 +40,11 @@ import {
   Calendar
 } from "lucide-react"
 
-interface AuditResult {
-  auditId: string
-  status: 'pending' | 'processing' | 'completed' | 'failed'
-  url: string
-  title?: string
-  createdAt: string
-  processingStartedAt?: string
-  processingCompletedAt?: string
-  errorMessage?: string
-  
-  // Results (when completed)
-  totalViolations?: number
-  criticalCount?: number
-  seriousCount?: number
-  moderateCount?: number
-  minorCount?: number
-  overallScore?: number
-  aiSummary?: string
-  priorityRecommendations?: Array<{
-    title: string
-    description: string
-    impact: string
-    effort: string
-  }>
-  violations?: Array<{
-    id: string
-    violationId: string
-    description: string
-    impact: 'critical' | 'serious' | 'moderate' | 'minor'
-    helpUrl: string
-    wcagCriteria: any[]
-    wcagLevel: string
-    selector: string
-    html: string
-    target: string[]
-    aiExplanation: string
-    fixSuggestion: string
-    codeExample?: string
-  }>
-}
-
-interface AuditHistory {
-  audits: Array<{
-    id: string
-    url: string
-    title?: string
-    status: string
-    overallScore?: number
-    totalViolations: number
-    createdAt: string
-  }>
-}
+import { UrlAuditResult, AuditHistory } from '@/lib/url-accessibility-auditor-types'
+import {
+  hasUnlimitedAccess,
+  getUnlimitedAccessRemainingTime,
+} from "@/lib/unlimited-access"
 
 const SEVERITY_CONFIG = {
   critical: { color: 'bg-red-100 text-red-800 border-red-200', icon: XCircle, label: 'Critical' },
@@ -99,6 +53,14 @@ const SEVERITY_CONFIG = {
   minor: { color: 'bg-blue-100 text-blue-800 border-blue-200', icon: Info, label: 'Minor' }
 }
 
+/**
+ * Render the URL Accessibility Auditor UI used to start audits, view live audit status and results, and browse audit history.
+ *
+ * The component manages form state, audit lifecycle (start, load, delete), unlimited-access checks, history loading, clipboard actions,
+ * and presents analysis results (score, violations, AI summary, recommendations) with export and copy controls.
+ *
+ * @returns A React element containing the auditor interface (new-audit form, enhanced status/result panels, AI analysis dashboard, and history list).
+ */
 export default function UrlAccessibilityAuditor() {
   const { isSignedIn, user } = useUser()
   const { refreshCredits } = useCredits()
@@ -107,18 +69,32 @@ export default function UrlAccessibilityAuditor() {
   const [url, setUrl] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [copied, setCopied] = useState<string | null>(null)
   
   // Audit state
-  const [currentAudit, setCurrentAudit] = useState<AuditResult | null>(null)
-  const [isPolling, setIsPolling] = useState(false)
-  const [copied, setCopied] = useState<string | null>(null)
+  const [currentAudit, setCurrentAudit] = useState<UrlAuditResult | null>(null)
+  
+  // Unlimited Access State
+  const [unlimitedAccess, setUnlimitedAccess] = useState(false)
+
+  // Check for unlimited access
+  useEffect(() => {
+    const checkUnlimitedAccess = () => {
+      const hasAccess = hasUnlimitedAccess()
+      setUnlimitedAccess(hasAccess)
+    }
+
+    checkUnlimitedAccess()
+    // Check every minute for expiration
+    const interval = setInterval(checkUnlimitedAccess, 60000)
+
+    return () => clearInterval(interval)
+  }, [])
   
   // History state
   const [auditHistory, setAuditHistory] = useState<AuditHistory | null>(null)
   const [selectedHistoryAudit, setSelectedHistoryAudit] = useState<string | null>(null)
   
-  const pollingRef = useRef<NodeJS.Timeout | null>(null)
-
   // Load audit history when component mounts
   useEffect(() => {
     if (isSignedIn) {
@@ -126,49 +102,11 @@ export default function UrlAccessibilityAuditor() {
     }
   }, [isSignedIn])
 
-  // Poll for audit status updates
-  useEffect(() => {
-    if (currentAudit && (currentAudit.status === 'pending' || currentAudit.status === 'processing')) {
-      setIsPolling(true)
-      pollingRef.current = setInterval(async () => {
-        try {
-          const response = await fetch(`/api/url-accessibility-audit/${currentAudit.auditId}`)
-          if (response.ok) {
-            const updatedAudit = await response.json()
-            setCurrentAudit(updatedAudit)
-            
-            if (updatedAudit.status === 'completed') {
-              setIsPolling(false)
-              toast.success("Accessibility audit completed!")
-              refreshCredits()
-              loadAuditHistory() // Refresh history
-            } else if (updatedAudit.status === 'failed') {
-              setIsPolling(false)
-              toast.error("Audit failed: " + updatedAudit.errorMessage)
-            }
-          }
-        } catch (error) {
-          console.error('Polling error:', error)
-        }
-      }, 3000)
-    } else {
-      setIsPolling(false)
-    }
-
-    return () => {
-      if (pollingRef.current) {
-        clearInterval(pollingRef.current)
-      }
-    }
-  }, [currentAudit, refreshCredits])
-
   const loadAuditHistory = async () => {
     try {
-      const response = await fetch('/api/user/audit-history')
-      if (response.ok) {
-        const history = await response.json()
-        setAuditHistory(history)
-      }
+      const { getAuditHistory } = await import('@/app/actions/url-accessibility-auditor-actions')
+      const history = await getAuditHistory()
+      setAuditHistory(history)
     } catch (error) {
       console.error('Failed to load audit history:', error)
     }
@@ -176,11 +114,15 @@ export default function UrlAccessibilityAuditor() {
 
   const loadHistoryAudit = async (auditId: string) => {
     try {
-      const response = await fetch(`/api/url-accessibility-audit/${auditId}`)
-      if (response.ok) {
-        const audit = await response.json()
+      const { getAudit } = await import('@/app/actions/url-accessibility-auditor-actions')
+      const audit = await getAudit(auditId)
+      if (audit) {
         setCurrentAudit(audit)
         setSelectedHistoryAudit(auditId)
+        const auditTabTrigger = document.querySelector('[value="audit"]') as HTMLButtonElement
+        if (auditTabTrigger) auditTabTrigger.click()
+      } else {
+        toast.error("Audit not found")
       }
     } catch (error) {
       console.error('Failed to load audit:', error)
@@ -194,36 +136,31 @@ export default function UrlAccessibilityAuditor() {
 
     setIsSubmitting(true)
     setError(null)
+    setCurrentAudit(null)
+    setSelectedHistoryAudit(null)
 
     try {
-      const response = await fetch("/api/url-accessibility-audit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url: url.trim() }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        if (data.code === 'INSUFFICIENT_CREDITS') {
-          setError(`${data.error} Visit your dashboard to purchase more credits.`)
-        } else {
-          throw new Error(data.error || "Failed to start accessibility audit")
-        }
-        return
-      }
-
+      // Import action dynamically
+      const { runUrlAccessibilityAudit } = await import('@/app/actions/url-accessibility-auditor-actions')
+      
+      // Init fake pending state for UI immediate feedback
       setCurrentAudit({
-        auditId: data.auditId,
-        status: 'pending',
+        auditId: "pending",
+        status: 'processing',
         url: url.trim(),
         createdAt: new Date().toISOString(),
       })
 
-      toast.success("Audit started! This may take 2-5 minutes to complete.")
+      const result = await runUrlAccessibilityAudit(url.trim(), unlimitedAccess)
+
+      if (result.status === 'failed') {
+        throw new Error(result.errorMessage || "Audit failed")
+      }
+
+      setCurrentAudit(result)
+      toast.success("Audit completed successfully!")
       refreshCredits()
+      loadAuditHistory()
 
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "An unknown error occurred"
@@ -246,12 +183,11 @@ export default function UrlAccessibilityAuditor() {
     if (!currentAudit) return
 
     try {
-      await fetch(`/api/url-accessibility-audit/${currentAudit.auditId}`, {
-        method: 'DELETE',
-      })
+      const { deleteAudit } = await import('@/app/actions/url-accessibility-auditor-actions')
+      await deleteAudit(currentAudit.auditId)
       setCurrentAudit(null)
       setSelectedHistoryAudit(null)
-      loadAuditHistory() // Refresh history
+      loadAuditHistory()
       toast.success("Audit deleted")
     } catch (error) {
       toast.error("Failed to delete audit")
@@ -459,7 +395,7 @@ export default function UrlAccessibilityAuditor() {
                     </div>
                   </CardHeader>
 
-                  {isPolling && (
+                  {(currentAudit.status === 'processing' || currentAudit.status === 'pending') && (
                     <CardContent>
                       <div className="space-y-4">
                         {/* Enhanced Progress Display */}
@@ -629,184 +565,7 @@ export default function UrlAccessibilityAuditor() {
                           </div>
                         </CardHeader>
                         <CardContent className="space-y-6">
-                          {/* Parse and display enhanced summary */}
-                          {currentAudit.aiSummary.includes('ENHANCED ACCESSIBILITY INTELLIGENCE ANALYSIS') ? (
-                            <div className="space-y-6">
-                              {/* Website Classification Section */}
-                              {currentAudit.aiSummary.includes('Website Classification:') && (
-                                <div className="p-4 rounded-lg bg-background/50 border">
-                                  <h4 className="font-semibold text-sm uppercase tracking-wide text-primary mb-3 flex items-center gap-2">
-                                    📊 Website Classification
-                                  </h4>
-                                  <div className="grid grid-cols-2 gap-4 text-sm">
-                                    {currentAudit.aiSummary.match(/Type: ([^\n•]+)/)?.[1] && (
-                                      <div>
-                                        <span className="text-muted-foreground">Type:</span>
-                                        <span className="ml-2 font-medium capitalize">
-                                          {currentAudit.aiSummary.match(/Type: ([^\n•]+)/)?.[1]?.trim()}
-                                        </span>
-                                      </div>
-                                    )}
-                                    {currentAudit.aiSummary.match(/Industry: ([^\n•]+)/)?.[1] && (
-                                      <div>
-                                        <span className="text-muted-foreground">Industry:</span>
-                                        <span className="ml-2 font-medium">
-                                          {currentAudit.aiSummary.match(/Industry: ([^\n•]+)/)?.[1]?.trim()}
-                                        </span>
-                                      </div>
-                                    )}
-                                    {currentAudit.aiSummary.match(/Target Audience: ([^\n•]+)/)?.[1] && (
-                                      <div>
-                                        <span className="text-muted-foreground">Target Audience:</span>
-                                        <span className="ml-2 font-medium uppercase">
-                                          {currentAudit.aiSummary.match(/Target Audience: ([^\n•]+)/)?.[1]?.trim()}
-                                        </span>
-                                      </div>
-                                    )}
-                                    {currentAudit.aiSummary.match(/Compliance Requirements: ([^\n•]+)/)?.[1] && (
-                                      <div className="col-span-2">
-                                        <span className="text-muted-foreground">Compliance:</span>
-                                        <span className="ml-2 font-medium">
-                                          {currentAudit.aiSummary.match(/Compliance Requirements: ([^\n•]+)/)?.[1]?.trim()}
-                                        </span>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                              )}
-
-                              {/* Business Impact Section */}
-                              {currentAudit.aiSummary.includes('Business Impact Analysis:') && (
-                                <div className="p-4 rounded-lg bg-orange-50 border border-orange-200">
-                                  <h4 className="font-semibold text-sm uppercase tracking-wide text-orange-700 mb-3 flex items-center gap-2">
-                                    📈 Business Impact Analysis
-                                  </h4>
-                                  <div className="grid grid-cols-2 gap-4 text-sm">
-                                    <div className="flex items-center justify-between p-3 bg-white rounded border">
-                                      <span className="text-muted-foreground">Total Issues</span>
-                                      <span className="font-bold text-lg">{currentAudit.totalViolations}</span>
-                                    </div>
-                                    <div className="flex items-center justify-between p-3 bg-white rounded border">
-                                      <span className="text-muted-foreground">Overall Score</span>
-                                      <span className={`font-bold text-lg ${getScoreColor(currentAudit.overallScore!)}`}>
-                                        {currentAudit.overallScore}/100
-                                      </span>
-                                    </div>
-                                    <div className="flex items-center justify-between p-3 bg-red-50 rounded border border-red-200">
-                                      <span className="text-red-700">Critical Issues</span>
-                                      <span className="font-bold text-lg text-red-600">{currentAudit.criticalCount}</span>
-                                    </div>
-                                    <div className="flex items-center justify-between p-3 bg-orange-50 rounded border border-orange-200">
-                                      <span className="text-orange-700">High Priority</span>
-                                      <span className="font-bold text-lg text-orange-600">{currentAudit.seriousCount}</span>
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-
-                              {/* Industry Context Section */}
-                              {currentAudit.aiSummary.includes('Industry Context:') && (
-                                <div className="p-4 rounded-lg bg-blue-50 border border-blue-200">
-                                  <h4 className="font-semibold text-sm uppercase tracking-wide text-blue-700 mb-3 flex items-center gap-2">
-                                    🎯 Industry Benchmarking
-                                  </h4>
-                                  <div className="space-y-3 text-sm">
-                                    {currentAudit.aiSummary.match(/Industry Average: ([^\n•]+)/)?.[1] && (
-                                      <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Industry Average:</span>
-                                        <span className="font-medium">
-                                          {currentAudit.aiSummary.match(/Industry Average: ([^\n•]+)/)?.[1]?.trim()}
-                                        </span>
-                                      </div>
-                                    )}
-                                    {currentAudit.aiSummary.match(/Your Performance: ([^\n•]+)/)?.[1] && (
-                                      <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Your Performance:</span>
-                                        <Badge variant={
-                                          currentAudit.aiSummary.match(/Your Performance: ([^\n•]+)/)?.[1]?.includes('Above Average') ? 'default' :
-                                          currentAudit.aiSummary.match(/Your Performance: ([^\n•]+)/)?.[1]?.includes('Average') ? 'secondary' : 'destructive'
-                                        }>
-                                          {currentAudit.aiSummary.match(/Your Performance: ([^\n•]+)/)?.[1]?.trim()}
-                                        </Badge>
-                                      </div>
-                                    )}
-                                    {currentAudit.aiSummary.match(/Compliance Risk: ([^\n•]+)/)?.[1] && (
-                                      <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Compliance Risk:</span>
-                                        <Badge variant={
-                                          currentAudit.aiSummary.match(/Compliance Risk: ([^\n•]+)/)?.[1]?.includes('HIGH') ? 'destructive' :
-                                          currentAudit.aiSummary.match(/Compliance Risk: ([^\n•]+)/)?.[1]?.includes('MEDIUM') ? 'secondary' : 'default'
-                                        }>
-                                          {currentAudit.aiSummary.match(/Compliance Risk: ([^\n•]+)/)?.[1]?.trim()}
-                                        </Badge>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                              )}
-
-                              {/* Quick Wins Section */}
-                              {currentAudit.aiSummary.includes('Quick Wins Identified:') && (
-                                <div className="p-4 rounded-lg bg-green-50 border border-green-200">
-                                  <h4 className="font-semibold text-sm uppercase tracking-wide text-green-700 mb-3 flex items-center gap-2">
-                                    🚀 Quick Wins Available
-                                  </h4>
-                                  <div className="text-sm space-y-2">
-                                    {currentAudit.aiSummary.match(/(\d+) moderate\/minor issues/)?.[1] && (
-                                      <div className="flex items-center gap-2">
-                                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                        <span>
-                                          <strong>{currentAudit.aiSummary.match(/(\d+) moderate\/minor issues/)?.[1]}</strong> moderate/minor issues ready for quick fixes
-                                        </span>
-                                      </div>
-                                    )}
-                                    <div className="flex items-center gap-2">
-                                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                      <span>Focus on color contrast, alt text, and form labels for immediate impact</span>
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-
-                              {/* Business Recommendations */}
-                              {currentAudit.aiSummary.includes('Business Recommendations:') && (
-                                <div className="p-4 rounded-lg bg-purple-50 border border-purple-200">
-                                  <h4 className="font-semibold text-sm uppercase tracking-wide text-purple-700 mb-3 flex items-center gap-2">
-                                    💼 Strategic Recommendations
-                                  </h4>
-                                  <div className="space-y-3 text-sm">
-                                    {currentAudit.aiSummary.match(/Prioritize ([^\n•]+)/)?.[1] && (
-                                      <div className="p-3 bg-white rounded border">
-                                        <div className="font-medium text-purple-700 mb-1">Priority Focus:</div>
-                                        <div>{currentAudit.aiSummary.match(/Prioritize ([^\n•]+)/)?.[1]?.trim()}</div>
-                                      </div>
-                                    )}
-                                    {currentAudit.aiSummary.match(/Estimated improvement potential: ([^\n•]+)/)?.[1] && (
-                                      <div className="p-3 bg-white rounded border">
-                                        <div className="font-medium text-purple-700 mb-1">Improvement Potential:</div>
-                                        <div>{currentAudit.aiSummary.match(/Estimated improvement potential: ([^\n•]+)/)?.[1]?.trim()}</div>
-                                      </div>
-                                    )}
-                                    {currentAudit.aiSummary.includes('15-25% user engagement increase') && (
-                                      <div className="p-3 bg-white rounded border">
-                                        <div className="font-medium text-purple-700 mb-1">Expected ROI:</div>
-                                        <div>High (accessibility improvements typically show 15-25% user engagement increase)</div>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          ) : (
-                            // Fallback for basic AI summary
-                            <div className="prose prose-sm max-w-none">
-                              <div className="p-4 rounded-lg bg-background/50 border">
-                                <pre className="whitespace-pre-wrap text-sm text-muted-foreground font-sans">
-                                  {currentAudit.aiSummary}
-                                </pre>
-                              </div>
-                            </div>
-                          )}
+                          <AiAnalysisDashboard summaryString={currentAudit.aiSummary} />
                         </CardContent>
                       </Card>
                     </div>
