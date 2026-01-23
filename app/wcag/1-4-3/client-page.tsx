@@ -361,7 +361,7 @@ function App() {
           <Badge variant="secondary" className="mb-4 bg-cyan-100 text-cyan-800 border-cyan-200">
             WCAG 2.2 Level AA
           </Badge>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             1.4.3 Contrast (Minimum)
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -384,7 +384,7 @@ function App() {
         {/* Interactive Contrast Checker */}
         <Card className="mb-8 border-cyan-200 shadow-lg">
           <CardHeader className="bg-gradient-to-r from-cyan-500 to-teal-500 text-white">
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex flex-wrap items-center gap-2">
               <Calculator className="h-5 w-5" />
               Interactive Contrast Checker
             </CardTitle>
@@ -605,9 +605,9 @@ function App() {
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="good" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="good">✅ Good Contrast</TabsTrigger>
-                <TabsTrigger value="bad">❌ Poor Contrast</TabsTrigger>
+              <TabsList className="flex flex-col h-auto w-full sm:!grid sm:!grid-cols-2">
+                <TabsTrigger value="good" className="w-full">✅ Good Contrast</TabsTrigger>
+                <TabsTrigger value="bad" className="w-full">❌ Poor Contrast</TabsTrigger>
               </TabsList>
               
               <TabsContent value="good" className="space-y-4">
@@ -701,7 +701,7 @@ function App() {
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="html" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="flex flex-col h-auto w-full sm:!grid sm:!grid-cols-3">
                 <TabsTrigger value="html">HTML</TabsTrigger>
                 <TabsTrigger value="css">CSS</TabsTrigger>
                 <TabsTrigger value="react">React</TabsTrigger>
@@ -771,9 +771,9 @@ function App() {
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="manual" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="manual">Manual Testing</TabsTrigger>
-                <TabsTrigger value="automated">Automated Testing</TabsTrigger>
+              <TabsList className="flex flex-col h-auto w-full sm:!grid sm:!grid-cols-2">
+                <TabsTrigger value="manual" className="w-full">Manual Testing</TabsTrigger>
+                <TabsTrigger value="automated" className="w-full">Automated Testing</TabsTrigger>
               </TabsList>
               
               <TabsContent value="manual" className="space-y-4">

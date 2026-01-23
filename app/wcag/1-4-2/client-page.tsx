@@ -318,7 +318,7 @@ function AccessibleAudioPlayer({ src, title }) {
           <Badge variant="secondary" className="mb-4 bg-orange-100 text-orange-800 border-orange-200">
             WCAG 2.2 Level A
           </Badge>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             1.4.2 Audio Control
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -341,7 +341,7 @@ function AccessibleAudioPlayer({ src, title }) {
         {/* Interactive Demo */}
         <Card className="mb-8 border-orange-200 shadow-lg">
           <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white">
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex flex-wrap items-center gap-2">
               <Headphones className="h-5 w-5" />
               Interactive Audio Control Demo
             </CardTitle>
@@ -351,10 +351,10 @@ function AccessibleAudioPlayer({ src, title }) {
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="good" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="good">✅ Good Example</TabsTrigger>
-                <TabsTrigger value="bad">❌ Bad Example</TabsTrigger>
-                <TabsTrigger value="test">🧪 Test Controls</TabsTrigger>
+              <TabsList className="flex flex-col h-auto w-full sm:!grid sm:!grid-cols-3">
+                <TabsTrigger value="good" className="w-full">✅ Good Example</TabsTrigger>
+                <TabsTrigger value="bad" className="w-full">❌ Bad Example</TabsTrigger>
+                <TabsTrigger value="test" className="w-full">🧪 Test Controls</TabsTrigger>
               </TabsList>
               
               <TabsContent value="good" className="space-y-4">
@@ -378,7 +378,7 @@ function AccessibleAudioPlayer({ src, title }) {
                   </div>
                   
                   {/* Audio Controls */}
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
                     <Button
                       onClick={togglePlay}
                       variant="outline"
@@ -604,7 +604,7 @@ function AccessibleAudioPlayer({ src, title }) {
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="html" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-3 h-auto">
                 <TabsTrigger value="html">HTML</TabsTrigger>
                 <TabsTrigger value="react">React</TabsTrigger>
                 <TabsTrigger value="css">CSS</TabsTrigger>
@@ -674,9 +674,9 @@ function AccessibleAudioPlayer({ src, title }) {
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="manual" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="manual">Manual Testing</TabsTrigger>
-                <TabsTrigger value="automated">Automated Testing</TabsTrigger>
+              <TabsList className="flex flex-col h-auto w-full sm:!grid sm:!grid-cols-2">
+                <TabsTrigger value="manual" className="w-full">Manual Testing</TabsTrigger>
+                <TabsTrigger value="automated" className="w-full">Automated Testing</TabsTrigger>
               </TabsList>
               
               <TabsContent value="manual" className="space-y-4">

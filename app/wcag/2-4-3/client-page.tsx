@@ -1,10 +1,24 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Eye, Keyboard, MousePointer, Navigation, Code, Check, X, AlertCircle, Target, Play, Pause, RotateCcw } from 'lucide-react';
-import WCAGBreadcrumb from '@/components/wcag/breadcrumb';
-import WCAGSEOEnhancements from '@/components/wcag/seo-enhancements';
-import WCAGRelatedContent from '@/components/wcag/related-content';
+import { useState, useEffect, useRef } from "react";
+import {
+  ArrowRight,
+  Eye,
+  Keyboard,
+  MousePointer,
+  Navigation,
+  Code,
+  Check,
+  X,
+  AlertCircle,
+  Target,
+  Play,
+  Pause,
+  RotateCcw,
+} from "lucide-react";
+import WCAGBreadcrumb from "@/components/wcag/breadcrumb";
+import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements";
+import WCAGRelatedContent from "@/components/wcag/related-content";
 
 interface FocusStep {
   id: string;
@@ -31,19 +45,23 @@ export default function WCAG243ClientPage() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [isAutoNavigating, setIsAutoNavigating] = useState(false);
-  
+
   const goodFormRef = useRef<HTMLFormElement>(null);
   const badFormRef = useRef<HTMLFormElement>(null);
-  
-  const trackFocus = (elementId: string, elementLabel: string, isLogical: boolean = true) => {
+
+  const trackFocus = (
+    elementId: string,
+    elementLabel: string,
+    isLogical: boolean = true
+  ) => {
     const step: FocusStep = {
       id: elementId,
       element: elementLabel,
       order: focusHistory.length + 1,
       timestamp: Date.now(),
-      isLogical
+      isLogical,
     };
-    setFocusHistory(prev => [...prev, step]);
+    setFocusHistory((prev) => [...prev, step]);
     setCurrentFocus(elementId);
   };
 
@@ -56,38 +74,41 @@ export default function WCAG243ClientPage() {
   const startAutoNavigation = (isGoodExample: boolean = true) => {
     setIsAutoNavigating(true);
     clearFocusHistory();
-    
-    const elements = isGoodExample ? 
-      [
-        { id: 'good-first-name', label: 'First Name', logical: true },
-        { id: 'good-last-name', label: 'Last Name', logical: true },
-        { id: 'good-email', label: 'Email', logical: true },
-        { id: 'good-phone', label: 'Phone', logical: true },
-        { id: 'good-message', label: 'Message', logical: true },
-        { id: 'good-submit', label: 'Submit Button', logical: true }
-      ] : 
-      [
-        { id: 'bad-first-name', label: 'First Name', logical: true },
-        { id: 'bad-submit', label: 'Submit Button', logical: false },
-        { id: 'bad-last-name', label: 'Last Name', logical: false },
-        { id: 'bad-message', label: 'Message', logical: false },
-        { id: 'bad-email', label: 'Email', logical: false },
-        { id: 'bad-phone', label: 'Phone', logical: false }
-      ];
-    
+
+    const elements = isGoodExample
+      ? [
+          { id: "good-first-name", label: "First Name", logical: true },
+          { id: "good-last-name", label: "Last Name", logical: true },
+          { id: "good-email", label: "Email", logical: true },
+          { id: "good-phone", label: "Phone", logical: true },
+          { id: "good-message", label: "Message", logical: true },
+          { id: "good-submit", label: "Submit Button", logical: true },
+        ]
+      : [
+          { id: "bad-first-name", label: "First Name", logical: true },
+          { id: "bad-submit", label: "Submit Button", logical: false },
+          { id: "bad-last-name", label: "Last Name", logical: false },
+          { id: "bad-message", label: "Message", logical: false },
+          { id: "bad-email", label: "Email", logical: false },
+          { id: "bad-phone", label: "Phone", logical: false },
+        ];
+
     elements.forEach((element, index) => {
-      setTimeout(() => {
-        trackFocus(element.id, element.label, element.logical);
-        setCurrentStep(index + 1);
-        
-        // Focus the actual element
-        const el = document.getElementById(element.id);
-        if (el) el.focus();
-        
-        if (index === elements.length - 1) {
-          setIsAutoNavigating(false);
-        }
-      }, (index + 1) * 1000);
+      setTimeout(
+        () => {
+          trackFocus(element.id, element.label, element.logical);
+          setCurrentStep(index + 1);
+
+          // Focus the actual element
+          const el = document.getElementById(element.id);
+          if (el) el.focus();
+
+          if (index === elements.length - 1) {
+            setIsAutoNavigating(false);
+          }
+        },
+        (index + 1) * 1000
+      );
     });
   };
 
@@ -504,14 +525,15 @@ document.addEventListener('DOMContentLoaded', () => {
         category="Navigation"
       />
       <div className="max-w-6xl mx-auto">
-        <WCAGBreadcrumb
-          items={[
-            { label: 'Principle 2: Operable', href: '/wcag?filter=operable' },
-            { label: 'Guideline 2.4: Navigable' }
-          ]}
-          current="2.4.3 Focus Order"
-        />
-        
+        <div className="hidden sm:block">
+          <WCAGBreadcrumb
+            items={[
+              { label: "Principle 2: Operable", href: "/wcag?filter=operable" },
+              { label: "Guideline 2.4: Navigable" },
+            ]}
+            current="2.4.3 Focus Order"
+          />
+        </div>
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -522,8 +544,9 @@ document.addEventListener('DOMContentLoaded', () => {
             Level A
           </div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            If a Web page can be navigated sequentially and the navigation sequences affect meaning or operation, 
-            focusable components receive focus in an order that preserves meaning and operability.
+            If a Web page can be navigated sequentially and the navigation
+            sequences affect meaning or operation, focusable components receive
+            focus in an order that preserves meaning and operability.
           </p>
         </div>
 
@@ -533,14 +556,17 @@ document.addEventListener('DOMContentLoaded', () => {
             <Target className="w-6 h-6 mr-2 text-emerald-600" />
             Focus Order Tracker
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Navigation History</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Navigation History
+              </h3>
               <div className="bg-gray-50 rounded-lg p-4 h-64 overflow-y-auto">
                 {focusHistory.length === 0 ? (
                   <p className="text-gray-500 text-center py-8">
-                    No focus events recorded yet. Try navigating the forms below!
+                    No focus events recorded yet. Try navigating the forms
+                    below!
                   </p>
                 ) : (
                   <div className="space-y-2">
@@ -548,7 +574,9 @@ document.addEventListener('DOMContentLoaded', () => {
                       <div
                         key={index}
                         className={`flex items-center justify-between p-2 rounded text-sm ${
-                          step.isLogical ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                          step.isLogical
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
                         }`}
                       >
                         <div className="flex items-center">
@@ -567,7 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                 )}
               </div>
-              
+
               <div className="flex gap-2 mt-4">
                 <button
                   onClick={clearFocusHistory}
@@ -585,14 +613,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               </div>
             </div>
-            
+
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Auto Navigation Demo</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Auto Navigation Demo
+              </h3>
               <div className="space-y-4">
                 <div className="p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-semibold text-blue-900 mb-2">Simulate Tab Navigation</h4>
+                  <h4 className="font-semibold text-blue-900 mb-2">
+                    Simulate Tab Navigation
+                  </h4>
                   <p className="text-sm text-blue-800 mb-3">
-                    Watch as the system automatically navigates through form elements to demonstrate focus order.
+                    Watch as the system automatically navigates through form
+                    elements to demonstrate focus order.
                   </p>
                   <div className="flex gap-2">
                     <button
@@ -613,25 +646,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     </button>
                   </div>
                 </div>
-                
+
                 {focusHistory.length > 0 && (
                   <div className="p-4 bg-gray-100 rounded-lg">
-                    <h4 className="font-semibold text-gray-900 mb-2">Focus Order Summary</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2">
+                      Focus Order Summary
+                    </h4>
                     <div className="space-y-1 text-sm">
                       <div className="flex justify-between">
                         <span>Total Steps:</span>
-                        <span className="font-medium">{focusHistory.length}</span>
+                        <span className="font-medium">
+                          {focusHistory.length}
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Logical Steps:</span>
                         <span className="font-medium text-green-600">
-                          {focusHistory.filter(step => step.isLogical).length}
+                          {focusHistory.filter((step) => step.isLogical).length}
                         </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Illogical Steps:</span>
                         <span className="font-medium text-red-600">
-                          {focusHistory.filter(step => !step.isLogical).length}
+                          {
+                            focusHistory.filter((step) => !step.isLogical)
+                              .length
+                          }
                         </span>
                       </div>
                     </div>
@@ -648,88 +688,112 @@ document.addEventListener('DOMContentLoaded', () => {
             <Keyboard className="w-6 h-6 mr-2 text-emerald-600" />
             Interactive Form Examples
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             {/* Good Example */}
             <div>
               <h3 className="text-lg font-semibold text-green-800 mb-4 flex items-center">
-                <Check className="w-5 h-5 mr-2" />
-                ✅ Good Focus Order
+                <Check className="w-5 h-5 mr-2" />✅ Good Focus Order
               </h3>
               <div className="p-6 bg-green-50 border-2 border-green-200 rounded-lg">
                 <form ref={goodFormRef} className="space-y-4">
                   <div>
-                    <label htmlFor="good-first-name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="good-first-name"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       First Name *
                     </label>
                     <input
                       type="text"
                       id="good-first-name"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      onFocus={() => trackFocus('good-first-name', 'First Name', true)}
+                      onFocus={() =>
+                        trackFocus("good-first-name", "First Name", true)
+                      }
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="good-last-name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="good-last-name"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Last Name *
                     </label>
                     <input
                       type="text"
                       id="good-last-name"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      onFocus={() => trackFocus('good-last-name', 'Last Name', true)}
+                      onFocus={() =>
+                        trackFocus("good-last-name", "Last Name", true)
+                      }
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="good-email" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="good-email"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Email *
                     </label>
                     <input
                       type="email"
                       id="good-email"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      onFocus={() => trackFocus('good-email', 'Email', true)}
+                      onFocus={() => trackFocus("good-email", "Email", true)}
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="good-phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="good-phone"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Phone
                     </label>
                     <input
                       type="tel"
                       id="good-phone"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      onFocus={() => trackFocus('good-phone', 'Phone', true)}
+                      onFocus={() => trackFocus("good-phone", "Phone", true)}
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="good-message" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="good-message"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Message *
                     </label>
                     <textarea
                       id="good-message"
                       rows={3}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      onFocus={() => trackFocus('good-message', 'Message', true)}
+                      onFocus={() =>
+                        trackFocus("good-message", "Message", true)
+                      }
                     />
                   </div>
-                  
+
                   <button
                     type="submit"
                     id="good-submit"
                     className="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
-                    onFocus={() => trackFocus('good-submit', 'Submit Button', true)}
+                    onFocus={() =>
+                      trackFocus("good-submit", "Submit Button", true)
+                    }
                   >
                     Submit Form
                   </button>
                 </form>
-                
+
                 <div className="mt-4 p-3 bg-green-100 rounded text-sm">
-                  <p className="font-medium text-green-900 mb-1">Why this works:</p>
+                  <p className="font-medium text-green-900 mb-1">
+                    Why this works:
+                  </p>
                   <ul className="text-green-800 space-y-1">
                     <li>• Natural reading order (top to bottom)</li>
                     <li>• No custom tabindex values</li>
@@ -739,39 +803,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Bad Example */}
             <div>
               <h3 className="text-lg font-semibold text-red-800 mb-4 flex items-center">
-                <X className="w-5 h-5 mr-2" />
-                ❌ Poor Focus Order
+                <X className="w-5 h-5 mr-2" />❌ Poor Focus Order
               </h3>
               <div className="p-6 bg-red-50 border-2 border-red-200 rounded-lg">
                 <form ref={badFormRef} className="space-y-4">
                   <div>
-                    <label htmlFor="bad-first-name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="bad-first-name"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       First Name *
                     </label>
                     <input
                       type="text"
                       id="bad-first-name"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      onFocus={() => trackFocus('bad-first-name', 'First Name', true)}
+                      onFocus={() =>
+                        trackFocus("bad-first-name", "First Name", true)
+                      }
                     />
                   </div>
-                  
+
                   <button
                     type="submit"
                     id="bad-submit"
                     tabIndex={1}
                     className="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
-                    onFocus={() => trackFocus('bad-submit', 'Submit Button', false)}
+                    onFocus={() =>
+                      trackFocus("bad-submit", "Submit Button", false)
+                    }
                   >
                     Submit Form (tabindex=1)
                   </button>
-                  
+
                   <div>
-                    <label htmlFor="bad-last-name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="bad-last-name"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Last Name *
                     </label>
                     <input
@@ -779,12 +852,17 @@ document.addEventListener('DOMContentLoaded', () => {
                       id="bad-last-name"
                       tabIndex={5}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      onFocus={() => trackFocus('bad-last-name', 'Last Name', false)}
+                      onFocus={() =>
+                        trackFocus("bad-last-name", "Last Name", false)
+                      }
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="bad-message" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="bad-message"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Message *
                     </label>
                     <textarea
@@ -792,12 +870,17 @@ document.addEventListener('DOMContentLoaded', () => {
                       tabIndex={3}
                       rows={3}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      onFocus={() => trackFocus('bad-message', 'Message', false)}
+                      onFocus={() =>
+                        trackFocus("bad-message", "Message", false)
+                      }
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="bad-email" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="bad-email"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Email *
                     </label>
                     <input
@@ -805,12 +888,15 @@ document.addEventListener('DOMContentLoaded', () => {
                       id="bad-email"
                       tabIndex={4}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      onFocus={() => trackFocus('bad-email', 'Email', false)}
+                      onFocus={() => trackFocus("bad-email", "Email", false)}
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="bad-phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="bad-phone"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Phone
                     </label>
                     <input
@@ -818,13 +904,15 @@ document.addEventListener('DOMContentLoaded', () => {
                       id="bad-phone"
                       tabIndex={6}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      onFocus={() => trackFocus('bad-phone', 'Phone', false)}
+                      onFocus={() => trackFocus("bad-phone", "Phone", false)}
                     />
                   </div>
                 </form>
-                
+
                 <div className="mt-4 p-3 bg-red-100 rounded text-sm">
-                  <p className="font-medium text-red-900 mb-1">Why this fails:</p>
+                  <p className="font-medium text-red-900 mb-1">
+                    Why this fails:
+                  </p>
                   <ul className="text-red-800 space-y-1">
                     <li>• Submit button focused first (tabindex=1)</li>
                     <li>• Random tabindex values disrupt flow</li>
@@ -835,18 +923,20 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
           </div>
-          
+
           <div className="mt-6 p-4 bg-blue-50 rounded-lg">
             <h4 className="font-semibold text-blue-900 mb-2 flex items-center">
               <AlertCircle className="w-5 h-5 mr-2" />
               Test Instructions
             </h4>
             <p className="text-sm text-blue-800 mb-2">
-              Try navigating through both forms using the Tab key. Notice how the good example follows a logical flow, 
-              while the bad example jumps around confusingly.
+              Try navigating through both forms using the Tab key. Notice how
+              the good example follows a logical flow, while the bad example
+              jumps around confusingly.
             </p>
             <p className="text-sm text-blue-800">
-              The focus tracker above will show you the exact order and highlight any illogical jumps in red.
+              The focus tracker above will show you the exact order and
+              highlight any illogical jumps in red.
             </p>
           </div>
         </div>
@@ -857,13 +947,13 @@ document.addEventListener('DOMContentLoaded', () => {
             <Code className="w-6 h-6 mr-2 text-emerald-600" />
             Implementation Examples
           </h2>
-          
+
           <div className="flex flex-wrap gap-4 mb-6">
             <button
               onClick={() => setShowCode(!showCode)}
               className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors"
             >
-              {showCode ? 'Hide' : 'Show'} Code Examples
+              {showCode ? "Hide" : "Show"} Code Examples
             </button>
           </div>
 
@@ -871,12 +961,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <div className="space-y-6">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-800">HTML Structure</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    HTML Structure
+                  </h3>
                   <button
-                    onClick={() => copyCode(htmlCode, 'html')}
+                    onClick={() => copyCode(htmlCode, "html")}
                     className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
                   >
-                    {copiedCode === 'html' ? 'Copied!' : 'Copy'}
+                    {copiedCode === "html" ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm">
@@ -886,12 +978,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-800">CSS Styles</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    CSS Styles
+                  </h3>
                   <button
-                    onClick={() => copyCode(cssCode, 'css')}
+                    onClick={() => copyCode(cssCode, "css")}
                     className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
                   >
-                    {copiedCode === 'css' ? 'Copied!' : 'Copy'}
+                    {copiedCode === "css" ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm">
@@ -901,12 +995,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-800">JavaScript Management</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    JavaScript Management
+                  </h3>
                   <button
-                    onClick={() => copyCode(jsCode, 'js')}
+                    onClick={() => copyCode(jsCode, "js")}
                     className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
                   >
-                    {copiedCode === 'js' ? 'Copied!' : 'Copy'}
+                    {copiedCode === "js" ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm">
@@ -919,14 +1015,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         {/* Testing Methods */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Testing Methods</h2>
-          
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Testing Methods
+          </h2>
+
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Manual Testing</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Manual Testing
+              </h3>
               <div className="space-y-4">
                 <div className="p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-semibold text-blue-900 mb-2">Keyboard Navigation</h4>
+                  <h4 className="font-semibold text-blue-900 mb-2">
+                    Keyboard Navigation
+                  </h4>
                   <ul className="text-sm text-blue-800 space-y-1">
                     <li>• Tab through entire page sequentially</li>
                     <li>• Verify focus follows logical reading order</li>
@@ -934,9 +1036,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <li>• Test with screen readers</li>
                   </ul>
                 </div>
-                
+
                 <div className="p-4 bg-green-50 rounded-lg">
-                  <h4 className="font-semibold text-green-900 mb-2">Visual Inspection</h4>
+                  <h4 className="font-semibold text-green-900 mb-2">
+                    Visual Inspection
+                  </h4>
                   <ul className="text-sm text-green-800 space-y-1">
                     <li>• Check for positive tabindex values</li>
                     <li>• Verify DOM order matches visual order</li>
@@ -946,12 +1050,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               </div>
             </div>
-            
+
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Automated Testing</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Automated Testing
+              </h3>
               <div className="space-y-4">
                 <div className="p-4 bg-purple-50 rounded-lg">
-                  <h4 className="font-semibold text-purple-900 mb-2">Accessibility Tools</h4>
+                  <h4 className="font-semibold text-purple-900 mb-2">
+                    Accessibility Tools
+                  </h4>
                   <ul className="text-sm text-purple-800 space-y-1">
                     <li>• axe-core DevTools extension</li>
                     <li>• WAVE Web Accessibility Evaluator</li>
@@ -959,9 +1067,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <li>• Tab order bookmarklet</li>
                   </ul>
                 </div>
-                
+
                 <div className="p-4 bg-orange-50 rounded-lg">
-                  <h4 className="font-semibold text-orange-900 mb-2">Code Review</h4>
+                  <h4 className="font-semibold text-orange-900 mb-2">
+                    Code Review
+                  </h4>
                   <ul className="text-sm text-orange-800 space-y-1">
                     <li>• Search for positive tabindex values</li>
                     <li>• Check DOM structure order</li>
@@ -975,11 +1085,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         {/* Related Content */}
-        <WCAGRelatedContent 
+        <WCAGRelatedContent
           currentCriteria="2.4.3"
           title="Related WCAG Success Criteria & Resources"
         />
       </div>
     </div>
   );
-} 
+}

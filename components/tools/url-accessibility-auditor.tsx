@@ -91,6 +91,12 @@ interface AuditHistory {
     createdAt: string
   }>
 }
+import { UrlAuditResult, AuditHistory } from '@/lib/url-accessibility-auditor-types'
+import {
+  hasUnlimitedAccess,
+  getUnlimitedAccessRemainingTime,
+  formatRemainingTime,
+} from "@/lib/unlimited-access"
 
 const SEVERITY_CONFIG = {
   critical: { color: 'bg-red-100 text-red-800 border-red-200', icon: XCircle, label: 'Critical' },
@@ -112,6 +118,28 @@ export default function UrlAccessibilityAuditor() {
   const [currentAudit, setCurrentAudit] = useState<AuditResult | null>(null)
   const [isPolling, setIsPolling] = useState(false)
   const [copied, setCopied] = useState<string | null>(null)
+  const [currentAudit, setCurrentAudit] = useState<UrlAuditResult | null>(null)
+  
+  // Unlimited Access State
+  const [unlimitedAccess, setUnlimitedAccess] = useState(false)
+  const [remainingTime, setRemainingTime] = useState(0)
+
+  // Check for unlimited access
+  useEffect(() => {
+    const checkUnlimitedAccess = () => {
+      const hasAccess = hasUnlimitedAccess()
+      setUnlimitedAccess(hasAccess)
+      if (hasAccess) {
+        setRemainingTime(getUnlimitedAccessRemainingTime())
+      }
+    }
+
+    checkUnlimitedAccess()
+    // Check every minute for expiration
+    const interval = setInterval(checkUnlimitedAccess, 60000)
+
+    return () => clearInterval(interval)
+  }, [])
   
   // History state
   const [auditHistory, setAuditHistory] = useState<AuditHistory | null>(null)
@@ -273,13 +301,50 @@ export default function UrlAccessibilityAuditor() {
 
   return (
     <div className="container-wide py-12">
+      {/* Unlimited Access Banner */}
+      {unlimitedAccess && (
+        <div className="max-w-4xl mx-auto mb-8 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 shadow-lg rounded-lg overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2">
+                <Zap className="h-5 w-5 animate-pulse" />
+                <span className="font-bold">UNLIMITED ACCESS ACTIVE</span>
+              </div>
+              <Badge
+                variant="secondary"
+                className="bg-white/20 text-white border-white/30"
+              >
+                Premium
+              </Badge>
+            </div>
+            <div className="flex items-center space-x-4 text-sm">
+              <span className="hidden sm:inline">
+                Expires in: {formatRemainingTime(remainingTime)}
+              </span>
+              <Link href="/unlimitedaccess">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:text-green-600 hover:bg-white/20"
+                >
+                  Manage Access
+                </Button>
+              </Link>
+            </div>
+          </div>
+          <div className="mt-1 text-green-100 text-sm text-center sm:text-left">
+            🚀 Unlimited AI analyses • No usage limits • Priority processing
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-6">
           <div className="p-3 rounded-xl bg-primary/10">
             <Globe className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
             URL Accessibility Auditor
           </h1>
         </div>
@@ -350,9 +415,9 @@ export default function UrlAccessibilityAuditor() {
                       </Alert>
                     ) : (
                       <div className="flex items-center gap-2 p-3 bg-background rounded-lg border">
-                        <Coins className="h-4 w-4 text-primary" />
-                        <span className="text-sm font-medium">Cost: 5 credits per audit</span>
-                        <Badge variant="outline" className="ml-auto">2-5 minutes processing</Badge>
+                            <Coins className="h-4 w-4 text-primary" />
+                            <span className="text-sm font-medium">Cost: 5 credits per audit</span>
+                            <Badge variant="outline" className="ml-auto">2-5 minutes processing</Badge>
                       </div>
                     )}
                   </CardHeader>
@@ -585,17 +650,17 @@ export default function UrlAccessibilityAuditor() {
                         </div>
 
                         {/* Quick Stats */}
-                        <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+                        <div className="flex flex-col xs2:!flex-row items-center justify-center gap-2 sm:gap-6 text-sm text-muted-foreground">
                           <div className="flex items-center gap-2">
                             <Globe className="h-4 w-4" />
                             <span>Multi-tool analysis</span>
                           </div>
-                          <Separator orientation="vertical" className="h-4" />
+                          <Separator orientation="vertical" className="hidden sm:block h-4" />
                           <div className="flex items-center gap-2">
                             <Eye className="h-4 w-4" />
                             <span>AI-enhanced insights</span>
                           </div>
-                          <Separator orientation="vertical" className="h-4" />
+                          <Separator orientation="vertical" className="hidden sm:block h-4" />
                           <div className="flex items-center gap-2">
                             <Shield className="h-4 w-4" />
                             <span>WCAG 2.1 AA</span>

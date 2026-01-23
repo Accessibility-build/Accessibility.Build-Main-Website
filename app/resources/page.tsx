@@ -510,13 +510,13 @@ export default function ResourcesPage() {
 
         {/* Category Navigation */}
         <Tabs defaultValue="all" className="space-y-8">
-          <div className="flex justify-center">
-            <TabsList className="bg-muted/50 p-1.5 rounded-xl shadow-sm">
+          <div className="flex justify-center w-full">
+            <TabsList className="bg-muted/50 p-1.5 rounded-xl shadow-sm grid grid-cols-2 gap-2 w-full h-auto xs:grid-cols-2 sm:inline-flex sm:w-auto sm:gap-0">
               {categories.map((category) => (
                 <TabsTrigger
                   key={category.id}
                   value={category.id}
-                  className="rounded-lg px-4 py-3 min-h-[50px] data-[state=active]:bg-background data-[state=active]:shadow-md text-sm font-medium transition-all hover:bg-background/50"
+                  className="rounded-lg px-4 py-3 min-h-[50px] data-[state=active]:bg-background data-[state=active]:shadow-md text-sm font-medium transition-all hover:bg-background/50 w-full sm:w-auto"
                 >
                   <category.icon className="h-4 w-4 mr-2" />
                   <span className="hidden sm:inline">{category.name}</span>

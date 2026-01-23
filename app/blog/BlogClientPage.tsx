@@ -121,7 +121,7 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
             <TrendingUp className="h-5 w-5 text-blue-600 dark:text-blue-400" />
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Featured Articles</h2>
           </div>
-          <div className="space-y-10">
+          <div className="!space-y-10">
             {featuredPosts.map((post) => (
               <FeaturedPostCard key={post._id} post={post} />
             ))}
@@ -135,7 +135,7 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
           <BookOpen className="h-5 w-5 text-slate-600 dark:text-slate-400" />
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">All Articles</h2>
         </div>
-        <div className="space-y-8">
+        <div className="!space-y-8">
           {regularPosts.map((post) => (
             <RegularPostCard key={post._id} post={post} />
           ))}
@@ -147,7 +147,7 @@ function BlogListing({ posts }: { posts: BlogPost[] }) {
 
 function FeaturedPostCard({ post }: { post: BlogPost }) {
   return (
-    <Link href={`/blog/${post.slug.current}`}>
+    <Link href={`/blog/${post.slug.current}`} className="block">
       <Card className="group overflow-hidden border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 bg-white dark:bg-slate-800">
         <div className="p-6 sm:p-8">
           <CardHeader className="p-0 mb-4">
@@ -184,7 +184,7 @@ function FeaturedPostCard({ post }: { post: BlogPost }) {
 
 function RegularPostCard({ post }: { post: BlogPost }) {
   return (
-    <Link href={`/blog/${post.slug.current}`}>
+    <Link href={`/blog/${post.slug.current}`} className="block">
       <Card className="group border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 bg-white dark:bg-slate-800 p-4 sm:p-6">
         <div className="flex items-start gap-4 sm:gap-6">
           {/* Content */}

@@ -1,15 +1,30 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Eye, EyeOff, Keyboard, Link, Menu, SkipForward, Navigation, Code, ChevronRight, Hash, List, Check, X } from 'lucide-react';
-import WCAGBreadcrumb from '@/components/wcag/breadcrumb';
-import WCAGSEOEnhancements from '@/components/wcag/seo-enhancements';
-import WCAGRelatedContent from '@/components/wcag/related-content';
+import { useState, useEffect, useRef } from "react";
+import {
+  ArrowRight,
+  Eye,
+  EyeOff,
+  Keyboard,
+  Link,
+  Menu,
+  SkipForward,
+  Navigation,
+  Code,
+  ChevronRight,
+  Hash,
+  List,
+  Check,
+  X,
+} from "lucide-react";
+import WCAGBreadcrumb from "@/components/wcag/breadcrumb";
+import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements";
+import WCAGRelatedContent from "@/components/wcag/related-content";
 
 interface FocusEvent {
   element: string;
   timestamp: number;
-  action: 'focus' | 'skip';
+  action: "focus" | "skip";
 }
 
 export default function WCAG241ClientPage() {
@@ -21,18 +36,18 @@ export default function WCAG241ClientPage() {
   const [showCode, setShowCode] = useState(false);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const [skipLinkVisible, setSkipLinkVisible] = useState(false);
-  
+
   const skipLinkRef = useRef<HTMLAnchorElement>(null);
   const mainContentRef = useRef<HTMLElement>(null);
   const navigationRef = useRef<HTMLElement>(null);
-  
-  const trackFocus = (element: string, action: 'focus' | 'skip' = 'focus') => {
+
+  const trackFocus = (element: string, action: "focus" | "skip" = "focus") => {
     const event: FocusEvent = {
       element,
       timestamp: Date.now(),
-      action
+      action,
     };
-    setFocusHistory(prev => [...prev.slice(-9), event]);
+    setFocusHistory((prev) => [...prev.slice(-9), event]);
     setCurrentFocus(element);
   };
 
@@ -40,8 +55,8 @@ export default function WCAG241ClientPage() {
     e.preventDefault();
     if (mainContentRef.current) {
       mainContentRef.current.focus();
-      mainContentRef.current.scrollIntoView({ behavior: 'smooth' });
-      trackFocus('Main Content', 'skip');
+      mainContentRef.current.scrollIntoView({ behavior: "smooth" });
+      trackFocus("Main Content", "skip");
       setSkipLinkVisible(false);
     }
   };
@@ -50,8 +65,8 @@ export default function WCAG241ClientPage() {
     e.preventDefault();
     if (navigationRef.current) {
       navigationRef.current.focus();
-      navigationRef.current.scrollIntoView({ behavior: 'smooth' });
-      trackFocus('Navigation', 'skip');
+      navigationRef.current.scrollIntoView({ behavior: "smooth" });
+      trackFocus("Navigation", "skip");
       setSkipLinkVisible(false);
     }
   };
@@ -59,52 +74,58 @@ export default function WCAG241ClientPage() {
   const simulateKeyboardNavigation = () => {
     setIsNavigating(true);
     setFocusHistory([]);
-    
+
     // Simulate tabbing through elements
     const elements = [
-      'Skip to Content Link',
-      'Logo',
-      'Home Link',
-      'About Link',
-      'Services Link',
-      'Contact Link',
-      'Search Button',
-      'Main Content',
-      'Article Title',
-      'Article Content',
-      'Footer'
+      "Skip to Content Link",
+      "Logo",
+      "Home Link",
+      "About Link",
+      "Services Link",
+      "Contact Link",
+      "Search Button",
+      "Main Content",
+      "Article Title",
+      "Article Content",
+      "Footer",
     ];
-    
+
     elements.forEach((element, index) => {
-      setTimeout(() => {
-        trackFocus(element);
-        if (index === elements.length - 1) {
-          setIsNavigating(false);
-        }
-      }, (index + 1) * 1000);
+      setTimeout(
+        () => {
+          trackFocus(element);
+          if (index === elements.length - 1) {
+            setIsNavigating(false);
+          }
+        },
+        (index + 1) * 1000
+      );
     });
   };
 
   const simulateSkipNavigation = () => {
     setIsNavigating(true);
     setFocusHistory([]);
-    
+
     // Simulate using skip link
     const skipElements = [
-      'Skip to Content Link',
-      'Main Content',
-      'Article Title',
-      'Article Content',
-      'Footer'
+      "Skip to Content Link",
+      "Main Content",
+      "Article Title",
+      "Article Content",
+      "Footer",
     ];
-    
+
     skipElements.forEach((element, index) => {
-      setTimeout(() => {
-        trackFocus(element, index === 1 ? 'skip' : 'focus');
-        if (index === skipElements.length - 1) {
-          setIsNavigating(false);
-        }
-      }, (index + 1) * 800);
+      setTimeout(
+        () => {
+          trackFocus(element, index === 1 ? "skip" : "focus");
+          if (index === skipElements.length - 1) {
+            setIsNavigating(false);
+          }
+        },
+        (index + 1) * 800
+      );
     });
   };
 
@@ -362,39 +383,42 @@ function createSkipLink(targetId, linkText) {
         category="Navigation"
       />
       <div className="max-w-6xl mx-auto">
-        <WCAGBreadcrumb
-          items={[
-            { label: 'Principle 2: Operable', href: '/wcag?filter=operable' },
-            { label: 'Guideline 2.4: Navigable' }
-          ]}
-          current="2.4.1 Bypass Blocks"
-        />
-        
-        {/* Skip Links Demo */}
-        <div className="relative mb-8">
-          <a
-            ref={skipLinkRef}
-            href="#main-content"
-            className={`absolute left-4 bg-black text-white px-4 py-2 rounded-md font-medium z-50 transition-all duration-300 ${
-              skipLinkVisible ? 'top-4' : '-top-10'
-            }`}
-            onFocus={() => setSkipLinkVisible(true)}
-            onBlur={() => setSkipLinkVisible(false)}
-            onClick={handleSkipToContent}
-          >
-            Skip to main content
-          </a>
-          <a
-            href="#navigation"
-            className={`absolute left-4 bg-black text-white px-4 py-2 rounded-md font-medium z-50 transition-all duration-300 ${
-              skipLinkVisible ? 'top-16' : '-top-10'
-            }`}
-            onFocus={() => setSkipLinkVisible(true)}
-            onBlur={() => setSkipLinkVisible(false)}
-            onClick={handleSkipToNav}
-          >
-            Skip to navigation
-          </a>
+        <div className="hidden sm:block">
+          <WCAGBreadcrumb
+            items={[
+              { label: "Principle 2: Operable", href: "/wcag?filter=operable" },
+              { label: "Guideline 2.4: Navigable" },
+            ]}
+            current="2.4.1 Bypass Blocks"
+          />
+        </div>
+        <div className="hidden sm:block">
+          {/* Skip Links Demo */}
+          <div className="relative mb-8">
+            <a
+              ref={skipLinkRef}
+              href="#main-content"
+              className={`absolute left-4 bg-black text-white px-4 py-2 rounded-md font-medium z-50 transition-all duration-300 ${
+                skipLinkVisible ? "top-4" : "-top-10"
+              }`}
+              onFocus={() => setSkipLinkVisible(true)}
+              onBlur={() => setSkipLinkVisible(false)}
+              onClick={handleSkipToContent}
+            >
+              Skip to main content
+            </a>
+            <a
+              href="#navigation"
+              className={`absolute left-4 bg-black text-white px-4 py-2 rounded-md font-medium z-50 transition-all duration-300 ${
+                skipLinkVisible ? "top-16" : "-top-10"
+              }`}
+              onFocus={() => setSkipLinkVisible(true)}
+              onBlur={() => setSkipLinkVisible(false)}
+              onClick={handleSkipToNav}
+            >
+              Skip to navigation
+            </a>
+          </div>
         </div>
 
         {/* Header */}
@@ -407,7 +431,8 @@ function createSkipLink(targetId, linkText) {
             Level A
           </div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            A mechanism is available to bypass blocks of content that are repeated on multiple Web pages.
+            A mechanism is available to bypass blocks of content that are
+            repeated on multiple Web pages.
           </p>
         </div>
 
@@ -417,17 +442,21 @@ function createSkipLink(targetId, linkText) {
             <SkipForward className="w-6 h-6 mr-2 text-blue-600" />
             Interactive Skip Link Demo
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Try the Skip Links Above</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Try the Skip Links Above
+              </h3>
               <p className="text-gray-600 mb-4">
-                Click in this area, then press Tab to see the skip links appear. 
+                Click in this area, then press Tab to see the skip links appear.
                 Use Tab to navigate and Enter to activate the skip links.
               </p>
-              
+
               <div className="p-4 bg-gray-50 rounded-lg mb-4">
-                <h4 className="font-semibold text-gray-800 mb-2">Instructions:</h4>
+                <h4 className="font-semibold text-gray-800 mb-2">
+                  Instructions:
+                </h4>
                 <ol className="text-sm text-gray-700 space-y-1">
                   <li>1. Click anywhere in this section to focus</li>
                   <li>2. Press Tab to reveal the skip links</li>
@@ -435,7 +464,7 @@ function createSkipLink(targetId, linkText) {
                   <li>4. Notice how you bypass repetitive content</li>
                 </ol>
               </div>
-              
+
               <div className="flex gap-3">
                 <button
                   onClick={simulateKeyboardNavigation}
@@ -457,7 +486,9 @@ function createSkipLink(targetId, linkText) {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Focus Tracking</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Focus Tracking
+              </h3>
               <div className="border rounded-lg p-4 h-64 overflow-y-auto bg-gray-50">
                 {focusHistory.length === 0 ? (
                   <p className="text-gray-500 text-center py-8">
@@ -469,12 +500,12 @@ function createSkipLink(targetId, linkText) {
                       <div
                         key={index}
                         className={`flex items-center text-sm p-2 rounded ${
-                          event.action === 'skip' 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-blue-100 text-blue-800'
+                          event.action === "skip"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-blue-100 text-blue-800"
                         }`}
                       >
-                        {event.action === 'skip' ? (
+                        {event.action === "skip" ? (
                           <SkipForward className="w-4 h-4 mr-2" />
                         ) : (
                           <ArrowRight className="w-4 h-4 mr-2" />
@@ -488,7 +519,7 @@ function createSkipLink(targetId, linkText) {
                   </div>
                 )}
               </div>
-              
+
               <div className="flex gap-2 mt-4">
                 <button
                   onClick={clearFocusHistory}
@@ -515,26 +546,37 @@ function createSkipLink(targetId, linkText) {
             <Navigation className="w-6 h-6 mr-2 text-blue-600" />
             Sample Page Layout
           </h2>
-          
+
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-6">
             {/* Mock Header */}
             <div className="bg-gray-100 p-4 rounded-lg mb-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-gray-800">Website Header</h3>
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Website Header
+                </h3>
                 <div className="text-sm text-gray-600">Logo Area</div>
               </div>
             </div>
-            
+
             {/* Mock Navigation */}
             <nav
               ref={navigationRef}
               tabIndex={-1}
               className="bg-blue-100 p-4 rounded-lg mb-4 focus:outline-2 focus:outline-blue-600"
-              onFocus={() => trackFocus('Navigation')}
+              onFocus={() => trackFocus("Navigation")}
             >
-              <h4 className="font-semibold text-blue-800 mb-2">Navigation Menu</h4>
+              <h4 className="font-semibold text-blue-800 mb-2">
+                Navigation Menu
+              </h4>
               <div className="flex flex-wrap gap-2">
-                {['Home', 'About', 'Services', 'Products', 'Blog', 'Contact'].map(item => (
+                {[
+                  "Home",
+                  "About",
+                  "Services",
+                  "Products",
+                  "Blog",
+                  "Contact",
+                ].map((item) => (
                   <button
                     key={item}
                     className="px-3 py-1 bg-blue-200 text-blue-800 rounded text-sm hover:bg-blue-300 focus:outline-2 focus:outline-blue-600"
@@ -545,7 +587,7 @@ function createSkipLink(targetId, linkText) {
                 ))}
               </div>
             </nav>
-            
+
             {/* Mock Sidebar */}
             <div className="grid md:grid-cols-4 gap-4 mb-4">
               <div className="bg-yellow-100 p-4 rounded-lg">
@@ -557,43 +599,45 @@ function createSkipLink(targetId, linkText) {
                   <li>• Archives</li>
                 </ul>
               </div>
-              
+
               {/* Mock Main Content */}
               <main
                 ref={mainContentRef}
                 tabIndex={-1}
                 className="md:col-span-3 bg-green-100 p-4 rounded-lg focus:outline-2 focus:outline-green-600"
-                onFocus={() => trackFocus('Main Content')}
+                onFocus={() => trackFocus("Main Content")}
               >
-                <h4 className="font-semibold text-green-800 mb-2">Main Content Area</h4>
+                <h4 className="font-semibold text-green-800 mb-2">
+                  Main Content Area
+                </h4>
                 <p className="text-sm text-green-700 mb-2">
-                  This is where the main content of the page would be displayed. 
+                  This is where the main content of the page would be displayed.
                   Users can skip directly here using the skip link.
                 </p>
                 <div className="space-y-2">
                   <button
                     className="block w-full text-left px-2 py-1 bg-green-200 text-green-800 rounded text-sm hover:bg-green-300 focus:outline-2 focus:outline-green-600"
-                    onFocus={() => trackFocus('Article Title')}
+                    onFocus={() => trackFocus("Article Title")}
                   >
                     Article Title
                   </button>
                   <button
                     className="block w-full text-left px-2 py-1 bg-green-200 text-green-800 rounded text-sm hover:bg-green-300 focus:outline-2 focus:outline-green-600"
-                    onFocus={() => trackFocus('Article Content')}
+                    onFocus={() => trackFocus("Article Content")}
                   >
                     Article Content
                   </button>
                 </div>
               </main>
             </div>
-            
+
             {/* Mock Footer */}
             <div className="bg-gray-100 p-4 rounded-lg">
               <div className="flex items-center justify-between">
                 <h4 className="font-semibold text-gray-800">Footer</h4>
                 <button
                   className="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm hover:bg-gray-300 focus:outline-2 focus:outline-gray-600"
-                  onFocus={() => trackFocus('Footer')}
+                  onFocus={() => trackFocus("Footer")}
                 >
                   Footer Links
                 </button>
@@ -604,13 +648,14 @@ function createSkipLink(targetId, linkText) {
 
         {/* Good vs Bad Examples */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Good vs Bad Examples</h2>
-          
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Good vs Bad Examples
+          </h2>
+
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-lg font-semibold text-green-800 mb-4 flex items-center">
-                <Check className="w-5 h-5 mr-2" />
-                ✅ Good Example
+                <Check className="w-5 h-5 mr-2" />✅ Good Example
               </h3>
               <div className="border-2 border-green-200 rounded-lg p-4 bg-green-50">
                 <div className="space-y-3">
@@ -627,9 +672,11 @@ function createSkipLink(targetId, linkText) {
                     <span className="text-green-800">Skip to search</span>
                   </div>
                 </div>
-                
+
                 <div className="mt-4 p-3 bg-green-100 rounded text-sm">
-                  <p className="font-medium text-green-900 mb-2">Why this works:</p>
+                  <p className="font-medium text-green-900 mb-2">
+                    Why this works:
+                  </p>
                   <ul className="text-green-800 space-y-1">
                     <li>• Multiple skip options available</li>
                     <li>• Links are focusable and visible on focus</li>
@@ -639,11 +686,10 @@ function createSkipLink(targetId, linkText) {
                 </div>
               </div>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-semibold text-red-800 mb-4 flex items-center">
-                <X className="w-5 h-5 mr-2" />
-                ❌ Bad Example
+                <X className="w-5 h-5 mr-2" />❌ Bad Example
               </h3>
               <div className="border-2 border-red-200 rounded-lg p-4 bg-red-50">
                 <div className="space-y-3">
@@ -652,16 +698,22 @@ function createSkipLink(targetId, linkText) {
                   </div>
                   <div className="flex items-center text-sm">
                     <Menu className="w-4 h-4 mr-2 text-red-600" />
-                    <span className="text-red-800">Must tab through 20+ nav items</span>
+                    <span className="text-red-800">
+                      Must tab through 20+ nav items
+                    </span>
                   </div>
                   <div className="flex items-center text-sm">
                     <List className="w-4 h-4 mr-2 text-red-600" />
-                    <span className="text-red-800">Must navigate repeated content</span>
+                    <span className="text-red-800">
+                      Must navigate repeated content
+                    </span>
                   </div>
                 </div>
-                
+
                 <div className="mt-4 p-3 bg-red-100 rounded text-sm">
-                  <p className="font-medium text-red-900 mb-2">Why this fails:</p>
+                  <p className="font-medium text-red-900 mb-2">
+                    Why this fails:
+                  </p>
                   <ul className="text-red-800 space-y-1">
                     <li>• No bypass mechanism provided</li>
                     <li>• Forces users to tab through repetitive content</li>
@@ -680,13 +732,13 @@ function createSkipLink(targetId, linkText) {
             <Code className="w-6 h-6 mr-2 text-blue-600" />
             Implementation Examples
           </h2>
-          
+
           <div className="flex flex-wrap gap-4 mb-6">
             <button
               onClick={() => setShowCode(!showCode)}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
             >
-              {showCode ? 'Hide' : 'Show'} Code Examples
+              {showCode ? "Hide" : "Show"} Code Examples
             </button>
           </div>
 
@@ -694,12 +746,14 @@ function createSkipLink(targetId, linkText) {
             <div className="space-y-6">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-800">HTML Structure</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    HTML Structure
+                  </h3>
                   <button
-                    onClick={() => copyCode(htmlCode, 'html')}
+                    onClick={() => copyCode(htmlCode, "html")}
                     className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
                   >
-                    {copiedCode === 'html' ? 'Copied!' : 'Copy'}
+                    {copiedCode === "html" ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm">
@@ -709,12 +763,14 @@ function createSkipLink(targetId, linkText) {
 
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-800">CSS Styles</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    CSS Styles
+                  </h3>
                   <button
-                    onClick={() => copyCode(cssCode, 'css')}
+                    onClick={() => copyCode(cssCode, "css")}
                     className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
                   >
-                    {copiedCode === 'css' ? 'Copied!' : 'Copy'}
+                    {copiedCode === "css" ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm">
@@ -724,12 +780,14 @@ function createSkipLink(targetId, linkText) {
 
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-800">JavaScript Enhancement</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    JavaScript Enhancement
+                  </h3>
                   <button
-                    onClick={() => copyCode(jsCode, 'js')}
+                    onClick={() => copyCode(jsCode, "js")}
                     className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
                   >
-                    {copiedCode === 'js' ? 'Copied!' : 'Copy'}
+                    {copiedCode === "js" ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm">
@@ -742,14 +800,20 @@ function createSkipLink(targetId, linkText) {
 
         {/* Testing Methods */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Testing Methods</h2>
-          
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Testing Methods
+          </h2>
+
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Manual Testing</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Manual Testing
+              </h3>
               <div className="space-y-4">
                 <div className="p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-semibold text-blue-900 mb-2">Keyboard Navigation</h4>
+                  <h4 className="font-semibold text-blue-900 mb-2">
+                    Keyboard Navigation
+                  </h4>
                   <ul className="text-sm text-blue-800 space-y-1">
                     <li>• Tab through the page from the beginning</li>
                     <li>• Check if skip links appear on focus</li>
@@ -757,9 +821,11 @@ function createSkipLink(targetId, linkText) {
                     <li>• Test with screen readers</li>
                   </ul>
                 </div>
-                
+
                 <div className="p-4 bg-green-50 rounded-lg">
-                  <h4 className="font-semibold text-green-900 mb-2">Focus Management</h4>
+                  <h4 className="font-semibold text-green-900 mb-2">
+                    Focus Management
+                  </h4>
                   <ul className="text-sm text-green-800 space-y-1">
                     <li>• Verify target elements receive focus</li>
                     <li>• Check focus indicators are visible</li>
@@ -769,12 +835,16 @@ function createSkipLink(targetId, linkText) {
                 </div>
               </div>
             </div>
-            
+
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Automated Testing</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Automated Testing
+              </h3>
               <div className="space-y-4">
                 <div className="p-4 bg-purple-50 rounded-lg">
-                  <h4 className="font-semibold text-purple-900 mb-2">Accessibility Tools</h4>
+                  <h4 className="font-semibold text-purple-900 mb-2">
+                    Accessibility Tools
+                  </h4>
                   <ul className="text-sm text-purple-800 space-y-1">
                     <li>• axe-core DevTools extension</li>
                     <li>• WAVE Web Accessibility Evaluator</li>
@@ -782,9 +852,11 @@ function createSkipLink(targetId, linkText) {
                     <li>• Lighthouse accessibility audit</li>
                   </ul>
                 </div>
-                
+
                 <div className="p-4 bg-orange-50 rounded-lg">
-                  <h4 className="font-semibold text-orange-900 mb-2">Code Review</h4>
+                  <h4 className="font-semibold text-orange-900 mb-2">
+                    Code Review
+                  </h4>
                   <ul className="text-sm text-orange-800 space-y-1">
                     <li>• Check for skip link implementation</li>
                     <li>• Verify proper href targets</li>
@@ -798,11 +870,11 @@ function createSkipLink(targetId, linkText) {
         </div>
 
         {/* Related Content */}
-        <WCAGRelatedContent 
+        <WCAGRelatedContent
           currentCriteria="2.4.1"
           title="Related WCAG Success Criteria & Resources"
         />
       </div>
     </div>
   );
-} 
+}

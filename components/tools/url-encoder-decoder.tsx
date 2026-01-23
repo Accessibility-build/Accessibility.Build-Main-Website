@@ -150,9 +150,9 @@ export default function URLEncoderDecoder() {
 
                 {/* Output Section */}
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col xs2:!flex-row xs2:items-center justify-between gap-2">
                     <h3 className="text-lg font-semibold">Output</h3>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 w-full xs2:w-auto">
                       <Button
                         variant="outline"
                         size="sm"
@@ -217,7 +217,7 @@ export default function URLEncoderDecoder() {
                         <code className="bg-gray-100 p-2 rounded block break-all">{example.encoded}</code>
                       </div>
                     </div>
-                    <div className="flex gap-2 mt-3">
+                    <div className="flex flex-col xs2:!flex-row gap-2 mt-3">
                       <Button
                         variant="outline"
                         size="sm"

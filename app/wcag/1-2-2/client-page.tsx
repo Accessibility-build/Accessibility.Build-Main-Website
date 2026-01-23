@@ -299,7 +299,7 @@ export default function WCAG122ClientPage() {
               <Subtitles className="h-10 w-10 text-white" />
             </div>
             <div>
-              <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-2">
+              <h1 className="text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-2">
                 1.2.2 Captions (Prerecorded)
               </h1>
               <div className="flex items-center gap-3">
@@ -656,7 +656,7 @@ export default function WCAG122ClientPage() {
                   </div>
 
                   {/* Video Controls */}
-                  <div className="flex items-center justify-between bg-slate-100 dark:bg-slate-700 p-3 rounded">
+                  <div className="flex flex-col items-start gap-4 p-3 rounded md:!flex-row md:items-center md:justify-between bg-slate-100 dark:bg-slate-700">
                     <div className="flex items-center gap-2">
                       <Button
                         size="sm"
@@ -694,9 +694,10 @@ export default function WCAG122ClientPage() {
                           "caption-reader"
                         )}
                         disabled={activeDemo === "caption-reader"}
+                        className="p-2 whitespace-normal h-auto text-left break-words"
                       >
-                        <Volume2 className="h-4 w-4 mr-1" />
-                        {activeDemo === "caption-reader" ? "Reading..." : "Read Caption"}
+                        <Volume2 className="h-4 w-4 mr-1 shrink-0" />
+                        <span className="flex-1">{activeDemo === "caption-reader" ? "Reading..." : "Read Caption"}</span>
                       </Button>
                     </div>
                   </div>
@@ -755,7 +756,7 @@ export default function WCAG122ClientPage() {
                   </div>
 
                   {/* Video Controls */}
-                  <div className="flex items-center justify-between bg-slate-100 dark:bg-slate-700 p-3 rounded">
+                  <div className="flex flex-col items-start gap-4 p-3 rounded md:!flex-row md:items-center md:justify-between bg-slate-100 dark:bg-slate-700">
                     <div className="flex items-center gap-2">
                       <Button size="sm" variant="outline">
                         <Play className="h-4 w-4" />
@@ -764,9 +765,9 @@ export default function WCAG122ClientPage() {
                     </div>
                     
                     <div className="flex items-center gap-2">
-                      <Button size="sm" variant="outline" disabled>
-                        <Subtitles className="h-4 w-4 mr-1" />
-                        No Captions Available
+                      <Button size="sm" variant="outline" disabled className="p-2 whitespace-normal h-auto text-left break-words">
+                        <Subtitles className="h-4 w-4 mr-1 shrink-0" />
+                        <span className="flex-1">No Captions Available</span>
                       </Button>
                     </div>
                   </div>

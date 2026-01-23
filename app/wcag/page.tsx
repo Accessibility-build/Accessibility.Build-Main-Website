@@ -280,54 +280,56 @@ export default function WCAGIndexPage() {
                     : 'opacity-75 border-l-4 border-l-slate-300'
                 }`}>
                   <CardContent className="p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-start gap-4 flex-1">
-                        <div className={`p-3 rounded-xl ${
+                    <div className="flex flex-col md:!flex-row items-start justify-between gap-4">
+                      <div className="flex items-start gap-4 flex-1 w-full">
+                        <div className={`p-3 rounded-xl flex-shrink-0 ${
                           criterion.available ? 'bg-green-100 dark:bg-green-900/20' : 'bg-slate-100 dark:bg-slate-700'
                         }`}>
                           <IconComponent className={`h-6 w-6 ${
                             criterion.available ? 'text-green-600 dark:text-green-400' : 'text-slate-500'
                           }`} />
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-2 mb-2">
+                            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mr-2">
                               {criterion.number} {criterion.title}
                             </h3>
-                            <Badge className="bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">
-                              Level {criterion.level}
-                            </Badge>
-                            {criterion.available && (
-                              <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700">
-                                Available
+                            <div className="flex flex-wrap gap-2">
+                              <Badge className="bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">
+                                Level {criterion.level}
                               </Badge>
-                            )}
-                            {criterion.comingSoon && (
-                              <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-700">
-                                Coming Soon
-                              </Badge>
-                            )}
+                              {criterion.available && (
+                                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700">
+                                  Available
+                                </Badge>
+                              )}
+                              {criterion.comingSoon && (
+                                <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-700">
+                                  Coming Soon
+                                </Badge>
+                              )}
+                            </div>
                           </div>
                           <p className="text-slate-600 dark:text-slate-400 mb-3">
                             {criterion.description}
                           </p>
-                          <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
                             <span>{criterion.principle}</span>
-                            <span>•</span>
+                            <span className="hidden sm:inline">•</span>
                             <span>{criterion.guideline}</span>
                           </div>
                         </div>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 w-full md:w-auto">
                         {criterion.available ? (
-                          <Button asChild>
+                          <Button asChild className="w-full md:w-auto">
                             <Link href={`/wcag/${criterion.number.replace(/\./g, '-')}`}>
                               View Guide
                               <ExternalLink className="ml-2 h-4 w-4" />
                             </Link>
                           </Button>
                         ) : (
-                          <Button disabled>
+                          <Button disabled className="w-full md:w-auto">
                             Coming Soon
                           </Button>
                         )}
@@ -354,54 +356,56 @@ export default function WCAGIndexPage() {
                     : 'opacity-75 border-l-4 border-l-slate-300'
                 }`}>
                   <CardContent className="p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-start gap-4 flex-1">
-                        <div className={`p-3 rounded-xl ${
+                    <div className="flex flex-col md:!flex-row items-start justify-between gap-4">
+                      <div className="flex items-start gap-4 flex-1 w-full">
+                        <div className={`p-3 rounded-xl flex-shrink-0 ${
                           criterion.available ? 'bg-blue-100 dark:bg-blue-900/20' : 'bg-slate-100 dark:bg-slate-700'
                         }`}>
                           <IconComponent className={`h-6 w-6 ${
                             criterion.available ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500'
                           }`} />
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-2 mb-2">
+                            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mr-2">
                               {criterion.number} {criterion.title}
                             </h3>
-                            <Badge className="bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700">
-                              Level {criterion.level}
-                            </Badge>
-                            {criterion.available && (
-                              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">
-                                Available
+                            <div className="flex flex-wrap gap-2">
+                              <Badge className="bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700">
+                                Level {criterion.level}
                               </Badge>
-                            )}
-                            {criterion.comingSoon && (
-                              <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-700">
-                                Coming Soon
-                              </Badge>
-                            )}
+                              {criterion.available && (
+                                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">
+                                  Available
+                                </Badge>
+                              )}
+                              {criterion.comingSoon && (
+                                <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-700">
+                                  Coming Soon
+                                </Badge>
+                              )}
+                            </div>
                           </div>
                           <p className="text-slate-600 dark:text-slate-400 mb-3">
                             {criterion.description}
                           </p>
-                          <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
                             <span>{criterion.principle}</span>
-                            <span>•</span>
+                            <span className="hidden sm:inline">•</span>
                             <span>{criterion.guideline}</span>
                           </div>
                         </div>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 w-full md:w-auto">
                         {criterion.available ? (
-                          <Button asChild>
+                          <Button asChild className="w-full md:w-auto">
                             <Link href={`/wcag/${criterion.number.replace(/\./g, '-')}`}>
                               View Guide
                               <ExternalLink className="ml-2 h-4 w-4" />
                             </Link>
                           </Button>
                         ) : (
-                          <Button disabled>
+                          <Button disabled className="w-full md:w-auto">
                             Coming Soon
                           </Button>
                         )}
@@ -425,14 +429,14 @@ export default function WCAGIndexPage() {
               Each guide includes comprehensive examples, testing methods, and implementation code 
               to help you build accessible web applications.
             </p>
-            <div className="flex gap-4 justify-center">
-              <Button asChild>
+            <div className="flex flex-col sm:!flex-row gap-4 justify-center items-center">
+              <Button asChild className="w-full sm:w-auto">
                 <Link href="/checklists/wcag-2-2">
                   <CheckCircle className="mr-2 h-4 w-4" />
                   View Full Checklist
                 </Link>
               </Button>
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" className="w-full sm:w-auto">
                 <Link href="/tools">
                   <Target className="mr-2 h-4 w-4" />
                   Accessibility Tools

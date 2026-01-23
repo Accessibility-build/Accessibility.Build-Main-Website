@@ -515,7 +515,7 @@ export default function ADAComplianceRisks() {
 
         {/* Detailed Results */}
         <Tabs defaultValue="actions" className="space-y-4">
-          <TabsList className="grid grid-cols-4 w-full">
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full h-auto">
             <TabsTrigger value="actions">Immediate Actions</TabsTrigger>
             <TabsTrigger value="roadmap">Compliance Roadmap</TabsTrigger>
             <TabsTrigger value="industry">Industry Risks</TabsTrigger>
@@ -908,13 +908,13 @@ export default function ADAComplianceRisks() {
       {/* Progress Indicator */}
       <Card>
         <CardContent className="pt-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:!flex-row items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-1 sm:gap-2">
               {[1, 2, 3, 4].map((step) => (
                 <div key={step} className="flex items-center">
                   <button
                     onClick={() => setCurrentStep(step)}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all ${
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-semibold transition-all text-sm sm:text-base ${
                       step === currentStep 
                         ? 'bg-blue-600 text-white scale-110' 
                         : step < currentStep 
@@ -922,15 +922,15 @@ export default function ADAComplianceRisks() {
                           : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
                     }`}
                   >
-                    {step < currentStep ? <CheckCircle className="w-5 h-5" /> : step}
+                    {step < currentStep ? <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" /> : step}
                   </button>
                   {step < totalSteps && (
-                    <div className={`w-12 h-1 ${step < currentStep ? 'bg-green-600' : 'bg-slate-200'}`} />
+                    <div className={`w-6 sm:w-12 h-1 ${step < currentStep ? 'bg-green-600' : 'bg-slate-200'}`} />
                   )}
                 </div>
               ))}
             </div>
-            <Badge variant="outline" className="text-sm">
+            <Badge variant="outline" className="text-sm w-full sm:w-auto justify-center">
               Step {currentStep} of {totalSteps}
             </Badge>
           </div>
@@ -1491,20 +1491,21 @@ export default function ADAComplianceRisks() {
       )}
 
       {/* Navigation */}
-      <div className="flex justify-between">
+      <div className="flex flex-col-reverse gap-3 sm:!flex-row sm:justify-between">
         <Button
           variant="outline"
           onClick={prevStep}
           disabled={currentStep === 1}
+          className="w-full sm:w-auto"
         >
           ← Previous
         </Button>
         {currentStep < totalSteps ? (
-          <Button onClick={nextStep}>
+          <Button onClick={nextStep} className="w-full sm:w-auto">
             Next →
           </Button>
         ) : (
-          <Button onClick={calculateRisk} size="lg" className="bg-blue-600 hover:bg-blue-700">
+          <Button onClick={calculateRisk} size="lg" className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
             <Shield className="w-5 h-5 mr-2" />
             Calculate Risk Assessment
           </Button>

@@ -1,10 +1,23 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { FileText, CheckCircle, XCircle, AlertCircle, Search, Eye, Globe, Target, Code, Lightbulb, Star, TrendingUp } from 'lucide-react';
-import WCAGBreadcrumb from '@/components/wcag/breadcrumb';
-import WCAGSEOEnhancements from '@/components/wcag/seo-enhancements';
-import WCAGRelatedContent from '@/components/wcag/related-content';
+import { useState, useEffect } from "react";
+import {
+  FileText,
+  CheckCircle,
+  XCircle,
+  AlertCircle,
+  Search,
+  Eye,
+  Globe,
+  Target,
+  Code,
+  Lightbulb,
+  Star,
+  TrendingUp,
+} from "lucide-react";
+import WCAGBreadcrumb from "@/components/wcag/breadcrumb";
+import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements";
+import WCAGRelatedContent from "@/components/wcag/related-content";
 
 interface TitleAnalysis {
   length: number;
@@ -18,23 +31,25 @@ interface TitleAnalysis {
 interface TitleExample {
   title: string;
   context: string;
-  rating: 'good' | 'bad' | 'ok';
+  rating: "good" | "bad" | "ok";
   explanation: string;
 }
 
 export default function WCAG242ClientPage() {
-  const [currentTitle, setCurrentTitle] = useState('');
+  const [currentTitle, setCurrentTitle] = useState("");
   const [analysis, setAnalysis] = useState<TitleAnalysis | null>(null);
   const [showExamples, setShowExamples] = useState(false);
   const [showCode, setShowCode] = useState(false);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
-  const [selectedExample, setSelectedExample] = useState<TitleExample | null>(null);
+  const [selectedExample, setSelectedExample] = useState<TitleExample | null>(
+    null
+  );
   const [liveDemo, setLiveDemo] = useState(false);
-  const [originalTitle, setOriginalTitle] = useState('');
+  const [originalTitle, setOriginalTitle] = useState("");
 
   useEffect(() => {
     // Store original title
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       setOriginalTitle(document.title);
     }
   }, []);
@@ -42,56 +57,73 @@ export default function WCAG242ClientPage() {
   const analyzeTitle = (title: string): TitleAnalysis => {
     const length = title.length;
     const words = title.toLowerCase().split(/\s+/);
-    
+
     // Check for keywords
-    const commonKeywords = ['home', 'about', 'contact', 'services', 'products', 'blog', 'news', 'help', 'support'];
-    const hasKeywords = words.some(word => commonKeywords.includes(word));
-    
+    const commonKeywords = [
+      "home",
+      "about",
+      "contact",
+      "services",
+      "products",
+      "blog",
+      "news",
+      "help",
+      "support",
+    ];
+    const hasKeywords = words.some((word) => commonKeywords.includes(word));
+
     // Check if descriptive
     const isDescriptive = length > 10 && words.length > 2;
-    
+
     // Calculate SEO score
     let seoScore = 0;
     if (length >= 30 && length <= 60) seoScore += 30;
     else if (length >= 20 && length <= 70) seoScore += 20;
     else if (length >= 10 && length <= 80) seoScore += 10;
-    
+
     if (isDescriptive) seoScore += 25;
     if (hasKeywords) seoScore += 20;
     if (words.length >= 3 && words.length <= 8) seoScore += 15;
-    if (!title.includes('undefined') && !title.includes('null')) seoScore += 10;
-    
+    if (!title.includes("undefined") && !title.includes("null")) seoScore += 10;
+
     const issues: string[] = [];
     const suggestions: string[] = [];
-    
+
     if (length < 10) {
-      issues.push('Title is too short');
-      suggestions.push('Add more descriptive words to explain the page purpose');
+      issues.push("Title is too short");
+      suggestions.push(
+        "Add more descriptive words to explain the page purpose"
+      );
     }
     if (length > 60) {
-      issues.push('Title may be too long for search results');
-      suggestions.push('Consider shortening to 30-60 characters for better SEO');
+      issues.push("Title may be too long for search results");
+      suggestions.push(
+        "Consider shortening to 30-60 characters for better SEO"
+      );
     }
     if (!isDescriptive) {
-      issues.push('Title is not descriptive enough');
-      suggestions.push('Include specific information about the page content');
+      issues.push("Title is not descriptive enough");
+      suggestions.push("Include specific information about the page content");
     }
     if (words.length < 2) {
-      issues.push('Title should contain multiple words');
-      suggestions.push('Use 3-8 words to create a meaningful title');
+      issues.push("Title should contain multiple words");
+      suggestions.push("Use 3-8 words to create a meaningful title");
     }
-    if (title.toLowerCase().includes('untitled') || title.toLowerCase().includes('page')) {
-      issues.push('Generic title detected');
-      suggestions.push('Replace generic terms with specific page description');
+    if (
+      title.toLowerCase().includes("untitled") ||
+      title.toLowerCase().includes("page")
+    ) {
+      issues.push("Generic title detected");
+      suggestions.push("Replace generic terms with specific page description");
     }
-    
+
     return {
       length,
       hasKeywords,
       isDescriptive,
       seoScore,
       issues,
-      suggestions
+      suggestions,
     };
   };
 
@@ -105,7 +137,7 @@ export default function WCAG242ClientPage() {
   };
 
   const applyLiveDemo = () => {
-    if (typeof window !== 'undefined' && currentTitle) {
+    if (typeof window !== "undefined" && currentTitle) {
       document.title = currentTitle;
       setLiveDemo(true);
       setTimeout(() => {
@@ -126,62 +158,72 @@ export default function WCAG242ClientPage() {
       title: "Contact Us - ABC Company Customer Support",
       context: "Contact page for a company",
       rating: "good",
-      explanation: "Clearly identifies the page purpose and company name. Includes relevant keywords for search engines."
+      explanation:
+        "Clearly identifies the page purpose and company name. Includes relevant keywords for search engines.",
     },
     {
       title: "Shopping Cart (3 items) - Online Store",
       context: "E-commerce cart page",
       rating: "good",
-      explanation: "Descriptive title that includes current state (item count) and context. Very helpful for users."
+      explanation:
+        "Descriptive title that includes current state (item count) and context. Very helpful for users.",
     },
     {
       title: "Article: How to Create Accessible Forms - Web Development Blog",
       context: "Blog post page",
       rating: "good",
-      explanation: "Includes content type, specific topic, and site context. Perfect for both users and search engines."
+      explanation:
+        "Includes content type, specific topic, and site context. Perfect for both users and search engines.",
     },
     {
       title: "Error 404 - Page Not Found - Help Center",
       context: "Error page",
       rating: "good",
-      explanation: "Clear error description with helpful context. Users immediately understand what happened."
+      explanation:
+        "Clear error description with helpful context. Users immediately understand what happened.",
     },
     {
       title: "Page",
       context: "Any page",
       rating: "bad",
-      explanation: "Generic title provides no information about page content or purpose. Completely unhelpful."
+      explanation:
+        "Generic title provides no information about page content or purpose. Completely unhelpful.",
     },
     {
       title: "Untitled Document",
       context: "Any page",
       rating: "bad",
-      explanation: "Default title that hasn't been customized. Indicates lack of attention to accessibility."
+      explanation:
+        "Default title that hasn't been customized. Indicates lack of attention to accessibility.",
     },
     {
       title: "Welcome",
       context: "Homepage",
       rating: "bad",
-      explanation: "Too vague and doesn't identify the website or company. Users won't know where they are."
+      explanation:
+        "Too vague and doesn't identify the website or company. Users won't know where they are.",
     },
     {
       title: "Form",
       context: "Registration form",
       rating: "bad",
-      explanation: "Generic title doesn't specify what kind of form or its purpose. Not helpful for navigation."
+      explanation:
+        "Generic title doesn't specify what kind of form or its purpose. Not helpful for navigation.",
     },
     {
       title: "Home - Company Name",
       context: "Homepage",
       rating: "ok",
-      explanation: "Identifies the page and company but could be more descriptive about what the company does."
+      explanation:
+        "Identifies the page and company but could be more descriptive about what the company does.",
     },
     {
       title: "Products",
       context: "Product listing",
       rating: "ok",
-      explanation: "Functional but could include company name and be more specific about the product category."
-    }
+      explanation:
+        "Functional but could include company name and be more specific about the product category.",
+    },
   ];
 
   const htmlCode = `<!DOCTYPE html>
@@ -399,15 +441,15 @@ body {
 }`;
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return 'text-green-600';
-    if (score >= 60) return 'text-yellow-600';
-    return 'text-red-600';
+    if (score >= 80) return "text-green-600";
+    if (score >= 60) return "text-yellow-600";
+    return "text-red-600";
   };
 
   const getScoreBackground = (score: number) => {
-    if (score >= 80) return 'bg-green-50 border-green-200';
-    if (score >= 60) return 'bg-yellow-50 border-yellow-200';
-    return 'bg-red-50 border-red-200';
+    if (score >= 80) return "bg-green-50 border-green-200";
+    if (score >= 60) return "bg-yellow-50 border-yellow-200";
+    return "bg-red-50 border-red-200";
   };
 
   return (
@@ -423,14 +465,16 @@ body {
         category="Navigation"
       />
       <div className="max-w-6xl mx-auto">
-        <WCAGBreadcrumb
-          items={[
-            { label: 'Principle 2: Operable', href: '/wcag?filter=operable' },
-            { label: 'Guideline 2.4: Navigable' }
-          ]}
-          current="2.4.2 Page Titled"
-        />
-        
+        <div className="hidden sm:block">
+          <WCAGBreadcrumb
+            items={[
+              { label: "Principle 2: Operable", href: "/wcag?filter=operable" },
+              { label: "Guideline 2.4: Navigable" },
+            ]}
+            current="2.4.2 Page Titled"
+          />
+        </div>
+
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -451,7 +495,7 @@ body {
             <Target className="w-6 h-6 mr-2 text-purple-600" />
             Interactive Title Analyzer
           </h2>
-          
+
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -465,36 +509,51 @@ body {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
             </div>
-            
+
             {analysis && (
               <div className="grid md:grid-cols-2 gap-6">
-                <div className={`p-4 rounded-lg border-2 ${getScoreBackground(analysis.seoScore)}`}>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">Analysis Results</h3>
+                <div
+                  className={`p-4 rounded-lg border-2 ${getScoreBackground(analysis.seoScore)}`}
+                >
+                  <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                    Analysis Results
+                  </h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span className="text-sm text-gray-600">Length:</span>
-                      <span className={`font-medium ${
-                        analysis.length >= 30 && analysis.length <= 60 ? 'text-green-600' : 
-                        analysis.length >= 10 && analysis.length <= 80 ? 'text-yellow-600' : 'text-red-600'
-                      }`}>
+                      <span
+                        className={`font-medium ${
+                          analysis.length >= 30 && analysis.length <= 60
+                            ? "text-green-600"
+                            : analysis.length >= 10 && analysis.length <= 80
+                              ? "text-yellow-600"
+                              : "text-red-600"
+                        }`}
+                      >
                         {analysis.length} characters
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-sm text-gray-600">Descriptive:</span>
-                      <span className={`font-medium ${analysis.isDescriptive ? 'text-green-600' : 'text-red-600'}`}>
-                        {analysis.isDescriptive ? 'Yes' : 'No'}
+                      <span className="text-sm text-gray-600">
+                        Descriptive:
+                      </span>
+                      <span
+                        className={`font-medium ${analysis.isDescriptive ? "text-green-600" : "text-red-600"}`}
+                      >
+                        {analysis.isDescriptive ? "Yes" : "No"}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm text-gray-600">SEO Score:</span>
-                      <span className={`font-bold ${getScoreColor(analysis.seoScore)}`}>
+                      <span
+                        className={`font-bold ${getScoreColor(analysis.seoScore)}`}
+                      >
                         {analysis.seoScore}/100
                       </span>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="space-y-4">
                   {analysis.issues.length > 0 && (
                     <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
@@ -509,7 +568,7 @@ body {
                       </ul>
                     </div>
                   )}
-                  
+
                   {analysis.suggestions.length > 0 && (
                     <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                       <h4 className="font-semibold text-blue-800 mb-2 flex items-center">
@@ -526,7 +585,7 @@ body {
                 </div>
               </div>
             )}
-            
+
             <div className="flex gap-4">
               <button
                 onClick={applyLiveDemo}
@@ -534,14 +593,14 @@ body {
                 className="flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 text-white rounded-lg transition-colors"
               >
                 <Eye className="w-4 h-4 mr-2" />
-                {liveDemo ? 'Demo Active (5s)' : 'Try Live Demo'}
+                {liveDemo ? "Demo Active (5s)" : "Try Live Demo"}
               </button>
               <button
                 onClick={() => setShowExamples(!showExamples)}
                 className="flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors"
               >
                 <FileText className="w-4 h-4 mr-2" />
-                {showExamples ? 'Hide' : 'Show'} Examples
+                {showExamples ? "Hide" : "Show"} Examples
               </button>
             </div>
           </div>
@@ -554,24 +613,30 @@ body {
               <Star className="w-6 h-6 mr-2 text-purple-600" />
               Title Examples
             </h2>
-            
+
             <div className="grid gap-4">
               {titleExamples.map((example, index) => (
                 <div
                   key={index}
                   className={`p-4 rounded-lg border-2 cursor-pointer transition-colors ${
-                    example.rating === 'good' ? 'border-green-200 bg-green-50 hover:bg-green-100' :
-                    example.rating === 'bad' ? 'border-red-200 bg-red-50 hover:bg-red-100' :
-                    'border-yellow-200 bg-yellow-50 hover:bg-yellow-100'
+                    example.rating === "good"
+                      ? "border-green-200 bg-green-50 hover:bg-green-100"
+                      : example.rating === "bad"
+                        ? "border-red-200 bg-red-50 hover:bg-red-100"
+                        : "border-yellow-200 bg-yellow-50 hover:bg-yellow-100"
                   }`}
-                  onClick={() => setSelectedExample(selectedExample === example ? null : example)}
+                  onClick={() =>
+                    setSelectedExample(
+                      selectedExample === example ? null : example
+                    )
+                  }
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center mb-2">
-                        {example.rating === 'good' ? (
+                        {example.rating === "good" ? (
                           <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
-                        ) : example.rating === 'bad' ? (
+                        ) : example.rating === "bad" ? (
                           <XCircle className="w-5 h-5 text-red-600 mr-2" />
                         ) : (
                           <AlertCircle className="w-5 h-5 text-yellow-600 mr-2" />
@@ -584,15 +649,19 @@ body {
                         Context: {example.context}
                       </div>
                     </div>
-                    <div className={`px-2 py-1 rounded text-xs font-medium ${
-                      example.rating === 'good' ? 'bg-green-100 text-green-800' :
-                      example.rating === 'bad' ? 'bg-red-100 text-red-800' :
-                      'bg-yellow-100 text-yellow-800'
-                    }`}>
+                    <div
+                      className={`px-2 py-1 rounded text-xs font-medium ${
+                        example.rating === "good"
+                          ? "bg-green-100 text-green-800"
+                          : example.rating === "bad"
+                            ? "bg-red-100 text-red-800"
+                            : "bg-yellow-100 text-yellow-800"
+                      }`}
+                    >
                       {example.rating.toUpperCase()}
                     </div>
                   </div>
-                  
+
                   {selectedExample === example && (
                     <div className="mt-3 pt-3 border-t border-gray-200">
                       <p className="text-sm text-gray-700">
@@ -612,10 +681,12 @@ body {
             <TrendingUp className="w-6 h-6 mr-2 text-purple-600" />
             SEO and Best Practices
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Title Best Practices</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Title Best Practices
+              </h3>
               <div className="space-y-4">
                 <div className="p-4 bg-green-50 rounded-lg">
                   <h4 className="font-semibold text-green-900 mb-2">✅ Do:</h4>
@@ -628,7 +699,7 @@ body {
                     <li>• Update titles for dynamic content</li>
                   </ul>
                 </div>
-                
+
                 <div className="p-4 bg-red-50 rounded-lg">
                   <h4 className="font-semibold text-red-900 mb-2">❌ Don't:</h4>
                   <ul className="text-sm text-red-800 space-y-1">
@@ -642,30 +713,38 @@ body {
                 </div>
               </div>
             </div>
-            
+
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Dynamic Title Examples</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Dynamic Title Examples
+              </h3>
               <div className="space-y-4">
                 <div className="p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-semibold text-blue-900 mb-2">E-commerce</h4>
+                  <h4 className="font-semibold text-blue-900 mb-2">
+                    E-commerce
+                  </h4>
                   <ul className="text-sm text-blue-800 space-y-1">
                     <li>• "Shopping Cart (3 items) - Store Name"</li>
                     <li>• "Product Name - Category - Store Name"</li>
                     <li>• "Search Results for 'keyword' - Store Name"</li>
                   </ul>
                 </div>
-                
+
                 <div className="p-4 bg-purple-50 rounded-lg">
-                  <h4 className="font-semibold text-purple-900 mb-2">Applications</h4>
+                  <h4 className="font-semibold text-purple-900 mb-2">
+                    Applications
+                  </h4>
                   <ul className="text-sm text-purple-800 space-y-1">
                     <li>• "Document Name - App Name"</li>
                     <li>• "Inbox (12 new) - Email App"</li>
                     <li>• "Settings - Privacy - App Name"</li>
                   </ul>
                 </div>
-                
+
                 <div className="p-4 bg-orange-50 rounded-lg">
-                  <h4 className="font-semibold text-orange-900 mb-2">Content Sites</h4>
+                  <h4 className="font-semibold text-orange-900 mb-2">
+                    Content Sites
+                  </h4>
                   <ul className="text-sm text-orange-800 space-y-1">
                     <li>• "Article Title - Author - Site Name"</li>
                     <li>• "Category Name - News Site"</li>
@@ -683,13 +762,13 @@ body {
             <Code className="w-6 h-6 mr-2 text-purple-600" />
             Implementation Examples
           </h2>
-          
+
           <div className="flex flex-wrap gap-4 mb-6">
             <button
               onClick={() => setShowCode(!showCode)}
               className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
             >
-              {showCode ? 'Hide' : 'Show'} Code Examples
+              {showCode ? "Hide" : "Show"} Code Examples
             </button>
           </div>
 
@@ -697,12 +776,14 @@ body {
             <div className="space-y-6">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-800">HTML Structure</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    HTML Structure
+                  </h3>
                   <button
-                    onClick={() => copyCode(htmlCode, 'html')}
+                    onClick={() => copyCode(htmlCode, "html")}
                     className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
                   >
-                    {copiedCode === 'html' ? 'Copied!' : 'Copy'}
+                    {copiedCode === "html" ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm">
@@ -712,12 +793,14 @@ body {
 
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-800">JavaScript Implementation</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    JavaScript Implementation
+                  </h3>
                   <button
-                    onClick={() => copyCode(jsCode, 'js')}
+                    onClick={() => copyCode(jsCode, "js")}
                     className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
                   >
-                    {copiedCode === 'js' ? 'Copied!' : 'Copy'}
+                    {copiedCode === "js" ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm">
@@ -727,12 +810,14 @@ body {
 
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-800">CSS Enhancements</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    CSS Enhancements
+                  </h3>
                   <button
-                    onClick={() => copyCode(cssCode, 'css')}
+                    onClick={() => copyCode(cssCode, "css")}
                     className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
                   >
-                    {copiedCode === 'css' ? 'Copied!' : 'Copy'}
+                    {copiedCode === "css" ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm">
@@ -743,69 +828,83 @@ body {
           )}
         </div>
 
-                 {/* Testing Methods */}
-         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-           <h2 className="text-2xl font-bold text-gray-900 mb-6">Testing Methods</h2>
-           
-           <div className="grid md:grid-cols-2 gap-8">
-             <div>
-               <h3 className="text-lg font-semibold text-gray-800 mb-4">Manual Testing</h3>
-               <div className="space-y-4">
-                 <div className="p-4 bg-blue-50 rounded-lg">
-                   <h4 className="font-semibold text-blue-900 mb-2">Browser Testing</h4>
-                   <ul className="text-sm text-blue-800 space-y-1">
-                     <li>• Check browser tab title</li>
-                     <li>• Verify title appears in bookmarks</li>
-                     <li>• Test title in search results</li>
-                     <li>• Confirm title updates dynamically</li>
-                   </ul>
-                 </div>
-                 
-                 <div className="p-4 bg-green-50 rounded-lg">
-                   <h4 className="font-semibold text-green-900 mb-2">Screen Reader Testing</h4>
-                   <ul className="text-sm text-green-800 space-y-1">
-                     <li>• Title is announced when page loads</li>
-                     <li>• Title changes are announced</li>
-                     <li>• Title provides context for page content</li>
-                     <li>• Test with multiple screen readers</li>
-                   </ul>
-                 </div>
-               </div>
-             </div>
-             
-             <div>
-               <h3 className="text-lg font-semibold text-gray-800 mb-4">Automated Testing</h3>
-               <div className="space-y-4">
-                 <div className="p-4 bg-purple-50 rounded-lg">
-                   <h4 className="font-semibold text-purple-900 mb-2">SEO Tools</h4>
-                   <ul className="text-sm text-purple-800 space-y-1">
-                     <li>• Google Search Console</li>
-                     <li>• SEO crawlers and analyzers</li>
-                     <li>• Lighthouse SEO audit</li>
-                     <li>• Meta tag validators</li>
-                   </ul>
-                 </div>
-                 
-                 <div className="p-4 bg-orange-50 rounded-lg">
-                   <h4 className="font-semibold text-orange-900 mb-2">Accessibility Tools</h4>
-                   <ul className="text-sm text-orange-800 space-y-1">
-                     <li>• axe-core DevTools extension</li>
-                     <li>• WAVE Web Accessibility Evaluator</li>
-                     <li>• Pa11y command line tool</li>
-                     <li>• HTML validators</li>
-                   </ul>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
+        {/* Testing Methods */}
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Testing Methods
+          </h2>
 
-         {/* Related Content */}
-         <WCAGRelatedContent 
-           currentCriteria="2.4.2"
-           title="Related WCAG Success Criteria & Resources"
-         />
-       </div>
-     </div>
-   );
- } 
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Manual Testing
+              </h3>
+              <div className="space-y-4">
+                <div className="p-4 bg-blue-50 rounded-lg">
+                  <h4 className="font-semibold text-blue-900 mb-2">
+                    Browser Testing
+                  </h4>
+                  <ul className="text-sm text-blue-800 space-y-1">
+                    <li>• Check browser tab title</li>
+                    <li>• Verify title appears in bookmarks</li>
+                    <li>• Test title in search results</li>
+                    <li>• Confirm title updates dynamically</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-green-50 rounded-lg">
+                  <h4 className="font-semibold text-green-900 mb-2">
+                    Screen Reader Testing
+                  </h4>
+                  <ul className="text-sm text-green-800 space-y-1">
+                    <li>• Title is announced when page loads</li>
+                    <li>• Title changes are announced</li>
+                    <li>• Title provides context for page content</li>
+                    <li>• Test with multiple screen readers</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Automated Testing
+              </h3>
+              <div className="space-y-4">
+                <div className="p-4 bg-purple-50 rounded-lg">
+                  <h4 className="font-semibold text-purple-900 mb-2">
+                    SEO Tools
+                  </h4>
+                  <ul className="text-sm text-purple-800 space-y-1">
+                    <li>• Google Search Console</li>
+                    <li>• SEO crawlers and analyzers</li>
+                    <li>• Lighthouse SEO audit</li>
+                    <li>• Meta tag validators</li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-orange-50 rounded-lg">
+                  <h4 className="font-semibold text-orange-900 mb-2">
+                    Accessibility Tools
+                  </h4>
+                  <ul className="text-sm text-orange-800 space-y-1">
+                    <li>• axe-core DevTools extension</li>
+                    <li>• WAVE Web Accessibility Evaluator</li>
+                    <li>• Pa11y command line tool</li>
+                    <li>• HTML validators</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Related Content */}
+        <WCAGRelatedContent
+          currentCriteria="2.4.2"
+          title="Related WCAG Success Criteria & Resources"
+        />
+      </div>
+    </div>
+  );
+}
