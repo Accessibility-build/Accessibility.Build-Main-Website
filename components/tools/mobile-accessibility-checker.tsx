@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -26,115 +27,61 @@ import {
   Target,
   Navigation
 } from "lucide-react"
+import { MOBILE_ACCESSIBILITY_AUDIT_DEVICES, MobileAccessibilityAuditResult } from "@/lib/mobile-accessibility-checker-types"
+import {
+  hasUnlimitedAccess,
+  getUnlimitedAccessRemainingTime,
+  formatRemainingTime,
+} from "@/lib/unlimited-access";
 
-interface TouchTargetIssue {
-  element: string
-  size: { width: number; height: number }
-  position: { x: number; y: number }
-  severity: 'error' | 'warning'
-  recommendation: string
-}
+const devices = Object.entries(MOBILE_ACCESSIBILITY_AUDIT_DEVICES).map(([name, config]) => {
+  let type = 'desktop'
+  if (name.includes('iPad')) type = 'tablet'
+  else if (config.isMobile) type = 'mobile'
+  
+  return {
+    name,
+    ...config,
+    type
+  }
+})
 
-interface MobileAuditResult {
-  device: string
-  viewport: { width: number; height: number }
-  touchTargets: {
-    total: number
-    passing: number
-    failing: number
-    issues: TouchTargetIssue[]
-  }
-  performance: {
-    loadTime: number
-    cumulativeLayoutShift: number
-    firstContentfulPaint: number
-  }
-  accessibility: {
-    score: number
-    issues: string[]
-    screenReaderCompatibility: boolean
-  }
-  mobileFriendly: {
-    hasViewportMeta: boolean
-    textReadable: boolean
-    linksClickable: boolean
-    contentFitsViewport: boolean
-  }
-}
 
+/**
+ * Render the mobile accessibility checker UI and manage the analysis workflow for device-aware accessibility audits.
+ *
+ * The component provides inputs for a target URL and test device, handles unlimited-access state and periodic checks,
+ * executes audits (including multi-device comparison when appropriate), displays progress and detailed results,
+ * and allows exporting a textual report to the clipboard.
+ *
+ * @returns A React element that renders the Mobile Accessibility Checker interface, including controls to start analyses, status indicators, detailed results per device, and export actions.
+ */
 export default function MobileAccessibilityChecker() {
   const [url, setUrl] = useState("")
-  const [selectedDevice, setSelectedDevice] = useState("iPhone 14")
+  const [selectedDevice, setSelectedDevice] = useState(devices[0].name)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
-  const [results, setResults] = useState<MobileAuditResult[]>([])
+  const [results, setResults] = useState<MobileAccessibilityAuditResult[]>([])
   const [error, setError] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
+  const [unlimitedAccess, setUnlimitedAccess] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(0);
 
-  const devices = [
-    { name: "iPhone 14", width: 390, height: 844, type: "mobile" },
-    { name: "iPhone 14 Plus", width: 428, height: 926, type: "mobile" },
-    { name: "Samsung Galaxy S23", width: 360, height: 780, type: "mobile" },
-    { name: "iPad", width: 768, height: 1024, type: "tablet" },
-    { name: "iPad Pro", width: 1024, height: 1366, type: "tablet" },
-    { name: "Google Pixel 7", width: 393, height: 851, type: "mobile" }
-  ]
-
-  const simulateMobileAudit = async (testUrl: string, device: any): Promise<MobileAuditResult> => {
-    // Simulate mobile accessibility testing
-    // In production, this would use Puppeteer with mobile emulation
-    await new Promise(resolve => setTimeout(resolve, 2000))
-
-    // Generate realistic test results
-    const touchTargetIssues: TouchTargetIssue[] = [
-      {
-        element: '<button class="nav-toggle">☰</button>',
-        size: { width: 32, height: 32 },
-        position: { x: 20, y: 15 },
-        severity: 'error',
-        recommendation: 'Increase touch target to minimum 44x44px'
-      },
-      {
-        element: '<a href="/link">Small Link</a>',
-        size: { width: 38, height: 20 },
-        position: { x: 150, y: 200 },
-        severity: 'warning',
-        recommendation: 'Add padding to increase touch area to 44x44px'
+  // Check for unlimited access
+  useEffect(() => {
+    const checkUnlimitedAccess = () => {
+      const hasAccess = hasUnlimitedAccess();
+      setUnlimitedAccess(hasAccess);
+      if (hasAccess) {
+        setRemainingTime(getUnlimitedAccessRemainingTime());
       }
-    ]
+    };
 
-    const score = Math.floor(Math.random() * 30) + 70 // 70-100 range
+    checkUnlimitedAccess();
+    // Check every minute for expiration
+    const interval = setInterval(checkUnlimitedAccess, 60000);
 
-    return {
-      device: device.name,
-      viewport: { width: device.width, height: device.height },
-      touchTargets: {
-        total: 25,
-        passing: 23,
-        failing: 2,
-        issues: touchTargetIssues
-      },
-      performance: {
-        loadTime: Math.random() * 2000 + 1000,
-        cumulativeLayoutShift: Math.random() * 0.1,
-        firstContentfulPaint: Math.random() * 1500 + 800
-      },
-      accessibility: {
-        score,
-        issues: score < 90 ? [
-          'Some interactive elements lack ARIA labels',
-          'Form inputs missing associated labels',
-          'Custom gestures may conflict with screen readers'
-        ] : [],
-        screenReaderCompatibility: score > 85
-      },
-      mobileFriendly: {
-        hasViewportMeta: Math.random() > 0.1,
-        textReadable: Math.random() > 0.05,
-        linksClickable: Math.random() > 0.1,
-        contentFitsViewport: Math.random() > 0.15
-      }
-    }
-  }
+    return () => clearInterval(interval);
+  }, []);
 
   const handleAnalyze = async () => {
     if (!url) {
@@ -155,6 +102,8 @@ export default function MobileAccessibilityChecker() {
     setResults([])
 
     try {
+      const { runMobileAccessibilityChecker } = await import("@/app/actions/mobile-accessibility-checker-action")
+      
       // Test on multiple devices for comprehensive analysis
       const deviceToTest = devices.find(d => d.name === selectedDevice) || devices[0]
       const testDevices = [deviceToTest]
@@ -166,12 +115,13 @@ export default function MobileAccessibilityChecker() {
       }
 
       const auditResults = await Promise.all(
-        testDevices.map(device => simulateMobileAudit(url, device))
+        testDevices.map(device => runMobileAccessibilityChecker(url, device.name, unlimitedAccess))
       )
 
       setResults(auditResults)
     } catch (err) {
-      setError("Failed to analyze URL. Please check the URL and try again.")
+      console.error(err)
+      setError("Failed to analyze URL. Please check the URL and try again. " + (err instanceof Error ? err.message : ""))
     } finally {
       setIsAnalyzing(false)
     }
@@ -236,15 +186,58 @@ Report generated by Accessibility.build Mobile Checker
   }
 
   const getDeviceIcon = (deviceName: string) => {
-    if (deviceName.includes('iPad')) return <Tablet className="h-4 w-4" />
-    if (deviceName.includes('iPhone') || deviceName.includes('Galaxy') || deviceName.includes('Pixel')) {
-      return <Smartphone className="h-4 w-4" />
+    const device = devices.find(d => d.name === deviceName)
+    if (!device) return <Monitor className="h-4 w-4" />
+    
+    switch (device.type) {
+      case 'mobile':
+        return <Smartphone className="h-4 w-4" />
+      case 'tablet':
+        return <Tablet className="h-4 w-4" />
+      default:
+        return <Monitor className="h-4 w-4" />
     }
-    return <Monitor className="h-4 w-4" />
   }
 
   return (
     <div className="max-w-6xl mx-auto">
+      {/* Unlimited Access Banner */}
+      {unlimitedAccess && (
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 shadow-lg mb-8 rounded-lg overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2">
+                <Zap className="h-5 w-5 animate-pulse" />
+                <span className="font-bold">UNLIMITED ACCESS ACTIVE</span>
+              </div>
+              <Badge
+                variant="secondary"
+                className="bg-white/20 text-white border-white/30"
+              >
+                Premium
+              </Badge>
+            </div>
+            <div className="flex items-center space-x-4 text-sm">
+              <span className="hidden sm:inline">
+                Expires in: {formatRemainingTime(remainingTime)}
+              </span>
+              <Link href="/unlimitedaccess">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:text-green-600 hover:bg-white/20"
+                >
+                  Manage Access
+                </Button>
+              </Link>
+            </div>
+          </div>
+          <div className="mt-1 text-green-100 text-sm text-center sm:text-left">
+            🚀 Unlimited AI analyses • No usage limits • Priority processing
+          </div>
+        </div>
+      )}
+
       <Card className="mb-8">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -289,18 +282,25 @@ Report generated by Accessibility.build Mobile Checker
           </div>
 
           {error && (
-            <Alert className="mt-4">
-              <AlertTriangle className="h-4 w-4" />
-              <AlertDescription>{error}</AlertDescription>
+            <Alert variant="destructive" className="mt-4 border-red-200 bg-red-50 text-red-900">
+              <AlertTriangle className="h-4 w-4 text-red-600" />
+              <div className="ml-2">
+                <p className="font-semibold">Analysis Failed</p>
+                <AlertDescription className="text-red-800 mt-1">
+                  {error}
+                </AlertDescription>
+              </div>
             </Alert>
           )}
 
-          <Alert className="mt-4">
-            <Hand className="h-4 w-4" />
-            <AlertDescription>
-              <strong>Credits Required:</strong> This analysis uses 2 credits and includes comprehensive mobile accessibility testing with touch target analysis.
-            </AlertDescription>
-          </Alert>
+          {!unlimitedAccess && (
+            <Alert className="mt-4">
+              <Hand className="h-4 w-4" />
+              <AlertDescription>
+                <strong>Credits Required:</strong> This analysis uses 2 credits and includes comprehensive mobile accessibility testing with touch target analysis.
+              </AlertDescription>
+            </Alert>
+          )}
 
           <Button 
             onClick={handleAnalyze}
@@ -315,7 +315,11 @@ Report generated by Accessibility.build Mobile Checker
             ) : (
               <>
                 <Target className="mr-2 h-4 w-4 flex-shrink-0" />
-                Start Mobile Analysis (2 Credits)
+                {unlimitedAccess ? (
+                  "Start Mobile Analysis (Unlimited)"
+                ) : (
+                  "Start Mobile Analysis (2 Credits)"
+                )}
               </>
             )}
           </Button>
@@ -394,25 +398,31 @@ Report generated by Accessibility.build Mobile Checker
                       <div className="space-y-3">
                         <h4 className="font-semibold">Touch Target Issues</h4>
                         {result.touchTargets.issues.map((issue, i) => (
-                          <Alert key={i} className={
-                            issue.severity === 'error' ? 'border-red-200 bg-red-50' : 'border-yellow-200 bg-yellow-50'
-                          }>
-                            <div className="flex items-start gap-3">
-                              {issue.severity === 'error' ? 
-                                <XCircle className="h-5 w-5 text-red-600 mt-0.5" /> :
-                                <AlertTriangle className="h-5 w-5 text-yellow-600 mt-0.5" />
-                              }
-                              <div className="flex-1">
-                                <div className="font-medium">{issue.element}</div>
-                                <div className="text-sm text-muted-foreground mt-1">
-                                  Current size: {issue.size.width}×{issue.size.height}px
-                                </div>
-                                <div className="text-sm mt-2">
-                                  <strong>Recommendation:</strong> {issue.recommendation}
-                                </div>
+                          <div 
+                            key={i}
+                            className="p-3 rounded-lg border bg-muted/30"
+                          >
+                            
+                            <div className="flex-1 min-w-0">
+                              <div className="flex gap-2">
+
+                              <p className="font-medium truncate" title={issue.element}>{issue.element}</p>
+                              <Badge 
+                              variant="outline" 
+                              className={`text-xs capitalize ${issue.severity === 'error' ? 'text-red-600 border-red-200 bg-red-50' : 'text-yellow-600 border-yellow-200 bg-yellow-50'}`}
+                            >
+                              {issue.severity}
+                            </Badge>
                               </div>
+                              
+                              <div className="text-xs text-muted-foreground mt-1">
+                                Current size: {issue.size.width}×{issue.size.height}px
+                              </div>
+                              <p className="text-xs font-medium mt-1 text-muted-foreground">
+                                Recommendation: <span className={issue.severity === 'error' ? "text-red-600" : "text-yellow-600"}>{issue.recommendation}</span>
+                              </p>
                             </div>
-                          </Alert>
+                          </div>
                         ))}
                       </div>
                     )}
@@ -501,10 +511,10 @@ Report generated by Accessibility.build Mobile Checker
                         <div className="space-y-3">
                           <h4 className="font-semibold">Accessibility Issues</h4>
                           {result.accessibility.issues.map((issue, i) => (
-                            <Alert key={i} className="border-yellow-200 bg-yellow-50">
-                              <AlertTriangle className="h-4 w-4 text-yellow-600" />
-                              <AlertDescription>{issue}</AlertDescription>
-                            </Alert>
+                            <div key={i} className="p-3 rounded-lg border bg-muted/30 flex items-start gap-2">
+                              <AlertTriangle className="h-4 w-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                              <span className="text-sm font-medium">{issue}</span>
+                            </div>
                           ))}
                         </div>
                       )}
