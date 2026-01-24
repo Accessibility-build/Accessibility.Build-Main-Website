@@ -40,58 +40,6 @@ import {
   Calendar
 } from "lucide-react"
 
-interface AuditResult {
-  auditId: string
-  status: 'pending' | 'processing' | 'completed' | 'failed'
-  url: string
-  title?: string
-  createdAt: string
-  processingStartedAt?: string
-  processingCompletedAt?: string
-  errorMessage?: string
-  
-  // Results (when completed)
-  totalViolations?: number
-  criticalCount?: number
-  seriousCount?: number
-  moderateCount?: number
-  minorCount?: number
-  overallScore?: number
-  aiSummary?: string
-  priorityRecommendations?: Array<{
-    title: string
-    description: string
-    impact: string
-    effort: string
-  }>
-  violations?: Array<{
-    id: string
-    violationId: string
-    description: string
-    impact: 'critical' | 'serious' | 'moderate' | 'minor'
-    helpUrl: string
-    wcagCriteria: any[]
-    wcagLevel: string
-    selector: string
-    html: string
-    target: string[]
-    aiExplanation: string
-    fixSuggestion: string
-    codeExample?: string
-  }>
-}
-
-interface AuditHistory {
-  audits: Array<{
-    id: string
-    url: string
-    title?: string
-    status: string
-    overallScore?: number
-    totalViolations: number
-    createdAt: string
-  }>
-}
 import { UrlAuditResult, AuditHistory } from '@/lib/url-accessibility-auditor-types'
 import {
   hasUnlimitedAccess,
@@ -125,9 +73,6 @@ export default function UrlAccessibilityAuditor() {
   const [copied, setCopied] = useState<string | null>(null)
   
   // Audit state
-  const [currentAudit, setCurrentAudit] = useState<AuditResult | null>(null)
-  const [isPolling, setIsPolling] = useState(false)
-  const [copied, setCopied] = useState<string | null>(null)
   const [currentAudit, setCurrentAudit] = useState<UrlAuditResult | null>(null)
   
   // Unlimited Access State
@@ -271,7 +216,7 @@ export default function UrlAccessibilityAuditor() {
     <div className="container-wide py-12">
       {/* Unlimited Access Banner */}
       {unlimitedAccess && (
-        <div className="max-w-4xl mx-auto mb-8 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 shadow-lg rounded-lg overflow-hidden">
+        <div className="max-w-4xl mx-auto bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 shadow-lg mb-8 rounded-lg overflow-hidden">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-2">
@@ -305,14 +250,14 @@ export default function UrlAccessibilityAuditor() {
           </div>
         </div>
       )}
-
+      
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-6">
           <div className="p-3 rounded-xl bg-primary/10">
             <Globe className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground">
             URL Accessibility Auditor
           </h1>
         </div>
@@ -383,9 +328,9 @@ export default function UrlAccessibilityAuditor() {
                       </Alert>
                     ) : (
                       <div className="flex items-center gap-2 p-3 bg-background rounded-lg border">
-                            <Coins className="h-4 w-4 text-primary" />
-                            <span className="text-sm font-medium">Cost: 5 credits per audit</span>
-                            <Badge variant="outline" className="ml-auto">2-5 minutes processing</Badge>
+                        <Coins className="h-4 w-4 text-primary" />
+                        <span className="text-sm font-medium">Cost: 5 credits per audit</span>
+                        <Badge variant="outline" className="ml-auto">2-5 minutes processing</Badge>
                       </div>
                     )}
                   </CardHeader>
@@ -618,7 +563,7 @@ export default function UrlAccessibilityAuditor() {
                         </div>
 
                         {/* Quick Stats */}
-                        <div className="flex flex-col xs2:!flex-row items-center justify-center gap-2 sm:gap-6 text-sm text-muted-foreground">
+                        <div className="flex flex-col xs2:!flex-row items-center justify-center gap-2 xs2:gap-6 text-sm text-muted-foreground">
                           <div className="flex items-center gap-2">
                             <Globe className="h-4 w-4" />
                             <span>Multi-tool analysis</span>
