@@ -60,8 +60,8 @@ export default function WCAG132ClientPage() {
                 <Navigation className="h-8 w-8 text-white" />
               </div>
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <h1 className="text-4xl font-bold text-slate-900 dark:text-white">
+                <div className="flex flex-wrap items-center gap-3 mb-2">
+                  <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
                     1.3.2 Meaningful Sequence
                   </h1>
                   <Badge className="bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">

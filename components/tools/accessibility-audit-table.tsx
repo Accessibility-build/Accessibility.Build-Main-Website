@@ -534,7 +534,7 @@ export default function AccessibilityAuditTable({ violations, auditInfo }: Acces
       {/* Table Controls */}
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:!flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <CardTitle className="flex items-center gap-2">
                 <Target className="h-5 w-5" />
@@ -557,7 +557,7 @@ export default function AccessibilityAuditTable({ violations, auditInfo }: Acces
               </CardDescription>
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
               <Button variant="outline" size="sm" onClick={copyTableData}>
                 <Copy className="h-4 w-4 mr-2" />
                 Copy
@@ -698,7 +698,7 @@ export default function AccessibilityAuditTable({ violations, auditInfo }: Acces
 
       {/* Pagination */}
       <Card>
-        <CardContent className="flex items-center justify-between py-4">
+        <CardContent className="flex flex-col sm:!flex-row items-center justify-between gap-4 sm:gap-0 py-4">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span>
               Showing {table.getRowModel().rows.length} of{" "}
@@ -764,7 +764,7 @@ function ViolationDetailView({ violation }: { violation: Violation }) {
     <div className="space-y-6 w-full">
       {/* Header Section */}
       <div className="border-b pb-4">
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
+        <div className="flex flex-col sm:!flex-row sm:items-start sm:justify-between gap-3 mb-3">
           <div className="space-y-2 flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <Badge variant="outline" className="font-mono text-xs shrink-0">

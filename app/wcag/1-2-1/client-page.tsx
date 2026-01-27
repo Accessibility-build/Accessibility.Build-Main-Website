@@ -273,7 +273,7 @@ export default function WCAG121ClientPage() {
               <Volume2 className="h-10 w-10 text-white" />
             </div>
             <div>
-              <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-2">
+              <h1 className="text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-2">
                 1.2.1 Audio-only and Video-only (Prerecorded)
               </h1>
               <div className="flex items-center gap-3">
@@ -581,7 +581,7 @@ export default function WCAG121ClientPage() {
                   ✅ Good Example: Podcast with Complete Transcript
                 </h4>
                 <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex flex-col items-start gap-4 mb-4 sm:flex-row sm:items-center">
                     <div className="flex items-center gap-2">
                       <Volume2 className="h-5 w-5 text-green-600" />
                       <span className="font-medium">Web Accessibility Podcast - Episode 5</span>
@@ -602,7 +602,7 @@ export default function WCAG121ClientPage() {
                   
                   {showTranscript && (
                     <div className="bg-slate-50 dark:bg-slate-700 p-4 rounded mb-4">
-                      <div className="flex items-center justify-between mb-2">
+                      <div className="flex flex-col items-start gap-2 mb-2 sm:flex-row sm:items-center sm:justify-between">
                         <h5 className="font-semibold">📜 Complete Transcript</h5>
                         <Button
                           size="sm"
@@ -648,7 +648,7 @@ export default function WCAG121ClientPage() {
                   ❌ Bad Example: Audio Without Transcript
                 </h4>
                 <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex flex-col items-start gap-4 mb-4 sm:flex-row sm:items-center">
                     <div className="flex items-center gap-2">
                       <Volume2 className="h-5 w-5 text-red-600" />
                       <span className="font-medium">Important Company Policy Update</span>
@@ -713,7 +713,7 @@ export default function WCAG121ClientPage() {
                   ✅ Good Example: Silent Animation with Detailed Description
                 </h4>
                 <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex flex-col items-start gap-4 mb-4 sm:flex-row sm:items-center">
                     <div className="flex items-center gap-2">
                       <VolumeX className="h-5 w-5 text-green-600" />
                       <span className="font-medium">How to Navigate with Keyboard</span>
@@ -743,7 +743,7 @@ export default function WCAG121ClientPage() {
 
                   {showTranscript && (
                     <div className="bg-slate-50 dark:bg-slate-700 p-4 rounded mb-4">
-                      <div className="flex items-center justify-between mb-2">
+                      <div className="flex flex-col items-start gap-2 mb-2 sm:flex-row sm:items-center sm:justify-between">
                         <h5 className="font-semibold">📝 Detailed Text Description</h5>
                         <Button
                           size="sm"
@@ -789,7 +789,7 @@ export default function WCAG121ClientPage() {
                   ❌ Bad Example: Video with Vague Description
                 </h4>
                 <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex flex-col items-start gap-4 mb-4 sm:flex-row sm:items-center">
                     <div className="flex items-center gap-2">
                       <VolumeX className="h-5 w-5 text-red-600" />
                       <span className="font-medium">Software Installation Process</span>

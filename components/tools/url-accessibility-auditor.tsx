@@ -44,6 +44,7 @@ import { UrlAuditResult, AuditHistory } from '@/lib/url-accessibility-auditor-ty
 import {
   hasUnlimitedAccess,
   getUnlimitedAccessRemainingTime,
+  formatRemainingTime,
 } from "@/lib/unlimited-access"
 
 const SEVERITY_CONFIG = {
@@ -76,12 +77,16 @@ export default function UrlAccessibilityAuditor() {
   
   // Unlimited Access State
   const [unlimitedAccess, setUnlimitedAccess] = useState(false)
+  const [remainingTime, setRemainingTime] = useState(0)
 
   // Check for unlimited access
   useEffect(() => {
     const checkUnlimitedAccess = () => {
       const hasAccess = hasUnlimitedAccess()
       setUnlimitedAccess(hasAccess)
+      if (hasAccess) {
+        setRemainingTime(getUnlimitedAccessRemainingTime())
+      }
     }
 
     checkUnlimitedAccess()
@@ -209,6 +214,43 @@ export default function UrlAccessibilityAuditor() {
 
   return (
     <div className="container-wide py-12">
+      {/* Unlimited Access Banner */}
+      {unlimitedAccess && (
+        <div className="max-w-4xl mx-auto bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 shadow-lg mb-8 rounded-lg overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2">
+                <Zap className="h-5 w-5 animate-pulse" />
+                <span className="font-bold">UNLIMITED ACCESS ACTIVE</span>
+              </div>
+              <Badge
+                variant="secondary"
+                className="bg-white/20 text-white border-white/30"
+              >
+                Premium
+              </Badge>
+            </div>
+            <div className="flex items-center space-x-4 text-sm">
+              <span className="hidden sm:inline">
+                Expires in: {formatRemainingTime(remainingTime)}
+              </span>
+              <Link href="/unlimitedaccess">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:text-green-600 hover:bg-white/20"
+                >
+                  Manage Access
+                </Button>
+              </Link>
+            </div>
+          </div>
+          <div className="mt-1 text-green-100 text-sm text-center sm:text-left">
+            🚀 Unlimited AI analyses • No usage limits • Priority processing
+          </div>
+        </div>
+      )}
+      
       {/* Hero Section */}
       <div className="max-w-4xl mx-auto text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-6">
@@ -521,17 +563,17 @@ export default function UrlAccessibilityAuditor() {
                         </div>
 
                         {/* Quick Stats */}
-                        <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+                        <div className="flex flex-col xs2:!flex-row items-center justify-center gap-2 xs2:gap-6 text-sm text-muted-foreground">
                           <div className="flex items-center gap-2">
                             <Globe className="h-4 w-4" />
                             <span>Multi-tool analysis</span>
                           </div>
-                          <Separator orientation="vertical" className="h-4" />
+                          <Separator orientation="vertical" className="hidden sm:block h-4" />
                           <div className="flex items-center gap-2">
                             <Eye className="h-4 w-4" />
                             <span>AI-enhanced insights</span>
                           </div>
-                          <Separator orientation="vertical" className="h-4" />
+                          <Separator orientation="vertical" className="hidden sm:block h-4" />
                           <div className="flex items-center gap-2">
                             <Shield className="h-4 w-4" />
                             <span>WCAG 2.1 AA</span>

@@ -631,7 +631,7 @@ export default function JsonFormatter() {
             
             {/* Output Type Selector */}
             <Tabs value={outputType} onValueChange={setOutputType}>
-              <TabsList className="grid w-full grid-cols-5">
+              <TabsList className="grid w-full grid-cols-3 xs2:grid-cols-5 h-auto">
                 <TabsTrigger value="formatted" className="flex items-center gap-1">
                   <Maximize2 className="h-3 w-3" />
                   Format

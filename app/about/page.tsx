@@ -55,7 +55,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <blockquote className="text-2xl md:text-4xl font-bold mb-8 leading-relaxed">
               "AI cannot fix accessibility issues,<br className="hidden md:block" />
-              but AI can help us make<br className="hidden md:block" />
+              but AI can help us make <br className="hidden md:block" />
               the world more accessible."
             </blockquote>
             

@@ -292,7 +292,7 @@ export default function WCAG123ClientPage() {
               </div>
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <h1 className="text-4xl font-bold text-slate-900 dark:text-white">
+                  <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
                     1.2.3 Audio Description or Media Alternative
                   </h1>
                   <Badge className="bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">
@@ -607,7 +607,7 @@ export default function WCAG123ClientPage() {
                   </div>
 
                   {/* Video Controls */}
-                  <div className="flex items-center justify-between bg-slate-100 dark:bg-slate-700 p-3 rounded mb-4">
+                  <div className="flex flex-col items-start gap-4 p-3 rounded mb-4 md:!flex-row md:items-center md:justify-between bg-slate-100 dark:bg-slate-700">
                     <div className="flex items-center gap-2">
                       <Button
                         size="sm"
@@ -621,14 +621,15 @@ export default function WCAG123ClientPage() {
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <Button
                         size="sm"
                         variant="outline"
                         onClick={() => setAudioDescriptionOn(!audioDescriptionOn)}
+                        className="p-2 whitespace-normal h-auto text-left break-words"
                       >
-                        <AudioWaveform className="h-4 w-4 mr-1" />
-                        {audioDescriptionOn ? 'Hide' : 'Show'} Audio Description
+                        <AudioWaveform className="h-4 w-4 mr-1 shrink-0" />
+                        <span className="flex-1">{audioDescriptionOn ? 'Hide' : 'Show'} Audio Description</span>
                       </Button>
                       <Button
                         size="sm"
@@ -643,9 +644,10 @@ export default function WCAG123ClientPage() {
                             window.speechSynthesis.speak(utterance);
                           }
                         }}
+                        className="p-2 whitespace-normal h-auto text-left break-words"
                       >
-                        <Volume2 className="h-4 w-4 mr-1" />
-                        Speak Description
+                        <Volume2 className="h-4 w-4 mr-1 shrink-0" />
+                        <span className="flex-1">Speak Description</span>
                       </Button>
                     </div>
                   </div>
@@ -656,9 +658,10 @@ export default function WCAG123ClientPage() {
                       size="sm"
                       variant="outline"
                       onClick={() => setShowMediaAlternative(!showMediaAlternative)}
+                      className="whitespace-normal h-auto text-left break-words p-2"
                     >
-                      <FileText className="h-4 w-4 mr-1" />
-                      {showMediaAlternative ? 'Hide' : 'Show'} Complete Media Alternative
+                      <FileText className="h-4 w-4 mr-1 shrink-0" />
+                      <span className="flex-1">{showMediaAlternative ? 'Hide' : 'Show'} Complete Media Alternative</span>
                     </Button>
                   </div>
 
@@ -739,7 +742,7 @@ export default function WCAG123ClientPage() {
                   </div>
 
                   {/* Video Controls */}
-                  <div className="flex items-center justify-between bg-slate-100 dark:bg-slate-700 p-3 rounded mb-4">
+                  <div className="flex flex-col items-start gap-4 p-3 rounded mb-4 md:!flex-row md:items-center md:justify-between bg-slate-100 dark:bg-slate-700">
                     <div className="flex items-center gap-2">
                       <Button size="sm" variant="outline">
                         <Play className="h-4 w-4" />
@@ -748,9 +751,9 @@ export default function WCAG123ClientPage() {
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <Button size="sm" variant="outline" disabled>
-                        <VolumeX className="h-4 w-4 mr-1" />
-                        No Audio Description
+                      <Button size="sm" variant="outline" disabled className="whitespace-normal h-auto text-left break-words p-2">
+                        <VolumeX className="h-4 w-4 mr-1 shrink-0" />
+                        <span className="flex-1">No Audio Description</span>
                       </Button>
                     </div>
                   </div>

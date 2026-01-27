@@ -85,7 +85,7 @@ export function AiAnalysisDashboard({ summaryString }: AiAnalysisDashboardProps)
         <h4 className="font-semibold text-sm uppercase tracking-wide text-primary mb-3 flex items-center gap-2">
           📊 Website Classification
         </h4>
-        <div className="grid grid-cols-2 gap-4 text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
            <InfoItem label="Type" value={aiData.websiteClassification?.type} capitalize />
            <InfoItem label="Industry" value={aiData.websiteClassification?.industry} />
            <InfoItem label="Target Audience" value={aiData.websiteClassification?.targetAudience} capitalize />

@@ -632,7 +632,7 @@ export default function AccessibilityReportGenerator() {
               <CardTitle>Summary Statistics</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
                   <div className="text-2xl font-bold text-red-600">{reportData.summary?.critical || 0}</div>
                   <div className="text-sm text-muted-foreground">Critical</div>
@@ -691,9 +691,9 @@ export default function AccessibilityReportGenerator() {
         </CardHeader>
         <CardContent className="space-y-4">
           <Tabs value={previewFormat} onValueChange={(value) => setPreviewFormat(value as any)}>
-            <TabsList>
-              <TabsTrigger value="html">HTML Preview</TabsTrigger>
-              <TabsTrigger value="markdown">Markdown Preview</TabsTrigger>
+            <TabsList className="xs:flex flex-col h-auto xs:w-full xs2:block xs2:w-auto">
+              <TabsTrigger value="html" className="xs:w-full xs2:w-auto">HTML Preview</TabsTrigger>
+              <TabsTrigger value="markdown" className="xs:w-full xs2:w-auto">Markdown Preview</TabsTrigger>
             </TabsList>
             <TabsContent value={previewFormat} className="mt-4">
               <div className="border rounded-lg p-4 bg-slate-50 dark:bg-slate-900 max-h-96 overflow-auto">

@@ -614,7 +614,7 @@ function KeyboardAccessibleApp() {
           <Badge variant="secondary" className="mb-4 bg-indigo-100 text-indigo-800 border-indigo-200">
             WCAG 2.2 Level A
           </Badge>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             2.1.1 Keyboard
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -637,7 +637,7 @@ function KeyboardAccessibleApp() {
         {/* Interactive Keyboard Demo */}
         <Card className="mb-8 border-indigo-200 shadow-lg">
           <CardHeader className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex flex-wrap items-center gap-2">
               <Keyboard className="h-5 w-5" />
               Interactive Keyboard Navigation Demo
             </CardTitle>
@@ -878,9 +878,9 @@ function KeyboardAccessibleApp() {
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="good" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="good">✅ Good Examples</TabsTrigger>
-                <TabsTrigger value="bad">❌ Bad Examples</TabsTrigger>
+              <TabsList className="flex flex-col h-auto w-full sm:grid sm:grid-cols-2">
+                <TabsTrigger value="good" className="w-full">✅ Good Examples</TabsTrigger>
+                <TabsTrigger value="bad" className="w-full">❌ Bad Examples</TabsTrigger>
               </TabsList>
               
               <TabsContent value="good" className="space-y-4">
@@ -1065,7 +1065,7 @@ function KeyboardAccessibleApp() {
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="html" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="h-auto w-full grid grid-cols-3">
                 <TabsTrigger value="html">HTML</TabsTrigger>
                 <TabsTrigger value="css">CSS</TabsTrigger>
                 <TabsTrigger value="react">React</TabsTrigger>
@@ -1135,9 +1135,9 @@ function KeyboardAccessibleApp() {
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="manual" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="manual">Manual Testing</TabsTrigger>
-                <TabsTrigger value="automated">Automated Testing</TabsTrigger>
+              <TabsList className="flex flex-col h-auto w-full sm:grid sm:grid-cols-2">
+                <TabsTrigger value="manual" className="w-full">Manual Testing</TabsTrigger>
+                <TabsTrigger value="automated" className="w-full">Automated Testing</TabsTrigger>
               </TabsList>
               
               <TabsContent value="manual" className="space-y-4">

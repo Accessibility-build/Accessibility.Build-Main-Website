@@ -1571,9 +1571,9 @@ export default TimingAdjustableApp`
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="good" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="good">✅ Good Examples</TabsTrigger>
-                <TabsTrigger value="bad">❌ Bad Examples</TabsTrigger>
+              <TabsList className="flex flex-col h-auto w-full sm:!grid sm:!grid-cols-2">
+                <TabsTrigger value="good" className="w-full">✅ Good Examples</TabsTrigger>
+                <TabsTrigger value="bad" className="w-full">❌ Bad Examples</TabsTrigger>
               </TabsList>
               
               <TabsContent value="good" className="space-y-4">
@@ -1907,9 +1907,9 @@ export default TimingAdjustableApp`
           </CardHeader>
           <CardContent className="p-6">
             <Tabs defaultValue="manual" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="manual">Manual Testing</TabsTrigger>
-                <TabsTrigger value="automated">Automated Testing</TabsTrigger>
+              <TabsList className="flex flex-col h-auto w-full sm:!grid sm:!grid-cols-2">
+                <TabsTrigger value="manual" className="w-full">Manual Testing</TabsTrigger>
+                <TabsTrigger value="automated" className="w-full">Automated Testing</TabsTrigger>
               </TabsList>
               
               <TabsContent value="manual" className="space-y-4">

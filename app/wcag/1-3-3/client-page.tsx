@@ -62,8 +62,8 @@ export default function WCAG133ClientPage() {
                 <Palette className="h-8 w-8 text-white" />
               </div>
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <h1 className="text-4xl font-bold text-slate-900 dark:text-white">
+                <div className="flex flex-wrap items-center gap-3 mb-2">
+                  <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
                     1.3.3 Sensory Characteristics
                   </h1>
                   <Badge className="bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">
@@ -244,7 +244,7 @@ export default function WCAG133ClientPage() {
                         "To save your work, click the green button. To cancel, click the red button."
                       </p>
                       
-                      <div className="flex gap-4 justify-center">
+                      <div className="flex flex-wrap gap-4 justify-center">
                         <button 
                           className={`px-6 py-2 rounded text-white font-medium ${
                             colorBlindMode 
@@ -297,7 +297,7 @@ export default function WCAG133ClientPage() {
                         "To save your work, click the 'Save' button. To cancel, click the 'Cancel' button."
                       </p>
                       
-                      <div className="flex gap-4 justify-center">
+                      <div className="flex flex-wrap gap-4 justify-center">
                         <button 
                           className={`px-6 py-2 rounded text-white font-medium flex items-center gap-2 ${
                             colorBlindMode 
@@ -353,7 +353,7 @@ export default function WCAG133ClientPage() {
                         "Click the circular button to play, the square button to stop, and the triangular button to record."
                       </p>
                       
-                      <div className="flex gap-4 justify-center items-center">
+                      <div className="flex flex-wrap gap-4 justify-center items-center">
                         <button className="p-3 bg-blue-600 rounded-full hover:bg-blue-700">
                           <Circle className="h-6 w-6 text-white fill-current" />
                         </button>
@@ -384,7 +384,7 @@ export default function WCAG133ClientPage() {
                         "Click 'Play' to start, 'Stop' to end, and 'Record' to begin recording."
                       </p>
                       
-                      <div className="flex gap-4 justify-center items-center">
+                      <div className="flex flex-wrap gap-4 justify-center items-center">
                         <button className="flex flex-col items-center gap-1 p-3 bg-blue-600 rounded hover:bg-blue-700">
                           <Play className="h-6 w-6 text-white" />
                           <span className="text-white text-xs">Play</span>

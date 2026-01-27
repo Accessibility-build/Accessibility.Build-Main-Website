@@ -243,26 +243,26 @@ export default function AccessibilityStatementGenerator() {
       {/* Progress Indicator */}
       <Card>
         <CardContent className="pt-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:!flex-row items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-1 sm:gap-2">
               {[1, 2, 3, 4].map((step) => (
                 <div key={step} className="flex items-center">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-semibold text-sm sm:text-base ${
                     step === currentStep 
                       ? 'bg-blue-600 text-white' 
                       : step < currentStep 
                         ? 'bg-green-600 text-white' 
                         : 'bg-slate-200 text-slate-600'
                   }`}>
-                    {step < currentStep ? <CheckCircle className="w-5 h-5" /> : step}
+                    {step < currentStep ? <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" /> : step}
                   </div>
                   {step < totalSteps && (
-                    <div className={`w-16 h-1 ${step < currentStep ? 'bg-green-600' : 'bg-slate-200'}`} />
+                    <div className={`w-6 sm:w-16 h-1 ${step < currentStep ? 'bg-green-600' : 'bg-slate-200'}`} />
                   )}
                 </div>
               ))}
             </div>
-            <Badge variant="outline" className="text-sm">
+            <Badge variant="outline" className="text-sm w-full sm:w-auto justify-center">
               Step {currentStep} of {totalSteps}
             </Badge>
           </div>
