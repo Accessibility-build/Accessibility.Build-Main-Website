@@ -28,12 +28,12 @@ export const metadata: Metadata = {
     title: "WCAG 2.4.3 Focus Order - Interactive Focus Tracking & Validation Tools",
     description: "Comprehensive guide to implementing logical focus order. Interactive focus sequence demonstrations, validation tools, and keyboard navigation testing for accessibility compliance.",
     type: "article",
-    url: "https://accessibilitybuild.com/wcag/2-4-3",
+    url: "https://accessibility.build/wcag/2-4-3",
     siteName: "Accessibility Build",
     locale: "en_US",
     images: [
       {
-        url: "https://accessibilitybuild.com/images/wcag-2-4-3-focus-order.png",
+        url: "https://accessibility.build/images/wcag-2-4-3-focus-order.png",
         width: 1200,
         height: 630,
         alt: "WCAG 2.4.3 Focus Order Interactive Demo - Keyboard Navigation Tools",
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WCAG 2.4.3 Focus Order - Interactive Demo",
     description: "Learn logical focus order with interactive tracking tools and keyboard navigation validation for accessibility compliance.",
-    images: ["https://accessibilitybuild.com/images/wcag-2-4-3-twitter.png"],
+    images: ["https://accessibility.build/images/wcag-2-4-3-twitter.png"],
   },
   alternates: {
-    canonical: "https://accessibilitybuild.com/wcag/2-4-3",
+    canonical: "https://accessibility.build/wcag/2-4-3",
   },
   robots: {
     index: true,

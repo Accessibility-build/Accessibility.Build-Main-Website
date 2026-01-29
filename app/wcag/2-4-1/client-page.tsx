@@ -379,7 +379,7 @@ function createSkipLink(targetId, linkText) {
         level="A"
         principle="Operable"
         guideline="2.4 Navigable"
-        url="https://accessibilitybuild.com/wcag/2-4-1"
+        url="https://accessibility.build/wcag/2-4-1"
         category="Navigation"
       />
       <div className="max-w-6xl mx-auto">

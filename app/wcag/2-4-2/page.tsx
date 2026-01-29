@@ -28,12 +28,12 @@ export const metadata: Metadata = {
     title: "WCAG 2.4.2 Page Titled - Interactive Title Analysis & SEO Tools",
     description: "Comprehensive guide to creating descriptive page titles. Interactive analysis tools, SEO optimization, title scoring, and validation for accessibility compliance and better user experience.",
     type: "article",
-    url: "https://accessibilitybuild.com/wcag/2-4-2",
+    url: "https://accessibility.build/wcag/2-4-2",
     siteName: "Accessibility Build",
     locale: "en_US",
     images: [
       {
-        url: "https://accessibilitybuild.com/images/wcag-2-4-2-page-titles.png",
+        url: "https://accessibility.build/images/wcag-2-4-2-page-titles.png",
         width: 1200,
         height: 630,
         alt: "WCAG 2.4.2 Page Titled Interactive Demo - Title Analysis Tools",
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WCAG 2.4.2 Page Titled - Interactive Demo",
     description: "Learn descriptive page titles with interactive analysis tools and SEO optimization techniques for accessibility compliance.",
-    images: ["https://accessibilitybuild.com/images/wcag-2-4-2-twitter.png"],
+    images: ["https://accessibility.build/images/wcag-2-4-2-twitter.png"],
   },
   alternates: {
-    canonical: "https://accessibilitybuild.com/wcag/2-4-2",
+    canonical: "https://accessibility.build/wcag/2-4-2",
   },
   robots: {
     index: true,

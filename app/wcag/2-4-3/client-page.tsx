@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
         level="A"
         principle="Operable"
         guideline="2.4 Navigable"
-        url="https://accessibilitybuild.com/wcag/2-4-3"
+        url="https://accessibility.build/wcag/2-4-3"
         category="Navigation"
       />
       <div className="max-w-6xl mx-auto">

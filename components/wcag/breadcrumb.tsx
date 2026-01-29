@@ -27,7 +27,7 @@ export default function WCAGBreadcrumb({ items, current }: BreadcrumbProps) {
         position: index + 1,
         name: item.label,
         item: item.href
-          ? `https://accessibilitybuild.com${item.href}`
+          ? `https://accessibility.build${item.href}`
           : undefined,
       })),
       {

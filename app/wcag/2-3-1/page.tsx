@@ -27,12 +27,12 @@ export const metadata: Metadata = {
     title: "WCAG 2.3.1 Three Flashes or Below Threshold - Interactive Demo & Testing Tools",
     description: "Comprehensive guide to implementing seizure-safe web content. Interactive flash detection tools, safety guidelines, and compliance testing for photosensitive epilepsy protection.",
     type: "article",
-    url: "https://accessibilitybuild.com/wcag/2-3-1",
+    url: "https://accessibility.build/wcag/2-3-1",
     siteName: "Accessibility Build",
     locale: "en_US",
     images: [
       {
-        url: "https://accessibilitybuild.com/images/wcag-2-3-1-flash-detection.png",
+        url: "https://accessibility.build/images/wcag-2-3-1-flash-detection.png",
         width: 1200,
         height: 630,
         alt: "WCAG 2.3.1 Flash Detection Interactive Demo - Seizure Prevention Tools",
@@ -43,10 +43,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WCAG 2.3.1 Three Flashes or Below Threshold - Interactive Demo",
     description: "Learn seizure prevention with interactive flash detection tools and safety guidelines for web accessibility compliance.",
-    images: ["https://accessibilitybuild.com/images/wcag-2-3-1-twitter.png"],
+    images: ["https://accessibility.build/images/wcag-2-3-1-twitter.png"],
   },
   alternates: {
-    canonical: "https://accessibilitybuild.com/wcag/2-3-1",
+    canonical: "https://accessibility.build/wcag/2-3-1",
   },
   robots: {
     index: true,

@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://accessibilitybuild.com'),
+  metadataBase: new URL('https://accessibility.build'),
   alternates: {
-    canonical: '/wcag/1-4-2',
+    canonical: 'https://accessibility.build/wcag/1-4-2',
   },
   openGraph: {
     title: 'WCAG 1.4.2 Audio Control (Level A) - Interactive Demo',

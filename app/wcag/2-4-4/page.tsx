@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "WCAG 2.4.4 Link Purpose (In Context) - Interactive Demo",
     description: "Master descriptive link text with interactive analysis tools and context validation examples.",
     type: "article",
-    url: "https://accessibilitybuild.com/wcag/2-4-4",
+    url: "https://accessibility.build/wcag/2-4-4",
   },
   twitter: {
     card: "summary_large_image",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: "Master descriptive link text with interactive analysis tools and context validation examples.",
   },
   alternates: {
-    canonical: "https://accessibilitybuild.com/wcag/2-4-4",
+    canonical: "https://accessibility.build/wcag/2-4-4",
   },
 };
 

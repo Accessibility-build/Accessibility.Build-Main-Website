@@ -28,12 +28,12 @@ export const metadata: Metadata = {
     title: "WCAG 2.4.1 Bypass Blocks - Interactive Skip Link Demo & Tools",
     description: "Comprehensive guide to implementing skip links and navigation bypass mechanisms. Interactive demos, focus tracking tools, and keyboard navigation testing for accessibility compliance.",
     type: "article",
-    url: "https://accessibilitybuild.com/wcag/2-4-1",
+    url: "https://accessibility.build/wcag/2-4-1",
     siteName: "Accessibility Build",
     locale: "en_US",
     images: [
       {
-        url: "https://accessibilitybuild.com/images/wcag-2-4-1-skip-links.png",
+        url: "https://accessibility.build/images/wcag-2-4-1-skip-links.png",
         width: 1200,
         height: 630,
         alt: "WCAG 2.4.1 Skip Links Interactive Demo - Keyboard Navigation Tools",
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WCAG 2.4.1 Bypass Blocks - Interactive Demo",
     description: "Learn skip links and navigation bypass with interactive demos and keyboard accessibility testing tools.",
-    images: ["https://accessibilitybuild.com/images/wcag-2-4-1-twitter.png"],
+    images: ["https://accessibility.build/images/wcag-2-4-1-twitter.png"],
   },
   alternates: {
-    canonical: "https://accessibilitybuild.com/wcag/2-4-1",
+    canonical: "https://accessibility.build/wcag/2-4-1",
   },
   robots: {
     index: true,

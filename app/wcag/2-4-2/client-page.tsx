@@ -461,7 +461,7 @@ body {
         level="A"
         principle="Operable"
         guideline="2.4 Navigable"
-        url="https://accessibilitybuild.com/wcag/2-4-2"
+        url="https://accessibility.build/wcag/2-4-2"
         category="Navigation"
       />
       <div className="max-w-6xl mx-auto">

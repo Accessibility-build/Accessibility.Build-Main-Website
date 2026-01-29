@@ -240,7 +240,7 @@ function detectFlashRate(element, duration = 1000) {
         level="A"
         principle="Perceivable"
         guideline="2.3 Seizures and Physical Reactions"
-        url="https://accessibilitybuild.com/wcag/2-3-1"
+        url="https://accessibility.build/wcag/2-3-1"
         category="Seizures and Physical Reactions"
       />
       <div className="max-w-6xl mx-auto">

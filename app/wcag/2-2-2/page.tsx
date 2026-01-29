@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://accessibilitybuild.com'),
+  metadataBase: new URL('https://accessibility.build'),
   alternates: {
-    canonical: '/wcag/2-2-2',
+    canonical: 'https://accessibility.build/wcag/2-2-2',
   },
   openGraph: {
     title: 'WCAG 2.2.2 Pause, Stop, Hide (Level A) - Interactive Demo',
