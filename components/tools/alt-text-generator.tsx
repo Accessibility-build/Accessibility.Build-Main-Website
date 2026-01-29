@@ -44,11 +44,41 @@ import {
   Sparkles,
   Zap,
   ChevronRight,
+  ChevronDown,
+  MoreHorizontal,
+  Languages,
+  Palette,
+  BarChart3,
+  Target,
+  BookOpen,
+  Globe,
+  TrendingUp,
+  AlertTriangle,
 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { errorLogger } from "@/lib/error-logger";
 import { useUser } from "@clerk/nextjs";
 import { useCredits } from "@/hooks/use-credits";
 import Link from "next/link";
+import { getLanguagesForSelect } from "@/lib/alt-text-languages";
+import { getStylesForSelect } from "@/lib/alt-text-styles";
+import {
+  generateQualityReport,
+  type QualityReport,
+  type PlatformCompatibility,
+} from "@/lib/alt-text-quality";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 interface GenerationResult {
   altText: string;
@@ -57,6 +87,9 @@ interface GenerationResult {
   timestamp: number;
   wordCount?: number;
   lengthPreference?: string;
+  language?: string;
+  style?: string;
+  qualityReport?: QualityReport;
   trialStatus?: {
     usageCount: number;
     remainingUses: number;
@@ -72,6 +105,8 @@ export default function AltTextGenerator() {
   const [context, setContext] = useState("");
   const [lengthPreference, setLengthPreference] = useState<string>("medium");
   const [customLength, setCustomLength] = useState<string>("50");
+  const [language, setLanguage] = useState<string>("en");
+  const [altTextStyle, setAltTextStyle] = useState<string>("default");
   const [results, setResults] = useState<GenerationResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -81,6 +116,7 @@ export default function AltTextGenerator() {
   const [imageLoading, setImageLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragActive, setDragActive] = useState(false);
+  const [qualityOpen, setQualityOpen] = useState<Record<number, boolean>>({});
 
   // Reset error when tab changes or image changes
   useEffect(() => {
@@ -259,6 +295,8 @@ export default function AltTextGenerator() {
           context: context.trim() || undefined,
           lengthPreference: lengthPreference,
           targetWordCount: targetWordCount,
+          language: language,
+          style: altTextStyle,
         }),
       });
 
@@ -279,6 +317,9 @@ export default function AltTextGenerator() {
         return;
       }
 
+      // Generate quality report for the alt text
+      const qualityReport = generateQualityReport(data.altText, context);
+
       const newResult: GenerationResult = {
         altText: data.altText,
         creditsUsed: data.creditsUsed,
@@ -286,6 +327,9 @@ export default function AltTextGenerator() {
         timestamp: Date.now(),
         wordCount: data.wordCount,
         lengthPreference: data.lengthPreference,
+        language: language,
+        style: altTextStyle,
+        qualityReport: qualityReport,
         trialStatus: data.trialStatus,
       };
 
@@ -322,6 +366,34 @@ export default function AltTextGenerator() {
     );
   };
 
+  /**
+   * Quick regenerate with modified settings
+   */
+  const quickRegenerate = async (modification: {
+    lengthPreference?: string;
+    style?: string;
+    language?: string;
+  }) => {
+    if (!uploadedImage) return;
+
+    // Update settings based on modification
+    if (modification.lengthPreference) {
+      setLengthPreference(modification.lengthPreference);
+    }
+    if (modification.style) {
+      setAltTextStyle(modification.style);
+    }
+    if (modification.language) {
+      setLanguage(modification.language);
+    }
+
+    // Small delay to ensure state is updated
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Trigger regeneration
+    generateAltText();
+  };
+
   const clearImage = () => {
     setUploadedImage(null);
     setImageUrl("");
@@ -334,6 +406,40 @@ export default function AltTextGenerator() {
 
   const triggerFileInput = () => {
     fileInputRef.current?.click();
+  };
+
+  const getScoreColor = (score: number) => {
+    if (score >= 80) return "text-green-600 dark:text-green-400";
+    if (score >= 60) return "text-yellow-600 dark:text-yellow-400";
+    if (score >= 40) return "text-orange-600 dark:text-orange-400";
+    return "text-red-600 dark:text-red-400";
+  };
+
+  const getScoreBg = (score: number) => {
+    if (score >= 80) return "bg-green-100 dark:bg-green-900/30";
+    if (score >= 60) return "bg-yellow-100 dark:bg-yellow-900/30";
+    if (score >= 40) return "bg-orange-100 dark:bg-orange-900/30";
+    return "bg-red-100 dark:bg-red-900/30";
+  };
+
+  const getPlatformStatusColor = (status: "ok" | "warning" | "error") => {
+    switch (status) {
+      case "ok": return "text-green-600 dark:text-green-400";
+      case "warning": return "text-yellow-600 dark:text-yellow-400";
+      case "error": return "text-red-600 dark:text-red-400";
+    }
+  };
+
+  const getPlatformStatusBg = (status: "ok" | "warning" | "error") => {
+    switch (status) {
+      case "ok": return "bg-green-100 dark:bg-green-900/30 border-green-200 dark:border-green-800";
+      case "warning": return "bg-yellow-100 dark:bg-yellow-900/30 border-yellow-200 dark:border-yellow-800";
+      case "error": return "bg-red-100 dark:bg-red-900/30 border-red-200 dark:border-red-800";
+    }
+  };
+
+  const toggleQuality = (index: number) => {
+    setQualityOpen(prev => ({...prev, [index]: !prev[index]}));
   };
 
   return (
@@ -680,6 +786,78 @@ export default function AltTextGenerator() {
             </div>
           </div>
 
+          {/* Language and Style Selection */}
+          <div className="space-y-3 mt-6">
+            <div className="flex flex-col md:!flex-row md:items-center">
+              <Label className="text-base font-medium">Language & Style</Label>
+              <span className="text-sm font-normal text-muted-foreground md:ml-2">
+                Customize the output format
+              </span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="language" className="text-sm">
+                  Output Language
+                </Label>
+                <Select value={language} onValueChange={setLanguage}>
+                  <SelectTrigger id="language" suppressHydrationWarning>
+                    <SelectValue placeholder="Select language" />
+                  </SelectTrigger>
+                  <SelectContent suppressHydrationWarning className="max-h-[300px]">
+                    {getLanguagesForSelect().map((lang) => (
+                      <SelectItem key={lang.value} value={lang.value}>
+                        <div className="flex items-center gap-2">
+                          <span>{lang.label}</span>
+                          <span className="text-muted-foreground text-xs">
+                            ({lang.nativeName})
+                          </span>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="alt-text-style" className="text-sm">
+                  Description Style
+                </Label>
+                <Select value={altTextStyle} onValueChange={setAltTextStyle}>
+                  <SelectTrigger id="alt-text-style" suppressHydrationWarning>
+                    <SelectValue placeholder="Select style" />
+                  </SelectTrigger>
+                  <SelectContent suppressHydrationWarning>
+                    {getStylesForSelect().map((style) => (
+                      <SelectItem key={style.value} value={style.value}>
+                        <div>
+                          <div className="font-medium">{style.label}</div>
+                          <div className="text-xs text-muted-foreground">
+                            {style.description}
+                          </div>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <div className="text-xs text-muted-foreground mt-2">
+              {altTextStyle === "default" &&
+                "Balanced descriptions suitable for most websites and applications"}
+              {altTextStyle === "ecommerce" &&
+                "Optimized for product listings with SEO-friendly keywords"}
+              {altTextStyle === "editorial" &&
+                "Objective, factual descriptions for news and journalism"}
+              {altTextStyle === "technical" &&
+                "Precise specifications for diagrams, charts, and documentation"}
+              {altTextStyle === "social" &&
+                "Engaging descriptions for social media platforms"}
+              {altTextStyle === "artistic" &&
+                "Expressive descriptions for art and creative photography"}
+            </div>
+          </div>
+
           {/* Error Display */}
           {error && (
             <Alert variant="destructive" className="mt-6">
@@ -760,6 +938,18 @@ export default function AltTextGenerator() {
                       : result.lengthPreference}
                   </Badge>
                 )}
+                {result.language && result.language !== "en" && (
+                  <Badge variant="outline" className="text-xs">
+                    <Languages className="h-3 w-3 mr-1" />
+                    {result.language.toUpperCase()}
+                  </Badge>
+                )}
+                {result.style && result.style !== "default" && (
+                  <Badge variant="outline" className="text-xs">
+                    <Palette className="h-3 w-3 mr-1" />
+                    {result.style}
+                  </Badge>
+                )}
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 {result.creditsUsed ? (
@@ -830,27 +1020,241 @@ export default function AltTextGenerator() {
                       : result.lengthPreference}
                   </span>
                 )}
+                {result.qualityReport && (
+                  <span className={`font-medium ${getScoreColor(result.qualityReport.overallScore)}`}>
+                    <strong>Quality:</strong> {result.qualityReport.overallScore}%
+                  </span>
+                )}
               </div>
 
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => copyToClipboard(result.altText, index)}
-                className="w-full md:w-auto"
-              >
-                {copied === index ? (
-                  <>
-                    <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
-                    Copied!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="h-4 w-4 mr-2" />
-                    Copy
-                  </>
-                )}
-              </Button>
+              <div className="flex gap-2 w-full md:w-auto">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => copyToClipboard(result.altText, index)}
+                  className="flex-1 md:flex-none"
+                >
+                  {copied === index ? (
+                    <>
+                      <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-4 w-4 mr-2" />
+                      Copy
+                    </>
+                  )}
+                </Button>
+
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled={isLoading}
+                      className="flex-1 md:flex-none"
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      Regenerate
+                      <ChevronDown className="h-4 w-4 ml-2" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuLabel>Quick Options</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onClick={() => quickRegenerate({ lengthPreference: "short" })}
+                    >
+                      Make Shorter
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => quickRegenerate({ lengthPreference: "long" })}
+                    >
+                      Make Longer
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onClick={() => quickRegenerate({ style: "ecommerce" })}
+                    >
+                      E-commerce Style
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => quickRegenerate({ style: "technical" })}
+                    >
+                      Technical Style
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => quickRegenerate({ style: "social" })}
+                    >
+                      Social Media Style
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onClick={() => quickRegenerate({})}
+                    >
+                      Same Settings
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
+
+            {/* Quality Report Section */}
+            {result.qualityReport && (
+              <Collapsible
+                open={qualityOpen[index]}
+                onOpenChange={() => toggleQuality(index)}
+                className="mt-6"
+              >
+                <CollapsibleTrigger asChild>
+                  <Button variant="outline" className="w-full justify-between">
+                    <div className="flex items-center gap-2">
+                      <BarChart3 className="h-4 w-4" />
+                      <span>Quality Analysis</span>
+                      <Badge className={`ml-2 ${getScoreBg(result.qualityReport.overallScore)}`}>
+                        Overall: {result.qualityReport.overallScore}%
+                      </Badge>
+                    </div>
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${qualityOpen[index] ? "rotate-180" : ""}`} />
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-4 space-y-4">
+                  {/* Score Cards Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {/* SEO Score */}
+                    <div className={`p-4 rounded-lg border ${getScoreBg(result.qualityReport.seo.score)}`}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <Target className="h-5 w-5" />
+                        <span className="font-medium">SEO Score</span>
+                      </div>
+                      <div className={`text-3xl font-bold ${getScoreColor(result.qualityReport.seo.score)}`}>
+                        {result.qualityReport.seo.score}%
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        Grade: {result.qualityReport.seo.grade}
+                      </div>
+                    </div>
+
+                    {/* Readability Score */}
+                    <div className={`p-4 rounded-lg border ${getScoreBg(result.qualityReport.readability.score)}`}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <BookOpen className="h-5 w-5" />
+                        <span className="font-medium">Readability</span>
+                      </div>
+                      <div className={`text-3xl font-bold ${getScoreColor(result.qualityReport.readability.score)}`}>
+                        {result.qualityReport.readability.score}%
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {result.qualityReport.readability.level}
+                      </div>
+                    </div>
+
+                    {/* Overall Score */}
+                    <div className={`p-4 rounded-lg border ${getScoreBg(result.qualityReport.overallScore)}`}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <TrendingUp className="h-5 w-5" />
+                        <span className="font-medium">Overall Quality</span>
+                      </div>
+                      <div className={`text-3xl font-bold ${getScoreColor(result.qualityReport.overallScore)}`}>
+                        {result.qualityReport.overallScore}%
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        Weighted score
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* SEO Issues and Suggestions */}
+                  {(result.qualityReport.seo.issues.length > 0 || result.qualityReport.seo.suggestions.length > 0) && (
+                    <div className="p-4 rounded-lg border bg-muted/30">
+                      <h4 className="font-medium mb-3 flex items-center gap-2">
+                        <Target className="h-4 w-4" />
+                        SEO Analysis
+                      </h4>
+                      {result.qualityReport.seo.issues.length > 0 && (
+                        <div className="mb-3">
+                          <p className="text-sm font-medium text-red-600 dark:text-red-400 mb-1">Issues:</p>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            {result.qualityReport.seo.issues.map((issue, i) => (
+                              <li key={i} className="flex items-start gap-2">
+                                <AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                                {issue}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {result.qualityReport.seo.suggestions.length > 0 && (
+                        <div>
+                          <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-1">Suggestions:</p>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            {result.qualityReport.seo.suggestions.map((suggestion, i) => (
+                              <li key={i} className="flex items-start gap-2">
+                                <Info className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                                {suggestion}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Readability Details */}
+                  <div className="p-4 rounded-lg border bg-muted/30">
+                    <h4 className="font-medium mb-3 flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      Readability Details
+                    </h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                      <div>
+                        <span className="text-muted-foreground">Word Count</span>
+                        <div className="font-medium">{result.qualityReport.readability.wordCount}</div>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Avg Words/Sentence</span>
+                        <div className="font-medium">{result.qualityReport.readability.avgWordsPerSentence}</div>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Avg Syllables/Word</span>
+                        <div className="font-medium">{result.qualityReport.readability.avgSyllablesPerWord}</div>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Reading Level</span>
+                        <div className="font-medium">{result.qualityReport.readability.level}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Platform Compatibility */}
+                  <div className="p-4 rounded-lg border bg-muted/30">
+                    <h4 className="font-medium mb-3 flex items-center gap-2">
+                      <Globe className="h-4 w-4" />
+                      Platform Compatibility
+                    </h4>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {result.qualityReport.platforms.map((platform) => (
+                        <div
+                          key={platform.platform}
+                          className={`p-3 rounded-lg border text-sm ${getPlatformStatusBg(platform.status)}`}
+                        >
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="font-medium">{platform.platform}</span>
+                            {platform.status === "ok" && <CheckCircle className="h-4 w-4 text-green-500" />}
+                            {platform.status === "warning" && <AlertTriangle className="h-4 w-4 text-yellow-500" />}
+                            {platform.status === "error" && <AlertCircle className="h-4 w-4 text-red-500" />}
+                          </div>
+                          <div className={`text-xs ${getPlatformStatusColor(platform.status)}`}>
+                            {platform.message}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            )}
           </CardContent>
         </Card>
       ))}

@@ -27,6 +27,8 @@ const openai = new OpenAI({
 interface RequestBody {
   componentType: string;
   framework: string;
+  wcagVersion?: string;
+  complianceLevel?: string;
   componentDescription: string;
   customRequirement?: string;
   unlimitedAccess?: boolean;
@@ -145,21 +147,45 @@ function buildUserPrompt(
   componentType: string,
   framework: string,
   description: string,
-  customRequirements: string
+  customRequirements: string,
+  wcagVersion: string = "2.2",
+  complianceLevel: string = "AA"
 ) {
+  // Version-specific guidance
+  const versionNotes = {
+    "2.0": "Focus on the original 12 guidelines and 61 success criteria. No mobile-specific or cognitive accessibility criteria.",
+    "2.1": "Include mobile accessibility (orientation, touch targets), cognitive accessibility basics, and motion sensitivity requirements.",
+    "2.2": "Include all 2.1 requirements plus: focus appearance (2.4.11, 2.4.13), dragging movements (2.5.7), target size minimum (2.5.8), consistent help (3.2.6), redundant entry (3.3.7), and accessible authentication (3.3.8, 3.3.9)."
+  };
+
+  const levelNotes = {
+    "A": "Essential requirements only. Focus on basic keyboard accessibility, text alternatives, and fundamental navigation.",
+    "AA": "Standard web accessibility. Include all Level A plus: color contrast (4.5:1 for text), resize text, focus visible, consistent navigation, and error identification.",
+    "AAA": "Enhanced accessibility. Include all AA plus: enhanced contrast (7:1), sign language, extended audio description, and more cognitive support."
+  };
+
   return `
 Produce the single JSON object described in the system prompt for this request.
 
 ComponentType: "${componentType}"
 Framework: "${framework}"
+WCAG Version: "${wcagVersion}"
+Compliance Level: "${complianceLevel}"
 Description: "${description}"
 CustomRequirements: "${customRequirements || "None"}"
 
+WCAG Version Notes (${wcagVersion}): ${versionNotes[wcagVersion as keyof typeof versionNotes] || versionNotes["2.2"]}
+
+Compliance Level Notes (${complianceLevel}): ${levelNotes[complianceLevel as keyof typeof levelNotes] || levelNotes["AA"]}
+
 Important:
+- Generate code that specifically targets WCAG ${wcagVersion} Level ${complianceLevel} compliance.
+- Include ARIA attributes and accessibility features appropriate for the specified compliance level.
 - Dynamically generate the listed arrays from the produced code and analysis.
 - For these arrays, generate between 2 and 6 items each: implementation_summary, accessibility_features, wcag_compliances, testing_guide, best_practices, common_mistakes_to_avoid, enhancement_suggestions.
 - If fewer than 2 meaningful items apply for any array, pad that array with empty-string placeholders ("") up to 2 items; do not exceed 6 items.
-- Ensure each wcag_compliances entry references a WCAG 2.2 success criterion identifier and short justification.
+- Ensure each wcag_compliances entry references a WCAG ${wcagVersion} success criterion identifier and short justification.
+- For Level ${complianceLevel}, prioritize success criteria at that level and below.
 - Validate locally (as described in the system prompt) that the JSON is syntactically correct and that all constraints are satisfied before returning. If validation fails, return the required recovery JSON as specified.
 
 Return ONLY the JSON object (no explanation, no markdown).
@@ -394,7 +420,9 @@ export async function POST(req: NextRequest) {
       body.componentType,
       body.framework,
       body.componentDescription,
-      body.customRequirement!
+      body.customRequirement || "",
+      body.wcagVersion || "2.2",
+      body.complianceLevel || "AA"
     );
 
     // Call model
