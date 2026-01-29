@@ -5,6 +5,8 @@ import { currentUser } from "@clerk/nextjs/server";
 import { hasEnoughCredits, useCredits } from "@/lib/credits";
 import { errorLogger } from "@/lib/error-logger";
 import { checkTrialLimit, recordTrialUsage } from "@/lib/trial-usage";
+import { getLanguageConfig } from "@/lib/alt-text-languages";
+import { getStyleConfig } from "@/lib/alt-text-styles";
 
 export async function POST(req: Request) {
   let user: Awaited<ReturnType<typeof currentUser>> = null;
@@ -38,7 +40,13 @@ export async function POST(req: Request) {
       context,
       lengthPreference = "medium",
       targetWordCount = 40,
+      language = "en",
+      style = "default",
     } = body;
+
+    // Get language and style configurations
+    const languageConfig = getLanguageConfig(language);
+    const styleConfig = getStyleConfig(style);
 
     if (!imageUrl) {
       return NextResponse.json(
@@ -80,8 +88,13 @@ export async function POST(req: Request) {
       }
     }
 
-    // Construct enhanced prompt for better alt text generation with length preference
-    const getSystemPrompt = (lengthStyle: string, wordCount: number) => {
+    // Construct enhanced prompt for better alt text generation with length preference, language, and style
+    const getSystemPrompt = (
+      lengthStyle: string,
+      wordCount: number,
+      langConfig: typeof languageConfig,
+      styleConf: typeof styleConfig
+    ) => {
       let lengthGuideline = "";
 
       switch (lengthStyle) {
@@ -104,7 +117,19 @@ export async function POST(req: Request) {
           lengthGuideline = `Create moderately detailed alt text (approximately ${wordCount} words).`;
       }
 
+      // Build language instruction
+      const languageInstruction = langConfig
+        ? `\n\nLANGUAGE REQUIREMENT:\n${langConfig.promptInstruction}`
+        : "";
+
+      // Build style instruction
+      const styleInstruction = styleConf
+        ? `\n\nSTYLE REQUIREMENT (${styleConf.name}):\n${styleConf.promptInstruction}`
+        : "";
+
       return `You are an expert accessibility consultant specializing in creating alt text for images. ${lengthGuideline}
+${languageInstruction}
+${styleInstruction}
 
 Your alt text should:
 1. Focus on what's important for understanding the image's purpose
@@ -120,10 +145,11 @@ Guidelines:
 - Use active voice when describing actions
 - Be specific about colors, objects, and people when relevant to the content
 - Consider the context and purpose of where this image will be used
-- Aim for approximately ${wordCount} words in your response`;
+- Aim for approximately ${wordCount} words in your response
+- IMPORTANT: Generate the alt text in the specified language only`;
     };
 
-    const systemPrompt = getSystemPrompt(lengthPreference, targetWordCount);
+    const systemPrompt = getSystemPrompt(lengthPreference, targetWordCount, languageConfig, styleConfig);
 
     let userPrompt =
       "Please generate concise, descriptive alt text for this image.";
@@ -263,6 +289,8 @@ Guidelines:
         remainingCredits: creditResult.remainingCredits,
         wordCount: cleanedAltText.split(/\s+/).length,
         lengthPreference: lengthPreference,
+        language: language,
+        style: style,
       });
     } else {
       // Record trial usage
@@ -272,6 +300,8 @@ Guidelines:
         altText: cleanedAltText,
         wordCount: cleanedAltText.split(/\s+/).length,
         lengthPreference: lengthPreference,
+        language: language,
+        style: style,
       });
     }
   } catch (error) {

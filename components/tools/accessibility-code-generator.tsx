@@ -36,7 +36,15 @@ import {
   Keyboard,
   FileCode,
   Braces,
+  ChevronDown,
+  ExternalLink,
+  Star,
 } from "lucide-react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import {
   hasUnlimitedAccess,
   getUnlimitedAccessRemainingTime,
@@ -134,13 +142,91 @@ const componentTypes = [
     label: "Carousel",
     description: "Image carousel with controls",
   },
+  {
+    value: "accordion",
+    label: "Accordion",
+    description: "Expandable/collapsible content sections",
+  },
+  {
+    value: "dropdown",
+    label: "Dropdown Menu",
+    description: "Accessible dropdown with keyboard navigation",
+  },
+  {
+    value: "tooltip",
+    label: "Tooltip",
+    description: "Accessible tooltip with focus management",
+  },
+  {
+    value: "datatable",
+    label: "Data Table",
+    description: "Sortable, filterable accessible table",
+  },
+  {
+    value: "skiplinks",
+    label: "Skip Links",
+    description: "Skip navigation for keyboard users",
+  },
+  {
+    value: "breadcrumb",
+    label: "Breadcrumb",
+    description: "Accessible breadcrumb navigation",
+  },
+  {
+    value: "search",
+    label: "Search",
+    description: "Search component with live results",
+  },
+  {
+    value: "pagination",
+    label: "Pagination",
+    description: "Accessible page navigation",
+  },
+  {
+    value: "alert",
+    label: "Alert/Notification",
+    description: "Live region announcements",
+  },
+  {
+    value: "toggle",
+    label: "Toggle Switch",
+    description: "Accessible on/off switch",
+  },
+  {
+    value: "progressbar",
+    label: "Progress Bar",
+    description: "Progress indicator with ARIA",
+  },
+  {
+    value: "combobox",
+    label: "Combobox/Autocomplete",
+    description: "Searchable dropdown with suggestions",
+  },
 ];
 
 const frameworks = [
   { value: "html", label: "HTML/CSS", icon: "🌐" },
   { value: "react", label: "React", icon: "⚛️" },
+  { value: "react-typescript", label: "React + TypeScript", icon: "📘" },
   { value: "vue", label: "Vue.js", icon: "💚" },
+  { value: "vue-typescript", label: "Vue 3 + TypeScript", icon: "📗" },
   { value: "angular", label: "Angular", icon: "🅰️" },
+  { value: "svelte", label: "Svelte", icon: "🔥" },
+  { value: "nextjs", label: "Next.js App Router", icon: "▲" },
+  { value: "tailwind", label: "Tailwind CSS", icon: "🌊" },
+  { value: "shadcn", label: "shadcn/ui", icon: "🎨" },
+];
+
+const wcagVersions = [
+  { value: "2.0", label: "WCAG 2.0" },
+  { value: "2.1", label: "WCAG 2.1" },
+  { value: "2.2", label: "WCAG 2.2 (Latest)" },
+];
+
+const complianceLevels = [
+  { value: "A", label: "Level A (Minimum)", description: "Essential accessibility requirements" },
+  { value: "AA", label: "Level AA (Standard)", description: "Recommended for most websites" },
+  { value: "AAA", label: "Level AAA (Enhanced)", description: "Highest level of accessibility" },
 ];
 
 /**
@@ -160,6 +246,8 @@ export default function AccessibilityCodeGenerator() {
   // Form state
   const [componentType, setComponentType] = useState<string>("");
   const [framework, setFramework] = useState<string>("");
+  const [wcagVersion, setWcagVersion] = useState<string>("2.2");
+  const [complianceLevel, setComplianceLevel] = useState<string>("AA");
   const [description, setDescription] = useState<string>("");
   const [customRequirements, setCustomRequirements] = useState<string>("");
 
@@ -172,6 +260,19 @@ export default function AccessibilityCodeGenerator() {
   const [copiedTab, setCopiedTab] = useState<string | null>(null);
   const [unlimitedAccess, setUnlimitedAccess] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);
+
+  // Collapsible section states
+  const [codeOpen, setCodeOpen] = useState(true);
+  const [analysisOpen, setAnalysisOpen] = useState(true);
+  const [examplesOpen, setExamplesOpen] = useState(false);
+  const [accessibilityOpen, setAccessibilityOpen] = useState(false);
+  const [mistakesOpen, setMistakesOpen] = useState(false);
+  const [summaryOpen, setSummaryOpen] = useState(false);
+
+  // Streaming state
+  const [generationPhase, setGenerationPhase] = useState<string>("");
+  const [streamedContent, setStreamedContent] = useState<string>("");
+  const [useStreaming, setUseStreaming] = useState(true);
 
   // Check for unlimited access
   useEffect(() => {
@@ -272,6 +373,8 @@ export default function AccessibilityCodeGenerator() {
       const reqBody = {
         componentType,
         framework,
+        wcagVersion,
+        complianceLevel,
         componentDescription: description,
         customRequirement: customRequirements || undefined,
         unlimitedAccess: unlimitedAccess,
@@ -308,6 +411,105 @@ export default function AccessibilityCodeGenerator() {
       setError(err?.message ?? "Failed to generate code. Please try again.");
     } finally {
       setIsGenerating(false);
+    }
+  }
+
+  /**
+   * Call streaming backend API with real-time progress updates.
+   */
+  async function generateCodeStreaming() {
+    setError(null);
+    setGeneratedCode(null);
+    setStreamedContent("");
+    setGenerationPhase("");
+
+    if (!componentType || !framework || !description) {
+      setError(
+        "Please select a component type, framework and provide a description."
+      );
+      return;
+    }
+
+    setIsGenerating(true);
+
+    try {
+      const reqBody = {
+        componentType,
+        framework,
+        wcagVersion,
+        complianceLevel,
+        componentDescription: description,
+        customRequirement: customRequirements || undefined,
+        unlimitedAccess: unlimitedAccess,
+      };
+
+      const response = await fetch("/api/accessibility-code-generator-stream", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(reqBody),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to start generation");
+      }
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (!reader) {
+        throw new Error("No response stream available");
+      }
+
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n\n");
+        buffer = lines.pop() || "";
+
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            try {
+              const data = JSON.parse(line.slice(6));
+
+              if (data.type === "status") {
+                setGenerationPhase(data.message);
+              } else if (data.type === "partial") {
+                setStreamedContent((prev) => prev + data.content);
+              } else if (data.type === "complete") {
+                const mapped = mapAiResponseToUi(data.result);
+                setGeneratedCode(mapped);
+                setGenerationPhase("");
+              } else if (data.type === "error") {
+                throw new Error(data.error);
+              }
+            } catch (parseErr) {
+              console.warn("Failed to parse SSE data:", parseErr);
+            }
+          }
+        }
+      }
+    } catch (err: any) {
+      console.error("Streaming generation failed:", err);
+      setError(err?.message ?? "Failed to generate code. Please try again.");
+    } finally {
+      setIsGenerating(false);
+      setGenerationPhase("");
+    }
+  }
+
+  /**
+   * Main generation handler - uses streaming or regular based on preference
+   */
+  function handleGenerate() {
+    if (useStreaming) {
+      generateCodeStreaming();
+    } else {
+      generateCode();
     }
   }
 
@@ -405,6 +607,45 @@ export default function AccessibilityCodeGenerator() {
             </div>
           </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="wcag-version">WCAG Version</Label>
+              <Select value={wcagVersion} onValueChange={setWcagVersion}>
+                <SelectTrigger className="bg-background">
+                  <SelectValue placeholder="Select WCAG version" />
+                </SelectTrigger>
+                <SelectContent className="bg-background border">
+                  {wcagVersions.map((version) => (
+                    <SelectItem key={version.value} value={version.value}>
+                      {version.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="compliance-level">Compliance Level</Label>
+              <Select value={complianceLevel} onValueChange={setComplianceLevel}>
+                <SelectTrigger className="bg-background">
+                  <SelectValue placeholder="Select compliance level" />
+                </SelectTrigger>
+                <SelectContent className="bg-background border">
+                  {complianceLevels.map((level) => (
+                    <SelectItem key={level.value} value={level.value}>
+                      <div>
+                        <div className="font-medium">{level.label}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {level.description}
+                        </div>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="description">Component Description</Label>
             <Textarea
@@ -447,7 +688,7 @@ export default function AccessibilityCodeGenerator() {
           )}
 
           <Button
-            onClick={generateCode}
+            onClick={handleGenerate}
             disabled={
               !componentType || !framework || !description || isGenerating
             }
@@ -455,9 +696,11 @@ export default function AccessibilityCodeGenerator() {
           >
             {isGenerating ? (
               <>
-                <span className="md:hidden">Generating...</span>
+                <span className="md:hidden">
+                  {generationPhase || "Generating..."}
+                </span>
                 <span className="hidden md:inline">
-                  Generating Comprehensive Code...
+                  {generationPhase || "Generating Comprehensive Code..."}
                 </span>
               </>
             ) : (
@@ -475,12 +718,91 @@ export default function AccessibilityCodeGenerator() {
               </Badge>
             )}
           </Button>
+
+          {/* Streaming preview during generation */}
+          {isGenerating && streamedContent && (
+            <div className="mt-4 p-4 bg-muted rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="animate-pulse h-2 w-2 bg-blue-500 rounded-full" />
+                <span className="text-sm font-medium text-muted-foreground">
+                  {generationPhase || "Generating..."}
+                </span>
+              </div>
+              <pre className="text-xs overflow-x-auto max-h-[200px] overflow-y-auto">
+                <code>{streamedContent.slice(-500)}</code>
+              </pre>
+            </div>
+          )}
         </CardContent>
       </Card>
 
       {/* Output: only render when we have generatedCode */}
       {generatedCode && (
         <div className="space-y-6">
+          {/* Quick Actions Toolbar */}
+          <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 border-blue-200 dark:border-blue-800">
+            <CardContent className="py-4">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <Zap className="h-5 w-5 text-blue-600" />
+                  <span className="font-medium text-blue-900 dark:text-blue-100">
+                    Quick Actions
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => copyCode(generatedCode.code, "main")}
+                    className="bg-white dark:bg-background"
+                  >
+                    {copiedTab === "main" ? (
+                      <CheckCircle className="h-4 w-4 mr-2 text-green-600" />
+                    ) : (
+                      <Copy className="h-4 w-4 mr-2" />
+                    )}
+                    {copiedTab === "main" ? "Copied!" : "Copy Code"}
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() =>
+                      downloadCode(
+                        generatedCode.code,
+                        `${componentType || "component"}.${
+                          framework.includes("typescript") ? "tsx" :
+                          framework === "vue" || framework === "vue-typescript" ? "vue" :
+                          framework === "svelte" ? "svelte" :
+                          framework === "html" || framework === "tailwind" ? "html" : "jsx"
+                        }`
+                      )
+                    }
+                    className="bg-white dark:bg-background"
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => {
+                      const allCode = `// Main Component\n${generatedCode.code}\n\n// Basic Usage\n${generatedCode.examples.basic_usage}\n\n// Advanced Usage\n${generatedCode.examples.advanced_usage}`;
+                      copyCode(allCode, "all");
+                    }}
+                    className="bg-white dark:bg-background"
+                  >
+                    {copiedTab === "all" ? (
+                      <CheckCircle className="h-4 w-4 mr-2 text-green-600" />
+                    ) : (
+                      <Layers className="h-4 w-4 mr-2" />
+                    )}
+                    {copiedTab === "all" ? "Copied!" : "Copy All"}
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Generated Code Tabs */}
           <Card>
             <CardHeader>
