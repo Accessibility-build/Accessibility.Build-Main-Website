@@ -86,6 +86,22 @@ const navItems: NavItem[] = [
       },
     ],
   },
+  {
+    name: "Learn",
+    href: "/learn",
+    children: [
+      {
+        name: "Table Pattern",
+        href: "/learn/table",
+        description: "Accessible table implementation guide",
+      },
+      {
+        name: "Pagination Pattern",
+        href: "/learn/pagination",
+        description: "Accessible pagination implementation guide",
+      },
+    ],
+  },
   { name: "WCAG 2.2 Checklist", href: "/checklists/wcag-2-2" },
   { name: "Services", href: "/services" },
   { name: "Blog", href: "/blog" },
