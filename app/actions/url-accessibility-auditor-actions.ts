@@ -2,17 +2,16 @@
 
 import { AxePuppeteer } from '@axe-core/puppeteer'
 import chromium from '@sparticuz/chromium'
-import puppeteerCore, { Page, Browser } from 'puppeteer-core'
+import puppeteerCore, { Page } from 'puppeteer-core'
 import { currentUser } from "@clerk/nextjs/server"
 import { 
   creditTransactions, 
   db, 
-  toolUsage, 
   users, 
   urlAccessibilityAudits, 
   auditViolations 
 } from "@/lib/db"
-import { eq, desc } from "drizzle-orm"
+import { and, desc, eq, gte, sql } from "drizzle-orm"
 import { checkTrialLimit, recordTrialUsage } from "@/lib/trial-usage"
 import { UrlAuditResult, AuditHistory } from '@/lib/url-accessibility-auditor-types'
 import { v4 as uuidv4 } from 'uuid'
@@ -22,6 +21,7 @@ import {
   isOpenRouterModel,
   openrouter,
 } from "@/lib/openrouter"
+import { hasServerUnlimitedAccess } from "@/lib/unlimited-access-server"
 
 const CREDIT_COST = 5
 const DEFAULT_MODEL = "gpt-4o"
@@ -37,7 +37,7 @@ const MAX_AI_TEMP = 0.3
  * @returns A configured Puppeteer `Browser` instance for the current environment.
  * @throws Error if launching the local Puppeteer fails (for example, when Puppeteer is not installed).
  */
-async function getBrowserInstance(): Promise<Browser> {
+async function getBrowserInstance(): Promise<any> {
   const isProduction = process.env.NODE_ENV === 'production'
 
   if (isProduction) {
@@ -189,10 +189,12 @@ export async function runUrlAccessibilityAudit(
 
   // Step 2: User Authentication & Credit Check
   const currentUserObj = await currentUser()
+  const hasUnlimitedAccess = await hasServerUnlimitedAccess()
+  const effectiveUnlimitedAccess = unlimitedAccess && hasUnlimitedAccess
   let dbUser = null
   let currentCredits = 0
 
-  if (!unlimitedAccess) {
+  if (!effectiveUnlimitedAccess) {
     if (currentUserObj) {
       const usersList = await db.select().from(users).where(eq(users.id, currentUserObj.id)).limit(1)
       dbUser = usersList[0]
@@ -215,7 +217,7 @@ export async function runUrlAccessibilityAudit(
   }
 
   // Step 3: Run the Browser Scan
-  let browser: Browser | null = null
+  let browser: any = null
   try {
     browser = await getBrowserInstance()
     const page = await browser.newPage()
@@ -301,69 +303,81 @@ export async function runUrlAccessibilityAudit(
 
     // Step 7: Save to Database (if User is logged in)
     if (currentUserObj && dbUser) {
-      
-      // 7a. Deduct Credits (if not unlimited)
-      let creditsUsed = 0
-      if (!unlimitedAccess) {
-        creditsUsed = CREDIT_COST
-        const newBalance = currentCredits - CREDIT_COST
-        
-        await db.update(users)
-          .set({ credits: newBalance, totalCreditsUsed: dbUser.totalCreditsUsed + CREDIT_COST })
-          .where(eq(users.id, currentUserObj.id))
+      let savedAuditId = ''
 
-        await db.insert(creditTransactions).values({
+      await db.transaction(async (tx) => {
+        let creditsUsed = 0
+
+        if (!effectiveUnlimitedAccess) {
+          creditsUsed = CREDIT_COST
+          const [updatedUser] = await tx.update(users)
+            .set({
+              credits: sql`${users.credits} - ${CREDIT_COST}`,
+              totalCreditsUsed: sql`${users.totalCreditsUsed} + ${CREDIT_COST}`,
+              updatedAt: new Date()
+            })
+            .where(and(eq(users.id, currentUserObj.id), gte(users.credits, CREDIT_COST)))
+            .returning({ credits: users.credits })
+
+          if (!updatedUser) {
+            throw new Error(`You need ${CREDIT_COST} credits to run an audit.`)
+          }
+
+          const newBalance = updatedUser.credits
+          const balanceBefore = newBalance + CREDIT_COST
+
+          await tx.insert(creditTransactions).values({
+            userId: dbUser.id,
+            type: 'usage',
+            amount: -CREDIT_COST,
+            balanceBefore,
+            balanceAfter: newBalance,
+            description: 'URL Accessibility Audit',
+            toolUsed: 'url_accessibility_auditor',
+          })
+        }
+
+        const [savedAudit] = await tx.insert(urlAccessibilityAudits).values({
           userId: dbUser.id,
-          type: 'usage',
-          amount: -CREDIT_COST,
-          balanceBefore: currentCredits,
-          balanceAfter: newBalance,
-          description: 'URL Accessibility Audit',
-          toolUsed: 'url_accessibility_auditor',
-        })
-      }
+          url,
+          title: pageTitle,
+          status: 'completed',
+          creditsUsed,
+          totalViolations,
+          criticalCount,
+          seriousCount,
+          moderateCount,
+          minorCount,
+          overallScore,
+          aiSummary,
+          processingStartedAt: scanStart,
+          processingCompletedAt: scanEnd,
+        }).returning({ id: urlAccessibilityAudits.id })
 
-      // 7b. Save the Audit Record
-      const [savedAudit] = await db.insert(urlAccessibilityAudits).values({
-        userId: dbUser.id,
-        url,
-        title: pageTitle,
-        status: 'completed',
-        creditsUsed,
-        totalViolations,
-        criticalCount,
-        seriousCount,
-        moderateCount,
-        minorCount,
-        overallScore,
-        aiSummary,
-        processingStartedAt: scanStart,
-        processingCompletedAt: scanEnd,
-      }).returning()
+        savedAuditId = savedAudit.id
+
+        if (processedViolations.length > 0) {
+          await tx.insert(auditViolations).values(processedViolations.map(v => ({
+             auditId: savedAudit.id,
+             violationId: v.violationId,
+             description: v.description,
+             impact: v.impact,
+             helpUrl: v.helpUrl,
+             wcagCriteria: v.wcagCriteria,
+             wcagLevel: v.wcagLevel,
+             selector: v.selector,
+             html: v.html,
+             target: v.target || [], 
+             detectedBy: ['axe-core'],
+             fixSuggestion: v.fixSuggestion,
+             aiExplanation: v.aiExplanation
+          })))
+        }
+      })
 
       // Update the result ID to match the real DB ID
-      result.auditId = savedAudit.id
-
-      // 7c. Save Violations (Batch Insert)
-      if (processedViolations.length > 0) {
-        await db.insert(auditViolations).values(processedViolations.map(v => ({
-           auditId: savedAudit.id,
-           violationId: v.violationId,
-           description: v.description,
-           impact: v.impact,
-           helpUrl: v.helpUrl,
-           wcagCriteria: v.wcagCriteria,
-           wcagLevel: v.wcagLevel,
-           selector: v.selector,
-           html: v.html,
-           target: v.target || [], 
-           detectedBy: ['axe-core'],
-           fixSuggestion: v.fixSuggestion,
-           aiExplanation: v.aiExplanation
-        })))
-      }
-
-    } else {
+      result.auditId = savedAuditId
+    } else if (!effectiveUnlimitedAccess) {
       await recordTrialUsage("url_accessibility_auditor")
     }
 
@@ -400,11 +414,19 @@ export async function getAuditHistory(): Promise<AuditHistory> {
 
   return { 
     audits: records.map(r => ({
-      ...r,
+      id: r.id,
+      url: r.url,
+      status: r.status,
       title: r.title || r.url,
       createdAt: r.createdAt.toISOString(),
+      processingCompletedAt: r.processingCompletedAt ? r.processingCompletedAt.toISOString() : undefined,
       overallScore: r.overallScore ?? undefined,
-      totalViolations: r.totalViolations ?? 0
+      totalViolations: r.totalViolations ?? 0,
+      criticalCount: r.criticalCount ?? 0,
+      seriousCount: r.seriousCount ?? 0,
+      moderateCount: r.moderateCount ?? 0,
+      minorCount: r.minorCount ?? 0,
+      aiSummary: r.aiSummary ?? undefined
     }))
   }
 }
@@ -420,7 +442,12 @@ export async function deleteAudit(auditId: string) {
   const user = await currentUser()
   if (!user) throw new Error("Please log in to delete audits.")
 
-  await db.delete(urlAccessibilityAudits).where(eq(urlAccessibilityAudits.id, auditId))
+  await db.delete(urlAccessibilityAudits).where(
+    and(
+      eq(urlAccessibilityAudits.id, auditId),
+      eq(urlAccessibilityAudits.userId, user.id)
+    )
+  )
   return { success: true }
 }
 
@@ -437,7 +464,12 @@ export async function getAudit(auditId: string): Promise<UrlAuditResult | null> 
   if (!user) return null
 
   // 1. Get the Audit
-  const [audit] = await db.select().from(urlAccessibilityAudits).where(eq(urlAccessibilityAudits.id, auditId)).limit(1)
+  const [audit] = await db.select().from(urlAccessibilityAudits).where(
+    and(
+      eq(urlAccessibilityAudits.id, auditId),
+      eq(urlAccessibilityAudits.userId, user.id)
+    )
+  ).limit(1)
   if (!audit) return null
 
   // 2. Get the Violations

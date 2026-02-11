@@ -123,8 +123,8 @@ export async function getAllUsers(filters?: {
       isActive: users.isActive,
       createdAt: users.createdAt,
       updatedAt: users.updatedAt,
-      totalToolUsage: sql<number>`COALESCE(${count(toolUsage.id)}, 0)`,
-      totalAudits: sql<number>`COALESCE(${count(urlAccessibilityAudits.id)}, 0)`,
+      totalToolUsage: sql<number>`COALESCE(COUNT(DISTINCT ${toolUsage.id}), 0)`,
+      totalAudits: sql<number>`COALESCE(COUNT(DISTINCT ${urlAccessibilityAudits.id}), 0)`,
       mostUsedTool: sql<string>`
         (SELECT tool FROM ${toolUsage} 
          WHERE ${toolUsage.userId} = ${users.id} 
@@ -288,26 +288,26 @@ export async function getDashboardStats(): Promise<DashboardStats> {
  * Update user status (activate/deactivate)
  */
 export async function updateUserStatus(userId: string, isActive: boolean, adminId: string): Promise<boolean> {
-  try {
-    await db
-      .update(users)
-      .set({ 
-        isActive, 
-        updatedAt: new Date() 
-      })
-      .where(eq(users.id, userId))
-
-    // Log admin action
-    await logAdminAction(adminId, 'user_status_update', {
-      targetUserId: userId,
-      newStatus: isActive ? 'active' : 'inactive'
+  const updated = await db
+    .update(users)
+    .set({ 
+      isActive, 
+      updatedAt: new Date() 
     })
+    .where(eq(users.id, userId))
+    .returning({ id: users.id })
 
-    return true
-  } catch (error) {
-    console.error('Error updating user status:', error)
-    return false
+  if (updated.length === 0) {
+    throw new Error('User not found')
   }
+
+  // Log admin action (best effort)
+  await logAdminAction(adminId, 'user_status_update', {
+    targetUserId: userId,
+    newStatus: isActive ? 'active' : 'inactive'
+  })
+
+  return true
 }
 
 /**
@@ -319,51 +319,45 @@ export async function assignCreditsToUser(
   adminId: string, 
   reason: string
 ): Promise<boolean> {
-  try {
-    // Get current user
-    const [user] = await db
-      .select()
-      .from(users)
-      .where(eq(users.id, userId))
-      .limit(1)
-
-    if (!user) {
-      throw new Error('User not found')
-    }
-
-    // Create credit transaction
-    await createCreditTransaction({
-      userId,
-      type: 'bonus',
-      amount,
-      balanceBefore: user.credits,
-      balanceAfter: user.credits + amount,
-      description: `Admin credit assignment: ${reason}`,
-      metadata: { adminId, reason }
-    })
-
-    // Update user credits
-    await db
+  await db.transaction(async (tx) => {
+    const [updatedUser] = await tx
       .update(users)
-      .set({ 
-        credits: user.credits + amount,
-        totalCreditsEarned: user.totalCreditsEarned + amount,
+      .set({
+        credits: sql`${users.credits} + ${amount}`,
+        totalCreditsEarned: sql`${users.totalCreditsEarned} + ${amount}`,
         updatedAt: new Date()
       })
       .where(eq(users.id, userId))
+      .returning({
+        credits: users.credits
+      })
 
-    // Log admin action
-    await logAdminAction(adminId, 'credit_assignment', {
-      targetUserId: userId,
+    if (!updatedUser) {
+      throw new Error('User not found')
+    }
+
+    const balanceAfter = updatedUser.credits
+    const balanceBefore = balanceAfter - amount
+
+    await tx.insert(creditTransactions).values({
+      userId,
+      type: 'bonus',
       amount,
-      reason
+      balanceBefore,
+      balanceAfter,
+      description: `Admin credit assignment: ${reason}`,
+      metadata: { adminId, reason }
     })
+  })
 
-    return true
-  } catch (error) {
-    console.error('Error assigning credits:', error)
-    return false
-  }
+  // Log admin action (best effort)
+  await logAdminAction(adminId, 'credit_assignment', {
+    targetUserId: userId,
+    amount,
+    reason
+  })
+
+  return true
 }
 
 /**
@@ -379,15 +373,20 @@ export async function bulkAssignCredits(
   let failed = 0
 
   for (const userId of userIds) {
-    const result = await assignCreditsToUser(userId, amount, adminId, reason)
-    if (result) {
-      success++
-    } else {
+    try {
+      const result = await assignCreditsToUser(userId, amount, adminId, reason)
+      if (result) {
+        success++
+      } else {
+        failed++
+      }
+    } catch (error) {
+      console.error(`Bulk credit assignment failed for user ${userId}:`, error)
       failed++
     }
   }
 
-  // Log bulk action
+  // Log bulk action (best effort)
   await logAdminAction(adminId, 'bulk_credit_assignment', {
     totalUsers: userIds.length,
     amount,
@@ -407,17 +406,32 @@ export async function logAdminAction(
   action: string, 
   details: Record<string, any>
 ): Promise<void> {
-  // For now, we'll create a simple credit transaction to track admin actions
-  // In a full implementation, you might want a dedicated admin_audit_log table
-  await createCreditTransaction({
-    userId: adminId,
-    type: 'bonus',
-    amount: 0,
-    balanceBefore: 0,
-    balanceAfter: 0,
-    description: `Admin action: ${action}`,
-    metadata: { adminAction: true, action, details, timestamp: new Date() }
-  })
+  try {
+    // For now, we'll create a simple credit transaction to track admin actions
+    // In a full implementation, you might want a dedicated admin_audit_log table
+    const [adminUser] = await db
+      .select({ id: users.id, credits: users.credits })
+      .from(users)
+      .where(eq(users.id, adminId))
+      .limit(1)
+
+    if (!adminUser) {
+      console.warn(`Skipping admin action log for missing admin user ${adminId}`)
+      return
+    }
+
+    await createCreditTransaction({
+      userId: adminId,
+      type: 'bonus',
+      amount: 0,
+      balanceBefore: adminUser.credits,
+      balanceAfter: adminUser.credits,
+      description: `Admin action: ${action}`,
+      metadata: { adminAction: true, action, details, timestamp: new Date() }
+    })
+  } catch (error) {
+    console.warn('Failed to write admin action log:', error)
+  }
 }
 
 /**
@@ -468,8 +482,8 @@ export async function getUserDetails(userId: string): Promise<AdminUser | null> 
       isActive: users.isActive,
       createdAt: users.createdAt,
       updatedAt: users.updatedAt,
-      totalToolUsage: sql<number>`COALESCE(${count(toolUsage.id)}, 0)`,
-      totalAudits: sql<number>`COALESCE(${count(urlAccessibilityAudits.id)}, 0)`,
+      totalToolUsage: sql<number>`COALESCE(COUNT(DISTINCT ${toolUsage.id}), 0)`,
+      totalAudits: sql<number>`COALESCE(COUNT(DISTINCT ${urlAccessibilityAudits.id}), 0)`,
       mostUsedTool: sql<string>`
         (SELECT tool FROM ${toolUsage} 
          WHERE ${toolUsage.userId} = ${users.id} 

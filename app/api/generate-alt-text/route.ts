@@ -193,7 +193,7 @@ Guidelines:
           ],
         },
       ],
-      maxTokens: maxTokens, // Dynamic token limit based on desired length
+      maxOutputTokens: maxTokens, // Dynamic token limit based on desired length
       temperature: 0.3, // Lower temperature for more consistent, focused results
     });
 

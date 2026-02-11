@@ -129,29 +129,23 @@ export default function LearnPage() {
   const [hoveredPattern, setHoveredPattern] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
-      {/* Decorative Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-100/50 rounded-full blur-[120px]" />
-      </div>
-
+    <div className="learn-theme min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative pt-20 pb-16 px-4">
+      <div className="pt-20 pb-16 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-violet-100 border border-blue-200 rounded-full text-blue-700 text-sm mb-8 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-full text-muted-foreground text-sm mb-8">
               <Sparkles className="w-4 h-4" />
-              Interactive Learning Experience
+              Interactive Learning
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="text-slate-900">Learn Accessibility</span>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="text-foreground">Learn Accessibility</span>
               <br />
-              <span className="bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">By Doing</span>
+              <span className="text-muted-foreground">By Doing</span>
             </h1>
 
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-12">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
               Master web accessibility through hands-on interactive demos. No dry documentation—just real patterns you can touch, test, and truly understand.
             </p>
 
@@ -159,13 +153,13 @@ export default function LearnPage() {
             <div className="flex flex-wrap justify-center gap-6 mb-16">
               {stats.map((stat, idx) => (
                 <motion.div key={stat.label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + idx * 0.1 }}
-                  className="flex items-center gap-3 px-5 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                  className="flex items-center gap-3 px-5 py-3 bg-card border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                   <div className={cn("p-2 rounded-xl", stat.color)}>
                     <stat.icon className="w-5 h-5" />
                   </div>
                   <div className="text-left">
-                    <div className="text-2xl font-bold text-slate-900">{stat.value}</div>
-                    <div className="text-sm text-slate-500">{stat.label}</div>
+                    <div className="text-2xl font-bold text-foreground">{stat.value}</div>
+                    <div className="text-sm text-muted-foreground">{stat.label}</div>
                   </div>
                 </motion.div>
               ))}
@@ -181,7 +175,7 @@ export default function LearnPage() {
             <div className="p-2 bg-green-100 rounded-xl">
               <Rocket className="w-5 h-5 text-green-600" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900">Start Learning</h2>
+            <h2 className="text-2xl font-bold text-foreground">Start Learning</h2>
             <Badge className="bg-green-100 text-green-700 border-green-200">Available Now</Badge>
           </motion.div>
 
@@ -194,38 +188,34 @@ export default function LearnPage() {
                 <motion.div key={pattern.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 + idx * 0.1 }}>
                   <Link href={pattern.href} onMouseEnter={() => setHoveredPattern(pattern.id)} onMouseLeave={() => setHoveredPattern(null)} className="block group">
                     <div className={cn(
-                      "relative p-8 rounded-3xl border-2 transition-all duration-300 overflow-hidden bg-white",
-                      pattern.borderColor,
-                      isHovered && "shadow-xl -translate-y-1"
+                      "p-7 rounded-2xl border border-border transition-all duration-200 bg-card",
+                      isHovered && "shadow-md -translate-y-0.5"
                     )}>
-                      {/* Gradient Background on Hover */}
-                      <div className={cn("absolute inset-0 opacity-0 transition-opacity duration-300 bg-gradient-to-br", pattern.bgGradient, isHovered && "opacity-100")} />
-
                       {/* Badge */}
                       {pattern.featured && (
-                        <div className="absolute top-4 right-4 z-10">
-                          <Badge className={cn("bg-gradient-to-r text-white border-0 shadow-md", pattern.gradient)}>
+                        <div className="mb-4">
+                          <Badge className="bg-muted text-foreground border-border">
                             <Star className="w-3 h-3 mr-1" /> Featured
                           </Badge>
                         </div>
                       )}
 
-                      <div className="relative z-10">
+                      <div>
                         {/* Icon */}
-                        <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 shadow-sm", pattern.iconBg, isHovered && "scale-110 shadow-md")}>
+                        <div className={cn("w-14 h-14 rounded-xl flex items-center justify-center mb-6", pattern.iconBg)}>
                           <Icon className={cn("w-8 h-8", pattern.iconColor)} />
                         </div>
 
                         {/* Content */}
-                        <h3 className="text-2xl font-bold text-slate-900 mb-2">{pattern.title}</h3>
-                        <p className="text-slate-600 mb-6">{pattern.description}</p>
+                        <h3 className="text-2xl font-bold text-foreground mb-2">{pattern.title}</h3>
+                        <p className="text-muted-foreground mb-6">{pattern.description}</p>
 
                         {/* Meta Info */}
                         <div className="flex flex-wrap gap-3 mb-6">
-                          <span className="inline-flex items-center gap-1 px-3 py-1 bg-slate-100 rounded-full text-sm text-slate-600">
+                          <span className="inline-flex items-center gap-1 px-3 py-1 bg-muted rounded-full text-sm text-muted-foreground">
                             <BookOpen className="w-3 h-3" /> {pattern.lessons} lessons
                           </span>
-                          <span className="inline-flex items-center gap-1 px-3 py-1 bg-slate-100 rounded-full text-sm text-slate-600">
+                          <span className="inline-flex items-center gap-1 px-3 py-1 bg-muted rounded-full text-sm text-muted-foreground">
                             <Clock className="w-3 h-3" /> {pattern.duration}
                           </span>
                           <span className={cn("inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm",
@@ -238,19 +228,16 @@ export default function LearnPage() {
                         {/* Topics */}
                         <div className="flex flex-wrap gap-2 mb-6">
                           {pattern.topics.map((topic) => (
-                            <span key={topic} className="px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs text-slate-500 shadow-sm">{topic}</span>
+                            <span key={topic} className="px-2 py-1 bg-card border border-border rounded-lg text-xs text-muted-foreground">{topic}</span>
                           ))}
                         </div>
 
                         {/* CTA */}
-                        <div className={cn("flex items-center gap-2 font-semibold transition-all duration-300", pattern.iconColor)}>
+                        <div className="flex items-center gap-2 font-semibold text-primary">
                           Start Learning
                           <motion.div animate={{ x: isHovered ? 5 : 0 }}><ArrowRight className="w-5 h-5" /></motion.div>
                         </div>
                       </div>
-
-                      {/* Bottom Gradient Line */}
-                      <div className={cn("absolute bottom-0 left-0 h-1 bg-gradient-to-r transition-all duration-500", pattern.gradient, isHovered ? "w-full" : "w-0")} />
                     </div>
                   </Link>
                 </motion.div>
@@ -267,21 +254,21 @@ export default function LearnPage() {
             <div className="p-2 bg-amber-100 rounded-xl">
               <GraduationCap className="w-5 h-5 text-amber-600" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900">Coming Soon</h2>
+            <h2 className="text-2xl font-bold text-foreground">Coming Soon</h2>
             <Badge className="bg-amber-100 text-amber-700 border-amber-200">In Development</Badge>
           </motion.div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             {comingSoon.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <motion.div key={item.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 + idx * 0.1 }}
-                  className="p-5 rounded-2xl bg-white border-2 border-dashed border-slate-200 hover:border-slate-300 hover:shadow-md transition-all group">
+                  className="p-5 rounded-2xl bg-card border-2 border-dashed border-border hover:border-border/80 hover:shadow-md transition-all group">
                   <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-transform group-hover:scale-110", item.color)}>
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-semibold text-slate-900 mb-1">{item.title}</h3>
-                  <p className="text-sm text-slate-500">{item.description}</p>
+                  <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.description}</p>
                 </motion.div>
               );
             })}
@@ -293,21 +280,19 @@ export default function LearnPage() {
       <div className="relative px-4 pb-20">
         <div className="max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1 }}
-            className="relative p-8 md:p-12 rounded-3xl bg-gradient-to-br from-blue-600 via-violet-600 to-purple-600 text-center overflow-hidden shadow-2xl">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtNi42MjcgMC0xMiA1LjM3My0xMiAxMnM1LjM3MyAxMiAxMiAxMiAxMi01LjM3MyAxMi0xMi01LjM3My0xMi0xMi0xMnptMCAxOGMtMy4zMTQgMC02LTIuNjg2LTYtNnMyLjY4Ni02IDYtNiA2IDIuNjg2IDYgNi0yLjY4NiA2LTYgNnoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-30" />
-
-            <div className="relative z-10">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur rounded-2xl mb-6">
-                <Trophy className="w-8 h-8 text-white" />
+            className="p-8 md:p-10 rounded-2xl border border-border bg-card text-center">
+            <div>
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-muted rounded-xl mb-6">
+                <Trophy className="w-7 h-7 text-primary" />
               </div>
 
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Master Accessibility?</h2>
-              <p className="text-blue-100 max-w-xl mx-auto mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Ready to Master Accessibility?</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto mb-8">
                 Pick a pattern above and start your journey. Each lesson is designed to be completed in under 10 minutes—no excuses!
               </p>
 
               <Link href="/learn/table"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-slate-50 rounded-xl text-blue-600 font-semibold shadow-lg transition-all hover:scale-105">
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 rounded-lg text-primary-foreground font-semibold transition-colors">
                 <Rocket className="w-5 h-5" />
                 Start with Tables
                 <ChevronRight className="w-5 h-5" />

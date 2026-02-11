@@ -1,6 +1,16 @@
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 
+export class AdminAccessError extends Error {
+  statusCode: number
+
+  constructor(message: string, statusCode: number) {
+    super(message)
+    this.name = 'AdminAccessError'
+    this.statusCode = statusCode
+  }
+}
+
 /**
  * Check if the current user is an admin
  */
@@ -32,6 +42,26 @@ export async function requireAdmin() {
   
   if (!adminEmails.includes(userEmail || '')) {
     redirect('/')
+  }
+
+  return user
+}
+
+/**
+ * Get current user if they are an admin, otherwise throw a typed API error.
+ */
+export async function requireAdminApi() {
+  const user = await currentUser()
+
+  if (!user) {
+    throw new AdminAccessError('Authentication required', 401)
+  }
+
+  const adminEmails = process.env.ADMIN_EMAIL?.split(',').map(email => email.trim().toLowerCase()) || []
+  const userEmail = user.emailAddresses[0]?.emailAddress?.toLowerCase()
+
+  if (!adminEmails.includes(userEmail || '')) {
+    throw new AdminAccessError('Admin access required', 403)
   }
 
   return user

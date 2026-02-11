@@ -2,11 +2,12 @@
 
 import { AxePuppeteer } from '@axe-core/puppeteer'
 import chromium from '@sparticuz/chromium'
-import puppeteerCore, { Page, Browser } from 'puppeteer-core'
+import puppeteerCore, { Page } from 'puppeteer-core'
 import { currentUser } from "@clerk/nextjs/server"
 import { creditTransactions, db, toolUsage, users } from "@/lib/db"
-import { eq } from "drizzle-orm"
+import { and, eq, gte, sql } from "drizzle-orm"
 import { checkTrialLimit, recordTrialUsage } from "@/lib/trial-usage"
+import { hasServerUnlimitedAccess } from "@/lib/unlimited-access-server"
 
 import { 
   DeviceConfig, 
@@ -26,7 +27,7 @@ const CREDIT_COST = 2
  * @throws If the local Puppeteer package cannot be imported in development, an error is thrown.
  */
 
-async function getBrowser(): Promise<Browser> {
+async function getBrowser(): Promise<any> {
   const isProduction = process.env.NODE_ENV === 'production'
 
   if (isProduction) {
@@ -317,7 +318,7 @@ export async function runMobileAccessibilityChecker(
   deviceName: string,
   unlimitedAccess: boolean = false
 ): Promise<MobileAccessibilityAuditResult> {
-  let browser: Browser | null = null
+  let browser: any = null
   
   try {
     // 1. Validation & Auth Logic
@@ -328,16 +329,15 @@ export async function runMobileAccessibilityChecker(
     }
 
     const user = await currentUser();
+    const hasUnlimitedAccess = await hasServerUnlimitedAccess();
+    const effectiveUnlimitedAccess = unlimitedAccess && hasUnlimitedAccess;
     let userRecord = null;
     let currentCredits = 0;
 
-    // Check for unlimited access first - bypass all other checks
-    if (unlimitedAccess) {
+    if (effectiveUnlimitedAccess) {
       console.log("🚀 Unlimited access active - bypassing limits for mobile checker");
     } else {
-      // Logic for standard users (credits or trial)
       if (user) {
-        // Authenticated user: check credits
         [userRecord] = await db
           .select()
           .from(users)
@@ -354,7 +354,6 @@ export async function runMobileAccessibilityChecker(
           throw new Error(`Insufficient credits. You need ${CREDIT_COST} credits.`);
         }
       } else {
-        // Guest user: check trial limits
         const trialStatus = await checkTrialLimit("mobile_accessibility_checker");
         if (!trialStatus.allowed) {
           throw new Error(`Trial limit exceeded. ${trialStatus.message}`);
@@ -444,45 +443,48 @@ export async function runMobileAccessibilityChecker(
 
     // 5. Post-Audit Logging & Credit Deduction (if successful)
     
-    if (unlimitedAccess) {
+    if (effectiveUnlimitedAccess) {
        console.log("🚀 Unlimited access active - bypassing all limits");
     } else {
         if (user && userRecord) {
-          // Deduct credits
-          const newBalance = currentCredits - CREDIT_COST;
-          
-          await Promise.all([
-            // Update user credits
-             db.update(users)
-               .set({ 
-                 credits: newBalance,
-                 totalCreditsUsed: userRecord.totalCreditsUsed + CREDIT_COST,
-                 updatedAt: new Date()
-               })
-               .where(eq(users.id, user.id)),
-             
-            // Record credit transaction
-             db.insert(creditTransactions).values({
-               userId: userRecord.id,
-               type: 'usage',
-               amount: -CREDIT_COST,
-               balanceBefore: currentCredits,
-               balanceAfter: newBalance,
-               description: `Mobile Accessibility Checker`,
-               toolUsed: 'mobile_accessibility_checker',
-               metadata: { url, deviceName }
-             }),
-            // Record tool usage
-             db.insert(toolUsage).values({
-               userId: userRecord.id,
-               tool: 'mobile_accessibility_checker',
-               creditsUsed: CREDIT_COST,
-               inputData: { url, deviceName },
-               success: true
-             })
-          ]);
+          await db.transaction(async (tx) => {
+            const [updatedUser] = await tx
+              .update(users)
+              .set({
+                credits: sql`${users.credits} - ${CREDIT_COST}`,
+                totalCreditsUsed: sql`${users.totalCreditsUsed} + ${CREDIT_COST}`,
+                updatedAt: new Date()
+              })
+              .where(and(eq(users.id, user.id), gte(users.credits, CREDIT_COST)))
+              .returning({ credits: users.credits })
+
+            if (!updatedUser) {
+              throw new Error(`Insufficient credits. You need ${CREDIT_COST} credits.`);
+            }
+
+            const newBalance = updatedUser.credits
+            const balanceBefore = newBalance + CREDIT_COST
+
+            await tx.insert(creditTransactions).values({
+              userId: userRecord.id,
+              type: 'usage',
+              amount: -CREDIT_COST,
+              balanceBefore,
+              balanceAfter: newBalance,
+              description: `Mobile Accessibility Checker`,
+              toolUsed: 'mobile_accessibility_checker',
+              metadata: { url, deviceName }
+            })
+
+            await tx.insert(toolUsage).values({
+              userId: userRecord.id,
+              tool: 'mobile_accessibility_checker',
+              creditsUsed: CREDIT_COST,
+              inputData: { url, deviceName },
+              success: true
+            })
+          })
         } else {
-          // Record trial usage for non-authenticated users without unlimited access
           await recordTrialUsage("mobile_accessibility_checker");
         }
     }

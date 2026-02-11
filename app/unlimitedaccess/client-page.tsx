@@ -82,10 +82,18 @@ export default function UnlimitedAccessClient() {
     }
   }
 
-  const revokeAccess = () => {
-    localStorage.removeItem('unlimited_access')
-    localStorage.removeItem('unlimited_access_timestamp')
-    setHasUnlimitedAccess(false)
+  const revokeAccess = async () => {
+    try {
+      await fetch('/api/verify-unlimited-access', {
+        method: 'DELETE',
+      })
+    } catch (error) {
+      console.error('Failed to revoke server unlimited access:', error)
+    } finally {
+      localStorage.removeItem('unlimited_access')
+      localStorage.removeItem('unlimited_access_timestamp')
+      setHasUnlimitedAccess(false)
+    }
   }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {

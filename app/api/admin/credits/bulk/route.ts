@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { requireAdmin } from '@/lib/admin-auth'
+import { AdminAccessError, requireAdminApi } from '@/lib/admin-auth'
 import { bulkAssignCredits } from '@/lib/admin-utils'
 
 export async function POST(request: NextRequest) {
   try {
-    // Verify admin access
-    const admin = await requireAdmin()
+    const admin = await requireAdminApi()
     
     // Parse request body
     const { userIds, amount, reason } = await request.json()
@@ -17,9 +16,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (typeof amount !== 'number' || amount <= 0) {
+    if (!userIds.every((id) => typeof id === 'string' && id.trim().length > 0)) {
       return NextResponse.json(
-        { error: 'Amount must be a positive number' },
+        { error: 'userIds must contain valid user IDs' },
+        { status: 400 }
+      )
+    }
+
+    if (typeof amount !== 'number' || !Number.isInteger(amount) || amount <= 0) {
+      return NextResponse.json(
+        { error: 'Amount must be a positive integer' },
         { status: 400 }
       )
     }
@@ -56,12 +62,9 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Admin bulk credit assignment error:', error)
-    
-    if (error instanceof Error && error.message.includes('redirect')) {
-      return NextResponse.json(
-        { error: 'Admin access required' },
-        { status: 403 }
-      )
+
+    if (error instanceof AdminAccessError) {
+      return NextResponse.json({ error: error.message }, { status: error.statusCode })
     }
 
     return NextResponse.json(

@@ -1,11 +1,10 @@
 import { NextRequest } from 'next/server'
 import OpenAI from 'openai'
 import { currentUser } from '@clerk/nextjs/server'
-import { db } from '@/lib/db'
-import { users, creditTransactions, toolUsage } from '@/lib/db/schema'
-import { eq } from 'drizzle-orm'
 import { checkTrialLimit, recordTrialUsage } from '@/lib/trial-usage'
 import { openrouter, isOpenRouterModel, isOpenRouterConfigured } from '@/lib/openrouter'
+import { getUserCredits, useCredits } from '@/lib/credits'
+import { hasServerUnlimitedAccess } from '@/lib/unlimited-access-server'
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error('Missing OPENAI_API_KEY environment variable')
@@ -14,8 +13,6 @@ if (!process.env.OPENAI_API_KEY) {
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
-
-const CREDIT_COST = 1
 
 interface RequestBody {
   issueDescription: string
@@ -134,16 +131,14 @@ export async function POST(req: NextRequest) {
 
         const body: RequestBody = await req.json()
         const user = await currentUser()
-        
-        // Check for unlimited access first - bypass all other checks
-        if (body.unlimitedAccess) {
+        const hasUnlimitedAccess = await hasServerUnlimitedAccess()
+
+        if (hasUnlimitedAccess) {
           controller.enqueue(encoder.encode(`data: ${JSON.stringify({ 
             type: 'status', 
             message: '🚀 Unlimited access active - bypassing all limits...' 
           })}\n\n`))
         } else {
-          // Only check limits if unlimited access is not provided
-          // If not authenticated, check trial usage
           if (!user) {
             const trialStatus = await checkTrialLimit('accessibility_audit_helper')
             if (!trialStatus.allowed) {
@@ -171,54 +166,11 @@ export async function POST(req: NextRequest) {
           return
         }
 
-        // Check user credits (only for authenticated users without unlimited access)
-        let userRecord: any = null
-        let currentCredits = 0
-        
-        if (user && !body.unlimitedAccess) {
-          // Send status update
+        if (user && !hasUnlimitedAccess) {
           controller.enqueue(encoder.encode(`data: ${JSON.stringify({ 
             type: 'status', 
             message: 'Checking credits...' 
           })}\n\n`))
-
-          const userResults = await db
-            .select()
-            .from(users)
-            .where(eq(users.id, user.id))
-            .limit(1)
-
-          userRecord = userResults[0]
-
-          if (!userRecord) {
-            controller.enqueue(encoder.encode(`data: ${JSON.stringify({ 
-              type: 'error', 
-              error: 'User not found' 
-            })}\n\n`))
-            controller.close()
-            return
-          }
-
-          currentCredits = userRecord.credits
-
-          if (currentCredits < CREDIT_COST) {
-            controller.enqueue(encoder.encode(`data: ${JSON.stringify({ 
-              type: 'error', 
-              error: `Insufficient credits. You need ${CREDIT_COST} credit${CREDIT_COST > 1 ? 's' : ''} but have ${currentCredits}.`,
-              code: 'INSUFFICIENT_CREDITS'
-            })}\n\n`))
-            controller.close()
-            return
-          }
-        } else if (user) {
-          // Get user record for unlimited access users (for logging purposes)
-          const userResults = await db
-            .select()
-            .from(users)
-            .where(eq(users.id, user.id))
-            .limit(1)
-          userRecord = userResults[0]
-          currentCredits = userRecord?.credits || 0
         }
 
         // Send analysis start message
@@ -230,7 +182,7 @@ export async function POST(req: NextRequest) {
         // Generate analysis using OpenAI streaming
         const prompt = createAnalysisPrompt(body)
         
-        const selectedModel = body.selectedModel || "gpt-4o"
+        const selectedModel = hasUnlimitedAccess ? (body.selectedModel || "gpt-4o") : "gpt-4o"
         const isReasoningModel = selectedModel.includes('o1') || selectedModel.includes('o3')
         const useOpenRouter = isOpenRouterModel(selectedModel)
         
@@ -359,68 +311,33 @@ Remember: You're not just fixing code, you're helping create a more inclusive we
         // Handle credit/trial usage based on user type
         let result: any
         
-        if (user && userRecord && !body.unlimitedAccess) {
-          // Update credits for authenticated users (skip for unlimited access)
+        if (user && !hasUnlimitedAccess) {
           controller.enqueue(encoder.encode(`data: ${JSON.stringify({ 
             type: 'status', 
             message: 'Updating credits...' 
           })}\n\n`))
-
-          const newBalance = currentCredits - CREDIT_COST
-
-          await Promise.all([
-            // Update user credits
-            db.update(users)
-              .set({ 
-                credits: newBalance,
-                totalCreditsUsed: userRecord.totalCreditsUsed + CREDIT_COST,
-                updatedAt: new Date(),
-              })
-              .where(eq(users.id, user.id)),
-            
-            // Record credit transaction
-            db.insert(creditTransactions).values({
-              userId: userRecord.id,
-              type: 'usage',
-              amount: -CREDIT_COST,
-              balanceBefore: currentCredits,
-              balanceAfter: newBalance,
-              description: 'AI Accessibility Audit Analysis',
-              toolUsed: 'accessibility_audit_helper',
-              metadata: {
-                issueDescription: body.issueDescription.substring(0, 100),
-                techStack: body.techStack,
-                componentType: body.componentType,
-                severity: analysisData.severity,
-              },
-            }),
-
-            // Record tool usage
-            db.insert(toolUsage).values({
-              userId: userRecord.id,
-              tool: 'accessibility_audit_helper',
-              creditsUsed: CREDIT_COST,
-              inputData: {
-                issueDescription: body.issueDescription.substring(0, 200),
-                techStack: body.techStack,
-                componentType: body.componentType,
-              },
-              outputData: {
-                issueTitle: analysisData.issueTitle,
-                severity: analysisData.severity,
-                wcagCriteriaCount: analysisData.wcagCriteria.length,
-              },
-              success: true,
-            })
-          ])
+          const creditResult = await useCredits(
+            'accessibility_audit_helper',
+            {
+              issueDescription: body.issueDescription.substring(0, 200),
+              techStack: body.techStack,
+              componentType: body.componentType,
+            },
+            {
+              issueTitle: analysisData.issueTitle,
+              severity: analysisData.severity,
+              wcagCriteriaCount: analysisData.wcagCriteria.length,
+            },
+            user.id
+          )
 
           // Prepare result for authenticated users with credit deduction
           result = {
             ...analysisData,
-            creditsUsed: CREDIT_COST,
-            remainingCredits: newBalance
+            creditsUsed: creditResult.creditsUsed,
+            remainingCredits: creditResult.remainingCredits
           }
-        } else if (body.unlimitedAccess) {
+        } else if (hasUnlimitedAccess) {
           // Unlimited access - no credits or trial usage recording
           controller.enqueue(encoder.encode(`data: ${JSON.stringify({ 
             type: 'status', 
@@ -430,10 +347,10 @@ Remember: You're not just fixing code, you're helping create a more inclusive we
           result = {
             ...analysisData,
             creditsUsed: 0,
-            remainingCredits: user && userRecord ? userRecord.credits : 0,
+            remainingCredits: user ? await getUserCredits(user.id) : 0,
             unlimitedAccess: true
           }
-        } else {
+        } else if (!user) {
           // Record trial usage for non-authenticated users without unlimited access
           controller.enqueue(encoder.encode(`data: ${JSON.stringify({ 
             type: 'status', 
@@ -453,6 +370,8 @@ Remember: You're not just fixing code, you're helping create a more inclusive we
               limitReached: false
             }
           }
+        } else {
+          throw new Error('User not found')
         }
 
         controller.enqueue(encoder.encode(`data: ${JSON.stringify({ 
@@ -466,18 +385,25 @@ Remember: You're not just fixing code, you're helping create a more inclusive we
         console.error('Error in streaming accessibility analysis:', error)
         
         let errorMessage = 'An error occurred while analyzing the accessibility issue. Please try again.'
+        let errorCode: string | undefined
         
         if (error instanceof Error) {
-          if (error.message.includes('insufficient_quota') || error.message.includes('rate_limit')) {
+          if (error.message.includes('Insufficient credits')) {
+            errorMessage = error.message
+            errorCode = 'INSUFFICIENT_CREDITS'
+          } else if (error.message.includes('insufficient_quota') || error.message.includes('rate_limit')) {
             errorMessage = 'AI service temporarily unavailable. Please try again in a few minutes.'
           } else if (error.message.includes('Invalid response format')) {
             errorMessage = 'Unable to process the analysis. Please try rephrasing your issue description.'
+          } else if (error.message.includes('User not found')) {
+            errorMessage = 'User not found'
           }
         }
 
         controller.enqueue(encoder.encode(`data: ${JSON.stringify({ 
           type: 'error', 
-          error: errorMessage 
+          error: errorMessage,
+          code: errorCode
         })}\n\n`))
         controller.close()
       }

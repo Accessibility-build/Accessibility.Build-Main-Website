@@ -3,8 +3,8 @@ import { currentUser } from "@clerk/nextjs/server";
 import { errorLogger } from "@/lib/error-logger";
 import { checkTrialLimit, recordTrialUsage } from "@/lib/trial-usage";
 import OpenAI from "openai";
-import { creditTransactions, db, toolUsage, users } from "@/lib/db";
-import { eq } from "drizzle-orm";
+import { getUserCredits, useCredits } from "@/lib/credits";
+import { hasServerUnlimitedAccess } from "@/lib/unlimited-access-server";
 import {
   isOpenRouterConfigured,
   isOpenRouterModel,
@@ -16,7 +16,6 @@ if (!process.env.OPENAI_API_KEY) {
 }
 
 const DEFAULT_MODEL = "gpt-4o";
-const CREDIT_COST = 2;
 const MAX_AI_TOKENS = 4000;
 const MAX_AI_TEMP = 0.25;
 
@@ -135,6 +134,7 @@ export async function POST(req: NextRequest) {
   try {
     const body: RequestBody = await req.json();
     const user = await currentUser();
+    const hasUnlimitedAccess = await hasServerUnlimitedAccess();
 
     // Send status updates via SSE
     const sendStatus = (controller: ReadableStreamDefaultController, message: string, phase: string) => {
@@ -144,7 +144,7 @@ export async function POST(req: NextRequest) {
     };
 
     // Check access
-    if (!body.unlimitedAccess && !user) {
+    if (!hasUnlimitedAccess && !user) {
       const trialStatus = await checkTrialLimit("accessibility_code_generator");
       if (!trialStatus.allowed) {
         return new Response(
@@ -160,41 +160,6 @@ export async function POST(req: NextRequest) {
         JSON.stringify({ error: "Missing required fields" }),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
-    }
-
-    // Check credits
-    let userRecord = null;
-    let currentCredits = 0;
-
-    if (user && !body.unlimitedAccess) {
-      [userRecord] = await db
-        .select()
-        .from(users)
-        .where(eq(users.id, user.id))
-        .limit(1);
-
-      if (!userRecord) {
-        return new Response(
-          JSON.stringify({ error: "User not found" }),
-          { status: 404, headers: { "Content-Type": "application/json" } }
-        );
-      }
-
-      currentCredits = userRecord.credits;
-
-      if (currentCredits < CREDIT_COST) {
-        return new Response(
-          JSON.stringify({ error: "Insufficient credits", code: "INSUFFICIENT_CREDITS" }),
-          { status: 402, headers: { "Content-Type": "application/json" } }
-        );
-      }
-    } else if (user) {
-      [userRecord] = await db
-        .select()
-        .from(users)
-        .where(eq(users.id, user.id))
-        .limit(1);
-      currentCredits = userRecord?.credits || 0;
     }
 
     // Build prompts
@@ -263,40 +228,34 @@ export async function POST(req: NextRequest) {
             throw new Error("Invalid JSON response from AI");
           }
 
-          // Handle credits
-          if (user && userRecord && !body.unlimitedAccess) {
-            const newBalance = currentCredits - CREDIT_COST;
+          if (user && !hasUnlimitedAccess) {
+            const creditResult = await useCredits(
+              "accessibility_code_generator",
+              {
+                componentType: body.componentType,
+                framework: body.framework,
+                componentDescription: body.componentDescription?.substring?.(0, 100),
+                customRequirement: body.customRequirement?.substring?.(0, 100),
+              },
+              {
+                componentType: body.componentType,
+                framework: body.framework,
+              },
+              user.id
+            );
 
-            await Promise.all([
-              db
-                .update(users)
-                .set({
-                  credits: newBalance,
-                  totalCreditsUsed: userRecord.totalCreditsUsed + CREDIT_COST,
-                  updatedAt: new Date(),
-                })
-                .where(eq(users.id, user.id)),
-              db.insert(creditTransactions).values({
-                userId: userRecord.id,
-                type: "usage",
-                amount: -CREDIT_COST,
-                balanceBefore: currentCredits,
-                balanceAfter: newBalance,
-                description: "AI Accessibility Code Generator (Streaming)",
-                toolUsed: "accessibility_code_generator",
-              }),
-              db.insert(toolUsage).values({
-                userId: userRecord.id,
-                tool: "accessibility_code_generator",
-                creditsUsed: CREDIT_COST,
-                success: true,
-              }),
-            ]);
-
-            parsedData.creditsUsed = CREDIT_COST;
-            parsedData.remainingCredits = newBalance;
-          } else if (!body.unlimitedAccess && !user) {
+            parsedData.creditsUsed = creditResult.creditsUsed;
+            parsedData.remainingCredits = creditResult.remainingCredits;
+          } else if (!hasUnlimitedAccess && !user) {
             await recordTrialUsage("accessibility_code_generator");
+            parsedData.creditsUsed = 0;
+            parsedData.remainingCredits = 0;
+          } else if (hasUnlimitedAccess) {
+            parsedData.creditsUsed = 0;
+            parsedData.remainingCredits = user ? await getUserCredits(user.id) : 0;
+            parsedData.unlimitedAccess = true;
+          } else {
+            throw new Error("User not found");
           }
 
           // Send complete result
@@ -307,11 +266,19 @@ export async function POST(req: NextRequest) {
           controller.close();
         } catch (error) {
           console.error("Streaming error:", error);
+          let errorCode: string | undefined;
+          let errorMessage = error instanceof Error ? error.message : "An error occurred";
+
+          if (error instanceof Error && error.message.includes("Insufficient credits")) {
+            errorCode = "INSUFFICIENT_CREDITS";
+          }
+
           controller.enqueue(
             encoder.encode(
               `data: ${JSON.stringify({
                 type: "error",
-                error: error instanceof Error ? error.message : "An error occurred"
+                error: errorMessage,
+                code: errorCode
               })}\n\n`
             )
           );

@@ -603,7 +603,7 @@ Remember: You're not just identifying problems, you're empowering developers to 
           content: prompt
         }
       ],
-      maxTokens: 1200,  // Increased for more detailed explanations
+      maxOutputTokens: 1200,  // Increased for more detailed explanations
       temperature: 0.3,
       abortSignal: AbortSignal.timeout(AI_ANALYSIS_TIMEOUT),
     })
@@ -722,7 +722,7 @@ Remember: Your audience includes developers, designers, product managers, and ex
           content: prompt
         }
       ],
-      maxTokens: 2000,  // Increased for more comprehensive summaries
+      maxOutputTokens: 2000,  // Increased for more comprehensive summaries
       temperature: 0.3,
       abortSignal: AbortSignal.timeout(AI_ANALYSIS_TIMEOUT),
     })

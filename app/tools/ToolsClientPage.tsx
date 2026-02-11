@@ -188,7 +188,7 @@ const accessibilityTools = [
     {
         title: "Accessibility Statement Generator",
         shortTitle: "Statement Generator",
-        description: "Generate WCAG-compliant accessibility statements for your website. Choose from multiple templates and customize for your organization's needs.",
+        description: "Generate WCAG-compliant accessibility statements from scan results or manual inputs, with multiple templates and export-ready formats for clients.",
         features: ["Multiple Templates", "WCAG Compliant", "Multi-format Export", "Customizable"],
         icon: FileText,
         gradient: "from-violet-500 to-purple-500",

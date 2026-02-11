@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import { currentUser } from '@clerk/nextjs/server'
-import { db } from '@/lib/db'
-import { users, creditTransactions, toolUsage } from '@/lib/db/schema'
-import { eq, desc } from 'drizzle-orm'
 import { checkTrialLimit, recordTrialUsage } from '@/lib/trial-usage'
 import { openrouter, isOpenRouterModel, isOpenRouterConfigured } from '@/lib/openrouter'
+import { getUserCredits, useCredits } from '@/lib/credits'
+import { hasServerUnlimitedAccess } from '@/lib/unlimited-access-server'
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error('Missing OPENAI_API_KEY environment variable')
@@ -14,8 +13,6 @@ if (!process.env.OPENAI_API_KEY) {
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
-
-const CREDIT_COST = 1
 
 interface RequestBody {
   issueDescription: string
@@ -47,6 +44,7 @@ interface AnalysisResult {
   }>
   creditsUsed: number
   remainingCredits: number
+  unlimitedAccess?: boolean
   trialStatus?: {
     usageCount: number
     remainingUses: number
@@ -143,13 +141,11 @@ export async function POST(req: NextRequest) {
   try {
     const body: RequestBody = await req.json()
     const user = await currentUser()
-    
-    // Check for unlimited access first - bypass all other checks
-    if (body.unlimitedAccess) {
+    const hasUnlimitedAccess = await hasServerUnlimitedAccess()
+
+    if (hasUnlimitedAccess) {
       console.log('🚀 Unlimited access active - bypassing all limits')
     } else {
-      // Only check limits if unlimited access is not provided
-      // If not authenticated, check trial usage
       if (!user) {
         const trialStatus = await checkTrialLimit('accessibility_audit_helper')
         if (!trialStatus.allowed) {
@@ -164,7 +160,7 @@ export async function POST(req: NextRequest) {
         }
       }
     }
-    
+
     if (!body.issueDescription?.trim()) {
       return NextResponse.json(
         { error: 'Issue description is required' },
@@ -172,49 +168,10 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Check user credits (only for authenticated users without unlimited access)
-    let userRecord = null
-    let currentCredits = 0
-    
-    if (user && !body.unlimitedAccess) {
-      [userRecord] = await db
-        .select()
-        .from(users)
-        .where(eq(users.id, user.id))
-        .limit(1)
-
-      if (!userRecord) {
-        return NextResponse.json(
-          { error: 'User not found' },
-          { status: 404 }
-        )
-      }
-
-      currentCredits = userRecord.credits
-
-      if (currentCredits < CREDIT_COST) {
-        return NextResponse.json(
-          { 
-            error: `Insufficient credits. You need ${CREDIT_COST} credit${CREDIT_COST > 1 ? 's' : ''} but have ${currentCredits}.`,
-            code: 'INSUFFICIENT_CREDITS'
-          },
-          { status: 402 }
-        )
-      }
-    } else if (user) {
-      // Get user record for unlimited access users (for logging purposes)
-      [userRecord] = await db
-        .select()
-        .from(users)
-        .where(eq(users.id, user.id))
-        .limit(1)
-      currentCredits = userRecord?.credits || 0
-    }
-
     // Generate analysis using OpenAI
     const prompt = createAnalysisPrompt(body)
     
-    const selectedModel = body.selectedModel || "gpt-4o"
+    const selectedModel = hasUnlimitedAccess ? (body.selectedModel || "gpt-4o") : "gpt-4o"
     const isReasoningModel = selectedModel.includes('o1') || selectedModel.includes('o3')
     const useOpenRouter = isOpenRouterModel(selectedModel)
     
@@ -315,82 +272,43 @@ Remember: You're not just fixing code, you're helping create a more inclusive we
       analysisData.severity = 'medium'
     }
 
-    // Handle credit deduction and logging based on user type
-    if (user && userRecord && !body.unlimitedAccess) {
-      // Deduct credit and record transaction for authenticated users (skip for unlimited access)
-      const newBalance = currentCredits - CREDIT_COST
+    if (user && !hasUnlimitedAccess) {
+      const creditResult = await useCredits(
+        'accessibility_audit_helper',
+        {
+          issueDescription: body.issueDescription.substring(0, 200),
+          techStack: body.techStack,
+          componentType: body.componentType,
+        },
+        {
+          issueTitle: analysisData.issueTitle,
+          severity: analysisData.severity,
+          wcagCriteriaCount: analysisData.wcagCriteria.length,
+        },
+        user.id
+      )
 
-      await Promise.all([
-        // Update user credits
-        db.update(users)
-          .set({ 
-            credits: newBalance,
-            totalCreditsUsed: userRecord.totalCreditsUsed + CREDIT_COST,
-            updatedAt: new Date(),
-          })
-          .where(eq(users.id, user.id)),
-        
-        // Record credit transaction
-        db.insert(creditTransactions).values({
-          userId: userRecord.id,
-          type: 'usage',
-          amount: -CREDIT_COST,
-          balanceBefore: currentCredits,
-          balanceAfter: newBalance,
-          description: 'AI Accessibility Audit Analysis',
-          toolUsed: 'accessibility_audit_helper',
-          metadata: {
-            issueDescription: body.issueDescription.substring(0, 100),
-            techStack: body.techStack,
-            componentType: body.componentType,
-            severity: analysisData.severity,
-          },
-        }),
-
-        // Record tool usage
-        db.insert(toolUsage).values({
-          userId: userRecord.id,
-          tool: 'accessibility_audit_helper',
-          creditsUsed: CREDIT_COST,
-          inputData: {
-            issueDescription: body.issueDescription.substring(0, 200),
-            techStack: body.techStack,
-            componentType: body.componentType,
-          },
-          outputData: {
-            issueTitle: analysisData.issueTitle,
-            severity: analysisData.severity,
-            wcagCriteriaCount: analysisData.wcagCriteria.length,
-          },
-          success: true,
-        })
-      ])
-
-      // Prepare final response for authenticated users
       const result: AnalysisResult = {
         ...analysisData,
-        creditsUsed: CREDIT_COST,
-        remainingCredits: newBalance
+        creditsUsed: creditResult.creditsUsed,
+        remainingCredits: creditResult.remainingCredits
       }
 
       return NextResponse.json(result)
-    } else if (body.unlimitedAccess) {
-      // Unlimited access - no credits or trial usage recording
+    } else if (hasUnlimitedAccess) {
       console.log('⚡ Processing with unlimited access - no limits applied')
 
       const result: AnalysisResult = {
         ...analysisData,
         creditsUsed: 0,
-        remainingCredits: user && userRecord ? userRecord.credits : 0,
+        remainingCredits: user ? await getUserCredits(user.id) : 0,
         unlimitedAccess: true
       }
 
       return NextResponse.json(result)
     } else {
-      // Record trial usage for non-authenticated users without unlimited access
       await recordTrialUsage('accessibility_audit_helper')
 
-      // Prepare final response for trial users
       const result: AnalysisResult = {
         ...analysisData,
         creditsUsed: 0,
@@ -409,6 +327,20 @@ Remember: You're not just fixing code, you're helping create a more inclusive we
     console.error('Error in accessibility analysis:', error)
     
     if (error instanceof Error) {
+      if (error.message.includes('Insufficient credits')) {
+        return NextResponse.json(
+          { error: error.message, code: 'INSUFFICIENT_CREDITS' },
+          { status: 402 }
+        )
+      }
+
+      if (error.message.includes('User not found')) {
+        return NextResponse.json(
+          { error: 'User not found' },
+          { status: 404 }
+        )
+      }
+
       if (error.message.includes('insufficient_quota') || error.message.includes('rate_limit')) {
         return NextResponse.json(
           { error: 'AI service temporarily unavailable. Please try again in a few minutes.' },

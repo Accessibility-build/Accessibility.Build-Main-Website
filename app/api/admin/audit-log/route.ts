@@ -1,17 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { requireAdmin } from '@/lib/admin-auth'
+import { AdminAccessError, requireAdminApi } from '@/lib/admin-auth'
 import { getRecentAdminActions } from '@/lib/admin-utils'
 
 export async function GET(request: NextRequest) {
   try {
-    // Verify admin access
-    await requireAdmin()
+    await requireAdminApi()
 
-    // Parse query parameters
     const { searchParams } = new URL(request.url)
-    const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : 50
+    const limitParam = searchParams.get('limit')
+    const limit = limitParam ? Number.parseInt(limitParam, 10) : 50
 
-    // Validate limit parameter
+    if (!Number.isInteger(limit)) {
+      return NextResponse.json(
+        { error: 'Limit must be a valid integer' },
+        { status: 400 }
+      )
+    }
+
     if (limit < 1 || limit > 200) {
       return NextResponse.json(
         { error: 'Limit must be between 1 and 200' },
@@ -30,12 +35,9 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Admin audit log error:', error)
-    
-    if (error instanceof Error && error.message.includes('redirect')) {
-      return NextResponse.json(
-        { error: 'Admin access required' },
-        { status: 403 }
-      )
+
+    if (error instanceof AdminAccessError) {
+      return NextResponse.json({ error: error.message }, { status: error.statusCode })
     }
 
     return NextResponse.json(

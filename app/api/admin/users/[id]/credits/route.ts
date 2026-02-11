@@ -1,21 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAdmin } from "@/lib/admin-auth";
+import { AdminAccessError, requireAdminApi } from "@/lib/admin-auth";
 import { assignCreditsToUser } from "@/lib/admin-utils";
 
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
-) {
+  ) {
   try {
-    // Verify admin access
-    const admin = await requireAdmin();
+    const admin = await requireAdminApi();
 
     // Parse request body
     const { amount, reason } = await request.json();
 
-    if (typeof amount !== "number" || amount <= 0) {
+    if (typeof amount !== "number" || !Number.isInteger(amount) || amount <= 0) {
       return NextResponse.json(
-        { error: "Amount must be a positive number" },
+        { error: "Amount must be a positive integer" },
         { status: 400 }
       );
     }
@@ -47,10 +46,10 @@ export async function POST(
   } catch (error) {
     console.error("Admin credit assignment error:", error);
 
-    if (error instanceof Error && error.message.includes("redirect")) {
+    if (error instanceof AdminAccessError) {
       return NextResponse.json(
-        { error: "Admin access required" },
-        { status: 403 }
+        { error: error.message },
+        { status: error.statusCode }
       );
     }
 

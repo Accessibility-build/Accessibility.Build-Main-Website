@@ -28,6 +28,7 @@ export async function GET(request: NextRequest) {
         seriousCount: urlAccessibilityAudits.seriousCount,
         moderateCount: urlAccessibilityAudits.moderateCount,
         minorCount: urlAccessibilityAudits.minorCount,
+        aiSummary: urlAccessibilityAudits.aiSummary,
         createdAt: urlAccessibilityAudits.createdAt,
         processingCompletedAt: urlAccessibilityAudits.processingCompletedAt
       })
@@ -39,7 +40,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       audits: audits.map(audit => ({
         ...audit,
-        totalViolations: audit.totalViolations || 0
+        totalViolations: audit.totalViolations || 0,
+        criticalCount: audit.criticalCount || 0,
+        seriousCount: audit.seriousCount || 0,
+        moderateCount: audit.moderateCount || 0,
+        minorCount: audit.minorCount || 0
       }))
     })
 

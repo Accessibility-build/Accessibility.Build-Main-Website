@@ -1,13 +1,13 @@
 import { db } from './db'
 import { users, creditTransactions, toolUsage, type NewCreditTransaction, type NewToolUsage } from './db/schema'
-import { eq, desc } from 'drizzle-orm'
+import { and, desc, eq, gte, sql } from 'drizzle-orm'
 import { currentUser } from '@clerk/nextjs/server'
 
 export const TOOL_CREDITS = {
   alt_text_generator: 1,
   contrast_checker: 0, // Free tool
   accessibility_checker: 2,
-  accessibility_audit_helper: 2,
+  accessibility_audit_helper: 1,
   url_accessibility_auditor: 5,
   accessibility_code_generator: 2,
   heading_analyzer: 0, // Free tool
@@ -139,44 +139,52 @@ export async function useCredits(
   if (user.credits < requiredCredits) {
     throw new Error(`Insufficient credits. Required: ${requiredCredits}, Available: ${user.credits}`)
   }
+  const { balanceAfter } = await db.transaction(async (tx) => {
+    const [updatedUser] = await tx
+      .update(users)
+      .set({
+        credits: sql`${users.credits} - ${requiredCredits}`,
+        totalCreditsUsed: sql`${users.totalCreditsUsed} + ${requiredCredits}`,
+        updatedAt: new Date()
+      })
+      .where(and(eq(users.id, user.id), gte(users.credits, requiredCredits)))
+      .returning({
+        credits: users.credits
+      })
 
-  const newBalance = user.credits - requiredCredits
+    if (!updatedUser) {
+      throw new Error(`Insufficient credits. Required: ${requiredCredits}, Available: ${user.credits}`)
+    }
 
-  // Update user credits
-  await db
-    .update(users)
-    .set({ 
-      credits: newBalance,
-      totalCreditsUsed: user.totalCreditsUsed + requiredCredits,
-      updatedAt: new Date()
+    const balanceAfter = updatedUser.credits
+    const balanceBefore = balanceAfter + requiredCredits
+
+    await tx.insert(creditTransactions).values({
+      userId: user.id,
+      type: 'usage',
+      amount: -requiredCredits,
+      balanceBefore,
+      balanceAfter,
+      description: `Used ${requiredCredits} credit${requiredCredits > 1 ? 's' : ''} for ${tool.replace(/_/g, ' ')}`,
+      toolUsed: tool,
     })
-    .where(eq(users.id, user.id))
 
-  // Create transaction record
-  await createCreditTransaction({
-    userId: user.id,
-    type: 'usage',
-    amount: -requiredCredits,
-    balanceBefore: user.credits,
-    balanceAfter: newBalance,
-    description: `Used ${requiredCredits} credit${requiredCredits > 1 ? 's' : ''} for ${tool.replace('_', ' ')}`,
-    toolUsed: tool,
-  })
+    await tx.insert(toolUsage).values({
+      userId: user.id,
+      tool,
+      creditsUsed: requiredCredits,
+      inputData,
+      outputData,
+      success: true,
+    })
 
-  // Log tool usage
-  await logToolUsage({
-    userId: user.id,
-    tool,
-    creditsUsed: requiredCredits,
-    inputData,
-    outputData,
-    success: true,
+    return { balanceAfter }
   })
 
   return {
     success: true,
     creditsUsed: requiredCredits,
-    remainingCredits: newBalance
+    remainingCredits: balanceAfter
   }
 }
 
@@ -187,36 +195,40 @@ export async function addCredits(
   userId: string,
   amount: number,
   description: string,
-  type: 'purchase' | 'bonus' | 'refund' = 'purchase'
+  type: 'purchase' | 'bonus' | 'refund' = 'purchase',
+  metadata?: Record<string, any>
 ) {
-  const user = await db.query.users.findFirst({
-    where: eq(users.id, userId)
-  })
+  const { newBalance } = await db.transaction(async (tx) => {
+    const [updatedUser] = await tx
+      .update(users)
+      .set({
+        credits: sql`${users.credits} + ${amount}`,
+        totalCreditsEarned: sql`${users.totalCreditsEarned} + ${amount}`,
+        updatedAt: new Date()
+      })
+      .where(eq(users.id, userId))
+      .returning({
+        credits: users.credits
+      })
 
-  if (!user) {
-    throw new Error('User not found')
-  }
+    if (!updatedUser) {
+      throw new Error('User not found')
+    }
 
-  const newBalance = user.credits + amount
+    const newBalance = updatedUser.credits
+    const balanceBefore = newBalance - amount
 
-  // Update user credits
-  await db
-    .update(users)
-    .set({ 
-      credits: newBalance,
-      totalCreditsEarned: user.totalCreditsEarned + amount,
-      updatedAt: new Date()
+    await tx.insert(creditTransactions).values({
+      userId,
+      type,
+      amount,
+      balanceBefore,
+      balanceAfter: newBalance,
+      description,
+      metadata
     })
-    .where(eq(users.id, userId))
 
-  // Create transaction record
-  await createCreditTransaction({
-    userId,
-    type,
-    amount,
-    balanceBefore: user.credits,
-    balanceAfter: newBalance,
-    description,
+    return { newBalance }
   })
 
   return {

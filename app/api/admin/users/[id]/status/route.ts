@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAdmin } from "@/lib/admin-auth";
+import { AdminAccessError, requireAdminApi } from "@/lib/admin-auth";
 import { updateUserStatus } from "@/lib/admin-utils";
 
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
-) {
+  ) {
   try {
-    // Verify admin access
-    const admin = await requireAdmin();
+    const admin = await requireAdminApi();
 
     // Parse request body
     const { isActive } = await request.json();
@@ -40,10 +39,17 @@ export async function POST(
   } catch (error) {
     console.error("Admin user status update error:", error);
 
-    if (error instanceof Error && error.message.includes("redirect")) {
+    if (error instanceof AdminAccessError) {
       return NextResponse.json(
-        { error: "Admin access required" },
-        { status: 403 }
+        { error: error.message },
+        { status: error.statusCode }
+      );
+    }
+
+    if (error instanceof Error && error.message.includes("User not found")) {
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 404 }
       );
     }
 

@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server'
-import { requireAdmin } from '@/lib/admin-auth'
+import { AdminAccessError, requireAdminApi } from '@/lib/admin-auth'
 import { getDashboardStats } from '@/lib/admin-utils'
 
 export async function GET() {
   try {
-    // Verify admin access
-    await requireAdmin()
+    await requireAdminApi()
 
     // Get dashboard statistics
     const stats = await getDashboardStats()
@@ -14,12 +13,9 @@ export async function GET() {
 
   } catch (error) {
     console.error('Admin dashboard error:', error)
-    
-    if (error instanceof Error && error.message.includes('redirect')) {
-      return NextResponse.json(
-        { error: 'Admin access required' },
-        { status: 403 }
-      )
+
+    if (error instanceof AdminAccessError) {
+      return NextResponse.json({ error: error.message }, { status: error.statusCode })
     }
 
     return NextResponse.json(

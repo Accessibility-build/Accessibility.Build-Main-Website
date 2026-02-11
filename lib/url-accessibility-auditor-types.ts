@@ -48,6 +48,12 @@ export interface AuditHistory {
     status: string
     overallScore?: number
     totalViolations: number
+    criticalCount?: number
+    seriousCount?: number
+    moderateCount?: number
+    minorCount?: number
+    processingCompletedAt?: string
+    aiSummary?: string
     createdAt: string
   }>
 }

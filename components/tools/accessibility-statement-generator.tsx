@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -14,16 +14,13 @@ import {
   FileText, 
   Download, 
   Copy, 
-  Eye, 
   ChevronRight, 
   ChevronLeft,
   CheckCircle,
-  Settings,
-  Mail,
-  Phone,
-  Globe,
-  AlertCircle,
-  Sparkles
+  Sparkles,
+  Database,
+  Loader2,
+  RefreshCw
 } from "lucide-react"
 import { 
   generateStatementHTML, 
@@ -34,10 +31,115 @@ import {
 } from "@/lib/accessibility-statement-templates"
 import { toast } from "sonner"
 
+interface AuditHistoryItem {
+  id: string
+  url: string
+  title?: string | null
+  status: string
+  overallScore?: number | null
+  totalViolations?: number | null
+  criticalCount?: number | null
+  seriousCount?: number | null
+  moderateCount?: number | null
+  minorCount?: number | null
+  createdAt: string
+  processingCompletedAt?: string | null
+  aiSummary?: string | null
+}
+
+interface AuditHistoryResponse {
+  audits?: AuditHistoryItem[]
+}
+
+const DEFAULT_TESTING_METHODS = [
+  "Automated accessibility scan using Accessibility.build URL Accessibility Auditor",
+  "Manual keyboard navigation testing",
+  "Screen reader testing (NVDA, JAWS, VoiceOver)"
+]
+
+const formatDateInputValue = (input?: string | null): string => {
+  if (!input) return ""
+  const date = new Date(input)
+  if (Number.isNaN(date.getTime())) return ""
+  return date.toISOString().split("T")[0]
+}
+
+const formatDisplayDate = (input?: string | null): string => {
+  if (!input) return new Date().toLocaleDateString()
+  const date = new Date(input)
+  if (Number.isNaN(date.getTime())) return new Date().toLocaleDateString()
+  return date.toLocaleDateString()
+}
+
+const deriveOrganizationName = (audit: AuditHistoryItem): string => {
+  if (audit.title?.trim()) {
+    return audit.title.trim()
+  }
+
+  try {
+    const hostname = new URL(audit.url).hostname.replace(/^www\./, "")
+    const label = hostname.split(".")[0] ?? hostname
+    return label
+      .split(/[-_]/)
+      .filter(Boolean)
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ")
+  } catch {
+    return ""
+  }
+}
+
+const buildKnownLimitations = (audit: AuditHistoryItem): string[] => {
+  const critical = audit.criticalCount ?? 0
+  const serious = audit.seriousCount ?? 0
+  const moderate = audit.moderateCount ?? 0
+  const minor = audit.minorCount ?? 0
+
+  const limitations: string[] = []
+  if (critical > 0) {
+    limitations.push(`${critical} critical issue(s) were detected in the latest scan and may block users of assistive technology on key journeys.`)
+  }
+  if (serious > 0) {
+    limitations.push(`${serious} serious issue(s) remain and can significantly impact usability for keyboard and screen reader users.`)
+  }
+  if (moderate > 0) {
+    limitations.push(`${moderate} moderate issue(s) were found and are scheduled for remediation in upcoming releases.`)
+  }
+  if (minor > 0) {
+    limitations.push(`${minor} minor issue(s) were identified and are being addressed during routine maintenance.`)
+  }
+  return limitations
+}
+
+const buildPartialConformanceSummary = (audit: AuditHistoryItem): string => {
+  const totalViolations = audit.totalViolations ?? 0
+  if (totalViolations <= 0) return ""
+
+  const issueBreakdown = [
+    `${audit.criticalCount ?? 0} critical`,
+    `${audit.seriousCount ?? 0} serious`,
+    `${audit.moderateCount ?? 0} moderate`,
+    `${audit.minorCount ?? 0} minor`
+  ].join(", ")
+
+  return `Automated testing identified ${totalViolations} issue(s) (${issueBreakdown}). Remediation is actively in progress.`
+}
+
+const buildAiSummarySnippet = (summary?: string | null): string => {
+  const trimmed = summary?.trim()
+  if (!trimmed) return ""
+  if (trimmed.length <= 240) return trimmed
+  return `${trimmed.slice(0, 237)}...`
+}
+
 export default function AccessibilityStatementGenerator() {
   const [currentStep, setCurrentStep] = useState(1)
   const [template, setTemplate] = useState<StatementTemplate>('comprehensive')
   const [previewFormat, setPreviewFormat] = useState<'html' | 'markdown' | 'text'>('html')
+  const [auditHistory, setAuditHistory] = useState<AuditHistoryItem[]>([])
+  const [selectedAuditId, setSelectedAuditId] = useState('')
+  const [isLoadingAudits, setIsLoadingAudits] = useState(true)
+  const [auditLoadMessage, setAuditLoadMessage] = useState('')
   const [statementData, setStatementData] = useState<Partial<StatementData>>({
     organizationName: '',
     websiteUrl: '',
@@ -53,6 +155,90 @@ export default function AccessibilityStatementGenerator() {
   })
 
   const totalSteps = 4
+
+  const selectedAudit = useMemo(
+    () => auditHistory.find((audit) => audit.id === selectedAuditId),
+    [auditHistory, selectedAuditId]
+  )
+
+  const loadAuditHistory = async () => {
+    setIsLoadingAudits(true)
+    setAuditLoadMessage('')
+
+    try {
+      const response = await fetch('/api/user/audit-history', {
+        method: 'GET',
+        headers: { Accept: 'application/json' }
+      })
+
+      if (response.status === 401) {
+        setAuditHistory([])
+        setSelectedAuditId('')
+        setAuditLoadMessage('Sign in to import scan results from your audit history.')
+        return
+      }
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`)
+      }
+
+      const payload = await response.json() as AuditHistoryResponse
+      const completedAudits = (payload.audits ?? []).filter(audit => audit.status === 'completed')
+      setAuditHistory(completedAudits)
+      setSelectedAuditId(previous =>
+        previous && completedAudits.some(audit => audit.id === previous)
+          ? previous
+          : (completedAudits[0]?.id ?? '')
+      )
+
+      if (completedAudits.length === 0) {
+        setAuditLoadMessage('No completed URL accessibility scans found yet.')
+      }
+    } catch (error) {
+      console.error('Failed to load audit history for statement generator:', error)
+      setAuditHistory([])
+      setSelectedAuditId('')
+      setAuditLoadMessage('Unable to load scan history right now. Try again in a moment.')
+    } finally {
+      setIsLoadingAudits(false)
+    }
+  }
+
+  useEffect(() => {
+    void loadAuditHistory()
+  }, [])
+
+  const importSelectedAudit = () => {
+    if (!selectedAudit) {
+      toast.error('Select a completed scan first.')
+      return
+    }
+
+    const totalViolations = selectedAudit.totalViolations ?? 0
+    const conformanceLevel: StatementData['conformanceLevel'] = totalViolations > 0 ? 'Partial' : 'AA'
+    const referenceDate = selectedAudit.processingCompletedAt ?? selectedAudit.createdAt
+    const aiSummarySnippet = buildAiSummarySnippet(selectedAudit.aiSummary)
+
+    setStatementData((previous) => ({
+      ...previous,
+      organizationName: previous.organizationName || deriveOrganizationName(selectedAudit),
+      websiteUrl: selectedAudit.url,
+      conformanceLevel,
+      partialConformance: conformanceLevel === 'Partial'
+        ? `${buildPartialConformanceSummary(selectedAudit)}${aiSummarySnippet ? ` ${aiSummarySnippet}` : ''}`
+        : '',
+      testingMethods: DEFAULT_TESTING_METHODS,
+      testingDate: formatDateInputValue(referenceDate),
+      knownLimitations: buildKnownLimitations(selectedAudit),
+      lastUpdated: formatDisplayDate(referenceDate),
+      standards: previous.standards && previous.standards.length > 0
+        ? previous.standards
+        : ['WCAG 2.2 Level AA']
+    }))
+
+    setCurrentStep(1)
+    toast.success('Scan data imported. Complete contact details and export your statement.')
+  }
 
   // Load sample data for demonstration
   const loadSampleData = () => {
@@ -86,7 +272,7 @@ export default function AccessibilityStatementGenerator() {
     toast.success('Sample data loaded! You can now preview and export the statement.')
   }
 
-  const updateField = (field: keyof StatementData, value: any) => {
+  const updateField = <K extends keyof StatementData>(field: K, value: StatementData[K]) => {
     setStatementData(prev => ({ ...prev, [field]: value }))
   }
 
@@ -219,21 +405,95 @@ export default function AccessibilityStatementGenerator() {
 
   return (
     <div className="space-y-6">
+      {/* Import from Scan Results */}
+      <Card className="border border-border/60">
+        <CardHeader>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div className="space-y-1.5">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Database className="h-5 w-5 text-primary" />
+                Import from Recent Scan
+              </CardTitle>
+              <CardDescription>
+                Pull completed URL audit results directly into this statement to generate client-ready compliance copy faster.
+              </CardDescription>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => void loadAuditHistory()}
+              disabled={isLoadingAudits}
+            >
+              {isLoadingAudits ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <RefreshCw className="mr-2 h-4 w-4" />
+              )}
+              Refresh
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {isLoadingAudits ? (
+            <div className="flex items-center gap-2 rounded-md border border-dashed border-border/80 bg-muted/20 p-3 text-sm text-muted-foreground">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Loading completed scans...
+            </div>
+          ) : auditHistory.length === 0 ? (
+            <div className="rounded-md border border-dashed border-border/80 bg-muted/20 p-3 text-sm text-muted-foreground">
+              {auditLoadMessage || 'No completed scans available yet. Run a URL accessibility audit first.'}
+            </div>
+          ) : (
+            <div className="grid gap-3 md:grid-cols-[1fr_auto]">
+              <Select value={selectedAuditId} onValueChange={setSelectedAuditId}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a completed URL scan" />
+                </SelectTrigger>
+                <SelectContent>
+                  {auditHistory.map((audit) => {
+                    const issues = audit.totalViolations ?? 0
+                    const score = audit.overallScore ?? null
+                    const date = formatDisplayDate(audit.processingCompletedAt ?? audit.createdAt)
+
+                    return (
+                      <SelectItem key={audit.id} value={audit.id}>
+                        {`${audit.url} • ${issues} issue${issues === 1 ? '' : 's'}${score !== null ? ` • Score ${score}` : ''} • ${date}`}
+                      </SelectItem>
+                    )
+                  })}
+                </SelectContent>
+              </Select>
+              <Button onClick={importSelectedAudit} disabled={!selectedAuditId}>
+                <Database className="mr-2 h-4 w-4" />
+                Import Scan
+              </Button>
+            </div>
+          )}
+          {selectedAudit ? (
+            <p className="text-xs text-muted-foreground">
+              Selected scan summary: {selectedAudit.totalViolations ?? 0} issues (
+              {selectedAudit.criticalCount ?? 0} critical, {selectedAudit.seriousCount ?? 0} serious,{' '}
+              {selectedAudit.moderateCount ?? 0} moderate, {selectedAudit.minorCount ?? 0} minor).
+            </p>
+          ) : null}
+        </CardContent>
+      </Card>
+
       {/* Sample Data Banner */}
-      <Card className="border-dashed border-2 border-violet-500/30 bg-gradient-to-r from-violet-500/5 to-purple-500/10">
+      <Card className="border border-dashed border-border/80 bg-muted/20">
         <CardContent className="py-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-violet-500/10 rounded-lg">
-                <Sparkles className="w-5 h-5 text-violet-600" />
+              <div className="rounded-lg bg-primary/10 p-2">
+                <Sparkles className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <p className="font-medium">New to accessibility statements?</p>
                 <p className="text-sm text-muted-foreground">Load sample data to see how the generator works</p>
               </div>
             </div>
-            <Button onClick={loadSampleData} variant="outline" size="sm" className="border-violet-500/50 hover:bg-violet-500/10">
-              <Sparkles className="w-4 h-4 mr-2" />
+            <Button onClick={loadSampleData} variant="outline" size="sm">
+              <Sparkles className="mr-2 h-4 w-4" />
               Load Sample Statement
             </Button>
           </div>
@@ -249,15 +509,15 @@ export default function AccessibilityStatementGenerator() {
                 <div key={step} className="flex items-center">
                   <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-semibold text-sm sm:text-base ${
                     step === currentStep 
-                      ? 'bg-blue-600 text-white' 
+                      ? 'bg-primary text-primary-foreground' 
                       : step < currentStep 
-                        ? 'bg-green-600 text-white' 
-                        : 'bg-slate-200 text-slate-600'
+                        ? 'bg-emerald-600 text-white dark:bg-emerald-500' 
+                        : 'bg-muted text-muted-foreground'
                   }`}>
                     {step < currentStep ? <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" /> : step}
                   </div>
                   {step < totalSteps && (
-                    <div className={`w-6 sm:w-16 h-1 ${step < currentStep ? 'bg-green-600' : 'bg-slate-200'}`} />
+                    <div className={`w-6 sm:w-16 h-1 ${step < currentStep ? 'bg-emerald-600 dark:bg-emerald-500' : 'bg-muted'}`} />
                   )}
                 </div>
               ))}
@@ -296,7 +556,7 @@ export default function AccessibilityStatementGenerator() {
                 placeholder="https://example.com"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
                 <Label htmlFor="contactEmail">Contact Email *</Label>
                 <Input
@@ -334,7 +594,7 @@ export default function AccessibilityStatementGenerator() {
               <Label htmlFor="conformanceLevel">WCAG Conformance Level *</Label>
               <Select
                 value={statementData.conformanceLevel || 'AA'}
-                onValueChange={(value) => updateField('conformanceLevel', value)}
+                onValueChange={(value) => updateField('conformanceLevel', value as StatementData['conformanceLevel'])}
               >
                 <SelectTrigger>
                   <SelectValue />
@@ -360,7 +620,7 @@ export default function AccessibilityStatementGenerator() {
             )}
             <div>
               <Label>Applicable Standards</Label>
-              <div className="grid grid-cols-2 gap-2 mt-2">
+              <div className="grid grid-cols-1 gap-2 mt-2 sm:grid-cols-2">
                 {standardOptions.map(standard => (
                   <div key={standard} className="flex items-center space-x-2">
                     <Checkbox
@@ -425,11 +685,11 @@ export default function AccessibilityStatementGenerator() {
                 placeholder="Enter each limitation on a new line&#10;Example:&#10;Some PDF documents may not be fully accessible&#10;Third-party widgets may have accessibility issues"
                 rows={6}
               />
-              <p className="text-xs text-slate-500 mt-1">Enter each limitation on a new line</p>
+              <p className="mt-1 text-xs text-muted-foreground">Enter each limitation on a new line</p>
             </div>
             <div>
               <Label>Technologies Used</Label>
-              <div className="grid grid-cols-3 gap-2 mt-2">
+              <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
                 {technologyOptions.map(tech => (
                   <div key={tech} className="flex items-center space-x-2">
                     <Checkbox
@@ -460,7 +720,7 @@ export default function AccessibilityStatementGenerator() {
               <Label>Feedback Method</Label>
               <Select
                 value={statementData.feedbackMechanism || 'email'}
-                onValueChange={(value) => updateField('feedbackMechanism', value)}
+                onValueChange={(value) => updateField('feedbackMechanism', value as StatementData['feedbackMechanism'])}
               >
                 <SelectTrigger>
                   <SelectValue />
@@ -501,14 +761,14 @@ export default function AccessibilityStatementGenerator() {
             </div>
             <div>
               <Label>Preview Format</Label>
-              <Tabs value={previewFormat} onValueChange={(value) => setPreviewFormat(value as any)}>
+              <Tabs value={previewFormat} onValueChange={(value) => setPreviewFormat(value as 'html' | 'markdown' | 'text')}>
                 <TabsList>
                   <TabsTrigger value="html">HTML</TabsTrigger>
                   <TabsTrigger value="markdown">Markdown</TabsTrigger>
                   <TabsTrigger value="text">Plain Text</TabsTrigger>
                 </TabsList>
                 <TabsContent value={previewFormat} className="mt-4">
-                  <div className="border rounded-lg p-4 bg-slate-50 dark:bg-slate-900 max-h-96 overflow-auto">
+                  <div className="max-h-96 overflow-auto rounded-lg border bg-muted/30 p-4">
                     {previewFormat === 'html' ? (
                       <iframe
                         srcDoc={generatePreview()}
@@ -574,4 +834,3 @@ export default function AccessibilityStatementGenerator() {
     </div>
   )
 }
-

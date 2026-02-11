@@ -27,15 +27,11 @@ export default function CarouselsPatternPage() {
     const [activeSection, setActiveSection] = useState('basics');
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] bg-rose-100/40 rounded-full blur-[100px]" />
-                <div className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-pink-100/40 rounded-full blur-[100px]" />
-            </div>
+        <div className="learn-theme min-h-screen bg-background">
 
-            <div className="relative pt-8 pb-6 px-4 border-b border-slate-200 bg-white/80 backdrop-blur-sm">
+            <div className="pt-8 pb-6 px-4 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
                 <div className="max-w-6xl mx-auto">
-                    <Link href="/learn" className="inline-flex items-center gap-2 text-slate-500 hover:text-rose-600 transition-colors mb-4 group text-sm">
+                    <Link href="/learn" className="inline-flex items-center gap-2 text-muted-foreground hover:text-rose-600 transition-colors mb-4 group text-sm">
                         <ChevronRightIcon className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" /> Back to Learn Hub
                     </Link>
                     <div className="flex items-center gap-4">
@@ -44,14 +40,14 @@ export default function CarouselsPatternPage() {
                         </div>
                         <div>
                             <Badge className="bg-rose-100 text-rose-700 border-rose-200 mb-1"><Sparkles className="w-3 h-3 mr-1" /> Comprehensive Guide</Badge>
-                            <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Accessible Carousels</h1>
-                            <p className="text-slate-500 mt-1">Auto-play controls, keyboard navigation, and motion preferences</p>
+                            <h1 className="text-2xl md:text-3xl font-bold text-foreground">Accessible Carousels</h1>
+                            <p className="text-muted-foreground mt-1">Auto-play controls, keyboard navigation, and motion preferences</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+            <div className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
                 <div className="max-w-6xl mx-auto px-4 py-3">
                     <div className="flex overflow-x-auto gap-2 no-scrollbar">
                         {sections.map((section) => {
@@ -60,7 +56,7 @@ export default function CarouselsPatternPage() {
                             return (
                                 <button key={section.id} onClick={() => setActiveSection(section.id)}
                                     className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all border-2",
-                                        isActive ? `${section.color} text-white border-transparent shadow-lg` : `bg-white ${section.textColor} border-slate-200 hover:border-slate-300`
+                                        isActive ? "bg-primary text-primary-foreground border-primary shadow-sm" : "bg-background text-muted-foreground border-border hover:border-border/80 hover:text-foreground"
                                     )}>
                                     <Icon className="w-4 h-4" /> {section.label}
                                 </button>
@@ -89,13 +85,13 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
     const [showGood, setShowGood] = useState(false);
     return (
         <div className="space-y-4">
-            <div className="flex items-center gap-2 p-1 bg-slate-100 rounded-full w-fit">
-                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-slate-600 hover:text-slate-900")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
-                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-slate-600 hover:text-slate-900")}><Eye className="w-4 h-4" /> Accessible</button>
+            <div className="flex items-center gap-2 p-1 bg-muted rounded-full w-fit">
+                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
+                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
             </div>
             <AnimatePresence mode="wait">
                 <motion.div key={showGood ? 'good' : 'bad'} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                    className={cn("p-6 rounded-2xl border-2", showGood ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200")}>
+                    className={cn("p-6 rounded-2xl border-2", showGood ? "bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-900" : "bg-red-50 border-red-200 dark:bg-red-950/20 dark:border-red-900")}>
                     {showGood ? good : bad}
                 </motion.div>
             </AnimatePresence>
@@ -104,20 +100,20 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
 }
 
 function SectionHeader({ title, description }: { title: string; description: string }) {
-    return <div className="mb-8"><h2 className="text-3xl font-bold text-slate-900 mb-3">{title}</h2><p className="text-lg text-slate-600 max-w-4xl">{description}</p></div>;
+    return <div className="mb-8"><h2 className="text-3xl font-bold text-foreground mb-3">{title}</h2><p className="text-lg text-muted-foreground max-w-4xl">{description}</p></div>;
 }
 
 function KeyPoint({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) {
     return (
-        <div className="flex gap-4 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm">
             <div className="p-2 bg-rose-100 rounded-lg h-fit"><Icon className="w-5 h-5 text-rose-600" /></div>
-            <div><h4 className="font-semibold text-slate-900 mb-1">{title}</h4><p className="text-sm text-slate-600">{children}</p></div>
+            <div><h4 className="font-semibold text-foreground mb-1">{title}</h4><p className="text-sm text-muted-foreground">{children}</p></div>
         </div>
     );
 }
 
 function TipBox({ title, children, variant = 'info' }: { title: string; children: React.ReactNode; variant?: 'info' | 'warning' | 'success' }) {
-    const styles = { info: 'bg-blue-50 border-blue-200 text-blue-800', warning: 'bg-amber-50 border-amber-200 text-amber-800', success: 'bg-green-50 border-green-200 text-green-800' };
+    const styles = { info: 'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-950/20 dark:border-blue-900 dark:text-blue-200', warning: 'bg-amber-50 border-amber-200 text-amber-800 dark:bg-amber-950/20 dark:border-amber-900 dark:text-amber-200', success: 'bg-green-50 border-green-200 text-green-800 dark:bg-green-950/20 dark:border-green-900 dark:text-green-200' };
     const icons = { info: Lightbulb, warning: AlertTriangle, success: CheckCircle2 };
     const Icon = icons[variant];
     return <div className={cn("p-4 rounded-xl border", styles[variant])}><div className="flex items-center gap-2 font-semibold mb-2"><Icon className="w-5 h-5" /> {title}</div><div className="text-sm">{children}</div></div>;
@@ -125,8 +121,8 @@ function TipBox({ title, children, variant = 'info' }: { title: string; children
 
 function CodeBlock({ code, title }: { code: string; title?: string }) {
     return (
-        <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-            {title && <div className="px-4 py-2 bg-slate-100 border-b border-slate-200 text-sm font-medium text-slate-700 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
+        <div className="rounded-xl overflow-hidden border border-border shadow-sm">
+            {title && <div className="px-4 py-2 bg-muted border-b border-border text-sm font-medium text-foreground/90 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
             <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm"><code>{code}</code></pre>
         </div>
     );
@@ -188,7 +184,7 @@ function AccessibleCarousel({ autoPlay = false }: { autoPlay?: boolean }) {
                     {slides.map((_, idx) => (
                         <button key={idx} role="tab" aria-selected={idx === currentSlide} aria-label={`Go to slide ${idx + 1}`}
                             onClick={() => { goToSlide(idx); setIsPlaying(false); }}
-                            className={cn("w-3 h-3 rounded-full transition-all", idx === currentSlide ? "bg-rose-500 w-6" : "bg-slate-300 hover:bg-slate-400")} />
+                            className={cn("w-3 h-3 rounded-full transition-all", idx === currentSlide ? "bg-rose-500 w-6" : "bg-border hover:bg-muted-foreground/40")} />
                     ))}
                 </div>
             </div>
@@ -207,8 +203,8 @@ function CarouselBasicsSection() {
             </div>
 
             <div className="p-6 rounded-2xl bg-rose-50 border border-rose-200">
-                <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-rose-500" /> Interactive Demo</h3>
-                <p className="text-slate-600 mb-4">Use the arrow buttons or dots to navigate. Try pressing Left/Right arrow keys when focused on the carousel.</p>
+                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-rose-500" /> Interactive Demo</h3>
+                <p className="text-muted-foreground mb-4">Use the arrow buttons or dots to navigate. Try pressing Left/Right arrow keys when focused on the carousel.</p>
                 <AccessibleCarousel autoPlay={false} />
             </div>
 
@@ -254,7 +250,7 @@ function ControlsSection() {
             </div>
 
             <div className="p-6 rounded-2xl bg-violet-50 border border-violet-200">
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">Control Buttons Pattern</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-4">Control Buttons Pattern</h3>
                 <div className="flex gap-4 flex-wrap">
                     <Button variant="outline" className="gap-2"><ChevronLeft className="w-4 h-4" /> <span className="sr-only">Previous slide</span></Button>
                     <Button variant="outline" className="gap-2"><Pause className="w-4 h-4" /> <span className="sr-only">Pause auto-play</span></Button>
@@ -295,13 +291,13 @@ function KeyboardNavSection() {
             <SectionHeader title="Keyboard Navigation" description="Users should be able to navigate slides using arrow keys and Tab through controls without getting trapped." />
 
             <div className="overflow-x-auto">
-                <table className="w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
-                    <thead className="bg-slate-100"><tr><th scope="col" className="p-4 text-left font-semibold">Key</th><th scope="col" className="p-4 text-left font-semibold">Action</th><th scope="col" className="p-4 text-left font-semibold">Notes</th></tr></thead>
+                <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
+                    <thead className="bg-muted"><tr><th scope="col" className="p-4 text-left font-semibold">Key</th><th scope="col" className="p-4 text-left font-semibold">Action</th><th scope="col" className="p-4 text-left font-semibold">Notes</th></tr></thead>
                     <tbody>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">←</td><td className="p-4">Go to previous slide</td><td className="p-4 text-slate-500">Also pauses auto-play</td></tr>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">→</td><td className="p-4">Go to next slide</td><td className="p-4 text-slate-500">Also pauses auto-play</td></tr>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">Tab</td><td className="p-4">Move through controls</td><td className="p-4 text-slate-500">Prev → Play/Pause → Next → Dots</td></tr>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">Enter/Space</td><td className="p-4">Activate focused control</td><td className="p-4 text-slate-500">Native button behavior</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">←</td><td className="p-4">Go to previous slide</td><td className="p-4 text-muted-foreground">Also pauses auto-play</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">→</td><td className="p-4">Go to next slide</td><td className="p-4 text-muted-foreground">Also pauses auto-play</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">Tab</td><td className="p-4">Move through controls</td><td className="p-4 text-muted-foreground">Prev → Play/Pause → Next → Dots</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">Enter/Space</td><td className="p-4">Activate focused control</td><td className="p-4 text-muted-foreground">Native button behavior</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -354,14 +350,14 @@ function ReducedMotionSection() {
             <SectionHeader title="Respecting Motion Preferences" description="Some users have vestibular disorders that make animations nauseating. CSS prefers-reduced-motion lets you detect and respect their preference." />
 
             <div className="p-6 rounded-2xl bg-sky-50 border border-sky-200 space-y-4">
-                <h3 className="text-xl font-semibold text-slate-900">Your Current Setting</h3>
+                <h3 className="text-xl font-semibold text-foreground">Your Current Setting</h3>
                 <div className="flex items-center gap-3">
                     <div className={cn("w-4 h-4 rounded-full", prefersReducedMotion ? "bg-amber-500" : "bg-green-500")} />
-                    <span className="font-medium text-slate-700">
+                    <span className="font-medium text-foreground/90">
                         {prefersReducedMotion ? "You have reduced motion enabled" : "Standard motion (no reduction)"}
                     </span>
                 </div>
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-muted-foreground">
                     {prefersReducedMotion
                         ? "Your OS is set to reduce motion. Accessible carousels should disable auto-play and reduce animation."
                         : "To test reduced motion: System Preferences → Accessibility → Display → Reduce motion"}
@@ -428,14 +424,14 @@ function CommonIssuesSection() {
             <div className="space-y-4">
                 {issues.map((issue, idx) => (
                     <motion.div key={idx} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.03 }}
-                        className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                        className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md transition-all">
                         <div className="flex items-start gap-4">
                             <div className={cn("p-2 rounded-lg flex-shrink-0", issue.severity === 'critical' ? 'bg-red-100 text-red-600' : issue.severity === 'high' ? 'bg-orange-100 text-orange-600' : 'bg-yellow-100 text-yellow-600')}><XCircle className="w-5 h-5" /></div>
                             <div className="flex-1 min-w-0">
                                 <Badge variant="outline" className={cn("mb-2", issue.severity === 'critical' ? 'border-red-300 text-red-600' : issue.severity === 'high' ? 'border-orange-300 text-orange-600' : 'border-yellow-300 text-yellow-600')}>{issue.severity}</Badge>
                                 <div className="text-red-600 line-through opacity-75 mb-1 text-sm">{issue.bad}</div>
                                 <div className="text-green-700 flex items-center gap-2 mb-2"><CheckCircle2 className="w-4 h-4 flex-shrink-0" /><span className="font-medium">{issue.fix}</span></div>
-                                <p className="text-sm text-slate-500">{issue.why}</p>
+                                <p className="text-sm text-muted-foreground">{issue.why}</p>
                             </div>
                         </div>
                     </motion.div>

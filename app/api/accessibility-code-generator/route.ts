@@ -3,8 +3,8 @@ import { currentUser } from "@clerk/nextjs/server";
 import { errorLogger } from "@/lib/error-logger";
 import { checkTrialLimit, recordTrialUsage } from "@/lib/trial-usage";
 import OpenAI from "openai";
-import { creditTransactions, db, toolUsage, users } from "@/lib/db";
-import { eq } from "drizzle-orm";
+import { getUserCredits, useCredits } from "@/lib/credits";
+import { hasServerUnlimitedAccess } from "@/lib/unlimited-access-server";
 import {
   isOpenRouterConfigured,
   isOpenRouterModel,
@@ -16,7 +16,6 @@ if (!process.env.OPENAI_API_KEY) {
 }
 
 const DEFAULT_MODEL = "gpt-4o";
-const CREDIT_COST = 2; // cost per successful generation (adjustable)
 const MAX_AI_TOKENS = 4000; // model token limit (tune as needed)
 const MAX_AI_TEMP = 0.25; // model temprature (tune as needed)
 
@@ -55,6 +54,7 @@ interface ResponseBody {
   enhancement_suggestions: [string];
   creditsUsed: number;
   remainingCredits: number;
+  unlimitedAccess?: boolean;
   trialStatus?: {
     usageCount: number;
     remainingUses: number;
@@ -325,13 +325,11 @@ export async function POST(req: NextRequest) {
 
     // Check user authenticated
     const user = await currentUser();
+    const hasUnlimitedAccess = await hasServerUnlimitedAccess();
 
-    // Check for unlimited access first - bypass all other checks
-    if (body.unlimitedAccess) {
+    if (hasUnlimitedAccess) {
       console.log("🚀 Unlimited access active - bypassing all limits");
     } else {
-      // Only check limits if unlimited access is not provided
-      // If not authenticated, check trial usage
       if (!user) {
         const trialStatus = await checkTrialLimit(
           "accessibility_code_generator"
@@ -375,44 +373,6 @@ export async function POST(req: NextRequest) {
         },
         { status: 400 }
       );
-    }
-
-    // Check user credits (only for authenticated users without unlimited access)
-    let userRecord = null;
-    let currentCredits = 0;
-
-    if (user && !body.unlimitedAccess) {
-      [userRecord] = await db
-        .select()
-        .from(users)
-        .where(eq(users.id, user.id))
-        .limit(1);
-
-      if (!userRecord) {
-        return NextResponse.json({ error: "User not found" }, { status: 404 });
-      }
-
-      currentCredits = userRecord.credits;
-
-      if (currentCredits < CREDIT_COST) {
-        return NextResponse.json(
-          {
-            error: `Insufficient credits. You need ${CREDIT_COST} credit${
-              CREDIT_COST > 1 ? "s" : ""
-            } but have ${currentCredits}.`,
-            code: "INSUFFICIENT_CREDITS",
-          },
-          { status: 402 }
-        );
-      }
-    } else if (user) {
-      // Get user record for unlimited access users (for logging purposes)
-      [userRecord] = await db
-        .select()
-        .from(users)
-        .where(eq(users.id, user.id))
-        .limit(1);
-      currentCredits = userRecord?.credits || 0;
     }
 
     // Build prompts
@@ -498,85 +458,43 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(recovery, { status: 200 });
     }
 
-    // Handle credit deduction and logging based on user type
-    if (user && userRecord && !body.unlimitedAccess) {
-      // Deduct credit and record transaction for authenticated users (skip for unlimited access)
-      const newBalance = currentCredits - CREDIT_COST;
+    if (user && !hasUnlimitedAccess) {
+      const creditResult = await useCredits(
+        "accessibility_code_generator",
+        {
+          componentType: body.componentType,
+          framework: body.framework,
+          componentDescription: body.componentDescription?.substring?.(0, 100),
+          customRequirement: body.customRequirement?.substring?.(0, 100),
+        },
+        {
+          componentType: body.componentType,
+          framework: body.framework,
+        },
+        user.id
+      );
 
-      await Promise.all([
-        // Update user credits
-        db
-          .update(users)
-          .set({
-            credits: newBalance,
-            totalCreditsUsed: userRecord.totalCreditsUsed + CREDIT_COST,
-            updatedAt: new Date(),
-          })
-          .where(eq(users.id, user.id)),
-
-        // Record credit transaction
-        db.insert(creditTransactions).values({
-          userId: userRecord.id,
-          type: "usage",
-          amount: -CREDIT_COST,
-          balanceBefore: currentCredits,
-          balanceAfter: newBalance,
-          description: "AI Accessibility Code Generator",
-          toolUsed: "accessibility_code_generator",
-          metadata: {
-            componentType: body.componentType,
-            framework: body.framework,
-            componentDescription: body.componentDescription?.substring?.(
-              0,
-              100
-            ),
-            customRequirement: body.customRequirement?.substring?.(0, 100),
-          },
-        }),
-
-        // Record tool usage
-        db.insert(toolUsage).values({
-          userId: userRecord.id,
-          tool: "accessibility_code_generator",
-          creditsUsed: CREDIT_COST,
-          inputData: {
-            componentType: body.componentType,
-            framework: body.framework,
-            componentDescription: body.componentDescription?.substring?.(
-              0,
-              100
-            ),
-            customRequirement: body.customRequirement?.substring?.(0, 100),
-          },
-          success: true,
-        }),
-      ]);
-
-      // Prepare final response for authenticated users
       const result: ResponseBody = {
         ...parsedData,
-        creditsUsed: CREDIT_COST,
-        remainingCredits: newBalance,
+        creditsUsed: creditResult.creditsUsed,
+        remainingCredits: creditResult.remainingCredits,
       };
 
       return NextResponse.json(result);
-    } else if (body.unlimitedAccess) {
-      // Unlimited access - no credits or trial usage recording
+    } else if (hasUnlimitedAccess) {
       console.log("⚡ Processing with unlimited access - no limits applied");
 
       const result: ResponseBody = {
         ...parsedData,
         creditsUsed: 0,
-        remainingCredits: user && userRecord ? userRecord.credits : 0,
+        remainingCredits: user ? await getUserCredits(user.id) : 0,
         unlimitedAccess: true,
       };
 
       return NextResponse.json(result);
-    } else {
-      // Record trial usage for non-authenticated users without unlimited access
+    } else if (!user) {
       await recordTrialUsage("accessibility_code_generator");
 
-      // Prepare final response for trial users
       const result: ResponseBody = {
         ...parsedData,
         creditsUsed: 0,
@@ -589,6 +507,8 @@ export async function POST(req: NextRequest) {
       };
 
       return NextResponse.json(result);
+    } else {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
   } catch (error) {
     console.error("Accessibility Code Generator Error:", error);
@@ -600,6 +520,17 @@ export async function POST(req: NextRequest) {
     });
 
     if (error instanceof Error) {
+      if (error.message.includes("Insufficient credits")) {
+        return NextResponse.json(
+          { error: error.message, code: "INSUFFICIENT_CREDITS" },
+          { status: 402 }
+        );
+      }
+
+      if (error.message.includes("User not found")) {
+        return NextResponse.json({ error: "User not found" }, { status: 404 });
+      }
+
       if (
         error.message.includes("insufficient_quota") ||
         error.message.includes("rate_limit")

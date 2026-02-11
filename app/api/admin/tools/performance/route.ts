@@ -1,17 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { requireAdmin } from '@/lib/admin-auth'
+import { AdminAccessError, requireAdminApi } from '@/lib/admin-auth'
 import { getToolPerformanceMetrics } from '@/lib/admin-utils'
 
 export async function GET(request: NextRequest) {
   try {
-    // Verify admin access
-    await requireAdmin()
+    await requireAdminApi()
 
-    // Parse query parameters
     const { searchParams } = new URL(request.url)
-    const days = searchParams.get('days') ? parseInt(searchParams.get('days')!) : 30
+    const daysParam = searchParams.get('days')
+    const days = daysParam ? Number.parseInt(daysParam, 10) : 30
 
-    // Validate days parameter
+    if (!Number.isInteger(days)) {
+      return NextResponse.json(
+        { error: 'Days must be a valid integer' },
+        { status: 400 }
+      )
+    }
+
     if (days < 1 || days > 365) {
       return NextResponse.json(
         { error: 'Days must be between 1 and 365' },
@@ -33,12 +38,9 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Admin tool performance error:', error)
-    
-    if (error instanceof Error && error.message.includes('redirect')) {
-      return NextResponse.json(
-        { error: 'Admin access required' },
-        { status: 403 }
-      )
+
+    if (error instanceof AdminAccessError) {
+      return NextResponse.json({ error: error.message }, { status: error.statusCode })
     }
 
     return NextResponse.json(

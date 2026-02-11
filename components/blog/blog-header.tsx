@@ -355,8 +355,6 @@ export function BlogHeader({
           </div>
         )}
       </header>
-<<<<<<< Updated upstream
-=======
 
       {/* Floating Reading Progress Indicator */}
       {showProgress && indicatorSize !== null && (
@@ -418,7 +416,6 @@ export function BlogHeader({
           </div>
         </div>
       )}
->>>>>>> Stashed changes
     </>
   );
 }

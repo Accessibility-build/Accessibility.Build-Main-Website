@@ -33,17 +33,11 @@ export default function TablePatternPage() {
   const [activeSection, setActiveSection] = useState('basic');
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
-      {/* Decorative Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[100px]" />
-        <div className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-violet-100/40 rounded-full blur-[100px]" />
-      </div>
-
+    <div className="learn-theme min-h-screen bg-background">
       {/* Header */}
-      <div className="relative pt-8 pb-6 px-4 border-b border-slate-200 bg-white/80 backdrop-blur-sm">
+      <div className="pt-8 pb-6 px-4 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
         <div className="max-w-6xl mx-auto">
-          <Link href="/learn" className="inline-flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors mb-4 group text-sm">
+          <Link href="/learn" className="inline-flex items-center gap-2 text-muted-foreground hover:text-blue-600 transition-colors mb-4 group text-sm">
             <ChevronRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" /> Back to Learn Hub
           </Link>
           <div className="flex items-center gap-4">
@@ -52,15 +46,15 @@ export default function TablePatternPage() {
             </div>
             <div>
               <Badge className="bg-blue-100 text-blue-700 border-blue-200 mb-1"><Sparkles className="w-3 h-3 mr-1" /> Comprehensive Guide</Badge>
-              <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Accessible Data Tables</h1>
-              <p className="text-slate-500 mt-1">Master every aspect of building tables that work for everyone</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground">Accessible Data Tables</h1>
+              <p className="text-muted-foreground mt-1">Master every aspect of building tables that work for everyone</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Section Navigation */}
-      <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+      <div className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
         <div className="max-w-6xl mx-auto px-4 py-3">
           <div className="flex overflow-x-auto gap-2 no-scrollbar">
             {sections.map((section) => {
@@ -69,7 +63,7 @@ export default function TablePatternPage() {
               return (
                 <button key={section.id} onClick={() => setActiveSection(section.id)}
                   className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all border-2",
-                    isActive ? `${section.color} text-white border-transparent shadow-lg` : `bg-white ${section.textColor} border-slate-200 hover:border-slate-300`
+                    isActive ? "bg-primary text-primary-foreground border-primary shadow-sm" : "bg-background text-muted-foreground border-border hover:border-border/80 hover:text-foreground"
                   )}>
                   <Icon className="w-4 h-4" /> {section.label}
                 </button>
@@ -102,17 +96,17 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
   const [showGood, setShowGood] = useState(false);
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-2 p-1 bg-slate-100 rounded-full w-fit">
-        <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-slate-600 hover:text-slate-900")}>
+      <div className="flex items-center gap-2 p-1 bg-muted rounded-full w-fit">
+        <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}>
           <EyeOff className="w-4 h-4" /> Inaccessible
         </button>
-        <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-slate-600 hover:text-slate-900")}>
+        <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}>
           <Eye className="w-4 h-4" /> Accessible
         </button>
       </div>
       <AnimatePresence mode="wait">
         <motion.div key={showGood ? 'good' : 'bad'} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-          className={cn("p-6 rounded-2xl border-2", showGood ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200")}>
+          className={cn("p-6 rounded-2xl border-2", showGood ? "bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-900" : "bg-red-50 border-red-200 dark:bg-red-950/20 dark:border-red-900")}>
           {showGood ? good : bad}
         </motion.div>
       </AnimatePresence>
@@ -123,26 +117,26 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
 function SectionHeader({ title, description }: { title: string; description: string }) {
   return (
     <div className="mb-8">
-      <h2 className="text-3xl font-bold text-slate-900 mb-3">{title}</h2>
-      <p className="text-lg text-slate-600 max-w-4xl">{description}</p>
+      <h2 className="text-3xl font-bold text-foreground mb-3">{title}</h2>
+      <p className="text-lg text-muted-foreground max-w-4xl">{description}</p>
     </div>
   );
 }
 
 function KeyPoint({ icon: Icon, title, children }: { icon: any; title: string; children: React.ReactNode }) {
   return (
-    <div className="flex gap-4 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+    <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm">
       <div className="p-2 bg-blue-100 rounded-lg h-fit"><Icon className="w-5 h-5 text-blue-600" /></div>
-      <div><h4 className="font-semibold text-slate-900 mb-1">{title}</h4><p className="text-sm text-slate-600">{children}</p></div>
+      <div><h4 className="font-semibold text-foreground mb-1">{title}</h4><p className="text-sm text-muted-foreground">{children}</p></div>
     </div>
   );
 }
 
 function TipBox({ title, children, variant = 'info' }: { title: string; children: React.ReactNode; variant?: 'info' | 'warning' | 'success' }) {
   const styles = {
-    info: 'bg-blue-50 border-blue-200 text-blue-800',
-    warning: 'bg-amber-50 border-amber-200 text-amber-800',
-    success: 'bg-green-50 border-green-200 text-green-800',
+    info: 'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-950/20 dark:border-blue-900 dark:text-blue-200',
+    warning: 'bg-amber-50 border-amber-200 text-amber-800 dark:bg-amber-950/20 dark:border-amber-900 dark:text-amber-200',
+    success: 'bg-green-50 border-green-200 text-green-800 dark:bg-green-950/20 dark:border-green-900 dark:text-green-200',
   };
   const icons = { info: Lightbulb, warning: AlertTriangle, success: CheckCircle2 };
   const Icon = icons[variant];
@@ -156,8 +150,8 @@ function TipBox({ title, children, variant = 'info' }: { title: string; children
 
 function CodeBlock({ code, title }: { code: string; title?: string }) {
   return (
-    <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-      {title && <div className="px-4 py-2 bg-slate-100 border-b border-slate-200 text-sm font-medium text-slate-700 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
+    <div className="rounded-xl overflow-hidden border border-border shadow-sm">
+      {title && <div className="px-4 py-2 bg-muted border-b border-border text-sm font-medium text-foreground/90 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
       <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm"><code>{code}</code></pre>
     </div>
   );
@@ -188,26 +182,26 @@ function BasicTableSection() {
 
       {/* Interactive Demo */}
       <div>
-        <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-blue-500" /> Try It Yourself</h3>
+        <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-blue-500" /> Try It Yourself</h3>
         <InteractiveDemo
           bad={<div className="space-y-4">
             <div className="flex items-center gap-2 text-red-600 text-sm mb-4"><AlertTriangle className="w-4 h-4" /> <strong>Problem:</strong> Screen readers see this as random text, not a table structure!</div>
-            <div className="border border-slate-300 rounded-lg overflow-hidden bg-white">
-              <div className="flex bg-slate-100 font-semibold text-sm text-slate-700"><div className="flex-1 p-3">Name</div><div className="flex-1 p-3">Role</div><div className="flex-1 p-3">Department</div></div>
-              {sampleData.slice(0, 3).map((emp) => (<div key={emp.id} className="flex border-t border-slate-200 text-sm text-slate-600"><div className="flex-1 p-3">{emp.name}</div><div className="flex-1 p-3">{emp.role}</div><div className="flex-1 p-3">{emp.department}</div></div>))}
+            <div className="border border-border/80 rounded-lg overflow-hidden bg-card">
+              <div className="flex bg-muted font-semibold text-sm text-foreground/90"><div className="flex-1 p-3">Name</div><div className="flex-1 p-3">Role</div><div className="flex-1 p-3">Department</div></div>
+              {sampleData.slice(0, 3).map((emp) => (<div key={emp.id} className="flex border-t border-border text-sm text-muted-foreground"><div className="flex-1 p-3">{emp.name}</div><div className="flex-1 p-3">{emp.role}</div><div className="flex-1 p-3">{emp.department}</div></div>))}
             </div>
             <p className="text-sm text-red-700 mt-3">❌ VoiceOver reads: "Alice Johnson, Frontend Developer, Engineering" — no context about columns!</p>
           </div>}
           good={<div className="space-y-4">
             <div className="flex items-center gap-2 text-green-600 text-sm mb-4"><CheckCircle2 className="w-4 h-4" /> <strong>Solution:</strong> Screen readers can navigate by row and column!</div>
-            <table className="w-full border border-slate-300 rounded-lg overflow-hidden bg-white text-sm">
+            <table className="w-full border border-border/80 rounded-lg overflow-hidden bg-card text-sm">
               <caption className="sr-only">Employee Directory - Team Members</caption>
-              <thead className="bg-slate-100"><tr>
-                <th scope="col" className="p-3 text-left font-semibold text-slate-700">Name</th>
-                <th scope="col" className="p-3 text-left font-semibold text-slate-700">Role</th>
-                <th scope="col" className="p-3 text-left font-semibold text-slate-700">Department</th>
+              <thead className="bg-muted"><tr>
+                <th scope="col" className="p-3 text-left font-semibold text-foreground/90">Name</th>
+                <th scope="col" className="p-3 text-left font-semibold text-foreground/90">Role</th>
+                <th scope="col" className="p-3 text-left font-semibold text-foreground/90">Department</th>
               </tr></thead>
-              <tbody>{sampleData.slice(0, 3).map((emp) => (<tr key={emp.id} className="border-t border-slate-200 hover:bg-slate-50"><td className="p-3 text-slate-900">{emp.name}</td><td className="p-3 text-slate-600">{emp.role}</td><td className="p-3 text-slate-600">{emp.department}</td></tr>))}</tbody>
+              <tbody>{sampleData.slice(0, 3).map((emp) => (<tr key={emp.id} className="border-t border-border hover:bg-muted/40"><td className="p-3 text-foreground">{emp.name}</td><td className="p-3 text-muted-foreground">{emp.role}</td><td className="p-3 text-muted-foreground">{emp.department}</td></tr>))}</tbody>
             </table>
             <p className="text-sm text-green-700 mt-3">✅ VoiceOver reads: "Name column, Alice Johnson. Role column, Frontend Developer" — full context!</p>
           </div>}
@@ -255,19 +249,19 @@ function BasicTableSection() {
 
       {/* Key Elements */}
       <div>
-        <h3 className="text-xl font-semibold text-slate-900 mb-4">Essential Table Elements</h3>
+        <h3 className="text-xl font-semibold text-foreground mb-4">Essential Table Elements</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
-            <thead className="bg-slate-100">
+          <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
+            <thead className="bg-muted">
               <tr><th scope="col" className="p-4 text-left font-semibold">Element</th><th scope="col" className="p-4 text-left font-semibold">Purpose</th><th scope="col" className="p-4 text-left font-semibold">Screen Reader Benefit</th></tr>
             </thead>
             <tbody>
               <tr className="border-t"><td className="p-4 font-mono text-blue-600">&lt;table&gt;</td><td className="p-4">Container for tabular data</td><td className="p-4">Announces "Table with X rows, Y columns"</td></tr>
-              <tr className="border-t bg-slate-50"><td className="p-4 font-mono text-blue-600">&lt;caption&gt;</td><td className="p-4">Title/description of the table</td><td className="p-4">Read first, gives users context before navigating</td></tr>
+              <tr className="border-t bg-muted/40"><td className="p-4 font-mono text-blue-600">&lt;caption&gt;</td><td className="p-4">Title/description of the table</td><td className="p-4">Read first, gives users context before navigating</td></tr>
               <tr className="border-t"><td className="p-4 font-mono text-blue-600">&lt;thead&gt;</td><td className="p-4">Groups header rows</td><td className="p-4">Distinguishes headers from data rows</td></tr>
-              <tr className="border-t bg-slate-50"><td className="p-4 font-mono text-blue-600">&lt;th scope="col"&gt;</td><td className="p-4">Column header cell</td><td className="p-4">Read with each cell in that column</td></tr>
+              <tr className="border-t bg-muted/40"><td className="p-4 font-mono text-blue-600">&lt;th scope="col"&gt;</td><td className="p-4">Column header cell</td><td className="p-4">Read with each cell in that column</td></tr>
               <tr className="border-t"><td className="p-4 font-mono text-blue-600">&lt;th scope="row"&gt;</td><td className="p-4">Row header cell</td><td className="p-4">Read with each cell in that row</td></tr>
-              <tr className="border-t bg-slate-50"><td className="p-4 font-mono text-blue-600">&lt;tbody&gt;</td><td className="p-4">Groups data rows</td><td className="p-4">Separates data from headers and footers</td></tr>
+              <tr className="border-t bg-muted/40"><td className="p-4 font-mono text-blue-600">&lt;tbody&gt;</td><td className="p-4">Groups data rows</td><td className="p-4">Separates data from headers and footers</td></tr>
             </tbody>
           </table>
         </div>
@@ -327,25 +321,25 @@ function SortableTableSection() {
 
       {/* Live Demo */}
       <div className="p-6 rounded-2xl bg-violet-50 border border-violet-200">
-        <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-violet-500" /> Interactive Demo</h3>
-        <p className="text-slate-600 mb-4">Click any column header to sort. Try using Tab to focus headers, then press Enter to sort.</p>
+        <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-violet-500" /> Interactive Demo</h3>
+        <p className="text-muted-foreground mb-4">Click any column header to sort. Try using Tab to focus headers, then press Enter to sort.</p>
         
         {/* Live region for announcements */}
         <div role="status" aria-live="polite" className="sr-only">{announcement}</div>
         
-        <div className="overflow-x-auto bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div className="overflow-x-auto bg-card rounded-xl border border-border shadow-sm">
           <table className="w-full text-sm">
             <caption className="sr-only">Employee directory, sortable by clicking column headers</caption>
             <thead>
-              <tr className="bg-slate-50">
+              <tr className="bg-muted/40">
                 {(['name', 'role', 'department', 'salary'] as const).map((col) => (
                   <th key={col} scope="col" aria-sort={sortColumn === col ? sortDirection : undefined} className="text-left p-0">
-                    <button onClick={() => handleSort(col)} className="w-full flex items-center justify-between p-4 font-semibold text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-500 transition-all">
+                    <button onClick={() => handleSort(col)} className="w-full flex items-center justify-between p-4 font-semibold text-foreground/90 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-500 transition-all">
                       <span className="capitalize">{col}</span>
                       <span className="ml-2">
                         {sortColumn === col && sortDirection !== 'none' ? (
                           sortDirection === 'ascending' ? <ChevronUp className="w-4 h-4 text-violet-600" /> : <ChevronDown className="w-4 h-4 text-violet-600" />
-                        ) : <ChevronsUpDown className="w-4 h-4 text-slate-400" />}
+                        ) : <ChevronsUpDown className="w-4 h-4 text-muted-foreground/80" />}
                       </span>
                     </button>
                   </th>
@@ -354,11 +348,11 @@ function SortableTableSection() {
             </thead>
             <tbody>
               {sortedData.map((emp) => (
-                <tr key={emp.id} className="border-t border-slate-200 hover:bg-slate-50">
-                  <td className="p-4 font-medium text-slate-900">{emp.name}</td>
-                  <td className="p-4 text-slate-600">{emp.role}</td>
-                  <td className="p-4 text-slate-600">{emp.department}</td>
-                  <td className="p-4 text-slate-600">${emp.salary.toLocaleString()}</td>
+                <tr key={emp.id} className="border-t border-border hover:bg-muted/40">
+                  <td className="p-4 font-medium text-foreground">{emp.name}</td>
+                  <td className="p-4 text-muted-foreground">{emp.role}</td>
+                  <td className="p-4 text-muted-foreground">{emp.department}</td>
+                  <td className="p-4 text-muted-foreground">${emp.salary.toLocaleString()}</td>
                 </tr>
               ))}
             </tbody>
@@ -374,7 +368,7 @@ function SortableTableSection() {
 
       {/* Code Example */}
       <div>
-        <h3 className="text-xl font-semibold text-slate-900 mb-4">Implementation Pattern</h3>
+        <h3 className="text-xl font-semibold text-foreground mb-4">Implementation Pattern</h3>
         <CodeBlock title="Sortable Table Header" code={`<th scope="col" aria-sort="ascending">
   <button onClick={handleSort}>
     Name
@@ -433,29 +427,29 @@ function ResponsiveTableSection() {
         {viewMode === 'scroll' ? (
           <motion.div key="scroll" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-6">
             <div className="p-6 rounded-2xl bg-orange-50 border border-orange-200">
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Horizontal Scroll Pattern</h3>
-              <p className="text-slate-600 mb-4">The table stays intact. On mobile, users scroll horizontally. Add <code>tabindex="0"</code> to the scroll container for keyboard users.</p>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Horizontal Scroll Pattern</h3>
+              <p className="text-muted-foreground mb-4">The table stays intact. On mobile, users scroll horizontally. Add <code>tabindex="0"</code> to the scroll container for keyboard users.</p>
               
-              <div className="overflow-x-auto bg-white rounded-xl border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500" tabIndex={0} role="region" aria-label="Scrollable employee table">
+              <div className="overflow-x-auto bg-card rounded-xl border border-border shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500" tabIndex={0} role="region" aria-label="Scrollable employee table">
                 <table className="w-full min-w-[700px] text-sm">
                   <caption className="sr-only">Employee directory - scroll horizontally to see all columns</caption>
-                  <thead className="bg-slate-50">
+                  <thead className="bg-muted/40">
                     <tr>
-                      <th scope="col" className="p-4 text-left text-slate-700 font-semibold">Name</th>
-                      <th scope="col" className="p-4 text-left text-slate-700 font-semibold">Role</th>
-                      <th scope="col" className="p-4 text-left text-slate-700 font-semibold">Department</th>
-                      <th scope="col" className="p-4 text-left text-slate-700 font-semibold">Status</th>
-                      <th scope="col" className="p-4 text-left text-slate-700 font-semibold">Salary</th>
+                      <th scope="col" className="p-4 text-left text-foreground/90 font-semibold">Name</th>
+                      <th scope="col" className="p-4 text-left text-foreground/90 font-semibold">Role</th>
+                      <th scope="col" className="p-4 text-left text-foreground/90 font-semibold">Department</th>
+                      <th scope="col" className="p-4 text-left text-foreground/90 font-semibold">Status</th>
+                      <th scope="col" className="p-4 text-left text-foreground/90 font-semibold">Salary</th>
                     </tr>
                   </thead>
                   <tbody>
                     {sampleData.map((emp) => (
-                      <tr key={emp.id} className="border-t border-slate-200 hover:bg-slate-50">
-                        <td className="p-4 text-slate-900 font-medium">{emp.name}</td>
-                        <td className="p-4 text-slate-600">{emp.role}</td>
-                        <td className="p-4 text-slate-600">{emp.department}</td>
+                      <tr key={emp.id} className="border-t border-border hover:bg-muted/40">
+                        <td className="p-4 text-foreground font-medium">{emp.name}</td>
+                        <td className="p-4 text-muted-foreground">{emp.role}</td>
+                        <td className="p-4 text-muted-foreground">{emp.department}</td>
                         <td className="p-4"><Badge variant={emp.status === 'Active' ? 'default' : 'secondary'} className={emp.status === 'Active' ? 'bg-green-500' : ''}>{emp.status}</Badge></td>
-                        <td className="p-4 text-slate-600">${emp.salary.toLocaleString()}</td>
+                        <td className="p-4 text-muted-foreground">${emp.salary.toLocaleString()}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -480,21 +474,21 @@ function ResponsiveTableSection() {
         ) : (
           <motion.div key="stacked" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-6">
             <div className="p-6 rounded-2xl bg-orange-50 border border-orange-200">
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Stacked Cards Pattern</h3>
-              <p className="text-slate-600 mb-4">On mobile, transform each row into a card. Use definition lists (<code>&lt;dl&gt;</code>) for semantic key-value pairs.</p>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Stacked Cards Pattern</h3>
+              <p className="text-muted-foreground mb-4">On mobile, transform each row into a card. Use definition lists (<code>&lt;dl&gt;</code>) for semantic key-value pairs.</p>
               
               <div className="grid gap-4">
                 {sampleData.map((emp, idx) => (
                   <motion.article key={emp.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.05 }} 
-                    className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="font-bold text-lg text-slate-900">{emp.name}</h3>
+                      <h3 className="font-bold text-lg text-foreground">{emp.name}</h3>
                       <Badge variant={emp.status === 'Active' ? 'default' : 'secondary'} className={emp.status === 'Active' ? 'bg-green-500' : ''}>{emp.status}</Badge>
                     </div>
                     <dl className="grid grid-cols-2 gap-3 text-sm">
-                      <div><dt className="text-slate-500 font-medium">Role</dt><dd className="text-slate-700">{emp.role}</dd></div>
-                      <div><dt className="text-slate-500 font-medium">Department</dt><dd className="text-slate-700">{emp.department}</dd></div>
-                      <div><dt className="text-slate-500 font-medium">Salary</dt><dd className="text-green-600 font-semibold">${emp.salary.toLocaleString()}</dd></div>
+                      <div><dt className="text-muted-foreground font-medium">Role</dt><dd className="text-foreground/90">{emp.role}</dd></div>
+                      <div><dt className="text-muted-foreground font-medium">Department</dt><dd className="text-foreground/90">{emp.department}</dd></div>
+                      <div><dt className="text-muted-foreground font-medium">Salary</dt><dd className="text-green-600 font-semibold">${emp.salary.toLocaleString()}</dd></div>
                     </dl>
                   </motion.article>
                 ))}
@@ -565,13 +559,13 @@ function SelectableTableSection() {
 
       {/* Live Demo */}
       <div className="p-6 rounded-2xl bg-green-50 border border-green-200">
-        <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-green-500" /> Interactive Demo</h3>
-        <p className="text-slate-600 mb-4">Select individual rows or use the header checkbox to select all. Notice how the header checkbox shows a dash (—) when partially selected.</p>
+        <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-green-500" /> Interactive Demo</h3>
+        <p className="text-muted-foreground mb-4">Select individual rows or use the header checkbox to select all. Notice how the header checkbox shows a dash (—) when partially selected.</p>
 
-        <div className="overflow-x-auto bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div className="overflow-x-auto bg-card rounded-xl border border-border shadow-sm">
           <table className="w-full text-sm">
             <caption className="sr-only">Selectable employee list</caption>
-            <thead className="bg-slate-50">
+            <thead className="bg-muted/40">
               <tr>
                 <th scope="col" className="p-4 w-12">
                   <label className="sr-only">Select all employees</label>
@@ -580,29 +574,29 @@ function SelectableTableSection() {
                     checked={isAllSelected}
                     ref={(el) => { if (el) el.indeterminate = isIndeterminate; }}
                     onChange={toggleAll}
-                    className="w-5 h-5 rounded border-slate-300 text-green-600 focus:ring-green-500 cursor-pointer"
+                    className="w-5 h-5 rounded border-border/80 text-green-600 focus:ring-green-500 cursor-pointer"
                   />
                 </th>
-                <th scope="col" className="p-4 text-left text-slate-700 font-semibold">Name</th>
-                <th scope="col" className="p-4 text-left text-slate-700 font-semibold">Role</th>
-                <th scope="col" className="p-4 text-left text-slate-700 font-semibold">Department</th>
+                <th scope="col" className="p-4 text-left text-foreground/90 font-semibold">Name</th>
+                <th scope="col" className="p-4 text-left text-foreground/90 font-semibold">Role</th>
+                <th scope="col" className="p-4 text-left text-foreground/90 font-semibold">Department</th>
               </tr>
             </thead>
             <tbody>
               {sampleData.map((emp) => (
-                <tr key={emp.id} className={cn("border-t border-slate-200 transition-colors", selectedIds.has(emp.id) ? "bg-green-50" : "hover:bg-slate-50")}>
+                <tr key={emp.id} className={cn("border-t border-border transition-colors", selectedIds.has(emp.id) ? "bg-green-50" : "hover:bg-muted/40")}>
                   <td className="p-4">
                     <label className="sr-only">Select {emp.name}</label>
                     <input 
                       type="checkbox" 
                       checked={selectedIds.has(emp.id)} 
                       onChange={() => toggleSelect(emp.id)}
-                      className="w-5 h-5 rounded border-slate-300 text-green-600 focus:ring-green-500 cursor-pointer"
+                      className="w-5 h-5 rounded border-border/80 text-green-600 focus:ring-green-500 cursor-pointer"
                     />
                   </td>
-                  <td className="p-4 font-medium text-slate-900">{emp.name}</td>
-                  <td className="p-4 text-slate-600">{emp.role}</td>
-                  <td className="p-4 text-slate-600">{emp.department}</td>
+                  <td className="p-4 font-medium text-foreground">{emp.name}</td>
+                  <td className="p-4 text-muted-foreground">{emp.role}</td>
+                  <td className="p-4 text-muted-foreground">{emp.department}</td>
                 </tr>
               ))}
             </tbody>
@@ -698,24 +692,24 @@ function EditableTableSection() {
 
       {/* Live Demo */}
       <div className="p-6 rounded-2xl bg-pink-50 border border-pink-200">
-        <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-pink-500" /> Interactive Demo</h3>
-        <p className="text-slate-600 mb-4">Click the edit button to modify a name. Press <strong>Enter</strong> to save or <strong>Escape</strong> to cancel. Notice how focus moves to the input and back.</p>
+        <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-pink-500" /> Interactive Demo</h3>
+        <p className="text-muted-foreground mb-4">Click the edit button to modify a name. Press <strong>Enter</strong> to save or <strong>Escape</strong> to cancel. Notice how focus moves to the input and back.</p>
 
         <div id="edit-instructions" className="sr-only">Press Enter to save changes, or Escape to cancel</div>
 
-        <div className="overflow-x-auto bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div className="overflow-x-auto bg-card rounded-xl border border-border shadow-sm">
           <table className="w-full text-sm">
             <caption className="sr-only">Editable employee directory</caption>
-            <thead className="bg-slate-50">
+            <thead className="bg-muted/40">
               <tr>
-                <th scope="col" className="p-4 text-left text-slate-700 font-semibold">Name</th>
-                <th scope="col" className="p-4 text-left text-slate-700 font-semibold">Role</th>
-                <th scope="col" className="p-4 text-left text-slate-700 font-semibold w-32">Actions</th>
+                <th scope="col" className="p-4 text-left text-foreground/90 font-semibold">Name</th>
+                <th scope="col" className="p-4 text-left text-foreground/90 font-semibold">Role</th>
+                <th scope="col" className="p-4 text-left text-foreground/90 font-semibold w-32">Actions</th>
               </tr>
             </thead>
             <tbody>
               {sampleData.map((emp) => (
-                <tr key={emp.id} className="border-t border-slate-200">
+                <tr key={emp.id} className="border-t border-border">
                   <td className="p-4">
                     {editingId === emp.id ? (
                       <input
@@ -732,10 +726,10 @@ function EditableTableSection() {
                         className="w-full px-3 py-2 border border-pink-400 rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
                       />
                     ) : (
-                      <span className="font-medium text-slate-900">{emp.name}</span>
+                      <span className="font-medium text-foreground">{emp.name}</span>
                     )}
                   </td>
-                  <td className="p-4 text-slate-600">{emp.role}</td>
+                  <td className="p-4 text-muted-foreground">{emp.role}</td>
                   <td className="p-4">
                     {editingId === emp.id ? (
                       <div className="flex gap-2">
@@ -751,7 +745,7 @@ function EditableTableSection() {
                         size="sm"
                         variant="ghost"
                         onClick={(e) => startEdit(emp, e.currentTarget)}
-                        className="text-slate-500 hover:text-slate-700"
+                        className="text-muted-foreground hover:text-foreground/90"
                       >
                         <Edit3 className="w-4 h-4 mr-1" /> Edit
                       </Button>
@@ -823,7 +817,7 @@ function CommonIssuesSection() {
       <div className="space-y-4">
         {issues.map((issue, idx) => (
           <motion.div key={idx} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.05 }}
-            className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+            className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md transition-all">
             <div className="flex items-start gap-4">
               <div className={cn("p-2 rounded-lg flex-shrink-0", 
                 issue.severity === 'critical' ? 'bg-red-100 text-red-600' : 
@@ -847,7 +841,7 @@ function CommonIssuesSection() {
                   <CheckCircle2 className="w-4 h-4 flex-shrink-0" /> 
                   <span className="font-medium">{issue.fix}</span>
                 </div>
-                <p className="text-sm text-slate-500">{issue.why}</p>
+                <p className="text-sm text-muted-foreground">{issue.why}</p>
               </div>
             </div>
           </motion.div>

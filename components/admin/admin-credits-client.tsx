@@ -30,6 +30,8 @@ interface DashboardStats {
   totalAudits: number
 }
 
+const BULK_ASSIGNMENT_BATCH_SIZE = 100
+
 export function AdminCreditsClient() {
   const [stats, setStats] = useState<DashboardStats | null>(null)
   const [loading, setLoading] = useState(true)
@@ -77,6 +79,16 @@ export function AdminCreditsClient() {
       return
     }
 
+    const parsedAmount = Number(creditAmount)
+    if (!Number.isInteger(parsedAmount) || parsedAmount <= 0) {
+      toast({
+        title: 'Error',
+        description: 'Credit amount must be a positive integer',
+        variant: 'destructive'
+      })
+      return
+    }
+
     setActionLoading(true)
     try {
       // First, get users based on the selected criteria
@@ -103,35 +115,46 @@ export function AdminCreditsClient() {
         return
       }
 
-      // Assign credits to selected users
-      const response = await fetch('/api/admin/credits/bulk', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userIds,
-          amount: parseInt(creditAmount),
-          reason: creditReason
-        }),
+      let totalSuccessful = 0
+      let totalFailed = 0
+
+      for (let i = 0; i < userIds.length; i += BULK_ASSIGNMENT_BATCH_SIZE) {
+        const batchUserIds = userIds.slice(i, i + BULK_ASSIGNMENT_BATCH_SIZE)
+        const response = await fetch('/api/admin/credits/bulk', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userIds: batchUserIds,
+            amount: parsedAmount,
+            reason: creditReason
+          }),
+        })
+
+        const responseBody = await response.json()
+
+        if (!response.ok) {
+          throw new Error(responseBody.error || 'Failed to assign bulk credits')
+        }
+
+        totalSuccessful += responseBody?.result?.successful ?? batchUserIds.length
+        totalFailed += responseBody?.result?.failed ?? 0
+      }
+
+      await fetchStats()
+      toast({
+        title: totalFailed === 0 ? 'Success' : 'Partial Success',
+        description: totalFailed === 0
+          ? `Credits assigned to ${totalSuccessful} users successfully`
+          : `Assigned credits to ${totalSuccessful} users, ${totalFailed} failed`,
+        variant: totalFailed === 0 ? 'default' : 'destructive'
       })
 
-      if (response.ok) {
-        await fetchStats()
-        toast({
-          title: 'Success',
-          description: `Credits assigned to ${userIds.length} users successfully`,
-        })
+      if (totalSuccessful > 0) {
         setShowBulkDialog(false)
         setCreditAmount('')
         setCreditReason('')
-      } else {
-        const error = await response.json()
-        toast({
-          title: 'Error',
-          description: error.error || 'Failed to assign bulk credits',
-          variant: 'destructive'
-        })
       }
     } catch (error) {
       toast({
@@ -422,7 +445,7 @@ export function AdminCreditsClient() {
               <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                 <p className="text-sm text-blue-700 dark:text-blue-300">
                   <strong>Total credits to be assigned:</strong>{' '}
-                  {(parseInt(creditAmount) * (
+                  {(Math.max(0, Number(creditAmount) || 0) * (
                     bulkOperation === 'all_users' ? stats.totalUsers :
                     bulkOperation === 'active_users' ? stats.activeUsers :
                     stats.totalUsers - stats.activeUsers

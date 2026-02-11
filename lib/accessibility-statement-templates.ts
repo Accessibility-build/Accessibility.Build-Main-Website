@@ -19,6 +19,30 @@ export interface StatementData {
 
 export type StatementTemplate = 'basic' | 'comprehensive' | 'legal' | 'developer'
 
+const hasFeedbackChannel = (data: StatementData, channel: 'email' | 'form' | 'phone'): boolean => {
+  return data.feedbackMechanism === 'multiple' || data.feedbackMechanism === channel
+}
+
+const getFeedbackLines = (data: StatementData): string[] => {
+  const lines: string[] = []
+
+  if (hasFeedbackChannel(data, 'email')) {
+    lines.push(`Email: ${data.contactEmail}`)
+  }
+  if (data.contactPhone && hasFeedbackChannel(data, 'phone')) {
+    lines.push(`Phone: ${data.contactPhone}`)
+  }
+  if (data.feedbackUrl && hasFeedbackChannel(data, 'form')) {
+    lines.push(`Feedback Form: ${data.feedbackUrl}`)
+  }
+
+  if (lines.length === 0) {
+    lines.push(`Email: ${data.contactEmail}`)
+  }
+
+  return lines
+}
+
 export function generateStatementHTML(data: StatementData, template: StatementTemplate): string {
   const baseHTML = `<!DOCTYPE html>
 <html lang="en">
@@ -111,9 +135,9 @@ export function generateStatementHTML(data: StatementData, template: StatementTe
     <h2>Feedback</h2>
     <p>We welcome your feedback on the accessibility of our website. Please let us know if you encounter accessibility barriers:</p>
     <div class="contact-info">
-        ${data.feedbackMechanism.includes('email') ? `<p><strong>Email:</strong> <a href="mailto:${data.contactEmail}">${data.contactEmail}</a></p>` : ''}
-        ${data.contactPhone && data.feedbackMechanism.includes('phone') ? `<p><strong>Phone:</strong> <a href="tel:${data.contactPhone}">${data.contactPhone}</a></p>` : ''}
-        ${data.feedbackUrl && data.feedbackMechanism.includes('form') ? `<p><strong>Feedback Form:</strong> <a href="${data.feedbackUrl}">${data.feedbackUrl}</a></p>` : ''}
+        ${hasFeedbackChannel(data, 'email') ? `<p><strong>Email:</strong> <a href="mailto:${data.contactEmail}">${data.contactEmail}</a></p>` : ''}
+        ${data.contactPhone && hasFeedbackChannel(data, 'phone') ? `<p><strong>Phone:</strong> <a href="tel:${data.contactPhone}">${data.contactPhone}</a></p>` : ''}
+        ${data.feedbackUrl && hasFeedbackChannel(data, 'form') ? `<p><strong>Feedback Form:</strong> <a href="${data.feedbackUrl}">${data.feedbackUrl}</a></p>` : ''}
     </div>
     
     <h2>Formal Complaints</h2>
@@ -173,6 +197,8 @@ export function generateStatementHTML(data: StatementData, template: StatementTe
 }
 
 export function generateStatementMarkdown(data: StatementData, template: StatementTemplate): string {
+  const feedbackLines = getFeedbackLines(data)
+
   return `# Accessibility Statement
 
 **${data.organizationName}** is committed to ensuring digital accessibility for people with disabilities.
@@ -196,14 +222,15 @@ ${data.knownLimitations.length > 0 ? `## Known Limitations\n\n${data.knownLimita
 ## Feedback
 
 Contact us:
-- Email: ${data.contactEmail}
-${data.contactPhone ? `- Phone: ${data.contactPhone}` : ''}
+${feedbackLines.map(line => `- ${line}`).join('\n')}
 
 Last updated: ${data.lastUpdated}
 `
 }
 
 export function generateStatementPlainText(data: StatementData): string {
+  const feedbackLines = getFeedbackLines(data)
+
   return `ACCESSIBILITY STATEMENT
 
 ${data.organizationName} is committed to ensuring digital accessibility for people with disabilities.
@@ -220,10 +247,8 @@ ${data.testingMethods.map(m => `- ${m}`).join('\n')}
 ${data.knownLimitations.length > 0 ? `KNOWN LIMITATIONS\n${data.knownLimitations.map(l => `- ${l}`).join('\n')}\n` : ''}
 
 FEEDBACK
-Email: ${data.contactEmail}
-${data.contactPhone ? `Phone: ${data.contactPhone}` : ''}
+${feedbackLines.join('\n')}
 
 Last updated: ${data.lastUpdated}
 `
 }
-

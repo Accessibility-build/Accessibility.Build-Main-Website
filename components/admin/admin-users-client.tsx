@@ -235,6 +235,15 @@ export function AdminUsersClient() {
   }
 
   const assignCredits = async (userId: string, amount: number, reason: string) => {
+    if (!Number.isInteger(amount) || amount <= 0) {
+      toast({
+        title: 'Error',
+        description: 'Credit amount must be a positive integer',
+        variant: 'destructive'
+      })
+      return
+    }
+
     setActionLoading(true)
     try {
       const response = await fetch(`/api/admin/users/${userId}/credits`, {
@@ -274,6 +283,15 @@ export function AdminUsersClient() {
   }
 
   const bulkAssignCredits = async (userIds: string[], amount: number, reason: string) => {
+    if (!Number.isInteger(amount) || amount <= 0) {
+      toast({
+        title: 'Error',
+        description: 'Credit amount must be a positive integer',
+        variant: 'destructive'
+      })
+      return
+    }
+
     setActionLoading(true)
     try {
       const response = await fetch('/api/admin/credits/bulk', {
@@ -677,7 +695,7 @@ export function AdminUsersClient() {
                 Cancel
               </Button>
               <Button
-                onClick={() => creditDialogUserId && assignCredits(creditDialogUserId, parseInt(creditAmount), creditReason)}
+                onClick={() => creditDialogUserId && assignCredits(creditDialogUserId, Number(creditAmount), creditReason)}
                 disabled={actionLoading || !creditAmount || !creditReason}
               >
                 {actionLoading && <RefreshCw className="h-4 w-4 mr-2 animate-spin" />}
@@ -729,7 +747,7 @@ export function AdminUsersClient() {
                 Cancel
               </Button>
               <Button
-                onClick={() => bulkAssignCredits(selectedUsers, parseInt(creditAmount), creditReason)}
+                onClick={() => bulkAssignCredits(selectedUsers, Number(creditAmount), creditReason)}
                 disabled={actionLoading || !creditAmount || !creditReason}
               >
                 {actionLoading && <RefreshCw className="h-4 w-4 mr-2 animate-spin" />}

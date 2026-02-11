@@ -3,12 +3,12 @@ import AccessibilityStatementGenerator from "@/components/tools/accessibility-st
 import { AccessibilityToolStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileText, Download, Code, FileCode, CheckCircle } from "lucide-react"
+import { FileText, Download, Code, CheckCircle } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Accessibility Statement Generator | Free WCAG Compliant Statement Creator",
   description:
-    "Generate professional accessibility statements that meet WCAG 2.2 standards. Create HTML, Markdown, PDF, or plain text statements with our free generator tool.",
+    "Generate professional accessibility statements from your scan results or manual inputs. Create WCAG 2.2-ready HTML, Markdown, PDF, or plain text statements.",
   keywords: [
     "accessibility statement generator",
     "WCAG accessibility statement",
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     "ADA accessibility statement",
     "website accessibility statement",
     "generate accessibility statement",
+    "accessibility statement from scan results",
     "accessibility compliance statement",
     "WCAG 2.2 statement",
     "Section 508 statement",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Accessibility Statement Generator - Free WCAG Compliant Tool",
-    description: "Generate professional accessibility statements that meet WCAG 2.2 standards. Export to HTML, Markdown, PDF, or plain text.",
+    description: "Generate accessibility statements from scan results or manual inputs. Export to HTML, Markdown, PDF, or plain text.",
     type: "website",
     url: "https://accessibility.build/tools/accessibility-statement-generator",
     images: [
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Accessibility Statement Generator - Free Tool",
-    description: "Generate professional WCAG 2.2 compliant accessibility statements. Export to multiple formats.",
+    description: "Generate WCAG 2.2 accessibility statements from scan results and export in multiple formats.",
     images: ["https://accessibility.build/images/tools/statement-generator-og.png"]
   },
   alternates: {
@@ -63,7 +64,7 @@ export default function AccessibilityStatementGeneratorPage() {
     <>
       <AccessibilityToolStructuredData
         name="Accessibility Statement Generator"
-        description="Generate professional accessibility statements that meet WCAG 2.2 standards. Create HTML, Markdown, PDF, or plain text statements."
+        description="Generate professional accessibility statements from your scan results or manual inputs. Create HTML, Markdown, PDF, or plain text statements."
         url="https://accessibility.build/tools/accessibility-statement-generator"
         applicationCategory="AccessibilityApplication"
         operatingSystem="Web Browser"
@@ -108,8 +109,8 @@ export default function AccessibilityStatementGeneratorPage() {
               Accessibility Statement Generator
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Create professional, WCAG 2.2 compliant accessibility statements in minutes. 
-              Generate HTML, Markdown, PDF, or plain text statements with our step-by-step wizard.
+              Create professional, WCAG 2.2 compliant accessibility statements in minutes.
+              Import scan results instantly or build manually, then export to HTML, Markdown, PDF, or plain text.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
@@ -136,7 +137,7 @@ export default function AccessibilityStatementGeneratorPage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Guided 4-step process to collect all necessary information for your accessibility statement
+                  Guided 4-step process with optional scan import to collect everything needed for your statement
                 </CardDescription>
               </CardContent>
             </Card>
@@ -181,4 +182,3 @@ export default function AccessibilityStatementGeneratorPage() {
     </>
   )
 }
-

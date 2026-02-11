@@ -13,8 +13,8 @@ export async function GET() {
       }, { status: 401 })
     }
 
-    // Get user's credit stats
-    const stats = await getUserStats(user.id)
+    // Get user's credit stats (includes fallback user creation when webhook is delayed)
+    const stats = await getUserStats()
     
     return NextResponse.json({
       currentCredits: stats.currentCredits,

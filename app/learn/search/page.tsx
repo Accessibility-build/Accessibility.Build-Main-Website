@@ -31,15 +31,11 @@ export default function SearchPatternPage() {
     const [activeSection, setActiveSection] = useState('combobox');
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] bg-indigo-100/40 rounded-full blur-[100px]" />
-                <div className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-violet-100/40 rounded-full blur-[100px]" />
-            </div>
+        <div className="learn-theme min-h-screen bg-background">
 
-            <div className="relative pt-8 pb-6 px-4 border-b border-slate-200 bg-white/80 backdrop-blur-sm">
+            <div className="pt-8 pb-6 px-4 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
                 <div className="max-w-6xl mx-auto">
-                    <Link href="/learn" className="inline-flex items-center gap-2 text-slate-500 hover:text-indigo-600 transition-colors mb-4 group text-sm">
+                    <Link href="/learn" className="inline-flex items-center gap-2 text-muted-foreground hover:text-indigo-600 transition-colors mb-4 group text-sm">
                         <ChevronRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" /> Back to Learn Hub
                     </Link>
                     <div className="flex items-center gap-4">
@@ -48,14 +44,14 @@ export default function SearchPatternPage() {
                         </div>
                         <div>
                             <Badge className="bg-indigo-100 text-indigo-700 border-indigo-200 mb-1"><Sparkles className="w-3 h-3 mr-1" /> Comprehensive Guide</Badge>
-                            <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Search & Autocomplete</h1>
-                            <p className="text-slate-500 mt-1">Combobox patterns, keyboard navigation, and result announcements</p>
+                            <h1 className="text-2xl md:text-3xl font-bold text-foreground">Search & Autocomplete</h1>
+                            <p className="text-muted-foreground mt-1">Combobox patterns, keyboard navigation, and result announcements</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+            <div className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
                 <div className="max-w-6xl mx-auto px-4 py-3">
                     <div className="flex overflow-x-auto gap-2 no-scrollbar">
                         {sections.map((section) => {
@@ -64,7 +60,7 @@ export default function SearchPatternPage() {
                             return (
                                 <button key={section.id} onClick={() => setActiveSection(section.id)}
                                     className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all border-2",
-                                        isActive ? `${section.color} text-white border-transparent shadow-lg` : `bg-white ${section.textColor} border-slate-200 hover:border-slate-300`
+                                        isActive ? "bg-primary text-primary-foreground border-primary shadow-sm" : "bg-background text-muted-foreground border-border hover:border-border/80 hover:text-foreground"
                                     )}>
                                     <Icon className="w-4 h-4" /> {section.label}
                                 </button>
@@ -93,13 +89,13 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
     const [showGood, setShowGood] = useState(false);
     return (
         <div className="space-y-4">
-            <div className="flex items-center gap-2 p-1 bg-slate-100 rounded-full w-fit">
-                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-slate-600 hover:text-slate-900")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
-                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-slate-600 hover:text-slate-900")}><Eye className="w-4 h-4" /> Accessible</button>
+            <div className="flex items-center gap-2 p-1 bg-muted rounded-full w-fit">
+                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
+                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
             </div>
             <AnimatePresence mode="wait">
                 <motion.div key={showGood ? 'good' : 'bad'} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                    className={cn("p-6 rounded-2xl border-2", showGood ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200")}>
+                    className={cn("p-6 rounded-2xl border-2", showGood ? "bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-900" : "bg-red-50 border-red-200 dark:bg-red-950/20 dark:border-red-900")}>
                     {showGood ? good : bad}
                 </motion.div>
             </AnimatePresence>
@@ -108,20 +104,20 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
 }
 
 function SectionHeader({ title, description }: { title: string; description: string }) {
-    return <div className="mb-8"><h2 className="text-3xl font-bold text-slate-900 mb-3">{title}</h2><p className="text-lg text-slate-600 max-w-4xl">{description}</p></div>;
+    return <div className="mb-8"><h2 className="text-3xl font-bold text-foreground mb-3">{title}</h2><p className="text-lg text-muted-foreground max-w-4xl">{description}</p></div>;
 }
 
 function KeyPoint({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) {
     return (
-        <div className="flex gap-4 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm">
             <div className="p-2 bg-indigo-100 rounded-lg h-fit"><Icon className="w-5 h-5 text-indigo-600" /></div>
-            <div><h4 className="font-semibold text-slate-900 mb-1">{title}</h4><p className="text-sm text-slate-600">{children}</p></div>
+            <div><h4 className="font-semibold text-foreground mb-1">{title}</h4><p className="text-sm text-muted-foreground">{children}</p></div>
         </div>
     );
 }
 
 function TipBox({ title, children, variant = 'info' }: { title: string; children: React.ReactNode; variant?: 'info' | 'warning' | 'success' }) {
-    const styles = { info: 'bg-blue-50 border-blue-200 text-blue-800', warning: 'bg-amber-50 border-amber-200 text-amber-800', success: 'bg-green-50 border-green-200 text-green-800' };
+    const styles = { info: 'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-950/20 dark:border-blue-900 dark:text-blue-200', warning: 'bg-amber-50 border-amber-200 text-amber-800 dark:bg-amber-950/20 dark:border-amber-900 dark:text-amber-200', success: 'bg-green-50 border-green-200 text-green-800 dark:bg-green-950/20 dark:border-green-900 dark:text-green-200' };
     const icons = { info: Lightbulb, warning: AlertTriangle, success: CheckCircle2 };
     const Icon = icons[variant];
     return <div className={cn("p-4 rounded-xl border", styles[variant])}><div className="flex items-center gap-2 font-semibold mb-2"><Icon className="w-5 h-5" /> {title}</div><div className="text-sm">{children}</div></div>;
@@ -129,8 +125,8 @@ function TipBox({ title, children, variant = 'info' }: { title: string; children
 
 function CodeBlock({ code, title }: { code: string; title?: string }) {
     return (
-        <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-            {title && <div className="px-4 py-2 bg-slate-100 border-b border-slate-200 text-sm font-medium text-slate-700 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
+        <div className="rounded-xl overflow-hidden border border-border shadow-sm">
+            {title && <div className="px-4 py-2 bg-muted border-b border-border text-sm font-medium text-foreground/90 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
             <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm"><code>{code}</code></pre>
         </div>
     );
@@ -199,7 +195,7 @@ function AccessibleAutocomplete() {
             <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">{announcement}</div>
 
             <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground/80" />
                 <input
                     ref={inputRef}
                     type="text"
@@ -214,11 +210,11 @@ function AccessibleAutocomplete() {
                     onChange={(e) => setQuery(e.target.value)}
                     onKeyDown={handleKeyDown}
                     onFocus={() => query && filteredResults.length > 0 && setIsOpen(true)}
-                    className="w-full pl-10 pr-10 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-slate-900"
+                    className="w-full pl-10 pr-10 py-3 border border-border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-foreground"
                 />
                 {query && (
-                    <button onClick={() => { setQuery(''); inputRef.current?.focus(); }} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-slate-100 rounded-full" aria-label="Clear search">
-                        <X className="w-4 h-4 text-slate-400" />
+                    <button onClick={() => { setQuery(''); inputRef.current?.focus(); }} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-muted rounded-full" aria-label="Clear search">
+                        <X className="w-4 h-4 text-muted-foreground/80" />
                     </button>
                 )}
             </div>
@@ -233,7 +229,7 @@ function AccessibleAutocomplete() {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute z-50 w-full mt-2 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden"
+                        className="absolute z-50 w-full mt-2 bg-card border border-border rounded-xl shadow-lg overflow-hidden"
                     >
                         {filteredResults.length > 0 ? (
                             filteredResults.map((item, index) => (
@@ -244,14 +240,14 @@ function AccessibleAutocomplete() {
                                     aria-selected={index === activeIndex}
                                     onClick={() => selectItem(item)}
                                     onMouseEnter={() => setActiveIndex(index)}
-                                    className={cn("px-4 py-3 cursor-pointer transition-colors", index === activeIndex ? "bg-indigo-50 text-indigo-900" : "hover:bg-slate-50")}
+                                    className={cn("px-4 py-3 cursor-pointer transition-colors", index === activeIndex ? "bg-indigo-50 text-indigo-900" : "hover:bg-muted/40")}
                                 >
                                     <div className="font-medium">{item.name}</div>
-                                    <div className="text-sm text-slate-500">{item.description}</div>
+                                    <div className="text-sm text-muted-foreground">{item.description}</div>
                                 </li>
                             ))
                         ) : (
-                            <li className="px-4 py-6 text-center text-slate-500">No results found for "{query}"</li>
+                            <li className="px-4 py-6 text-center text-muted-foreground">No results found for "{query}"</li>
                         )}
                     </motion.ul>
                 )}
@@ -272,8 +268,8 @@ function ComboboxPatternSection() {
             </div>
 
             <div className="p-6 rounded-2xl bg-indigo-50 border border-indigo-200">
-                <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-indigo-500" /> Interactive Demo</h3>
-                <p className="text-slate-600 mb-4">Type to search ARIA attributes. Use arrow keys to navigate, Enter to select, Escape to close.</p>
+                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-indigo-500" /> Interactive Demo</h3>
+                <p className="text-muted-foreground mb-4">Type to search ARIA attributes. Use arrow keys to navigate, Enter to select, Escape to close.</p>
                 <AccessibleAutocomplete />
             </div>
 
@@ -320,14 +316,14 @@ function KeyboardControlsSection() {
             <SectionHeader title="Keyboard Controls" description="Users must be able to navigate search results and select items using only the keyboard. Arrow keys navigate, Enter selects, Escape closes." />
 
             <div className="overflow-x-auto">
-                <table className="w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
-                    <thead className="bg-slate-100"><tr><th scope="col" className="p-4 text-left font-semibold">Key</th><th scope="col" className="p-4 text-left font-semibold">Action</th><th scope="col" className="p-4 text-left font-semibold">Notes</th></tr></thead>
+                <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
+                    <thead className="bg-muted"><tr><th scope="col" className="p-4 text-left font-semibold">Key</th><th scope="col" className="p-4 text-left font-semibold">Action</th><th scope="col" className="p-4 text-left font-semibold">Notes</th></tr></thead>
                     <tbody>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">↓</td><td className="p-4">Move to next option</td><td className="p-4 text-slate-500">Wraps to first if at end</td></tr>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">↑</td><td className="p-4">Move to previous option</td><td className="p-4 text-slate-500">Wraps to last if at start</td></tr>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">Enter</td><td className="p-4">Select highlighted option</td><td className="p-4 text-slate-500">Fills input and closes listbox</td></tr>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">Escape</td><td className="p-4">Close listbox</td><td className="p-4 text-slate-500">Keeps current input value</td></tr>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">Tab</td><td className="p-4">Move to next field</td><td className="p-4 text-slate-500">Can optionally select current option first</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">↓</td><td className="p-4">Move to next option</td><td className="p-4 text-muted-foreground">Wraps to first if at end</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">↑</td><td className="p-4">Move to previous option</td><td className="p-4 text-muted-foreground">Wraps to last if at start</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">Enter</td><td className="p-4">Select highlighted option</td><td className="p-4 text-muted-foreground">Fills input and closes listbox</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">Escape</td><td className="p-4">Close listbox</td><td className="p-4 text-muted-foreground">Keeps current input value</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">Tab</td><td className="p-4">Move to next field</td><td className="p-4 text-muted-foreground">Can optionally select current option first</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -380,15 +376,15 @@ function AnnouncementsSection() {
             </div>
 
             <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-4">
-                <h3 className="text-xl font-semibold text-slate-900">What Screen Readers Should Announce</h3>
+                <h3 className="text-xl font-semibold text-foreground">What Screen Readers Should Announce</h3>
                 <table className="w-full text-sm">
                     <thead><tr><th className="text-left p-2 font-semibold">Event</th><th className="text-left p-2 font-semibold">Announcement</th></tr></thead>
                     <tbody className="divide-y divide-emerald-200">
-                        <tr><td className="p-2">Results load</td><td className="p-2 text-slate-600">"5 results available"</td></tr>
-                        <tr><td className="p-2">Arrow to option</td><td className="p-2 text-slate-600">"aria-label, option 1 of 5"</td></tr>
-                        <tr><td className="p-2">Select option</td><td className="p-2 text-slate-600">"Selected: aria-label"</td></tr>
-                        <tr><td className="p-2">No results</td><td className="p-2 text-slate-600">"No results found"</td></tr>
-                        <tr><td className="p-2">Loading</td><td className="p-2 text-slate-600">"Loading results..."</td></tr>
+                        <tr><td className="p-2">Results load</td><td className="p-2 text-muted-foreground">"5 results available"</td></tr>
+                        <tr><td className="p-2">Arrow to option</td><td className="p-2 text-muted-foreground">"aria-label, option 1 of 5"</td></tr>
+                        <tr><td className="p-2">Select option</td><td className="p-2 text-muted-foreground">"Selected: aria-label"</td></tr>
+                        <tr><td className="p-2">No results</td><td className="p-2 text-muted-foreground">"No results found"</td></tr>
+                        <tr><td className="p-2">Loading</td><td className="p-2 text-muted-foreground">"Loading results..."</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -432,7 +428,7 @@ function LoadingEmptySection() {
             </div>
 
             <div className="p-6 rounded-2xl bg-orange-50 border border-orange-200 space-y-4">
-                <h3 className="text-xl font-semibold text-slate-900">State Demos</h3>
+                <h3 className="text-xl font-semibold text-foreground">State Demos</h3>
                 <div className="flex gap-2 flex-wrap">
                     <Button variant="outline" size="sm" onClick={() => setDemoState('idle')}>Idle</Button>
                     <Button variant="outline" size="sm" onClick={() => setDemoState('loading')}>Loading</Button>
@@ -440,27 +436,27 @@ function LoadingEmptySection() {
                     <Button variant="outline" size="sm" onClick={() => setDemoState('empty')}>No Results</Button>
                 </div>
 
-                <div className="bg-white rounded-xl border border-slate-200 p-4">
+                <div className="bg-card rounded-xl border border-border p-4">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground/80" />
                         <input type="text" placeholder="Search..." value={demoState === 'empty' || demoState === 'results' ? "example query" : ""} readOnly
-                            className="w-full pl-10 pr-10 py-3 border border-slate-200 rounded-xl text-slate-900" />
+                            className="w-full pl-10 pr-10 py-3 border border-border rounded-xl text-foreground" />
                         {demoState === 'loading' && (
                             <div className="absolute right-3 top-1/2 -translate-y-1/2"><Loader2 className="w-5 h-5 text-indigo-500 animate-spin" /></div>
                         )}
                     </div>
 
                     {demoState === 'loading' && (
-                        <div className="mt-2 bg-slate-50 rounded-xl p-4 text-center" role="status" aria-live="polite">
+                        <div className="mt-2 bg-muted/40 rounded-xl p-4 text-center" role="status" aria-live="polite">
                             <Loader2 className="w-6 h-6 text-indigo-500 animate-spin mx-auto mb-2" />
-                            <span className="text-slate-600">Loading results...</span>
+                            <span className="text-muted-foreground">Loading results...</span>
                         </div>
                     )}
 
                     {demoState === 'results' && (
-                        <ul className="mt-2 bg-white rounded-xl border border-slate-200 divide-y">
-                            <li className="p-3 hover:bg-slate-50 cursor-pointer"><strong>aria-label</strong><br /><span className="text-sm text-slate-500">Provides an accessible name</span></li>
-                            <li className="p-3 hover:bg-slate-50 cursor-pointer"><strong>aria-describedby</strong><br /><span className="text-sm text-slate-500">References a description</span></li>
+                        <ul className="mt-2 bg-card rounded-xl border border-border divide-y">
+                            <li className="p-3 hover:bg-muted/40 cursor-pointer"><strong>aria-label</strong><br /><span className="text-sm text-muted-foreground">Provides an accessible name</span></li>
+                            <li className="p-3 hover:bg-muted/40 cursor-pointer"><strong>aria-describedby</strong><br /><span className="text-sm text-muted-foreground">References a description</span></li>
                         </ul>
                     )}
 
@@ -516,14 +512,14 @@ function CommonIssuesSection() {
             <div className="space-y-4">
                 {issues.map((issue, idx) => (
                     <motion.div key={idx} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.03 }}
-                        className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                        className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md transition-all">
                         <div className="flex items-start gap-4">
                             <div className={cn("p-2 rounded-lg flex-shrink-0", issue.severity === 'high' ? 'bg-orange-100 text-orange-600' : 'bg-yellow-100 text-yellow-600')}><XCircle className="w-5 h-5" /></div>
                             <div className="flex-1 min-w-0">
                                 <Badge variant="outline" className={cn("mb-2", issue.severity === 'high' ? 'border-orange-300 text-orange-600' : 'border-yellow-300 text-yellow-600')}>{issue.severity}</Badge>
                                 <div className="text-red-600 line-through opacity-75 mb-1 text-sm">{issue.bad}</div>
                                 <div className="text-green-700 flex items-center gap-2 mb-2"><CheckCircle2 className="w-4 h-4 flex-shrink-0" /><span className="font-medium">{issue.fix}</span></div>
-                                <p className="text-sm text-slate-500">{issue.why}</p>
+                                <p className="text-sm text-muted-foreground">{issue.why}</p>
                             </div>
                         </div>
                     </motion.div>

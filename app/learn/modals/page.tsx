@@ -20,15 +20,11 @@ export default function ModalsPatternPage() {
     const [activeSection, setActiveSection] = useState('basics');
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] bg-sky-100/40 rounded-full blur-[100px]" />
-                <div className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-violet-100/40 rounded-full blur-[100px]" />
-            </div>
+        <div className="learn-theme min-h-screen bg-background">
 
-            <div className="relative pt-8 pb-6 px-4 border-b border-slate-200 bg-white/80 backdrop-blur-sm">
+            <div className="pt-8 pb-6 px-4 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
                 <div className="max-w-6xl mx-auto">
-                    <Link href="/learn" className="inline-flex items-center gap-2 text-slate-500 hover:text-sky-600 transition-colors mb-4 group text-sm">
+                    <Link href="/learn" className="inline-flex items-center gap-2 text-muted-foreground hover:text-sky-600 transition-colors mb-4 group text-sm">
                         <ChevronRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" /> Back to Learn Hub
                     </Link>
                     <div className="flex items-center gap-4">
@@ -37,14 +33,14 @@ export default function ModalsPatternPage() {
                         </div>
                         <div>
                             <Badge className="bg-sky-100 text-sky-700 border-sky-200 mb-1"><Sparkles className="w-3 h-3 mr-1" /> Comprehensive Guide</Badge>
-                            <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Accessible Modal Dialogs</h1>
-                            <p className="text-slate-500 mt-1">Focus trapping, keyboard controls, and proper announcements</p>
+                            <h1 className="text-2xl md:text-3xl font-bold text-foreground">Accessible Modal Dialogs</h1>
+                            <p className="text-muted-foreground mt-1">Focus trapping, keyboard controls, and proper announcements</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+            <div className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
                 <div className="max-w-6xl mx-auto px-4 py-3">
                     <div className="flex overflow-x-auto gap-2 no-scrollbar">
                         {sections.map((section) => {
@@ -53,7 +49,7 @@ export default function ModalsPatternPage() {
                             return (
                                 <button key={section.id} onClick={() => setActiveSection(section.id)}
                                     className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all border-2",
-                                        isActive ? `${section.color} text-white border-transparent shadow-lg` : `bg-white ${section.textColor} border-slate-200 hover:border-slate-300`
+                                        isActive ? "bg-primary text-primary-foreground border-primary shadow-sm" : "bg-background text-muted-foreground border-border hover:border-border/80 hover:text-foreground"
                                     )}>
                                     <Icon className="w-4 h-4" /> {section.label}
                                 </button>
@@ -82,13 +78,13 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
     const [showGood, setShowGood] = useState(false);
     return (
         <div className="space-y-4">
-            <div className="flex items-center gap-2 p-1 bg-slate-100 rounded-full w-fit">
-                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-slate-600 hover:text-slate-900")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
-                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-slate-600 hover:text-slate-900")}><Eye className="w-4 h-4" /> Accessible</button>
+            <div className="flex items-center gap-2 p-1 bg-muted rounded-full w-fit">
+                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
+                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
             </div>
             <AnimatePresence mode="wait">
                 <motion.div key={showGood ? 'good' : 'bad'} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                    className={cn("p-6 rounded-2xl border-2", showGood ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200")}>
+                    className={cn("p-6 rounded-2xl border-2", showGood ? "bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-900" : "bg-red-50 border-red-200 dark:bg-red-950/20 dark:border-red-900")}>
                     {showGood ? good : bad}
                 </motion.div>
             </AnimatePresence>
@@ -97,20 +93,20 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
 }
 
 function SectionHeader({ title, description }: { title: string; description: string }) {
-    return <div className="mb-8"><h2 className="text-3xl font-bold text-slate-900 mb-3">{title}</h2><p className="text-lg text-slate-600 max-w-4xl">{description}</p></div>;
+    return <div className="mb-8"><h2 className="text-3xl font-bold text-foreground mb-3">{title}</h2><p className="text-lg text-muted-foreground max-w-4xl">{description}</p></div>;
 }
 
 function KeyPoint({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) {
     return (
-        <div className="flex gap-4 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm">
             <div className="p-2 bg-sky-100 rounded-lg h-fit"><Icon className="w-5 h-5 text-sky-600" /></div>
-            <div><h4 className="font-semibold text-slate-900 mb-1">{title}</h4><p className="text-sm text-slate-600">{children}</p></div>
+            <div><h4 className="font-semibold text-foreground mb-1">{title}</h4><p className="text-sm text-muted-foreground">{children}</p></div>
         </div>
     );
 }
 
 function TipBox({ title, children, variant = 'info' }: { title: string; children: React.ReactNode; variant?: 'info' | 'warning' | 'success' }) {
-    const styles = { info: 'bg-blue-50 border-blue-200 text-blue-800', warning: 'bg-amber-50 border-amber-200 text-amber-800', success: 'bg-green-50 border-green-200 text-green-800' };
+    const styles = { info: 'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-950/20 dark:border-blue-900 dark:text-blue-200', warning: 'bg-amber-50 border-amber-200 text-amber-800 dark:bg-amber-950/20 dark:border-amber-900 dark:text-amber-200', success: 'bg-green-50 border-green-200 text-green-800 dark:bg-green-950/20 dark:border-green-900 dark:text-green-200' };
     const icons = { info: Lightbulb, warning: AlertTriangle, success: CheckCircle2 };
     const Icon = icons[variant];
     return <div className={cn("p-4 rounded-xl border", styles[variant])}><div className="flex items-center gap-2 font-semibold mb-2"><Icon className="w-5 h-5" /> {title}</div><div className="text-sm">{children}</div></div>;
@@ -118,8 +114,8 @@ function TipBox({ title, children, variant = 'info' }: { title: string; children
 
 function CodeBlock({ code, title }: { code: string; title?: string }) {
     return (
-        <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-            {title && <div className="px-4 py-2 bg-slate-100 border-b border-slate-200 text-sm font-medium text-slate-700 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
+        <div className="rounded-xl overflow-hidden border border-border shadow-sm">
+            {title && <div className="px-4 py-2 bg-muted border-b border-border text-sm font-medium text-foreground/90 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
             <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm"><code>{code}</code></pre>
         </div>
     );
@@ -158,11 +154,11 @@ function AccessibleModal({ isOpen, onClose, title, children }: { isOpen: boolean
         <div className="fixed inset-0 z-50 flex items-center justify-center" onClick={onClose}>
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" aria-hidden="true" />
             <div ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="modal-title" tabIndex={-1}
-                className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-6 focus:outline-none"
+                className="relative bg-card rounded-2xl shadow-2xl max-w-md w-full mx-4 p-6 focus:outline-none"
                 onClick={(e) => e.stopPropagation()} onKeyDown={handleKeyDown}>
                 <div className="flex items-center justify-between mb-4">
-                    <h2 id="modal-title" className="text-xl font-bold text-slate-900">{title}</h2>
-                    <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-lg transition-colors" aria-label="Close dialog"><X className="w-5 h-5 text-slate-500" /></button>
+                    <h2 id="modal-title" className="text-xl font-bold text-foreground">{title}</h2>
+                    <button onClick={onClose} className="p-2 hover:bg-muted rounded-lg transition-colors" aria-label="Close dialog"><X className="w-5 h-5 text-muted-foreground" /></button>
                 </div>
                 {children}
             </div>
@@ -181,12 +177,12 @@ function DialogBasicsSection() {
                 <KeyPoint icon={Info} title="aria-labelledby">Points to the dialog's title element. Users hear "Dialog: [title]" when it opens.</KeyPoint>
             </div>
             <div className="p-6 rounded-2xl bg-sky-50 border border-sky-200">
-                <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-sky-500" /> Interactive Demo</h3>
-                <p className="text-slate-600 mb-4">Click the button to open an accessible modal. Try pressing Escape, clicking outside, or using Tab.</p>
+                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-sky-500" /> Interactive Demo</h3>
+                <p className="text-muted-foreground mb-4">Click the button to open an accessible modal. Try pressing Escape, clicking outside, or using Tab.</p>
                 <Button onClick={() => setModalOpen(true)} className="bg-sky-500 hover:bg-sky-600"><ExternalLink className="w-4 h-4 mr-2" /> Open Accessible Modal</Button>
                 <AccessibleModal isOpen={modalOpen} onClose={() => setModalOpen(false)} title="Example Dialog">
-                    <p className="text-slate-600 mb-4">This modal demonstrates proper accessibility patterns:</p>
-                    <ul className="text-sm text-slate-600 space-y-2 mb-6">
+                    <p className="text-muted-foreground mb-4">This modal demonstrates proper accessibility patterns:</p>
+                    <ul className="text-sm text-muted-foreground space-y-2 mb-6">
                         <li>✅ Focus moves into the modal on open</li>
                         <li>✅ Escape key closes the modal</li>
                         <li>✅ Tab key cycles through focusable elements</li>
@@ -236,11 +232,11 @@ function FocusManagementSection() {
                 <KeyPoint icon={Users} title="Return Focus on Close">Store a reference to the trigger element. When modal closes, return focus to it.</KeyPoint>
             </div>
             <div className="p-6 rounded-2xl bg-violet-50 border border-violet-200">
-                <h3 className="text-xl font-semibold text-slate-900 mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-violet-500" /> Focus Flow Demo</h3>
-                <p className="text-slate-600 mb-4">Open the modal and press Tab repeatedly. Notice how focus stays trapped inside.</p>
+                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-violet-500" /> Focus Flow Demo</h3>
+                <p className="text-muted-foreground mb-4">Open the modal and press Tab repeatedly. Notice how focus stays trapped inside.</p>
                 <Button onClick={() => setModalOpen(true)} className="bg-violet-500 hover:bg-violet-600"><ExternalLink className="w-4 h-4 mr-2" /> Test Focus Trap</Button>
                 <AccessibleModal isOpen={modalOpen} onClose={() => setModalOpen(false)} title="Focus Trap Demo">
-                    <p className="text-slate-600 mb-4">Press Tab to cycle through these buttons:</p>
+                    <p className="text-muted-foreground mb-4">Press Tab to cycle through these buttons:</p>
                     <div className="space-y-3">
                         <Button variant="outline" className="w-full">First Button</Button>
                         <Button variant="outline" className="w-full">Second Button</Button>
@@ -273,12 +269,12 @@ function KeyboardControlsSection() {
         <div className="space-y-10">
             <SectionHeader title="Keyboard Controls" description="Modals must be fully operable with keyboard. Essential: Escape to close, Tab to move forward, Shift+Tab to move backward." />
             <div className="overflow-x-auto">
-                <table className="w-full text-sm border border-slate-200 rounded-xl overflow-hidden">
-                    <thead className="bg-slate-100"><tr><th scope="col" className="p-4 text-left font-semibold">Key</th><th scope="col" className="p-4 text-left font-semibold">Action</th><th scope="col" className="p-4 text-left font-semibold">Notes</th></tr></thead>
+                <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
+                    <thead className="bg-muted"><tr><th scope="col" className="p-4 text-left font-semibold">Key</th><th scope="col" className="p-4 text-left font-semibold">Action</th><th scope="col" className="p-4 text-left font-semibold">Notes</th></tr></thead>
                     <tbody>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">Escape</td><td className="p-4">Close the modal</td><td className="p-4 text-slate-500">Required. Always implement.</td></tr>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">Tab</td><td className="p-4">Move to next focusable element</td><td className="p-4 text-slate-500">Must stay trapped within modal</td></tr>
-                        <tr className="border-t"><td className="p-4 font-mono bg-slate-50">Shift + Tab</td><td className="p-4">Move to previous element</td><td className="p-4 text-slate-500">Must stay trapped within modal</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">Escape</td><td className="p-4">Close the modal</td><td className="p-4 text-muted-foreground">Required. Always implement.</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">Tab</td><td className="p-4">Move to next focusable element</td><td className="p-4 text-muted-foreground">Must stay trapped within modal</td></tr>
+                        <tr className="border-t"><td className="p-4 font-mono bg-muted/40">Shift + Tab</td><td className="p-4">Move to previous element</td><td className="p-4 text-muted-foreground">Must stay trapped within modal</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -312,22 +308,22 @@ function BackdropScrollSection() {
             <InteractiveDemo
                 bad={<div className="space-y-4">
                     <div className="flex items-center gap-2 text-red-600 text-sm mb-4"><AlertTriangle className="w-4 h-4" /> Page scrolls behind modal, background is interactive!</div>
-                    <div className="relative p-4 border border-slate-200 rounded-lg bg-white">
+                    <div className="relative p-4 border border-border rounded-lg bg-card">
                         <div className="absolute inset-0 bg-black/20 rounded-lg" />
-                        <div className="relative bg-white p-4 rounded-lg shadow-lg max-w-xs mx-auto z-10 border">
+                        <div className="relative bg-card p-4 rounded-lg shadow-lg max-w-xs mx-auto z-10 border">
                             <h3 className="font-bold mb-2">Bad Modal</h3>
-                            <p className="text-sm text-slate-600 mb-3">Background is still interactive!</p>
-                            <button className="px-4 py-2 bg-slate-200 rounded">Close</button>
+                            <p className="text-sm text-muted-foreground mb-3">Background is still interactive!</p>
+                            <button className="px-4 py-2 bg-muted rounded">Close</button>
                         </div>
                     </div>
                 </div>}
                 good={<div className="space-y-4">
                     <div className="flex items-center gap-2 text-green-600 text-sm mb-4"><CheckCircle2 className="w-4 h-4" /> Background is locked and dimmed!</div>
-                    <div className="relative p-4 border border-slate-200 rounded-lg bg-white">
+                    <div className="relative p-4 border border-border rounded-lg bg-card">
                         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm rounded-lg" aria-hidden="true" />
-                        <div className="relative bg-white p-4 rounded-lg shadow-2xl max-w-xs mx-auto z-10 border-2 border-sky-200">
-                            <h3 className="font-bold mb-2 text-slate-900">Good Modal</h3>
-                            <p className="text-sm text-slate-600 mb-3">Background is locked and blurred.</p>
+                        <div className="relative bg-card p-4 rounded-lg shadow-2xl max-w-xs mx-auto z-10 border-2 border-sky-200">
+                            <h3 className="font-bold mb-2 text-foreground">Good Modal</h3>
+                            <p className="text-sm text-muted-foreground mb-3">Background is locked and blurred.</p>
                             <button className="px-4 py-2 bg-sky-500 text-white rounded">Close</button>
                         </div>
                     </div>
@@ -361,14 +357,14 @@ function CommonIssuesSection() {
             <div className="space-y-4">
                 {issues.map((issue, idx) => (
                     <motion.div key={idx} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.03 }}
-                        className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                        className="p-5 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md transition-all">
                         <div className="flex items-start gap-4">
                             <div className={cn("p-2 rounded-lg flex-shrink-0", issue.severity === 'critical' ? 'bg-red-100 text-red-600' : 'bg-orange-100 text-orange-600')}><XCircle className="w-5 h-5" /></div>
                             <div className="flex-1 min-w-0">
                                 <Badge variant="outline" className={cn("mb-2", issue.severity === 'critical' ? 'border-red-300 text-red-600' : 'border-orange-300 text-orange-600')}>{issue.severity}</Badge>
                                 <div className="text-red-600 line-through opacity-75 mb-1 text-sm">{issue.bad}</div>
                                 <div className="text-green-700 flex items-center gap-2 mb-2"><CheckCircle2 className="w-4 h-4 flex-shrink-0" /><span className="font-medium">{issue.fix}</span></div>
-                                <p className="text-sm text-slate-500">{issue.why}</p>
+                                <p className="text-sm text-muted-foreground">{issue.why}</p>
                             </div>
                         </div>
                     </motion.div>
