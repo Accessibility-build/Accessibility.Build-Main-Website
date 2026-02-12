@@ -28,7 +28,11 @@ import {
   MousePointer,
   Brain,
   CheckSquare,
-  Wrench
+  Wrench,
+  Flame,
+  Search,
+  BarChart3,
+  ExternalLink
 } from "lucide-react"
 import { InteractiveHero } from "@/components/interactive-hero"
 import { useEffect, useRef } from "react"
@@ -56,7 +60,7 @@ function useIntersectionObserver() {
 
     // Add initial styles
     element.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700', 'ease-out')
-    
+
     observer.observe(element)
 
     return () => observer.disconnect()
@@ -73,6 +77,7 @@ export default function HomePage() {
   const toolsRef = useIntersectionObserver()
   const questionsRef = useIntersectionObserver()
   const servicesRef = useIntersectionObserver()
+  const hellRef = useIntersectionObserver()
   const ctaRef = useIntersectionObserver()
 
   return (
@@ -94,7 +99,7 @@ export default function HomePage() {
               <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">25K+</div>
               <div className="text-slate-600 dark:text-slate-400">Developers Helped</div>
             </div>
-            
+
             <div className="text-center group">
               <div className="relative mb-4">
                 <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
@@ -105,7 +110,7 @@ export default function HomePage() {
               <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">1M+</div>
               <div className="text-slate-600 dark:text-slate-400">Audits Completed</div>
             </div>
-            
+
             <div className="text-center group">
               <div className="relative mb-4">
                 <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
@@ -116,7 +121,7 @@ export default function HomePage() {
               <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">150+</div>
               <div className="text-slate-600 dark:text-slate-400">Countries Served</div>
             </div>
-            
+
             <div className="text-center group">
               <div className="relative mb-4">
                 <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
@@ -575,11 +580,97 @@ export default function HomePage() {
       {/* Essential Resources Section */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900/30">
         <div className="container-wide">
-          <RelatedContent 
+          <RelatedContent
             content="accessibility tools wcag compliance color contrast alt text mobile accessibility heading structure testing audit checklist"
             maxItems={6}
             showDescriptions={true}
           />
+        </div>
+      </section>
+
+      {/* A11y Hell Experience Section */}
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-100 via-red-50/50 to-orange-50/30 dark:bg-slate-950 dark:from-slate-950 dark:via-red-950/20 dark:to-slate-950">
+        {/* Background Effects */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-200/30 dark:bg-red-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-200/30 dark:bg-orange-600/5 rounded-full blur-3xl"></div>
+
+        <div ref={hellRef} className="relative container-wide">
+          <div className="max-w-6xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-16">
+              <Badge className="bg-red-100 dark:bg-red-600/20 text-red-700 dark:text-red-400 border-red-200 dark:border-red-500/30 mb-6 px-4 py-2 text-sm">
+                <Flame className="h-4 w-4 mr-2" />
+                Interactive Experience
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+                Experience Accessibility{" "}
+                <span className="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 bg-clip-text text-transparent">Hell</span>
+              </h2>
+              <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                See what 96.3% of homepages get wrong. A11y Hell lets you experience real accessibility barriers through 21 fully modeled failure demos — so your team can feel the impact before users do.
+              </p>
+            </div>
+
+            {/* Stats Row */}
+            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-16">
+              {[
+                { value: "96.3%", label: "Fail WCAG" },
+                { value: "21", label: "Live Demos" },
+                { value: "4", label: "Severity Levels" },
+              ].map((stat, i) => (
+                <div key={i} className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-500 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-slate-500">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Feature Mini-Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+              <div className="p-6 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-red-300 dark:hover:border-red-500/30 transition-all duration-300 group shadow-sm hover:shadow-lg">
+                <div className="p-3 bg-gradient-to-r from-red-600 to-red-700 rounded-xl w-fit shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Search className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Issue Explorer</h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Browse every accessibility failure with WCAG references and test protocols.</p>
+              </div>
+
+              <div className="p-6 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-orange-300 dark:hover:border-orange-500/30 transition-all duration-300 group shadow-sm hover:shadow-lg">
+                <div className="p-3 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl w-fit shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Target className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Practice Lab</h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">5 realistic scenario drills with personas and revealable official findings.</p>
+              </div>
+
+              <div className="p-6 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-500/30 transition-all duration-300 group shadow-sm hover:shadow-lg">
+                <div className="p-3 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl w-fit shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <BarChart3 className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Impact Center</h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Review business and user impact signals across all severity levels.</p>
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white text-lg px-8 py-6 rounded-xl shadow-2xl shadow-red-600/20 dark:shadow-red-900/30 group">
+                <a href="https://hell.accessibility.build" target="_blank" rel="noopener noreferrer">
+                  <Flame className="mr-2 h-5 w-5" />
+                  Enter A11y Hell
+                  <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white text-lg px-8 py-6 rounded-xl group">
+                <Link href="/hell">
+                  Learn More
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -591,12 +682,12 @@ export default function HomePage() {
             <div className="inline-flex items-center justify-center p-3 bg-blue-100 dark:bg-blue-900/50 rounded-full mb-8">
               <Shield className="h-8 w-8 text-blue-600 dark:text-blue-400" />
             </div>
-            
+
             <h2 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
               Ready to Make Your Website{" "}
               <span className="text-blue-600 dark:text-blue-400">Accessible?</span>
             </h2>
-            
+
             <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-8 max-w-3xl mx-auto leading-relaxed">
               Join thousands of developers and organizations creating inclusive digital experiences with our comprehensive accessibility platform
             </p>
@@ -610,7 +701,7 @@ export default function HomePage() {
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Free Tools Available</h3>
                 <p className="text-slate-600 dark:text-slate-400">Start with our free accessibility tools - no signup required</p>
               </div>
-              
+
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-slate-600 to-slate-700 rounded-xl mb-4 shadow-lg">
                   <Users className="h-8 w-8 text-white" />
@@ -618,7 +709,7 @@ export default function HomePage() {
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Expert Support</h3>
                 <p className="text-slate-600 dark:text-slate-400">Get help from WCAG 2.2 certified accessibility experts</p>
               </div>
-              
+
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-600 to-green-700 rounded-xl mb-4 shadow-lg">
                   <CheckCircle2 className="h-8 w-8 text-white" />
@@ -627,7 +718,7 @@ export default function HomePage() {
                 <p className="text-slate-600 dark:text-slate-400">99.2% success rate in achieving WCAG compliance</p>
               </div>
             </div>
-            
+
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button asChild size="lg" className="group bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4">

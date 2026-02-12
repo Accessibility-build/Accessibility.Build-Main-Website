@@ -100,6 +100,12 @@ const navItems: NavItem[] = [
         href: "/learn/pagination",
         description: "Accessible pagination implementation guide",
       },
+      {
+        name: "A11y Hell",
+        href: "/hell",
+        description: "Experience real accessibility barriers",
+        popular: true,
+      },
     ],
   },
   { name: "WCAG 2.2 Checklist", href: "/checklists/wcag-2-2" },
