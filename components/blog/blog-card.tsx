@@ -27,6 +27,9 @@ interface BlogCardProps {
   variant?: "grid" | "featured" | "list"
 }
 
+const DEFAULT_BLOG_IMAGE = "/images/blog/wcag-2-2-guide.png"
+const DEFAULT_AUTHOR_IMAGE = "/images/authors/khushwant-partihar.png"
+
 export function BlogCard({ post, variant = "grid" }: BlogCardProps) {
   if (variant === "featured") {
     return (
@@ -35,9 +38,7 @@ export function BlogCard({ post, variant = "grid" }: BlogCardProps) {
           <div className="md:col-span-2 relative">
             <div className="absolute inset-0 md:relative h-48 md:h-full">
               <Image
-                src={
-                  post.frontmatter.image || "/placeholder.svg?height=400&width=600&query=blog post about accessibility"
-                }
+                src={post.frontmatter.image || DEFAULT_BLOG_IMAGE}
                 alt={`Featured image for ${post.frontmatter.title}`}
                 fill
                 className="object-cover"
@@ -93,9 +94,7 @@ export function BlogCard({ post, variant = "grid" }: BlogCardProps) {
           <div className="md:w-1/4 relative">
             <div className="aspect-video md:aspect-square relative">
               <Image
-                src={
-                  post.frontmatter.image || "/placeholder.svg?height=300&width=300&query=blog post about accessibility"
-                }
+                src={post.frontmatter.image || DEFAULT_BLOG_IMAGE}
                 alt={`Featured image for ${post.frontmatter.title}`}
                 fill
                 className="object-cover"
@@ -126,11 +125,7 @@ export function BlogCard({ post, variant = "grid" }: BlogCardProps) {
               <div className="flex items-center gap-3">
                 <div className="relative h-8 w-8 overflow-hidden rounded-full">
                   <Image
-                    src={
-                      post.frontmatter.authorImage ||
-                      "/placeholder.svg?height=32&width=32&query=headshot of accessibility expert" ||
-                      "/placeholder.svg"
-                    }
+                    src={post.frontmatter.authorImage || DEFAULT_AUTHOR_IMAGE}
                     alt={post.frontmatter.author}
                     fill
                     className="object-cover"
@@ -168,7 +163,7 @@ export function BlogCard({ post, variant = "grid" }: BlogCardProps) {
     <Card className="overflow-hidden border-none shadow-md hover:shadow-lg transition-shadow flex flex-col h-full">
       <div className="aspect-video relative overflow-hidden">
         <Image
-          src={post.frontmatter.image || "/placeholder.svg?height=300&width=600&query=blog post about accessibility"}
+          src={post.frontmatter.image || DEFAULT_BLOG_IMAGE}
           alt={`Featured image for ${post.frontmatter.title}`}
           fill
           className="object-cover transition-transform hover:scale-105 duration-300"
@@ -198,11 +193,7 @@ export function BlogCard({ post, variant = "grid" }: BlogCardProps) {
         <div className="flex items-center gap-3 mb-4">
           <div className="relative h-8 w-8 overflow-hidden rounded-full">
             <Image
-              src={
-                post.frontmatter.authorImage ||
-                "/placeholder.svg?height=32&width=32&query=headshot of accessibility expert" ||
-                "/placeholder.svg"
-              }
+              src={post.frontmatter.authorImage || DEFAULT_AUTHOR_IMAGE}
               alt={post.frontmatter.author}
               fill
               className="object-cover"

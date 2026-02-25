@@ -1,23 +1,48 @@
 "use client";
 
 import Link from "next/link";
-import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import ClientOnly from "@/components/client-only";
+import { Logo } from "@/components/logo";
 import {
-  Github,
-  Twitter,
-  Linkedin,
   ArrowUp,
-  Shield,
-  Zap,
-  Heart,
   ExternalLink,
-  ChevronRight,
+  Heart,
+  Linkedin,
+  Shield,
 } from "lucide-react";
+import { footerTrustSignals } from "@/lib/public-metrics";
+
+const toolLinks = [
+  { href: "/tools/accessibility-audit-helper", label: "Accessibility Auditor" },
+  { href: "/tools/alt-text-generator", label: "AI Alt Text Generator" },
+  { href: "/tools/contrast-checker", label: "Contrast Checker" },
+  { href: "/tools/heading-analyzer", label: "Heading Analyzer" },
+  { href: "/blog", label: "Accessibility Blog" },
+  { href: "/resources", label: "Learning Resources" },
+];
+
+const companyLinks = [
+  { href: "/about", label: "About Us" },
+  { href: "/contact", label: "Contact Support" },
+  { href: "/faq", label: "FAQ & Help" },
+  { href: "/sitemap-page", label: "Sitemap" },
+];
+
+const legalLinks = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
+  { href: "/refund", label: "Refund Policy" },
+];
+
+const socialLinks = [
+  {
+    href: "https://linkedin.com/company/accessibilitybuild",
+    label: "Connect on LinkedIn",
+    icon: Linkedin,
+  },
+];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -30,158 +55,88 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative border-t bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 dark:from-slate-900 dark:via-slate-800/50 dark:to-indigo-900/20">
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+    <footer className="relative overflow-hidden bg-slate-50 text-slate-900 dark:bg-[#040708] dark:text-slate-100">
+      <div className="relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(13,148,136,0.14),transparent_45%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(13,94,94,0.4),transparent_45%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-50 [background:repeating-linear-gradient(90deg,rgba(15,118,110,0.12)_0,rgba(15,118,110,0.12)_90px,transparent_90px,transparent_200px)] dark:opacity-40 dark:[background:repeating-linear-gradient(90deg,rgba(0,76,76,0.26)_0,rgba(0,76,76,0.26)_120px,transparent_120px,transparent_220px)]" />
+      <div className="pointer-events-none absolute inset-y-0 right-[-20%] hidden w-[70%] opacity-30 lg:block [background:repeating-linear-gradient(112deg,rgba(2,90,90,0.2)_0,rgba(2,90,90,0.2)_120px,transparent_120px,transparent_240px)] dark:opacity-35 dark:[background:repeating-linear-gradient(112deg,rgba(2,90,90,0.35)_0,rgba(2,90,90,0.35)_140px,transparent_140px,transparent_260px)]" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-transparent dark:from-[#040708] dark:via-transparent dark:to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Company Section */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="relative">
-                <Logo className="h-8 w-auto" />
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full blur opacity-20 group-hover:opacity-40 transition duration-300" />
+      <div className="relative container-wide py-8 md:py-12">
+        <div className="border-b border-slate-300 py-8 md:py-10 dark:border-slate-800">
+          <div className="flex items-end gap-4 overflow-hidden">
+            <div className="hidden sm:flex sm:items-end sm:pb-2" aria-hidden="true">
+              <div className="rounded-2xl border border-primary/35 bg-primary/10 p-3 shadow-sm shadow-primary/10">
+                <Logo className="h-14 w-14" />
               </div>
-              <span className="font-bold text-xl bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Accessibility.build
-              </span>
             </div>
+            <h3 className="text-[clamp(2.4rem,9vw,7rem)] font-semibold leading-[0.9] tracking-[-0.03em] text-slate-900 dark:text-slate-50">
+              <span className="block xl:inline">Accessibility</span>
+              <span className="block text-slate-700 xl:ml-4 xl:inline dark:text-slate-100">.build</span>
+            </h3>
+          </div>
+        </div>
 
-            <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+        <div className="grid gap-10 border-b border-slate-300 py-10 lg:grid-cols-12 dark:border-slate-800">
+          <div className="lg:col-span-4">
+            <p className="max-w-md text-lg leading-relaxed text-slate-700 dark:text-slate-300">
               Professional accessibility platform with AI-powered tools, WCAG
               compliance testing, and comprehensive resources for building
               inclusive digital experiences.
             </p>
-
-            <div className="flex items-center space-x-1 mb-4">
-              <Shield className="h-4 w-4 text-green-600" />
-              <Badge variant="secondary" className="text-xs">
-                WCAG 2.2 Compliant
-              </Badge>
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-slate-300 bg-slate-100/80 px-3 py-1 text-xs font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300">
+              <Shield className="h-3.5 w-3.5 text-emerald-400" />
+              WCAG 2.2 Compliant
             </div>
-
-            {/* Social Links */}
-            <div className="flex space-x-3">
-              <Link
-                href="#"
-                className="p-2 rounded-full bg-white/50 dark:bg-slate-800/50 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all duration-300 hover:scale-110 group"
-                aria-label="Follow us on Twitter"
-              >
-                <Twitter className="h-4 w-4 text-muted-foreground group-hover:text-blue-600 transition-colors" />
-              </Link>
-              <Link
-                href="#"
-                className="p-2 rounded-full bg-white/50 dark:bg-slate-800/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 hover:scale-110 group"
-                aria-label="View our GitHub"
-              >
-                <Github className="h-4 w-4 text-muted-foreground group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors" />
-              </Link>
-              <Link
-                href="#"
-                className="p-2 rounded-full bg-white/50 dark:bg-slate-800/50 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all duration-300 hover:scale-110 group"
-                aria-label="Connect on LinkedIn"
-              >
-                <Linkedin className="h-4 w-4 text-muted-foreground group-hover:text-blue-600 transition-colors" />
-              </Link>
+            <div className="mt-6 flex items-center gap-3">
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.label}
+                    className="inline-flex h-9 w-9 items-center justify-center border border-slate-300 bg-white/80 text-slate-700 transition-colors hover:border-slate-500 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
-          {/* Tools & Resources */}
-          <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider text-slate-900 dark:text-slate-100 mb-4 flex items-center">
-              <Zap className="h-4 w-4 mr-2 text-blue-600" />
-              Tools & Resources
+          <div className="lg:col-span-3">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+              Contact Support
             </h3>
-            <ul className="space-y-3">
-              {[
-                {
-                  href: "/tools/accessibility-audit-helper",
-                  label: "Accessibility Auditor",
-                  badge: "Pro",
-                },
-                {
-                  href: "/tools/alt-text-generator",
-                  label: "AI Alt Text Generator",
-                  badge: "Popular",
-                },
-                {
-                  href: "/tools/contrast-checker",
-                  label: "Contrast Checker",
-                  badge: "Free",
-                },
-                {
-                  href: "/tools/heading-analyzer",
-                  label: "Heading Analyzer",
-                  badge: "Free",
-                },
-                { href: "/blog", label: "Accessibility Blog" },
-                { href: "/resources", label: "Learning Resources" },
-              ].map((item, index) => (
-                <li key={index}>
-                  <Link
-                    href={item.href}
-                    className="group flex items-center text-sm text-muted-foreground hover:text-primary transition-all duration-200 hover:translate-x-1"
-                  >
-                    <ChevronRight className="h-3 w-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span className="flex-1">{item.label}</span>
-                    {item.badge && (
-                      <Badge
-                        variant={
-                          item.badge === "Free"
-                            ? "secondary"
-                            : item.badge === "Popular"
-                              ? "default"
-                              : "outline"
-                        }
-                        className="text-xs ml-2"
-                      >
-                        {item.badge}
-                      </Badge>
-                    )}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-4 space-y-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+              <a
+                href="mailto:accessibilitybuild@gmail.com"
+                className="block w-fit transition-colors hover:text-slate-900 dark:hover:text-white"
+              >
+                accessibilitybuild@gmail.com
+              </a>
+              <p>24-48 hours during business days</p>
+              <p>Remote team serving clients worldwide</p>
+            </div>
           </div>
 
-          {/* Company & Legal */}
-          <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider text-slate-900 dark:text-slate-100 mb-4">
-              Company & Legal
+          <div className="lg:col-span-5">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+              Stay Updated
             </h3>
-            <ul className="space-y-3">
-              {[
-                { href: "/about", label: "About Us" },
-                { href: "/contact", label: "Contact Support" },
-                { href: "/faq", label: "FAQ & Help" },
-                { href: "/privacy", label: "Privacy Policy" },
-                { href: "/terms", label: "Terms of Service" },
-                { href: "/refund", label: "Refund Policy" },
-                { href: "/sitemap-page", label: "Sitemap" },
-              ].map((item, index) => (
-                <li key={index}>
-                  <Link
-                    href={item.href}
-                    className="group flex items-center text-sm text-muted-foreground hover:text-primary transition-all duration-200 hover:translate-x-1"
-                  >
-                    <ChevronRight className="h-3 w-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
+              Get the latest accessibility insights, WCAG updates, and tool
+              announcements.
+            </p>
 
-          {/* Newsletter Signup */}
-          <div>
             <ClientOnly
               fallback={
                 <div className="space-y-3">
-                  <div className="h-10 bg-muted/30 rounded animate-pulse" />
-                  <div className="h-4 bg-muted/20 rounded animate-pulse" />
+                  <div className="h-12 animate-pulse border border-slate-300 bg-slate-100 dark:border-slate-700 dark:bg-slate-900/50" />
+                  <div className="h-4 w-2/3 animate-pulse bg-slate-300/80 dark:bg-slate-800/80" />
                 </div>
               }
             >
@@ -190,68 +145,107 @@ export function Footer() {
                 compact={true}
                 placeholder="Enter your email"
                 buttonText="Subscribe"
-                className=""
+                className="mt-4 [&_input]:h-12 [&_input]:rounded-none [&_input]:border-slate-300 [&_input]:bg-white/80 [&_input]:text-slate-900 dark:[&_input]:border-slate-700 dark:[&_input]:bg-transparent dark:[&_input]:text-slate-100 [&_button]:h-12 [&_button]:rounded-none [&_button]:bg-slate-900 [&_button]:px-6 [&_button]:text-xs [&_button]:font-semibold [&_button]:uppercase [&_button]:tracking-[0.14em] [&_button]:text-slate-100 [&_button:hover]:bg-slate-700 dark:[&_button]:bg-slate-100 dark:[&_button]:text-slate-900 dark:[&_button:hover]:bg-slate-200 [&_.alert]:border-slate-300 dark:[&_.alert]:border-slate-700"
               />
             </ClientOnly>
 
-            {/* Quick Stats */}
-            <div className="mt-6 grid grid-cols-2 gap-4">
-              <div className="text-center p-3 bg-white/30 dark:bg-slate-800/30 rounded-lg border border-slate-200/50 dark:border-slate-700/50">
-                <div className="text-lg font-bold text-blue-600">50K+</div>
-                <div className="text-xs text-muted-foreground">Tests Run</div>
-              </div>
-              <div className="text-center p-3 bg-white/30 dark:bg-slate-800/30 rounded-lg border border-slate-200/50 dark:border-slate-700/50">
-                <div className="text-lg font-bold text-indigo-600">99.9%</div>
-                <div className="text-xs text-muted-foreground">Uptime</div>
-              </div>
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              {footerTrustSignals.map((signal) => (
+                <div key={signal.id} className="border border-slate-300 bg-white/80 p-3 text-center dark:border-slate-700 dark:bg-slate-900/60">
+                  <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">{signal.value}</div>
+                  <div className="text-[11px] uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400">
+                    {signal.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="mt-12 pt-8 border-t border-slate-200/50 dark:border-slate-700/50">
-          <div className="flex flex-col w-full justify-between items-center space-y-4 md:space-y-0">
-            {/* Copyright */}
-            <div className="w-full flex flex-col md:!flex-row items-center justify-center space-x-4 text-sm text-muted-foreground">
-              <p className="text-center xs2:text-left">
-                &copy; {currentYear} Accessibility.build
-              </p>
+        <div className="grid gap-8 border-b border-slate-300 py-8 md:grid-cols-3 dark:border-slate-800">
+          <nav aria-label="Tools and resources links">
+            <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+              Tools & Resources
+            </h4>
+            <ul className="space-y-2">
+              {toolLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-slate-700 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-              <span className="hidden md:inline">•</span>
+          <nav aria-label="Company links">
+            <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+              Company
+            </h4>
+            <ul className="space-y-2">
+              {companyLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-slate-700 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-              <p className="flex items-center justify-center xs2:justify-start whitespace-nowrap mt-1 xs2:mt-0">
-                <span className="mr-1">Made with</span>
-                <span className="inline-flex items-center flex-shrink-0">
-                  <Heart className="h-3 w-3 text-red-500" />
-                </span>
-                <span className="ml-1">for inclusive web</span>
-              </p>
-            </div>
+          <nav aria-label="Legal links">
+            <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+              Legal
+            </h4>
+            <ul className="space-y-2">
+              {legalLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-slate-700 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
 
-            {/* External Links */}
-            <div className="flex items-center space-x-6 text-sm">
-              <Link
-                href="https://www.w3.org/WAI/WCAG22/quickref/"
-                target="_blank"
-                className="flex items-center text-muted-foreground hover:text-primary transition-colors group"
-              >
-                WCAG 2.2 Guidelines
-                <ExternalLink className="h-3 w-3 ml-1 opacity-50 group-hover:opacity-100 transition-opacity" />
-              </Link>
-
-              {/* Back to Top Button */}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={scrollToTop}
-                className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-all duration-300 hover:bg-blue-50 dark:hover:bg-slate-800 group"
-              >
-                <span className="text-xs">Back to top</span>
-                <ArrowUp className="h-3 w-3 group-hover:-translate-y-0.5 transition-transform" />
-              </Button>
-            </div>
+        <div className="flex flex-col gap-4 py-6 text-xs text-slate-600 md:flex-row md:items-center md:justify-between dark:text-slate-400">
+          <p>&copy; {currentYear} Accessibility.build. All rights reserved.</p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <p className="inline-flex items-center gap-1 text-slate-700 dark:text-slate-300">
+              Made with <Heart className="h-3.5 w-3.5 text-red-400" /> for
+              inclusive web
+            </p>
+            <Link
+              href="https://www.w3.org/WAI/WCAG22/quickref/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+            >
+              WCAG 2.2 Guidelines
+              <ExternalLink className="ml-1 h-3 w-3" />
+            </Link>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={scrollToTop}
+              className="h-8 px-2 text-xs text-slate-700 hover:bg-slate-200 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white"
+            >
+              Back to top
+              <ArrowUp className="h-3.5 w-3.5" />
+            </Button>
           </div>
         </div>
+      </div>
       </div>
     </footer>
   );

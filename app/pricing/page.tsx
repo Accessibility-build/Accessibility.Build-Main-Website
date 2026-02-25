@@ -175,7 +175,7 @@ export default function PricingPage() {
               <span className="font-medium">No Subscription Traps</span>
             </div>
             <p className="text-sm text-green-600 dark:text-green-400 mt-1">
-              Worry not, we won't trap you in a subscription cycle. Just pay for what you want to use.
+              No forced subscription cycle. Purchase credits based on your current delivery needs.
             </p>
           </div>
         </div>
@@ -195,10 +195,12 @@ export default function PricingPage() {
         </TabsList>
 
         <TabsContent value="individual">
+          <h2 className="sr-only">Individual Pricing Plans</h2>
           <PricingTable tiers={individualPlans} />
         </TabsContent>
 
         <TabsContent value="teams">
+          <h2 className="sr-only">Team and Enterprise Pricing Plans</h2>
           <PricingTable tiers={teamPlans} />
         </TabsContent>
       </Tabs>
@@ -346,7 +348,7 @@ export default function PricingPage() {
               <h2 className="text-2xl font-bold">Ready to Get Started?</h2>
             </div>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join thousands of developers and organizations who trust Accessibility.build 
+              Join teams that rely on Accessibility.build 
               for their accessibility testing needs. Start with 100 free credits today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

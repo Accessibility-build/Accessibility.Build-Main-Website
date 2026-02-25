@@ -37,6 +37,7 @@ import {
 import { InteractiveHero } from "@/components/interactive-hero"
 import { useEffect, useRef } from "react"
 import { RelatedContent } from "@/components/seo/related-content"
+import { homepageMetricOrder } from "@/lib/public-metrics"
 
 // Animation hook for intersection observer
 function useIntersectionObserver() {
@@ -79,9 +80,15 @@ export default function HomePage() {
   const servicesRef = useIntersectionObserver()
   const hellRef = useIntersectionObserver()
   const ctaRef = useIntersectionObserver()
+  const homepageMetricCards = [
+    { icon: Shield, metric: homepageMetricOrder[0] },
+    { icon: CheckCircle2, metric: homepageMetricOrder[1] },
+    { icon: Globe, metric: homepageMetricOrder[2] },
+    { icon: BookOpen, metric: homepageMetricOrder[3] },
+  ]
 
   return (
-    <main>
+    <div>
       {/* Hero Section */}
       <InteractiveHero />
 
@@ -89,49 +96,18 @@ export default function HomePage() {
       <section className="py-16 bg-slate-50 dark:bg-slate-900/30">
         <div ref={statsRef} className="container-wide">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center group">
-              <div className="relative mb-4">
-                <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
-                  <Users className="h-8 w-8 text-white" />
+            {homepageMetricCards.map(({ icon: Icon, metric }) => (
+              <div key={metric.id} className="text-center group">
+                <div className="relative mb-4">
+                  <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                  <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
+                    <Icon className="h-8 w-8 text-white" />
+                  </div>
                 </div>
+                <div className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{metric.value}</div>
+                <div className="text-slate-600 dark:text-slate-400">{metric.label}</div>
               </div>
-              <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">25K+</div>
-              <div className="text-slate-600 dark:text-slate-400">Developers Helped</div>
-            </div>
-
-            <div className="text-center group">
-              <div className="relative mb-4">
-                <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
-                  <CheckCircle2 className="h-8 w-8 text-white" />
-                </div>
-              </div>
-              <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">1M+</div>
-              <div className="text-slate-600 dark:text-slate-400">Audits Completed</div>
-            </div>
-
-            <div className="text-center group">
-              <div className="relative mb-4">
-                <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
-                  <Globe className="h-8 w-8 text-white" />
-                </div>
-              </div>
-              <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">150+</div>
-              <div className="text-slate-600 dark:text-slate-400">Countries Served</div>
-            </div>
-
-            <div className="text-center group">
-              <div className="relative mb-4">
-                <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
-                  <Award className="h-8 w-8 text-white" />
-                </div>
-              </div>
-              <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">99.2%</div>
-              <div className="text-slate-600 dark:text-slate-400">Success Rate</div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -162,7 +138,7 @@ export default function HomePage() {
                     <Palette className="h-8 w-8 text-white" />
                   </div>
                   <Badge variant="outline" className="border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300">
-                    10 Tools
+                    Tool Suite
                   </Badge>
                 </div>
                 <CardTitle className="text-xl text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -607,16 +583,16 @@ export default function HomePage() {
                 <span className="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 bg-clip-text text-transparent">Hell</span>
               </h2>
               <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                See what 96.3% of homepages get wrong. A11y Hell lets you experience real accessibility barriers through 21 fully modeled failure demos — so your team can feel the impact before users do.
+                Explore real accessibility barriers with hands-on failure demos so your team can feel the impact before users do.
               </p>
             </div>
 
             {/* Stats Row */}
             <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-16">
               {[
-                { value: "96.3%", label: "Fail WCAG" },
-                { value: "21", label: "Live Demos" },
-                { value: "4", label: "Severity Levels" },
+                { value: "Real-world", label: "Barrier Cases" },
+                { value: "Hands-on", label: "Guided Demos" },
+                { value: "Mapped", label: "Severity Levels" },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-500 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent mb-1">
@@ -642,7 +618,7 @@ export default function HomePage() {
                   <Target className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Practice Lab</h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">5 realistic scenario drills with personas and revealable official findings.</p>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Scenario drills with personas and revealable official findings.</p>
               </div>
 
               <div className="p-6 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-500/30 transition-all duration-300 group shadow-sm hover:shadow-lg">
@@ -689,7 +665,7 @@ export default function HomePage() {
             </h2>
 
             <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Join thousands of developers and organizations creating inclusive digital experiences with our comprehensive accessibility platform
+              Build inclusive digital experiences with a practical accessibility workflow your team can apply release after release.
             </p>
 
             {/* Value propositions */}
@@ -707,7 +683,7 @@ export default function HomePage() {
                   <Users className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Expert Support</h3>
-                <p className="text-slate-600 dark:text-slate-400">Get help from WCAG 2.2 certified accessibility experts</p>
+                <p className="text-slate-600 dark:text-slate-400">Get support with accessibility audits, remediation guidance, and delivery planning</p>
               </div>
 
               <div className="text-center">
@@ -715,7 +691,7 @@ export default function HomePage() {
                   <CheckCircle2 className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Proven Results</h3>
-                <p className="text-slate-600 dark:text-slate-400">99.2% success rate in achieving WCAG compliance</p>
+                <p className="text-slate-600 dark:text-slate-400">Use evidence-based checklists and implementation patterns aligned with WCAG requirements</p>
               </div>
             </div>
 
@@ -734,26 +710,16 @@ export default function HomePage() {
 
             {/* Trust indicators */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-3xl mx-auto">
-              <div>
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">24/7</div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">Support Available</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">WCAG 2.2</div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">Certified Experts</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-1">15K+</div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">Websites Improved</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-1">10+</div>
-                <div className="text-sm text-slate-600 dark:text-slate-400">Free Tools</div>
-              </div>
+              {homepageMetricCards.map(({ metric }) => (
+                <div key={`${metric.id}-cta`}>
+                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">{metric.value}</div>
+                  <div className="text-sm text-slate-600 dark:text-slate-400">{metric.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

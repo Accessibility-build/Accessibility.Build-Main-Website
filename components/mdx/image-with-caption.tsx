@@ -15,7 +15,7 @@ export function ImageWithCaption({ src, alt, caption, width = 1200, height = 630
     <figure className={cn("my-8", className)}>
       <div className="overflow-hidden rounded-lg border">
         <Image
-          src={src || "/placeholder.svg"}
+          src={src || "/og-image.png"}
           alt={alt}
           width={width}
           height={height}
