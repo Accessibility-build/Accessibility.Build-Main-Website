@@ -3,13 +3,14 @@ import {
   Card,
   CardContent,
 } from "@/components/ui/card";
-import { Mail, MessageSquare, Clock, MapPin } from "lucide-react";
+import { Mail, MessageSquare, Clock, MapPin, Linkedin } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { IconShell } from "@/components/ui/icon-shell";
 
 export const metadata = {
   title: "Contact Us | Accessibility.build",
@@ -74,9 +75,7 @@ export default function ContactPage() {
 
         <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <Mail className="h-5 w-5 text-primary" />
-                    </div>
+                    <IconShell icon={Mail} size="md" tone="accent" className="flex-shrink-0 rounded-lg" />
                     <div className="space-y-1">
                       <p className="font-medium text-sm">Email</p>
                   <a
@@ -89,9 +88,7 @@ export default function ContactPage() {
               </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <Clock className="h-5 w-5 text-primary" />
-                    </div>
+                    <IconShell icon={Clock} size="md" tone="accent" className="flex-shrink-0 rounded-lg" />
                     <div className="space-y-1">
                       <p className="font-medium text-sm">Response Time</p>
                   <p className="text-sm text-muted-foreground">
@@ -101,9 +98,7 @@ export default function ContactPage() {
               </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <MapPin className="h-5 w-5 text-primary" />
-                    </div>
+                    <IconShell icon={MapPin} size="md" tone="accent" className="flex-shrink-0 rounded-lg" />
                     <div className="space-y-1">
                       <p className="font-medium text-sm">Location</p>
                   <p className="text-sm text-muted-foreground">
@@ -113,9 +108,7 @@ export default function ContactPage() {
               </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <MessageSquare className="h-5 w-5 text-primary" />
-                    </div>
+                    <IconShell icon={MessageSquare} size="md" tone="accent" className="flex-shrink-0 rounded-lg" />
                     <div className="space-y-2">
                       <p className="font-medium text-sm">Follow Us</p>
                     <a
@@ -125,21 +118,7 @@ export default function ContactPage() {
                         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                         aria-label="Follow us on LinkedIn"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                        <rect width="4" height="12" x="2" y="9" />
-                        <circle cx="4" cy="4" r="2" />
-                      </svg>
+                      <Linkedin className="h-4 w-4" />
                         LinkedIn
                     </a>
                     </div>

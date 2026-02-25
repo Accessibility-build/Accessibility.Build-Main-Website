@@ -34,6 +34,7 @@ import { Badge } from "@/components/ui/badge";
 import { SearchDialog } from "@/components/search/search-dialog";
 import { SignOutButton, useUser } from "@clerk/nextjs";
 import { useCredits } from "@/hooks/use-credits";
+import { POPULAR_BADGE_CLASS } from "@/lib/ui-tokens";
 
 type NavItem = {
   name: string;
@@ -248,7 +249,7 @@ export function Header() {
                             <div className="flex items-center gap-2 w-full">
                               <span className="font-medium">{child.name}</span>
                               {child.popular && (
-                                <Badge className="bg-orange-500 text-white border-0 text-xs">
+                                <Badge className={cn(POPULAR_BADGE_CLASS, "text-xs")}>
                                   <Star className="h-2.5 w-2.5 mr-1" />
                                   Popular
                                 </Badge>
@@ -592,7 +593,7 @@ export function Header() {
                                     {child.name}
                                   </span>
                                   {child.popular && (
-                                    <Badge className="bg-orange-500 text-white border-0 text-xs">
+                                    <Badge className={cn(POPULAR_BADGE_CLASS, "text-xs")}>
                                       <Star className="h-2.5 w-2.5 mr-1" />
                                       Popular
                                     </Badge>

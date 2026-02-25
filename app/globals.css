@@ -29,6 +29,11 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --a11y-purple: 222 88% 58%;
+    --a11y-teal: 181 76% 40%;
+    --a11y-coral: 9 88% 62%;
+    --a11y-yellow: 45 95% 58%;
+    --a11y-gray: 215 14% 52%;
   }
 
   .dark {
@@ -56,6 +61,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --a11y-purple: 222 90% 64%;
+    --a11y-teal: 181 82% 46%;
+    --a11y-coral: 9 94% 70%;
+    --a11y-yellow: 45 98% 68%;
+    --a11y-gray: 218 12% 70%;
   }
 }
 
@@ -180,6 +190,40 @@
   .reading-progress {
     transition: width 0.15s ease-out;
   }
+
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.2) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.2) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bg-grid-pattern-light {
+    background-image:
+      linear-gradient(to right, rgb(15 23 42 / 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(15 23 42 / 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bg-grid-pattern-dark {
+    background-image:
+      linear-gradient(to right, rgb(148 163 184 / 0.18) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(148 163 184 / 0.18) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.7s ease-out forwards;
+  }
   
   /* Reading Highlight Styles */
   .reading-highlight {
@@ -216,6 +260,18 @@
     50% { 
       box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.4), 
                   0 6px 20px rgba(59, 130, 246, 0.25);
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
   

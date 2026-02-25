@@ -12,8 +12,6 @@ import {
     Zap,
     CheckCircle,
     Star,
-    Users,
-    Clock,
     Target,
     Code,
     Shield,
@@ -28,6 +26,8 @@ import {
     Globe
 } from "lucide-react"
 import TrialStatusBanner from "@/components/trial-status-banner"
+import { toolsTrustSignals } from "@/lib/public-metrics"
+import { POPULAR_BADGE_CLASS } from "@/lib/ui-tokens"
 
 // Featured tools for quick access
 const featuredTools = [
@@ -71,7 +71,7 @@ const accessibilityTools = [
         pricing: "Free",
         credits: 0,
         popular: true,
-        stats: { users: "New!", tests: "Growing" }
+        stats: { users: "Available", tests: "Validated" }
     },
     {
         title: "Advanced Color Palette Generator",
@@ -85,7 +85,7 @@ const accessibilityTools = [
         pricing: "Free",
         credits: 0,
         popular: true,
-        stats: { users: "New!", palettes: "Growing" }
+        stats: { users: "Available", palettes: "Validated" }
     },
     {
         title: "Color Contrast Checker",
@@ -99,7 +99,7 @@ const accessibilityTools = [
         pricing: "Free",
         credits: 0,
         popular: false,
-        stats: { users: "15K+", tests: "500K+" }
+        stats: { users: "Established", tests: "Validated" }
     },
     {
         title: "AI Alt Text Generator",
@@ -113,7 +113,7 @@ const accessibilityTools = [
         pricing: "1 Credit",
         credits: 1,
         popular: true,
-        stats: { users: "8K+", generations: "50K+" }
+        stats: { users: "Production", generations: "Validated" }
     },
     {
         title: "AI Accessibility Audit Helper",
@@ -127,7 +127,7 @@ const accessibilityTools = [
         pricing: "1 Credit",
         credits: 1,
         popular: false,
-        stats: { users: "New!", audits: "Growing" }
+        stats: { users: "Available", audits: "Validated" }
     },
     {
         title: "Mobile Accessibility Checker",
@@ -141,7 +141,7 @@ const accessibilityTools = [
         pricing: "2 Credits",
         credits: 2,
         popular: true,
-        stats: { users: "New!", tests: "Growing" }
+        stats: { users: "Available", tests: "Validated" }
     },
     {
         title: "AI Accessibility Code Generator",
@@ -155,7 +155,7 @@ const accessibilityTools = [
         pricing: "2 Credits",
         credits: 2,
         popular: true,
-        stats: { users: "New!", generated: "Growing" }
+        stats: { users: "Available", generated: "Validated" }
     },
     {
         title: "URL Accessibility Auditor",
@@ -169,7 +169,7 @@ const accessibilityTools = [
         pricing: "5 Credits",
         credits: 5,
         popular: false,
-        stats: { users: "New!", scans: "Starting" }
+        stats: { users: "Available", scans: "Validated" }
     },
     {
         title: "Accessibility Report Generator",
@@ -183,7 +183,7 @@ const accessibilityTools = [
         pricing: "Free",
         credits: 0,
         popular: true,
-        stats: { users: "New!", reports: "Growing" }
+        stats: { users: "Available", reports: "Validated" }
     },
     {
         title: "Accessibility Statement Generator",
@@ -197,7 +197,7 @@ const accessibilityTools = [
         pricing: "Free",
         credits: 0,
         popular: true,
-        stats: { users: "New!", statements: "Growing" }
+        stats: { users: "Available", statements: "Validated" }
     },
     {
         title: "ADA Compliance Risk Assessment",
@@ -211,7 +211,7 @@ const accessibilityTools = [
         pricing: "Free",
         credits: 0,
         popular: true,
-        stats: { users: "New!", assessments: "Growing" }
+        stats: { users: "Available", assessments: "Validated" }
     },
 ]
 
@@ -229,7 +229,7 @@ const utilityTools = [
         pricing: "Free",
         credits: 0,
         popular: true,
-        stats: { users: "New!", colors: "Growing" }
+        stats: { users: "Available", colors: "Validated" }
     },
     {
         title: "Base64 Encoder/Decoder",
@@ -243,7 +243,7 @@ const utilityTools = [
         pricing: "Free",
         credits: 0,
         popular: true,
-        stats: { users: "New!", conversions: "Growing" }
+        stats: { users: "Available", conversions: "Validated" }
     },
     {
         title: "URL Encoder/Decoder",
@@ -257,7 +257,7 @@ const utilityTools = [
         pricing: "Free",
         credits: 0,
         popular: false,
-        stats: { users: "New!", urls: "Growing" }
+        stats: { users: "Available", urls: "Validated" }
     },
     {
         title: "Password Generator",
@@ -271,7 +271,7 @@ const utilityTools = [
         pricing: "Free",
         credits: 0,
         popular: false,
-        stats: { users: "5K+", generated: "25K+" }
+        stats: { users: "Production", generated: "Validated" }
     },
     {
         title: "JSON Formatter & Validator",
@@ -285,7 +285,7 @@ const utilityTools = [
         pricing: "Free",
         credits: 0,
         popular: false,
-        stats: { users: "3K+", formatted: "15K+" }
+        stats: { users: "Production", formatted: "Validated" }
     }
 ]
 
@@ -317,18 +317,12 @@ export default function ToolsClientPage() {
                         </p>
 
                         <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
-                            <div className="flex items-center gap-2 text-muted-foreground">
-                                <Users className="h-5 w-5" />
-                                <span className="font-medium">25,000+ Users</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-muted-foreground">
-                                <CheckCircle className="h-5 w-5 text-green-600" />
-                                <span className="font-medium">WCAG 2.2 & 3.0</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-muted-foreground">
-                                <Clock className="h-5 w-5" />
-                                <span className="font-medium">Instant Results</span>
-                            </div>
+                            {toolsTrustSignals.map((signal) => (
+                                <div key={signal.id} className="flex items-center gap-2 text-muted-foreground">
+                                    <CheckCircle className="h-5 w-5 text-green-600" />
+                                    <span className="font-medium">{signal.value}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -374,7 +368,7 @@ export default function ToolsClientPage() {
                                                 </Button>
                                             </div>
                                             {tool.popular && (
-                                                <Badge className="bg-orange-500 text-white border-0">
+                                                <Badge className={POPULAR_BADGE_CLASS}>
                                                     <Star className="h-3 w-3 mr-1" />
                                                     Popular
                                                 </Badge>
@@ -446,7 +440,7 @@ export default function ToolsClientPage() {
                                     {/* Popular Badge */}
                                     {tool.popular && (
                                         <div className="absolute top-4 right-4 z-10">
-                                            <Badge className="bg-orange-500 text-white border-0 shadow-lg">
+                                            <Badge className={POPULAR_BADGE_CLASS}>
                                                 <Star className="h-3 w-3 mr-1" />
                                                 Popular
                                             </Badge>
@@ -556,9 +550,9 @@ export default function ToolsClientPage() {
                                         </div>
 
                                         {/* CTA Button */}
-                                        <Button asChild className="w-full group/btn bg-green-600 hover:bg-green-700">
+                                        <Button asChild className="w-full group/btn bg-green-700 text-white hover:bg-green-800">
                                             <Link href={`/tools/${tool.slug}`}>
-                                                <span className="flex items-center gap-2">
+                                                <span className="flex items-center gap-2 text-white">
                                                     <Shield className="h-4 w-4" />
                                                     Launch {tool.shortTitle}
                                                 </span>
@@ -603,7 +597,7 @@ export default function ToolsClientPage() {
                                     {/* Popular Badge */}
                                     {tool.popular && (
                                         <div className="absolute top-4 right-4 z-10">
-                                            <Badge className="bg-orange-500 text-white border-0 shadow-lg">
+                                            <Badge className={POPULAR_BADGE_CLASS}>
                                                 <Star className="h-3 w-3 mr-1" />
                                                 Popular
                                             </Badge>
@@ -696,9 +690,9 @@ export default function ToolsClientPage() {
                                         </div>
 
                                         {/* CTA Button */}
-                                        <Button asChild className="w-full group/btn bg-blue-600 hover:bg-blue-700">
+                                        <Button asChild className="w-full group/btn bg-blue-600 text-white hover:bg-blue-700">
                                             <Link href={`/tools/${tool.slug}`}>
-                                                <span className="flex items-center gap-2">
+                                                <span className="flex items-center gap-2 text-white">
                                                     <Target className="h-4 w-4" />
                                                     Launch {tool.shortTitle}
                                                 </span>

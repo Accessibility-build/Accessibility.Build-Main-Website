@@ -168,12 +168,12 @@ const structuredData = {
         height: 512
       },
       sameAs: [
-        "https://twitter.com/accessibilitybuild",
+        "https://linkedin.com/company/accessibilitybuild",
         "https://github.com/accessibility-build"
       ],
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+1-555-0199",
+        email: "accessibilitybuild@gmail.com",
         contactType: "customer service",
         availableLanguage: "English"
       }

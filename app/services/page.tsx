@@ -2,6 +2,7 @@ import { Check, ArrowRight, Info, FileText, Users, Code, Palette, TestTube, Clip
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { IconShell } from "@/components/ui/icon-shell"
 
 export const metadata = {
   title: "Accessibility Services | Accessibility.build",
@@ -128,14 +129,12 @@ export default function ServicesPage() {
               <div className={cn("h-24 relative", service.bgColor)}>
                 <div className="absolute inset-0 opacity-20 bg-grid-pattern-light dark:bg-grid-pattern-dark" />
                 <div className="absolute -bottom-10 right-8">
-                  <div
-                    className={cn(
-                      "w-20 h-20 rounded-full bg-gradient-to-br flex items-center justify-center",
-                      service.color,
-                    )}
-                  >
-                    <IconComponent className="h-10 w-10 text-white" />
-                  </div>
+                  <IconShell
+                    icon={IconComponent}
+                    size="xl"
+                    tone="hero"
+                    className={cn("rounded-full", `bg-gradient-to-br ${service.color}`)}
+                  />
                 </div>
               </div>
 

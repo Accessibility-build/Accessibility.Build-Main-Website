@@ -35,11 +35,11 @@ export function OptimizedImage({
   const [isLoaded, setIsLoaded] = useState(false)
   const [error, setError] = useState(false)
 
-  // Generate a placeholder if the image is a placeholder URL
-  const isPlaceholder = src.includes("placeholder.svg") || src.includes("placeholder.png")
+  // Treat fallback assets as placeholders for loading behavior
+  const isPlaceholder = src.includes("og-image.png")
 
-  // Default placeholder for error state - using dynamic URL instead of file path
-  const errorPlaceholder = `/placeholder.svg?height=${height || 300}&width=${width || 300}&query=image unavailable`
+  // Default fallback for error state
+  const errorPlaceholder = "/og-image.png"
 
   // Handle image load
   const handleLoad = () => {

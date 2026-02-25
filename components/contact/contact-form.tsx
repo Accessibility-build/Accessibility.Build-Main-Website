@@ -303,11 +303,10 @@ export function ContactForm() {
 
         {/* Anti-spam honeypot */}
         <input
-          type="text"
+          type="hidden"
           name="_gotcha"
-          className="sr-only absolute left-[-9999px]"
-          tabIndex={-1}
           autoComplete="off"
+          aria-hidden="true"
         />
       </form>
     </div>

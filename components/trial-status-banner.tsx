@@ -153,14 +153,14 @@ export default function TrialStatusBanner() {
               <Button
                 asChild
                 size="sm"
-                className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
+                className="bg-blue-600 text-white hover:bg-blue-700 w-full sm:w-auto"
               >
                 <Link
                   href="/sign-up"
-                  className="inline-flex items-center justify-center xs:gap-1 xs2:gap-2 xs:p-2"
+                  className="inline-flex items-center justify-center xs:gap-1 xs2:gap-2 xs:p-2 text-white"
                 >
                   <UserPlus className="xs:h-2 xs:w-2 h-4 w-4 " />
-                  <span className="xs:text-xs text-base">
+                  <span className="text-sm xs2:text-base">
                     Sign Up - Get 100 Free Credits
                   </span>
                 </Link>
