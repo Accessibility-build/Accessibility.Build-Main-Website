@@ -195,20 +195,20 @@ export function Header() {
               : "bg-background/60 py-3"
           )}
         >
-          <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center">
+          <div className="flex min-w-0 items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div className="flex shrink-0 items-center">
               <Link
                 href="/"
                 className="flex items-center space-x-2 transition-transform hover:scale-105"
               >
                 <Logo className="h-8 w-auto" />
-                <span className="font-bold text-lg hidden sm:inline-block">
+                <span className="hidden text-lg font-bold 2xl:inline-block">
                   Accessibility.build
                 </span>
               </Link>
             </div>
 
-            <nav className="hidden md:flex items-center space-x-1 flex-1 justify-center max-w-4xl mx-8">
+            <nav className="mx-6 hidden min-w-0 flex-1 items-center justify-center space-x-1 xl:flex 2xl:mx-8 2xl:max-w-4xl">
               {navItems.map((item) =>
                 item.children ? (
                   <DropdownMenu key={item.href}>
@@ -216,7 +216,7 @@ export function Header() {
                       <Button
                         variant="ghost"
                         className={cn(
-                          "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-full transition-colors",
+                          "flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors 2xl:px-4",
                           pathname.startsWith(item.href)
                             ? "text-primary bg-primary/10 font-semibold"
                             : "text-foreground/70 hover:text-primary hover:bg-primary/5"
@@ -282,7 +282,7 @@ export function Header() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "px-4 py-2 text-sm font-medium rounded-full transition-colors whitespace-nowrap",
+                      "whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors 2xl:px-4",
                       pathname === item.href
                         ? "text-primary bg-primary/10 font-semibold"
                         : "text-foreground/70 hover:text-primary hover:bg-primary/5"
@@ -294,7 +294,7 @@ export function Header() {
               )}
             </nav>
 
-            <div className="flex items-center gap-2">
+            <div className="flex shrink-0 items-center gap-2">
               <Button
                 variant="ghost"
                 size="icon"
@@ -464,7 +464,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden rounded-full"
+                className="rounded-full xl:hidden"
                 onClick={() => setIsMobileMenuOpen(true)}
                 aria-label="Open menu"
               >
