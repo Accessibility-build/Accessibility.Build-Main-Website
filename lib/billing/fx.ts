@@ -71,23 +71,48 @@ async function fetchOpenExchangeRate(): Promise<FxQuote | null> {
 }
 
 export async function getUsdToInrQuote(forceRefresh = false): Promise<FxQuote> {
+  const LOG_PREFIX = '[billing:fx]'
   const nowMs = Date.now()
   const hasFreshCache = cachedQuote !== null && nowMs - cachedAtMs < FX_CACHE_TTL_MS
 
   if (!forceRefresh && hasFreshCache) {
+    console.log(`${LOG_PREFIX} ✓ cache_hit`, JSON.stringify({
+      usdToInr: cachedQuote!.usdToInr,
+      source: cachedQuote!.source,
+      cacheAgeMs: nowMs - cachedAtMs,
+    }))
     return cachedQuote as FxQuote
   }
 
-  const liveQuote = await fetchOpenExchangeRate().catch(() => null)
+  console.log(`${LOG_PREFIX} … fetching_live_rate`, JSON.stringify({
+    hasAppId: Boolean(process.env.OPENEXCHANGERATES_APP_ID),
+    forceRefresh,
+  }))
+
+  const liveQuote = await fetchOpenExchangeRate().catch((err) => {
+    console.warn(`${LOG_PREFIX} ⚠ live_fetch_error`, JSON.stringify({
+      error: err instanceof Error ? err.message : String(err),
+    }))
+    return null
+  })
+
   if (liveQuote) {
     cachedQuote = liveQuote
     cachedAtMs = nowMs
+    console.log(`${LOG_PREFIX} ✓ live_rate`, JSON.stringify({
+      usdToInr: liveQuote.usdToInr,
+      source: liveQuote.source,
+    }))
     return liveQuote
   }
 
   const fallback = buildFallbackQuote()
   cachedQuote = fallback
   cachedAtMs = nowMs
+  console.warn(`${LOG_PREFIX} ⚠ using_fallback`, JSON.stringify({
+    usdToInr: fallback.usdToInr,
+    source: fallback.source,
+  }))
   return fallback
 }
 

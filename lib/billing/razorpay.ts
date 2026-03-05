@@ -92,32 +92,70 @@ async function razorpayRequest<TResponse>(
   method: 'GET' | 'POST',
   payload?: Record<string, unknown>
 ): Promise<TResponse> {
-  const { authorization } = getRazorpayAuthHeader()
-  const response = await fetch(`${RAZORPAY_API_BASE}${path}`, {
-    method,
-    headers: {
-      Authorization: authorization,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: payload ? JSON.stringify(payload) : undefined,
-    cache: 'no-store',
-  })
+  const LOG_PREFIX = '[razorpay:api]'
+  const startMs = Date.now()
 
+  const { authorization } = getRazorpayAuthHeader()
+
+  console.log(`${LOG_PREFIX} ▶ ${method} ${path}`, JSON.stringify({
+    hasPayload: Boolean(payload),
+  }))
+
+  let response: Response
+  try {
+    response = await fetch(`${RAZORPAY_API_BASE}${path}`, {
+      method,
+      headers: {
+        Authorization: authorization,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: payload ? JSON.stringify(payload) : undefined,
+      cache: 'no-store',
+    })
+  } catch (networkError) {
+    const durationMs = Date.now() - startMs
+    console.error(`${LOG_PREFIX} ✗ NETWORK_ERROR ${method} ${path}`, JSON.stringify({
+      durationMs,
+      error: networkError instanceof Error ? networkError.message : String(networkError),
+      errorType: networkError instanceof Error ? networkError.constructor.name : typeof networkError,
+    }))
+    throw networkError
+  }
+
+  const durationMs = Date.now() - startMs
   const data = (await response.json().catch(() => null)) as
-    | (TResponse & { error?: { description?: string } })
+    | (TResponse & { error?: { description?: string; code?: string; reason?: string } })
     | null
 
   if (!response.ok) {
     const message =
       data?.error?.description ||
       `Razorpay API request failed (${response.status}) at ${method} ${path}`
+
+    console.error(`${LOG_PREFIX} ✗ API_ERROR ${method} ${path}`, JSON.stringify({
+      status: response.status,
+      durationMs,
+      errorDescription: data?.error?.description,
+      errorCode: data?.error?.code,
+      errorReason: data?.error?.reason,
+    }))
+
     throw new Error(message)
   }
 
   if (!data) {
+    console.error(`${LOG_PREFIX} ✗ EMPTY_RESPONSE ${method} ${path}`, JSON.stringify({
+      status: response.status,
+      durationMs,
+    }))
     throw new Error(`Razorpay API returned empty response for ${method} ${path}`)
   }
+
+  console.log(`${LOG_PREFIX} ✓ ${method} ${path}`, JSON.stringify({
+    status: response.status,
+    durationMs,
+  }))
 
   return data
 }

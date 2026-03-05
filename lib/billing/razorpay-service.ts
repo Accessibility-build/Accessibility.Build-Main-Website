@@ -177,21 +177,55 @@ export async function createRazorpayCheckoutForCatalog(params: {
   catalogKey: CatalogKey
   currency?: CheckoutCurrency
 }): Promise<CheckoutSessionResponse> {
+  const LOG_PREFIX = '[razorpay-service:createCheckout]'
   const { userId, email, fullName, catalogKey } = params
   const pack = getCatalogPack(catalogKey)
 
   if (!pack.checkoutEnabled || !isCheckoutCatalogKey(pack.key)) {
+    console.error(`${LOG_PREFIX} ✗ pack_not_checkout_enabled`, JSON.stringify({ catalogKey, packKey: pack.key }))
     throw new Error('Selected catalog pack is not checkout enabled')
   }
 
   const selectedCurrency = sanitizeCheckoutCurrency(params.currency)
+
+  // ── FX Quote ──
+  console.log(`${LOG_PREFIX} … fetching_fx_quote`, JSON.stringify({ userId, selectedCurrency }))
+  const fxStartMs = Date.now()
   const fxQuote = await getUsdToInrQuote()
+  const fxDurationMs = Date.now() - fxStartMs
+  console.log(`${LOG_PREFIX} ✓ fx_quote`, JSON.stringify({
+    userId,
+    usdToInr: fxQuote.usdToInr,
+    source: fxQuote.source,
+    fxDurationMs,
+  }))
+
   const checkoutAmount = getCheckoutAmount({
     baseAmountUsdCents: pack.amountCents,
     currency: selectedCurrency,
     usdToInrRate: fxQuote.usdToInr,
   })
 
+  if (checkoutAmount.amountMinor <= 0) {
+    console.error(`${LOG_PREFIX} ✗ zero_amount`, JSON.stringify({
+      userId,
+      catalogKey,
+      selectedCurrency,
+      amountMinor: checkoutAmount.amountMinor,
+      baseAmountCents: pack.amountCents,
+      usdToInr: fxQuote.usdToInr,
+    }))
+    throw new Error(`Checkout amount resolved to ${checkoutAmount.amountMinor} — cannot create order with zero amount`)
+  }
+
+  // ── DB Insert: billing order ──
+  console.log(`${LOG_PREFIX} … inserting_order`, JSON.stringify({
+    userId,
+    catalogKey: pack.key,
+    amountMinor: checkoutAmount.amountMinor,
+    currency: selectedCurrency,
+  }))
+  const dbInsertStartMs = Date.now()
   const [order] = await db
     .insert(billingOrders)
     .values({
@@ -216,7 +250,21 @@ export async function createRazorpayCheckoutForCatalog(params: {
     .returning({
       id: billingOrders.id,
     })
+  const dbInsertDurationMs = Date.now() - dbInsertStartMs
+  console.log(`${LOG_PREFIX} ✓ order_inserted`, JSON.stringify({
+    userId,
+    orderId: order.id,
+    dbInsertDurationMs,
+  }))
 
+  // ── Razorpay API: create order ──
+  console.log(`${LOG_PREFIX} … creating_razorpay_order`, JSON.stringify({
+    userId,
+    orderId: order.id,
+    amountMinor: checkoutAmount.amountMinor,
+    currency: selectedCurrency,
+  }))
+  const rpStartMs = Date.now()
   const razorpayOrder = await createRazorpayOrder({
     amountMinor: checkoutAmount.amountMinor,
     currency: selectedCurrency,
@@ -228,7 +276,15 @@ export async function createRazorpayCheckoutForCatalog(params: {
       credits: String(pack.credits),
     },
   })
+  const rpDurationMs = Date.now() - rpStartMs
+  console.log(`${LOG_PREFIX} ✓ razorpay_order_created`, JSON.stringify({
+    userId,
+    orderId: order.id,
+    razorpayOrderId: razorpayOrder.id,
+    rpDurationMs,
+  }))
 
+  // ── Fallback payment link (optional) ──
   let fallbackPaymentLinkUrl: string | undefined
   try {
     fallbackPaymentLinkUrl = await createFallbackPaymentLinkForOrder({
@@ -237,10 +293,16 @@ export async function createRazorpayCheckoutForCatalog(params: {
       email,
       fullName,
     })
-  } catch {
+  } catch (fallbackError) {
     // Payment-link fallback is optional and must not block checkout.
+    console.warn(`${LOG_PREFIX} ⚠ fallback_link_failed`, JSON.stringify({
+      userId,
+      orderId: order.id,
+      error: fallbackError instanceof Error ? fallbackError.message : String(fallbackError),
+    }))
   }
 
+  // ── DB Update: attach Razorpay order ID ──
   await db
     .update(billingOrders)
     .set({

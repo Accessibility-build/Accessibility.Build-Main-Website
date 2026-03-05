@@ -89,8 +89,17 @@ class ErrorLogger {
       this.consoleLogError(logEntry)
     }
 
-    // In production, we would send to a logging service
+    // In production, emit structured JSON to stdout/stderr so Vercel captures it.
     if (this.isProduction) {
+      const logFn = severity === 'critical' || severity === 'major' ? console.error : console.warn
+      logFn(`[error-logger:${severity}] ${message}`, JSON.stringify({
+        id: logEntry.id,
+        component: logEntry.component,
+        path: logEntry.path,
+        stack: logEntry.stack?.slice(0, 500),
+        context: logEntry.context,
+        region: process.env.VERCEL_REGION || process.env.AWS_REGION || undefined,
+      }))
       this.sendToLoggingService(logEntry)
     }
 
