@@ -399,6 +399,43 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
 CLERK_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxx
 
 # ==========================================
+# BILLING (RAZORPAY)
+# ==========================================
+
+# Billing model: one-time credit purchases only (no recurring subscriptions)
+# Billing management: in-app Billing Center
+
+# Active provider switch
+BILLING_PROVIDER=razorpay
+BILLING_ENABLED=true
+
+# Razorpay API credentials
+RAZORPAY_KEY_ID=rzp_test_xxxxxxxxxxxxx
+RAZORPAY_KEY_SECRET=xxxxxxxxxxxxx
+RAZORPAY_WEBHOOK_SECRET=xxxxxxxxxxxxx
+RAZORPAY_BILLING_ENABLED=true
+
+# Optional fallback for USD->INR if FX API fails
+BILLING_USD_INR_FALLBACK_RATE=83
+
+# OpenExchangeRates API
+OPENEXCHANGERATES_APP_ID=xxxxxxxxxxxxx
+
+# Legacy Stripe compatibility (keep for reconciliation only)
+STRIPE_SECRET_KEY=sk_test_xxxxxxxxxxxxx
+STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxx
+STRIPE_BILLING_ENABLED=false
+STRIPE_PORTAL_CONFIGURATION_ID=bpc_xxxxxxxxxxxxx
+
+# Legacy Stripe price IDs (only required when STRIPE_BILLING_ENABLED=true)
+STRIPE_PRICE_STARTER_50=price_xxxxxxxxxxxxx
+STRIPE_PRICE_PRO_200=price_xxxxxxxxxxxxx
+STRIPE_PRICE_BUSINESS_500=price_xxxxxxxxxxxxx
+STRIPE_PRICE_GROWTH_2500=price_xxxxxxxxxxxxx
+STRIPE_PRICE_TEAM_5000=price_xxxxxxxxxxxxx
+STRIPE_PRICE_TEAM_15000=price_xxxxxxxxxxxxx
+
+# ==========================================
 # AI SERVICES
 # ==========================================
 

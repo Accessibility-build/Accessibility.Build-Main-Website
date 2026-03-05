@@ -66,7 +66,7 @@ export function Footer() {
         <div className="border-b border-slate-300 py-8 md:py-10 dark:border-slate-800">
           <div className="flex items-end gap-4 overflow-hidden">
             <div className="hidden sm:flex sm:items-end sm:pb-2" aria-hidden="true">
-              <div className="rounded-2xl border border-primary/35 bg-primary/10 p-3 shadow-sm shadow-primary/10">
+              <div className="rounded-2xl border border-slate-300 bg-white p-3 dark:border-slate-700 dark:bg-slate-900/70">
                 <Logo className="h-14 w-14" />
               </div>
             </div>

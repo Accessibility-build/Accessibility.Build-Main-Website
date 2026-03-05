@@ -96,7 +96,7 @@ export default function TrialStatusBanner() {
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 You can try each tool up to 5 times for free! Sign up to get 100
-                free credits and unlimited access.
+                free credits and continue with one-time credit packs when needed.
               </p>
             </div>
 

@@ -36,6 +36,34 @@
       "when": 1751478114137,
       "tag": "0004_blushing_clea",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1772448051764,
+      "tag": "0005_dry_thunderball",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1772448080625,
+      "tag": "0006_military_falcon",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1772454372897,
+      "tag": "0007_green_swarm",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1772660767782,
+      "tag": "0008_lush_starhawk",
+      "breakpoints": true
     }
   ]
 }

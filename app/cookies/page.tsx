@@ -400,12 +400,12 @@ export default function CookiesPage() {
                   </div>
                   
                   <div className="border rounded-lg p-4">
-                    <h4 className="font-semibold mb-2">Stripe</h4>
+                    <h4 className="font-semibold mb-2">Razorpay</h4>
                     <p className="text-sm text-muted-foreground mb-3">
                       Payment processing and fraud prevention
                     </p>
                     <Button variant="outline" size="sm" asChild>
-                      <Link href="https://stripe.com/privacy" target="_blank">
+                      <Link href="https://razorpay.com/privacy/" target="_blank">
                         View Policy
                       </Link>
                     </Button>

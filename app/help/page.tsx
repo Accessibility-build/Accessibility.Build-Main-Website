@@ -74,11 +74,11 @@ const popularArticles = [
     href: "/help/api-integration"
   },
   {
-    title: "Team Collaboration Features",
-    description: "Set up and manage team access, roles, and shared projects.",
+    title: "Team Credit Purchases",
+    description: "Choose team credit packs and route billing support requests.",
     category: "Teams",
-    readTime: "8 min read",
-    href: "/help/team-collaboration"
+    readTime: "6 min read",
+    href: "/help/team-billing"
   }
 ]
 
@@ -114,14 +114,14 @@ const categories = [
   {
     name: "Team Management",
     icon: Users,
-    description: "Managing teams, roles, and collaborative workflows.",
+    description: "Team credit pack purchases and billing support workflow.",
     articleCount: 8,
     href: "/help/category/teams"
   },
   {
     name: "Billing & Account",
     icon: MessageCircle,
-    description: "Subscription management, billing, and account settings.",
+    description: "One-time credit purchases, Billing Center access, and account settings.",
     articleCount: 10,
     href: "/help/category/billing"
   }
@@ -142,11 +142,11 @@ const faqs = [
   },
   {
     question: "How many credits do I need for my project?",
-    answer: "Credit usage depends on your testing needs. Alt text generation uses 1 credit per image, accessibility audits use 2-5 credits per page depending on complexity. Most users find the Pro plan (1,000 credits/month) sufficient for regular testing. You can always upgrade if you need more."
+    answer: "Credit usage depends on your testing volume. Alt text generation uses 1 credit per image, and accessibility audits use 2-5 credits per page depending on complexity. Most users start with the 200-credit or 500-credit one-time packs and purchase more as needed."
   },
   {
     question: "Can I use your tools for commercial projects?",
-    answer: "Yes! All our plans, including the free tier, can be used for commercial projects. Paid plans offer additional features like custom branding, API access, and priority support that are particularly useful for professional and commercial use."
+    answer: "Yes. Free and paid credit usage is allowed for commercial projects. Start with free credits, then purchase one-time credit packs as your usage grows."
   },
   {
     question: "Do you offer training or consulting services?",

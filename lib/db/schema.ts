@@ -1,4 +1,4 @@
-import { pgTable, text, integer, timestamp, uuid, boolean, jsonb, pgEnum } from 'drizzle-orm/pg-core'
+import { pgTable, text, integer, timestamp, uuid, boolean, jsonb, pgEnum, index } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 
 // Enums
@@ -22,6 +22,37 @@ export const toolTypeEnum = pgEnum('tool_type', [
 ])
 export const auditStatusEnum = pgEnum('audit_status', ['pending', 'processing', 'completed', 'failed'])
 export const severityEnum = pgEnum('severity', ['critical', 'serious', 'moderate', 'minor'])
+export const billingOrderStatusEnum = pgEnum('billing_order_status', [
+  'pending',
+  'paid',
+  'failed',
+  'refunded',
+  'partially_refunded',
+  'action_required',
+])
+export const paymentProviderEnum = pgEnum('payment_provider', ['stripe', 'razorpay'])
+export const billingFunnelEventTypeEnum = pgEnum('billing_funnel_event_type', [
+  'checkout_click',
+  'checkout_auth_required',
+  'checkout_session_created',
+  'checkout_session_failed',
+  'checkout_invalid_catalog',
+  'checkout_fallback_payment_link',
+  'manage_click',
+  'manage_auth_required',
+  'manage_session_created',
+  'manage_session_failed',
+  'portal_click',
+  'portal_auth_required',
+  'portal_session_created',
+  'portal_session_failed',
+  'webhook_paid',
+  'webhook_pending',
+  'webhook_failed',
+  'webhook_refund',
+  'webhook_duplicate',
+  'webhook_error',
+])
 
 // Users table (synced with Clerk)
 export const users = pgTable('users', {
@@ -30,6 +61,8 @@ export const users = pgTable('users', {
   firstName: text('first_name'),
   lastName: text('last_name'),
   profileImageUrl: text('profile_image_url'),
+  stripeCustomerId: text('stripe_customer_id').unique(),
+  razorpayCustomerId: text('razorpay_customer_id').unique(),
   credits: integer('credits').notNull().default(100), // Current credit balance
   totalCreditsEarned: integer('total_credits_earned').notNull().default(100), // Total credits ever earned
   totalCreditsUsed: integer('total_credits_used').notNull().default(0), // Total credits ever used
@@ -99,6 +132,95 @@ export const payments = pgTable('payments', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 })
+
+// Stripe-backed billing orders for credit purchases
+export const billingOrders = pgTable('billing_orders', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  paymentProvider: paymentProviderEnum('payment_provider').notNull().default('stripe'),
+  catalogKey: text('catalog_key').notNull(),
+  credits: integer('credits').notNull(),
+  currency: text('currency').notNull().default('USD'),
+  amountSubtotal: integer('amount_subtotal').notNull(),
+  amountTax: integer('amount_tax').notNull().default(0),
+  amountTotal: integer('amount_total').notNull(),
+  baseAmountUsdCents: integer('base_amount_usd_cents'),
+  amountTotalUsdCents: integer('amount_total_usd_cents'),
+  fxRateUsdToInr: text('fx_rate_usd_to_inr'),
+  fxRateTimestamp: timestamp('fx_rate_timestamp'),
+  status: billingOrderStatusEnum('status').notNull().default('pending'),
+  providerOrderId: text('provider_order_id').unique(),
+  providerPaymentId: text('provider_payment_id'),
+  providerPaymentLinkId: text('provider_payment_link_id'),
+  providerRefundId: text('provider_refund_id'),
+  stripeCheckoutSessionId: text('stripe_checkout_session_id').unique(),
+  stripeCustomerId: text('stripe_customer_id'),
+  stripePaymentIntentId: text('stripe_payment_intent_id'),
+  stripeInvoiceId: text('stripe_invoice_id'),
+  stripeChargeId: text('stripe_charge_id'),
+  stripeRefundId: text('stripe_refund_id'),
+  creditTransactionId: uuid('credit_transaction_id').references(() => creditTransactions.id),
+  failureReason: text('failure_reason'),
+  metadata: jsonb('metadata'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (table) => ({
+  checkoutSessionIdx: index('billing_orders_checkout_session_idx').on(table.stripeCheckoutSessionId),
+  providerOrderIdx: index('billing_orders_provider_order_idx').on(table.providerOrderId),
+  paymentProviderIdx: index('billing_orders_payment_provider_idx').on(table.paymentProvider),
+  userCreatedAtIdx: index('billing_orders_user_created_at_idx').on(table.userId, table.createdAt),
+  statusIdx: index('billing_orders_status_idx').on(table.status),
+}))
+
+// Stores webhook events for Stripe idempotency and replay safety
+export const stripeWebhookEvents = pgTable('stripe_webhook_events', {
+  eventId: text('event_id').primaryKey(),
+  eventType: text('event_type').notNull(),
+  livemode: boolean('livemode').notNull().default(false),
+  processedAt: timestamp('processed_at'),
+  processingStatus: text('processing_status').notNull().default('processing'),
+  orderId: uuid('order_id').references(() => billingOrders.id),
+  errorMessage: text('error_message'),
+  payload: jsonb('payload').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
+// Stores webhook events for Razorpay idempotency and replay safety
+export const razorpayWebhookEvents = pgTable('razorpay_webhook_events', {
+  eventId: text('event_id').primaryKey(),
+  eventType: text('event_type').notNull(),
+  processedAt: timestamp('processed_at'),
+  processingStatus: text('processing_status').notNull().default('processing'),
+  orderId: uuid('order_id').references(() => billingOrders.id),
+  errorMessage: text('error_message'),
+  payload: jsonb('payload').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
+// Billing funnel telemetry events (non-blocking analytics)
+export const billingFunnelEvents = pgTable('billing_funnel_events', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  eventType: billingFunnelEventTypeEnum('event_type').notNull(),
+  eventSource: text('event_source').notNull(),
+  userId: text('user_id').references(() => users.id, { onDelete: 'set null' }),
+  orderId: uuid('order_id').references(() => billingOrders.id, { onDelete: 'set null' }),
+  paymentProvider: paymentProviderEnum('payment_provider'),
+  catalogKey: text('catalog_key'),
+  currency: text('currency'),
+  providerOrderId: text('provider_order_id'),
+  providerPaymentId: text('provider_payment_id'),
+  stripeCheckoutSessionId: text('stripe_checkout_session_id'),
+  status: text('status'),
+  errorCode: text('error_code'),
+  errorMessage: text('error_message'),
+  metadata: jsonb('metadata'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (table) => ({
+  createdAtIdx: index('billing_funnel_events_created_at_idx').on(table.createdAt),
+  eventTypeCreatedAtIdx: index('billing_funnel_events_event_type_created_at_idx').on(table.eventType, table.createdAt),
+  userCreatedAtIdx: index('billing_funnel_events_user_created_at_idx').on(table.userId, table.createdAt),
+  orderCreatedAtIdx: index('billing_funnel_events_order_created_at_idx').on(table.orderId, table.createdAt),
+}))
 
 // URL Accessibility Audits table
 export const urlAccessibilityAudits = pgTable('url_accessibility_audits', {
@@ -203,6 +325,8 @@ export const usersRelations = relations(users, ({ many }) => ({
   transactions: many(creditTransactions),
   toolUsage: many(toolUsage),
   payments: many(payments),
+  billingOrders: many(billingOrders),
+  billingFunnelEvents: many(billingFunnelEvents),
 }))
 
 export const creditTransactionsRelations = relations(creditTransactions, ({ one }) => ({
@@ -242,6 +366,43 @@ export const paymentsRelations = relations(payments, ({ one }) => ({
   }),
 }))
 
+export const billingOrdersRelations = relations(billingOrders, ({ one, many }) => ({
+  user: one(users, {
+    fields: [billingOrders.userId],
+    references: [users.id],
+  }),
+  creditTransaction: one(creditTransactions, {
+    fields: [billingOrders.creditTransactionId],
+    references: [creditTransactions.id],
+  }),
+  funnelEvents: many(billingFunnelEvents),
+}))
+
+export const stripeWebhookEventsRelations = relations(stripeWebhookEvents, ({ one }) => ({
+  order: one(billingOrders, {
+    fields: [stripeWebhookEvents.orderId],
+    references: [billingOrders.id],
+  }),
+}))
+
+export const razorpayWebhookEventsRelations = relations(razorpayWebhookEvents, ({ one }) => ({
+  order: one(billingOrders, {
+    fields: [razorpayWebhookEvents.orderId],
+    references: [billingOrders.id],
+  }),
+}))
+
+export const billingFunnelEventsRelations = relations(billingFunnelEvents, ({ one }) => ({
+  user: one(users, {
+    fields: [billingFunnelEvents.userId],
+    references: [users.id],
+  }),
+  order: one(billingOrders, {
+    fields: [billingFunnelEvents.orderId],
+    references: [billingOrders.id],
+  }),
+}))
+
 // New Relations
 export const urlAccessibilityAuditsRelations = relations(urlAccessibilityAudits, ({ one, many }) => ({
   user: one(users, {
@@ -269,6 +430,14 @@ export type ToolUsage = typeof toolUsage.$inferSelect
 export type NewToolUsage = typeof toolUsage.$inferInsert
 export type Payment = typeof payments.$inferSelect
 export type NewPayment = typeof payments.$inferInsert
+export type BillingOrder = typeof billingOrders.$inferSelect
+export type NewBillingOrder = typeof billingOrders.$inferInsert
+export type StripeWebhookEventRecord = typeof stripeWebhookEvents.$inferSelect
+export type NewStripeWebhookEventRecord = typeof stripeWebhookEvents.$inferInsert
+export type RazorpayWebhookEventRecord = typeof razorpayWebhookEvents.$inferSelect
+export type NewRazorpayWebhookEventRecord = typeof razorpayWebhookEvents.$inferInsert
+export type BillingFunnelEvent = typeof billingFunnelEvents.$inferSelect
+export type NewBillingFunnelEvent = typeof billingFunnelEvents.$inferInsert
 export type UrlAccessibilityAudit = typeof urlAccessibilityAudits.$inferSelect
 export type NewUrlAccessibilityAudit = typeof urlAccessibilityAudits.$inferInsert
 export type AuditViolation = typeof auditViolations.$inferSelect

@@ -790,7 +790,7 @@ export default function AccessibilityAuditHelper() {
                         <Link href="/sign-up" className="underline font-medium">
                           create an account
                         </Link>{" "}
-                        to get unlimited access.
+                        to continue with one-time credit packs when needed.
                         {/* --- Badge now responsive --- */}
                         <div className="block md:inline-flex mt-2 md:mt-0">
                           <Badge variant="secondary" className="text-xs">

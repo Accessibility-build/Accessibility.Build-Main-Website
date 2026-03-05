@@ -20,15 +20,16 @@ import {
   ArrowDownRight,
   Gift,
   ShoppingCart,
-  RefreshCw,
   User,
   Calendar,
   CheckCircle,
   AlertCircle,
-  Crown,
 } from "lucide-react";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
+import { CheckoutButton } from "@/components/billing/checkout-button";
+import { getCatalogPresentationPacks } from "@/lib/billing/catalog";
+import type { CheckoutCatalogKey } from "@/lib/billing/types";
 
 export default async function DashboardPage() {
   const user = await currentUser();
@@ -55,6 +56,12 @@ export default async function DashboardPage() {
       user: null,
     };
   }
+
+  const quickBuyPacks = getCatalogPresentationPacks({
+    includeEnterprise: false,
+    individualOnly: true,
+    checkoutOnly: true,
+  }).slice(0, 4)
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
@@ -160,115 +167,56 @@ export default async function DashboardPage() {
                 Need More Credits?
               </CardTitle>
               <CardDescription className="text-slate-600 dark:text-slate-400">
-                Purchase credit packages to continue using our premium
-                accessibility tools.
+                One-time credit packs powered by Razorpay checkout.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                {/* Starter */}
-                <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-6 bg-slate-50 dark:bg-slate-800/50 h-full">
-                  {/* Spacer to align with 'Popular' badge column */}
-                  <div className="h-6 mb-2" aria-hidden="true"></div>
-                  <div className="flex flex-col h-full items-center text-center">
-                    <h3 className="font-semibold text-slate-900 dark:text-white min-h-[28px] mb-2">
-                      Starter Pack
-                    </h3>
-                    <div className="text-3xl font-bold text-slate-900 dark:text-white min-h-[40px] mb-2">
-                      50 Credits
-                    </div>
-                    <div className="text-xl text-slate-600 dark:text-slate-400 min-h-[28px] mb-4">
-                      $4.99
-                    </div>
-                    <div className="mb-1 w-full">
-                      <Button
+                {quickBuyPacks.map((pack) => (
+                  <div
+                    key={pack.key}
+                    className={`rounded-xl p-6 h-full ${
+                      pack.isPopular
+                        ? "border-2 border-blue-600 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                        : "border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50"
+                    }`}
+                  >
+                    <div className="flex flex-col h-full items-center text-center">
+                      <div className="min-h-[24px] mb-2">
+                        {pack.isPopular ? <Badge className="bg-blue-600 text-white">Popular</Badge> : null}
+                      </div>
+                      <h3 className="font-semibold text-slate-900 dark:text-white min-h-[28px] mb-2">
+                        {pack.name}
+                      </h3>
+                      <div className="text-3xl font-bold text-slate-900 dark:text-white min-h-[40px] mb-2">
+                        {pack.credits.toLocaleString()} Credits
+                      </div>
+                      <div className="text-xl text-slate-600 dark:text-slate-400 min-h-[28px] mb-2">
+                        {new Intl.NumberFormat("en-US", {
+                          style: "currency",
+                          currency: pack.currency,
+                          minimumFractionDigits: 2,
+                        }).format(pack.amountCents / 100)}
+                      </div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 min-h-[20px] mb-4">
+                        {pack.valueLabel || "One-time purchase"}
+                      </div>
+                      <CheckoutButton
                         className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        asChild
+                        catalogKey={pack.key as CheckoutCatalogKey}
                       >
-                        <Link href="/contact">Contact Us</Link>
-                      </Button>
+                        {pack.ctaLabel}
+                      </CheckoutButton>
                     </div>
                   </div>
-                </div>
-
-                {/* Pro (featured) */}
-                <div className="border-2 border-blue-600 dark:border-blue-500 rounded-xl p-6 bg-blue-50 dark:bg-blue-900/20 h-full">
-                  <div className="flex justify-center mb-2">
-                    <Badge className="bg-blue-600 text-white">
-                      <Crown className="h-3 w-3 mr-1" />
-                      Popular
-                    </Badge>
-                  </div>
-                  <div className="flex flex-col h-full items-center text-center">
-                    <h3 className="font-semibold text-slate-900 dark:text-white min-h-[28px] mb-2">
-                      Pro Pack
-                    </h3>
-                    <div className="text-3xl font-bold text-slate-900 dark:text-white min-h-[40px] mb-2">
-                      200 Credits
-                    </div>
-                    <div className="text-xl text-slate-600 dark:text-slate-400 min-h-[28px] mb-4">
-                      $14.99
-                    </div>
-                    <div className="mb-1 w-full">
-                      <Button
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        asChild
-                      >
-                        <Link href="/contact">Contact Us</Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Business */}
-                <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-6 bg-slate-50 dark:bg-slate-800/50 h-full">
-                  {/* Spacer to align with 'Popular' badge column */}
-                  <div className="h-6 mb-2" aria-hidden="true"></div>
-                  <div className="flex flex-col h-full items-center text-center">
-                    <h3 className="font-semibold text-slate-900 dark:text-white min-h-[28px] mb-2">
-                      Business Pack
-                    </h3>
-                    <div className="text-3xl font-bold text-slate-900 dark:text-white min-h-[40px] mb-2">
-                      500 Credits
-                    </div>
-                    <div className="text-xl text-slate-600 dark:text-slate-400 min-h-[28px] mb-4">
-                      $29.99
-                    </div>
-                    <div className="mb-1 w-full">
-                      <Button
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        asChild
-                      >
-                        <Link href="/contact">Contact Us</Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Enterprise */}
-                <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-6 bg-slate-50 dark:bg-slate-800/50 h-full">
-                  {/* Spacer to align with 'Popular' badge column */}
-                  <div className="h-6 mb-2" aria-hidden="true"></div>
-                  <div className="flex flex-col h-full items-center text-center">
-                    <h3 className="font-semibold text-slate-900 dark:text-white min-h-[28px] mb-2">
-                      Enterprise Pack
-                    </h3>
-                    <div className="text-3xl font-bold text-slate-900 dark:text-white min-h-[40px] mb-2">
-                      Custom
-                    </div>
-                    <div className="text-xl text-slate-600 dark:text-slate-400 min-h-[28px] mb-4">
-                      Contact sales
-                    </div>
-                    <div className="w-full">
-                      <Button
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        asChild
-                      >
-                        <Link href="/contact">Contact Us</Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+                ))}
+              </div>
+              <div className="mt-6 text-sm text-slate-600 dark:text-slate-400">
+                Need larger team packages? Use the{" "}
+                <Link href="/pricing" className="text-blue-600 hover:underline">
+                  pricing page
+                </Link>{" "}
+                to purchase 5,000 and 15,000 credit plans.
               </div>
             </CardContent>
           </Card>

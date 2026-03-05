@@ -1,374 +1,320 @@
-import type { Metadata } from "next"
-import { redirect } from "next/navigation"
-import { currentUser } from "@clerk/nextjs/server"
-import { CreditCard, Download, Calendar, AlertCircle, CheckCircle, Clock, ArrowUpRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import Link from "next/link"
+import type { Metadata } from 'next'
+import { redirect } from 'next/navigation'
+import { currentUser } from '@clerk/nextjs/server'
+import { CreditCard, CheckCircle2, Clock3, AlertTriangle, BadgeDollarSign } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+import { ManageBillingButton } from '@/components/billing/manage-billing-button'
+import { CheckoutButton } from '@/components/billing/checkout-button'
+import { BillingStatusBanner } from '@/components/billing/billing-status-banner'
+import { getUser } from '@/lib/credits'
+import { getCatalogPresentationPacks } from '@/lib/billing/catalog'
+import { getBillingOrdersForUser } from '@/lib/billing/service'
+import { getUsdToInrQuote } from '@/lib/billing/fx'
+import {
+  getBillingCurrencyPolicyFromHeaders,
+  sanitizeCheckoutCurrencyForPolicy,
+} from '@/lib/billing/region'
+import type { CheckoutCatalogKey, CheckoutCurrency } from '@/lib/billing/types'
 
 export const metadata: Metadata = {
-  title: "Billing & Subscription | Accessibility.build",
-  description: "Manage your subscription, view billing history, and update payment methods for your Accessibility.build account.",
+  title: 'Billing & Credits | Accessibility.build',
+  description: 'Manage credit purchases, receipts, and billing actions for your Accessibility.build account.',
   robots: {
     index: false,
-    follow: false
-  }
-}
-
-// Mock data - replace with actual database queries
-const mockSubscription = {
-  plan: "Pro",
-  status: "active",
-  currentPeriodStart: "2024-01-01",
-  currentPeriodEnd: "2024-02-01",
-  amount: 29,
-  currency: "USD",
-  interval: "month",
-  cancelAtPeriodEnd: false
-}
-
-const mockInvoices = [
-  {
-    id: "inv_001",
-    date: "2024-01-01",
-    amount: 29,
-    currency: "USD",
-    status: "paid",
-    description: "Pro Plan - Monthly",
-    downloadUrl: "#"
+    follow: false,
   },
-  {
-    id: "inv_002", 
-    date: "2023-12-01",
-    amount: 29,
-    currency: "USD",
-    status: "paid",
-    description: "Pro Plan - Monthly",
-    downloadUrl: "#"
-  },
-  {
-    id: "inv_003",
-    date: "2023-11-01", 
-    amount: 29,
-    currency: "USD",
-    status: "paid",
-    description: "Pro Plan - Monthly",
-    downloadUrl: "#"
-  }
-]
-
-const mockPaymentMethod = {
-  type: "card",
-  brand: "visa",
-  last4: "4242",
-  expMonth: 12,
-  expYear: 2025
 }
 
-export default async function BillingPage() {
-  const user = await currentUser()
-  
-  if (!user) {
-    redirect("/sign-in")
-  }
+function formatCurrency(amountCents: number, currency: string) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currency || 'USD',
+  }).format((amountCents || 0) / 100)
+}
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
-  }
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'active':
-        return <CheckCircle className="h-4 w-4 text-green-500" />
-      case 'past_due':
-        return <AlertCircle className="h-4 w-4 text-red-500" />
-      case 'canceled':
-        return <Clock className="h-4 w-4 text-gray-500" />
-      default:
-        return <Clock className="h-4 w-4 text-gray-500" />
+function getOrderDisplayAmount(
+  order: {
+    currency: string
+    amountTotal: number
+    amountTotalUsdCents: number | null
+    baseAmountUsdCents: number | null
+  },
+  allowInr: boolean
+): { amountCents: number; currency: CheckoutCurrency } {
+  if (allowInr || order.currency !== 'INR') {
+    return {
+      amountCents: order.amountTotal,
+      currency: order.currency === 'INR' ? 'INR' : 'USD',
     }
   }
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active':
-        return 'default'
-      case 'past_due':
-        return 'destructive'
-      case 'canceled':
-        return 'secondary'
-      default:
-        return 'secondary'
-    }
+  const usdFallback =
+    (typeof order.amountTotalUsdCents === 'number' && Number.isFinite(order.amountTotalUsdCents)
+      ? order.amountTotalUsdCents
+      : null) ??
+    (typeof order.baseAmountUsdCents === 'number' && Number.isFinite(order.baseAmountUsdCents)
+      ? order.baseAmountUsdCents
+      : null)
+
+  return {
+    amountCents: usdFallback ?? order.amountTotal,
+    currency: 'USD' as const,
   }
+}
+
+function statusBadgeVariant(status: string): 'default' | 'secondary' | 'destructive' | 'outline' {
+  switch (status) {
+    case 'paid':
+      return 'default'
+    case 'pending':
+      return 'secondary'
+    case 'failed':
+      return 'destructive'
+    case 'action_required':
+      return 'destructive'
+    default:
+      return 'outline'
+  }
+}
+
+function prettyStatus(status: string) {
+  return status
+    .split('_')
+    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+    .join(' ')
+}
+
+type BillingPageProps = {
+  searchParams?: Promise<{ currency?: string }>
+}
+
+export default async function BillingPage({ searchParams }: BillingPageProps) {
+  const clerkUser = await currentUser()
+
+  if (!clerkUser) {
+    redirect('/sign-in?redirect_url=%2Fbilling')
+  }
+
+  const resolvedSearchParams = searchParams ? await searchParams : undefined
+  const regionPolicy = await getBillingCurrencyPolicyFromHeaders()
+  const selectedCurrency = sanitizeCheckoutCurrencyForPolicy(
+    resolvedSearchParams?.currency,
+    regionPolicy
+  )
+  const supportsInr = regionPolicy.allowInr
+  const fxQuote = await getUsdToInrQuote()
+  const user = await getUser()
+  const orders = await getBillingOrdersForUser(user.id, 40)
+  const catalog = getCatalogPresentationPacks({
+    includeEnterprise: false,
+    checkoutOnly: true,
+    currency: selectedCurrency,
+    usdToInrRate: fxQuote.usdToInr,
+  })
+  const catalogByKey = Object.fromEntries(catalog.map((pack) => [pack.key, pack]))
+  const orderStatuses = Object.fromEntries(orders.map((order) => [order.id, order.status]))
+
+  const paidOrders = orders.filter((order) => order.status === 'paid')
+  const refundedOrders = orders.filter(
+    (order) => order.status === 'refunded' || order.status === 'partially_refunded'
+  )
+  const pendingOrders = orders.filter((order) => order.status === 'pending')
+  const totalsByCurrency = paidOrders.reduce(
+    (acc, order) => {
+      const displayAmount = getOrderDisplayAmount(order, supportsInr)
+      acc[displayAmount.currency] += displayAmount.amountCents
+      return acc
+    },
+    { USD: 0, INR: 0 }
+  )
+  const alternateCurrency: CheckoutCurrency = selectedCurrency === 'USD' ? 'INR' : 'USD'
+  const selectedCurrencyTotal = totalsByCurrency[selectedCurrency]
+  const alternateCurrencyTotal = supportsInr ? totalsByCurrency[alternateCurrency] : 0
 
   return (
     <div className="container-wide py-12">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <CreditCard className="h-8 w-8 text-primary" />
-            <h1 className="text-3xl font-bold">Billing & Subscription</h1>
+      <div className="max-w-6xl mx-auto space-y-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold flex items-center gap-3">
+              <CreditCard className="h-7 w-7 text-primary" />
+              Billing & Credits
+            </h1>
+            <p className="text-muted-foreground mt-2">
+              View purchase history, receipts, and billing actions in your Billing Center.
+            </p>
           </div>
-          <p className="text-muted-foreground">
-            Manage your subscription, view billing history, and update payment methods.
-          </p>
+          <ManageBillingButton />
         </div>
 
-        {/* Current Subscription */}
-        <Card className="mb-8">
+        {supportsInr ? (
+          <div className="flex items-center gap-2">
+            <Badge variant={selectedCurrency === 'USD' ? 'default' : 'outline'}>USD View</Badge>
+            <Badge variant={selectedCurrency === 'INR' ? 'default' : 'outline'}>INR View</Badge>
+            <a className="text-sm underline text-primary" href="/billing?currency=USD">
+              Switch to USD
+            </a>
+            <a className="text-sm underline text-primary" href="/billing?currency=INR">
+              Switch to INR
+            </a>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2">
+            <Badge>USD View</Badge>
+          </div>
+        )}
+
+        <BillingStatusBanner orderStatuses={orderStatuses} />
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardDescription>Current Credits</CardDescription>
+              <CardTitle className="text-2xl">{user.credits}</CardTitle>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardDescription>Total Spent ({selectedCurrency})</CardDescription>
+              <CardTitle className="text-2xl">
+                {formatCurrency(selectedCurrencyTotal, selectedCurrency)}
+              </CardTitle>
+              {supportsInr && alternateCurrencyTotal > 0 && (
+                <p className="text-xs text-muted-foreground">
+                  Also {formatCurrency(alternateCurrencyTotal, alternateCurrency)} in {alternateCurrency}
+                  orders
+                </p>
+              )}
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardDescription>Paid Orders</CardDescription>
+              <CardTitle className="text-2xl">{paidOrders.length}</CardTitle>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardDescription>Pending / Refunded</CardDescription>
+              <CardTitle className="text-2xl">
+                {pendingOrders.length} / {refundedOrders.length}
+              </CardTitle>
+            </CardHeader>
+          </Card>
+        </div>
+
+        <Card>
           <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              Current Subscription
-              <div className="flex items-center gap-2">
-                {getStatusIcon(mockSubscription.status)}
-                <Badge variant={getStatusColor(mockSubscription.status) as any}>
-                  {mockSubscription.status.charAt(0).toUpperCase() + mockSubscription.status.slice(1)}
-                </Badge>
-              </div>
+            <CardTitle className="flex items-center gap-2">
+              <BadgeDollarSign className="h-5 w-5 text-primary" />
+              Buy More Credits
             </CardTitle>
             <CardDescription>
-              Your current plan and billing information
+              One-time credit purchases with secure hosted Razorpay checkout.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="font-semibold mb-2">{mockSubscription.plan} Plan</h3>
-                <p className="text-2xl font-bold mb-1">
-                  ${mockSubscription.amount}
-                  <span className="text-sm font-normal text-muted-foreground">
-                    /{mockSubscription.interval}
-                  </span>
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Billed {mockSubscription.interval}ly
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="font-semibold mb-2">Billing Period</h3>
-                <p className="text-sm">
-                  {formatDate(mockSubscription.currentPeriodStart)} - {formatDate(mockSubscription.currentPeriodEnd)}
-                </p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Next billing date: {formatDate(mockSubscription.currentPeriodEnd)}
-                </p>
-              </div>
-            </div>
-
-            {mockSubscription.cancelAtPeriodEnd && (
-              <Alert className="mt-6">
-                <AlertCircle className="h-4 w-4" />
-                <AlertDescription>
-                  Your subscription will be canceled at the end of the current billing period ({formatDate(mockSubscription.currentPeriodEnd)}).
-                </AlertDescription>
-              </Alert>
-            )}
-
-            <div className="flex gap-3 mt-6">
-              <Button variant="outline" asChild>
-                <Link href="/pricing">
-                  <ArrowUpRight className="h-4 w-4 mr-2" />
-                  Upgrade Plan
-                </Link>
-              </Button>
-              <Button variant="outline">
-                Update Payment Method
-              </Button>
-              <Button variant="outline" className="text-red-600 hover:text-red-700">
-                Cancel Subscription
-              </Button>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {catalog.map((pack) => (
+                <div key={pack.key} className="rounded-md border p-4 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <p className="font-medium">{pack.name}</p>
+                    {pack.isPopular && <Badge variant="secondary">Popular</Badge>}
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {pack.credits.toLocaleString()} credits • {formatCurrency(pack.amountCents, pack.currency)}
+                  </p>
+                  <p className="text-xs text-muted-foreground">{pack.valueLabel || pack.taxNote}</p>
+                  <CheckoutButton
+                    catalogKey={pack.key as CheckoutCatalogKey}
+                    currency={selectedCurrency}
+                    className="w-full"
+                  >
+                    {pack.ctaLabel}
+                  </CheckoutButton>
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>
 
-        {/* Tabs for different sections */}
-        <Tabs defaultValue="payment" className="space-y-6">
-          <TabsList>
-            <TabsTrigger value="payment">Payment Method</TabsTrigger>
-            <TabsTrigger value="history">Billing History</TabsTrigger>
-            <TabsTrigger value="usage">Usage & Credits</TabsTrigger>
-          </TabsList>
+        <Card>
+          <CardHeader>
+            <CardTitle>Order History</CardTitle>
+            <CardDescription>Razorpay purchase records and fulfillment statuses for your account.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {orders.length === 0 ? (
+              <div className="text-sm text-muted-foreground py-6">
+                No purchases yet. Buy your first credit pack to get started.
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {orders.map((order) => {
+                  const pack = catalogByKey[order.catalogKey]
+                  const displayName = pack?.name || order.catalogKey.replace(/_/g, ' ')
+                  const displayAmount = getOrderDisplayAmount(order, supportsInr)
 
-          {/* Payment Method */}
-          <TabsContent value="payment">
-            <Card>
-              <CardHeader>
-                <CardTitle>Payment Method</CardTitle>
-                <CardDescription>
-                  Manage your default payment method
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex items-center gap-4">
-                    <div className="h-10 w-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded flex items-center justify-center">
-                      <span className="text-white font-bold text-xs">
-                        {mockPaymentMethod.brand.toUpperCase()}
-                      </span>
-                    </div>
-                    <div>
-                      <p className="font-medium">
-                        •••• •••• •••• {mockPaymentMethod.last4}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Expires {mockPaymentMethod.expMonth}/{mockPaymentMethod.expYear}
-                      </p>
-                    </div>
-                  </div>
-                  <Badge variant="secondary">Default</Badge>
-                </div>
-                
-                <div className="flex gap-3 mt-6">
-                  <Button variant="outline">
-                    Update Card
-                  </Button>
-                  <Button variant="outline">
-                    Add Payment Method
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Billing History */}
-          <TabsContent value="history">
-            <Card>
-              <CardHeader>
-                <CardTitle>Billing History</CardTitle>
-                <CardDescription>
-                  View and download your past invoices
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {mockInvoices.map((invoice) => (
-                    <div key={invoice.id} className="flex items-center justify-between p-4 border rounded-lg">
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center justify-center h-10 w-10 bg-green-100 dark:bg-green-900/20 rounded-full">
-                          <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                        </div>
+                  return (
+                    <div key={order.id} className="border rounded-lg p-4 space-y-3">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <div>
-                          <p className="font-medium">{invoice.description}</p>
+                          <p className="font-medium">{displayName}</p>
                           <p className="text-sm text-muted-foreground">
-                            {formatDate(invoice.date)}
+                            {order.credits} credits •{' '}
+                            {formatCurrency(displayAmount.amountCents, displayAmount.currency)}
                           </p>
                         </div>
+                        <Badge variant={statusBadgeVariant(order.status)}>{prettyStatus(order.status)}</Badge>
                       </div>
-                      
-                      <div className="flex items-center gap-4">
-                        <div className="text-right">
-                          <p className="font-medium">
-                            ${invoice.amount} {invoice.currency.toUpperCase()}
-                          </p>
-                          <Badge variant="secondary" className="text-xs">
-                            {invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
-                          </Badge>
-                        </div>
-                        <Button variant="ghost" size="sm">
-                          <Download className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
 
-          {/* Usage & Credits */}
-          <TabsContent value="usage">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Credit Usage</CardTitle>
-                  <CardDescription>
-                    Your current month's credit consumption
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm font-medium">Credits Used</span>
-                        <span className="text-sm text-muted-foreground">450 / 1,000</span>
-                      </div>
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div className="bg-primary h-2 rounded-full" style={{ width: '45%' }}></div>
-                      </div>
-                    </div>
-                    
-                    <div className="pt-4 border-t">
-                      <h4 className="font-medium mb-3">Usage Breakdown</h4>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between">
-                          <span>Alt Text Generation</span>
-                          <span>320 credits</span>
+                      {order.failureReason && (
+                        <div className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-md px-3 py-2 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800">
+                          {order.failureReason}
                         </div>
-                        <div className="flex justify-between">
-                          <span>Accessibility Audits</span>
-                          <span>130 credits</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>API Calls</span>
-                          <span>0 credits</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                      )}
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>Plan Features</CardTitle>
-                  <CardDescription>
-                    What's included in your current plan
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-sm">1,000 credits per month</span>
+                      <div className="text-xs text-muted-foreground grid grid-cols-1 md:grid-cols-3 gap-2">
+                        <span>Order: {order.id}</span>
+                        <span>Created: {new Date(order.createdAt).toLocaleString()}</span>
+                        <span>Receipt and billing details: available in Billing Center</span>
+                      </div>
+
+                      {order.status === 'paid' && (
+                        <div className="flex items-center gap-2 text-sm text-green-700 dark:text-green-400">
+                          <CheckCircle2 className="h-4 w-4" />
+                          Credits delivered successfully.
+                        </div>
+                      )}
+
+                      {order.status === 'pending' && (
+                        <div className="flex items-center gap-2 text-sm text-blue-700 dark:text-blue-400">
+                          <Clock3 className="h-4 w-4" />
+                          Payment is still processing. This can take longer for asynchronous payment methods.
+                        </div>
+                      )}
+
+                      {order.status === 'action_required' && (
+                        <div className="flex items-center gap-2 text-sm text-red-700 dark:text-red-400">
+                          <AlertTriangle className="h-4 w-4" />
+                          Action required. Contact support to resolve billing adjustments.
+                        </div>
+                      )}
                     </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-sm">All accessibility tools</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-sm">Priority email support</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-sm">API access (basic)</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-sm">Custom branding</span>
-                    </div>
-                  </div>
-                  
-                  <Button variant="outline" className="w-full mt-6" asChild>
-                    <Link href="/pricing">
-                      View All Plans
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-        </Tabs>
+                  )
+                })}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Separator />
+
+        <div className="text-sm text-muted-foreground">
+          Need receipts, payment updates, or billing profile changes? Open your Billing Center.
+        </div>
       </div>
     </div>
   )

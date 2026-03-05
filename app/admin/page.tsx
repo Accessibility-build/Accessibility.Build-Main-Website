@@ -9,6 +9,7 @@ import {
   Users, 
   Activity, 
   CreditCard, 
+  DollarSign,
   BarChart3, 
   TrendingUp, 
   TrendingDown, 
@@ -56,7 +57,7 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">Total Users</CardTitle>
@@ -124,6 +125,23 @@ export default async function AdminDashboardPage() {
             <CardContent>
               <div className="text-sm text-slate-600 dark:text-slate-400">
                 Completed audits
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">Revenue (Month)</CardTitle>
+              <div className="flex items-center gap-2">
+                <DollarSign className="h-4 w-4 text-emerald-600" />
+                <span className="text-2xl font-bold text-slate-900 dark:text-white">
+                  ${(dashboardStats.revenueThisMonth / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </span>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-sm text-slate-600 dark:text-slate-400">
+                Billing holds: {dashboardStats.billingActionRequired}
               </div>
             </CardContent>
           </Card>

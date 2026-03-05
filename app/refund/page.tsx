@@ -51,7 +51,8 @@ export default function RefundPage() {
           <CheckCircle className="h-4 w-4" />
           <AlertDescription>
             <strong>Quick Summary:</strong> We offer a 30-day money-back guarantee on all credit purchases. 
-            Unused credits can be refunded in full. Free services and promotional credits are non-refundable.
+            Unused credits can be refunded in full, and approved refunds reverse the related purchased credits. 
+            Free services and promotional credits are non-refundable.
           </AlertDescription>
         </Alert>
 
@@ -129,6 +130,8 @@ export default function RefundPage() {
               <li><strong>Defective Service:</strong> Full refund available if our services fail to perform as advertised due to technical issues on our end</li>
               <li><strong>Duplicate Charges:</strong> Full refund for any unauthorized or duplicate charges processed immediately upon verification</li>
               <li><strong>Service Dissatisfaction:</strong> Refund available within 7 days if you're not satisfied with our services (subject to fair use policy)</li>
+              <li><strong>Credit Reversal:</strong> Approved refunds reverse the associated purchased credits from your account balance</li>
+              <li><strong>Manual Review:</strong> If your available balance is lower than the reversal amount, your account may be temporarily placed on hold until support review is completed</li>
             </ul>
 
             <h3 className="text-xl font-semibold mb-3 mt-6">2.2 Non-Refundable Items</h3>
@@ -192,7 +195,7 @@ export default function RefundPage() {
                 </CardHeader>
                 <CardContent className="text-sm">
                   <p className="mb-2"><strong>Timeline:</strong> 7-10 business days</p>
-                  <p>Once approved, refunds are processed to your original payment method via our payment gateway (Stripe).</p>
+                  <p>Once approved, refunds are processed to your original payment method via Razorpay.</p>
                 </CardContent>
               </Card>
 
@@ -278,11 +281,11 @@ export default function RefundPage() {
               
               <h4 className="font-semibold mt-6 mb-3">Example:</h4>
               <ul className="space-y-2 text-sm">
-                <li>• <strong>Credit Pack Purchased:</strong> 500 credits for ₹1,599</li>
+                <li>• <strong>Credit Pack Purchased:</strong> 500 credits for $29.99</li>
                 <li>• <strong>Credits Used:</strong> 100 credits</li>
                 <li>• <strong>Credits Remaining:</strong> 400 credits</li>
-                <li>• <strong>Refund Calculation:</strong> (₹1,599 × 400) ÷ 500 = ₹1,279.20</li>
-                <li>• <strong>Refund Amount:</strong> ₹1,279.20</li>
+                <li>• <strong>Refund Calculation:</strong> ($29.99 × 400) ÷ 500 = $23.99</li>
+                <li>• <strong>Refund Amount:</strong> $23.99</li>
               </ul>
             </div>
 
@@ -302,7 +305,7 @@ export default function RefundPage() {
               <li><strong>Credit/Debit Cards:</strong> Refunded to the original card used for payment</li>
               <li><strong>UPI/Net Banking:</strong> Refunded to the source bank account</li>
               <li><strong>Digital Wallets:</strong> Refunded to the original wallet used</li>
-              <li><strong>PayPal:</strong> Refunded to your PayPal account</li>
+              <li><strong>Other Provider Methods:</strong> Refunded to the original source method when supported by Razorpay</li>
             </ul>
 
             <h3 className="text-xl font-semibold mb-3 mt-6">6.2 Currency and Exchange Rates</h3>
@@ -505,4 +508,3 @@ export default function RefundPage() {
     </div>
   )
 }
-

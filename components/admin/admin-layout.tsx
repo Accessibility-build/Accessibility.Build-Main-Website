@@ -45,6 +45,11 @@ const adminNavItems = [
     icon: CreditCard
   },
   {
+    name: 'Billing Funnel',
+    href: '/admin/billing',
+    icon: Activity
+  },
+  {
     name: 'Audit Log',
     href: '/admin/audit-log',
     icon: Activity

@@ -1,7 +1,16 @@
 import { db } from '@/lib/db'
-import { users, creditTransactions, toolUsage, urlAccessibilityAudits, auditViolations } from '@/lib/db/schema'
+import {
+  users,
+  creditTransactions,
+  toolUsage,
+  urlAccessibilityAudits,
+  auditViolations,
+  billingOrders,
+  billingFunnelEvents,
+} from '@/lib/db/schema'
 import { eq, desc, asc, count, sum, avg, and, gte, lte, or, ilike, sql } from 'drizzle-orm'
 import { createCreditTransaction } from '@/lib/credits'
+import type { BillingFunnelEventType, BillingProvider } from '@/lib/billing/types'
 
 // Types
 export interface AdminUser {
@@ -51,12 +60,90 @@ export interface DashboardStats {
   totalToolUsage: number
   totalAudits: number
   revenueThisMonth: number
+  billingActionRequired: number
   topTools: Array<{ tool: string; usage: number }>
   recentActivity: Array<{
     type: 'user_signup' | 'tool_usage' | 'credit_purchase' | 'audit_completed'
     description: string
     timestamp: Date
   }>
+}
+
+export type BillingFunnelRange = '24h' | '7d' | '30d'
+
+export interface BillingFunnelKpis {
+  range: BillingFunnelRange
+  checkoutClicks: number
+  checkoutAuthRequired: number
+  checkoutSessionsCreated: number
+  checkoutSessionsFailed: number
+  checkoutFallbackPaymentLinks: number
+  checkoutFallbackRate: number
+  webhookPaid: number
+  webhookPending: number
+  webhookFailed: number
+  webhookRefund: number
+  webhookDuplicate: number
+  webhookErrors: number
+  manageClicks: number
+  manageAuthRequired: number
+  manageSessionsCreated: number
+  manageSessionsFailed: number
+  checkoutConversionRate: number
+  manageSuccessRate: number
+  providerEventCounts: {
+    razorpay: number
+    stripe: number
+    unknown: number
+  }
+  paidOrdersByProvider: {
+    razorpay: number
+    stripe: number
+  }
+  paidOrdersByCurrency: {
+    usd: number
+    inr: number
+  }
+  fxDiagnostics: {
+    trackedOrders: number
+    avgUsdToInrRate: number | null
+    latestUsdToInrRate: number | null
+  }
+  pendingOrdersOlderThan30Minutes: number
+  actionRequiredOrders: number
+}
+
+export interface BillingFunnelEventFeedItem {
+  id: string
+  eventType: string
+  eventSource: string
+  userId: string | null
+  orderId: string | null
+  paymentProvider: BillingProvider | null
+  catalogKey: string | null
+  currency: string | null
+  providerOrderId: string | null
+  providerPaymentId: string | null
+  stripeCheckoutSessionId: string | null
+  status: string | null
+  errorCode: string | null
+  errorMessage: string | null
+  metadata: Record<string, unknown> | null
+  createdAt: Date
+}
+
+function getBillingFunnelRangeStart(range: BillingFunnelRange) {
+  const now = Date.now()
+
+  switch (range) {
+    case '24h':
+      return new Date(now - 24 * 60 * 60 * 1000)
+    case '30d':
+      return new Date(now - 30 * 24 * 60 * 60 * 1000)
+    case '7d':
+    default:
+      return new Date(now - 7 * 24 * 60 * 60 * 1000)
+  }
 }
 
 /**
@@ -209,6 +296,8 @@ export async function getToolPerformanceMetrics(days: number = 30): Promise<Tool
 export async function getDashboardStats(): Promise<DashboardStats> {
   const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
   const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000)
+  const now = new Date()
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1)
 
   // Get basic stats
   const [userStats] = await db
@@ -232,6 +321,22 @@ export async function getDashboardStats(): Promise<DashboardStats> {
       totalAudits: count(urlAccessibilityAudits.id)
     })
     .from(urlAccessibilityAudits)
+
+  // Revenue stats for current month
+  const [revenueStats] = await db
+    .select({
+      revenueThisMonth: sql<number>`COALESCE(SUM(${billingOrders.amountTotal}), 0)`,
+    })
+    .from(billingOrders)
+    .where(and(eq(billingOrders.status, 'paid'), gte(billingOrders.createdAt, monthStart)))
+
+  // Billing orders requiring manual action
+  const [actionRequiredStats] = await db
+    .select({
+      billingActionRequired: count(billingOrders.id),
+    })
+    .from(billingOrders)
+    .where(eq(billingOrders.status, 'action_required'))
 
   // Get top tools
   const topTools = await db
@@ -278,10 +383,256 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     totalCreditsDistributed: Number(userStats?.totalCreditsDistributed) || 0,
     totalToolUsage: toolUsageStats?.totalToolUsage || 0,
     totalAudits: auditStats?.totalAudits || 0,
-    revenueThisMonth: 0, // TODO: Calculate from payments table
+    revenueThisMonth: Number(revenueStats?.revenueThisMonth || 0),
+    billingActionRequired: Number(actionRequiredStats?.billingActionRequired || 0),
     topTools: topTools.map(t => ({ tool: t.tool, usage: t.usage })),
     recentActivity
   }
+}
+
+export async function getBillingFunnelKpis(
+  range: BillingFunnelRange = '7d',
+  paymentProvider?: BillingProvider
+): Promise<BillingFunnelKpis> {
+  const rangeStart = getBillingFunnelRangeStart(range)
+  const stalePendingThreshold = new Date(Date.now() - 30 * 60 * 1000)
+  const eventConditions = [gte(billingFunnelEvents.createdAt, rangeStart)]
+  const paidOrderConditions = [eq(billingOrders.status, 'paid'), gte(billingOrders.createdAt, rangeStart)]
+  const pendingOrderConditions = [eq(billingOrders.status, 'pending'), lte(billingOrders.createdAt, stalePendingThreshold)]
+  const actionRequiredConditions = [eq(billingOrders.status, 'action_required')]
+
+  if (paymentProvider) {
+    eventConditions.push(eq(billingFunnelEvents.paymentProvider, paymentProvider))
+    paidOrderConditions.push(eq(billingOrders.paymentProvider, paymentProvider))
+    pendingOrderConditions.push(eq(billingOrders.paymentProvider, paymentProvider))
+    actionRequiredConditions.push(eq(billingOrders.paymentProvider, paymentProvider))
+  }
+
+  const [groupedEvents, groupedProviderEvents, paidOrders, pendingStats, actionRequiredStats] = await Promise.all([
+    db
+      .select({
+        eventType: billingFunnelEvents.eventType,
+        total: count(billingFunnelEvents.id),
+      })
+      .from(billingFunnelEvents)
+      .where(and(...eventConditions))
+      .groupBy(billingFunnelEvents.eventType),
+    db
+      .select({
+        paymentProvider: billingFunnelEvents.paymentProvider,
+        total: count(billingFunnelEvents.id),
+      })
+      .from(billingFunnelEvents)
+      .where(and(...eventConditions))
+      .groupBy(billingFunnelEvents.paymentProvider),
+    db
+      .select({
+        paymentProvider: billingOrders.paymentProvider,
+        currency: billingOrders.currency,
+        fxRateUsdToInr: billingOrders.fxRateUsdToInr,
+      })
+      .from(billingOrders)
+      .where(and(...paidOrderConditions))
+      .orderBy(desc(billingOrders.createdAt)),
+    db
+      .select({
+        total: count(billingOrders.id),
+      })
+      .from(billingOrders)
+      .where(and(...pendingOrderConditions)),
+    db
+      .select({
+        total: count(billingOrders.id),
+      })
+      .from(billingOrders)
+      .where(and(...actionRequiredConditions)),
+  ])
+
+  const counts = Object.fromEntries(
+    groupedEvents.map((row) => [row.eventType, Number(row.total || 0)])
+  )
+  const providerCounts = groupedProviderEvents.reduce(
+    (acc, row) => {
+      if (row.paymentProvider === 'stripe') {
+        acc.stripe += Number(row.total || 0)
+      } else if (row.paymentProvider === 'razorpay') {
+        acc.razorpay += Number(row.total || 0)
+      } else {
+        acc.unknown += Number(row.total || 0)
+      }
+
+      return acc
+    },
+    {
+      razorpay: 0,
+      stripe: 0,
+      unknown: 0,
+    }
+  )
+
+  const checkoutClicks = counts.checkout_click || 0
+  const checkoutAuthRequired = counts.checkout_auth_required || 0
+  const checkoutSessionsCreated = counts.checkout_session_created || 0
+  const checkoutSessionsFailed = counts.checkout_session_failed || 0
+  const checkoutFallbackPaymentLinks = counts.checkout_fallback_payment_link || 0
+  const webhookPaid = counts.webhook_paid || 0
+  const webhookPending = counts.webhook_pending || 0
+  const webhookFailed = counts.webhook_failed || 0
+  const webhookRefund = counts.webhook_refund || 0
+  const webhookDuplicate = counts.webhook_duplicate || 0
+  const webhookErrors = counts.webhook_error || 0
+  // Include legacy portal events to keep one-release compatibility.
+  const manageClicks = (counts.manage_click || 0) + (counts.portal_click || 0)
+  const manageAuthRequired = (counts.manage_auth_required || 0) + (counts.portal_auth_required || 0)
+  const manageSessionsCreated =
+    (counts.manage_session_created || 0) + (counts.portal_session_created || 0)
+  const manageSessionsFailed =
+    (counts.manage_session_failed || 0) + (counts.portal_session_failed || 0)
+
+  const checkoutConversionRate =
+    checkoutSessionsCreated > 0 ? Number(((webhookPaid / checkoutSessionsCreated) * 100).toFixed(2)) : 0
+  const checkoutFallbackRate =
+    checkoutSessionsCreated > 0
+      ? Number(((checkoutFallbackPaymentLinks / checkoutSessionsCreated) * 100).toFixed(2))
+      : 0
+  const manageSuccessRate =
+    manageClicks > 0 ? Number(((manageSessionsCreated / manageClicks) * 100).toFixed(2)) : 0
+
+  let razorpayPaidOrders = 0
+  let stripePaidOrders = 0
+  let usdPaidOrders = 0
+  let inrPaidOrders = 0
+  const fxRates: number[] = []
+  let latestFxRate: number | null = null
+
+  for (const order of paidOrders) {
+    if (order.paymentProvider === 'razorpay') {
+      razorpayPaidOrders += 1
+    } else if (order.paymentProvider === 'stripe') {
+      stripePaidOrders += 1
+    }
+
+    if (order.currency === 'USD') {
+      usdPaidOrders += 1
+    } else if (order.currency === 'INR') {
+      inrPaidOrders += 1
+      const rate = Number(order.fxRateUsdToInr)
+      if (Number.isFinite(rate) && rate > 0) {
+        fxRates.push(rate)
+        if (latestFxRate === null) {
+          latestFxRate = rate
+        }
+      }
+    }
+  }
+
+  const avgFxRate =
+    fxRates.length > 0 ? Number((fxRates.reduce((sum, rate) => sum + rate, 0) / fxRates.length).toFixed(4)) : null
+  const pendingOrdersOlderThan30Minutes = Number(pendingStats[0]?.total || 0)
+  const actionRequiredOrders = Number(actionRequiredStats[0]?.total || 0)
+
+  return {
+    range,
+    checkoutClicks,
+    checkoutAuthRequired,
+    checkoutSessionsCreated,
+    checkoutSessionsFailed,
+    checkoutFallbackPaymentLinks,
+    checkoutFallbackRate,
+    webhookPaid,
+    webhookPending,
+    webhookFailed,
+    webhookRefund,
+    webhookDuplicate,
+    webhookErrors,
+    manageClicks,
+    manageAuthRequired,
+    manageSessionsCreated,
+    manageSessionsFailed,
+    checkoutConversionRate,
+    manageSuccessRate,
+    providerEventCounts: providerCounts,
+    paidOrdersByProvider: {
+      razorpay: razorpayPaidOrders,
+      stripe: stripePaidOrders,
+    },
+    paidOrdersByCurrency: {
+      usd: usdPaidOrders,
+      inr: inrPaidOrders,
+    },
+    fxDiagnostics: {
+      trackedOrders: fxRates.length,
+      avgUsdToInrRate: avgFxRate,
+      latestUsdToInrRate: latestFxRate,
+    },
+    pendingOrdersOlderThan30Minutes,
+    actionRequiredOrders,
+  }
+}
+
+export async function getBillingFunnelEventsFeed(params?: {
+  range?: BillingFunnelRange
+  eventType?: BillingFunnelEventType
+  paymentProvider?: BillingProvider
+  limit?: number
+}): Promise<BillingFunnelEventFeedItem[]> {
+  const range = params?.range || '7d'
+  const limit = Math.min(Math.max(params?.limit || 50, 1), 200)
+  const rangeStart = getBillingFunnelRangeStart(range)
+
+  const conditions = [gte(billingFunnelEvents.createdAt, rangeStart)]
+  if (params?.eventType) {
+    conditions.push(eq(billingFunnelEvents.eventType, params.eventType))
+  }
+  if (params?.paymentProvider) {
+    conditions.push(eq(billingFunnelEvents.paymentProvider, params.paymentProvider))
+  }
+
+  const rows = await db
+    .select({
+      id: billingFunnelEvents.id,
+      eventType: billingFunnelEvents.eventType,
+      eventSource: billingFunnelEvents.eventSource,
+      userId: billingFunnelEvents.userId,
+      orderId: billingFunnelEvents.orderId,
+      paymentProvider: billingFunnelEvents.paymentProvider,
+      catalogKey: billingFunnelEvents.catalogKey,
+      currency: billingFunnelEvents.currency,
+      providerOrderId: billingFunnelEvents.providerOrderId,
+      providerPaymentId: billingFunnelEvents.providerPaymentId,
+      stripeCheckoutSessionId: billingFunnelEvents.stripeCheckoutSessionId,
+      status: billingFunnelEvents.status,
+      errorCode: billingFunnelEvents.errorCode,
+      errorMessage: billingFunnelEvents.errorMessage,
+      metadata: billingFunnelEvents.metadata,
+      createdAt: billingFunnelEvents.createdAt,
+    })
+    .from(billingFunnelEvents)
+    .where(and(...conditions))
+    .orderBy(desc(billingFunnelEvents.createdAt))
+    .limit(limit)
+
+  return rows.map((row) => ({
+    id: row.id,
+    eventType: row.eventType,
+    eventSource: row.eventSource,
+    userId: row.userId,
+    orderId: row.orderId,
+    paymentProvider: row.paymentProvider,
+    catalogKey: row.catalogKey,
+    currency: row.currency,
+    providerOrderId: row.providerOrderId,
+    providerPaymentId: row.providerPaymentId,
+    stripeCheckoutSessionId: row.stripeCheckoutSessionId,
+    status: row.status,
+    errorCode: row.errorCode,
+    errorMessage: row.errorMessage,
+    metadata:
+      row.metadata && typeof row.metadata === 'object' && !Array.isArray(row.metadata)
+        ? (row.metadata as Record<string, unknown>)
+        : null,
+    createdAt: row.createdAt,
+  }))
 }
 
 /**

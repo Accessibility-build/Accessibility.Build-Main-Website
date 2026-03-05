@@ -1,4 +1,4 @@
-CREATE TABLE "email_subscriptions" (
+CREATE TABLE IF NOT EXISTS "email_subscriptions" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"email" text NOT NULL,
 	"source" text NOT NULL,

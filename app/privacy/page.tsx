@@ -103,7 +103,7 @@ export default function PrivacyPage() {
             <ul>
               <li>Name and email address (required for account creation)</li>
               <li>Profile information you choose to provide</li>
-              <li>Billing information for paid plans (processed securely by Stripe)</li>
+              <li>Billing information for one-time credit purchases (processed securely by Razorpay)</li>
             </ul>
 
             <h3 className="text-xl font-semibold mb-3">Usage Data</h3>
@@ -137,7 +137,7 @@ export default function PrivacyPage() {
                   <ul className="space-y-1">
                     <li>• Provide accessibility testing tools</li>
                     <li>• Generate reports and analytics</li>
-                    <li>• Process payments and manage subscriptions</li>
+                    <li>• Process one-time payments and maintain billing records</li>
                     <li>• Provide customer support</li>
                   </ul>
                 </CardContent>
@@ -174,7 +174,7 @@ export default function PrivacyPage() {
             <p>We work with carefully selected partners:</p>
             <ul>
               <li><strong>Clerk:</strong> Authentication and user management</li>
-              <li><strong>Stripe:</strong> Payment processing (PCI DSS compliant)</li>
+              <li><strong>Razorpay:</strong> Payment processing (PCI DSS compliant)</li>
               <li><strong>Vercel:</strong> Hosting and infrastructure</li>
               <li><strong>OpenAI:</strong> AI-powered features (images processed securely)</li>
               <li><strong>Analytics providers:</strong> Usage analytics (anonymized data)</li>

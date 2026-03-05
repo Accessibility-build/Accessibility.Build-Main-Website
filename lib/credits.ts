@@ -19,6 +19,85 @@ export const TOOL_CREDITS = {
 
 export type ToolType = keyof typeof TOOL_CREDITS
 
+type ClerkUserBootstrapInput = {
+  userId: string
+  email?: string | null
+  firstName?: string | null
+  lastName?: string | null
+  profileImageUrl?: string | null
+}
+
+function buildFallbackEmail(userId: string) {
+  const sanitized = userId.toLowerCase().replace(/[^a-z0-9]/g, '')
+  const suffix = sanitized || 'unknown'
+  return `clerk-${suffix}@users.accessibility.build`
+}
+
+function sanitizeEmail(email: string | null | undefined, userId: string) {
+  const trimmed = typeof email === 'string' ? email.trim().toLowerCase() : ''
+  return trimmed || buildFallbackEmail(userId)
+}
+
+async function createBootstrapUser(input: ClerkUserBootstrapInput) {
+  const defaultCredits = Number(process.env.DEFAULT_CREDITS) || 100
+  const safeEmail = sanitizeEmail(input.email, input.userId)
+
+  const [insertedUser] = await db
+    .insert(users)
+    .values({
+      id: input.userId,
+      email: safeEmail,
+      firstName: input.firstName ?? null,
+      lastName: input.lastName ?? null,
+      profileImageUrl: input.profileImageUrl ?? null,
+      credits: defaultCredits,
+      totalCreditsEarned: defaultCredits,
+      metadata: {
+        source: 'clerk_bootstrap',
+        syntheticEmail: safeEmail === buildFallbackEmail(input.userId),
+      },
+    })
+    .returning()
+
+  await createCreditTransaction({
+    userId: input.userId,
+    type: 'bonus',
+    amount: defaultCredits,
+    balanceBefore: 0,
+    balanceAfter: defaultCredits,
+    description: 'Welcome bonus - Free credits for new users (fallback)',
+  })
+
+  return insertedUser
+}
+
+export async function getOrCreateUserByClerkId(input: ClerkUserBootstrapInput) {
+  const existing = await db.query.users.findFirst({
+    where: eq(users.id, input.userId),
+  })
+
+  if (existing) {
+    return existing
+  }
+
+  console.log(`User ${input.userId} not found in database, creating minimal record`)
+
+  try {
+    return await createBootstrapUser(input)
+  } catch (error) {
+    // Handle race condition where another request created the user after our first read.
+    const fallback = await db.query.users.findFirst({
+      where: eq(users.id, input.userId),
+    })
+
+    if (fallback) {
+      return fallback
+    }
+
+    throw error
+  }
+}
+
 /**
  * Get user from database (webhook handles creation)
  */
@@ -29,43 +108,13 @@ export async function getUser() {
     throw new Error('User not authenticated')
   }
 
-  // Find existing user (should exist via webhook)
-  const user = await db.query.users.findFirst({
-    where: eq(users.id, clerkUser.id)
+  return getOrCreateUserByClerkId({
+    userId: clerkUser.id,
+    email: clerkUser.emailAddresses[0]?.emailAddress || null,
+    firstName: clerkUser.firstName,
+    lastName: clerkUser.lastName,
+    profileImageUrl: clerkUser.imageUrl,
   })
-
-  // If user doesn't exist, it means webhook hasn't processed yet
-  // Create minimal user record as fallback
-  if (!user) {
-    console.log(`User ${clerkUser.id} not found in database, creating minimal record`)
-    
-    const defaultCredits = Number(process.env.DEFAULT_CREDITS) || 100
-    const newUser = {
-      id: clerkUser.id,
-      email: clerkUser.emailAddresses[0]?.emailAddress || '',
-      firstName: clerkUser.firstName,
-      lastName: clerkUser.lastName,
-      profileImageUrl: clerkUser.imageUrl,
-      credits: defaultCredits,
-      totalCreditsEarned: defaultCredits,
-    }
-
-    const [insertedUser] = await db.insert(users).values(newUser).returning()
-    
-    // Create welcome bonus transaction
-    await createCreditTransaction({
-      userId: clerkUser.id,
-      type: 'bonus',
-      amount: defaultCredits,
-      balanceBefore: 0,
-      balanceAfter: defaultCredits,
-      description: 'Welcome bonus - Free credits for new users (fallback)',
-    })
-
-    return insertedUser
-  }
-
-  return user
 }
 
 /**
@@ -117,6 +166,10 @@ export async function useCredits(
 
   if (!user) {
     throw new Error('User not found')
+  }
+
+  if (!user.isActive) {
+    throw new Error('Account is inactive. Please contact support to restore access.')
   }
 
   const requiredCredits = TOOL_CREDITS[tool]

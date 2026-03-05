@@ -475,7 +475,7 @@ export default function AltTextGenerator() {
                   <Link href="/sign-up" className="underline font-medium">
                     create an account
                   </Link>{" "}
-                  to get unlimited access.
+                  to continue with one-time credit packs when needed.
                   <div className="block md:inline-flex mt-2 md:mt-0 md:ml-2">
                     <Badge variant="secondary" className="text-xs md:text-sm">
                       100 free credits for new users!

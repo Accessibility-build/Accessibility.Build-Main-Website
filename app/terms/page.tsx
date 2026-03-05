@@ -65,6 +65,7 @@ export default function TermsPage() {
             <strong>Key Points:</strong>
           </p>
           <ul>
+            <li>Credit purchases are one-time payments (no recurring subscriptions)</li>
             <li>We offer a 30-day money-back guarantee on credit purchases</li>
             <li>Refunds are available for unused or partially used credits within the specified timeframe</li>
             <li>All refund requests are processed in accordance with the Consumer Protection Act, 2019</li>

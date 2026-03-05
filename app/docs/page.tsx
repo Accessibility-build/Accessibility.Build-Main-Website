@@ -244,28 +244,28 @@ export default function DocsPage() {
             <CardHeader>
               <CardTitle>Rate Limits</CardTitle>
               <CardDescription>
-                API usage limits based on your subscription plan
+                API usage limits based on your available credits
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">Free Plan</h4>
-                  <p className="text-2xl font-bold text-primary mb-1">100</p>
-                  <p className="text-sm text-muted-foreground">requests/month</p>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="border rounded-lg p-4">
+                    <h4 className="font-semibold mb-2">Starter Workloads</h4>
+                    <p className="text-2xl font-bold text-primary mb-1">100</p>
+                    <p className="text-sm text-muted-foreground">requests/hour</p>
+                  </div>
+                  <div className="border rounded-lg p-4">
+                    <h4 className="font-semibold mb-2">Sustained Workloads</h4>
+                    <p className="text-2xl font-bold text-primary mb-1">1,000</p>
+                    <p className="text-sm text-muted-foreground">requests/hour</p>
+                  </div>
+                  <div className="border rounded-lg p-4">
+                    <h4 className="font-semibold mb-2">High Volume</h4>
+                    <p className="text-2xl font-bold text-primary mb-1">Custom</p>
+                    <p className="text-sm text-muted-foreground">contact support for increases</p>
+                  </div>
                 </div>
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">Pro Plan</h4>
-                  <p className="text-2xl font-bold text-primary mb-1">10,000</p>
-                  <p className="text-sm text-muted-foreground">requests/month</p>
-                </div>
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-semibold mb-2">Business Plan</h4>
-                  <p className="text-2xl font-bold text-primary mb-1">100,000</p>
-                  <p className="text-sm text-muted-foreground">requests/month</p>
-                </div>
-              </div>
-            </CardContent>
+              </CardContent>
           </Card>
         </TabsContent>
 

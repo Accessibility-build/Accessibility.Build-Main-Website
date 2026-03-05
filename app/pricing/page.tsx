@@ -1,187 +1,170 @@
 import type { Metadata } from "next"
-import { Check, Star, Zap, Shield, Users, Crown, ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight, Crown, Shield, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Link from "next/link"
 import { PricingTable } from "@/components/services/pricing-table"
+import { PricingAutoCheckout } from "@/components/billing/pricing-auto-checkout"
+import { getCatalogPresentationPacks } from "@/lib/billing/catalog"
+import { getUsdToInrQuote } from "@/lib/billing/fx"
+import {
+  getBillingCurrencyPolicyFromHeaders,
+  sanitizeCheckoutCurrencyForPolicy,
+} from "@/lib/billing/region"
+import type { CheckoutCatalogKey } from "@/lib/billing/types"
 
 export const metadata: Metadata = {
-  title: "Credit Packages | Accessibility.build - Pay-as-You-Go Accessibility Testing",
+  title: "Credit Packages | Accessibility.build - One-Time Credit Packs",
   description:
-    "Simple, transparent credit packages for accessibility testing. No subscriptions, no hidden fees. Pay only for what you use with credits that never expire.",
+    "Simple one-time credit packs for accessibility testing. No recurring subscriptions and no hidden fees.",
   keywords: [
     "accessibility testing pricing",
     "WCAG compliance pricing",
-    "accessibility audit pricing",
-    "pay as you go accessibility",
+    "one-time credit packs",
     "accessibility credits",
-    "no subscription accessibility tools",
-    "WCAG testing cost",
-    "accessibility compliance pricing"
+    "razorpay checkout accessibility tools",
   ],
   openGraph: {
-    title: "Credit Packages - Pay-as-You-Go Accessibility Testing",
-    description: "No subscriptions, no hidden fees. Pay only for what you use with credits that never expire.",
+    title: "Credit Packages - Accessibility.build",
+    description: "One-time credit packs with hosted Razorpay checkout and in-app billing management.",
     type: "website",
     url: "https://accessibility.build/pricing",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Credit Packages - Pay-as-You-Go Accessibility Testing",
-    description: "No subscriptions, no hidden fees. Pay only for what you use with credits that never expire.",
+    title: "Credit Packages - Accessibility.build",
+    description: "One-time credit packs with no recurring subscriptions.",
   },
   alternates: {
-    canonical: "https://accessibility.build/pricing"
-  }
+    canonical: "https://accessibility.build/pricing",
+  },
 }
 
-const individualPlans = [
-  {
-    name: "Starter Pack",
-    price: "$0",
-    description: "Perfect for getting started with accessibility testing",
-    features: [
-      "100 free credits on signup",
-      "Color contrast checker (unlimited)",
-      "Basic accessibility tools",
-      "Community support",
-      "WCAG 2.2 & 3.0 compliance checking",
-      "Export results as PDF"
-    ],
-    cta: "Get Started Free",
-    link: "/sign-up",
-    popular: false
-  },
-  {
-    name: "Credit Pack - Small",
-    price: "$19",
-    description: "500 credits - perfect for individual projects",
-    features: [
-      "500 credits (never expire)",
-      "All accessibility tools",
-      "AI-powered alt text generation",
-      "Advanced reporting",
-      "Priority email support",
-      "API access (basic)",
-      "Custom branding on reports",
-      "Pay once, use anytime"
-    ],
-    cta: "Buy Credits",
-    link: "/sign-up?credits=500",
-    popular: true
-  },
-  {
-    name: "Credit Pack - Large",
-    price: "$89",
-    description: "2,500 credits - great for agencies and teams",
-    features: [
-      "2,500 credits (never expire)",
-      "Everything in Small Pack",
-      "Team collaboration tools",
-      "Advanced API access",
-      "White-label solutions",
-      "Phone & chat support",
-      "Custom integrations",
-      "Bulk testing capabilities",
-      "Priority processing"
-    ],
-    cta: "Buy Credits",
-    link: "/sign-up?credits=2500",
-    popular: false
-  }
-]
+function formatCurrency(amountCents: number, currency: string) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency || "USD",
+    minimumFractionDigits: 2,
+  }).format((amountCents || 0) / 100)
+}
 
-const teamPlans = [
-  {
-    name: "Team Pack - Medium",
-    price: "$299",
-    description: "5,000 credits - perfect for small development teams",
-    features: [
-      "5,000 credits (never expire)",
-      "Up to 10 team members",
-      "All individual features",
-      "Team dashboard",
-      "Role-based permissions",
-      "Shared projects",
-      "Team analytics",
-      "Dedicated account manager"
-    ],
-    cta: "Buy Team Credits",
-    link: "/contact?credits=5000",
-    popular: false
-  },
-  {
-    name: "Team Pack - Large",
-    price: "$799",
-    description: "15,000 credits - for established development teams",
-    features: [
-      "15,000 credits (never expire)",
-      "Up to 25 team members",
-      "Everything in Medium Pack",
-      "Advanced workflow automation",
-      "Custom compliance templates",
-      "SSO integration",
-      "Advanced analytics",
-      "Priority support"
-    ],
-    cta: "Buy Team Credits",
-    link: "/contact?credits=15000",
-    popular: true
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    description: "Custom credit packages for large organizations",
-    features: [
-      "Custom credit packages",
-      "Unlimited team members",
-      "Everything in Large Pack",
-      "Custom deployment options",
-      "On-premise installation",
-      "24/7 dedicated support",
-      "Custom training programs",
-      "SLA guarantees",
-      "Volume discounts available"
-    ],
-    cta: "Contact Sales",
-    link: "/contact?plan=enterprise",
-    popular: false
-  }
-]
+type PricingPageProps = {
+  searchParams?: Promise<{ currency?: string }>
+}
 
-export default function PricingPage() {
+export default async function PricingPage({ searchParams }: PricingPageProps) {
+  const resolvedSearchParams = searchParams ? await searchParams : undefined
+  const regionPolicy = await getBillingCurrencyPolicyFromHeaders()
+  const selectedCurrency = sanitizeCheckoutCurrencyForPolicy(
+    resolvedSearchParams?.currency,
+    regionPolicy
+  )
+  const supportsInr = regionPolicy.allowInr
+  const fxQuote = await getUsdToInrQuote()
+  const catalog = getCatalogPresentationPacks({
+    includeEnterprise: true,
+    currency: selectedCurrency,
+    usdToInrRate: fxQuote.usdToInr,
+  })
+
+  const individualPlans = [
+    {
+      name: "Free Starter",
+      description: "Start with free credits and no payment required",
+      features: [
+        "100 free credits on signup",
+        "Color contrast checker (unlimited use)",
+        "Basic accessibility tools",
+        "Community support",
+      ],
+      cta: "Get Started Free",
+      link: "/sign-up",
+      priceLabel: selectedCurrency === "INR" ? "₹0" : "$0",
+      popular: false,
+    },
+    ...catalog
+      .filter((pack) => !pack.isTeamPlan && pack.key !== "enterprise_contact")
+      .map((pack) => ({
+        name: pack.name,
+        description: pack.description,
+        features: pack.features,
+        cta: pack.ctaLabel,
+        link: "/pricing",
+        catalogKey: pack.key as CheckoutCatalogKey,
+        popular: pack.isPopular,
+        credits: pack.credits,
+        amountCents: pack.amountCents,
+        currency: pack.currency,
+        valueLabel: pack.valueLabel,
+        taxNote: pack.taxNote,
+        checkoutCurrency: selectedCurrency,
+      })),
+  ]
+
+  const teamPlans = catalog
+    .filter((pack) => pack.isTeamPlan)
+    .map((pack) => {
+      const isEnterprise = pack.key === "enterprise_contact"
+
+      return {
+        name: pack.name,
+        description: pack.description,
+        features: pack.features,
+        cta: isEnterprise ? "Contact Sales" : pack.ctaLabel,
+        link: isEnterprise ? "/contact?plan=enterprise" : "/pricing",
+        catalogKey: isEnterprise ? undefined : (pack.key as CheckoutCatalogKey),
+        popular: pack.isPopular,
+        credits: pack.credits > 0 ? pack.credits : undefined,
+        amountCents: isEnterprise ? undefined : pack.amountCents,
+        currency: isEnterprise ? undefined : pack.currency,
+        priceLabel: isEnterprise ? "Custom" : undefined,
+        valueLabel: isEnterprise ? null : pack.valueLabel,
+        taxNote: isEnterprise ? undefined : pack.taxNote,
+        checkoutCurrency: selectedCurrency,
+      }
+    })
+
+  const checkoutPacks = catalog.filter((pack) => pack.checkoutEnabled)
+
   return (
     <div className="container-wide py-16">
-      {/* Hero Section */}
+      <PricingAutoCheckout />
+
       <div className="text-center mb-16">
         <div className="flex items-center justify-center gap-2 mb-4">
           <Crown className="h-8 w-8 text-primary" />
-          <h1 className="text-4xl md:text-5xl font-bold">
-            Simple, Transparent Pricing
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold">Simple, Transparent Pricing</h1>
         </div>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
-          Pay only for what you use. No subscriptions, no hidden fees, no long-term commitments.
-          All plans include our core accessibility testing tools and WCAG compliance features.
+          One-time credit packs with hosted Razorpay checkout. No recurring subscriptions, no hidden fees, and credits never expire.
         </p>
-        
-        {/* No Subscription Promise */}
+        {supportsInr && (
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <Button asChild variant={selectedCurrency === "USD" ? "default" : "outline"} size="sm">
+              <Link href="/pricing?currency=USD">USD</Link>
+            </Button>
+            <Button asChild variant={selectedCurrency === "INR" ? "default" : "outline"} size="sm">
+              <Link href="/pricing?currency=INR">INR</Link>
+            </Button>
+          </div>
+        )}
         <div className="flex items-center justify-center gap-4 mb-8">
           <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg px-6 py-3">
             <div className="flex items-center gap-2 text-green-700 dark:text-green-300">
               <Shield className="h-5 w-5" />
-              <span className="font-medium">No Subscription Traps</span>
+              <span className="font-medium">One-Time Purchases Only</span>
             </div>
             <p className="text-sm text-green-600 dark:text-green-400 mt-1">
-              No forced subscription cycle. Purchase credits based on your current delivery needs.
+              {supportsInr
+                ? "Buy credits in USD or INR and manage your history, receipts, and support actions in the Billing Center."
+                : "Buy credits in USD and manage your history, receipts, and support actions in the Billing Center."}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Pricing Tables */}
       <Tabs defaultValue="individual" className="w-full">
         <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
           <TabsTrigger value="individual" className="flex items-center gap-2">
@@ -205,151 +188,86 @@ export default function PricingPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Features Comparison */}
       <div className="mt-20">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          Compare All Features
-        </h2>
-        
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left p-4 font-semibold">Features</th>
-                <th className="text-center p-4 font-semibold">Free</th>
-                <th className="text-center p-4 font-semibold">Pro</th>
-                <th className="text-center p-4 font-semibold">Business</th>
-                <th className="text-center p-4 font-semibold">Enterprise</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b">
-                <td className="p-4">Credits Included</td>
-                <td className="text-center p-4">100 (free)</td>
-                <td className="text-center p-4">500 (never expire)</td>
-                <td className="text-center p-4">2,500 (never expire)</td>
-                <td className="text-center p-4">Custom packages</td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-4">Color Contrast Checker</td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-4">AI Alt Text Generation</td>
-                <td className="text-center p-4">Limited</td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-4">API Access</td>
-                <td className="text-center p-4">-</td>
-                <td className="text-center p-4">Basic</td>
-                <td className="text-center p-4">Advanced</td>
-                <td className="text-center p-4">Full</td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-4">Team Collaboration</td>
-                <td className="text-center p-4">-</td>
-                <td className="text-center p-4">-</td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-4">Priority Support</td>
-                <td className="text-center p-4">-</td>
-                <td className="text-center p-4">Email</td>
-                <td className="text-center p-4">Phone & Chat</td>
-                <td className="text-center p-4">24/7 Dedicated</td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-4">Custom Branding</td>
-                <td className="text-center p-4">-</td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-                <td className="text-center p-4"><Check className="h-5 w-5 text-green-500 mx-auto" /></td>
-              </tr>
-            </tbody>
-          </table>
+        <h2 className="text-3xl font-bold text-center mb-10">Credit Value Snapshot</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {checkoutPacks.map((pack) => (
+            <Card key={pack.key} className="border">
+              <CardContent className="p-5 space-y-2">
+                <div className="flex items-center justify-between">
+                  <p className="font-semibold">{pack.name}</p>
+                  {pack.valueLabel && <Badge variant="secondary">{pack.valueLabel}</Badge>}
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {pack.credits.toLocaleString()} credits • {formatCurrency(pack.amountCents, pack.currency)}
+                </p>
+                {pack.pricePerCreditCents !== null && (
+                  <p className="text-sm text-muted-foreground">
+                    {pack.pricePerCreditCents.toFixed(2)} cents per credit
+                  </p>
+                )}
+                <p className="text-xs text-muted-foreground">{pack.taxNote}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
 
-      {/* FAQ Section */}
       <div className="mt-20">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          Frequently Asked Questions
-        </h2>
-        
+        <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <div className="space-y-6">
             <div>
               <h3 className="font-semibold mb-2">What are credits and how do they work?</h3>
               <p className="text-muted-foreground">
-                Credits are used to access our AI-powered tools like alt text generation and advanced accessibility audits. 
-                Basic tools like the contrast checker are always free and don't require credits.
+                Credits are used for premium accessibility workflows such as AI-assisted analysis. Free tools like the
+                contrast checker stay available without credits.
               </p>
             </div>
-            
             <div>
               <h3 className="font-semibold mb-2">Do credits expire?</h3>
               <p className="text-muted-foreground">
-                No! Once you purchase credits, they never expire. Use them at your own pace without 
-                worrying about monthly deadlines or losing unused credits.
+                No. Purchased credits do not expire, so you can use them at your own pace.
               </p>
             </div>
-            
             <div>
               <h3 className="font-semibold mb-2">Do you offer refunds?</h3>
               <p className="text-muted-foreground">
-                We offer a 30-day money-back guarantee for all credit purchases. If you're not satisfied, 
-                contact us for a full refund within 30 days of purchase. For complete details, please see our{" "}
-                <Link href="/refund" className="text-primary hover:underline font-medium">Cancellation & Refund Policy</Link>.
+                Yes. Refund requests follow our published refund policy, and approved refunds are processed through
+                Razorpay to the original payment method.
               </p>
             </div>
           </div>
-          
           <div className="space-y-6">
             <div>
               <h3 className="font-semibold mb-2">Can I try before I buy?</h3>
               <p className="text-muted-foreground">
-                Absolutely! You get 100 free credits when you sign up. No credit card required. 
-                This lets you test all our tools and see the value before purchasing more credits.
+                Yes. New accounts start with 100 free credits so you can evaluate the platform before purchasing.
               </p>
             </div>
-            
             <div>
-              <h3 className="font-semibold mb-2">What payment methods do you accept?</h3>
+              <h3 className="font-semibold mb-2">Which payment methods are supported?</h3>
               <p className="text-muted-foreground">
-                We accept all major credit cards, PayPal, and bank transfers for enterprise plans. 
-                All payments are processed securely through Stripe.
+                Razorpay checkout supports cards and region-available payment methods. Payment history, receipts,
+                and billing support actions are available in your Billing Center.
               </p>
             </div>
-            
             <div>
-              <h3 className="font-semibold mb-2">Do you offer volume discounts?</h3>
+              <h3 className="font-semibold mb-2">Do you offer enterprise procurement support?</h3>
               <p className="text-muted-foreground">
-                Yes! We offer custom pricing for large organizations and educational institutions. 
-                Contact our sales team to discuss volume discounts and custom solutions.
+                Yes. Enterprise plans remain sales-led for custom procurement, invoicing, and contract requirements.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* CTA Section */}
       <div className="mt-20 text-center">
         <Card className="max-w-4xl mx-auto">
           <CardContent className="p-12">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Star className="h-6 w-6 text-yellow-500" />
-              <h2 className="text-2xl font-bold">Ready to Get Started?</h2>
-            </div>
+            <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join teams that rely on Accessibility.build 
-              for their accessibility testing needs. Start with 100 free credits today.
+              Start with 100 free credits, then purchase the one-time pack that matches your current workload.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">
@@ -359,9 +277,7 @@ export default function PricingPage() {
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link href="/contact">
-                  Contact Sales
-                </Link>
+                <Link href="/contact">Contact Sales</Link>
               </Button>
             </div>
           </CardContent>

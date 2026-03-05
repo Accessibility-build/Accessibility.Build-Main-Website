@@ -10,7 +10,9 @@
         "type-check": "tsc --noEmit",
         "a11y:smoke": "node scripts/a11y-smoke.mjs",
         "db:migrate": "drizzle-kit migrate",
-        "generate-sitemap": "node scripts/generate-sitemap.mjs"
+        "generate-sitemap": "node scripts/generate-sitemap.mjs",
+        "clerk:test-session-token": "node scripts/create-clerk-session-token.mjs",
+        "billing:test-e2e": "node scripts/test-razorpay-credit-flow.mjs"
     },
     "dependencies": {
         "@ai-sdk/anthropic": "^2.0.9",
@@ -88,6 +90,7 @@
         "react-resizable-panels": "^2.1.7",
         "recharts": "2.15.0",
         "sonner": "^1.7.1",
+        "stripe": "^18.5.0",
         "svix": "^1.68.0",
         "tailwind-merge": "^2.5.5",
         "tailwindcss-animate": "^1.0.7",
