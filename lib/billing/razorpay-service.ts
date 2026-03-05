@@ -23,6 +23,7 @@ import {
   CheckoutCurrency,
   CheckoutSessionResponse,
 } from './types'
+import { sendPurchaseConfirmationEmail, sendRefundNotificationEmail, formatAmountForEmail } from '@/lib/email/service'
 
 type CustomerInput = {
   userId: string
@@ -584,6 +585,47 @@ async function grantCreditsForPaidRazorpayOrder(params: {
       })
       .where(eq(billingOrders.id, order.id))
   })
+
+  // Send purchase confirmation email (fire-and-forget, outside transaction)
+  try {
+    const [paidOrder] = await db
+      .select({
+        id: billingOrders.id,
+        userId: billingOrders.userId,
+        catalogKey: billingOrders.catalogKey,
+        credits: billingOrders.credits,
+        amountTotal: billingOrders.amountTotal,
+        currency: billingOrders.currency,
+      })
+      .from(billingOrders)
+      .where(eq(billingOrders.id, params.orderId))
+      .limit(1)
+
+    if (paidOrder) {
+      const [paidUser] = await db
+        .select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits })
+        .from(users)
+        .where(eq(users.id, paidOrder.userId))
+        .limit(1)
+
+      if (paidUser) {
+        const pack = getCatalogPack(paidOrder.catalogKey as CatalogKey)
+        sendPurchaseConfirmationEmail({
+          type: 'purchase_confirmation',
+          recipient: { email: paidUser.email, firstName: paidUser.firstName, lastName: paidUser.lastName },
+          orderId: paidOrder.id,
+          packName: pack.name,
+          credits: paidOrder.credits,
+          amountFormatted: formatAmountForEmail(paidOrder.amountTotal, paidOrder.currency),
+          currency: paidOrder.currency,
+          paymentProvider: 'razorpay',
+          newBalance: paidUser.credits,
+        })
+      }
+    }
+  } catch {
+    // Email dispatch must never fail the payment flow
+  }
 }
 
 async function markRazorpayOrderFailed(params: {
@@ -798,6 +840,44 @@ async function handleRazorpayRefund(params: {
       })
       .where(eq(billingOrders.id, currentOrder.id))
   })
+
+  // Send refund notification email (fire-and-forget, outside transaction)
+  try {
+    const [refundedOrder] = await db
+      .select({
+        id: billingOrders.id,
+        userId: billingOrders.userId,
+        catalogKey: billingOrders.catalogKey,
+        currency: billingOrders.currency,
+      })
+      .from(billingOrders)
+      .where(eq(billingOrders.id, order.id))
+      .limit(1)
+
+    if (refundedOrder) {
+      const [refundUser] = await db
+        .select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits })
+        .from(users)
+        .where(eq(users.id, refundedOrder.userId))
+        .limit(1)
+
+      if (refundUser) {
+        const pack = getCatalogPack(refundedOrder.catalogKey as CatalogKey)
+        sendRefundNotificationEmail({
+          type: 'refund_notification',
+          recipient: { email: refundUser.email, firstName: refundUser.firstName, lastName: refundUser.lastName },
+          orderId: refundedOrder.id,
+          packName: pack.name,
+          creditsReversed: params.amountMinor > 0 ? Math.round(order.credits * Math.min(1, params.amountMinor / Math.max(order.amountTotal, 1))) : 0,
+          refundAmountFormatted: formatAmountForEmail(params.amountMinor, refundedOrder.currency),
+          currency: refundedOrder.currency,
+          remainingBalance: refundUser.credits,
+        })
+      }
+    }
+  } catch {
+    // Email dispatch must never fail the refund flow
+  }
 
   return order.id
 }

@@ -46,7 +46,6 @@ export default async function DashboardPage() {
   } catch (error) {
     console.error("Dashboard error:", error);
     hasError = true;
-    // Provide fallback data
     stats = {
       currentCredits: 0,
       totalCreditsEarned: 0,
@@ -64,7 +63,7 @@ export default async function DashboardPage() {
   }).slice(0, 4)
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
       <div className="container-wide py-12">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -75,7 +74,7 @@ export default async function DashboardPage() {
               </div>
               <div>
                 <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">
-                  Welcome back, {user.firstName || "there"}! 👋
+                  Welcome back, {user.firstName || "there"}
                 </h1>
                 <p className="text-xl text-slate-600 dark:text-slate-300">
                   Manage your credits and track your accessibility tool usage.
@@ -99,7 +98,8 @@ export default async function DashboardPage() {
 
           {/* Credit Overview Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 rounded-xl overflow-hidden">
+              <div className="h-1.5 bg-gradient-to-r from-blue-500 to-blue-600" />
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-slate-700 dark:text-slate-300">
                   Current Credits
@@ -118,13 +118,14 @@ export default async function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 rounded-xl overflow-hidden">
+              <div className="h-1.5 bg-gradient-to-r from-green-500 to-green-600" />
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-slate-700 dark:text-slate-300">
                   Total Earned
                 </CardTitle>
-                <div className="p-2 bg-slate-100 dark:bg-slate-700 rounded-lg">
-                  <TrendingUp className="h-4 w-4 text-slate-600 dark:text-slate-400" />
+                <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                  <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />
                 </div>
               </CardHeader>
               <CardContent>
@@ -137,13 +138,14 @@ export default async function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 rounded-xl overflow-hidden">
+              <div className="h-1.5 bg-gradient-to-r from-purple-500 to-purple-600" />
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-slate-700 dark:text-slate-300">
                   Total Used
                 </CardTitle>
-                <div className="p-2 bg-slate-100 dark:bg-slate-700 rounded-lg">
-                  <Activity className="h-4 w-4 text-slate-600 dark:text-slate-400" />
+                <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
+                  <Activity className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                 </div>
               </CardHeader>
               <CardContent>
@@ -158,7 +160,8 @@ export default async function DashboardPage() {
           </div>
 
           {/* Purchase Credits Section */}
-          <Card className="mb-8 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm">
+          <Card className="mb-8 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm rounded-xl overflow-hidden">
+            <div className="h-2 bg-gradient-to-r from-blue-600 to-indigo-600" />
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-slate-900 dark:text-white">
                 <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
@@ -171,38 +174,38 @@ export default async function DashboardPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 {quickBuyPacks.map((pack) => (
                   <div
                     key={pack.key}
-                    className={`rounded-xl p-6 h-full ${
+                    className={`rounded-xl p-6 flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 ${
                       pack.isPopular
-                        ? "border-2 border-blue-600 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                        ? "border-2 border-blue-600 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 ring-1 ring-blue-600/20"
                         : "border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50"
                     }`}
                   >
-                    <div className="flex flex-col h-full items-center text-center">
-                      <div className="min-h-[24px] mb-2">
+                    <div className="flex flex-col items-center text-center flex-1">
+                      <div className="h-6 mb-2">
                         {pack.isPopular ? <Badge className="bg-blue-600 text-white">Popular</Badge> : null}
                       </div>
-                      <h3 className="font-semibold text-slate-900 dark:text-white min-h-[28px] mb-2">
+                      <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
                         {pack.name}
                       </h3>
-                      <div className="text-3xl font-bold text-slate-900 dark:text-white min-h-[40px] mb-2">
+                      <div className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
                         {pack.credits.toLocaleString()} Credits
                       </div>
-                      <div className="text-xl text-slate-600 dark:text-slate-400 min-h-[28px] mb-2">
+                      <div className="text-xl text-slate-600 dark:text-slate-400 mb-2">
                         {new Intl.NumberFormat("en-US", {
                           style: "currency",
                           currency: pack.currency,
                           minimumFractionDigits: 2,
                         }).format(pack.amountCents / 100)}
                       </div>
-                      <div className="text-xs text-slate-500 dark:text-slate-400 min-h-[20px] mb-4">
+                      <div className="text-xs text-slate-500 dark:text-slate-400 flex-grow flex items-center mb-4">
                         {pack.valueLabel || "One-time purchase"}
                       </div>
                       <CheckoutButton
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                        className="w-full rounded-full bg-blue-600 hover:bg-blue-700 text-white"
                         catalogKey={pack.key as CheckoutCatalogKey}
                       >
                         {pack.ctaLabel}
@@ -223,17 +226,17 @@ export default async function DashboardPage() {
 
           {/* History Tabs */}
           <Tabs defaultValue="transactions" className="space-y-6">
-            <TabsList className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+            <TabsList className="bg-muted/80 p-1.5 rounded-full">
               <TabsTrigger
                 value="transactions"
-                className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                className="rounded-full data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-md"
               >
                 <Calendar className="h-4 w-4 mr-2" />
                 Credit History
               </TabsTrigger>
               <TabsTrigger
                 value="usage"
-                className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                className="rounded-full data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-md"
               >
                 <Activity className="h-4 w-4 mr-2" />
                 Tool Usage
@@ -241,7 +244,8 @@ export default async function DashboardPage() {
             </TabsList>
 
             <TabsContent value="transactions" className="space-y-4">
-              <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm">
+              <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm rounded-xl overflow-hidden">
+                <div className="h-1.5 bg-gradient-to-r from-amber-500 to-amber-600" />
                 <CardHeader>
                   <CardTitle className="text-slate-900 dark:text-white">
                     Recent Transactions
@@ -251,81 +255,86 @@ export default async function DashboardPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
-                    {stats.recentTransactions.map(
-                      (transaction: CreditTransaction) => (
-                        <div
-                          key={transaction.id}
-                          className="
-      flex items-center justify-between p-4
-      border border-slate-200 dark:border-slate-700 rounded-xl
-      hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors
-      min-w-0
-      max-[320px]:flex-col max-[320px]:items-start max-[320px]:gap-3
-    "
-                        >
-                          {/* left area: icon + title/time */}
-                          <div className="flex items-center gap-4 min-w-0 w-full">
-                            <div
-                              className={`flex-shrink-0 p-3 rounded-xl
-          ${
-            transaction.type === "usage"
-              ? "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400"
-              : transaction.type === "bonus"
-                ? "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400"
-                : "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
-          }`}
-                            >
-                              {transaction.type === "usage" ? (
-                                <ArrowDownRight className="h-5 w-5 max-[320px]:h-4 max-[320px]:w-4" />
-                              ) : transaction.type === "bonus" ? (
-                                <Gift className="h-5 w-5 max-[320px]:h-4 max-[320px]:w-4" />
-                              ) : (
-                                <ArrowUpRight className="h-5 w-5 max-[320px]:h-4 max-[320px]:w-4" />
-                              )}
-                            </div>
-
-                            <div className="min-w-0 flex-1">
-                              <p className="font-medium text-slate-900 dark:text-white truncate">
-                                {transaction.description}
-                              </p>
-                              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 truncate">
-                                {formatDistanceToNow(transaction.createdAt, {
-                                  addSuffix: true,
-                                })}
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* right area: amount + balance */}
+                  {stats.recentTransactions.length === 0 ? (
+                    <div className="text-center py-12">
+                      <div className="p-4 bg-slate-100 dark:bg-slate-700 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <Calendar className="h-8 w-8 text-slate-400" />
+                      </div>
+                      <p className="text-slate-500 dark:text-slate-400 text-lg font-medium mb-2">
+                        No transactions yet
+                      </p>
+                      <p className="text-slate-400 dark:text-slate-500 text-sm">
+                        Your credit activity will appear here.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {stats.recentTransactions.map(
+                        (transaction: CreditTransaction) => (
                           <div
-                            className="ml-4 text-right flex-shrink-0
-                    max-[320px]:ml-0 max-[320px]:w-full max-[320px]:text-left max-[320px]:mt-1"
+                            key={transaction.id}
+                            className="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors min-w-0 flex-col xs3:flex-row xs3:items-center gap-3"
                           >
-                            <p
-                              className={`font-semibold text-lg ${
-                                transaction.amount > 0
-                                  ? "text-green-600 dark:text-green-400"
-                                  : "text-red-600 dark:text-red-400"
-                              }`}
-                            >
-                              {transaction.amount > 0 ? "+" : ""}
-                              {transaction.amount}
-                            </p>
-                            <p className="text-sm text-slate-500 dark:text-slate-400">
-                              Balance: {transaction.balanceAfter}
-                            </p>
+                            {/* left area: icon + title/time */}
+                            <div className="flex items-center gap-4 min-w-0 w-full">
+                              <div
+                                className={`flex-shrink-0 p-3 rounded-xl ${
+                                  transaction.type === "usage"
+                                    ? "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400"
+                                    : transaction.type === "bonus"
+                                      ? "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400"
+                                      : "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+                                }`}
+                              >
+                                {transaction.type === "usage" ? (
+                                  <ArrowDownRight className="h-5 w-5" />
+                                ) : transaction.type === "bonus" ? (
+                                  <Gift className="h-5 w-5" />
+                                ) : (
+                                  <ArrowUpRight className="h-5 w-5" />
+                                )}
+                              </div>
+
+                              <div className="min-w-0 flex-1">
+                                <p className="font-medium text-slate-900 dark:text-white truncate">
+                                  {transaction.description}
+                                </p>
+                                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 truncate">
+                                  {formatDistanceToNow(transaction.createdAt, {
+                                    addSuffix: true,
+                                  })}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* right area: amount + balance */}
+                            <div className="text-right flex-shrink-0 xs3:ml-4 w-full xs3:w-auto text-left xs3:text-right">
+                              <p
+                                className={`font-semibold text-lg ${
+                                  transaction.amount > 0
+                                    ? "text-green-600 dark:text-green-400"
+                                    : "text-red-600 dark:text-red-400"
+                                }`}
+                              >
+                                {transaction.amount > 0 ? "+" : ""}
+                                {transaction.amount}
+                              </p>
+                              <p className="text-sm text-slate-500 dark:text-slate-400">
+                                Balance: {transaction.balanceAfter}
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      )
-                    )}
-                  </div>
+                        )
+                      )}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </TabsContent>
 
             <TabsContent value="usage" className="space-y-4">
-              <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm">
+              <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-sm rounded-xl overflow-hidden">
+                <div className="h-1.5 bg-gradient-to-r from-indigo-500 to-indigo-600" />
                 <CardHeader>
                   <CardTitle className="text-slate-900 dark:text-white">
                     Tool Usage History
@@ -348,7 +357,7 @@ export default async function DashboardPage() {
                         here.
                       </p>
                       <Link href="/tools">
-                        <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                        <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6">
                           Explore Tools
                         </Button>
                       </Link>
@@ -358,54 +367,22 @@ export default async function DashboardPage() {
                       {stats.recentUsage.map((usage: ToolUsage) => (
                         <div
                           key={usage.id}
-                          className={`
-      p-4 border rounded-xl transition-colors
-      hover:bg-slate-50 dark:hover:bg-slate-800/50
-      border-slate-200 dark:border-slate-700
-      min-w-0
-      /* xs-xs2 → full column stacked */
-      flex flex-col items-start gap-2
-
-      /* xs3 */
-      xs3:!flex-row xs3:gap-4
-
-      /* md+ */
-      md:!flex-row md:items-center md:justify-between md:gap-4
-    `}
+                          className="p-4 border rounded-xl transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50 border-slate-200 dark:border-slate-700 min-w-0 flex flex-col xs3:flex-row xs3:items-center gap-3"
                         >
                           {/* ICON */}
                           <div className="flex-shrink-0">
-                            <div
-                              className="
-        p-3 rounded-xl 
-        bg-blue-100 dark:bg-blue-900/30 
-        text-blue-600 dark:text-blue-400
-      "
-                            >
+                            <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
                               <Activity className="h-5 w-5" />
                             </div>
                           </div>
 
                           {/* RIGHT CONTENT BLOCK */}
-                          <div className="flex-1 min-w-0 mt-3 xs3:mt-0 xs3:ml-2 md:ml-2">
+                          <div className="flex-1 min-w-0">
                             {/* ROW 1 — Heading + Credits */}
-                            <div
-                              className={`
-          flex items-start justify-between gap-2
-
-          /* stack on xs & xs2 */
-          xs:flex-col xs:items-start
-          xs2:flex-col xs2:items-start
-
-          /* row layout on xs3 & md+ */
-          xs3:!flex-row xs3:items-center xs3:gap-4
-          md:!flex-row md:items-center
-        `}
-                            >
+                            <div className="flex flex-col xs3:flex-row xs3:items-center xs3:justify-between gap-1 xs3:gap-4">
                               <p className="font-medium text-slate-900 dark:text-white break-words capitalize">
                                 {usage.tool.replace("_", " ")}
                               </p>
-
                               <p className="font-medium text-slate-900 dark:text-white whitespace-nowrap">
                                 {usage.creditsUsed} credit
                                 {usage.creditsUsed !== 1 ? "s" : ""}
@@ -413,39 +390,22 @@ export default async function DashboardPage() {
                             </div>
 
                             {/* ROW 2 — Time + Success Badge */}
-                            <div
-                              className={`
-          flex items-center justify-between gap-3 mt-2
-
-          /* stacked on xs & xs2 */
-          xs:flex-col xs:items-start
-          xs2:flex-col xs2:items-start
-
-          /* row layout on xs3 & md+ */
-          xs3:!flex-row xs3:items-center
-          md:!flex-row md:items-center
-      `}
-                            >
-                              {/* TIME */}
+                            <div className="flex flex-col xs3:flex-row xs3:items-center xs3:justify-between gap-2 mt-2">
                               <p className="text-sm text-slate-500 dark:text-slate-400 whitespace-normal">
                                 {formatDistanceToNow(usage.createdAt, {
                                   addSuffix: true,
                                 })}
                               </p>
 
-                              {/* SUCCESS / FAILURE BADGE */}
                               <Badge
                                 variant={
                                   usage.success ? "default" : "destructive"
                                 }
-                                className={`
-            text-xs px-3 py-1 whitespace-nowrap
-            ${
-              usage.success
-                ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
-                : ""
-            }
-          `}
+                                className={`text-xs px-3 py-1 whitespace-nowrap w-fit ${
+                                  usage.success
+                                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                                    : ""
+                                }`}
                               >
                                 {usage.success ? (
                                   <>

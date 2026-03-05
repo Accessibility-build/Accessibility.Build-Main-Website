@@ -5,6 +5,7 @@ import { db } from '@/lib/db'
 import { users, creditTransactions } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import { errorLogger } from '@/lib/error-logger'
+import { sendWelcomeEmail, sendServicesIntroEmail } from '@/lib/email/service'
 
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET
 
@@ -184,6 +185,27 @@ async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
       balanceAfter: defaultCredits,
       description: `Welcome bonus - ${defaultCredits} free credits for new users!`,
       status: 'completed',
+    })
+
+    // Send welcome email (fire-and-forget — never blocks webhook response)
+    sendWelcomeEmail({
+      type: 'welcome',
+      recipient: {
+        email: safeEmail,
+        firstName: userData.first_name,
+        lastName: userData.last_name,
+      },
+      credits: defaultCredits,
+    })
+
+    // Send services intro email (fire-and-forget — second email after signup)
+    sendServicesIntroEmail({
+      type: 'services_intro',
+      recipient: {
+        email: safeEmail,
+        firstName: userData.first_name,
+        lastName: userData.last_name,
+      },
     })
 
     console.log(`Successfully created user ${userData.id} with ${defaultCredits} credits`)

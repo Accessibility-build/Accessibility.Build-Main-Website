@@ -35,6 +35,7 @@ import {
   createRazorpayPaymentLinkForOrder,
   processRazorpayWebhookEvent,
 } from './razorpay-service'
+import { sendPurchaseConfirmationEmail, sendRefundNotificationEmail, formatAmountForEmail } from '@/lib/email/service'
 
 type CustomerInput = {
   userId: string
@@ -1043,6 +1044,28 @@ export async function processStripeWebhookEvent(event: Stripe.Event) {
           await grantCreditsForPaidOrder(order.id, session)
           processedOrderId = order.id
 
+          // Send purchase confirmation email (fire-and-forget)
+          try {
+            const [freshOrder] = await db.select().from(billingOrders).where(eq(billingOrders.id, order.id)).limit(1)
+            const [orderUser] = await db.select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits }).from(users).where(eq(users.id, order.userId)).limit(1)
+            if (freshOrder && orderUser?.email) {
+              const pack = isCheckoutCatalogKey(freshOrder.catalogKey) ? getCatalogPack(freshOrder.catalogKey) : null
+              sendPurchaseConfirmationEmail({
+                type: 'purchase_confirmation',
+                recipient: { email: orderUser.email, firstName: orderUser.firstName, lastName: orderUser.lastName },
+                orderId: freshOrder.id,
+                packName: pack?.name || freshOrder.catalogKey,
+                credits: freshOrder.credits,
+                amountFormatted: formatAmountForEmail(freshOrder.amountTotal, freshOrder.currency),
+                currency: freshOrder.currency,
+                paymentProvider: 'stripe',
+                newBalance: orderUser.credits,
+              })
+            }
+          } catch (emailErr) {
+            console.error('[billing:service] Failed to dispatch purchase confirmation email', emailErr)
+          }
+
           await logBillingFunnelEvent({
             eventType: 'webhook_paid',
             eventSource: 'service:processStripeWebhookEvent',
@@ -1107,6 +1130,33 @@ export async function processStripeWebhookEvent(event: Stripe.Event) {
       case 'charge.refunded': {
         const charge = event.data.object as Stripe.Charge
         processedOrderId = await handleRefundedCharge(charge, event.id)
+
+        // Send refund notification email (fire-and-forget)
+        if (processedOrderId) {
+          try {
+            const [refundedOrder] = await db.select().from(billingOrders).where(eq(billingOrders.id, processedOrderId)).limit(1)
+            if (refundedOrder) {
+              const [refundUser] = await db.select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits }).from(users).where(eq(users.id, refundedOrder.userId)).limit(1)
+              if (refundUser?.email) {
+                const refundMeta = parseOrderMetadata(refundedOrder.metadata)
+                const totalRefundedCredits = Number(refundMeta.refundedCredits || 0)
+                const pack = isCheckoutCatalogKey(refundedOrder.catalogKey) ? getCatalogPack(refundedOrder.catalogKey) : null
+                sendRefundNotificationEmail({
+                  type: 'refund_notification',
+                  recipient: { email: refundUser.email, firstName: refundUser.firstName, lastName: refundUser.lastName },
+                  orderId: refundedOrder.id,
+                  packName: pack?.name || refundedOrder.catalogKey,
+                  creditsReversed: totalRefundedCredits,
+                  refundAmountFormatted: formatAmountForEmail(charge.amount_refunded, refundedOrder.currency),
+                  currency: refundedOrder.currency,
+                  remainingBalance: refundUser.credits,
+                })
+              }
+            }
+          } catch (emailErr) {
+            console.error('[billing:service] Failed to dispatch refund notification email', emailErr)
+          }
+        }
 
         await logBillingFunnelEvent({
           eventType: 'webhook_refund',

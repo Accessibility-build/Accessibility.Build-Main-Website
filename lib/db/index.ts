@@ -60,6 +60,12 @@ export async function getDatabase() {
 }
 
 // Export the database instance for direct use
+if (!process.env.DATABASE_URL) {
+  console.error('[db] FATAL: DATABASE_URL is not set — all DB queries will fail', JSON.stringify({
+    region: process.env.VERCEL_REGION || process.env.AWS_REGION || 'unknown',
+    nodeEnv: process.env.NODE_ENV,
+  }))
+}
 export const db = drizzle(postgres(process.env.DATABASE_URL!, connectionOptions), { schema })
 
 // Graceful shutdown

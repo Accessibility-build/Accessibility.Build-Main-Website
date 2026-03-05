@@ -14,6 +14,17 @@ import {
 
 const LOG_PREFIX = '[billing:checkout-session]'
 
+// Module-level log — fires during cold-start import, before any request handler.
+// If you see this in Vercel logs but NOT the request_start log, the handler is
+// crashing between import and execution. If you don't see this at all, the
+// module itself failed to load (check DATABASE_URL and import chain).
+console.log(`${LOG_PREFIX} module_loaded`, JSON.stringify({
+  region: process.env.VERCEL_REGION || process.env.AWS_REGION || 'unknown',
+  hasDbUrl: Boolean(process.env.DATABASE_URL),
+  hasRazorpayKey: Boolean(process.env.RAZORPAY_KEY_ID),
+  nodeEnv: process.env.NODE_ENV,
+}))
+
 function sanitizeReturnPath(value: unknown, fallback = '/pricing') {
   if (typeof value !== 'string') {
     return fallback

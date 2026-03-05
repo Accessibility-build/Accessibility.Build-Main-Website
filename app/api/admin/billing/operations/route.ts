@@ -7,7 +7,8 @@ import {
   MIN_ADMIN_BILLING_REASON_LENGTH,
   normalizeAdminBillingReason,
 } from '@/lib/billing/admin-operations'
-import { isCheckoutCatalogKey, isCheckoutCurrency } from '@/lib/billing/catalog'
+import { getCatalogPack, isCheckoutCatalogKey, isCheckoutCurrency } from '@/lib/billing/catalog'
+import { sendPurchaseConfirmationEmail, formatAmountForEmail } from '@/lib/email/service'
 import { getBillingProvider } from '@/lib/billing/provider'
 import {
   createProviderCheckoutSessionForCatalog,
@@ -446,6 +447,36 @@ export async function POST(request: NextRequest) {
         creditsGranted: result.creditsGranted,
         creditTransactionId: result.creditTransactionId,
       })
+
+      // Send purchase confirmation email for admin settlement (fire-and-forget)
+      if (result.creditsGranted) {
+        try {
+          const [settledOrder] = await db.select().from(billingOrders).where(eq(billingOrders.id, orderId)).limit(1)
+          if (settledOrder) {
+            const [orderUser] = await db
+              .select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits })
+              .from(users)
+              .where(eq(users.id, settledOrder.userId))
+              .limit(1)
+            if (orderUser?.email) {
+              const pack = isCheckoutCatalogKey(settledOrder.catalogKey) ? getCatalogPack(settledOrder.catalogKey) : null
+              sendPurchaseConfirmationEmail({
+                type: 'purchase_confirmation',
+                recipient: { email: orderUser.email, firstName: orderUser.firstName, lastName: orderUser.lastName },
+                orderId: settledOrder.id,
+                packName: pack?.name || settledOrder.catalogKey,
+                credits: settledOrder.credits,
+                amountFormatted: formatAmountForEmail(settledOrder.amountTotal, settledOrder.currency),
+                currency: settledOrder.currency,
+                paymentProvider: settledOrder.paymentProvider as 'stripe' | 'razorpay',
+                newBalance: orderUser.credits,
+              })
+            }
+          }
+        } catch (emailErr) {
+          console.error('[admin:billing] Failed to dispatch purchase confirmation email', emailErr)
+        }
+      }
 
       return NextResponse.json({
         success: true,
