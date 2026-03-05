@@ -24,6 +24,17 @@ interface ClerkWebhookEvent {
   }
 }
 
+function buildFallbackEmail(userId: string) {
+  const sanitized = userId.toLowerCase().replace(/[^a-z0-9]/g, '')
+  const suffix = sanitized || 'unknown'
+  return `clerk-${suffix}@users.accessibility.build`
+}
+
+function sanitizeEmail(email: string | null | undefined, userId: string) {
+  const trimmed = typeof email === 'string' ? email.trim().toLowerCase() : ''
+  return trimmed || buildFallbackEmail(userId)
+}
+
 export async function POST(req: NextRequest) {
   try {
     if (!webhookSecret) {
@@ -111,6 +122,7 @@ export async function POST(req: NextRequest) {
 async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
   try {
     const defaultCredits = Number(process.env.DEFAULT_CREDITS) || 100
+    const safeEmail = sanitizeEmail(userData.email_addresses[0]?.email_address, userData.id)
     
     // Check if user already exists (shouldn't happen, but safety check)
     const existingUser = await db.query.users.findFirst({
@@ -122,10 +134,33 @@ async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
       return
     }
 
+    // Recovery path for users that already exist with the same email but older/different Clerk IDs.
+    const existingByEmail = await db.query.users.findFirst({
+      where: eq(users.email, safeEmail),
+    })
+
+    if (existingByEmail) {
+      console.log(
+        `User email ${safeEmail} already exists under ${existingByEmail.id}; skipping duplicate insert for ${userData.id}`
+      )
+
+      await db
+        .update(users)
+        .set({
+          firstName: userData.first_name,
+          lastName: userData.last_name,
+          profileImageUrl: userData.image_url,
+          updatedAt: new Date(userData.updated_at),
+        })
+        .where(eq(users.id, existingByEmail.id))
+
+      return
+    }
+
     // Create new user with free credits
     const newUser = {
       id: userData.id,
-      email: userData.email_addresses[0]?.email_address || '',
+      email: safeEmail,
       firstName: userData.first_name,
       lastName: userData.last_name,
       profileImageUrl: userData.image_url,
@@ -169,12 +204,13 @@ async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
 async function handleUserUpdated(userData: ClerkWebhookEvent['data']) {
   try {
     console.log(`Updating user: ${userData.id}`)
+    const safeEmail = sanitizeEmail(userData.email_addresses[0]?.email_address, userData.id)
 
     // Update user data (but don't touch credits)
     await db
       .update(users)
       .set({
-        email: userData.email_addresses[0]?.email_address || '',
+        email: safeEmail,
         firstName: userData.first_name,
         lastName: userData.last_name,
         profileImageUrl: userData.image_url,

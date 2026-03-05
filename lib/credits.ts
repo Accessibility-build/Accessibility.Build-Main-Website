@@ -72,12 +72,25 @@ async function createBootstrapUser(input: ClerkUserBootstrapInput) {
 }
 
 export async function getOrCreateUserByClerkId(input: ClerkUserBootstrapInput) {
+  const safeEmail = sanitizeEmail(input.email, input.userId)
   const existing = await db.query.users.findFirst({
     where: eq(users.id, input.userId),
   })
 
   if (existing) {
     return existing
+  }
+
+  // Recovery path for legacy rows where email exists under a different Clerk ID.
+  const existingByEmail = await db.query.users.findFirst({
+    where: eq(users.email, safeEmail),
+  })
+
+  if (existingByEmail) {
+    console.warn(
+      `Found existing user by email ${safeEmail} for Clerk ID ${input.userId}; reusing ${existingByEmail.id}`
+    )
+    return existingByEmail
   }
 
   console.log(`User ${input.userId} not found in database, creating minimal record`)
@@ -92,6 +105,14 @@ export async function getOrCreateUserByClerkId(input: ClerkUserBootstrapInput) {
 
     if (fallback) {
       return fallback
+    }
+
+    const fallbackByEmail = await db.query.users.findFirst({
+      where: eq(users.email, safeEmail),
+    })
+
+    if (fallbackByEmail) {
+      return fallbackByEmail
     }
 
     throw error
