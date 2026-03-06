@@ -21,8 +21,15 @@ const toolLinks = [
   { href: "/tools/heading-analyzer", label: "Heading Analyzer" },
   { href: "/tools/scope-checker", label: "Scope Checker" },
   { href: "/tools/accessibility-roi-calculator", label: "ROI Calculator" },
-  { href: "/research", label: "Research & Reports" },
-  { href: "/guides", label: "Guides" },
+];
+
+const researchLinks = [
+  { href: "/research", label: "Research Hub" },
+  { href: "/research/state-of-accessibility", label: "State of Accessibility 2026" },
+  { href: "/research/accessibility-lawsuits", label: "Lawsuit Tracker 2026" },
+  { href: "/guides", label: "Guides Hub" },
+  { href: "/guides/keyboard-accessibility", label: "Keyboard Accessibility" },
+  { href: "/guides/screen-reader-testing", label: "Screen Reader Testing" },
   { href: "/blog", label: "Accessibility Blog" },
   { href: "/resources", label: "Learning Resources" },
 ];
@@ -166,13 +173,31 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="grid gap-8 border-b border-slate-300 py-8 md:grid-cols-3 dark:border-slate-800">
-          <nav aria-label="Tools and resources links">
+        <div className="grid gap-8 border-b border-slate-300 py-8 sm:grid-cols-2 lg:grid-cols-4 dark:border-slate-800">
+          <nav aria-label="Tools links">
             <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-              Tools & Resources
+              Tools
             </h4>
             <ul className="space-y-2">
               {toolLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-slate-700 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Research and guides links">
+            <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+              Research & Guides
+            </h4>
+            <ul className="space-y-2">
+              {researchLinks.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
