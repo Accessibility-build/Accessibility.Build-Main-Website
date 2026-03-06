@@ -34,6 +34,13 @@ const searchData = [
     icon: Settings,
   },
   {
+    type: "tool",
+    title: "Scope Checker",
+    description: "Scope checker for accessibility: find internal URLs, documents, and page titles",
+    url: "/tools/scope-checker",
+    icon: Settings,
+  },
+  {
     type: "blog",
     title: "Understanding WCAG 2.2",
     description: "A comprehensive guide to the latest WCAG standards",

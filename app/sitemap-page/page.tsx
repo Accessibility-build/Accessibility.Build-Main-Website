@@ -26,6 +26,7 @@ export default async function SitemapPage() {
   const toolPages = [
     { title: "Contrast Checker", path: "/tools/contrast-checker" },
     { title: "Alt Text Generator", path: "/tools/alt-text-generator" },
+    { title: "Scope Checker", path: "/tools/scope-checker" },
   ]
 
   const checklistPages = [{ title: "WCAG 2.2 Checklist", path: "/checklists/wcag-2-2" }]

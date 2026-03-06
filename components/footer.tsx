@@ -19,6 +19,7 @@ const toolLinks = [
   { href: "/tools/alt-text-generator", label: "AI Alt Text Generator" },
   { href: "/tools/contrast-checker", label: "Contrast Checker" },
   { href: "/tools/heading-analyzer", label: "Heading Analyzer" },
+  { href: "/tools/scope-checker", label: "Scope Checker" },
   { href: "/blog", label: "Accessibility Blog" },
   { href: "/resources", label: "Learning Resources" },
 ];

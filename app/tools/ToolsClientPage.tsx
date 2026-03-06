@@ -172,6 +172,20 @@ const accessibilityTools = [
         stats: { users: "Available", scans: "Validated" }
     },
     {
+        title: "Website Scope Checker",
+        shortTitle: "Scope Checker",
+        description: "Scope checker for accessibility that crawls internal pages, document URLs, and extra links with clean chunked output and page titles.",
+        features: ["2-Minute Crawl Cap", "Sitemap + Link Discovery", "Document URL Finder", "Page Title Extraction"],
+        icon: Globe,
+        gradient: "from-cyan-600 to-blue-600",
+        bgPattern: "scanner-pattern",
+        slug: "scope-checker",
+        pricing: "Free",
+        credits: 0,
+        popular: true,
+        stats: { users: "Available", scans: "Validated" }
+    },
+    {
         title: "Accessibility Report Generator",
         shortTitle: "Report Generator",
         description: "Create professional accessibility audit reports with executive summaries, technical details, and compliance documentation. Export to PDF, Excel, or HTML.",

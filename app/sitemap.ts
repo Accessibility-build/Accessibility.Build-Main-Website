@@ -109,6 +109,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       category: "tool"
     },
     {
+      route: "/tools/scope-checker",
+      priority: 0.905,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["scope checker for accessibility", "scope checker", "site crawler", "document url finder", "page title crawler"],
+      category: "tool"
+    },
+    {
       route: "/tools/accessibility-audit-helper",
       priority: 0.90,
       changeFrequency: "monthly",
