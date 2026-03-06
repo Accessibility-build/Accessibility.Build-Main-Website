@@ -391,79 +391,164 @@ export function LawsuitTrackerClient() {
             })),
           }}
         >
-          <div className="space-y-5">
-            {settlementData.map((item) => {
-              const rangeWidth = item.range.max - item.range.min
-              const medianPosition = ((item.medianCost - item.range.min) / rangeWidth) * 100
-              const avgPosition = ((item.averageCost - item.range.min) / rangeWidth) * 100
-              const barMaxWidth = (item.range.max / maxSettlementValue) * 100
+          {/* Color-coded severity scale */}
+          <div className="hidden sm:flex items-center justify-end gap-1.5 mb-4 text-xs text-slate-500 dark:text-slate-400">
+            <span>Severity:</span>
+            <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-emerald-500" /> Low</span>
+            <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-blue-500" /> Moderate</span>
+            <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-amber-500" /> High</span>
+            <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-red-500" /> Critical</span>
+          </div>
+
+          <div className="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
+            {/* Table header - desktop */}
+            <div className="hidden sm:grid sm:grid-cols-[1fr,100px,100px,1fr] gap-0 bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-700 px-5 py-3">
+              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Resolution Type</span>
+              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Average</span>
+              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Median</span>
+              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Range</span>
+            </div>
+
+            {/* Rows */}
+            {settlementData.map((item, index) => {
+              const logMin = Math.log10(Math.max(item.range.min, 1))
+              const logMax = Math.log10(Math.max(item.range.max, 1))
+              const logGlobalMax = Math.log10(maxSettlementValue)
+              const logGlobalMin = Math.log10(1000)
+              const logSpan = logGlobalMax - logGlobalMin
+
+              const barLeft = ((logMin - logGlobalMin) / logSpan) * 100
+              const barRight = ((logMax - logGlobalMin) / logSpan) * 100
+              const barWidth = Math.max(barRight - barLeft, 4)
+              const avgPos = ((Math.log10(item.averageCost) - logGlobalMin) / logSpan) * 100
+              const medPos = ((Math.log10(item.medianCost) - logGlobalMin) / logSpan) * 100
+
+              // Color based on average cost severity
+              const severityColor =
+                item.averageCost >= 200000
+                  ? "from-red-400 to-red-500 dark:from-red-500 dark:to-red-600"
+                  : item.averageCost >= 50000
+                    ? "from-amber-400 to-amber-500 dark:from-amber-500 dark:to-amber-600"
+                    : item.averageCost >= 20000
+                      ? "from-blue-400 to-blue-500 dark:from-blue-500 dark:to-blue-600"
+                      : "from-emerald-400 to-emerald-500 dark:from-emerald-500 dark:to-emerald-600"
+
+              const accentTextColor =
+                item.averageCost >= 200000
+                  ? "text-red-600 dark:text-red-400"
+                  : item.averageCost >= 50000
+                    ? "text-amber-600 dark:text-amber-400"
+                    : item.averageCost >= 20000
+                      ? "text-blue-600 dark:text-blue-400"
+                      : "text-emerald-600 dark:text-emerald-400"
 
               return (
-                <Card
+                <div
                   key={item.category}
-                  className="border border-slate-200 dark:border-slate-700"
+                  className={cn(
+                    "group sm:grid sm:grid-cols-[1fr,100px,100px,1fr] gap-0 items-center px-5 py-4 transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/40",
+                    index < settlementData.length - 1 && "border-b border-slate-100 dark:border-slate-800"
+                  )}
                 >
-                  <CardContent className="p-4 md:p-5">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                      <h3 className="font-semibold text-slate-900 dark:text-white text-sm md:text-base">
-                        {item.category}
-                      </h3>
-                      <div className="flex gap-4 mt-1 sm:mt-0">
-                        <div className="text-center">
-                          <p className="text-lg md:text-xl font-bold text-slate-900 dark:text-white">
-                            {formatCurrency(item.averageCost)}
-                          </p>
-                          <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wide">
-                            Average
-                          </p>
-                        </div>
-                        <div className="text-center">
-                          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
-                            {formatCurrency(item.medianCost)}
-                          </p>
-                          <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wide">
-                            Median
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                  {/* Category name */}
+                  <div className="mb-2 sm:mb-0">
+                    <h3 className="font-semibold text-slate-900 dark:text-white text-sm md:text-[15px] leading-tight">
+                      {item.category}
+                    </h3>
+                    <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5 sm:hidden">
+                      Range: {formatCurrency(item.range.min)} – {formatCurrency(item.range.max)}
+                    </p>
+                  </div>
 
-                    {/* Range bar visualization */}
-                    <div className="relative" style={{ width: `${Math.max(barMaxWidth, 20)}%` }}>
-                      <div className="flex items-center justify-between text-[10px] text-slate-400 dark:text-slate-500 mb-1">
-                        <span>{formatCurrency(item.range.min)}</span>
-                        <span>{formatCurrency(item.range.max)}</span>
-                      </div>
-                      <div className="relative h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-500 dark:to-blue-700 rounded-full" />
-                      </div>
-                      {/* Median marker */}
-                      <div
-                        className="absolute top-[22px] w-0.5 h-5 bg-white dark:bg-slate-200 border border-slate-400"
-                        style={{ left: `${medianPosition}%` }}
-                        title={`Median: ${formatCurrency(item.medianCost)}`}
-                      />
-                      {/* Average marker */}
-                      <div
-                        className="absolute top-[20px] w-2.5 h-2.5 bg-amber-400 dark:bg-amber-300 rounded-full border-2 border-white dark:border-slate-900"
-                        style={{ left: `${avgPosition}%`, transform: "translateX(-50%)" }}
-                        title={`Average: ${formatCurrency(item.averageCost)}`}
-                      />
+                  {/* Average */}
+                  <div className="hidden sm:block text-right">
+                    <p className={cn("text-base font-bold tabular-nums", accentTextColor)}>
+                      {formatCurrency(item.averageCost)}
+                    </p>
+                  </div>
+
+                  {/* Median */}
+                  <div className="hidden sm:block text-right">
+                    <p className="text-sm font-medium text-slate-600 dark:text-slate-300 tabular-nums">
+                      {formatCurrency(item.medianCost)}
+                    </p>
+                  </div>
+
+                  {/* Mobile: inline avg/median + range bar */}
+                  <div className="flex items-center gap-4 sm:hidden mb-2">
+                    <div>
+                      <span className="text-[10px] text-slate-400 uppercase tracking-wide">Avg </span>
+                      <span className={cn("text-sm font-bold tabular-nums", accentTextColor)}>{formatCurrency(item.averageCost)}</span>
                     </div>
-                    <div className="flex gap-4 mt-2">
-                      <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
-                        <div className="w-2 h-2 bg-amber-400 rounded-full" />
-                        Average
-                      </div>
-                      <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
-                        <div className="w-2 h-0.5 bg-white border border-slate-400" />
-                        Median
-                      </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 uppercase tracking-wide">Med </span>
+                      <span className="text-sm font-medium text-slate-600 dark:text-slate-300 tabular-nums">{formatCurrency(item.medianCost)}</span>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+
+                  {/* Range visualization */}
+                  <div className="relative h-8 sm:px-4">
+                    {/* Track background */}
+                    <div className="absolute inset-x-0 sm:inset-x-4 top-1/2 -translate-y-1/2 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full" />
+
+                    {/* Filled range bar */}
+                    <div
+                      className={cn("absolute top-1/2 -translate-y-1/2 h-2.5 rounded-full bg-gradient-to-r shadow-sm", severityColor)}
+                      style={{
+                        left: `${Math.max(barLeft, 0)}%`,
+                        width: `${barWidth}%`,
+                      }}
+                    />
+
+                    {/* Median diamond marker */}
+                    <div
+                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-white dark:bg-slate-200 border-2 border-slate-500 dark:border-slate-400 z-10 shadow-sm"
+                      style={{ left: `${medPos}%` }}
+                      title={`Median: ${formatCurrency(item.medianCost)}`}
+                    />
+
+                    {/* Average circle marker */}
+                    <div
+                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-slate-900 dark:bg-white border-2 border-white dark:border-slate-900 z-20 shadow-sm"
+                      style={{ left: `${avgPos}%` }}
+                      title={`Average: ${formatCurrency(item.averageCost)}`}
+                    />
+
+                    {/* Min label */}
+                    <span
+                      className="absolute -bottom-0.5 text-[9px] text-slate-400 dark:text-slate-500 tabular-nums"
+                      style={{ left: `${Math.max(barLeft, 0)}%` }}
+                    >
+                      {formatCurrency(item.range.min)}
+                    </span>
+
+                    {/* Max label */}
+                    <span
+                      className="absolute -bottom-0.5 text-[9px] text-slate-400 dark:text-slate-500 tabular-nums translate-x-[-100%]"
+                      style={{ left: `${barLeft + barWidth}%` }}
+                    >
+                      {formatCurrency(item.range.max)}
+                    </span>
+                  </div>
+                </div>
               )
             })}
+          </div>
+
+          {/* Legend */}
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 mt-4 px-1">
+            <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+              <div className="w-3 h-3 rounded-full bg-slate-900 dark:bg-white border-2 border-white dark:border-slate-900 shadow-sm" />
+              Average
+            </div>
+            <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+              <div className="w-2.5 h-2.5 rotate-45 bg-white dark:bg-slate-200 border-2 border-slate-500 dark:border-slate-400 shadow-sm" />
+              Median
+            </div>
+            <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+              <div className="w-6 h-2.5 rounded-full bg-gradient-to-r from-blue-400 to-blue-500" />
+              Cost Range
+            </div>
           </div>
         </ChartSection>
       </section>
