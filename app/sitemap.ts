@@ -141,6 +141,68 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       category: "tool"
     },
 
+    // ROI Calculator Tool
+    {
+      route: "/tools/accessibility-roi-calculator",
+      priority: 0.91,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["accessibility roi", "business case", "roi calculator", "accessibility investment"],
+      category: "tool"
+    },
+
+    // Research Hub - High-value link-worthy content
+    {
+      route: "/research",
+      priority: 0.92,
+      changeFrequency: "weekly",
+      lastModified: currentDate,
+      keywords: ["accessibility research", "accessibility data", "accessibility reports"],
+      category: "resource"
+    },
+    {
+      route: "/research/state-of-accessibility",
+      priority: 0.95,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["state of accessibility", "accessibility statistics", "research report", "wcag compliance data"],
+      category: "content"
+    },
+    {
+      route: "/research/accessibility-lawsuits",
+      priority: 0.93,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["accessibility lawsuits", "ada lawsuits", "lawsuit tracker", "settlement costs"],
+      category: "content"
+    },
+
+    // Guides Hub - Comprehensive reference content
+    {
+      route: "/guides",
+      priority: 0.91,
+      changeFrequency: "weekly",
+      lastModified: currentDate,
+      keywords: ["accessibility guides", "comprehensive guides", "accessibility reference"],
+      category: "resource"
+    },
+    {
+      route: "/guides/keyboard-accessibility",
+      priority: 0.94,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["keyboard accessibility", "focus management", "skip links", "roving tabindex"],
+      category: "content"
+    },
+    {
+      route: "/guides/screen-reader-testing",
+      priority: 0.93,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["screen reader testing", "nvda", "jaws", "voiceover", "talkback"],
+      category: "content"
+    },
+
     // Content Hub - Critical for SEO and education
     {
       route: "/blog",

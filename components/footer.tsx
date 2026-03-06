@@ -20,6 +20,9 @@ const toolLinks = [
   { href: "/tools/contrast-checker", label: "Contrast Checker" },
   { href: "/tools/heading-analyzer", label: "Heading Analyzer" },
   { href: "/tools/scope-checker", label: "Scope Checker" },
+  { href: "/tools/accessibility-roi-calculator", label: "ROI Calculator" },
+  { href: "/research", label: "Research & Reports" },
+  { href: "/guides", label: "Guides" },
   { href: "/blog", label: "Accessibility Blog" },
   { href: "/resources", label: "Learning Resources" },
 ];

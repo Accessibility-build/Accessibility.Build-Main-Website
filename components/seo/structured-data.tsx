@@ -860,6 +860,64 @@ export function AccessibilityToolStructuredData({
   )
 }
 
+// Dataset Schema for Research Pages
+interface DatasetStructuredDataProps {
+  name: string
+  description: string
+  url: string
+  datePublished: string
+  dateModified: string
+  creator: { name: string; url: string }
+  license?: string
+  temporalCoverage?: string
+  keywords?: string[]
+}
+
+export function DatasetStructuredData({
+  name,
+  description,
+  url,
+  datePublished,
+  dateModified,
+  creator,
+  license = "https://creativecommons.org/licenses/by/4.0/",
+  temporalCoverage,
+  keywords
+}: DatasetStructuredDataProps) {
+  const datasetSchema = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": name,
+    "description": description,
+    "url": url,
+    "datePublished": datePublished,
+    "dateModified": dateModified,
+    "creator": {
+      "@type": "Organization",
+      "name": creator.name,
+      "url": creator.url
+    },
+    "license": license,
+    ...(temporalCoverage && { "temporalCoverage": temporalCoverage }),
+    ...(keywords && { "keywords": keywords }),
+    "publisher": {
+      "@type": "Organization",
+      "name": "Accessibility.build",
+      "url": "https://accessibility.build"
+    },
+    "inLanguage": "en-US"
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(datasetSchema)
+      }}
+    />
+  )
+}
+
 // Checklist Schema for WCAG Checklists
 interface ChecklistStructuredDataProps {
   name: string

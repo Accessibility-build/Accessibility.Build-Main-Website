@@ -23,7 +23,8 @@ import {
     FileText,
     Grid3X3,
     Sparkles,
-    Globe
+    Globe,
+    TrendingUp
 } from "lucide-react"
 import TrialStatusBanner from "@/components/trial-status-banner"
 import { toolsTrustSignals } from "@/lib/public-metrics"
@@ -226,6 +227,20 @@ const accessibilityTools = [
         credits: 0,
         popular: true,
         stats: { users: "Available", assessments: "Validated" }
+    },
+    {
+        title: "Accessibility ROI Calculator",
+        shortTitle: "ROI Calculator",
+        description: "Calculate the business case for accessibility investments. Estimate lawsuit risk savings, revenue from underserved users, and return on investment with shareable reports.",
+        features: ["Business Case Builder", "Lawsuit Risk Analysis", "Revenue Impact", "PDF Export"],
+        icon: TrendingUp,
+        gradient: "from-emerald-500 to-green-500",
+        bgPattern: "roi-pattern",
+        slug: "accessibility-roi-calculator",
+        pricing: "Free",
+        credits: 0,
+        popular: false,
+        stats: { users: "Available", calculations: "Validated" }
     },
 ]
 

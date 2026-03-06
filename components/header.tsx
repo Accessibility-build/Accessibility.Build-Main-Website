@@ -102,10 +102,37 @@ const navItems: NavItem[] = [
         description: "Accessible pagination implementation guide",
       },
       {
+        name: "Keyboard Accessibility Guide",
+        href: "/guides/keyboard-accessibility",
+        description: "Complete keyboard navigation reference",
+        popular: true,
+      },
+      {
+        name: "Screen Reader Testing",
+        href: "/guides/screen-reader-testing",
+        description: "Test with NVDA, JAWS, VoiceOver",
+      },
+      {
         name: "A11y Hell",
         href: "/hell",
         description: "Experience real accessibility barriers",
+      },
+    ],
+  },
+  {
+    name: "Research",
+    href: "/research",
+    children: [
+      {
+        name: "State of Accessibility",
+        href: "/research/state-of-accessibility",
+        description: "Annual web accessibility report",
         popular: true,
+      },
+      {
+        name: "Lawsuit Tracker",
+        href: "/research/accessibility-lawsuits",
+        description: "ADA accessibility litigation data",
       },
     ],
   },
@@ -113,7 +140,6 @@ const navItems: NavItem[] = [
   { name: "Services", href: "/services" },
   { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
 ];
 
 export function Header() {

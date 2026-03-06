@@ -50,6 +50,49 @@ const INTERNAL_LINKS: InternalLink[] = [
     type: 'checklist',
     keywords: ['wcag 2.2', 'checklist', 'success criteria', 'compliance'],
     priority: 10
+  },
+  // Research Pages
+  {
+    url: '/research/state-of-accessibility',
+    title: 'State of Web Accessibility Report',
+    description: 'Annual data-driven research report on web accessibility across the top websites with interactive charts and downloadable data',
+    type: 'resource',
+    keywords: ['accessibility statistics', 'research', 'web accessibility data', 'audit results', 'accessibility report', 'state of accessibility', 'wcag violations', 'accessibility trends'],
+    priority: 10
+  },
+  {
+    url: '/research/accessibility-lawsuits',
+    title: 'Accessibility Lawsuit Tracker',
+    description: 'Updated statistics on ADA and accessibility lawsuits by year, industry, and jurisdiction with settlement cost data',
+    type: 'resource',
+    keywords: ['accessibility lawsuits', 'ada lawsuits', 'lawsuit tracker', 'accessibility legal', 'settlement costs', 'lawsuit statistics', 'ada compliance', 'litigation'],
+    priority: 10
+  },
+  // Guides
+  {
+    url: '/guides/keyboard-accessibility',
+    title: 'Complete Keyboard Accessibility Guide',
+    description: 'Definitive guide to keyboard accessibility with interactive demos, code examples, and testing checklists',
+    type: 'guide',
+    keywords: ['keyboard accessibility', 'focus management', 'skip links', 'keyboard navigation', 'tab order', 'roving tabindex', 'keyboard trap', 'focus trapping', 'wcag 2.1.1'],
+    priority: 9
+  },
+  {
+    url: '/guides/screen-reader-testing',
+    title: 'Screen Reader Testing Guide',
+    description: 'Comprehensive guide to testing with NVDA, JAWS, VoiceOver, and TalkBack with command references and testing procedures',
+    type: 'guide',
+    keywords: ['screen reader testing', 'nvda', 'jaws', 'voiceover', 'talkback', 'assistive technology', 'screen reader commands', 'accessibility testing'],
+    priority: 9
+  },
+  // ROI Calculator Tool
+  {
+    url: '/tools/accessibility-roi-calculator',
+    title: 'Accessibility ROI Calculator',
+    description: 'Calculate the return on investment for accessibility improvements including lawsuit risk and revenue impact',
+    type: 'tool',
+    keywords: ['accessibility roi', 'business case accessibility', 'roi calculator', 'accessibility investment', 'cost benefit accessibility', 'lawsuit risk', 'accessibility budget'],
+    priority: 8
   }
 ]
 
