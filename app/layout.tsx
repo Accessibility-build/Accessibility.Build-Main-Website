@@ -15,6 +15,7 @@ import { Toaster } from "@/components/ui/sonner"
 // Background services disabled for production build
 import { AdminLayoutWrapper } from "@/components/admin/admin-layout-wrapper"
 import { BrowserSafetyProvider } from "@/components/browser-safety-provider"
+import { clerkThemeAppearance } from "@/lib/clerk-auth-appearance"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -243,7 +244,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      signInUrl="/sign-in"
+      signUpUrl="/sign-up"
+      signInFallbackRedirectUrl="/dashboard"
+      signUpFallbackRedirectUrl="/welcome"
+      appearance={clerkThemeAppearance}
+    >
       <html lang="en" suppressHydrationWarning>
         <head>
           {/* Google tag (gtag.js) */}

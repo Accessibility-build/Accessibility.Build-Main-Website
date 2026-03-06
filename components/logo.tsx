@@ -9,11 +9,11 @@ export function Logo({ className }: LogoProps) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 48 48"
-      className={cn("h-8 w-8", className)}
+      className={cn("h-8 w-8 shrink-0 transition-colors", className)}
       aria-hidden="true"
     >
-      {/* Monochrome mark: foreground ring with inverse glyph for consistent black/white rendering. */}
-      <circle cx="24" cy="24" r="22" fill="currentColor" />
+      {/* Theme-driven mark: foreground ring with inverse glyph for light/dark adaptation. */}
+      <circle cx="24" cy="24" r="22" fill="hsl(var(--foreground))" />
 
       {/* "A" letter stylized */}
       <path
@@ -23,7 +23,7 @@ export function Logo({ className }: LogoProps) {
       />
 
       {/* Crossbar of the "A" */}
-      <path d="M21 28 L27 28 L24 19 L21 28 Z" fill="currentColor" />
+      <path d="M21 28 L27 28 L24 19 L21 28 Z" fill="hsl(var(--foreground))" />
 
       {/* Accessibility wave symbol */}
       <path d="M14 22 Q24 16 34 22" stroke="hsl(var(--background))" strokeWidth="2.5" strokeLinecap="round" fill="none" />

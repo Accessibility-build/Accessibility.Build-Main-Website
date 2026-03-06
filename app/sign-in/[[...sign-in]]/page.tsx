@@ -9,6 +9,7 @@ import {
 import { Shield, Users, Sparkles } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { clerkEmbeddedAuthAppearance } from "@/lib/clerk-auth-appearance";
 
 export const metadata: Metadata = {
   title: "Sign In | Access Your Accessibility Dashboard | Accessibility.build",
@@ -75,16 +76,12 @@ export default function Page() {
               <CardContent className="p-6">
                 <div className="w-full min-w-0 max-w-full">
                   <SignIn
-                    appearance={{
-                      elements: {
-                        rootBox: "w-full min-w-0 max-w-full",
-                        cardBox: "w-full min-w-0 max-w-full overflow-hidden",
-                        headerTitle: "hidden",
-                        headerSubtitle: "hidden",
-                        formButtonPrimary:
-                          "bg-primary hover:bg-primary/90 text-primary-foreground",
-                      },
-                    }}
+                    path="/sign-in"
+                    routing="path"
+                    signUpUrl="/sign-up"
+                    forceRedirectUrl="/dashboard"
+                    fallbackRedirectUrl="/dashboard"
+                    appearance={clerkEmbeddedAuthAppearance}
                   />
                 </div>
               </CardContent>

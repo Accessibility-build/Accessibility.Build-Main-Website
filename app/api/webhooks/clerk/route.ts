@@ -1,28 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { headers } from 'next/headers'
 import { Webhook } from 'svix'
+import { z } from 'zod'
 import { db } from '@/lib/db'
 import { users, creditTransactions } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import { errorLogger } from '@/lib/error-logger'
 import { sendWelcomeEmail, sendServicesIntroEmail } from '@/lib/email/service'
 
-const webhookSecret = process.env.CLERK_WEBHOOK_SECRET
+export const runtime = 'nodejs'
 
-interface ClerkWebhookEvent {
-  type: string
-  data: {
-    id: string
-    email_addresses: Array<{
-      email_address: string
-      id: string
-    }>
-    first_name: string | null
-    last_name: string | null
-    image_url: string
-    created_at: number
-    updated_at: number
-  }
+const DEFAULT_CREDITS = 100
+
+const webhookEventSchema = z.object({
+  type: z.string().min(1),
+  data: z.object({ id: z.string().min(1) }).passthrough(),
+})
+
+const clerkUserSchema = z.object({
+  id: z.string().min(1),
+  email_addresses: z.array(
+    z.object({
+      email_address: z.string(),
+      id: z.string().optional(),
+    })
+  ).default([]),
+  first_name: z.string().nullable().optional(),
+  last_name: z.string().nullable().optional(),
+  image_url: z.string().nullable().optional(),
+  created_at: z.number().optional(),
+  updated_at: z.number().optional(),
+})
+
+type ClerkUserData = z.infer<typeof clerkUserSchema>
+
+function getWebhookSecret() {
+  const secret = process.env.CLERK_WEBHOOK_SECRET?.trim()
+  return secret || null
 }
 
 function buildFallbackEmail(userId: string) {
@@ -36,7 +49,91 @@ function sanitizeEmail(email: string | null | undefined, userId: string) {
   return trimmed || buildFallbackEmail(userId)
 }
 
+function parseClerkDate(timestamp: number | undefined, fallback: Date = new Date()) {
+  if (!timestamp || !Number.isFinite(timestamp)) {
+    return fallback
+  }
+
+  // Clerk usually sends milliseconds, but support seconds defensively.
+  const normalized = timestamp < 1_000_000_000_000 ? timestamp * 1000 : timestamp
+  const parsed = new Date(normalized)
+  return Number.isNaN(parsed.getTime()) ? fallback : parsed
+}
+
+function getDefaultCredits() {
+  const parsed = Number.parseInt(process.env.DEFAULT_CREDITS || String(DEFAULT_CREDITS), 10)
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : DEFAULT_CREDITS
+}
+
+function isUniqueViolation(error: unknown) {
+  if (typeof error === 'object' && error !== null && 'code' in error) {
+    const code = String((error as { code?: string }).code || '')
+    if (code === '23505') {
+      return true
+    }
+  }
+
+  if (error instanceof Error) {
+    const lower = error.message.toLowerCase()
+    return lower.includes('duplicate key') || lower.includes('unique constraint')
+  }
+
+  return false
+}
+
+async function syncUserIdentity(params: {
+  userId: string
+  safeEmail: string
+  firstName: string | null
+  lastName: string | null
+  profileImageUrl: string | null
+  updatedAt: Date
+  activateUser?: boolean
+}) {
+  const emailOwner = await db.query.users.findFirst({
+    where: eq(users.email, params.safeEmail),
+  })
+
+  const emailConflictUserId =
+    emailOwner && emailOwner.id !== params.userId ? emailOwner.id : null
+
+  const updatePayload: {
+    firstName: string | null
+    lastName: string | null
+    profileImageUrl: string | null
+    updatedAt: Date
+    isActive?: boolean
+    email?: string
+  } = {
+    firstName: params.firstName,
+    lastName: params.lastName,
+    profileImageUrl: params.profileImageUrl,
+    updatedAt: params.updatedAt,
+  }
+
+  if (params.activateUser) {
+    updatePayload.isActive = true
+  }
+
+  if (!emailConflictUserId) {
+    updatePayload.email = params.safeEmail
+  }
+
+  const updated = await db
+    .update(users)
+    .set(updatePayload)
+    .where(eq(users.id, params.userId))
+    .returning({ id: users.id })
+
+  return {
+    updated: updated.length > 0,
+    emailConflictUserId,
+  }
+}
+
 export async function POST(req: NextRequest) {
+  const webhookSecret = getWebhookSecret()
+
   try {
     if (!webhookSecret) {
       console.error('CLERK_WEBHOOK_SECRET is not set')
@@ -47,10 +144,9 @@ export async function POST(req: NextRequest) {
     }
 
     // Get headers
-    const headerPayload = await headers()
-    const svixId = headerPayload.get('svix-id')
-    const svixTimestamp = headerPayload.get('svix-timestamp')
-    const svixSignature = headerPayload.get('svix-signature')
+    const svixId = req.headers.get('svix-id')
+    const svixTimestamp = req.headers.get('svix-timestamp')
+    const svixSignature = req.headers.get('svix-signature')
 
     if (!svixId || !svixTimestamp || !svixSignature) {
       console.error('Missing svix headers')
@@ -65,14 +161,14 @@ export async function POST(req: NextRequest) {
 
     // Verify the webhook
     const wh = new Webhook(webhookSecret)
-    let evt: ClerkWebhookEvent
+    let evt: unknown
 
     try {
       evt = wh.verify(payload, {
         'svix-id': svixId,
         'svix-timestamp': svixTimestamp,
         'svix-signature': svixSignature,
-      }) as ClerkWebhookEvent
+      })
     } catch (err) {
       console.error('Error verifying webhook:', err)
       return NextResponse.json(
@@ -81,29 +177,49 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Handle the webhook event
-    const { type, data } = evt
+    const parsedEvent = webhookEventSchema.safeParse(evt)
+    if (!parsedEvent.success) {
+      console.error('[clerk:webhook] Invalid event payload shape', parsedEvent.error.flatten())
+      return NextResponse.json(
+        { error: 'Invalid webhook payload' },
+        { status: 400 }
+      )
+    }
 
-    console.log(`Processing Clerk webhook: ${type} for user ${data.id}`)
+    const { type, data } = parsedEvent.data
+    console.log(`[clerk:webhook] Processing ${type} for user ${data.id} (event ${svixId})`)
 
     switch (type) {
-      case 'user.created':
-        await handleUserCreated(data)
+      case 'user.created': {
+        const parsedUser = clerkUserSchema.safeParse(data)
+        if (!parsedUser.success) {
+          return NextResponse.json(
+            { error: 'Invalid user.created payload' },
+            { status: 400 }
+          )
+        }
+        await handleUserCreated(parsedUser.data)
         break
-      
-      case 'user.updated':
-        await handleUserUpdated(data)
+      }
+      case 'user.updated': {
+        const parsedUser = clerkUserSchema.safeParse(data)
+        if (!parsedUser.success) {
+          return NextResponse.json(
+            { error: 'Invalid user.updated payload' },
+            { status: 400 }
+          )
+        }
+        await handleUserUpdated(parsedUser.data)
         break
-      
+      }
       case 'user.deleted':
         await handleUserDeleted(data.id)
         break
-      
       default:
-        console.log(`Unhandled webhook event type: ${type}`)
+        console.log(`[clerk:webhook] Ignoring unhandled event type: ${type}`)
     }
 
-    return NextResponse.json({ received: true })
+    return NextResponse.json({ received: true, eventType: type, eventId: svixId })
 
   } catch (error) {
     console.error('Webhook processing error:', error)
@@ -120,10 +236,12 @@ export async function POST(req: NextRequest) {
   }
 }
 
-async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
+async function handleUserCreated(userData: ClerkUserData) {
   try {
-    const defaultCredits = Number(process.env.DEFAULT_CREDITS) || 100
+    const defaultCredits = getDefaultCredits()
     const safeEmail = sanitizeEmail(userData.email_addresses[0]?.email_address, userData.id)
+    const createdAt = parseClerkDate(userData.created_at)
+    const updatedAt = parseClerkDate(userData.updated_at, createdAt)
     
     // Check if user already exists (shouldn't happen, but safety check)
     const existingUser = await db.query.users.findFirst({
@@ -131,7 +249,16 @@ async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
     })
 
     if (existingUser) {
-      console.log(`User ${userData.id} already exists in database`)
+      await syncUserIdentity({
+        userId: userData.id,
+        safeEmail,
+        firstName: userData.first_name ?? null,
+        lastName: userData.last_name ?? null,
+        profileImageUrl: userData.image_url ?? null,
+        updatedAt,
+        activateUser: true,
+      })
+      console.log(`[clerk:webhook] user.created received for existing user ${userData.id}; synced profile`)
       return
     }
 
@@ -148,10 +275,11 @@ async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
       await db
         .update(users)
         .set({
-          firstName: userData.first_name,
-          lastName: userData.last_name,
-          profileImageUrl: userData.image_url,
-          updatedAt: new Date(userData.updated_at),
+          firstName: userData.first_name ?? null,
+          lastName: userData.last_name ?? null,
+          profileImageUrl: userData.image_url ?? null,
+          isActive: true,
+          updatedAt,
         })
         .where(eq(users.id, existingByEmail.id))
 
@@ -162,29 +290,32 @@ async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
     const newUser = {
       id: userData.id,
       email: safeEmail,
-      firstName: userData.first_name,
-      lastName: userData.last_name,
-      profileImageUrl: userData.image_url,
+      firstName: userData.first_name ?? null,
+      lastName: userData.last_name ?? null,
+      profileImageUrl: userData.image_url ?? null,
       credits: defaultCredits,
       totalCreditsEarned: defaultCredits,
       totalCreditsUsed: 0,
-      createdAt: new Date(userData.created_at),
-      updatedAt: new Date(userData.updated_at),
+      createdAt,
+      updatedAt,
+      isActive: true,
     }
 
     console.log(`Creating new user: ${userData.id} with ${defaultCredits} credits`)
 
-    const [insertedUser] = await db.insert(users).values(newUser).returning()
-    
-    // Create welcome bonus transaction
-    await db.insert(creditTransactions).values({
-      userId: userData.id,
-      type: 'bonus',
-      amount: defaultCredits,
-      balanceBefore: 0,
-      balanceAfter: defaultCredits,
-      description: `Welcome bonus - ${defaultCredits} free credits for new users!`,
-      status: 'completed',
+    await db.transaction(async (tx) => {
+      await tx.insert(users).values(newUser)
+
+      // Create welcome bonus transaction
+      await tx.insert(creditTransactions).values({
+        userId: userData.id,
+        type: 'bonus',
+        amount: defaultCredits,
+        balanceBefore: 0,
+        balanceAfter: defaultCredits,
+        description: `Welcome bonus - ${defaultCredits} free credits for new users!`,
+        status: 'completed',
+      })
     })
 
     // Send welcome email (fire-and-forget — never blocks webhook response)
@@ -192,8 +323,8 @@ async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
       type: 'welcome',
       recipient: {
         email: safeEmail,
-        firstName: userData.first_name,
-        lastName: userData.last_name,
+        firstName: userData.first_name ?? null,
+        lastName: userData.last_name ?? null,
       },
       credits: defaultCredits,
     })
@@ -203,14 +334,19 @@ async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
       type: 'services_intro',
       recipient: {
         email: safeEmail,
-        firstName: userData.first_name,
-        lastName: userData.last_name,
+        firstName: userData.first_name ?? null,
+        lastName: userData.last_name ?? null,
       },
     })
 
     console.log(`Successfully created user ${userData.id} with ${defaultCredits} credits`)
 
   } catch (error) {
+    if (isUniqueViolation(error)) {
+      console.warn(`[clerk:webhook] Duplicate create ignored for ${userData.id}`)
+      return
+    }
+
     console.error(`Error creating user ${userData.id}:`, error)
     
     errorLogger.logMajorError('Failed to create user from webhook', {
@@ -223,22 +359,33 @@ async function handleUserCreated(userData: ClerkWebhookEvent['data']) {
   }
 }
 
-async function handleUserUpdated(userData: ClerkWebhookEvent['data']) {
+async function handleUserUpdated(userData: ClerkUserData) {
   try {
     console.log(`Updating user: ${userData.id}`)
     const safeEmail = sanitizeEmail(userData.email_addresses[0]?.email_address, userData.id)
+    const updatedAt = parseClerkDate(userData.updated_at)
 
-    // Update user data (but don't touch credits)
-    await db
-      .update(users)
-      .set({
-        email: safeEmail,
-        firstName: userData.first_name,
-        lastName: userData.last_name,
-        profileImageUrl: userData.image_url,
-        updatedAt: new Date(userData.updated_at),
-      })
-      .where(eq(users.id, userData.id))
+    const syncResult = await syncUserIdentity({
+      userId: userData.id,
+      safeEmail,
+      firstName: userData.first_name ?? null,
+      lastName: userData.last_name ?? null,
+      profileImageUrl: userData.image_url ?? null,
+      updatedAt,
+      activateUser: true,
+    })
+
+    if (!syncResult.updated) {
+      console.warn(`[clerk:webhook] user.updated for missing user ${userData.id}; creating record`)
+      await handleUserCreated(userData)
+      return
+    }
+
+    if (syncResult.emailConflictUserId) {
+      console.warn(
+        `[clerk:webhook] Email ${safeEmail} belongs to ${syncResult.emailConflictUserId}; updated profile only for ${userData.id}`
+      )
+    }
 
     console.log(`Successfully updated user ${userData.id}`)
 
@@ -265,6 +412,7 @@ async function handleUserDeleted(userId: string) {
         updatedAt: new Date(),
       })
       .where(eq(users.id, userId))
+      .returning({ id: users.id })
 
     console.log(`Successfully soft-deleted user ${userId}`)
 

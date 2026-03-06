@@ -10,6 +10,7 @@ import { SignUpRedirect } from "@/components/auth/signup-redirect";
 import { Gift, UserPlus, CheckCircle, Shield } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { clerkEmbeddedAuthAppearance } from "@/lib/clerk-auth-appearance";
 
 export const metadata: Metadata = {
   title: "Sign Up | Get 100 Free Credits | Accessibility.build",
@@ -106,18 +107,12 @@ export default function Page() {
                 <CardContent className="px-6">
                   <div className="w-full min-w-0 max-w-full">
                     <SignUp
-                      appearance={{
-                        elements: {
-                          // enforce shrink & cap widths on clerk root & card internals
-                          rootBox: "w-full min-w-0 max-w-full",
-                          cardBox: "w-full min-w-0 max-w-full overflow-hidden",
-                          headerTitle: "hidden",
-                          headerSubtitle: "hidden",
-                          formButtonPrimary:
-                            "bg-primary hover:bg-primary/90 text-primary-foreground",
-                        },
-                      }}
-                      afterSignUpUrl="/welcome"
+                      path="/sign-up"
+                      routing="path"
+                      signInUrl="/sign-in"
+                      forceRedirectUrl="/welcome"
+                      fallbackRedirectUrl="/welcome"
+                      appearance={clerkEmbeddedAuthAppearance}
                     />
                   </div>
 

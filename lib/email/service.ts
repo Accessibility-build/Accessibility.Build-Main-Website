@@ -1,7 +1,14 @@
-import { getResendClient, getEmailFromAddress, isEmailServiceEnabled } from './resend'
+import {
+  getResendClient,
+  getEmailFromAddress,
+  isEmailServiceEnabled,
+  isMarketingEmailEnabled,
+} from './resend'
 import {
   renderWelcomeEmail,
   renderServicesIntroEmail,
+  renderNewsletterWelcomeEmail,
+  renderMarketingCampaignEmail,
   renderPurchaseConfirmationEmail,
   renderRefundNotificationEmail,
 } from './templates'
@@ -10,6 +17,8 @@ import type {
   EmailSendResult,
   WelcomeEmailData,
   ServicesIntroEmailData,
+  NewsletterWelcomeEmailData,
+  MarketingCampaignEmailData,
   PurchaseConfirmationEmailData,
   RefundNotificationEmailData,
 } from './types'
@@ -22,12 +31,20 @@ function isSyntheticEmail(email: string): boolean {
   return email.endsWith(SYNTHETIC_EMAIL_DOMAIN)
 }
 
+function sanitizeEmailForIdempotency(email: string): string {
+  return email.toLowerCase().replace(/[^a-z0-9]/g, '')
+}
+
 function buildIdempotencyKey(data: TransactionalEmailData): string {
   switch (data.type) {
     case 'welcome':
       return `welcome_${data.recipient.email}`
     case 'services_intro':
       return `services_intro_${data.recipient.email}`
+    case 'newsletter_welcome':
+      return `newsletter_${data.recipient.email}`
+    case 'marketing_campaign':
+      return `marketing_${data.campaignId}_${sanitizeEmailForIdempotency(data.recipient.email)}`
     case 'purchase_confirmation':
       return `purchase_${data.orderId}`
     case 'refund_notification':
@@ -133,6 +150,7 @@ export function sendWelcomeEmail(data: WelcomeEmailData): void {
 /** Fire-and-forget: sends services intro marketing email. Never throws. */
 export function sendServicesIntroEmail(data: ServicesIntroEmailData): void {
   if (!isEmailServiceEnabled()) return
+  if (!isMarketingEmailEnabled()) return
   if (!data.recipient.email || isSyntheticEmail(data.recipient.email)) return
 
   const { subject, html } = renderServicesIntroEmail({
@@ -152,6 +170,66 @@ export function sendServicesIntroEmail(data: ServicesIntroEmailData): void {
       error: err instanceof Error ? err.message : String(err),
       to: data.recipient.email,
     }))
+  })
+}
+
+/** Fire-and-forget: sends newsletter welcome email. Never throws. */
+export function sendNewsletterWelcomeEmail(data: NewsletterWelcomeEmailData): void {
+  if (!isEmailServiceEnabled()) return
+  if (!isMarketingEmailEnabled()) return
+  if (!data.recipient.email || isSyntheticEmail(data.recipient.email)) return
+
+  const { subject, html } = renderNewsletterWelcomeEmail({
+    firstName: data.recipient.firstName,
+  })
+
+  const idempotencyKey = buildIdempotencyKey(data)
+
+  sendEmailViaResend({
+    to: data.recipient.email,
+    subject,
+    html,
+    idempotencyKey,
+    emailType: 'newsletter_welcome',
+  }).catch((err) => {
+    console.error(`${LOG_PREFIX} ✗ unhandled_newsletter_welcome`, JSON.stringify({
+      error: err instanceof Error ? err.message : String(err),
+      to: data.recipient.email,
+    }))
+  })
+}
+
+export async function sendMarketingCampaignEmail(data: MarketingCampaignEmailData): Promise<EmailSendResult> {
+  if (!isEmailServiceEnabled()) {
+    return { success: false, error: 'Email service is disabled' }
+  }
+
+  if (!isMarketingEmailEnabled()) {
+    return { success: false, error: 'Marketing email service is disabled' }
+  }
+
+  if (!data.recipient.email || isSyntheticEmail(data.recipient.email)) {
+    return { success: false, error: 'Recipient email is not eligible' }
+  }
+
+  const { subject, html } = renderMarketingCampaignEmail({
+    subject: data.subject,
+    firstName: data.recipient.firstName,
+    preheader: data.preheader,
+    heading: data.heading,
+    body: data.body,
+    ctaLabel: data.ctaLabel,
+    ctaUrl: data.ctaUrl,
+  })
+
+  const idempotencyKey = buildIdempotencyKey(data)
+
+  return sendEmailViaResend({
+    to: data.recipient.email,
+    subject,
+    html,
+    idempotencyKey,
+    emailType: 'marketing_campaign',
   })
 }
 

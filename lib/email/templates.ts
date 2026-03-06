@@ -94,6 +94,27 @@ function emailLayout(params: { preheader: string; body: string }): string {
 </html>`
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+function renderPlainTextAsHtmlParagraphs(value: string): string {
+  const trimmed = value.trim()
+  if (!trimmed) {
+    return ''
+  }
+
+  return trimmed
+    .split(/\n{2,}/)
+    .map((block) => `<p>${escapeHtml(block).replace(/\n/g, '<br />')}</p>`)
+    .join('\n')
+}
+
 export function renderWelcomeEmail(data: {
   firstName?: string | null
   credits: number
@@ -292,6 +313,69 @@ export function renderServicesIntroEmail(data: {
     <div class="card" style="text-align:center; margin-top: 16px;">
       <p style="margin:0; font-size:13px; color:#94a3b8;">Or just use the tools &mdash; no pressure. <a href="https://accessibility.build/tools">Explore all tools &rarr;</a></p>
     </div>
+      `,
+    }),
+  }
+}
+
+export function renderNewsletterWelcomeEmail(data: {
+  firstName?: string | null
+}): { subject: string; html: string } {
+  const greeting = data.firstName ? `Hi ${data.firstName},` : 'Hi there,'
+
+  return {
+    subject: 'You are subscribed to Accessibility.build updates',
+    html: emailLayout({
+      preheader: 'You are in. We will send practical accessibility updates.',
+      body: `
+        <h1>Thanks for subscribing</h1>
+        <p>${greeting}</p>
+        <p>You are now subscribed to Accessibility.build email updates.</p>
+        <p>We share practical accessibility insights, WCAG updates, and product announcements you can use right away.</p>
+        <p><a href="https://accessibility.build/blog">Read recent accessibility guides &rarr;</a></p>
+      `,
+    }),
+  }
+}
+
+export function renderMarketingCampaignEmail(data: {
+  subject: string
+  firstName?: string | null
+  preheader?: string
+  heading?: string
+  body: string
+  ctaLabel?: string
+  ctaUrl?: string
+}): { subject: string; html: string } {
+  const heading = data.heading?.trim() || data.subject
+  const greetingName = data.firstName?.trim() || 'there'
+  const bodyHtml = renderPlainTextAsHtmlParagraphs(data.body)
+  const preheader = data.preheader?.trim() || data.subject
+  const ctaHtml =
+    data.ctaLabel && data.ctaUrl
+      ? `
+    <div class="divider"></div>
+    <div class="cta-section">
+      <a href="${escapeHtml(data.ctaUrl)}" class="cta-btn">${escapeHtml(data.ctaLabel)}</a>
+    </div>
+      `
+      : ''
+
+  return {
+    subject: data.subject,
+    html: marketingLayout({
+      preheader: escapeHtml(preheader),
+      body: `
+    <div class="hero">
+      <h1>${escapeHtml(heading)}</h1>
+      <p class="subtitle">From the Accessibility.build team</p>
+    </div>
+
+    <div class="card card-accent">
+      <p>Hi ${escapeHtml(greetingName)},</p>
+      ${bodyHtml}
+    </div>
+    ${ctaHtml}
       `,
     }),
   }

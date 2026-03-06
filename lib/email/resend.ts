@@ -2,6 +2,23 @@ import { Resend } from 'resend'
 
 let resendClient: Resend | null = null
 
+function parseEnvBoolean(value: string | undefined): boolean | null {
+  if (value === undefined) {
+    return null
+  }
+
+  const normalized = value.trim().toLowerCase()
+  if (normalized === 'true') {
+    return true
+  }
+
+  if (normalized === 'false') {
+    return false
+  }
+
+  return null
+}
+
 export function getResendClient(): Resend {
   if (resendClient) {
     return resendClient
@@ -28,11 +45,19 @@ export function getEmailFromAddress(): string {
 }
 
 export function isEmailServiceEnabled(): boolean {
-  const raw = process.env.EMAIL_SERVICE_ENABLED
-
-  if (raw === undefined) {
+  const enabled = parseEnvBoolean(process.env.EMAIL_SERVICE_ENABLED)
+  if (enabled === null) {
     return Boolean(process.env.RESEND_API_KEY)
   }
 
-  return raw.toLowerCase() === 'true'
+  return enabled
+}
+
+export function isMarketingEmailEnabled(): boolean {
+  const enabled = parseEnvBoolean(process.env.EMAIL_MARKETING_ENABLED)
+  if (enabled === null) {
+    return isEmailServiceEnabled()
+  }
+
+  return enabled
 }

@@ -1,4 +1,10 @@
-export type EmailType = 'welcome' | 'services_intro' | 'purchase_confirmation' | 'refund_notification'
+export type EmailType =
+  | 'welcome'
+  | 'services_intro'
+  | 'newsletter_welcome'
+  | 'marketing_campaign'
+  | 'purchase_confirmation'
+  | 'refund_notification'
 
 export interface EmailRecipient {
   email: string
@@ -29,6 +35,24 @@ export interface ServicesIntroEmailData {
   recipient: EmailRecipient
 }
 
+export interface NewsletterWelcomeEmailData {
+  type: 'newsletter_welcome'
+  recipient: EmailRecipient
+  source: 'footer' | 'blog' | 'other'
+}
+
+export interface MarketingCampaignEmailData {
+  type: 'marketing_campaign'
+  campaignId: string
+  recipient: EmailRecipient
+  subject: string
+  preheader?: string
+  heading?: string
+  body: string
+  ctaLabel?: string
+  ctaUrl?: string
+}
+
 export interface RefundNotificationEmailData {
   type: 'refund_notification'
   recipient: EmailRecipient
@@ -43,6 +67,8 @@ export interface RefundNotificationEmailData {
 export type TransactionalEmailData =
   | WelcomeEmailData
   | ServicesIntroEmailData
+  | NewsletterWelcomeEmailData
+  | MarketingCampaignEmailData
   | PurchaseConfirmationEmailData
   | RefundNotificationEmailData
 

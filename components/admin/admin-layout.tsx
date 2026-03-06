@@ -16,6 +16,7 @@ import {
   FileText,
   CreditCard,
   Activity,
+  Megaphone,
   LogOut
 } from 'lucide-react'
 
@@ -48,6 +49,11 @@ const adminNavItems = [
     name: 'Billing Funnel',
     href: '/admin/billing',
     icon: Activity
+  },
+  {
+    name: 'Marketing',
+    href: '/admin/marketing',
+    icon: Megaphone
   },
   {
     name: 'Audit Log',

@@ -398,6 +398,10 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
 # Clerk webhook secret (for user sync)
 CLERK_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxx
 
+# Configure this webhook in Clerk Dashboard:
+# Endpoint: https://your-domain.com/api/webhooks/clerk
+# Events: user.created, user.updated, user.deleted
+
 # ==========================================
 # BILLING (RAZORPAY)
 # ==========================================
@@ -476,6 +480,17 @@ SANITY_API_TOKEN=skxxxxxxxxxxxxx
 # Formspree endpoint for contact form
 # Get from: https://formspree.io
 FORMSPREE_ENDPOINT=https://formspree.io/f/xxxxxxxxxxxxx
+
+# Resend (transactional + marketing emails)
+# Get from: https://resend.com/api-keys
+RESEND_API_KEY=re_xxxxxxxxxxxxx
+RESEND_FROM_ADDRESS=Accessibility.build <hello@your-domain.com>
+
+# Master email switch (defaults to true when RESEND_API_KEY exists)
+EMAIL_SERVICE_ENABLED=true
+
+# Optional dedicated switch for marketing emails (defaults to EMAIL_SERVICE_ENABLED)
+EMAIL_MARKETING_ENABLED=true
 
 # ==========================================
 # ANALYTICS & MONITORING

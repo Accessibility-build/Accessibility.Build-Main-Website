@@ -3,6 +3,7 @@ import { db } from '@/lib/db'
 import { emailSubscriptions } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import { z } from 'zod'
+import { sendNewsletterWelcomeEmail } from '@/lib/email/service'
 
 const subscribeSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -58,6 +59,12 @@ export async function POST(request: NextRequest) {
         })
         .where(eq(emailSubscriptions.email, email))
 
+      sendNewsletterWelcomeEmail({
+        type: 'newsletter_welcome',
+        recipient: { email },
+        source,
+      })
+
       return NextResponse.json({
         success: true,
         message: 'Welcome back! You have been resubscribed to our newsletter.',
@@ -75,6 +82,12 @@ export async function POST(request: NextRequest) {
         ipAddress: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
         subscribedAt: new Date().toISOString()
       }
+    })
+
+    sendNewsletterWelcomeEmail({
+      type: 'newsletter_welcome',
+      recipient: { email },
+      source,
     })
 
     return NextResponse.json({
