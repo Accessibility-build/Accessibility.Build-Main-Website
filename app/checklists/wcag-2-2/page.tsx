@@ -20,36 +20,36 @@ export default function WcagChecklistPage() {
       {/* Compact Header */}
       <div className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            {/* Left: Title + counts */}
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl shadow-lg shadow-blue-500/20">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            {/* Left: Title + description */}
+            <div className="flex items-start gap-3">
+              <div className="p-2.5 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl shadow-lg shadow-blue-500/20 flex-shrink-0 mt-0.5">
                 <Shield className="w-6 h-6 text-white" />
               </div>
               <div>
                 <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                  WCAG 2.2 Checklist
+                  Interactive WCAG 2.2 Accessibility Checklist
                 </h1>
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                  <span className="font-semibold text-slate-700 dark:text-slate-300">{stats.total}</span> criteria
-                  <span className="mx-1.5 text-slate-300 dark:text-slate-600">·</span>
-                  <span className="text-emerald-600 dark:text-emerald-400 font-medium">{stats.byLevel.A} A</span>
-                  <span className="mx-1 text-slate-300 dark:text-slate-600">·</span>
-                  <span className="text-blue-600 dark:text-blue-400 font-medium">{stats.byLevel.AA} AA</span>
-                  <span className="mx-1 text-slate-300 dark:text-slate-600">·</span>
-                  <span className="text-purple-600 dark:text-purple-400 font-medium">{stats.byLevel.AAA} AAA</span>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-2xl leading-relaxed">
+                  Free interactive checklist covering all{" "}
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">{stats.total} success criteria</span>{" "}
+                  — track your audit progress, add notes, filter by level
+                  (<span className="text-emerald-600 dark:text-emerald-400 font-medium">{stats.byLevel.A}&nbsp;A</span>{" · "}
+                  <span className="text-blue-600 dark:text-blue-400 font-medium">{stats.byLevel.AA}&nbsp;AA</span>{" · "}
+                  <span className="text-purple-600 dark:text-purple-400 font-medium">{stats.byLevel.AAA}&nbsp;AAA</span>),
+                  and export to Excel or PDF for compliance reporting.
                 </p>
               </div>
             </div>
 
             {/* Right: Quick actions */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-shrink-0 lg:ml-4">
               <Link
                 href="/checklists/wcag-2-2/excel"
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700/50 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors"
               >
                 <FileSpreadsheet className="w-4 h-4" />
-                Excel Template
+                Download Excel Template
               </Link>
               <Link
                 href="/checklists/wcag-2-2/aaa"
@@ -75,21 +75,21 @@ export default function WcagChecklistPage() {
             {/* Conformance Levels — compact */}
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
-                WCAG Conformance Levels
+                WCAG 2.2 Conformance Levels Explained
               </h2>
               <div className="grid sm:grid-cols-3 gap-3">
                 <div className="flex items-start gap-3 p-4 bg-white dark:bg-slate-800/60 rounded-xl border border-emerald-200 dark:border-emerald-800/50">
                   <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sm font-bold bg-emerald-500 text-white flex-shrink-0">A</span>
                   <div>
                     <p className="font-semibold text-slate-900 dark:text-white text-sm">Minimum</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Essential baseline requirements</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Essential baseline accessibility requirements</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-4 bg-white dark:bg-slate-800/60 rounded-xl border border-blue-200 dark:border-blue-800/50">
                   <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sm font-bold bg-blue-500 text-white flex-shrink-0">AA</span>
                   <div>
                     <p className="font-semibold text-slate-900 dark:text-white text-sm">Standard</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Required for legal compliance</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Required for ADA &amp; Section 508 compliance</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-4 bg-white dark:bg-slate-800/60 rounded-xl border border-purple-200 dark:border-purple-800/50">
@@ -105,29 +105,29 @@ export default function WcagChecklistPage() {
             {/* FAQ — compact */}
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
-                FAQ
+                WCAG 2.2 Checklist FAQ
               </h2>
               <div className="space-y-3">
                 {[
                   {
-                    question: "Can I export the checklist to Excel?",
-                    answer: "Yes — click the Excel button in the controls bar above. The export includes all 78 criteria with your progress, notes, an audit summary sheet, and a progress tracking template."
+                    question: "Can I download the WCAG 2.2 checklist as an Excel spreadsheet?",
+                    answer: "Yes — click the Excel button in the controls bar above. The export includes all 78 success criteria with your progress, notes, an audit summary sheet, and a progress tracking template. You can also download a standalone Excel template from the Excel Template page."
                   },
                   {
-                    question: "Is this checklist free?",
-                    answer: "Completely free. Track progress, add notes, filter criteria, and export to Excel or PDF — no account or payment required."
+                    question: "Is the WCAG 2.2 accessibility checklist free?",
+                    answer: "Completely free. Track your audit progress, add notes, filter by level or principle, and export to Excel or PDF — no account or payment required."
                   },
                   {
-                    question: "Does it cover all WCAG 2.2 criteria?",
-                    answer: "Yes — all 78 success criteria across Level A (30), Level AA (24), and Level AAA (24), with descriptions, guidelines, and principles."
+                    question: "Does this checklist cover all WCAG 2.2 success criteria?",
+                    answer: "Yes — all 78 success criteria across Level A (30), Level AA (24), and Level AAA (24). Each criterion includes its WCAG description, parent guideline, and POUR principle for easy reference during accessibility audits."
                   },
                   {
-                    question: "How do I use Excel export for compliance tracking?",
-                    answer: "Export to Excel, then filter by level to focus on AA compliance. Add your own columns for assignees, dates, and remediation notes. Use the progress tracking sheet to monitor improvements over time."
+                    question: "How do I use the Excel export for accessibility compliance tracking?",
+                    answer: "Export to Excel, then filter by level to focus on AA compliance (the legal standard for ADA, Section 508, and EN 301 549). Add columns for assignees, remediation dates, and severity. Use the built-in progress tracking sheet to monitor improvements over time."
                   },
                   {
-                    question: "Is my progress saved?",
-                    answer: "Yes — your checkmarks and notes auto-save to your browser's local storage. They'll persist between sessions on the same device and browser."
+                    question: "Is my checklist progress saved automatically?",
+                    answer: "Yes — your checkmarks and notes auto-save to your browser's local storage. They'll persist between sessions on the same device and browser. For permanent records, export to Excel or PDF."
                   }
                 ].map((faq, index) => (
                   <div key={index} className="p-4 bg-white dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/50">
