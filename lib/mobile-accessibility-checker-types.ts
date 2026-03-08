@@ -5,6 +5,9 @@ export type DeviceConfig = {
   hasTouch: boolean
 }
 
+export type MobileIssueSeverity = 'error' | 'warning' | 'info'
+export type AccessibilityImpact = 'critical' | 'serious' | 'moderate' | 'minor'
+
 export const MOBILE_ACCESSIBILITY_AUDIT_DEVICES: Record<string, DeviceConfig> = {
   "iPhone 14": { width: 390, height: 844, isMobile: true, hasTouch: true },
   "iPhone 14 Plus": { width: 428, height: 926, isMobile: true, hasTouch: true },
@@ -15,10 +18,39 @@ export const MOBILE_ACCESSIBILITY_AUDIT_DEVICES: Record<string, DeviceConfig> = 
 }
 
 export type TouchTargetIssue = {
+  selector: string
   element: string
+  label: string | null
   size: { width: number; height: number }
   position: { x: number; y: number }
-  severity: 'error' | 'warning'
+  severity: MobileIssueSeverity
+  reason: string
+  recommendation: string
+}
+
+export type AccessibilityIssueNode = {
+  selector: string
+  htmlSnippet: string
+  failureSummary: string
+}
+
+export type AccessibilityIssue = {
+  id: string
+  impact: AccessibilityImpact
+  title: string
+  description: string
+  recommendation: string
+  helpUrl: string
+  wcagCriteria: string[]
+  affectedNodes: number
+  sampleNodes: AccessibilityIssueNode[]
+}
+
+export type MobileFriendlyIssue = {
+  id: string
+  title: string
+  severity: MobileIssueSeverity
+  details: string
   recommendation: string
 }
 
@@ -29,6 +61,8 @@ export type MobileAccessibilityAuditResult = {
     total: number
     passing: number
     failing: number
+    errorCount: number
+    warningCount: number
     issues: TouchTargetIssue[]
   }
   performance: {
@@ -38,7 +72,14 @@ export type MobileAccessibilityAuditResult = {
   }
   accessibility: {
     score: number
-    issues: string[]
+    summary: {
+      total: number
+      critical: number
+      serious: number
+      moderate: number
+      minor: number
+    }
+    issues: AccessibilityIssue[]
     screenReaderCompatibility: boolean
   }
   mobileFriendly: {
@@ -46,5 +87,10 @@ export type MobileAccessibilityAuditResult = {
     textReadable: boolean
     linksClickable: boolean
     contentFitsViewport: boolean
+    viewportContent: string | null
+    minFontSize: number | null
+    smallTextExamples: string[]
+    smallFormControlExamples: string[]
+    issues: MobileFriendlyIssue[]
   }
 }

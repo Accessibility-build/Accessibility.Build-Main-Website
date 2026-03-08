@@ -387,19 +387,27 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 
 # Get these from: https://dashboard.clerk.com
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxxxxxxxxxxxx
+CLERK_PUBLISHABLE_KEY=pk_test_xxxxxxxxxxxxx
 CLERK_SECRET_KEY=sk_test_xxxxxxxxxxxxx
 
 # Clerk redirect URLs
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/welcome
 
 # Clerk webhook secret (for user sync)
 CLERK_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxx
 
+# Dedicated Clerk dev-instance users for automated integration tests
+E2E_CLERK_USER_EMAIL=test-user@example.com
+E2E_CLERK_USER_PASSWORD=your-password
+E2E_CLERK_ADMIN_EMAIL=admin-user@example.com
+E2E_CLERK_ADMIN_PASSWORD=your-password
+
 # Configure this webhook in Clerk Dashboard:
-# Endpoint: https://your-domain.com/api/webhooks/clerk
+# Endpoint: https://your-domain.com/webhooks/clerk
+# (Legacy alias still works: /api/webhooks/clerk)
 # Events: user.created, user.updated, user.deleted
 
 # ==========================================
@@ -1050,6 +1058,13 @@ npm run db:studio        # Open Drizzle Studio
 
 # Utilities
 npm run generate-sitemap # Generate sitemap.xml
+npm run clerk:test-session-token -- --user-id user_xxx
+
+# Clerk integration testing
+npm run test:clerk:api
+npm run test:clerk:webhooks
+npm run test:e2e:clerk
+npm run test:clerk
 ```
 
 ### Development Workflow

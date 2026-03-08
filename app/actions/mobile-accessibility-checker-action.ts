@@ -10,12 +10,21 @@ import { checkTrialLimit, recordTrialUsage } from "@/lib/trial-usage"
 import { hasServerUnlimitedAccess } from "@/lib/unlimited-access-server"
 
 import { 
+  AccessibilityImpact,
+  AccessibilityIssue,
   DeviceConfig, 
   MOBILE_ACCESSIBILITY_AUDIT_DEVICES, 
+  MobileFriendlyIssue,
   MobileAccessibilityAuditResult,
 } from '@/lib/mobile-accessibility-checker-types'
 
 const CREDIT_COST = 2
+const AXE_IMPACT_WEIGHTS: Record<AccessibilityImpact, number> = {
+  critical: 12,
+  serious: 8,
+  moderate: 4,
+  minor: 2,
+}
 
 /**
  * Create and launch a Puppeteer Browser instance appropriate for the runtime environment.
@@ -129,9 +138,56 @@ async function analyzeAccessibility(page: Page) {
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'])
     .analyze()
 
-  const totalChecks = axeResults.passes.length + axeResults.violations.length + axeResults.incomplete.length
-  const score = totalChecks === 0 ? 100 : Math.max(0, Math.round(((totalChecks - axeResults.violations.length) / totalChecks) * 100))
-  const issues = axeResults.violations.map(v => v.help)
+  const issues: AccessibilityIssue[] = axeResults.violations
+    .map((violation) => {
+      const impact = (violation.impact || 'moderate') as AccessibilityImpact
+      const sampleNodes = violation.nodes.slice(0, 3).map((node) => ({
+        selector: node.target.join(', ') || 'Unavailable selector',
+        htmlSnippet: (node.html || '').replace(/\s+/g, ' ').slice(0, 180),
+        failureSummary: node.failureSummary || 'Review this element in context.',
+      }))
+
+      return {
+        id: violation.id,
+        impact,
+        title: violation.help,
+        description: violation.description,
+        recommendation: violation.help,
+        helpUrl: violation.helpUrl,
+        wcagCriteria: violation.tags.filter((tag) => tag.startsWith('wcag')),
+        affectedNodes: violation.nodes.length,
+        sampleNodes,
+      }
+    })
+    .sort((left, right) => {
+      const leftWeight = AXE_IMPACT_WEIGHTS[left.impact]
+      const rightWeight = AXE_IMPACT_WEIGHTS[right.impact]
+      if (leftWeight !== rightWeight) {
+        return rightWeight - leftWeight
+      }
+
+      return right.affectedNodes - left.affectedNodes
+    })
+
+  const summary = issues.reduce(
+    (acc, issue) => {
+      acc.total += 1
+      acc[issue.impact] += 1
+      return acc
+    },
+    {
+      total: 0,
+      critical: 0,
+      serious: 0,
+      moderate: 0,
+      minor: 0,
+    }
+  )
+
+  const penalty = issues.reduce((sum, issue) => {
+    return sum + (AXE_IMPACT_WEIGHTS[issue.impact] * Math.min(issue.affectedNodes, 5))
+  }, 0)
+  const score = Math.max(0, 100 - penalty)
 
   // Check for critical semantic structures for slightly more "dynamic" compatibility check
   const hasLandmarks = await page.evaluate(() => {
@@ -142,8 +198,9 @@ async function analyzeAccessibility(page: Page) {
 
   return { 
     score, 
+    summary,
     issues, 
-    screenReaderCompatibility: score > 85 && hasLandmarks 
+    screenReaderCompatibility: score >= 85 && hasLandmarks && summary.critical === 0
   }
 }
 
@@ -160,12 +217,33 @@ async function analyzeAccessibility(page: Page) {
  */
 async function analyzeTouchTargets(page: Page) {
   return page.evaluate(() => {
-    const interactiveSelectors = 'a, button, input, select, textarea, [role="button"]';
-    const elements = Array.from(document.querySelectorAll(interactiveSelectors));
+    const interactiveSelectors = 'a, button, input, select, textarea, summary, [role="button"], [role="link"], [tabindex]:not([tabindex="-1"])';
+    const elements = Array.from(document.querySelectorAll(interactiveSelectors)) as HTMLElement[];
+
+    const getSelector = (el: HTMLElement) => {
+      if (el.id) return `#${el.id}`;
+      const classNames = Array.from(el.classList).slice(0, 2);
+      if (classNames.length > 0) {
+        return `${el.tagName.toLowerCase()}.${classNames.join('.')}`;
+      }
+      return el.tagName.toLowerCase();
+    };
+
+    const getLabel = (el: HTMLElement) => {
+      const ariaLabel = el.getAttribute('aria-label');
+      const ariaLabelledBy = el.getAttribute('aria-labelledby');
+      const title = el.getAttribute('title');
+      const placeholder = el.getAttribute('placeholder');
+      const text = el.textContent?.replace(/\s+/g, ' ').trim();
+
+      return ariaLabel || ariaLabelledBy || title || placeholder || text || null;
+    };
     
     let total = 0;
     let passing = 0;
     let failing = 0;
+    let errorCount = 0;
+    let warningCount = 0;
     const issues: any[] = [];
 
     for (const el of elements) {
@@ -176,7 +254,15 @@ async function analyzeTouchTargets(page: Page) {
       // Note: WCAG 2.2 SC 2.5.8 Target Size (Minimum) is 24x24 px. 
       // We will flag < 24px as error (WCAG 2.2 AA) and < 44px as warning (AAA / Best Practice).
       
-      if (rect.width === 0 || rect.height === 0 || style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') {
+      const isVisuallyHidden =
+        rect.width <= 1 ||
+        rect.height <= 1 ||
+        style.display === 'none' ||
+        style.visibility === 'hidden' ||
+        style.opacity === '0' ||
+        style.pointerEvents === 'none';
+
+      if (isVisuallyHidden) {
         continue;
       }
 
@@ -189,22 +275,33 @@ async function analyzeTouchTargets(page: Page) {
 
       if (width < recommendedSize || height < recommendedSize) {
         failing++;
-        
-        let name = el.tagName.toLowerCase();
-        if (el.id) name += `#${el.id}`;
-        else if (el.className) name += `.${el.className.split(' ')[0]}`;
-        else if (el.textContent) name += ` "${el.textContent.substring(0, 15)}..."`;
-
+        const selector = getSelector(el);
+        const label = getLabel(el);
+        const name = label ? `${selector} "${label.slice(0, 30)}"` : selector;
         const severity = (width < minimalSize || height < minimalSize) ? 'error' : 'warning';
+        const reason =
+          width < minimalSize && height < minimalSize
+            ? 'Both dimensions are below the 24x24px WCAG 2.2 AA minimum.'
+            : width < minimalSize
+              ? 'Width is below the 24px WCAG 2.2 AA minimum.'
+              : height < minimalSize
+                ? 'Height is below the 24px WCAG 2.2 AA minimum.'
+                : 'Target is usable but below the recommended 44x44px mobile target size.';
         const recommendation = severity === 'error' 
           ? 'Must be at least 24x24px (WCAG 2.2 AA).' 
           : 'Should be at least 44x44px (WCAG AAA / Apple HIG).';
 
+        if (severity === 'error') errorCount++;
+        else warningCount++;
+
         issues.push({
+          selector,
           element: name,
+          label,
           size: { width: Math.round(width), height: Math.round(height) },
           position: { x: Math.round(rect.x), y: Math.round(rect.y) },
           severity,
+          reason,
           recommendation
         });
       } else {
@@ -212,7 +309,15 @@ async function analyzeTouchTargets(page: Page) {
       }
     }
 
-    return { total, passing, failing, issues };
+    issues.sort((left, right) => {
+      if (left.severity !== right.severity) {
+        return left.severity === 'error' ? -1 : 1;
+      }
+
+      return (left.size.width * left.size.height) - (right.size.width * right.size.height);
+    });
+
+    return { total, passing, failing, errorCount, warningCount, issues };
   });
 }
 
@@ -260,43 +365,161 @@ async function analyzePerformance(page: Page, loadTime: number) {
  *  - `contentFitsViewport`: `true` if the document width is less than or equal to the window inner width (allows a 2px rounding tolerance).
  */
 async function analyzeMobileFriendliness(page: Page, touchFailingCount: number) {
-  const hasViewportMeta = !!(await page.$('meta[name="viewport"]'))
+  const viewportContent = await page.$eval(
+    'meta[name="viewport"]',
+    (node) => node.getAttribute('content'),
+  ).catch(() => null)
+  const hasViewportMeta = !!viewportContent
   
-  const [contentFitsViewport, textReadable] = await page.evaluate(() => {
+  const {
+    contentFitsViewport,
+    textReadable,
+    minFontSize,
+    smallTextExamples,
+    smallFormControlExamples,
+    documentWidth,
+    viewportWidth,
+  } = await page.evaluate(() => {
     const docWidth = document.documentElement.scrollWidth;
     const windowWidth = window.innerWidth;
     // Allow small rounding errors
     const fits = docWidth <= windowWidth + 2; 
     
-    // Check for readable text size
-    // Checking strict readability
-    const textNodes = Array.from(document.querySelectorAll('p, li, h1, h2, h3, h4, h5, h6, span, div'));
-    let unreadableFound = false;
+    const visibleTextSelectors = 'p, li, label, a, button, td, th, small, span, div';
+    const textNodes = Array.from(document.querySelectorAll(visibleTextSelectors)) as HTMLElement[];
+    const smallTextExamples: string[] = [];
+    let minFontSize = Number.POSITIVE_INFINITY;
 
     for (const el of textNodes) {
-       // Only check direct text content
-       if (!el.textContent?.trim()) continue;
-       
-       const style = window.getComputedStyle(el);
-       if (style.display === 'none' || style.visibility === 'hidden') continue;
+      if (!el.textContent?.trim()) continue;
 
-       const pxSize = parseFloat(style.fontSize);
-       // 12px is generally considered the absolute minimum for body text on mobile.
-       // 10px might be used for strict captions/metadata, but generally 12px+ is safe for "readable".
-       if (pxSize < 12) {
-         unreadableFound = true;
-         break;
-       }
+      const style = window.getComputedStyle(el);
+      const rect = el.getBoundingClientRect();
+      if (
+        rect.width === 0 ||
+        rect.height === 0 ||
+        style.display === 'none' ||
+        style.visibility === 'hidden' ||
+        style.opacity === '0'
+      ) {
+        continue;
+      }
+
+      const pxSize = parseFloat(style.fontSize);
+      if (!Number.isFinite(pxSize)) continue;
+      minFontSize = Math.min(minFontSize, pxSize);
+
+      if (pxSize < 12 && smallTextExamples.length < 5) {
+        const text = el.textContent.replace(/\s+/g, ' ').trim().slice(0, 60);
+        smallTextExamples.push(`${el.tagName.toLowerCase()} (${Math.round(pxSize)}px): ${text}`);
+      }
+    }
+
+    const formControls = Array.from(document.querySelectorAll('input, select, textarea, button')) as HTMLElement[];
+    const smallFormControlExamples: string[] = [];
+
+    for (const el of formControls) {
+      const style = window.getComputedStyle(el);
+      const rect = el.getBoundingClientRect();
+      if (
+        rect.width === 0 ||
+        rect.height === 0 ||
+        style.display === 'none' ||
+        style.visibility === 'hidden'
+      ) {
+        continue;
+      }
+
+      const pxSize = parseFloat(style.fontSize);
+      if (!Number.isFinite(pxSize) || pxSize >= 16 || smallFormControlExamples.length >= 5) {
+        continue;
+      }
+
+      const label = el.getAttribute('aria-label') || el.getAttribute('placeholder') || el.textContent?.trim() || el.tagName.toLowerCase();
+      smallFormControlExamples.push(`${el.tagName.toLowerCase()} (${Math.round(pxSize)}px): ${label.slice(0, 60)}`);
     }
     
-    return [fits, !unreadableFound]
+    return {
+      contentFitsViewport: fits,
+      textReadable: smallTextExamples.length === 0,
+      minFontSize: Number.isFinite(minFontSize) ? minFontSize : null,
+      smallTextExamples,
+      smallFormControlExamples,
+      documentWidth: docWidth,
+      viewportWidth: windowWidth,
+    }
   })
+
+  const issues: MobileFriendlyIssue[] = []
+
+  if (!hasViewportMeta) {
+    issues.push({
+      id: 'viewport-meta-missing',
+      title: 'Viewport meta tag is missing',
+      severity: 'error',
+      details: 'Mobile browsers will not size the layout correctly without a viewport declaration.',
+      recommendation: 'Add `<meta name="viewport" content="width=device-width, initial-scale=1">`.',
+    })
+  } else if (/user-scalable\s*=\s*no|maximum-scale\s*=\s*1(?:\.0)?/i.test(viewportContent)) {
+    issues.push({
+      id: 'viewport-zoom-disabled',
+      title: 'Viewport settings disable or restrict zoom',
+      severity: 'error',
+      details: `Viewport content: ${viewportContent}`,
+      recommendation: 'Allow pinch zoom by removing `user-scalable=no` and restrictive `maximum-scale` values.',
+    })
+  }
+
+  if (!contentFitsViewport) {
+    issues.push({
+      id: 'horizontal-overflow',
+      title: 'Content overflows the mobile viewport',
+      severity: 'error',
+      details: `Document width is ${Math.round(documentWidth)}px while the viewport is ${Math.round(viewportWidth)}px.`,
+      recommendation: 'Prevent horizontal scrolling by constraining wide content and reviewing fixed-width elements.',
+    })
+  }
+
+  if (!textReadable) {
+    issues.push({
+      id: 'small-text',
+      title: 'Text is too small on mobile',
+      severity: 'warning',
+      details: smallTextExamples.join(' | '),
+      recommendation: 'Increase text to at least 12px for general readability on mobile screens.',
+    })
+  }
+
+  if (smallFormControlExamples.length > 0) {
+    issues.push({
+      id: 'small-form-controls',
+      title: 'Form controls use text below 16px',
+      severity: 'warning',
+      details: smallFormControlExamples.join(' | '),
+      recommendation: 'Use at least 16px font size for interactive form controls to avoid iOS auto-zoom and improve readability.',
+    })
+  }
+
+  if (touchFailingCount > 0) {
+    issues.push({
+      id: 'unclickable-targets',
+      title: 'Some interactive targets are too small for reliable tapping',
+      severity: 'warning',
+      details: `${touchFailingCount} touch target issue(s) fell below the WCAG minimum.`,
+      recommendation: 'Increase control hit areas and add spacing around dense tap targets.',
+    })
+  }
 
   return {
     hasViewportMeta,
     textReadable,
     linksClickable: touchFailingCount === 0, // Strict: Fail if ANY touch target is too small (below minimum)
-    contentFitsViewport
+    contentFitsViewport,
+    viewportContent,
+    minFontSize,
+    smallTextExamples,
+    smallFormControlExamples,
+    issues,
   }
 }
 
@@ -392,25 +615,40 @@ export async function runMobileAccessibilityChecker(
     // Wrap each audit in try-catch so one failure doesn't crash the whole report
     
     // Accessibility (Critical)
-    let accessibility
+    let accessibility: MobileAccessibilityAuditResult["accessibility"]
     try {
       accessibility = await analyzeAccessibility(page)
     } catch (e) {
       console.error("Accessibility audit failed", e)
-      accessibility = { score: 0, issues: ["Failed to run accessibility checks"], screenReaderCompatibility: false }
+      accessibility = {
+        score: 0,
+        summary: { total: 1, critical: 1, serious: 0, moderate: 0, minor: 0 },
+        issues: [{
+          id: 'accessibility-audit-failed',
+          impact: 'critical' as const,
+          title: 'Failed to run accessibility checks',
+          description: 'The automated accessibility audit could not complete.',
+          recommendation: 'Retry the scan and review server logs for the underlying runtime error.',
+          helpUrl: '',
+          wcagCriteria: [],
+          affectedNodes: 0,
+          sampleNodes: [],
+        }],
+        screenReaderCompatibility: false,
+      }
     }
 
     // Touch Targets (Critical)
-    let touchTargets
+    let touchTargets: MobileAccessibilityAuditResult["touchTargets"]
     try {
       touchTargets = await analyzeTouchTargets(page)
     } catch (e) {
       console.error("Touch target audit failed", e)
-      touchTargets = { total: 0, passing: 0, failing: 0, issues: [] }
+      touchTargets = { total: 0, passing: 0, failing: 0, errorCount: 0, warningCount: 0, issues: [] }
     }
 
     // Performance (Non-critical)
-    let perfMetrics
+    let perfMetrics: MobileAccessibilityAuditResult["performance"]
     try {
       perfMetrics = await analyzePerformance(page, loadTime)
     } catch (e) {
@@ -419,13 +657,29 @@ export async function runMobileAccessibilityChecker(
     }
     
     // Mobile Friendly (Composite)
-    let mobileFriendly
+    let mobileFriendly: MobileAccessibilityAuditResult["mobileFriendly"]
     try {
-      const strictTouchFailures = touchTargets.issues.filter((i: any) => i.severity === 'error').length;
+      const strictTouchFailures = touchTargets.errorCount;
       mobileFriendly = await analyzeMobileFriendliness(page, strictTouchFailures)
     } catch (e) {
       console.error("Mobile friendliness check failed", e)
-      mobileFriendly = { hasViewportMeta: false, textReadable: false, linksClickable: false, contentFitsViewport: false }
+      mobileFriendly = {
+        hasViewportMeta: false,
+        textReadable: false,
+        linksClickable: false,
+        contentFitsViewport: false,
+        viewportContent: null,
+        minFontSize: null,
+        smallTextExamples: [],
+        smallFormControlExamples: [],
+        issues: [{
+          id: 'mobile-friendly-check-failed',
+          title: 'Failed to evaluate mobile-specific requirements',
+          severity: 'error' as const,
+          details: 'The mobile heuristic checks did not complete.',
+          recommendation: 'Retry the scan and inspect the page for script/runtime errors.',
+        }],
+      }
     }
 
     // --- Composite Scoring Logic ---

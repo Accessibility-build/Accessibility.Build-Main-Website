@@ -1,12 +1,43 @@
 # Clerk Testing Guide
 
-This project now uses Clerk's route-handler auth pattern (`auth()`) for billing APIs so Bearer-token testing is reliable for local and staging checks.
+This repo tests Clerk in three layers only:
 
-## 1) Generate a Session Token (Recommended)
+1. Bearer-token API smoke via live Clerk sessions.
+2. Browser E2E via Playwright and `@clerk/testing/playwright`.
+3. Svix-signed webhook integration against `/api/webhooks/clerk`.
 
-Use a real Clerk user ID and create a temporary session token from the Clerk Backend API.
+The automated suites use short-lived fresh Clerk session tokens. Long-lived JWT templates remain a manual Postman/Insomnia option only.
 
-Command:
+## Environment Contract
+
+Required for the automated suites:
+
+```bash
+NEXT_PUBLIC_APP_URL=http://127.0.0.1:3000
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxxxxxxxxxxxx
+CLERK_PUBLISHABLE_KEY=pk_test_xxxxxxxxxxxxx # optional alias for tooling
+CLERK_SECRET_KEY=sk_test_xxxxxxxxxxxxx
+CLERK_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxx
+DATABASE_URL=postgresql://user:password@host:5432/db
+ADMIN_EMAIL=admin@example.com
+E2E_CLERK_USER_EMAIL=test-user@example.com
+E2E_CLERK_USER_PASSWORD=your-password
+E2E_CLERK_ADMIN_EMAIL=admin-user@example.com
+E2E_CLERK_ADMIN_PASSWORD=your-password
+EMAIL_SERVICE_ENABLED=false
+EMAIL_MARKETING_ENABLED=false
+```
+
+Notes:
+
+- Use a dedicated Clerk development instance only.
+- The standard and admin E2E users must already exist in Clerk with email/password enabled.
+- `ADMIN_EMAIL` must include the admin E2E email so `/admin` and `requireAdminApi()` can be exercised.
+- Disabling email delivery keeps webhook tests from sending real welcome or marketing mail.
+
+## Manual Session Token Helper
+
+Keep using the existing helper when you want an ad hoc API token outside the automated suite:
 
 ```bash
 npm run clerk:test-session-token -- --user-id <clerk_user_id>
@@ -18,58 +49,106 @@ Optional expiration:
 npm run clerk:test-session-token -- --user-id <clerk_user_id> --expires-in 3600
 ```
 
-Requirements:
-- `CLERK_SECRET_KEY` must be set.
-- The user ID must already exist in Clerk.
+The script prints a short-lived `SESSION_TOKEN` plus a ready-to-paste `Authorization` header.
 
-The script prints a `SESSION_TOKEN` and an `Authorization` header value.
+## Automated API Smoke
 
-## 2) Test Protected Billing APIs
-
-Use the session token in Postman/cURL:
+Run:
 
 ```bash
-curl -X POST http://localhost:3000/api/billing/checkout-session \
-  -H "Authorization: Bearer <SESSION_TOKEN>" \
-  -H "Content-Type: application/json" \
-  -d '{"catalogKey":"starter_50","currency":"USD","returnPath":"/pricing"}'
+npm run test:clerk:api
 ```
 
-Because these routes use `auth()`, this flow is stable for API-only testing and avoids UI cookie/session coupling.
+Coverage:
 
-## 3) Alternative: Long-Lived JWT Template (Postman/Insomnia)
+- `GET /api/user/credits`
+- `POST /api/billing/checkout-session`
+- `POST /api/billing/manage-session`
+- `POST /api/billing/portal-session`
+- `POST /api/billing/payment-link`
+- `GET /api/billing/receipt/:orderId`
+- `POST /api/billing/events`
+- `GET /api/admin/dashboard`
 
-Clerk also supports generating long-lived testing JWTs from a session token template for API clients.
+The runner:
 
-If you use that method:
-- include `Authorization: Bearer <token>`
-- verify the token is accepted by your Clerk instance settings
-- prefer short expirations for security
+- boots an isolated local Next dev server
+- mints a fresh Clerk session token per authenticated request
+- re-mints once on `401` to avoid token TTL flake
+- checks anonymous and stale-token failures
+- checks valid standard-user and admin access paths
+- creates one disposable Clerk user to verify first-request DB bootstrap
 
-## 4) Browser E2E (Playwright/Cypress)
+## Browser E2E
 
-For browser automation, use Clerk's official testing helpers:
-- `@clerk/testing/playwright`
-- `@clerk/testing/cypress`
+Run:
 
-These helpers handle sign-in/session setup and reduce flaky auth behavior in end-to-end tests.
+```bash
+npm run test:e2e:clerk
+```
 
-## 5) Current Billing Routes Updated for Clerk Testing
+Playwright coverage:
 
-The following routes now rely on token-friendly `auth()` identity flow:
-- `/api/billing/checkout-session`
-- `/api/billing/manage-session`
-- `/api/billing/portal-session`
-- `/api/billing/payment-link`
-- `/api/billing/receipt/:orderId`
-- `/api/billing/events` (optional auth capture)
+- `/sign-in` and `/sign-up` render with Clerk loaded
+- signed-out redirects for `/billing`, `/billing/manage`, `/dashboard`, `/profile`, and `/admin`
+- standard-user access to `/billing`, `/dashboard`, and `/profile`
+- non-admin redirect away from `/admin`
+- admin access to `/admin`
+- Clerk sign-out clearing protected-route access
+- one disposable sign-up flow using Clerk test-mode email verification
 
-## 6) Troubleshooting
+Project layout:
 
-- `401 Authentication required`:
-  - check token is valid and unexpired
-  - ensure `proxy.ts` middleware is active for `/api/*`
-- User missing in DB:
-  - APIs auto-bootstrap user records by Clerk user ID
-- Admin route errors:
-  - admin routes still require an admin Clerk account and admin email allowlist
+- `setup`: creates reusable auth states for the standard and admin users
+- `signed-out`: public auth-page and redirect coverage
+- `signed-in-user`: normal authenticated user coverage
+- `signed-in-admin`: admin-only coverage
+
+Useful filters:
+
+```bash
+npm run test:e2e:clerk -- --grep @smoke
+npm run test:e2e:clerk -- --grep @extended
+```
+
+## Webhook Integration
+
+Run:
+
+```bash
+npm run test:clerk:webhooks
+```
+
+The webhook runner:
+
+- boots isolated local Next dev servers
+- signs payloads with Svix headers
+- verifies `500` when `CLERK_WEBHOOK_SECRET` is missing
+- verifies `400` for missing headers and bad signatures
+- checks `user.created`, duplicate `user.created`, `user.updated`, `user.deleted`, and unhandled events
+- validates DB side effects in `users` and `credit_transactions`
+
+## Combined Run
+
+Run the full Clerk suite:
+
+```bash
+npm run test:clerk
+```
+
+This executes API smoke, webhook integration, and Playwright E2E in sequence.
+
+## Failure Triage
+
+- `401 Authentication required` on bearer-token routes:
+  - confirm `proxy.ts` still matches `/api/*`
+  - confirm the E2E users still exist in Clerk
+  - confirm the route actually uses `auth()` or `getClerkApiIdentity()`
+- Admin checks failing with `403`:
+  - confirm the admin test email is listed in `ADMIN_EMAIL`
+- Disposable sign-up failing on OTP:
+  - use a `+clerk_test` email address
+  - make sure Clerk email-code verification is enabled in the dev instance
+- Webhook tests failing at `500`:
+  - confirm `CLERK_WEBHOOK_SECRET` matches the secret used to sign the test payloads
+  - confirm `DATABASE_URL` points at a writable database

@@ -1,0 +1,121 @@
+name: Clerk Tests
+
+on:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * *'
+
+concurrency:
+  group: clerk-tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NEXT_PUBLIC_APP_URL: http://127.0.0.1:3000
+  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
+  CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
+  CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+  CLERK_WEBHOOK_SECRET: ${{ secrets.CLERK_WEBHOOK_SECRET }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+  E2E_CLERK_USER_EMAIL: ${{ secrets.E2E_CLERK_USER_EMAIL }}
+  E2E_CLERK_USER_PASSWORD: ${{ secrets.E2E_CLERK_USER_PASSWORD }}
+  E2E_CLERK_ADMIN_EMAIL: ${{ secrets.E2E_CLERK_ADMIN_EMAIL }}
+  E2E_CLERK_ADMIN_PASSWORD: ${{ secrets.E2E_CLERK_ADMIN_PASSWORD }}
+  EMAIL_SERVICE_ENABLED: 'false'
+  EMAIL_MARKETING_ENABLED: 'false'
+  TEST_CLERK_USER_ID: ${{ secrets.TEST_CLERK_USER_ID }}
+  RAZORPAY_KEY_ID: ${{ secrets.RAZORPAY_KEY_ID }}
+  RAZORPAY_KEY_SECRET: ${{ secrets.RAZORPAY_KEY_SECRET }}
+  RAZORPAY_WEBHOOK_SECRET: ${{ secrets.RAZORPAY_WEBHOOK_SECRET }}
+  BILLING_PROVIDER: razorpay
+  BILLING_ENABLED: 'true'
+
+jobs:
+  clerk-integration:
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Clerk API smoke tests
+        run: npm run test:clerk:api
+
+      - name: Run Clerk webhook integration tests
+        run: npm run test:clerk:webhooks
+
+      - name: Run Clerk Playwright smoke tests
+        run: npm run test:e2e:clerk -- --grep @smoke
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-smoke
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
+
+  clerk-extended:
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Clerk Playwright extended tests
+        run: npm run test:e2e:clerk -- --grep @extended
+
+      - name: Run provider-backed billing smoke
+        if: ${{ env.RAZORPAY_KEY_ID != '' && env.RAZORPAY_KEY_SECRET != '' && env.RAZORPAY_WEBHOOK_SECRET != '' && env.TEST_CLERK_USER_ID != '' }}
+        run: |
+          npm run dev -- --hostname 127.0.0.1 --port 3000 > /tmp/clerk-billing-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
+          for attempt in $(seq 1 60); do
+            if curl -sSf http://127.0.0.1:3000/sign-in > /dev/null; then
+              break
+            fi
+            sleep 2
+          done
+          npm run billing:test-e2e -- --user-id "$TEST_CLERK_USER_ID"
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-extended
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
