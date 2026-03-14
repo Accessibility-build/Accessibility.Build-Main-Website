@@ -134,6 +134,11 @@ const navItems: NavItem[] = [
         href: "/research/accessibility-lawsuits",
         description: "ADA accessibility litigation data",
       },
+      {
+        name: "WCAG 3.0 Guide",
+        href: "/wcag-3",
+        description: "Next-gen accessibility standards",
+      },
     ],
   },
   { name: "WCAG 2.2 Checklist", href: "/checklists/wcag-2-2" },

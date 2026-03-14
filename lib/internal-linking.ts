@@ -85,6 +85,47 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['screen reader testing', 'nvda', 'jaws', 'voiceover', 'talkback', 'assistive technology', 'screen reader commands', 'accessibility testing'],
     priority: 9
   },
+  // WCAG 3.0 Pages
+  {
+    url: '/wcag-3',
+    title: 'WCAG 3.0 Guide: W3C Accessibility Guidelines 3.0',
+    description: 'Comprehensive guide to WCAG 3.0 with overview, guidelines, comparison, key concepts, and preparation steps',
+    type: 'guide',
+    keywords: ['wcag 3.0', 'wcag 3', 'w3c accessibility guidelines', 'wcag 3.0 overview', 'accessibility standards', 'next generation wcag'],
+    priority: 10
+  },
+  {
+    url: '/wcag-3/guidelines',
+    title: 'WCAG 3.0 Guideline Categories Explained',
+    description: 'Deep dive into all 12 WCAG 3.0 guideline categories with examples and WCAG 2.x mapping',
+    type: 'guide',
+    keywords: ['wcag 3.0 guidelines', 'wcag 3 categories', 'wcag 3.0 12 categories', 'guideline categories', 'pour principles'],
+    priority: 9
+  },
+  {
+    url: '/wcag-3/comparison',
+    title: 'WCAG 3.0 vs WCAG 2.2 Comparison',
+    description: 'Side-by-side comparison of WCAG 3.0 and WCAG 2.2 covering conformance, scope, structure, and testing differences',
+    type: 'guide',
+    keywords: ['wcag 3 vs wcag 2', 'wcag comparison', 'wcag 3.0 differences', 'wcag 2.2 vs 3.0', 'conformance model'],
+    priority: 9
+  },
+  {
+    url: '/wcag-3/concepts',
+    title: 'WCAG 3.0 Key Concepts and Terminology',
+    description: 'Reference guide to WCAG 3.0 terminology: outcomes, methods, assertions, functional needs, and requirements',
+    type: 'guide',
+    keywords: ['wcag 3.0 concepts', 'wcag 3 terminology', 'outcomes', 'methods', 'assertions', 'functional needs', 'requirements'],
+    priority: 8
+  },
+  {
+    url: '/wcag-3/preparation',
+    title: 'How to Prepare for WCAG 3.0',
+    description: 'Practical action plan for teams and organizations to prepare for WCAG 3.0 transition',
+    type: 'guide',
+    keywords: ['prepare wcag 3.0', 'wcag 3 preparation', 'wcag 3 transition', 'wcag 3 action plan', 'accessibility roadmap'],
+    priority: 8
+  },
   // ROI Calculator Tool
   {
     url: '/tools/accessibility-roi-calculator',

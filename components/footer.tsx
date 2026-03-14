@@ -27,6 +27,7 @@ const researchLinks = [
   { href: "/research", label: "Research Hub" },
   { href: "/research/state-of-accessibility", label: "State of Accessibility 2026" },
   { href: "/research/accessibility-lawsuits", label: "Lawsuit Tracker 2026" },
+  { href: "/wcag-3", label: "WCAG 3.0 Guide" },
   { href: "/guides", label: "Guides Hub" },
   { href: "/guides/keyboard-accessibility", label: "Keyboard Accessibility" },
   { href: "/guides/screen-reader-testing", label: "Screen Reader Testing" },

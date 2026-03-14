@@ -16,7 +16,7 @@ export default function WcagChecklistPage() {
   const stats = getWCAGStats()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-[#0a0f1a] dark:via-[#0d1321] dark:to-[#0a0f1a]">
+    <div className="min-h-screen pt-24 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-[#0a0f1a] dark:via-[#0d1321] dark:to-[#0a0f1a]">
       {/* Compact Header */}
       <div className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">

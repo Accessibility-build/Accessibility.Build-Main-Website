@@ -32,6 +32,19 @@ export default function WCAG3WhatToExpectPost() {
       </header>
 
       <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Cross-link to comprehensive WCAG 3.0 guide */}
+        <div className="mb-8 p-5 bg-gradient-to-r from-teal-50 to-blue-50 dark:from-teal-950/30 dark:to-blue-950/30 rounded-xl border border-teal-200 dark:border-teal-800/50">
+          <p className="text-sm font-medium text-teal-900 dark:text-teal-200 mb-2">
+            Looking for our comprehensive WCAG 3.0 resource?
+          </p>
+          <p className="text-sm text-teal-700 dark:text-teal-400 mb-3">
+            We have published an in-depth, multi-page guide covering all 12 guideline categories, side-by-side comparisons with WCAG 2.2, key concepts, and a practical preparation plan.
+          </p>
+          <Link href="/wcag-3" className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-700 dark:text-teal-300 hover:text-teal-900 dark:hover:text-teal-100 underline underline-offset-2">
+            Read the full WCAG 3.0 Guide →
+          </Link>
+        </div>
+
         <article className="bg-white dark:bg-gray-900 rounded-lg border p-8">
           <div className="prose prose-lg max-w-none">
             <h2>WCAG 3.0 Overview</h2>

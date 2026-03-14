@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 
 export default function ScreenReaderTestingGuidePage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950">
+    <div className="min-h-screen pt-24 bg-white dark:bg-slate-950">
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },
