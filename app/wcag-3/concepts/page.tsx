@@ -290,7 +290,7 @@ function StepColorClasses(color: string) {
 
 export default function WCAG3ConceptsPage() {
   return (
-    <div className="min-h-screen pt-24">
+    <div className="min-h-screen pt-12">
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },

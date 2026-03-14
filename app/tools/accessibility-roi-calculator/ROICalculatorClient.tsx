@@ -414,7 +414,7 @@ function ROICalculatorInner() {
 
   // ── Render ───────────────────────────────────────────────────────────────────
   return (
-    <div className="container-wide pt-24 pb-12">
+    <div className="container-wide pt-12 pb-12">
       {/* Header */}
       <div className="max-w-4xl mx-auto text-center mb-12">
         <div className="flex gap-3 mb-4 justify-center items-center">

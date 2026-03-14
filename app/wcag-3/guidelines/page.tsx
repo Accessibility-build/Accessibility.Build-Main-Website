@@ -314,7 +314,7 @@ function POURvsCategoriesSVG() {
 
 export default function WCAG3GuidelinesPage() {
   return (
-    <div className="min-h-screen pt-24">
+    <div className="min-h-screen pt-12">
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },

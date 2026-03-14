@@ -112,7 +112,7 @@ export default function StateOfAccessibilityPage() {
       />
       <FAQStructuredData faqs={faqs} />
 
-      <div className="min-h-screen pt-24 bg-white dark:bg-gray-950">
+      <div className="min-h-screen pt-12 bg-white dark:bg-gray-950">
         {/* Header */}
         <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
           <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
