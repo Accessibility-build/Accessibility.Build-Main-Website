@@ -32,7 +32,10 @@ import {
   Flame,
   Search,
   BarChart3,
-  ExternalLink
+  ExternalLink,
+  Layers,
+  GitCompareArrows,
+  Compass
 } from "lucide-react"
 import { InteractiveHero } from "@/components/interactive-hero"
 import { useEffect, useRef } from "react"
@@ -78,6 +81,7 @@ export default function HomePage() {
   const toolsRef = useIntersectionObserver()
   const questionsRef = useIntersectionObserver()
   const servicesRef = useIntersectionObserver()
+  const wcag3Ref = useIntersectionObserver()
   const hellRef = useIntersectionObserver()
   const ctaRef = useIntersectionObserver()
   const homepageMetricCards = [
@@ -549,6 +553,81 @@ export default function HomePage() {
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* WCAG 3.0 Preview Section */}
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-teal-50/60 via-white to-blue-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-teal-950/20">
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-teal-200/20 dark:bg-teal-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-blue-200/20 dark:bg-blue-600/5 rounded-full blur-3xl"></div>
+
+        <div ref={wcag3Ref} className="relative container-wide">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-14">
+              <Badge className="bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 border-teal-200 dark:border-teal-700 mb-6 px-4 py-2 text-sm">
+                Working Draft — 2026
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+                The Future of Accessibility:{" "}
+                <span className="bg-gradient-to-r from-teal-600 to-blue-600 dark:from-teal-400 dark:to-blue-400 bg-clip-text text-transparent">
+                  WCAG 3.0
+                </span>
+              </h2>
+              <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
+                The next generation of accessibility standards is being developed. With 12 guideline categories, outcomes-based
+                testing, and scope beyond web content — get ahead of the curve.
+              </p>
+            </div>
+
+            {/* Key Changes Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-white dark:bg-slate-800/60 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
+                <div className="p-3 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl shadow-md w-fit mb-4">
+                  <Layers className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">12 Guideline Categories</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  The 4 POUR principles evolve into 12 functional categories covering new areas like cognitive accessibility and algorithmic fairness.
+                </p>
+              </div>
+
+              <div className="bg-white dark:bg-slate-800/60 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
+                <div className="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl shadow-md w-fit mb-4">
+                  <BarChart3 className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Outcomes-Based Testing</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Moving beyond binary pass/fail to graduated scoring that measures real user impact rather than checkbox compliance.
+                </p>
+              </div>
+
+              <div className="bg-white dark:bg-slate-800/60 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
+                <div className="p-3 bg-gradient-to-r from-purple-500 to-violet-600 rounded-xl shadow-md w-fit mb-4">
+                  <Globe className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Beyond Web Content</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Expanded scope covering native apps, authoring tools, user agents, IoT devices, and virtual/augmented reality.
+                </p>
+              </div>
+            </div>
+
+            {/* CTA Links */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button asChild size="lg" className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white shadow-lg">
+                <Link href="/wcag-3">
+                  Explore the Full WCAG 3.0 Guide
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800">
+                <Link href="/wcag-3/comparison">
+                  <GitCompareArrows className="mr-2 h-5 w-5" />
+                  WCAG 3.0 vs 2.2 Comparison
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

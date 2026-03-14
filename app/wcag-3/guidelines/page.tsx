@@ -23,20 +23,28 @@ import {
   ArrowLeftRight,
 } from "lucide-react"
 
-export const metadata = createMetadata({
-  title: "WCAG 3.0 Guidelines: All 12 Categories Explained | Complete Breakdown",
-  description:
-    "Complete breakdown of the 12 WCAG 3.0 guideline categories that replace the 4 POUR principles. Learn what each category covers, how it maps to WCAG 2.x, and what is entirely new in WCAG 3.",
-  keywords: [
-    "wcag 3.0 guidelines",
-    "wcag 3 categories",
-    "wcag 3.0 12 categories",
-    "wcag 3 requirements",
-    "WCAG 3 guideline categories",
-    "POUR principles replacement",
-    "WCAG 3.0 functional categories",
-  ],
-})
+export const metadata = {
+  ...createMetadata({
+    title: "WCAG 3.0 Guidelines: All 12 Categories Explained | Complete Breakdown",
+    description:
+      "Complete breakdown of the 12 WCAG 3.0 guideline categories that replace the 4 POUR principles. Learn what each category covers, how it maps to WCAG 2.x, and what is entirely new in WCAG 3.",
+    keywords: [
+      "wcag 3.0 guidelines",
+      "wcag 3 categories",
+      "wcag 3.0 12 categories",
+      "wcag 3 requirements",
+      "WCAG 3 guideline categories",
+      "POUR principles replacement",
+      "WCAG 3.0 functional categories",
+    ],
+    type: "article" as const,
+    publishedTime: "2026-03-15T00:00:00Z",
+    modifiedTime: "2026-03-15T00:00:00Z",
+  }),
+  alternates: {
+    canonical: "https://accessibility.build/wcag-3/guidelines",
+  },
+}
 
 const categories = [
   {

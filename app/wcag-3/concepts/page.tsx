@@ -16,19 +16,27 @@ import {
   ArrowRightLeft,
 } from "lucide-react"
 
-export const metadata = createMetadata({
-  title: "WCAG 3.0 Key Concepts: Outcomes, Methods, Assertions & Functional Needs Explained",
-  description:
-    "A reference guide to the new vocabulary and conceptual framework in WCAG 3.0. Understand guidelines, requirements, methods, assertions, functional needs, and outcomes.",
-  keywords: [
-    "wcag 3.0 concepts",
-    "wcag 3 terminology",
-    "wcag 3.0 outcomes",
-    "wcag 3 assertions",
-    "wcag 3 methods",
-    "wcag 3.0 functional needs",
-  ],
-})
+export const metadata = {
+  ...createMetadata({
+    title: "WCAG 3.0 Key Concepts: Outcomes, Methods, Assertions & Functional Needs Explained",
+    description:
+      "A reference guide to the new vocabulary and conceptual framework in WCAG 3.0. Understand guidelines, requirements, methods, assertions, functional needs, and outcomes.",
+    keywords: [
+      "wcag 3.0 concepts",
+      "wcag 3 terminology",
+      "wcag 3.0 outcomes",
+      "wcag 3 assertions",
+      "wcag 3 methods",
+      "wcag 3.0 functional needs",
+    ],
+    type: "article" as const,
+    publishedTime: "2026-03-15T00:00:00Z",
+    modifiedTime: "2026-03-15T00:00:00Z",
+  }),
+  alternates: {
+    canonical: "https://accessibility.build/wcag-3/concepts",
+  },
+}
 
 const conceptCards = [
   {

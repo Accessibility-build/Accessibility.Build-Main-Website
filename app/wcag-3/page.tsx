@@ -20,23 +20,31 @@ import {
   Sparkles,
 } from "lucide-react"
 
-export const metadata = createMetadata({
-  title: "WCAG 3.0 Guide: Everything About W3C Accessibility Guidelines 3.0",
-  description:
-    "Comprehensive guide to WCAG 3.0 (W3C Accessibility Guidelines). Learn about the new conformance model, 12 guideline categories, outcomes-based testing, and how to prepare for the next generation of accessibility standards.",
-  keywords: [
-    "WCAG 3.0",
-    "WCAG 3",
-    "W3C Accessibility Guidelines",
-    "WCAG 3.0 overview",
-    "what is WCAG 3.0",
-    "WCAG 3.0 changes",
-    "WCAG 3 guide",
-    "accessibility standards",
-    "WCAG 3.0 conformance",
-    "outcomes-based accessibility",
-  ],
-})
+export const metadata = {
+  ...createMetadata({
+    title: "WCAG 3.0 Guide: Everything About W3C Accessibility Guidelines 3.0",
+    description:
+      "Comprehensive guide to WCAG 3.0 (W3C Accessibility Guidelines). Learn about the new conformance model, 12 guideline categories, outcomes-based testing, and how to prepare for the next generation of accessibility standards.",
+    keywords: [
+      "WCAG 3.0",
+      "WCAG 3",
+      "W3C Accessibility Guidelines",
+      "WCAG 3.0 overview",
+      "what is WCAG 3.0",
+      "WCAG 3.0 changes",
+      "WCAG 3 guide",
+      "accessibility standards",
+      "WCAG 3.0 conformance",
+      "outcomes-based accessibility",
+    ],
+    type: "article" as const,
+    publishedTime: "2026-03-15T00:00:00Z",
+    modifiedTime: "2026-03-15T00:00:00Z",
+  }),
+  alternates: {
+    canonical: "https://accessibility.build/wcag-3",
+  },
+}
 
 const faqs = [
   {
