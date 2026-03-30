@@ -104,7 +104,7 @@ function isPrivateUrl(urlStr: string): boolean {
 
 // Chromium binary URL for serverless (chromium-min downloads at runtime)
 const CHROMIUM_REMOTE_URL =
-  "https://github.com/nichochar/chromium-compact/releases/download/chromium-v143.0.0/chromium-v143.0.0-pack.tar"
+  "https://github.com/Sparticuz/chromium/releases/download/v143.0.0/chromium-v143.0.0-pack.x64.tar"
 
 // Dynamically import chromium-min for serverless
 let chromiumModule: any = null

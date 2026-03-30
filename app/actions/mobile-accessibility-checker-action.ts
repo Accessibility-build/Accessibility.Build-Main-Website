@@ -4,7 +4,7 @@ import { AxePuppeteer } from '@axe-core/puppeteer'
 import chromium from '@sparticuz/chromium-min'
 
 const CHROMIUM_REMOTE_URL =
-  "https://github.com/nichochar/chromium-compact/releases/download/chromium-v143.0.0/chromium-v143.0.0-pack.tar"
+  "https://github.com/Sparticuz/chromium/releases/download/v143.0.0/chromium-v143.0.0-pack.x64.tar"
 import puppeteerCore, { Page } from 'puppeteer-core'
 import { currentUser } from "@clerk/nextjs/server"
 import { creditTransactions, db, toolUsage, users } from "@/lib/db"
