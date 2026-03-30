@@ -166,7 +166,14 @@ export async function POST(request: NextRequest) {
     let pdfjsAvailable = true
     try {
       const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs")
-      const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(pdfBytes) })
+      // Resolve standard font data path for proper text extraction
+      const path = await import("path")
+      const standardFontDataUrl = path.join(process.cwd(), "node_modules/pdfjs-dist/standard_fonts/")
+      const loadingTask = pdfjsLib.getDocument({
+        data: new Uint8Array(pdfBytes),
+        standardFontDataUrl,
+        useSystemFonts: true,
+      })
       pdfjsDoc = await loadingTask.promise
     } catch (pdfjsErr) {
       console.error("[PDF Checker] pdfjs-dist failed, falling back to pdf-lib only:", pdfjsErr)

@@ -224,7 +224,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Wait a bit for overlay widgets to inject themselves
-    await page.waitForTimeout(3000)
+    await new Promise((resolve) => setTimeout(resolve, 3000))
 
     // Detect overlays via page.evaluate
     const detectionResults = await page.evaluate((vendors) => {
