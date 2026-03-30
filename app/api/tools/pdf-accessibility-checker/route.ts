@@ -3,6 +3,7 @@ import { currentUser } from "@clerk/nextjs/server"
 import { generateText } from "ai"
 import { openai } from "@ai-sdk/openai"
 import { PDFDocument } from "pdf-lib"
+// pdfjs-dist loaded dynamically inside the handler to work with serverExternalPackages
 
 export const runtime = "nodejs"
 export const maxDuration = 60
@@ -160,20 +161,36 @@ export async function POST(request: NextRequest) {
     }
 
     // --- Parse with pdfjs-dist for text extraction and metadata ---
-    const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs")
-    const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(pdfBytes) })
-    const pdfjsDoc = await loadingTask.promise
+    // Dynamic import ensures serverExternalPackages handles it correctly
+    let pdfjsDoc: any
+    let pdfjsAvailable = true
+    try {
+      const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs")
+      const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(pdfBytes) })
+      pdfjsDoc = await loadingTask.promise
+    } catch (pdfjsErr) {
+      console.error("[PDF Checker] pdfjs-dist failed, falling back to pdf-lib only:", pdfjsErr)
+      pdfjsAvailable = false
+    }
 
     const pageCount = pdfDoc.getPageCount()
     const checks: PDFCheck[] = []
 
-    // ===== METADATA CHECKS (via pdfjs-dist - more reliable for metadata) =====
-    const pdfMetadata = await pdfjsDoc.getMetadata()
-    const info = (pdfMetadata?.info || {}) as Record<string, any>
-    const xmlMetadata = pdfMetadata?.metadata
+    // ===== METADATA CHECKS =====
+    let info: Record<string, any> = {}
+    let xmlMetadata: any = null
+    if (pdfjsAvailable && pdfjsDoc) {
+      try {
+        const pdfMetadata = await pdfjsDoc.getMetadata()
+        info = (pdfMetadata?.info || {}) as Record<string, any>
+        xmlMetadata = pdfMetadata?.metadata
+      } catch {
+        // Fall back to pdf-lib metadata below
+      }
+    }
 
     // 1. Document Title
-    const title = info.Title || xmlMetadata?.get("dc:title") || ""
+    const title = info.Title || xmlMetadata?.get("dc:title") || pdfDoc.getTitle() || ""
     const hasTitle = typeof title === "string" && title.trim().length > 0
     checks.push({
       id: "doc-title",
@@ -220,7 +237,7 @@ export async function POST(request: NextRequest) {
     })
 
     // 3. Document Author
-    const author = info.Author || xmlMetadata?.get("dc:creator") || ""
+    const author = info.Author || xmlMetadata?.get("dc:creator") || pdfDoc.getAuthor() || ""
     const hasAuthor = typeof author === "string" && author.trim().length > 0
     checks.push({
       id: "doc-author",
@@ -295,21 +312,34 @@ export async function POST(request: NextRequest) {
         : "Document is NOT tagged. Untagged PDFs are largely inaccessible to screen readers. Content cannot be navigated, reordered, or properly read aloud.",
     })
 
-    // 5. Text Content — Extract with pdfjs-dist (accurate text layer)
+    // 5. Text Content — Extract with pdfjs-dist (accurate text layer) or fallback to pdf-parse
     let totalWordCount = 0
     let totalTextLength = 0
     const pagesToCheck = Math.min(pageCount, 20) // Check up to 20 pages for performance
-    for (let i = 1; i <= pagesToCheck; i++) {
+    if (pdfjsAvailable && pdfjsDoc) {
+      for (let i = 1; i <= pagesToCheck; i++) {
+        try {
+          const page = await pdfjsDoc.getPage(i)
+          const textContent = await page.getTextContent()
+          const pageText = textContent.items
+            .map((item: any) => ("str" in item ? item.str : ""))
+            .join(" ")
+          totalTextLength += pageText.length
+          totalWordCount += pageText.trim().split(/\s+/).filter(Boolean).length
+        } catch {
+          // Skip pages that fail to parse
+        }
+      }
+    } else {
+      // Fallback: use pdf-parse for text extraction
       try {
-        const page = await pdfjsDoc.getPage(i)
-        const textContent = await page.getTextContent()
-        const pageText = textContent.items
-          .map((item: any) => ("str" in item ? item.str : ""))
-          .join(" ")
-        totalTextLength += pageText.length
-        totalWordCount += pageText.trim().split(/\s+/).filter(Boolean).length
+        const pdfParse = (await import("pdf-parse")).default
+        const parsed = await pdfParse(pdfBytes)
+        const text = parsed.text || ""
+        totalTextLength = text.length
+        totalWordCount = text.trim().split(/\s+/).filter(Boolean).length
       } catch {
-        // Skip pages that fail to parse
+        // Text extraction failed entirely
       }
     }
     const hasReadableText = totalWordCount > 20
@@ -613,7 +643,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Cleanup pdfjs
-    await pdfjsDoc.destroy()
+    if (pdfjsDoc) {
+      try { await pdfjsDoc.destroy() } catch { /* ignore */ }
+    }
 
     const result: PDFAnalysisResult = {
       fileName,
@@ -630,10 +662,12 @@ export async function POST(request: NextRequest) {
       headers: { "Cache-Control": "no-store, max-age=0" },
     })
   } catch (error) {
+    console.error("[PDF Checker] Analysis failed:", error)
+    const message = error instanceof Error ? error.message : "Unknown error"
     return NextResponse.json(
       {
-        error: "Analysis failed",
-        details: error instanceof Error ? error.message : "Unknown error",
+        error: `Analysis failed: ${message}`,
+        details: message,
       },
       { status: 500 }
     )
