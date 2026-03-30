@@ -135,6 +135,15 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['accessibility roi', 'business case accessibility', 'roi calculator', 'accessibility investment', 'cost benefit accessibility', 'lawsuit risk', 'accessibility budget'],
     priority: 8
   },
+  // ARIA Roles & Attributes Reference
+  {
+    url: '/reference/aria',
+    title: 'ARIA Roles & Attributes Reference',
+    description: 'Interactive WAI-ARIA reference with searchable roles, attributes, live playground, screen reader behavior, and copy-paste patterns',
+    type: 'guide',
+    keywords: ['aria', 'aria roles', 'aria attributes', 'aria-label', 'aria-labelledby', 'wai-aria', 'cheat sheet', 'reference', 'playground', 'screen reader', 'aria-hidden', 'aria-expanded', 'accessibility tree'],
+    priority: 10
+  },
   // Accessibility Laws by Jurisdiction
   {
     url: '/research/accessibility-laws',

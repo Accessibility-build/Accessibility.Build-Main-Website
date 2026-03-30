@@ -49,6 +49,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       category: "tool"
     },
     
+    // ARIA Reference - Evergreen high-traffic resource
+    {
+      route: "/reference/aria",
+      priority: 0.96,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["aria roles", "aria attributes", "wai-aria reference", "aria cheat sheet", "aria playground"],
+      category: "resource"
+    },
+
     // Top-tier Free Tools - Maximum discovery value
     {
       route: "/tools/heading-analyzer",
