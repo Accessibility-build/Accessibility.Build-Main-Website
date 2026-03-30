@@ -196,10 +196,16 @@ export async function POST(request: NextRequest) {
 
     const startTime = Date.now()
 
-    // Launch browser
-    const puppeteer = await import("puppeteer")
+    // Launch browser — use puppeteer-core on Vercel, full puppeteer locally
+    const isVercel = process.env.VERCEL === "1"
     const config = await getBrowserConfig()
-    browser = await puppeteer.default.launch(config)
+    let puppeteerModule: any
+    if (isVercel) {
+      puppeteerModule = await import("puppeteer-core")
+    } else {
+      puppeteerModule = await import("puppeteer")
+    }
+    browser = await puppeteerModule.default.launch(config)
     const page = await browser.newPage()
 
     await page.setUserAgent(
@@ -436,10 +442,12 @@ export async function POST(request: NextRequest) {
       }
     )
   } catch (error) {
+    console.error("[Overlay Detector] Scan failed:", error)
+    const message = error instanceof Error ? error.message : "Unknown error"
     return NextResponse.json(
       {
-        error: "Scan failed",
-        details: error instanceof Error ? error.message : "Unknown error",
+        error: `Scan failed: ${message}`,
+        details: message,
       },
       { status: 500 }
     )
