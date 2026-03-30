@@ -134,6 +134,42 @@ const INTERNAL_LINKS: InternalLink[] = [
     type: 'tool',
     keywords: ['accessibility roi', 'business case accessibility', 'roi calculator', 'accessibility investment', 'cost benefit accessibility', 'lawsuit risk', 'accessibility budget'],
     priority: 8
+  },
+  // Overlay Detector Tool
+  {
+    url: '/tools/overlay-detector',
+    title: 'Accessibility Overlay Detector',
+    description: 'Check if a website uses an accessibility overlay widget and see real WCAG violations the overlay fails to fix',
+    type: 'tool',
+    keywords: ['overlay', 'widget', 'accessibe', 'userway', 'audioeye', 'equalweb', 'overlay detector', 'overlay detection', 'accessibility widget'],
+    priority: 9
+  },
+  // PDF Accessibility Checker Tool
+  {
+    url: '/tools/pdf-accessibility-checker',
+    title: 'PDF Accessibility Checker',
+    description: 'Upload a PDF to check for WCAG and PDF/UA compliance with AI-powered fix suggestions',
+    type: 'tool',
+    keywords: ['pdf', 'pdf accessibility', 'document', 'tagged pdf', 'pdf/ua', 'pdf checker', 'pdf remediation', 'pdf structure', 'pdf audit'],
+    priority: 9
+  },
+  // Accessibility Overlays Guide
+  {
+    url: '/guides/accessibility-overlays',
+    title: 'Accessibility Overlays: Why They Fail & What To Do Instead',
+    description: 'Expert guide on why accessibility overlays do not work and what alternatives provide real WCAG compliance',
+    type: 'guide',
+    keywords: ['overlay', 'accessibe', 'userway', 'audioeye', 'widget', 'overlay alternative', 'overlay fail', 'overlay lawsuit', 'accessibility overlay'],
+    priority: 8
+  },
+  // PDF Accessibility Guide
+  {
+    url: '/guides/pdf-accessibility',
+    title: 'How to Make PDFs Accessible: WCAG & PDF/UA Guide',
+    description: 'Complete guide to creating accessible PDFs with proper tags, headings, alt text, and reading order',
+    type: 'guide',
+    keywords: ['pdf', 'accessible pdf', 'tagged pdf', 'pdf/ua', 'pdf wcag', 'pdf remediation', 'document accessibility', 'pdf heading', 'pdf alt text'],
+    priority: 8
   }
 ]
 

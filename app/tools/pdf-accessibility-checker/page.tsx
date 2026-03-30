@@ -1,5 +1,9 @@
 import type { Metadata } from "next"
 import PDFAccessibilityChecker from "@/components/tools/pdf-accessibility-checker"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
+import { FileText, Upload, Shield, Zap, Sparkles, CheckCircle, Star, BookOpen, ArrowRight } from "lucide-react"
 import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 
@@ -132,61 +136,263 @@ export default function PDFAccessibilityCheckerPage() {
         }}
       />
 
+      {/* HowTo Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Check PDF Accessibility",
+            "description": "Upload a PDF file to check for WCAG and PDF/UA accessibility issues with AI-powered fix suggestions.",
+            "step": [
+              { "@type": "HowToStep", "name": "Upload Your PDF", "text": "Drag and drop or browse to upload any PDF file up to 10MB in size.", "position": 1 },
+              { "@type": "HowToStep", "name": "Automated Analysis", "text": "Our tool analyzes the PDF using pdf-lib and pdfjs-dist, checking 14 accessibility criteria including tags, headings, alt text, bookmarks, fonts, and forms.", "position": 2 },
+              { "@type": "HowToStep", "name": "AI-Powered Report", "text": "Get a detailed accessibility score with AI-generated plain-language explanations and prioritized fix suggestions powered by GPT-4o.", "position": 3 }
+            ],
+            "tool": { "@type": "HowToTool", "name": "Accessibility.build PDF Checker" },
+            "totalTime": "PT15S"
+          }),
+        }}
+      />
+
       <div className="min-h-screen bg-gradient-to-br from-red-50/50 via-background to-rose-50/50 dark:from-red-950/10 dark:via-background dark:to-rose-950/10">
-        {/* Hero Section */}
-        <section className="pt-12 pb-6 px-4 sm:px-6">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              PDF Accessibility{" "}
-              <span className="text-red-600 dark:text-red-400">Checker</span>
-            </h1>
-            <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Upload any PDF and instantly check for accessibility issues. AI-powered analysis with WCAG and PDF/UA compliance checks.
-            </p>
-          </div>
-        </section>
+        <div className="container-wide py-12">
+          <div className="max-w-6xl mx-auto">
+            {/* Hero Section */}
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-200/50 dark:border-red-800/50 mb-6">
+                <Sparkles className="h-4 w-4 text-red-600 dark:text-red-400" />
+                <span className="text-sm font-medium text-red-700 dark:text-red-300">AI-Powered &bull; 14 WCAG Checks &bull; PDF/UA</span>
+              </div>
 
-        {/* Main Tool */}
-        <PDFAccessibilityChecker />
+              <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-red-800 to-rose-800 dark:from-white dark:via-red-200 dark:to-rose-200 bg-clip-text text-transparent mb-6">
+                PDF Accessibility{" "}
+                <span className="text-red-600 dark:text-red-400">Checker</span>
+              </h1>
 
-        {/* FAQ Section */}
-        <section className="py-12 px-4 sm:px-6">
-          <div className="container mx-auto max-w-4xl">
-            <h2 className="text-2xl font-bold mb-6 text-center">
-              Frequently Asked Questions
-            </h2>
-            <div className="space-y-4">
-              {faqItems.map((item, i) => (
-                <details
-                  key={i}
-                  className="group border rounded-lg p-4 bg-card"
-                >
-                  <summary className="cursor-pointer font-medium list-none flex items-center justify-between">
-                    {item.question}
-                    <span className="ml-2 text-muted-foreground group-open:rotate-180 transition-transform">
-                      &#9662;
-                    </span>
-                  </summary>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                    {item.answer}
+              <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+                Upload any PDF and instantly check for accessibility issues. AI-powered analysis with
+                <span className="font-semibold text-foreground"> WCAG and PDF/UA compliance checks</span>
+              </p>
+
+              {/* Key Benefits Bar */}
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground mb-8">
+                <div className="flex items-center gap-2">
+                  <Shield className="h-4 w-4 text-green-600" />
+                  <span>PDF/UA Compliant</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-purple-600" />
+                  <span>AI Fix Suggestions</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-blue-600" />
+                  <span>14 Accessibility Checks</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Upload className="h-4 w-4 text-orange-600" />
+                  <span>Drag & Drop Upload</span>
+                </div>
+              </div>
+
+              {/* Credit Info */}
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-muted/50 border border-border">
+                <FileText className="h-5 w-5 text-primary" />
+                <span className="font-medium">2 Credits per Analysis</span>
+                <Badge variant="secondary" className="ml-2">New users get 100 free credits</Badge>
+              </div>
+            </div>
+
+            {/* Main Tool */}
+            <PDFAccessibilityChecker />
+
+            {/* Features Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+              <Card className="border-2 hover:border-primary/20 transition-colors">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-red-100 dark:bg-red-950">
+                      <FileText className="h-6 w-6 text-red-600 dark:text-red-400" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Document Structure Analysis</CardTitle>
+                      <CardDescription>Tags, Headings & Forms</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Checks for tagged PDF, heading hierarchy (H1-H6), paragraph structure, table headers, and form field labels. Verifies MarkInfo and StructTreeRoot in the PDF catalog.
                   </p>
-                </details>
-              ))}
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/20 transition-colors">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-950">
+                      <Zap className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Content & Font Checks</CardTitle>
+                      <CardDescription>Text, Fonts & Images</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Validates extractable text content, font embedding, Unicode character mapping (ToUnicode), and image alt text. Catches scanned-image PDFs without OCR.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/20 transition-colors">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-950">
+                      <Sparkles className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">AI-Powered Remediation</CardTitle>
+                      <CardDescription>GPT-4o Fix Suggestions</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    GPT-4o analyzes your results and provides plain-language explanations of each issue, prioritized fix suggestions, and a step-by-step remediation plan.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* How It Works */}
+            <div className="mt-20">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  Upload a PDF and get a detailed accessibility report in seconds
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {[
+                  {
+                    step: "1",
+                    title: "Upload PDF",
+                    description: "Drag and drop or browse to upload any PDF file up to 10MB in size.",
+                    icon: "\uD83D\uDCE4"
+                  },
+                  {
+                    step: "2",
+                    title: "14-Point Analysis",
+                    description: "Our tool checks 14 accessibility criteria including tags, headings, alt text, bookmarks, fonts, and forms.",
+                    icon: "\uD83D\uDD0D"
+                  },
+                  {
+                    step: "3",
+                    title: "AI Report",
+                    description: "Get a detailed score with AI-generated explanations and prioritized fix suggestions.",
+                    icon: "\u2728"
+                  }
+                ].map((item, index) => (
+                  <div key={index} className="relative">
+                    <div className="text-center">
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-red-500 to-rose-500 text-white text-2xl font-bold mb-4">
+                        {item.step}
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground">{item.description}</p>
+                    </div>
+                    {index < 2 && (
+                      <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-red-500/20 to-rose-500/20 transform -translate-x-8"></div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Best Practices */}
+            <div className="mt-20">
+              <Card className="bg-gradient-to-r from-red-50/50 to-rose-50/50 dark:from-red-950/20 dark:to-rose-950/20 border-2">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-2xl">
+                    <Star className="h-6 w-6 text-yellow-500" />
+                    How To Create Accessible PDFs
+                  </CardTitle>
+                  <CardDescription className="text-lg">
+                    Follow these guidelines to ensure your PDFs are accessible from the start
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      "Use heading styles in your source document",
+                      "Add alt text to all images before exporting",
+                      "Set the document title and language",
+                      "Use lists and tables properly (not fake formatting)",
+                      "Export as tagged PDF",
+                      "Test with a screen reader after export"
+                    ].map((tip, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">{tip}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* CTA to Guide */}
+            <div className="mt-12 text-center">
+              <Link
+                href="/guides/pdf-accessibility"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 text-white font-medium hover:from-red-700 hover:to-rose-700 transition-all"
+              >
+                <BookOpen className="h-5 w-5" />
+                Read our complete guide to PDF accessibility
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            {/* FAQ Section */}
+            <div className="mt-20">
+              <h2 className="text-2xl font-bold mb-6 text-center">
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-4">
+                {faqItems.map((item, i) => (
+                  <details
+                    key={i}
+                    className="group border rounded-lg p-4 bg-card"
+                  >
+                    <summary className="cursor-pointer font-medium list-none flex items-center justify-between">
+                      {item.question}
+                      <span className="ml-2 text-muted-foreground group-open:rotate-180 transition-transform">
+                        &#9662;
+                      </span>
+                    </summary>
+                    <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                      {item.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </div>
+
+            {/* Related Content */}
+            <div className="mt-20">
+              <RelatedContent
+                content="pdf accessibility audit report compliance"
+                title="Related Tools & Resources"
+                maxItems={3}
+                showDescriptions={true}
+              />
             </div>
           </div>
-        </section>
-
-        {/* Related Content */}
-        <section className="pb-12 px-4 sm:px-6">
-          <div className="container mx-auto max-w-4xl">
-            <RelatedContent
-              content="pdf accessibility audit report compliance"
-              title="Related Tools & Resources"
-              maxItems={3}
-              showDescriptions={true}
-            />
-          </div>
-        </section>
+        </div>
       </div>
     </>
   )

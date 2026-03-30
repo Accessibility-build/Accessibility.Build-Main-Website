@@ -222,6 +222,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       keywords: ["screen reader testing", "nvda", "jaws", "voiceover", "talkback"],
       category: "content"
     },
+    {
+      route: "/guides/accessibility-overlays",
+      priority: 0.91,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["accessibility overlay", "overlay alternative", "accessibe", "userway", "overlay compliance"],
+      category: "content"
+    },
+    {
+      route: "/guides/pdf-accessibility",
+      priority: 0.91,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["pdf accessibility", "tagged pdf", "pdf/ua", "accessible pdf", "pdf wcag"],
+      category: "content"
+    },
 
     // Content Hub - Critical for SEO and education
     {
