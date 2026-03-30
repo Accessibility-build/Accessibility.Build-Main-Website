@@ -5,8 +5,8 @@ import postgres from 'postgres'
 // Database connection configuration
 const DB_CONNECTION_RETRIES = 5
 const DB_CONNECTION_RETRY_DELAY = 5000 // 5 seconds
-const DB_CONNECTION_TIMEOUT = 30000 // 30 seconds
-const DB_POOL_SIZE = process.env.NODE_ENV === 'production' ? 20 : 5
+const DB_CONNECTION_TIMEOUT = 30 // 30 seconds (postgres.js uses seconds, not ms)
+const DB_POOL_SIZE = process.env.NODE_ENV === 'production' ? 3 : 5 // Keep low for serverless
 
 // Connection options with proper pooling and timeouts
 const connectionOptions = {

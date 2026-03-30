@@ -49,6 +49,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid billing event payload' }, { status: 400 })
   }
 
-  await logBillingFunnelEvent(normalized)
+  try {
+    await logBillingFunnelEvent(normalized)
+  } catch (error) {
+    console.error("[billing/events] Failed to log billing funnel event:", error)
+    return NextResponse.json({ error: "Failed to log event" }, { status: 500 })
+  }
   return NextResponse.json({ accepted: true })
 }

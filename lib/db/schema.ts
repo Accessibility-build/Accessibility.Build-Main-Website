@@ -5,10 +5,10 @@ import { relations } from 'drizzle-orm'
 export const transactionTypeEnum = pgEnum('transaction_type', ['purchase', 'bonus', 'usage', 'refund'])
 export const transactionStatusEnum = pgEnum('transaction_status', ['pending', 'completed', 'failed', 'cancelled'])
 export const toolTypeEnum = pgEnum('tool_type', [
-  'alt_text_generator', 
-  'contrast_checker', 
-  'accessibility_checker', 
-  'accessibility_audit_helper', 
+  'alt_text_generator',
+  'contrast_checker',
+  'accessibility_checker',
+  'accessibility_audit_helper',
   'url_accessibility_auditor',
   'accessibility_code_generator',
   'heading_analyzer',
@@ -18,7 +18,9 @@ export const toolTypeEnum = pgEnum('tool_type', [
   'json_formatter',
   'base64_converter',
   'image_color_picker',
-  'url_encoder_decoder'
+  'url_encoder_decoder',
+  'pdf_accessibility_checker',
+  'overlay_detector'
 ])
 export const auditStatusEnum = pgEnum('audit_status', ['pending', 'processing', 'completed', 'failed'])
 export const severityEnum = pgEnum('severity', ['critical', 'serious', 'moderate', 'minor'])

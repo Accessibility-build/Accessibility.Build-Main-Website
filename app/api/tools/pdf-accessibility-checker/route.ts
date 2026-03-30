@@ -631,7 +631,7 @@ export async function POST(request: NextRequest) {
           system:
             "You are a PDF accessibility expert. Analyze these PDF accessibility issues and provide clear, actionable remediation guidance. Respond in valid JSON with exactly these keys: overview (2-3 sentences about the document's accessibility state), topIssues (array of up to 3 objects with keys: issue, fix, priority), recommendation (1-2 sentence overall recommendation). Do NOT use markdown code fences.",
           prompt: `PDF file "${fileName}" (${pageCount} pages, ${(fileSize / 1024).toFixed(0)}KB) failed these accessibility checks:\n\n${failedSummary}\n\nScore: ${score}/100. The document ${isTagged ? "IS tagged" : "is NOT tagged"}. It contains ~${estimatedTotalWords} words of extractable text. Provide practical remediation guidance.`,
-          maxTokens: 800,
+          maxOutputTokens: 800,
         })
 
         try {
