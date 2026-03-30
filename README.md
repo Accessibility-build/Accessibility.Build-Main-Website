@@ -3,7 +3,7 @@
 <div align="center">
 
 ![Accessibility.build](https://img.shields.io/badge/Accessibility-WCAG%202.2%20AA+-blue)
-![Next.js](https://img.shields.io/badge/Next.js-15.2.4-black)
+![Next.js](https://img.shields.io/badge/Next.js-16.2-black)
 ![React](https://img.shields.io/badge/React-19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
