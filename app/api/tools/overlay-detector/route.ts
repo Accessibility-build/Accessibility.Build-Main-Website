@@ -102,13 +102,17 @@ function isPrivateUrl(urlStr: string): boolean {
   }
 }
 
-// Dynamically import chromium for serverless
+// Chromium binary URL for serverless (chromium-min downloads at runtime)
+const CHROMIUM_REMOTE_URL =
+  "https://github.com/nichochar/chromium-compact/releases/download/chromium-v143.0.0/chromium-v143.0.0-pack.tar"
+
+// Dynamically import chromium-min for serverless
 let chromiumModule: any = null
 
 async function loadChromium() {
   if (chromiumModule) return chromiumModule
   try {
-    const mod = await import("@sparticuz/chromium")
+    const mod = await import("@sparticuz/chromium-min")
     chromiumModule = mod.default || mod
     return chromiumModule
   } catch {
@@ -136,7 +140,7 @@ async function getBrowserConfig() {
           "--force-color-profile=srgb",
         ],
         defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(),
+        executablePath: await chromium.executablePath(CHROMIUM_REMOTE_URL),
         headless: chromium.headless,
         timeout: 30000,
       }

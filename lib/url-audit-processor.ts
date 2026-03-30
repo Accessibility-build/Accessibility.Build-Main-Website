@@ -8,15 +8,19 @@ import { urlAccessibilityAudits, auditViolations } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import { getAIModel } from './openrouter'
 
-// Dynamically import chromium for serverless environments
+// Chromium binary URL for serverless (chromium-min downloads at runtime)
+const CHROMIUM_REMOTE_URL =
+  "https://github.com/nichochar/chromium-compact/releases/download/chromium-v143.0.0/chromium-v143.0.0-pack.tar"
+
+// Dynamically import chromium-min for serverless environments
 let chromium: any = null
 
-// Function to dynamically load chromium
+// Function to dynamically load chromium-min
 async function loadChromium() {
   if (chromium) return chromium
-  
+
   try {
-    chromium = await import('@sparticuz/chromium')
+    chromium = await import('@sparticuz/chromium-min')
     return chromium.default || chromium
   } catch (error) {
     // Chromium not available in development
@@ -211,7 +215,7 @@ async function getBrowserConfig() {
           '--force-color-profile=srgb',
         ],
         defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(),
+        executablePath: await chromium.executablePath(CHROMIUM_REMOTE_URL),
         headless: chromium.headless,
         timeout: PUPPETEER_TIMEOUT,
       }

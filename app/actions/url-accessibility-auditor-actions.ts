@@ -1,7 +1,10 @@
 "use server"
 
 import { AxePuppeteer } from '@axe-core/puppeteer'
-import chromium from '@sparticuz/chromium'
+import chromium from '@sparticuz/chromium-min'
+
+const CHROMIUM_REMOTE_URL =
+  "https://github.com/nichochar/chromium-compact/releases/download/chromium-v143.0.0/chromium-v143.0.0-pack.tar"
 import puppeteerCore, { Page } from 'puppeteer-core'
 import { currentUser } from "@clerk/nextjs/server"
 import { 
@@ -45,7 +48,7 @@ async function getBrowserInstance(): Promise<any> {
     return puppeteerCore.launch({
       args: chromium.args,
       defaultViewport: { width: 1920, height: 1080 },
-      executablePath: await chromium.executablePath(),
+      executablePath: await chromium.executablePath(CHROMIUM_REMOTE_URL),
       headless: true,
       ignoreHTTPSErrors: true,
     } as any)
