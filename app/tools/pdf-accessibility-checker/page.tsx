@@ -156,8 +156,8 @@ export default function PDFAccessibilityCheckerPage() {
         }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-red-50/50 via-background to-rose-50/50 dark:from-red-950/10 dark:via-background dark:to-rose-950/10">
-        <div className="container-wide py-12">
+      <div className="min-h-screen pt-12 bg-gradient-to-br from-red-50/50 via-background to-rose-50/50 dark:from-red-950/10 dark:via-background dark:to-rose-950/10">
+        <div className="container-wide pb-12">
           <div className="max-w-6xl mx-auto">
             {/* Hero Section */}
             <div className="text-center mb-16">

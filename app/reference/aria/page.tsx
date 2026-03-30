@@ -179,7 +179,7 @@ export default function AriaReferencePage() {
         }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-violet-50/50 via-background to-indigo-50/50 dark:from-violet-950/10 dark:via-background dark:to-indigo-950/10">
+      <div className="min-h-screen pt-12 bg-gradient-to-br from-violet-50/50 via-background to-indigo-50/50 dark:from-violet-950/10 dark:via-background dark:to-indigo-950/10">
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="border-b border-slate-200 dark:border-slate-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">

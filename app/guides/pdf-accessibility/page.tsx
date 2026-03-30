@@ -143,8 +143,8 @@ export default function PdfAccessibilityGuidePage() {
         }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-red-50/50 via-background to-orange-50/50 dark:from-red-950/10 dark:via-background dark:to-orange-950/10">
-        <article className="container mx-auto max-w-4xl py-12 px-4 sm:px-6">
+      <div className="min-h-screen pt-12 bg-gradient-to-br from-red-50/50 via-background to-orange-50/50 dark:from-red-950/10 dark:via-background dark:to-orange-950/10">
+        <article className="container mx-auto max-w-4xl pb-12 px-4 sm:px-6">
           {/* Hero */}
           <header className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-200/50 dark:border-red-800/50 mb-6">

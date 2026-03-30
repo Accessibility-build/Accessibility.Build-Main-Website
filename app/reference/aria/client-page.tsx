@@ -527,75 +527,149 @@ export function AriaReferenceClient() {
       {/* Section E: Live ARIA Playground                                    */}
       {/* ================================================================= */}
       <section aria-label="Live ARIA playground">
-        <Card className="border-2 border-violet-200 dark:border-violet-800/50">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-2xl">
-              <Play className="w-6 h-6 text-violet-600" /> Live ARIA Playground
-            </CardTitle>
-            <CardDescription>
-              Write HTML with ARIA attributes and see how assistive technology interprets it.
-            </CardDescription>
-            <div className="pt-2">
-              <label htmlFor="playground-preset" className="text-sm font-medium mr-2">Load preset:</label>
-              <select
-                id="playground-preset"
-                className="text-sm rounded-md border border-border bg-background px-3 py-1.5"
-                onChange={(e) => {
-                  const preset = playgroundPresets.find((p) => p.label === e.target.value)
-                  if (preset) setPlaygroundHtml(preset.html)
-                }}
-                defaultValue=""
-              >
-                <option value="" disabled>Choose an example...</option>
-                {playgroundPresets.map((p) => <option key={p.label} value={p.label}>{p.label}</option>)}
-              </select>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {/* Left: Editor */}
+        <div className="rounded-2xl border-2 border-violet-200 dark:border-violet-800/40 bg-gradient-to-br from-violet-50/80 via-white to-indigo-50/80 dark:from-violet-950/30 dark:via-slate-900 dark:to-indigo-950/30 overflow-hidden shadow-lg">
+          {/* Playground Header */}
+          <div className="px-6 py-5 border-b border-violet-200/60 dark:border-violet-800/40 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <label htmlFor="playground-editor" className="text-sm font-medium block mb-2">HTML Editor</label>
-                <textarea
-                  id="playground-editor"
-                  className="font-mono text-sm w-full h-48 p-4 rounded-lg border bg-slate-950 text-green-400 focus:outline-none focus:ring-2 focus:ring-violet-500 resize-y"
-                  value={playgroundHtml}
-                  onChange={(e) => setPlaygroundHtml(e.target.value)}
-                  spellCheck={false}
+                <h2 className="text-2xl font-bold flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-violet-100 dark:bg-violet-900/50">
+                    <Play className="w-5 h-5 text-violet-600 dark:text-violet-400" />
+                  </div>
+                  Live ARIA Playground
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Edit HTML with ARIA attributes — see the accessibility tree and screen reader output in real-time.
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <label htmlFor="playground-preset" className="text-sm font-medium whitespace-nowrap">Load preset:</label>
+                <select
+                  id="playground-preset"
+                  className="text-sm rounded-lg border border-violet-200 dark:border-violet-700 bg-white dark:bg-slate-800 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500 min-w-[180px]"
+                  onChange={(e) => {
+                    const preset = playgroundPresets.find((p) => p.label === e.target.value)
+                    if (preset) setPlaygroundHtml(preset.html)
+                  }}
+                  defaultValue=""
+                >
+                  <option value="" disabled>Choose an example...</option>
+                  {playgroundPresets.map((p) => <option key={p.label} value={p.label}>{p.label}</option>)}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Playground Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-violet-200/60 dark:divide-violet-800/40">
+            {/* Left Panel: Code Editor */}
+            <div className="p-5">
+              <div className="flex items-center justify-between mb-3">
+                <label htmlFor="playground-editor" className="text-sm font-semibold flex items-center gap-2">
+                  <Code className="w-4 h-4 text-violet-500" />
+                  HTML Editor
+                </label>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-7 text-xs"
+                  onClick={() => copyToClipboard(playgroundHtml, "playground")}
+                >
+                  {copiedId === "playground" ? <Check className="w-3 h-3 mr-1" /> : <Copy className="w-3 h-3 mr-1" />}
+                  {copiedId === "playground" ? "Copied" : "Copy"}
+                </Button>
+              </div>
+              <textarea
+                id="playground-editor"
+                className="font-mono text-sm w-full h-64 p-4 rounded-xl border border-slate-700 bg-slate-950 text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent resize-y leading-relaxed selection:bg-violet-500/30"
+                value={playgroundHtml}
+                onChange={(e) => setPlaygroundHtml(e.target.value)}
+                spellCheck={false}
+                aria-label="HTML code editor for ARIA playground"
+              />
+              <p className="text-xs text-muted-foreground mt-2">
+                Type or paste HTML with ARIA roles and attributes. Changes update instantly.
+              </p>
+            </div>
+
+            {/* Right Panel: Output */}
+            <div className="p-5 space-y-5">
+              {/* Rendered Preview */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-2 h-2 rounded-full bg-green-500" />
+                  <span className="text-sm font-semibold">Rendered Preview</span>
+                </div>
+                <div
+                  className="p-4 border border-slate-200 dark:border-slate-700 rounded-xl min-h-[56px] bg-white dark:bg-slate-900"
+                  dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
                 />
               </div>
 
-              {/* Right: Output */}
-              <div className="space-y-4">
-                <div>
-                  <p className="text-sm font-medium mb-2">Rendered Preview</p>
-                  <div
-                    className="p-4 border rounded-lg min-h-[60px] bg-background"
-                    dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-                  />
+              {/* Accessibility Tree */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-2 h-2 rounded-full bg-violet-500" />
+                  <span className="text-sm font-semibold flex items-center gap-1.5">
+                    <Eye className="w-4 h-4 text-violet-500" />
+                    Accessibility Tree
+                  </span>
                 </div>
-                <div>
-                  <p className="text-sm font-medium mb-2 flex items-center gap-2">
-                    <Eye className="w-4 h-4" /> Accessibility Tree
-                  </p>
-                  <div className="p-4 border rounded-lg bg-muted font-mono text-sm space-y-1 min-h-[60px]">
-                    {accessibilityTree.length === 0 ? (
-                      <p className="text-muted-foreground italic">No accessible elements detected.</p>
-                    ) : (
-                      accessibilityTree.map((node) => (
-                        <div key={node.id} className="flex flex-wrap gap-x-2">
-                          <span className="text-violet-600 dark:text-violet-400">role=&quot;{node.role}&quot;</span>
-                          {node.name && <span className="text-green-600 dark:text-green-400">name=&quot;{node.name}&quot;</span>}
-                          {node.states && <span className="text-amber-600 dark:text-amber-400">{node.states}</span>}
+                <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/80 overflow-hidden">
+                  {accessibilityTree.length === 0 ? (
+                    <div className="p-4 text-center">
+                      <p className="text-sm text-muted-foreground italic">No accessible elements detected. Try adding ARIA roles or semantic HTML.</p>
+                    </div>
+                  ) : (
+                    <div className="divide-y divide-slate-200 dark:divide-slate-800">
+                      {accessibilityTree.map((node) => (
+                        <div key={node.id} className="px-4 py-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 font-semibold">
+                            role: {node.role}
+                          </span>
+                          {node.name && (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300">
+                              name: &quot;{node.name}&quot;
+                            </span>
+                          )}
+                          {node.states && (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">
+                              {node.states}
+                            </span>
+                          )}
                         </div>
-                      ))
-                    )}
-                  </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Screen Reader Simulation */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-2 h-2 rounded-full bg-amber-500" />
+                  <span className="text-sm font-semibold flex items-center gap-1.5">
+                    <Monitor className="w-4 h-4 text-amber-500" />
+                    Screen Reader Would Announce
+                  </span>
+                </div>
+                <div className="rounded-xl border border-amber-200 dark:border-amber-800/40 bg-amber-50 dark:bg-amber-950/20 p-4">
+                  {accessibilityTree.length === 0 ? (
+                    <p className="text-sm text-muted-foreground italic">Nothing to announce.</p>
+                  ) : (
+                    <div className="space-y-1.5">
+                      {accessibilityTree.map((node) => (
+                        <p key={`sr-${node.id}`} className="text-sm font-medium text-amber-900 dark:text-amber-200">
+                          &ldquo;{node.name ? `${node.name}, ` : ""}{node.role}{node.states ? `, ${node.states}` : ""}&rdquo;
+                        </p>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </section>
 
       {/* ================================================================= */}
