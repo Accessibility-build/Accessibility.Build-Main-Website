@@ -242,6 +242,34 @@ const accessibilityTools = [
         popular: false,
         stats: { users: "Available", calculations: "Validated" }
     },
+    {
+        title: "Accessibility Overlay Detector",
+        shortTitle: "Overlay Detector",
+        description: "Check if any website uses an accessibility overlay widget. Identify the vendor and see real WCAG violations the overlay fails to fix.",
+        features: ["Overlay Detection", "Vendor Identification", "Real A11y Scan", "Claims vs Reality"],
+        icon: Shield,
+        gradient: "from-amber-500 to-red-500",
+        bgPattern: "scanner-pattern",
+        slug: "overlay-detector",
+        pricing: "Free",
+        credits: 0,
+        popular: true,
+        stats: { users: "Available", scans: "Validated" }
+    },
+    {
+        title: "PDF Accessibility Checker",
+        shortTitle: "PDF Checker",
+        description: "Upload any PDF and instantly check for accessibility issues. Validate document structure, alt text, reading order, and WCAG compliance with AI-powered fix suggestions.",
+        features: ["PDF/UA Validation", "WCAG Compliance", "Structure Analysis", "AI Fix Guidance"],
+        icon: FileText,
+        gradient: "from-red-500 to-rose-500",
+        bgPattern: "report-pattern",
+        slug: "pdf-accessibility-checker",
+        pricing: "2 Credits",
+        credits: 2,
+        popular: true,
+        stats: { users: "Available", checks: "Validated" }
+    },
 ]
 
 // General utility tools

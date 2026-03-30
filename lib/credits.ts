@@ -15,6 +15,8 @@ export const TOOL_CREDITS = {
   mobile_accessibility_checker: 2,
   password_generator: 0, // Free tool
   json_formatter: 0, // Free tool
+  pdf_accessibility_checker: 2,
+  overlay_detector: 0, // Free tool
 } as const
 
 export type ToolType = keyof typeof TOOL_CREDITS

@@ -151,6 +151,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       category: "tool"
     },
 
+    // Overlay Detector Tool
+    {
+      route: "/tools/overlay-detector",
+      priority: 0.93,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["accessibility overlay detector", "overlay widget checker", "accessibe detector"],
+      category: "tool"
+    },
+
+    // PDF Accessibility Checker Tool
+    {
+      route: "/tools/pdf-accessibility-checker",
+      priority: 0.92,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["pdf accessibility checker", "pdf wcag compliance", "pdf/ua validator"],
+      category: "tool"
+    },
+
     // Research Hub - High-value link-worthy content
     {
       route: "/research",
