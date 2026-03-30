@@ -135,6 +135,15 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['accessibility roi', 'business case accessibility', 'roi calculator', 'accessibility investment', 'cost benefit accessibility', 'lawsuit risk', 'accessibility budget'],
     priority: 8
   },
+  // Accessibility Laws by Jurisdiction
+  {
+    url: '/research/accessibility-laws',
+    title: 'Accessibility Laws by Jurisdiction',
+    description: 'Global tracker of accessibility laws comparing WCAG requirements, penalties, and enforcement across 35+ jurisdictions',
+    type: 'resource',
+    keywords: ['accessibility laws', 'ada title ii', 'european accessibility act', 'eaa', 'section 508', 'wcag legal', 'accessibility regulations', 'web accessibility laws', 'accessibility compliance', 'ada deadline', 'unruh act', 'aoda'],
+    priority: 10
+  },
   // Overlay Detector Tool
   {
     url: '/tools/overlay-detector',

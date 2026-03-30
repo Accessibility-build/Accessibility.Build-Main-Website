@@ -196,6 +196,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       keywords: ["accessibility lawsuits", "ada lawsuits", "lawsuit tracker", "settlement costs"],
       category: "content"
     },
+    {
+      route: "/research/accessibility-laws",
+      priority: 0.94,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["accessibility laws", "ada title ii", "european accessibility act", "wcag legal requirements", "accessibility regulations"],
+      category: "content"
+    },
 
     // Guides Hub - Comprehensive reference content
     {
