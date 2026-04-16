@@ -1,13 +1,18 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Loader2, Mail, Megaphone, RefreshCw, Send } from 'lucide-react'
+import { Eraser, FileText, Loader2, Mail, Megaphone, RefreshCw, Send } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import {
+  MARKETING_EMAIL_TEMPLATES,
+  getMarketingCategoryLabel,
+  type MarketingEmailTemplate,
+} from '@/lib/marketing-templates'
 
 type MarketingAudience = 'active_users' | 'newsletter_subscribers' | 'all_contacts'
 
@@ -60,6 +65,8 @@ export function AdminMarketingClient() {
   const [recipientLimit, setRecipientLimit] = useState('')
   const [testEmail, setTestEmail] = useState('')
 
+  const [activeTemplateId, setActiveTemplateId] = useState<string | null>(null)
+
   const [testLoading, setTestLoading] = useState(false)
   const [campaignLoading, setCampaignLoading] = useState(false)
   const [sendError, setSendError] = useState<string | null>(null)
@@ -95,6 +102,32 @@ export function AdminMarketingClient() {
   useEffect(() => {
     loadConfig()
   }, [loadConfig])
+
+  const applyTemplate = useCallback((template: MarketingEmailTemplate) => {
+    setSubject(template.subject)
+    setPreheader(template.preheader)
+    setHeading(template.heading)
+    setBody(template.body)
+    setCtaLabel(template.ctaLabel ?? '')
+    setCtaUrl(template.ctaUrl ?? '')
+    setReason(template.reason)
+    setActiveTemplateId(template.id)
+    setSendError(null)
+    setTestSuccessMessage(null)
+    setCampaignSummary(null)
+    setCampaignFailedRecipients([])
+  }, [])
+
+  const clearForm = useCallback(() => {
+    setSubject('')
+    setPreheader('')
+    setHeading('')
+    setBody('')
+    setCtaLabel('')
+    setCtaUrl('')
+    setReason('')
+    setActiveTemplateId(null)
+  }, [])
 
   const canSend = useMemo(() => {
     const hasCtaPair = (ctaLabel.trim().length > 0 && ctaUrl.trim().length > 0) || (!ctaLabel.trim() && !ctaUrl.trim())
@@ -260,6 +293,58 @@ export function AdminMarketingClient() {
               Deduplicated all contacts:{' '}
               <span className="font-medium">{audienceCounts.allContacts.toLocaleString()}</span>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0">
+          <div>
+            <CardTitle className="flex items-center gap-2">
+              <FileText className="h-5 w-5 text-violet-600" />
+              Ready-to-send Templates
+            </CardTitle>
+            <CardDescription>
+              Click a template to load it into the composer. Edit any field before sending.
+            </CardDescription>
+          </div>
+          {activeTemplateId && (
+            <Button type="button" variant="ghost" size="sm" onClick={clearForm}>
+              <Eraser className="mr-2 h-4 w-4" />
+              Clear
+            </Button>
+          )}
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {MARKETING_EMAIL_TEMPLATES.map((template) => {
+              const isActive = template.id === activeTemplateId
+              return (
+                <button
+                  key={template.id}
+                  type="button"
+                  onClick={() => applyTemplate(template)}
+                  className={`group flex h-full flex-col rounded-lg border p-4 text-left transition-colors hover:border-violet-400 hover:bg-violet-50/40 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:hover:bg-violet-900/10 ${
+                    isActive
+                      ? 'border-violet-500 bg-violet-50 ring-1 ring-violet-500 dark:bg-violet-900/20'
+                      : 'border-border bg-background'
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="text-sm font-semibold leading-tight">{template.name}</div>
+                    <Badge variant={isActive ? 'default' : 'secondary'} className="shrink-0 text-[10px] uppercase tracking-wide">
+                      {getMarketingCategoryLabel(template.category)}
+                    </Badge>
+                  </div>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                    {template.description}
+                  </p>
+                  <div className="mt-3 line-clamp-2 rounded-md bg-muted/60 px-2 py-1.5 text-[11px] text-muted-foreground">
+                    <span className="font-medium text-foreground">Subject:</span> {template.subject}
+                  </div>
+                </button>
+              )
+            })}
           </div>
         </CardContent>
       </Card>
