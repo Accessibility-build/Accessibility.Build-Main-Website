@@ -715,7 +715,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
             {/* Level Filter */}
             <Select value={levelFilter} onValueChange={setLevelFilter}>
-              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
+              <SelectTrigger aria-label="Filter by conformance level" className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                 <SelectValue placeholder="Filter by level" />
               </SelectTrigger>
               <SelectContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl">
@@ -728,7 +728,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
             {/* Principle Filter */}
             <Select value={principleFilter} onValueChange={setPrincipleFilter}>
-              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
+              <SelectTrigger aria-label="Filter by WCAG principle" className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                 <SelectValue placeholder="Filter by principle" />
               </SelectTrigger>
               <SelectContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl">
@@ -742,7 +742,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
             {/* Version Filter */}
             <Select value={versionFilter} onValueChange={setVersionFilter}>
-              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
+              <SelectTrigger aria-label="Filter by WCAG version" className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                 <SelectValue placeholder="Filter by version" />
               </SelectTrigger>
               <SelectContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl">
@@ -755,7 +755,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
             {/* Introduced Filter */}
             <Select value={introducedFilter} onValueChange={setIntroducedFilter}>
-              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
+              <SelectTrigger aria-label="Filter by version introduced" className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                 <SelectValue placeholder="Filter by introduced" />
               </SelectTrigger>
               <SelectContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl">
@@ -772,7 +772,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
               setSortBy(newSortBy)
               setSortOrder(newSortOrder)
             }}>
-              <SelectTrigger className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
+              <SelectTrigger aria-label="Sort criteria" className="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded-xl h-11 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl">
@@ -896,6 +896,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                   <Checkbox
                     checked={isChecked}
                     onCheckedChange={() => toggleCriterion(criterion.number)}
+                    aria-label={`Mark criterion ${criterion.number} ${criterion.title} as ${isChecked ? 'incomplete' : 'complete'}`}
                     className="mt-1 border-slate-400 dark:border-slate-500 data-[state=checked]:bg-emerald-500 data-[state=checked]:border-emerald-500 w-6 h-6"
                   />
                 </div>
@@ -1041,6 +1042,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                           <Checkbox
                             checked={isChecked}
                             onCheckedChange={() => toggleCriterion(criterion.number)}
+                            aria-label={`Mark criterion ${criterion.number} ${criterion.title} as ${isChecked ? 'incomplete' : 'complete'}`}
                             className="border-slate-400 dark:border-slate-500 data-[state=checked]:bg-emerald-500 data-[state=checked]:border-emerald-500"
                           />
                         </td>
