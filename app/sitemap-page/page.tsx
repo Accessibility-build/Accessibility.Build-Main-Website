@@ -16,6 +16,7 @@ export default async function SitemapPage() {
     { title: "Home", path: "/" },
     { title: "Blog", path: "/blog" },
     { title: "Tools", path: "/tools" },
+    { title: "Guides", path: "/guides" },
     { title: "Checklists", path: "/checklists" },
     { title: "Resources", path: "/resources" },
     { title: "About", path: "/about" },
@@ -25,8 +26,15 @@ export default async function SitemapPage() {
 
   const toolPages = [
     { title: "Contrast Checker", path: "/tools/contrast-checker" },
+    { title: "Color Palette Generator", path: "/tools/color-palette-generator" },
     { title: "Alt Text Generator", path: "/tools/alt-text-generator" },
     { title: "Scope Checker", path: "/tools/scope-checker" },
+  ]
+
+  const guidePages = [
+    { title: "Accessible Color Palette Guide", path: "/guides/accessible-color-palettes" },
+    { title: "Keyboard Accessibility Guide", path: "/guides/keyboard-accessibility" },
+    { title: "Screen Reader Testing Guide", path: "/guides/screen-reader-testing" },
   ]
 
   const checklistPages = [{ title: "WCAG 2.2 Checklist", path: "/checklists/wcag-2-2" }]
@@ -70,6 +78,24 @@ export default async function SitemapPage() {
             <CardContent>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {toolPages.map((page) => (
+                  <li key={page.path}>
+                    <Link href={page.path} className="text-primary hover:underline">
+                      {page.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Guides</CardTitle>
+              <CardDescription>Practical accessibility implementation guides</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {guidePages.map((page) => (
                   <li key={page.path}>
                     <Link href={page.path} className="text-primary hover:underline">
                       {page.title}

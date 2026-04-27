@@ -16,6 +16,7 @@ import {
   Signal,
   FileCode2,
   FormInput,
+  Palette,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -39,6 +40,17 @@ export const metadata: Metadata = {
 }
 
 const guides = [
+  {
+    title: "Accessible Color Palette Guide",
+    description:
+      "Create WCAG-aware color systems for real UI states. Learn how to test buttons, cards, forms, alerts, links, charts, focus rings, disabled states, hover states, and dark mode before colors enter your design system.",
+    icon: Palette,
+    difficulty: "Beginner",
+    readingTime: "20 min",
+    topics: ["WCAG Contrast", "Design Tokens", "Dark Mode", "UI States"],
+    href: "/guides/accessible-color-palettes",
+    gradient: "from-blue-600 to-emerald-600",
+  },
   {
     title: "Complete Keyboard Accessibility Guide",
     description:

@@ -81,8 +81,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
       changeFrequency: "monthly",
       lastModified: currentDate,
-      keywords: ["accessible colors", "color palette", "design tools"],
+      keywords: ["accessible colors", "color palette", "design tools", "WCAG color palette"],
       category: "tool"
+    },
+    {
+      route: "/guides/accessible-color-palettes",
+      priority: 0.94,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["accessible color palette guide", "WCAG color system", "design system colors", "dark mode accessibility"],
+      category: "resource"
     },
 
     // Premium Tools - High priority for conversion

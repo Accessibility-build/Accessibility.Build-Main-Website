@@ -1,12 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, type CSSProperties } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { 
   Palette, 
@@ -18,7 +17,12 @@ import {
   Sparkles,
   Eye,
   Settings,
-  Save
+  Save,
+  AlertTriangle,
+  BarChart3,
+  Mail,
+  Moon,
+  Sun
 } from "lucide-react"
 
 interface ColorData {
@@ -38,6 +42,33 @@ interface ColorPalette {
   harmony: string
 }
 
+interface PreviewTokens {
+  mode: "light" | "dark"
+  name: string
+  background: string
+  surface: string
+  raised: string
+  foreground: string
+  muted: string
+  border: string
+  primary: string
+  primaryForeground: string
+  primaryHover: string
+  secondary: string
+  secondaryForeground: string
+  accent: string
+  accentForeground: string
+  success: string
+  successForeground: string
+  warning: string
+  warningForeground: string
+  danger: string
+  dangerForeground: string
+  focus: string
+  disabled: string
+  disabledForeground: string
+}
+
 type ColorHarmony = 'complementary' | 'analogous' | 'triadic' | 'monochromatic' | 'split-complementary' | 'tetradic'
 
 export default function ColorPaletteGenerator() {
@@ -46,7 +77,6 @@ export default function ColorPaletteGenerator() {
   const [palette, setPalette] = useState<ColorPalette | null>(null)
   const [isGenerating, setIsGenerating] = useState(false)
   const [copied, setCopied] = useState<string | null>(null)
-  const [showContrastInfo, setShowContrastInfo] = useState(false)
 
   // Color conversion utilities
   const hexToHsl = (hex: string): { h: number; s: number; l: number } => {
@@ -56,7 +86,8 @@ export default function ColorPaletteGenerator() {
 
     const max = Math.max(r, g, b)
     const min = Math.min(r, g, b)
-    let h = 0, s = 0, l = (max + min) / 2
+    let h = 0, s = 0
+    const l = (max + min) / 2
 
     if (max !== min) {
       const d = max - min
@@ -333,9 +364,445 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
     setBaseColor(hslToHex(randomHue, randomSat, randomLight))
   }
 
+  const getReadableTextColor = (backgroundColor: string): string => {
+    const darkText = "#111827"
+    const lightText = "#ffffff"
+    const darkContrast = getContrastRatio(backgroundColor, darkText)
+    const lightContrast = getContrastRatio(backgroundColor, lightText)
+
+    return darkContrast >= lightContrast ? darkText : lightText
+  }
+
+  const getContrastLevel = (foreground: string, background: string): string => {
+    const ratio = getContrastRatio(foreground, background)
+
+    if (ratio >= 7) return "AAA"
+    if (ratio >= 4.5) return "AA"
+    if (ratio >= 3) return "Large text"
+    return "Check"
+  }
+
+  const getPreferredSwatch = (colors: ColorData[], fallback: string, preferredIndex: number): string => {
+    return colors[preferredIndex]?.hex || colors[Math.floor(colors.length / 2)]?.hex || fallback
+  }
+
+  const getShiftedColor = (hex: string, shift: number): string => {
+    const hsl = hexToHsl(hex)
+    return hslToHex(hsl.h, hsl.s, Math.max(8, Math.min(94, hsl.l + shift)))
+  }
+
+  const getPreviewTokens = (activePalette: ColorPalette, mode: "light" | "dark"): PreviewTokens => {
+    const neutralBase = activePalette.neutral[2]?.hex || "#6b7280"
+    const neutralHsl = hexToHsl(neutralBase)
+    const neutralSaturation = Math.min(neutralHsl.s, 24)
+    const primary = getPreferredSwatch(activePalette.primary, baseColor, mode === "light" ? 1 : 3)
+    const secondary = getPreferredSwatch(activePalette.secondary, "#2563eb", mode === "light" ? 1 : 3)
+    const accent = getPreferredSwatch(activePalette.accent, "#7c3aed", mode === "light" ? 2 : 3)
+    const background = mode === "light"
+      ? hslToHex(neutralHsl.h, neutralSaturation, 97)
+      : hslToHex(neutralHsl.h, neutralSaturation, 9)
+    const surface = mode === "light"
+      ? "#ffffff"
+      : hslToHex(neutralHsl.h, neutralSaturation, 14)
+    const raised = mode === "light"
+      ? hslToHex(neutralHsl.h, neutralSaturation, 99)
+      : hslToHex(neutralHsl.h, neutralSaturation, 19)
+    const foreground = mode === "light"
+      ? hslToHex(neutralHsl.h, neutralSaturation, 12)
+      : hslToHex(neutralHsl.h, neutralSaturation, 94)
+    const muted = mode === "light"
+      ? hslToHex(neutralHsl.h, neutralSaturation, 34)
+      : hslToHex(neutralHsl.h, neutralSaturation, 76)
+    const border = mode === "light"
+      ? hslToHex(neutralHsl.h, neutralSaturation, 84)
+      : hslToHex(neutralHsl.h, neutralSaturation, 30)
+    const disabled = mode === "light"
+      ? hslToHex(neutralHsl.h, neutralSaturation, 88)
+      : hslToHex(neutralHsl.h, neutralSaturation, 25)
+
+    return {
+      mode,
+      name: mode === "light" ? "Light mode" : "Dark mode",
+      background,
+      surface,
+      raised,
+      foreground,
+      muted,
+      border,
+      primary,
+      primaryForeground: getReadableTextColor(primary),
+      primaryHover: getShiftedColor(primary, mode === "light" ? -8 : 8),
+      secondary,
+      secondaryForeground: getReadableTextColor(secondary),
+      accent,
+      accentForeground: getReadableTextColor(accent),
+      success: mode === "light" ? "#15803d" : "#22c55e",
+      successForeground: getReadableTextColor(mode === "light" ? "#15803d" : "#22c55e"),
+      warning: mode === "light" ? "#b45309" : "#f59e0b",
+      warningForeground: getReadableTextColor(mode === "light" ? "#b45309" : "#f59e0b"),
+      danger: mode === "light" ? "#b91c1c" : "#f87171",
+      dangerForeground: getReadableTextColor(mode === "light" ? "#b91c1c" : "#f87171"),
+      focus: accent,
+      disabled,
+      disabledForeground: getReadableTextColor(disabled)
+    }
+  }
+
+  const renderContrastBadge = (label: string, foreground: string, background: string, tokens: PreviewTokens) => {
+    const ratio = getContrastRatio(foreground, background)
+
+    return (
+      <span
+        className="rounded-full border px-2.5 py-1 text-xs font-medium"
+        style={{
+          borderColor: tokens.border,
+          backgroundColor: tokens.raised,
+          color: tokens.foreground
+        }}
+      >
+        {label}: {ratio.toFixed(1)}:1 {getContrastLevel(foreground, background)}
+      </span>
+    )
+  }
+
+  const renderLivePreview = (tokens: PreviewTokens) => {
+    const primaryHoverForeground = getReadableTextColor(tokens.primaryHover)
+    const chartBars = [
+      { label: "Text", value: 92, color: tokens.primary },
+      { label: "UI", value: 74, color: tokens.secondary },
+      { label: "Focus", value: 86, color: tokens.accent },
+      { label: "Errors", value: 48, color: tokens.danger }
+    ]
+
+    const previewStyle: CSSProperties = {
+      backgroundColor: tokens.background,
+      color: tokens.foreground,
+      borderColor: tokens.border
+    }
+
+    const surfaceStyle: CSSProperties = {
+      backgroundColor: tokens.surface,
+      color: tokens.foreground,
+      borderColor: tokens.border
+    }
+
+    const raisedStyle: CSSProperties = {
+      backgroundColor: tokens.raised,
+      color: tokens.foreground,
+      borderColor: tokens.border
+    }
+
+    const buttonBaseStyle: CSSProperties = {
+      borderRadius: "0.5rem",
+      minHeight: "2.5rem",
+      padding: "0.625rem 0.875rem",
+      fontWeight: 600
+    }
+
+    return (
+      <div
+        className="rounded-lg border p-4 md:p-5"
+        style={previewStyle}
+      >
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2">
+            {tokens.mode === "light" ? (
+              <Sun className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <Moon className="h-4 w-4" aria-hidden="true" />
+            )}
+            <h3 className="text-base font-semibold">{tokens.name}</h3>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {renderContrastBadge("Text", tokens.foreground, tokens.background, tokens)}
+            {renderContrastBadge("Button", tokens.primaryForeground, tokens.primary, tokens)}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1.1fr_0.9fr]">
+          <div className="space-y-4">
+            <div
+              className="rounded-lg border p-4"
+              style={surfaceStyle}
+            >
+              <div className="mb-3 flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-sm font-semibold">Component states</p>
+                  <p className="text-xs" style={{ color: tokens.muted }}>
+                    Normal, hover, focus, and disabled controls.
+                  </p>
+                </div>
+                <a
+                  href="/tools/contrast-checker"
+                  className="rounded text-sm font-semibold underline underline-offset-4"
+                  style={{ color: tokens.primary }}
+                >
+                  Contrast checker
+                </a>
+              </div>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                <button
+                  type="button"
+                  className="transition-transform hover:-translate-y-0.5"
+                  style={{
+                    ...buttonBaseStyle,
+                    backgroundColor: tokens.primary,
+                    color: tokens.primaryForeground
+                  }}
+                >
+                  Button
+                </button>
+                <button
+                  type="button"
+                  style={{
+                    ...buttonBaseStyle,
+                    backgroundColor: tokens.primaryHover,
+                    color: primaryHoverForeground
+                  }}
+                >
+                  Hover
+                </button>
+                <button
+                  type="button"
+                  style={{
+                    ...buttonBaseStyle,
+                    backgroundColor: tokens.surface,
+                    color: tokens.primary,
+                    border: `2px solid ${tokens.focus}`,
+                    boxShadow: `0 0 0 4px ${tokens.focus}33`
+                  }}
+                >
+                  Focus
+                </button>
+                <button
+                  type="button"
+                  disabled
+                  style={{
+                    ...buttonBaseStyle,
+                    backgroundColor: tokens.disabled,
+                    color: tokens.disabledForeground,
+                    cursor: "not-allowed",
+                    opacity: 0.72
+                  }}
+                >
+                  Disabled
+                </button>
+              </div>
+            </div>
+
+            <div
+              className="rounded-lg border p-4"
+              style={surfaceStyle}
+            >
+              <div className="mb-3 flex items-center gap-2">
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                <p className="text-sm font-semibold">Form preview</p>
+              </div>
+              <div>
+                <label htmlFor={`email-preview-${tokens.mode}`} className="mb-1 block text-sm font-medium">
+                  Email address
+                </label>
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch">
+                  <input
+                    id={`email-preview-${tokens.mode}`}
+                    type="email"
+                    value="alex@example.com"
+                    readOnly
+                    className="h-10 w-full min-w-0 flex-1 rounded-md border px-3 text-sm outline-none"
+                    style={{
+                      backgroundColor: tokens.raised,
+                      color: tokens.foreground,
+                      borderColor: tokens.focus,
+                      boxShadow: `0 0 0 3px ${tokens.focus}2b`
+                    }}
+                  />
+                  <button
+                    type="button"
+                    className="h-10 w-full shrink-0 sm:w-auto"
+                    style={{
+                      ...buttonBaseStyle,
+                      minHeight: "2.5rem",
+                      backgroundColor: tokens.secondary,
+                      color: tokens.secondaryForeground
+                    }}
+                  >
+                    Save
+                  </button>
+                </div>
+                <p className="mt-2 text-xs" style={{ color: tokens.muted }}>
+                  Focus ring uses the generated accent color.
+                </p>
+              </div>
+            </div>
+
+            <div
+              className="rounded-lg border border-l-4 p-4"
+              role="status"
+              style={{
+                ...raisedStyle,
+                borderLeftColor: tokens.success
+              }}
+            >
+              <div className="flex gap-3">
+                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0" style={{ color: tokens.success }} aria-hidden="true" />
+                <div>
+                  <p className="text-sm font-semibold">Accessible palette ready</p>
+                  <p className="text-sm" style={{ color: tokens.muted }}>
+                    Use these tokens for readable alerts, status messages, and inline feedback.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div
+              className="rounded-lg border p-4"
+              style={surfaceStyle}
+            >
+              <p className="text-sm font-semibold">Card preview</p>
+              <p className="mt-1 text-sm" style={{ color: tokens.muted }}>
+                Test how body copy, links, borders, and primary actions feel together.
+              </p>
+              <div className="mt-4 rounded-md border p-3" style={raisedStyle}>
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="font-semibold">Audit summary</p>
+                    <p className="text-xs" style={{ color: tokens.muted }}>
+                      18 checks passed
+                    </p>
+                  </div>
+                  <span
+                    className="rounded-full px-2.5 py-1 text-xs font-semibold"
+                    style={{
+                      backgroundColor: tokens.success,
+                      color: tokens.successForeground
+                    }}
+                  >
+                    Good
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  className="mt-4 w-full"
+                  style={{
+                    ...buttonBaseStyle,
+                    backgroundColor: tokens.primary,
+                    color: tokens.primaryForeground
+                  }}
+                >
+                  Review report
+                </button>
+              </div>
+            </div>
+
+            <div
+              className="rounded-lg border p-4"
+              style={surfaceStyle}
+            >
+              <div className="mb-3 flex items-center gap-2">
+                <BarChart3 className="h-4 w-4" aria-hidden="true" />
+                <p className="text-sm font-semibold">Chart preview</p>
+              </div>
+              <div role="img" aria-label={`${tokens.name} chart color preview`} className="space-y-2">
+                {chartBars.map((bar) => (
+                  <div key={bar.label} className="grid grid-cols-[3.5rem_1fr_2rem] items-center gap-2 text-xs">
+                    <span style={{ color: tokens.muted }}>{bar.label}</span>
+                    <div
+                      className="h-3 overflow-hidden rounded-full"
+                      style={{ backgroundColor: tokens.disabled }}
+                    >
+                      <div
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${bar.value}%`,
+                          backgroundColor: bar.color
+                        }}
+                      />
+                    </div>
+                    <span className="text-right" style={{ color: tokens.muted }}>{bar.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div
+              className="rounded-lg border p-4"
+              style={surfaceStyle}
+            >
+              <div className="flex gap-3">
+                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" style={{ color: tokens.warning }} aria-hidden="true" />
+                <div>
+                  <p className="text-sm font-semibold">Warning state</p>
+                  <p className="text-sm" style={{ color: tokens.muted }}>
+                    Warning and error colors are checked against their text color before display.
+                  </p>
+                  <a
+                    href="/wcag/1-4-3"
+                    className="mt-2 inline-block rounded text-sm font-semibold underline underline-offset-4"
+                    style={{
+                      color: tokens.primary,
+                      outline: `2px solid ${tokens.focus}`,
+                      outlineOffset: "3px"
+                    }}
+                  >
+                    WCAG 1.4.3 reference
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const renderColorGroup = (title: string, colors: ColorData[]) => (
+    <div>
+      <h3 className="font-semibold mb-3 text-lg">{title}</h3>
+      <div className="space-y-3">
+        {colors.map((color, index) => (
+          <button
+            key={`${title}-${color.hex}-${index}`}
+            type="button"
+            className="group relative w-full overflow-hidden rounded-lg border text-left transition-all hover:ring-2 hover:ring-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            onClick={() => copyColor(color.hex)}
+            aria-label={`Copy ${color.hex} from the ${title} palette`}
+          >
+            <span
+              className="block h-16 w-full"
+              style={{ backgroundColor: color.hex }}
+              aria-hidden="true"
+            />
+            <span className="block p-3">
+              <span className="flex items-center justify-between">
+                <span>
+                  <span className="block font-mono text-sm font-medium">{color.hex}</span>
+                  <span className="block text-xs text-muted-foreground">{color.name}</span>
+                </span>
+                {copied === color.hex && (
+                  <CheckCircle className="h-4 w-4 text-green-600" aria-hidden="true" />
+                )}
+              </span>
+              <span className="mt-2 block text-xs text-muted-foreground">
+                <span className="block">HSL: {color.hsl.h}°, {color.hsl.s}%, {color.hsl.l}%</span>
+                <span className="block">RGB: {color.rgb.r}, {color.rgb.g}, {color.rgb.b}</span>
+              </span>
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+
   // Generate initial palette
   useEffect(() => {
-    generatePalette()
+    const timer = window.setTimeout(() => {
+      generatePalette()
+    }, 0)
+
+    return () => window.clearTimeout(timer)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -465,141 +932,29 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                {/* Primary Colors */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-lg">Primary</h3>
-                  <div className="space-y-3">
-                    {palette.primary.map((color, index) => (
-                      <div
-                        key={index}
-                        className="group relative rounded-lg overflow-hidden border cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all"
-                        onClick={() => copyColor(color.hex)}
-                      >
-                        <div 
-                          className="h-16 w-full"
-                          style={{ backgroundColor: color.hex }}
-                        />
-                        <div className="p-3">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <p className="font-mono text-sm font-medium">{color.hex}</p>
-                              <p className="text-xs text-muted-foreground">{color.name}</p>
-                            </div>
-                            {copied === color.hex && (
-                              <CheckCircle className="h-4 w-4 text-green-600" />
-                            )}
-                          </div>
-                          <div className="mt-2 text-xs text-muted-foreground">
-                            <p>HSL: {color.hsl.h}°, {color.hsl.s}%, {color.hsl.l}%</p>
-                            <p>RGB: {color.rgb.r}, {color.rgb.g}, {color.rgb.b}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                {renderColorGroup("Primary", palette.primary)}
+                {renderColorGroup("Secondary", palette.secondary)}
+                {renderColorGroup("Accent", palette.accent)}
+                {renderColorGroup("Neutral", palette.neutral)}
+              </div>
+            </CardContent>
+          </Card>
 
-                {/* Secondary Colors */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-lg">Secondary</h3>
-                  <div className="space-y-3">
-                    {palette.secondary.map((color, index) => (
-                      <div
-                        key={index}
-                        className="group relative rounded-lg overflow-hidden border cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all"
-                        onClick={() => copyColor(color.hex)}
-                      >
-                        <div 
-                          className="h-16 w-full"
-                          style={{ backgroundColor: color.hex }}
-                        />
-                        <div className="p-3">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <p className="font-mono text-sm font-medium">{color.hex}</p>
-                              <p className="text-xs text-muted-foreground">{color.name}</p>
-                            </div>
-                            {copied === color.hex && (
-                              <CheckCircle className="h-4 w-4 text-green-600" />
-                            )}
-                          </div>
-                          <div className="mt-2 text-xs text-muted-foreground">
-                            <p>HSL: {color.hsl.h}°, {color.hsl.s}%, {color.hsl.l}%</p>
-                            <p>RGB: {color.rgb.r}, {color.rgb.g}, {color.rgb.b}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Accent Colors */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-lg">Accent</h3>
-                  <div className="space-y-3">
-                    {palette.accent.map((color, index) => (
-                      <div
-                        key={index}
-                        className="group relative rounded-lg overflow-hidden border cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all"
-                        onClick={() => copyColor(color.hex)}
-                      >
-                        <div 
-                          className="h-16 w-full"
-                          style={{ backgroundColor: color.hex }}
-                        />
-                        <div className="p-3">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <p className="font-mono text-sm font-medium">{color.hex}</p>
-                              <p className="text-xs text-muted-foreground">{color.name}</p>
-                            </div>
-                            {copied === color.hex && (
-                              <CheckCircle className="h-4 w-4 text-green-600" />
-                            )}
-                          </div>
-                          <div className="mt-2 text-xs text-muted-foreground">
-                            <p>HSL: {color.hsl.h}°, {color.hsl.s}%, {color.hsl.l}%</p>
-                            <p>RGB: {color.rgb.r}, {color.rgb.g}, {color.rgb.b}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Neutral Colors */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-lg">Neutral</h3>
-                  <div className="space-y-3">
-                    {palette.neutral.map((color, index) => (
-                      <div
-                        key={index}
-                        className="group relative rounded-lg overflow-hidden border cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all"
-                        onClick={() => copyColor(color.hex)}
-                      >
-                        <div 
-                          className="h-16 w-full"
-                          style={{ backgroundColor: color.hex }}
-                        />
-                        <div className="p-3">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <p className="font-mono text-sm font-medium">{color.hex}</p>
-                              <p className="text-xs text-muted-foreground">{color.name}</p>
-                            </div>
-                            {copied === color.hex && (
-                              <CheckCircle className="h-4 w-4 text-green-600" />
-                            )}
-                          </div>
-                          <div className="mt-2 text-xs text-muted-foreground">
-                            <p>HSL: {color.hsl.h}°, {color.hsl.s}%, {color.hsl.l}%</p>
-                            <p>RGB: {color.rgb.r}, {color.rgb.g}, {color.rgb.b}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+          {/* Live UI Preview */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Eye className="h-5 w-5" />
+                Live UI Preview
+              </CardTitle>
+              <CardDescription>
+                See the palette applied to real interface states before using it in a design system.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 gap-6">
+                {renderLivePreview(getPreviewTokens(palette, "light"))}
+                {renderLivePreview(getPreviewTokens(palette, "dark"))}
               </div>
             </CardContent>
           </Card>
@@ -676,7 +1031,10 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
               
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <h4 className="font-semibold mb-2">✅ Good Practices:</h4>
+                  <h4 className="mb-2 flex items-center gap-2 font-semibold">
+                    <CheckCircle className="h-4 w-4 text-green-600" aria-hidden="true" />
+                    Good Practices:
+                  </h4>
                   <ul className="space-y-1 text-muted-foreground">
                     <li>• Test with real users</li>
                     <li>• Ensure 4.5:1 contrast for normal text</li>
@@ -685,7 +1043,10 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">⚠️ Avoid:</h4>
+                  <h4 className="mb-2 flex items-center gap-2 font-semibold">
+                    <AlertTriangle className="h-4 w-4 text-amber-600" aria-hidden="true" />
+                    Avoid:
+                  </h4>
                   <ul className="space-y-1 text-muted-foreground">
                     <li>• Relying only on color for information</li>
                     <li>• Very bright or saturated backgrounds</li>
@@ -700,4 +1061,4 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
       )}
     </div>
   )
-} 
+}
