@@ -47,8 +47,19 @@ export const lawsuitsByYear: LawsuitYearData[] = [
   { year: 2022, totalFiled: 3255, federalCourt: 3255, demandLetters: 1000, yearOverYearChange: -18.8 },
   { year: 2023, totalFiled: 2794, federalCourt: 2794, demandLetters: 1500, yearOverYearChange: -14.2 },
   { year: 2024, totalFiled: 2452, federalCourt: 2452, demandLetters: 1800, yearOverYearChange: -12.2 },
-  { year: 2025, totalFiled: 5000, federalCourt: 5000, demandLetters: 2200, yearOverYearChange: 103.9 },
+  { year: 2025, totalFiled: 5210, federalCourt: 5210, demandLetters: 2200, yearOverYearChange: 112.5 },
 ]
+
+// 2026 year-to-date data through April 30, 2026 (first four months)
+// Tracked separately from the annual chart to avoid visualizing an incomplete year
+export const lawsuit2026YTD = {
+  asOfDate: "2026-04-30",
+  monthsElapsed: 4,
+  federalCourt: 1985,
+  demandLetters: 920,
+  annualizedPace: 5955,
+  changeVsSamePeriod2025: 14.2,
+}
 
 // Industry breakdown based on 2025 UsableNet data
 export const lawsuitsByIndustry: LawsuitIndustryData[] = [
@@ -73,11 +84,27 @@ export const settlementData: SettlementData[] = [
 
 export const keyRulings: KeyRuling[] = [
   {
-    date: "2025-04-24",
-    caseName: "DOJ Title II Rule Takes Effect",
+    date: "2026-04-24",
+    caseName: "DOJ Title II Rule Now in Force (Phase 1)",
     court: "Department of Justice",
-    summary: "The DOJ's Title II rule requiring state and local government websites to meet WCAG 2.1 Level AA takes effect for large entities in April 2026, solidifying WCAG 2.1 AA as the de facto standard courts reference in Title III cases",
-    significance: "Establishes the first formal federal web accessibility standard, influencing Title III case law",
+    summary: "The DOJ's Title II rule requiring state and local government web content and mobile apps to conform to WCAG 2.1 Level AA is now binding on public entities serving populations of 50,000 or more (Phase 1 compliance deadline: April 24, 2026). Smaller entities have until April 26, 2027",
+    significance: "First federal regulation to fix a specific WCAG version as the legal benchmark; courts are already citing it as persuasive authority in Title III private-sector cases",
+    outcome: "plaintiff",
+  },
+  {
+    date: "2026-02-12",
+    caseName: "Mejia v. High Volume Filer Sanctions Order",
+    court: "S.D.N.Y.",
+    summary: "Federal judge issued a wide-ranging sanctions and screening order targeting boilerplate ADA tester complaints in the Southern District of New York after finding a pattern of duplicative filings, requiring pre-suit certifications and capping fee awards on form complaints",
+    significance: "Slowed the pace of cookie-cutter NY filings in Q1 2026 and pushed plaintiff firms to file in EDNY, FLSD, and CD Cal instead",
+    outcome: "defendant",
+  },
+  {
+    date: "2025-06-28",
+    caseName: "European Accessibility Act Enforcement Begins",
+    court: "EU Member States",
+    summary: "The European Accessibility Act (EAA) compliance deadline of June 28, 2025 took effect, requiring e-commerce, banking, transport, and digital products serving EU consumers to meet EN 301 549 (which incorporates WCAG 2.1 AA). U.S. companies with EU customers now face dual U.S./EU exposure",
+    significance: "Expanded global accessibility liability for U.S. firms and increased the business case for proactive WCAG conformance",
     outcome: "plaintiff",
   },
   {
@@ -138,11 +165,15 @@ export const topStates: StateData[] = [
 ]
 
 export const lawsuitSummary = {
-  totalLawsuitsFiled: 25576,
-  latestYearTotal: 5000,
-  yearOverYearChange: 103.9,
+  totalLawsuitsFiled: 25786,
+  latestYearTotal: 5210,
+  yearOverYearChange: 112.5,
+  ytd2026Filed: 1985,
+  ytd2026AsOf: "April 30, 2026",
+  ytd2026PaceVs2025: 14.2,
   averageSettlement: 30000,
   mostTargetedIndustry: "E-Commerce & Retail",
+  mostTargetedIndustryShare: 69,
   topState: "New York",
   averageLegalDefenseCost: 30000,
   demandLettersGrowth: 22,

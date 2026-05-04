@@ -43,6 +43,7 @@ import { MethodologySection } from "@/components/research/methodology-section"
 import { EmbeddableWidget } from "@/components/research/embeddable-widget"
 import {
   lawsuitsByYear,
+  lawsuit2026YTD,
   lawsuitsByIndustry,
   settlementData,
   keyRulings,
@@ -169,7 +170,7 @@ export function LawsuitTrackerClient() {
             value={lawsuitSummary.mostTargetedIndustry}
             label="Most Targeted Industry"
             icon={Building2}
-            source="34% of all lawsuits"
+            source={`${lawsuitSummary.mostTargetedIndustryShare}% of all 2025 lawsuits`}
           />
         </div>
       </section>
@@ -178,7 +179,7 @@ export function LawsuitTrackerClient() {
       <section aria-labelledby="yearly-trends-heading">
         <ChartSection
           title="Federal Accessibility Lawsuits by Year"
-          description="ADA Title III digital accessibility lawsuits filed in U.S. federal courts (2018-2025)"
+          description="ADA Title III digital accessibility lawsuits filed in U.S. federal courts (2018-2025, with 2026 YTD shown separately below)"
           source="UsableNet, Seyfarth Shaw, PACER"
           downloadData={{
             filename: "accessibility-lawsuits-by-year",
@@ -194,7 +195,7 @@ export function LawsuitTrackerClient() {
           <div
             className="h-[350px] md:h-[420px]"
             role="img"
-            aria-label="Area chart showing federal accessibility lawsuits by year from 2018 to 2024. Peak was 5,000 lawsuits in 2025."
+            aria-label="Area chart showing federal accessibility lawsuits by year from 2018 to 2025. 2025 set a record at 5,210 lawsuits."
           >
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={lawsuitsByYear} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
@@ -275,7 +276,53 @@ export function LawsuitTrackerClient() {
             </div>
             <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800/50 rounded-full px-3 py-1.5">
               <AlertTriangle className="h-3 w-3 text-blue-500" />
-              <span>2025: Record year with 5,000+ federal filings</span>
+              <span>2025: Record year with 5,210 federal filings (+112.5% YoY)</span>
+            </div>
+            <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800/50 rounded-full px-3 py-1.5">
+              <AlertTriangle className="h-3 w-3 text-emerald-500" />
+              <span>Apr 24, 2026: DOJ Title II rule now binding on large public entities</span>
+            </div>
+          </div>
+
+          {/* 2026 YTD callout */}
+          <div className="mt-6 rounded-xl border border-blue-200 dark:border-blue-900/50 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/20 p-5">
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <TrendingUp className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                  <p className="text-xs font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-300">
+                    2026 Year-to-Date
+                  </p>
+                </div>
+                <p className="text-sm text-slate-700 dark:text-slate-300 max-w-xl">
+                  Through {new Date(lawsuit2026YTD.asOfDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} ({lawsuit2026YTD.monthsElapsed} months),
+                  federal filings are running{" "}
+                  <span className="font-semibold text-blue-700 dark:text-blue-300">
+                    +{lawsuit2026YTD.changeVsSamePeriod2025}%
+                  </span>{" "}
+                  ahead of the same period in 2025 &mdash; on pace for{" "}
+                  <span className="font-semibold">{lawsuit2026YTD.annualizedPace.toLocaleString()}</span>{" "}
+                  filings if the trend holds.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4 text-right">
+                <div>
+                  <p className="text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    Federal filings
+                  </p>
+                  <p className="text-2xl font-bold text-slate-900 dark:text-white tabular-nums">
+                    {lawsuit2026YTD.federalCourt.toLocaleString()}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    Demand letters
+                  </p>
+                  <p className="text-2xl font-bold text-slate-900 dark:text-white tabular-nums">
+                    ~{lawsuit2026YTD.demandLetters.toLocaleString()}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </ChartSection>
@@ -870,15 +917,16 @@ export function LawsuitTrackerClient() {
                 "Federal court electronic records system used to verify and cross-reference lawsuit filing data.",
             },
           ]}
-          sampleSize="Federal court filings, 2018-2025"
-          dateRange="2018 - 2025"
+          sampleSize="Federal court filings, 2018-2025 (full year) + 2026 YTD through April 30"
+          dateRange="2018 - 2026 YTD"
           limitations={[
             "Only tracks federal court filings",
             "Demand letter estimates are approximate",
             "Settlement amounts are based on publicly available data",
             "Some cases may be counted multiple times across sources",
+            "2026 figures are partial-year (through Apr 30) and subject to revision as PACER and tracker updates roll in",
           ]}
-          lastUpdated="March 2026"
+          lastUpdated="May 2026"
         />
       </section>
 

@@ -8,7 +8,7 @@ import { LawsuitTrackerClient } from "./LawsuitTrackerClient"
 export const metadata: Metadata = {
   title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
   description:
-    "Comprehensive data on web accessibility lawsuits in the United States. Track trends by year, industry, state, and settlement costs. Updated annually.",
+    "Comprehensive data on web accessibility lawsuits in the United States. 2025 closed at a record 5,210 federal filings; 2026 YTD (through April) tracks 14% above last year's pace. Updated May 2026.",
   keywords: [
     "accessibility lawsuits",
     "ada lawsuit tracker",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
     description:
-      "Comprehensive data on web accessibility lawsuits in the United States. Track trends by year, industry, state, and settlement costs. Updated annually.",
+      "Comprehensive data on web accessibility lawsuits in the United States. 2025 closed at a record 5,210 federal filings; 2026 YTD (through April) tracks 14% above last year's pace.",
     url: "https://accessibility.build/research/accessibility-lawsuits",
     type: "article",
   },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Accessibility Lawsuit Tracker 2026",
     description:
-      "Comprehensive data on web accessibility lawsuits in the United States. Track trends by year, industry, state, and settlement costs.",
+      "2025 closed at 5,210 federal filings (+112% YoY). 2026 YTD through April: 1,985 filings, 14% above last year's pace.",
   },
 }
 
@@ -60,7 +60,7 @@ export default function AccessibilityLawsuitsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-01-15"
-        dateModified="2026-03-01"
+        dateModified="2026-05-04"
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-lawsuits"
         wordCount={3500}
@@ -111,7 +111,8 @@ export default function AccessibilityLawsuitsPage() {
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               Comprehensive data on ADA and digital accessibility lawsuits filed in the United
-              States. Track litigation trends by year, industry, state, and settlement costs.
+              States. Track litigation trends by year, industry, state, and settlement costs —
+              with 2026 year-to-date filings updated through April 30.
             </p>
           </div>
 
@@ -124,6 +125,17 @@ export default function AccessibilityLawsuitsPage() {
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
+              <p className="text-slate-400 text-sm font-medium mb-1">
+                2026 YTD (through Apr 30)
+              </p>
+              <p className="text-3xl md:text-4xl font-bold text-white">
+                {lawsuitSummary.ytd2026Filed.toLocaleString()}
+              </p>
+              <p className="text-red-300 text-xs mt-1">
+                +{lawsuitSummary.ytd2026PaceVs2025}% vs same period 2025
+              </p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
               <p className="text-slate-400 text-sm font-medium mb-1">2025 Federal Lawsuits</p>
               <p className="text-3xl md:text-4xl font-bold text-white">
                 {lawsuitSummary.latestYearTotal.toLocaleString()}
@@ -133,15 +145,12 @@ export default function AccessibilityLawsuitsPage() {
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-              <p className="text-slate-400 text-sm font-medium mb-1">Average Settlement</p>
-              <p className="text-3xl md:text-4xl font-bold text-white">
-                ${lawsuitSummary.averageSettlement.toLocaleString()}
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
               <p className="text-slate-400 text-sm font-medium mb-1">Most Targeted Industry</p>
               <p className="text-xl md:text-2xl font-bold text-white">
                 {lawsuitSummary.mostTargetedIndustry}
+              </p>
+              <p className="text-slate-400 text-xs mt-1">
+                {lawsuitSummary.mostTargetedIndustryShare}% of all 2025 filings
               </p>
             </div>
           </div>
@@ -174,10 +183,12 @@ export default function AccessibilityLawsuitsPage() {
             </h3>
             <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
-                In 2025, over 5,000 federal ADA digital accessibility lawsuits were filed
-                in the United States. This number has fluctuated between 2,200 and 5,000 annually
-                since 2018, with 2025 seeing a dramatic surge. Additionally, thousands of demand letters
-                are sent each year that never result in formal litigation.
+                In 2025, 5,210 federal ADA digital accessibility lawsuits were filed in the United
+                States &mdash; a record year and more than double the 2,452 filings in 2024.
+                Through April 30, 2026, 1,985 federal cases have already been filed, putting 2026
+                on pace for roughly 5,950 filings (about 14% above last year&apos;s record).
+                Annual volume has fluctuated between 2,256 and 5,210 since 2018, and thousands of
+                additional demand letters are sent each year that never reach formal litigation.
               </p>
             </div>
           </div>
@@ -234,9 +245,13 @@ export default function AccessibilityLawsuitsPage() {
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
                 While the ADA does not explicitly mention websites, multiple federal courts have
                 ruled that websites of businesses open to the public are subject to ADA Title III
-                requirements. The landmark Robles v. Domino's Pizza case in the 9th Circuit
-                established that the ADA applies to websites and mobile apps. However, a circuit
-                split exists, as the 11th Circuit ruled differently in Gil v. Winn-Dixie.
+                requirements. The landmark Robles v. Domino&apos;s Pizza case in the 9th Circuit
+                established that the ADA applies to websites and mobile apps. A circuit split
+                exists, as the 11th Circuit ruled differently in Gil v. Winn-Dixie. The picture
+                shifted again on April 24, 2026, when the DOJ&apos;s Title II rule took effect for
+                large public entities, locking in WCAG 2.1 Level AA as the federal benchmark for
+                state and local government sites &mdash; a standard private-sector courts are
+                increasingly citing as persuasive in Title III cases.
               </p>
             </div>
           </div>
