@@ -37,8 +37,10 @@ export interface StateData {
   perCapita: number
 }
 
-// Digital accessibility-specific lawsuits filed in US federal courts
-// Sources: UsableNet annual reports, Seyfarth Shaw ADA Title III tracker, PACER
+// Federal-court website accessibility lawsuits (ADA Title III digital cases).
+// Sources: Seyfarth Shaw ADA Title III tracker, UsableNet annual reports, PACER.
+// Note: 2025's widely cited "5,000+" figure includes state-court filings (NY/CA mostly);
+// the federalCourt column tracks federal filings only, per Seyfarth's published count.
 export const lawsuitsByYear: LawsuitYearData[] = [
   { year: 2018, totalFiled: 2258, federalCourt: 2258, demandLetters: 0, yearOverYearChange: 177 },
   { year: 2019, totalFiled: 2256, federalCourt: 2256, demandLetters: 265, yearOverYearChange: -0.1 },
@@ -47,31 +49,47 @@ export const lawsuitsByYear: LawsuitYearData[] = [
   { year: 2022, totalFiled: 3255, federalCourt: 3255, demandLetters: 1000, yearOverYearChange: -18.8 },
   { year: 2023, totalFiled: 2794, federalCourt: 2794, demandLetters: 1500, yearOverYearChange: -14.2 },
   { year: 2024, totalFiled: 2452, federalCourt: 2452, demandLetters: 1800, yearOverYearChange: -12.2 },
-  { year: 2025, totalFiled: 5210, federalCourt: 5210, demandLetters: 2200, yearOverYearChange: 112.5 },
+  { year: 2025, totalFiled: 3117, federalCourt: 3117, demandLetters: 1900, yearOverYearChange: 27.1 },
 ]
 
-// 2026 year-to-date data through April 30, 2026 (first four months)
-// Tracked separately from the annual chart to avoid visualizing an incomplete year
-export const lawsuit2026YTD = {
-  asOfDate: "2026-04-30",
-  monthsElapsed: 4,
-  federalCourt: 1985,
-  demandLetters: 920,
-  annualizedPace: 5955,
-  changeVsSamePeriod2025: 14.2,
+// Snapshot of the May 2026 regulatory landscape — used for the post-chart callout.
+// Verified against the DOJ Interim Final Rule (Apr 20, 2026) and HHS Section 504 rule.
+export const may2026RegulatorySnapshot = {
+  asOfDate: "2026-05-04",
+  items: [
+    {
+      label: "DOJ Title II compliance — EXTENDED",
+      detail:
+        "On April 20, 2026 the DOJ issued an Interim Final Rule pushing Phase 1 (entities ≥50,000 pop.) from April 24, 2026 to April 26, 2027, and Phase 2 (smaller entities, special districts) to April 26, 2028. WCAG 2.1 Level AA remains the standard. Comments due June 22, 2026.",
+      tone: "warning" as const,
+    },
+    {
+      label: "HHS Section 504 web rule — IN FORCE May 11, 2026",
+      detail:
+        "Recipients of HHS funding (most hospitals, health systems, state Medicaid agencies, and many federally qualified health centers) must conform their web content and mobile apps to WCAG 2.1 AA by May 11, 2026. HHS has not announced an extension. Healthcare-sector enforcement risk is the highest single regulatory exposure right now.",
+      tone: "critical" as const,
+    },
+    {
+      label: "Pro se / AI-drafted complaints surging",
+      detail:
+        "Per Seyfarth Shaw, ~40% of 2025 federal ADA Title III filings were filed pro se, with plaintiffs increasingly using generative AI to draft complaints and identify violations. Combined with the fact that 1,427 of 2025's filings (≈45% of federal cases) targeted repeat defendants, the cost-of-entry to file has dropped sharply.",
+      tone: "info" as const,
+    },
+  ],
 }
 
-// Industry breakdown based on 2025 UsableNet data
+// Industry breakdown — share of all 2025 digital accessibility lawsuits (federal + state).
+// Source: UsableNet 2025 year-end report. Counts proportioned against the ~5,000 combined total.
 export const lawsuitsByIndustry: LawsuitIndustryData[] = [
-  { industry: "E-Commerce & Retail", percentage: 69.0, count: 3450, trend: "up", color: "#3b82f6" },
+  { industry: "E-Commerce & Retail", percentage: 70.0, count: 3500, trend: "up", color: "#3b82f6" },
   { industry: "Food & Beverage", percentage: 21.0, count: 1050, trend: "up", color: "#10b981" },
-  { industry: "Entertainment", percentage: 2.5, count: 125, trend: "down", color: "#8b5cf6" },
-  { industry: "Travel & Hospitality", percentage: 1.8, count: 90, trend: "down", color: "#f59e0b" },
-  { industry: "Banking & Finance", percentage: 1.5, count: 75, trend: "stable", color: "#ef4444" },
-  { industry: "Healthcare", percentage: 1.2, count: 60, trend: "stable", color: "#06b6d4" },
+  { industry: "Healthcare", percentage: 2.5, count: 125, trend: "up", color: "#06b6d4" },
+  { industry: "Entertainment", percentage: 2.0, count: 100, trend: "down", color: "#8b5cf6" },
+  { industry: "Travel & Hospitality", percentage: 1.5, count: 75, trend: "down", color: "#f59e0b" },
+  { industry: "Banking & Finance", percentage: 1.2, count: 60, trend: "stable", color: "#ef4444" },
   { industry: "Education", percentage: 0.8, count: 40, trend: "stable", color: "#ec4899" },
-  { industry: "Real Estate", percentage: 0.7, count: 35, trend: "stable", color: "#84cc16" },
-  { industry: "Other", percentage: 1.5, count: 75, trend: "stable", color: "#6b7280" },
+  { industry: "Real Estate", percentage: 0.5, count: 25, trend: "stable", color: "#84cc16" },
+  { industry: "Other", percentage: 0.5, count: 25, trend: "stable", color: "#6b7280" },
 ]
 
 export const settlementData: SettlementData[] = [
@@ -84,19 +102,19 @@ export const settlementData: SettlementData[] = [
 
 export const keyRulings: KeyRuling[] = [
   {
-    date: "2026-04-24",
-    caseName: "DOJ Title II Rule Now in Force (Phase 1)",
-    court: "Department of Justice",
-    summary: "The DOJ's Title II rule requiring state and local government web content and mobile apps to conform to WCAG 2.1 Level AA is now binding on public entities serving populations of 50,000 or more (Phase 1 compliance deadline: April 24, 2026). Smaller entities have until April 26, 2027",
-    significance: "First federal regulation to fix a specific WCAG version as the legal benchmark; courts are already citing it as persuasive authority in Title III private-sector cases",
+    date: "2026-05-11",
+    caseName: "HHS Section 504 Web Accessibility Rule — Compliance Deadline",
+    court: "Department of Health and Human Services",
+    summary: "Recipients of HHS federal financial assistance (hospitals, health systems, state Medicaid agencies, federally qualified health centers, and many other healthcare entities) must, as of May 11, 2026, ensure their websites and mobile apps conform to WCAG 2.1 Level AA. HHS has not announced an extension parallel to DOJ's Title II delay, leaving healthcare as the most acute regulatory exposure of 2026",
+    significance: "First federal web-accessibility deadline to actually take effect on schedule; fuels Q2/Q3 2026 enforcement risk for the healthcare industry and adds weight to the rising healthcare share of private litigation",
     outcome: "plaintiff",
   },
   {
-    date: "2026-02-12",
-    caseName: "Mejia v. High Volume Filer Sanctions Order",
-    court: "S.D.N.Y.",
-    summary: "Federal judge issued a wide-ranging sanctions and screening order targeting boilerplate ADA tester complaints in the Southern District of New York after finding a pattern of duplicative filings, requiring pre-suit certifications and capping fee awards on form complaints",
-    significance: "Slowed the pace of cookie-cutter NY filings in Q1 2026 and pushed plaintiff firms to file in EDNY, FLSD, and CD Cal instead",
+    date: "2026-04-20",
+    caseName: "DOJ Interim Final Rule Extends Title II Web Compliance",
+    court: "Department of Justice",
+    summary: "The DOJ issued an Interim Final Rule extending the Title II web/mobile compliance deadlines by one year. State and local governments serving ≥50,000 residents now have until April 26, 2027 (was April 24, 2026); smaller entities and special districts have until April 26, 2028 (was April 26, 2027). WCAG 2.1 AA remains the standard. The DOJ cited overestimated technology readiness and entity resource constraints; written comments are due June 22, 2026",
+    significance: "Removes the immediate enforcement cliff for public entities, but private-sector courts continue to cite the underlying rule as persuasive authority on what 'accessible' means under Title III",
     outcome: "defendant",
   },
   {
@@ -149,32 +167,37 @@ export const keyRulings: KeyRuling[] = [
   },
 ]
 
-// Top states for digital accessibility lawsuit filings (2025 data)
-// Sources: UsableNet, Seyfarth Shaw, PACER
+// Top states by 2025 federal court website-accessibility filings.
+// Source: Seyfarth Shaw / adatitleiii.com 2025 year-end review (federal-court only).
+// California's count collapsed because state-court rulings closed off ADA coverage for online-only
+// businesses, pushing plaintiffs to file in NY/FL/IL federal courts instead.
 export const topStates: StateData[] = [
-  { state: "New York", abbreviation: "NY", count: 1750, perCapita: 8.9 },
-  { state: "Florida", abbreviation: "FL", count: 1100, perCapita: 5.0 },
-  { state: "California", abbreviation: "CA", count: 950, perCapita: 2.4 },
-  { state: "Illinois", abbreviation: "IL", count: 475, perCapita: 3.8 },
-  { state: "Pennsylvania", abbreviation: "PA", count: 280, perCapita: 2.2 },
-  { state: "New Jersey", abbreviation: "NJ", count: 210, perCapita: 2.3 },
-  { state: "Texas", abbreviation: "TX", count: 185, perCapita: 0.6 },
-  { state: "Massachusetts", abbreviation: "MA", count: 155, perCapita: 2.2 },
-  { state: "Minnesota", abbreviation: "MN", count: 120, perCapita: 2.1 },
-  { state: "Missouri", abbreviation: "MO", count: 95, perCapita: 1.5 },
+  { state: "New York", abbreviation: "NY", count: 1021, perCapita: 5.2 },
+  { state: "Florida", abbreviation: "FL", count: 961, perCapita: 4.3 },
+  { state: "Illinois", abbreviation: "IL", count: 585, perCapita: 4.7 },
+  { state: "Minnesota", abbreviation: "MN", count: 162, perCapita: 2.8 },
+  { state: "Pennsylvania", abbreviation: "PA", count: 137, perCapita: 1.1 },
+  { state: "New Jersey", abbreviation: "NJ", count: 80, perCapita: 0.9 },
+  { state: "Massachusetts", abbreviation: "MA", count: 55, perCapita: 0.8 },
+  { state: "Texas", abbreviation: "TX", count: 40, perCapita: 0.1 },
+  { state: "Missouri", abbreviation: "MO", count: 35, perCapita: 0.6 },
+  { state: "California", abbreviation: "CA", count: 4, perCapita: 0.01 },
 ]
 
 export const lawsuitSummary = {
-  totalLawsuitsFiled: 25786,
-  latestYearTotal: 5210,
-  yearOverYearChange: 112.5,
-  ytd2026Filed: 1985,
-  ytd2026AsOf: "April 30, 2026",
-  ytd2026PaceVs2025: 14.2,
+  // Cumulative 2018-2025 federal-court website accessibility filings (sum of lawsuitsByYear).
+  totalLawsuitsFiled: 23693,
+  latestYearTotal: 3117,
+  yearOverYearChange: 27.1,
+  // Combined federal + state-court filings reported by UsableNet for 2025
+  combinedFederalStateTotal2025: 5000,
   averageSettlement: 30000,
   mostTargetedIndustry: "E-Commerce & Retail",
-  mostTargetedIndustryShare: 69,
+  mostTargetedIndustryShare: 70,
   topState: "New York",
   averageLegalDefenseCost: 30000,
   demandLettersGrowth: 22,
+  // Litigation-economics signals from Seyfarth & UsableNet 2025 reports
+  proSeFederalShare2025: 40,
+  repeatDefendants2025: 1427,
 }

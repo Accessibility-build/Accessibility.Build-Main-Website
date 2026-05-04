@@ -8,7 +8,7 @@ import { LawsuitTrackerClient } from "./LawsuitTrackerClient"
 export const metadata: Metadata = {
   title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
   description:
-    "Comprehensive data on web accessibility lawsuits in the United States. 2025 closed at a record 5,210 federal filings; 2026 YTD (through April) tracks 14% above last year's pace. Updated May 2026.",
+    "Comprehensive data on web accessibility lawsuits in the United States. 2025 closed at 3,117 federal filings (+27% YoY) — over 5,000 when state-court cases are included. DOJ Title II compliance was extended to 2027; HHS Section 504 deadline hits May 11, 2026. Updated May 2026.",
   keywords: [
     "accessibility lawsuits",
     "ada lawsuit tracker",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
     description:
-      "Comprehensive data on web accessibility lawsuits in the United States. 2025 closed at a record 5,210 federal filings; 2026 YTD (through April) tracks 14% above last year's pace.",
+      "2025 closed at 3,117 federal website-accessibility lawsuits (+27% YoY); over 5,000 when state-court cases are included. DOJ Title II compliance was extended to 2027/2028; HHS Section 504 hits May 11, 2026.",
     url: "https://accessibility.build/research/accessibility-lawsuits",
     type: "article",
   },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Accessibility Lawsuit Tracker 2026",
     description:
-      "2025 closed at 5,210 federal filings (+112% YoY). 2026 YTD through April: 1,985 filings, 14% above last year's pace.",
+      "3,117 federal filings in 2025 (+27% YoY). DOJ Title II deadline pushed to April 2027; HHS Section 504 web rule still hits May 11, 2026.",
   },
 }
 
@@ -111,28 +111,20 @@ export default function AccessibilityLawsuitsPage() {
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               Comprehensive data on ADA and digital accessibility lawsuits filed in the United
-              States. Track litigation trends by year, industry, state, and settlement costs —
-              with 2026 year-to-date filings updated through April 30.
+              States. Federal-court trends through 2025, the May 2026 regulatory landscape
+              (DOJ Title II extension, HHS Section 504 deadline), and settlement-cost benchmarks.
             </p>
           </div>
 
           {/* Server-rendered key stats for SEO crawlers */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-              <p className="text-slate-400 text-sm font-medium mb-1">Total Lawsuits (2018-2025)</p>
+              <p className="text-slate-400 text-sm font-medium mb-1">Federal Filings (2018-2025)</p>
               <p className="text-3xl md:text-4xl font-bold text-white">
-                {lawsuitSummary.totalLawsuitsFiled.toLocaleString()}+
+                {lawsuitSummary.totalLawsuitsFiled.toLocaleString()}
               </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-              <p className="text-slate-400 text-sm font-medium mb-1">
-                2026 YTD (through Apr 30)
-              </p>
-              <p className="text-3xl md:text-4xl font-bold text-white">
-                {lawsuitSummary.ytd2026Filed.toLocaleString()}
-              </p>
-              <p className="text-red-300 text-xs mt-1">
-                +{lawsuitSummary.ytd2026PaceVs2025}% vs same period 2025
+              <p className="text-slate-400 text-xs mt-1">
+                Cumulative ADA Title III digital cases
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
@@ -141,7 +133,16 @@ export default function AccessibilityLawsuitsPage() {
                 {lawsuitSummary.latestYearTotal.toLocaleString()}
               </p>
               <p className="text-red-300 text-xs mt-1">
-                {lawsuitSummary.yearOverYearChange > 0 ? '+' : ''}{lawsuitSummary.yearOverYearChange}% vs 2024
+                +{lawsuitSummary.yearOverYearChange}% vs 2024
+              </p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
+              <p className="text-slate-400 text-sm font-medium mb-1">2025 Federal + State</p>
+              <p className="text-3xl md:text-4xl font-bold text-white">
+                {lawsuitSummary.combinedFederalStateTotal2025.toLocaleString()}+
+              </p>
+              <p className="text-slate-400 text-xs mt-1">
+                Including NY/CA state-court filings
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
@@ -183,12 +184,15 @@ export default function AccessibilityLawsuitsPage() {
             </h3>
             <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
-                In 2025, 5,210 federal ADA digital accessibility lawsuits were filed in the United
-                States &mdash; a record year and more than double the 2,452 filings in 2024.
-                Through April 30, 2026, 1,985 federal cases have already been filed, putting 2026
-                on pace for roughly 5,950 filings (about 14% above last year&apos;s record).
-                Annual volume has fluctuated between 2,256 and 5,210 since 2018, and thousands of
-                additional demand letters are sent each year that never reach formal litigation.
+                In 2025, plaintiffs filed <strong>3,117 website accessibility lawsuits in U.S.
+                federal court</strong> &mdash; a 27% jump over 2024&apos;s 2,452 cases (Seyfarth
+                Shaw / adatitleiii.com). Including state-court filings (mostly in New York and
+                California), total digital accessibility lawsuits topped <strong>5,000</strong> for
+                the year (UsableNet). Federal volume has fluctuated between roughly 2,256 and
+                4,011 each year since 2018, and several thousand additional demand letters are
+                sent annually that never reach formal litigation. Roughly 40% of 2025&apos;s
+                federal filings were filed pro se, with plaintiffs increasingly using generative
+                AI to draft complaints.
               </p>
             </div>
           </div>
@@ -205,9 +209,10 @@ export default function AccessibilityLawsuitsPage() {
             <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
                 E-Commerce and Retail businesses are the most targeted industry, accounting for
-                approximately 69% of all digital accessibility lawsuits. Food and Beverage companies
-                are the second most targeted at 21%, followed by Entertainment (2.5%), Travel and
-                Hospitality (1.8%), and Banking and Finance (1.5%).
+                approximately 70% of all 2025 digital accessibility lawsuits. Food and Beverage
+                companies are the second most targeted at 21%, followed by Healthcare (~2.5%, and
+                rising fast ahead of the May 11, 2026 HHS Section 504 deadline), Entertainment
+                (~2%), and Travel and Hospitality (~1.5%).
               </p>
             </div>
           </div>
@@ -247,11 +252,14 @@ export default function AccessibilityLawsuitsPage() {
                 ruled that websites of businesses open to the public are subject to ADA Title III
                 requirements. The landmark Robles v. Domino&apos;s Pizza case in the 9th Circuit
                 established that the ADA applies to websites and mobile apps. A circuit split
-                exists, as the 11th Circuit ruled differently in Gil v. Winn-Dixie. The picture
-                shifted again on April 24, 2026, when the DOJ&apos;s Title II rule took effect for
-                large public entities, locking in WCAG 2.1 Level AA as the federal benchmark for
-                state and local government sites &mdash; a standard private-sector courts are
-                increasingly citing as persuasive in Title III cases.
+                exists, as the 11th Circuit ruled differently in Gil v. Winn-Dixie. On
+                <strong> April 20, 2026</strong>, the DOJ issued an Interim Final Rule extending
+                its Title II web/mobile compliance dates by a year — large public entities
+                (population ≥ 50,000) now must conform to WCAG 2.1 Level AA by April 26, 2027,
+                and smaller entities by April 26, 2028. The separate <strong>HHS Section 504 web
+                accessibility rule</strong> is not extended and takes effect <strong>May 11,
+                2026</strong> for healthcare entities receiving HHS funding. Private-sector
+                courts continue to cite both rules as persuasive authority in ADA Title III cases.
               </p>
             </div>
           </div>
@@ -267,11 +275,12 @@ export default function AccessibilityLawsuitsPage() {
             </h3>
             <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
-                New York leads the nation by a wide margin with approximately 1,750 federal accessibility
-                lawsuits filed annually, driven in part by proactive plaintiff attorneys and
-                favorable state laws. Florida surged to second place with approximately 1,100 cases, followed
-                by California with 950. New York also leads in per capita lawsuit rates at 8.9 per
-                100,000 residents.
+                In 2025, New York led federal-court filings with 1,021 cases, followed by
+                Florida (961, nearly double its 2024 total of 470), Illinois (585), Minnesota
+                (162), and Pennsylvania (137). California fell to just 4 federal filings after
+                state-court rulings closed off ADA coverage for online-only businesses, pushing
+                California-targeted plaintiffs to state court instead — which is why combined
+                federal-plus-state totals exceed 5,000 even though federal-only is 3,117.
               </p>
             </div>
           </div>
