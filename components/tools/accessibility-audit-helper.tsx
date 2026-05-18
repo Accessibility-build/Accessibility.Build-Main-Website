@@ -753,9 +753,27 @@ export default function AccessibilityAuditHelper() {
                 </span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+              <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
                 Get expert accessibility analysis with AI-powered insights and
                 WCAG compliance recommendations
+              </p>
+
+              <p className="text-sm text-slate-500 dark:text-slate-400 mb-8">
+                New to accessibility audits? Read{" "}
+                <Link
+                  href="/guides/how-to-audit-website-accessibility"
+                  className="underline underline-offset-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  the step-by-step WCAG audit guide
+                </Link>{" "}
+                or learn{" "}
+                <Link
+                  href="/guides/ai-accessibility-audit"
+                  className="underline underline-offset-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  how AI-assisted audits work
+                </Link>
+                .
               </p>
             </div>
 
