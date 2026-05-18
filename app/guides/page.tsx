@@ -17,6 +17,10 @@ import {
   FileCode2,
   FormInput,
   Palette,
+  Search,
+  Sparkles,
+  Scale,
+  HeartPulse,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -40,6 +44,50 @@ export const metadata: Metadata = {
 }
 
 const guides = [
+  {
+    title: "DOJ Title II Deadline Extension",
+    description:
+      "Editorial analysis of the April 20, 2026 DOJ Interim Final Rule that pushed Title II web compliance to 2027 and 2028. What changed, what didn't, and why public entities should treat April 2026 as the real deadline.",
+    icon: Scale,
+    difficulty: "Intermediate",
+    readingTime: "12 min",
+    topics: ["ADA Title II", "WCAG 2.1 AA", "Public Sector", "Editorial"],
+    href: "/guides/doj-title-ii-deadline-extension",
+    gradient: "from-amber-600 to-red-600",
+  },
+  {
+    title: "Section 504 Web Accessibility Deadline",
+    description:
+      "The HHS Section 504 web rule took effect May 11, 2026 — and was not extended. Who's covered, what WCAG 2.1 AA requires for healthcare entities, and a six-step recovery plan if you missed the deadline.",
+    icon: HeartPulse,
+    difficulty: "Intermediate",
+    readingTime: "13 min",
+    topics: ["Section 504", "Healthcare", "HHS", "WCAG 2.1 AA"],
+    href: "/guides/section-504-web-accessibility-deadline",
+    gradient: "from-emerald-600 to-teal-600",
+  },
+  {
+    title: "How to Audit a Website for Accessibility",
+    description:
+      "A nine-step process for performing a WCAG 2.2 Level AA audit on any website. Combines automated scanning, keyboard testing, screen reader review, and AI-assisted remediation, with a copy-ready checklist.",
+    icon: Search,
+    difficulty: "Beginner",
+    readingTime: "15 min",
+    topics: ["WCAG Audit", "Testing", "Remediation", "Checklist"],
+    href: "/guides/how-to-audit-website-accessibility",
+    gradient: "from-blue-600 to-indigo-600",
+  },
+  {
+    title: "AI Accessibility Audit",
+    description:
+      "How AI-assisted audits compare to manual audits and automated scanners. Use cases for developers, QA, and compliance teams, plus a side-by-side breakdown of cost, speed, and coverage.",
+    icon: Sparkles,
+    difficulty: "Beginner",
+    readingTime: "12 min",
+    topics: ["AI Audit", "WCAG", "Automation", "Workflow"],
+    href: "/guides/ai-accessibility-audit",
+    gradient: "from-purple-600 to-pink-600",
+  },
   {
     title: "Accessible Color Palette Guide",
     description:
