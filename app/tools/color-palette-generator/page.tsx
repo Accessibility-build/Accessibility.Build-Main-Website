@@ -141,7 +141,7 @@ export default function ColorPaletteGeneratorPage() {
                 Test buttons, cards, forms, alerts, links, charts, focus states, and dark mode.
               </p>
 
-              <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
+              <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <CheckCircle className="h-5 w-5 text-green-600" />
                   <span className="font-medium">WCAG Compliant</span>
@@ -155,6 +155,17 @@ export default function ColorPaletteGeneratorPage() {
                   <span className="font-medium">Export Ready</span>
                 </div>
               </div>
+
+              <p className="mb-12 text-sm text-muted-foreground">
+                Need a full design system? Try the new{" "}
+                <Link
+                  href="/tools/accessible-palette-studio"
+                  className="font-semibold underline underline-offset-4 hover:text-foreground"
+                >
+                  Accessible Palette Studio
+                </Link>
+                {" "}— OKLCH 11-stop scales, APCA grading, color-blindness simulation, and Tailwind/Figma/iOS/Android exports.
+              </p>
             </div>
           </div>
         </div>

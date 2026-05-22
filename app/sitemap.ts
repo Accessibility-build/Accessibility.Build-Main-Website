@@ -85,6 +85,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       category: "tool"
     },
     {
+      route: "/tools/accessible-palette-studio",
+      priority: 0.96,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: [
+        "OKLCH color generator",
+        "APCA color palette",
+        "WCAG 3 color system",
+        "design tokens generator",
+        "Tailwind color generator",
+        "Figma variables generator",
+        "color blindness simulator palette"
+      ],
+      category: "tool"
+    },
+    {
       route: "/guides/accessible-color-palettes",
       priority: 0.94,
       changeFrequency: "monthly",

@@ -89,6 +89,20 @@ const accessibilityTools = [
         stats: { users: "Available", palettes: "Validated" }
     },
     {
+        title: "Accessible Palette Studio",
+        shortTitle: "Palette Studio",
+        description: "Build a full WCAG 2.2 + APCA color system: 11-stop OKLCH scales, state-aware grading, color-blindness simulation, and exports to Tailwind, Figma, CSS, iOS, and Android.",
+        features: ["OKLCH 11-stop scales", "APCA + WCAG 2.2", "Colorblind simulation", "Tailwind / Figma / iOS / Android"],
+        icon: Sparkles,
+        gradient: "from-fuchsia-500 to-violet-500",
+        bgPattern: "palette-pattern",
+        slug: "accessible-palette-studio",
+        pricing: "Free",
+        credits: 0,
+        popular: true,
+        stats: { users: "Available", palettes: "Validated" }
+    },
+    {
         title: "Color Contrast Checker",
         shortTitle: "Contrast Checker",
         description: "Instantly verify color combinations meet WCAG standards with support for both WCAG 2.2 and cutting-edge WCAG 3.0 APCA guidelines.",
