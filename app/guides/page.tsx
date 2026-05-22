@@ -100,6 +100,28 @@ const guides = [
     gradient: "from-blue-600 to-emerald-600",
   },
   {
+    title: "OKLCH + APCA Color Systems",
+    description:
+      "The complete deep-dive on building accessible color systems with OKLCH perceptual lightness, 11-stop scales, APCA grading, color-blindness simulation, and design-token exports to Tailwind, Figma, iOS, and Android.",
+    icon: Sparkles,
+    difficulty: "Advanced",
+    readingTime: "12 min",
+    topics: ["OKLCH", "APCA", "WCAG 3", "Design Tokens", "Color Blindness"],
+    href: "/guides/oklch-apca-color-systems",
+    gradient: "from-fuchsia-600 to-violet-600",
+  },
+  {
+    title: "Accessible Typography (WCAG 2.2 + 3)",
+    description:
+      "Build typography systems that meet WCAG 2.2: modular type scales, fluid clamp() sizing, the 1.4.12 text-spacing override test, dyslexia & cognitive research, Flesch-Kincaid scoring, and token exports for every platform.",
+    icon: Scale,
+    difficulty: "Advanced",
+    readingTime: "13 min",
+    topics: ["Modular scale", "WCAG 1.4.12", "Fluid typography", "Dyslexia", "Design Tokens"],
+    href: "/guides/accessible-typography-wcag",
+    gradient: "from-sky-600 to-indigo-600",
+  },
+  {
     title: "Complete Keyboard Accessibility Guide",
     description:
       "Master keyboard accessibility from fundamentals to advanced patterns. Learn focus management, skip navigation links, roving tabindex, and how to identify and fix keyboard traps with hands-on interactive demos.",

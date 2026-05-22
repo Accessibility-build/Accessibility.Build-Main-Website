@@ -127,6 +127,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       keywords: ["accessible color palette guide", "WCAG color system", "design system colors", "dark mode accessibility"],
       category: "resource"
     },
+    {
+      route: "/guides/oklch-apca-color-systems",
+      priority: 0.95,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: [
+        "OKLCH color system guide",
+        "APCA contrast guide",
+        "WCAG 3 color",
+        "11 stop color scale",
+        "perceptual color space",
+        "Tailwind OKLCH",
+        "Figma color tokens",
+        "color blindness simulation"
+      ],
+      category: "resource"
+    },
+    {
+      route: "/guides/accessible-typography-wcag",
+      priority: 0.95,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: [
+        "accessible typography guide",
+        "WCAG typography",
+        "modular type scale",
+        "WCAG 1.4.12 text spacing",
+        "fluid typography clamp",
+        "dyslexia friendly typography",
+        "Flesch Kincaid readability",
+        "design system typography"
+      ],
+      category: "resource"
+    },
 
     // Premium Tools - High priority for conversion
     {
