@@ -174,6 +174,14 @@ export default function AccessiblePaletteStudioPage() {
                 >
                   Use the simple Color Palette Generator →
                 </Link>
+                {" · "}
+                Set the matching type system in the{" "}
+                <Link
+                  href="/tools/accessible-typography-studio"
+                  className="font-medium underline underline-offset-4"
+                >
+                  Accessible Typography Studio →
+                </Link>
               </p>
             </div>
           </div>

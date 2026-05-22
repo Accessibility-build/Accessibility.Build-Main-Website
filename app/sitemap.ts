@@ -101,6 +101,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       category: "tool"
     },
     {
+      route: "/tools/accessible-typography-studio",
+      priority: 0.96,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: [
+        "accessible typography",
+        "modular type scale generator",
+        "fluid typography clamp",
+        "Flesch-Kincaid analyzer",
+        "dyslexia friendly typography",
+        "WCAG 1.4.12 text spacing",
+        "Atkinson Hyperlegible",
+        "Lexend",
+        "Tailwind type scale generator",
+        "Figma typography tokens"
+      ],
+      category: "tool"
+    },
+    {
       route: "/guides/accessible-color-palettes",
       priority: 0.94,
       changeFrequency: "monthly",

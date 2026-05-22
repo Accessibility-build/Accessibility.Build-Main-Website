@@ -24,7 +24,8 @@ import {
     Grid3X3,
     Sparkles,
     Globe,
-    TrendingUp
+    TrendingUp,
+    Type as TypeIcon
 } from "lucide-react"
 import TrialStatusBanner from "@/components/trial-status-banner"
 import { toolsTrustSignals } from "@/lib/public-metrics"
@@ -101,6 +102,20 @@ const accessibilityTools = [
         credits: 0,
         popular: true,
         stats: { users: "Available", palettes: "Validated" }
+    },
+    {
+        title: "Accessible Typography Studio",
+        shortTitle: "Typography Studio",
+        description: "Build a WCAG 2.2 + APCA-aware typography system: modular type scale, dyslexia / cognitive presets, fluid clamp() sizing, readability scoring, and exports to Tailwind, Figma, CSS, iOS, Android.",
+        features: ["Modular 12-role scale", "WCAG 1.4.12 override test", "Flesch-Kincaid analyzer", "Tailwind / Figma / iOS / Android"],
+        icon: TypeIcon,
+        gradient: "from-sky-500 to-indigo-500",
+        bgPattern: "palette-pattern",
+        slug: "accessible-typography-studio",
+        pricing: "Free",
+        credits: 0,
+        popular: true,
+        stats: { users: "Available", scales: "Validated" }
     },
     {
         title: "Color Contrast Checker",
