@@ -1,18 +1,32 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useState, type CSSProperties } from "react"
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react"
 import {
   Check,
+  ChevronDown,
+  ChevronUp,
   Copy,
   Download,
   Eye,
   FileCheck,
+  Image as ImageIcon,
+  Keyboard,
   Layers,
   Moon,
   RefreshCw,
+  Redo2,
   Share2,
+  Sliders,
   Sparkles,
   Sun,
+  Undo2,
   Wand2,
 } from "lucide-react"
 
@@ -24,13 +38,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import { gradeTokens } from "@/lib/color/grade"
 import { isValidHex, oklchToHex } from "@/lib/color/oklch"
+import { describeHex } from "@/lib/color/names"
 import { generatePalette, STOPS, FAMILY_NAMES, type FamilyName } from "@/lib/color/scales"
-import { deriveTokens } from "@/lib/color/tokens"
+import { deriveTokens, type SemanticTokens } from "@/lib/color/tokens"
 import { CVD_LABELS, type CVDType, cvdCssFilter } from "@/lib/color/cvd"
 
 import { CVDFilterDefs } from "./palette-studio/cvd-defs"
 import { ReportCard } from "./palette-studio/report"
 import { ExportsPanel } from "./palette-studio/exports"
+import { OklchSliders } from "./palette-studio/oklch-sliders"
+import { ImageExtract } from "./palette-studio/image-extract"
 import { PREVIEW_TABS, renderPreview, type PreviewTabKey } from "./palette-studio/preview"
 
 type ContrastModel = "wcag" | "apca" | "both"
@@ -45,6 +62,8 @@ interface StudioState {
   neutralTilt: NeutralTilt
   useDerivedSecondary: boolean
   useDerivedAccent: boolean
+  /** Token-level overrides applied by auto-fix or manual tweaks. */
+  overrides: { light: Partial<SemanticTokens>; dark: Partial<SemanticTokens> }
 }
 
 const DEFAULT_STATE: StudioState = {
@@ -55,7 +74,11 @@ const DEFAULT_STATE: StudioState = {
   neutralTilt: "true",
   useDerivedSecondary: true,
   useDerivedAccent: true,
+  overrides: { light: {}, dark: {} },
 }
+
+const HISTORY_KEY = "accessible-palette-studio:history-v1"
+const MAX_HISTORY = 50
 
 function encodeHash(state: StudioState): string {
   const params = new URLSearchParams()
@@ -64,6 +87,16 @@ function encodeHash(state: StudioState): string {
   if (!state.useDerivedSecondary) params.set("s", state.secondary.replace("#", ""))
   if (!state.useDerivedAccent) params.set("a", state.accent.replace("#", ""))
   if (state.neutralTilt !== "true") params.set("t", state.neutralTilt)
+  // Overrides encoded as light:key:hex,dark:key:hex pairs
+  const encodeOverrides = (set: Partial<SemanticTokens>, prefix: string) =>
+    Object.entries(set)
+      .filter(([, v]) => typeof v === "string")
+      .map(([k, v]) => `${prefix}:${k}:${String(v).replace("#", "")}`)
+      .join(",")
+  const lo = encodeOverrides(state.overrides.light, "l")
+  const dko = encodeOverrides(state.overrides.dark, "d")
+  const combined = [lo, dko].filter(Boolean).join(",")
+  if (combined) params.set("o", combined)
   return params.toString()
 }
 
@@ -96,6 +129,19 @@ function decodeHash(hash: string): Partial<StudioState> | null {
       const v = params.get("t")
       if (v === "warm" || v === "cool" || v === "true") out.neutralTilt = v
     }
+    if (params.has("o")) {
+      const raw = params.get("o") ?? ""
+      const light: Partial<SemanticTokens> = {}
+      const dark: Partial<SemanticTokens> = {}
+      for (const entry of raw.split(",")) {
+        const [mode, key, hex] = entry.split(":")
+        const value = `#${hex}`
+        if (!isValidHex(value)) continue
+        if (mode === "l") (light as Record<string, string>)[key] = value
+        else if (mode === "d") (dark as Record<string, string>)[key] = value
+      }
+      out.overrides = { light, dark }
+    }
     return out
   } catch {
     return null
@@ -107,6 +153,11 @@ function randomHex(): string {
   return oklchToHex({ l: 0.65, c: 0.18, h: hue })
 }
 
+function applyOverrides(base: SemanticTokens, ov: Partial<SemanticTokens>): SemanticTokens {
+  if (!ov || Object.keys(ov).length === 0) return base
+  return { ...base, ...(ov as object) } as SemanticTokens
+}
+
 export default function AccessiblePaletteStudio() {
   const [state, setState] = useState<StudioState>(DEFAULT_STATE)
   const [mode, setMode] = useState<ViewMode>("light")
@@ -116,14 +167,21 @@ export default function AccessiblePaletteStudio() {
   const [previewTab, setPreviewTab] = useState<PreviewTabKey>("dashboard")
   const [copiedHex, setCopiedHex] = useState<string | null>(null)
   const [shareCopied, setShareCopied] = useState(false)
+  const [showAdvanced, setShowAdvanced] = useState(false)
+  const [showShortcuts, setShowShortcuts] = useState(false)
+  const [editingFamily, setEditingFamily] = useState<"primary" | "secondary" | "accent">("primary")
 
-  // ── URL hash sync (read once on mount, write on state changes) ──────────────
-  // The hash isn't available during SSR, so we have to hydrate client-only.
+  // History (undo/redo)
+  const [history, setHistory] = useState<StudioState[]>([])
+  const [historyIndex, setHistoryIndex] = useState(-1)
+  const skipHistoryRef = useRef(false)
+
+  // ── URL hash sync ───────────────────────────────────────────────────────────
   useEffect(() => {
     if (typeof window === "undefined") return
     const decoded = decodeHash(window.location.hash)
     if (decoded) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+      skipHistoryRef.current = true
       setState((prev) => ({ ...prev, ...decoded }))
     }
   }, [])
@@ -135,6 +193,50 @@ export default function AccessiblePaletteStudio() {
       window.history.replaceState(null, "", `#${hash}`)
     }
   }, [state])
+
+  // ── History tracking ───────────────────────────────────────────────────────
+  useEffect(() => {
+    if (skipHistoryRef.current) {
+      skipHistoryRef.current = false
+      return
+    }
+    setHistory((h) => {
+      const next = [...h.slice(0, historyIndex + 1), state].slice(-MAX_HISTORY)
+      return next
+    })
+    setHistoryIndex((i) => Math.min(i + 1, MAX_HISTORY - 1))
+    // We DO NOT want history to depend on historyIndex (would recurse) — disable the warning.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state])
+
+  // Persist last palette to localStorage
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    try {
+      window.localStorage.setItem(HISTORY_KEY, JSON.stringify(state))
+    } catch {
+      // quota / private mode — ignore
+    }
+  }, [state])
+
+  const canUndo = historyIndex > 0
+  const canRedo = historyIndex < history.length - 1
+
+  const undo = useCallback(() => {
+    if (!canUndo) return
+    skipHistoryRef.current = true
+    const prev = history[historyIndex - 1]
+    setHistoryIndex((i) => i - 1)
+    setState(prev)
+  }, [canUndo, history, historyIndex])
+
+  const redo = useCallback(() => {
+    if (!canRedo) return
+    skipHistoryRef.current = true
+    const next = history[historyIndex + 1]
+    setHistoryIndex((i) => i + 1)
+    setState(next)
+  }, [canRedo, history, historyIndex])
 
   // ── Derived palette ─────────────────────────────────────────────────────────
   const scales = useMemo(
@@ -148,16 +250,18 @@ export default function AccessiblePaletteStudio() {
     [state.primary, state.secondary, state.accent, state.neutralTilt, state.useDerivedSecondary, state.useDerivedAccent]
   )
 
-  const tokenSet = useMemo(() => deriveTokens(scales), [scales])
+  const tokenSet = useMemo(() => {
+    const base = deriveTokens(scales)
+    return {
+      light: applyOverrides(base.light, state.overrides.light),
+      dark: applyOverrides(base.dark, state.overrides.dark),
+    }
+  }, [scales, state.overrides])
+
   const activeTokens = mode === "light" ? tokenSet.light : tokenSet.dark
   const report = useMemo(() => gradeTokens(activeTokens), [activeTokens])
 
   // ── Handlers ────────────────────────────────────────────────────────────────
-  const handlePrimaryChange = (v: string) => {
-    if (isValidHex(v)) setState((s) => ({ ...s, primary: v }))
-    else setState((s) => ({ ...s, primary: v })) // allow typing in-progress; downstream guards bad input
-  }
-
   const copyHex = useCallback((hex: string) => {
     navigator.clipboard.writeText(hex)
     setCopiedHex(hex)
@@ -178,14 +282,90 @@ export default function AccessiblePaletteStudio() {
       primary: randomHex(),
       secondary: randomHex(),
       accent: randomHex(),
+      overrides: { light: {}, dark: {} },
     }))
   }
+
+  // Find the pairing's fgKey and override that token in the current mode
+  const handleAutoFix = useCallback(
+    (pairingId: string, fixedFg: string) => {
+      const pair = report.pairings.find((p) => p.id === pairingId)
+      if (!pair) return
+      const key = pair.fgKey as keyof SemanticTokens
+      setState((s) => ({
+        ...s,
+        overrides: {
+          ...s.overrides,
+          [mode]: { ...s.overrides[mode], [key]: fixedFg },
+        },
+      }))
+    },
+    [report, mode]
+  )
+
+  const clearOverrides = () =>
+    setState((s) => ({ ...s, overrides: { light: {}, dark: {} } }))
+
+  // ── Keyboard shortcuts ──────────────────────────────────────────────────────
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const handler = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null
+      const inEditable =
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT" ||
+          target.isContentEditable)
+      if (inEditable && e.key !== "Escape") return
+
+      const mod = e.metaKey || e.ctrlKey
+      if (mod && e.key.toLowerCase() === "z" && !e.shiftKey) {
+        e.preventDefault()
+        undo()
+      } else if ((mod && e.shiftKey && e.key.toLowerCase() === "z") || (mod && e.key.toLowerCase() === "y")) {
+        e.preventDefault()
+        redo()
+      } else if (mod && e.key.toLowerCase() === "s") {
+        e.preventDefault()
+        copyShareUrl()
+      } else if (!mod && (e.key === "m" || e.key === "M")) {
+        e.preventDefault()
+        setMode((m) => (m === "light" ? "dark" : "light"))
+      } else if (!mod && (e.key === "r" || e.key === "R")) {
+        e.preventDefault()
+        randomize()
+      } else if (!mod && (e.key === "?" || e.key === "/")) {
+        e.preventDefault()
+        setShowShortcuts((v) => !v)
+      }
+    }
+    window.addEventListener("keydown", handler)
+    return () => window.removeEventListener("keydown", handler)
+  }, [undo, redo, copyShareUrl])
 
   // ── CVD wrapper ─────────────────────────────────────────────────────────────
   const cvdStyle: CSSProperties = useMemo(() => {
     const filter = cvdCssFilter(cvd)
     return filter ? { filter } : {}
   }, [cvd])
+
+  const editingHex =
+    editingFamily === "primary"
+      ? state.primary
+      : editingFamily === "secondary"
+      ? state.secondary
+      : state.accent
+
+  const onOklchSliderChange = (hex: string) => {
+    if (editingFamily === "primary") setState((s) => ({ ...s, primary: hex }))
+    else if (editingFamily === "secondary")
+      setState((s) => ({ ...s, secondary: hex, useDerivedSecondary: false }))
+    else setState((s) => ({ ...s, accent: hex, useDerivedAccent: false }))
+  }
+
+  const hasOverrides =
+    Object.keys(state.overrides.light).length + Object.keys(state.overrides.dark).length > 0
 
   return (
     <div className="space-y-6">
@@ -194,18 +374,38 @@ export default function AccessiblePaletteStudio() {
       {/* === Header / Controls ================================================ */}
       <div className="rounded-2xl border bg-card p-5 shadow-sm">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-          <div className="flex flex-col gap-1">
-            <Label htmlFor="palette-name" className="text-xs">Palette name</Label>
-            <Input
-              id="palette-name"
-              value={state.name}
-              onChange={(e) => setState((s) => ({ ...s, name: e.target.value }))}
-              className="h-9 w-48"
-            />
+          <div className="flex flex-wrap items-end gap-3">
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="palette-name" className="text-xs">Palette name</Label>
+              <Input
+                id="palette-name"
+                value={state.name}
+                onChange={(e) => setState((s) => ({ ...s, name: e.target.value }))}
+                className="h-9 w-48"
+              />
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <Button variant="outline" size="sm" onClick={randomize}>
+          <div className="flex flex-wrap items-center gap-1.5">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={undo}
+              disabled={!canUndo}
+              title="Undo (⌘Z)"
+            >
+              <Undo2 className="h-3.5 w-3.5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={redo}
+              disabled={!canRedo}
+              title="Redo (⌘⇧Z)"
+            >
+              <Redo2 className="h-3.5 w-3.5" />
+            </Button>
+            <Button variant="outline" size="sm" onClick={randomize} title="Randomize (R)">
               <Wand2 className="mr-1.5 h-3.5 w-3.5" />
               Randomize
             </Button>
@@ -213,7 +413,7 @@ export default function AccessiblePaletteStudio() {
               <RefreshCw className="mr-1.5 h-3.5 w-3.5" />
               Reset
             </Button>
-            <Button variant="default" size="sm" onClick={copyShareUrl}>
+            <Button variant="default" size="sm" onClick={copyShareUrl} title="Copy share URL (⌘S)">
               {shareCopied ? (
                 <>
                   <Check className="mr-1.5 h-3.5 w-3.5" />
@@ -222,9 +422,17 @@ export default function AccessiblePaletteStudio() {
               ) : (
                 <>
                   <Share2 className="mr-1.5 h-3.5 w-3.5" />
-                  Share URL
+                  Share
                 </>
               )}
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowShortcuts((v) => !v)}
+              title="Keyboard shortcuts (?)"
+            >
+              <Keyboard className="h-3.5 w-3.5" />
             </Button>
           </div>
         </div>
@@ -233,15 +441,25 @@ export default function AccessiblePaletteStudio() {
           <ColorPickerControl
             label="Primary"
             value={state.primary}
-            onChange={(v) => handlePrimaryChange(v)}
-            description="Drives the entire palette."
+            onChange={(v) => setState((s) => ({ ...s, primary: v }))}
+            onEdit={() => {
+              setEditingFamily("primary")
+              setShowAdvanced(true)
+            }}
+            description={describeHex(state.primary)}
             required
           />
           <ColorPickerControl
             label="Secondary"
             value={state.secondary}
-            onChange={(v) => setState((s) => ({ ...s, secondary: v, useDerivedSecondary: false }))}
-            description={state.useDerivedSecondary ? "Auto-derived (+210° hue)" : "Custom"}
+            onChange={(v) =>
+              setState((s) => ({ ...s, secondary: v, useDerivedSecondary: false }))
+            }
+            onEdit={() => {
+              setEditingFamily("secondary")
+              setShowAdvanced(true)
+            }}
+            description={state.useDerivedSecondary ? "Auto-derived (+210° hue)" : describeHex(state.secondary)}
             toggleDerived={() =>
               setState((s) => ({ ...s, useDerivedSecondary: !s.useDerivedSecondary }))
             }
@@ -251,7 +469,11 @@ export default function AccessiblePaletteStudio() {
             label="Accent"
             value={state.accent}
             onChange={(v) => setState((s) => ({ ...s, accent: v, useDerivedAccent: false }))}
-            description={state.useDerivedAccent ? "Auto-derived (+120° hue)" : "Custom"}
+            onEdit={() => {
+              setEditingFamily("accent")
+              setShowAdvanced(true)
+            }}
+            description={state.useDerivedAccent ? "Auto-derived (+120° hue)" : describeHex(state.accent)}
             toggleDerived={() =>
               setState((s) => ({ ...s, useDerivedAccent: !s.useDerivedAccent }))
             }
@@ -280,6 +502,71 @@ export default function AccessiblePaletteStudio() {
             </p>
           </div>
         </div>
+
+        {/* Advanced panel: OKLCH sliders + image extract */}
+        <div className="mt-4">
+          <button
+            type="button"
+            onClick={() => setShowAdvanced((v) => !v)}
+            className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground"
+          >
+            {showAdvanced ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+            {showAdvanced ? "Hide" : "Show"} OKLCH controls & image extraction
+          </button>
+
+          {showAdvanced && (
+            <div className="mt-3 grid gap-4 md:grid-cols-2">
+              <div className="rounded-lg border bg-muted/30 p-4">
+                <div className="mb-2 flex items-center justify-between">
+                  <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    <Sliders className="h-3.5 w-3.5" />
+                    OKLCH controls
+                  </p>
+                  <div className="flex rounded-md border bg-background p-0.5">
+                    {(["primary", "secondary", "accent"] as const).map((f) => (
+                      <button
+                        key={f}
+                        type="button"
+                        onClick={() => setEditingFamily(f)}
+                        className={`rounded px-2 py-0.5 text-[10px] font-medium capitalize ${
+                          editingFamily === f
+                            ? "bg-primary text-primary-foreground"
+                            : "text-muted-foreground hover:bg-muted"
+                        }`}
+                      >
+                        {f}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <OklchSliders hex={editingHex} onChange={onOklchSliderChange} />
+              </div>
+              <div className="rounded-lg border bg-muted/30 p-4">
+                <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  <ImageIcon className="h-3.5 w-3.5" />
+                  Extract from image
+                </p>
+                <ImageExtract
+                  onPrimary={(hex) => setState((s) => ({ ...s, primary: hex }))}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {hasOverrides && (
+          <div className="mt-3 inline-flex items-center gap-2 rounded-md border border-primary/30 bg-primary/5 px-2.5 py-1 text-xs">
+            <Wand2 className="h-3 w-3 text-primary" />
+            <span>Auto-fix overrides applied</span>
+            <button
+              type="button"
+              onClick={clearOverrides}
+              className="font-semibold text-primary hover:underline"
+            >
+              Clear
+            </button>
+          </div>
+        )}
       </div>
 
       {/* === Scale strips ===================================================== */}
@@ -399,7 +686,12 @@ export default function AccessiblePaletteStudio() {
 
         <TabsContent value="report" className="mt-3">
           <div className="rounded-2xl border bg-card p-5 shadow-sm">
-            <ReportCard report={report} tokens={activeTokens} contrastModel={contrastModel} />
+            <ReportCard
+              report={report}
+              tokens={activeTokens}
+              contrastModel={contrastModel}
+              onAutoFix={handleAutoFix}
+            />
           </div>
         </TabsContent>
 
@@ -414,6 +706,41 @@ export default function AccessiblePaletteStudio() {
           </div>
         </TabsContent>
       </Tabs>
+
+      {/* Keyboard shortcut overlay */}
+      {showShortcuts && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={() => setShowShortcuts(false)}
+        >
+          <div
+            className="w-full max-w-sm rounded-2xl border bg-card p-5 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold">
+              <Keyboard className="h-4 w-4" />
+              Keyboard shortcuts
+            </h3>
+            <ul className="space-y-1.5 text-sm">
+              {[
+                ["⌘ Z", "Undo"],
+                ["⌘ ⇧ Z", "Redo"],
+                ["⌘ S", "Copy share URL"],
+                ["M", "Toggle light / dark"],
+                ["R", "Randomize"],
+                ["?", "This help"],
+              ].map(([key, action]) => (
+                <li key={key} className="flex items-center justify-between">
+                  <span className="text-muted-foreground">{action}</span>
+                  <kbd className="rounded border bg-muted px-1.5 py-0.5 font-mono text-xs">
+                    {key}
+                  </kbd>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -423,6 +750,7 @@ function ColorPickerControl({
   label,
   value,
   onChange,
+  onEdit,
   description,
   toggleDerived,
   derived,
@@ -431,6 +759,7 @@ function ColorPickerControl({
   label: string
   value: string
   onChange: (v: string) => void
+  onEdit?: () => void
   description?: string
   toggleDerived?: () => void
   derived?: boolean
@@ -440,15 +769,27 @@ function ColorPickerControl({
     <div>
       <div className="mb-1 flex items-center justify-between">
         <Label className="text-xs">{label}</Label>
-        {toggleDerived && (
-          <button
-            type="button"
-            onClick={toggleDerived}
-            className="text-[10px] uppercase tracking-wide text-muted-foreground hover:text-foreground"
-          >
-            {derived ? "Customize" : "Auto-derive"}
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {onEdit && (
+            <button
+              type="button"
+              onClick={onEdit}
+              className="text-[10px] uppercase tracking-wide text-muted-foreground hover:text-foreground"
+              title="OKLCH controls"
+            >
+              <Sliders className="h-3 w-3" />
+            </button>
+          )}
+          {toggleDerived && (
+            <button
+              type="button"
+              onClick={toggleDerived}
+              className="text-[10px] uppercase tracking-wide text-muted-foreground hover:text-foreground"
+            >
+              {derived ? "Customize" : "Auto-derive"}
+            </button>
+          )}
+        </div>
       </div>
       <div className="flex items-center gap-2">
         <label
@@ -497,7 +838,6 @@ function ScaleStripRow({
         {colors.map((hex, i) => {
           const stop = STOPS[i]
           const isCopied = copiedHex === hex
-          // Pick contrasting label color based on stop position (light stops use dark text).
           const textColor = i < 5 ? "rgba(0,0,0,0.7)" : "rgba(255,255,255,0.85)"
           return (
             <button
@@ -506,7 +846,7 @@ function ScaleStripRow({
               onClick={() => onCopy(hex)}
               className="group relative h-12 rounded-md border text-left text-[10px] font-mono transition-transform hover:-translate-y-0.5"
               style={{ backgroundColor: hex, color: textColor, borderColor: "rgba(0,0,0,0.08)" }}
-              title={`${family}-${stop} · ${hex}`}
+              title={`${family}-${stop} · ${hex} · ${describeHex(hex)}`}
             >
               <span className="absolute left-1 top-1 opacity-70">{stop}</span>
               <span className="absolute bottom-1 right-1 opacity-0 transition-opacity group-hover:opacity-90">

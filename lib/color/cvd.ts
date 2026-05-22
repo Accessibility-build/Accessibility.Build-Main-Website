@@ -64,18 +64,34 @@ function applyMatrix(m: Matrix3, rgb: RGB): RGB {
   }
 }
 
-/** Simulate a hex color under a given CVD. Returns original hex if type is "normal". */
-export function simulateHex(hex: string, type: CVDType): string {
-  if (type === "normal") return hex
+/**
+ * Simulate a hex color under a given CVD.
+ * @param severity 0 = no effect, 1 = full dichromacy (default).
+ *                 Values in between blend toward dichromacy (anomalous trichromacy).
+ */
+export function simulateHex(hex: string, type: CVDType, severity = 1): string {
+  if (type === "normal" || severity <= 0) return hex
   const rgb = hexToRgb(hex)
 
   if (type === "achromatopsia") {
     // Rec. 709 luma — preserves perceived lightness.
     const y = 0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b
-    return rgbToHex({ r: y, g: y, b: y })
+    const s = Math.min(1, severity)
+    return rgbToHex({
+      r: rgb.r * (1 - s) + y * s,
+      g: rgb.g * (1 - s) + y * s,
+      b: rgb.b * (1 - s) + y * s,
+    })
   }
 
-  return rgbToHex(applyMatrix(MATRICES[type], rgb))
+  const simulated = applyMatrix(MATRICES[type], rgb)
+  if (severity >= 1) return rgbToHex(simulated)
+  // Linear blend toward dichromacy
+  return rgbToHex({
+    r: rgb.r * (1 - severity) + simulated.r * severity,
+    g: rgb.g * (1 - severity) + simulated.g * severity,
+    b: rgb.b * (1 - severity) + simulated.b * severity,
+  })
 }
 
 /** Returns a CSS filter that approximates the CVD using stock SVG color matrices. */
