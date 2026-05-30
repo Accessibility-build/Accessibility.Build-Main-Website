@@ -544,40 +544,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       category: "resource"
     },
 
-    // User Dashboard and Authentication
-    {
-      route: "/dashboard",
-      priority: 0.70,
-      changeFrequency: "daily",
-      lastModified: currentDate,
-      keywords: ["user dashboard", "accessibility tools dashboard"],
-      category: "company"
-    },
-    {
-      route: "/sign-in",
-      priority: 0.60,
-      changeFrequency: "monthly",
-      lastModified: currentDate,
-      keywords: ["sign in", "login", "user account"],
-      category: "company"
-    },
-    {
-      route: "/sign-up",
-      priority: 0.65,
-      changeFrequency: "monthly",
-      lastModified: currentDate,
-      keywords: ["sign up", "register", "create account"],
-      category: "company"
-    },
-    {
-      route: "/welcome",
-      priority: 0.55,
-      changeFrequency: "monthly",
-      lastModified: currentDate,
-      keywords: ["welcome", "getting started"],
-      category: "company"
-    },
-
     // Company Pages - Important for trust and conversion
     {
       route: "/about",
@@ -620,24 +586,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: currentDate,
       keywords: ["accessibility statement"],
       category: "legal"
-    },
-
-    // Administrative and SEO pages
-    {
-      route: "/admin/seo-dashboard",
-      priority: 0.20,
-      changeFrequency: "daily",
-      lastModified: currentDate,
-      keywords: ["seo dashboard", "admin"],
-      category: "company"
-    },
-    {
-      route: "/admin/error-report",
-      priority: 0.15,
-      changeFrequency: "daily",
-      lastModified: currentDate,
-      keywords: ["error report", "admin"],
-      category: "company"
     },
 
     // Utility Pages
