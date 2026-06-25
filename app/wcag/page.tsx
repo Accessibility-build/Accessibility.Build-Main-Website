@@ -3,9 +3,9 @@ import { createMetadata } from "@/lib/metadata"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { 
-  ArrowLeft, 
-  CheckCircle, 
+import {
+  ArrowLeft,
+  CheckCircle,
   Image as ImageIcon,
   Volume2,
   FileText,
@@ -13,10 +13,14 @@ import {
   Keyboard,
   Timer,
   Target,
-  Languages,
   Settings,
   BookOpen,
-  ExternalLink
+  ExternalLink,
+  Link2,
+  MousePointerClick,
+  Type,
+  Zap,
+  Pause
 } from "lucide-react"
 
 export const metadata = createMetadata({
@@ -36,6 +40,7 @@ interface SuccessCriterion {
   icon: React.ComponentType<{ className?: string }>
   available: boolean
   comingSoon?: boolean
+  new22?: boolean
 }
 
 const successCriteria: SuccessCriterion[] = [
@@ -68,8 +73,7 @@ const successCriteria: SuccessCriterion[] = [
     principle: "1. Perceivable",
     guideline: "1.2 Time-based Media",
     icon: FileText,
-    available: false,
-    comingSoon: true
+    available: true
   },
   {
     number: "1.2.3",
@@ -79,8 +83,7 @@ const successCriteria: SuccessCriterion[] = [
     principle: "1. Perceivable",
     guideline: "1.2 Time-based Media",
     icon: Volume2,
-    available: false,
-    comingSoon: true
+    available: true
   },
   {
     number: "1.3.1",
@@ -90,8 +93,7 @@ const successCriteria: SuccessCriterion[] = [
     principle: "1. Perceivable",
     guideline: "1.3 Adaptable",
     icon: Target,
-    available: false,
-    comingSoon: true
+    available: true
   },
   {
     number: "1.3.2",
@@ -101,8 +103,7 @@ const successCriteria: SuccessCriterion[] = [
     principle: "1. Perceivable",
     guideline: "1.3 Adaptable",
     icon: Target,
-    available: false,
-    comingSoon: true
+    available: true
   },
   {
     number: "1.3.3",
@@ -112,8 +113,7 @@ const successCriteria: SuccessCriterion[] = [
     principle: "1. Perceivable",
     guideline: "1.3 Adaptable",
     icon: Eye,
-    available: false,
-    comingSoon: true
+    available: true
   },
   {
     number: "1.4.1",
@@ -123,6 +123,116 @@ const successCriteria: SuccessCriterion[] = [
     principle: "1. Perceivable",
     guideline: "1.4 Distinguishable",
     icon: Eye,
+    available: true
+  },
+  {
+    number: "1.4.2",
+    title: "Audio Control",
+    level: "A",
+    description: "Provide a way to pause, stop, or control the volume of audio that plays automatically.",
+    principle: "1. Perceivable",
+    guideline: "1.4 Distinguishable",
+    icon: Pause,
+    available: true
+  },
+  {
+    number: "2.1.1",
+    title: "Keyboard",
+    level: "A",
+    description: "All functionality is operable through a keyboard interface without specific timings.",
+    principle: "2. Operable",
+    guideline: "2.1 Keyboard Accessible",
+    icon: Keyboard,
+    available: true
+  },
+  {
+    number: "2.1.2",
+    title: "No Keyboard Trap",
+    level: "A",
+    description: "Keyboard focus can be moved away from any component using only the keyboard.",
+    principle: "2. Operable",
+    guideline: "2.1 Keyboard Accessible",
+    icon: Keyboard,
+    available: true
+  },
+  {
+    number: "2.1.4",
+    title: "Character Key Shortcuts",
+    level: "A",
+    description: "Single-character key shortcuts can be turned off, remapped, or are active only on focus.",
+    principle: "2. Operable",
+    guideline: "2.1 Keyboard Accessible",
+    icon: Keyboard,
+    available: true
+  },
+  {
+    number: "2.2.1",
+    title: "Timing Adjustable",
+    level: "A",
+    description: "Users can turn off, adjust, or extend time limits set by the content.",
+    principle: "2. Operable",
+    guideline: "2.2 Enough Time",
+    icon: Timer,
+    available: true
+  },
+  {
+    number: "2.2.2",
+    title: "Pause, Stop, Hide",
+    level: "A",
+    description: "Moving, blinking, scrolling, or auto-updating content can be paused, stopped, or hidden.",
+    principle: "2. Operable",
+    guideline: "2.2 Enough Time",
+    icon: Pause,
+    available: true
+  },
+  {
+    number: "2.3.1",
+    title: "Three Flashes or Below Threshold",
+    level: "A",
+    description: "Content does not flash more than three times per second, protecting against seizures.",
+    principle: "2. Operable",
+    guideline: "2.3 Seizures and Physical Reactions",
+    icon: Zap,
+    available: true
+  },
+  {
+    number: "2.4.1",
+    title: "Bypass Blocks",
+    level: "A",
+    description: "A mechanism is available to bypass blocks of repeated content, such as a skip link.",
+    principle: "2. Operable",
+    guideline: "2.4 Navigable",
+    icon: Keyboard,
+    available: true
+  },
+  {
+    number: "2.4.2",
+    title: "Page Titled",
+    level: "A",
+    description: "Web pages have titles that describe their topic or purpose.",
+    principle: "2. Operable",
+    guideline: "2.4 Navigable",
+    icon: Type,
+    available: true
+  },
+  {
+    number: "2.4.3",
+    title: "Focus Order",
+    level: "A",
+    description: "Components receive focus in an order that preserves meaning and operability.",
+    principle: "2. Operable",
+    guideline: "2.4 Navigable",
+    icon: Target,
+    available: true
+  },
+  {
+    number: "2.4.4",
+    title: "Link Purpose (In Context)",
+    level: "A",
+    description: "The purpose of each link can be determined from its text or its surrounding context.",
+    principle: "2. Operable",
+    guideline: "2.4 Navigable",
+    icon: Link2,
     available: false,
     comingSoon: true
   },
@@ -136,19 +246,38 @@ const successCriteria: SuccessCriterion[] = [
     principle: "1. Perceivable",
     guideline: "1.4 Distinguishable",
     icon: Eye,
-    available: false,
-    comingSoon: true
+    available: true
   },
   {
-    number: "1.4.4",
-    title: "Resize Text",
+    number: "2.5.8",
+    title: "Target Size (Minimum)",
     level: "AA",
-    description: "Text can be resized up to 200% without loss of content or functionality.",
-    principle: "1. Perceivable",
-    guideline: "1.4 Distinguishable",
-    icon: Target,
-    available: false,
-    comingSoon: true
+    description: "Targets for pointer input are at least 24×24 CSS pixels, unless an exception applies.",
+    principle: "2. Operable",
+    guideline: "2.5 Input Modalities",
+    icon: MousePointerClick,
+    available: true,
+    new22: true
+  },
+  {
+    number: "4.1.2",
+    title: "Name, Role, Value",
+    level: "A",
+    description: "Name and role of every UI component can be programmatically determined; states, properties, and values can be set and changes announced to assistive technologies.",
+    principle: "4. Robust",
+    guideline: "4.1 Compatible",
+    icon: Settings,
+    available: true
+  },
+  {
+    number: "3.3.2",
+    title: "Labels or Instructions",
+    level: "A",
+    description: "Labels or instructions are provided when content requires user input, so people know what to enter and how.",
+    principle: "3. Understandable",
+    guideline: "3.3 Input Assistance",
+    icon: FileText,
+    available: true
   }
 ]
 
@@ -235,9 +364,10 @@ export default function WCAGIndexPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Each success criterion guide provides comprehensive coverage including detailed explanations, 
-              interactive examples, testing methods, implementation code, and additional resources. 
-              We're starting with the first 10 criteria covering Level A and Level AA requirements.
+              Each success criterion guide provides comprehensive coverage including detailed explanations,
+              interactive examples, testing methods, implementation code, and additional resources.
+              Our library spans Level A and Level AA criteria across all four WCAG principles, including
+              new WCAG 2.2 requirements such as 2.5.8 Target Size (Minimum).
             </p>
             <div className="grid md:grid-cols-3 gap-4">
               <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
@@ -374,6 +504,11 @@ export default function WCAGIndexPage() {
                               <Badge className="bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700">
                                 Level {criterion.level}
                               </Badge>
+                              {criterion.new22 && (
+                                <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-700">
+                                  New in 2.2
+                                </Badge>
+                              )}
                               {criterion.available && (
                                 <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">
                                   Available

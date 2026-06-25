@@ -599,8 +599,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   ]
 
+  // WCAG Success Criteria guides — high-value evergreen reference pages
+  const wcagBuiltCriteria = [
+    "1-1-1", "1-2-1", "1-2-2", "1-2-3", "1-3-1", "1-3-2", "1-3-3",
+    "1-4-1", "1-4-2", "1-4-3", "2-1-1", "2-1-2", "2-1-4", "2-2-1",
+    "2-2-2", "2-3-1", "2-4-1", "2-4-2", "2-4-3", "2-5-8",
+    "3-3-2", "4-1-2",
+  ]
+  const wcagRoutes: SitemapEntry[] = [
+    {
+      route: "/wcag",
+      priority: 0.94,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["wcag success criteria", "wcag 2.2", "level a", "level aa", "wcag guides"],
+      category: "resource",
+    },
+    ...wcagBuiltCriteria.map((c) => ({
+      route: `/wcag/${c}`,
+      // Slightly boost high-value pages (new WCAG 2.2 Target Size, most-failed 4.1.2 & 3.3.2)
+      priority: c === "2-5-8" || c === "4-1-2" || c === "3-3-2" ? 0.9 : 0.88,
+      changeFrequency: "monthly" as const,
+      lastModified: currentDate,
+      keywords: ["wcag", "success criteria", `wcag ${c.replace(/-/g, ".")}`],
+      category: "content" as const,
+    })),
+  ]
+
   // Map static routes to sitemap format
-  const staticSitemapEntries = staticRoutes.map(({ route, priority, changeFrequency, lastModified }) => ({
+  const staticSitemapEntries = [...staticRoutes, ...wcagRoutes].map(({ route, priority, changeFrequency, lastModified }) => ({
     url: `${baseUrl}${route}`,
     lastModified,
     changeFrequency,

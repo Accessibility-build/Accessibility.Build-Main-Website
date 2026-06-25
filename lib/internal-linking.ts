@@ -188,6 +188,42 @@ const INTERNAL_LINKS: InternalLink[] = [
     type: 'guide',
     keywords: ['pdf', 'accessible pdf', 'tagged pdf', 'pdf/ua', 'pdf wcag', 'pdf remediation', 'document accessibility', 'pdf heading', 'pdf alt text'],
     priority: 8
+  },
+  // WCAG 2.5.8 Target Size (Minimum)
+  {
+    url: '/wcag/2-5-8',
+    title: 'WCAG 2.5.8 Target Size (Minimum) Guide',
+    description: 'Complete guide to the 24×24 CSS pixel tap target rule, all five exceptions, the spacing technique, code examples, and testing methods',
+    type: 'guide',
+    keywords: ['target size', 'wcag 2.5.8', '24x24 pixels', 'tap target size', 'touch target size', 'minimum target size', 'pointer target', 'mobile accessibility', 'button size', 'clickable area', 'wcag 2.2', 'spacing exception'],
+    priority: 9
+  },
+  // WCAG 4.1.2 Name, Role, Value
+  {
+    url: '/wcag/4-1-2',
+    title: 'WCAG 4.1.2 Name, Role, Value Guide',
+    description: 'Complete guide to name, role, state, and value for UI components — accessible name computation, native HTML vs ARIA, code examples, common failures, and testing',
+    type: 'guide',
+    keywords: ['name role value', 'wcag 4.1.2', 'accessible name', 'aria-label', 'aria-labelledby', 'aria-pressed', 'aria role', 'custom component accessibility', 'accessibility tree', 'screen reader', 'form label', 'programmatically determinable', 'robust accessibility'],
+    priority: 9
+  },
+  // WCAG 3.3.2 Labels or Instructions
+  {
+    url: '/wcag/3-3-2',
+    title: 'WCAG 3.3.2 Labels or Instructions Guide',
+    description: 'Complete guide to accessible form labels — the four label association methods, why placeholders fail, required and format hints, code examples, and testing',
+    type: 'guide',
+    keywords: ['labels or instructions', 'wcag 3.3.2', 'form labels', 'accessible forms', 'label association', 'placeholder not a label', 'aria-label', 'aria-describedby', 'fieldset legend', 'required field', 'form accessibility', 'input label', 'missing form label', 'level a'],
+    priority: 9
+  },
+  // WCAG Success Criteria Hub
+  {
+    url: '/wcag',
+    title: 'WCAG Success Criteria Guides',
+    description: 'In-depth guides to WCAG Level A and AA success criteria with interactive examples, testing methods, and implementation code',
+    type: 'guide',
+    keywords: ['wcag', 'success criteria', 'wcag 2.2', 'level a', 'level aa', 'wcag guides', 'accessibility guidelines', 'wcag criteria'],
+    priority: 9
   }
 ]
 
