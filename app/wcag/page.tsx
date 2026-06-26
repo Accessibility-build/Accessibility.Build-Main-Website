@@ -289,6 +289,16 @@ const successCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     icon: AlertCircle,
     available: true
+  },
+  {
+    number: "2.4.7",
+    title: "Focus Visible",
+    level: "AA",
+    description: "Any keyboard-operable interface has a mode where the keyboard focus indicator is visible, so users can always see which element has focus.",
+    principle: "2. Operable",
+    guideline: "2.4 Navigable",
+    icon: MousePointerClick,
+    available: true
   }
 ]
 

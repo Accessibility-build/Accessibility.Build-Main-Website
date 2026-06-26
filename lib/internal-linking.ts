@@ -216,6 +216,24 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['labels or instructions', 'wcag 3.3.2', 'form labels', 'accessible forms', 'label association', 'placeholder not a label', 'aria-label', 'aria-describedby', 'fieldset legend', 'required field', 'form accessibility', 'input label', 'missing form label', 'level a'],
     priority: 9
   },
+  // WCAG 3.3.1 Error Identification
+  {
+    url: '/wcag/3-3-1',
+    title: 'WCAG 3.3.1 Error Identification Guide',
+    description: 'Complete guide to identifying form errors and describing them in text — aria-invalid, aria-describedby, error summaries, live regions, code examples, and testing',
+    type: 'guide',
+    keywords: ['error identification', 'wcag 3.3.1', 'accessible form errors', 'form validation accessibility', 'aria-invalid', 'aria-describedby', 'error message accessibility', 'error summary', 'role alert', 'aria-live errors', 'inline validation', 'level a', 'form accessibility'],
+    priority: 9
+  },
+  // WCAG 2.4.7 Focus Visible
+  {
+    url: '/wcag/2-4-7',
+    title: 'WCAG 2.4.7 Focus Visible Guide',
+    description: 'Complete guide to visible keyboard focus indicators — why never to remove the outline, :focus-visible, contrast and thickness, forced-colors support, code examples, and testing',
+    type: 'guide',
+    keywords: ['focus visible', 'wcag 2.4.7', 'keyboard focus indicator', 'focus-visible', 'focus ring', 'outline none', 'visible focus', 'focus styles css', 'keyboard accessibility', 'focus management', 'tab key focus', 'focus indicator contrast', 'level aa', 'wcag 2.2'],
+    priority: 9
+  },
   // WCAG Success Criteria Hub
   {
     url: '/wcag',
