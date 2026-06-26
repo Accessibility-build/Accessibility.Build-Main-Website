@@ -20,7 +20,8 @@ import {
   MousePointerClick,
   Type,
   Zap,
-  Pause
+  Pause,
+  AlertCircle
 } from "lucide-react"
 
 export const metadata = createMetadata({
@@ -277,6 +278,16 @@ const successCriteria: SuccessCriterion[] = [
     principle: "3. Understandable",
     guideline: "3.3 Input Assistance",
     icon: FileText,
+    available: true
+  },
+  {
+    number: "3.3.1",
+    title: "Error Identification",
+    level: "A",
+    description: "When an input error is automatically detected, the field in error is identified and the error is described to the user in text.",
+    principle: "3. Understandable",
+    guideline: "3.3 Input Assistance",
+    icon: AlertCircle,
     available: true
   }
 ]

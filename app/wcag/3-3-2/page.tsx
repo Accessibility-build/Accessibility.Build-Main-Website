@@ -763,7 +763,13 @@ export default function WCAG332Page() {
               </div>
               <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
                 <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  3.3.1 Error Identification — A
+                  <Link
+                    href="/wcag/3-3-1"
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    3.3.1 Error Identification
+                  </Link>{" "}
+                  — A
                 </h3>
                 <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                   The sibling forms criterion: when input is rejected, the error
