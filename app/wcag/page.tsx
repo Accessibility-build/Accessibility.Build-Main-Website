@@ -299,6 +299,16 @@ const successCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     icon: MousePointerClick,
     available: true
+  },
+  {
+    number: "1.4.11",
+    title: "Non-text Contrast",
+    level: "AA",
+    description: "User interface components and meaningful graphics have a contrast ratio of at least 3:1 against adjacent colors, so borders, states, focus indicators, icons, and charts stay perceivable.",
+    principle: "1. Perceivable",
+    guideline: "1.4 Distinguishable",
+    icon: Eye,
+    available: true
   }
 ]
 
