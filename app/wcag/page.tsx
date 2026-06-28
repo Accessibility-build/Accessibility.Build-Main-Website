@@ -234,8 +234,7 @@ const successCriteria: SuccessCriterion[] = [
     principle: "2. Operable",
     guideline: "2.4 Navigable",
     icon: Link2,
-    available: false,
-    comingSoon: true
+    available: true
   },
 
   // Level AA Criteria
