@@ -234,6 +234,15 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['focus visible', 'wcag 2.4.7', 'keyboard focus indicator', 'focus-visible', 'focus ring', 'outline none', 'visible focus', 'focus styles css', 'keyboard accessibility', 'focus management', 'tab key focus', 'focus indicator contrast', 'level aa', 'wcag 2.2'],
     priority: 9
   },
+  // WCAG 4.1.3 Status Messages
+  {
+    url: '/wcag/4-1-3',
+    title: 'WCAG 4.1.3 Status Messages Guide',
+    description: 'Complete guide to announcing dynamic changes to screen readers without moving focus — ARIA live regions, role=status vs role=alert, toasts, form errors, result counts, code examples, and testing',
+    type: 'guide',
+    keywords: ['status messages', 'wcag 4.1.3', 'aria-live', 'role status', 'role alert', 'aria-live polite', 'aria-live assertive', 'live region', 'screen reader announcement', 'toast accessibility', 'form validation accessibility', 'aria-atomic', 'dynamic content', 'level aa', 'wcag 2.1'],
+    priority: 9
+  },
   // WCAG Success Criteria Hub
   {
     url: '/wcag',

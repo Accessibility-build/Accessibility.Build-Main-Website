@@ -308,6 +308,17 @@ const successCriteria: SuccessCriterion[] = [
     guideline: "1.4 Distinguishable",
     icon: Eye,
     available: true
+  },
+  {
+    number: "4.1.3",
+    title: "Status Messages",
+    level: "AA",
+    description: "Status messages can be programmatically determined through role or properties so assistive technologies announce them without moving focus, using ARIA live regions like role=status and role=alert.",
+    principle: "4. Robust",
+    guideline: "4.1 Compatible",
+    icon: Zap,
+    available: true,
+    new22: false
   }
 ]
 
