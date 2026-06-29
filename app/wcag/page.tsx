@@ -319,6 +319,17 @@ const successCriteria: SuccessCriterion[] = [
     icon: Zap,
     available: true,
     new22: false
+  },
+  {
+    number: "2.4.11",
+    title: "Focus Not Obscured (Minimum)",
+    level: "AA",
+    description: "When a component receives keyboard focus, it is not entirely hidden by author-created content such as a sticky header, sticky footer, or cookie banner.",
+    principle: "2. Operable",
+    guideline: "2.4 Navigable",
+    icon: Eye,
+    available: true,
+    new22: true
   }
 ]
 

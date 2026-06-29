@@ -243,6 +243,15 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['status messages', 'wcag 4.1.3', 'aria-live', 'role status', 'role alert', 'aria-live polite', 'aria-live assertive', 'live region', 'screen reader announcement', 'toast accessibility', 'form validation accessibility', 'aria-atomic', 'dynamic content', 'level aa', 'wcag 2.1'],
     priority: 9
   },
+  // WCAG 2.4.11 Focus Not Obscured (Minimum)
+  {
+    url: '/wcag/2-4-11',
+    title: 'WCAG 2.4.11 Focus Not Obscured (Minimum) Guide',
+    description: 'Complete guide to keeping the keyboard-focused element visible — why sticky headers hide focus, the scroll-padding and scroll-margin fix, code examples, and testing',
+    type: 'guide',
+    keywords: ['focus not obscured', 'wcag 2.4.11', 'sticky header accessibility', 'scroll-padding', 'scroll-padding-top', 'scroll-margin', 'keyboard focus hidden', 'focus obscured', 'sticky footer', 'cookie banner accessibility', 'focus management', 'focus visible', 'keyboard accessibility', 'level aa', 'wcag 2.2'],
+    priority: 9
+  },
   // WCAG Success Criteria Hub
   {
     url: '/wcag',
