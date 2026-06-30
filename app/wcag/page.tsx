@@ -330,6 +330,16 @@ const successCriteria: SuccessCriterion[] = [
     icon: Eye,
     available: true,
     new22: true
+  },
+  {
+    number: "3.3.3",
+    title: "Error Suggestion",
+    level: "AA",
+    description: "When an input error is detected and a correction is known, suggest the fix to the user in text — unless doing so would jeopardize the security or purpose of the content.",
+    principle: "3. Understandable",
+    guideline: "3.3 Input Assistance",
+    icon: AlertCircle,
+    available: true
   }
 ]
 

@@ -366,10 +366,10 @@ export default function WCAG331Page() {
                 <strong>Note:</strong> 3.3.1 asks you to{" "}
                 <em>identify and describe</em> the error. It does not, at Level A,
                 require you to <em>suggest a fix</em> — that is the job of{" "}
-                <Link href="/wcag/1-3-1" className="underline font-medium">
-                  the related criteria below
-                </Link>
-                , specifically 3.3.3 Error Suggestion at Level AA. But describing
+                <Link href="/wcag/3-3-3" className="underline font-medium">
+                  3.3.3 Error Suggestion
+                </Link>{" "}
+                at Level AA. But describing
                 an error well almost always means hinting at the fix, so you often
                 satisfy both at once.
               </p>
