@@ -21,7 +21,8 @@ import {
   Type,
   Zap,
   Pause,
-  AlertCircle
+  AlertCircle,
+  KeyRound
 } from "lucide-react"
 
 export const metadata = createMetadata({
@@ -340,6 +341,17 @@ const successCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     icon: AlertCircle,
     available: true
+  },
+  {
+    number: "3.3.8",
+    title: "Accessible Authentication (Minimum)",
+    level: "AA",
+    description: "No step in an authentication process requires a cognitive function test — remembering a password, transcribing a code, or solving a puzzle — unless an alternative, a mechanism, or an object/personal-content exception applies.",
+    principle: "3. Understandable",
+    guideline: "3.3 Input Assistance",
+    icon: KeyRound,
+    available: true,
+    new22: true
   }
 ]
 
