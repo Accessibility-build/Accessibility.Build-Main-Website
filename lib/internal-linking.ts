@@ -252,6 +252,15 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['focus not obscured', 'wcag 2.4.11', 'sticky header accessibility', 'scroll-padding', 'scroll-padding-top', 'scroll-margin', 'keyboard focus hidden', 'focus obscured', 'sticky footer', 'cookie banner accessibility', 'focus management', 'focus visible', 'keyboard accessibility', 'level aa', 'wcag 2.2'],
     priority: 9
   },
+  // WCAG 2.5.7 Dragging Movements
+  {
+    url: '/wcag/2-5-7',
+    title: 'WCAG 2.5.7 Dragging Movements Guide',
+    description: 'Complete guide to providing a single-pointer alternative to every drag action — accessible patterns for sliders, sortable lists, kanban boards and maps, the two exceptions, code examples, and testing',
+    type: 'guide',
+    keywords: ['dragging movements', 'wcag 2.5.7', 'drag and drop accessibility', 'single pointer alternative', 'accessible drag and drop', 'sortable list accessibility', 'kanban accessibility', 'slider accessibility', 'reorder list accessibility', 'pointer input', 'motor disability', 'touch accessibility', 'level aa', 'wcag 2.2'],
+    priority: 9
+  },
   // WCAG Success Criteria Hub
   {
     url: '/wcag',

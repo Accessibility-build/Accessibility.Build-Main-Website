@@ -250,6 +250,17 @@ const successCriteria: SuccessCriterion[] = [
     available: true
   },
   {
+    number: "2.5.7",
+    title: "Dragging Movements",
+    level: "AA",
+    description: "All functionality that uses a dragging movement can also be operated by a single pointer without dragging, unless dragging is essential or determined by the user agent.",
+    principle: "2. Operable",
+    guideline: "2.5 Input Modalities",
+    icon: MousePointerClick,
+    available: true,
+    new22: true
+  },
+  {
     number: "2.5.8",
     title: "Target Size (Minimum)",
     level: "AA",
