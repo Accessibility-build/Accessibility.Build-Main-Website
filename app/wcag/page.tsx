@@ -302,6 +302,17 @@ const successCriteria: SuccessCriterion[] = [
     available: true
   },
   {
+    number: "3.3.7",
+    title: "Redundant Entry",
+    level: "A",
+    description: "Information a user already entered in the same process is auto-populated or available to select, so they are not forced to re-enter it — unless re-entry is essential, needed for security, or the earlier value is no longer valid.",
+    principle: "3. Understandable",
+    guideline: "3.3 Input Assistance",
+    icon: FileText,
+    available: true,
+    new22: true
+  },
+  {
     number: "2.4.7",
     title: "Focus Visible",
     level: "AA",
@@ -513,6 +524,11 @@ export default function WCAGIndexPage() {
                               <Badge className="bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">
                                 Level {criterion.level}
                               </Badge>
+                              {criterion.new22 && (
+                                <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-700">
+                                  New in 2.2
+                                </Badge>
+                              )}
                               {criterion.available && (
                                 <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700">
                                   Available
