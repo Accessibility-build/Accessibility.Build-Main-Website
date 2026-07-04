@@ -261,6 +261,15 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['dragging movements', 'wcag 2.5.7', 'drag and drop accessibility', 'single pointer alternative', 'accessible drag and drop', 'sortable list accessibility', 'kanban accessibility', 'slider accessibility', 'reorder list accessibility', 'pointer input', 'motor disability', 'touch accessibility', 'level aa', 'wcag 2.2'],
     priority: 9
   },
+  // WCAG 3.2.6 Consistent Help
+  {
+    url: '/wcag/3-2-6',
+    title: 'WCAG 3.2.6 Consistent Help Guide',
+    description: 'Complete guide to keeping help mechanisms in the same relative order across pages — the four covered help types, contact and chat placement, code examples, common mistakes, and testing',
+    type: 'guide',
+    keywords: ['consistent help', 'wcag 3.2.6', 'help mechanism accessibility', 'consistent navigation', 'contact information accessibility', 'help link placement', 'chat widget accessibility', 'chatbot accessibility', 'self-help option', 'same relative order', 'cognitive accessibility', 'predictable', 'level a', 'wcag 2.2'],
+    priority: 9
+  },
   // WCAG Success Criteria Hub
   {
     url: '/wcag',

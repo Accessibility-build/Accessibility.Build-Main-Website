@@ -22,7 +22,8 @@ import {
   Zap,
   Pause,
   AlertCircle,
-  KeyRound
+  KeyRound,
+  HelpCircle
 } from "lucide-react"
 
 export const metadata = createMetadata({
@@ -372,6 +373,17 @@ const successCriteria: SuccessCriterion[] = [
     principle: "3. Understandable",
     guideline: "3.3 Input Assistance",
     icon: KeyRound,
+    available: true,
+    new22: true
+  },
+  {
+    number: "3.2.6",
+    title: "Consistent Help",
+    level: "A",
+    description: "Help mechanisms — contact details, a contact mechanism, a self-help option, or an automated chatbot — that repeat across a set of pages appear in the same relative order, so users can find help predictably.",
+    principle: "3. Understandable",
+    guideline: "3.2 Predictable",
+    icon: HelpCircle,
     available: true,
     new22: true
   }
