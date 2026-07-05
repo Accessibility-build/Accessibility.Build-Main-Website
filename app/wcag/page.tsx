@@ -251,6 +251,16 @@ const successCriteria: SuccessCriterion[] = [
     available: true
   },
   {
+    number: "1.4.10",
+    title: "Reflow",
+    level: "AA",
+    description: "Content reflows to a 320 CSS pixel width (400% zoom) without loss of information or two-dimensional scrolling, so low-vision users can magnify pages without scrolling left and right on every line.",
+    principle: "1. Perceivable",
+    guideline: "1.4 Distinguishable",
+    icon: Eye,
+    available: true
+  },
+  {
     number: "2.5.7",
     title: "Dragging Movements",
     level: "AA",
