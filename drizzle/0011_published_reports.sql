@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS "published_reports" (
 	"slug" text NOT NULL,
 	"user_id" text NOT NULL,
 	"title" text DEFAULT 'Accessibility findings' NOT NULL,
+	"description" text,
 	"issues" jsonb NOT NULL,
 	"image_base64" text NOT NULL,
 	"view_count" integer DEFAULT 0 NOT NULL,

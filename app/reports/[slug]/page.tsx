@@ -5,6 +5,7 @@ import { eq, sql } from 'drizzle-orm'
 import { db } from '@/lib/db'
 import { publishedReports, type ReportIssue } from '@/lib/db/schema'
 import { SITE_URL } from '@/lib/reports'
+import { CopyLinkButton } from '../CopyLinkButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,6 +13,7 @@ async function getReport(slug: string) {
   const [row] = await db
     .select({
       title: publishedReports.title,
+      description: publishedReports.description,
       issues: publishedReports.issues,
       createdAt: publishedReports.createdAt,
     })
@@ -32,7 +34,9 @@ export async function generateMetadata({
 
   const image = `${SITE_URL}/api/reports/${slug}/image`
   const count = report.issues.length
-  const description = `${count} accessibility ${count === 1 ? 'issue' : 'issues'} found — shared from the Accessibility.build desktop app.`
+  const description =
+    report.description ||
+    `${count} accessibility ${count === 1 ? 'issue' : 'issues'} found — shared from the Accessibility.build desktop app.`
   return {
     title: `${report.title} — Accessibility.build`,
     description,
@@ -67,12 +71,21 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
     .catch(() => {})
 
   const issues = report.issues as ReportIssue[]
+  const sevCount = (sev: string) => issues.filter((i) => i.severity === sev).length
+  const summary = [
+    { sev: 'blocker', n: sevCount('blocker'), color: '#DC2626' },
+    { sev: 'major', n: sevCount('major'), color: '#F59E0B' },
+    { sev: 'minor', n: sevCount('minor'), color: '#64748B' },
+  ].filter((s) => s.n > 0)
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-12">
-      <header className="mb-6 flex items-center justify-between">
-        <div>
+      <header className="mb-6 flex flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0">
           <h1 className="text-2xl font-bold tracking-tight">{report.title}</h1>
+          {report.description && (
+            <p className="mt-1 max-w-xl text-sm text-foreground/80">{report.description}</p>
+          )}
           <p className="mt-1 text-sm text-muted-foreground">
             {issues.length} {issues.length === 1 ? 'issue' : 'issues'} ·{' '}
             {new Date(report.createdAt).toLocaleDateString()} · shared from the{' '}
@@ -80,7 +93,21 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
               Accessibility.build app
             </Link>
           </p>
+          {summary.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {summary.map((s) => (
+                <span
+                  key={s.sev}
+                  className="rounded-full px-2 py-0.5 text-xs font-medium text-white"
+                  style={{ backgroundColor: s.color }}
+                >
+                  {s.n} {s.sev}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
+        <CopyLinkButton url={`${SITE_URL}/reports/${slug}`} />
       </header>
 
       {/* eslint-disable-next-line @next/next/no-img-element */}

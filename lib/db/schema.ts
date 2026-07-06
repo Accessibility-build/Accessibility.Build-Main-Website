@@ -474,6 +474,7 @@ export const publishedReports = pgTable('published_reports', {
   slug: text('slug').notNull().unique(),
   userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
   title: text('title').notNull().default('Accessibility findings'),
+  description: text('description'),
   issues: jsonb('issues').$type<ReportIssue[]>().notNull(),
   imageBase64: text('image_base64').notNull(),
   viewCount: integer('view_count').notNull().default(0),
