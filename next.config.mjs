@@ -56,6 +56,14 @@ const nextConfig = {
                     value: 'SAMEORIGIN'
                 }
             ]
+        }, {
+            // The desktop updater must always see the freshest manifest —
+            // a cached copy would hide new releases from installed apps.
+            source: '/downloads/desktop/latest.json',
+            headers: [{
+                key: 'Cache-Control',
+                value: 'no-cache, no-store, must-revalidate'
+            }]
         }]
     },
 }

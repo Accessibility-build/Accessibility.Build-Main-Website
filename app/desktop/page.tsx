@@ -8,8 +8,19 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://accessibility.build/desktop" },
 };
 
-const DMG_URL = "/downloads/desktop/Accessibility%20Build_1.3.0_aarch64.dmg";
-const VERSION = "1.3.0";
+const DMG_URL = "/api/desktop/download";
+const VERSION = "1.5.0";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Accessibility Build",
+  operatingSystem: "macOS 12+",
+  applicationCategory: "DeveloperApplication",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  downloadUrl: "https://accessibility.build/api/desktop/download",
+  softwareVersion: VERSION,
+};
 
 const tools = [
   {
@@ -50,6 +61,10 @@ const faqs = [
 export default function DesktopPage() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="text-center">
         <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
           Free macOS app

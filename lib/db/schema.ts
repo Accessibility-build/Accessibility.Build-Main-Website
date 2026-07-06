@@ -447,4 +447,22 @@ export type NewAuditViolation = typeof auditViolations.$inferInsert
 export type EmailSubscription = typeof emailSubscriptions.$inferSelect
 export type NewEmailSubscription = typeof emailSubscriptions.$inferInsert
 export type TrialUsage = typeof trialUsage.$inferSelect
-export type NewTrialUsage = typeof trialUsage.$inferInsert 
+export type NewTrialUsage = typeof trialUsage.$inferInsert
+
+// Desktop app device tokens — one row per connected desktop install.
+// The raw token lives only in the app's Keychain; we store its sha256 hash.
+export const desktopDevices = pgTable('desktop_devices', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  tokenHash: text('token_hash').notNull().unique(),
+  deviceName: text('device_name'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  lastSeenAt: timestamp('last_seen_at'),
+  revokedAt: timestamp('revoked_at'),
+}, (t) => ({
+  userIdx: index('desktop_devices_user_idx').on(t.userId),
+}))
+
+export type DesktopDevice = typeof desktopDevices.$inferSelect
+export type NewDesktopDevice = typeof desktopDevices.$inferInsert
+
