@@ -466,3 +466,30 @@ export const desktopDevices = pgTable('desktop_devices', {
 export type DesktopDevice = typeof desktopDevices.$inferSelect
 export type NewDesktopDevice = typeof desktopDevices.$inferInsert
 
+// Shared accessibility reports published from the desktop app. The
+// annotated finding-sheet PNG is stored inline (base64) and served via
+// /api/reports/[slug]/image; the public page lives at /reports/[slug].
+export const publishedReports = pgTable('published_reports', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  slug: text('slug').notNull().unique(),
+  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  title: text('title').notNull().default('Accessibility findings'),
+  issues: jsonb('issues').$type<ReportIssue[]>().notNull(),
+  imageBase64: text('image_base64').notNull(),
+  viewCount: integer('view_count').notNull().default(0),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (t) => ({
+  userIdx: index('published_reports_user_idx').on(t.userId),
+}))
+
+export interface ReportIssue {
+  n: number
+  sc?: string
+  label: string
+  severity: string
+  note: string
+}
+
+export type PublishedReport = typeof publishedReports.$inferSelect
+export type NewPublishedReport = typeof publishedReports.$inferInsert
+

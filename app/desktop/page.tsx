@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const DMG_URL = "/api/desktop/download";
-const VERSION = "1.5.0";
+const VERSION = "1.6.0";
 
 const jsonLd = {
   "@context": "https://schema.org",
