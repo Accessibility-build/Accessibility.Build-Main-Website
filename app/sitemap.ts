@@ -604,7 +604,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "1-1-1", "1-2-1", "1-2-2", "1-2-3", "1-3-1", "1-3-2", "1-3-3",
     "1-4-1", "1-4-2", "1-4-3", "1-4-10", "1-4-11", "2-1-1", "2-1-2", "2-1-4",
     "2-2-1", "2-2-2", "2-3-1", "2-4-1", "2-4-2", "2-4-3", "2-4-4", "2-4-7",
-    "2-5-7", "2-5-8", "3-2-6", "3-3-1", "3-3-2", "3-3-3", "3-3-7", "3-3-8", "4-1-2", "4-1-3", "2-4-11",
+    "2-5-7", "2-5-8", "3-2-6", "3-3-1", "3-3-2", "3-3-3", "3-3-7", "3-3-8", "4-1-2", "4-1-3", "2-4-11", "1-4-13",
   ]
   const wcagRoutes: SitemapEntry[] = [
     {
@@ -618,7 +618,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...wcagBuiltCriteria.map((c) => ({
       route: `/wcag/${c}`,
       // Slightly boost high-value pages (new WCAG 2.2 Target Size, most-failed 4.1.2 & 3.3.2)
-      priority: c === "2-5-7" || c === "2-5-8" || c === "4-1-2" || c === "3-2-6" || c === "3-3-2" || c === "3-3-1" || c === "3-3-3" || c === "3-3-7" || c === "3-3-8" || c === "2-4-7" || c === "1-4-10" || c === "1-4-11" || c === "2-4-11" ? 0.9 : 0.88,
+      priority: c === "2-5-7" || c === "2-5-8" || c === "4-1-2" || c === "3-2-6" || c === "3-3-2" || c === "3-3-1" || c === "3-3-3" || c === "3-3-7" || c === "3-3-8" || c === "2-4-7" || c === "1-4-10" || c === "1-4-11" || c === "2-4-11" || c === "1-4-13" ? 0.9 : 0.88,
       changeFrequency: "monthly" as const,
       lastModified: currentDate,
       keywords: ["wcag", "success criteria", `wcag ${c.replace(/-/g, ".")}`],

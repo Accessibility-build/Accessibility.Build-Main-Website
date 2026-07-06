@@ -243,6 +243,15 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['status messages', 'wcag 4.1.3', 'aria-live', 'role status', 'role alert', 'aria-live polite', 'aria-live assertive', 'live region', 'screen reader announcement', 'toast accessibility', 'form validation accessibility', 'aria-atomic', 'dynamic content', 'level aa', 'wcag 2.1'],
     priority: 9
   },
+  // WCAG 1.4.13 Content on Hover or Focus
+  {
+    url: '/wcag/1-4-13',
+    title: 'WCAG 1.4.13 Content on Hover or Focus Guide',
+    description: 'Complete guide to accessible tooltips and hover menus — the Dismissible, Hoverable, and Persistent conditions, why the title attribute fails, aria-describedby, copy-ready code, and testing',
+    type: 'guide',
+    keywords: ['content on hover or focus', 'wcag 1.4.13', 'accessible tooltip', 'tooltip accessibility', 'dismissible hoverable persistent', 'hover content accessibility', 'popover accessibility', 'hover menu accessibility', 'title attribute accessibility', 'aria-describedby tooltip', 'escape to dismiss', 'magnification accessibility', 'low vision', 'level aa', 'wcag 2.2'],
+    priority: 9
+  },
   // WCAG 2.4.11 Focus Not Obscured (Minimum)
   {
     url: '/wcag/2-4-11',

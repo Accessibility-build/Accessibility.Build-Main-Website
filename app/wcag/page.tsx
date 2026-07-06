@@ -344,6 +344,16 @@ const successCriteria: SuccessCriterion[] = [
     available: true
   },
   {
+    number: "1.4.13",
+    title: "Content on Hover or Focus",
+    level: "AA",
+    description: "Content that appears on hover or keyboard focus — tooltips, hover menus, popovers — must be dismissible, hoverable, and persistent so magnifier and keyboard users can reach, read, and clear it.",
+    principle: "1. Perceivable",
+    guideline: "1.4 Distinguishable",
+    icon: Eye,
+    available: true
+  },
+  {
     number: "4.1.3",
     title: "Status Messages",
     level: "AA",
