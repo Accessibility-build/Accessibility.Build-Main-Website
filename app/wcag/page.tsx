@@ -344,6 +344,16 @@ const successCriteria: SuccessCriterion[] = [
     available: true
   },
   {
+    number: "1.4.12",
+    title: "Text Spacing",
+    level: "AA",
+    description: "No content or functionality is lost when users override text spacing — line height to 1.5, paragraph spacing to 2×, letter spacing to 0.12, and word spacing to 0.16 of the font size — so dyslexic and low-vision readers can open text up without clipping.",
+    principle: "1. Perceivable",
+    guideline: "1.4 Distinguishable",
+    icon: Type,
+    available: true
+  },
+  {
     number: "1.4.13",
     title: "Content on Hover or Focus",
     level: "AA",

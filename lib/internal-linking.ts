@@ -243,6 +243,15 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['status messages', 'wcag 4.1.3', 'aria-live', 'role status', 'role alert', 'aria-live polite', 'aria-live assertive', 'live region', 'screen reader announcement', 'toast accessibility', 'form validation accessibility', 'aria-atomic', 'dynamic content', 'level aa', 'wcag 2.1'],
     priority: 9
   },
+  // WCAG 1.4.12 Text Spacing
+  {
+    url: '/wcag/1-4-12',
+    title: 'WCAG 1.4.12 Text Spacing Guide',
+    description: 'Complete guide to the four text-spacing values users must be able to override — line height 1.5, paragraph spacing 2×, letter spacing 0.12, word spacing 0.16 — the test bookmarklet, why fixed-height containers clip text, CSS fixes, and testing',
+    type: 'guide',
+    keywords: ['text spacing', 'wcag 1.4.12', 'line height accessibility', 'letter spacing', 'word spacing', 'paragraph spacing', 'text spacing bookmarklet', 'fixed height clipping', 'line-height 1.5', 'min-height', 'overflow hidden', 'low vision', 'dyslexia', 'readability', 'distinguishable', 'level aa', 'wcag 2.1'],
+    priority: 9
+  },
   // WCAG 1.4.13 Content on Hover or Focus
   {
     url: '/wcag/1-4-13',
