@@ -296,6 +296,33 @@ const INTERNAL_LINKS: InternalLink[] = [
     type: 'guide',
     keywords: ['wcag', 'success criteria', 'wcag 2.2', 'level a', 'level aa', 'wcag guides', 'accessibility guidelines', 'wcag criteria'],
     priority: 9
+  },
+  // Fashion Nova Settlement Case Study
+  {
+    url: '/guides/fashion-nova-accessibility-settlement',
+    title: 'The $5.15M Fashion Nova Web Accessibility Settlement',
+    description: 'Case study of Alcazar v. Fashion Nova — the second-largest web accessibility settlement on record — and what it means for e-commerce',
+    type: 'guide',
+    keywords: ['fashion nova settlement', 'accessibility lawsuit', 'web accessibility class action', 'unruh act', 'ecommerce accessibility lawsuit', 'settlement', 'ada website settlement', 'litigation'],
+    priority: 8
+  },
+  // ADA Website Lawsuit Cost Guide
+  {
+    url: '/guides/ada-website-lawsuit-cost',
+    title: 'How Much Does an ADA Website Lawsuit Cost?',
+    description: 'Data-backed breakdown of web accessibility lawsuit costs in 2026 — demand letters, settlements, judgments, class actions, and defense fees',
+    type: 'guide',
+    keywords: ['ada website lawsuit cost', 'accessibility lawsuit', 'settlement cost', 'settlement costs', 'lawsuit defense cost', 'ada compliance', 'litigation', 'roi', 'lawsuit risk'],
+    priority: 8
+  },
+  // AI-Driven Accessibility Lawsuits
+  {
+    url: '/guides/ai-accessibility-lawsuits',
+    title: 'How AI Is Fueling ADA Website Lawsuits in 2026',
+    description: 'How generative AI and automated scanners collapsed the cost of filing a web accessibility lawsuit — the pro se surge, repeat defendants, and how to protect your site',
+    type: 'guide',
+    keywords: ['ai accessibility lawsuits', 'accessibility lawsuit', 'pro se', 'automated scanner', 'ada lawsuits', 'litigation', '2026 accessibility litigation', 'ada compliance', 'generative ai'],
+    priority: 8
   }
 ]
 

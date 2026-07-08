@@ -333,6 +333,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       keywords: ["pdf accessibility", "tagged pdf", "pdf/ua", "accessible pdf", "pdf wcag"],
       category: "content"
     },
+    {
+      route: "/guides/fashion-nova-accessibility-settlement",
+      priority: 0.9,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["fashion nova settlement", "web accessibility class action", "unruh act website lawsuit", "ecommerce accessibility lawsuit", "largest ada website settlement"],
+      category: "content"
+    },
+    {
+      route: "/guides/ada-website-lawsuit-cost",
+      priority: 0.91,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["ada website lawsuit cost", "accessibility lawsuit settlement amount", "web accessibility settlement cost", "accessibility lawsuit defense cost"],
+      category: "content"
+    },
+    {
+      route: "/guides/ai-accessibility-lawsuits",
+      priority: 0.9,
+      changeFrequency: "monthly",
+      lastModified: currentDate,
+      keywords: ["ai accessibility lawsuits", "pro se ada lawsuits", "automated accessibility scanner lawsuits", "2026 accessibility litigation"],
+      category: "content"
+    },
 
     // Content Hub - Critical for SEO and education
     {

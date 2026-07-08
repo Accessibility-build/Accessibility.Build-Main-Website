@@ -8,7 +8,7 @@ import { LawsuitTrackerClient } from "./LawsuitTrackerClient"
 export const metadata: Metadata = {
   title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
   description:
-    "Comprehensive data on web accessibility lawsuits in the United States. 2025 closed at 3,117 federal filings (+27% YoY) — over 5,000 when state-court cases are included. DOJ Title II compliance was extended to 2027; HHS Section 504 deadline hits May 11, 2026. Updated May 2026.",
+    "Comprehensive data on web accessibility lawsuits in the United States. 2025 closed at 3,117 federal filings (+27% YoY) — over 5,000 with state-court cases — and 2026 is projected to top 5,500. Fashion Nova settled for $5.15M; HHS Section 504 is now in force; DOJ Title II was extended to 2027. Updated July 2026.",
   keywords: [
     "accessibility lawsuits",
     "ada lawsuit tracker",
@@ -18,6 +18,8 @@ export const metadata: Metadata = {
     "digital accessibility legal",
     "ada title iii lawsuits",
     "accessibility settlement costs",
+    "2026 accessibility lawsuits",
+    "fashion nova settlement",
   ],
   alternates: {
     canonical: "https://accessibility.build/research/accessibility-lawsuits",
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
     description:
-      "2025 closed at 3,117 federal website-accessibility lawsuits (+27% YoY); over 5,000 when state-court cases are included. DOJ Title II compliance was extended to 2027/2028; HHS Section 504 hits May 11, 2026.",
+      "2025 closed at 3,117 federal website-accessibility lawsuits (+27% YoY); over 5,000 with state-court cases. 2026 is on pace to exceed 5,500. Fashion Nova settled for $5.15M; HHS Section 504 is now in force; DOJ Title II was extended to 2027/2028.",
     url: "https://accessibility.build/research/accessibility-lawsuits",
     type: "article",
   },
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Accessibility Lawsuit Tracker 2026",
     description:
-      "3,117 federal filings in 2025 (+27% YoY). DOJ Title II deadline pushed to April 2027; HHS Section 504 web rule still hits May 11, 2026.",
+      "3,117 federal filings in 2025 (+27% YoY), with 2026 projected to top 5,500. Fashion Nova settled for $5.15M; HHS Section 504 now in force; DOJ Title II pushed to 2027.",
   },
 }
 
@@ -60,7 +62,7 @@ export default function AccessibilityLawsuitsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-01-15"
-        dateModified="2026-05-04"
+        dateModified="2026-07-09"
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-lawsuits"
         wordCount={3500}
@@ -111,8 +113,9 @@ export default function AccessibilityLawsuitsPage() {
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               Comprehensive data on ADA and digital accessibility lawsuits filed in the United
-              States. Federal-court trends through 2025, the May 2026 regulatory landscape
-              (DOJ Title II extension, HHS Section 504 deadline), and settlement-cost benchmarks.
+              States. Federal-court trends through 2025, the mid-2026 landscape (2026 on pace to
+              exceed 5,500 filings, HHS Section 504 now in force, DOJ Title II extended), the
+              record $5.15M Fashion Nova settlement, and settlement-cost benchmarks.
             </p>
           </div>
 
@@ -188,11 +191,13 @@ export default function AccessibilityLawsuitsPage() {
                 federal court</strong> &mdash; a 27% jump over 2024&apos;s 2,452 cases (Seyfarth
                 Shaw / adatitleiii.com). Including state-court filings (mostly in New York and
                 California), total digital accessibility lawsuits topped <strong>5,000</strong> for
-                the year (UsableNet). Federal volume has fluctuated between roughly 2,256 and
-                4,011 each year since 2018, and several thousand additional demand letters are
-                sent annually that never reach formal litigation. Roughly 40% of 2025&apos;s
-                federal filings were filed pro se, with plaintiffs increasingly using generative
-                AI to draft complaints.
+                the year (UsableNet). <strong>2026 is on pace for a record</strong>: U.S. courts
+                logged over 2,000 filings in the first half of 2025 (+37% year over year), and if
+                that trajectory holds, federal filings are projected to exceed <strong>5,500 in
+                2026</strong>. Federal volume has fluctuated between roughly 2,256 and 4,011 each
+                year since 2018, and several thousand additional demand letters are sent annually
+                that never reach formal litigation. Roughly 40% of 2025&apos;s federal filings were
+                filed pro se, with plaintiffs increasingly using generative AI to draft complaints.
               </p>
             </div>
           </div>
@@ -229,9 +234,12 @@ export default function AccessibilityLawsuitsPage() {
             <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
                 Settlement costs vary widely. Demand letter settlements typically range from $1,000
-                to $25,000. Out-of-court settlements average around $25,000 but can reach $100,000.
-                Court judgments average $75,000 and class action settlements can exceed $6 million.
-                Even defending a lawsuit with no damages typically costs $5,000 to $100,000 in legal
+                to $25,000. Out-of-court settlements average around $30,000 but can reach $150,000.
+                Court judgments average $85,000 and class action settlements can exceed $6 million.
+                In July 2025, online retailer <strong>Fashion Nova agreed to a $5.15 million
+                class-action settlement</strong> (Alcazar v. Fashion Nova) — the second-largest
+                web accessibility settlement on record, behind only NFB v. Target (2008). Even
+                defending a lawsuit with no damages typically costs $5,000 to $125,000 in legal
                 fees.
               </p>
             </div>
@@ -302,6 +310,59 @@ export default function AccessibilityLawsuitsPage() {
                 practices, publish an accessibility statement, and establish a process for receiving
                 and addressing accessibility feedback. An ongoing accessibility program is far less
                 expensive than litigation.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="border border-slate-200 dark:border-slate-700 rounded-lg p-6"
+            itemScope
+            itemProp="mainEntity"
+            itemType="https://schema.org/Question"
+          >
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
+              Do accessibility overlay widgets protect against lawsuits?
+            </h3>
+            <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+              <p className="text-slate-600 dark:text-slate-400" itemProp="text">
+                No. Overlay and widget products do not prevent litigation and are frequently named
+                in it. In the first half of 2025, roughly <strong>456 lawsuits (about 22.6% of all
+                filings)</strong> targeted websites that already had an accessibility overlay
+                installed — a share that rose sharply year over year. About 38.5% of sued
+                businesses reported already having some accessibility solution in place. The 2025
+                FTC settlement with a major overlay provider further undermined the
+                &ldquo;overlay-as-compliance&rdquo; defense. Real protection comes from fixing the
+                underlying code to meet WCAG 2.2 Level AA, not from a third-party script.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="border border-slate-200 dark:border-slate-700 rounded-lg p-6"
+            itemScope
+            itemProp="mainEntity"
+            itemType="https://schema.org/Question"
+          >
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
+              How is AI changing accessibility litigation in 2026?
+            </h3>
+            <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+              <p className="text-slate-600 dark:text-slate-400" itemProp="text">
+                Generative AI has sharply lowered the cost of filing. Roughly 40% of 2025&apos;s
+                federal ADA Title III filings were brought <strong>pro se</strong> (without a
+                lawyer), with plaintiffs using AI tools to draft complaints in minutes and
+                automated scanners to flag violations such as missing alt text or empty links —
+                no technical expertise required. Combined with repeat-defendant activity (46% of
+                federal cases in 2025 involved companies that had already been sued), the barrier
+                to entry has collapsed, which is a major reason 2026 is projected to exceed 5,500
+                federal filings. See our guide on{" "}
+                <Link
+                  href="/guides/ai-accessibility-lawsuits"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  how AI is fueling ADA website lawsuits
+                </Link>{" "}
+                for the full picture.
               </p>
             </div>
           </div>

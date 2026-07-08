@@ -52,27 +52,34 @@ export const lawsuitsByYear: LawsuitYearData[] = [
   { year: 2025, totalFiled: 3117, federalCourt: 3117, demandLetters: 1900, yearOverYearChange: 27.1 },
 ]
 
-// Snapshot of the May 2026 regulatory landscape — used for the post-chart callout.
-// Verified against the DOJ Interim Final Rule (Apr 20, 2026) and HHS Section 504 rule.
+// Snapshot of the mid-2026 regulatory & litigation landscape — used for the post-chart callout.
+// Verified against the DOJ Interim Final Rule (Apr 20, 2026), the HHS Section 504 rule, and
+// the 2026 mid-year litigation reports (AudioEye 2026 Litigation Report, UsableNet 2026 trends).
 export const may2026RegulatorySnapshot = {
-  asOfDate: "2026-05-04",
+  asOfDate: "2026-07-09",
   items: [
     {
-      label: "DOJ Title II compliance — EXTENDED",
+      label: "HHS Section 504 web rule — NOW IN FORCE (May 11, 2026)",
       detail:
-        "On April 20, 2026 the DOJ issued an Interim Final Rule pushing Phase 1 (entities ≥50,000 pop.) from April 24, 2026 to April 26, 2027, and Phase 2 (smaller entities, special districts) to April 26, 2028. WCAG 2.1 Level AA remains the standard. Comments due June 22, 2026.",
-      tone: "warning" as const,
-    },
-    {
-      label: "HHS Section 504 web rule — IN FORCE May 11, 2026",
-      detail:
-        "Recipients of HHS funding (most hospitals, health systems, state Medicaid agencies, and many federally qualified health centers) must conform their web content and mobile apps to WCAG 2.1 AA by May 11, 2026. HHS has not announced an extension. Healthcare-sector enforcement risk is the highest single regulatory exposure right now.",
+        "The HHS Section 504 web accessibility deadline took effect on May 11, 2026 and was not extended. Recipients of HHS funding — most hospitals, health systems, state Medicaid agencies, and many federally qualified health centers — must now conform their web content and mobile apps to WCAG 2.1 Level AA. Enforcement is active, making healthcare the single highest regulatory exposure of 2026.",
       tone: "critical" as const,
     },
     {
-      label: "Pro se / AI-drafted complaints surging",
+      label: "DOJ Title II compliance — EXTENDED to 2027/2028",
       detail:
-        "Per Seyfarth Shaw, ~40% of 2025 federal ADA Title III filings were filed pro se, with plaintiffs increasingly using generative AI to draft complaints and identify violations. Combined with the fact that 1,427 of 2025's filings (≈45% of federal cases) targeted repeat defendants, the cost-of-entry to file has dropped sharply.",
+        "On April 20, 2026 the DOJ issued an Interim Final Rule pushing Phase 1 (entities ≥50,000 pop.) from April 24, 2026 to April 26, 2027, and Phase 2 (smaller entities, special districts) to April 26, 2028. WCAG 2.1 Level AA remains the standard. The public comment window closed June 22, 2026; the extension does not pause private Title III litigation.",
+      tone: "warning" as const,
+    },
+    {
+      label: "2026 filings on pace for a record year",
+      detail:
+        "U.S. courts logged over 2,000 website accessibility lawsuits in the first half of 2025 (+37% vs H1 2024). If that trajectory holds, 2026 is projected to exceed 5,500 federal filings — with combined federal-plus-state totals on track to surpass 2025's 5,000+. Full 2026 federal tallies are not yet publicly tabulated.",
+      tone: "warning" as const,
+    },
+    {
+      label: "Overlay widgets offer no protection; AI accelerates filings",
+      detail:
+        "In H1 2025, 456 lawsuits (~22.6% of all filings) targeted sites that had an accessibility overlay widget installed — up sharply year over year. Meanwhile ~40% of federal filings were pro se, with plaintiffs using generative AI to draft complaints and automated scanners to flag violations. 46% of federal cases involved repeat defendants (1,427 of 2025's 5,000+ suits).",
       tone: "info" as const,
     },
   ],
@@ -108,6 +115,14 @@ export const keyRulings: KeyRuling[] = [
     summary: "Recipients of HHS federal financial assistance (hospitals, health systems, state Medicaid agencies, federally qualified health centers, and many other healthcare entities) must, as of May 11, 2026, ensure their websites and mobile apps conform to WCAG 2.1 Level AA. HHS has not announced an extension parallel to DOJ's Title II delay, leaving healthcare as the most acute regulatory exposure of 2026",
     significance: "First federal web-accessibility deadline to actually take effect on schedule; fuels Q2/Q3 2026 enforcement risk for the healthcare industry and adds weight to the rising healthcare share of private litigation",
     outcome: "plaintiff",
+  },
+  {
+    date: "2025-07-11",
+    caseName: "Alcazar v. Fashion Nova — $5.15M Web Accessibility Settlement",
+    court: "U.S. District Court / California (Unruh Act)",
+    summary: "Online retailer Fashion Nova agreed to a $5.15 million class-action settlement to resolve claims that its website was inaccessible to blind shoppers using screen readers, in violation of the ADA and California's Unruh Civil Rights Act. A nationwide class secured injunctive relief and Fashion Nova committed to 'substantial conformance' with WCAG 2.1; a California subclass could claim cash payments of up to $4,000 each (claims deadline October 20, 2025)",
+    significance: "The second-largest publicly known web accessibility settlement on record — behind only NFB v. Target (2008). A benchmark for the financial exposure e-commerce retailers face and a warning that overlays and partial fixes do not defeat well-pleaded class claims",
+    outcome: "settled",
   },
   {
     date: "2026-04-20",
@@ -200,4 +215,16 @@ export const lawsuitSummary = {
   // Litigation-economics signals from Seyfarth & UsableNet 2025 reports
   proSeFederalShare2025: 40,
   repeatDefendants2025: 1427,
+  // 2026 mid-year signals (AudioEye 2026 Litigation Report, UsableNet 2026 trends, accessible.org)
+  // Full 2026 federal tallies are not yet publicly tabulated; these are the latest available datapoints.
+  projectedFederal2026: 5500,
+  h1FilingGrowth: 37,
+  largestSettlement2025: 5150000,
+  largestSettlementDefendant: "Fashion Nova",
+  overlayLawsuitShareH1: 22.6,
+  companiesOver25MRevenueShare2025: 36,
+  top500EcommerceSuedShare: 35.8,
+  alreadyHadAccessibilitySolutionShare: 38.5,
+  interiorPageCitationShare: 64,
+  repeatDefendantFederalShare2025: 46,
 }

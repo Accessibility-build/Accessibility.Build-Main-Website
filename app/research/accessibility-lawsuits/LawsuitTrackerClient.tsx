@@ -279,6 +279,10 @@ export function LawsuitTrackerClient() {
               <span>2025: 3,117 federal filings (+27% YoY); 5,000+ when state-court cases are included</span>
             </div>
             <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800/50 rounded-full px-3 py-1.5">
+              <AlertTriangle className="h-3 w-3 text-red-500" />
+              <span>2026: projected to exceed 5,500 federal filings (H1 2025 ran +37% YoY)</span>
+            </div>
+            <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800/50 rounded-full px-3 py-1.5">
               <AlertTriangle className="h-3 w-3 text-emerald-500" />
               <span>Apr 20, 2026: DOJ extended Title II compliance to 2027/2028</span>
             </div>
@@ -603,6 +607,26 @@ export function LawsuitTrackerClient() {
               Cost Range
             </div>
           </div>
+
+          {/* Record settlement callout */}
+          <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-950/20 p-5">
+            <div className="shrink-0">
+              <p className="text-3xl md:text-4xl font-bold text-red-600 dark:text-red-400 tabular-nums">
+                $5.15M
+              </p>
+              <p className="text-xs text-red-700/70 dark:text-red-300/70">
+                Record class-action settlement
+              </p>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              In July 2025, online retailer <strong>Fashion Nova</strong> agreed to a{" "}
+              <strong>$5.15 million</strong> settlement in{" "}
+              <em>Alcazar v. Fashion Nova</em> after blind shoppers alleged its website was
+              inaccessible to screen readers — the second-largest publicly known web accessibility
+              settlement on record, behind only NFB v. Target (2008). A reminder that class-action
+              exposure, not just demand letters, is a real tail risk for e-commerce.
+            </p>
+          </div>
         </ChartSection>
       </section>
 
@@ -910,7 +934,7 @@ export function LawsuitTrackerClient() {
             {
               name: "UsableNet ADA Digital Accessibility Reports",
               description:
-                "Annual reports tracking ADA Title III digital accessibility lawsuits filed in federal courts across the United States.",
+                "Annual and 2026 trend reports tracking ADA Title III digital accessibility lawsuits filed in federal and state courts across the United States.",
             },
             {
               name: "Seyfarth Shaw ADA Title III Blog",
@@ -918,21 +942,26 @@ export function LawsuitTrackerClient() {
                 "Legal analysis and tracking of ADA Title III lawsuit trends from one of the leading employment and labor law firms.",
             },
             {
-              name: "Public Court Records (PACER)",
+              name: "AudioEye 2026 Web Accessibility Litigation Report",
               description:
-                "Federal court electronic records system used to verify and cross-reference lawsuit filing data.",
+                "Mid-2026 litigation analysis of federal and state filings, platform and industry breakdowns, and settlement benchmarks.",
+            },
+            {
+              name: "Public Court Records (PACER) & published settlements",
+              description:
+                "Federal court electronic records and publicly reported settlements (e.g. Alcazar v. Fashion Nova) used to verify and cross-reference filing and cost data.",
             },
           ]}
-          sampleSize="Federal court website-accessibility filings, 2018-2025 (Seyfarth Shaw 2025 year-end review)"
-          dateRange="2018 - 2025 (federal-court trend); regulatory snapshot reflects May 2026"
+          sampleSize="Federal court website-accessibility filings, 2018-2025 (Seyfarth Shaw 2025 year-end review); 2026 figures from mid-year industry reports"
+          dateRange="2018 - 2025 (federal-court trend); regulatory & litigation snapshot reflects July 2026"
           limitations={[
             "Yearly chart tracks federal-court filings only; 2025's widely cited 5,000+ figure includes state-court cases (mostly NY and CA)",
             "Demand letter counts are estimates from industry trackers, not official records",
             "Settlement amounts are drawn from publicly available data; private settlements may not be represented",
             "Same case may appear across multiple trackers if refiled or amended",
-            "2026 federal-court totals are not yet publicly tabulated; this update incorporates the April 20, 2026 DOJ Title II extension and the May 11, 2026 HHS Section 504 deadline",
+            "2026 federal-court totals are not yet publicly tabulated; the 5,500+ figure is a projection from H1 2025's +37% year-over-year pace. This update incorporates the April 20, 2026 DOJ Title II extension, the May 11, 2026 HHS Section 504 deadline (now in force), and the $5.15M Fashion Nova settlement",
           ]}
-          lastUpdated="May 4, 2026"
+          lastUpdated="July 9, 2026"
         />
       </section>
 

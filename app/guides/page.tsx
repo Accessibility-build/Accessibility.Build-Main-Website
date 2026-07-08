@@ -21,6 +21,9 @@ import {
   Sparkles,
   Scale,
   HeartPulse,
+  Gavel,
+  DollarSign,
+  Bot,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -44,6 +47,39 @@ export const metadata: Metadata = {
 }
 
 const guides = [
+  {
+    title: "Fashion Nova's $5.15M Accessibility Settlement",
+    description:
+      "A case study of Alcazar v. Fashion Nova — the second-largest web accessibility settlement on record. The ADA and California Unruh Act claims, the class structure, WCAG 2.1 remediation terms, and what every online retailer should learn from it.",
+    icon: Gavel,
+    difficulty: "Beginner",
+    readingTime: "10 min",
+    topics: ["Case Study", "Unruh Act", "E-Commerce", "Settlements"],
+    href: "/guides/fashion-nova-accessibility-settlement",
+    gradient: "from-red-600 to-rose-600",
+  },
+  {
+    title: "How Much Does an ADA Website Lawsuit Cost?",
+    description:
+      "A data-backed breakdown of what a web accessibility lawsuit really costs in 2026 — from $1K demand letters to a $5.15M class action — what drives the number up or down, and why proactive remediation is almost always the cheaper path.",
+    icon: DollarSign,
+    difficulty: "Beginner",
+    readingTime: "10 min",
+    topics: ["Settlement Costs", "ADA", "Risk", "ROI"],
+    href: "/guides/ada-website-lawsuit-cost",
+    gradient: "from-blue-600 to-cyan-600",
+  },
+  {
+    title: "How AI Is Fueling ADA Website Lawsuits in 2026",
+    description:
+      "Generative AI and automated scanners have collapsed the cost of filing a web accessibility lawsuit. Why ~40% of 2025's federal cases were pro se, why 2026 is projected to top 5,500 filings, and how to protect your site from AI-assisted plaintiffs.",
+    icon: Bot,
+    difficulty: "Beginner",
+    readingTime: "10 min",
+    topics: ["AI", "Litigation Trends", "Pro Se", "2026"],
+    href: "/guides/ai-accessibility-lawsuits",
+    gradient: "from-purple-600 to-fuchsia-600",
+  },
   {
     title: "DOJ Title II Deadline Extension",
     description:
