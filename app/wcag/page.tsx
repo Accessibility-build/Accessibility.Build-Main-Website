@@ -386,6 +386,16 @@ const successCriteria: SuccessCriterion[] = [
     new22: true
   },
   {
+    number: "2.4.6",
+    title: "Headings and Labels",
+    level: "AA",
+    description: "Headings and labels describe topic or purpose — descriptive, meaningful text that lets users understand what a section contains or what a control does, powering screen reader heading navigation.",
+    principle: "2. Operable",
+    guideline: "2.4 Navigable",
+    icon: BookOpen,
+    available: true
+  },
+  {
     number: "3.3.3",
     title: "Error Suggestion",
     level: "AA",
