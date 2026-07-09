@@ -4,16 +4,58 @@ import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "ADA Compliance Guide 2024: Website Requirements & Legal Protection | Accessibility.build",
+  title: "ADA Compliance: Website Requirements & Legal Protection",
   description: "Complete ADA compliance guide for websites including legal requirements, WCAG standards, implementation steps, and protection from accessibility lawsuits.",
   keywords: ["ADA compliance", "ADA website requirements", "ADA lawsuit protection", "accessibility legal requirements", "WCAG ADA compliance", "digital accessibility laws"],
+  alternates: { canonical: "/blog/ada-compliance-guide" },
+  openGraph: {
+    type: "article",
+    title: "ADA Compliance: Website Requirements & Legal Protection",
+    description: "Complete ADA compliance guide for websites including legal requirements, WCAG standards, implementation steps, and protection from accessibility lawsuits.",
+    url: "/blog/ada-compliance-guide",
+    images: [
+      {
+        url: "/api/og?title=ADA%20Compliance%3A%20Website%20Requirements%20%26%20Legal%20Protection&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "ADA Compliance: Website Requirements & Legal Protection",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ADA Compliance: Website Requirements & Legal Protection",
+    description: "Complete ADA compliance guide for websites including legal requirements, WCAG standards, implementation steps, and protection from accessibility lawsuits.",
+    images: ["/api/og?title=ADA%20Compliance%3A%20Website%20Requirements%20%26%20Legal%20Protection&section=Blog"],
+  },
 }
 
 export default function ADAComplianceGuidePost() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <ArticleStructuredData
+        headline="ADA Compliance: Website Requirements & Legal Protection"
+        description="Complete ADA compliance guide for websites including legal requirements, WCAG standards, implementation steps, and protection from accessibility lawsuits."
+        author={{ name: "Accessibility.build Team" }}
+        publisher={{
+          name: "Accessibility.build",
+          logo: "https://accessibility.build/android-chrome-512x512.png",
+        }}
+        datePublished="2025-11-15"
+        dateModified="2025-11-15"
+        image="https://accessibility.build/api/og?title=ADA%20Compliance%3A%20Website%20Requirements%20%26%20Legal%20Protection&section=Blog"
+        url="https://accessibility.build/blog/ada-compliance-guide"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Blog", url: "https://accessibility.build/blog" },
+          { name: "ADA Compliance: Website Requirements & Legal Protection", url: "https://accessibility.build/blog/ada-compliance-guide" },
+        ]}
+      />
       <header className="bg-white dark:bg-gray-900 border-b">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <Button asChild variant="ghost" size="sm" className="mb-4">
@@ -26,7 +68,7 @@ export default function ADAComplianceGuidePost() {
             <Badge variant="secondary">Compliance</Badge>
           </div>
 
-          <h1 className="text-3xl font-bold mb-4">ADA Compliance Guide 2024: Website Requirements & Legal Protection</h1>
+          <h1 className="text-3xl font-bold mb-4">ADA Compliance Guide: Website Requirements & Legal Protection</h1>
           <p className="text-lg text-gray-600 dark:text-gray-400">Complete ADA compliance guide including legal requirements, WCAG standards, and protection from accessibility lawsuits.</p>
         </div>
       </header>

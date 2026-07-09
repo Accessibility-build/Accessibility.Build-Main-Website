@@ -4,16 +4,58 @@ import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "Best Accessibility Testing Tools 2024: Free & Paid Options | Accessibility.build",
+  title: "Best Accessibility Testing Tools: Free & Paid Options",
   description: "Comprehensive guide to accessibility testing tools including axe, WAVE, Lighthouse, and more. Compare features, pricing, and use cases for WCAG compliance testing.",
   keywords: ["accessibility testing tools", "axe devtools", "WAVE accessibility", "Lighthouse accessibility", "accessibility automation tools", "WCAG testing tools"],
+  alternates: { canonical: "/blog/accessibility-testing-tools" },
+  openGraph: {
+    type: "article",
+    title: "Best Accessibility Testing Tools: Free & Paid Options",
+    description: "Comprehensive guide to accessibility testing tools including axe, WAVE, Lighthouse, and more. Compare features, pricing, and use cases for WCAG compliance testing.",
+    url: "/blog/accessibility-testing-tools",
+    images: [
+      {
+        url: "/api/og?title=Best%20Accessibility%20Testing%20Tools%3A%20Free%20%26%20Paid%20Options&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "Best Accessibility Testing Tools: Free & Paid Options",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Best Accessibility Testing Tools: Free & Paid Options",
+    description: "Comprehensive guide to accessibility testing tools including axe, WAVE, Lighthouse, and more. Compare features, pricing, and use cases for WCAG compliance testing.",
+    images: ["/api/og?title=Best%20Accessibility%20Testing%20Tools%3A%20Free%20%26%20Paid%20Options&section=Blog"],
+  },
 }
 
 export default function AccessibilityTestingToolsPost() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <ArticleStructuredData
+        headline="Best Accessibility Testing Tools: Free & Paid Options"
+        description="Comprehensive guide to accessibility testing tools including axe, WAVE, Lighthouse, and more. Compare features, pricing, and use cases for WCAG compliance testing."
+        author={{ name: "Accessibility.build Team" }}
+        publisher={{
+          name: "Accessibility.build",
+          logo: "https://accessibility.build/android-chrome-512x512.png",
+        }}
+        datePublished="2025-11-15"
+        dateModified="2025-11-15"
+        image="https://accessibility.build/api/og?title=Best%20Accessibility%20Testing%20Tools%3A%20Free%20%26%20Paid%20Options&section=Blog"
+        url="https://accessibility.build/blog/accessibility-testing-tools"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Blog", url: "https://accessibility.build/blog" },
+          { name: "Best Accessibility Testing Tools: Free & Paid Options", url: "https://accessibility.build/blog/accessibility-testing-tools" },
+        ]}
+      />
       <header className="bg-white dark:bg-gray-900 border-b">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <Button asChild variant="ghost" size="sm" className="mb-4">
@@ -26,7 +68,7 @@ export default function AccessibilityTestingToolsPost() {
             <Badge variant="secondary">Automation</Badge>
           </div>
 
-          <h1 className="text-3xl font-bold mb-4">Best Accessibility Testing Tools 2024: Free & Paid Options</h1>
+          <h1 className="text-3xl font-bold mb-4">Best Accessibility Testing Tools: Free & Paid Options</h1>
           <p className="text-lg text-gray-600 dark:text-gray-400">Comprehensive guide to accessibility testing tools for WCAG compliance, automated testing, and manual evaluation.</p>
         </div>
       </header>

@@ -4,7 +4,7 @@ import { ToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/s
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: 'Image Color Picker - Extract Colors from Images | A11y Helper',
+  title: 'Image Color Picker - Extract Colors from Images',
   description: 'Upload images and extract color palettes with precision. Get HEX, RGB, and HSL values instantly. Export color palettes in multiple formats for your design projects.',
   keywords: [
     'image color picker',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/image-color-picker-og.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/image-color-picker"
+    canonical: "/tools/image-color-picker"
   }
 }
 

@@ -369,6 +369,36 @@ export default function AccessibilityLawsuitsPage() {
         </div>
       </section>
 
+      {/* Go deeper: jurisdictions, costs, and prevention */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Go Deeper
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { href: "/compliance/ada", title: "ADA Website Compliance", description: "Requirements, deadlines, and lawsuit exposure under Title II and III" },
+            { href: "/compliance/california", title: "California & the Unruh Act", description: "Why California drives statutory-damages lawsuits" },
+            { href: "/compliance/new-york", title: "New York Lawsuits & Laws", description: "The top federal filing venue, explained" },
+            { href: "/compliance/eaa", title: "European Accessibility Act", description: "EU requirements now in force for digital services" },
+            { href: "/guides/ada-website-lawsuit-cost", title: "What a Lawsuit Costs", description: "Demand letters, settlements, and defense fees" },
+            { href: "/tools/ada-compliance-risks", title: "Assess Your Risk", description: "Interactive risk assessment with current lawsuit data" },
+            { href: "/checklists/wcag-2-2", title: "WCAG 2.2 Checklist", description: "The standard courts and regulators point to" },
+            { href: "/services/accessibility-audits", title: "Professional Audit", description: "Expert review before plaintiffs' scanners find issues" },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="group block rounded-lg border border-slate-200 dark:border-slate-700 p-4 transition-colors hover:border-blue-300 dark:hover:border-blue-600"
+            >
+              <p className="font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-1">
+                {item.title}
+              </p>
+              <p className="text-sm text-slate-600 dark:text-slate-400">{item.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">
         <RelatedContent

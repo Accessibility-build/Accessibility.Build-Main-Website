@@ -22,7 +22,7 @@ import {
 import type { CheckoutCatalogKey } from "@/lib/billing/types"
 
 export const metadata: Metadata = {
-  title: "Credit Packages | Accessibility.build - One-Time Credit Packs",
+  title: "Credit Packages - One-Time Credit Packs",
   description:
     "Simple one-time credit packs for accessibility testing. No recurring subscriptions and no hidden fees.",
   keywords: [
@@ -37,11 +37,20 @@ export const metadata: Metadata = {
     description: "One-time credit packs with hosted Razorpay checkout and in-app billing management.",
     type: "website",
     url: "https://accessibility.build/pricing",
+    images: [
+      {
+        url: "/api/og?title=Credit%20Packages&section=Pricing",
+        width: 1200,
+        height: 630,
+        alt: "Credit Packages - One-Time Credit Packs",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Credit Packages - Accessibility.build",
     description: "One-time credit packs with no recurring subscriptions.",
+    images: ["/api/og?title=Credit%20Packages&section=Pricing"],
   },
   alternates: {
     canonical: "https://accessibility.build/pricing",

@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Shield, TrendingUp, DollarSign, Share2 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Accessibility ROI Calculator | Free Business Case Tool | Accessibility.build",
+  title: "Accessibility ROI Calculator | Business Case",
   description:
     "Calculate the return on investment for web accessibility improvements. Estimate lawsuit risk savings, revenue from underserved users, and remediation costs. Free, no sign-up required.",
   keywords: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://accessibility.build/tools/accessibility-roi-calculator",
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/accessibility-roi-calculator",
+    canonical: "/tools/accessibility-roi-calculator",
   },
   robots: {
     index: true,

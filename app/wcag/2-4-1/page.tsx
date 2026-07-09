@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import WCAG241ClientPage from "./client-page";
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title: "WCAG 2.4.1 Bypass Blocks (Level A) - Interactive Demo | Accessibility Build",
+  title: "WCAG 2.4.1 Bypass Blocks (Level A) - Interactive Demo",
   description: "Master WCAG 2.4.1 Bypass Blocks with interactive skip link demos, navigation bypass mechanisms, and keyboard accessibility tools. Complete guide with live examples, focus tracking, and implementation code for efficient keyboard navigation.",
   keywords: [
     "WCAG 2.4.1", 
@@ -21,15 +22,15 @@ export const metadata: Metadata = {
     "assistive technology",
     "inclusive design"
   ],
-  authors: [{ name: "Accessibility Build Team" }],
-  creator: "Accessibility Build",
-  publisher: "Accessibility Build",
+  authors: [{ name: "Accessibility.build Team" }],
+  creator: "Accessibility.build",
+  publisher: "Accessibility.build",
   openGraph: {
     title: "WCAG 2.4.1 Bypass Blocks - Interactive Skip Link Demo & Tools",
     description: "Comprehensive guide to implementing skip links and navigation bypass mechanisms. Interactive demos, focus tracking tools, and keyboard navigation testing for accessibility compliance.",
     type: "article",
     url: "https://accessibility.build/wcag/2-4-1",
-    siteName: "Accessibility Build",
+    siteName: "Accessibility.build",
     locale: "en_US",
     images: [
       {
@@ -64,5 +65,12 @@ export const metadata: Metadata = {
 };
 
 export default function WCAG241Page() {
-  return <WCAG241ClientPage />;
+  return (
+    <>
+      <WCAG241ClientPage />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <CriterionLinks number="2.4.1" />
+      </div>
+    </>
+  );
 } 

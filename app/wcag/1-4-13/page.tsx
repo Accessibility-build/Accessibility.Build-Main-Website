@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 1.4.13 Content on Hover or Focus — Accessible Tooltips & Popovers (Level AA)",
+  title: "WCAG 1.4.13 Content on Hover or Focus — Tooltips Guide",
   description:
     "Complete guide to WCAG 1.4.13 Content on Hover or Focus. Learn the three conditions — Dismissible, Hoverable, Persistent — how to build accessible tooltips and hover menus, why the title attribute fails, copy-ready code, testing methods, and common mistakes.",
   keywords: [
@@ -655,97 +655,9 @@ wrapper.addEventListener("focusout", () =>
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-7"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.7 Focus Visible
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Because 1.4.13 content must appear on focus too, the trigger
-                  needs a visible focus indicator so keyboard users know where the
-                  popup will come from.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-11"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.11 Focus Not Obscured (Minimum)
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  A partner low-vision criterion: 2.4.11 keeps the focused element
-                  from being hidden by other content, while 1.4.13 keeps hover and
-                  focus popups reachable and dismissible.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-4-10"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.4.10 Reflow
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Reflow protects the same magnifier users. A popup that reflows
-                  poorly or scrolls off-screen at 400% zoom undermines both this
-                  and 1.4.13.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/4-1-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    4.1.2 Name, Role, Value
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  A custom tooltip or popover needs the right role and an
-                  association (such as aria-describedby) so assistive technology
-                  announces it — the semantic side of the same widget.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="1.4.13" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

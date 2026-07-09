@@ -1,8 +1,11 @@
 import { Metadata } from 'next'
+import { BreadcrumbStructuredData } from '@/components/seo/structured-data'
+import WCAGSEOEnhancements from '@/components/wcag/seo-enhancements'
 import WCAG212ClientPage from './client-page'
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title: 'WCAG 2.1.2 No Keyboard Trap (Level A) - Interactive Demo | AccessibilityBuild',
+  title: 'WCAG 2.1.2 No Keyboard Trap - Interactive Demo',
   description: 'Master WCAG 2.1.2 No Keyboard Trap requirements with interactive demos, keyboard trap detection, and comprehensive implementation examples.',
   keywords: [
     'WCAG 2.1.2',
@@ -16,15 +19,14 @@ export const metadata: Metadata = {
     'escape key',
     'keyboard navigation'
   ],
-  authors: [{ name: 'AccessibilityBuild Team' }],
-  creator: 'AccessibilityBuild',
-  publisher: 'AccessibilityBuild',
+  authors: [{ name: 'Accessibility.build Team' }],
+  creator: 'Accessibility.build',
+  publisher: 'Accessibility.build',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://accessibility.build'),
   alternates: {
     canonical: 'https://accessibility.build/wcag/2-1-2',
   },
@@ -32,15 +34,15 @@ export const metadata: Metadata = {
     title: 'WCAG 2.1.2 No Keyboard Trap (Level A) - Interactive Demo',
     description: 'Master WCAG 2.1.2 No Keyboard Trap with interactive demos and implementation guidance.',
     url: '/wcag/2-1-2',
-    siteName: 'AccessibilityBuild',
+    siteName: 'Accessibility.build',
     locale: 'en_US',
     type: 'article',
     images: [
       {
-        url: '/images/wcag-2-1-2-og.png',
+        url: '/api/og?title=WCAG%202.1.2%20No%20Keyboard%20Trap&section=WCAG',
         width: 1200,
         height: 630,
-        alt: 'WCAG 2.1.2 No Keyboard Trap Interactive Demo',
+        alt: 'WCAG 2.1.2 No Keyboard Trap (Level A) - Interactive Demo',
       },
     ],
   },
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'WCAG 2.1.2 No Keyboard Trap (Level A) - Interactive Demo',
     description: 'Master WCAG 2.1.2 No Keyboard Trap with interactive demos and implementation guidance.',
-    images: ['/images/wcag-2-1-2-twitter.png'],
+    images: ['/api/og?title=WCAG%202.1.2%20No%20Keyboard%20Trap&section=WCAG'],
   },
   robots: {
     index: true,
@@ -66,5 +68,29 @@ export const metadata: Metadata = {
 }
 
 export default function WCAG212Page() {
-  return <WCAG212ClientPage />
-} 
+  return (
+    <>
+      <WCAGSEOEnhancements
+        title="WCAG 2.1.2: No Keyboard Trap"
+        description="If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface."
+        criteria="2.1.2"
+        level="A"
+        principle="Operable"
+        guideline="2.1 Keyboard Accessible"
+        url="https://accessibility.build/wcag/2-1-2"
+        category="Keyboard Accessible"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: 'Home', url: 'https://accessibility.build' },
+          { name: 'WCAG Success Criteria', url: 'https://accessibility.build/wcag' },
+          { name: '2.1.2 No Keyboard Trap', url: 'https://accessibility.build/wcag/2-1-2' },
+        ]}
+      />
+      <WCAG212ClientPage />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <CriterionLinks number="2.1.2" />
+      </div>
+    </>
+  )
+}

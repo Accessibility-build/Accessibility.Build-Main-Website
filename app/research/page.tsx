@@ -10,7 +10,8 @@ import { createMetadata } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: "Accessibility Research & Data Reports | Original Studies & Statistics",
+    title: "Accessibility Research & Data Reports",
+    path: "/research",
     description:
       "Original research and data-driven reports on web accessibility. Explore our State of Web Accessibility report, lawsuit tracker, and industry analysis with interactive charts.",
     keywords: [
@@ -23,9 +24,6 @@ export const metadata: Metadata = {
     ],
     type: "website",
   }),
-  alternates: {
-    canonical: "https://accessibility.build/research",
-  },
 }
 
 const researchReports = [

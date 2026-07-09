@@ -5,6 +5,7 @@ import { ErrorReportClient } from '@/components/admin/error-report-client'
 export const metadata = {
   title: 'Error Report | Admin Dashboard',
   description: 'Comprehensive analysis of application errors and issues',
+  robots: { index: false, follow: false },
 }
 
 export default async function ErrorReportPage() {

@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import WCAG242ClientPage from "./client-page";
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title: "WCAG 2.4.2 Page Titled (Level A) - Interactive Demo | Accessibility Build",
+  title: "WCAG 2.4.2 Page Titled (Level A) - Interactive Demo",
   description: "Master WCAG 2.4.2 Page Titled with interactive title analysis tools, SEO optimization techniques, and descriptive page title examples. Complete guide with live validation, title scoring, and implementation code for better user orientation.",
   keywords: [
     "WCAG 2.4.2", 
@@ -21,15 +22,15 @@ export const metadata: Metadata = {
     "semantic HTML",
     "inclusive design"
   ],
-  authors: [{ name: "Accessibility Build Team" }],
-  creator: "Accessibility Build",
-  publisher: "Accessibility Build",
+  authors: [{ name: "Accessibility.build Team" }],
+  creator: "Accessibility.build",
+  publisher: "Accessibility.build",
   openGraph: {
     title: "WCAG 2.4.2 Page Titled - Interactive Title Analysis & SEO Tools",
     description: "Comprehensive guide to creating descriptive page titles. Interactive analysis tools, SEO optimization, title scoring, and validation for accessibility compliance and better user experience.",
     type: "article",
     url: "https://accessibility.build/wcag/2-4-2",
-    siteName: "Accessibility Build",
+    siteName: "Accessibility.build",
     locale: "en_US",
     images: [
       {
@@ -64,5 +65,12 @@ export const metadata: Metadata = {
 };
 
 export default function WCAG242Page() {
-  return <WCAG242ClientPage />;
+  return (
+    <>
+      <WCAG242ClientPage />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <CriterionLinks number="2.4.2" />
+      </div>
+    </>
+  );
 } 

@@ -22,7 +22,8 @@ import {
 import { createMetadata } from "@/lib/metadata"
 
 export const metadata = createMetadata({
-  title: "Comprehensive Accessibility Resources Hub | Tools, Guidelines & Learning Materials",
+  title: "Accessibility Resources Hub: Tools & Guidelines",
+  path: "/resources",
   description: "Complete collection of accessibility resources including WCAG guidelines, development tools, design resources, testing utilities, and learning materials. Everything you need for accessible web development.",
   keywords: [
     "accessibility resources",

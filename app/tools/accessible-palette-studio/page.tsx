@@ -20,7 +20,7 @@ import {
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Accessible Palette Studio | OKLCH + APCA + WCAG Color System Builder",
+  title: "Accessible Palette Studio | OKLCH + APCA",
   description:
     "Build a full WCAG 2.2 and WCAG 3 / APCA accessible color system. Eleven-stop OKLCH scales, color-blindness simulation, state-aware grading, and one-click exports to Tailwind, Figma, CSS variables, iOS, and Android.",
   keywords: [
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/palette-studio-og.png"],
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/accessible-palette-studio",
+    canonical: "/tools/accessible-palette-studio",
   },
 }
 

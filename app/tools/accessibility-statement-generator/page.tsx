@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { FileText, Download, Code, CheckCircle } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Accessibility Statement Generator | Free WCAG Compliant Statement Creator",
+  title: "Accessibility Statement Generator | WCAG",
   description:
     "Generate professional accessibility statements from your scan results or manual inputs. Create WCAG 2.2-ready HTML, Markdown, PDF, or plain text statements.",
   keywords: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/statement-generator-og.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/accessibility-statement-generator"
+    canonical: "/tools/accessibility-statement-generator"
   },
   robots: {
     index: true,

@@ -76,14 +76,16 @@ interface HowToStructuredDataProps {
 interface ServiceStructuredDataProps {
   name: string
   description: string
-  provider: {
+  serviceType: string
+  url: string
+  provider?: {
     name: string
     url: string
-    logo: string
+    id?: string
+    logo?: string
   }
-  serviceType: string
-  areaServed: string[]
-  offers: {
+  areaServed?: string[]
+  offers?: {
     price: string | number
     priceCurrency: string
     availability: string
@@ -639,8 +641,9 @@ export function OrganizationStructuredData() {
 export function ServiceStructuredData({
   name,
   description,
-  provider,
   serviceType,
+  url,
+  provider,
   areaServed,
   offers,
   aggregateRating,
@@ -652,27 +655,34 @@ export function ServiceStructuredData({
     "@type": "Service",
     "name": name,
     "description": description,
+    "serviceType": serviceType,
+    "url": url,
     "provider": {
       "@type": "Organization",
-      "name": provider.name,
-      "url": provider.url,
-      "logo": {
-        "@type": "ImageObject",
-        "url": provider.logo
+      "@id": provider?.id || "https://accessibility.build/#organization",
+      "name": provider?.name || "Accessibility.build",
+      "url": provider?.url || "https://accessibility.build",
+      ...(provider?.logo && {
+        "logo": {
+          "@type": "ImageObject",
+          "url": provider.logo
+        }
+      })
+    },
+    ...(areaServed && {
+      "areaServed": areaServed.map(area => ({
+        "@type": "Place",
+        "name": area
+      }))
+    }),
+    ...(offers && {
+      "offers": {
+        "@type": "Offer",
+        "price": offers.price,
+        "priceCurrency": offers.priceCurrency,
+        "availability": offers.availability
       }
-    },
-    "serviceType": serviceType,
-    "areaServed": areaServed.map(area => ({
-      "@type": "Place",
-      "name": area
-    })),
-    "offers": {
-      "@type": "Offer",
-      "price": offers.price,
-      "priceCurrency": offers.priceCurrency,
-      "availability": offers.availability,
-      "validFrom": new Date().toISOString()
-    },
+    }),
     ...(aggregateRating && {
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -683,27 +693,7 @@ export function ServiceStructuredData({
     }),
     ...(termsOfService && { "termsOfService": termsOfService }),
     ...(serviceOutput && { "serviceOutput": serviceOutput }),
-    "category": "Accessibility Consulting",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Accessibility Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "WCAG 2.2 Compliance Audit"
-          }
-        },
-        {
-          "@type": "Offer", 
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Accessibility Training"
-          }
-        }
-      ]
-    }
+    "category": "Accessibility Consulting"
   }
 
   return (
@@ -979,6 +969,80 @@ export function ChecklistStructuredData({
       type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify(checklistSchema)
+      }}
+    />
+  )
+}
+
+// AboutPage Schema for the About page
+interface AboutPageStructuredDataProps {
+  name: string
+  description: string
+  url: string
+}
+
+export function AboutPageStructuredData({ name, description, url }: AboutPageStructuredDataProps) {
+  const aboutPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": name,
+    "description": description,
+    "url": url,
+    "about": {
+      "@type": "Organization",
+      "@id": "https://accessibility.build/#organization",
+      "name": "Accessibility.build",
+      "url": "https://accessibility.build"
+    },
+    "inLanguage": "en-US"
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(aboutPageSchema)
+      }}
+    />
+  )
+}
+
+// ContactPage Schema for the Contact page
+interface ContactPageStructuredDataProps {
+  name: string
+  description: string
+  url: string
+  email: string
+}
+
+export function ContactPageStructuredData({ name, description, url, email }: ContactPageStructuredDataProps) {
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": name,
+    "description": description,
+    "url": url,
+    "mainEntity": {
+      "@type": "Organization",
+      "@id": "https://accessibility.build/#organization",
+      "name": "Accessibility.build",
+      "url": "https://accessibility.build",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": email,
+        "availableLanguage": ["English"],
+        "areaServed": "Worldwide"
+      }
+    },
+    "inLanguage": "en-US"
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(contactPageSchema)
       }}
     />
   )

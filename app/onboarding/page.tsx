@@ -9,7 +9,7 @@ import { Progress } from "@/components/ui/progress"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Welcome to Accessibility.build | Get Started",
+  title: "Get Started",
   description: "Welcome to Accessibility.build! Complete your onboarding to start testing your websites for accessibility compliance.",
   robots: {
     index: false,

@@ -24,12 +24,19 @@ import {
   Gavel,
   DollarSign,
   Bot,
+  ArrowLeftRight,
+  ListChecks,
+  Layers,
+  FileText,
+  GitCompareArrows,
+  TestTubes,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: "Accessibility Guides | Comprehensive Interactive References",
+    title: "Accessibility Guides & Interactive References",
+    path: "/guides",
     description:
       "In-depth, interactive guides for web accessibility. Keyboard accessibility, screen reader testing, and more with live demos and downloadable checklists.",
     keywords: [
@@ -41,9 +48,6 @@ export const metadata: Metadata = {
     ],
     type: "website",
   }),
-  alternates: {
-    canonical: "https://accessibility.build/guides",
-  },
 }
 
 const guides = [
@@ -101,6 +105,28 @@ const guides = [
     topics: ["Section 504", "Healthcare", "HHS", "WCAG 2.1 AA"],
     href: "/guides/section-504-web-accessibility-deadline",
     gradient: "from-emerald-600 to-teal-600",
+  },
+  {
+    title: "WCAG 2.1 vs 2.2: What Changed",
+    description:
+      "Every difference between WCAG 2.1 and 2.2: the 9 new success criteria, the removal of 4.1.1 Parsing, a side-by-side comparison table, the legal context, and a practical migration plan from 2.1 AA to 2.2 AA.",
+    icon: ArrowLeftRight,
+    difficulty: "Beginner",
+    readingTime: "12 min",
+    topics: ["WCAG 2.2", "New Criteria", "Migration", "Comparison"],
+    href: "/guides/wcag-2-1-vs-2-2",
+    gradient: "from-indigo-600 to-blue-600",
+  },
+  {
+    title: "WCAG 2.2 Level AA Requirements: Complete List",
+    description:
+      "What WCAG 2.2 AA conformance actually requires: all 55 Level A and AA success criteria in one checklist grouped by POUR principle, why AA is the legal standard worldwide, and how to verify conformance.",
+    icon: ListChecks,
+    difficulty: "Beginner",
+    readingTime: "15 min",
+    topics: ["WCAG 2.2 AA", "Checklist", "Conformance", "Legal Standard"],
+    href: "/guides/wcag-2-2-aa-requirements",
+    gradient: "from-blue-600 to-teal-600",
   },
   {
     title: "How to Audit a Website for Accessibility",
@@ -178,6 +204,61 @@ const guides = [
     topics: ["NVDA", "JAWS", "VoiceOver", "TalkBack"],
     href: "/guides/screen-reader-testing",
     gradient: "from-violet-600 to-purple-600",
+  },
+  {
+    title: "Accessibility Overlays: Why They Fail",
+    description:
+      "An evidence-based look at accessibility overlay widgets — what they can and cannot fix, the lawsuit data on overlay-equipped sites, and what to do instead.",
+    icon: Layers,
+    difficulty: "Beginner",
+    readingTime: "20 min",
+    topics: ["Overlays", "Widgets", "Lawsuit Risk", "Remediation"],
+    href: "/guides/accessibility-overlays",
+    gradient: "from-red-600 to-orange-600",
+  },
+  {
+    title: "Accessibility Overlay Alternatives",
+    description:
+      "Real alternatives to overlay widgets ranked by effort and impact — remediation, automated testing in CI, professional audits, and training, with a cost comparison.",
+    icon: GitCompareArrows,
+    difficulty: "Beginner",
+    readingTime: "20 min",
+    topics: ["Overlays", "Remediation", "Cost Comparison", "Migration"],
+    href: "/guides/accessibility-overlay-alternatives",
+    gradient: "from-orange-600 to-amber-600",
+  },
+  {
+    title: "How to Make PDFs Accessible",
+    description:
+      "Complete guide to accessible PDFs — tags, headings, reading order, alt text, and PDF/UA conformance, plus how to test documents before you publish them.",
+    icon: FileText,
+    difficulty: "Intermediate",
+    readingTime: "25 min",
+    topics: ["Tagged PDF", "PDF/UA", "Reading Order", "Testing"],
+    href: "/guides/pdf-accessibility",
+    gradient: "from-rose-600 to-pink-600",
+  },
+  {
+    title: "Automated vs Manual Accessibility Testing",
+    description:
+      "What automated scanners actually catch, what only manual testing finds, and how to combine both into a workflow that holds up in an audit.",
+    icon: TestTubes,
+    difficulty: "Beginner",
+    readingTime: "20 min",
+    topics: ["Automated Testing", "Manual Testing", "CI", "Workflow"],
+    href: "/guides/automated-vs-manual-accessibility-testing",
+    gradient: "from-cyan-600 to-blue-600",
+  },
+  {
+    title: "axe vs WAVE: Testing Tools Compared",
+    description:
+      "A factual comparison of the two most popular accessibility testing tools — strengths, workflows, pricing, and when to use each (or both).",
+    icon: Search,
+    difficulty: "Beginner",
+    readingTime: "15 min",
+    topics: ["axe", "WAVE", "Tool Comparison", "Testing"],
+    href: "/guides/axe-vs-wave",
+    gradient: "from-blue-600 to-indigo-600",
   },
 ]
 

@@ -21,7 +21,7 @@ import {
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Accessible Typography Studio | WCAG + APCA Type Scale Generator",
+  title: "Accessible Typography Studio | WCAG + APCA",
   description:
     "Build a WCAG 2.2 + APCA-aware typography system: modular OKLCH-quality type scales, dyslexia / cognitive / low-vision presets, fluid clamp() sizing, readability scoring, and exports to Tailwind, Figma, CSS, iOS, and Android.",
   keywords: [
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/typography-studio-og.png"],
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/accessible-typography-studio",
+    canonical: "/tools/accessible-typography-studio",
   },
 }
 

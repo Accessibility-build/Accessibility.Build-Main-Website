@@ -3,13 +3,37 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
+import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
 import { Check, Users, Target, FileText, Video, PieChart } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Accessibility User Testing | Accessibility.build",
+  title: "Accessibility User Testing",
   description:
     "Real-world validation of your digital products with diverse users, including people with disabilities and assistive technology users.",
+  alternates: { canonical: "/services/user-testing" },
+  openGraph: {
+    type: "website",
+    title: "Accessibility User Testing",
+    description:
+      "Real-world validation of your digital products with diverse users, including people with disabilities and assistive technology users.",
+    url: "/services/user-testing",
+    images: [
+      {
+        url: "/api/og?title=Accessibility%20User%20Testing&section=Services",
+        width: 1200,
+        height: 630,
+        alt: "Accessibility User Testing",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accessibility User Testing",
+    description:
+      "Real-world validation of your digital products with diverse users, including people with disabilities and assistive technology users.",
+    images: ["/api/og?title=Accessibility%20User%20Testing&section=Services"],
+  },
 }
 
 const testingProcess = [
@@ -76,6 +100,19 @@ const faqs = [
 export default function UserTestingPage() {
   return (
     <div className="container-wide py-12">
+      <ServiceStructuredData
+        name="Accessibility User Testing"
+        description="Real-world validation of your digital products with diverse users, including people with disabilities and assistive technology users."
+        serviceType="Accessibility User Testing"
+        url="https://accessibility.build/services/user-testing"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Services", url: "https://accessibility.build/services" },
+          { name: "Accessibility User Testing", url: "https://accessibility.build/services/user-testing" },
+        ]}
+      />
       <ServiceHero
         title="Accessibility User Testing"
         description="Real-world validation of your digital products with diverse users, including people with disabilities and assistive technology users."

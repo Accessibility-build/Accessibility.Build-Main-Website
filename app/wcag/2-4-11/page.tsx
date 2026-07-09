@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 2.4.11 Focus Not Obscured (Minimum) — Sticky Header Guide (Level AA)",
+  title: "WCAG 2.4.11 Focus Not Obscured (Minimum) Guide",
   description:
     "Complete guide to WCAG 2.4.11 Focus Not Obscured (Minimum), new in WCAG 2.2. Learn why sticky headers, cookie banners, and floating buttons hide the focused element, and how to fix it with scroll-margin, scroll-padding, and CSS — with copy-ready code, testing methods, and common mistakes.",
   keywords: [
@@ -708,104 +708,9 @@ a, button, input, select, textarea, [tabindex] {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-7"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.7 Focus Visible
-                  </Link>{" "}
-                  &mdash; AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Requires a visible focus indicator. 2.4.11 ensures that
-                  indicator is not hidden behind sticky content &mdash; the two
-                  together guarantee the user can always see what is focused.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-3"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.3 Focus Order
-                  </Link>{" "}
-                  &mdash; A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Focus must move in a meaningful order. 2.4.11 makes sure that
-                  as focus follows that order, each element it reaches stays
-                  visible rather than disappearing under an overlay.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-1-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.1.1 Keyboard
-                  </Link>{" "}
-                  &mdash; A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  All functionality must be keyboard operable. 2.4.11 protects
-                  that keyboard experience by keeping the currently focused
-                  control on screen as the user tabs through the page.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-5-8"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.5.8 Target Size (Minimum)
-                  </Link>{" "}
-                  &mdash; AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Another new-in-2.2 criterion. Where 2.5.8 keeps targets big
-                  enough to hit, 2.4.11 keeps the focused target visible &mdash;
-                  both improve pointer and keyboard ergonomics.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              . For the surrounding focus-management practices, see the{" "}
-              <Link
-                href="/guides/keyboard-accessibility"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                Keyboard Accessibility guide
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="2.4.11" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

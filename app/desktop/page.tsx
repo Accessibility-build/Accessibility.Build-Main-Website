@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Accessibility Build for macOS — instant contrast checks, annotated captures, colorblind lens",
+  title: "macOS Accessibility App — Contrast, Capture, Colorblind Lens",
   description:
     "A free menu-bar app for designers and developers: pick any two colors on screen for WCAG + APCA contrast verdicts, capture and annotate issues mapped to WCAG criteria, and view your screen through color-blindness simulation. Everything runs locally.",
   alternates: { canonical: "https://accessibility.build/desktop" },
@@ -14,7 +14,7 @@ const VERSION = "1.7.2";
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Accessibility Build",
+  name: "Accessibility.build",
   operatingSystem: "macOS 12+",
   applicationCategory: "DeveloperApplication",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },

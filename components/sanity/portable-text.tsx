@@ -11,7 +11,7 @@ const components = {
         <div className="relative aspect-video bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg">
           <Image
             src={urlFor(value).width(1200).height(675).url()}
-            alt={value.alt || 'Blog image'}
+            alt={value.alt || ''}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
             className="object-cover"

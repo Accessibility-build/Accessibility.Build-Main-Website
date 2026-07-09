@@ -16,7 +16,7 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData, FAQStructure
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Accessible Color Palette Generator | WCAG 2.2 UI Color Preview | Free Tool",
+  title: "Accessible Color Palette Generator | WCAG 2.2",
   description:
     "Generate WCAG-aware color palettes and preview buttons, cards, forms, alerts, links, charts, hover states, disabled states, and focus states in light and dark mode.",
   keywords: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/color-palette-og.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/color-palette-generator"
+    canonical: "/tools/color-palette-generator"
   }
 }
 

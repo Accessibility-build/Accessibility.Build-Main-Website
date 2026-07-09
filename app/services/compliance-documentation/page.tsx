@@ -3,12 +3,36 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
+import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
 import { Check, FileText, ClipboardCheck, Scale, BookOpen, FileSearch } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Compliance Documentation | Accessibility.build",
+  title: "Compliance Documentation",
   description: "Professional documentation services to help you meet legal and regulatory accessibility requirements.",
+  alternates: { canonical: "/services/compliance-documentation" },
+  openGraph: {
+    type: "website",
+    title: "Compliance Documentation",
+    description:
+      "Professional documentation services to help you meet legal and regulatory accessibility requirements.",
+    url: "/services/compliance-documentation",
+    images: [
+      {
+        url: "/api/og?title=Compliance%20Documentation&section=Services",
+        width: 1200,
+        height: 630,
+        alt: "Compliance Documentation",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Compliance Documentation",
+    description:
+      "Professional documentation services to help you meet legal and regulatory accessibility requirements.",
+    images: ["/api/og?title=Compliance%20Documentation&section=Services"],
+  },
 }
 
 const documentationProcess = [
@@ -75,6 +99,19 @@ const faqs = [
 export default function ComplianceDocumentationPage() {
   return (
     <div className="container-wide py-12">
+      <ServiceStructuredData
+        name="Compliance Documentation"
+        description="Professional documentation services to help you meet legal and regulatory accessibility requirements."
+        serviceType="Accessibility Compliance Documentation"
+        url="https://accessibility.build/services/compliance-documentation"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Services", url: "https://accessibility.build/services" },
+          { name: "Compliance Documentation", url: "https://accessibility.build/services/compliance-documentation" },
+        ]}
+      />
       <ServiceHero
         title="Compliance Documentation"
         description="Professional documentation services to help you meet legal and regulatory accessibility requirements."

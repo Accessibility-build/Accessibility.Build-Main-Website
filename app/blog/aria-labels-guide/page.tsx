@@ -4,16 +4,58 @@ import { ArrowLeft, ChevronRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "ARIA Labels and Attributes: Complete Developer Guide | Accessibility.build",
+  title: "ARIA Labels and Attributes: Complete Developer Guide",
   description: "Master ARIA labels, attributes, and roles for web accessibility. Learn aria-label, aria-labelledby, aria-describedby, and more with practical examples.",
   keywords: ["ARIA labels", "aria-label", "aria-labelledby", "aria-describedby", "ARIA attributes", "web accessibility", "screen reader accessibility"],
+  alternates: { canonical: "/blog/aria-labels-guide" },
+  openGraph: {
+    type: "article",
+    title: "ARIA Labels and Attributes: Complete Developer Guide",
+    description: "Master ARIA labels, attributes, and roles for web accessibility. Learn aria-label, aria-labelledby, aria-describedby, and more with practical examples.",
+    url: "/blog/aria-labels-guide",
+    images: [
+      {
+        url: "/api/og?title=ARIA%20Labels%20and%20Attributes%3A%20Complete%20Developer%20Guide&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "ARIA Labels and Attributes: Complete Developer Guide",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ARIA Labels and Attributes: Complete Developer Guide",
+    description: "Master ARIA labels, attributes, and roles for web accessibility. Learn aria-label, aria-labelledby, aria-describedby, and more with practical examples.",
+    images: ["/api/og?title=ARIA%20Labels%20and%20Attributes%3A%20Complete%20Developer%20Guide&section=Blog"],
+  },
 }
 
 export default function AriaLabelsPost() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <ArticleStructuredData
+        headline="ARIA Labels and Attributes: Complete Developer Guide"
+        description="Master ARIA labels, attributes, and roles for web accessibility. Learn aria-label, aria-labelledby, aria-describedby, and more with practical examples."
+        author={{ name: "Accessibility.build Team" }}
+        publisher={{
+          name: "Accessibility.build",
+          logo: "https://accessibility.build/android-chrome-512x512.png",
+        }}
+        datePublished="2025-11-15"
+        dateModified="2025-11-15"
+        image="https://accessibility.build/api/og?title=ARIA%20Labels%20and%20Attributes%3A%20Complete%20Developer%20Guide&section=Blog"
+        url="https://accessibility.build/blog/aria-labels-guide"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Blog", url: "https://accessibility.build/blog" },
+          { name: "ARIA Labels and Attributes: Complete Developer Guide", url: "https://accessibility.build/blog/aria-labels-guide" },
+        ]}
+      />
       <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <Button asChild variant="ghost" size="sm" className="mb-4">

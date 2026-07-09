@@ -8,7 +8,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "API Documentation | Accessibility.build - Developer Resources",
+  title: "API Documentation - Developer Resources",
   description:
     "Complete API documentation for Accessibility.build. Learn how to integrate accessibility testing into your development workflow with our REST API.",
   keywords: [

@@ -4,11 +4,33 @@ import { ArrowLeft, Calendar, Clock, Share2, Bookmark, MessageCircle, ChevronRig
 import { Badge } from "@/components/ui/badge"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "Accessible Images and Alt Text: Complete Guide for Web Developers | Accessibility.build",
+  title: "Accessible Images and Alt Text: Developer Guide",
   description: "Master alt text writing, image accessibility, and WCAG compliance. Learn when to use alt text, how to write effective descriptions, and handle complex images with practical examples.",
   keywords: ["alt text", "image accessibility", "accessible images", "alt text best practices", "WCAG image compliance", "screen reader images", "image descriptions", "alt attribute"],
+  alternates: { canonical: "/blog/accessible-images-alt-text" },
+  openGraph: {
+    type: "article",
+    title: "Accessible Images and Alt Text: Developer Guide",
+    description: "Master alt text writing, image accessibility, and WCAG compliance. Learn when to use alt text, how to write effective descriptions, and handle complex images with practical examples.",
+    url: "/blog/accessible-images-alt-text",
+    images: [
+      {
+        url: "/api/og?title=Accessible%20Images%20and%20Alt%20Text%3A%20Developer%20Guide&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "Accessible Images and Alt Text: Developer Guide",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accessible Images and Alt Text: Developer Guide",
+    description: "Master alt text writing, image accessibility, and WCAG compliance. Learn when to use alt text, how to write effective descriptions, and handle complex images with practical examples.",
+    images: ["/api/og?title=Accessible%20Images%20and%20Alt%20Text%3A%20Developer%20Guide&section=Blog"],
+  },
 }
 
 export default function AccessibleImagesPost() {
@@ -24,6 +46,26 @@ export default function AccessibleImagesPost() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <ArticleStructuredData
+        headline="Accessible Images and Alt Text: Developer Guide"
+        description="Master alt text writing, image accessibility, and WCAG compliance. Learn when to use alt text, how to write effective descriptions, and handle complex images with practical examples."
+        author={{ name: "Maya Rodriguez" }}
+        publisher={{
+          name: "Accessibility.build",
+          logo: "https://accessibility.build/android-chrome-512x512.png",
+        }}
+        datePublished="2024-01-08"
+        dateModified="2025-11-15"
+        image="https://accessibility.build/api/og?title=Accessible%20Images%20and%20Alt%20Text%3A%20Developer%20Guide&section=Blog"
+        url="https://accessibility.build/blog/accessible-images-alt-text"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Blog", url: "https://accessibility.build/blog" },
+          { name: "Accessible Images and Alt Text: Developer Guide", url: "https://accessibility.build/blog/accessible-images-alt-text" },
+        ]}
+      />
       <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <Button asChild variant="ghost" size="sm" className="mb-4">

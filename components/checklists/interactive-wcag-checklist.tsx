@@ -32,6 +32,7 @@ import {
   Download
 } from 'lucide-react'
 import { wcagCriteria } from '@/lib/wcag-data'
+import { builtWcagNumbers } from "@/lib/wcag-pages"
 import * as XLSX from 'xlsx'
 
 interface CriterionStatus {
@@ -61,12 +62,9 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [isExporting, setIsExporting] = useState(false)
 
-  // Available WCAG guides mapping
-  const availableGuides = new Set([
-    '1.1.1', '1.2.1', '1.2.2', '1.2.3', '1.3.1', '1.3.2', '1.3.3',
-    '1.4.1', '1.4.2', '1.4.3', '2.1.1', '2.1.2', '2.1.4', '2.2.1',
-    '2.2.2', '2.3.1', '2.4.1', '2.4.2', '2.4.3'
-  ])
+  // Guide availability derives from the shared source of truth so new
+  // criterion pages are linked automatically.
+  const availableGuides = new Set(builtWcagNumbers)
 
   // Load state from localStorage on mount
   useEffect(() => {

@@ -20,6 +20,7 @@ import {
 export const metadata = {
   title: 'Tool Analytics | Admin Dashboard',
   description: 'Analyze tool performance and usage metrics',
+  robots: { index: false, follow: false },
 }
 
 export default async function AdminToolsPage() {

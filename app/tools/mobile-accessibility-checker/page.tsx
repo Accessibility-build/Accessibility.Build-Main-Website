@@ -13,7 +13,7 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Mobile Accessibility Checker | Touch Targets & Mobile WCAG | Accessibility.build",
+  title: "Mobile Accessibility Checker | Touch Targets",
   description:
     "Test mobile accessibility with focus on touch targets, mobile-specific WCAG requirements, and responsive design compliance. Ensure your mobile experience is accessible.",
   keywords: "mobile accessibility, touch targets, mobile WCAG, responsive accessibility, mobile screen reader, accessibility testing",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/mobile-checker-twitter.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/mobile-accessibility-checker"
+    canonical: "/tools/mobile-accessibility-checker"
   }
 }
 

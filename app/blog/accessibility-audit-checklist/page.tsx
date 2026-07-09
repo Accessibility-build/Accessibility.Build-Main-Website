@@ -5,16 +5,38 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "Website Accessibility Audit Checklist: Complete Guide for 2024 | Accessibility.build",
+  title: "Website Accessibility Audit Checklist: Complete Guide",
   description: "Complete accessibility audit checklist covering WCAG 2.2 compliance, automated testing, manual testing, and remediation strategies. Free downloadable checklist included.",
   keywords: ["accessibility audit checklist", "WCAG audit", "accessibility testing", "website accessibility audit", "accessibility compliance", "WCAG 2.2 checklist", "accessibility evaluation"],
+  alternates: { canonical: "/blog/accessibility-audit-checklist" },
+  openGraph: {
+    type: "article",
+    title: "Website Accessibility Audit Checklist: Complete Guide",
+    description: "Complete accessibility audit checklist covering WCAG 2.2 compliance, automated testing, manual testing, and remediation strategies. Free downloadable checklist included.",
+    url: "/blog/accessibility-audit-checklist",
+    images: [
+      {
+        url: "/api/og?title=Website%20Accessibility%20Audit%20Checklist%3A%20Complete%20Guide&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "Website Accessibility Audit Checklist: Complete Guide",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Website Accessibility Audit Checklist: Complete Guide",
+    description: "Complete accessibility audit checklist covering WCAG 2.2 compliance, automated testing, manual testing, and remediation strategies. Free downloadable checklist included.",
+    images: ["/api/og?title=Website%20Accessibility%20Audit%20Checklist%3A%20Complete%20Guide&section=Blog"],
+  },
 }
 
 export default function AccessibilityAuditChecklistPost() {
   const post = {
-    title: "Website Accessibility Audit Checklist: Complete Guide for 2024",
+    title: "Website Accessibility Audit Checklist: Complete Guide",
     description: "Complete accessibility audit checklist covering WCAG 2.2 compliance, automated testing, manual testing, and remediation strategies.",
     date: "2024-01-15",
     author: "Maya Rodriguez",
@@ -26,6 +48,26 @@ export default function AccessibilityAuditChecklistPost() {
   return (
     <>
       <div className="min-h-screen bg-white dark:bg-gray-950">
+        <ArticleStructuredData
+          headline="Website Accessibility Audit Checklist: Complete Guide"
+          description="Complete accessibility audit checklist covering WCAG 2.2 compliance, automated testing, manual testing, and remediation strategies. Free downloadable checklist included."
+          author={{ name: "Maya Rodriguez" }}
+          publisher={{
+            name: "Accessibility.build",
+            logo: "https://accessibility.build/android-chrome-512x512.png",
+          }}
+          datePublished="2024-01-15"
+          dateModified="2025-11-15"
+          image="https://accessibility.build/api/og?title=Website%20Accessibility%20Audit%20Checklist%3A%20Complete%20Guide&section=Blog"
+          url="https://accessibility.build/blog/accessibility-audit-checklist"
+        />
+        <BreadcrumbStructuredData
+          breadcrumbs={[
+            { name: "Home", url: "https://accessibility.build" },
+            { name: "Blog", url: "https://accessibility.build/blog" },
+            { name: "Website Accessibility Audit Checklist: Complete Guide", url: "https://accessibility.build/blog/accessibility-audit-checklist" },
+          ]}
+        />
         <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
           <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <Button asChild variant="ghost" size="sm" className="mb-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
@@ -338,17 +380,17 @@ export default function AccessibilityAuditChecklistPost() {
                   <div className="bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
                     <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Related Articles</h3>
                     <div className="space-y-3">
-                      <Link href="/blog/understanding-wcag-2-2" className="block group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2 -m-2">
+                      <Link href="/checklists/wcag-2-2" className="block group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2 -m-2">
                         <h4 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1 leading-tight text-xs">
-                          Understanding WCAG 2.2
+                          WCAG 2.2 Checklist
                         </h4>
                         <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                          Complete guide to the latest accessibility guidelines
+                          Complete checklist covering the WCAG 2.2 success criteria
                         </p>
                       </Link>
-                      <Link href="/blog/keyboard-navigation" className="block group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2 -m-2">
+                      <Link href="/guides/keyboard-accessibility" className="block group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2 -m-2">
                         <h4 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1 leading-tight text-xs">
-                          Keyboard Navigation Guide
+                          Keyboard Accessibility Guide
                         </h4>
                         <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
                           Master keyboard accessibility testing and implementation

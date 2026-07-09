@@ -6,9 +6,10 @@ import { Shield, FileSpreadsheet, Award, Sparkles } from "lucide-react"
 import { FAQStructuredData, AccessibilityToolStructuredData } from "@/components/seo/structured-data"
 
 export const metadata = createMetadata({
-  title: "WCAG 2.2 Checklist Excel - Interactive Checklist with Excel Export | Free Download",
+  title: "WCAG 2.2 Checklist Excel - Free Interactive Download",
+  path: "/checklists/wcag-2-2",
   description:
-    "Download WCAG 2.2 checklist Excel template. Interactive checklist with all 78 success criteria. Track progress, add notes, filter criteria, and export to Excel/PDF for professional accessibility audits.",
+    "Download WCAG 2.2 checklist Excel template. Interactive checklist with all 86 success criteria. Track progress, add notes, filter criteria, and export to Excel/PDF for professional accessibility audits.",
   keywords: ["WCAG 2.2 checklist excel", "WCAG 2.2", "accessibility checklist", "success criteria", "compliance", "audit", "interactive", "excel export", "excel template", "WCAG checklist download"]
 })
 
@@ -111,7 +112,7 @@ export default function WcagChecklistPage() {
                 {[
                   {
                     question: "Can I download the WCAG 2.2 checklist as an Excel spreadsheet?",
-                    answer: "Yes — click the Excel button in the controls bar above. The export includes all 78 success criteria with your progress, notes, an audit summary sheet, and a progress tracking template. You can also download a standalone Excel template from the Excel Template page."
+                    answer: "Yes — click the Excel button in the controls bar above. The export includes all 86 success criteria with your progress, notes, an audit summary sheet, and a progress tracking template. You can also download a standalone Excel template from the Excel Template page."
                   },
                   {
                     question: "Is the WCAG 2.2 accessibility checklist free?",
@@ -119,7 +120,7 @@ export default function WcagChecklistPage() {
                   },
                   {
                     question: "Does this checklist cover all WCAG 2.2 success criteria?",
-                    answer: "Yes — all 78 success criteria across Level A (30), Level AA (24), and Level AAA (24). Each criterion includes its WCAG description, parent guideline, and POUR principle for easy reference during accessibility audits."
+                    answer: "Yes — all 86 success criteria across Level A (31), Level AA (24), and Level AAA (31). Each criterion includes its WCAG description, parent guideline, and POUR principle for easy reference during accessibility audits."
                   },
                   {
                     question: "How do I use the Excel export for accessibility compliance tracking?",
@@ -184,7 +185,7 @@ export default function WcagChecklistPage() {
         },
         {
           question: "What's included in the Excel export?",
-          answer: "The Excel export includes: (1) Complete checklist with all 78 success criteria, (2) Your completion status and notes for each criterion, (3) Audit summary with progress statistics, (4) Progress tracking template for ongoing monitoring, (5) Formatted headers and conditional formatting for easy reading."
+          answer: "The Excel export includes: (1) Complete checklist with all 86 success criteria, (2) Your completion status and notes for each criterion, (3) Audit summary with progress statistics, (4) Progress tracking template for ongoing monitoring, (5) Formatted headers and conditional formatting for easy reading."
         },
         {
           question: "Is the WCAG 2.2 checklist free to use?",

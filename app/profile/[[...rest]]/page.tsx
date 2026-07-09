@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { UserProfile } from '@clerk/nextjs'
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
@@ -15,6 +16,11 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
+
+export const metadata: Metadata = {
+  title: 'Profile Settings',
+  robots: { index: false, follow: false },
+}
 
 export default async function ProfilePage() {
   const user = await currentUser()

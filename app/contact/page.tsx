@@ -11,9 +11,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { IconShell } from "@/components/ui/icon-shell";
+import { ContactPageStructuredData } from "@/components/seo/structured-data";
 
 export const metadata = {
-  title: "Contact Us | Accessibility.build",
+  title: "Contact Us",
+  alternates: { canonical: "/contact" },
   description:
     "Get in touch with our accessibility experts for questions, project support, or collaboration opportunities. We're here to help make your digital products accessible.",
   keywords: [
@@ -22,12 +24,40 @@ export const metadata = {
     "WCAG compliance help",
     "accessibility audit services",
     "web accessibility support"
-  ]
+  ],
+  openGraph: {
+    type: "website",
+    title: "Contact Us",
+    description:
+      "Get in touch with our accessibility experts for questions, project support, or collaboration opportunities. We're here to help make your digital products accessible.",
+    url: "/contact",
+    images: [
+      {
+        url: "/api/og?title=Contact%20Us&section=Company",
+        width: 1200,
+        height: 630,
+        alt: "Contact Us",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us",
+    description:
+      "Get in touch with our accessibility experts for questions, project support, or collaboration opportunities. We're here to help make your digital products accessible.",
+    images: ["/api/og?title=Contact%20Us&section=Company"],
+  },
 };
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
+      <ContactPageStructuredData
+        name="Contact Us"
+        description="Get in touch with our accessibility experts for questions, project support, or collaboration opportunities."
+        url="https://accessibility.build/contact"
+        email="accessibilitybuild@gmail.com"
+      />
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-muted/30 to-background">
         <div className="container-wide py-16">

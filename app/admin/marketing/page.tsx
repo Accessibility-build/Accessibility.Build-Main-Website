@@ -5,6 +5,7 @@ import { AdminMarketingClient } from '@/components/admin/admin-marketing-client'
 export const metadata = {
   title: 'Marketing Email | Admin Dashboard',
   description: 'Send marketing campaigns to active users and newsletter subscribers',
+  robots: { index: false, follow: false },
 }
 
 export default async function AdminMarketingPage() {

@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 2.4.4 Link Purpose (In Context) — Descriptive Link Text Guide (Level A)",
+  title: "WCAG 2.4.4 Link Purpose (In Context) — Link Text Guide",
   description:
     "Complete guide to WCAG 2.4.4 Link Purpose (In Context). Learn how to write descriptive link text, fix 'click here' and 'read more' links, use aria-label and aria-labelledby correctly, and handle icon, image, and ambiguous links — with code examples, testing methods, and common mistakes.",
   keywords: [
@@ -699,111 +699,9 @@ export default function WCAG244Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-3"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.3 Focus Order
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Links must receive focus in a logical order. 2.4.4 makes each
-                  focused link understandable; 2.4.3 makes the path through them
-                  sensible.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/4-1-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    4.1.2 Name, Role, Value
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Every link needs a programmatically-determined name. 2.4.4 is
-                  about whether that name describes the purpose; 4.1.2 is about
-                  the name existing at all.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.1 Bypass Blocks
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Skip links are themselves links — and a great example of
-                  descriptive purpose: &quot;Skip to main content&quot; says
-                  exactly what it does.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-1-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.1.1 Non-text Content
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  For image links, the alt text is both the text alternative
-                  (1.1.1) and the link&apos;s accessible name (2.4.4) — describe
-                  the destination.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              . To get hands-on with assistive technology, see the{" "}
-              <Link
-                href="/guides/screen-reader-testing"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                Screen Reader Testing guide
-              </Link>{" "}
-              and the{" "}
-              <Link
-                href="/guides/keyboard-accessibility"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                Keyboard Accessibility guide
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="2.4.4" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

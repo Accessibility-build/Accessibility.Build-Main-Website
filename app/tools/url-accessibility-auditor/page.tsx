@@ -4,7 +4,7 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "URL Accessibility Auditor | axe-core + AI Analysis | Accessibility.build",
+  title: "URL Accessibility Auditor | axe-core + AI",
   description:
     "Comprehensive website accessibility testing powered by axe-core and AI. Get detailed WCAG compliance reports, violation analysis, and actionable recommendations for any URL.",
   keywords: [
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/url-auditor-twitter.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/url-accessibility-auditor"
+    canonical: "/tools/url-accessibility-auditor"
   }
 }
 

@@ -21,7 +21,8 @@ import {
 } from "lucide-react"
 
 export const metadata = createMetadata({
-  title: "WCAG Checklist - Professional Accessibility Checklists | WCAG 2.2 & More",
+  title: "WCAG Checklist - Professional Accessibility Checklists",
+  path: "/checklists",
   description:
     "Access comprehensive, interactive WCAG checklist covering WCAG 2.2 and other standards. Professional tools for developers, designers, and QA teams to ensure digital inclusion. Export to Excel and PDF.",
   keywords: [
@@ -164,7 +165,7 @@ export default function ChecklistsPage() {
                           WCAG 2.2 Interactive Checklist
                         </CardTitle>
                         <p className="text-slate-600 dark:text-slate-300 text-lg">
-                          Complete coverage of all 78 success criteria with interactive tracking
+                          Complete coverage of all 86 success criteria with interactive tracking
                         </p>
                       </div>
                     </div>
@@ -301,7 +302,7 @@ export default function ChecklistsPage() {
                       <Target className="w-6 h-6 text-white" />
                     </div>
                     <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700">
-                      Q2 2025
+                      Coming Soon
                     </Badge>
                   </div>
                   <CardTitle className="text-xl text-slate-800 dark:text-slate-200">
@@ -328,7 +329,7 @@ export default function ChecklistsPage() {
                       <CheckSquare className="w-6 h-6 text-white" />
                     </div>
                     <Badge variant="outline" className="bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800/20 dark:text-slate-300 dark:border-slate-600">
-                      Q3 2025
+                      Coming Soon
                     </Badge>
                   </div>
                   <CardTitle className="text-xl text-slate-800 dark:text-slate-200">
@@ -355,7 +356,7 @@ export default function ChecklistsPage() {
                       <Shield className="w-6 h-6 text-white" />
                     </div>
                     <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700">
-                      Q4 2025
+                      Coming Soon
                     </Badge>
                   </div>
                   <CardTitle className="text-xl text-slate-800 dark:text-slate-200">

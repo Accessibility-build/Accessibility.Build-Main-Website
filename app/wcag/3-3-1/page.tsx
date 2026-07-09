@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 3.3.1 Error Identification — Accessible Form Errors Guide (Level A)",
+  title: "WCAG 3.3.1 Error Identification — Form Errors Guide",
   description:
     "Complete guide to WCAG 3.3.1 Error Identification. Learn how to identify the field in error and describe it in text, why color alone fails, aria-invalid and aria-describedby, error summaries, live regions, code examples, testing methods, and common mistakes.",
   keywords: [
@@ -697,91 +697,9 @@ export default function WCAG331Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.2 Labels or Instructions
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The prevention side of the same problem: clear labels and
-                  instructions up front mean fewer errors to identify later. 3.3.1
-                  handles the errors that still slip through.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-4-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.4.1 Use of Color
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Requires that colour is never the only way information is
-                  conveyed — so a red border alone fails here too. Pair every
-                  colour cue with text.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/4-1-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    4.1.2 Name, Role, Value
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Governs how state — including the invalid state set by
-                  aria-invalid — is exposed to assistive technology so the error
-                  is actually announced.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  4.1.3 Status Messages — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Covers announcing status — such as an error count — through live
-                  regions without moving focus, the AA partner to 3.3.1&apos;s
-                  Level A baseline.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="3.3.1" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 3.3.8 Accessible Authentication (Minimum) — No Cognitive Tests (Level AA)",
+  title: "WCAG 3.3.8 Accessible Authentication (Minimum) Guide",
   description:
     "Complete guide to WCAG 3.3.8 Accessible Authentication (Minimum). Learn why logins must not depend on a cognitive function test, the four exceptions, why password managers and copy-paste must work, accessible CAPTCHA and passkey patterns, copy-ready code, testing, and common mistakes.",
   keywords: [
@@ -708,89 +708,9 @@ export default function WCAG338Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  3.3.9 Accessible Authentication (Enhanced) — AAA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The stricter partner: the same rule but without the
-                  object-recognition and personal-content exceptions, so no
-                  recognition test is permitted at all.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.2 Labels or Instructions
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Clear labels and instructions on the login form help every user
-                  understand what is required — the prevention layer beneath
-                  accessible authentication.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-3"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.3 Error Suggestion
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  When a login fails, suggest how to recover — while respecting
-                  the security exception that keeps sign-in messages generic.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-1-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.1.1 Non-text Content
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Object-recognition CAPTCHAs still need text alternatives and
-                  operable controls — 1.1.1 governs the images themselves.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="3.3.8" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

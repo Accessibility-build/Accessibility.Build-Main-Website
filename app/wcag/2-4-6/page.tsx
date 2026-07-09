@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 2.4.6 Headings and Labels — Write Descriptive Headings & Form Labels (Level AA)",
+  title: "WCAG 2.4.6 Headings and Labels — Descriptive Headings",
   description:
     "Complete guide to WCAG 2.4.6 Headings and Labels. Learn what counts as a 'label', why descriptive headings and labels matter for screen reader navigation, copy-ready HTML examples, common mistakes like generic 'More' links and placeholder-only labels, and exactly how to test it.",
   keywords: [
@@ -605,95 +605,9 @@ export default function WCAG246Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-3-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.3.1 Info and Relationships
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The structural counterpart. 1.3.1 requires headings to be real
-                  headings and labels to be programmatically associated in code; 2.4.6
-                  requires the text of those headings and labels to be descriptive.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.2 Labels or Instructions
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Requires form controls to actually have a label. Together with 2.4.6:
-                  3.3.2 says the label must exist, 2.4.6 says it must clearly describe
-                  the field&rsquo;s purpose.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-4"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.4 Link Purpose (In Context)
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Focuses specifically on links being understandable. Vague 'Read more'
-                  link text is the overlap where 2.4.4 and 2.4.6 both apply.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/4-1-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    4.1.2 Name, Role, Value
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Ensures every control exposes an accessible name to assistive tech.
-                  2.4.6 then requires that name to be descriptive rather than generic.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or audit your heading outline with the{" "}
-              <Link
-                href="/tools/heading-analyzer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                Heading Analyzer
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="2.4.6" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

@@ -17,7 +17,7 @@ import { ToolStructuredData, BreadcrumbStructuredData, HowToStructuredData } fro
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Heading Structure Analyzer | SEO & Accessibility | Free Tool | Accessibility.build",
+  title: "Heading Structure Analyzer | SEO & Accessibility",
   description:
     "Free heading structure analyzer for SEO and accessibility. Check H1-H6 hierarchy, improve screen reader navigation, and boost search rankings with proper heading structure. WCAG 2.2 compliant analysis.",
   keywords: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/heading-analyzer-og.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/heading-analyzer"
+    canonical: "/tools/heading-analyzer"
   }
 }
 

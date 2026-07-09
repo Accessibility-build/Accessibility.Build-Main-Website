@@ -22,7 +22,7 @@ import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/se
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "How to Make PDFs Accessible: Complete WCAG & PDF/UA Guide | Accessibility.build",
+  title: "How to Make PDFs Accessible: WCAG & PDF/UA Guide",
   description:
     "Learn how to create accessible PDFs that comply with WCAG 2.2 and PDF/UA standards. Covers tagged PDFs, headings, alt text, reading order, bookmarks, forms, and remediation techniques.",
   keywords: [

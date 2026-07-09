@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 4.1.3 Status Messages — ARIA Live Regions Guide (Level AA)",
+  title: "WCAG 4.1.3 Status Messages — ARIA Live Regions Guide",
   description:
     "Complete guide to WCAG 4.1.3 Status Messages. Learn how to announce form errors, success toasts, search results, and loading states to screen readers with role=\"status\", role=\"alert\", and aria-live — with copy-ready code, testing methods, and common mistakes.",
   keywords: [
@@ -722,111 +722,9 @@ export default function WCAG413Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/4-1-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    4.1.2 Name, Role, Value
-                  </Link>{" "}
-                  &mdash; A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The foundation 4.1.3 builds on: components must expose their
-                  name, role, and state to assistive technology. 4.1.3 extends
-                  that to status messages that appear dynamically.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.1 Error Identification
-                  </Link>{" "}
-                  &mdash; A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Errors must be identified and described in text. When that error
-                  appears without a focus change, 4.1.3 governs how it is
-                  announced &mdash; the two work together on forms.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.2 Labels or Instructions
-                  </Link>{" "}
-                  &mdash; A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Clear labels and instructions prevent errors in the first place;
-                  status messages catch the ones that still happen and report the
-                  outcome back to the user.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-3"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.3 Focus Order
-                  </Link>{" "}
-                  &mdash; A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  4.1.3 is partly about <em>not</em> moving focus. When you do move
-                  focus to convey a change instead, 2.4.3 ensures that move lands
-                  somewhere logical.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              . For the building blocks behind live regions, see the{" "}
-              <Link
-                href="/reference/aria"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                ARIA reference
-              </Link>{" "}
-              and the{" "}
-              <Link
-                href="/guides/screen-reader-testing"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                Screen Reader Testing guide
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="4.1.3" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

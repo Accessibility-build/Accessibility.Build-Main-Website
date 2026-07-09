@@ -3,13 +3,37 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
+import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
 import { Check, Palette, Eye, Layout, Layers, FileText } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Accessible Design Reviews | Accessibility.build",
+  title: "Accessible Design Reviews",
   description:
     "Expert evaluation of your designs to ensure accessibility from the start, preventing costly remediation later.",
+  alternates: { canonical: "/services/design-reviews" },
+  openGraph: {
+    type: "website",
+    title: "Accessible Design Reviews",
+    description:
+      "Expert evaluation of your designs to ensure accessibility from the start, preventing costly remediation later.",
+    url: "/services/design-reviews",
+    images: [
+      {
+        url: "/api/og?title=Accessible%20Design%20Reviews&section=Services",
+        width: 1200,
+        height: 630,
+        alt: "Accessible Design Reviews",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accessible Design Reviews",
+    description:
+      "Expert evaluation of your designs to ensure accessibility from the start, preventing costly remediation later.",
+    images: ["/api/og?title=Accessible%20Design%20Reviews&section=Services"],
+  },
 }
 
 const reviewProcess = [
@@ -76,6 +100,19 @@ const faqs = [
 export default function DesignReviewsPage() {
   return (
     <div className="container-wide py-12">
+      <ServiceStructuredData
+        name="Accessible Design Reviews"
+        description="Expert evaluation of your designs to ensure accessibility from the start, preventing costly remediation later."
+        serviceType="Accessible Design Review"
+        url="https://accessibility.build/services/design-reviews"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Services", url: "https://accessibility.build/services" },
+          { name: "Accessible Design Reviews", url: "https://accessibility.build/services/design-reviews" },
+        ]}
+      />
       <ServiceHero
         title="Accessible Design Reviews"
         description="Expert evaluation of your designs to ensure accessibility from the start, preventing costly remediation later."

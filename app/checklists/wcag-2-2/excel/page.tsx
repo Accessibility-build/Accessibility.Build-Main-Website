@@ -5,7 +5,7 @@ import { BreadcrumbStructuredData, AccessibilityToolStructuredData, FAQStructure
 export const metadata: Metadata = {
   title: "WCAG 2.2 Checklist Excel Template | Free Download | All 78 Criteria",
   description:
-    "Download free WCAG 2.2 checklist Excel template with all 78 success criteria. Includes progress tracking, audit summary, and professional formatting for accessibility audits.",
+    "Download free WCAG 2.2 checklist Excel template with all 86 success criteria. Includes progress tracking, audit summary, and professional formatting for accessibility audits.",
   keywords: [
     "wcag 2.2 checklist excel",
     "WCAG checklist download",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "WCAG 2.2 Checklist Excel Template - Free Download",
-    description: "Download free WCAG 2.2 checklist Excel template with all 78 success criteria. Professional formatting for accessibility audits.",
+    description: "Download free WCAG 2.2 checklist Excel template with all 86 success criteria. Professional formatting for accessibility audits.",
     type: "website",
     url: "https://accessibility.build/checklists/wcag-2-2/excel",
     images: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "WCAG 2.2 Checklist Excel Template - Free Download",
-    description: "Download free WCAG 2.2 checklist Excel template with all 78 success criteria.",
+    description: "Download free WCAG 2.2 checklist Excel template with all 86 success criteria.",
     images: ["https://accessibility.build/images/checklists/wcag-excel-og.png"]
   },
   alternates: {
@@ -59,7 +59,7 @@ export default function WCAGExcelPage() {
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
       <AccessibilityToolStructuredData
         name="WCAG 2.2 Checklist Excel Template"
-        description="Download free WCAG 2.2 checklist Excel template with all 78 success criteria, progress tracking, and professional formatting for accessibility audits"
+        description="Download free WCAG 2.2 checklist Excel template with all 86 success criteria, progress tracking, and professional formatting for accessibility audits"
         url="https://accessibility.build/checklists/wcag-2-2/excel"
         applicationCategory="AccessibilityApplication"
         operatingSystem="Any"
@@ -79,7 +79,7 @@ export default function WCAGExcelPage() {
       <FAQStructuredData faqs={[
         {
           question: "What is included in the WCAG 2.2 Excel checklist template?",
-          answer: "The template includes all 78 WCAG 2.2 success criteria organized by principle and level, with columns for status tracking, completion dates, notes, and priority. It also includes an Audit Summary sheet and Progress Tracking sheet."
+          answer: "The template includes all 86 WCAG 2.2 success criteria organized by principle and level, with columns for status tracking, completion dates, notes, and priority. It also includes an Audit Summary sheet and Progress Tracking sheet."
         },
         {
           question: "Is the WCAG 2.2 Excel checklist free?",

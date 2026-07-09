@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { FileText, Download, Upload, FileSpreadsheet, CheckCircle } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Accessibility Report Generator | Professional PDF & Excel Reports | Free Tool",
+  title: "Accessibility Report Generator | PDF & Excel",
   description:
     "Generate professional accessibility audit reports in PDF, Excel, HTML, or Markdown format. Import violation data or create reports manually with our free report generator.",
   keywords: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/report-generator-og.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/accessibility-report-generator"
+    canonical: "/tools/accessibility-report-generator"
   },
   robots: {
     index: true,

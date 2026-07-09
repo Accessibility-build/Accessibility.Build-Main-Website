@@ -5,6 +5,7 @@ import { AdminUsersClient } from '@/components/admin/admin-users-client'
 export const metadata = {
   title: 'User Management | Admin Dashboard',
   description: 'Manage users, view their activity, and assign credits',
+  robots: { index: false, follow: false },
 }
 
 export default async function AdminUsersPage() {

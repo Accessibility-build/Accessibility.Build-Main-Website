@@ -4,16 +4,58 @@ import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "Screen Reader Testing: Complete Guide for Developers | Accessibility.build",
+  title: "Screen Reader Testing: Complete Guide for Developers",
   description: "Learn how to test your website with screen readers like NVDA, JAWS, and VoiceOver. Comprehensive guide with practical tips and testing strategies.",
   keywords: ["screen reader testing", "NVDA testing", "JAWS testing", "VoiceOver testing", "accessibility testing", "assistive technology testing"],
+  alternates: { canonical: "/blog/screen-reader-testing" },
+  openGraph: {
+    type: "article",
+    title: "Screen Reader Testing: Complete Guide for Developers",
+    description: "Learn how to test your website with screen readers like NVDA, JAWS, and VoiceOver. Comprehensive guide with practical tips and testing strategies.",
+    url: "/blog/screen-reader-testing",
+    images: [
+      {
+        url: "/api/og?title=Screen%20Reader%20Testing%3A%20Complete%20Guide%20for%20Developers&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "Screen Reader Testing: Complete Guide for Developers",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Screen Reader Testing: Complete Guide for Developers",
+    description: "Learn how to test your website with screen readers like NVDA, JAWS, and VoiceOver. Comprehensive guide with practical tips and testing strategies.",
+    images: ["/api/og?title=Screen%20Reader%20Testing%3A%20Complete%20Guide%20for%20Developers&section=Blog"],
+  },
 }
 
 export default function ScreenReaderTestingPost() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <ArticleStructuredData
+        headline="Screen Reader Testing: Complete Guide for Developers"
+        description="Learn how to test your website with screen readers like NVDA, JAWS, and VoiceOver. Comprehensive guide with practical tips and testing strategies."
+        author={{ name: "Accessibility.build Team" }}
+        publisher={{
+          name: "Accessibility.build",
+          logo: "https://accessibility.build/android-chrome-512x512.png",
+        }}
+        datePublished="2025-11-15"
+        dateModified="2025-11-15"
+        image="https://accessibility.build/api/og?title=Screen%20Reader%20Testing%3A%20Complete%20Guide%20for%20Developers&section=Blog"
+        url="https://accessibility.build/blog/screen-reader-testing"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Blog", url: "https://accessibility.build/blog" },
+          { name: "Screen Reader Testing: Complete Guide for Developers", url: "https://accessibility.build/blog/screen-reader-testing" },
+        ]}
+      />
       <header className="bg-white dark:bg-gray-900 border-b">
         <div className="w-full max-w-6xl mx-auto px-4 py-6">
           <Button asChild variant="ghost" size="sm" className="mb-4">

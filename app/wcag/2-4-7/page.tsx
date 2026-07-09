@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 2.4.7 Focus Visible — Keyboard Focus Indicators Guide (Level AA)",
+  title: "WCAG 2.4.7 Focus Visible — Keyboard Focus Indicators",
   description:
     "Complete guide to WCAG 2.4.7 Focus Visible. Learn why a visible keyboard focus indicator is required, how to style :focus-visible without breaking accessibility, never use outline:none, contrast and thickness expectations, code examples, testing methods, and common mistakes.",
   keywords: [
@@ -708,91 +708,9 @@ export default function WCAG247Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-1-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.1.1 Keyboard
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Requires that all functionality is operable by keyboard in the
-                  first place. 2.4.7 then makes sure the user can see where that
-                  keyboard focus has landed.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-3"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.3 Focus Order
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Requires focus to move through the page in a logical, meaningful
-                  sequence. Order and visibility work together: a sensible path
-                  the user can actually see.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  2.4.11 Focus Not Obscured (Minimum) — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  New in WCAG 2.2: the focused element must not be entirely hidden
-                  by other content such as sticky headers or cookie banners. The
-                  natural next step after making focus visible.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-4-3"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.4.3 Contrast (Minimum)
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Governs text and UI contrast generally. The same thinking
-                  applies to a focus ring — it has to stand out clearly from its
-                  surroundings to be useful.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="2.4.7" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

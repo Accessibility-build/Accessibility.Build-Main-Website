@@ -3,7 +3,7 @@ import { ToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/s
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata = {
-  title: "Password Generator | Strong, Secure & Random Passwords | Free Online Tool",
+  title: "Password Generator | Strong & Random Passwords",
   description: "Generate strong, secure, and random passwords with customizable options. Create unbreakable passwords with uppercase, lowercase, numbers, symbols. Free password generator with strength analysis.",
   keywords: [
     "password generator",
@@ -38,8 +38,11 @@ export const metadata = {
     description: "Generate strong passwords with customizable options. Free online tool with strength analysis.",
     images: ["https://accessibility.build/images/tools/password-generator-og.png"]
   },
+  // Utility tool unrelated to the site's accessibility focus — kept live but
+  // deindexed to preserve topical authority.
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: "https://accessibility.build/tools/password-generator"
+    canonical: "/tools/password-generator"
   }
 }
 

@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 3.1.1 Language of Page — Set the HTML lang Attribute Correctly (Level A)",
+  title: "WCAG 3.1.1 Language of Page — The HTML lang Attribute",
   description:
     "Complete guide to WCAG 3.1.1 Language of Page. Learn why the html lang attribute matters for screen reader pronunciation, which BCP 47 language codes to use, copy-ready HTML examples, common mistakes like lang=\"EN\" or a missing attribute, and exactly how to test it.",
   keywords: [
@@ -649,95 +649,9 @@ export default function RootLayout({ children }) {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <span className="text-slate-900 dark:text-white">
-                    3.1.2 Language of Parts
-                  </span>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The per-passage companion to 3.1.1. Where 3.1.1 sets one default
-                  language for the page, 3.1.2 marks up individual phrases or
-                  quotations that are in a different language from that default.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-3-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.3.1 Info and Relationships
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The broader principle that information conveyed visually must
-                  also be available in code. Declaring the language
-                  programmatically is one instance of exposing meaning to
-                  assistive technology.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.2 Page Titled
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Another page-level requirement checked at the same time as
-                  language: the page needs a descriptive title, and its title and
-                  content should be in the declared language.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/4-1-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    4.1.2 Name, Role, Value
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Also about exposing information programmatically so assistive
-                  technology can present content correctly — here for controls,
-                  rather than the document&rsquo;s language.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or run a free scan with the{" "}
-              <Link
-                href="/tools"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                accessibility testing tools
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="3.1.1" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

@@ -20,7 +20,7 @@ import { generateFAQSchema } from "@/lib/featured-snippets"
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions | Accessibility.build - WCAG & Accessibility Tools",
+  title: "FAQ - WCAG & Accessibility Tools Questions Answered",
   description:
     "Get answers to common questions about web accessibility, WCAG compliance, accessibility testing tools, and building inclusive digital experiences. Expert guidance for developers and designers.",
   keywords: [
@@ -71,7 +71,7 @@ const faqData = [
     answer: "Web accessibility ensures that websites are usable by everyone, including people with disabilities. For businesses, it's essential for legal compliance (ADA, Equality Act), expanding market reach to 15% of the population, improving SEO rankings, and demonstrating social responsibility. Accessible sites also typically provide a better user experience for all visitors."
   },
   {
-    question: "What are WCAG guidelines and which version should I follow in 2024?",
+    question: "What are WCAG guidelines and which version should I follow?",
     answer: "WCAG (Web Content Accessibility Guidelines) are the international standards. WCAG 2.2 is the current recommendation as of late 2023. Most businesses should aim for WCAG 2.2 Level AA compliance, as it is the standard referenced by most legal frameworks and provides a robust level of accessibility without the strict constraints of Level AAA."
   },
   {
@@ -323,7 +323,7 @@ export default function FAQPage() {
                   WCAG 2.2 Checklist
                 </CardTitle>
                 <CardDescription>
-                  Interactive checklist with all 78 success criteria
+                  Interactive checklist with all 86 success criteria
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-center">

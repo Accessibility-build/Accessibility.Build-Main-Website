@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 
 // Base metadata that can be extended for specific pages
+// Note: metadataBase is set once in app/layout.tsx — do not redeclare it here or in pages.
 export const baseMetadata: Metadata = {
-  metadataBase: new URL("https://accessibility.build"),
   title: {
     default: "Accessibility.build | Modern Accessibility Resources",
     template: "%s | Accessibility.build",
@@ -54,32 +54,35 @@ export const baseMetadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/manifest.webmanifest",
-  alternates: {
-    canonical: "/",
-  },
 }
 
 // Helper function to create metadata for specific pages
 export function createMetadata(options: {
   title?: string
   description?: string
+  /** Route path starting with "/" (e.g. "/wcag/1-1-1"). Emits the page's self-referencing canonical URL. */
+  path?: string
   keywords?: string[]
   image?: string
   type?: "website" | "article"
   publishedTime?: string
   modifiedTime?: string
   authors?: { name: string; url?: string }[]
+  noIndex?: boolean
 }): Metadata {
-  const { title, description, keywords, image, type = "website", publishedTime, modifiedTime, authors } = options
+  const { title, description, path, keywords, image, type = "website", publishedTime, modifiedTime, authors, noIndex } = options
 
   return {
     title: title,
     description: description,
+    ...(path && { alternates: { canonical: path } }),
+    ...(noIndex && { robots: { index: false, follow: false } }),
     keywords: keywords ? [...(baseMetadata.keywords as string[]), ...keywords] : baseMetadata.keywords,
     openGraph: {
       ...(baseMetadata.openGraph as any),
       title: title || (baseMetadata.openGraph as any).title,
       description: description || (baseMetadata.openGraph as any).description,
+      ...(path && { url: path }),
       type,
       ...(image && {
         images: [

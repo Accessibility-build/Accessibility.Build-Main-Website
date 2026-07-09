@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 3.2.6 Consistent Help — Keep Help in the Same Place on Every Page (Level A)",
+  title: "WCAG 3.2.6 Consistent Help — Keep Help in One Place",
   description:
     "Complete guide to WCAG 3.2.6 Consistent Help. Learn why help mechanisms — contact details, chat, help links, self-help — must appear in the same relative order across pages, which help types are covered, copy-ready code, testing methods, and common mistakes.",
   keywords: [
@@ -698,89 +698,9 @@ export default function RootLayout({ children }) {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-7"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.7 Redundant Entry
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The other Level A criterion WCAG 2.2 added to lower cognitive
-                  load: don&apos;t make users re-enter information they already
-                  provided in the same process.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  3.2.3 Consistent Navigation — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The blueprint 3.2.6 follows: navigational components that repeat
-                  across pages must appear in the same relative order. Help that
-                  lives in the nav should satisfy both.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-8"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.8 Accessible Authentication (Minimum)
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Another new-in-2.2 sibling focused on reducing cognitive burden —
-                  here, removing cognitive function tests from sign-in.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.2 Labels or Instructions
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Clear labels and instructions reduce the need for help in the
-                  first place — the front line before a user reaches for support.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="3.2.6" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

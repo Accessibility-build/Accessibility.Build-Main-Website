@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 1.4.10 Reflow — No Horizontal Scrolling at 320px (Level AA)",
+  title: "WCAG 1.4.10 Reflow — No Horizontal Scrolling at 320px",
   description:
     "Complete guide to WCAG 1.4.10 Reflow. Learn why content must reflow to 320 CSS pixels wide without two-dimensional scrolling or loss of information, how to test at 400% zoom, the exceptions for tables and maps, copy-ready responsive CSS, and common mistakes.",
   keywords: [
@@ -644,85 +644,9 @@ body { font-size: 100%; }      /* respect the user's default */
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  1.4.4 Resize Text — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The sibling requirement: text must be resizable to 200% without loss
-                  of content. Reflow (1.4.10) is the stronger, zoom-to-400% cousin
-                  that reflows the whole layout, not just text.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  1.4.12 Text Spacing — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Content must not break when users increase line height and letter
-                  spacing — the same fluid, non-clipping layouts that pass Reflow tend
-                  to pass Text Spacing.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-4-11"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.4.11 Non-text Contrast
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Another 1.4 Distinguishable criterion for low-vision users, ensuring
-                  UI components and graphics stay perceivable — often audited alongside
-                  Reflow.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-5-8"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.5.8 Target Size (Minimum)
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  A mobile-focused WCAG 2.2 criterion that pairs naturally with Reflow:
-                  once content collapses to a single column, targets must still be
-                  large enough to tap.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="1.4.10" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

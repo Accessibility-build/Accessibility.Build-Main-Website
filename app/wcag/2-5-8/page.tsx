@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 2.5.8 Target Size (Minimum) — 24×24 px Tap Targets Guide (Level AA)",
+  title: "WCAG 2.5.8 Target Size (Minimum) — 24×24 px Tap Targets",
   description:
     "Complete guide to WCAG 2.5.8 Target Size (Minimum), new in WCAG 2.2. Learn the 24×24 CSS pixel rule, all five exceptions, the spacing offset technique, code examples, testing methods, and common mistakes.",
   keywords: [
@@ -661,65 +661,9 @@ export default function WCAG258Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  2.5.5 Target Size (Enhanced) — AAA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The stricter 44×44 CSS pixel requirement. Meeting it
-                  automatically satisfies 2.5.8 and aligns with native platform
-                  guidance.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  2.5.7 Dragging Movements — AA (new in 2.2)
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Another pointer-input criterion: any drag action must have a
-                  single-pointer alternative. Often evaluated alongside target
-                  size on touch interfaces.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.1 Bypass Blocks
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Reducing repetitive interaction is a sibling goal: skip links
-                  cut the number of small targets a keyboard user must traverse.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/guides/keyboard-accessibility"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    Keyboard Accessibility Guide
-                  </Link>
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Target size governs pointer input; keyboard operability covers
-                  the complementary path. Robust UIs need both.
-                </p>
-              </div>
-            </div>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="2.5.8" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

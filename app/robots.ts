@@ -31,8 +31,9 @@ const PRIVATE_PATHS = [
   "/*?*fbclid=*",
   "/*?*gclid=*",
   "/search?*",
-  "/*preview*",
-  "/*draft*",
+  "/api/preview",
+  "/*?preview=",
+  "/*?draft=",
 ]
 
 // AI / LLM agents we explicitly want to grant full read access to.
@@ -88,30 +89,31 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       // Default rule (all conventional crawlers)
+      // "/api/og" is the dynamic OG image generator — it must stay fetchable
+      // even though the rest of /api/ is disallowed.
       {
         userAgent: "*",
-        allow: "/",
+        allow: ["/", "/api/og"],
         disallow: PRIVATE_PATHS,
-        crawlDelay: 1,
       },
       // Per-engine refinements
       {
         userAgent: "Googlebot",
-        allow: ["/", "/tools/", "/guides/", "/blog/"],
+        allow: ["/", "/tools/", "/guides/", "/blog/", "/api/og"],
         disallow: ["/api/", "/admin/", "/dashboard*", "/profile*", "/sign-in*", "/sign-up*"],
       },
       // Social previews
       ...["facebookexternalhit", "Twitterbot", "LinkedInBot", "Slackbot", "Discordbot"].map(
         (ua) => ({
           userAgent: ua,
-          allow: "/",
+          allow: ["/", "/api/og"],
           disallow: ["/api/", "/admin/", "/dashboard*", "/profile*"],
         })
       ),
       // AI / LLM crawlers — explicit allow with minimal restrictions
       ...AI_AGENTS.map((ua) => ({
         userAgent: ua,
-        allow: ["/", "/tools/", "/guides/", "/blog/", "/api/sitemap"],
+        allow: ["/", "/tools/", "/guides/", "/blog/", "/api/og"],
         disallow: ["/api/", "/admin/", "/dashboard*", "/profile*", "/sign-in*", "/sign-up*"],
       })),
       // Aggressive SEO scrapers — disallow everything

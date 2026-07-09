@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import WCAG243ClientPage from "./client-page";
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title: "WCAG 2.4.3 Focus Order (Level A) - Interactive Demo | Accessibility Build",
+  title: "WCAG 2.4.3 Focus Order (Level A) - Interactive Demo",
   description: "Master WCAG 2.4.3 Focus Order with interactive focus sequence demonstrations, logical order validation, and keyboard navigation testing tools. Complete guide with live examples, focus tracking, and implementation code for accessible keyboard navigation.",
   keywords: [
     "WCAG 2.4.3", 
@@ -21,15 +22,15 @@ export const metadata: Metadata = {
     "screen reader",
     "inclusive design"
   ],
-  authors: [{ name: "Accessibility Build Team" }],
-  creator: "Accessibility Build",
-  publisher: "Accessibility Build",
+  authors: [{ name: "Accessibility.build Team" }],
+  creator: "Accessibility.build",
+  publisher: "Accessibility.build",
   openGraph: {
     title: "WCAG 2.4.3 Focus Order - Interactive Focus Tracking & Validation Tools",
     description: "Comprehensive guide to implementing logical focus order. Interactive focus sequence demonstrations, validation tools, and keyboard navigation testing for accessibility compliance.",
     type: "article",
     url: "https://accessibility.build/wcag/2-4-3",
-    siteName: "Accessibility Build",
+    siteName: "Accessibility.build",
     locale: "en_US",
     images: [
       {
@@ -64,5 +65,12 @@ export const metadata: Metadata = {
 };
 
 export default function WCAG243Page() {
-  return <WCAG243ClientPage />;
+  return (
+    <>
+      <WCAG243ClientPage />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <CriterionLinks number="2.4.3" />
+      </div>
+    </>
+  );
 } 

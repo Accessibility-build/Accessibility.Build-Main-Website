@@ -1,6 +1,27 @@
 export const metadata = {
-  title: "Accessibility Statement | Accessibility.build",
+  title: "Accessibility Statement",
   description: "Our commitment to making our website accessible to all users, including those with disabilities.",
+  alternates: { canonical: "/accessibility" },
+  openGraph: {
+    type: "website",
+    title: "Accessibility Statement",
+    description: "Our commitment to making our website accessible to all users, including those with disabilities.",
+    url: "/accessibility",
+    images: [
+      {
+        url: "/api/og?title=Accessibility%20Statement&section=Legal",
+        width: 1200,
+        height: 630,
+        alt: "Accessibility Statement",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accessibility Statement",
+    description: "Our commitment to making our website accessible to all users, including those with disabilities.",
+    images: ["/api/og?title=Accessibility%20Statement&section=Legal"],
+  },
 }
 
 export default function AccessibilityPage() {

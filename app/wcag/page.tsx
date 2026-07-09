@@ -1,12 +1,13 @@
 import Link from "next/link"
 import { createMetadata } from "@/lib/metadata"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { wcagCriteria, type SuccessCriterion } from "@/lib/wcag-data"
+import { wcagPath } from "@/lib/wcag-pages"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   ArrowLeft,
   CheckCircle,
-  Image as ImageIcon,
   Volume2,
   FileText,
   Eye,
@@ -16,433 +17,128 @@ import {
   Settings,
   BookOpen,
   ExternalLink,
-  Link2,
   MousePointerClick,
   Type,
   Zap,
-  Pause,
-  AlertCircle,
-  KeyRound,
-  HelpCircle
+  Image as ImageIcon,
+  HelpCircle,
 } from "lucide-react"
 
 export const metadata = createMetadata({
-  title: "WCAG Success Criteria - Detailed Guides with Interactive Examples",
+  title: "WCAG 2.2 Success Criteria: All 86 Guides & Examples",
+  path: "/wcag",
   description:
-    "Comprehensive guides to WCAG success criteria with detailed explanations, interactive examples, testing methods, and implementation code. Level A and AA criteria covered.",
-  keywords: ["WCAG", "success criteria", "accessibility guidelines", "Level A", "Level AA", "interactive examples"]
+    "In-depth guides to all 86 WCAG 2.2 success criteria — Level A, AA, and AAA — with plain-language explanations, testing methods, and implementation code.",
+  keywords: ["WCAG", "success criteria", "accessibility guidelines", "Level A", "Level AA", "Level AAA", "WCAG 2.2"],
+  image: "/api/og?title=WCAG%202.2%20Success%20Criteria&section=WCAG",
 })
 
-interface SuccessCriterion {
-  number: string
-  title: string
-  level: 'A' | 'AA'
-  description: string
-  principle: string
-  guideline: string
-  icon: React.ComponentType<{ className?: string }>
-  available: boolean
-  comingSoon?: boolean
-  new22?: boolean
+// One icon per guideline keeps the grid scannable without per-criterion bookkeeping.
+const guidelineIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  "1.1": ImageIcon,
+  "1.2": Volume2,
+  "1.3": Target,
+  "1.4": Eye,
+  "2.1": Keyboard,
+  "2.2": Timer,
+  "2.3": Zap,
+  "2.4": MousePointerClick,
+  "2.5": MousePointerClick,
+  "3.1": Type,
+  "3.2": HelpCircle,
+  "3.3": FileText,
+  "4.1": Settings,
 }
 
-const successCriteria: SuccessCriterion[] = [
-  // Level A Criteria
-  {
-    number: "1.1.1",
-    title: "Non-text Content",
-    level: "A",
-    description: "All non-text content has appropriate text alternatives that serve the equivalent purpose.",
-    principle: "1. Perceivable",
-    guideline: "1.1 Text Alternatives",
-    icon: ImageIcon,
-    available: true
-  },
-  {
-    number: "1.2.1",
-    title: "Audio-only and Video-only (Prerecorded)",
-    level: "A",
-    description: "Provide alternatives for prerecorded audio-only and video-only content.",
-    principle: "1. Perceivable",
-    guideline: "1.2 Time-based Media",
-    icon: Volume2,
-    available: true
-  },
-  {
-    number: "1.2.2",
-    title: "Captions (Prerecorded)",
-    level: "A",
-    description: "Captions are provided for all prerecorded audio content in synchronized media.",
-    principle: "1. Perceivable",
-    guideline: "1.2 Time-based Media",
-    icon: FileText,
-    available: true
-  },
-  {
-    number: "1.2.3",
-    title: "Audio Description or Media Alternative (Prerecorded)",
-    level: "A",
-    description: "Audio description or full text alternative is provided for prerecorded video content.",
-    principle: "1. Perceivable",
-    guideline: "1.2 Time-based Media",
-    icon: Volume2,
-    available: true
-  },
-  {
-    number: "1.3.1",
-    title: "Info and Relationships",
-    level: "A",
-    description: "Information, structure, and relationships can be programmatically determined.",
-    principle: "1. Perceivable",
-    guideline: "1.3 Adaptable",
-    icon: Target,
-    available: true
-  },
-  {
-    number: "1.3.2",
-    title: "Meaningful Sequence",
-    level: "A",
-    description: "Content can be presented in a meaningful sequence without losing meaning.",
-    principle: "1. Perceivable",
-    guideline: "1.3 Adaptable",
-    icon: Target,
-    available: true
-  },
-  {
-    number: "1.3.3",
-    title: "Sensory Characteristics",
-    level: "A",
-    description: "Instructions don't rely solely on sensory characteristics of components.",
-    principle: "1. Perceivable",
-    guideline: "1.3 Adaptable",
-    icon: Eye,
-    available: true
-  },
-  {
-    number: "1.4.1",
-    title: "Use of Color",
-    level: "A",
-    description: "Color is not used as the only visual means of conveying information.",
-    principle: "1. Perceivable",
-    guideline: "1.4 Distinguishable",
-    icon: Eye,
-    available: true
-  },
-  {
-    number: "1.4.2",
-    title: "Audio Control",
-    level: "A",
-    description: "Provide a way to pause, stop, or control the volume of audio that plays automatically.",
-    principle: "1. Perceivable",
-    guideline: "1.4 Distinguishable",
-    icon: Pause,
-    available: true
-  },
-  {
-    number: "2.1.1",
-    title: "Keyboard",
-    level: "A",
-    description: "All functionality is operable through a keyboard interface without specific timings.",
-    principle: "2. Operable",
-    guideline: "2.1 Keyboard Accessible",
-    icon: Keyboard,
-    available: true
-  },
-  {
-    number: "2.1.2",
-    title: "No Keyboard Trap",
-    level: "A",
-    description: "Keyboard focus can be moved away from any component using only the keyboard.",
-    principle: "2. Operable",
-    guideline: "2.1 Keyboard Accessible",
-    icon: Keyboard,
-    available: true
-  },
-  {
-    number: "2.1.4",
-    title: "Character Key Shortcuts",
-    level: "A",
-    description: "Single-character key shortcuts can be turned off, remapped, or are active only on focus.",
-    principle: "2. Operable",
-    guideline: "2.1 Keyboard Accessible",
-    icon: Keyboard,
-    available: true
-  },
-  {
-    number: "2.2.1",
-    title: "Timing Adjustable",
-    level: "A",
-    description: "Users can turn off, adjust, or extend time limits set by the content.",
-    principle: "2. Operable",
-    guideline: "2.2 Enough Time",
-    icon: Timer,
-    available: true
-  },
-  {
-    number: "2.2.2",
-    title: "Pause, Stop, Hide",
-    level: "A",
-    description: "Moving, blinking, scrolling, or auto-updating content can be paused, stopped, or hidden.",
-    principle: "2. Operable",
-    guideline: "2.2 Enough Time",
-    icon: Pause,
-    available: true
-  },
-  {
-    number: "2.3.1",
-    title: "Three Flashes or Below Threshold",
-    level: "A",
-    description: "Content does not flash more than three times per second, protecting against seizures.",
-    principle: "2. Operable",
-    guideline: "2.3 Seizures and Physical Reactions",
-    icon: Zap,
-    available: true
-  },
-  {
-    number: "2.4.1",
-    title: "Bypass Blocks",
-    level: "A",
-    description: "A mechanism is available to bypass blocks of repeated content, such as a skip link.",
-    principle: "2. Operable",
-    guideline: "2.4 Navigable",
-    icon: Keyboard,
-    available: true
-  },
-  {
-    number: "2.4.2",
-    title: "Page Titled",
-    level: "A",
-    description: "Web pages have titles that describe their topic or purpose.",
-    principle: "2. Operable",
-    guideline: "2.4 Navigable",
-    icon: Type,
-    available: true
-  },
-  {
-    number: "2.4.3",
-    title: "Focus Order",
-    level: "A",
-    description: "Components receive focus in an order that preserves meaning and operability.",
-    principle: "2. Operable",
-    guideline: "2.4 Navigable",
-    icon: Target,
-    available: true
-  },
-  {
-    number: "2.4.4",
-    title: "Link Purpose (In Context)",
-    level: "A",
-    description: "The purpose of each link can be determined from its text or its surrounding context.",
-    principle: "2. Operable",
-    guideline: "2.4 Navigable",
-    icon: Link2,
-    available: true
-  },
+function iconFor(criterion: SuccessCriterion) {
+  const guidelineNumber = criterion.guideline.split(" ")[0]
+  return guidelineIcons[guidelineNumber] ?? BookOpen
+}
 
-  // Level AA Criteria
-  {
-    number: "1.4.3",
-    title: "Contrast (Minimum)",
-    level: "AA",
-    description: "Text has a contrast ratio of at least 4.5:1 (3:1 for large text).",
-    principle: "1. Perceivable",
-    guideline: "1.4 Distinguishable",
-    icon: Eye,
-    available: true
+const levelStyles: Record<SuccessCriterion["level"], { badge: string; border: string; iconBg: string; iconColor: string }> = {
+  A: {
+    badge: "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700",
+    border: "border-l-green-500",
+    iconBg: "bg-green-100 dark:bg-green-900/20",
+    iconColor: "text-green-600 dark:text-green-400",
   },
-  {
-    number: "1.4.10",
-    title: "Reflow",
-    level: "AA",
-    description: "Content reflows to a 320 CSS pixel width (400% zoom) without loss of information or two-dimensional scrolling, so low-vision users can magnify pages without scrolling left and right on every line.",
-    principle: "1. Perceivable",
-    guideline: "1.4 Distinguishable",
-    icon: Eye,
-    available: true
+  AA: {
+    badge: "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700",
+    border: "border-l-blue-500",
+    iconBg: "bg-blue-100 dark:bg-blue-900/20",
+    iconColor: "text-blue-600 dark:text-blue-400",
   },
-  {
-    number: "2.5.7",
-    title: "Dragging Movements",
-    level: "AA",
-    description: "All functionality that uses a dragging movement can also be operated by a single pointer without dragging, unless dragging is essential or determined by the user agent.",
-    principle: "2. Operable",
-    guideline: "2.5 Input Modalities",
-    icon: MousePointerClick,
-    available: true,
-    new22: true
+  AAA: {
+    badge: "bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-700",
+    border: "border-l-purple-500",
+    iconBg: "bg-purple-100 dark:bg-purple-900/20",
+    iconColor: "text-purple-600 dark:text-purple-400",
   },
-  {
-    number: "2.5.8",
-    title: "Target Size (Minimum)",
-    level: "AA",
-    description: "Targets for pointer input are at least 24×24 CSS pixels, unless an exception applies.",
-    principle: "2. Operable",
-    guideline: "2.5 Input Modalities",
-    icon: MousePointerClick,
-    available: true,
-    new22: true
-  },
-  {
-    number: "4.1.2",
-    title: "Name, Role, Value",
-    level: "A",
-    description: "Name and role of every UI component can be programmatically determined; states, properties, and values can be set and changes announced to assistive technologies.",
-    principle: "4. Robust",
-    guideline: "4.1 Compatible",
-    icon: Settings,
-    available: true
-  },
-  {
-    number: "3.3.2",
-    title: "Labels or Instructions",
-    level: "A",
-    description: "Labels or instructions are provided when content requires user input, so people know what to enter and how.",
-    principle: "3. Understandable",
-    guideline: "3.3 Input Assistance",
-    icon: FileText,
-    available: true
-  },
-  {
-    number: "3.3.1",
-    title: "Error Identification",
-    level: "A",
-    description: "When an input error is automatically detected, the field in error is identified and the error is described to the user in text.",
-    principle: "3. Understandable",
-    guideline: "3.3 Input Assistance",
-    icon: AlertCircle,
-    available: true
-  },
-  {
-    number: "3.3.7",
-    title: "Redundant Entry",
-    level: "A",
-    description: "Information a user already entered in the same process is auto-populated or available to select, so they are not forced to re-enter it — unless re-entry is essential, needed for security, or the earlier value is no longer valid.",
-    principle: "3. Understandable",
-    guideline: "3.3 Input Assistance",
-    icon: FileText,
-    available: true,
-    new22: true
-  },
-  {
-    number: "2.4.7",
-    title: "Focus Visible",
-    level: "AA",
-    description: "Any keyboard-operable interface has a mode where the keyboard focus indicator is visible, so users can always see which element has focus.",
-    principle: "2. Operable",
-    guideline: "2.4 Navigable",
-    icon: MousePointerClick,
-    available: true
-  },
-  {
-    number: "1.4.11",
-    title: "Non-text Contrast",
-    level: "AA",
-    description: "User interface components and meaningful graphics have a contrast ratio of at least 3:1 against adjacent colors, so borders, states, focus indicators, icons, and charts stay perceivable.",
-    principle: "1. Perceivable",
-    guideline: "1.4 Distinguishable",
-    icon: Eye,
-    available: true
-  },
-  {
-    number: "1.4.12",
-    title: "Text Spacing",
-    level: "AA",
-    description: "No content or functionality is lost when users override text spacing — line height to 1.5, paragraph spacing to 2×, letter spacing to 0.12, and word spacing to 0.16 of the font size — so dyslexic and low-vision readers can open text up without clipping.",
-    principle: "1. Perceivable",
-    guideline: "1.4 Distinguishable",
-    icon: Type,
-    available: true
-  },
-  {
-    number: "1.4.13",
-    title: "Content on Hover or Focus",
-    level: "AA",
-    description: "Content that appears on hover or keyboard focus — tooltips, hover menus, popovers — must be dismissible, hoverable, and persistent so magnifier and keyboard users can reach, read, and clear it.",
-    principle: "1. Perceivable",
-    guideline: "1.4 Distinguishable",
-    icon: Eye,
-    available: true
-  },
-  {
-    number: "4.1.3",
-    title: "Status Messages",
-    level: "AA",
-    description: "Status messages can be programmatically determined through role or properties so assistive technologies announce them without moving focus, using ARIA live regions like role=status and role=alert.",
-    principle: "4. Robust",
-    guideline: "4.1 Compatible",
-    icon: Zap,
-    available: true,
-    new22: false
-  },
-  {
-    number: "2.4.11",
-    title: "Focus Not Obscured (Minimum)",
-    level: "AA",
-    description: "When a component receives keyboard focus, it is not entirely hidden by author-created content such as a sticky header, sticky footer, or cookie banner.",
-    principle: "2. Operable",
-    guideline: "2.4 Navigable",
-    icon: Eye,
-    available: true,
-    new22: true
-  },
-  {
-    number: "2.4.6",
-    title: "Headings and Labels",
-    level: "AA",
-    description: "Headings and labels describe topic or purpose — descriptive, meaningful text that lets users understand what a section contains or what a control does, powering screen reader heading navigation.",
-    principle: "2. Operable",
-    guideline: "2.4 Navigable",
-    icon: BookOpen,
-    available: true
-  },
-  {
-    number: "3.3.3",
-    title: "Error Suggestion",
-    level: "AA",
-    description: "When an input error is detected and a correction is known, suggest the fix to the user in text — unless doing so would jeopardize the security or purpose of the content.",
-    principle: "3. Understandable",
-    guideline: "3.3 Input Assistance",
-    icon: AlertCircle,
-    available: true
-  },
-  {
-    number: "3.3.8",
-    title: "Accessible Authentication (Minimum)",
-    level: "AA",
-    description: "No step in an authentication process requires a cognitive function test — remembering a password, transcribing a code, or solving a puzzle — unless an alternative, a mechanism, or an object/personal-content exception applies.",
-    principle: "3. Understandable",
-    guideline: "3.3 Input Assistance",
-    icon: KeyRound,
-    available: true,
-    new22: true
-  },
-  {
-    number: "3.2.6",
-    title: "Consistent Help",
-    level: "A",
-    description: "Help mechanisms — contact details, a contact mechanism, a self-help option, or an automated chatbot — that repeat across a set of pages appear in the same relative order, so users can find help predictably.",
-    principle: "3. Understandable",
-    guideline: "3.2 Predictable",
-    icon: HelpCircle,
-    available: true,
-    new22: true
-  },
-  {
-    number: "3.1.1",
-    title: "Language of Page",
-    level: "A",
-    description: "The default human language of each page can be programmatically determined — set a valid BCP 47 lang attribute on the <html> element so screen readers pronounce content correctly.",
-    principle: "3. Understandable",
-    guideline: "3.1 Readable",
-    icon: Type,
-    available: true
-  }
+}
+
+const principles = [
+  "1. Perceivable",
+  "2. Operable",
+  "3. Understandable",
+  "4. Robust",
 ]
 
+function CriterionCard({ criterion }: { criterion: SuccessCriterion }) {
+  const IconComponent = iconFor(criterion)
+  const styles = levelStyles[criterion.level]
+  const isNew22 = criterion.introduced === "2.2"
+
+  return (
+    <Card className={`transition-all duration-200 hover:shadow-lg hover:scale-[1.01] border-l-4 ${styles.border}`}>
+      <CardContent className="p-6">
+        <div className="flex flex-col md:!flex-row items-start justify-between gap-4">
+          <div className="flex items-start gap-4 flex-1 w-full">
+            <div className={`p-3 rounded-xl flex-shrink-0 ${styles.iconBg}`}>
+              <IconComponent className={`h-6 w-6 ${styles.iconColor}`} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mr-2">
+                  {criterion.number} {criterion.title}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  <Badge className={styles.badge}>Level {criterion.level}</Badge>
+                  {isNew22 && (
+                    <Badge
+                      variant="outline"
+                      className="bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-700"
+                    >
+                      New in 2.2
+                    </Badge>
+                  )}
+                </div>
+              </div>
+              <p className="text-slate-600 dark:text-slate-400 mb-3">{criterion.description}</p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
+                <span>{criterion.principle}</span>
+                <span className="hidden sm:inline">•</span>
+                <span>{criterion.guideline}</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex gap-2 w-full md:w-auto">
+            <Button asChild className="w-full md:w-auto">
+              <Link href={wcagPath(criterion.number)}>
+                View Guide
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
 export default function WCAGIndexPage() {
-  const levelACount = successCriteria.filter(sc => sc.level === 'A').length
-  const levelAACount = successCriteria.filter(sc => sc.level === 'AA').length
-  const availableCount = successCriteria.filter(sc => sc.available).length
+  const levelACount = wcagCriteria.filter((sc) => sc.level === "A").length
+  const levelAACount = wcagCriteria.filter((sc) => sc.level === "AA").length
+  const levelAAACount = wcagCriteria.filter((sc) => sc.level === "AAA").length
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-950">
@@ -463,10 +159,10 @@ export default function WCAGIndexPage() {
             </div>
             <div>
               <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-2">
-                WCAG Success Criteria
+                WCAG 2.2 Success Criteria
               </h1>
               <p className="text-xl text-slate-600 dark:text-slate-400">
-                Detailed guides with interactive examples and implementation code
+                In-depth guides to all 86 success criteria with examples and implementation code
               </p>
             </div>
           </div>
@@ -479,16 +175,7 @@ export default function WCAGIndexPage() {
                   <BookOpen className="h-5 w-5 text-blue-600" />
                   <span className="font-semibold text-slate-900 dark:text-white">Total Guides</span>
                 </div>
-                <p className="text-2xl font-bold text-blue-600 mt-1">{successCriteria.length}</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                  <span className="font-semibold text-slate-900 dark:text-white">Available Now</span>
-                </div>
-                <p className="text-2xl font-bold text-green-600 mt-1">{availableCount}</p>
+                <p className="text-2xl font-bold text-blue-600 mt-1">{wcagCriteria.length}</p>
               </CardContent>
             </Card>
             <Card>
@@ -509,6 +196,15 @@ export default function WCAGIndexPage() {
                 <p className="text-2xl font-bold text-blue-600 mt-1">{levelAACount}</p>
               </CardContent>
             </Card>
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2">
+                  <Target className="h-5 w-5 text-purple-600" />
+                  <span className="font-semibold text-slate-900 dark:text-white">Level AAA</span>
+                </div>
+                <p className="text-2xl font-bold text-purple-600 mt-1">{levelAAACount}</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
 
@@ -523,9 +219,9 @@ export default function WCAGIndexPage() {
           <CardContent className="space-y-4">
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Each success criterion guide provides comprehensive coverage including detailed explanations,
-              interactive examples, testing methods, implementation code, and additional resources.
-              Our library spans Level A and Level AA criteria across all four WCAG principles, including
-              new WCAG 2.2 requirements such as 2.5.8 Target Size (Minimum).
+              interactive examples, testing methods, implementation code, and additional resources. The
+              library covers every Level A, AA, and AAA criterion across all four WCAG principles,
+              including the requirements introduced in WCAG 2.2.
             </p>
             <div className="grid md:grid-cols-3 gap-4">
               <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
@@ -553,179 +249,29 @@ export default function WCAGIndexPage() {
           </CardContent>
         </Card>
 
-        {/* Success Criteria List */}
-        <div className="space-y-6">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Level A Success Criteria</h2>
-          
-          <div className="grid gap-4">
-            {successCriteria.filter(sc => sc.level === 'A').map((criterion) => {
-              const IconComponent = criterion.icon
-              
-              return (
-                <Card key={criterion.number} className={`transition-all duration-200 ${
-                  criterion.available 
-                    ? 'hover:shadow-lg hover:scale-[1.01] border-l-4 border-l-green-500' 
-                    : 'opacity-75 border-l-4 border-l-slate-300'
-                }`}>
-                  <CardContent className="p-6">
-                    <div className="flex flex-col md:!flex-row items-start justify-between gap-4">
-                      <div className="flex items-start gap-4 flex-1 w-full">
-                        <div className={`p-3 rounded-xl flex-shrink-0 ${
-                          criterion.available ? 'bg-green-100 dark:bg-green-900/20' : 'bg-slate-100 dark:bg-slate-700'
-                        }`}>
-                          <IconComponent className={`h-6 w-6 ${
-                            criterion.available ? 'text-green-600 dark:text-green-400' : 'text-slate-500'
-                          }`} />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center gap-2 mb-2">
-                            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mr-2">
-                              {criterion.number} {criterion.title}
-                            </h3>
-                            <div className="flex flex-wrap gap-2">
-                              <Badge className="bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">
-                                Level {criterion.level}
-                              </Badge>
-                              {criterion.new22 && (
-                                <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-700">
-                                  New in 2.2
-                                </Badge>
-                              )}
-                              {criterion.available && (
-                                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700">
-                                  Available
-                                </Badge>
-                              )}
-                              {criterion.comingSoon && (
-                                <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-700">
-                                  Coming Soon
-                                </Badge>
-                              )}
-                            </div>
-                          </div>
-                          <p className="text-slate-600 dark:text-slate-400 mb-3">
-                            {criterion.description}
-                          </p>
-                          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
-                            <span>{criterion.principle}</span>
-                            <span className="hidden sm:inline">•</span>
-                            <span>{criterion.guideline}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex gap-2 w-full md:w-auto">
-                        {criterion.available ? (
-                          <Button asChild className="w-full md:w-auto">
-                            <Link href={`/wcag/${criterion.number.replace(/\./g, '-')}`}>
-                              View Guide
-                              <ExternalLink className="ml-2 h-4 w-4" />
-                            </Link>
-                          </Button>
-                        ) : (
-                          <Button disabled className="w-full md:w-auto">
-                            Coming Soon
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              )
-            })}
+        {/* Success criteria grouped by principle, in spec order */}
+        {principles.map((principle) => (
+          <div key={principle} className="space-y-6 mt-12 first:mt-0">
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{principle}</h2>
+            <div className="grid gap-4">
+              {wcagCriteria
+                .filter((sc) => sc.principle === principle)
+                .map((criterion) => (
+                  <CriterionCard key={criterion.number} criterion={criterion} />
+                ))}
+            </div>
           </div>
-        </div>
-
-        <div className="space-y-6 mt-12">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Level AA Success Criteria</h2>
-          
-          <div className="grid gap-4">
-            {successCriteria.filter(sc => sc.level === 'AA').map((criterion) => {
-              const IconComponent = criterion.icon
-              
-              return (
-                <Card key={criterion.number} className={`transition-all duration-200 ${
-                  criterion.available 
-                    ? 'hover:shadow-lg hover:scale-[1.01] border-l-4 border-l-blue-500' 
-                    : 'opacity-75 border-l-4 border-l-slate-300'
-                }`}>
-                  <CardContent className="p-6">
-                    <div className="flex flex-col md:!flex-row items-start justify-between gap-4">
-                      <div className="flex items-start gap-4 flex-1 w-full">
-                        <div className={`p-3 rounded-xl flex-shrink-0 ${
-                          criterion.available ? 'bg-blue-100 dark:bg-blue-900/20' : 'bg-slate-100 dark:bg-slate-700'
-                        }`}>
-                          <IconComponent className={`h-6 w-6 ${
-                            criterion.available ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500'
-                          }`} />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center gap-2 mb-2">
-                            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mr-2">
-                              {criterion.number} {criterion.title}
-                            </h3>
-                            <div className="flex flex-wrap gap-2">
-                              <Badge className="bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-700">
-                                Level {criterion.level}
-                              </Badge>
-                              {criterion.new22 && (
-                                <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-700">
-                                  New in 2.2
-                                </Badge>
-                              )}
-                              {criterion.available && (
-                                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700">
-                                  Available
-                                </Badge>
-                              )}
-                              {criterion.comingSoon && (
-                                <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:border-orange-700">
-                                  Coming Soon
-                                </Badge>
-                              )}
-                            </div>
-                          </div>
-                          <p className="text-slate-600 dark:text-slate-400 mb-3">
-                            {criterion.description}
-                          </p>
-                          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
-                            <span>{criterion.principle}</span>
-                            <span className="hidden sm:inline">•</span>
-                            <span>{criterion.guideline}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex gap-2 w-full md:w-auto">
-                        {criterion.available ? (
-                          <Button asChild className="w-full md:w-auto">
-                            <Link href={`/wcag/${criterion.number.replace(/\./g, '-')}`}>
-                              View Guide
-                              <ExternalLink className="ml-2 h-4 w-4" />
-                            </Link>
-                          </Button>
-                        ) : (
-                          <Button disabled className="w-full md:w-auto">
-                            Coming Soon
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
-        </div>
+        ))}
 
         {/* Call to Action */}
         <Card className="mt-12 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
           <CardContent className="p-8 text-center">
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-              More Guides Coming Soon
+              Put the Guidelines into Practice
             </h3>
             <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
-              We're continuously adding more detailed guides for each WCAG success criterion. 
-              Each guide includes comprehensive examples, testing methods, and implementation code 
-              to help you build accessible web applications.
+              Work through every criterion with the interactive checklist, or test your site right now
+              with our free accessibility tools.
             </p>
             <div className="flex flex-col sm:!flex-row gap-4 justify-center items-center">
               <Button asChild className="w-full sm:w-auto">
@@ -746,4 +292,4 @@ export default function WCAGIndexPage() {
       </div>
     </div>
   )
-} 
+}

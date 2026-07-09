@@ -1249,7 +1249,7 @@ export default function ADAComplianceRisks() {
                     <SelectItem value="none">None / Unknown / Never Tested</SelectItem>
                     <SelectItem value="A">Level A (Minimum - 30 criteria)</SelectItem>
                     <SelectItem value="AA">Level AA (Standard - 50 criteria)</SelectItem>
-                    <SelectItem value="AAA">Level AAA (Enhanced - 78 criteria)</SelectItem>
+                    <SelectItem value="AAA">Level AAA (Enhanced - 86 criteria)</SelectItem>
                   </SelectContent>
                 </Select>
                 <p className="text-xs text-muted-foreground mt-1">

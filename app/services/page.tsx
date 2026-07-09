@@ -3,11 +3,35 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { IconShell } from "@/components/ui/icon-shell"
+import { ServiceStructuredData } from "@/components/seo/structured-data"
 
 export const metadata = {
-  title: "Accessibility Services | Accessibility.build",
+  title: "Accessibility Services",
   description:
     "Professional audits, training, and remediation services to help make your websites and apps inclusive and legally compliant. Let our experts guide your team toward accessibility success.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    type: "website",
+    title: "Accessibility Services",
+    description:
+      "Professional audits, training, and remediation services to help make your websites and apps inclusive and legally compliant. Let our experts guide your team toward accessibility success.",
+    url: "/services",
+    images: [
+      {
+        url: "/api/og?title=Accessibility%20Services&section=Services",
+        width: 1200,
+        height: 630,
+        alt: "Accessibility Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accessibility Services",
+    description:
+      "Professional audits, training, and remediation services to help make your websites and apps inclusive and legally compliant. Let our experts guide your team toward accessibility success.",
+    images: ["/api/og?title=Accessibility%20Services&section=Services"],
+  },
 }
 
 const services = [
@@ -108,6 +132,12 @@ const services = [
 export default function ServicesPage() {
   return (
     <div className="container-wide py-12 px-4 sm:px-6">
+      <ServiceStructuredData
+        name="Accessibility Services"
+        description="Professional audits, training, and remediation services to help make your websites and apps inclusive and legally compliant."
+        serviceType="Digital Accessibility Consulting"
+        url="https://accessibility.build/services"
+      />
       <div className="max-w-3xl mx-auto text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">Our Accessibility Services</h1>
         <p className="text-xl text-muted-foreground">

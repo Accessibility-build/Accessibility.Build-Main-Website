@@ -294,7 +294,7 @@ export default async function BlogPostPage({
                 <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
                     src={heroImage}
-                    alt={post.title}
+                    alt={post.mainImage?.alt || post.title}
                     fill
                     priority
                     className="object-cover"

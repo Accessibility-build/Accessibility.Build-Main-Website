@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 4.1.2 Name, Role, Value — The Complete Guide for Developers (Level A)",
+  title: "WCAG 4.1.2 Name, Role, Value — Complete Developer Guide",
   description:
     "Complete guide to WCAG 4.1.2 Name, Role, Value: what name, role, state, and value mean, how the accessible name is computed, native HTML vs ARIA, copy-ready code examples, the most common failures, and how to test with the accessibility tree.",
   keywords: [
@@ -672,74 +672,9 @@ export default function WCAG412Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-3-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.3.1 Info and Relationships
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Structure and relationships must be programmatically
-                  determinable too. 4.1.2 names the controls; 1.3.1 exposes how
-                  they relate to labels, groups, and regions.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-1-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.1.1 Non-text Content
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Alt text on a linked image is what gives that link its
-                  accessible name. Empty alt on a functional image is both a 1.1.1
-                  and a 4.1.2 failure.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-1-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.1.1 Keyboard
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  A correct role is only useful if the control is operable. Custom
-                  widgets must be focusable and keyboard-operable as well as
-                  correctly named.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  4.1.3 Status Messages — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The sibling criterion for messages that are not tied to a
-                  control — using ARIA live regions so updates are announced
-                  without moving focus.
-                </p>
-              </div>
-            </div>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="4.1.2" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

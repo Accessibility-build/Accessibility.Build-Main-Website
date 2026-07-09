@@ -3,7 +3,7 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata = {
-  title: "AI Accessibility Code Generator | WCAG Compliant Components | Accessibility.build",
+  title: "AI Accessibility Code Generator",
   description: "Generate accessible HTML, React, and Vue components with AI. Create WCAG 2.2 compliant code with ARIA labels, keyboard navigation, and screen reader support.",
   keywords: [
     "accessibility code generator",
@@ -36,7 +36,7 @@ export const metadata = {
     images: ["https://accessibility.build/images/tools/code-generator-og.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/accessibility-code-generator"
+    canonical: "/tools/accessibility-code-generator"
   }
 }
 

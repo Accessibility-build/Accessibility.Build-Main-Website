@@ -185,7 +185,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "1.4 Distinguishable",
     principle: "1. Perceivable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "1.4.2",
@@ -195,7 +195,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "1.4 Distinguishable",
     principle: "1. Perceivable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "1.4.3",
@@ -205,7 +205,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "1.4 Distinguishable",
     principle: "1. Perceivable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "1.4.4",
@@ -215,7 +215,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "1.4 Distinguishable",
     principle: "1. Perceivable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "1.4.5",
@@ -225,7 +225,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "1.4 Distinguishable",
     principle: "1. Perceivable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "1.4.6",
@@ -235,7 +235,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "1.4 Distinguishable",
     principle: "1. Perceivable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "1.4.7",
@@ -245,7 +245,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "1.4 Distinguishable",
     principle: "1. Perceivable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "1.4.8",
@@ -255,7 +255,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "1.4 Distinguishable",
     principle: "1. Perceivable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "1.4.9",
@@ -265,7 +265,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "1.4 Distinguishable",
     principle: "1. Perceivable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "1.4.10",
@@ -317,7 +317,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.1 Keyboard Accessible",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.1.2",
@@ -327,7 +327,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.1 Keyboard Accessible",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.1.3",
@@ -337,7 +337,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.1 Keyboard Accessible",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.1.4",
@@ -359,7 +359,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.2 Enough Time",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.2.2",
@@ -369,7 +369,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.2 Enough Time",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.2.3",
@@ -379,7 +379,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.2 Enough Time",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.2.4",
@@ -389,7 +389,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.2 Enough Time",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.2.5",
@@ -399,7 +399,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.2 Enough Time",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.2.6",
@@ -421,7 +421,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.3 Seizures and Physical Reactions",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.3.2",
@@ -431,7 +431,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.3 Seizures and Physical Reactions",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.3.3",
@@ -453,7 +453,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.4.2",
@@ -463,7 +463,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.4.3",
@@ -473,7 +473,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.4.4",
@@ -483,7 +483,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.4.5",
@@ -493,7 +493,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.4.6",
@@ -503,7 +503,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.4.7",
@@ -513,7 +513,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.4.8",
@@ -523,7 +523,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.4.9",
@@ -533,7 +533,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.4.10",
@@ -543,7 +543,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "2.4.11",
@@ -553,7 +553,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.2"
   },
   {
     number: "2.4.12",
@@ -563,7 +563,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.2"
   },
   {
     number: "2.4.13",
@@ -573,7 +573,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.4 Navigable",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.2"
   },
 
   // Principle 2: Operable - Input Modalities
@@ -645,7 +645,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.5 Input Modalities",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.2"
   },
   {
     number: "2.5.8",
@@ -655,7 +655,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "2.5 Input Modalities",
     principle: "2. Operable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.2"
   },
 
   // Principle 3: Understandable - Readable
@@ -667,7 +667,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.1 Readable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.1.2",
@@ -677,7 +677,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.1 Readable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.1.3",
@@ -687,7 +687,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.1 Readable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.1.4",
@@ -697,7 +697,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.1 Readable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.1.5",
@@ -707,7 +707,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.1 Readable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.1.6",
@@ -717,7 +717,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.1 Readable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
 
   // Principle 3: Understandable - Predictable
@@ -729,7 +729,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.2 Predictable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.2.2",
@@ -739,7 +739,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.2 Predictable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.2.3",
@@ -749,7 +749,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.2 Predictable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.2.4",
@@ -759,7 +759,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.2 Predictable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.2.5",
@@ -769,7 +769,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.2 Predictable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.2.6",
@@ -779,7 +779,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.2 Predictable",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.2"
   },
 
   // Principle 3: Understandable - Input Assistance
@@ -791,7 +791,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.3.2",
@@ -801,7 +801,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.3.3",
@@ -811,7 +811,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.3.4",
@@ -821,7 +821,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.3.5",
@@ -831,7 +831,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.3.6",
@@ -841,7 +841,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "3.3.7",
@@ -851,7 +851,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.2"
   },
   {
     number: "3.3.8",
@@ -861,7 +861,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.2"
   },
   {
     number: "3.3.9",
@@ -871,7 +871,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "3.3 Input Assistance",
     principle: "3. Understandable",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.2"
   },
 
   // Principle 4: Robust - Compatible
@@ -883,7 +883,7 @@ export const wcagCriteria: SuccessCriterion[] = [
     guideline: "4.1 Compatible",
     principle: "4. Robust",
     version: "2.2",
-    introduced: "2.1"
+    introduced: "2.0"
   },
   {
     number: "4.1.3",

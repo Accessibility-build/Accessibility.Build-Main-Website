@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { getBlogPosts, getBlogCategories } from "@/lib/sanity"
+import { getStaticBlogIndexPosts } from "@/lib/static-blog-posts"
 import BlogClientPage from "./BlogClientPage"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
@@ -7,7 +8,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: "Blog | Accessibility.build",
+  title: "Accessibility Blog: WCAG Guides & Best Practices",
   description:
     "Explore articles, guides, and tutorials that break down web accessibility concepts into practical steps. Stay informed about best practices and WCAG updates.",
   alternates: {
@@ -50,6 +51,13 @@ export default async function BlogPage() {
     getBlogCategories()
   ])
 
+  // Merge Sanity posts with the hardcoded static posts (app/blog/<slug>/page.tsx),
+  // sorted newest first so both sets interleave naturally in the index.
+  const allPosts = [...(posts ?? []), ...getStaticBlogIndexPosts()].sort(
+    (a: any, b: any) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  )
+
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -58,7 +66,7 @@ export default async function BlogPage() {
     "url": "https://accessibility.build/blog",
     "mainEntity": {
       "@type": "ItemList",
-      "itemListElement": posts.map((post: any, index: number) => ({
+      "itemListElement": allPosts.map((post: any, index: number) => ({
         "@type": "ListItem",
         "position": index + 1,
         "url": `https://accessibility.build/blog/${post.slug.current}`,
@@ -76,7 +84,7 @@ export default async function BlogPage() {
         }}
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
-      <BlogClientPage posts={posts} categories={categories} />
+      <BlogClientPage posts={allPosts} categories={categories} />
     </>
   )
 }

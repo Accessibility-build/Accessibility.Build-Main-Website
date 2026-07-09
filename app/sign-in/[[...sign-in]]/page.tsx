@@ -12,9 +12,10 @@ import type { Metadata } from "next";
 import { clerkEmbeddedAuthAppearance } from "@/lib/clerk-auth-appearance";
 
 export const metadata: Metadata = {
-  title: "Sign In | Access Your Accessibility Dashboard | Accessibility.build",
+  title: "Sign In",
   description:
     "Sign in to your accessibility account. Access your credits, tools, and continue building more accessible digital experiences.",
+  robots: { index: false, follow: false },
 };
 
 export default function Page() {

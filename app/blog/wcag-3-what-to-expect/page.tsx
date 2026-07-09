@@ -4,16 +4,58 @@ import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "WCAG 3.0: What to Expect from the Future of Web Accessibility Standards | Accessibility.build",
+  title: "WCAG 3.0: What to Expect from the New Standard",
   description: "Explore WCAG 3.0 updates including new outcomes-based approach, bronze/silver/gold levels, and how to prepare for the next generation of accessibility guidelines.",
   keywords: ["WCAG 3.0", "WCAG 3 updates", "future accessibility standards", "WCAG silver guidelines", "accessibility 3.0", "next generation WCAG"],
+  alternates: { canonical: "/blog/wcag-3-what-to-expect" },
+  openGraph: {
+    type: "article",
+    title: "WCAG 3.0: What to Expect from the New Standard",
+    description: "Explore WCAG 3.0 updates including new outcomes-based approach, bronze/silver/gold levels, and how to prepare for the next generation of accessibility guidelines.",
+    url: "/blog/wcag-3-what-to-expect",
+    images: [
+      {
+        url: "/api/og?title=WCAG%203.0%3A%20What%20to%20Expect%20from%20the%20New%20Standard&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "WCAG 3.0: What to Expect from the New Standard",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WCAG 3.0: What to Expect from the New Standard",
+    description: "Explore WCAG 3.0 updates including new outcomes-based approach, bronze/silver/gold levels, and how to prepare for the next generation of accessibility guidelines.",
+    images: ["/api/og?title=WCAG%203.0%3A%20What%20to%20Expect%20from%20the%20New%20Standard&section=Blog"],
+  },
 }
 
 export default function WCAG3WhatToExpectPost() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <ArticleStructuredData
+        headline="WCAG 3.0: What to Expect from the New Standard"
+        description="Explore WCAG 3.0 updates including new outcomes-based approach, bronze/silver/gold levels, and how to prepare for the next generation of accessibility guidelines."
+        author={{ name: "Accessibility.build Team" }}
+        publisher={{
+          name: "Accessibility.build",
+          logo: "https://accessibility.build/android-chrome-512x512.png",
+        }}
+        datePublished="2025-11-15"
+        dateModified="2025-11-15"
+        image="https://accessibility.build/api/og?title=WCAG%203.0%3A%20What%20to%20Expect%20from%20the%20New%20Standard&section=Blog"
+        url="https://accessibility.build/blog/wcag-3-what-to-expect"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Blog", url: "https://accessibility.build/blog" },
+          { name: "WCAG 3.0: What to Expect from the New Standard", url: "https://accessibility.build/blog/wcag-3-what-to-expect" },
+        ]}
+      />
       <header className="bg-white dark:bg-gray-900 border-b">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <Button asChild variant="ghost" size="sm" className="mb-4">

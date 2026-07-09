@@ -30,7 +30,7 @@ import {
 import type { CheckoutCatalogKey, CheckoutCurrency } from '@/lib/billing/types'
 
 export const metadata: Metadata = {
-  title: 'Billing & Credits | Accessibility.build',
+  title: 'Billing & Credits',
   description: 'Manage credit purchases, receipts, and billing actions for your Accessibility.build account.',
   robots: {
     index: false,

@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 1.4.11 Non-text Contrast — UI & Graphics Contrast Guide (Level AA)",
+  title: "WCAG 1.4.11 Non-text Contrast — UI & Graphics Contrast",
   description:
     "Complete guide to WCAG 1.4.11 Non-text Contrast. Learn the 3:1 rule for user interface components and graphical objects: button borders, input outlines, focus indicators, toggle states, icons, and chart elements — with exceptions, code examples, testing methods, and common mistakes.",
   keywords: [
@@ -727,109 +727,9 @@ export default function WCAG1411Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-4-3"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.4.3 Contrast (Minimum)
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The sibling criterion for text: 4.5:1 for normal text, 3:1 for
-                  large text. 1.4.11 covers everything that is not text, at 3:1.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-4-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.4.1 Use of Color
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Color must not be the only way information is conveyed. Pair 3:1
-                  contrast with a non-color cue so color-blind users are covered
-                  too.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-4-7"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.4.7 Focus Visible
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Requires a visible focus indicator. 1.4.11 adds the contrast
-                  bar: that indicator should also reach 3:1 to be genuinely
-                  perceivable.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/4-1-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    4.1.2 Name, Role, Value
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Icon-only controls that pass 1.4.11 visually still need an
-                  accessible name so screen reader users know what they do.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              . For deeper color theory, see the{" "}
-              <Link
-                href="/guides/accessible-color-palettes"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                Accessible Color Palettes guide
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="/guides/oklch-apca-color-systems"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                OKLCH &amp; APCA color systems
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="1.4.11" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

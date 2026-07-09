@@ -11,8 +11,8 @@ import { DeleteReportButton } from './DeleteReportButton'
 
 export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
-  title: 'My shared reports — Accessibility.build',
-  robots: { index: false },
+  title: 'My Shared Reports',
+  robots: { index: false, follow: false },
 }
 
 export default async function MyReportsPage() {

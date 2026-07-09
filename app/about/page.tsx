@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, Users, Heart, Code, Target, Mail, Brain, AlertCircle, Zap, Shield, Lightbulb } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
+import { AboutPageStructuredData } from "@/components/seo/structured-data"
 
 export const metadata = createMetadata({
-  title: "About Accessibility.build | Making the Web Accessible",
+  title: "About Us: Making the Web Accessible",
+  path: "/about",
   description: "Learn about our mission to make web accessibility tools and education accessible to everyone.",
   keywords: ["accessibility", "web accessibility", "a11y", "WCAG", "inclusive design"]
 })
@@ -13,6 +15,11 @@ export const metadata = createMetadata({
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
+      <AboutPageStructuredData
+        name="About Us: Making the Web Accessible"
+        description="Learn about our mission to make web accessibility tools and education accessible to everyone."
+        url="https://accessibility.build/about"
+      />
       
       {/* Hero Section */}
       <section className="pt-20 pb-32 px-4">

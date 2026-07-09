@@ -24,7 +24,7 @@ interface OptimizedContent {
 const ACCESSIBILITY_QUESTIONS: FeaturedSnippetStructure[] = [
   {
     question: "What is WCAG 2.2?",
-    answer: "WCAG 2.2 (Web Content Accessibility Guidelines 2.2) is the latest accessibility standard with 78 success criteria across 4 principles: Perceivable, Operable, Understandable, and Robust. It includes new criteria for mobile accessibility, focus appearance, and dragging movements.",
+    answer: "WCAG 2.2 (Web Content Accessibility Guidelines 2.2) is the latest accessibility standard with 86 success criteria across 4 principles: Perceivable, Operable, Understandable, and Robust. It includes new criteria for mobile accessibility, focus appearance, and dragging movements.",
     type: 'paragraph',
     keywords: ['wcag 2.2', 'accessibility guidelines', 'success criteria', 'web accessibility'],
     priority: 10

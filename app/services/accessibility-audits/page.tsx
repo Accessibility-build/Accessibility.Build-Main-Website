@@ -3,13 +3,37 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
+import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
 import { Check, FileText, BarChart, ListChecks, Clock, Users, Eye } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Accessibility Audits | Accessibility.build",
+  title: "Accessibility Audits",
   description:
     "Comprehensive accessibility audits to identify barriers and ensure WCAG compliance for your digital products.",
+  alternates: { canonical: "/services/accessibility-audits" },
+  openGraph: {
+    type: "website",
+    title: "Accessibility Audits",
+    description:
+      "Comprehensive accessibility audits to identify barriers and ensure WCAG compliance for your digital products.",
+    url: "/services/accessibility-audits",
+    images: [
+      {
+        url: "/api/og?title=Accessibility%20Audits&section=Services",
+        width: 1200,
+        height: 630,
+        alt: "Accessibility Audits",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accessibility Audits",
+    description:
+      "Comprehensive accessibility audits to identify barriers and ensure WCAG compliance for your digital products.",
+    images: ["/api/og?title=Accessibility%20Audits&section=Services"],
+  },
 }
 
 const auditProcess = [
@@ -78,6 +102,19 @@ const faqs = [
 export default function AccessibilityAuditsPage() {
   return (
     <div className="container-wide py-12">
+      <ServiceStructuredData
+        name="Accessibility Audits"
+        description="Comprehensive accessibility audits to identify barriers and ensure WCAG compliance for your digital products."
+        serviceType="Accessibility Audit"
+        url="https://accessibility.build/services/accessibility-audits"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Services", url: "https://accessibility.build/services" },
+          { name: "Accessibility Audits", url: "https://accessibility.build/services/accessibility-audits" },
+        ]}
+      />
       <ServiceHero
         title="Accessibility Audits"
         description="Comprehensive evaluation of your digital products against WCAG standards to identify barriers and ensure compliance."

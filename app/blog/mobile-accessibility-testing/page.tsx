@@ -4,16 +4,58 @@ import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "Mobile Accessibility Testing: Complete Guide for iOS and Android | Accessibility.build",
+  title: "Mobile Accessibility Testing: iOS & Android Guide",
   description: "Learn mobile accessibility testing with TalkBack, VoiceOver, and Switch Control. Essential guide for mobile app and responsive web accessibility.",
   keywords: ["mobile accessibility testing", "TalkBack testing", "VoiceOver mobile", "mobile app accessibility", "responsive accessibility", "mobile WCAG"],
+  alternates: { canonical: "/blog/mobile-accessibility-testing" },
+  openGraph: {
+    type: "article",
+    title: "Mobile Accessibility Testing: iOS & Android Guide",
+    description: "Learn mobile accessibility testing with TalkBack, VoiceOver, and Switch Control. Essential guide for mobile app and responsive web accessibility.",
+    url: "/blog/mobile-accessibility-testing",
+    images: [
+      {
+        url: "/api/og?title=Mobile%20Accessibility%20Testing%3A%20iOS%20%26%20Android%20Guide&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "Mobile Accessibility Testing: iOS & Android Guide",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mobile Accessibility Testing: iOS & Android Guide",
+    description: "Learn mobile accessibility testing with TalkBack, VoiceOver, and Switch Control. Essential guide for mobile app and responsive web accessibility.",
+    images: ["/api/og?title=Mobile%20Accessibility%20Testing%3A%20iOS%20%26%20Android%20Guide&section=Blog"],
+  },
 }
 
 export default function MobileAccessibilityTestingPost() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <ArticleStructuredData
+        headline="Mobile Accessibility Testing: iOS & Android Guide"
+        description="Learn mobile accessibility testing with TalkBack, VoiceOver, and Switch Control. Essential guide for mobile app and responsive web accessibility."
+        author={{ name: "Accessibility.build Team" }}
+        publisher={{
+          name: "Accessibility.build",
+          logo: "https://accessibility.build/android-chrome-512x512.png",
+        }}
+        datePublished="2025-11-15"
+        dateModified="2025-11-15"
+        image="https://accessibility.build/api/og?title=Mobile%20Accessibility%20Testing%3A%20iOS%20%26%20Android%20Guide&section=Blog"
+        url="https://accessibility.build/blog/mobile-accessibility-testing"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Blog", url: "https://accessibility.build/blog" },
+          { name: "Mobile Accessibility Testing: iOS & Android Guide", url: "https://accessibility.build/blog/mobile-accessibility-testing" },
+        ]}
+      />
       <header className="bg-white dark:bg-gray-900 border-b">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <Button asChild variant="ghost" size="sm" className="mb-4">

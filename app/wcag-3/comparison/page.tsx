@@ -22,29 +22,25 @@ import {
   Compass,
 } from "lucide-react"
 
-export const metadata = {
-  ...createMetadata({
-    title: "WCAG 3.0 vs WCAG 2.2: Key Differences, Conformance Changes & What Stays",
-    description:
-      "Side-by-side comparison of WCAG 3.0 and WCAG 2.2. Understand the key differences in conformance models, scope, testing approaches, and what stays the same between the two accessibility standards.",
-    keywords: [
-      "wcag 3 vs wcag 2",
-      "wcag 3.0 comparison",
-      "wcag 2.2 vs 3.0 differences",
-      "wcag 3.0 conformance model",
-      "WCAG 3.0 changes",
-      "WCAG comparison",
-      "accessibility standards comparison",
-      "wcag 3.0 vs wcag 2.2",
-    ],
-    type: "article" as const,
-    publishedTime: "2026-03-15T00:00:00Z",
-    modifiedTime: "2026-03-15T00:00:00Z",
-  }),
-  alternates: {
-    canonical: "https://accessibility.build/wcag-3/comparison",
-  },
-}
+export const metadata = createMetadata({
+  title: "WCAG 3.0 vs WCAG 2.2: Key Differences & Changes",
+  description:
+    "Side-by-side comparison of WCAG 3.0 and WCAG 2.2. Understand the key differences in conformance models, scope, testing approaches, and what stays the same between the two accessibility standards.",
+  keywords: [
+    "wcag 3 vs wcag 2",
+    "wcag 3.0 comparison",
+    "wcag 2.2 vs 3.0 differences",
+    "wcag 3.0 conformance model",
+    "WCAG 3.0 changes",
+    "WCAG comparison",
+    "accessibility standards comparison",
+    "wcag 3.0 vs wcag 2.2",
+  ],
+  type: "article" as const,
+  publishedTime: "2026-03-15T00:00:00Z",
+  modifiedTime: "2026-03-15T00:00:00Z",
+  path: "/wcag-3/comparison",
+})
 
 const faqs = [
   {
@@ -82,7 +78,7 @@ const comparisonRows = [
   },
   {
     dimension: "Structure",
-    wcag22: "4 principles, 13 guidelines, 78 success criteria",
+    wcag22: "4 principles, 13 guidelines, 86 success criteria",
     wcag30: "12 categories, guidelines, requirements, methods",
   },
   {

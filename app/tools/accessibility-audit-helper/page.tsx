@@ -4,7 +4,7 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "AI Accessibility Audit Helper | Expert Issue Analysis & Code Recommendations | Accessibility.build",
+  title: "AI Accessibility Audit Helper | Issue Analysis",
   description:
     "Get expert accessibility analysis with AI. Describe issues, add code snippets, specify your tech stack and receive detailed WCAG compliance recommendations, code fixes, and implementation guidance.",
   keywords: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/audit-helper-twitter.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/accessibility-audit-helper"
+    canonical: "/tools/accessibility-audit-helper"
   }
 }
 

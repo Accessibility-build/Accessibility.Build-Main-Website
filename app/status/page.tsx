@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export const metadata: Metadata = {
-  title: "System Status | Accessibility.build - Service Health & Uptime",
+  title: "System Status - Service Health & Uptime",
   description:
     "Check the current status of Accessibility.build services, including API uptime, tool availability, and recent incidents.",
   keywords: [

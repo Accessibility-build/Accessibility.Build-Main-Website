@@ -30,7 +30,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const report = await getReport(slug)
-  if (!report) return { title: 'Report not found — Accessibility.build' }
+  if (!report) return { title: 'Report not found' }
 
   const image = `${SITE_URL}/api/reports/${slug}/image`
   const count = report.issues.length

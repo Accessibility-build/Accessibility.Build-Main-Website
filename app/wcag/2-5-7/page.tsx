@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 2.5.7 Dragging Movements — Single-Pointer Alternatives Guide (Level AA)",
+  title: "WCAG 2.5.7 Dragging Movements — Pointer Alternatives",
   description:
     "Complete guide to WCAG 2.5.7 Dragging Movements, new in WCAG 2.2. Learn why every drag action needs a single-pointer alternative, the two exceptions, accessible patterns for sliders, sortable lists and maps, code examples, testing methods, and common mistakes.",
   keywords: [
@@ -741,73 +741,9 @@ export default function WCAG257Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-5-8"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.5.8 Target Size (Minimum)
-                  </Link>{" "}
-                  — AA (new in 2.2)
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The sibling pointer-input criterion. The single-pointer buttons
-                  you add for 2.5.7 must also meet the 24×24 CSS pixel target
-                  size, so the two are usually evaluated together.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  2.5.1 Pointer Gestures — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Covers multipoint and path-based gestures such as pinch and
-                  swipe. Closely related to 2.5.7 but distinct: 2.5.1 is about
-                  complex gestures, 2.5.7 about press-and-move dragging.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/2-1-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    2.1.1 Keyboard
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The complementary path: a drag feature needs a keyboard route
-                  for 2.1.1 as well as a single-pointer route for 2.5.7. Robust
-                  interactions provide both.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/guides/keyboard-accessibility"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    Keyboard Accessibility Guide
-                  </Link>
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Practical patterns for operating drag-and-drop, sliders, and
-                  reorderable lists from the keyboard — the counterpart to the
-                  pointer alternatives on this page.
-                </p>
-              </div>
-            </div>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="2.5.7" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

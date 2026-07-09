@@ -1,6 +1,9 @@
 // Smart Internal Linking System for SEO
 // Automatically suggests relevant internal links based on content context
 
+import { wcagCriteria } from "./wcag-data"
+import { staticBlogPosts } from "./static-blog-posts"
+
 interface InternalLink {
   url: string
   title: string
@@ -46,7 +49,7 @@ const INTERNAL_LINKS: InternalLink[] = [
   {
     url: '/checklists/wcag-2-2',
     title: 'WCAG 2.2 Interactive Checklist',
-    description: 'Complete interactive checklist with all 78 WCAG 2.2 success criteria',
+    description: 'Complete interactive checklist with all 86 WCAG 2.2 success criteria',
     type: 'checklist',
     keywords: ['wcag 2.2', 'checklist', 'success criteria', 'compliance'],
     priority: 10
@@ -326,14 +329,114 @@ const INTERNAL_LINKS: InternalLink[] = [
   }
 ]
 
+// The rest of the database is generated from the site's data modules so new
+// content is linkable without hand-maintaining this file.
+
+const curatedUrls = new Set(INTERNAL_LINKS.map((l) => l.url))
+
+// Every WCAG criterion page (skipping ones with richer curated entries above)
+const wcagCriterionLinks: InternalLink[] = wcagCriteria
+  .filter((c) => !curatedUrls.has(`/wcag/${c.number.replace(/\./g, "-")}`))
+  .map((c) => ({
+    url: `/wcag/${c.number.replace(/\./g, "-")}`,
+    title: `WCAG ${c.number} ${c.title} Guide`,
+    description: c.description,
+    type: "guide" as const,
+    keywords: [
+      `wcag ${c.number}`,
+      c.title.toLowerCase(),
+      `level ${c.level.toLowerCase()}`,
+      c.guideline.toLowerCase().replace(/^[\d.]+ /, ""),
+      "wcag 2.2",
+      "success criteria",
+    ],
+    priority: 7,
+  }))
+
+// Static blog posts (Sanity posts are surfaced via their own related-posts UI)
+const blogLinks: InternalLink[] = staticBlogPosts.map((p) => ({
+  url: `/blog/${p.slug}`,
+  title: p.title,
+  description: p.excerpt,
+  type: "article" as const,
+  keywords: [
+    ...p.title.toLowerCase().split(" ").filter((w) => w.length > 3),
+    p.category.toLowerCase(),
+  ],
+  priority: 6,
+}))
+
+const MORE_LINKS: InternalLink[] = [
+  // Learn section
+  { url: "/learn", title: "Accessible Component Patterns", description: "Interactive tutorials for building accessible UI components with live demos and code", type: "resource", keywords: ["component patterns", "accessible components", "ui patterns", "tutorials", "learn accessibility"], priority: 8 },
+  { url: "/learn/table", title: "Accessible Data Table Pattern", description: "Build accessible data tables with semantic markup, sorting, and responsive behavior", type: "resource", keywords: ["accessible table", "data table", "table accessibility", "aria-sort", "semantic table"], priority: 7 },
+  { url: "/learn/modals", title: "Accessible Modal Dialog Pattern", description: "Build accessible modal dialogs with focus trapping and keyboard controls", type: "resource", keywords: ["accessible modal", "dialog", "focus trap", "modal accessibility", "keyboard modal"], priority: 7 },
+  { url: "/learn/carousels", title: "Accessible Carousel Pattern", description: "Build accessible carousels with keyboard navigation and reduced-motion support", type: "resource", keywords: ["accessible carousel", "slider accessibility", "carousel pattern", "reduced motion"], priority: 7 },
+  { url: "/learn/pagination", title: "Accessible Pagination Pattern", description: "Accessible pagination, infinite scroll, and load-more patterns", type: "resource", keywords: ["accessible pagination", "infinite scroll accessibility", "pagination pattern"], priority: 7 },
+  { url: "/learn/search", title: "Accessible Search Pattern", description: "Accessible search with ARIA combobox, announcements, and loading states", type: "resource", keywords: ["accessible search", "combobox", "autocomplete accessibility", "search pattern"], priority: 7 },
+  // Compliance pages
+  { url: "/compliance", title: "Accessibility Compliance & Laws Hub", description: "ADA, EAA, Section 508, EN 301 549, and state accessibility law guides", type: "resource", keywords: ["compliance", "accessibility laws", "legal requirements", "regulations"], priority: 8 },
+  { url: "/compliance/ada", title: "ADA Website Compliance Guide", description: "ADA digital accessibility requirements, Title II and III, deadlines, and lawsuit risk", type: "guide", keywords: ["ada compliance", "ada website", "title ii", "title iii", "ada requirements", "doj rule"], priority: 9 },
+  { url: "/compliance/eaa", title: "European Accessibility Act (EAA) Guide", description: "EAA compliance requirements, deadlines, scope, and how it relates to EN 301 549 and WCAG", type: "guide", keywords: ["eaa", "european accessibility act", "eu accessibility", "eaa compliance", "eaa deadline"], priority: 9 },
+  { url: "/compliance/section-508", title: "Section 508 Compliance Guide", description: "Section 508 requirements for federal agencies and vendors, VPATs, and WCAG mapping", type: "guide", keywords: ["section 508", "508 compliance", "vpat", "federal accessibility", "government procurement"], priority: 8 },
+  { url: "/compliance/en-301-549", title: "EN 301 549 Standard Guide", description: "The EU ICT accessibility standard explained — structure, WCAG relationship, and who needs it", type: "guide", keywords: ["en 301 549", "eu standard", "ict accessibility", "harmonized standard"], priority: 8 },
+  { url: "/compliance/california", title: "California Website Accessibility & Unruh Act", description: "California web accessibility law — the Unruh Act, statutory damages, and lawsuit trends", type: "guide", keywords: ["california accessibility", "unruh act", "california ada", "unruh damages"], priority: 8 },
+  { url: "/compliance/new-york", title: "New York Website Accessibility Laws", description: "New York web accessibility litigation landscape and state/city human rights laws", type: "guide", keywords: ["new york accessibility", "ny ada lawsuits", "nyshrl", "nychrl"], priority: 8 },
+  // Industries
+  { url: "/industries", title: "Accessibility by Industry", description: "Industry-specific accessibility compliance guides", type: "resource", keywords: ["industry accessibility", "sector compliance"], priority: 7 },
+  { url: "/industries/ecommerce", title: "E-commerce Accessibility Guide", description: "WCAG and ADA compliance for online stores — product images, checkout, and lawsuit risk", type: "guide", keywords: ["ecommerce accessibility", "online store", "retail accessibility", "checkout accessibility", "shopify accessibility"], priority: 8 },
+  { url: "/industries/healthcare", title: "Healthcare Website Accessibility Guide", description: "Accessibility compliance for healthcare — ADA, Section 1557, patient portals, telehealth", type: "guide", keywords: ["healthcare accessibility", "patient portal", "telehealth accessibility", "section 1557", "hospital website"], priority: 8 },
+  { url: "/industries/education", title: "Education & EdTech Accessibility Guide", description: "Accessibility for schools and universities — Title II deadlines, Section 504, LMS content", type: "guide", keywords: ["education accessibility", "university accessibility", "edtech", "lms accessibility", "school website"], priority: 8 },
+  { url: "/industries/government", title: "Government Web Accessibility Guide", description: "Section 508 and DOJ Title II requirements for government websites", type: "guide", keywords: ["government accessibility", "public sector", "title ii", "508 government", "municipal website"], priority: 8 },
+  // Glossary + version/comparison guides
+  { url: "/glossary", title: "Web Accessibility Glossary", description: "Plain-language definitions of 50+ accessibility terms", type: "resource", keywords: ["glossary", "definitions", "terminology", "what is", "accessibility terms"], priority: 7 },
+  { url: "/guides/wcag-2-1-vs-2-2", title: "WCAG 2.1 vs 2.2: What Changed", description: "The 9 new success criteria, the removal of 4.1.1, and how to migrate to WCAG 2.2", type: "guide", keywords: ["wcag 2.1 vs 2.2", "wcag differences", "new wcag criteria", "wcag migration", "wcag 2.2 changes"], priority: 9 },
+  { url: "/guides/wcag-2-2-aa-requirements", title: "WCAG 2.2 Level AA Requirements", description: "Complete list of every Level A and AA requirement for WCAG 2.2 conformance", type: "guide", keywords: ["wcag 2.2 aa", "aa requirements", "level aa checklist", "wcag conformance", "legal standard"], priority: 9 },
+  { url: "/guides/accessibility-overlay-alternatives", title: "Accessibility Overlay Alternatives", description: "Real alternatives to overlay widgets — remediation, testing, audits, and training", type: "guide", keywords: ["overlay alternatives", "accessibe alternative", "userway alternative", "overlay replacement", "instead of overlay"], priority: 8 },
+  { url: "/guides/automated-vs-manual-accessibility-testing", title: "Automated vs Manual Accessibility Testing", description: "What automated scans catch, what only manual testing finds, and the hybrid workflow", type: "guide", keywords: ["automated testing", "manual testing", "accessibility testing comparison", "testing workflow", "ci testing"], priority: 8 },
+  { url: "/guides/axe-vs-wave", title: "axe vs WAVE Comparison", description: "Factual comparison of the two most popular accessibility testing tools", type: "guide", keywords: ["axe", "wave", "axe vs wave", "testing tools", "axe-core", "webaim wave"], priority: 8 },
+  { url: "/guides/how-to-audit-website-accessibility", title: "How to Audit Website Accessibility", description: "Step-by-step accessibility audit methodology", type: "guide", keywords: ["accessibility audit", "how to audit", "audit methodology", "wcag audit", "audit process"], priority: 8 },
+  { url: "/guides/ai-accessibility-audit", title: "AI Accessibility Audit Guide", description: "How AI-assisted accessibility auditing works and where it fits", type: "guide", keywords: ["ai audit", "ai accessibility", "automated audit", "ai testing"], priority: 7 },
+  { url: "/guides/doj-title-ii-deadline-extension", title: "DOJ Title II Deadline Guide", description: "The DOJ Title II web rule deadlines and what public entities must do", type: "guide", keywords: ["doj title ii", "title ii deadline", "wcag deadline", "public entities", "april 2026"], priority: 8 },
+  { url: "/guides/section-504-web-accessibility-deadline", title: "Section 504 Web Accessibility Deadline", description: "Section 504 digital accessibility requirements and deadlines", type: "guide", keywords: ["section 504", "504 deadline", "hhs rule", "recipients federal funding"], priority: 7 },
+  { url: "/guides/accessible-color-palettes", title: "Accessible Color Palettes Guide", description: "How to build WCAG-compliant color systems for design systems and dark mode", type: "guide", keywords: ["accessible colors", "color palette", "color system", "dark mode accessibility", "design tokens"], priority: 8 },
+  { url: "/guides/oklch-apca-color-systems", title: "OKLCH & APCA Color Systems Guide", description: "Perceptual color spaces and next-gen contrast for accessible design systems", type: "guide", keywords: ["oklch", "apca", "perceptual color", "wcag 3 contrast", "color science"], priority: 7 },
+  { url: "/guides/accessible-typography-wcag", title: "Accessible Typography Guide", description: "WCAG-compliant typography — type scales, spacing, readability, and dyslexia-friendly choices", type: "guide", keywords: ["accessible typography", "font accessibility", "type scale", "readability", "dyslexia fonts"], priority: 8 },
+  // Checklists
+  { url: "/checklists/wcag-2-2/aaa", title: "WCAG 2.2 Level AAA Checklist", description: "Checklist for all Level AAA success criteria", type: "checklist", keywords: ["aaa checklist", "level aaa", "enhanced accessibility"], priority: 7 },
+  { url: "/checklists/interactive", title: "Interactive WCAG Checklist", description: "Track your WCAG 2.2 compliance progress interactively", type: "checklist", keywords: ["interactive checklist", "progress tracking", "compliance tracking"], priority: 7 },
+  // Remaining on-topic tools
+  { url: "/tools/alt-text-generator", title: "AI Alt Text Generator", description: "Generate accessible alt text for images with AI", type: "tool", keywords: ["alt text", "image accessibility", "alt text generator", "image description"], priority: 8 },
+  { url: "/tools/mobile-accessibility-checker", title: "Mobile Accessibility Checker", description: "Check touch targets and mobile WCAG compliance", type: "tool", keywords: ["mobile accessibility", "touch targets", "mobile wcag", "tap target"], priority: 7 },
+  { url: "/tools/color-palette-generator", title: "Accessible Color Palette Generator", description: "Generate WCAG-compliant color palettes with live UI preview", type: "tool", keywords: ["color palette generator", "accessible palette", "wcag colors"], priority: 7 },
+  { url: "/tools/accessible-palette-studio", title: "Accessible Palette Studio", description: "OKLCH + APCA + WCAG color system builder with design tokens export", type: "tool", keywords: ["palette studio", "oklch generator", "apca palette", "design tokens"], priority: 7 },
+  { url: "/tools/accessible-typography-studio", title: "Accessible Typography Studio", description: "WCAG + APCA type scale generator with readability analysis", type: "tool", keywords: ["typography studio", "type scale generator", "readability analyzer", "fluid typography"], priority: 7 },
+  { url: "/tools/url-accessibility-auditor", title: "URL Accessibility Auditor", description: "Audit any URL with axe-core and AI analysis", type: "tool", keywords: ["url auditor", "website audit", "axe-core", "page audit"], priority: 8 },
+  { url: "/tools/scope-checker", title: "Scope Checker", description: "Crawl a site to find URLs, documents, and page titles for audit scoping", type: "tool", keywords: ["scope checker", "site crawler", "audit scope", "url finder"], priority: 6 },
+  { url: "/tools/accessibility-code-generator", title: "AI Accessibility Code Generator", description: "Generate WCAG-compliant component code with AI", type: "tool", keywords: ["code generator", "accessible code", "component generator"], priority: 7 },
+  { url: "/tools/accessibility-report-generator", title: "Accessibility Report Generator", description: "Generate professional PDF and Excel accessibility reports", type: "tool", keywords: ["report generator", "audit report", "pdf report", "vpat"], priority: 6 },
+  { url: "/tools/accessibility-statement-generator", title: "Accessibility Statement Generator", description: "Create a WCAG-conformant accessibility statement for your site", type: "tool", keywords: ["accessibility statement", "statement generator", "conformance statement"], priority: 7 },
+  { url: "/tools/ada-compliance-risks", title: "ADA Compliance Risk Assessment", description: "Assess your legal risk with current lawsuit data", type: "tool", keywords: ["ada risk", "compliance risk", "lawsuit risk", "risk calculator"], priority: 7 },
+  // Research + reference
+  { url: "/research", title: "Accessibility Research Hub", description: "Original accessibility research, data, and reports", type: "resource", keywords: ["research", "accessibility data", "reports", "statistics"], priority: 7 },
+  { url: "/services/accessibility-audits", title: "Professional Accessibility Audits", description: "Expert manual WCAG audits with prioritized remediation guidance", type: "resource", keywords: ["professional audit", "manual audit", "audit service", "expert audit", "wcag audit service"], priority: 8 },
+]
+
+const ALL_LINKS: InternalLink[] = [
+  ...INTERNAL_LINKS,
+  ...wcagCriterionLinks,
+  ...blogLinks,
+  ...MORE_LINKS,
+]
+
 /**
  * Get related internal links for content
  */
 export function getRelatedLinks(content: string, maxResults: number = 5): ContentMatch[] {
   const contentKeywords = content.toLowerCase().split(' ')
   const matches: ContentMatch[] = []
-  
-  INTERNAL_LINKS.forEach(link => {
+
+  ALL_LINKS.forEach(link => {
     let score = 0
     const matchedKeywords: string[] = []
     

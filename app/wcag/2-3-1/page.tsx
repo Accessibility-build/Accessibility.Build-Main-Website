@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import WCAG231ClientPage from "./client-page";
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title: "WCAG 2.3.1 Three Flashes or Below Threshold (Level A) - Interactive Demo | Accessibility Build",
+  title: "WCAG 2.3.1 Three Flashes or Below Threshold (Level A)",
   description: "Master WCAG 2.3.1 Three Flashes or Below Threshold with interactive flash detection tools, seizure prevention techniques, and safety testing. Includes live demos, code examples, and comprehensive implementation guide for photosensitive epilepsy protection.",
   keywords: [
     "WCAG 2.3.1", 
@@ -20,15 +21,15 @@ export const metadata: Metadata = {
     "compliance testing",
     "accessibility audit"
   ],
-  authors: [{ name: "Accessibility Build Team" }],
-  creator: "Accessibility Build",
-  publisher: "Accessibility Build",
+  authors: [{ name: "Accessibility.build Team" }],
+  creator: "Accessibility.build",
+  publisher: "Accessibility.build",
   openGraph: {
     title: "WCAG 2.3.1 Three Flashes or Below Threshold - Interactive Demo & Testing Tools",
     description: "Comprehensive guide to implementing seizure-safe web content. Interactive flash detection tools, safety guidelines, and compliance testing for photosensitive epilepsy protection.",
     type: "article",
     url: "https://accessibility.build/wcag/2-3-1",
-    siteName: "Accessibility Build",
+    siteName: "Accessibility.build",
     locale: "en_US",
     images: [
       {
@@ -63,5 +64,12 @@ export const metadata: Metadata = {
 };
 
 export default function WCAG231Page() {
-  return <WCAG231ClientPage />;
+  return (
+    <>
+      <WCAG231ClientPage />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <CriterionLinks number="2.3.1" />
+      </div>
+    </>
+  );
 } 

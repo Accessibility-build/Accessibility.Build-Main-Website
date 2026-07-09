@@ -5,8 +5,8 @@ import { ConnectClient } from './ConnectClient'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Connect your desktop app — Accessibility.build',
-  robots: { index: false },
+  title: 'Connect Your Desktop App',
+  robots: { index: false, follow: false },
 }
 
 export default async function ConnectPage({

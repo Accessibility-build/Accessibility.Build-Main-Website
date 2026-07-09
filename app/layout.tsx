@@ -133,12 +133,6 @@ export const metadata: Metadata = {
   },
   applicationName: "Accessibility.build",
   generator: "Next.js",
-  alternates: {
-    canonical: "https://accessibility.build",
-    languages: {
-      'en-US': 'https://accessibility.build',
-    },
-  },
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
     yandex: process.env.YANDEX_VERIFICATION,
@@ -187,14 +181,6 @@ const structuredData = {
       description: "Professional accessibility platform with AI-powered tools, WCAG 2.2 & 3.0 testing, and comprehensive resources for building inclusive digital experiences.",
       publisher: {
         "@id": "https://accessibility.build/#organization"
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: "https://accessibility.build/search?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
       }
     },
     {

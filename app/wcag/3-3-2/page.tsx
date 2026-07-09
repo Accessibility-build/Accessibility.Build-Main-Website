@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 3.3.2 Labels or Instructions — Accessible Form Labels Guide (Level A)",
+  title: "WCAG 3.3.2 Labels or Instructions — Form Labels Guide",
   description:
     "Complete guide to WCAG 3.3.2 Labels or Instructions. Learn how to label every form field, the four ways to associate a label, why placeholders are not labels, required-field and format hints, code examples, testing methods, and common mistakes.",
   keywords: [
@@ -721,90 +721,9 @@ export default function WCAG332Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-3-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.3.1 Info and Relationships
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Requires that the label–control relationship is programmatically
-                  determinable. 3.3.2 says a label exists; 1.3.1 says it is wired
-                  up correctly.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/4-1-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    4.1.2 Name, Role, Value
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Governs whether each control exposes a correct accessible name and
-                  role to assistive technology — the engine that turns a label into
-                  a spoken field name.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.1 Error Identification
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The sibling forms criterion: when input is rejected, the error
-                  must be identified in text. Clear labels up front reduce errors;
-                  3.3.1 handles them when they happen.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  2.4.6 Headings and Labels — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Raises the bar at Level AA: labels must not only exist but also be
-                  descriptive enough to convey the field&apos;s topic or purpose.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="3.3.2" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

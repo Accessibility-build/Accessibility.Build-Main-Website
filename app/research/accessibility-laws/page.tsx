@@ -6,7 +6,7 @@ import { lawsSummary } from "@/lib/data/accessibility-laws"
 import { AccessibilityLawsClient } from "./AccessibilityLawsClient"
 
 export const metadata: Metadata = {
-  title: "Accessibility Laws by Jurisdiction | Global Legal Tracker 2026 | Accessibility.build",
+  title: "Accessibility Laws by Jurisdiction: Global Tracker",
   description:
     "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers ADA Title II April 2026 deadline, European Accessibility Act, Section 508, and more.",
   keywords: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     canonical: "https://accessibility.build/research/accessibility-laws",
   },
   openGraph: {
-    title: "Accessibility Laws by Jurisdiction | Global Legal Tracker 2026 | Accessibility.build",
+    title: "Accessibility Laws by Jurisdiction: Global Tracker",
     description:
       "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers ADA Title II April 2026 deadline, European Accessibility Act, Section 508, and more.",
     url: "https://accessibility.build/research/accessibility-laws",

@@ -3,13 +3,37 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
+import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
 import { Check, BookOpen, Users, Code, Pencil, Monitor, MessageSquare } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Accessibility Training | Accessibility.build",
+  title: "Accessibility Training",
   description:
     "Empower your team with the knowledge and skills to create accessible digital products through our specialized accessibility training programs.",
+  alternates: { canonical: "/services/accessibility-training" },
+  openGraph: {
+    type: "website",
+    title: "Accessibility Training",
+    description:
+      "Empower your team with the knowledge and skills to create accessible digital products through our specialized accessibility training programs.",
+    url: "/services/accessibility-training",
+    images: [
+      {
+        url: "/api/og?title=Accessibility%20Training&section=Services",
+        width: 1200,
+        height: 630,
+        alt: "Accessibility Training",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accessibility Training",
+    description:
+      "Empower your team with the knowledge and skills to create accessible digital products through our specialized accessibility training programs.",
+    images: ["/api/og?title=Accessibility%20Training&section=Services"],
+  },
 }
 
 const trainingProcess = [
@@ -76,6 +100,19 @@ const faqs = [
 export default function AccessibilityTrainingPage() {
   return (
     <div className="container-wide py-12">
+      <ServiceStructuredData
+        name="Accessibility Training"
+        description="Empower your team with the knowledge and skills to create accessible digital products through our specialized accessibility training programs."
+        serviceType="Accessibility Training"
+        url="https://accessibility.build/services/accessibility-training"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Services", url: "https://accessibility.build/services" },
+          { name: "Accessibility Training", url: "https://accessibility.build/services/accessibility-training" },
+        ]}
+      />
       <ServiceHero
         title="Accessibility Training"
         description="Empower your team with the knowledge and skills to create accessible digital products through our specialized training programs."

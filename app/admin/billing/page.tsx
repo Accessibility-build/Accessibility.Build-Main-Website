@@ -6,6 +6,7 @@ import { AdminBillingOperationsClient } from '@/components/admin/admin-billing-o
 export const metadata = {
   title: 'Billing Funnel | Admin Dashboard',
   description: 'Razorpay checkout and billing center funnel telemetry',
+  robots: { index: false, follow: false },
 }
 
 export default async function AdminBillingPage() {

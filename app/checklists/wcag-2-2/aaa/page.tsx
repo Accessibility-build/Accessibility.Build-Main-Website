@@ -96,7 +96,7 @@ export default function WCAGAAAChecklistPage() {
         },
         {
           question: "How many success criteria are in WCAG 2.2 Level AAA?",
-          answer: "WCAG 2.2 Level AAA includes 28 success criteria beyond the 50 criteria in Levels A and AA, bringing the total to 78 success criteria across all three levels."
+          answer: "WCAG 2.2 Level AAA includes 31 success criteria beyond the 55 criteria in Levels A and AA, bringing the total to 86 success criteria across all three levels."
         }
       ]} />
 

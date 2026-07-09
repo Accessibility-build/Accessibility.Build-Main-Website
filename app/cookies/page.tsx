@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | Accessibility.build - How We Use Cookies",
+  title: "Cookie Policy - How We Use Cookies",
   description: "Learn about how Accessibility.build uses cookies and similar technologies to improve your experience and provide our services.",
   keywords: [
     "cookie policy",
@@ -24,6 +24,20 @@ export const metadata: Metadata = {
     description: "Learn about how we use cookies and similar technologies.",
     type: "website",
     url: "https://accessibility.build/cookies",
+    images: [
+      {
+        url: "/api/og?title=Cookie%20Policy&section=Legal",
+        width: 1200,
+        height: 630,
+        alt: "Cookie Policy - How We Use Cookies",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cookie Policy - Accessibility.build",
+    description: "Learn about how we use cookies and similar technologies.",
+    images: ["/api/og?title=Cookie%20Policy&section=Legal"],
   },
   alternates: {
     canonical: "https://accessibility.build/cookies"

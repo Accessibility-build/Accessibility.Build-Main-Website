@@ -5,7 +5,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 import { AriaReferenceClient } from "./client-page"
 
 export const metadata: Metadata = {
-  title: "ARIA Roles & Attributes Reference | Interactive Cheat Sheet & Playground | Accessibility.build",
+  title: "ARIA Roles & Attributes: Interactive Reference",
   description:
     "The complete interactive WAI-ARIA reference with searchable roles, attributes, live playground, screen reader behavior, ARIA vs native HTML comparisons, and copy-paste code patterns.",
   keywords: [

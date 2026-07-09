@@ -3,19 +3,20 @@ import { AdminLayout } from '@/components/admin/admin-layout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { getAllPosts } from "@/lib/mdx"
+import { staticBlogPosts } from "@/lib/static-blog-posts"
 import { extractKeywords } from "@/lib/seo-utils"
 
 export const metadata = {
   title: "SEO Dashboard | Admin Dashboard",
   description: "Monitor and optimize SEO performance for Accessibility.build",
+  robots: { index: false, follow: false },
 }
 
 export default async function SEODashboardPage() {
   // Verify admin access
   await requireAdmin()
 
-  const posts = await getAllPosts()
+  const posts = staticBlogPosts
 
   return (
     <AdminLayout>
@@ -114,12 +115,12 @@ export default async function SEODashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
-                {posts.filter(post => post !== null).slice(0, 5).map((post) => (
+                {posts.slice(0, 5).map((post) => (
                   <div key={post.slug} className="border-b pb-4">
-                    <h3 className="font-medium mb-1">{post.frontmatter.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-2">{post.frontmatter.description}</p>
+                    <h3 className="font-medium mb-1">{post.title}</h3>
+                    <p className="text-sm text-muted-foreground mb-2">{post.excerpt}</p>
                     <div className="flex flex-wrap gap-2 mb-2">
-                      {extractKeywords("", post.frontmatter.tags).map((keyword) => (
+                      {extractKeywords("", [post.category]).map((keyword) => (
                         <span key={keyword} className="bg-muted px-2 py-1 rounded-full text-xs">
                           {keyword}
                         </span>

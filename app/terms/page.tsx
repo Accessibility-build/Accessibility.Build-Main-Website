@@ -1,8 +1,29 @@
 import Link from "next/link"
 
 export const metadata = {
-  title: "Terms of Service | Accessibility.build",
+  title: "Terms of Service",
   description: "Our terms of service outline the rules and guidelines for using our website and services.",
+  alternates: { canonical: "/terms" },
+  openGraph: {
+    type: "website",
+    title: "Terms of Service",
+    description: "Our terms of service outline the rules and guidelines for using our website and services.",
+    url: "/terms",
+    images: [
+      {
+        url: "/api/og?title=Terms%20of%20Service&section=Legal",
+        width: 1200,
+        height: 630,
+        alt: "Terms of Service",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service",
+    description: "Our terms of service outline the rules and guidelines for using our website and services.",
+    images: ["/api/og?title=Terms%20of%20Service&section=Legal"],
+  },
 }
 
 export default function TermsPage() {

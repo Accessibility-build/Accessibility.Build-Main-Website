@@ -6,6 +6,7 @@ import { AdminAuditLogClient } from '@/components/admin/admin-audit-log-client'
 export const metadata = {
   title: 'Audit Log | Admin Dashboard',
   description: 'Track all admin actions and changes',
+  robots: { index: false, follow: false },
 }
 
 export default async function AdminAuditLogPage() {

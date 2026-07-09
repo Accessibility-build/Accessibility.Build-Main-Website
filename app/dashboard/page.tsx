@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
 import { getUserStats } from "@/lib/credits";
@@ -30,6 +31,11 @@ import { formatDistanceToNow } from "date-fns";
 import { CheckoutButton } from "@/components/billing/checkout-button";
 import { getCatalogPresentationPacks } from "@/lib/billing/catalog";
 import type { CheckoutCatalogKey } from "@/lib/billing/types";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  robots: { index: false, follow: false },
+};
 
 export default async function DashboardPage() {
   const user = await currentUser();

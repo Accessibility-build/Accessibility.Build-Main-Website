@@ -9,7 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Help Center | Accessibility.build - Support & Documentation",
+  title: "Help Center - Support & Documentation",
   description:
     "Find answers to your questions about accessibility testing, WCAG compliance, and using our tools. Get help with setup, troubleshooting, and best practices.",
   keywords: [

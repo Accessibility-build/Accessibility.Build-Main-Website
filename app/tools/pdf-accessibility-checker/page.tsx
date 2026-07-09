@@ -8,7 +8,7 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Free PDF Accessibility Checker | WCAG & PDF/UA Compliance | Accessibility.build",
+  title: "PDF Accessibility Checker | WCAG & PDF/UA",
   description:
     "Upload any PDF and instantly check for accessibility issues. Analyze document structure, alt text, reading order, bookmarks, and language against WCAG 2.2 and PDF/UA standards. AI-powered fix suggestions included.",
   keywords: [
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
       "Upload a PDF and check for accessibility issues. WCAG 2.2 and PDF/UA compliance with AI-powered fix suggestions.",
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/pdf-accessibility-checker",
+    canonical: "/tools/pdf-accessibility-checker",
   },
   robots: {
     index: true,

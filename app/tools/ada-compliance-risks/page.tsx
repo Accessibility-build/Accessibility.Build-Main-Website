@@ -7,9 +7,9 @@ import { Badge } from "@/components/ui/badge"
 import { Shield, AlertTriangle, TrendingUp, DollarSign, CheckCircle, Scale, BookOpen, ExternalLink, BarChart3, Gavel } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "ADA Compliance Risk Assessment 2025 | Free Legal Risk Calculator | Lawsuit Statistics",
+  title: "ADA Compliance Risk Assessment & Calculator",
   description:
-    "Free ADA compliance risk assessment tool with 2024-2025 lawsuit data. Calculate legal exposure, financial risk ($5K-$150K settlements), and get actionable compliance roadmaps. Based on 4,890+ lawsuits.",
+    "Free ADA compliance risk assessment tool with current lawsuit data. Calculate legal exposure, financial risk ($5K-$150K settlements), and get actionable compliance roadmaps. Based on 4,890+ lawsuits.",
   keywords: [
     "ada compliance risks",
     "ADA risk assessment",
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     "accessibility compliance cost"
   ],
   openGraph: {
-    title: "ADA Compliance Risk Assessment 2025 - Free Legal Risk Calculator",
-    description: "Free ADA compliance risk calculator with 2024-2025 lawsuit data. Based on 4,890+ lawsuits. Calculate legal exposure and financial risk.",
+    title: "ADA Compliance Risk Assessment - Free Legal Risk Calculator",
+    description: "Free ADA compliance risk calculator with current lawsuit data. Based on 4,890+ lawsuits. Calculate legal exposure and financial risk.",
     type: "website",
     url: "https://accessibility.build/tools/ada-compliance-risks",
     images: [
@@ -36,18 +36,18 @@ export const metadata: Metadata = {
         url: "https://accessibility.build/images/tools/ada-risk-og.png",
         width: 1200,
         height: 630,
-        alt: "ADA Compliance Risk Assessment Tool - 2025 Lawsuit Statistics"
+        alt: "ADA Compliance Risk Assessment Tool - Lawsuit Statistics"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "ADA Compliance Risk Assessment 2025 - Free Calculator",
-    description: "Free ADA risk calculator with 2024-2025 lawsuit data. 4,890+ lawsuits analyzed. Calculate your legal exposure.",
+    title: "ADA Compliance Risk Assessment - Free Calculator",
+    description: "Free ADA risk calculator with current lawsuit data. 4,890+ lawsuits analyzed. Calculate your legal exposure.",
     images: ["https://accessibility.build/images/tools/ada-risk-og.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/ada-compliance-risks"
+    canonical: "/tools/ada-compliance-risks"
   },
   robots: {
     index: true,

@@ -6,7 +6,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Accessibility.build - Data Protection & Privacy",
+  title: "Privacy Policy - Data Protection & Privacy",
   description: "Comprehensive privacy policy explaining how Accessibility.build collects, uses, and protects your personal information and data.",
   keywords: [
     "privacy policy",
@@ -21,6 +21,20 @@ export const metadata: Metadata = {
     description: "Learn how we protect your privacy and handle your data responsibly.",
     type: "website",
     url: "https://accessibility.build/privacy",
+    images: [
+      {
+        url: "/api/og?title=Privacy%20Policy&section=Legal",
+        width: 1200,
+        height: 630,
+        alt: "Privacy Policy - Data Protection & Privacy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy - Accessibility.build",
+    description: "Learn how we protect your privacy and handle your data responsibly.",
+    images: ["/api/og?title=Privacy%20Policy&section=Legal"],
   },
   alternates: {
     canonical: "https://accessibility.build/privacy"

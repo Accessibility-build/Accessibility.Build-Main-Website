@@ -3,7 +3,7 @@ import { ToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/s
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata = {
-  title: "JSON Formatter & Validator | Beautify, Minify & Validate JSON Online | Free Tool",
+  title: "JSON Formatter & Validator | Beautify & Minify",
   description: "Professional JSON formatter, validator, and beautifier. Format, minify, validate JSON data with syntax highlighting, error detection, and tree view. Free online tool for developers.",
   keywords: [
     "json formatter",
@@ -37,8 +37,11 @@ export const metadata = {
     description: "Format, validate & beautify JSON online. Syntax highlighting, error detection & tree view.",
     images: ["https://accessibility.build/images/tools/json-formatter-og.png"]
   },
+  // Utility tool unrelated to the site's accessibility focus — kept live but
+  // deindexed to preserve topical authority.
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: "https://accessibility.build/tools/json-formatter"
+    canonical: "/tools/json-formatter"
   }
 }
 

@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 1.4.12 Text Spacing — The Four Metrics, the Test Bookmarklet & How to Fix It (Level AA)",
+  title: "WCAG 1.4.12 Text Spacing — The Four Metrics & Fixes",
   description:
     "Complete guide to WCAG 1.4.12 Text Spacing. Learn the four values users must be able to set — line height 1.5, paragraph spacing 2×, letter spacing 0.12, word spacing 0.16 — the test bookmarklet, why fixed-height containers clip text, copy-ready CSS fixes, and common mistakes.",
   keywords: [
@@ -650,97 +650,9 @@ body { line-height: 1.5; }`}</code>
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-4-10"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.4.10 Reflow
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Both protect low-vision readers. Reflow tests content at 400% zoom
-                  and a 320px width; Text Spacing tests overridden line, paragraph,
-                  letter, and word spacing. Flexible containers pass both.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-4-3"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.4.3 Contrast (Minimum)
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The other core readability criterion. Contrast makes text
-                  perceivable by color; Text Spacing makes it perceivable by giving
-                  the reader room to open the text up.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-4-11"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.4.11 Non-text Contrast
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Part of the same 1.4 Distinguishable cluster. Where Text Spacing
-                  keeps text readable when reflowed, Non-text Contrast keeps the UI
-                  around it perceivable.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/1-4-13"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    1.4.13 Content on Hover or Focus
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  A sibling low-vision criterion for popups. Tooltips and hover menus
-                  hold text too, so they must also survive spacing overrides without
-                  clipping.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or scan a page for issues with the{" "}
-              <Link
-                href="/tools/contrast-checker"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                Color Contrast Checker
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="1.4.12" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

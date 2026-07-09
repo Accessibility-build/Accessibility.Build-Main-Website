@@ -21,8 +21,9 @@ import {
 import { formatDistanceToNow } from 'date-fns'
 
 export const metadata = {
-  title: 'Admin Dashboard | Accessibility.build',
+  title: 'Admin Dashboard',
   description: 'Administrative dashboard for managing users, credits, and analytics',
+  robots: { index: false, follow: false },
 }
 
 export default async function AdminDashboardPage() {

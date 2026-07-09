@@ -4,16 +4,58 @@ import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "Inclusive Design Principles: Creating Accessible Experiences for Everyone | Accessibility.build",
+  title: "Inclusive Design Principles for Accessible Experiences",
   description: "Learn inclusive design principles, universal design concepts, and practical strategies for creating digital experiences that work for users with diverse abilities and needs.",
   keywords: ["inclusive design", "universal design", "accessible design principles", "inclusive UX design", "accessibility by design", "inclusive web design"],
+  alternates: { canonical: "/blog/inclusive-design-principles" },
+  openGraph: {
+    type: "article",
+    title: "Inclusive Design Principles for Accessible Experiences",
+    description: "Learn inclusive design principles, universal design concepts, and practical strategies for creating digital experiences that work for users with diverse abilities and needs.",
+    url: "/blog/inclusive-design-principles",
+    images: [
+      {
+        url: "/api/og?title=Inclusive%20Design%20Principles%20for%20Accessible%20Experiences&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "Inclusive Design Principles for Accessible Experiences",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Inclusive Design Principles for Accessible Experiences",
+    description: "Learn inclusive design principles, universal design concepts, and practical strategies for creating digital experiences that work for users with diverse abilities and needs.",
+    images: ["/api/og?title=Inclusive%20Design%20Principles%20for%20Accessible%20Experiences&section=Blog"],
+  },
 }
 
 export default function InclusiveDesignPrinciplesPost() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <ArticleStructuredData
+        headline="Inclusive Design Principles for Accessible Experiences"
+        description="Learn inclusive design principles, universal design concepts, and practical strategies for creating digital experiences that work for users with diverse abilities and needs."
+        author={{ name: "Accessibility.build Team" }}
+        publisher={{
+          name: "Accessibility.build",
+          logo: "https://accessibility.build/android-chrome-512x512.png",
+        }}
+        datePublished="2025-11-15"
+        dateModified="2025-11-15"
+        image="https://accessibility.build/api/og?title=Inclusive%20Design%20Principles%20for%20Accessible%20Experiences&section=Blog"
+        url="https://accessibility.build/blog/inclusive-design-principles"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Blog", url: "https://accessibility.build/blog" },
+          { name: "Inclusive Design Principles for Accessible Experiences", url: "https://accessibility.build/blog/inclusive-design-principles" },
+        ]}
+      />
       <header className="bg-white dark:bg-gray-900 border-b">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <Button asChild variant="ghost" size="sm" className="mb-4">

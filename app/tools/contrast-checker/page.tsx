@@ -4,7 +4,7 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "WCAG Contrast Checker | Color Contrast Checker | WCAG 2.2 & 3.0 | Free Tool",
+  title: "Color Contrast Checker | WCAG 2.2 & 3.0",
   description:
     "Professional WCAG contrast checker supporting both WCAG 2.2 and 3.0 (APCA). Test contrast ratios instantly, get real-time feedback, and ensure your design meets accessibility standards for all users including those with visual impairments.",
   keywords: [
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/contrast-checker-twitter.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/contrast-checker"
+    canonical: "/tools/contrast-checker"
   },
   robots: {
     index: true,

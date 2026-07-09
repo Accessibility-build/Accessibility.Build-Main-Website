@@ -18,7 +18,7 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "AI-Powered Alt Text Generator | OpenAI GPT-4 Vision | Accessibility.build",
+  title: "AI Alt Text Generator | GPT-4 Vision",
   description:
     "Generate professional, descriptive alt text for images using OpenAI GPT-4 Vision. Improve accessibility for screen readers with AI-powered descriptions that boost SEO and user experience.",
   keywords: "alt text generator, AI alt text, OpenAI GPT-4 Vision, accessibility, screen reader, SEO, image description",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/images/tools/alt-text-generator-twitter.png"]
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/alt-text-generator"
+    canonical: "/tools/alt-text-generator"
   }
 }
 

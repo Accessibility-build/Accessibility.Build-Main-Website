@@ -1,4 +1,4 @@
-import {defineType, defineArrayMember} from 'sanity'
+import {defineType, defineArrayMember, defineField} from 'sanity'
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -62,6 +62,25 @@ export default defineType({
     defineArrayMember({
       type: 'image',
       options: {hotspot: true},
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alternative text',
+          type: 'string',
+          description:
+            'Describe the image for screen reader users and SEO. Convey the same information the image does — avoid phrases like "image of" or "picture of".',
+          validation: (Rule) =>
+            Rule.required().error(
+              'Alternative text is required so the image is accessible to screen reader users.'
+            ),
+        }),
+        defineField({
+          name: 'caption',
+          title: 'Caption',
+          type: 'string',
+          description: 'Optional caption displayed below the image.',
+        }),
+      ],
     }),
   ],
 })

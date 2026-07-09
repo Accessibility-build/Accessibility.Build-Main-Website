@@ -8,7 +8,7 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Free Accessibility Overlay Detector | Check If a Site Uses an Overlay Widget | Accessibility.build",
+  title: "Accessibility Overlay Detector | Scan Any Site",
   description:
     "Detect if any website uses an accessibility overlay widget like accessiBe, UserWay, AudioEye, or EqualWeb. See the vendor, scan for real WCAG violations the overlay fails to fix, and get expert recommendations.",
   keywords: [
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
       "Check if a website uses an accessibility overlay. See real WCAG violations the overlay fails to fix.",
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/overlay-detector",
+    canonical: "/tools/overlay-detector",
   },
   robots: {
     index: true,

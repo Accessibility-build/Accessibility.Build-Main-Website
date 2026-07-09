@@ -1,8 +1,11 @@
 import { Metadata } from 'next'
+import { BreadcrumbStructuredData } from '@/components/seo/structured-data'
+import WCAGSEOEnhancements from '@/components/wcag/seo-enhancements'
 import WCAG142ClientPage from './client-page'
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title: 'WCAG 1.4.2 Audio Control (Level A) - Interactive Demo | AccessibilityBuild',
+  title: 'WCAG 1.4.2 Audio Control (Level A) - Interactive Demo',
   description: 'Learn WCAG 1.4.2 Audio Control requirements with interactive audio controls, auto-play demonstrations, and real-world implementation examples.',
   keywords: [
     'WCAG 1.4.2',
@@ -16,15 +19,14 @@ export const metadata: Metadata = {
     'audio pause',
     'volume control'
   ],
-  authors: [{ name: 'AccessibilityBuild Team' }],
-  creator: 'AccessibilityBuild',
-  publisher: 'AccessibilityBuild',
+  authors: [{ name: 'Accessibility.build Team' }],
+  creator: 'Accessibility.build',
+  publisher: 'Accessibility.build',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://accessibility.build'),
   alternates: {
     canonical: 'https://accessibility.build/wcag/1-4-2',
   },
@@ -32,15 +34,15 @@ export const metadata: Metadata = {
     title: 'WCAG 1.4.2 Audio Control (Level A) - Interactive Demo',
     description: 'Master WCAG 1.4.2 Audio Control with interactive examples, auto-play demonstrations, and implementation guidance.',
     url: '/wcag/1-4-2',
-    siteName: 'AccessibilityBuild',
+    siteName: 'Accessibility.build',
     locale: 'en_US',
     type: 'article',
     images: [
       {
-        url: '/images/wcag-1-4-2-og.png',
+        url: '/api/og?title=WCAG%201.4.2%20Audio%20Control&section=WCAG',
         width: 1200,
         height: 630,
-        alt: 'WCAG 1.4.2 Audio Control Interactive Demo',
+        alt: 'WCAG 1.4.2 Audio Control (Level A) - Interactive Demo',
       },
     ],
   },
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'WCAG 1.4.2 Audio Control (Level A) - Interactive Demo',
     description: 'Master WCAG 1.4.2 Audio Control with interactive examples and implementation guidance.',
-    images: ['/images/wcag-1-4-2-twitter.png'],
+    images: ['/api/og?title=WCAG%201.4.2%20Audio%20Control&section=WCAG'],
   },
   robots: {
     index: true,
@@ -66,5 +68,29 @@ export const metadata: Metadata = {
 }
 
 export default function WCAG142Page() {
-  return <WCAG142ClientPage />
-} 
+  return (
+    <>
+      <WCAGSEOEnhancements
+        title="WCAG 1.4.2: Audio Control"
+        description="If any audio on a web page plays automatically for more than 3 seconds, either a mechanism is available to pause or stop the audio, or a mechanism is available to control audio volume independently from the overall system volume level."
+        criteria="1.4.2"
+        level="A"
+        principle="Perceivable"
+        guideline="1.4 Distinguishable"
+        url="https://accessibility.build/wcag/1-4-2"
+        category="Distinguishable"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: 'Home', url: 'https://accessibility.build' },
+          { name: 'WCAG Success Criteria', url: 'https://accessibility.build/wcag' },
+          { name: '1.4.2 Audio Control', url: 'https://accessibility.build/wcag/1-4-2' },
+        ]}
+      />
+      <WCAG142ClientPage />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <CriterionLinks number="1.4.2" />
+      </div>
+    </>
+  )
+}

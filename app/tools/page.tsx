@@ -3,7 +3,7 @@ import ToolsClientPage from "./ToolsClientPage"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "Professional Accessibility Tools | WCAG 2.2 & 3.0 Compliance",
+  title: "Accessibility Tools | WCAG 2.2 & 3.0 Compliance",
   description: "Comprehensive suite of AI-powered accessibility tools including contrast checkers, alt text generators, and WCAG compliance auditors.",
   keywords: [
     "accessibility tools",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "web accessibility tools"
   ],
   openGraph: {
-    title: "Professional Accessibility Tools | Accessibility.build",
+    title: "Accessibility Tools | WCAG 2.2 & 3.0 Compliance",
     description: "Comprehensive suite of AI-powered accessibility tools including contrast checkers, alt text generators, and WCAG compliance auditors.",
     type: "website",
     url: "https://accessibility.build/tools",
@@ -32,9 +32,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Professional Accessibility Tools | Accessibility.build",
+    title: "Accessibility Tools | WCAG 2.2 & 3.0 Compliance",
     description: "Comprehensive suite of AI-powered accessibility tools including contrast checkers, alt text generators, and WCAG compliance auditors.",
     images: ["/og-image.png"]
+  },
+  alternates: {
+    canonical: "/tools"
   }
 }
 

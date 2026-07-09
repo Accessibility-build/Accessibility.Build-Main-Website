@@ -20,7 +20,7 @@ import { getBillingOrdersForUser } from '@/lib/billing/service'
 import { getBillingCurrencyPolicyFromHeaders } from '@/lib/billing/region'
 
 export const metadata: Metadata = {
-  title: 'Billing Center | Accessibility.build',
+  title: 'Billing Center',
   description: 'Manage billing profile, receipts, and Razorpay payment history.',
   robots: {
     index: false,

@@ -6,9 +6,10 @@ import { Circle, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Interactive WCAG Checklist | Accessibility.build",
+  title: "Interactive WCAG Checklist",
   description: "Interactive accessibility checklist based on WCAG guidelines. Track your progress and ensure compliance with web accessibility standards.",
   keywords: "interactive checklist, WCAG, accessibility compliance, web accessibility audit",
+  alternates: { canonical: "/checklists/interactive" },
 }
 
 export default function InteractiveChecklistPage() {

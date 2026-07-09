@@ -6,7 +6,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Cancellation & Refund Policy | Accessibility.build - Consumer Rights",
+  title: "Cancellation & Refund Policy",
   description: "Comprehensive cancellation and refund policy for Accessibility.build services. Fair, transparent, and compliant with Indian consumer protection laws.",
   keywords: [
     "cancellation policy",
@@ -21,6 +21,20 @@ export const metadata: Metadata = {
     description: "Fair and transparent refund policy in compliance with Indian consumer protection laws.",
     type: "website",
     url: "https://accessibility.build/refund",
+    images: [
+      {
+        url: "/api/og?title=Cancellation%20%26%20Refund%20Policy&section=Legal",
+        width: 1200,
+        height: 630,
+        alt: "Cancellation & Refund Policy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cancellation & Refund Policy - Accessibility.build",
+    description: "Fair and transparent refund policy in compliance with Indian consumer protection laws.",
+    images: ["/api/og?title=Cancellation%20%26%20Refund%20Policy&section=Legal"],
   },
   alternates: {
     canonical: "https://accessibility.build/refund"

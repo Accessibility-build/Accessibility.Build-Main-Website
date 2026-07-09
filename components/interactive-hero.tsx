@@ -188,9 +188,9 @@ export function InteractiveHero() {
               transition={{ duration: 0.6 }}
             >
               <h1 className="xs:text-3xl xs2:text-4xl xs3:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                Empowering digital{" "}
+                Web{" "}
                 <span className="relative inline-block whitespace-nowrap">
-                  <span className="relative z-10 text-primary">inclusion</span>
+                  <span className="relative z-10 text-primary">accessibility</span>
                   <motion.span
                     className="absolute -bottom-2 left-0 right-0 h-3 bg-primary/20 rounded-full z-0"
                     initial={{ width: "0%" }}
@@ -198,7 +198,7 @@ export function InteractiveHero() {
                     transition={{ duration: 0.8, delay: 0.5 }}
                   />
                 </span>{" "}
-                for all
+                tools &amp; WCAG guides for inclusive websites
               </h1>
 
               <motion.p

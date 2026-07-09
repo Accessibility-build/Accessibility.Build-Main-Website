@@ -4,11 +4,33 @@ import { ArrowLeft, Calendar, Clock, Share2, Bookmark, MessageCircle, ChevronRig
 import { Badge } from "@/components/ui/badge"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "Web Accessibility for Beginners: Your Complete Getting Started Guide | Accessibility.build",
+  title: "Web Accessibility for Beginners: Getting Started Guide",
   description: "Learn web accessibility fundamentals, WCAG basics, and practical implementation tips. Perfect step-by-step guide for developers, designers, and content creators new to accessibility.",
   keywords: ["web accessibility for beginners", "accessibility basics", "WCAG for beginners", "accessible web design", "accessibility fundamentals", "inclusive design basics", "accessibility tutorial"],
+  alternates: { canonical: "/blog/web-accessibility-for-beginners" },
+  openGraph: {
+    type: "article",
+    title: "Web Accessibility for Beginners: Getting Started Guide",
+    description: "Learn web accessibility fundamentals, WCAG basics, and practical implementation tips. Perfect step-by-step guide for developers, designers, and content creators new to accessibility.",
+    url: "/blog/web-accessibility-for-beginners",
+    images: [
+      {
+        url: "/api/og?title=Web%20Accessibility%20for%20Beginners%3A%20Getting%20Started%20Guide&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "Web Accessibility for Beginners: Getting Started Guide",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Web Accessibility for Beginners: Getting Started Guide",
+    description: "Learn web accessibility fundamentals, WCAG basics, and practical implementation tips. Perfect step-by-step guide for developers, designers, and content creators new to accessibility.",
+    images: ["/api/og?title=Web%20Accessibility%20for%20Beginners%3A%20Getting%20Started%20Guide&section=Blog"],
+  },
 }
 
 export default function WebAccessibilityBeginnersPost() {
@@ -24,6 +46,26 @@ export default function WebAccessibilityBeginnersPost() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <ArticleStructuredData
+        headline="Web Accessibility for Beginners: Getting Started Guide"
+        description="Learn web accessibility fundamentals, WCAG basics, and practical implementation tips. Perfect step-by-step guide for developers, designers, and content creators new to accessibility."
+        author={{ name: "Alex Johnson" }}
+        publisher={{
+          name: "Accessibility.build",
+          logo: "https://accessibility.build/android-chrome-512x512.png",
+        }}
+        datePublished="2024-01-12"
+        dateModified="2025-11-15"
+        image="https://accessibility.build/api/og?title=Web%20Accessibility%20for%20Beginners%3A%20Getting%20Started%20Guide&section=Blog"
+        url="https://accessibility.build/blog/web-accessibility-for-beginners"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Blog", url: "https://accessibility.build/blog" },
+          { name: "Web Accessibility for Beginners: Getting Started Guide", url: "https://accessibility.build/blog/web-accessibility-for-beginners" },
+        ]}
+      />
       <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <Button asChild variant="ghost" size="sm" className="mb-4">

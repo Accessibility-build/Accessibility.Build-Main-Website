@@ -4,7 +4,7 @@ import { BreadcrumbStructuredData, ToolStructuredData } from "@/components/seo/s
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Scope Checker for Accessibility | Crawl URLs, Documents & Titles | Accessibility.build",
+  title: "Scope Checker for Accessibility | URL Crawler",
   description:
     "Use our scope checker for accessibility to crawl a website, collect internal URLs and document links, capture page titles, and map extra links in a strict 2-minute run.",
   keywords: [
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     images: ["https://accessibility.build/og-image.png"],
   },
   alternates: {
-    canonical: "https://accessibility.build/tools/scope-checker",
+    canonical: "/tools/scope-checker",
   },
 }
 

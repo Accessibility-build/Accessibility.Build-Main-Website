@@ -92,6 +92,12 @@ const navItems: NavItem[] = [
     href: "/learn",
     children: [
       {
+        name: "WCAG Success Criteria",
+        href: "/wcag",
+        description: "In-depth guides to all 86 WCAG 2.2 criteria",
+        popular: true,
+      },
+      {
         name: "Table Pattern",
         href: "/learn/table",
         description: "Accessible table implementation guide",
@@ -105,12 +111,16 @@ const navItems: NavItem[] = [
         name: "Keyboard Accessibility Guide",
         href: "/guides/keyboard-accessibility",
         description: "Complete keyboard navigation reference",
-        popular: true,
       },
       {
         name: "Screen Reader Testing",
         href: "/guides/screen-reader-testing",
         description: "Test with NVDA, JAWS, VoiceOver",
+      },
+      {
+        name: "Glossary",
+        href: "/glossary",
+        description: "Accessibility terms explained",
       },
       {
         name: "A11y Hell",
@@ -133,6 +143,11 @@ const navItems: NavItem[] = [
         name: "Lawsuit Tracker",
         href: "/research/accessibility-lawsuits",
         description: "ADA accessibility litigation data",
+      },
+      {
+        name: "Compliance & Laws",
+        href: "/compliance",
+        description: "ADA, EAA, Section 508, and state laws",
       },
       {
         name: "WCAG 3.0 Guide",

@@ -240,7 +240,7 @@ export default function WCAG131ClientPage() {
                       ✅ Good Heading Structure
                     </h4>
                     <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border space-y-2">
-                      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Main Page Title</h1>
+                      <div className="text-2xl font-bold text-slate-900 dark:text-white">Main Page Title</div>
                       <h2 className="text-xl font-semibold text-slate-700 dark:text-slate-300">Section Heading</h2>
                       <h3 className="text-lg font-medium text-slate-600 dark:text-slate-400">Subsection</h3>
                       <h3 className="text-lg font-medium text-slate-600 dark:text-slate-400">Another Subsection</h3>

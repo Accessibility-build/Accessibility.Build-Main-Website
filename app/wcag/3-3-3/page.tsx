@@ -5,10 +5,10 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { CriterionLinks } from "@/components/wcag/criterion-links"
 
 export const metadata: Metadata = {
-  title:
-    "WCAG 3.3.3 Error Suggestion — Suggest Fixes for Form Errors (Level AA)",
+  title: "WCAG 3.3.3 Error Suggestion — Suggest Fixes for Errors",
   description:
     "Complete guide to WCAG 3.3.3 Error Suggestion. Learn how to suggest corrections when a form error is detected, when the security/purpose exception applies, accessible suggestion patterns, aria-describedby and live regions, copy-ready code, testing methods, and common mistakes.",
   keywords: [
@@ -699,91 +699,9 @@ export default function WCAG333Page() {
           </section>
 
           {/* Related criteria */}
-          <section aria-labelledby="related-criteria" className="mb-12">
-            <h2
-              id="related-criteria"
-              className="text-3xl font-bold text-slate-900 dark:text-white mb-4"
-            >
-              Related success criteria
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.1 Error Identification
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  The Level A foundation: identify which field is wrong and
-                  describe the error in text. 3.3.3 adds the suggested fix on top
-                  of that description.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/3-3-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    3.3.2 Labels or Instructions
-                  </Link>{" "}
-                  — A
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Prevents errors before they happen with clear labels and format
-                  hints. A persistent hint plus a 3.3.3 suggestion is a powerful
-                  pairing.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  <Link
-                    href="/wcag/4-1-3"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    4.1.3 Status Messages
-                  </Link>{" "}
-                  — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Announces error counts and status through live regions without
-                  moving focus, so the user learns suggestions appeared even after
-                  an async submit.
-                </p>
-              </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                  3.3.4 Error Prevention (Legal, Financial, Data) — AA
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  For high-stakes submissions, requires that entries are
-                  reversible, checked, or confirmed — the prevention partner to
-                  3.3.3&apos;s recovery focus.
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              Browse every criterion in the{" "}
-              <Link
-                href="/wcag"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG Success Criteria hub
-              </Link>{" "}
-              or work through the full{" "}
-              <Link
-                href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-              >
-                WCAG 2.2 checklist
-              </Link>
-              .
-            </p>
-          </section>
+          <div id="related-criteria">
+            <CriterionLinks number="3.3.3" />
+          </div>
 
           {/* FAQ */}
           <section aria-labelledby="faq" className="mb-4">

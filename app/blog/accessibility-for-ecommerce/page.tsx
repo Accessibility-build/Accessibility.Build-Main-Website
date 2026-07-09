@@ -4,16 +4,58 @@ import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ShareDialog } from "@/components/blog/share-dialog"
 import type { Metadata } from "next"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "E-commerce Accessibility: Complete Guide for Online Stores | Accessibility.build",
+  title: "E-commerce Accessibility: Guide for Online Stores",
   description: "Essential e-commerce accessibility guide covering product pages, checkout process, search functionality, and WCAG compliance for online retail success.",
   keywords: ["ecommerce accessibility", "accessible online shopping", "retail accessibility", "accessible checkout", "ecommerce WCAG compliance", "online store accessibility"],
+  alternates: { canonical: "/blog/accessibility-for-ecommerce" },
+  openGraph: {
+    type: "article",
+    title: "E-commerce Accessibility: Guide for Online Stores",
+    description: "Essential e-commerce accessibility guide covering product pages, checkout process, search functionality, and WCAG compliance for online retail success.",
+    url: "/blog/accessibility-for-ecommerce",
+    images: [
+      {
+        url: "/api/og?title=E-commerce%20Accessibility%3A%20Guide%20for%20Online%20Stores&section=Blog",
+        width: 1200,
+        height: 630,
+        alt: "E-commerce Accessibility: Guide for Online Stores",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "E-commerce Accessibility: Guide for Online Stores",
+    description: "Essential e-commerce accessibility guide covering product pages, checkout process, search functionality, and WCAG compliance for online retail success.",
+    images: ["/api/og?title=E-commerce%20Accessibility%3A%20Guide%20for%20Online%20Stores&section=Blog"],
+  },
 }
 
 export default function AccessibilityForEcommercePost() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
+      <ArticleStructuredData
+        headline="E-commerce Accessibility: Guide for Online Stores"
+        description="Essential e-commerce accessibility guide covering product pages, checkout process, search functionality, and WCAG compliance for online retail success."
+        author={{ name: "Accessibility.build Team" }}
+        publisher={{
+          name: "Accessibility.build",
+          logo: "https://accessibility.build/android-chrome-512x512.png",
+        }}
+        datePublished="2025-11-15"
+        dateModified="2025-11-15"
+        image="https://accessibility.build/api/og?title=E-commerce%20Accessibility%3A%20Guide%20for%20Online%20Stores&section=Blog"
+        url="https://accessibility.build/blog/accessibility-for-ecommerce"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Blog", url: "https://accessibility.build/blog" },
+          { name: "E-commerce Accessibility: Guide for Online Stores", url: "https://accessibility.build/blog/accessibility-for-ecommerce" },
+        ]}
+      />
       <header className="bg-white dark:bg-gray-900 border-b">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <Button asChild variant="ghost" size="sm" className="mb-4">

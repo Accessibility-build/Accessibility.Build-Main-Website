@@ -22,14 +22,15 @@ import {
 import { createMetadata } from "@/lib/metadata"
 
 export const metadata = createMetadata({
-  title: "Welcome to Accessibility.build | Your Account is Ready!",
+  title: "Welcome | Your Account is Ready",
   description: "Welcome to your accessibility journey! Get started with 100 free credits and explore professional accessibility tools to make the web more inclusive.",
   keywords: [
     "welcome accessibility.build",
     "new user onboarding",
     "accessibility tools account",
     "free credits"
-  ]
+  ],
+  noIndex: true
 })
 
 export default function WelcomePage() {

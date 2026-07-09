@@ -5,6 +5,7 @@ import { AdminCreditsClient } from '@/components/admin/admin-credits-client'
 export const metadata = {
   title: 'Credit Management | Admin Dashboard',
   description: 'Manage credits, view statistics, and perform bulk operations',
+  robots: { index: false, follow: false },
 }
 
 export default async function AdminCreditsPage() {

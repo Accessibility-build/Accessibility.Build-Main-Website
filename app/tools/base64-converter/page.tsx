@@ -4,7 +4,7 @@ import { ToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/s
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: 'Base64 Encoder/Decoder - Convert Text & Files | A11y Helper',
+  title: 'Base64 Encoder/Decoder - Convert Text & Files',
   description: 'Free online Base64 encoder and decoder. Convert text to Base64 and decode Base64 back to text. Support for file uploads and instant conversion.',
   keywords: [
     'base64 encoder',
@@ -38,8 +38,11 @@ export const metadata: Metadata = {
     description: 'Free online Base64 encoder and decoder. Convert text to Base64 and decode Base64 back to text.',
     images: ["https://accessibility.build/images/tools/base64-converter-og.png"]
   },
+  // Utility tool unrelated to the site's accessibility focus — kept live but
+  // deindexed to preserve topical authority.
+  robots: { index: false, follow: true },
   alternates: {
-    canonical: "https://accessibility.build/tools/base64-converter"
+    canonical: "/tools/base64-converter"
   }
 }
 

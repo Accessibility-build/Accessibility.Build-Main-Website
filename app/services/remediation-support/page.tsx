@@ -3,13 +3,37 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
+import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
 import { Check, Code, FileText, Wrench, RefreshCw, MessageSquare } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Remediation Support | Accessibility.build",
+  title: "Remediation Support",
   description:
     "Expert assistance to fix accessibility issues in your digital products, from code-level fixes to content remediation.",
+  alternates: { canonical: "/services/remediation-support" },
+  openGraph: {
+    type: "website",
+    title: "Remediation Support",
+    description:
+      "Expert assistance to fix accessibility issues in your digital products, from code-level fixes to content remediation.",
+    url: "/services/remediation-support",
+    images: [
+      {
+        url: "/api/og?title=Remediation%20Support&section=Services",
+        width: 1200,
+        height: 630,
+        alt: "Remediation Support",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Remediation Support",
+    description:
+      "Expert assistance to fix accessibility issues in your digital products, from code-level fixes to content remediation.",
+    images: ["/api/og?title=Remediation%20Support&section=Services"],
+  },
 }
 
 const remediationProcess = [
@@ -76,6 +100,19 @@ const faqs = [
 export default function RemediationSupportPage() {
   return (
     <div className="container-wide py-12">
+      <ServiceStructuredData
+        name="Remediation Support"
+        description="Expert assistance to fix accessibility issues in your digital products, from code-level fixes to content remediation."
+        serviceType="Accessibility Remediation"
+        url="https://accessibility.build/services/remediation-support"
+      />
+      <BreadcrumbStructuredData
+        breadcrumbs={[
+          { name: "Home", url: "https://accessibility.build" },
+          { name: "Services", url: "https://accessibility.build/services" },
+          { name: "Remediation Support", url: "https://accessibility.build/services/remediation-support" },
+        ]}
+      />
       <ServiceHero
         title="Remediation Support"
         description="Expert assistance to fix accessibility issues in your digital products, from code-level fixes to content remediation."
