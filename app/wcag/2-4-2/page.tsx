@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://accessibility.build/images/wcag-2-4-2-page-titles.png",
+        url: "https://accessibility.build/api/og?title=WCAG%202.4.2%20Page%20Titled&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 2.4.2 Page Titled Interactive Demo - Title Analysis Tools",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WCAG 2.4.2 Page Titled - Interactive Demo",
     description: "Learn descriptive page titles with interactive analysis tools and SEO optimization techniques for accessibility compliance.",
-    images: ["https://accessibility.build/images/wcag-2-4-2-twitter.png"],
+    images: ["https://accessibility.build/api/og?title=WCAG%202.4.2%20Page%20Titled&section=WCAG"],
   },
   alternates: {
     canonical: "https://accessibility.build/wcag/2-4-2",

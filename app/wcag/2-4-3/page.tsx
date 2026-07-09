@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://accessibility.build/images/wcag-2-4-3-focus-order.png",
+        url: "https://accessibility.build/api/og?title=WCAG%202.4.3%20Focus%20Order&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 2.4.3 Focus Order Interactive Demo - Keyboard Navigation Tools",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WCAG 2.4.3 Focus Order - Interactive Demo",
     description: "Learn logical focus order with interactive tracking tools and keyboard navigation validation for accessibility compliance.",
-    images: ["https://accessibility.build/images/wcag-2-4-3-twitter.png"],
+    images: ["https://accessibility.build/api/og?title=WCAG%202.4.3%20Focus%20Order&section=WCAG"],
   },
   alternates: {
     canonical: "https://accessibility.build/wcag/2-4-3",

@@ -340,11 +340,16 @@ export async function POST(request: NextRequest) {
     } else {
       // Fallback: use pdf-parse for text extraction
       try {
-        const pdfParse = (await import("pdf-parse")).default
-        const parsed = await pdfParse(pdfBytes)
-        const text = parsed.text || ""
-        totalTextLength = text.length
-        totalWordCount = text.trim().split(/\s+/).filter(Boolean).length
+        const { PDFParse } = await import("pdf-parse")
+        const parser = new PDFParse({ data: new Uint8Array(pdfBytes) })
+        try {
+          const parsed = await parser.getText()
+          const text = parsed.text || ""
+          totalTextLength = text.length
+          totalWordCount = text.trim().split(/\s+/).filter(Boolean).length
+        } finally {
+          await parser.destroy()
+        }
       } catch {
         // Text extraction failed entirely
       }

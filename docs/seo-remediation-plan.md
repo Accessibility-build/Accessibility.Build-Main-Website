@@ -67,7 +67,7 @@ Conventions: each task has a checkbox, the files it touches, and a done-when cri
 - [x] `lib/utils.ts` has an unused `noIndex` metadata option — wire it up or remove it (align with 0.5).
 - [x] Fix "all 78 success criteria" copy (checklist page, `lib/internal-linking.ts`) → 86, matching `lib/wcag-data.ts`.
 - [x] `app/wcag/1-3-1/page.tsx` (~line 243): the interactive demo renders a literal second `<h1>` in the DOM — change the demo to render inside a sandboxed snippet (code block / iframe / `role="presentation"` container with non-heading markup) so the page has exactly one h1.
-- [ ] Note (non-SEO but flagged): `next.config.mjs` sets `typescript.ignoreBuildErrors: true` — schedule a separate cleanup to turn it off.
+- [x] Note (non-SEO but flagged): `next.config.mjs` sets `typescript.ignoreBuildErrors: true` — schedule a separate cleanup to turn it off. **DONE:** fixed the type errors in `app/api/tools/overlay-detector/route.ts` and `pdf-accessibility-checker/route.ts`, removed the flag; `npm run build` now type-checks as a build gate and passes clean.
 
 ---
 
@@ -148,7 +148,7 @@ Data for all 86 criteria already exists in `lib/wcag-data.ts`. Use the NEWER pag
 ### 5.0 Template groundwork (do first)
 - [x] Extract the newer template's repeated structure into shared components so each new page is content + config, not 780 duplicated lines.
 - [x] Create `lib/wcag-pages.ts` (built-slugs source of truth) consumed by the hub (3.2), checklist (3.4), sitemap, and related-criteria links.
-- [ ] Plan to re-template the 19 older pages onto the new standard as a final batch (kills the client-page pattern, fixes their missing schema/links at the root — supersedes the patches in 2.3/3.3 for those pages).
+- [~] Plan to re-template the 19 older pages onto the new standard as a final batch (kills the client-page pattern, fixes their missing schema/links at the root — supersedes the patches in 2.3/3.3 for those pages). **PARTIAL:** `1-1-1` (with an extracted `interactive-demo.tsx` client component) and `2-3-1` (static, no flashing demo) re-templated onto the modern server layout; 17 remain on the old thin-wrapper + `client-page.tsx` pattern. Those 17 already carry full schema/OG/canonical/CriterionLinks, so this is a cosmetic/maintainability cleanup with no SEO impact — deferred because it needs parallel agents (rate-limited). Also fixed broken `/images/wcag-*.png` OG images (nonexistent files) on `2-3-1`, `2-4-1`, `2-4-2`, `2-4-3` → now use `/api/og`.
 
 ### 5.1 Batch 1 — 6 missing Level A (highest priority)
 - [x] 2.5.1 Pointer Gestures, 2.5.2 Pointer Cancellation, 2.5.3 Label in Name, 2.5.4 Motion Actuation, 3.2.1 On Focus, 3.2.2 On Input.

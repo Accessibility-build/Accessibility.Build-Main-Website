@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://accessibility.build/images/wcag-2-4-1-skip-links.png",
+        url: "https://accessibility.build/api/og?title=WCAG%202.4.1%20Bypass%20Blocks&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 2.4.1 Skip Links Interactive Demo - Keyboard Navigation Tools",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WCAG 2.4.1 Bypass Blocks - Interactive Demo",
     description: "Learn skip links and navigation bypass with interactive demos and keyboard accessibility testing tools.",
-    images: ["https://accessibility.build/images/wcag-2-4-1-twitter.png"],
+    images: ["https://accessibility.build/api/og?title=WCAG%202.4.1%20Bypass%20Blocks&section=WCAG"],
   },
   alternates: {
     canonical: "https://accessibility.build/wcag/2-4-1",

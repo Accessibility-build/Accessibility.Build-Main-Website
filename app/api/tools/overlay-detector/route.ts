@@ -5,13 +5,24 @@ export const runtime = "nodejs"
 export const maxDuration = 60
 
 // Known overlay vendors and their detection signatures
-const OVERLAY_VENDORS: Record<string, {
+interface OverlayVendor {
   name: string
   scriptPatterns: string[]
   domPatterns: string[]
   globalVars: string[]
   website: string
-}> = {
+}
+
+// Shape of a single vendor detection result produced inside page.evaluate
+interface OverlayDetection {
+  vendorKey: string
+  scriptUrl: string | null
+  widgetFound: boolean
+  domPatterns: string[]
+  globalVarsFound: string[]
+}
+
+const OVERLAY_VENDORS: Record<string, OverlayVendor> = {
   accessibe: {
     name: "accessiBe",
     scriptPatterns: ["accessibe.com", "acsbapp.com", "acsbap.com", "acsb.js"],
@@ -237,7 +248,8 @@ export async function POST(request: NextRequest) {
     await new Promise((resolve) => setTimeout(resolve, 3000))
 
     // Detect overlays via page.evaluate
-    const detectionResults = await page.evaluate((vendors) => {
+    const detectionResults: OverlayDetection[] = await page.evaluate(
+      (vendors: Record<string, OverlayVendor>) => {
       const detected: Array<{
         vendorKey: string
         scriptUrl: string | null
@@ -345,10 +357,12 @@ export async function POST(request: NextRequest) {
       }
 
       return detected
-    }, OVERLAY_VENDORS)
+      },
+      OVERLAY_VENDORS
+    )
 
     // Map detection results to response format
-    const overlays = detectionResults.map((d) => ({
+    const overlays = detectionResults.map((d: OverlayDetection) => ({
       vendor: OVERLAY_VENDORS[d.vendorKey]?.name || d.vendorKey,
       vendorWebsite: OVERLAY_VENDORS[d.vendorKey]?.website || "",
       scriptUrl: d.scriptUrl,
