@@ -426,6 +426,16 @@ const successCriteria: SuccessCriterion[] = [
     icon: HelpCircle,
     available: true,
     new22: true
+  },
+  {
+    number: "3.1.1",
+    title: "Language of Page",
+    level: "A",
+    description: "The default human language of each page can be programmatically determined — set a valid BCP 47 lang attribute on the <html> element so screen readers pronounce content correctly.",
+    principle: "3. Understandable",
+    guideline: "3.1 Readable",
+    icon: Type,
+    available: true
   }
 ]
 
