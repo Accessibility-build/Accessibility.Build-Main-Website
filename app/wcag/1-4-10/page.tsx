@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%201.4.10%20Reflow&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 1.4.10 Reflow guide",
@@ -137,7 +137,7 @@ export default function WCAG1410Page() {
         }}
         datePublished="2026-07-05"
         dateModified="2026-07-05"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%201.4.10%20Reflow&section=WCAG"
         url="https://accessibility.build/wcag/1-4-10"
         wordCount={2800}
         keywords={[

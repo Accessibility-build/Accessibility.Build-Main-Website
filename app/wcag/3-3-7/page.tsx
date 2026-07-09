@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%203.3.7%20Redundant%20Entry&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 3.3.7 Redundant Entry guide",
@@ -158,7 +158,7 @@ export default function WCAG337Page() {
         }}
         datePublished="2026-07-03"
         dateModified="2026-07-03"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%203.3.7%20Redundant%20Entry&section=WCAG"
         url="https://accessibility.build/wcag/3-3-7"
         wordCount={2800}
         keywords={[

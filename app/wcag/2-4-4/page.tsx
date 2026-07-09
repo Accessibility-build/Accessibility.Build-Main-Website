@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%202.4.4%20Link%20Purpose%20%28In%20Context%29&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 2.4.4 Link Purpose (In Context) guide",
@@ -134,7 +134,7 @@ export default function WCAG244Page() {
         }}
         datePublished="2026-06-28"
         dateModified="2026-06-28"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%202.4.4%20Link%20Purpose%20%28In%20Context%29&section=WCAG"
         url="https://accessibility.build/wcag/2-4-4"
         wordCount={3000}
         keywords={[

@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%204.1.3%20Status%20Messages&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 4.1.3 Status Messages guide",
@@ -139,7 +139,7 @@ export default function WCAG413Page() {
         }}
         datePublished="2026-06-29"
         dateModified="2026-06-29"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%204.1.3%20Status%20Messages&section=WCAG"
         url="https://accessibility.build/wcag/4-1-3"
         wordCount={3100}
         keywords={[

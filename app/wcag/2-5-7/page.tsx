@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%202.5.7%20Dragging%20Movements&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 2.5.7 Dragging Movements guide",
@@ -126,7 +126,7 @@ export default function WCAG257Page() {
         }}
         datePublished="2026-07-02"
         dateModified="2026-07-02"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%202.5.7%20Dragging%20Movements&section=WCAG"
         url="https://accessibility.build/wcag/2-5-7"
         wordCount={2700}
         keywords={[

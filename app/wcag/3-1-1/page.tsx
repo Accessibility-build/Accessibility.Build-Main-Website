@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%203.1.1%20Language%20of%20Page&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 3.1.1 Language of Page guide",
@@ -108,7 +108,7 @@ export default function WCAG311Page() {
         }}
         datePublished="2026-07-09"
         dateModified="2026-07-09"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%203.1.1%20Language%20of%20Page&section=WCAG"
         url="https://accessibility.build/wcag/3-1-1"
         wordCount={2900}
         keywords={[

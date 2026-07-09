@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%202.4.7%20Focus%20Visible&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 2.4.7 Focus Visible guide",
@@ -130,7 +130,7 @@ export default function WCAG247Page() {
         }}
         datePublished="2026-06-26"
         dateModified="2026-06-26"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%202.4.7%20Focus%20Visible&section=WCAG"
         url="https://accessibility.build/wcag/2-4-7"
         wordCount={2900}
         keywords={[

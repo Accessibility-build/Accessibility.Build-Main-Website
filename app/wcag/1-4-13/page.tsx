@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%201.4.13%20Content%20on%20Hover%20or%20Focus&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 1.4.13 Content on Hover or Focus guide",
@@ -130,7 +130,7 @@ export default function WCAG1413Page() {
         }}
         datePublished="2026-07-06"
         dateModified="2026-07-06"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%201.4.13%20Content%20on%20Hover%20or%20Focus&section=WCAG"
         url="https://accessibility.build/wcag/1-4-13"
         wordCount={2900}
         keywords={[

@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%202.4.6%20Headings%20and%20Labels&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 2.4.6 Headings and Labels guide",
@@ -109,7 +109,7 @@ export default function WCAG246Page() {
         }}
         datePublished="2026-07-08"
         dateModified="2026-07-08"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%202.4.6%20Headings%20and%20Labels&section=WCAG"
         url="https://accessibility.build/wcag/2-4-6"
         wordCount={2800}
         keywords={[

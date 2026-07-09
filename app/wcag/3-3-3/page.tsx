@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%203.3.3%20Error%20Suggestion&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 3.3.3 Error Suggestion guide",
@@ -128,7 +128,7 @@ export default function WCAG333Page() {
         }}
         datePublished="2026-06-30"
         dateModified="2026-06-30"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%203.3.3%20Error%20Suggestion&section=WCAG"
         url="https://accessibility.build/wcag/3-3-3"
         wordCount={2700}
         keywords={[

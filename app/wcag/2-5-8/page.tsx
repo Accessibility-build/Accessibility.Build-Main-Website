@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%202.5.8%20Target%20Size%20%28Minimum%29&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 2.5.8 Target Size (Minimum) guide",
@@ -144,7 +144,7 @@ export default function WCAG258Page() {
         }}
         datePublished="2026-06-24"
         dateModified="2026-06-24"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%202.5.8%20Target%20Size%20%28Minimum%29&section=WCAG"
         url="https://accessibility.build/wcag/2-5-8"
         wordCount={2600}
         keywords={[

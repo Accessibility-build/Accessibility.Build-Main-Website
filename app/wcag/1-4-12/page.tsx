@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%201.4.12%20Text%20Spacing&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 1.4.12 Text Spacing guide",
@@ -136,7 +136,7 @@ export default function WCAG1412Page() {
         }}
         datePublished="2026-07-07"
         dateModified="2026-07-07"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%201.4.12%20Text%20Spacing&section=WCAG"
         url="https://accessibility.build/wcag/1-4-12"
         wordCount={2900}
         keywords={[

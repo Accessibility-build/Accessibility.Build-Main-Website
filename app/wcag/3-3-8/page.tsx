@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
     images: [
       {
-        url: "https://accessibility.build/og-image.png",
+        url: "https://accessibility.build/api/og?title=WCAG%203.3.8%20Accessible%20Authentication%20%28Minimum%29&section=WCAG",
         width: 1200,
         height: 630,
         alt: "WCAG 3.3.8 Accessible Authentication (Minimum) guide",
@@ -165,7 +165,7 @@ export default function WCAG338Page() {
         }}
         datePublished="2026-07-01"
         dateModified="2026-07-01"
-        image="https://accessibility.build/og-image.png"
+        image="https://accessibility.build/api/og?title=WCAG%203.3.8%20Accessible%20Authentication%20%28Minimum%29&section=WCAG"
         url="https://accessibility.build/wcag/3-3-8"
         wordCount={2900}
         keywords={[
