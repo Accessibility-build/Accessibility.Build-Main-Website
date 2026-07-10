@@ -103,6 +103,7 @@ const guides: SiteRoute[] = [
   { route: "/guides/wcag-2-2-aa-requirements", label: "WCAG 2.2 AA Requirements", group: "Guides", lastModified: "2026-07-09", priority: 0.94 },
   { route: "/guides/oklch-apca-color-systems", label: "OKLCH & APCA Color Systems", group: "Guides", lastModified: "2026-05-23", priority: 0.95 },
   { route: "/guides/accessible-typography-wcag", label: "Accessible Typography", group: "Guides", lastModified: "2026-05-23", priority: 0.95 },
+  { route: "/guides/accessible-forms", label: "Accessible Forms Guide", group: "Guides", lastModified: "2026-07-10", priority: 0.94 },
   { route: "/guides/keyboard-accessibility", label: "Keyboard Accessibility", group: "Guides", lastModified: "2026-03-15", priority: 0.94 },
   { route: "/guides/accessible-color-palettes", label: "Accessible Color Palettes", group: "Guides", lastModified: "2026-04-28", priority: 0.94 },
   { route: "/guides/screen-reader-testing", label: "Screen Reader Testing", group: "Guides", lastModified: "2026-03-15", priority: 0.93 },

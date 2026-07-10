@@ -184,6 +184,17 @@ const guides = [
     gradient: "from-sky-600 to-indigo-600",
   },
   {
+    title: "Accessible Forms Guide",
+    description:
+      "Build forms everyone can complete. Labels, required fields, inline validation, accessible error messages tied with aria-describedby, fieldset grouping, autocomplete, and multi-step patterns — mapped to WCAG 2.2 AA with copy-ready code.",
+    icon: FormInput,
+    difficulty: "Intermediate",
+    readingTime: "22 min",
+    topics: ["Labels", "Validation", "Error Messages", "WCAG 3.3.x"],
+    href: "/guides/accessible-forms",
+    gradient: "from-teal-600 to-cyan-600",
+  },
+  {
     title: "Complete Keyboard Accessibility Guide",
     description:
       "Master keyboard accessibility from fundamentals to advanced patterns. Learn focus management, skip navigation links, roving tabindex, and how to identify and fix keyboard traps with hands-on interactive demos.",
@@ -268,12 +279,6 @@ const comingSoonGuides = [
     description:
       "Comprehensive reference for WAI-ARIA design patterns including combobox, dialog, menu, tabs, and tree view with accessible implementations.",
     icon: FileCode2,
-  },
-  {
-    title: "Accessible Forms Guide",
-    description:
-      "Build forms that work for everyone. Labels, error handling, validation, grouping, and multi-step form patterns with full keyboard and screen reader support.",
-    icon: FormInput,
   },
 ]
 

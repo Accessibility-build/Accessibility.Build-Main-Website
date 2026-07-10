@@ -73,6 +73,14 @@ const INTERNAL_LINKS: InternalLink[] = [
   },
   // Guides
   {
+    url: '/guides/accessible-forms',
+    title: 'Accessible Forms Guide',
+    description: 'Build forms everyone can complete: labels, required fields, accessible validation and error messages, fieldset grouping, autocomplete, and multi-step patterns mapped to WCAG 2.2 AA',
+    type: 'guide',
+    keywords: ['accessible forms', 'form accessibility', 'accessible form validation', 'accessible error messages', 'form labels', 'aria-describedby', 'aria-invalid', 'fieldset legend', 'autocomplete', 'required fields', 'error prevention', 'wcag 3.3.1', 'wcag 3.3.2', 'multi-step forms'],
+    priority: 9
+  },
+  {
     url: '/guides/keyboard-accessibility',
     title: 'Complete Keyboard Accessibility Guide',
     description: 'Definitive guide to keyboard accessibility with interactive demos, code examples, and testing checklists',
