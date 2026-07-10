@@ -109,7 +109,7 @@ export default function WCAGSEOEnhancements({
     },
     "image": {
       "@type": "ImageObject",
-      "url": `https://accessibility.build/images/wcag-${criteria.replace(/\./g, '-')}-og.png`,
+      "url": `https://accessibility.build/api/og?title=${encodeURIComponent(`WCAG ${criteria} ${criteriaName}`)}&section=WCAG`,
       "width": 1200,
       "height": 630
     },
@@ -277,7 +277,7 @@ export default function WCAGSEOEnhancements({
         "name": `What is the difference between WCAG Level A, AA, and AAA?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `WCAG has three conformance levels: Level A (minimum/essential) - 30 criteria that address the most critical barriers. Level AA (standard/recommended) - 20 additional criteria that most laws require (ADA, Section 508, EN 301 549). Level AAA (enhanced/optimal) - 28 additional criteria for maximum accessibility. WCAG ${criteria} is Level ${level}, which means it is ${level === 'A' ? 'a fundamental requirement for any accessible website' : level === 'AA' ? 'required for legal compliance in most jurisdictions' : 'an enhancement that goes beyond typical requirements'}.`
+          "text": `WCAG has three conformance levels: Level A (minimum/essential) - 31 criteria that address the most critical barriers. Level AA (standard/recommended) - 24 additional criteria that most laws require (ADA, Section 508, EN 301 549). Level AAA (enhanced/optimal) - 31 additional criteria for maximum accessibility, bringing the WCAG 2.2 total to 86. WCAG ${criteria} is Level ${level}, which means it is ${level === 'A' ? 'a fundamental requirement for any accessible website' : level === 'AA' ? 'required for legal compliance in most jurisdictions' : 'an enhancement that goes beyond typical requirements'}.`
         }
       },
       {
@@ -289,133 +289,6 @@ export default function WCAGSEOEnhancements({
         }
       }
     ]
-  };
-
-  // Enhanced HowTo Schema with detailed steps and totalTime
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "@id": `${url}#howto`,
-    "name": `How to Implement WCAG ${criteria} ${criteriaName}`,
-    "description": `Complete step-by-step guide to implementing ${title} for WCAG 2.2 compliance. Learn requirements, coding techniques, and testing methods.`,
-    "image": `https://accessibility.build/images/wcag-${criteria.replace(/\./g, '-')}.png`,
-    "totalTime": `PT${timeToRead + 15}M`,
-    "estimatedCost": {
-      "@type": "MonetaryAmount",
-      "currency": "USD",
-      "value": "0"
-    },
-    "supply": [
-      {
-        "@type": "HowToSupply",
-        "name": "HTML/CSS/JavaScript knowledge"
-      },
-      {
-        "@type": "HowToSupply",
-        "name": "Code editor (VS Code, WebStorm, etc.)"
-      },
-      {
-        "@type": "HowToSupply",
-        "name": "Screen reader for testing (NVDA, VoiceOver, JAWS)"
-      },
-      {
-        "@type": "HowToSupply",
-        "name": "Modern web browser with DevTools"
-      }
-    ],
-    "tool": [
-      {
-        "@type": "HowToTool",
-        "name": "axe DevTools browser extension"
-      },
-      {
-        "@type": "HowToTool",
-        "name": "WAVE accessibility evaluation tool"
-      },
-      {
-        "@type": "HowToTool",
-        "name": "Chrome/Firefox DevTools Accessibility panel"
-      },
-      {
-        "@type": "HowToTool",
-        "name": "Accessibility Insights for Web"
-      }
-    ],
-    "step": [
-      {
-        "@type": "HowToStep",
-        "position": 1,
-        "name": "Understand the Requirement",
-        "text": `Read and understand what WCAG ${criteria} requires. The criterion states: ${description}. Review the official W3C understanding document for detailed guidance.`,
-        "url": `${url}#understanding`,
-        "image": `https://accessibility.build/images/wcag-${criteria.replace(/\./g, '-')}-step1.png`
-      },
-      {
-        "@type": "HowToStep",
-        "position": 2,
-        "name": "Audit Current Implementation",
-        "text": `Use automated tools (axe, WAVE, Lighthouse) to scan your website for ${criteriaName?.toLowerCase() || 'this criterion'} violations. Document all instances that need remediation.`,
-        "url": `${url}#audit`
-      },
-      {
-        "@type": "HowToStep",
-        "position": 3,
-        "name": "Review Code Examples",
-        "text": `Study the implementation examples in our interactive demo. Copy the accessible code patterns that apply to your use case. Pay attention to semantic HTML, ARIA attributes, and keyboard interactions.`,
-        "url": `${url}#examples`
-      },
-      {
-        "@type": "HowToStep",
-        "position": 4,
-        "name": "Implement the Fix",
-        "text": `Apply the appropriate technique to your codebase. For ${criteriaName?.toLowerCase() || 'this criterion'}, ensure you follow the specific requirements outlined in this guide. Use semantic HTML first, then enhance with ARIA only when necessary.`,
-        "url": `${url}#implementation`
-      },
-      {
-        "@type": "HowToStep",
-        "position": 5,
-        "name": "Test with Assistive Technology",
-        "text": `Verify your implementation works correctly with screen readers (NVDA, VoiceOver, JAWS), keyboard-only navigation, and other assistive technologies. Use our interactive testing tool to validate compliance.`,
-        "url": `${url}#testing`
-      },
-      {
-        "@type": "HowToStep",
-        "position": 6,
-        "name": "Document and Monitor",
-        "text": `Record your remediation efforts for compliance documentation. Set up automated accessibility testing in your CI/CD pipeline to prevent regression.`,
-        "url": `${url}#documentation`
-      }
-    ]
-  };
-
-  // Course Schema for educational value (helps with knowledge graph)
-  const courseSchema = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "@id": `${url}#course`,
-    "name": `WCAG ${criteria} ${criteriaName} - Complete Tutorial`,
-    "description": `Learn everything about ${title} including requirements, implementation techniques, testing methods, and real-world examples.`,
-    "provider": {
-      "@type": "Organization",
-      "@id": "https://accessibility.build/#organization"
-    },
-    "educationalLevel": level === 'AAA' ? "Advanced" : level === 'AA' ? "Intermediate" : "Beginner",
-    "teaches": `WCAG ${criteria} ${criteriaName}`,
-    "assesses": `Understanding and implementing ${title}`,
-    "competencyRequired": "Basic HTML and CSS knowledge",
-    "educationalCredentialAwarded": "WCAG 2.2 Knowledge",
-    "timeRequired": `PT${timeToRead}M`,
-    "inLanguage": "en-US",
-    "isAccessibleForFree": true,
-    "audience": {
-      "@type": "EducationalAudience",
-      "educationalRole": ["Web Developer", "UX Designer", "QA Engineer", "Accessibility Specialist"]
-    },
-    "hasCourseInstance": hasInteractiveDemo ? {
-      "@type": "CourseInstance",
-      "courseMode": "online",
-      "courseWorkload": `PT${timeToRead}M`
-    } : undefined
   };
 
   // ItemList for related criteria (improves internal linking signals)
@@ -451,18 +324,6 @@ export default function WCAGSEOEnhancements({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
-      {/* HowTo Schema - Rich Snippets */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
-
-      {/* Course Schema - Educational Content */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
       />
 
       {/* Related Content Schema */}
