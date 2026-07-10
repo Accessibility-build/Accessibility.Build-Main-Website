@@ -155,13 +155,32 @@ const structuredData = {
       "@type": "Organization",
       "@id": "https://accessibility.build/#organization",
       name: "Accessibility.build",
+      alternateName: "Accessibility Build",
       url: "https://accessibility.build",
+      description:
+        "Accessibility.build is a web accessibility platform providing WCAG 2.2 testing tools, in-depth success-criterion guides, compliance resources, and original accessibility research.",
       logo: {
         "@type": "ImageObject",
         url: "https://accessibility.build/android-chrome-512x512.png",
         width: 512,
         height: 512
       },
+      // Topic entities the site demonstrates expertise in — helps search and
+      // generative engines understand what this source is authoritative about.
+      knowsAbout: [
+        "Web accessibility",
+        "WCAG 2.2",
+        "WCAG 3.0",
+        "Web Content Accessibility Guidelines",
+        "ADA compliance",
+        "Section 508",
+        "European Accessibility Act",
+        "Assistive technology",
+        "Screen readers",
+        "Color contrast",
+        "Accessible design",
+        "Digital accessibility law",
+      ],
       sameAs: [
         "https://linkedin.com/company/accessibilitybuild",
         "https://github.com/accessibility-build"
