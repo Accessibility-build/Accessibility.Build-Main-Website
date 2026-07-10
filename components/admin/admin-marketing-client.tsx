@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Eraser, FileText, Loader2, Mail, Megaphone, RefreshCw, Send } from 'lucide-react'
+import { Copy, Eraser, Eye, FileText, Loader2, Mail, Megaphone, RefreshCw, Send, Users } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -75,6 +75,33 @@ export function AdminMarketingClient() {
   const [campaignFailedRecipients, setCampaignFailedRecipients] = useState<
     Array<{ email: string; error: string }>
   >([])
+
+  // Recipient review — the actual list of who will receive the campaign.
+  const [recipientList, setRecipientList] = useState<Array<{ email: string; name: string | null }>>([])
+  const [recipientAudience, setRecipientAudience] = useState<MarketingAudience | null>(null)
+  const [recipientLoading, setRecipientLoading] = useState(false)
+  const [recipientError, setRecipientError] = useState<string | null>(null)
+  const [recipientSearch, setRecipientSearch] = useState('')
+
+  const loadRecipients = useCallback(async (target: MarketingAudience) => {
+    try {
+      setRecipientLoading(true)
+      setRecipientError(null)
+      const response = await fetch(`/api/admin/marketing?recipients=${target}`, { cache: 'no-store' })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) {
+        throw new Error(payload.error || 'Failed to load recipients')
+      }
+      setRecipientList(payload.recipients || [])
+      setRecipientAudience(target)
+    } catch (error) {
+      setRecipientError(error instanceof Error ? error.message : 'Failed to load recipients')
+      setRecipientList([])
+      setRecipientAudience(null)
+    } finally {
+      setRecipientLoading(false)
+    }
+  }, [])
 
   const loadConfig = useCallback(async () => {
     try {
@@ -234,6 +261,30 @@ export function AdminMarketingClient() {
         ? audienceCounts.newsletterSubscribers
         : audienceCounts.allContacts
 
+  const countForAudience = (aud: MarketingAudience) =>
+    aud === 'active_users'
+      ? audienceCounts.activeUsers
+      : aud === 'newsletter_subscribers'
+        ? audienceCounts.newsletterSubscribers
+        : audienceCounts.allContacts
+
+  const filteredRecipients = useMemo(() => {
+    const query = recipientSearch.trim().toLowerCase()
+    if (!query) return recipientList
+    return recipientList.filter(
+      (r) => r.email.toLowerCase().includes(query) || (r.name || '').toLowerCase().includes(query)
+    )
+  }, [recipientList, recipientSearch])
+
+  const copyEmails = useCallback(() => {
+    const text = recipientList.map((r) => r.email).join(', ')
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text)
+    }
+  }, [recipientList])
+
+  const hasPreviewContent = Boolean(subject || heading || body)
+
   return (
     <div className="space-y-6">
       <Card>
@@ -294,6 +345,83 @@ export function AdminMarketingClient() {
               <span className="font-medium">{audienceCounts.allContacts.toLocaleString()}</span>
             </div>
           </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Users className="h-5 w-5 text-blue-600" />
+            Review Recipients
+          </CardTitle>
+          <CardDescription>
+            See exactly who will receive a campaign before you send. This is the real, deduplicated list of email addresses.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex flex-wrap gap-2">
+            {(['all_contacts', 'active_users', 'newsletter_subscribers'] as MarketingAudience[]).map((aud) => (
+              <Button
+                key={aud}
+                type="button"
+                variant={recipientAudience === aud ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => loadRecipients(aud)}
+                disabled={recipientLoading}
+              >
+                {recipientLoading && recipientAudience === aud ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Users className="mr-2 h-4 w-4" />
+                )}
+                {AUDIENCE_LABELS[aud]} ({countForAudience(aud).toLocaleString()})
+              </Button>
+            ))}
+          </div>
+
+          {recipientError && <div className="text-sm text-red-700 dark:text-red-300">{recipientError}</div>}
+
+          {recipientAudience && (
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="text-sm text-muted-foreground">
+                  Showing <span className="font-medium text-foreground">{filteredRecipients.length.toLocaleString()}</span>{' '}
+                  of <span className="font-medium text-foreground">{recipientList.length.toLocaleString()}</span> in{' '}
+                  <span className="font-medium text-foreground">{AUDIENCE_LABELS[recipientAudience]}</span>
+                </div>
+                <Button type="button" variant="ghost" size="sm" onClick={copyEmails} disabled={recipientList.length === 0}>
+                  <Copy className="mr-2 h-4 w-4" />
+                  Copy all emails
+                </Button>
+              </div>
+
+              <Input
+                placeholder="Search by email or name..."
+                value={recipientSearch}
+                onChange={(event) => setRecipientSearch(event.target.value)}
+              />
+
+              <div className="max-h-72 divide-y overflow-y-auto rounded-md border">
+                {filteredRecipients.length === 0 ? (
+                  <div className="p-3 text-sm text-muted-foreground">
+                    {recipientList.length === 0 ? 'No recipients in this audience.' : 'No recipients match your search.'}
+                  </div>
+                ) : (
+                  filteredRecipients.map((recipient, index) => (
+                    <div key={recipient.email} className="flex items-center justify-between gap-3 px-3 py-2 text-sm">
+                      <div className="flex min-w-0 items-center gap-3">
+                        <span className="w-8 shrink-0 text-right text-xs tabular-nums text-muted-foreground">{index + 1}</span>
+                        <span className="truncate font-mono text-xs sm:text-sm">{recipient.email}</span>
+                      </div>
+                      {recipient.name && (
+                        <span className="shrink-0 truncate text-xs text-muted-foreground">{recipient.name}</span>
+                      )}
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          )}
         </CardContent>
       </Card>
 
@@ -533,6 +661,51 @@ export function AdminMarketingClient() {
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Eye className="h-5 w-5 text-amber-600" />
+            Email Preview
+          </CardTitle>
+          <CardDescription>
+            An approximate preview of what recipients will see. For the exact rendering, send a test to your own inbox.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {hasPreviewContent ? (
+            <div className="mx-auto max-w-xl overflow-hidden rounded-lg border shadow-sm">
+              {/* Inbox header */}
+              <div className="border-b bg-slate-50 px-4 py-3">
+                <div className="text-xs text-slate-500">From: {config?.fromAddress || 'Accessibility.build'}</div>
+                <div className="mt-1 font-semibold text-slate-900">{subject || '(no subject)'}</div>
+                {preheader && <div className="truncate text-xs text-slate-500">{preheader}</div>}
+              </div>
+              {/* Email body (kept light like a real email) */}
+              <div className="bg-white px-6 py-6">
+                {heading && <h2 className="mb-4 text-xl font-bold text-slate-900">{heading}</h2>}
+                <div className="whitespace-pre-wrap text-sm leading-relaxed text-slate-700">
+                  {body || 'Your campaign content will appear here.'}
+                </div>
+                {ctaLabel && ctaUrl && (
+                  <div className="mt-6">
+                    <span className="inline-block rounded-md bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white">
+                      {ctaLabel}
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className="border-t bg-slate-50 px-6 py-3 text-center text-[11px] text-slate-400">
+                Accessibility.build · You received this because you subscribed or have an account.
+              </div>
+            </div>
+          ) : (
+            <div className="text-sm text-muted-foreground">
+              Compose a message or load a template above to see the preview.
             </div>
           )}
         </CardContent>

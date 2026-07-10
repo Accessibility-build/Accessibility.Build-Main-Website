@@ -139,9 +139,38 @@ function ensureValidCallToAction(params: { ctaLabel?: string; ctaUrl?: string })
   return 'Provide both CTA label and CTA URL, or leave both blank'
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     await requireAdminApi()
+
+    // Recipient review: ?recipients=<audience> returns the actual email list for
+    // that audience so an admin can see exactly who will receive a campaign
+    // before sending. Available regardless of whether sending is enabled.
+    const recipientsParam = new URL(request.url).searchParams.get('recipients')
+    if (recipientsParam) {
+      const parsedAudience = marketingAudienceSchema.safeParse(recipientsParam)
+      if (!parsedAudience.success) {
+        return NextResponse.json({ error: 'Invalid audience' }, { status: 400 })
+      }
+
+      const { activeUsersRows, newsletterRows } = await fetchAudienceRows()
+      const list = Array.from(
+        toRecipientMap({
+          audience: parsedAudience.data,
+          activeUsersRows,
+          newsletterRows,
+        }).values()
+      )
+
+      return NextResponse.json({
+        audience: parsedAudience.data,
+        count: list.length,
+        recipients: list.map((recipient) => ({
+          email: recipient.email,
+          name: [recipient.firstName, recipient.lastName].filter(Boolean).join(' ') || null,
+        })),
+      })
+    }
 
     const emailServiceEnabled = isEmailServiceEnabled()
     const marketingEmailEnabled = isMarketingEmailEnabled()
