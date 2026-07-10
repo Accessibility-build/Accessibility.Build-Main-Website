@@ -3,11 +3,12 @@ import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Calendar, Clock, ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { Card } from "@/components/ui/card"
 import { client } from "@/lib/sanity"
 import { urlFor } from "@/lib/sanity"
 import PortableTextRenderer from "@/components/sanity/portable-text"
-import { TableOfContents } from "@/components/blog/table-of-contents"
+import { ArticleToc } from "@/components/blog/article-toc"
+import { ReadingProgress } from "@/components/blog/reading-progress"
+import { BackToTop } from "@/components/blog/back-to-top"
 import { Logo } from "@/components/logo"
 import Image from "next/image"
 import type { Metadata } from "next"
@@ -189,8 +190,16 @@ export default async function BlogPostPage({
         .join('')
         .toUpperCase() || 'A'
 
+    const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-950 font-serif">
+      <div className="min-h-screen bg-white font-serif dark:bg-slate-950">
+        <ReadingProgress />
+
         {/* Schema Markup */}
         <ArticleStructuredData
           articleType="BlogPosting"
@@ -219,223 +228,177 @@ export default async function BlogPostPage({
 
         <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-        {/* Minimal Header */}
-        <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2 transition-transform hover:scale-105">
-              <Logo className="h-8 w-auto" />
-              <span className="font-bold text-lg hidden sm:inline-block">
-                Accessibility.build
-              </span>
+        {/* Sticky minimal header */}
+        <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/85 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/85">
+          <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-6">
+            <Link href="/" className="flex items-center gap-2 font-sans transition-opacity hover:opacity-80">
+              <Logo className="h-7 w-auto" />
+              <span className="hidden text-base font-semibold sm:inline-block">Accessibility.build</span>
             </Link>
-            
-            <div className="flex items-center gap-3">
-              <Button asChild variant="ghost" size="sm" className="font-sans text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
-                <Link href="/blog">
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  All Posts
-                </Link>
-              </Button>
-            </div>
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="font-sans text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+            >
+              <Link href="/blog">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                All posts
+              </Link>
+            </Button>
           </div>
         </header>
 
-        {/* Article Container */}
         <main>
-          {/* Hero Section */}
-          <article>
-            {/* Category & Meta Header */}
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
-              {/* Categories */}
-              {post.categories && post.categories.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {post.categories.map((category: any) => (
-                    <span 
-                      key={category.slug.current} 
-                      className="font-sans text-xs font-medium uppercase tracking-wider text-blue-600 dark:text-blue-400"
-                    >
-                      {category.title}
-                    </span>
-                  ))}
+          <div className="mx-auto max-w-6xl px-5 pb-16 pt-10 sm:px-6 sm:pt-14">
+            <div className="xl:grid xl:grid-cols-[15rem_minmax(0,1fr)] xl:gap-12">
+              {/* Left gutter: scroll-spy table of contents (wide screens) */}
+              <aside className="hidden xl:block">
+                <div className="sticky top-24">
+                  <ArticleToc />
                 </div>
-              )}
+              </aside>
 
-              {/* Title */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-[1.1] tracking-tight mb-6">
-                {post.title}
-              </h1>
-
-              {/* Excerpt */}
-              {post.excerpt && (
-                <p className="text-xl sm:text-2xl lg:text-3xl text-slate-600 dark:text-slate-300 leading-relaxed font-light max-w-4xl">
-                  {post.excerpt}
-                </p>
-              )}
-            </div>
-
-            {/* Author & Meta Bar */}
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-6 border-y border-slate-100 dark:border-slate-800">
-                {/* Author - Left Side */}
-                <div className="flex items-center gap-3 flex-shrink-0">
-                  <div className="relative h-12 w-12 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-slate-200 dark:ring-slate-700">
-                    {authorImage ? (
-                      <Image src={authorImage} alt={authorName} fill className="object-cover" />
-                    ) : (
-                      <div className="h-full w-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-sans font-semibold text-sm">
-                        {authorInitials}
-                      </div>
-                    )}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-sans font-semibold text-slate-900 dark:text-white truncate">{authorName}</p>
-                    <div className="flex items-center gap-2 font-sans text-sm text-slate-500 dark:text-slate-400 flex-wrap">
-                      <time dateTime={post.publishedAt}>
-                        {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </time>
-                      <span className="hidden xs:inline">·</span>
-                      <span>{post.estimatedReadingTime || 5} min read</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Listen Feature - Right Side */}
-                <div className="flex-shrink-0 sm:ml-auto">
-                  <ListenFeature 
-                    title={post.title}
-                    content={post.body}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Featured image, or a branded banner when the post has no image */}
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-              {heroImage ? (
-                <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl">
-                  <Image
-                    src={heroImage}
-                    alt={post.mainImage?.alt || post.title}
-                    fill
-                    priority
-                    className="object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="relative h-40 sm:h-52 rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-slate-900">
-                  <div
-                    className="absolute inset-0 opacity-20"
-                    style={{
-                      backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-                      backgroundSize: '22px 22px',
-                    }}
-                  />
-                  {primaryCategory && (
-                    <div className="absolute bottom-0 left-0 p-6 sm:p-8">
-                      <span className="font-sans inline-block text-white text-xs font-semibold uppercase tracking-widest bg-white/15 px-3 py-1 rounded-full backdrop-blur-sm">
+              {/* Reading column at optimal measure */}
+              <div className="mx-auto w-full max-w-[44rem] xl:mx-0">
+                <article>
+                  {/* Article header */}
+                  <header className="mb-10">
+                    {primaryCategory && (
+                      <Link
+                        href="/blog"
+                        className="font-sans text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400"
+                      >
                         {primaryCategory}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+                      </Link>
+                    )}
+                    <h1 className="mt-4 font-sans text-3xl font-bold leading-[1.12] tracking-tight text-slate-900 dark:text-white sm:text-[2.6rem]">
+                      {post.title}
+                    </h1>
+                    {post.excerpt && (
+                      <p className="mt-5 font-sans text-lg leading-relaxed text-slate-500 dark:text-slate-400 sm:text-xl">
+                        {post.excerpt}
+                      </p>
+                    )}
 
-            {/* Main Content Grid */}
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
-                
-                {/* Article Content */}
-                <div className="lg:col-span-8 order-1">
-                  <div className="max-w-3xl">
-                    {/* Content */}
-                    <div className="prose-container">
-                      <PortableTextRenderer content={post.body} className="prose-content blog-content" />
-                    </div>
-
-                    {/* Article Footer */}
-                    <footer className="mt-16 pt-10 border-t border-slate-200 dark:border-slate-800">
-                      
-                      {/* Accessibility Topics */}
-                      {post.accessibility?.topics && post.accessibility.topics.length > 0 && (
-                        <div className="mb-10">
-                          <h3 className="font-sans text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wide">Topics Covered</h3>
-                          <div className="flex flex-wrap gap-2">
-                            {post.accessibility.topics.map((topic: any, index: number) => (
-                              <Badge 
-                                key={index} 
-                                variant="secondary" 
-                                className="font-sans text-xs capitalize"
-                              >
-                                {topic.replace('-', ' ')}
-                              </Badge>
-                            ))}
+                    {/* Byline + meta */}
+                    <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-slate-100 py-4 dark:border-slate-800">
+                      <div className="flex items-center gap-3">
+                        <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-slate-200 dark:ring-slate-700">
+                          {authorImage ? (
+                            <Image src={authorImage} alt={authorName} fill className="object-cover" />
+                          ) : (
+                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-600 font-sans text-sm font-semibold text-white">
+                              {authorInitials}
+                            </div>
+                          )}
+                        </div>
+                        <div className="font-sans">
+                          <div className="text-sm font-semibold text-slate-900 dark:text-white">{authorName}</div>
+                          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                            <span className="inline-flex items-center gap-1">
+                              <Calendar className="h-3.5 w-3.5" />
+                              <time dateTime={post.publishedAt}>{formattedDate}</time>
+                            </span>
+                            <span aria-hidden="true">·</span>
+                            <span className="inline-flex items-center gap-1">
+                              <Clock className="h-3.5 w-3.5" />
+                              {post.estimatedReadingTime || 5} min read
+                            </span>
                           </div>
                         </div>
-                      )}
-
-                      {/* Share Section */}
-                      <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 text-center">
-                        <h3 className="font-sans text-lg font-semibold text-slate-900 dark:text-white mb-2">Enjoyed this article?</h3>
-                        <p className="font-sans text-sm text-slate-600 dark:text-slate-400 mb-6">Share it with others who care about accessibility.</p>
-                        <div className="font-sans">
-                          <SocialShare
-                            url={currentUrl}
-                            title={post.title}
-                            description={post.excerpt}
-                            tags={
-                              post.categories?.map((cat: any) => cat.title) ||
-                              []
-                            }
-                            imageUrl={
-                              post.mainImage
-                                ? urlFor(post.mainImage).url()
-                                : undefined
-                            }
-                            showLabel={true}
-                          />
-                        </div>
                       </div>
-                    </footer>
-                  </div>
-                </div>
-
-                {/* Sidebar */}
-                <aside className="lg:col-span-4 order-2">
-                  <div className="lg:sticky lg:top-24 space-y-6 font-sans">
-                    
-                    {/* Table of Contents */}
-                    <div className="hidden md:block">
-                      <TableOfContents content={post.body} />
+                      <ListenFeature title={post.title} content={post.body} />
                     </div>
+                  </header>
 
-                    {/* Author Card */}
-                    <Card className="bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 overflow-hidden">
-                      <div className="p-6">
-                        <h3 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-4">Written by</h3>
-                        <AuthorSidebarCard
-                          author={authorName}
-                          image={authorImage}
-                          bio={authorBio}
+                  {/* Featured image (only when the post actually has one) */}
+                  {heroImage && (
+                    <figure className="mb-12">
+                      <div className="relative aspect-[16/9] overflow-hidden rounded-2xl shadow-lg">
+                        <Image
+                          src={heroImage}
+                          alt={post.mainImage?.alt || post.title}
+                          fill
+                          priority
+                          sizes="(max-width: 768px) 100vw, 704px"
+                          className="object-cover"
                         />
                       </div>
-                    </Card>
+                    </figure>
+                  )}
+
+                  {/* Body */}
+                  <div id="article-body">
+                    <PortableTextRenderer content={post.body} className="prose-content blog-content" />
                   </div>
-                </aside>
+
+                  {/* End matter */}
+                  <footer className="mt-14 border-t border-slate-200 pt-10 font-sans dark:border-slate-800">
+                    {post.accessibility?.topics && post.accessibility.topics.length > 0 && (
+                      <div className="mb-10">
+                        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                          Topics covered
+                        </h2>
+                        <div className="flex flex-wrap gap-2">
+                          {post.accessibility.topics.map((topic: any, index: number) => (
+                            <Badge key={index} variant="secondary" className="text-xs capitalize">
+                              {topic.replace('-', ' ')}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Author card */}
+                    <div className="flex items-start gap-4 rounded-2xl border border-slate-100 bg-slate-50/60 p-6 dark:border-slate-800 dark:bg-slate-900/40">
+                      <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-slate-200 dark:ring-slate-700">
+                        {authorImage ? (
+                          <Image src={authorImage} alt={authorName} fill className="object-cover" />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-600 font-semibold text-white">
+                            {authorInitials}
+                          </div>
+                        )}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+                          Written by
+                        </div>
+                        <div className="mt-0.5 font-semibold text-slate-900 dark:text-white">{authorName}</div>
+                        <p className="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                          {authorBio ||
+                            'Practical guides, tools, and research on web accessibility and WCAG compliance.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Share */}
+                    <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-100 p-5 dark:border-slate-800">
+                      <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                        Found this useful? Share it.
+                      </span>
+                      <SocialShare
+                        url={currentUrl}
+                        title={post.title}
+                        description={post.excerpt}
+                        tags={post.categories?.map((cat: any) => cat.title) || []}
+                        imageUrl={post.mainImage ? urlFor(post.mainImage).url() : undefined}
+                        showLabel={false}
+                      />
+                    </div>
+                  </footer>
+                </article>
               </div>
             </div>
-          </article>
+          </div>
 
-          {/* Related Content */}
-          <section className="mt-20 py-16 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 font-sans">
-              <RelatedContent 
+          {/* Related posts */}
+          <section className="border-t border-slate-200 bg-slate-50/70 py-16 dark:border-slate-800 dark:bg-slate-900/40">
+            <div className="mx-auto max-w-6xl px-5 font-sans sm:px-6">
+              <RelatedContent
                 content={`${post.title} ${post.excerpt} ${post.categories?.map((cat: any) => cat.title).join(' ')}`}
-                title="Continue Reading"
+                title="Continue reading"
                 maxItems={3}
                 showDescriptions={true}
               />
@@ -443,60 +406,13 @@ export default async function BlogPostPage({
           </section>
         </main>
 
-        {/* Minimal Footer */}
-        <footer className="py-8 border-t border-slate-100 dark:border-slate-800">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between font-sans text-sm text-slate-500 dark:text-slate-400">
-            <Link href="/" className="flex items-center gap-2 hover:text-slate-900 dark:hover:text-white transition-colors">
-              <Logo className="h-6 w-6" />
-              <span>accessibility.build</span>
-            </Link>
-            <span>© {new Date().getFullYear()}</span>
-          </div>
-        </footer>
+        {/* Site-wide footer is supplied by AdminLayoutWrapper for blog posts. */}
+
+        <BackToTop />
       </div>
     )
   } catch (error) {
     console.error("Error loading blog post:", error);
     notFound();
   }
-}
-
-// Sidebar Author Card Component
-function AuthorSidebarCard({
-  author,
-  image,
-  bio,
-}: {
-  author: string;
-  image?: string;
-  bio?: string;
-}) {
-  const initials =
-    author
-      .split(/\s+/)
-      .filter((w) => !['the', 'a', 'an', 'of', 'and', '&'].includes(w.toLowerCase()))
-      .slice(0, 2)
-      .map((w) => w[0])
-      .join('')
-      .toUpperCase() || 'A'
-
-  return (
-    <div className="flex items-start gap-4">
-      <div className="relative h-14 w-14 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-slate-200 dark:ring-slate-700">
-        {image ? (
-          <Image src={image} alt={author} fill className="object-cover" />
-        ) : (
-          <div className="h-full w-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-semibold">
-            {initials}
-          </div>
-        )}
-      </div>
-      <div className="flex-1 min-w-0">
-        <h4 className="font-semibold text-slate-900 dark:text-white">{author}</h4>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-          {bio || "Practical guides, tools, and research on web accessibility and WCAG compliance."}
-        </p>
-      </div>
-    </div>
-  );
 }

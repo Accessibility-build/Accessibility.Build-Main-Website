@@ -27,12 +27,19 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
     )
   }
 
-  // For blog post pages, render without header and footer (they have their own minimal header)
+  // Blog post pages keep their own minimal reading header (no global nav) for a
+  // distraction-free read, but still get the full site footer so readers can
+  // navigate onward and the footer's internal links are preserved.
   if (isBlogPostPage) {
     return (
-      <Suspense fallback={<div className="flex items-center justify-center min-h-[400px]">Loading...</div>}>
-        {children}
-      </Suspense>
+      <div className="relative flex min-h-screen flex-col">
+        <main id="main-content" className="flex-1">
+          <Suspense fallback={<div className="flex items-center justify-center min-h-[400px]">Loading...</div>}>
+            {children}
+          </Suspense>
+        </main>
+        <Footer />
+      </div>
     )
   }
 

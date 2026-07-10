@@ -1,124 +1,71 @@
 'use client'
 
+import { useState } from 'react'
 import { PortableText } from '@portabletext/react'
 import { urlFor } from '@/lib/sanity'
 import Image from 'next/image'
+import { Check, Copy } from 'lucide-react'
+
+// Multi-line code block with a filename/language bar and a copy button.
+function CodeBlock({ value }: { value: { code?: string; language?: string; filename?: string } }) {
+  const [copied, setCopied] = useState(false)
+
+  const copy = () => {
+    if (!value.code) return
+    navigator.clipboard?.writeText(value.code)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+
+  return (
+    <figure className="not-prose my-8 overflow-hidden rounded-xl border border-slate-800 bg-slate-900 font-sans">
+      <div className="flex items-center justify-between border-b border-slate-800 px-4 py-2">
+        <span className="font-mono text-xs text-slate-400">{value.filename || value.language || 'code'}</span>
+        <button
+          type="button"
+          onClick={copy}
+          className="flex items-center gap-1.5 rounded px-2 py-1 text-xs text-slate-400 transition-colors hover:text-white"
+          aria-label="Copy code"
+        >
+          {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? 'Copied' : 'Copy'}
+        </button>
+      </div>
+      <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
+        <code className="font-mono text-slate-100">{value.code}</code>
+      </pre>
+    </figure>
+  )
+}
 
 const components = {
   types: {
     image: ({ value }: any) => (
-      <div className="my-10 -mx-4 sm:-mx-8 lg:-mx-12">
-        <div className="relative aspect-video bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg">
+      <figure className="not-prose my-10">
+        <div className="relative aspect-video overflow-hidden rounded-xl bg-slate-100 shadow-sm dark:bg-slate-800">
           <Image
-            src={urlFor(value).width(1200).height(675).url()}
+            src={urlFor(value).width(1400).height(788).url()}
             alt={value.alt || ''}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+            sizes="(max-width: 768px) 100vw, 736px"
             className="object-cover"
           />
         </div>
         {value.caption && (
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-4 text-center italic font-medium">
+          <figcaption className="mt-3 text-center font-sans text-sm italic text-slate-500 dark:text-slate-400">
             {value.caption}
-          </p>
-        )}
-      </div>
-    ),
-    // Multi-line code block. Shape matches @sanity/code-input
-    // ({ code, language, filename }) so the plugin can be added later without a data migration.
-    code: ({ value }: any) => (
-      <figure className="my-8">
-        {value.filename && (
-          <figcaption className="text-xs font-mono text-slate-400 bg-slate-800 px-4 py-2 rounded-t-xl border-b border-slate-700">
-            {value.filename}
           </figcaption>
         )}
-        <pre
-          className={`overflow-x-auto bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed ${
-            value.filename ? 'rounded-b-xl' : 'rounded-xl'
-          }`}
-        >
-          <code className={`language-${value.language || 'text'} font-mono`}>{value.code}</code>
-        </pre>
       </figure>
     ),
-  },
-  block: {
-    h1: ({ children }: any) => (
-      <h1 className="text-4xl sm:text-5xl font-bold mt-16 mb-8 text-slate-900 dark:text-white leading-tight tracking-tight">
-        {children}
-      </h1>
-    ),
-    h2: ({ children }: any) => (
-      <h2 className="text-3xl sm:text-4xl font-bold mt-14 mb-6 text-slate-900 dark:text-white leading-tight tracking-tight scroll-mt-20">
-        {children}
-      </h2>
-    ),
-    h3: ({ children }: any) => (
-      <h3 className="text-2xl sm:text-3xl font-bold mt-12 mb-5 text-slate-900 dark:text-white leading-tight tracking-tight scroll-mt-20">
-        {children}
-      </h3>
-    ),
-    h4: ({ children }: any) => (
-      <h4 className="text-xl sm:text-2xl font-bold mt-10 mb-4 text-slate-900 dark:text-white leading-tight tracking-tight scroll-mt-20">
-        {children}
-      </h4>
-    ),
-    normal: ({ children }: any) => (
-      <p className="text-lg sm:text-xl leading-relaxed mb-8 text-slate-700 dark:text-slate-300 font-normal">
-        {children}
-      </p>
-    ),
-    blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-blue-500 pl-6 pr-4 my-8 text-lg sm:text-xl italic text-slate-600 dark:text-slate-300">
-        {children}
-      </blockquote>
-    ),
-  },
-  list: {
-    bullet: ({ children }: any) => (
-      <ul className="list-none mb-8 space-y-3 text-lg sm:text-xl text-slate-700 dark:text-slate-300">
-        {children}
-      </ul>
-    ),
-    number: ({ children }: any) => (
-      <ol className="blog-ol list-none mb-8 space-y-3 text-lg sm:text-xl text-slate-700 dark:text-slate-300">
-        {children}
-      </ol>
-    ),
-  },
-  listItem: {
-    bullet: ({ children }: any) => (
-      <li className="flex items-start gap-4 mb-3">
-        <span className="w-2 h-2 bg-blue-500 rounded-full mt-[0.7em] flex-shrink-0"></span>
-        <div className="flex-1">{children}</div>
-      </li>
-    ),
-    number: ({ children }: any) => (
-      <li className="blog-ol-item flex items-start gap-4 mb-3">
-        <span className="blog-ol-num w-7 h-7 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-0.5 flex-shrink-0" />
-        <div className="flex-1">{children}</div>
-      </li>
-    ),
+    code: ({ value }: any) => <CodeBlock value={value} />,
   },
   marks: {
-    strong: ({ children }: any) => (
-      <strong className="font-bold text-slate-900 dark:text-white">{children}</strong>
-    ),
-    em: ({ children }: any) => (
-      <em className="italic text-slate-800 dark:text-slate-200">{children}</em>
-    ),
-    code: ({ children }: any) => (
-      <code className="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-sm font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
-        {children}
-      </code>
-    ),
     link: ({ value, children }: any) => (
       <a
-        href={value.href}
-        className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline underline-offset-2 decoration-2 decoration-blue-600/30 hover:decoration-blue-600 dark:decoration-blue-400/30 dark:hover:decoration-blue-400 font-medium transition-all duration-200"
-        target={value.blank ? '_blank' : '_self'}
-        rel={value.blank ? 'noopener noreferrer' : undefined}
+        href={value?.href}
+        target={value?.blank ? '_blank' : undefined}
+        rel={value?.blank ? 'noopener noreferrer' : undefined}
       >
         {children}
       </a>
@@ -131,15 +78,10 @@ interface PortableTextRendererProps {
   className?: string
 }
 
-export default function PortableTextRenderer({ 
-  content, 
-  className = '' 
-}: PortableTextRendererProps) {
+export default function PortableTextRenderer({ content, className = '' }: PortableTextRendererProps) {
   return (
     <div className={`prose-content ${className}`}>
       <PortableText value={content} components={components} />
     </div>
   )
-} 
- 
- 
+}
