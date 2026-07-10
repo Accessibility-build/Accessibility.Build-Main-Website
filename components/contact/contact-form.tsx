@@ -263,10 +263,10 @@ export function ContactForm() {
                   <Mail className="h-4 w-4 text-red-600 dark:text-red-400" />
                   <span>Or email us directly: </span>
                   <a 
-                    href="mailto:accessibilitybuild@gmail.com" 
+                    href="mailto:contact@accessibility.build" 
                     className="text-red-700 dark:text-red-300 hover:text-red-800 dark:hover:text-red-200 underline font-medium"
                   >
-                    accessibilitybuild@gmail.com
+                    contact@accessibility.build
                   </a>
                 </div>
               </div>
@@ -297,7 +297,7 @@ export function ContactForm() {
           
           <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mt-2">
             <Mail className="h-3 w-3" />
-            <span>Direct email: accessibilitybuild@gmail.com</span>
+            <span>Direct email: contact@accessibility.build</span>
           </div>
         </div>
 

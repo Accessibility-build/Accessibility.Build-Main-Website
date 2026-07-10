@@ -56,7 +56,7 @@ export default function ContactPage() {
         name="Contact Us"
         description="Get in touch with our accessibility experts for questions, project support, or collaboration opportunities."
         url="https://accessibility.build/contact"
-        email="accessibilitybuild@gmail.com"
+        email="contact@accessibility.build"
       />
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-muted/30 to-background">
@@ -109,10 +109,10 @@ export default function ContactPage() {
                     <div className="space-y-1">
                       <p className="font-medium text-sm">Email</p>
                   <a
-                    href="mailto:accessibilitybuild@gmail.com"
+                    href="mailto:contact@accessibility.build"
                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    accessibilitybuild@gmail.com
+                    contact@accessibility.build
                   </a>
                 </div>
               </div>

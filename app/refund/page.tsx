@@ -175,7 +175,7 @@ export default function RefundPage() {
             <h3 className="text-xl font-semibold mb-3">3.1 How to Request a Refund</h3>
             <p>To request a refund, please follow these steps:</p>
             <ol>
-              <li>Send an email to <Link href="mailto:refunds@accessibility.build" className="text-primary hover:underline">refunds@accessibility.build</Link> with the subject line "Refund Request"</li>
+              <li>Send an email to <Link href="mailto:contact@accessibility.build" className="text-primary hover:underline">contact@accessibility.build</Link> with the subject line "Refund Request"</li>
               <li>Include the following information:
                 <ul>
                   <li>Your registered email address and account details</li>
@@ -343,7 +343,7 @@ export default function RefundPage() {
               We encourage you to contact us first to resolve any issues with refunds or cancellations:
             </p>
             <ul>
-              <li>Email us at <Link href="mailto:support@accessibility.build" className="text-primary hover:underline">support@accessibility.build</Link></li>
+              <li>Email us at <Link href="mailto:contact@accessibility.build" className="text-primary hover:underline">contact@accessibility.build</Link></li>
               <li>We aim to respond to all disputes within 48 hours</li>
               <li>Our team will work with you to find a fair resolution</li>
             </ul>
@@ -453,8 +453,8 @@ export default function RefundPage() {
                     <p className="text-sm text-muted-foreground mb-2">
                       For refund and cancellation requests:
                     </p>
-                    <Link href="mailto:refunds@accessibility.build" className="text-primary hover:underline">
-                      refunds@accessibility.build
+                    <Link href="mailto:contact@accessibility.build" className="text-primary hover:underline">
+                      contact@accessibility.build
                     </Link>
                   </div>
                   
@@ -466,8 +466,8 @@ export default function RefundPage() {
                     <p className="text-sm text-muted-foreground mb-2">
                       For other queries and support:
                     </p>
-                    <Link href="mailto:support@accessibility.build" className="text-primary hover:underline">
-                      support@accessibility.build
+                    <Link href="mailto:contact@accessibility.build" className="text-primary hover:underline">
+                      contact@accessibility.build
                     </Link>
                   </div>
 
@@ -513,7 +513,7 @@ export default function RefundPage() {
               <AlertDescription>
                 We are committed to providing fair and transparent services. If you have any questions about 
                 this policy, please don't hesitate to contact us at{" "}
-                <Link href="mailto:support@accessibility.build" className="underline">support@accessibility.build</Link>.
+                <Link href="mailto:contact@accessibility.build" className="underline">contact@accessibility.build</Link>.
               </AlertDescription>
             </Alert>
           </section>

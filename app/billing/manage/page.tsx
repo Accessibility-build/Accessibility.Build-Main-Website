@@ -271,8 +271,8 @@ export default async function BillingManagePage({ searchParams }: BillingManageP
                 </div>
                 <p className="text-xs text-muted-foreground mt-4">
                   Need profile updates? Contact{' '}
-                  <Link className="underline text-primary hover:no-underline" href="mailto:support@accessibility.build">
-                    support@accessibility.build
+                  <Link className="underline text-primary hover:no-underline" href="mailto:contact@accessibility.build">
+                    contact@accessibility.build
                   </Link>
                 </p>
               </CardContent>
@@ -307,8 +307,8 @@ export default async function BillingManagePage({ searchParams }: BillingManageP
                 </div>
                 <p className="text-sm text-muted-foreground">
                   For refund requests, email{' '}
-                  <Link className="underline text-primary hover:no-underline" href="mailto:refunds@accessibility.build">
-                    refunds@accessibility.build
+                  <Link className="underline text-primary hover:no-underline" href="mailto:contact@accessibility.build">
+                    contact@accessibility.build
                   </Link>{' '}
                   with your order ID.
                 </p>
@@ -438,8 +438,8 @@ export default async function BillingManagePage({ searchParams }: BillingManageP
                         {order.status === 'action_required' && (
                           <div className="text-xs rounded-lg border border-red-200 bg-red-50 text-red-700 p-3 dark:border-red-800 dark:bg-red-900/20 dark:text-red-300">
                             This order requires manual support action. Email{' '}
-                            <Link className="underline" href="mailto:support@accessibility.build">
-                              support@accessibility.build
+                            <Link className="underline" href="mailto:contact@accessibility.build">
+                              contact@accessibility.build
                             </Link>{' '}
                             and include order ID <strong>{order.id}</strong>.
                           </div>

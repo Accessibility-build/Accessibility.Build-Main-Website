@@ -187,7 +187,7 @@ const structuredData = {
       ],
       contactPoint: {
         "@type": "ContactPoint",
-        email: "accessibilitybuild@gmail.com",
+        email: "contact@accessibility.build",
         contactType: "customer service",
         availableLanguage: "English"
       }

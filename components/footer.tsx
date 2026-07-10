@@ -128,10 +128,10 @@ export function Footer() {
             </h3>
             <div className="mt-4 space-y-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
               <a
-                href="mailto:accessibilitybuild@gmail.com"
+                href="mailto:contact@accessibility.build"
                 className="block w-fit transition-colors hover:text-slate-900 dark:hover:text-white"
               >
-                accessibilitybuild@gmail.com
+                contact@accessibility.build
               </a>
               <p>24-48 hours during business days</p>
               <p>Remote team serving clients worldwide</p>
