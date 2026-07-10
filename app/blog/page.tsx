@@ -3,8 +3,9 @@ import { getBlogPosts, getBlogCategories } from "@/lib/sanity"
 import BlogClientPage from "./BlogClientPage"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
-// Enable static generation with revalidation every 24 hours
-export const revalidate = 86400
+// Revalidate the blog index every 5 minutes so newly published Sanity posts
+// appear promptly (24h was too slow for a CMS-driven blog).
+export const revalidate = 300
 
 export const metadata: Metadata = {
   title: "Accessibility Blog: WCAG Guides & Best Practices",

@@ -16,8 +16,8 @@ import { SocialShare } from "@/components/seo/social-share"
 import { RelatedContent } from "@/components/seo/related-content"
 import { ListenFeature } from "@/components/blog/listen-feature"
 
-// Enable static generation with revalidation every 24 hours
-export const revalidate = 86400;
+// Revalidate individual posts hourly so edits in Sanity reflect promptly.
+export const revalidate = 3600;
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
