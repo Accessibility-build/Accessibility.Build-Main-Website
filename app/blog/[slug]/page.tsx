@@ -44,6 +44,7 @@ async function getPost(slug: string) {
   const query = `
     *[_type == "post" && slug.current == $slug][0] {
       _id,
+      _updatedAt,
       title,
       slug,
       excerpt,
@@ -61,7 +62,8 @@ async function getPost(slug: string) {
       },
       seo,
       accessibility,
-      estimatedReadingTime
+      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180),
+      "wordCount": round(length(pt::text(body)) / 5)
     }
   `;
 
@@ -87,6 +89,11 @@ export async function generateMetadata({
     }
 
     const currentUrl = `https://accessibility.build/blog/${slug}`
+    // Per-post social image: the post's own image when set, otherwise a
+    // dynamically generated card titled with the post (not the generic site image).
+    const ogImage = post.mainImage
+      ? urlFor(post.mainImage).width(1200).height(630).url()
+      : `https://accessibility.build/api/og?title=${encodeURIComponent(post.title)}&section=Blog`
 
     return {
       title: post.seo?.metaTitle || post.title,
@@ -102,10 +109,11 @@ export async function generateMetadata({
         type: "article",
         url: currentUrl,
         publishedTime: post.publishedAt,
+        modifiedTime: post._updatedAt || post.publishedAt,
         authors: [post.author?.name || "Accessibility.build Team"],
         images: [
           {
-            url: post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "https://accessibility.build/og-image.png",
+            url: ogImage,
             width: 1200,
             height: 630,
             alt: post.title,
@@ -116,7 +124,7 @@ export async function generateMetadata({
         card: "summary_large_image",
         title: post.seo?.metaTitle || post.title,
         description: post.seo?.metaDescription || post.excerpt,
-        images: [post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "https://accessibility.build/og-image.png"],
+        images: [ogImage],
       },
       robots: {
         index: true,
@@ -161,6 +169,13 @@ export default async function BlogPostPage({
 
     const authorName = post.author?.name || "Accessibility.build Team"
     const authorImage = post.author?.image ? urlFor(post.author.image).width(80).height(80).url() : undefined
+    // Plain-text author bio from the Sanity Portable Text field, if present.
+    const authorBio: string | undefined = Array.isArray(post.author?.bio)
+      ? post.author.bio
+          .map((b: any) => (b.children || []).map((c: any) => c.text).join(""))
+          .join(" ")
+          .trim() || undefined
+      : undefined
     const heroImage = post.mainImage ? urlFor(post.mainImage).width(1400).height(700).url() : null
     // Use adventurer style for youthful animated cartoon characters
     const defaultAvatar = `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(authorName)}&backgroundColor=b6e3f4,c0aede,d1d4f9`
@@ -169,6 +184,8 @@ export default async function BlogPostPage({
       <div className="min-h-screen bg-white dark:bg-slate-950 font-serif">
         {/* Schema Markup */}
         <ArticleStructuredData
+          articleType="BlogPosting"
+          authorType="Organization"
           headline={post.title}
           description={post.excerpt || ""}
           author={{
@@ -180,16 +197,14 @@ export default async function BlogPostPage({
             logo: "https://accessibility.build/android-chrome-512x512.png",
           }}
           datePublished={post.publishedAt}
-          dateModified={post.publishedAt}
+          dateModified={post._updatedAt || post.publishedAt}
           image={
             post.mainImage
               ? urlFor(post.mainImage).width(1200).height(630).url()
-              : "https://accessibility.build/og-image.png"
+              : `https://accessibility.build/api/og?title=${encodeURIComponent(post.title)}&section=Blog`
           }
           url={currentUrl}
-          wordCount={
-            post.estimatedReadingTime ? post.estimatedReadingTime * 250 : 1000
-          }
+          wordCount={post.wordCount || undefined}
           keywords={post.seo?.keywords || []}
         />
 
@@ -375,9 +390,10 @@ export default async function BlogPostPage({
                     <Card className="bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 overflow-hidden">
                       <div className="p-6">
                         <h3 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-4">Written by</h3>
-                        <AuthorSidebarCard 
+                        <AuthorSidebarCard
                           author={authorName}
                           image={authorImage}
+                          bio={authorBio}
                         />
                       </div>
                     </Card>
@@ -419,16 +435,18 @@ export default async function BlogPostPage({
 }
 
 // Sidebar Author Card Component
-function AuthorSidebarCard({ 
-  author, 
-  image 
-}: { 
-  author: string; 
-  image?: string; 
+function AuthorSidebarCard({
+  author,
+  image,
+  bio,
+}: {
+  author: string;
+  image?: string;
+  bio?: string;
 }) {
   // Use adventurer style for youthful animated cartoon characters
   const defaultAvatar = `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(author)}&backgroundColor=b6e3f4,c0aede,d1d4f9`
-  
+
   return (
     <div className="flex items-start gap-4">
       <div className="relative h-14 w-14 rounded-full overflow-hidden flex-shrink-0">
@@ -442,7 +460,7 @@ function AuthorSidebarCard({
       <div className="flex-1 min-w-0">
         <h4 className="font-semibold text-slate-900 dark:text-white">{author}</h4>
         <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-          Accessibility expert passionate about inclusive design.
+          {bio || "Practical guides, tools, and research on web accessibility and WCAG compliance."}
         </p>
       </div>
     </div>

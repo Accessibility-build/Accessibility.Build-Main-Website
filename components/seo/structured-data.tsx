@@ -55,6 +55,10 @@ interface ArticleStructuredDataProps {
   url: string
   wordCount?: number
   keywords?: string[]
+  /** Defaults to "Article"; pass "BlogPosting" for blog posts. */
+  articleType?: string
+  /** Defaults to "Person"; pass "Organization" for team/brand bylines. */
+  authorType?: 'Person' | 'Organization'
 }
 
 interface HowToStructuredDataProps {
@@ -434,15 +438,17 @@ export function ArticleStructuredData({
   image,
   url,
   wordCount,
-  keywords
+  keywords,
+  articleType = "Article",
+  authorType = "Person"
 }: ArticleStructuredDataProps) {
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": articleType,
     "headline": headline,
     "description": description,
     "author": {
-      "@type": "Person",
+      "@type": authorType,
       "name": author.name,
       ...(author.url && { "url": author.url })
     },
