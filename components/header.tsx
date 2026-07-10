@@ -249,7 +249,7 @@ export function Header() {
               </Link>
             </div>
 
-            <nav className="mx-6 hidden min-w-0 flex-1 items-center justify-center space-x-1 xl:flex 2xl:mx-8 2xl:max-w-4xl">
+            <nav className="mx-6 hidden min-w-0 flex-1 items-center justify-start space-x-1 xl:flex 2xl:mx-8 2xl:max-w-4xl">
               {navItems.map((item) =>
                 item.children ? (
                   <DropdownMenu key={item.href}>
@@ -268,7 +268,7 @@ export function Header() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
-                      align="center"
+                      align="start"
                       className="rounded-xl p-3 min-w-[280px] bg-background border border-border shadow-xl"
                     >
                       <DropdownMenuLabel className="flex items-center gap-2 px-3 py-2">
