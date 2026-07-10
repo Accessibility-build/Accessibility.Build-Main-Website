@@ -220,11 +220,6 @@ export function Header() {
     }
   }, [isSignedIn, pathname, refreshCredits]);
 
-  // Hide header on blog post pages
-  if (pathname?.startsWith('/blog/') && pathname !== '/blog') {
-    return null;
-  }
-
   return (
     <>
       <header

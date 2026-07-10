@@ -228,18 +228,15 @@ export default async function BlogPostPage({
 
         <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-        {/* Sticky minimal header */}
-        <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/85 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/85">
-          <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-6">
-            <Link href="/" className="flex items-center gap-2 font-sans transition-opacity hover:opacity-80">
-              <Logo className="h-7 w-auto" />
-              <span className="hidden text-base font-semibold sm:inline-block">Accessibility.build</span>
-            </Link>
+        {/* The global site header/footer are supplied by the layout. */}
+        <div>
+          {/* A compact "back to blog" affordance above the article */}
+          <div className="mx-auto max-w-6xl px-5 pt-6 sm:px-6">
             <Button
               asChild
               variant="ghost"
               size="sm"
-              className="font-sans text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+              className="-ml-2 font-sans text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
             >
               <Link href="/blog">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -247,10 +244,7 @@ export default async function BlogPostPage({
               </Link>
             </Button>
           </div>
-        </header>
-
-        <main>
-          <div className="mx-auto max-w-6xl px-5 pb-16 pt-10 sm:px-6 sm:pt-14">
+          <div className="mx-auto max-w-6xl px-5 pb-16 pt-6 sm:px-6">
             <div className="xl:grid xl:grid-cols-[15rem_minmax(0,1fr)] xl:gap-12">
               {/* Left gutter: scroll-spy table of contents (wide screens) */}
               <aside className="hidden xl:block">
@@ -404,9 +398,9 @@ export default async function BlogPostPage({
               />
             </div>
           </section>
-        </main>
+        </div>
 
-        {/* Site-wide footer is supplied by AdminLayoutWrapper for blog posts. */}
+        {/* The global site header and footer are supplied by the layout. */}
 
         <BackToTop />
       </div>
