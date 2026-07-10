@@ -9,7 +9,33 @@ import { sendMarketingCampaignEmail } from '@/lib/email/service'
 import { getEmailFromAddress, isEmailServiceEnabled, isMarketingEmailEnabled } from '@/lib/email/resend'
 
 const SYNTHETIC_EMAIL_DOMAIN = '@users.accessibility.build'
+// Resend permits ~10 requests/second. Fire a batch of SEND_CONCURRENCY, then
+// pause BATCH_INTERVAL_MS so no one-second window exceeds the limit, and retry
+// any individual send that still comes back rate-limited.
 const SEND_CONCURRENCY = 8
+const BATCH_INTERVAL_MS = 1200
+const MAX_SEND_RETRIES = 4
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+function isRateLimitError(message?: string): boolean {
+  return !!message && /rate limit|too many requests|429/i.test(message)
+}
+
+async function sendCampaignEmailWithRetry(
+  args: Parameters<typeof sendMarketingCampaignEmail>[0]
+) {
+  let result = await sendMarketingCampaignEmail(args)
+  for (
+    let attempt = 1;
+    attempt <= MAX_SEND_RETRIES && !result.success && isRateLimitError(result.error);
+    attempt++
+  ) {
+    await sleep(1000 * attempt) // 1s, 2s, 3s, 4s backoff
+    result = await sendMarketingCampaignEmail(args)
+  }
+  return result
+}
 
 const marketingAudienceSchema = z.enum(['active_users', 'newsletter_subscribers', 'all_contacts'])
 type MarketingAudience = z.infer<typeof marketingAudienceSchema>
@@ -315,7 +341,7 @@ export async function POST(request: NextRequest) {
 
       const chunkResults = await Promise.all(
         chunk.map(async (recipient) => {
-          const result = await sendMarketingCampaignEmail({
+          const result = await sendCampaignEmailWithRetry({
             type: 'marketing_campaign',
             campaignId,
             recipient: {
@@ -345,6 +371,11 @@ export async function POST(request: NextRequest) {
           email: chunkResult.email,
           error: chunkResult.result.error || 'Unknown send failure',
         })
+      }
+
+      // Throttle between batches so we stay under Resend's rate limit.
+      if (index + SEND_CONCURRENCY < finalRecipients.length) {
+        await sleep(BATCH_INTERVAL_MS)
       }
     }
 
