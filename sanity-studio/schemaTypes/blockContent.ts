@@ -30,7 +30,10 @@ export default defineType({
         {title: 'H4', value: 'h4'},
         {title: 'Quote', value: 'blockquote'},
       ],
-      lists: [{title: 'Bullet', value: 'bullet'}],
+      lists: [
+        {title: 'Bullet', value: 'bullet'},
+        {title: 'Numbered', value: 'number'},
+      ],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -81,6 +84,39 @@ export default defineType({
           description: 'Optional caption displayed below the image.',
         }),
       ],
+    }),
+    // Multi-line code block. Shape mirrors @sanity/code-input so that plugin can
+    // be adopted later without migrating existing documents.
+    defineArrayMember({
+      name: 'code',
+      title: 'Code block',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'code',
+          title: 'Code',
+          type: 'text',
+          rows: 8,
+        }),
+        defineField({
+          name: 'language',
+          title: 'Language',
+          type: 'string',
+          description: 'e.g. html, css, javascript, jsx, tsx, bash',
+        }),
+        defineField({
+          name: 'filename',
+          title: 'Filename',
+          type: 'string',
+          description: 'Optional filename shown above the code.',
+        }),
+      ],
+      preview: {
+        select: {language: 'language', code: 'code'},
+        prepare({language, code}) {
+          return {title: language || 'code', subtitle: (code || '').split('\n')[0]}
+        },
+      },
     }),
   ],
 })

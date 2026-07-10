@@ -24,6 +24,24 @@ const components = {
         )}
       </div>
     ),
+    // Multi-line code block. Shape matches @sanity/code-input
+    // ({ code, language, filename }) so the plugin can be added later without a data migration.
+    code: ({ value }: any) => (
+      <figure className="my-8">
+        {value.filename && (
+          <figcaption className="text-xs font-mono text-slate-400 bg-slate-800 px-4 py-2 rounded-t-xl border-b border-slate-700">
+            {value.filename}
+          </figcaption>
+        )}
+        <pre
+          className={`overflow-x-auto bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed ${
+            value.filename ? 'rounded-b-xl' : 'rounded-xl'
+          }`}
+        >
+          <code className={`language-${value.language || 'text'} font-mono`}>{value.code}</code>
+        </pre>
+      </figure>
+    ),
   },
   block: {
     h1: ({ children }: any) => (

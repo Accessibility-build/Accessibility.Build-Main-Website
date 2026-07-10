@@ -146,20 +146,11 @@ const wcag3: SiteRoute[] = [
   { route: "/wcag-3/preparation", label: "Preparing for WCAG 3.0", group: "WCAG 3.0", lastModified: "2026-03-15", priority: 0.85 },
 ]
 
+// Only the hub is static. Individual posts now live in Sanity and are appended
+// to the XML sitemap (app/sitemap.ts) and HTML sitemap (app/sitemap-page) from
+// the CMS at request time, so they are not hardcoded here.
 const blog: SiteRoute[] = [
   { route: "/blog", label: "Blog", group: "Blog", lastModified: "2026-07-09", priority: 0.95, changeFrequency: "daily" },
-  { route: "/blog/accessibility-audit-checklist", label: "Accessibility Audit Checklist", group: "Blog", lastModified: "2025-11-15", priority: 0.94 },
-  { route: "/blog/web-accessibility-for-beginners", label: "Web Accessibility for Beginners", group: "Blog", lastModified: "2025-11-15", priority: 0.93 },
-  { route: "/blog/accessible-images-alt-text", label: "Accessible Images & Alt Text", group: "Blog", lastModified: "2025-11-15", priority: 0.92 },
-  { route: "/blog/aria-labels-guide", label: "ARIA Labels Guide", group: "Blog", lastModified: "2025-11-15", priority: 0.91 },
-  { route: "/blog/screen-reader-testing", label: "Screen Reader Testing", group: "Blog", lastModified: "2025-11-15", priority: 0.9 },
-  { route: "/blog/website-accessibility-compliance", label: "Website Accessibility Compliance", group: "Blog", lastModified: "2025-11-15", priority: 0.89 },
-  { route: "/blog/mobile-accessibility-testing", label: "Mobile Accessibility Testing", group: "Blog", lastModified: "2025-11-15", priority: 0.88 },
-  { route: "/blog/accessibility-testing-tools", label: "Accessibility Testing Tools", group: "Blog", lastModified: "2025-11-15", priority: 0.87 },
-  { route: "/blog/ada-compliance-guide", label: "ADA Compliance Guide", group: "Blog", lastModified: "2025-11-15", priority: 0.86 },
-  { route: "/blog/inclusive-design-principles", label: "Inclusive Design Principles", group: "Blog", lastModified: "2025-11-15", priority: 0.85 },
-  { route: "/blog/wcag-3-what-to-expect", label: "WCAG 3.0: What to Expect", group: "Blog", lastModified: "2026-03-15", priority: 0.84 },
-  { route: "/blog/accessibility-for-ecommerce", label: "Accessibility for E-commerce", group: "Blog", lastModified: "2025-11-15", priority: 0.83 },
 ]
 
 const services: SiteRoute[] = [

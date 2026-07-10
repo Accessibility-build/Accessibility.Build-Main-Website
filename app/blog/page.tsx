@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import { getBlogPosts, getBlogCategories } from "@/lib/sanity"
-import { getStaticBlogIndexPosts } from "@/lib/static-blog-posts"
 import BlogClientPage from "./BlogClientPage"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 
@@ -51,9 +50,9 @@ export default async function BlogPage() {
     getBlogCategories()
   ])
 
-  // Merge Sanity posts with the hardcoded static posts (app/blog/<slug>/page.tsx),
-  // sorted newest first so both sets interleave naturally in the index.
-  const allPosts = [...(posts ?? []), ...getStaticBlogIndexPosts()].sort(
+  // All posts now live in Sanity (the former static posts were migrated in),
+  // sorted newest first.
+  const allPosts = [...(posts ?? [])].sort(
     (a: any, b: any) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   )

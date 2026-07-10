@@ -31,3 +31,6 @@ next-env.d.ts
 /playwright/.auth
 /playwright-report
 /test-results
+
+# session tooling logs
+.waylog/

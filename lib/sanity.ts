@@ -7,6 +7,10 @@ export const client = createClient({
   useCdn: process.env.NODE_ENV === 'production',
   apiVersion: '2023-05-03',
   token: process.env.SANITY_API_TOKEN,
+  // Only return published documents — without this, the read token also pulls
+  // unpublished drafts, which surfaced posts twice (published + draft) in the
+  // blog index and sitemap.
+  perspective: 'published',
 })
 
 const builder = imageUrlBuilder(client)
