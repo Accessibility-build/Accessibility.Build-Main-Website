@@ -83,6 +83,10 @@ export function AdminMarketingClient() {
   const [recipientError, setRecipientError] = useState<string | null>(null)
   const [recipientSearch, setRecipientSearch] = useState('')
 
+  // Hard confirmation gate before a real campaign send.
+  const [confirmOpen, setConfirmOpen] = useState(false)
+  const [confirmValue, setConfirmValue] = useState('')
+
   const loadRecipients = useCallback(async (target: MarketingAudience) => {
     try {
       setRecipientLoading(true)
@@ -284,6 +288,11 @@ export function AdminMarketingClient() {
   }, [recipientList])
 
   const hasPreviewContent = Boolean(subject || heading || body)
+
+  const parsedLimit = recipientLimit.trim().length > 0 ? Number.parseInt(recipientLimit, 10) : undefined
+  const expectedSendCount =
+    parsedLimit && parsedLimit > 0 ? Math.min(selectedAudienceCount, parsedLimit) : selectedAudienceCount
+  const confirmMatches = confirmValue.trim() === String(expectedSendCount) && expectedSendCount > 0
 
   return (
     <div className="space-y-6">
@@ -569,7 +578,11 @@ export function AdminMarketingClient() {
                 id="marketing-audience"
                 className="h-10 w-full rounded-md border bg-background px-3 text-sm"
                 value={audience}
-                onChange={(event) => setAudience(event.target.value as MarketingAudience)}
+                onChange={(event) => {
+                  setAudience(event.target.value as MarketingAudience)
+                  setConfirmOpen(false)
+                  setConfirmValue('')
+                }}
               >
                 <option value="all_contacts">{AUDIENCE_LABELS.all_contacts}</option>
                 <option value="active_users">{AUDIENCE_LABELS.active_users}</option>
@@ -585,7 +598,11 @@ export function AdminMarketingClient() {
                 id="marketing-limit"
                 inputMode="numeric"
                 value={recipientLimit}
-                onChange={(event) => setRecipientLimit(event.target.value.replace(/[^\d]/g, ''))}
+                onChange={(event) => {
+                  setRecipientLimit(event.target.value.replace(/[^\d]/g, ''))
+                  setConfirmOpen(false)
+                  setConfirmValue('')
+                }}
                 placeholder="Leave blank to send to full audience"
               />
             </div>
@@ -614,14 +631,65 @@ export function AdminMarketingClient() {
               </Button>
               <Button
                 type="button"
-                onClick={sendCampaign}
-                disabled={!serviceReady || !canSend || campaignLoading || testLoading}
+                onClick={() => {
+                  setSendError(null)
+                  setConfirmValue('')
+                  setConfirmOpen(true)
+                }}
+                disabled={!serviceReady || !canSend || campaignLoading || testLoading || confirmOpen}
               >
                 {campaignLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Megaphone className="mr-2 h-4 w-4" />}
                 Send Campaign
               </Button>
             </div>
           </div>
+
+          {confirmOpen && (
+            <div className="space-y-3 rounded-md border-2 border-amber-400 bg-amber-50 p-4 dark:border-amber-600 dark:bg-amber-900/20">
+              <div className="font-semibold text-amber-900 dark:text-amber-200">Confirm campaign send</div>
+              <div className="text-sm text-amber-800 dark:text-amber-300">
+                You are about to send this campaign to{' '}
+                <strong>{expectedSendCount.toLocaleString()}</strong> recipient{expectedSendCount === 1 ? '' : 's'} in{' '}
+                <strong>{AUDIENCE_LABELS[audience]}</strong>. This action cannot be undone. Type{' '}
+                <strong>{expectedSendCount}</strong> below to confirm.
+              </div>
+              <Input
+                inputMode="numeric"
+                value={confirmValue}
+                onChange={(event) => setConfirmValue(event.target.value.replace(/[^\d]/g, ''))}
+                placeholder={`Type ${expectedSendCount} to confirm`}
+                className="max-w-xs border-amber-400 dark:border-amber-600"
+                autoFocus
+              />
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setConfirmOpen(false)
+                    setConfirmValue('')
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  className="bg-red-600 text-white hover:bg-red-700"
+                  disabled={!confirmMatches || campaignLoading}
+                  onClick={() => {
+                    setConfirmOpen(false)
+                    setConfirmValue('')
+                    void sendCampaign()
+                  }}
+                >
+                  {campaignLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Megaphone className="mr-2 h-4 w-4" />}
+                  Confirm &amp; send to {expectedSendCount.toLocaleString()}
+                </Button>
+              </div>
+            </div>
+          )}
 
           <div className="text-xs text-muted-foreground">
             Minimums: subject (3 chars), body (10 chars), reason (8 chars). CTA label and URL must be provided together.
