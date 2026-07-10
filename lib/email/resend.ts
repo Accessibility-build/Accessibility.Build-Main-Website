@@ -34,12 +34,14 @@ export function getResendClient(): Resend {
   return resendClient
 }
 
-// Default sender. RESEND_FROM_ADDRESS overrides it (set that in the hosting env),
-// but the address must belong to a domain verified in Resend to actually send.
-const DEFAULT_FROM_ADDRESS = 'Accessibility.build <contact@accessibility.build>'
-
 export function getEmailFromAddress(): string {
-  return process.env.RESEND_FROM_ADDRESS?.trim() || DEFAULT_FROM_ADDRESS
+  const from = process.env.RESEND_FROM_ADDRESS
+
+  if (!from) {
+    throw new Error('RESEND_FROM_ADDRESS is not configured')
+  }
+
+  return from
 }
 
 export function isEmailServiceEnabled(): boolean {

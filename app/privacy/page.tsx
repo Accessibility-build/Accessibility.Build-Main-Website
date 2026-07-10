@@ -276,7 +276,7 @@ export default function PrivacyPage() {
               <UserCheck className="h-4 w-4" />
               <AlertDescription>
                 You can exercise most of these rights directly from your account settings. 
-                For other requests, contact us at <Link href="mailto:contact@accessibility.build" className="underline">contact@accessibility.build</Link>.
+                For other requests, contact us at <Link href="mailto:privacy@accessibility.build" className="underline">privacy@accessibility.build</Link>.
               </AlertDescription>
             </Alert>
           </section>
@@ -361,8 +361,8 @@ export default function PrivacyPage() {
                     <p className="text-sm text-muted-foreground mb-2">
                       For privacy-related questions or to exercise your rights:
                     </p>
-                    <Link href="mailto:contact@accessibility.build" className="text-primary hover:underline">
-                      contact@accessibility.build
+                    <Link href="mailto:privacy@accessibility.build" className="text-primary hover:underline">
+                      privacy@accessibility.build
                     </Link>
                   </div>
                   
@@ -374,8 +374,8 @@ export default function PrivacyPage() {
                     <p className="text-sm text-muted-foreground mb-2">
                       For formal complaints or data protection matters:
                     </p>
-                    <Link href="mailto:contact@accessibility.build" className="text-primary hover:underline">
-                      contact@accessibility.build
+                    <Link href="mailto:dpo@accessibility.build" className="text-primary hover:underline">
+                      dpo@accessibility.build
                     </Link>
                   </div>
                 </div>

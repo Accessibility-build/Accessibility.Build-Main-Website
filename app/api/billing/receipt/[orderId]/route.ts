@@ -127,7 +127,7 @@ export async function GET(
 
     doc.setFontSize(10)
     doc.text(
-      'For billing support, contact contact@accessibility.build and include your order ID.',
+      'For billing support, contact support@accessibility.build and include your order ID.',
       14,
       154
     )

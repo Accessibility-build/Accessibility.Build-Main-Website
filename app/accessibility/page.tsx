@@ -67,7 +67,7 @@ export default function AccessibilityPage() {
           </p>
           <ul>
             <li>
-              <strong>Email:</strong> contact@accessibility.build
+              <strong>Email:</strong> accessibility@accessibility.build
             </li>
             <li>
               <strong>Phone:</strong> (123) 456-7890

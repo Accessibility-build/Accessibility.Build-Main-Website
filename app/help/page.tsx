@@ -154,7 +154,7 @@ const faqs = [
   },
   {
     question: "How do I report a bug or request a feature?",
-    answer: "You can report bugs or request features through our support channels. Use the chat widget for immediate assistance, email us at contact@accessibility.build, or submit a detailed report through your dashboard. We prioritize feedback from our users and regularly update our tools based on your suggestions."
+    answer: "You can report bugs or request features through our support channels. Use the chat widget for immediate assistance, email us at support@accessibility.build, or submit a detailed report through your dashboard. We prioritize feedback from our users and regularly update our tools based on your suggestions."
   },
   {
     question: "Is my data secure and private?",
@@ -337,8 +337,8 @@ export default function HelpPage() {
             <div className="mt-8 pt-8 border-t">
               <p className="text-sm text-muted-foreground">
                 For enterprise support and custom solutions, contact our sales team at{" "}
-                <Link href="mailto:contact@accessibility.build" className="text-primary hover:underline">
-                  contact@accessibility.build
+                <Link href="mailto:sales@accessibility.build" className="text-primary hover:underline">
+                  sales@accessibility.build
                 </Link>
               </p>
             </div>

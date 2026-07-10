@@ -617,7 +617,7 @@ export function OrganizationStructuredData() {
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "contact@accessibility.build",
+      "email": "support@accessibility.build",
       "availableLanguage": ["English"],
       "areaServed": "Worldwide"
     },

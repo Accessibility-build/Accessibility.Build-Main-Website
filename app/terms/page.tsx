@@ -132,7 +132,7 @@ export default function TermsPage() {
           <h2>Contact Us</h2>
           <p>If you have any questions about these terms of service, please contact us at:</p>
           <p>
-            <strong>Email:</strong> contact@accessibility.build
+            <strong>Email:</strong> terms@accessibility.build
             <br />
             <strong>Address:</strong> 123 Accessibility Street, Web City, 12345
           </p>
