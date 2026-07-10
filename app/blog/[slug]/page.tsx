@@ -177,8 +177,17 @@ export default async function BlogPostPage({
           .trim() || undefined
       : undefined
     const heroImage = post.mainImage ? urlFor(post.mainImage).width(1400).height(700).url() : null
-    // Use adventurer style for youthful animated cartoon characters
-    const defaultAvatar = `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(authorName)}&backgroundColor=b6e3f4,c0aede,d1d4f9`
+    const primaryCategory: string | undefined = post.categories?.[0]?.title
+    // Brand monogram (initials) used when an author has no photo — replaces the
+    // old cartoon avatar with something on-brand and professional.
+    const authorInitials =
+      authorName
+        .split(/\s+/)
+        .filter((w: string) => !['the', 'a', 'an', 'of', 'and', '&'].includes(w.toLowerCase()))
+        .slice(0, 2)
+        .map((w: string) => w[0])
+        .join('')
+        .toUpperCase() || 'A'
 
     return (
       <div className="min-h-screen bg-white dark:bg-slate-950 font-serif">
@@ -252,7 +261,7 @@ export default async function BlogPostPage({
               )}
 
               {/* Title */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 dark:text-white leading-[1.1] tracking-tight mb-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-[1.1] tracking-tight mb-6">
                 {post.title}
               </h1>
 
@@ -269,13 +278,14 @@ export default async function BlogPostPage({
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-6 border-y border-slate-100 dark:border-slate-800">
                 {/* Author - Left Side */}
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  <div className="relative h-12 w-12 rounded-full overflow-hidden flex-shrink-0">
-                    <Image
-                      src={authorImage || defaultAvatar}
-                      alt={authorName}
-                      fill
-                      className="object-cover"
-                    />
+                  <div className="relative h-12 w-12 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-slate-200 dark:ring-slate-700">
+                    {authorImage ? (
+                      <Image src={authorImage} alt={authorName} fill className="object-cover" />
+                    ) : (
+                      <div className="h-full w-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-sans font-semibold text-sm">
+                        {authorInitials}
+                      </div>
+                    )}
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="font-sans font-semibold text-slate-900 dark:text-white truncate">{authorName}</p>
@@ -303,9 +313,9 @@ export default async function BlogPostPage({
               </div>
             </div>
 
-            {/* Featured Image */}
-            {heroImage && (
-              <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+            {/* Featured image, or a branded banner when the post has no image */}
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+              {heroImage ? (
                 <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
                     src={heroImage}
@@ -315,8 +325,25 @@ export default async function BlogPostPage({
                     className="object-cover"
                   />
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="relative h-40 sm:h-52 rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-slate-900">
+                  <div
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+                      backgroundSize: '22px 22px',
+                    }}
+                  />
+                  {primaryCategory && (
+                    <div className="absolute bottom-0 left-0 p-6 sm:p-8">
+                      <span className="font-sans inline-block text-white text-xs font-semibold uppercase tracking-widest bg-white/15 px-3 py-1 rounded-full backdrop-blur-sm">
+                        {primaryCategory}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
             {/* Main Content Grid */}
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -444,18 +471,25 @@ function AuthorSidebarCard({
   image?: string;
   bio?: string;
 }) {
-  // Use adventurer style for youthful animated cartoon characters
-  const defaultAvatar = `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(author)}&backgroundColor=b6e3f4,c0aede,d1d4f9`
+  const initials =
+    author
+      .split(/\s+/)
+      .filter((w) => !['the', 'a', 'an', 'of', 'and', '&'].includes(w.toLowerCase()))
+      .slice(0, 2)
+      .map((w) => w[0])
+      .join('')
+      .toUpperCase() || 'A'
 
   return (
     <div className="flex items-start gap-4">
-      <div className="relative h-14 w-14 rounded-full overflow-hidden flex-shrink-0">
-        <Image
-          src={image || defaultAvatar}
-          alt={author}
-          fill
-          className="object-cover"
-        />
+      <div className="relative h-14 w-14 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-slate-200 dark:ring-slate-700">
+        {image ? (
+          <Image src={image} alt={author} fill className="object-cover" />
+        ) : (
+          <div className="h-full w-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-semibold">
+            {initials}
+          </div>
+        )}
       </div>
       <div className="flex-1 min-w-0">
         <h4 className="font-semibold text-slate-900 dark:text-white">{author}</h4>

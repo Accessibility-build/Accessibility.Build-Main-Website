@@ -70,9 +70,8 @@ const components = {
       </p>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-blue-500 pl-8 pr-6 my-10 italic text-xl sm:text-2xl text-slate-700 dark:text-slate-300 bg-gradient-to-r from-blue-50 to-transparent dark:from-blue-900/20 dark:to-transparent py-6 rounded-r-xl shadow-sm relative">
-        <span className="text-6xl text-blue-500/20 absolute -top-4 -left-2 font-serif leading-none">"</span>
-        <div className="relative z-10">{children}</div>
+      <blockquote className="border-l-4 border-blue-500 pl-6 pr-4 my-8 text-lg sm:text-xl italic text-slate-600 dark:text-slate-300">
+        {children}
       </blockquote>
     ),
   },
@@ -83,7 +82,7 @@ const components = {
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="list-none mb-8 space-y-3 text-lg sm:text-xl text-slate-700 dark:text-slate-300">
+      <ol className="blog-ol list-none mb-8 space-y-3 text-lg sm:text-xl text-slate-700 dark:text-slate-300">
         {children}
       </ol>
     ),
@@ -91,15 +90,13 @@ const components = {
   listItem: {
     bullet: ({ children }: any) => (
       <li className="flex items-start gap-4 mb-3">
-        <span className="w-2 h-2 bg-blue-500 rounded-full mt-3 flex-shrink-0"></span>
+        <span className="w-2 h-2 bg-blue-500 rounded-full mt-[0.7em] flex-shrink-0"></span>
         <div className="flex-1">{children}</div>
       </li>
     ),
     number: ({ children }: any) => (
-      <li className="flex items-start gap-4 mb-3 relative">
-        <span className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-1 flex-shrink-0">
-          {/* Number will be added via CSS counter */}
-        </span>
+      <li className="blog-ol-item flex items-start gap-4 mb-3">
+        <span className="blog-ol-num w-7 h-7 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-0.5 flex-shrink-0" />
         <div className="flex-1">{children}</div>
       </li>
     ),

@@ -174,7 +174,13 @@
   .prose-content img {
     @apply rounded-lg my-8;
   }
-  
+
+  /* Numbered lists in blog Portable Text render a numbered badge via a CSS
+     counter (the custom list renderer draws the badge; this fills in the digit). */
+  .blog-ol { counter-reset: blog-ol; }
+  .blog-ol-item { counter-increment: blog-ol; }
+  .blog-ol-num::before { content: counter(blog-ol); }
+
   .prose-content hr {
     @apply my-12 border-slate-200 dark:border-slate-800;
   }

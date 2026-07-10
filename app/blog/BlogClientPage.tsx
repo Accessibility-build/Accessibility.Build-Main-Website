@@ -231,20 +231,32 @@ function RegularPostCard({ post }: { post: BlogPost }) {
 function AuthorInfo({ author, image, size = "base" }: { author: string; image?: string; size?: "sm" | "base" }) {
   const avatarSize = size === "sm" ? "h-8 w-8" : "h-10 w-10"
   const textSize = size === "sm" ? "text-sm" : "text-base"
-  
-  // Generate DiceBear avatar URL
-  const defaultAvatar = `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(author)}&backgroundColor=b6e3f4,c0aede,d1d4f9&backgroundType=gradientLinear`
+
+  const initials =
+    author
+      .split(/\s+/)
+      .filter((w) => !['the', 'a', 'an', 'of', 'and', '&'].includes(w.toLowerCase()))
+      .slice(0, 2)
+      .map((w) => w[0])
+      .join('')
+      .toUpperCase() || 'A'
 
   return (
     <div className="flex items-center gap-2 sm:gap-3 min-w-0">
       <div className={`${avatarSize} rounded-full overflow-hidden flex-shrink-0 ring-2 ring-slate-100 dark:ring-slate-700`}>
-        <Image
-          src={image || defaultAvatar}
-          alt={author}
-          width={40}
-          height={40}
-          className="w-full h-full object-cover"
-        />
+        {image ? (
+          <Image
+            src={image}
+            alt={author}
+            width={40}
+            height={40}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className={`w-full h-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-semibold ${size === "sm" ? "text-xs" : "text-sm"}`}>
+            {initials}
+          </div>
+        )}
       </div>
       <div className="min-w-0">
         <div className={`font-medium text-slate-900 dark:text-white ${textSize} truncate`}>{author}</div>
