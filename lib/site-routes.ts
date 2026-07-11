@@ -154,13 +154,13 @@ const blog: SiteRoute[] = [
 ]
 
 const services: SiteRoute[] = [
-  { route: "/services", label: "Services Hub", group: "Services", lastModified: "2026-02-25", priority: 0.93 },
-  { route: "/services/accessibility-audits", label: "Accessibility Audits", group: "Services", lastModified: "2025-11-15", priority: 0.88 },
-  { route: "/services/accessibility-training", label: "Accessibility Training", group: "Services", lastModified: "2025-11-15", priority: 0.86 },
-  { route: "/services/compliance-documentation", label: "Compliance Documentation", group: "Services", lastModified: "2025-11-15", priority: 0.84 },
-  { route: "/services/remediation-support", label: "Remediation Support", group: "Services", lastModified: "2025-11-15", priority: 0.82 },
-  { route: "/services/design-reviews", label: "Design Reviews", group: "Services", lastModified: "2025-11-15", priority: 0.8 },
-  { route: "/services/user-testing", label: "User Testing", group: "Services", lastModified: "2025-11-15", priority: 0.78 },
+  { route: "/services", label: "Services Hub", group: "Services", lastModified: "2026-07-12", priority: 0.93 },
+  { route: "/services/accessibility-audits", label: "Accessibility Audits", group: "Services", lastModified: "2026-07-12", priority: 0.88 },
+  { route: "/services/accessibility-training", label: "Accessibility Training", group: "Services", lastModified: "2026-07-12", priority: 0.86 },
+  { route: "/services/compliance-documentation", label: "Compliance Documentation", group: "Services", lastModified: "2026-07-12", priority: 0.84 },
+  { route: "/services/remediation-support", label: "Remediation Support", group: "Services", lastModified: "2026-07-12", priority: 0.82 },
+  { route: "/services/design-reviews", label: "Design Reviews", group: "Services", lastModified: "2026-07-12", priority: 0.8 },
+  { route: "/services/user-testing", label: "User Testing", group: "Services", lastModified: "2026-07-12", priority: 0.78 },
 ]
 
 const legal: SiteRoute[] = [

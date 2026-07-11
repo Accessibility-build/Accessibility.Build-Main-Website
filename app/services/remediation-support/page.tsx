@@ -3,20 +3,24 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
-import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
+import { ServicePricing } from "@/components/services/service-pricing"
+import { ServiceStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
+import { servicePricing, toStructuredOffers } from "@/lib/service-pricing"
 import { Check, Code, FileText, Wrench, RefreshCw, MessageSquare } from "lucide-react"
+
+const pageDescription =
+  "Fixed-price accessibility remediation from $1,250, with scoped code fixes, engineering guidance, assistive technology validation, and handoff."
 
 export const metadata: Metadata = {
   title: "Remediation Support",
-  description:
-    "Expert assistance to fix accessibility issues in your digital products, from code-level fixes to content remediation.",
+  description: pageDescription,
+  keywords: ["accessibility remediation services", "WCAG remediation cost", "accessibility code fixes", "audit remediation"],
   alternates: { canonical: "/services/remediation-support" },
   openGraph: {
     type: "website",
     title: "Remediation Support",
-    description:
-      "Expert assistance to fix accessibility issues in your digital products, from code-level fixes to content remediation.",
+    description: pageDescription,
     url: "/services/remediation-support",
     images: [
       {
@@ -30,8 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Remediation Support",
-    description:
-      "Expert assistance to fix accessibility issues in your digital products, from code-level fixes to content remediation.",
+    description: pageDescription,
     images: ["/api/og?title=Remediation%20Support&section=Services"],
   },
 }
@@ -73,7 +76,7 @@ const faqs = [
   {
     question: "How quickly can you fix accessibility issues?",
     answer:
-      "The timeline depends on the number and complexity of issues. Simple fixes can often be implemented within days, while more complex remediation might take several weeks. During our initial assessment, we'll provide a specific timeline based on your situation.",
+      "Guided Remediation takes 1-2 weeks, an Implementation Sprint takes 2-4 weeks, and Release Remediation takes 4-8 weeks. The exact included findings are confirmed before kickoff so delivery and acceptance criteria remain clear.",
   },
   {
     question: "Will remediation affect our site's design or functionality?",
@@ -102,10 +105,14 @@ export default function RemediationSupportPage() {
     <div className="container-wide py-12">
       <ServiceStructuredData
         name="Remediation Support"
-        description="Expert assistance to fix accessibility issues in your digital products, from code-level fixes to content remediation."
+        description={pageDescription}
         serviceType="Accessibility Remediation"
         url="https://accessibility.build/services/remediation-support"
+        areaServed={["Worldwide"]}
+        offers={toStructuredOffers(servicePricing.remediation)}
+        serviceOutput="Implemented or guided accessibility fixes with validation evidence and engineering handoff"
       />
+      <FAQStructuredData faqs={faqs} />
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },
@@ -121,6 +128,8 @@ export default function RemediationSupportPage() {
         icon={Code}
         gradientFrom="rgba(168, 85, 247, 0.8)"
         gradientTo="rgba(124, 58, 237, 0.8)"
+        startingPrice={servicePricing.remediation.tiers[0].price}
+        delivery={servicePricing.remediation.tiers[0].timeline}
       />
 
       <section className="py-16">
@@ -228,48 +237,7 @@ export default function RemediationSupportPage() {
         <ProcessSteps steps={remediationProcess} />
       </section>
 
-      <section className="py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Pricing Approach</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            We believe in transparent, value-based pricing that reflects the complexity and scope of your remediation
-            needs.
-          </p>
-          <div className="bg-muted/30 p-8 md:p-10 rounded-2xl border border-border max-w-3xl mx-auto">
-            <h3 className="text-xl font-semibold mb-4">Flexible Options to Meet Your Needs</h3>
-            <p className="mb-4">
-              Our pricing is structured to provide maximum value while accommodating different remediation requirements
-              and budgets:
-            </p>
-            <ul className="space-y-3 text-left mb-6">
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Hourly rates</strong> ranging from $60 to $100 per hour based on issue complexity and
-                  specialist requirements
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Project-based pricing</strong> with clear deliverables and timelines for more predictable
-                  budgeting
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Customized remediation packages</strong> that can be tailored to your specific needs and
-                  priorities
-                </span>
-              </li>
-            </ul>
-            <p className="text-muted-foreground italic">
-              We provide detailed quotes after understanding your specific requirements during the initial consultation.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ServicePricing pricing={servicePricing.remediation} />
 
       <FAQSection faqs={faqs} />
 

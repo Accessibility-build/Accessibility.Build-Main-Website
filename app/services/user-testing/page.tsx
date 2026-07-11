@@ -3,20 +3,24 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
-import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
+import { ServicePricing } from "@/components/services/service-pricing"
+import { ServiceStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
+import { servicePricing, toStructuredOffers } from "@/lib/service-pricing"
 import { Check, Users, Target, FileText, Video, PieChart } from "lucide-react"
+
+const pageDescription =
+  "Fixed-price accessibility user testing from $2,400, including disabled participant recruitment, honoraria, moderated sessions, analysis, and reporting."
 
 export const metadata: Metadata = {
   title: "Accessibility User Testing",
-  description:
-    "Real-world validation of your digital products with diverse users, including people with disabilities and assistive technology users.",
+  description: pageDescription,
+  keywords: ["accessibility user testing", "disabled user research", "assistive technology user testing", "inclusive usability testing"],
   alternates: { canonical: "/services/user-testing" },
   openGraph: {
     type: "website",
     title: "Accessibility User Testing",
-    description:
-      "Real-world validation of your digital products with diverse users, including people with disabilities and assistive technology users.",
+    description: pageDescription,
     url: "/services/user-testing",
     images: [
       {
@@ -30,8 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Accessibility User Testing",
-    description:
-      "Real-world validation of your digital products with diverse users, including people with disabilities and assistive technology users.",
+    description: pageDescription,
     images: ["/api/og?title=Accessibility%20User%20Testing&section=Services"],
   },
 }
@@ -83,12 +86,12 @@ const faqs = [
   {
     question: "Do you test remotely or in-person?",
     answer:
-      "We offer both remote and in-person testing options. Remote testing allows for broader geographical participant recruitment, while in-person testing can provide more detailed observations. We'll recommend the best approach based on your needs and constraints.",
+      "The published packages cover moderated remote testing, which supports broader participant recruitment and lets people use their own assistive technology setup. In-person studies are scoped separately because venue, travel, equipment, and participant location materially change the project cost.",
   },
   {
     question: "What deliverables will we receive?",
     answer:
-      "You'll receive a comprehensive report detailing findings, including specific barriers encountered, participant quotes and observations, severity ratings, and actionable recommendations. For comprehensive and enterprise testing, we also provide a stakeholder presentation and video highlights.",
+      "Every package includes a research plan, moderated sessions, barrier analysis, actionable recommendations, and a stakeholder readout. Product and Extended studies add deeper task analysis and prioritization. A consent-based, captioned highlight reel is available for a fixed $500.",
   },
   {
     question: "How do you measure success in accessibility testing?",
@@ -102,10 +105,14 @@ export default function UserTestingPage() {
     <div className="container-wide py-12">
       <ServiceStructuredData
         name="Accessibility User Testing"
-        description="Real-world validation of your digital products with diverse users, including people with disabilities and assistive technology users."
+        description={pageDescription}
         serviceType="Accessibility User Testing"
         url="https://accessibility.build/services/user-testing"
+        areaServed={["Worldwide"]}
+        offers={toStructuredOffers(servicePricing.userTesting)}
+        serviceOutput="Moderated research with disabled participants, task analysis, findings report, and stakeholder readout"
       />
+      <FAQStructuredData faqs={faqs} />
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },
@@ -121,6 +128,8 @@ export default function UserTestingPage() {
         icon={Users}
         gradientFrom="rgba(245, 158, 11, 0.8)"
         gradientTo="rgba(234, 88, 12, 0.8)"
+        startingPrice={servicePricing.userTesting.tiers[0].price}
+        delivery={servicePricing.userTesting.tiers[0].timeline}
       />
 
       <section className="py-16">
@@ -226,48 +235,7 @@ export default function UserTestingPage() {
         <ProcessSteps steps={testingProcess} />
       </section>
 
-      <section className="py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Pricing Approach</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            We believe in transparent, value-based pricing that reflects the complexity and scope of your user testing
-            needs.
-          </p>
-          <div className="bg-muted/30 p-8 md:p-10 rounded-2xl border border-border max-w-3xl mx-auto">
-            <h3 className="text-xl font-semibold mb-4">Flexible Options to Meet Your Needs</h3>
-            <p className="mb-4">
-              Our pricing is structured to provide maximum value while accommodating different testing requirements and
-              budgets:
-            </p>
-            <ul className="space-y-3 text-left mb-6">
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Hourly rates</strong> ranging from $60 to $100 per hour based on testing complexity and
-                  specialist requirements
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Project-based pricing</strong> with clear deliverables and timelines for more predictable
-                  budgeting
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Customized testing packages</strong> that can be tailored to your specific needs and
-                  participant requirements
-                </span>
-              </li>
-            </ul>
-            <p className="text-muted-foreground italic">
-              We provide detailed quotes after understanding your specific requirements during the initial consultation.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ServicePricing pricing={servicePricing.userTesting} />
 
       <FAQSection faqs={faqs} />
 

@@ -3,19 +3,24 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
-import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
+import { ServicePricing } from "@/components/services/service-pricing"
+import { ServiceStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
+import { servicePricing, toStructuredOffers } from "@/lib/service-pricing"
 import { Check, FileText, ClipboardCheck, Scale, BookOpen, FileSearch } from "lucide-react"
+
+const pageDescription =
+  "Fixed-price accessibility statements, procurement documentation, and evidence-based VPAT Accessibility Conformance Reports from $450."
 
 export const metadata: Metadata = {
   title: "Compliance Documentation",
-  description: "Professional documentation services to help you meet legal and regulatory accessibility requirements.",
+  description: pageDescription,
+  keywords: ["VPAT service cost", "Accessibility Conformance Report", "accessibility statement service", "ACR documentation"],
   alternates: { canonical: "/services/compliance-documentation" },
   openGraph: {
     type: "website",
     title: "Compliance Documentation",
-    description:
-      "Professional documentation services to help you meet legal and regulatory accessibility requirements.",
+    description: pageDescription,
     url: "/services/compliance-documentation",
     images: [
       {
@@ -29,8 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Compliance Documentation",
-    description:
-      "Professional documentation services to help you meet legal and regulatory accessibility requirements.",
+    description: pageDescription,
     images: ["/api/og?title=Compliance%20Documentation&section=Services"],
   },
 }
@@ -70,9 +74,9 @@ const faqs = [
       "An accessibility statement is a public-facing document that communicates your commitment to accessibility, the current state of your digital product's accessibility, known limitations, and how users can provide feedback. It's increasingly required by regulations like the EU Web Accessibility Directive and is considered a best practice globally. A well-crafted statement demonstrates transparency and commitment to all users.",
   },
   {
-    question: "What is a VPAT and when is it required?",
+    question: "What is the difference between a VPAT and an ACR?",
     answer:
-      "A Voluntary Product Accessibility Template (VPAT) is a document that explains how information and communication technology products (like software, hardware, electronic content, and support documentation) conform to the Section 508 Standards for IT accessibility. VPATs are typically required for selling to U.S. federal government agencies and are increasingly requested in education, healthcare, and enterprise procurement processes.",
+      "A VPAT is the reporting template. The completed, evidence-based document is an Accessibility Conformance Report, or ACR. Procurement teams often request an ACR when evaluating software for government, education, healthcare, and enterprise use. Our WCAG ACR package requires current audit evidence so every conformance statement can be supported.",
   },
   {
     question: "How often should accessibility documentation be updated?",
@@ -101,10 +105,14 @@ export default function ComplianceDocumentationPage() {
     <div className="container-wide py-12">
       <ServiceStructuredData
         name="Compliance Documentation"
-        description="Professional documentation services to help you meet legal and regulatory accessibility requirements."
+        description={pageDescription}
         serviceType="Accessibility Compliance Documentation"
         url="https://accessibility.build/services/compliance-documentation"
+        areaServed={["Worldwide"]}
+        offers={toStructuredOffers(servicePricing.documentation)}
+        serviceOutput="Accessibility statement, procurement documentation, policy materials, or evidence-based Accessibility Conformance Report"
       />
+      <FAQStructuredData faqs={faqs} />
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },
@@ -120,6 +128,8 @@ export default function ComplianceDocumentationPage() {
         icon={Scale}
         gradientFrom="rgba(6, 182, 212, 0.8)"
         gradientTo="rgba(13, 148, 136, 0.8)"
+        startingPrice={servicePricing.documentation.tiers[0].price}
+        delivery={servicePricing.documentation.tiers[0].timeline}
       />
 
       <section className="py-16">
@@ -227,48 +237,7 @@ export default function ComplianceDocumentationPage() {
         <ProcessSteps steps={documentationProcess} />
       </section>
 
-      <section className="py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Pricing Approach</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            We believe in transparent, value-based pricing that reflects the complexity and scope of your documentation
-            needs.
-          </p>
-          <div className="bg-muted/30 p-8 md:p-10 rounded-2xl border border-border max-w-3xl mx-auto">
-            <h3 className="text-xl font-semibold mb-4">Flexible Options to Meet Your Needs</h3>
-            <p className="mb-4">
-              Our pricing is structured to provide maximum value while accommodating different documentation
-              requirements and budgets:
-            </p>
-            <ul className="space-y-3 text-left mb-6">
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Hourly rates</strong> ranging from $60 to $100 per hour based on documentation complexity and
-                  specialist requirements
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Project-based pricing</strong> with clear deliverables and timelines for more predictable
-                  budgeting
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Customized packages</strong> that can be tailored to your specific documentation needs and
-                  constraints
-                </span>
-              </li>
-            </ul>
-            <p className="text-muted-foreground italic">
-              We provide detailed quotes after understanding your specific requirements during the initial consultation.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ServicePricing pricing={servicePricing.documentation} />
 
       <FAQSection faqs={faqs} />
 

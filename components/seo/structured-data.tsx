@@ -94,11 +94,13 @@ interface ServiceStructuredDataProps {
     logo?: string
   }
   areaServed?: string[]
-  offers?: {
+  offers?: Array<{
+    name: string
+    description?: string
     price: string | number
     priceCurrency: string
     availability: string
-  }
+  }>
   aggregateRating?: {
     ratingValue: string
     reviewCount: string
@@ -673,11 +675,18 @@ export function ServiceStructuredData({
       }))
     }),
     ...(offers && {
-      "offers": {
-        "@type": "Offer",
-        "price": offers.price,
-        "priceCurrency": offers.priceCurrency,
-        "availability": offers.availability
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": `${name} packages`,
+        "itemListElement": offers.map((offer) => ({
+          "@type": "Offer",
+          "name": offer.name,
+          ...(offer.description && { "description": offer.description }),
+          "price": offer.price,
+          "priceCurrency": offer.priceCurrency,
+          "availability": offer.availability,
+          "url": `${url}#service-pricing-heading`
+        }))
       }
     }),
     ...(termsOfService && { "termsOfService": termsOfService }),

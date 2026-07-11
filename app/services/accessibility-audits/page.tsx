@@ -3,20 +3,24 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
-import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
+import { ServicePricing } from "@/components/services/service-pricing"
+import { ServiceStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
+import { servicePricing, toStructuredOffers } from "@/lib/service-pricing"
 import { Check, FileText, BarChart, ListChecks, Clock, Users, Eye } from "lucide-react"
+
+const pageDescription =
+  "Fixed-price WCAG 2.2 AA accessibility audits from $950, with manual testing, assistive technology checks, reports, and verification retests."
 
 export const metadata: Metadata = {
   title: "Accessibility Audits",
-  description:
-    "Comprehensive accessibility audits to identify barriers and ensure WCAG compliance for your digital products.",
+  description: pageDescription,
+  keywords: ["accessibility audit services", "WCAG audit cost", "manual accessibility audit", "WCAG 2.2 AA audit"],
   alternates: { canonical: "/services/accessibility-audits" },
   openGraph: {
     type: "website",
     title: "Accessibility Audits",
-    description:
-      "Comprehensive accessibility audits to identify barriers and ensure WCAG compliance for your digital products.",
+    description: pageDescription,
     url: "/services/accessibility-audits",
     images: [
       {
@@ -30,8 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Accessibility Audits",
-    description:
-      "Comprehensive accessibility audits to identify barriers and ensure WCAG compliance for your digital products.",
+    description: pageDescription,
     images: ["/api/og?title=Accessibility%20Audits&section=Services"],
   },
 }
@@ -70,7 +73,7 @@ const faqs = [
   {
     question: "How long does an accessibility audit take?",
     answer:
-      "The timeline varies based on the size and complexity of your digital product. A basic audit typically takes 1-2 weeks, while comprehensive and enterprise audits may take 3-6 weeks. We'll provide a specific timeline during the initial consultation.",
+      "The Essential Audit is delivered in 7-10 business days, the Product Audit in 2-3 weeks, and the Complex Product Audit in 4-5 weeks. Timelines begin after access, test accounts, and the representative sample are confirmed.",
   },
   {
     question: "What accessibility standards do you test against?",
@@ -104,10 +107,14 @@ export default function AccessibilityAuditsPage() {
     <div className="container-wide py-12">
       <ServiceStructuredData
         name="Accessibility Audits"
-        description="Comprehensive accessibility audits to identify barriers and ensure WCAG compliance for your digital products."
+        description={pageDescription}
         serviceType="Accessibility Audit"
         url="https://accessibility.build/services/accessibility-audits"
+        areaServed={["Worldwide"]}
+        offers={toStructuredOffers(servicePricing.audits)}
+        serviceOutput="WCAG 2.2 AA audit report, evidence-backed issue register, and prioritized remediation plan"
       />
+      <FAQStructuredData faqs={faqs} />
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },
@@ -123,6 +130,8 @@ export default function AccessibilityAuditsPage() {
         icon={Eye}
         gradientFrom="rgba(59, 130, 246, 0.8)"
         gradientTo="rgba(79, 70, 229, 0.8)"
+        startingPrice={servicePricing.audits.tiers[0].price}
+        delivery={servicePricing.audits.tiers[0].timeline}
       />
 
       <section className="py-16">
@@ -234,46 +243,7 @@ export default function AccessibilityAuditsPage() {
         <ProcessSteps steps={auditProcess} />
       </section>
 
-      <section className="py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Pricing Approach</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            We believe in transparent, value-based pricing that reflects the complexity and scope of your project.
-          </p>
-          <div className="bg-muted/30 p-8 md:p-10 rounded-2xl border border-border max-w-3xl mx-auto">
-            <h3 className="text-xl font-semibold mb-4">Flexible Options to Meet Your Needs</h3>
-            <p className="mb-4">
-              Our pricing is structured to provide maximum value while accommodating different project requirements and
-              budgets:
-            </p>
-            <ul className="space-y-3 text-left mb-6">
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Hourly rates</strong> ranging from $60 to $100 per hour based on project complexity and
-                  specialist requirements
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Project-based pricing</strong> with clear deliverables and timelines for more predictable
-                  budgeting
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Customized packages</strong> that can be tailored to your specific needs and constraints
-                </span>
-              </li>
-            </ul>
-            <p className="text-muted-foreground italic">
-              We provide detailed quotes after understanding your specific requirements during the initial consultation.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ServicePricing pricing={servicePricing.audits} />
 
       <FAQSection faqs={faqs} />
 
@@ -281,7 +251,7 @@ export default function AccessibilityAuditsPage() {
         <div className="bg-primary/5 rounded-3xl p-8 md:p-12 border border-primary/20 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Make Your Digital Products Accessible?</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Contact us today to discuss your accessibility audit needs and get a customized quote.
+            Choose a published package or send us your scope for a fixed project total before work begins.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full">

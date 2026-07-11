@@ -1,20 +1,29 @@
-import { Check, ArrowRight, Info, FileText, Users, Code, Palette, TestTube, ClipboardCheck } from "lucide-react"
+import { Check, ArrowRight, FileText, Users, Code, Palette, TestTube, ClipboardCheck } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { IconShell } from "@/components/ui/icon-shell"
 import { ServiceStructuredData } from "@/components/seo/structured-data"
+import { serviceStartingPrices } from "@/lib/service-pricing"
+
+const pageDescription =
+  "Fixed-price accessibility audits, remediation, design reviews, training, disabled user testing, and compliance documentation with published scope and delivery."
 
 export const metadata = {
   title: "Accessibility Services",
-  description:
-    "Professional audits, training, and remediation services to help make your websites and apps inclusive and legally compliant. Let our experts guide your team toward accessibility success.",
+  description: pageDescription,
+  keywords: [
+    "accessibility services pricing",
+    "WCAG consulting",
+    "accessibility audit services",
+    "accessibility remediation",
+    "VPAT services",
+  ],
   alternates: { canonical: "/services" },
   openGraph: {
     type: "website",
     title: "Accessibility Services",
-    description:
-      "Professional audits, training, and remediation services to help make your websites and apps inclusive and legally compliant. Let our experts guide your team toward accessibility success.",
+    description: pageDescription,
     url: "/services",
     images: [
       {
@@ -28,8 +37,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Accessibility Services",
-    description:
-      "Professional audits, training, and remediation services to help make your websites and apps inclusive and legally compliant. Let our experts guide your team toward accessibility success.",
+    description: pageDescription,
     images: ["/api/og?title=Accessibility%20Services&section=Services"],
   },
 }
@@ -38,6 +46,8 @@ const services = [
   {
     title: "Accessibility Audits",
     description: "Comprehensive evaluation of your website or application",
+    startingPrice: serviceStartingPrices.audits,
+    delivery: "7-10 business days",
     icon: FileText,
     color: "from-blue-500 to-indigo-600",
     bgColor: "bg-blue-50 dark:bg-blue-950/30",
@@ -48,13 +58,15 @@ const services = [
       "Prioritized remediation plan",
       "Executive summary for stakeholders",
     ],
-    cta: "Request an Audit",
+    cta: "Discuss Scope",
     link: "/contact?service=audit",
     detailLink: "/services/accessibility-audits",
   },
   {
     title: "Accessibility Training",
     description: "Empower your team with accessibility knowledge",
+    startingPrice: serviceStartingPrices.training,
+    delivery: "90-minute session",
     icon: Users,
     color: "from-emerald-500 to-teal-600",
     bgColor: "bg-emerald-50 dark:bg-emerald-950/30",
@@ -65,25 +77,29 @@ const services = [
       "Hands-on exercises",
       "Ongoing support and resources",
     ],
-    cta: "Book Training",
+    cta: "Discuss Training",
     link: "/contact?service=training",
     detailLink: "/services/accessibility-training",
   },
   {
     title: "Remediation Support",
     description: "Expert help to fix accessibility issues",
+    startingPrice: serviceStartingPrices.remediation,
+    delivery: "1-2 weeks",
     icon: Code,
     color: "from-amber-500 to-orange-600",
     bgColor: "bg-amber-50 dark:bg-amber-950/30",
     borderColor: "border-amber-200 dark:border-amber-800",
     features: ["Code-level fixes", "Design pattern recommendations", "Content remediation", "Validation testing"],
-    cta: "Get Support",
+    cta: "Discuss Remediation",
     link: "/contact?service=remediation",
     detailLink: "/services/remediation-support",
   },
   {
     title: "Accessible Design Reviews",
     description: "Ensure accessibility from the start",
+    startingPrice: serviceStartingPrices.designReviews,
+    delivery: "3-5 business days",
     icon: Palette,
     color: "from-purple-500 to-violet-600",
     bgColor: "bg-purple-50 dark:bg-purple-950/30",
@@ -94,13 +110,15 @@ const services = [
       "Color contrast analysis",
       "Interaction pattern recommendations",
     ],
-    cta: "Request Review",
+    cta: "Discuss a Review",
     link: "/contact?service=design-review",
     detailLink: "/services/design-reviews",
   },
   {
     title: "User Testing",
     description: "Real-world validation with diverse users",
+    startingPrice: serviceStartingPrices.userTesting,
+    delivery: "2-3 weeks",
     icon: TestTube,
     color: "from-rose-500 to-pink-600",
     bgColor: "bg-rose-50 dark:bg-rose-950/30",
@@ -111,19 +129,21 @@ const services = [
       "Detailed findings report",
       "Actionable recommendations",
     ],
-    cta: "Schedule Testing",
+    cta: "Discuss Testing",
     link: "/contact?service=user-testing",
     detailLink: "/services/user-testing",
   },
   {
     title: "Compliance Documentation",
     description: "Support for legal and regulatory requirements",
+    startingPrice: serviceStartingPrices.documentation,
+    delivery: "5 business days",
     icon: ClipboardCheck,
     color: "from-cyan-500 to-sky-600",
     bgColor: "bg-cyan-50 dark:bg-cyan-950/30",
     borderColor: "border-cyan-200 dark:border-cyan-800",
     features: ["Accessibility statements", "VPAT creation", "Conformance documentation", "Remediation roadmaps"],
-    cta: "Get Documentation",
+    cta: "Discuss Documentation",
     link: "/contact?service=documentation",
     detailLink: "/services/compliance-documentation",
   },
@@ -134,14 +154,16 @@ export default function ServicesPage() {
     <div className="container-wide py-12 px-4 sm:px-6">
       <ServiceStructuredData
         name="Accessibility Services"
-        description="Professional audits, training, and remediation services to help make your websites and apps inclusive and legally compliant."
+        description={pageDescription}
         serviceType="Digital Accessibility Consulting"
         url="https://accessibility.build/services"
+        areaServed={["Worldwide"]}
+        serviceOutput="Scoped accessibility audit, remediation, design review, training, user research, or compliance documentation engagement"
       />
       <div className="max-w-3xl mx-auto text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">Our Accessibility Services</h1>
         <p className="text-xl text-muted-foreground">
-          Professional services to help make your digital products inclusive, compliant, and accessible to all users.
+          Fixed-scope services with published prices, delivery windows, and concrete deliverables for every engagement.
         </p>
       </div>
 
@@ -152,7 +174,7 @@ export default function ServicesPage() {
             <div
               key={index}
               className={cn(
-                "group relative bg-background rounded-2xl overflow-hidden border shadow-sm hover:shadow-md transition-all duration-300",
+                "group relative overflow-hidden rounded-lg border bg-background shadow-sm transition-shadow duration-200 hover:shadow-md",
                 service.borderColor,
               )}
             >
@@ -169,18 +191,24 @@ export default function ServicesPage() {
               </div>
 
               <div className="p-6 pt-12 relative">
-                <div className="flex justify-between items-start mb-2">
-                  <h2 className="text-2xl font-bold">{service.title}</h2>
-                  <Link
-                    href={service.detailLink}
-                    className="text-primary hover:text-primary/80 transition-colors flex items-center gap-1 text-sm font-medium"
-                    aria-label={`Learn more about ${service.title}`}
-                  >
-                    <Info className="h-4 w-4" />
-                    <span>Know More</span>
-                  </Link>
+                <h2 className="mb-2 text-2xl font-bold">{service.title}</h2>
+                <p className="text-muted-foreground">{service.description}</p>
+                <div className="my-5 grid grid-cols-2 gap-4 border-y py-4 text-sm">
+                  <div>
+                    <p className="text-muted-foreground">Packages from</p>
+                    <p className="mt-1 text-xl font-bold">
+                      {new Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                        maximumFractionDigits: 0,
+                      }).format(service.startingPrice)}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Initial delivery</p>
+                    <p className="mt-1 font-semibold">{service.delivery}</p>
+                  </div>
                 </div>
-                <p className="text-muted-foreground mb-4">{service.description}</p>
 
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, i) => (
@@ -193,19 +221,19 @@ export default function ServicesPage() {
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button asChild className="rounded-full flex-1">
-                    <Link href={service.link} className="flex items-center justify-center">
-                      {service.cta}
+                    <Link href={service.detailLink} className="flex items-center justify-center">
+                      View Packages
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
 
                   <Button asChild variant="outline" className="rounded-full flex-1">
                     <Link
-                      href={service.detailLink}
+                      href={service.link}
                       className="flex items-center justify-center"
-                      aria-label={`View details about ${service.title}`}
+                      aria-label={`${service.cta} for ${service.title}`}
                     >
-                      View Details
+                      {service.cta}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -216,11 +244,12 @@ export default function ServicesPage() {
         })}
       </div>
 
-      <div className="max-w-4xl mx-auto bg-primary/5 rounded-2xl p-8 border border-primary/20">
+      <div className="mx-auto max-w-4xl rounded-lg border border-primary/20 bg-primary/5 p-8">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold mb-2">Need a Custom Solution?</h2>
+          <h2 className="text-2xl font-bold mb-2">Need More Than a Standard Package?</h2>
           <p className="text-muted-foreground">
-            We offer tailored accessibility services to meet your organization's specific needs.
+            Send us the pages, flows, participants, or deliverables you need. We will price additional scope from the
+            published units on each service page and confirm the project total before kickoff.
           </p>
         </div>
 

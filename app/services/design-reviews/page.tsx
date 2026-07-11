@@ -3,20 +3,24 @@ import type { Metadata } from "next"
 import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
-import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
+import { ServicePricing } from "@/components/services/service-pricing"
+import { ServiceStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
+import { servicePricing, toStructuredOffers } from "@/lib/service-pricing"
 import { Check, Palette, Eye, Layout, Layers, FileText } from "lucide-react"
+
+const pageDescription =
+  "Fixed-price accessible design reviews from $650 for product flows, responsive states, interaction patterns, and design systems before development."
 
 export const metadata: Metadata = {
   title: "Accessible Design Reviews",
-  description:
-    "Expert evaluation of your designs to ensure accessibility from the start, preventing costly remediation later.",
+  description: pageDescription,
+  keywords: ["accessible design review", "accessibility design audit", "Figma accessibility review", "design system accessibility"],
   alternates: { canonical: "/services/design-reviews" },
   openGraph: {
     type: "website",
     title: "Accessible Design Reviews",
-    description:
-      "Expert evaluation of your designs to ensure accessibility from the start, preventing costly remediation later.",
+    description: pageDescription,
     url: "/services/design-reviews",
     images: [
       {
@@ -30,8 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Accessible Design Reviews",
-    description:
-      "Expert evaluation of your designs to ensure accessibility from the start, preventing costly remediation later.",
+    description: pageDescription,
     images: ["/api/og?title=Accessible%20Design%20Reviews&section=Services"],
   },
 }
@@ -78,7 +81,7 @@ const faqs = [
   {
     question: "How long does a design review take?",
     answer:
-      "A single design review typically takes 3-5 business days, depending on complexity. Design system reviews usually take 1-2 weeks. We can accommodate rush requests when possible, though additional fees may apply.",
+      "The Feature Review takes 3-5 business days, the Product Flow Review takes 1-2 weeks, and the Design System Review takes 2-3 weeks. Expedited delivery shortens the agreed window by approximately one-third for a 25% surcharge.",
   },
   {
     question: "Will you provide specific solutions or just identify problems?",
@@ -102,10 +105,14 @@ export default function DesignReviewsPage() {
     <div className="container-wide py-12">
       <ServiceStructuredData
         name="Accessible Design Reviews"
-        description="Expert evaluation of your designs to ensure accessibility from the start, preventing costly remediation later."
+        description={pageDescription}
         serviceType="Accessible Design Review"
         url="https://accessibility.build/services/design-reviews"
+        areaServed={["Worldwide"]}
+        offers={toStructuredOffers(servicePricing.designReviews)}
+        serviceOutput="Annotated design accessibility findings, prioritized recommendations, and implementation-ready pattern guidance"
       />
+      <FAQStructuredData faqs={faqs} />
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },
@@ -121,6 +128,8 @@ export default function DesignReviewsPage() {
         icon={Palette}
         gradientFrom="rgba(59, 130, 246, 0.8)"
         gradientTo="rgba(79, 70, 229, 0.8)"
+        startingPrice={servicePricing.designReviews.tiers[0].price}
+        delivery={servicePricing.designReviews.tiers[0].timeline}
       />
 
       <section className="py-16">
@@ -228,48 +237,7 @@ export default function DesignReviewsPage() {
         <ProcessSteps steps={reviewProcess} />
       </section>
 
-      <section className="py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Pricing Approach</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            We believe in transparent, value-based pricing that reflects the complexity and scope of your design review
-            needs.
-          </p>
-          <div className="bg-muted/30 p-8 md:p-10 rounded-2xl border border-border max-w-3xl mx-auto">
-            <h3 className="text-xl font-semibold mb-4">Flexible Options to Meet Your Needs</h3>
-            <p className="mb-4">
-              Our pricing is structured to provide maximum value while accommodating different design review
-              requirements and budgets:
-            </p>
-            <ul className="space-y-3 text-left mb-6">
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Hourly rates</strong> ranging from $60 to $100 per hour based on design complexity and
-                  specialist requirements
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Project-based pricing</strong> with clear deliverables and timelines for more predictable
-                  budgeting
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Check className="h-5 w-5 text-primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  <strong>Customized review packages</strong> that can be tailored to your specific design needs and
-                  project stage
-                </span>
-              </li>
-            </ul>
-            <p className="text-muted-foreground italic">
-              We provide detailed quotes after understanding your specific requirements during the initial consultation.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ServicePricing pricing={servicePricing.designReviews} />
 
       <FAQSection faqs={faqs} />
 
