@@ -13,6 +13,7 @@ import {
   Shield,
 } from "lucide-react";
 import { footerTrustSignals } from "@/lib/public-metrics";
+import { company } from "@/lib/company";
 
 const toolLinks = [
   { href: "/tools/accessibility-audit-helper", label: "Accessibility Auditor" },
@@ -40,13 +41,17 @@ const researchLinks = [
 
 const companyLinks = [
   { href: "/about", label: "About Us" },
+  { href: "/trust", label: "Trust Centre" },
+  { href: "/methodology", label: "Audit Methodology" },
   { href: "/contact", label: "Contact Support" },
   { href: "/faq", label: "FAQ & Help" },
   { href: "/sitemap-page", label: "Sitemap" },
 ];
 
 const legalLinks = [
+  { href: "/accessibility", label: "Accessibility Statement" },
   { href: "/privacy", label: "Privacy Policy" },
+  { href: "/cookies", label: "Cookie Policy" },
   { href: "/terms", label: "Terms of Service" },
   { href: "/refund", label: "Refund Policy" },
 ];
@@ -79,13 +84,13 @@ export function Footer() {
 
       <div className="relative container-wide py-8 md:py-12">
         <div className="border-b border-slate-300 py-8 md:py-10 dark:border-slate-800">
-          <div className="flex items-end gap-4 overflow-hidden">
+          <div className="flex items-end gap-4">
             <div className="hidden sm:flex sm:items-end sm:pb-2" aria-hidden="true">
               <div className="rounded-2xl border border-slate-300 bg-white p-3 dark:border-slate-700 dark:bg-slate-900/70">
                 <Logo className="h-14 w-14" />
               </div>
             </div>
-            <h3 className="text-[clamp(2.4rem,9vw,7rem)] font-semibold leading-[0.9] tracking-[-0.03em] text-slate-900 dark:text-slate-50">
+            <h3 className="min-w-0 text-[clamp(2.4rem,9vw,7rem)] font-semibold leading-[1.05] tracking-normal text-slate-900 dark:text-slate-50">
               <span className="block xl:inline">Accessibility</span>
               <span className="block text-slate-700 xl:ml-4 xl:inline dark:text-slate-100">.build</span>
             </h3>
@@ -95,13 +100,12 @@ export function Footer() {
         <div className="grid gap-10 border-b border-slate-300 py-10 lg:grid-cols-12 dark:border-slate-800">
           <div className="lg:col-span-4">
             <p className="max-w-md text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-              Professional accessibility platform with AI-powered tools, WCAG
-              compliance testing, and comprehensive resources for building
-              inclusive digital experiences.
+              Founder-owned accessibility consultancy and platform providing
+              audits, remediation, training, practical tools, and WCAG guidance.
             </p>
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-slate-300 bg-slate-100/80 px-3 py-1 text-xs font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300">
               <Shield className="h-3.5 w-3.5 text-emerald-400" />
-              WCAG 2.2 Compliant
+              Founder-owned and GST-registered in India
             </div>
             <div className="mt-6 flex items-center gap-3">
               {socialLinks.map((item) => {
@@ -128,13 +132,14 @@ export function Footer() {
             </h3>
             <div className="mt-4 space-y-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
               <a
-                href="mailto:contact@accessibility.build"
+                href={`mailto:${company.email}`}
                 className="block w-fit transition-colors hover:text-slate-900 dark:hover:text-white"
               >
-                contact@accessibility.build
+                {company.email}
               </a>
-              <p>24-48 hours during business days</p>
-              <p>Remote team serving clients worldwide</p>
+              <p>{company.responseTime}</p>
+              <p>Operated by {company.legalOperator}</p>
+              <p>Bengaluru, Karnataka, India</p>
             </div>
           </div>
 
@@ -252,7 +257,9 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-4 py-6 text-xs text-slate-600 md:flex-row md:items-center md:justify-between dark:text-slate-400">
-          <p>&copy; {currentYear} Accessibility.build. All rights reserved.</p>
+          <p className="max-w-xl leading-5">
+            &copy; {currentYear} Accessibility.build. Owned and operated by {company.legalOperator}. All rights reserved.
+          </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <p className="inline-flex items-center gap-1 text-slate-700 dark:text-slate-300">
               Made with <Heart className="h-3.5 w-3.5 text-red-400" /> for

@@ -100,7 +100,7 @@ export default function WCAG246Page() {
         headline="WCAG 2.4.6 Headings and Labels: The Complete Guide to Descriptive Headings and Form Labels"
         description="The definitive guide to WCAG 2.4.6 Headings and Labels: what counts as a label, why descriptive headings power screen reader navigation, HTML examples, common mistakes, and testing methods."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

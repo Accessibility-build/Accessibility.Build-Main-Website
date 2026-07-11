@@ -80,12 +80,12 @@ export default function AccessibilityCodeGeneratorPage() {
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
               Generate production-ready accessible components with comprehensive AI analysis. Get detailed
-              WCAG 2.2 compliant code with in-depth explanations, multiple examples, and step-by-step implementation guides.
+              code intended to support WCAG 2.2 implementation, with explanations, examples, and review guidance.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span>WCAG 2.2 Compliant</span>
+                <span>WCAG-Informed Output</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -112,4 +112,4 @@ export default function AccessibilityCodeGeneratorPage() {
       </div>
     </>
   )
-} 
+}

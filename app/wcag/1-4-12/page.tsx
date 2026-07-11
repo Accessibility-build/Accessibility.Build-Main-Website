@@ -127,7 +127,7 @@ export default function WCAG1412Page() {
         headline="WCAG 1.4.12 Text Spacing: The Complete Guide to the Four Metrics and How to Test"
         description="The definitive guide to WCAG 1.4.12 Text Spacing: the four user-adjustable values, the test bookmarklet, why fixed-height containers clip text, copy-ready CSS fixes, common mistakes, and testing methods."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

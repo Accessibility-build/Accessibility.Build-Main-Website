@@ -61,7 +61,7 @@ export default function WCAGSEOEnhancements({
   url,
   datePublished,
   dateModified,
-  author = "Accessibility Build Team",
+  author = "Khushwant Parihar",
   category,
   wordCount = 2500,
   timeToRead = 8,

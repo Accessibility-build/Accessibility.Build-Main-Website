@@ -135,7 +135,7 @@ export default function WCAG258Page() {
         headline="WCAG 2.5.8 Target Size (Minimum): The Complete 24×24 px Tap Target Guide"
         description="The definitive guide to WCAG 2.5.8 Target Size (Minimum), new in WCAG 2.2: the 24×24 CSS pixel rule, all five exceptions, the spacing offset technique, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

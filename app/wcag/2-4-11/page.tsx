@@ -131,7 +131,7 @@ export default function WCAG2411Page() {
         headline="WCAG 2.4.11 Focus Not Obscured (Minimum): The Complete Sticky Header Guide"
         description="The definitive guide to WCAG 2.4.11 Focus Not Obscured (Minimum): why sticky headers and floating overlays hide the keyboard-focused element, and how to fix it with scroll-padding, scroll-margin, and layout changes, with code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

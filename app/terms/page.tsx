@@ -1,143 +1,127 @@
 import Link from "next/link"
+import { createMetadata } from "@/lib/metadata"
+import { businessLocation, company, legalLastUpdated } from "@/lib/company"
 
-export const metadata = {
+export const metadata = createMetadata({
   title: "Terms of Service",
-  description: "Our terms of service outline the rules and guidelines for using our website and services.",
-  alternates: { canonical: "/terms" },
-  openGraph: {
-    type: "website",
-    title: "Terms of Service",
-    description: "Our terms of service outline the rules and guidelines for using our website and services.",
-    url: "/terms",
-    images: [
-      {
-        url: "/api/og?title=Terms%20of%20Service&section=Legal",
-        width: 1200,
-        height: 630,
-        alt: "Terms of Service",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Terms of Service",
-    description: "Our terms of service outline the rules and guidelines for using our website and services.",
-    images: ["/api/og?title=Terms%20of%20Service&section=Legal"],
-  },
-}
+  path: "/terms",
+  description:
+    "Terms governing use of Accessibility.build tools, content, accounts, credit purchases, and professional accessibility services.",
+  keywords: ["Accessibility.build terms", "accessibility services terms", "website terms India"],
+})
 
 export default function TermsPage() {
   return (
-    <div className="container-wide py-12">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6">Terms of Service</h1>
+    <div className="container-wide py-12 lg:py-16">
+      <article className="mx-auto max-w-3xl">
+        <header className="border-b pb-8">
+          <p className="text-sm font-semibold uppercase text-primary">Legal</p>
+          <h1 className="mt-2 text-4xl font-semibold">Terms of Service</h1>
+          <p className="mt-4 text-muted-foreground">Last updated: {legalLastUpdated}</p>
+        </header>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none">
-          <p>Last updated: May 15, 2023</p>
-
-          <h2>Introduction</h2>
+        <div className="prose prose-lg mt-10 max-w-none dark:prose-invert">
+          <h2>1. Business identity</h2>
           <p>
-            Welcome to Accessibility.build. These terms and conditions outline the rules and regulations for the use of
-            our website.
-          </p>
-          <p>
-            By accessing this website, we assume you accept these terms and conditions in full. Do not continue to use
-            Accessibility.build if you do not accept all of the terms and conditions stated on this page.
+            Accessibility.build is a founder-owned accessibility practice and technology platform owned and operated by <strong>{company.legalOperator}</strong>, a GST-registered independent professional based in {businessLocation}. In these terms, “Accessibility.build”, “we”, “us”, and “our” refer to that business operation.
           </p>
 
-          <h2>License</h2>
+          <h2>2. Acceptance and eligibility</h2>
           <p>
-            Unless otherwise stated, Accessibility.build and/or its licensors own the intellectual property rights for
-            all material on Accessibility.build. All intellectual property rights are reserved.
+            These terms apply when you visit the website, create an account, use a tool, purchase credits, or engage professional services. By doing so, you agree to these terms and the linked <Link href="/privacy">Privacy Policy</Link>, <Link href="/cookies">Cookie Policy</Link>, and <Link href="/refund">Refund Policy</Link>. If you use the service for an organization, you confirm that you are authorized to accept these terms for it.
+          </p>
+          <p>You must be legally capable of entering a binding contract in your jurisdiction.</p>
+
+          <h2>3. Platform tools and professional services</h2>
+          <p>
+            The website includes educational content, automated and AI-assisted tools, account features, and separately scoped professional services. A tool result is informational and does not constitute a complete accessibility audit, certification, legal opinion, or guarantee of WCAG conformance.
           </p>
           <p>
-            You may view and/or print pages from the website for your own personal use subject to restrictions set in
-            these terms and conditions.
+            Consulting engagements are governed by the accepted proposal, statement of work, invoice, or other written agreement. If that agreement conflicts with these website terms, the engagement-specific agreement controls for that work.
           </p>
+
+          <h2>4. Accounts and security</h2>
+          <p>
+            You are responsible for accurate account information, safeguarding your credentials, and activity under your account. Notify us promptly at <a href={`mailto:${company.email}`}>{company.email}</a> if you suspect unauthorized access. We may suspend access to protect users, investigate misuse, comply with law, or prevent harm to the service.
+          </p>
+
+          <h2>5. Submitted content and confidentiality</h2>
+          <p>
+            You retain ownership of URLs, images, documents, code, and other material you submit. You grant us only the limited permission needed to process that material, provide the requested feature, secure the service, and meet legal obligations. You confirm that you have the right to submit the material and that it does not unlawfully expose personal, confidential, or third-party information.
+          </p>
+          <p>
+            Do not submit secrets, production credentials, health records, financial account data, or other highly sensitive information unless a written engagement specifically provides for it. Client confidentiality terms agreed in a proposal, NDA, or statement of work remain applicable.
+          </p>
+
+          <h2>6. Payments, credits, taxes, and refunds</h2>
+          <p>
+            Prices, currency, included scope, payment milestones, and applicable taxes are shown before purchase or in the relevant proposal. Digital credits are not currency, cannot be transferred unless we approve it, and may be used only for eligible platform features. GST and other applicable tax particulars are shown on valid invoices where required.
+          </p>
+          <p>
+            Refund eligibility and processing are described in our <Link href="/refund">Cancellation and Refund Policy</Link>. Payment processors may apply their own terms and processing times.
+          </p>
+
+          <h2>7. Acceptable use</h2>
           <p>You must not:</p>
           <ul>
-            <li>Republish material from this website</li>
-            <li>Sell, rent, or sub-license material from this website</li>
-            <li>Reproduce, duplicate, or copy material from this website</li>
-            <li>
-              Redistribute content from Accessibility.build (unless content is specifically made for redistribution)
-            </li>
+            <li>break the law, infringe rights, or submit material you are not authorized to process;</li>
+            <li>attempt to bypass authentication, usage limits, billing, or security controls;</li>
+            <li>probe, disrupt, overload, scrape, or reverse engineer the service except where law expressly permits;</li>
+            <li>use results to misrepresent that a product is certified or guaranteed accessible;</li>
+            <li>resell or republish substantial parts of our tools, reports, or content without permission.</li>
           </ul>
 
-          <h2>User Content</h2>
+          <h2>8. Intellectual property</h2>
           <p>
-            In these terms and conditions, "User Content" means material (including without limitation text, images,
-            audio material, video material, and audio-visual material) that you submit to this website, for whatever
-            purpose.
-          </p>
-          <p>
-            You grant to Accessibility.build a worldwide, irrevocable, non-exclusive, royalty-free license to use,
-            reproduce, adapt, publish, translate, and distribute your User Content in any existing or future media. You
-            also grant to Accessibility.build the right to sub-license these rights, and the right to bring an action
-            for infringement of these rights.
+            Accessibility.build retains rights in its original website design, software, tools, reports, methods, and content, excluding your submitted material and third-party content. You may link to public pages and quote limited portions with attribution. Any broader reproduction, commercial redistribution, or removal of attribution requires written permission.
           </p>
 
-          <h2>Payment and Refunds</h2>
+          <h2>9. Accessibility and compliance limitations</h2>
           <p>
-            All purchases of credits and services are subject to our Cancellation & Refund Policy. By making a 
-            purchase, you agree to our refund terms as outlined in our comprehensive refund policy.
-          </p>
-          <p>
-            <strong>Key Points:</strong>
-          </p>
-          <ul>
-            <li>Credit purchases are one-time payments (no recurring subscriptions)</li>
-            <li>We offer a 30-day money-back guarantee on credit purchases</li>
-            <li>Refunds are available for unused or partially used credits within the specified timeframe</li>
-            <li>All refund requests are processed in accordance with the Consumer Protection Act, 2019</li>
-            <li>For detailed information, please review our <Link href="/refund" className="text-primary hover:underline">Cancellation & Refund Policy</Link></li>
-          </ul>
-
-          <h2>Limitation of Liability</h2>
-          <p>
-            The information on this website is provided free-of-charge, and you acknowledge that it would be
-            unreasonable to hold us liable in respect of this website and the information on this website.
-          </p>
-          <p>
-            To the maximum extent permitted by applicable law, we exclude all representations, warranties, and
-            conditions relating to our website and the use of this website (including, without limitation, any
-            warranties implied by law in respect of satisfactory quality, fitness for purpose, and/or the use of
-            reasonable care and skill).
+            Accessibility is contextual. Automated checks find only a subset of potential barriers, and even professional audits reflect an agreed sample, technology matrix, standard, and date. Laws and standards may change. You remain responsible for your product, implementation decisions, legal advice, and ongoing monitoring.
           </p>
 
-          <h2>Acceptable Use</h2>
+          <h2>10. Service availability and changes</h2>
           <p>
-            You must not use this website in any way that causes, or may cause, damage to the website or impairment of
-            the availability or accessibility of the website.
-          </p>
-          <p>
-            You must not use this website in any way which is unlawful, illegal, fraudulent, or harmful, or in
-            connection with any unlawful, illegal, fraudulent, or harmful purpose or activity.
+            We work to keep the service available but do not promise uninterrupted or error-free operation. Features may be corrected, improved, limited, or retired. When a material paid feature changes, we will take reasonable steps to notify affected customers and preserve applicable consumer rights.
           </p>
 
-          <h2>Variation</h2>
+          <h2>11. Disclaimers and limitation of liability</h2>
           <p>
-            We may revise these terms and conditions from time-to-time. Revised terms and conditions will apply to the
-            use of this website from the date of publication of the revised terms and conditions on this website.
+            To the extent permitted by law, free tools and public content are provided “as is” and “as available”. We do not warrant that a scan or recommendation will identify every issue or satisfy every legal requirement. Nothing in these terms excludes liability that cannot lawfully be excluded, including mandatory consumer protections.
+          </p>
+          <p>
+            To the extent permitted by law, our aggregate liability arising from a paid platform purchase is limited to the amount you paid for the affected purchase. Liability for professional services is governed by the applicable written engagement. We are not liable for indirect or consequential loss where such exclusion is lawful.
           </p>
 
-          <h2>Entire Agreement</h2>
+          <h2>12. Termination</h2>
           <p>
-            These terms and conditions, together with our <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link> and{" "}
-            <Link href="/refund" className="text-primary hover:underline">Cancellation & Refund Policy</Link>, constitute the entire agreement between you
-            and Accessibility.build in relation to your use of this website and services, and supersede all previous agreements in
-            respect of your use of this website.
+            You may stop using the service at any time. We may restrict or terminate access for material breach, unlawful use, security risk, non-payment, or harm to others. Provisions concerning ownership, payment obligations, disclaimers, liability, and dispute resolution survive termination where relevant.
           </p>
 
-          <h2>Contact Us</h2>
-          <p>If you have any questions about these terms of service, please contact us at:</p>
+          <h2>13. Governing law</h2>
           <p>
-            <strong>Email:</strong> terms@accessibility.build
-            <br />
-            <strong>Address:</strong> 123 Accessibility Street, Web City, 12345
+            These terms are governed by the laws of India. Subject to mandatory consumer rights and any agreed dispute procedure, courts of competent jurisdiction in Bengaluru, Karnataka will have jurisdiction. Before filing a claim, both parties should attempt in good faith to resolve the matter through written notice.
+          </p>
+
+          <h2>14. Changes to these terms</h2>
+          <p>
+            We may update these terms when the service, business, or applicable requirements change. The revision date will be updated on this page. Material changes affecting registered users or paid services will be communicated through reasonable channels.
+          </p>
+
+          <h2>15. Contact</h2>
+          <address className="not-italic">
+            <strong>{company.brandName}</strong><br />
+            Owned and operated by {company.legalOperator}<br />
+            {businessLocation}<br />
+            GST-registered in India<br />
+            Email: <a href={`mailto:${company.email}`}>{company.email}</a>
+          </address>
+          <p className="text-sm">
+            The applicable GSTIN and additional tax particulars are provided on valid tax invoices and procurement documents.
           </p>
         </div>
-      </div>
+      </article>
     </div>
   )
 }

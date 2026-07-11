@@ -127,7 +127,7 @@ export default function WCAG332Page() {
         headline="WCAG 3.3.2 Labels or Instructions: The Complete Accessible Form Labels Guide"
         description="The definitive guide to WCAG 3.3.2 Labels or Instructions: how to label every form control, the four association methods, the placeholder trap, required and format hints, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

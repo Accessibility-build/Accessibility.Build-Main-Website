@@ -121,7 +121,7 @@ export default function WCAG1413Page() {
         headline="WCAG 1.4.13 Content on Hover or Focus: The Complete Accessible Tooltip Guide"
         description="The definitive guide to WCAG 1.4.13 Content on Hover or Focus: the Dismissible, Hoverable, and Persistent conditions for tooltips and hover menus, why the title attribute fails, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

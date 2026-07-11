@@ -290,16 +290,16 @@ export function renderServicesIntroEmail(data: {
 
     <div class="stats-row">
       <div class="stat">
-        <strong>50K+</strong>
-        <span>Developers</span>
+        <strong>Founder-led</strong>
+        <span>Accountability</span>
       </div>
       <div class="stat">
-        <strong>1M+</strong>
-        <span>Insights</span>
+        <strong>WCAG 2.2</strong>
+        <span>Standards focus</span>
       </div>
       <div class="stat">
-        <strong>30+</strong>
-        <span>Tools</span>
+        <strong>Manual + automated</strong>
+        <span>Testing approach</span>
       </div>
     </div>
 

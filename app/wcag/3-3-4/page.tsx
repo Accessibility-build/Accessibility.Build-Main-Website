@@ -105,7 +105,7 @@ export default function WCAG334Page() {
         headline="WCAG 3.3.4 Error Prevention (Legal, Financial, Data): The Complete Guide to Reversible, Checked, and Confirmed Submissions"
         description="The definitive guide to WCAG 3.3.4 Error Prevention: which submissions it covers, how the reversible / checked / confirmed options work, review-step code samples, and testing methods."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

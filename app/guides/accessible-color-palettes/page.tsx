@@ -125,7 +125,7 @@ export default function AccessibleColorPalettesGuidePage() {
         headline="Accessible Color Palette Guide for UI Design Systems"
         description="Learn how to create WCAG-accessible color palettes for real interface states including buttons, cards, forms, alerts, links, charts, focus states, hover states, disabled states, and dark mode."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

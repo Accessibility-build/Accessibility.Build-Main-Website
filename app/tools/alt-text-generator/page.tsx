@@ -102,7 +102,7 @@ export default function AltTextGeneratorPage() {
               <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground mb-8">
                 <div className="flex items-center gap-2">
                   <Shield className="h-4 w-4 text-green-600" />
-                  <span>WCAG 2.2 Compliant</span>
+                  <span>Human Review Required</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Zap className="h-4 w-4 text-blue-600" />

@@ -119,7 +119,7 @@ export default function WCAG333Page() {
         headline="WCAG 3.3.3 Error Suggestion: The Complete Guide to Suggesting Fixes for Form Errors"
         description="The definitive guide to WCAG 3.3.3 Error Suggestion: how to suggest a correction when an input error is detected, when the security and purpose exception applies, accessible suggestion patterns, aria-describedby, live regions, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

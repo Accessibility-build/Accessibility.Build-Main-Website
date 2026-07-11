@@ -111,7 +111,7 @@ export async function generateMetadata({
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.excerpt,
       ...(keywords?.length && { keywords }),
-      authors: [{ name: post.author?.name || "Accessibility.build Team" }],
+      authors: [{ name: post.author?.name || "Khushwant Parihar" }],
       alternates: {
         canonical: currentUrl,
       },
@@ -122,7 +122,7 @@ export async function generateMetadata({
         url: currentUrl,
         publishedTime: post.publishedAt,
         modifiedTime: post._updatedAt || post.publishedAt,
-        authors: [post.author?.name || "Accessibility.build Team"],
+        authors: [post.author?.name || "Khushwant Parihar"],
         ...(categories[0] && { section: categories[0] }),
         ...(categories.length && { tags: categories }),
         images: [
@@ -182,7 +182,7 @@ export default async function BlogPostPage({
     ]
 
     const hasNamedAuthor = Boolean(post.author?.name)
-    const authorName = post.author?.name || "Accessibility.build Team"
+    const authorName = post.author?.name || "Khushwant Parihar"
     const authorImage = post.author?.image ? urlFor(post.author.image).width(80).height(80).url() : undefined
     // Plain-text author bio from the Sanity Portable Text field, if present.
     const authorBio: string | undefined = Array.isArray(post.author?.bio)

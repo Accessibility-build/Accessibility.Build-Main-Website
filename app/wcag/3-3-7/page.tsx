@@ -149,7 +149,7 @@ export default function WCAG337Page() {
         headline="WCAG 3.3.7 Redundant Entry: The Complete Guide to Not Making Users Re-enter Information"
         description="The definitive guide to WCAG 3.3.7 Redundant Entry: why multi-step processes must not force users to re-enter information they already provided, the three exceptions, autofill and 'same as' patterns, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

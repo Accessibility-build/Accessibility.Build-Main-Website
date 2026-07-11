@@ -130,7 +130,7 @@ export default function WCAG413Page() {
         headline="WCAG 4.1.3 Status Messages: The Complete ARIA Live Regions Guide"
         description="The definitive guide to WCAG 4.1.3 Status Messages: how to announce errors, toasts, result counts, and loading states to screen readers with role=status, role=alert, and aria-live, with code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

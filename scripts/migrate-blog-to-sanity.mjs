@@ -68,7 +68,7 @@ function withKeys(body) {
 }
 
 async function main() {
-  const AUTHOR_ID = 'author-accessibility-build-team' // "The Accessibility.build Team"
+  const AUTHOR_ID = '5Nnn2PqcEKG4dqRP9ivtRC' // Khushwant Parihar
 
   // Map category title -> _id from the live dataset.
   const cats = await client.fetch('*[_type=="category"]{_id,title}')

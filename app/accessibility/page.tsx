@@ -1,137 +1,105 @@
-export const metadata = {
+import Link from "next/link"
+import { CheckCircle2, Mail, Target } from "lucide-react"
+import { createMetadata } from "@/lib/metadata"
+import { businessLocation, company, legalLastUpdated } from "@/lib/company"
+
+export const metadata = createMetadata({
   title: "Accessibility Statement",
-  description: "Our commitment to making our website accessible to all users, including those with disabilities.",
-  alternates: { canonical: "/accessibility" },
-  openGraph: {
-    type: "website",
-    title: "Accessibility Statement",
-    description: "Our commitment to making our website accessible to all users, including those with disabilities.",
-    url: "/accessibility",
-    images: [
-      {
-        url: "/api/og?title=Accessibility%20Statement&section=Legal",
-        width: 1200,
-        height: 630,
-        alt: "Accessibility Statement",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Accessibility Statement",
-    description: "Our commitment to making our website accessible to all users, including those with disabilities.",
-    images: ["/api/og?title=Accessibility%20Statement&section=Legal"],
-  },
-}
+  path: "/accessibility",
+  description:
+    "Accessibility.build's current accessibility target, assessment approach, known limitations, feedback process, and owner accountability.",
+  keywords: ["Accessibility.build accessibility statement", "WCAG 2.2 AA statement"],
+})
 
 export default function AccessibilityPage() {
   return (
-    <div className="container-wide py-12">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6">Accessibility Statement</h1>
+    <div className="container-wide py-12 lg:py-16">
+      <article className="mx-auto max-w-3xl">
+        <header className="border-b pb-8">
+          <p className="text-sm font-semibold uppercase text-primary">Our own accessibility</p>
+          <h1 className="mt-2 text-4xl font-semibold">Accessibility Statement</h1>
+          <p className="mt-4 text-lg leading-7 text-muted-foreground">
+            Accessibility.build is committed to making its public content, tools, account experiences, and support channels usable by people with disabilities.
+          </p>
+          <p className="mt-4 text-sm text-muted-foreground">Last reviewed: {legalLastUpdated}</p>
+        </header>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none">
-          <p>Last updated: May 15, 2023</p>
+        <div className="my-8 grid gap-6 border bg-muted/30 p-6 sm:grid-cols-2">
+          <div>
+            <Target className="h-6 w-6 text-primary" aria-hidden="true" />
+            <h2 className="mt-3 font-semibold">Target</h2>
+            <p className="mt-1 text-sm leading-6 text-muted-foreground">WCAG 2.2 Level AA for public website and product interfaces.</p>
+          </div>
+          <div>
+            <CheckCircle2 className="h-6 w-6 text-primary" aria-hidden="true" />
+            <h2 className="mt-3 font-semibold">Current status</h2>
+            <p className="mt-1 text-sm leading-6 text-muted-foreground">Conformance has not yet been independently certified. Evaluation and remediation are ongoing.</p>
+          </div>
+        </div>
 
-          <h2>Our Commitment</h2>
+        <div className="prose prose-lg max-w-none dark:prose-invert">
+          <h2>Scope</h2>
           <p>
-            At Accessibility.build, we are committed to ensuring digital accessibility for people with disabilities. We
-            are continually improving the user experience for everyone, and applying the relevant accessibility
-            standards.
+            This statement covers the public website at <a href={company.website}>{company.website}</a>, including public content and tools. Third-party authentication, checkout, embedded services, linked websites, and user-submitted content may have separate accessibility characteristics and policies.
           </p>
 
-          <h2>Conformance Status</h2>
+          <h2>Standards and approach</h2>
           <p>
-            The Web Content Accessibility Guidelines (WCAG) defines requirements for designers and developers to improve
-            accessibility for people with disabilities. It defines three levels of conformance: Level A, Level AA, and
-            Level AAA.
-          </p>
-          <p>
-            Accessibility.build is fully committed to providing a website that conforms to WCAG 2.2 Level AA. We have
-            taken the following measures to ensure compliance:
-          </p>
-          <ul>
-            <li>Regular accessibility audits and testing</li>
-            <li>Keyboard navigation support throughout the site</li>
-            <li>Proper semantic HTML structure</li>
-            <li>Sufficient color contrast ratios</li>
-            <li>Text alternatives for non-text content</li>
-            <li>Responsive design that works on various devices and screen sizes</li>
-            <li>Clear and consistent navigation</li>
-          </ul>
-
-          <h2>Feedback</h2>
-          <p>
-            We welcome your feedback on the accessibility of Accessibility.build. Please let us know if you encounter
-            accessibility barriers:
+            We use WCAG 2.2 Level AA as the working target. Accessibility is considered during design, implementation, review, and maintenance. Our current process includes:
           </p>
           <ul>
-            <li>
-              <strong>Email:</strong> accessibility@accessibility.build
-            </li>
-            <li>
-              <strong>Phone:</strong> (123) 456-7890
-            </li>
-            <li>
-              <strong>Postal Address:</strong> 123 Accessibility Street, Web City, 12345
-            </li>
+            <li>semantic HTML and native controls where possible;</li>
+            <li>keyboard navigation and visible focus review;</li>
+            <li>screen-reader checks for important pages and workflows;</li>
+            <li>contrast, zoom, reflow, form-label, error, and heading review;</li>
+            <li>automated checks using axe-based and project smoke-test tooling;</li>
+            <li>issue remediation as pages and product features are updated.</li>
           </ul>
-          <p>We try to respond to feedback within 2 business days.</p>
-
-          <h2>Assessment Approach</h2>
-          <p>Accessibility.build assesses the accessibility of our website in the following ways:</p>
-          <ul>
-            <li>Self-evaluation</li>
-            <li>External evaluation by accessibility experts</li>
-            <li>User testing with assistive technologies</li>
-            <li>Automated testing tools</li>
-          </ul>
-
-          <h2>Technical Specifications</h2>
           <p>
-            Accessibility of Accessibility.build relies on the following technologies to work with the particular
-            combination of web browser and any assistive technologies or plugins installed on your computer:
+            Automated tools cannot determine full WCAG conformance. A passing automated score is not presented as certification.
           </p>
-          <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>WAI-ARIA</li>
-          </ul>
-          <p>These technologies are relied upon for conformance with the accessibility standards used.</p>
 
-          <h2>Limitations and Alternatives</h2>
+          <h2>Current limitations</h2>
+          <p>We are reviewing and improving the following areas:</p>
+          <ul>
+            <li>complex interactive tools may have behavior that varies by browser and assistive-technology combination;</li>
+            <li>AI-generated descriptions and recommendations may require human correction;</li>
+            <li>third-party authentication, payment, analytics, and form services are partly outside our direct control;</li>
+            <li>older pages and long-form resources are being brought into the same review process as newly updated pages;</li>
+            <li>some generated reports or uploaded third-party documents may inherit accessibility problems from their source content.</li>
+          </ul>
           <p>
-            Despite our best efforts to ensure accessibility of Accessibility.build, there may be some limitations.
-            Below is a description of known limitations, and potential solutions. Please contact us if you observe an
-            issue not listed below.
+            We do not currently claim that every page and state fully conforms. Material barriers reported by users are prioritized according to impact and the availability of a practical fix.
           </p>
-          <p>Known limitations for Accessibility.build:</p>
-          <ol>
-            <li>
-              <strong>Comments from users:</strong> User-generated content may not be fully accessible. We monitor user
-              comments and attempt to correct issues as soon as they are detected.
-            </li>
-            <li>
-              <strong>Third-party content:</strong> We cannot claim responsibility for the accessibility of external
-              content or third-party applications that we may link to or embed.
-            </li>
-          </ol>
 
-          <h2>Compatibility with Browsers and Assistive Technology</h2>
-          <p>Accessibility.build is designed to be compatible with the following assistive technologies:</p>
-          <ul>
-            <li>Screen readers (including NVDA, JAWS, VoiceOver, and TalkBack)</li>
-            <li>Speech recognition software</li>
-            <li>Screen magnification software</li>
-            <li>Alternative keyboard and mouse input devices</li>
-          </ul>
+          <h2>Compatibility</h2>
           <p>
-            Accessibility.build is compatible with recent versions of major browsers including Chrome, Firefox, Safari,
-            and Edge.
+            The site is designed for recent versions of Chrome, Edge, Firefox, and Safari and for common keyboard, screen-reader, zoom, and voice-input use. Compatibility can vary with older browsers, unsupported assistive technology, browser extensions, and third-party content.
+          </p>
+
+          <h2>Feedback and assistance</h2>
+          <p>
+            If a page, tool, form, report, or support process creates a barrier, tell us what you were trying to do, the page URL, browser, assistive technology, and the problem encountered. Do not include sensitive personal information unless it is necessary to resolve the issue.
+          </p>
+          <div className="not-prose border p-6">
+            <div className="flex items-center gap-3">
+              <Mail className="h-5 w-5 text-primary" aria-hidden="true" />
+              <h3 className="font-semibold">Accessible support</h3>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              Email <a className="font-medium text-foreground underline" href={`mailto:${company.accessibilityEmail}`}>{company.accessibilityEmail}</a>. We aim to acknowledge accessibility feedback within two business days and will provide a reasonable alternative when an immediate fix is not available.
+            </p>
+          </div>
+
+          <h2>Assessment and accountability</h2>
+          <p>
+            The current statement is based on internal review and development testing led by {company.legalOperator}. No independent certification is claimed. Future independent assessments, material known issues, and major revisions will be reflected here.
+          </p>
+          <p>
+            Accessibility.build is owned and operated by {company.legalOperator} in {businessLocation}. Read more about our <Link href="/methodology">testing methodology</Link> and <Link href="/trust">business transparency</Link>.
           </p>
         </div>
-      </div>
+      </article>
     </div>
   )
 }

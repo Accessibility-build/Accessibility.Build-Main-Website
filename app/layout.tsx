@@ -4,18 +4,17 @@ import { Mona_Sans as FontSans } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { SkipLink } from "@/components/skip-link"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Suspense } from "react"
 import { ClerkProvider } from '@clerk/nextjs'
 import { Toaster } from "@/components/ui/sonner"
 // Background services disabled for production build
 import { AdminLayoutWrapper } from "@/components/admin/admin-layout-wrapper"
 import { BrowserSafetyProvider } from "@/components/browser-safety-provider"
 import { clerkThemeAppearance } from "@/lib/clerk-auth-appearance"
+import { AnalyticsConsent } from "@/components/privacy/analytics-consent"
+import { company } from "@/lib/company"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -79,10 +78,10 @@ export const metadata: Metadata = {
     "accessibility consulting"
   ],
   authors: [
-    { name: "Accessibility.build Team", url: "https://accessibility.build/about" }
+    { name: company.legalOperator, url: company.founderWebsite }
   ],
-  creator: "Accessibility.build",
-  publisher: "Accessibility.build",
+  creator: company.legalOperator,
+  publisher: company.brandName,
   category: "Technology",
   classification: "Accessibility Tools and Resources",
   referrer: "origin-when-cross-origin",
@@ -164,7 +163,7 @@ const structuredData = {
       alternateName: "Accessibility Build",
       url: "https://accessibility.build",
       description:
-        "Accessibility.build is a web accessibility platform providing WCAG 2.2 testing tools, in-depth success-criterion guides, compliance resources, and original accessibility research.",
+        "A founder-owned accessibility consultancy and platform operated by Khushwant Parihar, providing WCAG testing, remediation support, training, tools, and implementation guidance.",
       logo: {
         "@type": "ImageObject",
         url: "https://accessibility.build/android-chrome-512x512.png",
@@ -188,16 +187,48 @@ const structuredData = {
         "Digital accessibility law",
       ],
       sameAs: [
-        "https://linkedin.com/company/accessibilitybuild",
+        company.linkedin,
+        company.founderWebsite,
+        company.founderLinkedin,
         "https://github.com/accessibility-build"
       ],
-      publishingPrinciples: "https://accessibility.build/about",
+      founder: {
+        "@id": "https://accessibility.build/#founder"
+      },
+      foundingDate: String(company.foundedYear),
+      areaServed: "Worldwide",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: company.location.city,
+        addressRegion: company.location.region,
+        addressCountry: company.location.countryCode
+      },
+      publishingPrinciples: "https://accessibility.build/trust",
       contactPoint: {
         "@type": "ContactPoint",
-        email: "contact@accessibility.build",
+        email: company.email,
         contactType: "customer service",
         availableLanguage: "English"
       }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://accessibility.build/#founder",
+      name: company.legalOperator,
+      url: company.founderWebsite,
+      jobTitle: "Founder and Accessibility Consultant",
+      sameAs: [company.founderWebsite, company.founderLinkedin],
+      worksFor: {
+        "@id": "https://accessibility.build/#organization"
+      },
+      knowsAbout: [
+        "Web accessibility",
+        "WCAG 2.2",
+        "Section 508",
+        "Accessibility auditing",
+        "Screen reader testing",
+        "Accessible frontend development"
+      ]
     },
     {
       "@type": "WebSite",
@@ -319,34 +350,6 @@ export default function RootLayout({
     >
       <html lang="en" suppressHydrationWarning>
         <head>
-          {/* Google tag (gtag.js) */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-F2G9QQF96G"></script>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-F2G9QQF96G');
-              `,
-            }}
-          />
-          {/* End Google tag (gtag.js) */}
-
-          {/* Google Tag Manager */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','GTM-P22NZK7T');
-              `,
-            }}
-          />
-          {/* End Google Tag Manager */}
-
           {/* Preconnect to external domains */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -397,17 +400,6 @@ export default function RootLayout({
           }} />
         </head>
         <body className={cn("min-h-screen font-sans antialiased", fontSans.variable)}>
-          {/* Google Tag Manager (noscript) */}
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-P22NZK7T"
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
-          {/* End Google Tag Manager (noscript) */}
-
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <BrowserSafetyProvider />
             <SkipLink />
@@ -415,6 +407,7 @@ export default function RootLayout({
               {children}
             </AdminLayoutWrapper>
             <Toaster />
+            <AnalyticsConsent />
             <Analytics />
             <SpeedInsights />
           </ThemeProvider>

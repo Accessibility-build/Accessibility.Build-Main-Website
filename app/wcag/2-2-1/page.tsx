@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     'user control',
     'timing control'
   ],
-  authors: [{ name: 'Accessibility.build Team' }],
+  authors: [{ name: 'Khushwant Parihar' }],
   creator: 'Accessibility.build',
   publisher: 'Accessibility.build',
   formatDetection: {

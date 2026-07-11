@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Accessibility Research & Data Reports",
     path: "/research",
     description:
-      "Original research and data-driven reports on web accessibility. Explore our State of Web Accessibility report, lawsuit tracker, and industry analysis with interactive charts.",
+      "Accessibility research synthesis, source-linked data reports, lawsuit tracking, and jurisdiction analysis with interactive charts and documented references.",
     keywords: [
       "accessibility research",
       "web accessibility data",
@@ -30,13 +30,13 @@ const researchReports = [
   {
     title: "State of Web Accessibility",
     description:
-      "A comprehensive analysis of the top 1,000,000 websites for WCAG 2.2 compliance. Discover failure rates by criterion, industry benchmarks, and year-over-year trends with interactive data visualizations.",
+      "A source-linked synthesis of large-scale third-party web accessibility datasets. Explore reported failure rates, recurring barriers, and year-over-year trends with clear attribution.",
     icon: BarChart3,
     badge: "Annual Report",
     badgeColor:
       "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800",
     href: "/research/state-of-accessibility",
-    stat: { label: "Websites Analyzed", value: "1M+" },
+    stat: { label: "Dataset coverage", value: "Up to 1M" },
     gradient: "from-blue-600 to-indigo-600",
   },
   {

@@ -105,7 +105,7 @@ export default function WCAG312Page() {
         headline="WCAG 3.1.2 Language of Parts: The Complete Guide to Inline lang Attributes"
         description="The definitive guide to WCAG 3.1.2 Language of Parts: when a passage in another language needs its own lang attribute, the exceptions for proper names and loanwords, code samples, and testing methods."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

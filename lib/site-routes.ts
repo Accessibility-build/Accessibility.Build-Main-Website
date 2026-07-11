@@ -35,13 +35,14 @@ const core: SiteRoute[] = [
   { route: "", label: "Home", group: "Core", lastModified: "2026-07-09", priority: 1.0, changeFrequency: "weekly" },
   { route: "/pricing", label: "Pricing", group: "Core", lastModified: "2026-03-06", priority: 0.9 },
   { route: "/faq", label: "FAQ", group: "Core", lastModified: "2025-11-25", priority: 0.91, changeFrequency: "weekly" },
-  { route: "/about", label: "About Us", group: "Core", lastModified: "2026-01-24", priority: 0.8 },
-  { route: "/contact", label: "Contact", group: "Core", lastModified: "2026-02-25", priority: 0.78 },
+  { route: "/about", label: "About Accessibility.build", group: "Core", lastModified: "2026-07-12", priority: 0.88 },
+  { route: "/contact", label: "Contact", group: "Core", lastModified: "2026-07-12", priority: 0.82 },
+  { route: "/trust", label: "Trust Centre", group: "Core", lastModified: "2026-07-12", priority: 0.78 },
+  { route: "/methodology", label: "Audit Methodology", group: "Core", lastModified: "2026-07-12", priority: 0.84 },
   { route: "/resources", label: "Resources", group: "Core", lastModified: "2026-01-24", priority: 0.85, changeFrequency: "weekly" },
   { route: "/desktop", label: "Desktop App", group: "Core", lastModified: "2026-07-06", priority: 0.7 },
   { route: "/docs", label: "API Documentation", group: "Core", lastModified: "2026-03-05", priority: 0.6 },
   { route: "/help", label: "Help Center", group: "Core", lastModified: "2026-03-05", priority: 0.6 },
-  { route: "/status", label: "System Status", group: "Core", lastModified: "2025-11-15", priority: 0.4 },
   { route: "/sitemap-page", label: "Sitemap", group: "Core", lastModified: "2026-07-09", priority: 0.3 },
 ]
 
@@ -164,11 +165,11 @@ const services: SiteRoute[] = [
 ]
 
 const legal: SiteRoute[] = [
-  { route: "/accessibility", label: "Accessibility Statement", group: "Legal", lastModified: "2025-11-15", priority: 0.65, changeFrequency: "yearly" },
-  { route: "/privacy", label: "Privacy Policy", group: "Legal", lastModified: "2026-03-05", priority: 0.35, changeFrequency: "yearly" },
-  { route: "/terms", label: "Terms of Service", group: "Legal", lastModified: "2026-03-05", priority: 0.35, changeFrequency: "yearly" },
-  { route: "/cookies", label: "Cookie Policy", group: "Legal", lastModified: "2026-03-05", priority: 0.35, changeFrequency: "yearly" },
-  { route: "/refund", label: "Refund Policy", group: "Legal", lastModified: "2026-03-05", priority: 0.35, changeFrequency: "yearly" },
+  { route: "/accessibility", label: "Accessibility Statement", group: "Legal", lastModified: "2026-07-12", priority: 0.7, changeFrequency: "yearly" },
+  { route: "/privacy", label: "Privacy Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
+  { route: "/terms", label: "Terms of Service", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
+  { route: "/cookies", label: "Cookie Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
+  { route: "/refund", label: "Refund Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
 ]
 
 // WCAG criterion pages: dates for the original 38 come from git history; pages

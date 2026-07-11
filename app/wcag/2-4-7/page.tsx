@@ -121,7 +121,7 @@ export default function WCAG247Page() {
         headline="WCAG 2.4.7 Focus Visible: The Complete Keyboard Focus Indicator Guide"
         description="The definitive guide to WCAG 2.4.7 Focus Visible: why a visible keyboard focus indicator is required on every focusable element, how to use :focus-visible, why you should never remove the outline, contrast and thickness expectations, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

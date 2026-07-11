@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "compliance testing",
     "accessibility audit",
   ],
-  authors: [{ name: "Accessibility.build Team" }],
+  authors: [{ name: "Khushwant Parihar" }],
   creator: "Accessibility.build",
   publisher: "Accessibility.build",
   openGraph: {

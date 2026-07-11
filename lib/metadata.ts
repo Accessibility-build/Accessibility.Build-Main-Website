@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { company } from "@/lib/company"
 
 // Base metadata that can be extended for specific pages
 // Note: metadataBase is set once in app/layout.tsx — do not redeclare it here or in pages.
@@ -22,8 +23,8 @@ export const baseMetadata: Metadata = {
     "ADA compliance",
     "screen reader testing",
   ],
-  authors: [{ name: "Accessibility.build Team" }],
-  creator: "Accessibility.build",
+  authors: [{ name: company.legalOperator, url: company.founderWebsite }],
+  creator: company.legalOperator,
   openGraph: {
     type: "website",
     locale: "en_US",

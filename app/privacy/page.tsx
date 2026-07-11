@@ -1,389 +1,180 @@
-import type { Metadata } from "next"
-import { Shield, Lock, Eye, UserCheck, FileText, Mail } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Alert, AlertDescription } from "@/components/ui/alert"
 import Link from "next/link"
+import { Database, Eye, LockKeyhole, ShieldCheck } from "lucide-react"
+import { createMetadata } from "@/lib/metadata"
+import { businessLocation, company, legalLastUpdated } from "@/lib/company"
 
-export const metadata: Metadata = {
-  title: "Privacy Policy - Data Protection & Privacy",
-  description: "Comprehensive privacy policy explaining how Accessibility.build collects, uses, and protects your personal information and data.",
-  keywords: [
-    "privacy policy",
-    "data protection",
-    "GDPR compliance",
-    "data security",
-    "personal information",
-    "cookies policy"
-  ],
-  openGraph: {
-    title: "Privacy Policy - Accessibility.build",
-    description: "Learn how we protect your privacy and handle your data responsibly.",
-    type: "website",
-    url: "https://accessibility.build/privacy",
-    images: [
-      {
-        url: "/api/og?title=Privacy%20Policy&section=Legal",
-        width: 1200,
-        height: 630,
-        alt: "Privacy Policy - Data Protection & Privacy",
-      },
-    ],
+export const metadata = createMetadata({
+  title: "Privacy Policy",
+  path: "/privacy",
+  description:
+    "How Accessibility.build, operated by Khushwant Parihar, collects, uses, shares, retains, and protects information across its website, tools, accounts, and services.",
+  keywords: ["Accessibility.build privacy", "accessibility tools data privacy", "AI tool privacy"],
+})
+
+const summaries = [
+  {
+    icon: Eye,
+    title: "No sale of personal data",
+    text: "We do not sell personal information. We share it only for service delivery, security, payment, legal, and operational needs described below.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Privacy Policy - Accessibility.build",
-    description: "Learn how we protect your privacy and handle your data responsibly.",
-    images: ["/api/og?title=Privacy%20Policy&section=Legal"],
+  {
+    icon: Database,
+    title: "Feature-specific processing",
+    text: "URLs, images, code, and other tool inputs are processed only for the feature you request and related security or support needs.",
   },
-  alternates: {
-    canonical: "https://accessibility.build/privacy"
-  }
-}
+  {
+    icon: LockKeyhole,
+    title: "Practical safeguards",
+    text: "We use access controls, hosted payment providers, encrypted transport, and service-provider security features appropriate to the platform.",
+  },
+]
 
 export default function PrivacyPage() {
   return (
-    <div className="container-wide py-12">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Shield className="h-8 w-8 text-primary" />
-            <h1 className="text-4xl font-bold">Privacy Policy</h1>
+    <div className="container-wide py-12 lg:py-16">
+      <article className="mx-auto max-w-4xl">
+        <header className="border-b pb-8">
+          <div className="flex items-center gap-3">
+            <ShieldCheck className="h-8 w-8 text-primary" aria-hidden="true" />
+            <p className="text-sm font-semibold uppercase text-primary">Privacy and data use</p>
           </div>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            We're committed to protecting your privacy and being transparent about how we handle your data.
+          <h1 className="mt-3 text-4xl font-semibold">Privacy Policy</h1>
+          <p className="mt-4 max-w-3xl text-lg leading-7 text-muted-foreground">
+            This policy explains what Accessibility.build processes, why it is needed, which providers may receive it, and how to contact the responsible business owner.
           </p>
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <Badge variant="outline">Last updated: January 15, 2024</Badge>
-            <Badge variant="outline">GDPR Compliant</Badge>
-          </div>
-        </div>
+          <p className="mt-4 text-sm text-muted-foreground">Last updated: {legalLastUpdated}</p>
+        </header>
 
-        {/* Quick Overview */}
-        <Alert className="mb-8">
-          <Eye className="h-4 w-4" />
-          <AlertDescription>
-            <strong>TL;DR:</strong> We collect minimal data to provide our services, never sell your information, 
-            and give you full control over your data. You can delete your account and data at any time.
-          </AlertDescription>
-        </Alert>
-
-        {/* Key Principles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <Card>
-            <CardHeader className="text-center">
-              <Lock className="h-8 w-8 text-primary mx-auto mb-2" />
-              <CardTitle className="text-lg">Data Minimization</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground text-center">
-                We only collect data that's necessary to provide our services
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="text-center">
-              <UserCheck className="h-8 w-8 text-primary mx-auto mb-2" />
-              <CardTitle className="text-lg">Your Control</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground text-center">
-                You have full control over your data and can delete it anytime
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="text-center">
-              <Shield className="h-8 w-8 text-primary mx-auto mb-2" />
-              <CardTitle className="text-lg">Security First</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground text-center">
-                Enterprise-grade security protects your information
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="prose prose-lg dark:prose-invert max-w-none space-y-8">
-          <section>
-            <h2 className="text-2xl font-bold mb-4">1. Information We Collect</h2>
-            
-            <h3 className="text-xl font-semibold mb-3">Account Information</h3>
-            <p>When you create an account, we collect:</p>
-            <ul>
-              <li>Name and email address (required for account creation)</li>
-              <li>Profile information you choose to provide</li>
-              <li>Billing information for one-time credit purchases (processed securely by Razorpay)</li>
-            </ul>
-
-            <h3 className="text-xl font-semibold mb-3">Usage Data</h3>
-            <p>To improve our services, we collect:</p>
-            <ul>
-              <li>How you interact with our tools and features</li>
-              <li>Pages visited and time spent on our platform</li>
-              <li>Device and browser information</li>
-              <li>IP address and general location (country/region)</li>
-            </ul>
-
-            <h3 className="text-xl font-semibold mb-3">Content Data</h3>
-            <p>When you use our tools, we may temporarily process:</p>
-            <ul>
-              <li>URLs you submit for accessibility testing</li>
-              <li>Images you upload for alt text generation</li>
-              <li>Color codes you test for contrast compliance</li>
-              <li>Reports and results you generate</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold mb-4">2. How We Use Your Information</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 not-prose">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Service Delivery</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm">
-                  <ul className="space-y-1">
-                    <li>• Provide accessibility testing tools</li>
-                    <li>• Generate reports and analytics</li>
-                    <li>• Process one-time payments and maintain billing records</li>
-                    <li>• Provide customer support</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Improvement & Security</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm">
-                  <ul className="space-y-1">
-                    <li>• Improve our tools and features</li>
-                    <li>• Detect and prevent fraud</li>
-                    <li>• Monitor system performance</li>
-                    <li>• Ensure platform security</li>
-                  </ul>
-                </CardContent>
-              </Card>
+        <section className="grid gap-6 border-b py-10 md:grid-cols-3" aria-label="Privacy summary">
+          {summaries.map(({ icon: Icon, title, text }) => (
+            <div key={title}>
+              <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+              <h2 className="mt-3 text-base font-semibold">{title}</h2>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">{text}</p>
             </div>
-          </section>
+          ))}
+        </section>
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4">3. Data Sharing and Third Parties</h2>
-            
-            <Alert className="not-prose mb-4">
-              <Shield className="h-4 w-4" />
-              <AlertDescription>
-                <strong>We never sell your personal data.</strong> We only share data with trusted partners 
-                who help us provide our services.
-              </AlertDescription>
-            </Alert>
+        <div className="prose prose-lg mt-10 max-w-none dark:prose-invert">
+          <h2>1. Who is responsible for your information</h2>
+          <p>
+            Accessibility.build is owned and operated by <strong>{company.legalOperator}</strong>, a GST-registered independent accessibility professional based in {businessLocation}. Khushwant Parihar is the business operator responsible for the processing described in this policy.
+          </p>
+          <p>
+            Privacy enquiries and rights requests can be sent to <a href={`mailto:${company.privacyEmail}`}>{company.privacyEmail}</a>.
+          </p>
 
-            <h3 className="text-xl font-semibold mb-3">Service Providers</h3>
-            <p>We work with carefully selected partners:</p>
-            <ul>
-              <li><strong>Clerk:</strong> Authentication and user management</li>
-              <li><strong>Razorpay:</strong> Payment processing (PCI DSS compliant)</li>
-              <li><strong>Vercel:</strong> Hosting and infrastructure</li>
-              <li><strong>OpenAI:</strong> AI-powered features (images processed securely)</li>
-              <li><strong>Analytics providers:</strong> Usage analytics (anonymized data)</li>
-            </ul>
+          <h2>2. Information we collect</h2>
+          <h3>Information you provide</h3>
+          <ul>
+            <li>name, email address, organization, and profile details;</li>
+            <li>messages, project enquiries, support communications, and newsletter choices;</li>
+            <li>billing identity and transaction references, while full payment-card details are handled by the payment provider;</li>
+            <li>URLs, images, documents, code, color values, prompts, reports, and other material submitted to a tool or professional engagement.</li>
+          </ul>
 
-            <h3 className="text-xl font-semibold mb-3">Legal Requirements</h3>
-            <p>We may disclose information when required by law or to:</p>
-            <ul>
-              <li>Comply with legal processes or government requests</li>
-              <li>Protect our rights, property, or safety</li>
-              <li>Prevent fraud or security threats</li>
-            </ul>
-          </section>
+          <h3>Information collected during use</h3>
+          <ul>
+            <li>IP address, browser, device, pages visited, approximate region, referral source, and event information;</li>
+            <li>account authentication, security, tool usage, credit, billing, and error records;</li>
+            <li>analytics information when you allow optional Google Analytics.</li>
+          </ul>
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4">4. Data Security</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 not-prose">
-              <div>
-                <h3 className="text-lg font-semibold mb-3">Technical Measures</h3>
-                <ul className="text-sm space-y-1">
-                  <li>• End-to-end encryption in transit (TLS 1.3)</li>
-                  <li>• Encryption at rest for sensitive data</li>
-                  <li>• Regular security audits and monitoring</li>
-                  <li>• Secure cloud infrastructure (SOC 2 compliant)</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold mb-3">Organizational Measures</h3>
-                <ul className="text-sm space-y-1">
-                  <li>• Limited access on need-to-know basis</li>
-                  <li>• Regular employee security training</li>
-                  <li>• Incident response procedures</li>
-                  <li>• Data retention policies</li>
-                </ul>
-              </div>
-            </div>
-          </section>
+          <h2>3. Why we use information</h2>
+          <ul>
+            <li>provide accounts, tools, reports, consulting services, support, and requested communications;</li>
+            <li>process payments, issue invoices, administer credits, prevent fraud, and maintain tax records;</li>
+            <li>operate, secure, troubleshoot, measure, and improve the platform;</li>
+            <li>respond to legal obligations, enforce agreements, and protect users and the service;</li>
+            <li>send product or educational updates when you have requested them, with an unsubscribe option.</li>
+          </ul>
+          <p>
+            Depending on where you live, the legal basis may be performance of a contract, your consent, compliance with law, or a legitimate interest such as security and service improvement. Where consent is required, you may withdraw it for future processing.
+          </p>
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4">5. Your Rights and Choices</h2>
-            
-            <p>Under GDPR, CCPA, and other privacy laws, you have the right to:</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose">
-              <Card>
-                <CardContent className="p-4">
-                  <h4 className="font-semibold mb-2">Access & Portability</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Request a copy of your personal data in a portable format
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardContent className="p-4">
-                  <h4 className="font-semibold mb-2">Correction</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Update or correct inaccurate personal information
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardContent className="p-4">
-                  <h4 className="font-semibold mb-2">Deletion</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Request deletion of your account and personal data
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardContent className="p-4">
-                  <h4 className="font-semibold mb-2">Objection</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Object to certain types of data processing
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+          <h2>4. Tool inputs and AI processing</h2>
+          <p>
+            Some features send the input needed for your request to an AI or infrastructure provider. Depending on the selected feature and configured provider, this may include OpenAI, Anthropic, or OpenRouter. Do not submit information you are not authorized to process, credentials, or highly sensitive personal data.
+          </p>
+          <p>
+            AI output can be incomplete or incorrect and should be reviewed by a qualified person. We do not use a tool result as a certification of accessibility or legal compliance.
+          </p>
 
-            <Alert className="not-prose mt-4">
-              <UserCheck className="h-4 w-4" />
-              <AlertDescription>
-                You can exercise most of these rights directly from your account settings. 
-                For other requests, contact us at <Link href="mailto:privacy@accessibility.build" className="underline">privacy@accessibility.build</Link>.
-              </AlertDescription>
-            </Alert>
-          </section>
+          <h2>5. Service providers and disclosures</h2>
+          <p>Information may be processed by providers used for the following functions:</p>
+          <ul>
+            <li><strong>Clerk:</strong> authentication and account management;</li>
+            <li><strong>Stripe and Razorpay:</strong> hosted payment, billing, fraud prevention, and refunds;</li>
+            <li><strong>Vercel:</strong> website hosting, performance, and privacy-focused site analytics;</li>
+            <li><strong>Google Analytics:</strong> optional usage analytics after consent;</li>
+            <li><strong>OpenAI, Anthropic, and OpenRouter:</strong> AI-assisted features when the relevant provider is used;</li>
+            <li><strong>Sanity:</strong> content management and blog delivery;</li>
+            <li><strong>Formspree and Resend:</strong> contact-form processing and transactional or requested email;</li>
+            <li><strong>database and infrastructure providers:</strong> account, usage, billing, and application data storage.</li>
+          </ul>
+          <p>
+            Providers receive only the information reasonably needed for their role and process it under their own terms and privacy commitments. We may also disclose information when required by law, to respond to a valid legal request, or to protect rights, safety, and service security.
+          </p>
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4">6. Cookies and Tracking</h2>
-            
-            <p>We use cookies and similar technologies to:</p>
-            <ul>
-              <li>Keep you logged in to your account</li>
-              <li>Remember your preferences and settings</li>
-              <li>Analyze how our platform is used</li>
-              <li>Provide personalized experiences</li>
-            </ul>
+          <h2>6. Cookies and analytics choices</h2>
+          <p>
+            Essential storage supports authentication, security, preferences, and account features. Google Analytics loads only after you choose “Allow analytics” in our preference notice. You can revisit that choice on the <Link href="/cookies">Cookie Policy</Link> page.
+          </p>
 
-            <p>You can control cookies through your browser settings. Note that disabling certain cookies may affect platform functionality.</p>
-          </section>
+          <h2>7. Retention</h2>
+          <p>We keep information only for as long as reasonably needed for the purpose described:</p>
+          <ul>
+            <li>account and service records while the account or engagement is active and for a reasonable period afterward;</li>
+            <li>transaction, invoice, and tax records for the period required by applicable law;</li>
+            <li>support and contract communications while needed to resolve the matter and establish business records;</li>
+            <li>security logs for a limited period appropriate to investigation and platform protection;</li>
+            <li>tool inputs and generated results according to feature operation, user account storage, support needs, and provider processing.</li>
+          </ul>
+          <p>
+            Backups and records required for fraud prevention, disputes, tax, or legal compliance may remain for a limited period after deletion from active systems.
+          </p>
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4">7. International Data Transfers</h2>
-            
-            <p>
-              Our services are hosted in the United States. If you're accessing our platform from outside the US, 
-              your data may be transferred to and processed in the US. We ensure appropriate safeguards are in place 
-              for international transfers, including:
-            </p>
-            <ul>
-              <li>Standard Contractual Clauses (SCCs) with service providers</li>
-              <li>Adequacy decisions where applicable</li>
-              <li>Additional security measures for sensitive data</li>
-            </ul>
-          </section>
+          <h2>8. International processing</h2>
+          <p>
+            Accessibility.build operates from India and uses providers that may process information in India, the United States, the European Economic Area, and other locations. Where required, providers and contractual safeguards are used to support lawful transfers.
+          </p>
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4">8. Data Retention</h2>
-            
-            <p>We retain your data only as long as necessary:</p>
-            <ul>
-              <li><strong>Account data:</strong> Until you delete your account</li>
-              <li><strong>Usage data:</strong> Up to 2 years for analytics</li>
-              <li><strong>Billing data:</strong> 7 years for tax and legal requirements</li>
-              <li><strong>Support communications:</strong> 3 years</li>
-            </ul>
+          <h2>9. Your choices and rights</h2>
+          <p>Depending on applicable law, you may ask us to:</p>
+          <ul>
+            <li>confirm whether we process your personal information and provide access to it;</li>
+            <li>correct inaccurate or incomplete information;</li>
+            <li>delete information where no legal or operational exception applies;</li>
+            <li>restrict or object to certain processing;</li>
+            <li>provide portable information where applicable;</li>
+            <li>withdraw consent or unsubscribe from marketing communications.</li>
+          </ul>
+          <p>
+            Send requests to <a href={`mailto:${company.privacyEmail}`}>{company.privacyEmail}</a>. We may need to verify identity and authority before acting. You may also complain to the relevant data-protection or consumer authority in your jurisdiction.
+          </p>
 
-            <p>When you delete your account, we remove your personal data within 30 days, except where retention is required by law.</p>
-          </section>
+          <h2>10. Security</h2>
+          <p>
+            We use reasonable technical and organizational safeguards appropriate to the service, including encrypted network transport, managed authentication, role-based access where available, hosted payment collection, dependency and platform updates, and restricted administrative access. No internet service can guarantee absolute security.
+          </p>
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4">9. Children's Privacy</h2>
-            
-            <p>
-              Our services are not intended for children under 13. We do not knowingly collect personal information 
-              from children under 13. If we become aware that we have collected such information, we will delete it promptly.
-            </p>
-          </section>
+          <h2>11. Children</h2>
+          <p>
+            The platform is intended for professionals and organizations, not children. We do not knowingly collect personal information from children who cannot legally consent to the relevant processing. Contact us if you believe a child has submitted information.
+          </p>
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4">10. Changes to This Policy</h2>
-            
-            <p>
-              We may update this privacy policy to reflect changes in our practices or legal requirements. 
-              We'll notify you of significant changes by:
-            </p>
-            <ul>
-              <li>Email notification to registered users</li>
-              <li>Prominent notice on our website</li>
-              <li>In-app notifications</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold mb-4">11. Contact Us</h2>
-            
-            <Card className="not-prose">
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
-                      <Mail className="h-4 w-4" />
-                      Privacy Questions
-                    </h4>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      For privacy-related questions or to exercise your rights:
-                    </p>
-                    <Link href="mailto:privacy@accessibility.build" className="text-primary hover:underline">
-                      privacy@accessibility.build
-                    </Link>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
-                      <FileText className="h-4 w-4" />
-                      Data Protection Officer
-                    </h4>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      For formal complaints or data protection matters:
-                    </p>
-                    <Link href="mailto:dpo@accessibility.build" className="text-primary hover:underline">
-                      dpo@accessibility.build
-                    </Link>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
+          <h2>12. Changes and contact</h2>
+          <p>
+            We will update this page and its revision date when our practices materially change. Registered users may receive additional notice when a change significantly affects their account or paid service.
+          </p>
+          <address className="not-italic">
+            <strong>{company.brandName}</strong><br />
+            Owned and operated by {company.legalOperator}<br />
+            {businessLocation}<br />
+            Email: <a href={`mailto:${company.privacyEmail}`}>{company.privacyEmail}</a>
+          </address>
         </div>
-      </div>
+      </article>
     </div>
   )
 }

@@ -114,7 +114,7 @@ export default function KeyboardAccessibilityGuidePage() {
         headline="Complete Keyboard Accessibility Guide: Interactive Demos & Code Examples"
         description="The definitive guide to keyboard accessibility. Master focus management, skip links, roving tabindex, keyboard traps, and modal focus trapping with interactive demos and copy-ready code examples."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

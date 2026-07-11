@@ -297,7 +297,7 @@ export default function WCAG3ConceptsPage() {
       <ArticleStructuredData
         headline="WCAG 3.0 Key Concepts: Outcomes, Methods, Assertions & Functional Needs Explained"
         description="A reference guide to the new vocabulary and conceptual framework in WCAG 3.0. Understand guidelines, requirements, methods, assertions, functional needs, and outcomes."
-        author={{ name: "Accessibility.build Team", url: "https://accessibility.build/about" }}
+        author={{ name: "Khushwant Parihar", url: "https://accessibility.build/about" }}
         publisher={{ name: "Accessibility.build", logo: "https://accessibility.build/android-chrome-512x512.png" }}
         datePublished="2025-03-01"
         dateModified="2026-03-15"

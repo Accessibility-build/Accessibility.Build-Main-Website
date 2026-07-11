@@ -125,7 +125,7 @@ export default function WCAG244Page() {
         headline="WCAG 2.4.4 Link Purpose (In Context): The Complete Descriptive Link Text Guide"
         description="The definitive guide to WCAG 2.4.4 Link Purpose (In Context): why every link must make sense from its text or context, how to fix 'click here' and 'read more' links, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

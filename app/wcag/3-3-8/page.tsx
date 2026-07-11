@@ -156,7 +156,7 @@ export default function WCAG338Page() {
         headline="WCAG 3.3.8 Accessible Authentication (Minimum): The Complete Guide to Login Without Cognitive Tests"
         description="The definitive guide to WCAG 3.3.8 Accessible Authentication (Minimum): why authentication must not rely on a cognitive function test, the four exceptions, why password managers and paste must work, accessible CAPTCHA and passkey patterns, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

@@ -121,7 +121,7 @@ export default function WCAG331Page() {
         headline="WCAG 3.3.1 Error Identification: The Complete Accessible Form Errors Guide"
         description="The definitive guide to WCAG 3.3.1 Error Identification: how to identify the field in error and describe the problem in text, aria-invalid and aria-describedby, accessible error summaries, live regions, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

@@ -105,7 +105,7 @@ export default function WCAG324Page() {
         headline="WCAG 3.2.4 Consistent Identification: The Complete Guide to Naming Same-Function Components Consistently"
         description="The definitive guide to WCAG 3.2.4 Consistent Identification: why components with the same functionality need the same labels, icons, alt text, and accessible names across pages, with examples and testing methods."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

@@ -50,7 +50,7 @@ function withKeys(body) {
 }
 
 async function main() {
-  const AUTHOR_ID = 'author-accessibility-build-team'
+  const AUTHOR_ID = '5Nnn2PqcEKG4dqRP9ivtRC' // Khushwant Parihar
   const cats = await client.fetch('*[_type=="category"]{_id,title}')
   const catByTitle = new Map(cats.map((c) => [c.title.toLowerCase(), c._id]))
 

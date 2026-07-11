@@ -95,7 +95,7 @@ export default function ScreenReaderTestingGuidePage() {
         headline="Screen Reader Testing Guide: NVDA, JAWS, VoiceOver & TalkBack"
         description="The complete guide to testing websites with screen readers. Setup guides, command references, and testing procedures for NVDA, JAWS, VoiceOver (macOS/iOS), and TalkBack."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

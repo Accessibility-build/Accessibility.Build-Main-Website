@@ -62,7 +62,7 @@ export function ContactForm() {
           Message Sent Successfully!
         </h3>
         <p className="text-green-700 dark:text-green-300 text-lg max-w-md mx-auto">
-          Thank you for reaching out. We've received your message and will get back to you within 24 hours.
+          Thank you for reaching out. We've received your message and aim to respond within two business days.
         </p>
         <Button 
           onClick={() => window.location.reload()} 

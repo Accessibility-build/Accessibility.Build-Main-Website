@@ -179,7 +179,7 @@ export default function Wcag22AaRequirementsPage() {
         headline={pageTitle}
         description={pageDescription}
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{
@@ -204,7 +204,7 @@ export default function Wcag22AaRequirementsPage() {
         description={`All ${totalCount} success criteria (Level A and AA) required for WCAG 2.2 Level AA conformance.`}
         url="https://accessibility.build/guides/wcag-2-2-aa-requirements"
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         datePublished="2026-07-09"

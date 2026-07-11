@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     'escape key',
     'keyboard navigation'
   ],
-  authors: [{ name: 'Accessibility.build Team' }],
+  authors: [{ name: 'Khushwant Parihar' }],
   creator: 'Accessibility.build',
   publisher: 'Accessibility.build',
   formatDetection: {

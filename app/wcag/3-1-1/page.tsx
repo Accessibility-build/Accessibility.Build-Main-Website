@@ -99,7 +99,7 @@ export default function WCAG311Page() {
         headline="WCAG 3.1.1 Language of Page: The Complete Guide to the HTML lang Attribute"
         description="The definitive guide to WCAG 3.1.1 Language of Page: why the html lang attribute controls screen reader pronunciation, which BCP 47 codes to use, HTML examples, common mistakes, and testing methods."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

@@ -1,0 +1,5 @@
+Contact: mailto:contact@accessibility.build
+Canonical: https://accessibility.build/.well-known/security.txt
+Policy: https://accessibility.build/trust
+Preferred-Languages: en
+Expires: 2027-07-12T00:00:00.000Z

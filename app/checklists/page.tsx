@@ -101,9 +101,9 @@ export default function ChecklistsPage() {
                         <Users className="w-6 h-6 text-white" />
                       </div>
                     </div>
-                    <div className="text-3xl font-bold text-slate-700 dark:text-slate-300 mb-2">5K+</div>
-                    <div className="text-sm text-slate-700 dark:text-slate-300 font-medium">Teams Using</div>
-                    <div className="mt-2 text-xs text-slate-500">Monthly active</div>
+                    <div className="text-3xl font-bold text-slate-700 dark:text-slate-300 mb-2">A-AA-AAA</div>
+                    <div className="text-sm text-slate-700 dark:text-slate-300 font-medium">Conformance Levels</div>
+                    <div className="mt-2 text-xs text-slate-500">Clearly separated</div>
                   </div>
                 </div>
 
@@ -114,9 +114,9 @@ export default function ChecklistsPage() {
                         <TrendingUp className="w-6 h-6 text-white" />
                       </div>
                     </div>
-                    <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">98%</div>
-                    <div className="text-sm text-slate-700 dark:text-slate-300 font-medium">Accuracy Rate</div>
-                    <div className="mt-2 text-xs text-slate-500">Verified standards</div>
+                    <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">2.2</div>
+                    <div className="text-sm text-slate-700 dark:text-slate-300 font-medium">Current WCAG Version</div>
+                    <div className="mt-2 text-xs text-slate-500">W3C-aligned references</div>
                   </div>
                 </div>
 

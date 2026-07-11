@@ -157,7 +157,7 @@ export default function OklchApcaColorSystemsGuidePage() {
       <ArticleStructuredData
         headline="OKLCH + APCA Color Systems for Accessible Design Systems"
         description="A complete guide to building WCAG 2.2 + APCA-aware color systems in OKLCH. Why perceptual lightness matters, how APCA differs from WCAG ratios, how to design 11-stop scales, and how to export tokens to Tailwind, Figma, iOS, and Android."
-        author={{ name: "Accessibility.build Team", url: "https://accessibility.build/about" }}
+        author={{ name: "Khushwant Parihar", url: "https://accessibility.build/about" }}
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

@@ -128,7 +128,7 @@ export default function WCAG1410Page() {
         headline="WCAG 1.4.10 Reflow: The Complete Guide to Content That Works at 320px and 400% Zoom"
         description="The definitive guide to WCAG 1.4.10 Reflow: why content must reflow to a 320 CSS pixel viewport without two-dimensional scrolling, the 400% zoom test, exceptions for tables and maps, responsive CSS, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

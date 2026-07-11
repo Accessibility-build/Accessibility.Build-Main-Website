@@ -229,7 +229,7 @@ export default function WelcomePage() {
                     <Zap className="w-4 h-4 text-orange-500" />
                     <span>AI-Powered</span>
                     <Users className="w-4 h-4 ml-2" />
-                    <span>5K+ users</span>
+                    <span>Human review required</span>
                   </div>
                   <Link href="/tools/alt-text-generator">
                     <Button className="w-full" size="sm">
@@ -300,4 +300,4 @@ export default function WelcomePage() {
       </div>
     </div>
   )
-} 
+}

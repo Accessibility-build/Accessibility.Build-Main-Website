@@ -129,7 +129,7 @@ export default function WCAG1411Page() {
         headline="WCAG 1.4.11 Non-text Contrast: The Complete UI & Graphics Contrast Guide"
         description="The definitive guide to WCAG 1.4.11 Non-text Contrast: why user interface components and meaningful graphics need at least 3:1 contrast against adjacent colors, the exceptions that apply, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

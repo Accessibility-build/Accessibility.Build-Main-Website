@@ -156,7 +156,7 @@ export default function HowToAuditWebsiteAccessibilityPage() {
         headline="How to Audit a Website for Accessibility (2026): Step-by-Step WCAG Guide"
         description="A practical, step-by-step guide to auditing any website for WCAG 2.2 accessibility compliance. Includes a free checklist, automated and manual testing workflows, common issues, and AI-assisted remediation."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

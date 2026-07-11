@@ -32,7 +32,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Essential e-commerce accessibility guide covering product pages, checkout process, search functionality, and WCAG compliance for online retail success.",
     date: "2025-11-15",
     category: "E-commerce",
-    author: "Accessibility.build Team",
+    author: "Khushwant Parihar",
     readingTime: 9,
   },
   {
@@ -42,7 +42,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Comprehensive guide to accessibility testing tools including axe, WAVE, Lighthouse, and more. Compare features, pricing, and use cases for WCAG compliance testing.",
     date: "2025-11-15",
     category: "Testing",
-    author: "Accessibility.build Team",
+    author: "Khushwant Parihar",
     readingTime: 10,
   },
   {
@@ -62,7 +62,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Complete ADA compliance guide for websites including legal requirements, WCAG standards, implementation steps, and protection from accessibility lawsuits.",
     date: "2025-11-15",
     category: "Compliance",
-    author: "Accessibility.build Team",
+    author: "Khushwant Parihar",
     readingTime: 11,
   },
   {
@@ -72,7 +72,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Master ARIA labels, attributes, and roles for web accessibility. Learn aria-label, aria-labelledby, aria-describedby, and more with practical examples.",
     date: "2025-11-15",
     category: "Development",
-    author: "Accessibility.build Team",
+    author: "Khushwant Parihar",
     readingTime: 9,
   },
   {
@@ -82,7 +82,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Learn inclusive design principles, universal design concepts, and practical strategies for creating digital experiences that work for users with diverse abilities and needs.",
     date: "2025-11-15",
     category: "Design",
-    author: "Accessibility.build Team",
+    author: "Khushwant Parihar",
     readingTime: 8,
   },
   {
@@ -92,7 +92,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Learn mobile accessibility testing with TalkBack, VoiceOver, and Switch Control. Essential guide for mobile app and responsive web accessibility.",
     date: "2025-11-15",
     category: "Testing",
-    author: "Accessibility.build Team",
+    author: "Khushwant Parihar",
     readingTime: 9,
   },
   {
@@ -102,7 +102,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Learn how to test your website with screen readers like NVDA, JAWS, and VoiceOver. Comprehensive guide with practical tips and testing strategies.",
     date: "2025-11-15",
     category: "Testing",
-    author: "Accessibility.build Team",
+    author: "Khushwant Parihar",
     readingTime: 10,
   },
   {
@@ -112,7 +112,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Explore WCAG 3.0 updates including new outcomes-based approach, bronze/silver/gold levels, and how to prepare for the next generation of accessibility guidelines.",
     date: "2025-11-15",
     category: "WCAG",
-    author: "Accessibility.build Team",
+    author: "Khushwant Parihar",
     readingTime: 8,
   },
   {
@@ -132,7 +132,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Complete guide to website accessibility compliance including ADA requirements, WCAG standards, legal obligations, and practical implementation strategies.",
     date: "2025-11-15",
     category: "Compliance",
-    author: "Accessibility.build Team",
+    author: "Khushwant Parihar",
     readingTime: 10,
   },
 ]

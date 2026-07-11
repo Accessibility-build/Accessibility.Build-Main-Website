@@ -7,7 +7,6 @@ import {
   Search,
   Eye,
   CheckCircle,
-  AlertTriangle,
   Zap,
   ArrowUp,
   Users,
@@ -151,7 +150,7 @@ export default function Page() {
             </Badge>
             <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400 px-4 py-2">
               <Eye className="h-4 w-4 mr-2" />
-              WCAG 2.2 Compliant
+              WCAG-Informed Checks
             </Badge>
             <Badge className="bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400 px-4 py-2">
               <Zap className="h-4 w-4 mr-2" />

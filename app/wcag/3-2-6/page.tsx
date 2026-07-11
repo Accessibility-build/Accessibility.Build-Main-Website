@@ -127,7 +127,7 @@ export default function WCAG326Page() {
         headline="WCAG 3.2.6 Consistent Help: The Complete Guide to Keeping Help in a Predictable Place"
         description="The definitive guide to WCAG 3.2.6 Consistent Help: why help mechanisms must appear in the same relative order across a set of pages, the four covered help types, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

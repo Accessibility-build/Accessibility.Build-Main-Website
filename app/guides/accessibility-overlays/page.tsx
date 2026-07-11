@@ -126,7 +126,7 @@ export default function AccessibilityOverlaysGuidePage() {
         headline="Accessibility Overlays: What They Are, Why They Fail, and What To Do Instead"
         description="Learn why accessibility overlays like accessiBe, UserWay, and AudioEye don't work. Understand the legal risks, technical limitations, and better alternatives for WCAG compliance."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

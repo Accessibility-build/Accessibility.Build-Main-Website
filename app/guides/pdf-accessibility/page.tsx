@@ -122,7 +122,7 @@ export default function PdfAccessibilityGuidePage() {
         url="https://accessibility.build/guides/pdf-accessibility"
         datePublished="2025-03-30"
         dateModified="2026-03-30"
-        author={{ name: "Accessibility.build Team", url: "https://accessibility.build/about" }}
+        author={{ name: "Khushwant Parihar", url: "https://accessibility.build/about" }}
         publisher={{ name: "Accessibility.build", logo: "https://accessibility.build/images/logo.png" }}
         image="https://accessibility.build/images/guides/pdf-accessibility-og.png"
         wordCount={2800}

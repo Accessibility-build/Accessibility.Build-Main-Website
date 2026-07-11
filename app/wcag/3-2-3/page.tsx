@@ -105,7 +105,7 @@ export default function WCAG323Page() {
         headline="WCAG 3.2.3 Consistent Navigation: The Complete Guide to Keeping Navigation in the Same Relative Order"
         description="The definitive guide to WCAG 3.2.3 Consistent Navigation: what 'same relative order' really means, what may change between pages, pass/fail examples, template code, and testing methods."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

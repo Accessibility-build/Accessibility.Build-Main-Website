@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     'key bindings',
     'shortcut management'
   ],
-  authors: [{ name: 'Accessibility.build Team' }],
+  authors: [{ name: 'Khushwant Parihar' }],
   creator: 'Accessibility.build',
   publisher: 'Accessibility.build',
   formatDetection: {

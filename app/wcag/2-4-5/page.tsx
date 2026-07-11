@@ -105,7 +105,7 @@ export default function WCAG245Page() {
         headline="WCAG 2.4.5 Multiple Ways: The Complete Guide to Providing More Than One Way to Find a Page"
         description="The definitive guide to WCAG 2.4.5 Multiple Ways: what counts as a 'way' to locate a page, which combinations pass, the exception for steps in a process, code samples, and testing methods."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

@@ -1,240 +1,230 @@
 import Link from "next/link"
+import {
+  ArrowRight,
+  BadgeCheck,
+  Building2,
+  Code2,
+  ExternalLink,
+  Eye,
+  Keyboard,
+  MapPin,
+  ScanSearch,
+  UserRound,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, Users, Heart, Code, Target, Mail, Brain, AlertCircle, Zap, Shield, Lightbulb } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
-import { AboutPageStructuredData } from "@/components/seo/structured-data"
+import { businessLocation, company } from "@/lib/company"
 
 export const metadata = createMetadata({
-  title: "About Us: Making the Web Accessible",
+  title: "About Accessibility.build and Founder Khushwant Parihar",
   path: "/about",
-  description: "Learn about our mission to make web accessibility tools and education accessible to everyone.",
-  keywords: ["accessibility", "web accessibility", "a11y", "WCAG", "inclusive design"]
+  description:
+    "Meet Khushwant Parihar, founder of Accessibility.build, and learn how this independent accessibility practice approaches auditing, remediation, training, and accessible product development.",
+  keywords: [
+    "Khushwant Parihar",
+    "Accessibility.build founder",
+    "accessibility consultant India",
+    "web accessibility specialist Bengaluru",
+  ],
+  authors: [{ name: company.legalOperator, url: company.founderWebsite }],
 })
 
+const capabilities = [
+  {
+    icon: ScanSearch,
+    title: "Accessibility audits",
+    description:
+      "Manual and automated evaluation mapped to WCAG, with reproducible evidence, severity, user impact, and remediation guidance.",
+  },
+  {
+    icon: Keyboard,
+    title: "Assistive technology testing",
+    description:
+      "Keyboard and screen-reader testing across practical browser and assistive-technology combinations selected for the engagement.",
+  },
+  {
+    icon: Code2,
+    title: "Remediation engineering",
+    description:
+      "Implementation support for semantics, focus management, forms, ARIA patterns, components, and accessibility regression prevention.",
+  },
+  {
+    icon: Eye,
+    title: "Design and delivery support",
+    description:
+      "Design reviews, acceptance criteria, team training, documentation, and release checks that move accessibility earlier in delivery.",
+  },
+]
+
+const principles = [
+  "Human judgment remains accountable; automation and AI support the work but do not replace manual evaluation.",
+  "Findings must be reproducible, mapped to a standard, and explained in terms of real user impact.",
+  "Conformance is never guaranteed by a tool score, overlay, or one-time scan.",
+  "Scope, limitations, pricing, deliverables, and retesting expectations are agreed before work begins.",
+]
+
 export default function AboutPage() {
+  const profileSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      "@id": "https://accessibility.build/#founder",
+      name: company.legalOperator,
+      url: company.founderWebsite,
+      jobTitle: "Founder and Accessibility Consultant",
+      sameAs: [company.founderWebsite, company.founderLinkedin],
+      worksFor: { "@id": "https://accessibility.build/#organization" },
+      knowsAbout: [
+        "WCAG 2.2",
+        "Section 508",
+        "Accessibility auditing",
+        "Screen reader testing",
+        "Accessible frontend development",
+      ],
+    },
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
-      <AboutPageStructuredData
-        name="About Us: Making the Web Accessible"
-        description="Learn about our mission to make web accessibility tools and education accessible to everyone."
-        url="https://accessibility.build/about"
+    <div className="bg-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }}
       />
-      
-      {/* Hero Section */}
-      <section className="pt-20 pb-32 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-8">
-            <Brain className="h-4 w-4" />
-            AI-Powered Accessibility Platform
+
+      <section className="border-b bg-slate-950 text-white">
+        <div className="container-wide grid gap-12 py-16 lg:grid-cols-[1.25fr_0.75fr] lg:items-end lg:py-24">
+          <div>
+            <p className="mb-5 text-sm font-semibold uppercase text-teal-300">
+              Founder-owned accessibility practice
+            </p>
+            <h1 className="max-w-4xl break-words text-4xl font-semibold leading-tight [overflow-wrap:anywhere] sm:text-6xl lg:text-7xl">
+              Accessibility.build
+            </h1>
+            <p className="mt-6 max-w-3xl text-xl leading-8 text-slate-300">
+              An independent accessibility consultancy and technology platform owned and operated by Khushwant Parihar in Bengaluru, India.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button asChild size="lg" className="w-full sm:w-auto">
+                <Link href="/services">
+                  Explore services <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="w-full border-slate-600 bg-transparent text-white hover:bg-slate-900 hover:text-white sm:w-auto">
+                <Link href="/contact">Discuss a project</Link>
+              </Button>
+            </div>
           </div>
-          
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-slate-900 dark:text-white leading-tight mb-8 tracking-tight">
-            Making the Web
-            <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Accessible
-            </span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed mb-12 max-w-4xl mx-auto">
-            We build intelligent tools and resources to help developers create accessible web experiences for everyone.
-          </p>
+
+          <dl className="grid gap-5 border-l border-slate-700 pl-6 text-sm">
+            <div>
+              <dt className="text-slate-400">Owner and operator</dt>
+              <dd className="mt-1 text-lg font-medium">{company.legalOperator}</dd>
+            </div>
+            <div>
+              <dt className="text-slate-400">Established</dt>
+              <dd className="mt-1 text-lg font-medium">{company.foundedYear}</dd>
+            </div>
+            <div>
+              <dt className="text-slate-400">Business location</dt>
+              <dd className="mt-1 flex items-center gap-2 text-lg font-medium">
+                <MapPin className="h-4 w-4" aria-hidden="true" /> {businessLocation}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-slate-400">Tax status</dt>
+              <dd className="mt-1 text-lg font-medium">GST-registered in India</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
-      {/* Main AI Philosophy Section - Hero Treatment */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="relative max-w-6xl mx-auto text-center">
-          <div className="flex justify-center mb-8">
-              <div className="relative">
-              <div className="absolute -inset-4 bg-white/20 rounded-full blur-xl"></div>
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-full p-6">
-                <Brain className="h-16 w-16 text-white" />
-              </div>
+      <section className="container-wide py-16 lg:py-24" aria-labelledby="founder-heading">
+        <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <div className="flex h-20 w-20 items-center justify-center border bg-slate-100 dark:bg-slate-900" aria-hidden="true">
+              <UserRound className="h-9 w-9" />
             </div>
-          </div>
-          
-          <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
-            Our Core Philosophy
-          </h2>
-          
-          <div className="max-w-4xl mx-auto">
-            <blockquote className="text-2xl md:text-4xl font-bold mb-8 leading-relaxed">
-              "AI cannot fix accessibility issues,<br className="hidden md:block" />
-              but AI can help us make <br className="hidden md:block" />
-              the world more accessible."
-            </blockquote>
-            
-            <div className="grid md:grid-cols-2 gap-8 mt-16">
-              <div className="text-left">
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                  <AlertCircle className="h-5 w-5 text-amber-300" />
-                  The Reality
-                </h3>
-                <p className="text-white/90 leading-relaxed">
-                  True accessibility requires human understanding, empathy, and intentional design decisions. 
-                  AI is a powerful tool, but it cannot replace human judgment in creating inclusive experiences.
-                </p>
-              </div>
-              
-              <div className="text-left">
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                  <Lightbulb className="h-5 w-5 text-yellow-300" />
-                  Our Approach
-                </h3>
-                <p className="text-white/90 leading-relaxed">
-                  We use AI to empower developers with insights, recommendations, and efficient workflows—
-                  enhancing human capability rather than replacing human responsibility.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What We Do - Minimalist Grid */}
-      <section className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-              What We Do
+            <p className="mt-6 text-sm font-semibold uppercase text-primary">Founder</p>
+            <h2 id="founder-heading" className="mt-2 text-4xl font-semibold">
+              Khushwant Parihar
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              We combine cutting-edge AI technology with human-centered design principles
+            <p className="mt-3 text-lg text-muted-foreground">Accessibility specialist, consultant, and developer</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild variant="outline">
+                <a href={company.founderWebsite} target="_blank" rel="me noopener noreferrer">
+                  Professional portfolio <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+              <Button asChild variant="ghost">
+                <a href={company.founderLinkedin} target="_blank" rel="me noopener noreferrer">
+                  LinkedIn <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </div>
+          </div>
+
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <p className="lead">
+              Khushwant founded Accessibility.build in 2023 to combine practical accessibility testing, remediation engineering, and useful public tools in one accountable practice.
+            </p>
+            <p>
+              He has more than four years of professional accessibility and software testing experience, including accessibility work at FIS Global and current specialist work with product teams. His experience covers manual and automated auditing, keyboard evaluation, screen-reader testing with NVDA, JAWS, and VoiceOver, accessible frontend implementation, and accessibility quality processes.
+            </p>
+            <p>
+              Accessibility.build is intentionally founder-led. Khushwant remains responsible for scoping, delivery quality, client communication, and the accuracy of published business information. Specialist collaborators may support an engagement when agreed with the client; responsibility is not passed to an anonymous delivery team.
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="group">
-              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl border border-slate-200 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                <div className="bg-blue-100 dark:bg-blue-900/30 rounded-2xl p-4 w-fit mb-6">
-                  <Zap className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                  AI-Powered Tools
-                  </h3>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Smart accessibility testing, code generation, and analysis tools that enhance developer productivity
-                  </p>
-                </div>
-              </div>
-              
-            <div className="group">
-              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl border border-slate-200 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                <div className="bg-purple-100 dark:bg-purple-900/30 rounded-2xl p-4 w-fit mb-6">
-                  <Users className="h-8 w-8 text-purple-600 dark:text-purple-400" />
-                    </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                  Human-Centered Education
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Comprehensive guides and resources that focus on understanding real user needs and experiences
-                    </p>
-              </div>
-            </div>
-
-            <div className="group">
-              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl border border-slate-200 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                <div className="bg-green-100 dark:bg-green-900/30 rounded-2xl p-4 w-fit mb-6">
-                  <Heart className="h-8 w-8 text-green-600 dark:text-green-400" />
-              </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                  Inclusive Community
-                </h3>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Supporting developers in building truly inclusive digital experiences for everyone
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Impact Stats */}
-      <section className="py-20 px-4 bg-slate-100 dark:bg-slate-900">
-          <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-              Our Impact
+      <section className="border-y bg-muted/30" aria-labelledby="capabilities-heading">
+        <div className="container-wide py-16 lg:py-20">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase text-primary">What the practice does</p>
+            <h2 id="capabilities-heading" className="mt-2 text-4xl font-semibold">
+              Accessibility work that can be explained and verified
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-300">
-              Empowering developers to create accessible experiences
-              </p>
-            </div>
-            
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-blue-600 dark:text-blue-400 mb-4">50K+</div>
-              <div className="text-xl text-slate-600 dark:text-slate-300">Developers Empowered</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-purple-600 dark:text-purple-400 mb-4">1M+</div>
-              <div className="text-xl text-slate-600 dark:text-slate-300">Accessibility Insights</div>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold text-green-600 dark:text-green-400 mb-4">30+</div>
-              <div className="text-xl text-slate-600 dark:text-slate-300">Tools & Resources</div>
-            </div>
+          </div>
+          <div className="mt-10 grid gap-x-10 gap-y-12 md:grid-cols-2">
+            {capabilities.map(({ icon: Icon, title, description }) => (
+              <article key={title} className="border-t pt-6">
+                <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+                <h3 className="mt-4 text-xl font-semibold">{title}</h3>
+                <p className="mt-2 leading-7 text-muted-foreground">{description}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision - Side by Side */}
-      <section className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="bg-blue-100 dark:bg-blue-900/30 rounded-xl p-3">
-                  <Target className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                </div>
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Mission</h2>
-              </div>
-              <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
-                To make web accessibility tools and knowledge accessible to everyone, 
-                using AI to enhance human capability rather than replace human responsibility.
-              </p>
-            </div>
-            
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="bg-purple-100 dark:bg-purple-900/30 rounded-xl p-3">
-                  <Shield className="h-6 w-6 text-purple-600 dark:text-purple-400" />
-                    </div>
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Vision</h2>
-                  </div>
-              <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
-                A web where accessibility is the default, not an afterthought, 
-                achieved through the thoughtful combination of AI assistance and human empathy.
-                    </p>
-            </div>
+      <section className="container-wide grid gap-12 py-16 lg:grid-cols-2 lg:py-24">
+        <div>
+          <p className="text-sm font-semibold uppercase text-primary">Operating principles</p>
+          <h2 className="mt-2 text-4xl font-semibold">Professional claims need evidence</h2>
+          <ul className="mt-8 space-y-5">
+            {principles.map((principle) => (
+              <li key={principle} className="flex gap-3 leading-7 text-muted-foreground">
+                <BadgeCheck className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                <span>{principle}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <aside className="border bg-slate-50 p-8 dark:bg-slate-950" aria-labelledby="business-heading">
+          <Building2 className="h-7 w-7 text-primary" aria-hidden="true" />
+          <h2 id="business-heading" className="mt-4 text-2xl font-semibold">Business transparency</h2>
+          <p className="mt-4 leading-7 text-muted-foreground">{company.ownershipStatement}</p>
+          <p className="mt-4 leading-7 text-muted-foreground">{company.taxStatus}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button asChild variant="outline">
+              <Link href="/trust">View trust centre</Link>
+            </Button>
+            <Button asChild variant="ghost">
+              <Link href="/methodology">Read our methodology</Link>
+            </Button>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-slate-900 to-slate-800 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Join Our Mission
-          </h2>
-          <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
-            Help us make the web more accessible for everyone—with AI as our ally, not our solution.
-              </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg">
-              <Link href="/tools">
-                Explore Our Tools <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg">
-              <Link href="/contact">
-                Get in Touch <Mail className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-              </div>
-        </div>
+        </aside>
       </section>
     </div>
   )

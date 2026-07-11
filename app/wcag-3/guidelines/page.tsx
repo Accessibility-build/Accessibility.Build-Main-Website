@@ -321,7 +321,7 @@ export default function WCAG3GuidelinesPage() {
       <ArticleStructuredData
         headline="WCAG 3.0 Guidelines: All 12 Categories Explained"
         description="Complete breakdown of the 12 WCAG 3.0 guideline categories that replace the 4 POUR principles."
-        author={{ name: "Accessibility.build Team" }}
+        author={{ name: "Khushwant Parihar" }}
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

@@ -1,201 +1,93 @@
-import { ContactForm } from "@/components/contact/contact-form";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
-import { Mail, MessageSquare, Clock, MapPin, Linkedin } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { IconShell } from "@/components/ui/icon-shell";
-import { ContactPageStructuredData } from "@/components/seo/structured-data";
+import Link from "next/link"
+import { Clock, ExternalLink, Mail, MapPin, UserRound } from "lucide-react"
+import { ContactForm } from "@/components/contact/contact-form"
+import { ContactPageStructuredData } from "@/components/seo/structured-data"
+import { businessLocation, company } from "@/lib/company"
+import { createMetadata } from "@/lib/metadata"
 
-export const metadata = {
-  title: "Contact Us",
-  alternates: { canonical: "/contact" },
+export const metadata = createMetadata({
+  title: "Contact Khushwant Parihar at Accessibility.build",
+  path: "/contact",
   description:
-    "Get in touch with our accessibility experts for questions, project support, or collaboration opportunities. We're here to help make your digital products accessible.",
+    "Contact Accessibility.build founder Khushwant Parihar about accessibility audits, remediation, training, design review, documentation, or platform support.",
   keywords: [
-    "contact accessibility experts",
-    "accessibility consulting",
-    "WCAG compliance help",
-    "accessibility audit services",
-    "web accessibility support"
+    "contact Accessibility.build",
+    "Khushwant Parihar contact",
+    "accessibility consultant Bengaluru",
+    "accessibility audit enquiry",
   ],
-  openGraph: {
-    type: "website",
-    title: "Contact Us",
-    description:
-      "Get in touch with our accessibility experts for questions, project support, or collaboration opportunities. We're here to help make your digital products accessible.",
-    url: "/contact",
-    images: [
-      {
-        url: "/api/og?title=Contact%20Us&section=Company",
-        width: 1200,
-        height: 630,
-        alt: "Contact Us",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Us",
-    description:
-      "Get in touch with our accessibility experts for questions, project support, or collaboration opportunities. We're here to help make your digital products accessible.",
-    images: ["/api/og?title=Contact%20Us&section=Company"],
-  },
-};
+  authors: [{ name: company.legalOperator, url: company.founderWebsite }],
+})
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <ContactPageStructuredData
-        name="Contact Us"
-        description="Get in touch with our accessibility experts for questions, project support, or collaboration opportunities."
-        url="https://accessibility.build/contact"
-        email="contact@accessibility.build"
+        name="Contact Accessibility.build"
+        description="Contact Khushwant Parihar about accessibility services, procurement, or platform support."
+        url={`${company.website}/contact`}
+        email={company.email}
       />
-      {/* Hero Section */}
-      <div className="bg-gradient-to-b from-muted/30 to-background">
-        <div className="container-wide py-16">
-          <div className="max-w-2xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              Get in Touch
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-          Have questions about accessibility or need help with your project?
-              We're here to help you create inclusive digital experiences.
-        </p>
+
+      <section className="border-b bg-slate-950 text-white">
+        <div className="container-wide py-16 lg:py-20">
+          <p className="text-sm font-semibold uppercase text-teal-300">Founder-led contact</p>
+          <h1 className="mt-3 max-w-4xl break-words text-4xl font-semibold leading-tight [overflow-wrap:anywhere] sm:text-6xl">Talk directly with Accessibility.build</h1>
+          <p className="mt-6 max-w-3xl text-xl leading-8 text-slate-300">
+            Project, procurement, support, privacy, and accessibility enquiries are handled by Khushwant Parihar, owner and operator of Accessibility.build.
+          </p>
+        </div>
+      </section>
+
+      <section className="container-wide grid gap-12 py-16 lg:grid-cols-[1.35fr_0.65fr] lg:py-20">
+        <div>
+          <h2 className="text-3xl font-semibold">Send an enquiry</h2>
+          <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
+            Include the product type, important workflows, target standard, desired timeline, and whether you need audit, remediation, training, or documentation support. Do not submit credentials or sensitive customer data.
+          </p>
+          <div className="mt-8 border p-6 sm:p-8">
+            <ContactForm />
           </div>
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">
+            Form submissions are processed through Formspree for the purpose of responding to your enquiry. See our <Link href="/privacy" className="font-medium text-foreground underline">Privacy Policy</Link>.
+          </p>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="container-wide pb-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            
-            {/* Contact Form */}
-        <div className="lg:col-span-2">
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <h2 className="text-2xl font-semibold tracking-tight">Send us a Message</h2>
-                  <p className="text-muted-foreground">
-                    Fill out the form below and we'll get back to you within 24-48 hours.
-                  </p>
-                </div>
-                
-                <Card className="border-0 shadow-sm bg-card/50">
-                  <CardContent className="p-8">
-              <ContactForm />
-            </CardContent>
-          </Card>
-        </div>
+        <aside aria-labelledby="contact-details-heading">
+          <h2 id="contact-details-heading" className="text-2xl font-semibold">Business contact</h2>
+          <dl className="mt-6 space-y-6">
+            <div className="border-t pt-5">
+              <dt className="flex items-center gap-2 text-sm text-muted-foreground"><UserRound className="h-4 w-4" aria-hidden="true" /> Owner and operator</dt>
+              <dd className="mt-2 font-semibold">{company.legalOperator}</dd>
             </div>
+            <div className="border-t pt-5">
+              <dt className="flex items-center gap-2 text-sm text-muted-foreground"><Mail className="h-4 w-4" aria-hidden="true" /> Email</dt>
+              <dd className="mt-2"><a className="font-semibold underline" href={`mailto:${company.email}`}>{company.email}</a></dd>
+            </div>
+            <div className="border-t pt-5">
+              <dt className="flex items-center gap-2 text-sm text-muted-foreground"><Clock className="h-4 w-4" aria-hidden="true" /> Response target</dt>
+              <dd className="mt-2 font-semibold">{company.responseTime}</dd>
+            </div>
+            <div className="border-t pt-5">
+              <dt className="flex items-center gap-2 text-sm text-muted-foreground"><MapPin className="h-4 w-4" aria-hidden="true" /> Operating location</dt>
+              <dd className="mt-2 font-semibold">{businessLocation}</dd>
+            </div>
+          </dl>
 
-            {/* Contact Information */}
-            <div className="space-y-8">
-              
-              {/* Contact Details */}
-              <div className="space-y-6">
-                <h3 className="text-lg font-semibold">Contact Information</h3>
-
-        <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <IconShell icon={Mail} size="md" tone="accent" className="flex-shrink-0 rounded-lg" />
-                    <div className="space-y-1">
-                      <p className="font-medium text-sm">Email</p>
-                  <a
-                    href="mailto:contact@accessibility.build"
-                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    contact@accessibility.build
-                  </a>
-                </div>
-              </div>
-
-                  <div className="flex items-start gap-4">
-                    <IconShell icon={Clock} size="md" tone="accent" className="flex-shrink-0 rounded-lg" />
-                    <div className="space-y-1">
-                      <p className="font-medium text-sm">Response Time</p>
-                  <p className="text-sm text-muted-foreground">
-                        24-48 hours during business days
-                  </p>
-                </div>
-              </div>
-
-                  <div className="flex items-start gap-4">
-                    <IconShell icon={MapPin} size="md" tone="accent" className="flex-shrink-0 rounded-lg" />
-                    <div className="space-y-1">
-                      <p className="font-medium text-sm">Location</p>
-                  <p className="text-sm text-muted-foreground">
-                        Remote team serving clients worldwide
-                  </p>
-                </div>
-              </div>
-
-                  <div className="flex items-start gap-4">
-                    <IconShell icon={MessageSquare} size="md" tone="accent" className="flex-shrink-0 rounded-lg" />
-                    <div className="space-y-2">
-                      <p className="font-medium text-sm">Follow Us</p>
-                    <a
-                      href="https://linkedin.com/company/accessibilitybuild"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                        aria-label="Follow us on LinkedIn"
-                    >
-                      <Linkedin className="h-4 w-4" />
-                        LinkedIn
-                    </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick FAQ */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Quick Questions</h3>
-                <Card className="border-0 shadow-sm bg-card/50">
-                  <CardContent className="p-6">
-              <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem value="item-1" className="border-0">
-                        <AccordionTrigger className="text-sm font-medium hover:no-underline py-3 px-0">
-                    Do you offer accessibility audits?
-                  </AccordionTrigger>
-                        <AccordionContent className="text-sm text-muted-foreground pb-3">
-                          Yes, we provide comprehensive accessibility audits with detailed reports and actionable recommendations.
-                  </AccordionContent>
-                </AccordionItem>
-
-                      <AccordionItem value="item-2" className="border-0">
-                        <AccordionTrigger className="text-sm font-medium hover:no-underline py-3 px-0">
-                    Can you help with WCAG compliance?
-                  </AccordionTrigger>
-                        <AccordionContent className="text-sm text-muted-foreground pb-3">
-                          We specialize in WCAG 2.1 and 2.2 standards and can guide you through the entire compliance process.
-                  </AccordionContent>
-                </AccordionItem>
-
-                      <AccordionItem value="item-3" className="border-0">
-                        <AccordionTrigger className="text-sm font-medium hover:no-underline py-3 px-0">
-                          Do you provide training?
-                  </AccordionTrigger>
-                        <AccordionContent className="text-sm text-muted-foreground pb-3">
-                          Yes, we offer customized accessibility training for designers, developers, and content creators.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </CardContent>
-          </Card>
-              </div>
+          <div className="mt-8 border bg-muted/30 p-5">
+            <p className="font-semibold">Business verification</p>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Accessibility.build is founder-owned and GST-registered in India. Tax and procurement particulars are provided with qualified business documentation.
+            </p>
+            <div className="mt-4 flex flex-col items-start gap-3">
+              <Link href="/trust" className="text-sm font-medium underline">Trust centre</Link>
+              <a href={company.founderWebsite} target="_blank" rel="me noopener noreferrer" className="inline-flex items-center text-sm font-medium underline">
+                Founder portfolio <ExternalLink className="ml-1 h-3.5 w-3.5" />
+              </a>
             </div>
           </div>
-        </div>
-      </div>
+        </aside>
+      </section>
     </div>
-  );
+  )
 }

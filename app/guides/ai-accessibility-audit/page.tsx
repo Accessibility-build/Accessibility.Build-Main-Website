@@ -134,7 +134,7 @@ export default function AIAccessibilityAuditPage() {
         headline="AI Accessibility Audit: Fix WCAG Violations 10x Faster"
         description="Use AI to triage accessibility issues, map them to WCAG 2.2 criteria, and generate code-level fixes. See how AI-assisted audits compare to manual audits, with real workflows for developers, QA, and compliance teams."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

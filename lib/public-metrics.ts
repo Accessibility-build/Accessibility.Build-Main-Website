@@ -8,8 +8,8 @@ export interface PublicMetricEvidence {
   owner: string;
 }
 
-const verifiedAt = "2026-02-25";
-const owner = "Accessibility.build Team";
+const verifiedAt = "2026-07-12";
+const owner = "Khushwant Parihar";
 
 export const publicMetrics: Record<string, PublicMetricEvidence> = {
   standardsAlignment: {
@@ -24,16 +24,16 @@ export const publicMetrics: Record<string, PublicMetricEvidence> = {
   methodology: {
     id: "methodology",
     label: "Methodology",
-    value: "Human + AI Review",
+    value: "Manual + Automated",
     sourceName: "Accessibility.build methodology",
-    sourceUrl: "https://accessibility.build/about",
+    sourceUrl: "https://accessibility.build/methodology",
     verifiedAt,
     owner,
   },
   servicesDelivery: {
     id: "services-delivery",
     label: "Delivery Model",
-    value: "Remote, Global",
+    value: "Founder-led, Remote",
     sourceName: "Accessibility.build contact details",
     sourceUrl: "https://accessibility.build/contact",
     verifiedAt,
@@ -57,12 +57,12 @@ export const publicMetrics: Record<string, PublicMetricEvidence> = {
     verifiedAt,
     owner,
   },
-  platformReliability: {
-    id: "platform-reliability",
-    label: "Platform Reliability",
-    value: "Production monitored",
-    sourceName: "Accessibility.build status page",
-    sourceUrl: "https://accessibility.build/status",
+  ownership: {
+    id: "ownership",
+    label: "Ownership",
+    value: "Founder-owned",
+    sourceName: "Accessibility.build business information",
+    sourceUrl: "https://accessibility.build/trust",
     verifiedAt,
     owner,
   },
@@ -83,5 +83,5 @@ export const toolsTrustSignals = [
 
 export const footerTrustSignals = [
   publicMetrics.resourcesCoverage,
-  publicMetrics.platformReliability,
+  publicMetrics.ownership,
 ];

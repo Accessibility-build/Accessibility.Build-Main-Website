@@ -109,13 +109,13 @@ export default function AccessibilityStatementGeneratorPage() {
               Accessibility Statement Generator
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Create professional, WCAG 2.2 compliant accessibility statements in minutes.
+              Create structured accessibility statement drafts based on WCAG 2.2 guidance.
               Import scan results instantly or build manually, then export to HTML, Markdown, PDF, or plain text.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-green-500" />
-                <span>WCAG 2.2 Compliant</span>
+                <span>WCAG 2.2 Structure</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-blue-500" />

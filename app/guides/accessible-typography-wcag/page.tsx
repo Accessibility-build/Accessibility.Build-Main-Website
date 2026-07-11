@@ -170,7 +170,7 @@ export default function AccessibleTypographyGuidePage() {
       <ArticleStructuredData
         headline="Accessible Typography — the complete WCAG 2.2 + 3 guide"
         description="Modular type scales, fluid clamp() sizing, WCAG 1.4.4 / 1.4.8 / 1.4.12 compliance, dyslexia and cognitive disability research, Flesch-Kincaid readability scoring, and design-token exports."
-        author={{ name: "Accessibility.build Team", url: "https://accessibility.build/about" }}
+        author={{ name: "Khushwant Parihar", url: "https://accessibility.build/about" }}
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

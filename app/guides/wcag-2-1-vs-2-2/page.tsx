@@ -179,7 +179,7 @@ export default function Wcag21Vs22Page() {
         headline={pageTitle}
         description={pageDescription}
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

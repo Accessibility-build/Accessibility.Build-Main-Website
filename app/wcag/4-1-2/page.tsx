@@ -132,7 +132,7 @@ export default function WCAG412Page() {
         headline="WCAG 4.1.2 Name, Role, Value: The Complete Guide for Developers"
         description="The definitive guide to WCAG 4.1.2 Name, Role, Value: what name, role, state, and value mean, how the accessible name is computed, native HTML vs ARIA, code examples, the most common failures, and how to test with the accessibility tree."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

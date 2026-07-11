@@ -117,7 +117,7 @@ export default function WCAG257Page() {
         headline="WCAG 2.5.7 Dragging Movements: The Complete Single-Pointer Alternative Guide"
         description="The definitive guide to WCAG 2.5.7 Dragging Movements, new in WCAG 2.2: why every drag needs a single-pointer alternative, the two exceptions, accessible patterns for sliders, sortable lists and maps, code examples, testing methods, and common mistakes."
         author={{
-          name: "Accessibility.build Team",
+          name: "Khushwant Parihar",
           url: "https://accessibility.build/about",
         }}
         publisher={{

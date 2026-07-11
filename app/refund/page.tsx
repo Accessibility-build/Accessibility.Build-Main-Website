@@ -1,13 +1,14 @@
 import type { Metadata } from "next"
 import { RefreshCcw, Shield, Clock, CheckCircle, AlertCircle, Mail, FileText, CreditCard } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import Link from "next/link"
+import { businessLocation, company, legalLastUpdated } from "@/lib/company"
 
 export const metadata: Metadata = {
   title: "Cancellation & Refund Policy",
-  description: "Comprehensive cancellation and refund policy for Accessibility.build services. Fair, transparent, and compliant with Indian consumer protection laws.",
+  description: "Cancellation and refund terms for Accessibility.build credit purchases and professional accessibility services.",
   keywords: [
     "cancellation policy",
     "refund policy",
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Cancellation & Refund Policy - Accessibility.build",
-    description: "Fair and transparent refund policy in compliance with Indian consumer protection laws.",
+    description: "Clear refund terms for platform credits and professional accessibility services.",
     type: "website",
     url: "https://accessibility.build/refund",
     images: [
@@ -52,11 +53,11 @@ export default function RefundPage() {
             <h1 className="text-4xl font-bold">Cancellation & Refund Policy</h1>
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            We stand behind our services with a fair and transparent refund policy in compliance with Indian consumer protection laws.
+            Clear cancellation and refund terms for platform credits and separately scoped professional services.
           </p>
           <div className="flex items-center justify-center gap-2 mt-4">
-            <Badge variant="outline">Last updated: November 9, 2025</Badge>
-            <Badge variant="outline">Consumer Protection Act, 2019 Compliant</Badge>
+            <Badge variant="outline">Last updated: {legalLastUpdated}</Badge>
+            <Badge variant="outline">Operated in India</Badge>
           </div>
         </div>
 
@@ -103,7 +104,7 @@ export default function RefundPage() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground text-center">
-                Protected under the Consumer Protection Act, 2019 and Information Technology Act, 2000
+                Mandatory consumer rights continue to apply where the law requires them
               </p>
             </CardContent>
           </Card>
@@ -114,8 +115,7 @@ export default function RefundPage() {
             <h2 className="text-2xl font-bold mb-4">1. Overview</h2>
             
             <p>
-              This Cancellation and Refund Policy governs the refund and cancellation procedures for services 
-              provided by Accessibility.build ("we", "us", or "our"). This policy is established in accordance with:
+              This Cancellation and Refund Policy governs purchases and professional services provided by Accessibility.build ("we", "us", or "our"), owned and operated by {company.legalOperator} in {businessLocation}. Applicable mandatory rights under Indian law are not excluded by this policy. Relevant legislation may include:
             </p>
             <ul>
               <li>The Consumer Protection Act, 2019</li>
@@ -209,7 +209,7 @@ export default function RefundPage() {
                 </CardHeader>
                 <CardContent className="text-sm">
                   <p className="mb-2"><strong>Timeline:</strong> 7-10 business days</p>
-                  <p>Once approved, refunds are processed to your original payment method via Razorpay.</p>
+                  <p>Once approved, refunds are processed to the original payment method through the payment provider used for the purchase.</p>
                 </CardContent>
               </Card>
 
@@ -319,7 +319,7 @@ export default function RefundPage() {
               <li><strong>Credit/Debit Cards:</strong> Refunded to the original card used for payment</li>
               <li><strong>UPI/Net Banking:</strong> Refunded to the source bank account</li>
               <li><strong>Digital Wallets:</strong> Refunded to the original wallet used</li>
-              <li><strong>Other Provider Methods:</strong> Refunded to the original source method when supported by Razorpay</li>
+              <li><strong>Provider-supported methods:</strong> Refunded to the original source when supported by Stripe, Razorpay, or the applicable payment provider</li>
             </ul>
 
             <h3 className="text-xl font-semibold mb-3 mt-6">6.2 Currency and Exchange Rates</h3>
@@ -453,8 +453,8 @@ export default function RefundPage() {
                     <p className="text-sm text-muted-foreground mb-2">
                       For refund and cancellation requests:
                     </p>
-                    <Link href="mailto:refunds@accessibility.build" className="text-primary hover:underline">
-                      refunds@accessibility.build
+                    <Link href={`mailto:${company.billingEmail}`} className="text-primary hover:underline">
+                      {company.billingEmail}
                     </Link>
                   </div>
                   
@@ -466,17 +466,18 @@ export default function RefundPage() {
                     <p className="text-sm text-muted-foreground mb-2">
                       For other queries and support:
                     </p>
-                    <Link href="mailto:support@accessibility.build" className="text-primary hover:underline">
-                      support@accessibility.build
+                    <Link href={`mailto:${company.email}`} className="text-primary hover:underline">
+                      {company.email}
                     </Link>
                   </div>
 
                   <div className="md:col-span-2">
-                    <h4 className="font-semibold mb-3">Business Address</h4>
+                    <h4 className="font-semibold mb-3">Business Information</h4>
                     <p className="text-sm text-muted-foreground">
-                      Accessibility.build<br />
-                      Bangalore, Karnataka, India<br />
-                      GSTIN: [Your GST Number]
+                      {company.brandName}<br />
+                      Owned and operated by {company.legalOperator}<br />
+                      {businessLocation}<br />
+                      GST-registered in India; GSTIN is provided on valid tax documents
                     </p>
                   </div>
                 </div>
@@ -484,8 +485,7 @@ export default function RefundPage() {
                 <Alert className="mt-6">
                   <Shield className="h-4 w-4" />
                   <AlertDescription>
-                    <strong>Consumer Rights:</strong> This policy is compliant with the Consumer Protection Act, 2019. 
-                    For grievances, you may also contact the National Consumer Helpline: 1800-11-4000 or visit{" "}
+                    <strong>Consumer rights:</strong> This policy does not restrict rights that cannot lawfully be waived. For information about Indian consumer grievance channels, you may visit{" "}
                     <a href="https://consumerhelpline.gov.in" target="_blank" rel="noopener noreferrer" className="underline">
                       consumerhelpline.gov.in
                     </a>
