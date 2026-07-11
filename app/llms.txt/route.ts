@@ -58,6 +58,8 @@ export function GET(): Response {
     "## Full index",
     "",
     `- [Complete sitemap](${baseUrl}/sitemap.xml): every indexable page.`,
+    `- [RSS feed](${baseUrl}/feed.xml): latest blog posts and editorial updates.`,
+    `- [Atom feed](${baseUrl}/atom.xml): latest blog posts and editorial updates.`,
     ""
   )
 

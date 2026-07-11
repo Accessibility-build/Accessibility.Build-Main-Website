@@ -4,6 +4,7 @@
 //
 //   node scripts/publish-blog-posts.mjs --check   # dry run
 //   node scripts/publish-blog-posts.mjs           # write
+//   node scripts/publish-blog-posts.mjs --only=post-slug,other-post-slug
 
 import { createClient } from '@sanity/client'
 import { readFileSync, readdirSync } from 'node:fs'
@@ -12,6 +13,9 @@ import { dirname, join } from 'node:path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DRY_RUN = process.argv.includes('--check')
+const onlyArg = process.argv.find((arg) => arg.startsWith('--only='))
+const ONLY = new Set((onlyArg?.slice('--only='.length) || '').split(',').filter(Boolean))
+const FORBIDDEN_REFERENCES = ['accessible.org']
 
 function readEnv(name) {
   for (const file of ['.env.local', '.env']) {
@@ -52,11 +56,20 @@ async function main() {
 
   const dir = join(__dirname, 'blog-new')
   const files = readdirSync(dir).filter((f) => f.endsWith('.mjs')).sort()
-  console.log(`${files.length} post modules found. Mode: ${DRY_RUN ? 'DRY RUN' : 'WRITE'}\n`)
+  console.log(`${files.length} post modules found. Mode: ${DRY_RUN ? 'DRY RUN' : 'WRITE'}${ONLY.size ? `, selected: ${[...ONLY].join(', ')}` : ''}\n`)
 
   const docs = []
   for (const file of files) {
     const mod = (await import(pathToFileURL(join(dir, file)).href)).default
+    if (ONLY.size && !ONLY.has(mod.slug)) continue
+
+    const serializedPost = JSON.stringify(mod).toLowerCase()
+    for (const reference of FORBIDDEN_REFERENCES) {
+      if (serializedPost.includes(reference)) {
+        throw new Error(`${file}: forbidden reference "${reference}"`)
+      }
+    }
+
     const catRefs = (mod.categoryTitles || []).map((t, i) => {
       const id = catByTitle.get(t.toLowerCase())
       if (!id) throw new Error(`${file}: unknown category "${t}" (have: ${[...catByTitle.keys()].join(', ')})`)
@@ -76,6 +89,12 @@ async function main() {
     })
     const words = mod.body.filter((b) => b._type === 'block').flatMap((b) => b.children || []).map((c) => c.text || '').join(' ').split(/\s+/).length
     console.log(`  ${mod.publishedAt.slice(0,10)}  ${mod.slug}  [${(mod.categoryTitles||[]).join(', ')}]  ~${words} words`)
+  }
+
+  if (ONLY.size && docs.length !== ONLY.size) {
+    const found = new Set(docs.map((doc) => doc.slug.current))
+    const missing = [...ONLY].filter((slug) => !found.has(slug))
+    throw new Error(`Selected post modules not found: ${missing.join(', ')}`)
   }
 
   if (DRY_RUN) { console.log('\nDry run complete — no writes.'); return }

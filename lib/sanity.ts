@@ -24,6 +24,7 @@ export async function getBlogPosts() {
   return await client.fetch(`
     *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
       _id,
+      _updatedAt,
       title,
       slug,
       excerpt,
@@ -99,5 +100,5 @@ export async function getBlogPostsByCategory(categorySlug: string) {
     }
   `, { categorySlug })
 } 
- 
+
  

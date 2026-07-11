@@ -17,6 +17,11 @@ import { SocialShare } from "@/components/seo/social-share"
 import { RelatedContent } from "@/components/seo/related-content"
 import { ListenFeature } from "@/components/blog/listen-feature"
 
+type BlogCategory = {
+  title?: string
+  slug?: { current?: string }
+}
+
 // Revalidate individual posts hourly so edits in Sanity reflect promptly.
 export const revalidate = 3600;
 
@@ -95,11 +100,17 @@ export async function generateMetadata({
     const ogImage = post.mainImage
       ? urlFor(post.mainImage).width(1200).height(630).url()
       : `https://accessibility.build/api/og?title=${encodeURIComponent(post.title)}&section=Blog`
+    const categories = ((post.categories || []) as BlogCategory[])
+      .map((category) => category?.title)
+      .filter(Boolean)
+    const keywords = Array.isArray(post.seo?.keywords)
+      ? post.seo.keywords.filter(Boolean)
+      : undefined
 
     return {
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.excerpt,
-      keywords: post.seo?.keywords?.join(", ") || "",
+      ...(keywords?.length && { keywords }),
       authors: [{ name: post.author?.name || "Accessibility.build Team" }],
       alternates: {
         canonical: currentUrl,
@@ -112,6 +123,8 @@ export async function generateMetadata({
         publishedTime: post.publishedAt,
         modifiedTime: post._updatedAt || post.publishedAt,
         authors: [post.author?.name || "Accessibility.build Team"],
+        ...(categories[0] && { section: categories[0] }),
+        ...(categories.length && { tags: categories }),
         images: [
           {
             url: ogImage,
@@ -168,6 +181,7 @@ export default async function BlogPostPage({
       { name: post.title, url: currentUrl }
     ]
 
+    const hasNamedAuthor = Boolean(post.author?.name)
     const authorName = post.author?.name || "Accessibility.build Team"
     const authorImage = post.author?.image ? urlFor(post.author.image).width(80).height(80).url() : undefined
     // Plain-text author bio from the Sanity Portable Text field, if present.
@@ -203,12 +217,17 @@ export default async function BlogPostPage({
         {/* Schema Markup */}
         <ArticleStructuredData
           articleType="BlogPosting"
-          authorType="Organization"
+          authorType={hasNamedAuthor ? "Person" : "Organization"}
           headline={post.title}
           description={post.excerpt || ""}
           author={{
             name: authorName,
-            url: "https://accessibility.build/about"
+            ...(hasNamedAuthor
+              ? {
+                  ...(authorImage && { image: authorImage }),
+                  ...(authorBio && { description: authorBio }),
+                }
+              : { url: "https://accessibility.build/about" })
           }}
           publisher={{
             name: "Accessibility.build",

@@ -1,7 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { type StructuredDataProps } from "@/types/seo"
+
+function serializeSchema(schema: Record<string, any>) {
+  return JSON.stringify(schema).replace(/</g, "\\u003c")
+}
 
 interface ToolStructuredDataProps {
   name: string
@@ -44,6 +47,8 @@ interface ArticleStructuredDataProps {
   author: {
     name: string
     url?: string
+    image?: string
+    description?: string
   }
   publisher: {
     name: string
@@ -126,14 +131,6 @@ interface CourseStructuredDataProps {
 }
 
 export function StructuredData({ type, data }: StructuredDataProps) {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
-
   let schema: Record<string, any> = {}
 
   switch (type) {
@@ -278,7 +275,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(schema),
+        __html: serializeSchema(schema),
       }}
     />
   )
@@ -292,7 +289,6 @@ export function ToolStructuredData({
   applicationCategory, 
   operatingSystem,
   offers,
-  aggregateRating,
   steps
 }: ToolStructuredDataProps) {
   const toolSchema = {
@@ -314,16 +310,9 @@ export function ToolStructuredData({
         "availability": "https://schema.org/InStock"
       }
     }),
-    ...(aggregateRating && {
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": aggregateRating.ratingValue,
-        "reviewCount": aggregateRating.reviewCount,
-        "bestRating": "5"
-      }
-    }),
     "publisher": {
       "@type": "Organization",
+      "@id": "https://accessibility.build/#organization",
       "name": "Accessibility.build",
       "url": "https://accessibility.build",
       "logo": "https://accessibility.build/android-chrome-512x512.png"
@@ -343,7 +332,6 @@ export function ToolStructuredData({
     "@type": "HowTo",
     "name": `How to use ${name}`,
     "description": `Step-by-step guide to using ${name} for accessibility testing`,
-    "image": `https://accessibility.build/images/tools/${name.toLowerCase().replace(/\s+/g, '-')}-guide.png`,
     "totalTime": "PT5M",
     "estimatedCost": {
       "@type": "MonetaryAmount",
@@ -364,14 +352,14 @@ export function ToolStructuredData({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(toolSchema)
+          __html: serializeSchema(toolSchema)
         }}
       />
       {howToSchema && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(howToSchema)
+            __html: serializeSchema(howToSchema)
           }}
         />
       )}
@@ -398,7 +386,7 @@ export function FAQStructuredData({ faqs }: FAQStructuredDataProps) {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(faqSchema)
+        __html: serializeSchema(faqSchema)
       }}
     />
   )
@@ -421,7 +409,7 @@ export function BreadcrumbStructuredData({ breadcrumbs }: BreadcrumbStructuredDa
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(breadcrumbSchema)
+        __html: serializeSchema(breadcrumbSchema)
       }}
     />
   )
@@ -450,10 +438,23 @@ export function ArticleStructuredData({
     "author": {
       "@type": authorType,
       "name": author.name,
-      ...(author.url && { "url": author.url })
+      ...(author.url && { "url": author.url }),
+      ...(author.description && { "description": author.description }),
+      ...(author.image && {
+        "image": {
+          "@type": "ImageObject",
+          "url": author.image
+        }
+      }),
+      ...(authorType === "Person" && {
+        "worksFor": {
+          "@id": "https://accessibility.build/#organization"
+        }
+      })
     },
     "publisher": {
       "@type": "Organization",
+      "@id": "https://accessibility.build/#organization",
       "name": publisher.name,
       "logo": {
         "@type": "ImageObject",
@@ -473,6 +474,8 @@ export function ArticleStructuredData({
       "@type": "WebPage",
       "@id": url
     },
+    "isAccessibleForFree": true,
+    "inLanguage": "en-US",
     ...(wordCount && { "wordCount": wordCount }),
     ...(keywords && { "keywords": keywords.join(", ") })
   }
@@ -481,7 +484,7 @@ export function ArticleStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(articleSchema)
+        __html: serializeSchema(articleSchema)
       }}
     />
   )
@@ -548,13 +551,14 @@ export function HowToStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(howToSchema)
+        __html: serializeSchema(howToSchema)
       }}
     />
   )
 }
 
-// WebSite Schema with Enhanced Search Action
+// WebSite schema. Keep this factual: Google retired the sitelinks search box
+// result feature, and this app does not expose a global /search results route.
 export function WebSiteStructuredData() {
   const websiteSchema = {
     "@context": "https://schema.org",
@@ -562,18 +566,9 @@ export function WebSiteStructuredData() {
     "name": "Accessibility.build",
     "description": "Professional accessibility platform with AI-powered tools, WCAG 2.2 & 3.0 testing, and comprehensive resources for building inclusive digital experiences.",
     "url": "https://accessibility.build",
-    "potentialAction": [
-      {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://accessibility.build/search?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
-    ],
     "publisher": {
       "@type": "Organization",
+      "@id": "https://accessibility.build/#organization",
       "name": "Accessibility.build",
       "logo": "https://accessibility.build/android-chrome-512x512.png"
     }
@@ -583,7 +578,7 @@ export function WebSiteStructuredData() {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(websiteSchema)
+        __html: serializeSchema(websiteSchema)
       }}
     />
   )
@@ -595,7 +590,7 @@ export function OrganizationStructuredData() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Accessibility.build",
-    "description": "Leading provider of professional accessibility testing tools and WCAG compliance solutions.",
+    "description": "Accessibility.build publishes accessibility testing tools, WCAG guidance, compliance resources, and original accessibility research.",
     "url": "https://accessibility.build",
     "logo": {
       "@type": "ImageObject",
@@ -609,11 +604,6 @@ export function OrganizationStructuredData() {
       "https://github.com/accessibility-build",
       "https://linkedin.com/company/accessibility-build"
     ],
-    "foundingDate": "2024",
-    "founder": {
-      "@type": "Person",
-      "name": "Accessibility.build Team"
-    },
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
@@ -621,23 +611,25 @@ export function OrganizationStructuredData() {
       "availableLanguage": ["English"],
       "areaServed": "Worldwide"
     },
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "US"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "150",
-      "bestRating": "5"
-    }
+    "areaServed": "Worldwide",
+    "knowsAbout": [
+      "Web accessibility",
+      "WCAG 2.2",
+      "WCAG 3.0",
+      "ADA compliance",
+      "Section 508",
+      "European Accessibility Act",
+      "Assistive technology",
+      "Accessible design",
+      "Accessibility testing"
+    ]
   }
 
   return (
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(organizationSchema)
+        __html: serializeSchema(organizationSchema)
       }}
     />
   )
@@ -652,7 +644,6 @@ export function ServiceStructuredData({
   provider,
   areaServed,
   offers,
-  aggregateRating,
   termsOfService,
   serviceOutput
 }: ServiceStructuredDataProps) {
@@ -689,14 +680,6 @@ export function ServiceStructuredData({
         "availability": offers.availability
       }
     }),
-    ...(aggregateRating && {
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": aggregateRating.ratingValue,
-        "reviewCount": aggregateRating.reviewCount,
-        "bestRating": "5"
-      }
-    }),
     ...(termsOfService && { "termsOfService": termsOfService }),
     ...(serviceOutput && { "serviceOutput": serviceOutput }),
     "category": "Accessibility Consulting"
@@ -706,7 +689,7 @@ export function ServiceStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(serviceSchema)
+        __html: serializeSchema(serviceSchema)
       }}
     />
   )
@@ -764,7 +747,7 @@ export function CourseStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(courseSchema)
+        __html: serializeSchema(courseSchema)
       }}
     />
   )
@@ -778,7 +761,6 @@ export function AccessibilityToolStructuredData({
   applicationCategory = "AccessibilityApplication",
   operatingSystem = "Any",
   offers,
-  aggregateRating,
   accessibilityFeatures
 }: ToolStructuredDataProps & {
   accessibilityFeatures?: string[]
@@ -812,16 +794,9 @@ export function AccessibilityToolStructuredData({
         "eligibleRegion": "Worldwide"
       }
     }),
-    ...(aggregateRating && {
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": aggregateRating.ratingValue,
-        "reviewCount": aggregateRating.reviewCount,
-        "bestRating": "5"
-      }
-    }),
     "publisher": {
       "@type": "Organization",
+      "@id": "https://accessibility.build/#organization",
       "name": "Accessibility.build",
       "url": "https://accessibility.build",
       "logo": "https://accessibility.build/android-chrome-512x512.png"
@@ -839,7 +814,6 @@ export function AccessibilityToolStructuredData({
     "applicationSubCategory": "Web Accessibility Testing Tool",
     "downloadUrl": url,
     "installUrl": url,
-    "screenshot": `https://accessibility.build/images/tools/${name.toLowerCase().replace(/\s+/g, '-')}-screenshot.png`,
     "softwareHelp": {
       "@type": "CreativeWork",
       "url": `${url}#help`
@@ -850,7 +824,7 @@ export function AccessibilityToolStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(toolSchema)
+        __html: serializeSchema(toolSchema)
       }}
     />
   )
@@ -908,7 +882,7 @@ export function DatasetStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(datasetSchema)
+        __html: serializeSchema(datasetSchema)
       }}
     />
   )
@@ -974,7 +948,7 @@ export function ChecklistStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(checklistSchema)
+        __html: serializeSchema(checklistSchema)
       }}
     />
   )
@@ -1007,7 +981,7 @@ export function AboutPageStructuredData({ name, description, url }: AboutPageStr
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(aboutPageSchema)
+        __html: serializeSchema(aboutPageSchema)
       }}
     />
   )
@@ -1048,7 +1022,7 @@ export function ContactPageStructuredData({ name, description, url, email }: Con
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(contactPageSchema)
+        __html: serializeSchema(contactPageSchema)
       }}
     />
   )

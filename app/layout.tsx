@@ -24,6 +24,18 @@ const fontSans = FontSans({
   preload: true,
 })
 
+const verificationOther: Record<string, string> = {}
+
+if (process.env.BING_SITE_VERIFICATION) {
+  verificationOther["msvalidate.01"] = process.env.BING_SITE_VERIFICATION
+}
+
+const verification: Metadata["verification"] = {
+  ...(process.env.GOOGLE_SITE_VERIFICATION && { google: process.env.GOOGLE_SITE_VERIFICATION }),
+  ...(process.env.YANDEX_VERIFICATION && { yandex: process.env.YANDEX_VERIFICATION }),
+  ...(Object.keys(verificationOther).length > 0 && { other: verificationOther }),
+}
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -133,13 +145,7 @@ export const metadata: Metadata = {
   },
   applicationName: "Accessibility.build",
   generator: "Next.js",
-  verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
-    yandex: process.env.YANDEX_VERIFICATION,
-    other: {
-      'msvalidate.01': process.env.BING_SITE_VERIFICATION || '',
-    },
-  },
+  verification,
   other: {
     'theme-color': '#3b82f6',
     'color-scheme': 'light dark',
@@ -185,6 +191,7 @@ const structuredData = {
         "https://linkedin.com/company/accessibilitybuild",
         "https://github.com/accessibility-build"
       ],
+      publishingPrinciples: "https://accessibility.build/about",
       contactPoint: {
         "@type": "ContactPoint",
         email: "contact@accessibility.build",
@@ -198,9 +205,58 @@ const structuredData = {
       url: "https://accessibility.build",
       name: "Accessibility.build",
       description: "Professional accessibility platform with AI-powered tools, WCAG 2.2 & 3.0 testing, and comprehensive resources for building inclusive digital experiences.",
+      inLanguage: "en-US",
       publisher: {
         "@id": "https://accessibility.build/#organization"
-      }
+      },
+      about: [
+        { "@type": "Thing", name: "Web accessibility" },
+        { "@type": "Thing", name: "WCAG 2.2" },
+        { "@type": "Thing", name: "Accessibility compliance" },
+        { "@type": "Thing", name: "Assistive technology" }
+      ],
+      audience: {
+        "@type": "Audience",
+        audienceType: "Developers, designers, accessibility specialists, and compliance teams"
+      },
+      hasPart: [
+        {
+          "@type": "CollectionPage",
+          "@id": "https://accessibility.build/tools#collection",
+          name: "Accessibility Tools",
+          url: "https://accessibility.build/tools"
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://accessibility.build/wcag#collection",
+          name: "WCAG Success Criteria Guides",
+          url: "https://accessibility.build/wcag"
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://accessibility.build/guides#collection",
+          name: "Accessibility Guides",
+          url: "https://accessibility.build/guides"
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://accessibility.build/compliance#collection",
+          name: "Accessibility Compliance",
+          url: "https://accessibility.build/compliance"
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://accessibility.build/research#collection",
+          name: "Accessibility Research",
+          url: "https://accessibility.build/research"
+        },
+        {
+          "@type": "Blog",
+          "@id": "https://accessibility.build/blog#blog",
+          name: "Accessibility Blog",
+          url: "https://accessibility.build/blog"
+        }
+      ]
     },
     {
       "@type": "WebApplication",
@@ -210,6 +266,11 @@ const structuredData = {
       description: "Professional accessibility testing tools including AI-powered alt text generation and WCAG compliance testing",
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Any",
+      browserRequirements: "Requires JavaScript. Supported browsers: Chrome, Firefox, Safari, Edge.",
+      isAccessibleForFree: true,
+      publisher: {
+        "@id": "https://accessibility.build/#organization"
+      },
       offers: {
         "@type": "Offer",
         price: "0",
@@ -300,6 +361,11 @@ export default function RootLayout({
           <link rel="dns-prefetch" href="//vitals.vercel-insights.com" />
           <link rel="dns-prefetch" href="//analytics.ahrefs.com" />
           <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+
+          {/* Content discovery */}
+          <link rel="alternate" type="application/rss+xml" title="Accessibility.build Blog RSS Feed" href="/feed.xml" />
+          <link rel="alternate" type="application/atom+xml" title="Accessibility.build Blog Atom Feed" href="/atom.xml" />
+          <link rel="alternate" type="text/plain" title="Accessibility.build LLMs.txt" href="/llms.txt" />
 
           {/* Critical resource hints */}
           <link rel="prefetch" href="/tools" />

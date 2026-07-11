@@ -53,7 +53,7 @@ export const baseMetadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/manifest.webmanifest",
+  manifest: "/site.webmanifest",
 }
 
 // Helper function to create metadata for specific pages

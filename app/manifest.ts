@@ -4,11 +4,11 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Accessibility.build",
     short_name: "A11y.build",
-    description: "A modern platform for accessibility resources, tools, and education",
+    description: "Accessibility tools, WCAG guides, compliance resources, and accessibility education for inclusive web teams.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
-    theme_color: "#7c3aed",
+    theme_color: "#3b82f6",
     icons: [
       {
         src: "/favicon-16x16.png",

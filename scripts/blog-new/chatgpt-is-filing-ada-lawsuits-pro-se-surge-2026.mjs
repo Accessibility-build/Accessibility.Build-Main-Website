@@ -1,7 +1,7 @@
 export default {
   slug: 'chatgpt-is-filing-ada-lawsuits-pro-se-surge-2026',
   title: 'ChatGPT Is Filing ADA Lawsuits: The Pro Se Surge of 2026',
-  excerpt: 'AI tools let anyone draft an ADA complaint in minutes. Pro se filings jumped about 40% in 2025 and now make up roughly 40% of all federal ADA Title III cases.',
+  excerpt: 'AI tools let anyone draft an ADA complaint in minutes. Seyfarth reported about 40% more federal pro se ADA Title III filings in 2025 than in 2024.',
   publishedAt: '2026-06-25T10:00:00Z',
   categoryTitles: ['Legal & Compliance', 'AI & Accessibility'],
   seo: {
@@ -25,7 +25,7 @@ export default {
       children: [
         {
           _type: 'span',
-          text: 'General-purpose AI has changed the economics of ADA website litigation. A person who hits an inaccessible website can now ask a chatbot to draft a complaint or demand letter in minutes, and the cost of filing has fallen toward zero. Federal pro se ADA Title III filings, meaning cases brought by people representing themselves without a lawyer, rose about 40 percent in 2025 over 2024, and pro se plaintiffs now account for roughly 40 percent of all federal ADA Title III filings. The tools that lowered that barrier cut both ways, and the only durable defense remains the same as it always was: an actually accessible website.',
+          text: 'General-purpose AI has changed the economics of ADA website litigation. A person who hits an inaccessible website can now ask a chatbot to draft a complaint or demand letter in minutes, reducing the time and cost required to prepare a filing. Federal pro se ADA Title III filings, meaning cases brought by people representing themselves without a lawyer, ran about 40 percent higher in 2025 than in 2024 based on Seyfarth Shaw\'s comparison of average monthly filings. The tools that lowered that barrier cut both ways, and the only durable defense remains the same as it always was: an actually accessible website.',
         },
       ],
     },
@@ -49,17 +49,17 @@ export default {
       _type: 'block',
       style: 'normal',
       markDefs: [
-        { _key: 'l1', _type: 'link', href: 'https://accessible.org/2026-ada-website-compliance-lawsuits-ai/' },
+        { _key: 'l1', _type: 'link', href: 'https://www.adatitleiii.com/2026/03/federal-court-website-accessibility-lawsuit-filings-bounce-back-in-2025/' },
       ],
       children: [
         {
           _type: 'span',
-          text: 'The wider litigation picture was already climbing before the pro se wave. In 2025, plaintiffs filed 3,117 website-accessibility lawsuits in federal court, a 27 percent increase and the highest total since 2022. Counting state courts, the figure exceeds 5,000 digital accessibility suits, a 37 percent surge, as ',
+          text: 'The wider litigation picture was already climbing before the pro se wave. In 2025, plaintiffs filed 3,117 website-accessibility lawsuits in federal court, a 27 percent increase from 2024, according to ',
         },
-        { _type: 'span', text: 'reporting collected by Accessible.org', marks: ['l1'] },
+        { _type: 'span', text: 'Seyfarth Shaw\'s annual filing analysis', marks: ['l1'] },
         {
           _type: 'span',
-          text: ' documents. eCommerce sites absorbed roughly 70 percent of digital ADA suits, a reflection of how many businesses now sell online and how visible their checkout flows are.',
+          text: '. The 665 additional federal cases erased the declines recorded across the prior two years and made website claims 36 percent of all federal ADA Title III filings.',
         },
       ],
     },
@@ -77,8 +77,8 @@ export default {
       listItem: 'bullet',
       style: 'normal',
       children: [
-        { _type: 'span', text: '5,000+', marks: ['strong'] },
-        { _type: 'span', text: ' digital accessibility suits including state courts, a 37 percent surge.' },
+        { _type: 'span', text: '665', marks: ['strong'] },
+        { _type: 'span', text: ' more federal website-accessibility cases than in 2024.' },
       ],
     },
     {
@@ -86,8 +86,8 @@ export default {
       listItem: 'bullet',
       style: 'normal',
       children: [
-        { _type: 'span', text: '~70 percent', marks: ['strong'] },
-        { _type: 'span', text: ' of digital ADA suits targeted eCommerce sites.' },
+        { _type: 'span', text: '36 percent', marks: ['strong'] },
+        { _type: 'span', text: ' of all federal ADA Title III filings involved website accessibility.' },
       ],
     },
     {
@@ -96,7 +96,7 @@ export default {
       style: 'normal',
       children: [
         { _type: 'span', text: '~40 percent', marks: ['strong'] },
-        { _type: 'span', text: ' of federal ADA Title III filings are now pro se, up about 40 percent year over year.' },
+        { _type: 'span', text: ' increase in average monthly federal pro se ADA Title III filings in 2025 compared with 2024.' },
       ],
     },
     {
@@ -311,6 +311,15 @@ export default {
       listItem: 'bullet',
       style: 'normal',
       markDefs: [
+        { _key: 's0', _type: 'link', href: 'https://www.adatitleiii.com/2025/10/federal-pro-se-ada-title-iii-and-fha-lawsuit-numbers-surge-likely-powered-by-ai/' },
+      ],
+      children: [{ _type: 'span', text: 'Seyfarth Shaw: Federal Pro Se ADA Title III and FHA Lawsuit Numbers Surge, Likely Powered by AI', marks: ['s0'] }],
+    },
+    {
+      _type: 'block',
+      listItem: 'bullet',
+      style: 'normal',
+      markDefs: [
         { _key: 's1', _type: 'link', href: 'https://adaquickscan.com/blog/ai-chatgpt-ada-lawsuits-2026-pro-se-surge' },
       ],
       children: [{ _type: 'span', text: 'ADA QuickScan: AI, ChatGPT and the 2026 Pro Se ADA Lawsuit Surge', marks: ['s1'] }],
@@ -338,9 +347,9 @@ export default {
       listItem: 'bullet',
       style: 'normal',
       markDefs: [
-        { _key: 's4', _type: 'link', href: 'https://accessible.org/2026-ada-website-compliance-lawsuits-ai/' },
+        { _key: 's4', _type: 'link', href: 'https://www.adatitleiii.com/2026/03/federal-court-website-accessibility-lawsuit-filings-bounce-back-in-2025/' },
       ],
-      children: [{ _type: 'span', text: 'Accessible.org: 2026 ADA Website Compliance Lawsuits and AI', marks: ['s4'] }],
+      children: [{ _type: 'span', text: 'Seyfarth Shaw: Federal Court Website Accessibility Lawsuit Filings Bounce Back in 2025', marks: ['s4'] }],
     },
   ],
 }
