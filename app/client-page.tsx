@@ -5,7 +5,6 @@ import {
   BadgeCheck,
   BookOpenCheck,
   Code2,
-  ExternalLink,
   FileCheck2,
   Keyboard,
   ScanSearch,
@@ -14,7 +13,6 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { caseStudies } from "@/lib/authority-content"
-import { company } from "@/lib/company"
 import { serviceStartingPrices } from "@/lib/service-pricing"
 
 const portrait = "/images/authors/khushwant-parihar.jpeg"
@@ -54,42 +52,22 @@ export default function HomeClientPage() {
   return (
     <div className="bg-background">
       <section className="border-b bg-slate-950 text-white">
-        <div className="container-wide grid gap-12 py-16 lg:grid-cols-[1.25fr_0.75fr] lg:items-end lg:py-24">
-          <div>
-            <p className="text-sm font-semibold uppercase text-teal-300">Founder-led accessibility consultancy and platform</p>
-            <h1 className="mt-4 max-w-5xl break-words text-5xl font-semibold leading-tight [overflow-wrap:anywhere] sm:text-6xl lg:text-7xl">
-              Accessibility.build
-            </h1>
-            <p className="mt-6 max-w-3xl text-xl leading-8 text-slate-300">
-              Accessibility audits, remediation, training, and practical WCAG tools led by Khushwant Parihar. Clear scope, named accountability, and evidence your team can act on.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button asChild size="lg" className="w-full sm:w-auto">
-                <Link href="/services">View professional services <ArrowRight className="ml-2 h-4 w-4" /></Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="w-full border-slate-600 bg-transparent text-white hover:bg-slate-900 hover:text-white sm:w-auto">
-                <Link href="/sample-audit-report">Inspect sample report</Link>
-              </Button>
-            </div>
+        <div className="container-wide py-16 lg:py-24">
+          <p className="text-sm font-semibold uppercase text-teal-300">Accessibility services, tools, and WCAG guidance</p>
+          <h1 className="mt-4 max-w-5xl text-5xl font-semibold leading-tight sm:text-6xl lg:text-7xl">
+            <span className="block sm:inline">Accessibility</span><span className="block sm:inline">.build</span>
+          </h1>
+          <p className="mt-6 max-w-3xl text-xl leading-8 text-slate-300">
+            Practical accessibility work for digital products: defined audits, implementation support, team training, and evidence your organization can use.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button asChild size="lg">
+              <Link href="/services">View professional services <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-slate-600 bg-transparent text-white hover:bg-slate-900 hover:text-white">
+              <Link href="/sample-audit-report">Inspect sample report</Link>
+            </Button>
           </div>
-
-          <aside className="border-l border-slate-700 pl-6" aria-label="Founder information">
-            <div className="flex items-center gap-4">
-              <div className="relative h-20 w-20 shrink-0 overflow-hidden border border-slate-600">
-                <Image src={portrait} alt="Khushwant Parihar outdoors beside a lake and green hills" fill priority sizes="80px" className="object-cover" />
-              </div>
-              <div>
-                <p className="font-semibold">Khushwant Parihar</p>
-                <p className="mt-1 text-sm text-slate-300">Founder and Accessibility Consultant</p>
-                <Link href="/authors/khushwant-parihar" className="mt-2 inline-flex items-center text-sm font-semibold text-teal-300">
-                  View professional profile <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                </Link>
-              </div>
-            </div>
-            <p className="mt-6 text-sm leading-6 text-slate-300">
-              More than four years of professional accessibility and software testing experience across audits, screen-reader evaluation, accessible development, and remediation workflows.
-            </p>
-          </aside>
         </div>
       </section>
 
@@ -191,30 +169,21 @@ export default function HomeClientPage() {
         </div>
       </section>
 
-      <section className="border-y bg-slate-950 text-white">
-        <div className="container-wide grid gap-12 py-16 lg:grid-cols-[0.75fr_1.25fr] lg:items-center lg:py-20">
-          <div className="flex items-center gap-5">
-            <div className="relative h-28 w-28 shrink-0 overflow-hidden border border-slate-700">
-              <Image src={portrait} alt="Khushwant Parihar outdoors beside a lake and green hills" fill sizes="112px" className="object-cover" />
-            </div>
-            <div>
-              <p className="text-sm text-teal-300">Owner and accountable practitioner</p>
-              <h2 className="mt-2 text-2xl font-semibold">Khushwant Parihar</h2>
-            </div>
+      <section className="border-y bg-muted/30" aria-labelledby="founder-heading">
+        <div className="container-wide grid gap-6 py-10 sm:grid-cols-[96px_minmax(0,1fr)_auto] sm:items-center">
+          <div className="relative h-24 w-24 shrink-0 overflow-hidden border bg-background">
+            <Image src={portrait} alt="Khushwant Parihar outdoors beside a lake and green hills" fill sizes="96px" className="object-cover" />
           </div>
-          <div>
-            <p className="text-xl leading-8 text-slate-300">
-              Accessibility.build is intentionally founder-led. Scoping, delivery quality, client communication, and published claims remain attached to a named professional rather than an anonymous “expert team”.
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold uppercase text-primary">About the founder</p>
+            <h2 id="founder-heading" className="mt-1 text-2xl font-semibold">Khushwant Parihar</h2>
+            <p className="mt-2 max-w-3xl leading-7 text-muted-foreground">
+              Founder and accessibility consultant with more than four years of experience across auditing, remediation, accessible development, and software testing.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button asChild variant="outline" className="border-slate-600 bg-transparent text-white hover:bg-slate-900 hover:text-white">
-                <Link href="/authors/khushwant-parihar">Professional profile</Link>
-              </Button>
-              <Button asChild variant="ghost" className="text-white hover:bg-slate-900 hover:text-white">
-                <a href={company.founderWebsite} target="_blank" rel="me noopener noreferrer">External portfolio <ExternalLink className="ml-2 h-4 w-4" /></a>
-              </Button>
-            </div>
           </div>
+          <Button asChild variant="outline" className="w-fit shrink-0">
+            <Link href="/authors/khushwant-parihar">View profile <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          </Button>
         </div>
       </section>
 
