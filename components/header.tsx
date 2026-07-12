@@ -16,11 +16,32 @@ import {
   Settings,
   LogOut,
   Coins,
-  Grid3X3,
   Star,
   Zap,
   RefreshCw,
   UserRound,
+  ScanSearch,
+  Image as ImageIcon,
+  Contrast,
+  Heading,
+  Palette,
+  Smartphone,
+  BookOpenCheck,
+  Table2,
+  ListOrdered,
+  Keyboard,
+  Headphones,
+  BookOpen,
+  AlertTriangle,
+  ChartNoAxesCombined,
+  Scale,
+  Landmark,
+  Telescope,
+  Library,
+  LayoutGrid,
+  ChartColumn,
+  GraduationCap,
+  type LucideIcon,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -41,120 +62,158 @@ import { POPULAR_BADGE_CLASS } from "@/lib/ui-tokens";
 type NavItem = {
   name: string;
   href: string;
+  menuLabel?: string;
+  menuIcon?: LucideIcon;
+  viewAllLabel?: string;
+  viewAllIcon?: LucideIcon;
   children?: {
     name: string;
     href: string;
     description?: string;
     popular?: boolean;
+    icon: LucideIcon;
   }[];
 };
+
+function MenuIcon({ icon: Icon, className }: { icon: LucideIcon; className?: string }) {
+  return <Icon className={className} aria-hidden="true" />;
+}
 
 const navItems: NavItem[] = [
   {
     name: "Tools",
     href: "/tools",
+    menuLabel: "Accessibility tools",
+    menuIcon: Zap,
+    viewAllLabel: "View all tools",
+    viewAllIcon: LayoutGrid,
     children: [
       {
         name: "AI Accessibility Audit",
         href: "/tools/accessibility-audit-helper",
         description: "Get expert WCAG analysis",
         popular: true,
+        icon: ScanSearch,
       },
       {
         name: "AI Alt Text Generator",
         href: "/tools/alt-text-generator",
         description: "Generate perfect alt text with AI",
         popular: true,
+        icon: ImageIcon,
       },
       {
         name: "Color Contrast Checker",
         href: "/tools/contrast-checker",
         description: "Verify WCAG color standards",
         popular: true,
+        icon: Contrast,
       },
       {
         name: "Heading Structure Analyzer",
         href: "/tools/heading-analyzer",
         description: "Optimize heading hierarchy",
+        icon: Heading,
       },
       {
         name: "Color Palette Generator",
         href: "/tools/color-palette-generator",
         description: "Create accessible color schemes",
+        icon: Palette,
       },
       {
         name: "Mobile Accessibility Checker",
         href: "/tools/mobile-accessibility-checker",
         description: "Test mobile WCAG compliance",
+        icon: Smartphone,
       },
     ],
   },
   {
     name: "Learn",
     href: "/learn",
+    menuLabel: "Learning resources",
+    menuIcon: GraduationCap,
+    viewAllLabel: "Explore learning hub",
+    viewAllIcon: Library,
     children: [
       {
         name: "WCAG Success Criteria",
         href: "/wcag",
         description: "In-depth guides to all 86 WCAG 2.2 criteria",
         popular: true,
+        icon: BookOpenCheck,
       },
       {
         name: "Table Pattern",
         href: "/learn/table",
         description: "Accessible table implementation guide",
+        icon: Table2,
       },
       {
         name: "Pagination Pattern",
         href: "/learn/pagination",
         description: "Accessible pagination implementation guide",
+        icon: ListOrdered,
       },
       {
         name: "Keyboard Accessibility Guide",
         href: "/guides/keyboard-accessibility",
         description: "Complete keyboard navigation reference",
+        icon: Keyboard,
       },
       {
         name: "Screen Reader Testing",
         href: "/guides/screen-reader-testing",
         description: "Test with NVDA, JAWS, VoiceOver",
+        icon: Headphones,
       },
       {
         name: "Glossary",
         href: "/glossary",
         description: "Accessibility terms explained",
+        icon: BookOpen,
       },
       {
         name: "A11y Hell",
         href: "/hell",
         description: "Experience real accessibility barriers",
+        icon: AlertTriangle,
       },
     ],
   },
   {
     name: "Research",
     href: "/research",
+    menuLabel: "Research and compliance",
+    menuIcon: ChartNoAxesCombined,
+    viewAllLabel: "View all research",
+    viewAllIcon: ChartColumn,
     children: [
       {
         name: "State of Accessibility",
         href: "/research/state-of-accessibility",
         description: "Annual web accessibility report",
         popular: true,
+        icon: ChartNoAxesCombined,
       },
       {
         name: "Lawsuit Tracker",
         href: "/research/accessibility-lawsuits",
         description: "ADA accessibility litigation data",
+        icon: Scale,
       },
       {
         name: "Compliance & Laws",
         href: "/compliance",
         description: "ADA, EAA, Section 508, and state laws",
+        icon: Landmark,
       },
       {
         name: "WCAG 3.0 Guide",
         href: "/wcag-3",
         description: "Next-gen accessibility standards",
+        icon: Telescope,
       },
     ],
   },
@@ -273,11 +332,11 @@ export function Header() {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                       align="start"
-                      className="rounded-xl p-3 min-w-[280px] bg-background border border-border shadow-xl"
+                      className="max-h-[calc(100vh-6rem)] w-[360px] overflow-y-auto rounded-xl border border-border bg-background p-3 shadow-xl"
                     >
-                      <DropdownMenuLabel className="flex items-center gap-2 px-3 py-2">
-                        <Zap className="h-4 w-4 text-primary" />
-                        Accessibility Tools
+                      <DropdownMenuLabel className="flex items-center gap-2 px-3 py-2 text-left">
+                        <MenuIcon icon={item.menuIcon ?? Zap} className="h-4 w-4 text-primary" />
+                        {item.menuLabel ?? item.name}
                       </DropdownMenuLabel>
 
                       {item.children.map((child) => (
@@ -285,26 +344,31 @@ export function Header() {
                           <Link
                             href={child.href}
                             className={cn(
-                              "w-full rounded-lg px-3 py-3 text-sm flex flex-col items-start gap-1 min-h-[60px]",
+                              "grid min-h-[72px] w-full grid-cols-[36px_minmax(0,1fr)] items-start gap-3 rounded-lg px-3 py-3 text-left text-sm",
                               pathname === child.href
                                 ? "bg-primary/10 text-primary font-semibold"
                                 : "hover:bg-primary/5"
                             )}
                           >
-                            <div className="flex items-center gap-2 w-full">
-                              <span className="font-medium">{child.name}</span>
-                              {child.popular && (
-                                <Badge className={cn(POPULAR_BADGE_CLASS, "text-xs")}>
-                                  <Star className="h-2.5 w-2.5 mr-1" />
-                                  Popular
-                                </Badge>
+                            <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+                              <MenuIcon icon={child.icon} className="h-4 w-4" />
+                            </span>
+                            <div className="min-w-0 text-left">
+                              <div className="flex w-full flex-wrap items-center gap-2 text-left">
+                                <span className="font-medium">{child.name}</span>
+                                {child.popular && (
+                                  <Badge className={cn(POPULAR_BADGE_CLASS, "text-xs")}>
+                                    <Star className="mr-1 h-2.5 w-2.5" aria-hidden="true" />
+                                    Popular
+                                  </Badge>
+                                )}
+                              </div>
+                              {child.description && (
+                                <span className="mt-1 block w-full text-left text-xs leading-5 text-muted-foreground">
+                                  {child.description}
+                                </span>
                               )}
                             </div>
-                            {child.description && (
-                              <span className="text-xs text-muted-foreground">
-                                {child.description}
-                              </span>
-                            )}
                           </Link>
                         </DropdownMenuItem>
                       ))}
@@ -313,11 +377,11 @@ export function Header() {
 
                       <DropdownMenuItem asChild>
                         <Link
-                          href="/tools"
-                          className="w-full rounded-lg px-3 py-2 text-sm hover:bg-primary/5 flex items-center gap-2 font-medium text-primary"
+                          href={item.href}
+                          className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium text-primary hover:bg-primary/5"
                         >
-                          <Grid3X3 className="h-4 w-4" />
-                          View All Tools
+                          <MenuIcon icon={item.viewAllIcon ?? LayoutGrid} className="h-4 w-4" />
+                          {item.viewAllLabel ?? `View all ${item.name.toLowerCase()}`}
                         </Link>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
@@ -645,43 +709,46 @@ export function Header() {
 
                         {item.children && (
                           <div className="pl-4 space-y-3 border-l-2 border-primary/20">
-                            {item.children.slice(0, 3).map((child) => (
+                            {item.children.map((child) => (
                               <Link
                                 key={child.href}
                                 href={child.href}
                                 className={cn(
-                                  "flex flex-col gap-1 py-2 transition-colors",
+                                  "grid grid-cols-[28px_minmax(0,1fr)] items-start gap-3 py-2 text-left transition-colors",
                                   pathname === child.href
                                     ? "text-primary"
                                     : "text-foreground/80 hover:text-primary"
                                 )}
                                 onClick={() => setIsMobileMenuOpen(false)}
                               >
-                                <div className="flex items-center gap-2">
-                                  <span className="font-medium">
-                                    {child.name}
-                                  </span>
-                                  {child.popular && (
-                                    <Badge className={cn(POPULAR_BADGE_CLASS, "text-xs")}>
-                                      <Star className="h-2.5 w-2.5 mr-1" />
-                                      Popular
-                                    </Badge>
+                                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-primary">
+                                  <MenuIcon icon={child.icon} className="h-4 w-4" />
+                                </span>
+                                <div className="min-w-0 text-left">
+                                  <div className="flex flex-wrap items-center gap-2 text-left">
+                                    <span className="font-medium">{child.name}</span>
+                                    {child.popular && (
+                                      <Badge className={cn(POPULAR_BADGE_CLASS, "text-xs")}>
+                                        <Star className="mr-1 h-2.5 w-2.5" aria-hidden="true" />
+                                        Popular
+                                      </Badge>
+                                    )}
+                                  </div>
+                                  {child.description && (
+                                    <span className="mt-1 block w-full text-left text-xs leading-5 text-muted-foreground">
+                                      {child.description}
+                                    </span>
                                   )}
                                 </div>
-                                {child.description && (
-                                  <span className="text-xs text-muted-foreground">
-                                    {child.description}
-                                  </span>
-                                )}
                               </Link>
                             ))}
                             <Link
-                              href="/tools"
-                              className="flex items-center gap-2 py-2 text-sm text-primary font-medium"
+                              href={item.href}
+                              className="flex items-center gap-2 py-2 text-left text-sm font-medium text-primary"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
-                              <Grid3X3 className="h-4 w-4" />
-                              View All Tools
+                              <MenuIcon icon={item.viewAllIcon ?? LayoutGrid} className="h-4 w-4" />
+                              {item.viewAllLabel ?? `View all ${item.name.toLowerCase()}`}
                             </Link>
                           </div>
                         )}
