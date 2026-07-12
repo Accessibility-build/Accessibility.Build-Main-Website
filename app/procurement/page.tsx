@@ -98,7 +98,7 @@ export default function ProcurementPage() {
             ["Subprocessor register", "/subprocessors"],
             ["Accessibility statement", "/accessibility"],
             ["Sample audit report", "/sample-audit-report"],
-            ["Selected work", "/case-studies"],
+            ["Service delivery", "/services"],
             ["Service status", "/status"],
           ].map(([label, href]) => (
             <Link key={href} href={href} className="flex items-center justify-between border p-4 font-semibold hover:border-primary hover:text-primary">

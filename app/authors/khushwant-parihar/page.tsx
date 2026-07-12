@@ -153,9 +153,9 @@ export default function KhushwantPariharAuthorPage() {
 
       <section className="container-wide py-16 lg:py-20">
         <div className="grid gap-8 md:grid-cols-3">
-          <Link href="/case-studies" className="border-t pt-5 hover:text-primary">
-            <h2 className="text-xl font-semibold">Selected work</h2>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">Review confidentially presented project records and delivery methods.</p>
+          <Link href="/sample-audit-report" className="border-t pt-5 hover:text-primary">
+            <h2 className="text-xl font-semibold">Sample audit report</h2>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">Inspect the reporting structure, evidence fields, limitations, and remediation guidance.</p>
           </Link>
           <Link href="/methodology" className="border-t pt-5 hover:text-primary">
             <h2 className="text-xl font-semibold">Audit methodology</h2>

@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     "2026 accessibility lawsuits",
     "fashion nova settlement",
   ],
+  authors: [{ name: "Accessibility.build", url: "https://accessibility.build" }],
+  creator: "Accessibility.build",
+  publisher: "Accessibility.build",
   alternates: {
     canonical: "https://accessibility.build/research/accessibility-lawsuits",
   },
@@ -57,9 +60,10 @@ export default function AccessibilityLawsuitsPage() {
         headline="Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data"
         description="Comprehensive data on web accessibility lawsuits in the United States. Track trends by year, industry, state, and settlement costs."
         author={{
-          name: "Khushwant Parihar",
-          url: "https://accessibility.build/authors/khushwant-parihar",
+          name: "Accessibility.build",
+          url: "https://accessibility.build",
         }}
+        authorType="Organization"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",
@@ -117,13 +121,6 @@ export default function AccessibilityLawsuitsPage() {
               reported costs, states, and legal developments without mixing incompatible datasets.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-slate-300">
-              <span>
-                By{" "}
-                <Link href="/authors/khushwant-parihar" className="font-semibold text-white underline decoration-slate-500 underline-offset-4 hover:decoration-white">
-                  Khushwant Parihar
-                </Link>
-              </span>
-              <span aria-hidden="true" className="text-slate-600">|</span>
               <time dateTime="2026-07-12">Updated July 12, 2026</time>
               <span aria-hidden="true" className="text-slate-600">|</span>
               <span>Federal series through 2025</span>

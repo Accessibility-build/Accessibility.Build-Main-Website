@@ -25,6 +25,17 @@ const nextConfig = {
     serverExternalPackages: ['razorpay', 'puppeteer-core', '@sparticuz/chromium-min', 'puppeteer', 'axe-core', 'pdfjs-dist'],
     compress: true,
     poweredByHeader: false,
+    async redirects() {
+        return [{
+            source: '/case-studies',
+            destination: '/services',
+            permanent: true,
+        }, {
+            source: '/case-studies/:slug*',
+            destination: '/services',
+            permanent: true,
+        }]
+    },
     async headers() {
         return [{
             source: '/(.*)',

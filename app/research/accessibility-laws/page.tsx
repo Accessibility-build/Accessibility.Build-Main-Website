@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     "global accessibility laws",
     "accessibility compliance requirements",
   ],
+  authors: [{ name: "Accessibility.build", url: "https://accessibility.build" }],
+  creator: "Accessibility.build",
+  publisher: "Accessibility.build",
   alternates: {
     canonical: "https://accessibility.build/research/accessibility-laws",
   },
@@ -56,7 +59,8 @@ export default function AccessibilityLawsPage() {
       <ArticleStructuredData
         headline="Accessibility Laws by Jurisdiction | Global Legal Tracker 2026"
         description="Comprehensive database of 50+ accessibility laws across 35+ jurisdictions worldwide. Track WCAG requirements, penalties, enforcement timelines, and compliance deadlines."
-        author={{ name: "Accessibility.build Research", url: "https://accessibility.build" }}
+        author={{ name: "Accessibility.build", url: "https://accessibility.build" }}
+        authorType="Organization"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

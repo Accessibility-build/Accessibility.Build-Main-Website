@@ -13,6 +13,7 @@ interface NewsletterSignupProps {
   placeholder?: string
   buttonText?: string
   compact?: boolean
+  inputLabel?: string
 }
 
 export function NewsletterSignup({ 
@@ -20,7 +21,8 @@ export function NewsletterSignup({
   className = '',
   placeholder = 'Enter your email address',
   buttonText = 'Subscribe',
-  compact = false
+  compact = false,
+  inputLabel = 'Newsletter email address'
 }: NewsletterSignupProps) {
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -76,6 +78,7 @@ export function NewsletterSignup({
         <form onSubmit={handleSubmit} className="flex gap-2">
           <Input
             type="email"
+            aria-label={inputLabel}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
@@ -134,6 +137,7 @@ export function NewsletterSignup({
         <div className="flex gap-2">
           <Input
             type="email"
+            aria-label={inputLabel}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}

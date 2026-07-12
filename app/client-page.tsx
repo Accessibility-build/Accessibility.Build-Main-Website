@@ -6,13 +6,15 @@ import {
   BookOpenCheck,
   Code2,
   FileCheck2,
+  FileSpreadsheet,
+  FileText,
+  Globe2,
   Keyboard,
   ScanSearch,
   ShieldCheck,
   Wrench,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { caseStudies } from "@/lib/authority-content"
 import { serviceStartingPrices } from "@/lib/service-pricing"
 
 const portrait = "/images/authors/khushwant-parihar.jpeg"
@@ -146,26 +148,43 @@ export default function HomeClientPage() {
         </div>
       </section>
 
-      <section className="container-wide py-16 lg:py-24" aria-labelledby="work-heading">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <section className="container-wide py-16 lg:py-24" aria-labelledby="delivery-heading">
+        <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
           <div>
-            <p className="text-sm font-semibold uppercase text-primary">Selected work</p>
-            <h2 id="work-heading" className="mt-3 text-4xl font-semibold">How accessibility work is delivered</h2>
+            <p className="text-sm font-semibold uppercase text-primary">Delivery formats</p>
+            <h2 id="delivery-heading" className="mt-3 text-4xl font-semibold">Receive the findings in the format your team prefers</h2>
+            <p className="mt-5 leading-7 text-muted-foreground">
+              The reporting format is agreed before work begins. Accessibility.build does not require clients to adopt a proprietary audit platform or move their workflow into an unfamiliar system.
+            </p>
+            <Button asChild variant="outline" className="mt-7">
+              <Link href="/sample-audit-report">Inspect a sample report</Link>
+            </Button>
           </div>
-          <Link href="/case-studies" className="inline-flex items-center font-semibold text-primary">All selected work <ArrowRight className="ml-2 h-4 w-4" /></Link>
-        </div>
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {caseStudies.map((study) => (
-            <article key={study.slug} className="border p-6">
-              <p className="text-xs font-semibold uppercase text-primary">{study.category}</p>
-              <h3 className="mt-3 text-2xl font-semibold">{study.title}</h3>
-              <p className="mt-4 text-sm leading-6 text-muted-foreground">{study.summary}</p>
-              <p className="mt-6 border-t pt-4 text-xs leading-5 text-muted-foreground">Client identity withheld. Founder project record; no endorsement implied.</p>
-              <Link href={`/case-studies/${study.slug}`} className="mt-5 inline-flex items-center font-semibold text-primary">
-                Read record <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </article>
-          ))}
+          <div className="grid gap-8 sm:grid-cols-3">
+            {[
+              {
+                icon: FileSpreadsheet,
+                title: "Spreadsheet",
+                text: "A sortable findings register with severity, WCAG mapping, evidence, recommendations, ownership, and status fields agreed for the engagement.",
+              },
+              {
+                icon: FileText,
+                title: "Accessible PDF",
+                text: "A portable report covering scope, methodology, executive summary, detailed findings, recommendations, limitations, and next steps.",
+              },
+              {
+                icon: Globe2,
+                title: "Online version",
+                text: "A browser-based report or mutually agreed shared document for teams that prefer online review and collaboration.",
+              },
+            ].map(({ icon: Icon, title, text }) => (
+              <article key={title} className="border-t pt-5">
+                <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+                <h3 className="mt-4 text-xl font-semibold">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

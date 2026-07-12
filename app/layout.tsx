@@ -293,12 +293,6 @@ const structuredData = {
           url: "https://accessibility.build/research"
         },
         {
-          "@type": "CollectionPage",
-          "@id": "https://accessibility.build/case-studies#collection",
-          name: "Accessibility Case Studies",
-          url: "https://accessibility.build/case-studies"
-        },
-        {
           "@type": "Blog",
           "@id": "https://accessibility.build/blog#blog",
           name: "Accessibility Blog",

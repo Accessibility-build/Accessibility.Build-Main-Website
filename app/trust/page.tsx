@@ -201,7 +201,7 @@ export default function TrustPage() {
             <Link href="/procurement" className="font-semibold text-primary underline">Procurement centre</Link>
             <Link href="/subprocessors" className="font-semibold text-primary underline">Subprocessor register</Link>
             <Link href="/sample-audit-report" className="font-semibold text-primary underline">Sample audit report</Link>
-            <Link href="/case-studies" className="font-semibold text-primary underline">Selected work</Link>
+            <Link href="/services" className="font-semibold text-primary underline">Service delivery</Link>
           </div>
         </div>
       </section>
@@ -210,7 +210,7 @@ export default function TrustPage() {
         <div className="container-wide flex flex-col gap-6 py-12 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-2xl font-semibold">Verify the founder’s professional background</h2>
-            <p className="mt-2 text-muted-foreground">Experience, selected work, and professional links are published on Khushwant Parihar’s portfolio.</p>
+            <p className="mt-2 text-muted-foreground">Experience and professional links are published on Khushwant Parihar’s portfolio.</p>
           </div>
           <Button asChild variant="outline">
             <a href={company.founderWebsite} target="_blank" rel="me noopener noreferrer">
