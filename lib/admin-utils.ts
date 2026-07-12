@@ -4,11 +4,10 @@ import {
   creditTransactions,
   toolUsage,
   urlAccessibilityAudits,
-  auditViolations,
   billingOrders,
   billingFunnelEvents,
 } from '@/lib/db/schema'
-import { eq, desc, asc, count, sum, avg, and, gte, lte, or, ilike, sql } from 'drizzle-orm'
+import { eq, desc, asc, count, sum, and, gte, lte, or, ilike, sql } from 'drizzle-orm'
 import { createCreditTransaction } from '@/lib/credits'
 import type { BillingFunnelEventType, BillingProvider } from '@/lib/billing/types'
 
@@ -49,7 +48,7 @@ export interface AdminAuditLog {
   adminEmail: string
   action: string
   targetUserId?: string
-  details: Record<string, any>
+  details: Record<string, unknown>
   timestamp: Date
 }
 
@@ -57,9 +56,15 @@ export interface DashboardStats {
   totalUsers: number
   activeUsers: number
   totalCreditsDistributed: number
+  totalCreditsUsed: number
   totalToolUsage: number
   totalAudits: number
   revenueThisMonth: number
+  revenueThisMonthByCurrency: {
+    usd: number
+    inr: number
+    other: number
+  }
   billingActionRequired: number
   topTools: Array<{ tool: string; usage: number }>
   recentActivity: Array<{
@@ -304,7 +309,8 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     .select({
       totalUsers: count(users.id),
       activeUsers: sql<number>`COUNT(CASE WHEN ${users.isActive} = true THEN 1 END)`,
-      totalCreditsDistributed: sum(users.totalCreditsEarned)
+      totalCreditsDistributed: sum(users.totalCreditsEarned),
+      totalCreditsUsed: sum(users.totalCreditsUsed)
     })
     .from(users)
 
@@ -323,12 +329,14 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     .from(urlAccessibilityAudits)
 
   // Revenue stats for current month
-  const [revenueStats] = await db
+  const revenueStats = await db
     .select({
+      currency: billingOrders.currency,
       revenueThisMonth: sql<number>`COALESCE(SUM(${billingOrders.amountTotal}), 0)`,
     })
     .from(billingOrders)
     .where(and(eq(billingOrders.status, 'paid'), gte(billingOrders.createdAt, monthStart)))
+    .groupBy(billingOrders.currency)
 
   // Billing orders requiring manual action
   const [actionRequiredStats] = await db
@@ -377,13 +385,29 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
     .slice(0, 10)
 
+  const revenueThisMonthByCurrency = revenueStats.reduce(
+    (totals, row) => {
+      const amount = Number(row.revenueThisMonth || 0)
+      const currency = row.currency?.toLowerCase()
+
+      if (currency === 'usd') totals.usd += amount
+      else if (currency === 'inr') totals.inr += amount
+      else totals.other += amount
+
+      return totals
+    },
+    { usd: 0, inr: 0, other: 0 },
+  )
+
   return {
     totalUsers: userStats?.totalUsers || 0,
     activeUsers: userStats?.activeUsers || 0,
     totalCreditsDistributed: Number(userStats?.totalCreditsDistributed) || 0,
+    totalCreditsUsed: Number(userStats?.totalCreditsUsed) || 0,
     totalToolUsage: toolUsageStats?.totalToolUsage || 0,
     totalAudits: auditStats?.totalAudits || 0,
-    revenueThisMonth: Number(revenueStats?.revenueThisMonth || 0),
+    revenueThisMonth: revenueThisMonthByCurrency.usd,
+    revenueThisMonthByCurrency,
     billingActionRequired: Number(actionRequiredStats?.billingActionRequired || 0),
     topTools: topTools.map(t => ({ tool: t.tool, usage: t.usage })),
     recentActivity
@@ -755,7 +779,7 @@ export async function bulkAssignCredits(
 export async function logAdminAction(
   adminId: string, 
   action: string, 
-  details: Record<string, any>
+  details: Record<string, unknown>
 ): Promise<void> {
   try {
     // For now, we'll create a simple credit transaction to track admin actions
@@ -805,15 +829,24 @@ export async function getRecentAdminActions(limit: number = 50): Promise<AdminAu
     .limit(limit)
 
   // Transform to AdminAuditLog format
-  return actions.map(action => ({
-    id: action.id,
-    adminId: action.userId,
-    adminEmail: action.adminEmail || '',
-    action: (action.metadata as any)?.action || 'unknown',
-    targetUserId: (action.metadata as any)?.details?.targetUserId,
-    details: (action.metadata as any)?.details || {},
-    timestamp: action.createdAt
-  }))
+  return actions.map(action => {
+    const metadata = action.metadata as {
+      action?: string
+      details?: Record<string, unknown>
+    } | null
+    const details = metadata?.details ?? {}
+    const targetUserId = typeof details.targetUserId === 'string' ? details.targetUserId : undefined
+
+    return {
+      id: action.id,
+      adminId: action.userId,
+      adminEmail: action.adminEmail || '',
+      action: metadata?.action || 'unknown',
+      targetUserId,
+      details,
+      timestamp: action.createdAt
+    }
+  })
 }
 
 /**

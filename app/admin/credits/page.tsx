@@ -10,11 +10,11 @@ export const metadata = {
 
 export default async function AdminCreditsPage() {
   // Verify admin access
-  await requireAdmin()
+  await requireAdmin('/admin/credits')
 
   return (
     <AdminLayout>
       <AdminCreditsClient />
     </AdminLayout>
   )
-} 
+}

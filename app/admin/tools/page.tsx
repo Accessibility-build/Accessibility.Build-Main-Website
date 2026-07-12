@@ -1,6 +1,7 @@
 import { requireAdmin } from '@/lib/admin-auth'
 import { getToolPerformanceMetrics } from '@/lib/admin-utils'
 import { AdminLayout } from '@/components/admin/admin-layout'
+import { AdminPageHeader } from '@/components/admin/admin-page-header'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
@@ -25,7 +26,7 @@ export const metadata = {
 
 export default async function AdminToolsPage() {
   // Verify admin access
-  await requireAdmin()
+  await requireAdmin('/admin/tools')
 
   // Get tool performance metrics for different time periods
   const [dailyMetrics, weeklyMetrics, monthlyMetrics] = await Promise.all([
@@ -62,18 +63,24 @@ export default async function AdminToolsPage() {
     return <AlertCircle className="h-4 w-4" />
   }
 
+  const weightedSuccessRate = (metrics: typeof monthlyMetrics) => {
+    const usage = metrics.reduce((sum, tool) => sum + tool.totalUsage, 0)
+    if (usage === 0) return 0
+    return metrics.reduce((sum, tool) => sum + tool.successRate * tool.totalUsage, 0) / usage
+  }
+
+  const topPerformers = monthlyMetrics.filter(tool => tool.successRate >= 95).slice(0, 3)
+  const toolsNeedingAttention = monthlyMetrics.filter(tool => tool.successRate < 80)
+  const trendingTools = monthlyMetrics.filter(tool => tool.popularityTrend === 'up').slice(0, 3)
+
   return (
     <AdminLayout>
       <div className="space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Tool Analytics</h1>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              Monitor tool performance, usage patterns, and success rates
-            </p>
-          </div>
-        </div>
+        <AdminPageHeader
+          eyebrow="Product operations"
+          title="Tool analytics"
+          description="Compare recorded usage, completion rates, credit consumption, and processing time across one, seven, and thirty-day windows."
+        />
 
         {/* Performance Overview */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -93,9 +100,7 @@ export default async function AdminToolsPage() {
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-slate-600 dark:text-slate-400">Avg Success Rate</span>
                   <span className="font-medium">
-                    {dailyMetrics.length > 0 
-                      ? (dailyMetrics.reduce((sum, tool) => sum + tool.successRate, 0) / dailyMetrics.length).toFixed(1)
-                      : 0}%
+                    {weightedSuccessRate(dailyMetrics).toFixed(1)}%
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -122,9 +127,7 @@ export default async function AdminToolsPage() {
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-slate-600 dark:text-slate-400">Avg Success Rate</span>
                   <span className="font-medium">
-                    {weeklyMetrics.length > 0 
-                      ? (weeklyMetrics.reduce((sum, tool) => sum + tool.successRate, 0) / weeklyMetrics.length).toFixed(1)
-                      : 0}%
+                    {weightedSuccessRate(weeklyMetrics).toFixed(1)}%
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -153,9 +156,7 @@ export default async function AdminToolsPage() {
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-slate-600 dark:text-slate-400">Avg Success Rate</span>
                   <span className="font-medium">
-                    {monthlyMetrics.length > 0 
-                      ? (monthlyMetrics.reduce((sum, tool) => sum + tool.successRate, 0) / monthlyMetrics.length).toFixed(1)
-                      : 0}%
+                    {weightedSuccessRate(monthlyMetrics).toFixed(1)}%
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -318,32 +319,28 @@ export default async function AdminToolsPage() {
               {/* Top Performing Tools */}
               <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
                 <h4 className="font-medium text-green-800 dark:text-green-200 mb-2">
-                  🏆 Top Performing Tools
+                  <CheckCircle className="mr-2 inline h-4 w-4" aria-hidden="true" /> Top performing tools
                 </h4>
                 <div className="space-y-1">
-                  {monthlyMetrics
-                    .filter(tool => tool.successRate >= 95)
-                    .slice(0, 3)
-                    .map(tool => (
+                  {topPerformers.map(tool => (
                       <div key={tool.tool} className="text-sm text-green-700 dark:text-green-300">
-                        • {tool.tool.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} - {tool.successRate.toFixed(1)}% success rate
+                        {tool.tool.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}: {tool.successRate.toFixed(1)}% success rate
                       </div>
                     ))}
+                  {topPerformers.length === 0 && <div className="text-sm text-green-700 dark:text-green-300">No tool with recorded usage reached 95% in this period.</div>}
                 </div>
               </div>
 
               {/* Tools Needing Attention */}
-              {monthlyMetrics.some(tool => tool.successRate < 80) && (
+              {toolsNeedingAttention.length > 0 && (
                 <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
                   <h4 className="font-medium text-red-800 dark:text-red-200 mb-2">
-                    ⚠️ Tools Needing Attention
+                    <AlertCircle className="mr-2 inline h-4 w-4" aria-hidden="true" /> Tools needing attention
                   </h4>
                   <div className="space-y-1">
-                    {monthlyMetrics
-                      .filter(tool => tool.successRate < 80)
-                      .map(tool => (
+                    {toolsNeedingAttention.map(tool => (
                         <div key={tool.tool} className="text-sm text-red-700 dark:text-red-300">
-                          • {tool.tool.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} - {tool.successRate.toFixed(1)}% success rate
+                          {tool.tool.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}: {tool.successRate.toFixed(1)}% success rate
                         </div>
                       ))}
                   </div>
@@ -353,17 +350,15 @@ export default async function AdminToolsPage() {
               {/* Trending Tools */}
               <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                 <h4 className="font-medium text-blue-800 dark:text-blue-200 mb-2">
-                  📈 Trending Tools
+                  <TrendingUp className="mr-2 inline h-4 w-4" aria-hidden="true" /> Trending tools
                 </h4>
                 <div className="space-y-1">
-                  {monthlyMetrics
-                    .filter(tool => tool.popularityTrend === 'up')
-                    .slice(0, 3)
-                    .map(tool => (
+                  {trendingTools.map(tool => (
                       <div key={tool.tool} className="text-sm text-blue-700 dark:text-blue-300">
-                        • {tool.tool.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} - {tool.last7Days} uses this week
+                        {tool.tool.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}: {tool.last7Days} uses this week
                       </div>
                     ))}
+                  {trendingTools.length === 0 && <div className="text-sm text-blue-700 dark:text-blue-300">No upward usage trend is recorded for this period.</div>}
                 </div>
               </div>
             </div>
@@ -372,4 +367,4 @@ export default async function AdminToolsPage() {
       </div>
     </AdminLayout>
   )
-} 
+}

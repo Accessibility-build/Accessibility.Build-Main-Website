@@ -1,36 +1,44 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { AdminPageHeader } from "@/components/admin/admin-page-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { generateErrorReport, generateHumanReadableReport } from "@/lib/error-report"
 import { Download, RefreshCw, AlertTriangle, AlertCircle, Info } from "lucide-react"
 
+function reportStartTime() {
+  return new Date(Date.now() - 24 * 60 * 60 * 1000)
+}
+
+function createSessionReport(includeAccessibility: boolean, includeMinor: boolean) {
+  return generateErrorReport({
+    includeAccessibilityIssues: includeAccessibility,
+    includeMinorIssues: includeMinor,
+    startDate: reportStartTime(),
+  })
+}
+
 export function ErrorReportClient() {
   const [reportType, setReportType] = useState<"summary" | "detailed">("summary")
   const [includeAccessibility, setIncludeAccessibility] = useState(true)
   const [includeMinor, setIncludeMinor] = useState(true)
-  const [report, setReport] = useState(
-    generateErrorReport({
-      includeAccessibilityIssues: includeAccessibility,
-      includeMinorIssues: includeMinor,
-    }),
-  )
+  const [report, setReport] = useState(() => createSessionReport(true, true))
 
   const refreshReport = () => {
-    setReport(
-      generateErrorReport({
-        includeAccessibilityIssues: includeAccessibility,
-        includeMinorIssues: includeMinor,
-      }),
-    )
+    setReport(createSessionReport(includeAccessibility, includeMinor))
   }
+
+  useEffect(() => {
+    setReport(createSessionReport(includeAccessibility, includeMinor))
+  }, [includeAccessibility, includeMinor])
 
   const downloadReport = () => {
     const reportText = generateHumanReadableReport({
       includeAccessibilityIssues: includeAccessibility,
       includeMinorIssues: includeMinor,
+      startDate: reportStartTime(),
     })
 
     const blob = new Blob([reportText], { type: "text/markdown" })
@@ -46,16 +54,12 @@ export function ErrorReportClient() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col md:!flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Error Report</h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
-            Comprehensive analysis of application errors and issues
-          </p>
-        </div>
-
-        <div className="flex gap-2">
+      <AdminPageHeader
+        eyebrow="Monitoring"
+        title="Runtime diagnostics"
+        description="Inspect errors held by the current browser session's in-memory logger during the last 24 hours. This is not a persistent production-log viewer."
+        actions={
+          <>
           <Button variant="outline" onClick={refreshReport}>
             <RefreshCw className="h-4 w-4 mr-2" />
             Refresh
@@ -64,7 +68,13 @@ export function ErrorReportClient() {
             <Download className="h-4 w-4 mr-2" />
             Download Report
           </Button>
-        </div>
+          </>
+        }
+      />
+
+      <div className="flex gap-3 rounded-md border border-blue-200 bg-blue-50 p-4 text-sm text-blue-950 dark:border-blue-900 dark:bg-blue-950/30 dark:text-blue-100">
+        <Info className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+        <p><strong>Scope:</strong> this view cannot read Vercel logs, serverless instances, another browser session, or historical errors after a reload. Use hosting logs for production incident investigation.</p>
       </div>
 
       {/* Summary Cards */}
@@ -72,11 +82,11 @@ export function ErrorReportClient() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-2xl">{report.summary.total}</CardTitle>
-            <CardDescription>Total Issues</CardDescription>
+            <CardDescription>Session issues</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex justify-between text-sm">
-              <span>Last 24 hours</span>
+              <span>In-memory window</span>
               <span className="font-medium">{report.summary.total}</span>
             </div>
           </CardContent>
@@ -85,11 +95,11 @@ export function ErrorReportClient() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-2xl text-destructive">{report.summary.critical}</CardTitle>
-            <CardDescription>Critical Errors</CardDescription>
+            <CardDescription>Critical errors</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex justify-between text-sm">
-              <span>Last 24 hours</span>
+              <span>In-memory window</span>
               <span className="font-medium">{report.summary.critical}</span>
             </div>
           </CardContent>
@@ -98,11 +108,11 @@ export function ErrorReportClient() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-2xl text-amber-500">{report.summary.accessibility}</CardTitle>
-            <CardDescription>Accessibility Issues</CardDescription>
+            <CardDescription>Accessibility issues</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex justify-between text-sm">
-              <span>Last 24 hours</span>
+              <span>In-memory window</span>
               <span className="font-medium">{report.summary.accessibility}</span>
             </div>
           </CardContent>
@@ -112,13 +122,13 @@ export function ErrorReportClient() {
       {/* Error Analysis */}
       <Card>
         <CardHeader>
-          <div className="flex flex-col md:!flex-row justify-between md:items-center gap-4">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
             <div>
               <h2 className="text-2xl font-semibold leading-none tracking-tight">
-                Error Analysis
+                Session error analysis
               </h2>
               <CardDescription>
-                Detailed breakdown of application errors
+                Current in-memory entries within the selected categories
               </CardDescription>
             </div>
 
@@ -302,4 +312,4 @@ export function ErrorReportClient() {
       </Card>
     </div>
   )
-} 
+}

@@ -1,14 +1,14 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useToast } from '@/hooks/use-toast'
+import { AdminPageHeader } from '@/components/admin/admin-page-header'
 import { 
   CreditCard, 
   Plus, 
@@ -16,35 +16,43 @@ import {
   TrendingUp, 
   RefreshCw,
   Gift,
-  DollarSign,
   Activity,
-  BarChart3,
-  Download
+  BarChart3
 } from 'lucide-react'
 
 interface DashboardStats {
   totalUsers: number
   activeUsers: number
   totalCreditsDistributed: number
+  totalCreditsUsed: number
   totalToolUsage: number
   totalAudits: number
 }
 
 const BULK_ASSIGNMENT_BATCH_SIZE = 100
+const USER_PAGE_SIZE = 200
+
+type UserIdPage = {
+  users: Array<{ id: string }>
+  total: number
+}
 
 export function AdminCreditsClient() {
   const [stats, setStats] = useState<DashboardStats | null>(null)
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [showBulkDialog, setShowBulkDialog] = useState(false)
   const [bulkOperation, setBulkOperation] = useState<'all_users' | 'active_users' | 'inactive_users'>('all_users')
   const [creditAmount, setCreditAmount] = useState('')
   const [creditReason, setCreditReason] = useState('')
+  const [bulkConfirmValue, setBulkConfirmValue] = useState('')
   const [actionLoading, setActionLoading] = useState(false)
   
   const { toast } = useToast()
 
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     setLoading(true)
+    setLoadError(null)
     try {
       const response = await fetch('/api/admin/dashboard')
       const data = await response.json()
@@ -52,13 +60,16 @@ export function AdminCreditsClient() {
       if (response.ok) {
         setStats(data)
       } else {
+        const message = data?.error || 'Failed to fetch statistics'
+        setLoadError(message)
         toast({
           title: 'Error',
-          description: 'Failed to fetch statistics',
+          description: message,
           variant: 'destructive'
         })
       }
     } catch (error) {
+      setLoadError(error instanceof Error ? error.message : 'Failed to fetch statistics')
       toast({
         title: 'Error',
         description: 'Failed to fetch statistics',
@@ -67,7 +78,7 @@ export function AdminCreditsClient() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [toast])
 
   const handleBulkCreditAssignment = async () => {
     if (!creditAmount || !creditReason) {
@@ -91,20 +102,29 @@ export function AdminCreditsClient() {
 
     setActionLoading(true)
     try {
-      // First, get users based on the selected criteria
-      const usersResponse = await fetch(`/api/admin/users?${new URLSearchParams({
-        limit: '1000',
-        ...(bulkOperation === 'active_users' && { isActive: 'true' }),
-        ...(bulkOperation === 'inactive_users' && { isActive: 'false' })
-      })}`)
-      
-      const usersData = await usersResponse.json()
-      
-      if (!usersResponse.ok) {
-        throw new Error('Failed to fetch users')
-      }
+      const userIds: string[] = []
+      let offset = 0
+      let totalUsersToLoad = Number.POSITIVE_INFINITY
 
-      const userIds = usersData.users.map((user: any) => user.id)
+      while (userIds.length < totalUsersToLoad) {
+        const usersResponse = await fetch(`/api/admin/users?${new URLSearchParams({
+          limit: String(USER_PAGE_SIZE),
+          offset: String(offset),
+          ...(bulkOperation === 'active_users' && { isActive: 'true' }),
+          ...(bulkOperation === 'inactive_users' && { isActive: 'false' })
+        })}`)
+        const usersData = await usersResponse.json() as UserIdPage & { error?: string }
+
+        if (!usersResponse.ok) {
+          throw new Error(usersData.error || 'Failed to fetch users')
+        }
+
+        totalUsersToLoad = usersData.total
+        userIds.push(...usersData.users.map((user) => user.id))
+        offset += usersData.users.length
+
+        if (usersData.users.length === 0) break
+      }
       
       if (userIds.length === 0) {
         toast({
@@ -112,6 +132,23 @@ export function AdminCreditsClient() {
           description: 'No users found for the selected criteria',
           variant: 'destructive'
         })
+        return
+      }
+
+      const expectedUserCount = bulkOperation === 'all_users'
+        ? stats?.totalUsers ?? 0
+        : bulkOperation === 'active_users'
+          ? stats?.activeUsers ?? 0
+          : (stats?.totalUsers ?? 0) - (stats?.activeUsers ?? 0)
+
+      if (userIds.length !== expectedUserCount) {
+        await fetchStats()
+        toast({
+          title: 'Audience changed',
+          description: `Expected ${expectedUserCount} users but loaded ${userIds.length}. Review the updated totals and confirm again.`,
+          variant: 'destructive'
+        })
+        setBulkConfirmValue('')
         return
       }
 
@@ -155,11 +192,12 @@ export function AdminCreditsClient() {
         setShowBulkDialog(false)
         setCreditAmount('')
         setCreditReason('')
+        setBulkConfirmValue('')
       }
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'Failed to assign bulk credits',
+        description: error instanceof Error ? error.message : 'Failed to assign bulk credits',
         variant: 'destructive'
       })
     } finally {
@@ -169,9 +207,9 @@ export function AdminCreditsClient() {
 
   useEffect(() => {
     fetchStats()
-  }, [])
+  }, [fetchStats])
 
-  if (loading || !stats) {
+  if (loading && !stats) {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="flex items-center gap-2">
@@ -182,18 +220,34 @@ export function AdminCreditsClient() {
     )
   }
 
+  if (!stats) {
+    return (
+      <div className="space-y-6">
+        <AdminPageHeader eyebrow="People and revenue" title="Credits" description="Review credit distribution and grant account balances in auditable, API-safe batches." />
+        <div className="rounded-md border border-red-200 bg-red-50 p-6 text-red-800 dark:border-red-900 dark:bg-red-950/30 dark:text-red-200" role="alert">
+          <p className="font-semibold">Credit statistics could not be loaded</p>
+          <p className="mt-2 text-sm">{loadError || 'The dashboard API returned no data.'}</p>
+          <Button type="button" variant="outline" size="sm" className="mt-4" onClick={fetchStats}>Try again</Button>
+        </div>
+      </div>
+    )
+  }
+
+  const bulkTargetCount = bulkOperation === 'all_users'
+    ? stats.totalUsers
+    : bulkOperation === 'active_users'
+      ? stats.activeUsers
+      : stats.totalUsers - stats.activeUsers
+  const bulkConfirmationMatches = bulkConfirmValue.trim() === String(bulkTargetCount) && bulkTargetCount > 0
+
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Credit Management</h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
-            Manage credits, view statistics, and perform bulk operations
-          </p>
-        </div>
-        
-        <div className="flex items-center gap-2">
+      <AdminPageHeader
+        eyebrow="People and revenue"
+        title="Credits"
+        description="Review credit distribution and grant account balances in auditable, API-safe batches."
+        actions={
+          <>
           <Button variant="outline" size="sm" onClick={fetchStats} disabled={loading}>
             <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
             Refresh
@@ -201,13 +255,14 @@ export function AdminCreditsClient() {
           <Button 
             size="sm" 
             onClick={() => setShowBulkDialog(true)}
-            className="bg-green-600 hover:bg-green-700"
+            disabled={stats.totalUsers === 0}
           >
             <Plus className="h-4 w-4 mr-2" />
             Bulk Credit Assignment
           </Button>
-        </div>
-      </div>
+          </>
+        }
+      />
 
       {/* Credit Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -248,17 +303,17 @@ export function AdminCreditsClient() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">Credit Usage</CardTitle>
+            <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">Credits Used</CardTitle>
             <div className="flex items-center gap-2">
               <Activity className="h-4 w-4 text-purple-600" />
               <span className="text-2xl font-bold text-slate-900 dark:text-white">
-                {stats.totalToolUsage.toLocaleString()}
+                {stats.totalCreditsUsed.toLocaleString()}
               </span>
             </div>
           </CardHeader>
           <CardContent>
             <div className="text-sm text-slate-600 dark:text-slate-400">
-              Tool executions
+              Recorded across user accounts
             </div>
           </CardContent>
         </Card>
@@ -384,7 +439,7 @@ export function AdminCreditsClient() {
                   <div className="text-sm text-slate-600 dark:text-slate-400">Average cost efficiency</div>
                 </div>
                 <div className="text-2xl font-bold text-green-600">
-                  {stats.totalToolUsage > 0 ? (stats.totalCreditsDistributed / stats.totalToolUsage).toFixed(1) : 0}
+                  {stats.totalToolUsage > 0 ? (stats.totalCreditsUsed / stats.totalToolUsage).toFixed(1) : 0}
                 </div>
               </div>
 
@@ -403,7 +458,10 @@ export function AdminCreditsClient() {
       </div>
 
       {/* Bulk Credit Assignment Dialog */}
-      <Dialog open={showBulkDialog} onOpenChange={setShowBulkDialog}>
+      <Dialog open={showBulkDialog} onOpenChange={(open) => {
+        setShowBulkDialog(open)
+        if (!open) setBulkConfirmValue('')
+      }}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Bulk Credit Assignment</DialogTitle>
@@ -453,6 +511,19 @@ export function AdminCreditsClient() {
                 </p>
               </div>
             )}
+
+            <div>
+              <Label htmlFor="bulk-credit-confirmation">Type {bulkTargetCount} to confirm this audience</Label>
+              <Input
+                id="bulk-credit-confirmation"
+                inputMode="numeric"
+                value={bulkConfirmValue}
+                onChange={(event) => setBulkConfirmValue(event.target.value)}
+                placeholder={String(bulkTargetCount)}
+                aria-describedby="bulk-credit-confirmation-help"
+              />
+              <p id="bulk-credit-confirmation-help" className="mt-2 text-xs leading-5 text-muted-foreground">Credits cannot be removed from this screen after assignment. The reason is written to the audit trail.</p>
+            </div>
             
             <div className="flex justify-end gap-2">
               <Button
@@ -464,7 +535,7 @@ export function AdminCreditsClient() {
               </Button>
               <Button
                 onClick={handleBulkCreditAssignment}
-                disabled={actionLoading || !creditAmount || !creditReason}
+                disabled={actionLoading || !creditAmount || !creditReason || !bulkConfirmationMatches}
               >
                 {actionLoading && <RefreshCw className="h-4 w-4 mr-2 animate-spin" />}
                 Assign Credits

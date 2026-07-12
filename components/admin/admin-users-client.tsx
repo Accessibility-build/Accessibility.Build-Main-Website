@@ -1,17 +1,20 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Checkbox } from '@/components/ui/checkbox'
 import { useToast } from '@/hooks/use-toast'
+import { AdminPageHeader } from '@/components/admin/admin-page-header'
 import { 
   Users, 
   Search, 
@@ -23,13 +26,7 @@ import {
   CreditCard, 
   ChevronLeft, 
   ChevronRight,
-  Plus,
   Download,
-  Mail,
-  Calendar,
-  Activity,
-  BarChart3,
-  Crown
 } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 
@@ -58,6 +55,7 @@ interface UsersResponse {
 export function AdminUsersClient() {
   const [users, setUsers] = useState<AdminUser[]>([])
   const [loading, setLoading] = useState(true)
+  const [fetchError, setFetchError] = useState<string | null>(null)
   const [total, setTotal] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize] = useState(50)
@@ -71,9 +69,11 @@ export function AdminUsersClient() {
   const [showUserDetailsDialog, setShowUserDetailsDialog] = useState(false)
   const [creditDialogUserId, setCreditDialogUserId] = useState<string | null>(null)
   const [selectedUserDetails, setSelectedUserDetails] = useState<AdminUser | null>(null)
+  const [statusChangeUser, setStatusChangeUser] = useState<AdminUser | null>(null)
   const [loadingUserDetails, setLoadingUserDetails] = useState(false)
   const [creditAmount, setCreditAmount] = useState('')
   const [creditReason, setCreditReason] = useState('')
+  const [bulkCreditConfirmValue, setBulkCreditConfirmValue] = useState('')
   const [actionLoading, setActionLoading] = useState(false)
   
   const { toast } = useToast()
@@ -95,7 +95,7 @@ export function AdminUsersClient() {
         })
         setShowUserDetailsDialog(false)
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to fetch user details',
@@ -129,7 +129,7 @@ export function AdminUsersClient() {
       // Combine header and rows
       const csvContent = [
         headers.join(','),
-        ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+        ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
       ].join('\n')
       
       // Create blob and download
@@ -147,7 +147,7 @@ export function AdminUsersClient() {
         title: 'Success',
         description: `Exported ${users.length} users to CSV`,
       })
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to export users',
@@ -156,8 +156,9 @@ export function AdminUsersClient() {
     }
   }
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     setLoading(true)
+    setFetchError(null)
     try {
       const params = new URLSearchParams({
         limit: pageSize.toString(),
@@ -181,13 +182,16 @@ export function AdminUsersClient() {
         setUsers(data.users)
         setTotal(data.total)
       } else {
+        const message = (data as UsersResponse & { error?: string }).error || 'Failed to fetch users'
+        setFetchError(message)
         toast({
           title: 'Error',
-          description: 'Failed to fetch users',
+          description: message,
           variant: 'destructive'
         })
       }
     } catch (error) {
+      setFetchError(error instanceof Error ? error.message : 'Failed to fetch users')
       toast({
         title: 'Error',
         description: 'Failed to fetch users',
@@ -196,7 +200,7 @@ export function AdminUsersClient() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [currentPage, pageSize, searchTerm, sortBy, sortOrder, statusFilter, toast])
 
   const updateUserStatus = async (userId: string, isActive: boolean) => {
     setActionLoading(true)
@@ -223,7 +227,7 @@ export function AdminUsersClient() {
           variant: 'destructive'
         })
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to update user status',
@@ -271,7 +275,7 @@ export function AdminUsersClient() {
           variant: 'destructive'
         })
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to assign credits',
@@ -320,7 +324,7 @@ export function AdminUsersClient() {
           variant: 'destructive'
         })
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to assign bulk credits',
@@ -333,8 +337,8 @@ export function AdminUsersClient() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    setCurrentPage(1)
-    fetchUsers()
+    if (currentPage === 1) fetchUsers()
+    else setCurrentPage(1)
   }
 
   const handleUserSelect = (userId: string, checked: boolean) => {
@@ -351,24 +355,20 @@ export function AdminUsersClient() {
 
   useEffect(() => {
     fetchUsers()
-  }, [currentPage, statusFilter, sortBy, sortOrder])
+  }, [fetchUsers])
 
   const totalPages = Math.ceil(total / pageSize)
-  const startIndex = (currentPage - 1) * pageSize + 1
+  const startIndex = total === 0 ? 0 : (currentPage - 1) * pageSize + 1
   const endIndex = Math.min(currentPage * pageSize, total)
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">User Management</h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
-            Manage users, view their activity, and assign credits
-          </p>
-        </div>
-        
-        <div className="flex items-center gap-2">
+      <AdminPageHeader
+        eyebrow="People and access"
+        title="Users"
+        description="Search accounts, review product activity, change access status, and assign credits with an auditable reason."
+        actions={
+          <>
           <Button variant="outline" size="sm" onClick={fetchUsers} disabled={loading}>
             <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
             Refresh
@@ -377,8 +377,9 @@ export function AdminUsersClient() {
             <Download className="h-4 w-4 mr-2" />
             Export
           </Button>
-        </div>
-      </div>
+          </>
+        }
+      />
 
       {/* Filters */}
       <Card>
@@ -389,11 +390,13 @@ export function AdminUsersClient() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSearch} className="flex flex-col md:!flex-row gap-4">
+          <form onSubmit={handleSearch} className="flex flex-col gap-4 md:flex-row">
             <div className="flex-1">
+              <Label htmlFor="admin-user-search" className="sr-only">Search users by email or name</Label>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
                 <Input
+                  id="admin-user-search"
                   placeholder="Search by email, name..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -403,7 +406,7 @@ export function AdminUsersClient() {
             </div>
             
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-full md:w-40" aria-label="Filter users by status">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
@@ -414,7 +417,7 @@ export function AdminUsersClient() {
             </Select>
 
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-full md:w-40" aria-label="Sort users by field">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>
@@ -426,7 +429,7 @@ export function AdminUsersClient() {
             </Select>
 
             <Select value={sortOrder} onValueChange={setSortOrder}>
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-full md:w-40" aria-label="Set user sort order">
                 <SelectValue placeholder="Order" />
               </SelectTrigger>
               <SelectContent>
@@ -442,6 +445,13 @@ export function AdminUsersClient() {
           </form>
         </CardContent>
       </Card>
+
+      {fetchError ? (
+        <div className="flex flex-col gap-3 rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-800 sm:flex-row sm:items-center sm:justify-between dark:border-red-900 dark:bg-red-950/30 dark:text-red-200" role="alert">
+          <p><strong>User data could not be loaded.</strong> {fetchError}</p>
+          <Button type="button" variant="outline" size="sm" onClick={fetchUsers}>Try again</Button>
+        </div>
+      ) : null}
 
       {/* Bulk Actions */}
       {selectedUsers.length > 0 && (
@@ -486,11 +496,12 @@ export function AdminUsersClient() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <Table>
+            <Table className="min-w-[920px]">
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-12">
                     <Checkbox
+                      aria-label="Select all users on this page"
                       checked={selectedUsers.length === users.length && users.length > 0}
                       onCheckedChange={handleSelectAll}
                     />
@@ -507,7 +518,7 @@ export function AdminUsersClient() {
                 {loading ? (
                   <TableRow>
                     <TableCell colSpan={7} className="text-center py-8">
-                      <div className="flex items-center justify-center gap-2">
+                      <div className="flex items-center justify-center gap-2" role="status">
                         <RefreshCw className="h-4 w-4 animate-spin" />
                         Loading users...
                       </div>
@@ -517,7 +528,7 @@ export function AdminUsersClient() {
                   <TableRow>
                     <TableCell colSpan={7} className="text-center py-8">
                       <div className="text-slate-500 dark:text-slate-400">
-                        No users found
+                        No users match the current filters.
                       </div>
                     </TableCell>
                   </TableRow>
@@ -526,6 +537,7 @@ export function AdminUsersClient() {
                     <TableRow key={user.id}>
                       <TableCell>
                         <Checkbox
+                          aria-label={`Select ${user.email}`}
                           checked={selectedUsers.includes(user.id)}
                           onCheckedChange={(checked) => handleUserSelect(user.id, checked as boolean)}
                         />
@@ -534,9 +546,11 @@ export function AdminUsersClient() {
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
                             {user.profileImageUrl ? (
-                              <img 
+                              <Image
                                 src={user.profileImageUrl} 
                                 alt={user.firstName || user.email} 
+                                width={40}
+                                height={40}
                                 className="w-10 h-10 rounded-full"
                               />
                             ) : (
@@ -596,16 +610,18 @@ export function AdminUsersClient() {
                             onClick={() => fetchUserDetails(user.id)}
                             disabled={loadingUserDetails}
                             title="View Details"
+                            aria-label={`View details for ${user.email}`}
                           >
-                            <Eye className="h-4 w-4" />
+                            <Eye className="h-4 w-4" aria-hidden="true" />
                           </Button>
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={() => updateUserStatus(user.id, !user.isActive)}
+                            onClick={() => setStatusChangeUser(user)}
                             disabled={actionLoading}
+                            aria-label={`${user.isActive ? 'Deactivate' : 'Activate'} ${user.email}`}
                           >
-                            {user.isActive ? <UserX className="h-4 w-4" /> : <UserCheck className="h-4 w-4" />}
+                            {user.isActive ? <UserX className="h-4 w-4" aria-hidden="true" /> : <UserCheck className="h-4 w-4" aria-hidden="true" />}
                           </Button>
                           <Button
                             variant="outline"
@@ -615,8 +631,9 @@ export function AdminUsersClient() {
                               setShowCreditDialog(true)
                             }}
                             disabled={actionLoading}
+                            aria-label={`Assign credits to ${user.email}`}
                           >
-                            <CreditCard className="h-4 w-4" />
+                            <CreditCard className="h-4 w-4" aria-hidden="true" />
                           </Button>
                         </div>
                       </TableCell>
@@ -639,8 +656,9 @@ export function AdminUsersClient() {
                   size="sm"
                   onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                   disabled={currentPage === 1 || loading}
+                  aria-label="Previous users page"
                 >
-                  <ChevronLeft className="h-4 w-4" />
+                  <ChevronLeft className="h-4 w-4" aria-hidden="true" />
                 </Button>
                 <span className="text-sm font-medium">
                   {currentPage} of {totalPages}
@@ -650,8 +668,9 @@ export function AdminUsersClient() {
                   size="sm"
                   onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                   disabled={currentPage === totalPages || loading}
+                  aria-label="Next users page"
                 >
-                  <ChevronRight className="h-4 w-4" />
+                  <ChevronRight className="h-4 w-4" aria-hidden="true" />
                 </Button>
               </div>
             </div>
@@ -707,7 +726,10 @@ export function AdminUsersClient() {
       </Dialog>
 
       {/* Bulk Credit Assignment Dialog */}
-      <Dialog open={showBulkCreditDialog} onOpenChange={setShowBulkCreditDialog}>
+      <Dialog open={showBulkCreditDialog} onOpenChange={(open) => {
+        setShowBulkCreditDialog(open)
+        if (!open) setBulkCreditConfirmValue('')
+      }}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Bulk Assign Credits</DialogTitle>
@@ -738,6 +760,16 @@ export function AdminUsersClient() {
                 onChange={(e) => setCreditReason(e.target.value)}
               />
             </div>
+            <div>
+              <Label htmlFor="selected-users-credit-confirmation">Type {selectedUsers.length} to confirm</Label>
+              <Input
+                id="selected-users-credit-confirmation"
+                inputMode="numeric"
+                value={bulkCreditConfirmValue}
+                onChange={(event) => setBulkCreditConfirmValue(event.target.value)}
+                placeholder={String(selectedUsers.length)}
+              />
+            </div>
             <div className="flex justify-end gap-2">
               <Button
                 variant="outline"
@@ -748,7 +780,7 @@ export function AdminUsersClient() {
               </Button>
               <Button
                 onClick={() => bulkAssignCredits(selectedUsers, Number(creditAmount), creditReason)}
-                disabled={actionLoading || !creditAmount || !creditReason}
+                disabled={actionLoading || !creditAmount || !creditReason || bulkCreditConfirmValue.trim() !== String(selectedUsers.length)}
               >
                 {actionLoading && <RefreshCw className="h-4 w-4 mr-2 animate-spin" />}
                 Assign Credits
@@ -757,6 +789,34 @@ export function AdminUsersClient() {
           </div>
         </DialogContent>
       </Dialog>
+
+      <AlertDialog open={Boolean(statusChangeUser)} onOpenChange={(open) => !open && setStatusChangeUser(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{statusChangeUser?.isActive ? 'Deactivate user?' : 'Activate user?'}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {statusChangeUser?.isActive
+                ? `${statusChangeUser.email} will be marked inactive. Existing records are retained.`
+                : `${statusChangeUser?.email ?? 'This user'} will be restored to active status.`}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={actionLoading}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              disabled={actionLoading || !statusChangeUser}
+              className={statusChangeUser?.isActive ? 'bg-red-600 text-white hover:bg-red-700' : undefined}
+              onClick={async (event) => {
+                event.preventDefault()
+                if (!statusChangeUser) return
+                await updateUserStatus(statusChangeUser.id, !statusChangeUser.isActive)
+                setStatusChangeUser(null)
+              }}
+            >
+              {statusChangeUser?.isActive ? 'Deactivate user' : 'Activate user'}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       {/* User Details Dialog */}
       <Dialog open={showUserDetailsDialog} onOpenChange={setShowUserDetailsDialog}>
@@ -774,9 +834,11 @@ export function AdminUsersClient() {
               <div className="flex items-start gap-4">
                 <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
                   {selectedUserDetails.profileImageUrl ? (
-                    <img 
-                      src={selectedUserDetails.profileImageUrl} 
-                      alt={selectedUserDetails.firstName || selectedUserDetails.email} 
+                    <Image
+                      src={selectedUserDetails.profileImageUrl}
+                      alt={selectedUserDetails.firstName || selectedUserDetails.email}
+                      width={64}
+                      height={64}
                       className="w-16 h-16 rounded-full"
                     />
                   ) : (

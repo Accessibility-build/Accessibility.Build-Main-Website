@@ -30,11 +30,11 @@ export async function isAdmin(): Promise<boolean> {
 /**
  * Get current user if they are an admin, otherwise redirect
  */
-export async function requireAdmin() {
+export async function requireAdmin(returnTo = '/admin') {
   const user = await currentUser()
   
   if (!user) {
-    redirect('/sign-in')
+    redirect(`/sign-in?redirect_url=${encodeURIComponent(returnTo)}`)
   }
 
   const adminEmails = process.env.ADMIN_EMAIL?.split(',').map(email => email.trim().toLowerCase()) || []

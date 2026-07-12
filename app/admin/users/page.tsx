@@ -10,11 +10,11 @@ export const metadata = {
 
 export default async function AdminUsersPage() {
   // Verify admin access
-  await requireAdmin()
+  await requireAdmin('/admin/users')
 
   return (
     <AdminLayout>
       <AdminUsersClient />
     </AdminLayout>
   )
-} 
+}

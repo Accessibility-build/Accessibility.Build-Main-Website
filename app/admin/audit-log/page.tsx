@@ -11,7 +11,7 @@ export const metadata = {
 
 export default async function AdminAuditLogPage() {
   // Verify admin access
-  await requireAdmin()
+  await requireAdmin('/admin/audit-log')
 
   // Get recent admin actions
   const auditLog = await getRecentAdminActions(200)
@@ -21,4 +21,4 @@ export default async function AdminAuditLogPage() {
       <AdminAuditLogClient initialActions={auditLog} />
     </AdminLayout>
   )
-} 
+}

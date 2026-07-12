@@ -210,7 +210,7 @@ export function AdminBillingFunnelClient() {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Billing Funnel</h1>
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Billing funnel telemetry</h2>
           <p className="text-slate-600 dark:text-slate-400 mt-1">
             Monitor checkout, billing-center sessions, webhook outcomes, and FX diagnostics.
           </p>
@@ -235,6 +235,7 @@ export function AdminBillingFunnelClient() {
                 size="sm"
                 variant={range === option ? 'default' : 'outline'}
                 onClick={() => setRange(option)}
+                aria-pressed={range === option}
               >
                 {RANGE_LABELS[option]}
               </Button>
@@ -244,6 +245,7 @@ export function AdminBillingFunnelClient() {
             className="h-9 rounded-md border bg-background px-3 text-sm lg:ml-auto"
             value={provider}
             onChange={(event) => setProvider(event.target.value as BillingProviderFilter)}
+            aria-label="Filter billing events by payment provider"
           >
             <option value="all">All Providers</option>
             <option value="razorpay">Razorpay</option>
@@ -253,6 +255,7 @@ export function AdminBillingFunnelClient() {
             className="h-9 rounded-md border bg-background px-3 text-sm"
             value={eventType}
             onChange={(event) => setEventType(event.target.value)}
+            aria-label="Filter billing events by event type"
           >
             {EVENT_FILTER_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -265,7 +268,7 @@ export function AdminBillingFunnelClient() {
 
       {error && (
         <Card className="border-red-200">
-          <CardContent className="pt-6 text-sm text-red-700 dark:text-red-300">{error}</CardContent>
+          <CardContent className="pt-6 text-sm text-red-700 dark:text-red-300" role="alert">{error}</CardContent>
         </Card>
       )}
 

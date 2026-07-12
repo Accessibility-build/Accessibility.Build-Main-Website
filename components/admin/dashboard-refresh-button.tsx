@@ -1,28 +1,23 @@
 "use client"
 
-import { useRouter } from 'next/navigation'
-import { Button } from '@/components/ui/button'
-import { RefreshCw } from 'lucide-react'
-import { useState } from 'react'
+import { useTransition } from "react"
+import { useRouter } from "next/navigation"
+import { RefreshCw } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function DashboardRefreshButton() {
   const router = useRouter()
-  const [refreshing, setRefreshing] = useState(false)
-
-  const handleRefresh = () => {
-    setRefreshing(true)
-    router.refresh()
-    // Reset refreshing state after a short delay
-    setTimeout(() => {
-      setRefreshing(false)
-    }, 1000)
-  }
+  const [refreshing, startRefresh] = useTransition()
 
   return (
-    <Button variant="outline" size="sm" onClick={handleRefresh} disabled={refreshing}>
-      <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-      Refresh Data
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={() => startRefresh(() => router.refresh())}
+      disabled={refreshing}
+    >
+      <RefreshCw className={`mr-2 h-4 w-4 ${refreshing ? "animate-spin" : ""}`} aria-hidden="true" />
+      {refreshing ? "Refreshing" : "Refresh data"}
     </Button>
   )
 }
-

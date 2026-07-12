@@ -18,7 +18,7 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
   // For admin routes, render children directly (AdminLayout will handle its own layout)
   if (isAdminRoute) {
     return (
-      <Suspense fallback={<div className="flex items-center justify-center min-h-[400px]">Loading...</div>}>
+      <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-slate-100 text-sm text-slate-600 dark:bg-slate-950 dark:text-slate-300" role="status">Loading administration...</div>}>
         {children}
       </Suspense>
     )

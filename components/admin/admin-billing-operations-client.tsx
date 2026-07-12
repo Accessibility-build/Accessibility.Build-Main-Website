@@ -315,18 +315,20 @@ export function AdminBillingOperationsClient() {
         </CardHeader>
       </Card>
 
+      {copyError && <div className="rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/30 dark:text-red-300" role="alert">{copyError}</div>}
+
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <div>
             <CardTitle className="text-base">Recent Open Orders</CardTitle>
             <CardDescription>Pending, failed, and action-required Razorpay orders.</CardDescription>
           </div>
-          <Button type="button" variant="outline" size="sm" onClick={() => loadOrders()} disabled={ordersLoading}>
+          <Button type="button" variant="outline" size="sm" onClick={() => loadOrders()} disabled={ordersLoading} aria-label="Refresh open billing orders" title="Refresh open billing orders">
             {ordersLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
           </Button>
         </CardHeader>
         <CardContent>
-          {ordersError && <div className="text-sm text-red-700 dark:text-red-300">{ordersError}</div>}
+          {ordersError && <div className="text-sm text-red-700 dark:text-red-300" role="alert">{ordersError}</div>}
           {!ordersError && orders.length === 0 && (
             <div className="text-sm text-muted-foreground py-3">No open orders found.</div>
           )}
@@ -411,7 +413,7 @@ export function AdminBillingOperationsClient() {
               rows={3}
             />
           </div>
-          {createError && <div className="text-sm text-red-700 dark:text-red-300">{createError}</div>}
+          {createError && <div className="text-sm text-red-700 dark:text-red-300" role="alert">{createError}</div>}
           <div className="text-xs text-muted-foreground">
             Minimum {MIN_ADMIN_BILLING_REASON_LENGTH} characters ({createReasonLength}/
             {MIN_ADMIN_BILLING_REASON_LENGTH})
@@ -453,7 +455,6 @@ export function AdminBillingOperationsClient() {
               </div>
             </div>
           )}
-          {copyError && <div className="text-sm text-red-700 dark:text-red-300">{copyError}</div>}
           <Button type="button" onClick={runCreatePaymentLink} disabled={createLoading || !canCreatePaymentLink}>
             {createLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
             Create Payment Link
@@ -488,7 +489,7 @@ export function AdminBillingOperationsClient() {
               rows={3}
             />
           </div>
-          {existingError && <div className="text-sm text-red-700 dark:text-red-300">{existingError}</div>}
+          {existingError && <div className="text-sm text-red-700 dark:text-red-300" role="alert">{existingError}</div>}
           <div className="text-xs text-muted-foreground">
             Minimum {MIN_ADMIN_BILLING_REASON_LENGTH} characters ({existingReasonLength}/
             {MIN_ADMIN_BILLING_REASON_LENGTH})
@@ -529,7 +530,6 @@ export function AdminBillingOperationsClient() {
               </div>
             </div>
           )}
-          {copyError && <div className="text-sm text-red-700 dark:text-red-300">{copyError}</div>}
           <Button
             type="button"
             variant="outline"
@@ -589,7 +589,7 @@ export function AdminBillingOperationsClient() {
               rows={3}
             />
           </div>
-          {manualError && <div className="text-sm text-red-700 dark:text-red-300">{manualError}</div>}
+          {manualError && <div className="text-sm text-red-700 dark:text-red-300" role="alert">{manualError}</div>}
           <div className="text-xs text-muted-foreground">
             Minimum {MIN_ADMIN_BILLING_REASON_LENGTH} characters ({manualReasonLength}/
             {MIN_ADMIN_BILLING_REASON_LENGTH})

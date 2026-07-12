@@ -6,8 +6,10 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useToast } from '@/hooks/use-toast'
+import { AdminPageHeader } from '@/components/admin/admin-page-header'
 import { 
   Activity, 
   Shield, 
@@ -28,7 +30,7 @@ interface AdminAuditLog {
   adminEmail: string
   action: string
   targetUserId?: string
-  details: Record<string, any>
+  details: Record<string, unknown>
   timestamp: Date
 }
 
@@ -68,7 +70,7 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
           variant: 'destructive'
         })
       }
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to fetch audit log',
@@ -162,7 +164,7 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
         title: 'Success',
         description: `Exported ${filteredLog.length} audit log entries to CSV`,
       })
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to export audit log',
@@ -188,7 +190,7 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
         title: 'Success',
         description: `Exported ${filteredLog.length} audit log entries to JSON`,
       })
-    } catch (error) {
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to export audit log',
@@ -236,14 +238,14 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
     }
   }
 
-  const formatActionDetails = (action: string, details: any) => {
+  const formatActionDetails = (action: string, details: Record<string, unknown>) => {
     switch (action) {
       case 'user_status_update':
-        return `Set user status to ${details.newStatus}`
+        return `Set user status to ${String(details.newStatus ?? 'unknown')}`
       case 'credit_assignment':
-        return `Assigned ${details.amount} credits - ${details.reason}`
+        return `Assigned ${String(details.amount ?? 'unknown')} credits - ${String(details.reason ?? 'No reason recorded')}`
       case 'bulk_credit_assignment':
-        return `Assigned ${details.amount} credits to ${details.totalUsers} users - ${details.reason}`
+        return `Assigned ${String(details.amount ?? 'unknown')} credits to ${String(details.totalUsers ?? 'unknown')} users - ${String(details.reason ?? 'No reason recorded')}`
       default:
         return 'Admin action performed'
     }
@@ -254,16 +256,12 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Admin Audit Log</h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
-            Track all administrative actions and changes
-          </p>
-        </div>
-        
-        <div className="flex items-center gap-2">
+      <AdminPageHeader
+        eyebrow="Monitoring"
+        title="Audit log"
+        description="Trace credit, account, billing, and campaign actions recorded by administrative workflows."
+        actions={
+          <>
           <Button variant="outline" size="sm" onClick={fetchAuditLog} disabled={loading}>
             <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
             Refresh
@@ -276,8 +274,9 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
             <Download className="h-4 w-4 mr-2" />
             Export JSON
           </Button>
-        </div>
-      </div>
+          </>
+        }
+      />
 
       {/* Filters */}
       <Card>
@@ -290,7 +289,9 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
+              <Label htmlFor="admin-audit-search" className="sr-only">Search audit log</Label>
               <Input
+                id="admin-audit-search"
                 placeholder="Search audit log..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -299,7 +300,7 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
             </div>
             
             <Select value={actionFilter} onValueChange={setActionFilter}>
-              <SelectTrigger>
+              <SelectTrigger aria-label="Filter audit log by action type">
                 <SelectValue placeholder="Action Type" />
               </SelectTrigger>
               <SelectContent>
@@ -313,7 +314,7 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
             </Select>
 
             <Select value={adminFilter} onValueChange={setAdminFilter}>
-              <SelectTrigger>
+              <SelectTrigger aria-label="Filter audit log by administrator">
                 <SelectValue placeholder="Admin" />
               </SelectTrigger>
               <SelectContent>
@@ -327,7 +328,7 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
             </Select>
 
             <Select value={dateFilter} onValueChange={setDateFilter}>
-              <SelectTrigger>
+              <SelectTrigger aria-label="Filter audit log by date range">
                 <SelectValue placeholder="Date Range" />
               </SelectTrigger>
               <SelectContent>
@@ -591,4 +592,3 @@ export function AdminAuditLogClient({ initialActions }: { initialActions: AdminA
     </div>
   )
 }
-

@@ -81,6 +81,7 @@ export function AdminMarketingClient() {
   const [recipientAudience, setRecipientAudience] = useState<MarketingAudience | null>(null)
   const [recipientLoading, setRecipientLoading] = useState(false)
   const [recipientError, setRecipientError] = useState<string | null>(null)
+  const [recipientCopyMessage, setRecipientCopyMessage] = useState<string | null>(null)
   const [recipientSearch, setRecipientSearch] = useState('')
 
   // Hard confirmation gate before a real campaign send.
@@ -91,6 +92,7 @@ export function AdminMarketingClient() {
     try {
       setRecipientLoading(true)
       setRecipientError(null)
+      setRecipientCopyMessage(null)
       const response = await fetch(`/api/admin/marketing?recipients=${target}`, { cache: 'no-store' })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) {
@@ -280,10 +282,16 @@ export function AdminMarketingClient() {
     )
   }, [recipientList, recipientSearch])
 
-  const copyEmails = useCallback(() => {
-    const text = recipientList.map((r) => r.email).join(', ')
-    if (navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(text)
+  const copyEmails = useCallback(async () => {
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard access is unavailable')
+      const text = recipientList.map((r) => r.email).join(', ')
+      await navigator.clipboard.writeText(text)
+      setRecipientError(null)
+      setRecipientCopyMessage(`Copied ${recipientList.length.toLocaleString()} email addresses`)
+    } catch (error) {
+      setRecipientCopyMessage(null)
+      setRecipientError(error instanceof Error ? error.message : 'Could not copy email addresses')
     }
   }, [recipientList])
 
@@ -297,7 +305,7 @@ export function AdminMarketingClient() {
   return (
     <div className="space-y-6">
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0">
+        <CardHeader className="flex flex-col gap-4 space-y-0 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <CardTitle className="flex items-center gap-2">
               <Megaphone className="h-5 w-5 text-blue-600" />
@@ -307,12 +315,12 @@ export function AdminMarketingClient() {
               Compose a campaign, send a test, then send to active users, newsletter subscribers, or both.
             </CardDescription>
           </div>
-          <Button type="button" variant="outline" size="sm" onClick={() => loadConfig()} disabled={configLoading}>
+          <Button type="button" variant="outline" size="sm" onClick={() => loadConfig()} disabled={configLoading} aria-label="Refresh marketing configuration" title="Refresh marketing configuration">
             {configLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
           </Button>
         </CardHeader>
         <CardContent className="space-y-4">
-          {configError && <div className="text-sm text-red-700 dark:text-red-300">{configError}</div>}
+          {configError && <div className="text-sm text-red-700 dark:text-red-300" role="alert">{configError}</div>}
 
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-lg border p-3">
@@ -377,6 +385,7 @@ export function AdminMarketingClient() {
                 size="sm"
                 onClick={() => loadRecipients(aud)}
                 disabled={recipientLoading}
+                aria-pressed={recipientAudience === aud}
               >
                 {recipientLoading && recipientAudience === aud ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -388,7 +397,8 @@ export function AdminMarketingClient() {
             ))}
           </div>
 
-          {recipientError && <div className="text-sm text-red-700 dark:text-red-300">{recipientError}</div>}
+          {recipientError && <div className="text-sm text-red-700 dark:text-red-300" role="alert">{recipientError}</div>}
+          {recipientCopyMessage && <div className="text-sm text-green-700 dark:text-green-300" role="status">{recipientCopyMessage}</div>}
 
           {recipientAudience && (
             <div className="space-y-3">
@@ -404,7 +414,9 @@ export function AdminMarketingClient() {
                 </Button>
               </div>
 
+              <Label htmlFor="admin-recipient-search" className="sr-only">Search recipients by email or name</Label>
               <Input
+                id="admin-recipient-search"
                 placeholder="Search by email or name..."
                 value={recipientSearch}
                 onChange={(event) => setRecipientSearch(event.target.value)}
@@ -700,9 +712,9 @@ export function AdminMarketingClient() {
             </div>
           )}
 
-          {sendError && <div className="text-sm text-red-700 dark:text-red-300">{sendError}</div>}
+          {sendError && <div className="text-sm text-red-700 dark:text-red-300" role="alert">{sendError}</div>}
           {testSuccessMessage && (
-            <div className="rounded-md border border-green-200 bg-green-50 p-3 text-sm text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-300">
+            <div className="rounded-md border border-green-200 bg-green-50 p-3 text-sm text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-300" role="status">
               {testSuccessMessage}
             </div>
           )}
