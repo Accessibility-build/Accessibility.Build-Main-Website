@@ -1,137 +1,73 @@
-import { SignUp } from "@clerk/nextjs";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { SignUpRedirect } from "@/components/auth/signup-redirect";
-import { Gift, UserPlus, CheckCircle, Shield } from "lucide-react";
-import Link from "next/link";
-import type { Metadata } from "next";
-import { clerkEmbeddedAuthAppearance } from "@/lib/clerk-auth-appearance";
+import type { Metadata } from "next"
+import Link from "next/link"
+import { SignUp } from "@clerk/nextjs"
+import { ArrowRight, CheckCircle2, Gift, ShieldCheck } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card"
+import { clerkEmbeddedAuthAppearance } from "@/lib/clerk-auth-appearance"
+import { safeAuthRedirect } from "@/lib/auth-redirect"
 
 export const metadata: Metadata = {
-  title: "Sign Up | Get 100 Free Credits",
-  description:
-    "Create your accessibility account and get 100 free credits. Join thousands building more accessible digital experiences with professional tools.",
+  title: "Create Account",
+  description: "Create an Accessibility.build account with welcome credits and access to account-based accessibility tools.",
   robots: { index: false, follow: false },
-};
+}
 
-export default function Page() {
+type SignUpPageProps = {
+  searchParams?: Promise<{ redirect_url?: string | string[] }>
+}
+
+export default async function SignUpPage({ searchParams }: SignUpPageProps) {
+  const params = searchParams ? await searchParams : undefined
+  const requestedDestination = safeAuthRedirect(params?.redirect_url, "/dashboard")
+  const onboardingUrl = requestedDestination === "/dashboard"
+    ? "/onboarding"
+    : `/onboarding?next=${encodeURIComponent(requestedDestination)}`
+  const signInUrl = `/sign-in?redirect_url=${encodeURIComponent(requestedDestination)}`
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <SignUpRedirect />
-      <div className="container-wide py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center max-w-5xl mx-auto">
-          {/* Left Column - Minimal Hero */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="space-y-4">
-              <h1 className="text-3xl lg:text-4xl font-bold text-foreground">
-                Start building
-                <br />
-                accessible apps
-              </h1>
-              <p className="text-muted-foreground">
-                Get professional accessibility tools with 100 free credits to
-                start testing.
-              </p>
-            </div>
+    <div className="min-h-[calc(100vh-6rem)] bg-slate-50/60 dark:bg-slate-950">
+      <div className="container-wide py-6 lg:py-12">
+        <div className="mx-auto max-w-5xl">
+          <header className="mb-6 max-w-2xl lg:mb-8">
+            <p className="text-sm font-semibold uppercase text-primary">Create an account</p>
+            <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">Start using Accessibility.build</h1>
+            <p className="mt-3 leading-7 text-muted-foreground">
+              New accounts receive 100 welcome credits. No payment method is required to begin.
+            </p>
+          </header>
 
-            {/* Minimal benefits */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 text-sm">
-                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Gift className="h-4 w-4 text-primary" />
-                </div>
-                <span>
-                  <strong>100 free credits</strong> ($10 value)
-                </span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <CheckCircle className="h-4 w-4 text-primary" />
-                </div>
-                <span>No credit card required</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Shield className="h-4 w-4 text-primary" />
-                </div>
-                <span>Secure authentication</span>
-              </div>
-            </div>
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_19rem]">
+            <Card className="w-full max-w-md overflow-hidden">
+              <CardHeader className="border-b p-5 text-left">
+                <h2 className="text-xl font-semibold">Account details</h2>
+                <CardDescription>Use your email or an available identity provider.</CardDescription>
+              </CardHeader>
+              <CardContent className="p-4 sm:p-5">
+                <SignUp
+                  path="/sign-up"
+                  routing="path"
+                  signInUrl={signInUrl}
+                  fallbackRedirectUrl={onboardingUrl}
+                  appearance={clerkEmbeddedAuthAppearance}
+                />
+              </CardContent>
+            </Card>
 
-            {/* Sign in link */}
-            <div className="pt-4 border-t">
-              <p className="text-sm text-muted-foreground mb-2">
-                Already have an account?
-              </p>
-              <Link
-                href="/sign-in"
-                className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
-              >
-                <UserPlus className="h-4 w-4" />
-                Sign in to your dashboard
+            <aside className="hidden border-l pl-7 lg:block" aria-labelledby="sign-up-benefits-heading">
+              <h2 id="sign-up-benefits-heading" className="text-lg font-semibold">Account basics</h2>
+              <ul className="mt-5 space-y-5 text-sm leading-6 text-muted-foreground">
+                <li className="flex gap-3"><Gift className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" /><span>100 welcome credits for account-based tools</span></li>
+                <li className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" /><span>No credit card required</span></li>
+                <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" /><span>Profile and authentication controls through Clerk</span></li>
+              </ul>
+              <p className="mt-7 border-t pt-5 text-sm text-muted-foreground">Already have an account?</p>
+              <Link href={signInUrl} className="mt-2 inline-flex items-center font-semibold text-primary underline-offset-4 hover:underline">
+                Sign in <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Link>
-            </div>
-          </div>
-
-          {/* Right Column - Sign Up Form */}
-          <div className="lg:col-span-3 flex justify-center w-full">
-            <div className="w-full px-4 sm:px-0">
-              <Card className="w-full max-w-md mx-auto overflow-hidden">
-                <CardHeader className="text-center">
-                  <CardTitle className="text-xl">Create Account</CardTitle>
-                  <CardDescription>
-                    Get started with 100 free credits
-                  </CardDescription>
-
-                  {/* Credit highlight */}
-                  <div className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/20">
-                    <div className="flex flex-col md:!flex-row items-center justify-center gap-2 text-primary text-sm font-medium">
-                      <div className="flex items-center gap-2">
-                        <Gift className="h-3 w-3 md:h-4 md:w-4" />
-                        <span>100 Credits = $10 Value</span>
-                      </div>
-
-                      <span className="hidden md:inline">•</span>
-
-                      <div>
-                        <span>No Payment Required</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardHeader>
-
-                <CardContent className="px-6">
-                  <div className="w-full min-w-0 max-w-full">
-                    <SignUp
-                      path="/sign-up"
-                      routing="path"
-                      signInUrl="/sign-in"
-                      forceRedirectUrl="/welcome"
-                      fallbackRedirectUrl="/welcome"
-                      appearance={clerkEmbeddedAuthAppearance}
-                    />
-                  </div>
-
-                  {/* Simple trust indicator */}
-                  <div className="mt-6 pt-6 border-t text-center">
-                    <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                      <Shield className="h-4 w-4" />
-                      <span>
-                        Secure signup powered by enterprise authentication
-                      </span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+            </aside>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -9,7 +9,7 @@ export const metadata = createMetadata({
   title: "Contact Khushwant Parihar at Accessibility.build",
   path: "/contact",
   description:
-    "Contact Accessibility.build founder Khushwant Parihar about accessibility audits, remediation, training, design review, documentation, or platform support.",
+    "Contact Accessibility.build founder Khushwant Parihar about accessibility audits, remediation, training, design review, documentation, or tool support.",
   keywords: [
     "contact Accessibility.build",
     "Khushwant Parihar contact",
@@ -19,12 +19,21 @@ export const metadata = createMetadata({
   authors: [{ name: company.legalOperator, url: company.founderWebsite }],
 })
 
-export default function ContactPage() {
+type ContactPageProps = {
+  searchParams: Promise<{ service?: string | string[]; package?: string | string[]; topic?: string | string[] }>
+}
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const params = await searchParams
+  const requestedService = Array.isArray(params.service) ? params.service[0] : params.service
+  const requestedPackage = Array.isArray(params.package) ? params.package[0] : params.package
+  const requestedTopic = Array.isArray(params.topic) ? params.topic[0] : params.topic
+
   return (
     <div className="bg-background">
       <ContactPageStructuredData
         name="Contact Accessibility.build"
-        description="Contact Khushwant Parihar about accessibility services, procurement, or platform support."
+        description="Contact Khushwant Parihar about accessibility services, procurement, or tool support."
         url={`${company.website}/contact`}
         email={company.email}
       />
@@ -41,12 +50,12 @@ export default function ContactPage() {
 
       <section className="container-wide grid gap-12 py-16 lg:grid-cols-[1.35fr_0.65fr] lg:py-20">
         <div>
-          <h2 className="text-3xl font-semibold">Send an enquiry</h2>
+          <h2 className="text-3xl font-semibold">Choose the right contact path</h2>
           <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
-            Include the product type, important workflows, target standard, desired timeline, and whether you need audit, remediation, training, or documentation support. Do not submit credentials or sensitive customer data.
+            Send a short message for support, billing, privacy, accessibility feedback, corrections, or partnerships. Use the detailed brief when you are planning a professional accessibility project.
           </p>
           <div className="mt-8 border p-6 sm:p-8">
-            <ContactForm />
+            <ContactForm requestedService={requestedService} requestedPackage={requestedPackage} requestedTopic={requestedTopic} />
           </div>
           <p className="mt-4 text-sm leading-6 text-muted-foreground">
             Form submissions are processed through Formspree for the purpose of responding to your enquiry. See our <Link href="/privacy" className="font-medium text-foreground underline">Privacy Policy</Link>.

@@ -4,7 +4,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { toolCatalog } from "@/lib/tool-catalog"
 
 export const metadata: Metadata = {
-  title: "Accessibility Tools | WCAG 2.2 & 3.0 Compliance",
+  title: "Accessibility Tools | WCAG 2.2 Testing and Guidance",
   description: "Practical accessibility testing, content, design, planning, and developer tools for building more inclusive digital products.",
   keywords: [
     "accessibility tools",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "web accessibility tools"
   ],
   openGraph: {
-    title: "Accessibility Tools | WCAG 2.2 & 3.0 Compliance",
+    title: "Accessibility Tools | WCAG 2.2 Testing and Guidance",
     description: "Practical accessibility testing, content, design, planning, and developer tools for building more inclusive digital products.",
     type: "website",
     url: "https://accessibility.build/tools",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Accessibility Tools | WCAG 2.2 & 3.0 Compliance",
+    title: "Accessibility Tools | WCAG 2.2 Testing and Guidance",
     description: "Practical accessibility testing, content, design, planning, and developer tools for building more inclusive digital products.",
     images: ["/og-image.png"]
   },

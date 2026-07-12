@@ -45,8 +45,8 @@ const core: SiteRoute[] = [
   { route: "/subprocessors", label: "Subprocessor Register", group: "Core", lastModified: "2026-07-12", priority: 0.55 },
   { route: "/resources", label: "Resources", group: "Core", lastModified: "2026-01-24", priority: 0.85, changeFrequency: "weekly" },
   { route: "/desktop", label: "Desktop App", group: "Core", lastModified: "2026-07-06", priority: 0.7 },
-  { route: "/docs", label: "API Documentation", group: "Core", lastModified: "2026-03-05", priority: 0.6 },
-  { route: "/help", label: "Help Center", group: "Core", lastModified: "2026-03-05", priority: 0.6 },
+  { route: "/docs", label: "Developer Resources", group: "Core", lastModified: "2026-07-13", priority: 0.7 },
+  { route: "/help", label: "Help Center", group: "Core", lastModified: "2026-07-13", priority: 0.7 },
   { route: "/sitemap-page", label: "Sitemap", group: "Core", lastModified: "2026-07-09", priority: 0.3 },
 ]
 

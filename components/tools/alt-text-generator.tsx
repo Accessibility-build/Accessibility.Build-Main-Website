@@ -457,7 +457,7 @@ export default function AltTextGenerator() {
             </CardTitle>
             <CardDescription className="text-lg">
               Upload an image or provide a URL to generate professional,
-              accessible alt text using OpenAI GPT-4 Vision
+              accessible alt text using an OpenAI vision-capable model
             </CardDescription>
 
             {!isSignedIn ? (

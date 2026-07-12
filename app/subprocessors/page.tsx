@@ -8,7 +8,7 @@ export const metadata = createMetadata({
   path: "/subprocessors",
   description:
     "A current functional register of service providers that may process data for Accessibility.build accounts, hosting, payments, AI tools, content, analytics, forms, and email.",
-  keywords: ["Accessibility.build subprocessors", "accessibility platform service providers", "data processor register"],
+  keywords: ["Accessibility.build subprocessors", "accessibility service providers", "data processor register"],
   authors: [{ name: company.legalOperator, url: company.founderWebsite }],
 })
 

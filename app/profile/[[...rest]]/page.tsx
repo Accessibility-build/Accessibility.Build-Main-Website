@@ -26,7 +26,7 @@ export default async function ProfilePage() {
   const user = await currentUser()
   
   if (!user) {
-    redirect('/sign-in')
+    redirect('/sign-in?redirect_url=%2Fprofile')
   }
 
   const stats = await getUserStats()
@@ -155,4 +155,4 @@ export default async function ProfilePage() {
       </div>
     </div>
   )
-} 
+}

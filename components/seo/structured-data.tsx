@@ -566,7 +566,7 @@ export function WebSiteStructuredData() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Accessibility.build",
-    "description": "Professional accessibility platform with AI-powered tools, WCAG 2.2 & 3.0 testing, and comprehensive resources for building inclusive digital experiences.",
+    "description": "Founder-led accessibility services, practical WCAG 2.2 tools, implementation guides, research, and resources for inclusive digital experiences.",
     "url": "https://accessibility.build",
     "publisher": {
       "@type": "Organization",

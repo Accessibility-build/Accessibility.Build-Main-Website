@@ -18,12 +18,12 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "AI Alt Text Generator | GPT-4 Vision",
+  title: "AI Alt Text Generator | Image Description Tool",
   description:
     "Generate context-aware alt text drafts for images, then review purpose, accuracy, surrounding content, and whether the image should be marked decorative.",
-  keywords: "alt text generator, AI alt text, OpenAI GPT-4 Vision, accessibility, screen reader, SEO, image description",
+  keywords: "alt text generator, AI alt text, image description, accessibility, screen reader, WCAG, SEO",
   openGraph: {
-    title: "AI Alt Text Generator - Powered by GPT-4 Vision",
+    title: "AI Alt Text Generator - Draft and Review Image Descriptions",
     description: "Generate context-aware alt text drafts with controls for image purpose, detail, language, and tone.",
     type: "website",
     url: "https://accessibility.build/tools/alt-text-generator",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Alt Text Generator - Powered by GPT-4 Vision",
+    title: "AI Alt Text Generator - Draft and Review Image Descriptions",
     description: "Generate context-aware alt text drafts and review them before publishing.",
     images: ["https://accessibility.build/images/tools/alt-text-generator-twitter.png"]
   },
@@ -82,7 +82,7 @@ export default function AltTextGeneratorPage() {
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/50 dark:border-blue-800/50 mb-6">
                 <Sparkles className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Powered by OpenAI GPT-4 Vision</span>
+                <span className="text-sm font-medium text-blue-700 dark:text-blue-300">OpenAI multimodal analysis</span>
               </div>
 
               <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent mb-6">
@@ -91,7 +91,7 @@ export default function AltTextGeneratorPage() {
 
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
                 Draft image descriptions with AI, then review them against the image purpose and surrounding content using
-                <span className="font-semibold text-foreground"> OpenAI's most advanced vision model</span>
+                <span className="font-semibold text-foreground"> an OpenAI vision-capable model</span>
               </p>
 
               {/* Key Benefits Bar */}

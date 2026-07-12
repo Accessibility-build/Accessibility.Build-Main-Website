@@ -41,7 +41,7 @@ export default async function DashboardPage() {
   const user = await currentUser();
 
   if (!user) {
-    redirect("/sign-in");
+    redirect("/sign-in?redirect_url=%2Fdashboard");
   }
 
   let stats;

@@ -84,7 +84,7 @@ export default function PrivacyPage() {
           <ul>
             <li>provide accounts, tools, reports, consulting services, support, and requested communications;</li>
             <li>process payments, issue invoices, administer credits, prevent fraud, and maintain tax records;</li>
-            <li>operate, secure, troubleshoot, measure, and improve the platform;</li>
+            <li>operate, secure, troubleshoot, measure, and improve the website, tools, and account service;</li>
             <li>respond to legal obligations, enforce agreements, and protect users and the service;</li>
             <li>send product or educational updates when you have requested them, with an unsubscribe option.</li>
           </ul>
@@ -127,7 +127,7 @@ export default function PrivacyPage() {
             <li>account and service records while the account or engagement is active and for a reasonable period afterward;</li>
             <li>transaction, invoice, and tax records for the period required by applicable law;</li>
             <li>support and contract communications while needed to resolve the matter and establish business records;</li>
-            <li>security logs for a limited period appropriate to investigation and platform protection;</li>
+            <li>security logs for a limited period appropriate to investigation and service protection;</li>
             <li>tool inputs and generated results according to feature operation, user account storage, support needs, and provider processing.</li>
           </ul>
           <p>

@@ -36,7 +36,7 @@ export function GET(): Response {
   const parts: string[] = [
     "# Accessibility.build",
     "",
-    "> Accessibility.build is a web accessibility platform: free WCAG 2.2 testing tools, in-depth guides to all 86 WCAG success criteria, compliance resources for laws like the ADA and the European Accessibility Act, original lawsuit and research data, and a plain-language glossary.",
+    "> Accessibility.build is a founder-led accessibility practice and resource library: professional services, practical WCAG 2.2 testing tools, guides to all 86 WCAG success criteria, compliance resources, source-linked research, and a plain-language glossary.",
     "",
     "The content is aimed at developers, designers, and compliance teams. Success-criterion guides and compliance pages are kept factually current (as of 2026); compliance pages are educational information, not legal advice.",
     "",

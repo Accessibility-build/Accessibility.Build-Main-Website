@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     template: "%s | Accessibility.build",
   },
   description:
-    "Professional accessibility platform with AI-powered alt text generation, WCAG 2.2 & 3.0 compliance testing, color contrast analysis, and comprehensive accessibility resources for developers and designers.",
+    "Founder-led accessibility services, practical WCAG 2.2 tools, implementation guides, research, and resources for more inclusive digital products.",
   keywords: [
     "accessibility",
     "a11y",
@@ -111,7 +111,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Accessibility.build",
     title: "Professional Accessibility Tools | Accessibility.build",
-    description: "Professional accessibility platform with AI-powered tools, WCAG compliance testing, and comprehensive resources for building inclusive digital experiences.",
+    description: "Founder-led accessibility services, practical WCAG 2.2 tools, implementation guides, and resources for inclusive digital experiences.",
     url: "https://accessibility.build",
     images: [
       {
@@ -246,7 +246,7 @@ const structuredData = {
       "@id": "https://accessibility.build/#website",
       url: "https://accessibility.build",
       name: "Accessibility.build",
-      description: "Professional accessibility platform with AI-powered tools, WCAG 2.2 & 3.0 testing, and comprehensive resources for building inclusive digital experiences.",
+      description: "Founder-led accessibility services, practical WCAG 2.2 tools, implementation guides, research, and resources for inclusive digital experiences.",
       inLanguage: "en-US",
       publisher: {
         "@id": "https://accessibility.build/#organization"
@@ -303,9 +303,9 @@ const structuredData = {
     {
       "@type": "WebApplication",
       "@id": "https://accessibility.build/#webapp",
-      name: "Accessibility Testing Suite",
+      name: "Accessibility.build Tools",
       url: "https://accessibility.build/tools",
-      description: "Professional accessibility testing tools including AI-powered alt text generation and WCAG compliance testing",
+      description: "Browser-based accessibility utilities for testing, planning, content review, and WCAG 2.2 implementation support",
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Any",
       browserRequirements: "Requires JavaScript. Supported browsers: Chrome, Firefox, Safari, Edge.",
@@ -317,13 +317,13 @@ const structuredData = {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-        description: "Free accessibility tools with premium features available"
+        description: "Accessibility utilities available through the Accessibility.build website"
       },
       featureList: [
-        "AI-powered alt text generation",
-        "WCAG 2.2 & 3.0 contrast testing",
-        "Real-time accessibility analysis",
-        "Professional compliance reporting"
+        "AI-assisted alt text drafting",
+        "WCAG 2.2 contrast checking",
+        "Heading and content analysis",
+        "Downloadable reports and structured exports"
       ]
     },
     {
@@ -331,16 +331,14 @@ const structuredData = {
       "@id": "https://accessibility.build/#software",
       name: "Alt Text Generator",
       url: "https://accessibility.build/tools/alt-text-generator",
-      description: "AI-powered alt text generator using OpenAI GPT-4 Vision for professional accessibility compliance",
+      description: "AI-assisted alt text drafting tool with guidance for human review and WCAG 2.2 implementation",
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Any",
-      softwareVersion: "2.0",
-      releaseNotes: "Enhanced with OpenAI GPT-4 Vision and WCAG 2.2 compliance",
       offers: {
         "@type": "Offer",
-        price: "0.10",
+        price: "0",
         priceCurrency: "USD",
-        description: "Pay per use with 100 free credits for new users"
+        description: "New accounts receive welcome credits; additional tool usage may require purchased credits"
       }
     }
   ]

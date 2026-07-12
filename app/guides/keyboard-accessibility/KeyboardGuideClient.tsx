@@ -1325,15 +1325,14 @@ function Toolbar() {
                 <div className="flex items-start gap-2">
                   <Info className="h-4 w-4 flex-shrink-0 mt-0.5" />
                   <span>
-                    For more examples of keyboard traps and how to detect them,
-                    visit the{" "}
+                    Review the keyboard-trap examples and detection guidance in
+                    the{" "}
                     <a
-                      href="/bad/keyboard"
+                      href="#keyboard-traps"
                       className="underline hover:no-underline font-medium"
                     >
-                      Keyboard Accessibility Bad Examples
-                    </a>{" "}
-                    page.
+                      keyboard traps section
+                    </a>.
                   </span>
                 </div>
               </InfoBox>

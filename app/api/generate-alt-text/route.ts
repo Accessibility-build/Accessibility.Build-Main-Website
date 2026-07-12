@@ -174,9 +174,9 @@ Guidelines:
 
     const maxTokens = calculateMaxTokens(targetWordCount);
 
-    // Generate alt text using OpenAI GPT-4 Vision (latest model)
+    // Generate alt text with the configured OpenAI multimodal model.
     const { text: altText } = await generateText({
-      model: openai("gpt-4o"), // Using GPT-4o (latest vision model)
+      model: openai("gpt-4o"),
       messages: [
         {
           role: "system",

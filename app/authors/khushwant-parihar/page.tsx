@@ -42,7 +42,7 @@ const experience = [
     role: "Web Accessibility Specialist",
     organization: "Contract practice",
     description:
-      "Supports accessibility platforms, monitoring and audit workflows, WCAG and Section 508 validation, and accessibility quality processes.",
+      "Supports accessibility audits, monitoring workflows, WCAG and Section 508 validation, remediation, and accessibility quality processes.",
   },
 ]
 

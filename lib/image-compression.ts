@@ -134,7 +134,7 @@ export function formatFileSize(bytes: number): string {
 
 /**
  * Compress image for optimal AI processing
- * GPT-4 Vision works best with images around 1024x1024
+ * Keep images near 1024x1024 for efficient multimodal processing.
  */
 export async function compressForAI(
   input: File | string

@@ -28,7 +28,7 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
   return (
     <div className="relative flex min-h-screen flex-col">
       <Header />
-      <main id="main-content" className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
         <Suspense fallback={<div className="flex items-center justify-center min-h-[400px]">Loading...</div>}>
           {children}
         </Suspense>
@@ -36,4 +36,4 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
       <Footer />
     </div>
   )
-} 
+}

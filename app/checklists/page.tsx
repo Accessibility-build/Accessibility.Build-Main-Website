@@ -390,8 +390,8 @@ export default function ChecklistsPage() {
                   Ready to Build More Accessible Products?
                 </h2>
                 <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-                  Join thousands of developers and designers using our checklists to create inclusive digital experiences. 
-                  Start with our WCAG 2.2 checklist today - it's completely free!
+                  Use a practical checklist to organize accessibility review work and create more inclusive digital experiences.
+                  Start with the WCAG 2.2 checklist today - it is free to use.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-4 rounded-xl font-semibold">
