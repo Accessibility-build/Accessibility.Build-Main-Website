@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import {
   ArticleStructuredData,
   HowToStructuredData,
@@ -145,23 +146,23 @@ export default function KeyboardAccessibilityGuidePage() {
             <nav aria-label="Breadcrumb">
               <ol className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
                 <li>
-                  <a
+                  <Link
                     href="/"
                     className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li aria-hidden="true" className="text-slate-400">
                   /
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/guides"
                     className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     Guides
-                  </a>
+                  </Link>
                 </li>
                 <li aria-hidden="true" className="text-slate-400">
                   /

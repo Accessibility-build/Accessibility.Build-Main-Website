@@ -9,17 +9,25 @@ import PortableTextRenderer from "@/components/sanity/portable-text"
 import { ArticleToc } from "@/components/blog/article-toc"
 import { ReadingProgress } from "@/components/blog/reading-progress"
 import { BackToTop } from "@/components/blog/back-to-top"
-import { Logo } from "@/components/logo"
 import Image from "next/image"
 import type { Metadata } from "next"
 import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { SocialShare } from "@/components/seo/social-share"
 import { RelatedContent } from "@/components/seo/related-content"
 import { ListenFeature } from "@/components/blog/listen-feature"
+import { company } from "@/lib/company"
 
 type BlogCategory = {
-  title?: string
+  title: string
   slug?: { current?: string }
+}
+
+type PortableTextChild = {
+  text?: string
+}
+
+type PortableTextBlock = {
+  children?: PortableTextChild[]
 }
 
 // Revalidate individual posts hourly so edits in Sanity reflect promptly.
@@ -111,7 +119,12 @@ export async function generateMetadata({
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.excerpt,
       ...(keywords?.length && { keywords }),
-      authors: [{ name: post.author?.name || "Khushwant Parihar" }],
+      authors: [{
+        name: post.author?.name || company.legalOperator,
+        ...(post.author?.name === company.legalOperator || !post.author?.name
+          ? { url: `${company.website}/authors/khushwant-parihar` }
+          : {}),
+      }],
       alternates: {
         canonical: currentUrl,
       },
@@ -183,11 +196,16 @@ export default async function BlogPostPage({
 
     const hasNamedAuthor = Boolean(post.author?.name)
     const authorName = post.author?.name || "Khushwant Parihar"
+    const authorUrl = authorName === company.legalOperator
+      ? `${company.website}/authors/khushwant-parihar`
+      : undefined
     const authorImage = post.author?.image ? urlFor(post.author.image).width(80).height(80).url() : undefined
     // Plain-text author bio from the Sanity Portable Text field, if present.
     const authorBio: string | undefined = Array.isArray(post.author?.bio)
       ? post.author.bio
-          .map((b: any) => (b.children || []).map((c: any) => c.text).join(""))
+          .map((block: PortableTextBlock) =>
+            (block.children || []).map((child: PortableTextChild) => child.text || "").join("")
+          )
           .join(" ")
           .trim() || undefined
       : undefined
@@ -222,6 +240,7 @@ export default async function BlogPostPage({
           description={post.excerpt || ""}
           author={{
             name: authorName,
+            ...(authorUrl && { url: authorUrl }),
             ...(hasNamedAuthor
               ? {
                   ...(authorImage && { image: authorImage }),
@@ -307,7 +326,13 @@ export default async function BlogPostPage({
                           )}
                         </div>
                         <div className="font-sans">
-                          <div className="text-sm font-semibold text-slate-900 dark:text-white">{authorName}</div>
+                          {authorUrl ? (
+                            <Link href="/authors/khushwant-parihar" className="text-sm font-semibold text-slate-900 hover:text-primary dark:text-white">
+                              {authorName}
+                            </Link>
+                          ) : (
+                            <div className="text-sm font-semibold text-slate-900 dark:text-white">{authorName}</div>
+                          )}
                           <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                             <span className="inline-flex items-center gap-1">
                               <Calendar className="h-3.5 w-3.5" />
@@ -354,7 +379,7 @@ export default async function BlogPostPage({
                           Topics covered
                         </h2>
                         <div className="flex flex-wrap gap-2">
-                          {post.accessibility.topics.map((topic: any, index: number) => (
+                          {post.accessibility.topics.map((topic: string, index: number) => (
                             <Badge key={index} variant="secondary" className="text-xs capitalize">
                               {topic.replace('-', ' ')}
                             </Badge>
@@ -378,7 +403,13 @@ export default async function BlogPostPage({
                         <div className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
                           Written by
                         </div>
-                        <div className="mt-0.5 font-semibold text-slate-900 dark:text-white">{authorName}</div>
+                        {authorUrl ? (
+                          <Link href="/authors/khushwant-parihar" className="mt-0.5 inline-block font-semibold text-slate-900 hover:text-primary dark:text-white">
+                            {authorName}
+                          </Link>
+                        ) : (
+                          <div className="mt-0.5 font-semibold text-slate-900 dark:text-white">{authorName}</div>
+                        )}
                         <p className="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                           {authorBio ||
                             'Practical guides, tools, and research on web accessibility and WCAG compliance.'}
@@ -395,7 +426,7 @@ export default async function BlogPostPage({
                         url={currentUrl}
                         title={post.title}
                         description={post.excerpt}
-                        tags={post.categories?.map((cat: any) => cat.title) || []}
+                        tags={post.categories?.map((category: BlogCategory) => category.title) || []}
                         imageUrl={post.mainImage ? urlFor(post.mainImage).url() : undefined}
                         showLabel={false}
                       />
@@ -410,7 +441,7 @@ export default async function BlogPostPage({
           <section className="border-t border-slate-200 bg-slate-50/70 py-16 dark:border-slate-800 dark:bg-slate-900/40">
             <div className="mx-auto max-w-6xl px-5 font-sans sm:px-6">
               <RelatedContent
-                content={`${post.title} ${post.excerpt} ${post.categories?.map((cat: any) => cat.title).join(' ')}`}
+                content={`${post.title} ${post.excerpt} ${post.categories?.map((category: BlogCategory) => category.title).join(' ')}`}
                 title="Continue reading"
                 maxItems={3}
                 showDescriptions={true}

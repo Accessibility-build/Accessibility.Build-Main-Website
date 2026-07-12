@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Activity, Mail, Wrench } from "lucide-react"
+import { Activity, CheckCircle2, ExternalLink, Mail, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { company } from "@/lib/company"
 
@@ -12,7 +12,17 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 }
 
+export const dynamic = "force-dynamic"
+
 export default function StatusPage() {
+  const checkedAt = new Date()
+  const checkedAtIso = checkedAt.toISOString()
+  const checkedAtLabel = new Intl.DateTimeFormat("en", {
+    dateStyle: "medium",
+    timeStyle: "long",
+    timeZone: "UTC",
+  }).format(checkedAt)
+
   return (
     <div className="container-wide py-16 lg:py-24">
       <div className="mx-auto max-w-3xl">
@@ -20,9 +30,27 @@ export default function StatusPage() {
           <Activity className="h-8 w-8 text-primary" aria-hidden="true" />
           <h1 className="mt-4 text-4xl font-semibold">Service status</h1>
           <p className="mt-4 text-lg leading-7 text-muted-foreground">
-            We are preparing a monitor-backed public status history. Until that is available, we do not publish synthetic uptime percentages, response times, or incident records.
+            Current availability is reported from this live server response. Historical uptime remains unpublished until retained external monitoring evidence is available.
           </p>
         </header>
+
+        <section className="border-b py-10" aria-labelledby="current-status-heading">
+          <div className="flex items-start gap-4 border border-emerald-300 bg-emerald-50 p-6 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+            <CheckCircle2 className="mt-1 h-6 w-6 shrink-0" aria-hidden="true" />
+            <div>
+              <h2 id="current-status-heading" className="text-xl font-semibold">Website responding</h2>
+              <p className="mt-2 text-sm leading-6">
+                This status page was rendered successfully at <time dateTime={checkedAtIso}>{checkedAtLabel}</time>.
+              </p>
+              <a href="/api/health" className="mt-3 inline-flex items-center text-sm font-semibold underline">
+                View machine-readable health response <ExternalLink className="ml-1 h-3.5 w-3.5" />
+              </a>
+            </div>
+          </div>
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">
+            This confirms the website route is currently responding. It does not prove that every third-party provider, authenticated workflow, AI model, or payment path is healthy.
+          </p>
+        </section>
 
         <section className="py-10" aria-labelledby="report-heading">
           <Wrench className="h-6 w-6 text-primary" aria-hidden="true" />
@@ -43,6 +71,7 @@ export default function StatusPage() {
             <li>Material incidents affecting paid customers will be acknowledged through available support or account channels.</li>
             <li>Confirmed incidents will be described without invented precision or retroactive performance claims.</li>
             <li>A public uptime percentage will be added only when it comes from retained monitoring history.</li>
+            <li>Machine-readable current health is available at <Link href="/api/health" className="font-medium text-foreground underline">/api/health</Link>.</li>
           </ul>
           <p className="mt-6 text-sm text-muted-foreground">
             For general business and security information, visit the <Link href="/trust" className="font-medium text-foreground underline">trust centre</Link>.

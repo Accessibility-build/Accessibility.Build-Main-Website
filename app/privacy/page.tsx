@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Database, Eye, LockKeyhole, ShieldCheck } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
-import { businessLocation, company, legalLastUpdated } from "@/lib/company"
+import { company, legalLastUpdated, registeredBusinessAddress } from "@/lib/company"
 
 export const metadata = createMetadata({
   title: "Privacy Policy",
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
         <div className="prose prose-lg mt-10 max-w-none dark:prose-invert">
           <h2>1. Who is responsible for your information</h2>
           <p>
-            Accessibility.build is owned and operated by <strong>{company.legalOperator}</strong>, a GST-registered independent accessibility professional based in {businessLocation}. Khushwant Parihar is the business operator responsible for the processing described in this policy.
+            Accessibility.build is owned and operated by <strong>{company.legalName}</strong> as a GST-registered sole proprietorship. Khushwant Parihar is the business operator responsible for the processing described in this policy.
           </p>
           <p>
             Privacy enquiries and rights requests can be sent to <a href={`mailto:${company.privacyEmail}`}>{company.privacyEmail}</a>.
@@ -169,8 +169,9 @@ export default function PrivacyPage() {
           </p>
           <address className="not-italic">
             <strong>{company.brandName}</strong><br />
-            Owned and operated by {company.legalOperator}<br />
-            {businessLocation}<br />
+            Legal name: {company.legalName}<br />
+            {registeredBusinessAddress}<br />
+            GSTIN: {company.gstin}<br />
             Email: <a href={`mailto:${company.privacyEmail}`}>{company.privacyEmail}</a>
           </address>
         </div>

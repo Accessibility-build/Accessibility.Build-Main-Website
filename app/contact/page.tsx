@@ -2,7 +2,7 @@ import Link from "next/link"
 import { Clock, ExternalLink, Mail, MapPin, UserRound } from "lucide-react"
 import { ContactForm } from "@/components/contact/contact-form"
 import { ContactPageStructuredData } from "@/components/seo/structured-data"
-import { businessLocation, company } from "@/lib/company"
+import { businessLocation, company, registeredBusinessLocation } from "@/lib/company"
 import { createMetadata } from "@/lib/metadata"
 
 export const metadata = createMetadata({
@@ -77,7 +77,7 @@ export default function ContactPage() {
           <div className="mt-8 border bg-muted/30 p-5">
             <p className="font-semibold">Business verification</p>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Accessibility.build is founder-owned and GST-registered in India. Tax and procurement particulars are provided with qualified business documentation.
+              Accessibility.build is operated by {company.legalName} as a sole proprietorship, with regular GST registration {company.gstin} and its registered principal place of business in {registeredBusinessLocation}.
             </p>
             <div className="mt-4 flex flex-col items-start gap-3">
               <Link href="/trust" className="text-sm font-medium underline">Trust centre</Link>

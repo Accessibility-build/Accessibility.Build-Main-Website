@@ -1,5 +1,6 @@
 import { wcagCriteria } from "./wcag-data"
 import { wcagSlug } from "./wcag-pages"
+import { caseStudies } from "./authority-content"
 
 // Single source of truth for the site's public, indexable routes.
 // Consumed by app/sitemap.ts (XML sitemap) and app/sitemap-page (HTML sitemap).
@@ -39,6 +40,11 @@ const core: SiteRoute[] = [
   { route: "/contact", label: "Contact", group: "Core", lastModified: "2026-07-12", priority: 0.82 },
   { route: "/trust", label: "Trust Centre", group: "Core", lastModified: "2026-07-12", priority: 0.78 },
   { route: "/methodology", label: "Audit Methodology", group: "Core", lastModified: "2026-07-12", priority: 0.84 },
+  { route: "/authors/khushwant-parihar", label: "Khushwant Parihar", group: "Core", lastModified: "2026-07-12", priority: 0.82 },
+  { route: "/case-studies", label: "Accessibility Case Studies", group: "Core", lastModified: "2026-07-12", priority: 0.88 },
+  { route: "/sample-audit-report", label: "Sample Accessibility Audit Report", group: "Core", lastModified: "2026-07-12", priority: 0.86 },
+  { route: "/procurement", label: "Procurement Centre", group: "Core", lastModified: "2026-07-12", priority: 0.76 },
+  { route: "/subprocessors", label: "Subprocessor Register", group: "Core", lastModified: "2026-07-12", priority: 0.55 },
   { route: "/resources", label: "Resources", group: "Core", lastModified: "2026-01-24", priority: 0.85, changeFrequency: "weekly" },
   { route: "/desktop", label: "Desktop App", group: "Core", lastModified: "2026-07-06", priority: 0.7 },
   { route: "/docs", label: "API Documentation", group: "Core", lastModified: "2026-03-05", priority: 0.6 },
@@ -164,12 +170,23 @@ const services: SiteRoute[] = [
   { route: "/services/user-testing", label: "User Testing", group: "Services", lastModified: "2026-07-12", priority: 0.78 },
 ]
 
+const selectedWork: SiteRoute[] = caseStudies.map((study) => ({
+  route: `/case-studies/${study.slug}`,
+  label: study.title,
+  group: "Case Studies",
+  lastModified: "2026-07-12",
+  priority: 0.78,
+  changeFrequency: "yearly",
+}))
+
 const legal: SiteRoute[] = [
   { route: "/accessibility", label: "Accessibility Statement", group: "Legal", lastModified: "2026-07-12", priority: 0.7, changeFrequency: "yearly" },
   { route: "/privacy", label: "Privacy Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
   { route: "/terms", label: "Terms of Service", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
   { route: "/cookies", label: "Cookie Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
   { route: "/refund", label: "Refund Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
+  { route: "/editorial-policy", label: "Editorial Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.5, changeFrequency: "yearly" },
+  { route: "/corrections-policy", label: "Corrections Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.45, changeFrequency: "yearly" },
 ]
 
 // WCAG criterion pages: dates for the original 38 come from git history; pages
@@ -250,5 +267,6 @@ export const siteRoutes: SiteRoute[] = [
   ...wcagPages,
   ...blog,
   ...services,
+  ...selectedWork,
   ...legal,
 ]

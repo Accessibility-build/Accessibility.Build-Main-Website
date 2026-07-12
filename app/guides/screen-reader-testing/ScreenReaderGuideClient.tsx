@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 import {
   Monitor, Smartphone, Apple, Download, Volume2, Headphones,
   CheckSquare, ExternalLink, Info, ChevronDown, Keyboard,
-  Navigation, FormInput, Image, Table2, AlertCircle, LayoutGrid
+  Navigation, FormInput, Image as ImageIcon, Table2, AlertCircle, LayoutGrid
 } from "lucide-react"
 
 /* -------------------------------------------------------------------------- */
@@ -996,7 +996,7 @@ export default function ScreenReaderGuideClient() {
                 <Card className="border-slate-200 dark:border-slate-700">
                   <CardHeader className="pb-3">
                     <div className="flex items-center gap-2">
-                      <Image className="h-5 w-5 text-blue-500" />
+                      <ImageIcon className="h-5 w-5 text-blue-500" aria-hidden="true" />
                       <CardTitle className="text-lg text-slate-900 dark:text-white">Images</CardTitle>
                     </div>
                   </CardHeader>

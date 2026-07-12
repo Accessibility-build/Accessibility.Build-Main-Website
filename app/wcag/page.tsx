@@ -33,26 +33,24 @@ export const metadata = createMetadata({
   image: "/api/og?title=WCAG%202.2%20Success%20Criteria&section=WCAG",
 })
 
-// One icon per guideline keeps the grid scannable without per-criterion bookkeeping.
-const guidelineIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  "1.1": ImageIcon,
-  "1.2": Volume2,
-  "1.3": Target,
-  "1.4": Eye,
-  "2.1": Keyboard,
-  "2.2": Timer,
-  "2.3": Zap,
-  "2.4": MousePointerClick,
-  "2.5": MousePointerClick,
-  "3.1": Type,
-  "3.2": HelpCircle,
-  "3.3": FileText,
-  "4.1": Settings,
-}
-
-function iconFor(criterion: SuccessCriterion) {
+function CriterionIcon({ criterion, className }: { criterion: SuccessCriterion; className: string }) {
   const guidelineNumber = criterion.guideline.split(" ")[0]
-  return guidelineIcons[guidelineNumber] ?? BookOpen
+  switch (guidelineNumber) {
+    case "1.1": return <ImageIcon className={className} aria-hidden="true" />
+    case "1.2": return <Volume2 className={className} aria-hidden="true" />
+    case "1.3": return <Target className={className} aria-hidden="true" />
+    case "1.4": return <Eye className={className} aria-hidden="true" />
+    case "2.1": return <Keyboard className={className} aria-hidden="true" />
+    case "2.2": return <Timer className={className} aria-hidden="true" />
+    case "2.3": return <Zap className={className} aria-hidden="true" />
+    case "2.4":
+    case "2.5": return <MousePointerClick className={className} aria-hidden="true" />
+    case "3.1": return <Type className={className} aria-hidden="true" />
+    case "3.2": return <HelpCircle className={className} aria-hidden="true" />
+    case "3.3": return <FileText className={className} aria-hidden="true" />
+    case "4.1": return <Settings className={className} aria-hidden="true" />
+    default: return <BookOpen className={className} aria-hidden="true" />
+  }
 }
 
 const levelStyles: Record<SuccessCriterion["level"], { badge: string; border: string; iconBg: string; iconColor: string }> = {
@@ -84,7 +82,6 @@ const principles = [
 ]
 
 function CriterionCard({ criterion }: { criterion: SuccessCriterion }) {
-  const IconComponent = iconFor(criterion)
   const styles = levelStyles[criterion.level]
   const isNew22 = criterion.introduced === "2.2"
 
@@ -94,7 +91,7 @@ function CriterionCard({ criterion }: { criterion: SuccessCriterion }) {
         <div className="flex flex-col md:!flex-row items-start justify-between gap-4">
           <div className="flex items-start gap-4 flex-1 w-full">
             <div className={`p-3 rounded-xl flex-shrink-0 ${styles.iconBg}`}>
-              <IconComponent className={`h-6 w-6 ${styles.iconColor}`} />
+              <CriterionIcon criterion={criterion} className={`h-6 w-6 ${styles.iconColor}`} />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2 mb-2">

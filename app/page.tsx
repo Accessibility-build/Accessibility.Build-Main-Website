@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
 import HomeClientPage from "./client-page"
+import { company } from "@/lib/company"
 
 export const metadata: Metadata = {
-  title: { absolute: "Web Accessibility Tools & WCAG Compliance | Accessibility.build" },
+  title: { absolute: "Accessibility.build | Founder-Led Accessibility Audits & WCAG Tools" },
   description:
-    "Test, learn, and ship accessible websites. Free WCAG 2.2 testing tools, success criterion guides, checklists, and expert accessibility audit services.",
+    "Founder-led accessibility audits, remediation, training, and practical WCAG tools from Khushwant Parihar. Inspect fixed-scope services, methodology, selected work, and sample evidence.",
+  authors: [{ name: company.legalOperator, url: `${company.website}/authors/khushwant-parihar` }],
   alternates: {
     canonical: "/",
   },
@@ -12,23 +14,23 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: "Accessibility.build",
-    title: "Web Accessibility Tools & WCAG Compliance | Accessibility.build",
+    title: "Accessibility.build | Founder-Led Accessibility Audits & WCAG Tools",
     description:
-      "Test, learn, and ship accessible websites. Free WCAG 2.2 testing tools, success criterion guides, checklists, and expert accessibility audit services.",
+      "Founder-led accessibility audits, remediation, training, and practical WCAG tools with named accountability and sample evidence.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Accessibility.build - Web accessibility tools and WCAG resources",
+        alt: "Accessibility.build - Founder-led accessibility consulting and WCAG tools",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Web Accessibility Tools & WCAG Compliance | Accessibility.build",
+    title: "Accessibility.build | Founder-Led Accessibility Audits & WCAG Tools",
     description:
-      "Free WCAG 2.2 testing tools, success criterion guides, checklists, and expert accessibility audit services.",
+      "Founder-led accessibility audits, remediation, training, and practical WCAG tools with named accountability and sample evidence.",
     images: ["/og-image.png"],
   },
 }

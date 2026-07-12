@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -19,6 +20,7 @@ import {
   Star,
   Zap,
   RefreshCw,
+  UserRound,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -164,7 +166,7 @@ const navItems: NavItem[] = [
 
 export function Header() {
   const { isSignedIn, user } = useUser();
-  const { credits, isLoading, refreshCredits } = useCredits();
+  const { credits, refreshCredits } = useCredits();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -180,7 +182,8 @@ export function Header() {
 
   // Close mobile menu when route changes
   useEffect(() => {
-    setIsMobileMenuOpen(false);
+    const closeTimer = window.setTimeout(() => setIsMobileMenuOpen(false), 0);
+    return () => window.clearTimeout(closeTimer);
   }, [pathname]);
 
   // Prevent body scroll when mobile menu is open
@@ -240,6 +243,7 @@ export function Header() {
             <div className="flex shrink-0 items-center">
               <Link
                 href="/"
+                aria-label="Accessibility.build home"
                 className="flex items-center space-x-2 transition-transform hover:scale-105"
               >
                 <Logo className="h-8 w-auto" />
@@ -379,12 +383,19 @@ export function Header() {
                         variant="ghost"
                         size="icon"
                         className="rounded-full"
+                        aria-label="Open account menu"
                       >
-                        <img
-                          src={user?.imageUrl}
-                          alt="Profile"
-                          className="h-8 w-8 rounded-full"
-                        />
+                        {user?.imageUrl ? (
+                          <Image
+                            src={user.imageUrl}
+                            alt=""
+                            width={32}
+                            height={32}
+                            className="h-8 w-8 rounded-full"
+                          />
+                        ) : (
+                          <UserRound className="h-5 w-5" aria-hidden="true" />
+                        )}
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
@@ -393,11 +404,19 @@ export function Header() {
                     >
                       {/* User Profile Section */}
                       <div className="flex items-center gap-3 p-3 mb-2">
-                        <img
-                          src={user?.imageUrl}
-                          alt="Profile"
-                          className="h-12 w-12 rounded-full border-2 border-blue-200 dark:border-blue-800"
-                        />
+                        {user?.imageUrl ? (
+                          <Image
+                            src={user.imageUrl}
+                            alt=""
+                            width={48}
+                            height={48}
+                            className="h-12 w-12 rounded-full border-2 border-blue-200 dark:border-blue-800"
+                          />
+                        ) : (
+                          <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-blue-200 dark:border-blue-800">
+                            <UserRound className="h-5 w-5" aria-hidden="true" />
+                          </div>
+                        )}
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">
                             {user?.firstName} {user?.lastName}
@@ -524,6 +543,7 @@ export function Header() {
                 <div className="flex items-center justify-between p-6 border-b border-border">
                   <Link
                     href="/"
+                    aria-label="Accessibility.build home"
                     className="flex items-center space-x-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -547,11 +567,19 @@ export function Header() {
                 {isSignedIn && (
                   <div className="p-6 border-b border-border bg-slate-50 dark:bg-slate-900/50">
                     <div className="flex items-center gap-3 mb-4">
-                      <img
-                        src={user?.imageUrl}
-                        alt="Profile"
-                        className="h-14 w-14 rounded-full border-2 border-blue-200 dark:border-blue-800"
-                      />
+                      {user?.imageUrl ? (
+                        <Image
+                          src={user.imageUrl}
+                          alt=""
+                          width={56}
+                          height={56}
+                          className="h-14 w-14 rounded-full border-2 border-blue-200 dark:border-blue-800"
+                        />
+                      ) : (
+                        <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-blue-200 dark:border-blue-800">
+                          <UserRound className="h-6 w-6" aria-hidden="true" />
+                        </div>
+                      )}
                       <div className="flex-1">
                         <p className="font-semibold text-lg text-slate-900 dark:text-white">
                           {user?.firstName} {user?.lastName}

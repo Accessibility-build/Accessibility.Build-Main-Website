@@ -119,7 +119,7 @@ export function LawsuitTrackerClient() {
     }
   }
 
-  function SortIndicator({ field }: { field: SortField }) {
+  function renderSortIndicator(field: SortField) {
     if (sortField !== field) {
       return <ChevronDown className="h-3 w-3 opacity-30" />
     }
@@ -667,7 +667,7 @@ export function LawsuitTrackerClient() {
                       }
                     >
                       <span className="flex items-center gap-1">
-                        # <SortIndicator field="rank" />
+                        # {renderSortIndicator("rank")}
                       </span>
                     </th>
                     <th
@@ -683,7 +683,7 @@ export function LawsuitTrackerClient() {
                       }
                     >
                       <span className="flex items-center gap-1">
-                        State <SortIndicator field="state" />
+                        State {renderSortIndicator("state")}
                       </span>
                     </th>
                     <th
@@ -699,7 +699,7 @@ export function LawsuitTrackerClient() {
                       }
                     >
                       <span className="flex items-center justify-end gap-1">
-                        Total Lawsuits <SortIndicator field="count" />
+                        Total Lawsuits {renderSortIndicator("count")}
                       </span>
                     </th>
                     <th
@@ -715,7 +715,7 @@ export function LawsuitTrackerClient() {
                       }
                     >
                       <span className="flex items-center justify-end gap-1">
-                        Per 100K Residents <SortIndicator field="perCapita" />
+                        Per 100K Residents {renderSortIndicator("perCapita")}
                       </span>
                     </th>
                   </tr>

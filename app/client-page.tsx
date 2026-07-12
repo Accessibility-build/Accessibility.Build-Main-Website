@@ -1,800 +1,248 @@
-'use client'
-
+import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import {
   ArrowRight,
-  CheckCircle2,
+  BadgeCheck,
+  BookOpenCheck,
   Code2,
-  FileText,
-  Lightbulb,
-  Palette,
-  Users,
-  Sparkles,
-  ArrowUpRight,
-  Shield,
-  Zap,
-  Target,
-  Globe,
-  Star,
-  TrendingUp,
-  Award,
-  Eye,
-  Settings,
-  BookOpen,
-  Headphones,
-  MousePointer,
-  Brain,
-  CheckSquare,
-  Wrench,
-  Flame,
-  Search,
-  BarChart3,
   ExternalLink,
-  Layers,
-  GitCompareArrows,
-  Compass
+  FileCheck2,
+  Keyboard,
+  ScanSearch,
+  ShieldCheck,
+  Wrench,
 } from "lucide-react"
-import { InteractiveHero } from "@/components/interactive-hero"
-import { useEffect, useRef } from "react"
-import { RelatedContent } from "@/components/seo/related-content"
-import { homepageMetricOrder } from "@/lib/public-metrics"
+import { Button } from "@/components/ui/button"
+import { caseStudies } from "@/lib/authority-content"
+import { company } from "@/lib/company"
+import { serviceStartingPrices } from "@/lib/service-pricing"
 
-// Animation hook for intersection observer
-function useIntersectionObserver() {
-  const elementRef = useRef<HTMLDivElement>(null)
+const portrait = "/images/authors/khushwant-parihar.jpeg"
 
-  useEffect(() => {
-    const element = elementRef.current
-    if (!element) return
+const services = [
+  {
+    icon: ScanSearch,
+    title: "Accessibility audits",
+    description: "Manual and automated evaluation with reproducible evidence, user impact, WCAG mapping, and retest options.",
+    price: serviceStartingPrices.audits,
+    href: "/services/accessibility-audits",
+  },
+  {
+    icon: Wrench,
+    title: "Remediation support",
+    description: "Code-level implementation support for agreed findings, shared components, focus, semantics, forms, and interaction patterns.",
+    price: serviceStartingPrices.remediation,
+    href: "/services/remediation-support",
+  },
+  {
+    icon: BookOpenCheck,
+    title: "Training and enablement",
+    description: "Role-specific workshops and practical guidance for design, engineering, QA, content, and product teams.",
+    price: serviceStartingPrices.training,
+    href: "/services/accessibility-training",
+  },
+]
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up')
-            entry.target.classList.remove('opacity-0', 'translate-y-8')
-          }
-        })
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    )
-
-    // Add initial styles
-    element.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700', 'ease-out')
-
-    observer.observe(element)
-
-    return () => observer.disconnect()
-  }, [])
-
-  return elementRef
-}
+const practiceSignals = [
+  "Founder-owned and GST-registered in India",
+  "Named practitioner responsible for delivery",
+  "Manual, keyboard, and screen-reader testing",
+  "Fixed-scope packages with published starting prices",
+]
 
 export default function HomeClientPage() {
-  const featuresRef = useIntersectionObserver()
-  const statsRef = useIntersectionObserver()
-  const toolsRef = useIntersectionObserver()
-  const questionsRef = useIntersectionObserver()
-  const servicesRef = useIntersectionObserver()
-  const wcag3Ref = useIntersectionObserver()
-  const hellRef = useIntersectionObserver()
-  const ctaRef = useIntersectionObserver()
-  const homepageMetricCards = [
-    { icon: Shield, metric: homepageMetricOrder[0] },
-    { icon: CheckCircle2, metric: homepageMetricOrder[1] },
-    { icon: Globe, metric: homepageMetricOrder[2] },
-    { icon: BookOpen, metric: homepageMetricOrder[3] },
-  ]
-
   return (
-    <div>
-      {/* Hero Section */}
-      <InteractiveHero />
+    <div className="bg-background">
+      <section className="border-b bg-slate-950 text-white">
+        <div className="container-wide grid gap-12 py-16 lg:grid-cols-[1.25fr_0.75fr] lg:items-end lg:py-24">
+          <div>
+            <p className="text-sm font-semibold uppercase text-teal-300">Founder-led accessibility consultancy and platform</p>
+            <h1 className="mt-4 max-w-5xl break-words text-5xl font-semibold leading-tight [overflow-wrap:anywhere] sm:text-6xl lg:text-7xl">
+              Accessibility.build
+            </h1>
+            <p className="mt-6 max-w-3xl text-xl leading-8 text-slate-300">
+              Accessibility audits, remediation, training, and practical WCAG tools led by Khushwant Parihar. Clear scope, named accountability, and evidence your team can act on.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button asChild size="lg" className="w-full sm:w-auto">
+                <Link href="/services">View professional services <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="w-full border-slate-600 bg-transparent text-white hover:bg-slate-900 hover:text-white sm:w-auto">
+                <Link href="/sample-audit-report">Inspect sample report</Link>
+              </Button>
+            </div>
+          </div>
 
-      {/* Statistics Section - New */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-900/30">
-        <div ref={statsRef} className="container-wide">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {homepageMetricCards.map(({ icon: Icon, metric }) => (
-              <div key={metric.id} className="text-center group">
-                <div className="relative mb-4">
-                  <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                  <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
-                    <Icon className="h-8 w-8 text-white" />
-                  </div>
-                </div>
-                <div className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{metric.value}</div>
-                <div className="text-slate-600 dark:text-slate-400">{metric.label}</div>
+          <aside className="border-l border-slate-700 pl-6" aria-label="Founder information">
+            <div className="flex items-center gap-4">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden border border-slate-600">
+                <Image src={portrait} alt="Khushwant Parihar outdoors beside a lake and green hills" fill priority sizes="80px" className="object-cover" />
               </div>
+              <div>
+                <p className="font-semibold">Khushwant Parihar</p>
+                <p className="mt-1 text-sm text-slate-300">Founder and Accessibility Consultant</p>
+                <Link href="/authors/khushwant-parihar" className="mt-2 inline-flex items-center text-sm font-semibold text-teal-300">
+                  View professional profile <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+            <p className="mt-6 text-sm leading-6 text-slate-300">
+              More than four years of professional accessibility and software testing experience across audits, screen-reader evaluation, accessible development, and remediation workflows.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section className="border-b" aria-label="Practice credentials">
+        <div className="container-wide grid sm:grid-cols-2 lg:grid-cols-4">
+          {practiceSignals.map((signal) => (
+            <div key={signal} className="flex gap-3 border-b py-5 sm:border-r lg:border-b-0 lg:last:border-r-0">
+              <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+              <p className="text-sm leading-6">{signal}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="container-wide py-16 lg:py-24" aria-labelledby="services-heading">
+        <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase text-primary">Professional services</p>
+            <h2 id="services-heading" className="mt-3 text-4xl font-semibold">Defined work, not vague consulting time</h2>
+            <p className="mt-5 leading-7 text-muted-foreground">
+              Each package publishes its included sample, deliverables, delivery window, assumptions, add-ons, and starting price. Hourly work is used only when a clearly bounded support model is more appropriate.
+            </p>
+            <Button asChild variant="outline" className="mt-7">
+              <Link href="/services">Compare every package</Link>
+            </Button>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {services.map(({ icon: Icon, title, description, price, href }) => (
+              <article key={title} className="flex flex-col border p-6">
+                <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+                <h3 className="mt-5 text-xl font-semibold">{title}</h3>
+                <p className="mt-3 flex-1 text-sm leading-6 text-muted-foreground">{description}</p>
+                <p className="mt-6 border-t pt-4 text-sm text-muted-foreground">Packages from</p>
+                <p className="mt-1 text-2xl font-semibold">${price.toLocaleString("en-US")}</p>
+                <Link href={href} className="mt-5 inline-flex items-center font-semibold text-primary">
+                  View scope <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Enhanced Features Section */}
-      <section className="py-24 bg-white dark:bg-slate-900">
-        <div ref={featuresRef} className="container-wide">
-          <div className="text-center max-w-4xl mx-auto mb-20">
-            <div className="inline-flex items-center justify-center p-2 bg-blue-100 dark:bg-blue-900/50 rounded-full mb-6">
-              <Shield className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-              Everything You Need for{" "}
-              <span className="text-blue-600 dark:text-blue-400">Web Accessibility</span>
-            </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-              Comprehensive tools, resources, and expert services to help you create inclusive digital experiences that work for everyone.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Professional Tools Card */}
-            <Card className="group relative overflow-hidden border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-xl">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-700"></div>
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                    <Palette className="h-8 w-8 text-white" />
-                  </div>
-                  <Badge variant="outline" className="border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300">
-                    Tool Suite
-                  </Badge>
-                </div>
-                <CardTitle className="text-xl text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  Professional Tools
-                </CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-400">
-                  Advanced accessibility testing and analysis tools powered by AI
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">AI Accessibility Audit Helper</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">AI-powered Alt Text Generator</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Color Contrast Checker with WCAG validation</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Heading Structure Analyzer</span>
-                  </div>
-                </div>
-                <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
-                  <Button asChild variant="outline" className="w-full group/btn border-blue-200 dark:border-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900/50">
-                    <Link href="/tools">
-                      Explore All Tools
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Expert Guides Card */}
-            <Card className="group relative overflow-hidden border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-xl">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-600 to-slate-700"></div>
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 bg-gradient-to-r from-slate-600 to-slate-700 rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                    <BookOpen className="h-8 w-8 text-white" />
-                  </div>
-                  <Badge variant="outline" className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300">
-                    Expert Content
-                  </Badge>
-                </div>
-                <CardTitle className="text-xl text-slate-900 dark:text-white group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors">
-                  Expert Guides & Resources
-                </CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-400">
-                  In-depth articles, tutorials, and best practices from accessibility experts
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-slate-600 dark:text-slate-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Complete WCAG 2.2 Implementation Guide</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-slate-600 dark:text-slate-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Accessible Form Design Patterns</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-slate-600 dark:text-slate-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Keyboard Navigation Best Practices</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-slate-600 dark:text-slate-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Screen Reader Testing Guides</span>
-                  </div>
-                </div>
-                <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
-                  <Button asChild variant="outline" className="w-full group/btn border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800">
-                    <Link href="/blog">
-                      Read Expert Articles
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Professional Services Card */}
-            <Card className="group relative overflow-hidden border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-xl">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-slate-600"></div>
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 bg-gradient-to-r from-blue-600 to-slate-600 rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                    <Users className="h-8 w-8 text-white" />
-                  </div>
-                  <Badge variant="outline" className="border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300">
-                    Enterprise
-                  </Badge>
-                </div>
-                <CardTitle className="text-xl text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  Professional Services
-                </CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-400">
-                  Expert consulting, training, and remediation services for your team
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Comprehensive Accessibility Audits</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Team Training & Workshops</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Code Remediation Support</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-300">Ongoing Compliance Monitoring</span>
-                  </div>
-                </div>
-                <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
-                  <Button asChild variant="outline" className="w-full group/btn border-blue-200 dark:border-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900/50">
-                    <Link href="/services">
-                      View All Services
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* The 4 Types of Accessibility Section */}
-      <section className="py-24 bg-slate-50 dark:bg-slate-900/50">
-        <div ref={toolsRef} className="container-wide">
-          <div className="text-center max-w-4xl mx-auto mb-20">
-            <div className="inline-flex items-center justify-center p-2 bg-slate-100 dark:bg-slate-800 rounded-full mb-6">
-              <Eye className="h-6 w-6 text-slate-600 dark:text-slate-400" />
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-              The 4 Types of{" "}
-              <span className="text-slate-700 dark:text-slate-300">Accessibility</span>
-            </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-              Understanding the full spectrum of user needs helps create truly inclusive digital experiences.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Visual Accessibility */}
-            <Card className="group relative overflow-hidden border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-500 hover:shadow-xl bg-white dark:bg-slate-800">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-600"></div>
-              <CardHeader className="text-center pb-6">
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                  <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Eye className="h-8 w-8 text-white" />
-                  </div>
-                </div>
-                <CardTitle className="text-xl text-slate-900 dark:text-white mb-3">Visual</CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-400">
-                  For users with blindness, low vision, or color blindness
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  <span>Screen reader support</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  <span>High contrast options</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  <span>Alternative text</span>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Auditory Accessibility */}
-            <Card className="group relative overflow-hidden border-slate-200 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-500 hover:shadow-xl bg-white dark:bg-slate-800">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-500 to-slate-600"></div>
-              <CardHeader className="text-center pb-6">
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-slate-100 dark:bg-slate-700 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                  <div className="relative bg-gradient-to-r from-slate-600 to-slate-700 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Headphones className="h-8 w-8 text-white" />
-                  </div>
-                </div>
-                <CardTitle className="text-xl text-slate-900 dark:text-white mb-3">Auditory</CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-400">
-                  For users who are deaf or hard of hearing
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                  <span>Video captions</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                  <span>Audio transcripts</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                  <span>Visual alerts</span>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Motor/Physical Accessibility */}
-            <Card className="group relative overflow-hidden border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-500 hover:shadow-xl bg-white dark:bg-slate-800">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-slate-500"></div>
-              <CardHeader className="text-center pb-6">
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/50 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                  <div className="relative bg-gradient-to-r from-blue-600 to-slate-600 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <MousePointer className="h-8 w-8 text-white" />
-                  </div>
-                </div>
-                <CardTitle className="text-xl text-slate-900 dark:text-white mb-3">Motor/Physical</CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-400">
-                  For users with mobility or dexterity limitations
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  <span>Keyboard navigation</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  <span>Large click targets</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  <span>Voice controls</span>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Cognitive Accessibility */}
-            <Card className="group relative overflow-hidden border-slate-200 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-500 hover:shadow-xl bg-white dark:bg-slate-800">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-500 to-slate-600"></div>
-              <CardHeader className="text-center pb-6">
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-slate-100 dark:bg-slate-700 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                  <div className="relative bg-gradient-to-r from-slate-600 to-slate-700 p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Brain className="h-8 w-8 text-white" />
-                  </div>
-                </div>
-                <CardTitle className="text-xl text-slate-900 dark:text-white mb-3">Cognitive</CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-400">
-                  For users with learning or attention disabilities
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                  <span>Clear language</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                  <span>Consistent layouts</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-slate-700 dark:text-slate-300">
-                  <CheckSquare className="h-4 w-4 text-slate-600 dark:text-slate-400" />
-                  <span>Error prevention</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* CTA for Types */}
-          <div className="text-center mt-16">
-            <p className="text-slate-600 dark:text-slate-400 mb-6">
-              Learn more about implementing these accessibility types in your projects
-            </p>
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-              <Link href="/faq">
-                View Detailed FAQ
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Popular Questions Section */}
-      <section className="py-24 bg-white dark:bg-slate-900">
-        <div ref={questionsRef} className="container-wide">
-          <div className="text-center max-w-4xl mx-auto mb-20">
-            <div className="inline-flex items-center justify-center p-2 bg-blue-100 dark:bg-blue-900/50 rounded-full mb-6">
-              <FileText className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-              Most Asked{" "}
-              <span className="text-blue-600 dark:text-blue-400">Accessibility Questions</span>
-            </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-              Get instant answers to the most common accessibility questions from our community
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* WCAG Principles */}
-            <Card className="group hover:shadow-xl transition-all duration-500 border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50/50 to-white dark:from-blue-950/20 dark:to-slate-800">
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="p-3 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl shadow-lg">
-                    <Shield className="h-6 w-6 text-white" />
-                  </div>
-                  <Badge variant="outline" className="border-blue-200 dark:border-blue-700 text-blue-700 dark:text-blue-300">
-                    WCAG
-                  </Badge>
-                </div>
-                <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  What are the 4 principles of accessibility?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-                  <strong className="text-blue-600 dark:text-blue-400">POUR:</strong> Perceivable, Operable, Understandable, and Robust - the foundational principles that guide all accessibility implementation.
-                </p>
-                <Button asChild variant="outline" size="sm" className="group/btn border-blue-200 dark:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/50">
-                  <Link href="/checklists/wcag-2-2">
-                    Learn WCAG 2.2
-                    <ArrowRight className="ml-2 h-3 w-3 transition-transform group-hover/btn:translate-x-1" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* ADA vs WCAG */}
-            <Card className="group hover:shadow-xl transition-all duration-500 border-slate-200 dark:border-slate-700 bg-gradient-to-br from-slate-50/50 to-white dark:from-slate-800/50 dark:to-slate-800">
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="p-3 bg-gradient-to-r from-slate-600 to-slate-700 rounded-xl shadow-lg">
-                    <FileText className="h-6 w-6 text-white" />
-                  </div>
-                  <Badge variant="outline" className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300">
-                    Legal
-                  </Badge>
-                </div>
-                <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors">
-                  What's the difference between ADA and WCAG?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-                  <strong>ADA</strong> is U.S. federal law requiring accessibility, while <strong>WCAG</strong> provides the technical standards. WCAG 2.1 Level AA is the de facto standard for ADA compliance.
-                </p>
-                <Button asChild variant="outline" size="sm" className="group/btn border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700">
-                  <Link href="/faq">
-                    Understand Compliance
-                    <ArrowRight className="ml-2 h-3 w-3 transition-transform group-hover/btn:translate-x-1" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Accessibility Tools */}
-            <Card className="group hover:shadow-xl transition-all duration-500 border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50/50 to-white dark:from-blue-950/20 dark:to-slate-800">
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="p-3 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl shadow-lg">
-                    <Settings className="h-6 w-6 text-white" />
-                  </div>
-                  <Badge variant="outline" className="border-blue-200 dark:border-blue-700 text-blue-700 dark:text-blue-300">
-                    Popular
-                  </Badge>
-                </div>
-                <CardTitle className="text-lg text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  What are accessibility tools?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-                  Software and utilities that help developers create inclusive digital experiences by testing compliance, generating accessible code, and simulating assistive technologies.
-                </p>
-                <Button asChild variant="outline" size="sm" className="group/btn border-blue-200 dark:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/50">
-                  <Link href="/tools">
-                    Explore Our Tools
-                    <ArrowRight className="ml-2 h-3 w-3 transition-transform group-hover/btn:translate-x-1" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* FAQ CTA */}
-          <div className="text-center mt-16">
-            <p className="text-slate-600 dark:text-slate-400 mb-8 text-lg">
-              Have more questions about accessibility tools and best practices?
-            </p>
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white group">
-              <Link href="/faq">
-                View Complete FAQ
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* WCAG 3.0 Preview Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-teal-50/60 via-white to-blue-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-teal-950/20">
-        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-teal-200/20 dark:bg-teal-600/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-blue-200/20 dark:bg-blue-600/5 rounded-full blur-3xl"></div>
-
-        <div ref={wcag3Ref} className="relative container-wide">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-14">
-              <Badge className="bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 border-teal-200 dark:border-teal-700 mb-6 px-4 py-2 text-sm">
-                Working Draft — 2026
-              </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-                The Future of Accessibility:{" "}
-                <span className="bg-gradient-to-r from-teal-600 to-blue-600 dark:from-teal-400 dark:to-blue-400 bg-clip-text text-transparent">
-                  WCAG 3.0
-                </span>
-              </h2>
-              <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
-                The next generation of accessibility standards is being developed. With 12 guideline categories, outcomes-based
-                testing, and scope beyond web content — get ahead of the curve.
+      <section className="border-y bg-muted/30" aria-labelledby="paths-heading">
+        <div className="container-wide py-16 lg:py-20">
+          <h2 id="paths-heading" className="text-4xl font-semibold">Choose the right path</h2>
+          <div className="mt-10 grid gap-12 lg:grid-cols-2">
+            <div className="border-t pt-6">
+              <FileCheck2 className="h-7 w-7 text-primary" aria-hidden="true" />
+              <h3 className="mt-4 text-2xl font-semibold">For organizations</h3>
+              <p className="mt-3 leading-7 text-muted-foreground">
+                Commission a scoped audit, remediation sprint, design review, training program, disabled-user study, or conformance documentation engagement.
               </p>
+              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
+                <li>Named practitioner and written statement of work</li>
+                <li>Reproducible findings and human review</li>
+                <li>Procurement, privacy, and subprocessor information</li>
+              </ul>
+              <Button asChild className="mt-7"><Link href="/contact">Discuss organizational work</Link></Button>
             </div>
-
-            {/* Key Changes Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white dark:bg-slate-800/60 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-                <div className="p-3 bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl shadow-md w-fit mb-4">
-                  <Layers className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">12 Guideline Categories</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  The 4 POUR principles evolve into 12 functional categories covering new areas like cognitive accessibility and algorithmic fairness.
-                </p>
-              </div>
-
-              <div className="bg-white dark:bg-slate-800/60 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-                <div className="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl shadow-md w-fit mb-4">
-                  <BarChart3 className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Outcomes-Based Testing</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Moving beyond binary pass/fail to graduated scoring that measures real user impact rather than checkbox compliance.
-                </p>
-              </div>
-
-              <div className="bg-white dark:bg-slate-800/60 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-                <div className="p-3 bg-gradient-to-r from-purple-500 to-violet-600 rounded-xl shadow-md w-fit mb-4">
-                  <Globe className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Beyond Web Content</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Expanded scope covering native apps, authoring tools, user agents, IoT devices, and virtual/augmented reality.
-                </p>
-              </div>
-            </div>
-
-            {/* CTA Links */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button asChild size="lg" className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white shadow-lg">
-                <Link href="/wcag-3">
-                  Explore the Full WCAG 3.0 Guide
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800">
-                <Link href="/wcag-3/comparison">
-                  <GitCompareArrows className="mr-2 h-5 w-5" />
-                  WCAG 3.0 vs 2.2 Comparison
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Essential Resources Section */}
-      <section className="py-20 bg-slate-50 dark:bg-slate-900/30">
-        <div className="container-wide">
-          <RelatedContent
-            content="accessibility tools wcag compliance color contrast alt text mobile accessibility heading structure testing audit checklist"
-            maxItems={6}
-            showDescriptions={true}
-          />
-        </div>
-      </section>
-
-      {/* A11y Hell Experience Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-100 via-red-50/50 to-orange-50/30 dark:bg-slate-950 dark:from-slate-950 dark:via-red-950/20 dark:to-slate-950">
-        {/* Background Effects */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-200/30 dark:bg-red-600/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-200/30 dark:bg-orange-600/5 rounded-full blur-3xl"></div>
-
-        <div ref={hellRef} className="relative container-wide">
-          <div className="max-w-6xl mx-auto">
-            {/* Header */}
-            <div className="text-center mb-16">
-              <Badge className="bg-red-100 dark:bg-red-600/20 text-red-700 dark:text-red-400 border-red-200 dark:border-red-500/30 mb-6 px-4 py-2 text-sm">
-                <Flame className="h-4 w-4 mr-2" />
-                Interactive Experience
-              </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-                Experience Accessibility{" "}
-                <span className="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 bg-clip-text text-transparent">Hell</span>
-              </h2>
-              <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                Explore real accessibility barriers with hands-on failure demos so your team can feel the impact before users do.
+            <div className="border-t pt-6">
+              <Code2 className="h-7 w-7 text-primary" aria-hidden="true" />
+              <h3 className="mt-4 text-2xl font-semibold">For practitioners and teams</h3>
+              <p className="mt-3 leading-7 text-muted-foreground">
+                Use free testing tools, WCAG references, implementation guides, checklists, and research synthesis while keeping human review in the loop.
               </p>
+              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
+                <li>Contrast, heading, scope, and audit helpers</li>
+                <li>WCAG 2.2 criterion-level implementation guidance</li>
+                <li>Named authorship and editorial standards</li>
+              </ul>
+              <Button asChild variant="outline" className="mt-7"><Link href="/tools">Explore free tools</Link></Button>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Stats Row */}
-            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-16">
-              {[
-                { value: "Real-world", label: "Barrier Cases" },
-                { value: "Hands-on", label: "Guided Demos" },
-                { value: "Mapped", label: "Severity Levels" },
-              ].map((stat, i) => (
-                <div key={i} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-500 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-slate-500">{stat.label}</div>
-                </div>
-              ))}
+      <section className="container-wide py-16 lg:py-24" aria-labelledby="work-heading">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase text-primary">Selected work</p>
+            <h2 id="work-heading" className="mt-3 text-4xl font-semibold">How accessibility work is delivered</h2>
+          </div>
+          <Link href="/case-studies" className="inline-flex items-center font-semibold text-primary">All selected work <ArrowRight className="ml-2 h-4 w-4" /></Link>
+        </div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {caseStudies.map((study) => (
+            <article key={study.slug} className="border p-6">
+              <p className="text-xs font-semibold uppercase text-primary">{study.category}</p>
+              <h3 className="mt-3 text-2xl font-semibold">{study.title}</h3>
+              <p className="mt-4 text-sm leading-6 text-muted-foreground">{study.summary}</p>
+              <p className="mt-6 border-t pt-4 text-xs leading-5 text-muted-foreground">Client identity withheld. Founder project record; no endorsement implied.</p>
+              <Link href={`/case-studies/${study.slug}`} className="mt-5 inline-flex items-center font-semibold text-primary">
+                Read record <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y bg-slate-950 text-white">
+        <div className="container-wide grid gap-12 py-16 lg:grid-cols-[0.75fr_1.25fr] lg:items-center lg:py-20">
+          <div className="flex items-center gap-5">
+            <div className="relative h-28 w-28 shrink-0 overflow-hidden border border-slate-700">
+              <Image src={portrait} alt="Khushwant Parihar outdoors beside a lake and green hills" fill sizes="112px" className="object-cover" />
             </div>
-
-            {/* Feature Mini-Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-              <div className="p-6 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-red-300 dark:hover:border-red-500/30 transition-all duration-300 group shadow-sm hover:shadow-lg">
-                <div className="p-3 bg-gradient-to-r from-red-600 to-red-700 rounded-xl w-fit shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <Search className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Issue Explorer</h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Browse every accessibility failure with WCAG references and test protocols.</p>
-              </div>
-
-              <div className="p-6 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-orange-300 dark:hover:border-orange-500/30 transition-all duration-300 group shadow-sm hover:shadow-lg">
-                <div className="p-3 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl w-fit shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <Target className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Practice Lab</h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Scenario drills with personas and revealable official findings.</p>
-              </div>
-
-              <div className="p-6 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-500/30 transition-all duration-300 group shadow-sm hover:shadow-lg">
-                <div className="p-3 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl w-fit shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <BarChart3 className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Impact Center</h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Review business and user impact signals across all severity levels.</p>
-              </div>
+            <div>
+              <p className="text-sm text-teal-300">Owner and accountable practitioner</p>
+              <h2 className="mt-2 text-2xl font-semibold">Khushwant Parihar</h2>
             </div>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white text-lg px-8 py-6 rounded-xl shadow-2xl shadow-red-600/20 dark:shadow-red-900/30 group">
-                <a href="https://hell.accessibility.build" target="_blank" rel="noopener noreferrer">
-                  <Flame className="mr-2 h-5 w-5" />
-                  Enter A11y Hell
-                  <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
+          </div>
+          <div>
+            <p className="text-xl leading-8 text-slate-300">
+              Accessibility.build is intentionally founder-led. Scoping, delivery quality, client communication, and published claims remain attached to a named professional rather than an anonymous “expert team”.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button asChild variant="outline" className="border-slate-600 bg-transparent text-white hover:bg-slate-900 hover:text-white">
+                <Link href="/authors/khushwant-parihar">Professional profile</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white text-lg px-8 py-6 rounded-xl group">
-                <Link href="/hell">
-                  Learn More
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Link>
+              <Button asChild variant="ghost" className="text-white hover:bg-slate-900 hover:text-white">
+                <a href={company.founderWebsite} target="_blank" rel="me noopener noreferrer">External portfolio <ExternalLink className="ml-2 h-4 w-4" /></a>
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Enhanced CTA Section */}
-      <section className="py-32 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 dark:from-slate-900 dark:via-blue-950/20 dark:to-slate-900">
-        <div ref={ctaRef} className="container-wide">
-          <div className="max-w-5xl mx-auto text-center">
-            {/* Hero messaging */}
-            <div className="inline-flex items-center justify-center p-3 bg-blue-100 dark:bg-blue-900/50 rounded-full mb-8">
-              <Shield className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-            </div>
+      <section className="container-wide py-16 lg:py-20" aria-labelledby="evidence-heading">
+        <h2 id="evidence-heading" className="text-4xl font-semibold">Inspect the evidence before engaging</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: FileCheck2, title: "Sample audit report", text: "Scope, evidence, severity, limitations, and remediation examples.", href: "/sample-audit-report" },
+            { icon: Keyboard, title: "Audit methodology", text: "Manual, automated, keyboard, screen-reader, and retest process.", href: "/methodology" },
+            { icon: ShieldCheck, title: "Trust and procurement", text: "Ownership, GST status, providers, policies, and buyer documents.", href: "/procurement" },
+            { icon: BookOpenCheck, title: "Editorial standards", text: "Named authorship, sourcing, AI disclosure, updates, and corrections.", href: "/editorial-policy" },
+          ].map(({ icon: Icon, title, text, href }) => (
+            <Link key={href} href={href} className="border-t pt-5 hover:text-primary">
+              <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+              <h3 className="mt-4 text-lg font-semibold">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">{text}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              Ready to Make Your Website{" "}
-              <span className="text-blue-600 dark:text-blue-400">Accessible?</span>
-            </h2>
-
-            <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Build inclusive digital experiences with a practical accessibility workflow your team can apply release after release.
-            </p>
-
-            {/* Value propositions */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl mb-4 shadow-lg">
-                  <Wrench className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Free Tools Available</h3>
-                <p className="text-slate-600 dark:text-slate-400">Start with our free accessibility tools - no signup required</p>
-              </div>
-
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-slate-600 to-slate-700 rounded-xl mb-4 shadow-lg">
-                  <Users className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Expert Support</h3>
-                <p className="text-slate-600 dark:text-slate-400">Get support with accessibility audits, remediation guidance, and delivery planning</p>
-              </div>
-
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-600 to-green-700 rounded-xl mb-4 shadow-lg">
-                  <CheckCircle2 className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Proven Results</h3>
-                <p className="text-slate-600 dark:text-slate-400">Use evidence-based checklists and implementation patterns aligned with WCAG requirements</p>
-              </div>
-            </div>
-
-            {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button asChild size="lg" className="group bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4">
-                <Link href="/tools">
-                  Try Our Tools Free
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border-2">
-                <Link href="/contact">Get Expert Help</Link>
-              </Button>
-            </div>
-
-            {/* Trust indicators */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-3xl mx-auto">
-              {homepageMetricCards.map(({ metric }) => (
-                <div key={`${metric.id}-cta`}>
-                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">{metric.value}</div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">{metric.label}</div>
-                </div>
-              ))}
-            </div>
+      <section className="border-t bg-muted/30">
+        <div className="container-wide flex flex-col gap-6 py-14 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 className="text-3xl font-semibold">Start with a defined accessibility problem</h2>
+            <p className="mt-2 max-w-2xl text-muted-foreground">Share the product, workflows, deadline, and evidence you need. You will receive a scoped recommendation, not an open-ended hourly estimate.</p>
           </div>
+          <Button asChild size="lg"><Link href="/contact">Contact Khushwant <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
         </div>
       </section>
     </div>

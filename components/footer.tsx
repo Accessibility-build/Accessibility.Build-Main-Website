@@ -41,8 +41,12 @@ const researchLinks = [
 
 const companyLinks = [
   { href: "/about", label: "About Us" },
+  { href: "/authors/khushwant-parihar", label: "Founder Profile" },
+  { href: "/case-studies", label: "Case Studies" },
+  { href: "/sample-audit-report", label: "Sample Audit Report" },
   { href: "/trust", label: "Trust Centre" },
   { href: "/methodology", label: "Audit Methodology" },
+  { href: "/procurement", label: "Procurement" },
   { href: "/contact", label: "Contact Support" },
   { href: "/faq", label: "FAQ & Help" },
   { href: "/sitemap-page", label: "Sitemap" },
@@ -54,6 +58,9 @@ const legalLinks = [
   { href: "/cookies", label: "Cookie Policy" },
   { href: "/terms", label: "Terms of Service" },
   { href: "/refund", label: "Refund Policy" },
+  { href: "/editorial-policy", label: "Editorial Policy" },
+  { href: "/corrections-policy", label: "Corrections Policy" },
+  { href: "/subprocessors", label: "Subprocessors" },
 ];
 
 const socialLinks = [
@@ -139,7 +146,8 @@ export function Footer() {
               </a>
               <p>{company.responseTime}</p>
               <p>Operated by {company.legalOperator}</p>
-              <p>Bengaluru, Karnataka, India</p>
+              <p>{company.location.city}, {company.location.region}, {company.location.country}</p>
+              <p>GSTIN {company.gstin}</p>
             </div>
           </div>
 
@@ -258,7 +266,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-4 py-6 text-xs text-slate-600 md:flex-row md:items-center md:justify-between dark:text-slate-400">
           <p className="max-w-xl leading-5">
-            &copy; {currentYear} Accessibility.build. Owned and operated by {company.legalOperator}. All rights reserved.
+            &copy; {currentYear} Accessibility.build. {company.businessType}, owned and operated by {company.legalOperator}. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <p className="inline-flex items-center gap-1 text-slate-700 dark:text-slate-300">

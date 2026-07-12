@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { createMetadata } from "@/lib/metadata"
-import { businessLocation, company, legalLastUpdated } from "@/lib/company"
+import { company, legalLastUpdated, registeredBusinessAddress } from "@/lib/company"
 
 export const metadata = createMetadata({
   title: "Terms of Service",
@@ -23,7 +23,7 @@ export default function TermsPage() {
         <div className="prose prose-lg mt-10 max-w-none dark:prose-invert">
           <h2>1. Business identity</h2>
           <p>
-            Accessibility.build is a founder-owned accessibility practice and technology platform owned and operated by <strong>{company.legalOperator}</strong>, a GST-registered independent professional based in {businessLocation}. In these terms, “Accessibility.build”, “we”, “us”, and “our” refer to that business operation.
+            Accessibility.build is a founder-owned accessibility practice and technology platform operated by <strong>{company.legalName}</strong> as a sole proprietorship. The business holds regular GST registration {company.gstin}. In these terms, “Accessibility.build”, “we”, “us”, and “our” refer to that business operation.
           </p>
 
           <h2>2. Acceptance and eligibility</h2>
@@ -101,7 +101,7 @@ export default function TermsPage() {
 
           <h2>13. Governing law</h2>
           <p>
-            These terms are governed by the laws of India. Subject to mandatory consumer rights and any agreed dispute procedure, courts of competent jurisdiction in Bengaluru, Karnataka will have jurisdiction. Before filing a claim, both parties should attempt in good faith to resolve the matter through written notice.
+            These terms are governed by the laws of India. Subject to mandatory consumer rights and any agreed dispute procedure, courts having jurisdiction over the registered office in Rajasthan will have jurisdiction. Before filing a claim, both parties should attempt in good faith to resolve the matter through written notice.
           </p>
 
           <h2>14. Changes to these terms</h2>
@@ -112,14 +112,11 @@ export default function TermsPage() {
           <h2>15. Contact</h2>
           <address className="not-italic">
             <strong>{company.brandName}</strong><br />
-            Owned and operated by {company.legalOperator}<br />
-            {businessLocation}<br />
-            GST-registered in India<br />
+            Legal name: {company.legalName}<br />
+            {registeredBusinessAddress}<br />
+            GSTIN: {company.gstin}<br />
             Email: <a href={`mailto:${company.email}`}>{company.email}</a>
           </address>
-          <p className="text-sm">
-            The applicable GSTIN and additional tax particulars are provided on valid tax invoices and procurement documents.
-          </p>
         </div>
       </article>
     </div>

@@ -18,7 +18,7 @@ const author = {
         _type: 'block',
         children: [{
             _type: 'span',
-            text: 'Khushwant Parihar is a passionate accessibility advocate and developer with over 5 years of experience in creating inclusive digital experiences. He specializes in WCAG compliance, accessibility auditing, and building tools that help organizations make their websites more accessible to everyone.',
+            text: 'Khushwant Parihar is the founder of Accessibility.build and an accessibility specialist, consultant, and developer with more than four years of professional accessibility and software testing experience. His work covers WCAG auditing, keyboard and screen-reader testing, accessible frontend implementation, remediation workflows, and team enablement.',
         }, ],
     }, ],
 }

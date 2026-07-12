@@ -156,7 +156,7 @@ export function AccessibilityLawsClient() {
     }
   }
 
-  function LawSortIndicator({ field }: { field: LawSortField }) {
+  function renderLawSortIndicator(field: LawSortField) {
     if (lawSortField !== field) {
       return <ChevronDown className="h-3 w-3 opacity-30" />
     }
@@ -214,7 +214,7 @@ export function AccessibilityLawsClient() {
     }
   }
 
-  function StateSortIndicator({ field }: { field: StateSortField }) {
+  function renderStateSortIndicator(field: StateSortField) {
     if (stateSortField !== field) {
       return <ChevronDown className="h-3 w-3 opacity-30" />
     }
@@ -432,7 +432,7 @@ export function AccessibilityLawsClient() {
                               }
                             >
                               <span className="flex items-center gap-1">
-                                Law Name <LawSortIndicator field="lawName" />
+                                Law Name {renderLawSortIndicator("lawName")}
                               </span>
                             </th>
                             <th
@@ -448,7 +448,7 @@ export function AccessibilityLawsClient() {
                               }
                             >
                               <span className="flex items-center gap-1">
-                                WCAG Version <LawSortIndicator field="wcagVersion" />
+                                WCAG Version {renderLawSortIndicator("wcagVersion")}
                               </span>
                             </th>
                             <th
@@ -470,7 +470,7 @@ export function AccessibilityLawsClient() {
                               }
                             >
                               <span className="flex items-center justify-end gap-1">
-                                Max Penalty <LawSortIndicator field="penalties" />
+                                Max Penalty {renderLawSortIndicator("penalties")}
                               </span>
                             </th>
                             <th
@@ -492,7 +492,7 @@ export function AccessibilityLawsClient() {
                               }
                             >
                               <span className="flex items-center gap-1">
-                                Status <LawSortIndicator field="status" />
+                                Status {renderLawSortIndicator("status")}
                               </span>
                             </th>
                           </tr>
@@ -845,7 +845,7 @@ export function AccessibilityLawsClient() {
                       }
                     >
                       <span className="flex items-center gap-1">
-                        Rank <StateSortIndicator field="rank" />
+                        Rank {renderStateSortIndicator("rank")}
                       </span>
                     </th>
                     <th
@@ -861,7 +861,7 @@ export function AccessibilityLawsClient() {
                       }
                     >
                       <span className="flex items-center gap-1">
-                        State <StateSortIndicator field="state" />
+                        State {renderStateSortIndicator("state")}
                       </span>
                     </th>
                     <th
@@ -877,7 +877,7 @@ export function AccessibilityLawsClient() {
                       }
                     >
                       <span className="flex items-center justify-end gap-1">
-                        2025 Filings <StateSortIndicator field="filings2025" />
+                        2025 Filings {renderStateSortIndicator("filings2025")}
                       </span>
                     </th>
                     <th
@@ -893,7 +893,7 @@ export function AccessibilityLawsClient() {
                       }
                     >
                       <span className="flex items-center gap-1">
-                        Primary Law <StateSortIndicator field="primaryLaw" />
+                        Primary Law {renderStateSortIndicator("primaryLaw")}
                       </span>
                     </th>
                     <th

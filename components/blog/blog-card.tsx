@@ -28,7 +28,7 @@ interface BlogCardProps {
 }
 
 const DEFAULT_BLOG_IMAGE = "/images/blog/wcag-2-2-guide.png"
-const DEFAULT_AUTHOR_IMAGE = "/images/authors/khushwant-partihar.png"
+const DEFAULT_AUTHOR_IMAGE = "/images/authors/khushwant-parihar.jpeg"
 
 export function BlogCard({ post, variant = "grid" }: BlogCardProps) {
   if (variant === "featured") {

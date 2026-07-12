@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import Link from "next/link"
-import { businessLocation, company, legalLastUpdated } from "@/lib/company"
+import { company, legalLastUpdated, registeredBusinessAddress } from "@/lib/company"
 
 export const metadata: Metadata = {
   title: "Cancellation & Refund Policy",
@@ -115,7 +115,7 @@ export default function RefundPage() {
             <h2 className="text-2xl font-bold mb-4">1. Overview</h2>
             
             <p>
-              This Cancellation and Refund Policy governs purchases and professional services provided by Accessibility.build ("we", "us", or "our"), owned and operated by {company.legalOperator} in {businessLocation}. Applicable mandatory rights under Indian law are not excluded by this policy. Relevant legislation may include:
+              This Cancellation and Refund Policy governs purchases and professional services provided by Accessibility.build ("we", "us", or "our"), operated by {company.legalName} as a sole proprietorship. Applicable mandatory rights under Indian law are not excluded by this policy. Relevant legislation may include:
             </p>
             <ul>
               <li>The Consumer Protection Act, 2019</li>
@@ -475,9 +475,9 @@ export default function RefundPage() {
                     <h4 className="font-semibold mb-3">Business Information</h4>
                     <p className="text-sm text-muted-foreground">
                       {company.brandName}<br />
-                      Owned and operated by {company.legalOperator}<br />
-                      {businessLocation}<br />
-                      GST-registered in India; GSTIN is provided on valid tax documents
+                      Legal name: {company.legalName}<br />
+                      {registeredBusinessAddress}<br />
+                      GSTIN: {company.gstin}
                     </p>
                   </div>
                 </div>

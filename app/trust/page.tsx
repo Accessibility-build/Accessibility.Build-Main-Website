@@ -13,7 +13,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { createMetadata } from "@/lib/metadata"
-import { businessLocation, company } from "@/lib/company"
+import { businessLocation, company, registeredBusinessAddress } from "@/lib/company"
 
 export const metadata = createMetadata({
   title: "Trust Centre: Ownership, Privacy and Service Accountability",
@@ -38,7 +38,7 @@ const trustAreas = [
   {
     icon: BadgeIndianRupee,
     title: "GST-registered",
-    text: "Applicable GSTIN and tax particulars are provided on valid invoices and procurement documents rather than copied into unrelated marketing claims.",
+    text: `Regular GST registration ${company.gstin}, effective ${company.gstRegistrationDate}. Applicable tax details are included on valid invoices.`,
   },
   {
     icon: Accessibility,
@@ -95,12 +95,12 @@ export default function TrustPage() {
           </div>
           <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
             <div className="border-t pt-4">
-              <dt className="text-sm text-muted-foreground">Business name</dt>
+              <dt className="text-sm text-muted-foreground">Brand</dt>
               <dd className="mt-1 font-semibold">{company.brandName}</dd>
             </div>
             <div className="border-t pt-4">
-              <dt className="text-sm text-muted-foreground">Owner and operator</dt>
-              <dd className="mt-1 font-semibold">{company.legalOperator}</dd>
+              <dt className="text-sm text-muted-foreground">Registered legal name</dt>
+              <dd className="mt-1 font-semibold">{company.legalName}</dd>
             </div>
             <div className="border-t pt-4">
               <dt className="text-sm text-muted-foreground">Business type</dt>
@@ -116,12 +116,21 @@ export default function TrustPage() {
             </div>
             <div className="border-t pt-4">
               <dt className="text-sm text-muted-foreground">Tax status</dt>
-              <dd className="mt-1 font-semibold">GST-registered in India</dd>
+              <dd className="mt-1 font-semibold">{company.gstRegistrationType} GST registration</dd>
+            </div>
+            <div className="border-t pt-4">
+              <dt className="text-sm text-muted-foreground">GSTIN</dt>
+              <dd className="mt-1 font-semibold">{company.gstin}</dd>
+            </div>
+            <div className="border-t pt-4 sm:col-span-2">
+              <dt className="text-sm text-muted-foreground">Registered principal place of business</dt>
+              <dd className="mt-1 font-semibold">{registeredBusinessAddress}</dd>
             </div>
           </dl>
         </div>
         <p className="mt-8 max-w-3xl text-sm leading-6 text-muted-foreground">
-          The applicable GSTIN, invoice address, and additional tax particulars are supplied on valid tax invoices and procurement documents. This avoids publishing an unverified or obsolete identifier on unrelated pages.
+          These registration particulars are taken from the Government of India GST REG-06 certificate issued on {company.gstRegistrationDate}. Registration details can also be checked through the official GST taxpayer search.
+          {" "}<a className="font-medium text-foreground underline" href="https://services.gst.gov.in/services/searchtp" target="_blank" rel="noopener noreferrer">Open GST search <ExternalLink className="inline h-3.5 w-3.5" aria-hidden="true" /></a>
         </p>
       </section>
 
@@ -187,6 +196,12 @@ export default function TrustPage() {
             <Button asChild variant="outline">
               <Link href="/methodology">Review methodology</Link>
             </Button>
+          </div>
+          <div className="mt-8 grid gap-3 border-t pt-6 sm:grid-cols-2">
+            <Link href="/procurement" className="font-semibold text-primary underline">Procurement centre</Link>
+            <Link href="/subprocessors" className="font-semibold text-primary underline">Subprocessor register</Link>
+            <Link href="/sample-audit-report" className="font-semibold text-primary underline">Sample audit report</Link>
+            <Link href="/case-studies" className="font-semibold text-primary underline">Selected work</Link>
           </div>
         </div>
       </section>

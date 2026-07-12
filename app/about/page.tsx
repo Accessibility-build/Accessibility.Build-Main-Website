@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -9,7 +10,6 @@ import {
   Keyboard,
   MapPin,
   ScanSearch,
-  UserRound,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { createMetadata } from "@/lib/metadata"
@@ -26,6 +26,7 @@ export const metadata = createMetadata({
     "accessibility consultant India",
     "web accessibility specialist Bengaluru",
   ],
+  image: "/images/authors/khushwant-parihar.jpeg",
   authors: [{ name: company.legalOperator, url: company.founderWebsite }],
 })
 
@@ -71,7 +72,8 @@ export default function AboutPage() {
       "@type": "Person",
       "@id": "https://accessibility.build/#founder",
       name: company.legalOperator,
-      url: company.founderWebsite,
+      url: `${company.website}/authors/khushwant-parihar`,
+      image: `${company.website}/images/authors/khushwant-parihar.jpeg`,
       jobTitle: "Founder and Accessibility Consultant",
       sameAs: [company.founderWebsite, company.founderLinkedin],
       worksFor: { "@id": "https://accessibility.build/#organization" },
@@ -142,8 +144,14 @@ export default function AboutPage() {
       <section className="container-wide py-16 lg:py-24" aria-labelledby="founder-heading">
         <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <div className="flex h-20 w-20 items-center justify-center border bg-slate-100 dark:bg-slate-900" aria-hidden="true">
-              <UserRound className="h-9 w-9" />
+            <div className="relative aspect-square w-44 overflow-hidden border bg-slate-100 dark:bg-slate-900">
+              <Image
+                src="/images/authors/khushwant-parihar.jpeg"
+                alt="Khushwant Parihar outdoors beside a lake and green hills"
+                fill
+                sizes="176px"
+                className="object-cover"
+              />
             </div>
             <p className="mt-6 text-sm font-semibold uppercase text-primary">Founder</p>
             <h2 id="founder-heading" className="mt-2 text-4xl font-semibold">
@@ -152,13 +160,11 @@ export default function AboutPage() {
             <p className="mt-3 text-lg text-muted-foreground">Accessibility specialist, consultant, and developer</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="outline">
-                <a href={company.founderWebsite} target="_blank" rel="me noopener noreferrer">
-                  Professional portfolio <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
+                <Link href="/authors/khushwant-parihar">Professional profile</Link>
               </Button>
               <Button asChild variant="ghost">
-                <a href={company.founderLinkedin} target="_blank" rel="me noopener noreferrer">
-                  LinkedIn <ExternalLink className="ml-2 h-4 w-4" />
+                <a href={company.founderWebsite} target="_blank" rel="me noopener noreferrer">
+                  External portfolio <ExternalLink className="ml-2 h-4 w-4" />
                 </a>
               </Button>
             </div>

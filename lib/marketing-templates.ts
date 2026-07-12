@@ -70,7 +70,7 @@ If the report is useful and you'd like help fixing what we find, we can jump on 
 
 Just reply with the pages you'd like us to look at and we'll take it from there.
 
-— The Accessibility.build team`,
+— Khushwant Parihar, Accessibility.build`,
     ctaLabel: 'Request your free audit',
     ctaUrl: 'https://accessibility.build/contact',
     reason: 'Cold outreach offering a free multi-page accessibility audit',
@@ -81,46 +81,46 @@ Just reply with the pages you'd like us to look at and we'll take it from there.
     category: 'outreach',
     description:
       'Surface the legal risk of an inaccessible site and point to a free risk scan.',
-    subject: 'ADA web lawsuits are still rising — is your site covered?',
+    subject: 'Could accessibility barriers be creating avoidable risk?',
     preheader:
-      'A quick scan can tell you where you stand before a demand letter does.',
-    heading: 'Know your ADA exposure before someone else does',
-    body: `Over 4,000 ADA-related web accessibility lawsuits were filed last year, and the number keeps climbing. Most of them come from a small set of predictable issues — missing alt text, unlabeled form fields, inaccessible menus, low contrast — all of which are usually easy to fix once you know where to look.
+      'A focused scan can surface common barriers, but it is not a legal opinion or conformance audit.',
+    heading: 'Find common barriers before they compound',
+    body: `Digital accessibility complaints and procurement reviews often surface recurring barriers such as missing text alternatives, unlabeled fields, inaccessible menus, keyboard failures, and insufficient contrast. Their impact and remediation effort depend on the product and implementation.
 
-We put together a free risk scan that flags the most common legal red flags on any public page. It takes about a minute to run, and you'll get a prioritized list of what to address first.
+Accessibility.build provides a free risk-screening tool for a public page. It can help identify common technical signals and organize next steps, but it is not a complete audit, certification, or legal opinion.
 
 If it surfaces something that needs hands-on help, we're happy to talk. No pressure either way.
 
-— The Accessibility.build team`,
+— Khushwant Parihar, Accessibility.build`,
     ctaLabel: "Check your site's ADA risk",
     ctaUrl: 'https://accessibility.build/tools/ada-compliance-risks',
     reason: 'Educational outreach on ADA lawsuit risk with free scan CTA',
   },
   {
-    id: 'first-audit-discount',
-    name: '30% Off First Audit (Limited Time)',
-    category: 'promotion',
+    id: 'scoped-audit-introduction',
+    name: 'Scoped Accessibility Audit Introduction',
+    category: 'outreach',
     description:
-      'Month-long promotion — 30% off the full accessibility audit package.',
-    subject: '30% off your first accessibility audit — this month only',
+      'Introduce the published audit packages and invite a clearly scoped enquiry.',
+    subject: 'A defined accessibility audit scope for your priority journeys',
     preheader:
-      'A full WCAG 2.2 AA audit and remediation roadmap at our lowest price of the year.',
-    heading: '30% off, just for this month',
-    body: `For the rest of this month, we're offering 30% off our standard accessibility audit package. That includes:
+      'Manual and automated testing with documented evidence, limitations, and remediation guidance.',
+    heading: 'Start with a scope your team can evaluate',
+    body: `Accessibility.build publishes fixed-scope starting packages so you can review the sample, deliverables, timeline, assumptions, and price before making an enquiry. A typical audit can include:
 
-- A full WCAG 2.2 AA audit across your most important user journeys
+- WCAG 2.2 evaluation across agreed pages and important user journeys
 - Manual testing with screen readers and keyboard-only flows
 - A prioritized remediation roadmap your team can work from
-- A 60-minute walkthrough with one of our accessibility engineers
+- A named findings readout and documented limitations
 
-If accessibility has been sitting on your backlog and you want a clean starting point, this is a good moment.
+The exact page sample, environments, assistive technologies, delivery date, and retest terms are confirmed in writing before work begins.
 
-The offer ends at the end of the month. Use the link below or just reply to this email and we'll get you set up.
+Use the link below to inspect the published package details, or reply with the workflows you need assessed.
 
-— The Accessibility.build team`,
-    ctaLabel: 'Claim your 30% off',
+— Khushwant Parihar, Accessibility.build`,
+    ctaLabel: 'Review audit packages',
     ctaUrl: 'https://accessibility.build/services/accessibility-audits',
-    reason: 'Limited-time 30% off promotion on accessibility audits',
+    reason: 'Truthful introduction to published accessibility audit packages',
   },
   {
     id: 'free-report-delivered',
@@ -141,7 +141,7 @@ A few headlines before you open it:
 
 Nothing about this is urgent on our end — take your time with it. If you'd like to walk through the findings together, grab a slot on our calendar below.
 
-— The Accessibility.build team`,
+— Khushwant Parihar, Accessibility.build`,
     ctaLabel: 'Book a 20-minute review',
     ctaUrl: 'https://accessibility.build/contact',
     reason: 'Delivering completed free audit report with follow-up call offer',
@@ -167,7 +167,7 @@ Everything is scoped so you can start small — a single journey, a single templ
 
 Happy to walk through it on a call, or just send you the full document. Whatever is easier.
 
-— The Accessibility.build team`,
+— Khushwant Parihar, Accessibility.build`,
     ctaLabel: 'View the proposal',
     ctaUrl: 'https://accessibility.build/contact',
     reason: 'Following up a free audit with a paid remediation proposal',
@@ -182,7 +182,7 @@ Happy to walk through it on a call, or just send you the full document. Whatever
     preheader:
       'Nine new success criteria, and the three that are most likely to affect your team.',
     heading: "WCAG 2.2 is live — here's what it means",
-    body: `WCAG 2.2 is now the recommended standard for most web accessibility laws and procurement requirements. It adds nine new success criteria on top of 2.1 — but only a few will realistically change how most teams build.
+    body: `WCAG 2.2 is a W3C Recommendation and adds nine success criteria to WCAG 2.1. Laws, policies, and procurement requirements may reference different WCAG versions and conformance levels, so teams should confirm the standard that applies to their context.
 
 The three worth knowing about first:
 - Focus Not Obscured — sticky headers and cookie banners can no longer hide the focused element
@@ -191,37 +191,37 @@ The three worth knowing about first:
 
 We put together a short checklist that maps each new criterion to the code patterns teams most often get wrong. It's free, no form to fill in.
 
-— The Accessibility.build team`,
+— Khushwant Parihar, Accessibility.build`,
     ctaLabel: 'Read the WCAG 2.2 checklist',
     ctaUrl: 'https://accessibility.build/checklists/wcag-2-2',
     reason: 'Monthly newsletter: plain-English WCAG 2.2 summary',
   },
   {
-    id: 'case-study',
-    name: 'Customer Case Study (Social Proof)',
+    id: 'selected-work',
+    name: 'Selected Work (Confidential Project Record)',
     category: 'social_proof',
     description:
-      'Short outcome-focused case study to build trust with prospects on the fence.',
-    subject: 'How one team cut accessibility issues by 84% in six weeks',
+      'Share a public project record with its confidentiality and evidence limitations intact.',
+    subject: 'How an accessibility operations platform was structured',
     preheader:
-      'A short look at how a fintech team moved from failing audits to shipping confidently.',
-    heading: 'From 312 issues to 48 — in six weeks',
-    body: `We recently wrapped up an engagement with a mid-sized fintech team that was preparing for a procurement review. Their initial audit flagged 312 WCAG 2.2 AA issues across their main product — enough to block the deal.
+      'A transparent project record covering scope, constraints, decisions, and delivery approach.',
+    heading: 'A connected accessibility operations workflow',
+    body: `Accessibility.build has published a selected-work record showing how audit intake, finding evidence, remediation ownership, and ongoing accessibility maintenance can connect in one operational workflow.
 
-Six weeks later:
-- 264 issues resolved, 48 remaining (most minor)
-- A single re-audit pass, fully documented
-- An accessibility statement they were comfortable publishing
-- And, importantly, the deal went through
+The record covers:
+- The problem and agreed accessibility responsibilities
+- Architecture and workflow decisions
+- Evidence, handoff, and maintenance considerations
+- Clear confidentiality and verification limitations
 
-The work wasn't glamorous — it was two engineers focused on the right issues, in the right order, with clear tests. That's most of what accessibility work actually is.
+The client identity is withheld and no endorsement is implied. The page avoids invented metrics and presents only the project details that can be responsibly described.
 
-If you've got a deadline of your own coming up, we'd be glad to talk through what a similar plan would look like for your team.
+If your team is trying to connect auditing with remediation and governance, the record offers a useful model for scoping that work.
 
-— The Accessibility.build team`,
-    ctaLabel: 'Talk to our team',
-    ctaUrl: 'https://accessibility.build/contact',
-    reason: 'Case study email — 84% issue reduction, used for social proof',
+— Khushwant Parihar, Accessibility.build`,
+    ctaLabel: 'Read the project record',
+    ctaUrl: 'https://accessibility.build/case-studies/enterprise-accessibility-operations-suite',
+    reason: 'Share a published selected-work record without unsupported client claims',
   },
   {
     id: 're-engagement',
@@ -242,7 +242,7 @@ If you're ready to look at it again, a few low-friction starting points:
 
 No follow-up sequence, no sales call — just here when it's useful.
 
-— The Accessibility.build team`,
+— Khushwant Parihar, Accessibility.build`,
     ctaLabel: 'Run a free scan',
     ctaUrl: 'https://accessibility.build/tools/url-accessibility-auditor',
     reason: 'Re-engagement email for dormant leads with free scanner CTA',
@@ -252,24 +252,24 @@ No follow-up sequence, no sales call — just here when it's useful.
     name: 'Product Update (Active Users)',
     category: 'announcement',
     description:
-      'Monthly product changelog for active users — shipped features and improvements.',
-    subject: "What's new in Accessibility.build this month",
+      'Announce published business, delivery, and evidence resources to active users.',
+    subject: "New ways to evaluate Accessibility.build before engaging",
     preheader:
-      'A sharper dashboard, faster audits, and a handful of fixes you asked for.',
-    heading: 'Updates worth a minute of your time',
-    body: `A short update on what's shipped in Accessibility.build over the last few weeks:
+      'Founder identity, sample deliverables, selected work, and procurement details are now public.',
+    heading: 'More evidence, clearer accountability',
+    body: `A short update on the public evidence now available from Accessibility.build:
 
-- Faster audits — single-page scans now run in under a second on most sites
-- Clearer reports — issues are grouped by user impact, not raw rule ID
-- Team workspaces — share audits and remediation tasks across your team without juggling exports
-- A couple of fixes for false positives on custom form widgets (thanks for the reports)
+- A named founder profile with professional experience and authorship
+- A sample accessibility audit report in accessible HTML and downloadable PDF
+- Selected-work records with explicit confidentiality and evidence limitations
+- A procurement centre with GST registration, scope, data, and provider information
 
-Everything above is already live in your dashboard. If you try the new report view and have thoughts, we'd genuinely like to hear them — just reply to this email.
+These pages are public so teams can inspect how work is scoped and documented before starting a conversation. Questions or corrections are welcome by reply.
 
-— The Accessibility.build team`,
-    ctaLabel: 'Open your dashboard',
-    ctaUrl: 'https://accessibility.build/dashboard',
-    reason: 'Monthly product update / changelog for active users',
+— Khushwant Parihar, Accessibility.build`,
+    ctaLabel: 'Review the trust centre',
+    ctaUrl: 'https://accessibility.build/trust',
+    reason: 'Announce verified authority and procurement resources',
   },
   {
     id: 'discovery-call',
@@ -290,7 +290,7 @@ How it works:
 
 No slides, no pitch deck, no sales follow-up you didn't ask for. Just a working plan you can use however you like.
 
-— The Accessibility.build team`,
+— Khushwant Parihar, Accessibility.build`,
     ctaLabel: 'Grab a session slot',
     ctaUrl: 'https://accessibility.build/contact',
     reason: 'Inviting prospects to a free 20-minute working session',

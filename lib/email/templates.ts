@@ -210,18 +210,18 @@ export function renderServicesIntroEmail(data: {
   return {
     subject: `Quick question, ${name} — is your site actually accessible?`,
     html: marketingLayout({
-      preheader: 'We help teams ship accessible products. Here\'s what that looks like.',
+      preheader: 'Founder-led accessibility services with published scope and evidence.',
       body: `
     <div class="hero">
-      <h1>So you&rsquo;ve got the tools.<br/>But what if you need the humans?</h1>
-      <p class="subtitle">We&rsquo;re not just a tool company. We do the hard stuff too.</p>
+      <h1>You have the tools.<br/>Here is the professional support behind them.</h1>
+      <p class="subtitle">Founder-led audits, remediation, training, and documentation.</p>
     </div>
 
     <div class="card card-accent">
       <p>Hey ${name},</p>
-      <p>Welcome aboard. You probably signed up for the AI tools (good call), but we wanted you to know there&rsquo;s a whole team behind this thing.</p>
-      <p>We&rsquo;ve worked with startups, agencies, and enterprise teams to make their products genuinely accessible &mdash; not just &ldquo;checkbox compliant.&rdquo;</p>
-      <p>Here&rsquo;s what we actually do:</p>
+      <p>Welcome. Accessibility.build combines practical tools with professional services led directly by founder Khushwant Parihar.</p>
+      <p>Every engagement starts with a written scope covering the product sample, standards, environments, deliverables, limitations, schedule, and price.</p>
+      <p>Here is the work you can commission:</p>
     </div>
 
     <div class="services-grid">
@@ -230,7 +230,7 @@ export function renderServicesIntroEmail(data: {
           <div class="service-icon"><span>&#128269;</span></div>
           <div class="service-text">
             <h3>Accessibility Audits</h3>
-            <p>Full WCAG 2.2 audit of your site. Automated scans catch maybe 30% of issues &mdash; we catch the rest. You get a prioritized list, not a 200-page PDF nobody reads.</p>
+            <p>Manual and automated WCAG evaluation across an agreed sample, with reproducible evidence, user impact, criterion mapping, remediation guidance, and documented limitations.</p>
           </div>
         </div>
       </div>
@@ -240,7 +240,7 @@ export function renderServicesIntroEmail(data: {
           <div class="service-icon"><span>&#128736;</span></div>
           <div class="service-text">
             <h3>Remediation &amp; Fixes</h3>
-            <p>Found issues? We fix them. Code-level patches, ARIA patterns, content rewrites &mdash; whatever it takes. Works with React, Angular, Vue, or plain HTML.</p>
+            <p>Scoped code-level support for agreed findings, including semantics, focus, forms, interaction patterns, content, and reusable components in the technologies named in the engagement.</p>
           </div>
         </div>
       </div>
@@ -250,7 +250,7 @@ export function renderServicesIntroEmail(data: {
           <div class="service-icon"><span>&#127891;</span></div>
           <div class="service-text">
             <h3>Team Training</h3>
-            <p>Workshops for designers, devs, and PMs. Not death-by-slides &mdash; hands-on, role-specific sessions. Your team ships accessible code because they understand why it matters.</p>
+            <p>Hands-on, role-specific workshops for design, engineering, QA, content, and product participants, with examples and materials matched to the agreed learning goals.</p>
           </div>
         </div>
       </div>
@@ -260,7 +260,7 @@ export function renderServicesIntroEmail(data: {
           <div class="service-icon"><span>&#127912;</span></div>
           <div class="service-text">
             <h3>Design Reviews</h3>
-            <p>Catch accessibility problems in Figma, not in production. We review wireframes, mockups, and design systems before a single line of code is written.</p>
+            <p>Review agreed wireframes, mockups, components, and design-system patterns before implementation, with annotated findings and practical alternatives.</p>
           </div>
         </div>
       </div>
@@ -270,7 +270,7 @@ export function renderServicesIntroEmail(data: {
           <div class="service-icon"><span>&#129489;</span></div>
           <div class="service-text">
             <h3>User Testing with Real People</h3>
-            <p>Screen reader users, keyboard-only navigators, people with cognitive disabilities &mdash; actual humans testing your product. That&rsquo;s how you find the stuff no scanner ever will.</p>
+            <p>When included in scope, recruit and support disabled participants for agreed tasks, consent, accommodations, observation, and findings synthesis.</p>
           </div>
         </div>
       </div>
@@ -280,7 +280,7 @@ export function renderServicesIntroEmail(data: {
           <div class="service-icon"><span>&#128203;</span></div>
           <div class="service-text">
             <h3>Compliance Docs &amp; VPATs</h3>
-            <p>Need an accessibility statement? VPAT for procurement? Remediation roadmap for legal? We write the boring-but-critical paperwork so you don&rsquo;t have to.</p>
+            <p>Prepare accessibility statements, remediation plans, and ACR or VPAT&reg; support based on documented evidence, ownership, limitations, and review responsibilities.</p>
           </div>
         </div>
       </div>
@@ -306,12 +306,12 @@ export function renderServicesIntroEmail(data: {
     <div class="divider"></div>
 
     <div class="cta-section">
-      <p>Not sure where to start? Most teams don&rsquo;t.<br/>Grab a free consultation and we&rsquo;ll figure it out together.</p>
-      <a href="https://accessibility.build/contact" class="cta-btn">Let&rsquo;s talk</a>
+      <p>Share the product, priority workflows, target standard, and deadline.<br/>You will receive a scoped recommendation rather than an open-ended estimate.</p>
+      <a href="https://accessibility.build/contact" class="cta-btn">Discuss the scope</a>
     </div>
 
     <div class="card" style="text-align:center; margin-top: 16px;">
-      <p style="margin:0; font-size:13px; color:#94a3b8;">Or just use the tools &mdash; no pressure. <a href="https://accessibility.build/tools">Explore all tools &rarr;</a></p>
+      <p style="margin:0; font-size:13px; color:#94a3b8;">Khushwant Parihar, founder of Accessibility.build. <a href="https://accessibility.build/authors/khushwant-parihar">Review the professional profile &rarr;</a></p>
     </div>
       `,
     }),
@@ -368,7 +368,7 @@ export function renderMarketingCampaignEmail(data: {
       body: `
     <div class="hero">
       <h1>${escapeHtml(heading)}</h1>
-      <p class="subtitle">From the Accessibility.build team</p>
+      <p class="subtitle">From Khushwant Parihar at Accessibility.build</p>
     </div>
 
     <div class="card card-accent">

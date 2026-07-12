@@ -161,11 +161,26 @@ export default function ServicesPage() {
         serviceOutput="Scoped accessibility audit, remediation, design review, training, user research, or compliance documentation engagement"
       />
       <div className="max-w-3xl mx-auto text-center mb-16">
-        <h1 className="text-4xl font-bold mb-4">Our Accessibility Services</h1>
+        <p className="mb-3 text-sm font-semibold uppercase text-primary">Founder-led professional services</p>
+        <h1 className="text-4xl font-bold mb-4">Accessibility services with defined scope</h1>
         <p className="text-xl text-muted-foreground">
           Fixed-scope services with published prices, delivery windows, and concrete deliverables for every engagement.
         </p>
       </div>
+
+      <section className="mb-16 grid gap-6 border-y py-8 md:grid-cols-4" aria-label="Service evidence">
+        {[
+          { label: "Named practitioner", value: "Khushwant Parihar", href: "/authors/khushwant-parihar" },
+          { label: "Delivery process", value: "Published methodology", href: "/methodology" },
+          { label: "Report quality", value: "Inspect a sample", href: "/sample-audit-report" },
+          { label: "Buyer review", value: "Procurement centre", href: "/procurement" },
+        ].map((item) => (
+          <Link key={item.href} href={item.href} className="border-t pt-4 md:border-t-0 md:border-l md:pl-5 first:md:border-l-0 first:md:pl-0">
+            <p className="text-sm text-muted-foreground">{item.label}</p>
+            <p className="mt-1 font-semibold text-primary">{item.value}</p>
+          </Link>
+        ))}
+      </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
         {services.map((service, index) => {

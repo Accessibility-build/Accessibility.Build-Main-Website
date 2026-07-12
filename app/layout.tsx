@@ -160,6 +160,7 @@ const structuredData = {
       "@type": "Organization",
       "@id": "https://accessibility.build/#organization",
       name: "Accessibility.build",
+      legalName: company.legalName,
       alternateName: "Accessibility Build",
       url: "https://accessibility.build",
       description:
@@ -197,11 +198,19 @@ const structuredData = {
       },
       foundingDate: String(company.foundedYear),
       areaServed: "Worldwide",
+      taxID: company.gstin,
+      identifier: {
+        "@type": "PropertyValue",
+        propertyID: "GSTIN",
+        value: company.gstin,
+      },
       address: {
         "@type": "PostalAddress",
-        addressLocality: company.location.city,
-        addressRegion: company.location.region,
-        addressCountry: company.location.countryCode
+        streetAddress: `${company.registeredOffice.addressLine1}, ${company.registeredOffice.addressLine2}`,
+        addressLocality: company.registeredOffice.locality,
+        addressRegion: company.registeredOffice.region,
+        postalCode: company.registeredOffice.postalCode,
+        addressCountry: company.registeredOffice.countryCode
       },
       publishingPrinciples: "https://accessibility.build/trust",
       contactPoint: {
@@ -217,6 +226,8 @@ const structuredData = {
       name: company.legalOperator,
       url: company.founderWebsite,
       jobTitle: "Founder and Accessibility Consultant",
+      image: `${company.website}/images/authors/khushwant-parihar.jpeg`,
+      mainEntityOfPage: `${company.website}/authors/khushwant-parihar`,
       sameAs: [company.founderWebsite, company.founderLinkedin],
       worksFor: {
         "@id": "https://accessibility.build/#organization"
@@ -280,6 +291,12 @@ const structuredData = {
           "@id": "https://accessibility.build/research#collection",
           name: "Accessibility Research",
           url: "https://accessibility.build/research"
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://accessibility.build/case-studies#collection",
+          name: "Accessibility Case Studies",
+          url: "https://accessibility.build/case-studies"
         },
         {
           "@type": "Blog",
