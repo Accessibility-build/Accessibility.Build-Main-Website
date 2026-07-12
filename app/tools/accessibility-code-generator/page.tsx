@@ -4,7 +4,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata = {
   title: "AI Accessibility Code Generator",
-  description: "Generate accessible HTML, React, and Vue components with AI. Create WCAG 2.2 compliant code with ARIA labels, keyboard navigation, and screen reader support.",
+  description: "Generate HTML, React, and Vue component drafts with accessibility requirements, keyboard behavior, ARIA guidance, and review notes.",
   keywords: [
     "accessibility code generator",
     "WCAG compliant components",
@@ -17,7 +17,7 @@ export const metadata = {
   ],
   openGraph: {
     title: "AI Accessibility Code Generator - WCAG Compliant Components",
-    description: "Generate production-ready accessible components with AI. Get WCAG 2.2 compliant HTML, React, and Vue code with proper ARIA implementation.",
+    description: "Generate accessible component drafts with keyboard, semantics, ARIA, and testing guidance for HTML, React, and Vue.",
     type: "website",
     url: "https://accessibility.build/tools/accessibility-code-generator",
     images: [
@@ -32,7 +32,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "AI Accessibility Code Generator - WCAG Components",
-    description: "Generate accessible components with AI. WCAG 2.2 compliant HTML, React & Vue code.",
+    description: "Generate HTML, React, and Vue component drafts with accessibility and testing guidance.",
     images: ["https://accessibility.build/images/tools/code-generator-og.png"]
   },
   alternates: {
@@ -51,17 +51,13 @@ export default function AccessibilityCodeGeneratorPage() {
     <>
       <AccessibilityToolStructuredData
         name="AI Accessibility Code Generator"
-        description="Generate accessible HTML, React, and Vue components with AI. Create WCAG 2.2 compliant code with ARIA labels."
+        description="Generate HTML, React, and Vue component drafts with accessibility requirements and review guidance."
         url="https://accessibility.build/tools/accessibility-code-generator"
         applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",
           priceCurrency: "USD"
-        }}
-        aggregateRating={{
-          ratingValue: "4.9",
-          reviewCount: "420"
         }}
         accessibilityFeatures={[
           "screenReaderSupport",
@@ -79,7 +75,7 @@ export default function AccessibilityCodeGeneratorPage() {
               AI Accessibility Code Generator
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Generate production-ready accessible components with comprehensive AI analysis. Get detailed
+              Generate accessible component drafts with structured AI analysis. Get detailed
               code intended to support WCAG 2.2 implementation, with explanations, examples, and review guidance.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">

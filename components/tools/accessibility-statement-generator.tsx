@@ -405,6 +405,7 @@ export default function AccessibilityStatementGenerator() {
 
   return (
     <div className="space-y-6">
+      <h2 className="sr-only">Accessibility statement workspace</h2>
       {/* Import from Scan Results */}
       <Card className="border border-border/60">
         <CardHeader>
@@ -415,7 +416,7 @@ export default function AccessibilityStatementGenerator() {
                 Import from Recent Scan
               </CardTitle>
               <CardDescription>
-                Pull completed URL audit results directly into this statement to generate client-ready compliance copy faster.
+                Pull completed URL audit results into the draft, then verify scope, limitations, and claims before publishing.
               </CardDescription>
             </div>
             <Button
@@ -754,7 +755,7 @@ export default function AccessibilityStatementGenerator() {
                 <SelectContent>
                   <SelectItem value="basic">Basic Statement</SelectItem>
                   <SelectItem value="comprehensive">Comprehensive (Recommended)</SelectItem>
-                  <SelectItem value="legal">Legal/Compliance Focused</SelectItem>
+                  <SelectItem value="legal">Policy and obligations focused</SelectItem>
                   <SelectItem value="developer">Developer Friendly</SelectItem>
                 </SelectContent>
               </Select>

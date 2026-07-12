@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import OverlayDetector from "@/components/tools/overlay-detector"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Shield, Search, Zap, Eye, CheckCircle, AlertTriangle, Star, Globe, ArrowRight } from "lucide-react"
 import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
@@ -28,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free Accessibility Overlay Detector - Scan Any Website",
     description:
-      "Check if a website uses an accessibility overlay and see real WCAG violations the overlay fails to fix. Free, instant results.",
+      "Check a public page for known accessibility-overlay signatures and compare them with automated accessibility findings.",
     type: "website",
     url: "https://accessibility.build/tools/overlay-detector",
     images: [
@@ -77,7 +76,7 @@ const faqItems = [
   {
     question: "Can an overlay protect me from ADA lawsuits?",
     answer:
-      "No. Multiple court rulings have found that the presence of an accessibility overlay does not constitute compliance with the ADA or WCAG. In fact, some organizations have faced lawsuits specifically because their overlay created additional barriers.",
+      "An overlay does not by itself establish ADA or WCAG conformance. Legal outcomes depend on jurisdiction and facts, while technical conformance requires evidence that users can complete real tasks. Seek qualified legal advice for a specific claim.",
   },
   {
     question: "How does this detector work?",
@@ -106,7 +105,6 @@ export default function OverlayDetectorPage() {
         applicationCategory="AccessibilityApplication"
         operatingSystem="Web Browser"
         offers={{ price: "0", priceCurrency: "USD" }}
-        aggregateRating={{ ratingValue: "4.9", reviewCount: "680" }}
         accessibilityFeatures={[
           "highContrastDisplay",
           "keyboardNavigation",

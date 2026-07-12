@@ -1,269 +1,159 @@
 "use client"
 
-import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
-import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import { toast } from 'sonner'
-import { 
-  Copy, 
-  RotateCcw, 
-  ArrowUpDown,
-  Link,
-  Unlock,
-  Globe
-} from 'lucide-react'
+import { useState } from "react"
+import { ArrowLeftRight, Check, Copy, Link2, RotateCcw } from "lucide-react"
+import { toast } from "sonner"
+import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
+
+type ConversionMode = "encode" | "decode"
+type EncodingScope = "component" | "full-url"
+
+const samples: Record<EncodingScope, string> = {
+  component: "hello world & accessibility=true",
+  "full-url": "https://example.com/search?q=hello world&lang=en",
+}
 
 export default function URLEncoderDecoder() {
-  const [input, setInput] = useState('')
-  const [output, setOutput] = useState('')
-  const [mode, setMode] = useState<'encode' | 'decode'>('encode')
+  const [input, setInput] = useState("")
+  const [output, setOutput] = useState("")
+  const [mode, setMode] = useState<ConversionMode>("encode")
+  const [scope, setScope] = useState<EncodingScope>("component")
+  const [copied, setCopied] = useState(false)
 
-  const handleConvert = () => {
+  const convert = () => {
     if (!input.trim()) {
-      toast.error('Please enter a URL to convert')
+      toast.error("Enter a URL or component to convert")
       return
     }
 
     try {
-      if (mode === 'encode') {
-        const encoded = encodeURIComponent(input)
-        setOutput(encoded)
-        toast.success('URL encoded successfully')
+      if (mode === "encode") {
+        setOutput(scope === "component" ? encodeURIComponent(input) : encodeURI(input))
       } else {
-        const decoded = decodeURIComponent(input)
-        setOutput(decoded)
-        toast.success('URL decoded successfully')
+        setOutput(scope === "component" ? decodeURIComponent(input) : decodeURI(input))
       }
-    } catch (error) {
-      toast.error('Invalid input for URL conversion')
+    } catch {
+      setOutput("")
+      toast.error("The value contains an invalid percent-encoding sequence")
     }
   }
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      toast.success('Copied to clipboard')
-    })
+  const swap = () => {
+    if (!output) return
+    setInput(output)
+    setOutput("")
+    setMode((current) => (current === "encode" ? "decode" : "encode"))
   }
 
-  const clearAll = () => {
-    setInput('')
-    setOutput('')
-    toast.success('All fields cleared')
+  const copyOutput = async () => {
+    await navigator.clipboard.writeText(output)
+    setCopied(true)
+    window.setTimeout(() => setCopied(false), 1800)
   }
 
-  const swapInputOutput = () => {
-    if (output) {
-      setInput(output)
-      setOutput('')
-      setMode(mode === 'encode' ? 'decode' : 'encode')
-      toast.success('Input and output swapped')
-    }
+  const clear = () => {
+    setInput("")
+    setOutput("")
   }
-
-  const examples = [
-    {
-      title: 'Query Parameters',
-      original: 'search?q=hello world&lang=en',
-      encoded: 'search?q=hello%20world&lang=en'
-    },
-    {
-      title: 'Special Characters',
-      original: 'path/to/file with spaces & symbols!',
-      encoded: 'path%2Fto%2Ffile%20with%20spaces%20%26%20symbols!'
-    },
-    {
-      title: 'International Characters',
-      original: 'café/résumé/naïve',
-      encoded: 'caf%C3%A9%2Fr%C3%A9sum%C3%A9%2Fna%C3%AFve'
-    }
-  ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-teal-50">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="p-3 bg-green-100 rounded-full">
-              <Globe className="h-8 w-8 text-green-600" />
+    <section aria-labelledby="url-converter-heading" className="mx-auto max-w-5xl">
+      <div className="mb-7">
+        <p className="text-sm font-semibold text-teal-700 dark:text-teal-300">Developer utility</p>
+        <h1 id="url-converter-heading" className="mt-1 text-3xl font-semibold text-slate-950 sm:text-4xl dark:text-white">
+          URL encoder and decoder
+        </h1>
+        <p className="mt-3 max-w-2xl leading-7 text-slate-600 dark:text-slate-400">
+          Encode a query value or preserve the structure of a complete URL. Conversion happens locally in your browser.
+        </p>
+      </div>
+
+      <div className="rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+        <div className="flex flex-col gap-4 border-b border-slate-200 p-4 dark:border-slate-800 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-wrap gap-3">
+            <div className="flex gap-1 rounded-md bg-slate-100 p-1 dark:bg-slate-800" role="group" aria-label="Conversion direction">
+              {(["encode", "decode"] as const).map((item) => (
+                <Button key={item} type="button" size="sm" variant={mode === item ? "default" : "ghost"} onClick={() => { setMode(item); setOutput("") }} aria-pressed={mode === item} className="capitalize">
+                  {item}
+                </Button>
+              ))}
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 break-words">URL Encoder/Decoder</h1>
+            <div className="flex gap-1 rounded-md bg-slate-100 p-1 dark:bg-slate-800" role="group" aria-label="Encoding scope">
+              <Button type="button" size="sm" variant={scope === "component" ? "secondary" : "ghost"} onClick={() => { setScope("component"); setOutput("") }} aria-pressed={scope === "component"}>
+                Component
+              </Button>
+              <Button type="button" size="sm" variant={scope === "full-url" ? "secondary" : "ghost"} onClick={() => { setScope("full-url"); setOutput("") }} aria-pressed={scope === "full-url"}>
+                Full URL
+              </Button>
+            </div>
           </div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Encode and decode URLs for safe transmission. Perfect for handling special characters in URLs and query parameters.
-            <span className="block mt-2 text-sm text-gray-500">by Alaikas</span>
-          </p>
+
+          <div className="flex flex-wrap gap-2">
+            <Button type="button" size="sm" variant="outline" onClick={() => { setInput(samples[scope]); setOutput("") }}>
+              Load sample
+            </Button>
+            <Button type="button" size="sm" variant="ghost" onClick={clear} disabled={!input && !output}>
+              <RotateCcw aria-hidden="true" />
+              Clear
+            </Button>
+          </div>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-6">
-          <Card>
-            <CardHeader>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div>
-                  <CardTitle className="flex items-center gap-2">
-                    {mode === 'encode' ? <Link className="h-5 w-5" /> : <Unlock className="h-5 w-5" />}
-                    URL {mode === 'encode' ? 'Encoder' : 'Decoder'}
-                  </CardTitle>
-                  <CardDescription>
-                    {mode === 'encode' ? 'Convert URLs to percent-encoded format' : 'Convert percent-encoded URLs back to readable format'}
-                  </CardDescription>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Badge variant={mode === 'encode' ? 'default' : 'secondary'}>
-                    {mode === 'encode' ? 'Encoding' : 'Decoding'}
-                  </Badge>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setMode(mode === 'encode' ? 'decode' : 'encode')}
-                  >
-                    <ArrowUpDown className="h-4 w-4 mr-1" />
-                    Switch
-                  </Button>
-                </div>
+        <div className="grid lg:grid-cols-2">
+          <div className="border-b border-slate-200 p-5 dark:border-slate-800 lg:border-b-0 lg:border-r">
+            <label htmlFor="url-input" className="font-semibold text-slate-900 dark:text-white">Input</label>
+            <Textarea
+              id="url-input"
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              placeholder={scope === "full-url" ? "https://example.com/search?q=hello world" : "query value or path segment"}
+              spellCheck={false}
+              className="mt-3 min-h-[240px] resize-y font-mono text-sm"
+            />
+            <div className="mt-3 flex items-center justify-between gap-3">
+              <span className="text-xs text-slate-500 dark:text-slate-400">{input.length.toLocaleString()} characters</span>
+              <Button type="button" size="sm" onClick={convert}>{mode === "encode" ? "Encode" : "Decode"}</Button>
+            </div>
+          </div>
+
+          <div className="p-5">
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="font-semibold text-slate-900 dark:text-white">Output</h2>
+              <div className="flex gap-1">
+                <Button type="button" size="icon" variant="ghost" onClick={swap} disabled={!output} aria-label="Use output as the next input">
+                  <ArrowLeftRight aria-hidden="true" />
+                </Button>
+                <Button type="button" size="icon" variant="ghost" onClick={copyOutput} disabled={!output} aria-label="Copy output">
+                  {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+                </Button>
               </div>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Input Section */}
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold">Input</h3>
-                  <Textarea
-                    placeholder={mode === 'encode' ? 'Enter URL to encode...' : 'Enter encoded URL to decode...'}
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    className="min-h-[200px] resize-none"
-                  />
-                  <div className="flex items-center gap-2">
-                    <Button onClick={handleConvert} className="flex-1">
-                      {mode === 'encode' ? 'Encode URL' : 'Decode URL'}
-                    </Button>
-                    <Button variant="outline" onClick={clearAll}>
-                      <RotateCcw className="h-4 w-4 mr-1" />
-                      Clear
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Output Section */}
-                <div className="space-y-4">
-                  <div className="flex flex-col xs2:!flex-row xs2:items-center justify-between gap-2">
-                    <h3 className="text-lg font-semibold">Output</h3>
-                    <div className="flex items-center gap-2 w-full xs2:w-auto">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={swapInputOutput}
-                        disabled={!output}
-                      >
-                        <ArrowUpDown className="h-4 w-4 mr-1" />
-                        Swap
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => copyToClipboard(output)}
-                        disabled={!output}
-                      >
-                        <Copy className="h-4 w-4 mr-1" />
-                        Copy
-                      </Button>
-                    </div>
-                  </div>
-
-                  <Textarea
-                    placeholder={mode === 'encode' ? 'Encoded URL will appear here...' : 'Decoded URL will appear here...'}
-                    value={output}
-                    readOnly
-                    className="min-h-[200px] resize-none bg-gray-50"
-                  />
-
-                  {output && (
-                    <div className="text-sm text-gray-600">
-                      <p>Length: {output.length} characters</p>
-                      {mode === 'encode' && input && (
-                        <p>Size change: {output.length > input.length ? '+' : ''}{output.length - input.length} characters</p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Examples */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Examples</CardTitle>
-              <CardDescription>
-                Common URL encoding examples to help you understand the conversion
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {examples.map((example, index) => (
-                  <div key={index} className="border rounded-lg p-4">
-                    <h4 className="font-semibold mb-2">{example.title}</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <p className="text-gray-600 mb-1">Original:</p>
-                        <code className="bg-gray-100 p-2 rounded block break-all">{example.original}</code>
-                      </div>
-                      <div>
-                        <p className="text-gray-600 mb-1">Encoded:</p>
-                        <code className="bg-gray-100 p-2 rounded block break-all">{example.encoded}</code>
-                      </div>
-                    </div>
-                    <div className="flex flex-col xs2:!flex-row gap-2 mt-3">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => {
-                          setInput(example.original)
-                          setMode('encode')
-                        }}
-                      >
-                        Try Original
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => {
-                          setInput(example.encoded)
-                          setMode('decode')
-                        }}
-                      >
-                        Try Encoded
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Info Section */}
-          <Card>
-            <CardContent className="pt-6">
-              <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2 text-green-900">About URL Encoding</h4>
-                <p className="text-sm text-green-800 mb-2">
-                  URL encoding (percent-encoding) converts characters into a format that can be transmitted over the Internet. 
-                  Special characters are replaced with a percent sign (%) followed by two hexadecimal digits.
-                </p>
-                <p className="text-sm text-green-800">
-                  This is essential for handling spaces, international characters, and reserved characters in URLs.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+            <Textarea
+              value={output}
+              readOnly
+              aria-label="Conversion output"
+              placeholder="Converted value appears here"
+              className="mt-3 min-h-[240px] resize-y bg-slate-50 font-mono text-sm dark:bg-slate-950"
+            />
+            <div className="mt-3 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400" aria-live="polite">
+              <span>{output.length.toLocaleString()} characters</span>
+              <span className="inline-flex items-center gap-1"><Link2 className="h-3.5 w-3.5" aria-hidden="true" />{scope === "component" ? "URL component" : "Complete URL"}</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
+        <div className="rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+          <h2 className="font-semibold text-slate-900 dark:text-white">Component mode</h2>
+          <p className="mt-1 leading-6 text-slate-600 dark:text-slate-400">Use for a query value, path segment, or form value. Reserved URL characters are encoded.</p>
+        </div>
+        <div className="rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+          <h2 className="font-semibold text-slate-900 dark:text-white">Full URL mode</h2>
+          <p className="mt-1 leading-6 text-slate-600 dark:text-slate-400">Use for a complete address. The scheme, slashes, query separators, and fragment marker are preserved.</p>
+        </div>
+      </div>
+    </section>
   )
-} 
- 
- 
+}

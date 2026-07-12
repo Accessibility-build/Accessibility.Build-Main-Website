@@ -54,7 +54,7 @@ import { cn } from "@/lib/utils"
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const INDUSTRY_RISK: Record<string, number> = {
+const INDUSTRY_SCENARIO_RATE: Record<string, number> = {
   "E-Commerce & Retail": 0.12,
   "Financial Services": 0.08,
   "Healthcare": 0.07,
@@ -81,12 +81,6 @@ const REMEDIATION_COST_PER_EMPLOYEE: Record<string, number> = {
   "1000+": 250000,
 }
 
-const AVG_LAWSUIT_COST = 50000
-const LEGAL_DEFENSE_COST = 25000
-const DISABILITY_RATE = 0.15
-const AVG_CONVERSION_RATE = 0.02
-const MAINTENANCE_RATE = 0.2
-
 const COMPANY_SIZES = ["1-10 employees", "11-50 employees", "51-200 employees", "201-1000 employees", "1000+ employees"]
 const INDUSTRIES = [
   "E-Commerce & Retail",
@@ -103,7 +97,7 @@ const COMPLIANCE_LEVELS = [
   "Minimal - Some basic fixes",
   "Partial - Working toward compliance",
   "Mostly Compliant - Minor gaps",
-  "Fully Compliant - WCAG 2.2 AA",
+  "Recent audit - No known Level A/AA blockers",
 ]
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
@@ -147,11 +141,6 @@ function getComplianceKey(compliance: string): string {
   return "Fully Compliant"
 }
 
-function calcAvgOrderValue(revenue: number, visitors: number): number {
-  const value = revenue / (visitors * 12 * AVG_CONVERSION_RATE)
-  return value > 0 && isFinite(value) ? value : 50
-}
-
 // ── Inner component that uses useSearchParams ──────────────────────────────────
 
 function ROICalculatorInner() {
@@ -163,6 +152,10 @@ function ROICalculatorInner() {
   const [revenueInput, setRevenueInput] = useState("")
   const [visitorsInput, setVisitorsInput] = useState("")
   const [compliance, setCompliance] = useState("")
+  const [incidentCostInput, setIncidentCostInput] = useState("75000")
+  const [affectedShareInput, setAffectedShareInput] = useState("15")
+  const [recoveryRateInput, setRecoveryRateInput] = useState("10")
+  const [maintenanceRateInput, setMaintenanceRateInput] = useState("20")
 
   // UI state
   const [copied, setCopied] = useState(false)
@@ -176,6 +169,10 @@ function ROICalculatorInner() {
     const rev = searchParams.get("revenue")
     const vis = searchParams.get("visitors")
     const comp = searchParams.get("compliance")
+    const incidentCost = searchParams.get("incidentCost")
+    const affectedShare = searchParams.get("affectedShare")
+    const recoveryRate = searchParams.get("recoveryRate")
+    const maintenanceRate = searchParams.get("maintenanceRate")
 
     if (size) {
       const match = COMPANY_SIZES.find((s) => s.startsWith(size))
@@ -197,28 +194,35 @@ function ROICalculatorInner() {
       const match = COMPLIANCE_LEVELS.find((c) => c.startsWith(comp))
       if (match) setCompliance(match)
     }
+    if (incidentCost) setIncidentCostInput(String(parseNumericInput(incidentCost)))
+    if (affectedShare) setAffectedShareInput(String(parseNumericInput(affectedShare)))
+    if (recoveryRate) setRecoveryRateInput(String(parseNumericInput(recoveryRate)))
+    if (maintenanceRate) setMaintenanceRateInput(String(parseNumericInput(maintenanceRate)))
   }, [searchParams])
 
   // Derived values
   const revenue = parseNumericInput(revenueInput)
   const visitors = parseNumericInput(visitorsInput)
+  const incidentCost = parseNumericInput(incidentCostInput)
+  const affectedShareRate = Math.min(parseNumericInput(affectedShareInput), 100) / 100
+  const recoveryRate = Math.min(parseNumericInput(recoveryRateInput), 100) / 100
+  const maintenanceRate = Math.min(parseNumericInput(maintenanceRateInput), 100) / 100
   const isComplete = companySize !== "" && industry !== "" && revenue > 0 && visitors > 0 && compliance !== ""
 
   // ── Calculation engine ───────────────────────────────────────────────────────
   const results = useMemo(() => {
     if (!isComplete) return null
 
-    const industryRisk = INDUSTRY_RISK[industry] || 0.04
+    const industryScenarioRate = INDUSTRY_SCENARIO_RATE[industry] || 0.04
     const complianceKey = getComplianceKey(compliance)
     const complianceFactor = COMPLIANCE_DISCOUNT[complianceKey] ?? 1.0
     const sizeKey = getSizeKey(companySize)
 
-    // 1. Lawsuit Risk Cost
-    const lawsuitRiskCost = industryRisk * complianceFactor * (AVG_LAWSUIT_COST + LEGAL_DEFENSE_COST)
+    // 1. Incident-cost scenario. This is user-editable planning math, not a probability forecast.
+    const lawsuitRiskCost = industryScenarioRate * complianceFactor * incidentCost
 
-    // 2. Lost Revenue
-    const avgOrderValue = calcAvgOrderValue(revenue, visitors)
-    const lostRevenue = visitors * DISABILITY_RATE * AVG_CONVERSION_RATE * avgOrderValue * 12 * complianceFactor
+    // 2. Revenue opportunity scenario.
+    const lostRevenue = revenue * affectedShareRate * recoveryRate * complianceFactor
 
     // 3. Remediation Cost
     const baseRemediationCost = REMEDIATION_COST_PER_EMPLOYEE[sizeKey] || 40000
@@ -236,17 +240,9 @@ function ROICalculatorInner() {
     const paybackMonths = monthlyBenefit > 0 ? remediationCost / monthlyBenefit : Infinity
 
     // 7. Annual Maintenance
-    const annualMaintenance = remediationCost * MAINTENANCE_RATE
+    const annualMaintenance = remediationCost * maintenanceRate
 
     // 8. 3-Year Projection
-    const year1Savings = totalAnnualBenefit - remediationCost
-    const year2Savings = totalAnnualBenefit - annualMaintenance
-    const year3Savings = totalAnnualBenefit - annualMaintenance
-
-    const cumulativeSavingsY1 = year1Savings
-    const cumulativeSavingsY2 = cumulativeSavingsY1 + year2Savings
-    const cumulativeSavingsY3 = cumulativeSavingsY2 + year3Savings
-
     const cumulativeCostY1 = remediationCost
     const cumulativeCostY2 = remediationCost + annualMaintenance
     const cumulativeCostY3 = remediationCost + annualMaintenance * 2
@@ -265,12 +261,12 @@ function ROICalculatorInner() {
       netAnnualBenefit: totalAnnualBenefit - annualMaintenance,
       barChartData: [
         {
-          name: "Lawsuit Risk\nAvoided",
+          name: "Incident Cost\nScenario",
           value: lawsuitRiskCost,
           fill: "#3b82f6",
         },
         {
-          name: "Revenue\nRecovered",
+          name: "Revenue\nOpportunity",
           value: lostRevenue,
           fill: "#22c55e",
         },
@@ -303,7 +299,7 @@ function ROICalculatorInner() {
         },
       ],
     }
-  }, [isComplete, companySize, industry, revenue, visitors, compliance])
+  }, [isComplete, companySize, industry, revenue, compliance, incidentCost, affectedShareRate, recoveryRate, maintenanceRate])
 
   // ── Share / PDF ──────────────────────────────────────────────────────────────
   const handleCopyLink = useCallback(() => {
@@ -313,12 +309,16 @@ function ROICalculatorInner() {
     if (revenue) params.set("revenue", String(revenue))
     if (visitors) params.set("visitors", String(visitors))
     if (compliance) params.set("compliance", getComplianceKey(compliance))
+    params.set("incidentCost", String(incidentCost))
+    params.set("affectedShare", String(Math.round(affectedShareRate * 100)))
+    params.set("recoveryRate", String(Math.round(recoveryRate * 100)))
+    params.set("maintenanceRate", String(Math.round(maintenanceRate * 100)))
 
     const url = `${window.location.origin}/tools/accessibility-roi-calculator?${params.toString()}`
     navigator.clipboard.writeText(url)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
-  }, [companySize, industry, revenue, visitors, compliance])
+  }, [companySize, industry, revenue, visitors, compliance, incidentCost, affectedShareRate, recoveryRate, maintenanceRate])
 
   const handleDownloadPDF = useCallback(async () => {
     if (!results) return
@@ -348,7 +348,7 @@ function ROICalculatorInner() {
     doc.text(`Industry: ${industry}`, 25, 71)
     doc.text(`Annual Revenue: ${formatCurrencyFull(revenue)}`, 25, 78)
     doc.text(`Monthly Visitors: ${visitors.toLocaleString()}`, 25, 85)
-    doc.text(`Current Compliance: ${compliance}`, 25, 92)
+    doc.text(`Current Accessibility Maturity: ${compliance}`, 25, 92)
 
     doc.setDrawColor(226, 232, 240)
     doc.line(20, 98, 190, 98)
@@ -359,10 +359,10 @@ function ROICalculatorInner() {
 
     doc.setFontSize(11)
     doc.setTextColor(71, 85, 105)
-    doc.text(`ROI: ${results.roi.toFixed(0)}%`, 25, 118)
+    doc.text(`Scenario ROI: ${results.roi.toFixed(0)}%`, 25, 118)
     doc.text(`Payback Period: ${results.paybackMonths < 1 ? "< 1" : results.paybackMonths.toFixed(1)} months`, 25, 125)
-    doc.text(`Annual Savings: ${formatCurrencyFull(results.totalAnnualBenefit)}`, 25, 132)
-    doc.text(`3-Year Projected Savings: ${formatCurrencyFull(results.threeYearSavings)}`, 25, 139)
+    doc.text(`Annual Modeled Benefit: ${formatCurrencyFull(results.totalAnnualBenefit)}`, 25, 132)
+    doc.text(`3-Year Modeled Net Benefit: ${formatCurrencyFull(results.threeYearSavings)}`, 25, 139)
 
     doc.setDrawColor(226, 232, 240)
     doc.line(20, 145, 190, 145)
@@ -373,8 +373,8 @@ function ROICalculatorInner() {
 
     doc.setFontSize(11)
     doc.setTextColor(71, 85, 105)
-    doc.text(`Lawsuit Risk Reduction: ${formatCurrencyFull(results.lawsuitRiskCost)}/year`, 25, 165)
-    doc.text(`Revenue from Underserved Users: ${formatCurrencyFull(results.lostRevenue)}/year`, 25, 172)
+    doc.text(`Incident Cost Scenario: ${formatCurrencyFull(results.lawsuitRiskCost)}/year`, 25, 165)
+    doc.text(`Revenue Opportunity Scenario: ${formatCurrencyFull(results.lostRevenue)}/year`, 25, 172)
     doc.text(`One-time Remediation Cost: ${formatCurrencyFull(results.remediationCost)}`, 25, 179)
     doc.text(`Annual Maintenance: ${formatCurrencyFull(results.annualMaintenance)}`, 25, 186)
     doc.text(`Net Annual Benefit: ${formatCurrencyFull(results.netAnnualBenefit)}`, 25, 193)
@@ -390,7 +390,7 @@ function ROICalculatorInner() {
       212
     )
     doc.text(
-      "your specific situation. Data sources: WHO disability statistics, UsableNet lawsuit data, industry averages.",
+      "your situation and assumptions. This is scenario planning, not legal or financial advice.",
       20,
       218
     )
@@ -424,8 +424,7 @@ function ROICalculatorInner() {
           </h1>
         </div>
         <p className="text-muted-foreground text-base md:text-xl max-w-3xl mx-auto leading-relaxed">
-          Calculate the return on investment for web accessibility improvements. Build a compelling business case
-          with data-driven estimates for lawsuit risk, revenue impact, and remediation costs.
+          Explore the return on accessibility investment with editable cost, audience, revenue, and maintenance assumptions.
         </p>
         <div className="flex flex-wrap gap-2 justify-center mt-4">
           <Badge variant="secondary">Free Tool</Badge>
@@ -435,6 +434,7 @@ function ROICalculatorInner() {
       </div>
 
       {/* Main Layout */}
+      <h2 className="sr-only">ROI scenario workspace</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
         {/* ── Left: Input Section ─────────────────────────────────────────── */}
         <div className="space-y-6">
@@ -517,9 +517,9 @@ function ROICalculatorInner() {
                 </div>
               </div>
 
-              {/* Current Compliance */}
+              {/* Current program maturity */}
               <div className="space-y-2">
-                <Label htmlFor="compliance">Current Accessibility Compliance</Label>
+                <Label htmlFor="compliance">Current Accessibility Maturity</Label>
                 <Select value={compliance} onValueChange={setCompliance}>
                   <SelectTrigger id="compliance">
                     <SelectValue placeholder="Select compliance level" />
@@ -533,6 +533,53 @@ function ROICalculatorInner() {
                   </SelectContent>
                 </Select>
               </div>
+
+              <details className="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900/60">
+                <summary className="cursor-pointer font-medium text-slate-900 marker:text-slate-500 dark:text-white">
+                  Model assumptions
+                </summary>
+                <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                  Adjust these values to create conservative and optimistic scenarios. Defaults are illustrative, not forecasts.
+                </p>
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="incident-cost">Cost per legal incident ($)</Label>
+                    <Input
+                      id="incident-cost"
+                      inputMode="numeric"
+                      value={incidentCostInput}
+                      onChange={(event) => setIncidentCostInput(event.target.value.replace(/[^0-9]/g, ""))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="affected-share">Potentially affected audience (%)</Label>
+                    <Input
+                      id="affected-share"
+                      inputMode="numeric"
+                      value={affectedShareInput}
+                      onChange={(event) => setAffectedShareInput(event.target.value.replace(/[^0-9]/g, ""))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="recovery-rate">Revenue recovery within that audience (%)</Label>
+                    <Input
+                      id="recovery-rate"
+                      inputMode="numeric"
+                      value={recoveryRateInput}
+                      onChange={(event) => setRecoveryRateInput(event.target.value.replace(/[^0-9]/g, ""))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="maintenance-rate">Annual maintenance (% of remediation)</Label>
+                    <Input
+                      id="maintenance-rate"
+                      inputMode="numeric"
+                      value={maintenanceRateInput}
+                      onChange={(event) => setMaintenanceRateInput(event.target.value.replace(/[^0-9]/g, ""))}
+                    />
+                  </div>
+                </div>
+              </details>
             </CardContent>
             <CardFooter>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -548,19 +595,19 @@ function ROICalculatorInner() {
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4 text-amber-600" />
-                  Industry Risk Profile: {industry}
+                  Industry Scenario Profile: {industry}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-sm text-slate-600 dark:text-slate-300 space-y-2">
                   <p>
-                    Annual lawsuit probability:{" "}
+                    Default annual incident rate used in this scenario:{" "}
                     <span className="font-semibold text-amber-700 dark:text-amber-400">
-                      {((INDUSTRY_RISK[industry] || 0.04) * 100).toFixed(0)}%
+                      {((INDUSTRY_SCENARIO_RATE[industry] || 0.04) * 100).toFixed(0)}%
                     </span>
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    Based on historical data from UsableNet and Seyfarth Shaw accessibility lawsuit tracking reports.
+                    This editable model coefficient is not the probability that your organization will be sued.
                   </p>
                 </div>
               </CardContent>
@@ -598,7 +645,7 @@ function ROICalculatorInner() {
                     <div className={cn("text-3xl md:text-4xl font-bold", results.roi > 0 ? "text-green-600" : "text-red-600")}>
                       {results.roi > 0 ? "+" : ""}{results.roi.toFixed(0)}%
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">ROI</div>
+                    <div className="text-sm text-muted-foreground mt-1">Scenario ROI</div>
                   </CardContent>
                 </Card>
 
@@ -622,7 +669,7 @@ function ROICalculatorInner() {
                     <div className="text-2xl md:text-3xl font-bold text-emerald-600">
                       {formatCurrency(results.totalAnnualBenefit)}
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">Annual Savings</div>
+                    <div className="text-sm text-muted-foreground mt-1">Annual Modeled Benefit</div>
                   </CardContent>
                 </Card>
 
@@ -632,7 +679,7 @@ function ROICalculatorInner() {
                     <div className="text-2xl md:text-3xl font-bold text-purple-600">
                       {formatCurrency(results.threeYearSavings)}
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">3-Year Savings</div>
+                    <div className="text-sm text-muted-foreground mt-1">3-Year Modeled Net</div>
                   </CardContent>
                 </Card>
               </div>
@@ -641,7 +688,7 @@ function ROICalculatorInner() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Cost vs. Benefit Breakdown</CardTitle>
-                  <CardDescription>Annual benefits compared to remediation investment</CardDescription>
+                  <CardDescription>Modeled annual benefits compared with the remediation scenario</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="h-64 md:h-72">
@@ -681,7 +728,7 @@ function ROICalculatorInner() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">3-Year Projection</CardTitle>
-                  <CardDescription>Cumulative savings vs. cumulative costs over time</CardDescription>
+                  <CardDescription>Cumulative modeled benefit versus costs over time</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="h-64 md:h-72">
@@ -736,18 +783,21 @@ function ROICalculatorInner() {
 
               {/* Detailed Breakdown */}
               <Card>
-                <CardHeader
-                  className="cursor-pointer select-none"
-                  onClick={() => setShowDetailedBreakdown(!showDetailedBreakdown)}
-                >
-                  <CardTitle className="text-lg flex items-center justify-between">
+                <CardHeader>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    className="h-auto w-full justify-between px-0 text-lg font-semibold hover:bg-transparent"
+                    onClick={() => setShowDetailedBreakdown(!showDetailedBreakdown)}
+                    aria-expanded={showDetailedBreakdown}
+                  >
                     <span>Detailed Breakdown</span>
                     {showDetailedBreakdown ? (
                       <ChevronUp className="h-5 w-5 text-muted-foreground" />
                     ) : (
                       <ChevronDown className="h-5 w-5 text-muted-foreground" />
                     )}
-                  </CardTitle>
+                  </Button>
                 </CardHeader>
                 {showDetailedBreakdown && (
                   <CardContent>
@@ -755,7 +805,7 @@ function ROICalculatorInner() {
                       <div className="flex items-center justify-between py-3 border-b border-slate-200 dark:border-slate-700">
                         <div className="flex items-center gap-2">
                           <div className="h-3 w-3 rounded-full bg-blue-500" />
-                          <span className="text-sm font-medium">Lawsuit Risk Reduction</span>
+                          <span className="text-sm font-medium">Incident Cost Scenario</span>
                         </div>
                         <span className="text-sm font-semibold text-blue-600">
                           {formatCurrencyFull(results.lawsuitRiskCost)}/year
@@ -765,7 +815,7 @@ function ROICalculatorInner() {
                       <div className="flex items-center justify-between py-3 border-b border-slate-200 dark:border-slate-700">
                         <div className="flex items-center gap-2">
                           <div className="h-3 w-3 rounded-full bg-green-500" />
-                          <span className="text-sm font-medium">Revenue from Underserved Users</span>
+                          <span className="text-sm font-medium">Revenue Opportunity Scenario</span>
                         </div>
                         <span className="text-sm font-semibold text-green-600">
                           {formatCurrencyFull(results.lostRevenue)}/year
@@ -785,7 +835,7 @@ function ROICalculatorInner() {
                       <div className="flex items-center justify-between py-3 border-b border-slate-200 dark:border-slate-700">
                         <div className="flex items-center gap-2">
                           <div className="h-3 w-3 rounded-full bg-orange-500" />
-                          <span className="text-sm font-medium">Annual Maintenance (20%)</span>
+                          <span className="text-sm font-medium">Annual Maintenance ({Math.round(maintenanceRate * 100)}%)</span>
                         </div>
                         <span className="text-sm font-semibold text-orange-600">
                           {formatCurrencyFull(results.annualMaintenance)}/year
@@ -810,7 +860,7 @@ function ROICalculatorInner() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Share Results</CardTitle>
-                  <CardDescription>Share your ROI analysis with stakeholders</CardDescription>
+                  <CardDescription>The shared link includes your model assumptions</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-col sm:flex-row gap-3">
@@ -845,11 +895,14 @@ function ROICalculatorInner() {
 
               {/* Methodology */}
               <Card>
-                <CardHeader
-                  className="cursor-pointer select-none"
-                  onClick={() => setShowMethodology(!showMethodology)}
-                >
-                  <CardTitle className="text-lg flex items-center justify-between">
+                <CardHeader>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    className="h-auto w-full justify-between px-0 text-lg font-semibold hover:bg-transparent"
+                    onClick={() => setShowMethodology(!showMethodology)}
+                    aria-expanded={showMethodology}
+                  >
                     <span className="flex items-center gap-2">
                       <Info className="h-4 w-4" />
                       Methodology &amp; Assumptions
@@ -859,7 +912,7 @@ function ROICalculatorInner() {
                     ) : (
                       <ChevronDown className="h-5 w-5 text-muted-foreground" />
                     )}
-                  </CardTitle>
+                  </Button>
                 </CardHeader>
                 {showMethodology && (
                   <CardContent>
@@ -868,20 +921,20 @@ function ROICalculatorInner() {
                         <h4 className="font-semibold text-slate-900 dark:text-white mb-1">Data Sources</h4>
                         <ul className="list-disc pl-5 space-y-1">
                           <li>
-                            <strong>WHO:</strong> 15% of the global population lives with some form of disability
-                            (1.3 billion people).
+                            <strong>Audience share:</strong> The default 15% is an editable planning assumption,
+                            not a claim that the same share of every site&apos;s users is blocked.
                           </li>
                           <li>
-                            <strong>UsableNet:</strong> Annual digital accessibility lawsuit tracking data used
-                            for industry risk factors.
+                            <strong>Industry coefficient:</strong> Filing research informs the default ordering,
+                            but the displayed rate is a scenario input rather than a lawsuit probability.
                           </li>
                           <li>
-                            <strong>Seyfarth Shaw:</strong> ADA Title III lawsuit settlement cost analysis for
-                            average lawsuit and defense costs.
+                            <strong>Incident cost:</strong> The default $75,000 is editable and should be replaced
+                            with an organization&apos;s own legal, operational, and remediation assumptions.
                           </li>
                           <li>
-                            <strong>Industry averages:</strong> Remediation costs based on WebAIM, Deque, and
-                            Level Access published estimates.
+                            <strong>Remediation cost:</strong> The baseline scales by company size and maturity;
+                            obtain a scoped estimate before making a budget decision.
                           </li>
                         </ul>
                       </div>
@@ -889,11 +942,11 @@ function ROICalculatorInner() {
                       <div>
                         <h4 className="font-semibold text-slate-900 dark:text-white mb-1">Key Assumptions</h4>
                         <ul className="list-disc pl-5 space-y-1">
-                          <li>Average lawsuit cost: $50,000 settlement + $25,000 legal defense</li>
-                          <li>Disability rate among website visitors: 15%</li>
-                          <li>Average conversion rate: 2%</li>
-                          <li>Annual maintenance: 20% of initial remediation cost</li>
-                          <li>Compliance discount reduces both lawsuit risk and lost revenue proportionally</li>
+                          <li>Incident cost scenario: {formatCurrencyFull(incidentCost)}</li>
+                          <li>Potentially affected audience: {Math.round(affectedShareRate * 100)}%</li>
+                          <li>Revenue recovery within that audience: {Math.round(recoveryRate * 100)}%</li>
+                          <li>Annual maintenance: {Math.round(maintenanceRate * 100)}% of initial remediation</li>
+                          <li>Maturity factor reduces both modeled incident cost and revenue opportunity</li>
                         </ul>
                       </div>
 

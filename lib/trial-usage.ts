@@ -3,13 +3,6 @@ import { db } from '@/lib/db'
 import { trialUsage } from '@/lib/db/schema'
 import { eq, and, gte, desc } from 'drizzle-orm'
 
-interface TrialUsageData {
-  ipAddress: string | null
-  userAgent?: string
-  toolUsed: string
-  sessionId?: string
-}
-
 interface TrialLimitResult {
   allowed: boolean
   remaining: number
@@ -20,13 +13,17 @@ interface TrialLimitResult {
 // Trial limits configuration
 const TRIAL_LIMITS = {
   perIP: 5,              // 5 uses per IP per day
-  perSession: 3,         // 3 uses per session
-  cooldownHours: 24,     // Reset every 24 hours
   blockedTools: [        // Tools that require authentication
     'url_accessibility_auditor',
     'accessibility_code_generator'
   ]
 }
+
+const TRIAL_STATUS_TOOLS = [
+  'alt_text_generator',
+  'contrast_checker',
+  'accessibility_audit_helper',
+] as const
 
 async function getClientIP(): Promise<string | null> {
   try {
@@ -53,7 +50,7 @@ async function getClientIP(): Promise<string | null> {
 
 export async function checkTrialLimit(
   toolName: string,
-  sessionId?: string
+  _sessionId?: string
 ): Promise<TrialLimitResult> {
   try {
     // Check if tool requires authentication
@@ -128,7 +125,7 @@ export async function checkTrialLimit(
   }
 }
 
-export async function recordTrialUsage(toolName: string, sessionId?: string): Promise<void> {
+export async function recordTrialUsage(toolName: string, _sessionId?: string): Promise<void> {
   try {
     const clientIP = await getClientIP()
     const headersList = await headers()
@@ -141,7 +138,7 @@ export async function recordTrialUsage(toolName: string, sessionId?: string): Pr
 
     await db.insert(trialUsage).values({
       ipAddress: clientIP,
-      tool: toolName as any, // Type assertion for enum compatibility
+      tool: toolName as (typeof trialUsage.$inferInsert)["tool"],
       usageCount: 1,
       userAgent,
       success: true,
@@ -155,23 +152,21 @@ export async function recordTrialUsage(toolName: string, sessionId?: string): Pr
 }
 
 // Get all trial status for all tools
-export async function getAllTrialStatus(): Promise<any[]> {
+export async function getAllTrialStatus(): Promise<Array<{ tool: string } & TrialLimitResult>> {
   try {
     const results = []
-    
-    for (const [toolName, limit] of Object.entries(TRIAL_LIMITS)) {
-      if (toolName === 'blockedTools') continue // Skip the blockedTools array
-      
+
+    for (const toolName of TRIAL_STATUS_TOOLS) {
       const status = await checkTrialLimit(toolName, undefined)
       results.push({
         tool: toolName,
         ...status
       })
     }
-    
+
     return results
   } catch (error) {
     console.error('Error getting all trial status:', error)
     return []
   }
-} 
+}

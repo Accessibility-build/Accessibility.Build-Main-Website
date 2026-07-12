@@ -13,7 +13,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { 
   AlertTriangle,
   CheckCircle,
-  Download,
   FileText,
   TrendingUp,
   Shield,
@@ -26,7 +25,6 @@ import {
   Scale,
   Building2,
   Globe,
-  Users,
   BarChart3,
   AlertCircle,
   ChevronRight,
@@ -42,54 +40,45 @@ import {
 import { toast } from "sonner"
 import * as XLSX from 'xlsx'
 import jsPDF from 'jspdf'
-import autoTable from 'jspdf-autotable'
 
-// Research-based statistics for display (Updated 2024/2025)
-// Sources: UsableNet 2025 Mid-Year Report, ADA Title III, Accessibility.works
+// Dated research context for display. These figures do not drive the score.
+// Sources reviewed July 2026: UsableNet 2026 Midyear and Seyfarth 2025 federal filing analysis.
 const LAWSUIT_STATISTICS = {
-  // 2024 Full Year Data
-  totalLawsuits2024: 4890,
-  yearOverYearGrowth2024: 6,
-  // 2025 Mid-Year Data (Jan-Jun 2025)
-  midYear2025Lawsuits: 2847,
-  midYear2025Growth: 37, // 37% surge compared to same period 2024
-  // State Distribution (2024)
+  projectedDigitalLawsuits2026: 6176,
+  projectedGrowth2026: 20,
+  federalWebsiteLawsuits2025: 3117,
+  federalGrowth2025: 27,
+  // Federal website accessibility filings in 2025.
   topStates: [
-    { name: 'New York', percentage: 72, count: 3521 },
-    { name: 'California', percentage: 18, count: 880 },
-    { name: 'Florida', percentage: 5, count: 245 },
-    { name: 'Other States', percentage: 5, count: 244 }
+    { name: 'New York', percentage: 33, count: 1021 },
+    { name: 'Florida', percentage: 31, count: 961 },
+    { name: 'Illinois', percentage: 19, count: 585 },
+    { name: 'Other federal courts', percentage: 17, count: 550 }
   ],
-  // Industry Distribution (2024-2025)
+  // All tracked digital accessibility filings in 2025.
   topIndustries: [
-    { name: 'Restaurants / Food & Beverage', percentage: 22 },
-    { name: 'Lifestyle, Fashion & Apparel', percentage: 19 },
-    { name: 'Beauty, Skin & Body Care', percentage: 15 },
-    { name: 'Medical & Health Services', percentage: 12 },
-    { name: 'Furniture & Home Décor', percentage: 11 },
-    { name: 'E-commerce (General)', percentage: 21 }
+    { name: 'E-commerce', percentage: 70 },
+    { name: 'Food service', percentage: 21 },
+    { name: 'Healthcare', percentage: 3 },
+    { name: 'Fitness and wellness', percentage: 2 },
+    { name: 'Other industries', percentage: 4 }
   ],
-  // Financial Data
-  averageSettlement: { low: 5000, high: 150000 },
-  typicalSettlement: 20000,
-  defenseCosets: { low: 10000, high: 350000 },
-  // Key Insights
-  overlayWidgetLawsuits: 22.65, // % of lawsuits targeting sites with overlays
-  smallBusinessTarget: 77, // % targeting companies under $25M revenue
-  repeatDefendants: 15 // % of defendants sued multiple times
+  ecommerceShare2026: 79,
+  companiesUnder50M2026: 68,
+  repeatFederalDefendants2025: 46
 }
 
 // Data Sources for transparency
 const DATA_SOURCES = [
   {
-    name: 'UsableNet 2025 Mid-Year Report',
-    url: 'https://blog.usablenet.com',
-    description: 'Digital accessibility lawsuit tracking and analysis'
+    name: 'UsableNet 2026 Midyear Report',
+    url: 'https://blog.usablenet.com/inside-the-2026-midyear-numbers-where-digital-accessibility-litigation-is-going',
+    description: 'Projected filings, industries, company size, and methodology'
   },
   {
-    name: 'ADA Title III News & Insights',
-    url: 'https://www.adatitleiii.com',
-    description: 'Legal analysis of ADA Title III litigation'
+    name: 'Seyfarth 2025 Federal Filing Analysis',
+    url: 'https://www.adatitleiii.com/2026/03/federal-court-website-accessibility-lawsuit-filings-bounce-back-in-2025/',
+    description: 'Federal website accessibility filing counts by state'
   },
   {
     name: 'Web Content Accessibility Guidelines (WCAG) 2.2',
@@ -256,17 +245,17 @@ export default function ADAComplianceRisks() {
       doc.text(`Overall Risk Level: ${result.riskLevel.toUpperCase()}`, 20, yPos + 5)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(11)
-      doc.text(`Legal Exposure Score: ${result.legalExposureScore}/100`, 20, yPos + 15)
-      doc.text(`Est. Financial Risk: $${result.financialRiskEstimate.low.toLocaleString()} - $${result.financialRiskEstimate.high.toLocaleString()}`, 100, yPos + 15)
+      doc.text(`Planning Score: ${result.legalExposureScore}/100`, 20, yPos + 15)
+      doc.text(`Planning Cost Range: $${result.financialRiskEstimate.low.toLocaleString()} - $${result.financialRiskEstimate.high.toLocaleString()}`, 100, yPos + 15)
       
       yPos += 35
 
       // Methodology Note
       doc.setFontSize(9)
       doc.setTextColor(100, 100, 100)
-      doc.text('This assessment is based on WCAG 2.2 guidelines, ADA Title III requirements, DOJ technical standards,', 20, yPos)
+      doc.text('This planning model uses documented weights and dated filing research reviewed July 2026.', 20, yPos)
       yPos += 5
-      doc.text('and analysis of 4,600+ federal website accessibility lawsuits filed in 2023.', 20, yPos)
+      doc.text('It does not determine legal compliance, predict litigation, or replace advice from an attorney.', 20, yPos)
       doc.setTextColor(0, 0, 0)
       
       yPos += 15
@@ -336,17 +325,16 @@ export default function ADAComplianceRisks() {
         [''],
         ['RISK SUMMARY'],
         ['Risk Level', result.riskLevel.toUpperCase()],
-        ['Legal Exposure Score', `${result.legalExposureScore}/100`],
-        ['Financial Risk (Low)', `$${result.financialRiskEstimate.low.toLocaleString()}`],
-        ['Financial Risk (High)', `$${result.financialRiskEstimate.high.toLocaleString()}`],
+        ['Planning Score', `${result.legalExposureScore}/100`],
+        ['Planning Cost Range (Low)', `$${result.financialRiskEstimate.low.toLocaleString()}`],
+        ['Planning Cost Range (High)', `$${result.financialRiskEstimate.high.toLocaleString()}`],
         [''],
         ['ASSESSMENT METHODOLOGY'],
         ['This assessment is based on:'],
         ['• WCAG 2.2 Web Content Accessibility Guidelines'],
-        ['• ADA Title III requirements for places of public accommodation'],
-        ['• DOJ technical standards for web accessibility'],
-        ['• Analysis of 4,600+ federal website accessibility lawsuits (2023)'],
-        ['• Industry-specific risk factors and legal precedents'],
+        ['• Documented scenario weights and dated filing research'],
+        ['• Research context reviewed July 2026'],
+        ['• Informational planning output, not legal advice'],
         [''],
         ['IMMEDIATE ACTIONS'],
         ...result.immediateActions.map(a => ['• ' + a]),
@@ -442,9 +430,9 @@ export default function ADAComplianceRisks() {
           <Badge className={`${getRiskBadgeColor(result.riskLevel)} text-white text-xl px-6 py-3 mb-4`}>
             {result.riskLevel.toUpperCase()} RISK
           </Badge>
-          <h2 className="text-2xl font-bold mb-2">Risk Assessment Complete</h2>
+          <h2 className="text-2xl font-bold mb-2">Planning Assessment Complete</h2>
           <p className="text-muted-foreground">
-            Based on your inputs, here&apos;s your comprehensive ADA compliance risk analysis
+            A scenario summary based on your inputs and the documented model weights
           </p>
         </div>
 
@@ -456,10 +444,10 @@ export default function ADAComplianceRisks() {
                 <Scale className="w-8 h-8 opacity-50" />
                 <span className="text-4xl font-bold">{result.legalExposureScore}</span>
               </div>
-              <div className="text-sm font-medium mb-2">Legal Exposure Score</div>
-              <Progress value={result.legalExposureScore} className="h-2" />
+              <div className="text-sm font-medium mb-2">Planning Risk Score</div>
+              <Progress value={result.legalExposureScore} className="h-2" aria-label={`Planning risk score: ${result.legalExposureScore} out of 100`} />
               <p className="text-xs text-muted-foreground mt-2">
-                Out of 100 - Higher scores indicate greater legal vulnerability
+                Out of 100 - useful for comparing scenarios, not predicting litigation
               </p>
             </CardContent>
           </Card>
@@ -477,9 +465,9 @@ export default function ADAComplianceRisks() {
                   </div>
                 </div>
               </div>
-              <div className="text-sm font-medium">Estimated Financial Exposure</div>
+              <div className="text-sm font-medium">Planning Cost Range</div>
               <p className="text-xs text-muted-foreground mt-2">
-                Includes potential settlements, legal fees, and remediation costs
+                Scenario estimate using model assumptions; actual costs can differ substantially
               </p>
             </CardContent>
           </Card>
@@ -505,9 +493,9 @@ export default function ADAComplianceRisks() {
               <BookOpen className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
               <div className="text-sm text-slate-600 dark:text-slate-400">
                 <strong>Assessment Methodology:</strong> This risk calculation is based on WCAG 2.2 guidelines, 
-                ADA Title III requirements, DOJ 2024 final rule, and analysis of {LAWSUIT_STATISTICS.totalLawsuits2024.toLocaleString()}+ 
-                federal website accessibility lawsuits in 2024 (with 2025 mid-year data showing a {LAWSUIT_STATISTICS.midYear2025Growth}% surge). 
-                Risk factors are weighted according to industry-specific litigation patterns and settlement data.
+                ADA context, the DOJ Title II rule, and dated filing research. The model is a
+                planning heuristic; the research figures below provide context and do not predict outcomes.
+                The score supports scenario comparison and is not a probability or legal conclusion.
               </div>
             </div>
           </CardContent>
@@ -675,10 +663,10 @@ export default function ADAComplianceRisks() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BarChart3 className="w-5 h-5 text-blue-600" />
-                  2024-2025 ADA Website Lawsuit Statistics
+                  Dated ADA Website Lawsuit Research
                 </CardTitle>
                 <CardDescription>
-                  Latest data from UsableNet, ADA Title III, and federal court filings
+                  Sources reviewed July 2026. Different sources use different court and filing scopes.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -686,29 +674,29 @@ export default function ADAComplianceRisks() {
                 <div className="grid md:grid-cols-3 gap-4">
                   <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200">
                     <div className="text-3xl font-bold text-blue-600">
-                      {LAWSUIT_STATISTICS.totalLawsuits2024.toLocaleString()}
+                      {LAWSUIT_STATISTICS.projectedDigitalLawsuits2026.toLocaleString()}
                     </div>
-                    <div className="text-sm text-muted-foreground">Total lawsuits in 2024</div>
+                    <div className="text-sm text-muted-foreground">Projected digital filings in 2026</div>
                     <div className="text-xs text-blue-600 mt-1">
-                      ↑ {LAWSUIT_STATISTICS.yearOverYearGrowth2024}% from 2023
+                      About {LAWSUIT_STATISTICS.projectedGrowth2026}% above 2025 pace
                     </div>
                   </div>
                   <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200">
                     <div className="text-3xl font-bold text-red-600">
-                      {LAWSUIT_STATISTICS.midYear2025Lawsuits.toLocaleString()}
+                      {LAWSUIT_STATISTICS.federalWebsiteLawsuits2025.toLocaleString()}
                     </div>
-                    <div className="text-sm text-muted-foreground">Lawsuits (Jan-Jun 2025)</div>
+                    <div className="text-sm text-muted-foreground">Federal website filings in 2025</div>
                     <div className="text-xs text-red-600 mt-1">
-                      ↑ {LAWSUIT_STATISTICS.midYear2025Growth}% surge vs 2024
+                      {LAWSUIT_STATISTICS.federalGrowth2025}% above 2024
                     </div>
                   </div>
                   <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200">
                     <div className="text-2xl font-bold text-green-600">
-                      ~${LAWSUIT_STATISTICS.typicalSettlement.toLocaleString()}
+                      {LAWSUIT_STATISTICS.ecommerceShare2026}%
                     </div>
-                    <div className="text-sm text-muted-foreground">Typical settlement</div>
+                    <div className="text-sm text-muted-foreground">2026 filings involving e-commerce</div>
                     <div className="text-xs text-muted-foreground mt-1">
-                      Range: ${LAWSUIT_STATISTICS.averageSettlement.low.toLocaleString()} - ${LAWSUIT_STATISTICS.averageSettlement.high.toLocaleString()}
+                      Industry share, not an individual risk probability
                     </div>
                   </div>
                 </div>
@@ -717,14 +705,14 @@ export default function ADAComplianceRisks() {
                 <div>
                   <h4 className="font-semibold mb-3 flex items-center gap-2">
                     <Globe className="w-4 h-4" />
-                    Lawsuits by State (2024)
+                    Federal Website Filings by State (2025)
                   </h4>
                   <div className="space-y-2">
                     {LAWSUIT_STATISTICS.topStates.map((state, i) => (
                       <div key={i} className="flex items-center gap-3">
                         <div className="w-28 text-sm font-medium">{state.name}</div>
                         <div className="flex-1">
-                          <Progress value={state.percentage} className="h-3" />
+                          <Progress value={state.percentage} className="h-3" aria-label={`${state.name}: ${state.percentage}% of 2025 federal website filings`} />
                         </div>
                         <div className="w-20 text-sm text-right text-muted-foreground">
                           {state.count.toLocaleString()} ({state.percentage}%)
@@ -738,7 +726,7 @@ export default function ADAComplianceRisks() {
                 <div>
                   <h4 className="font-semibold mb-3 flex items-center gap-2">
                     <Building2 className="w-4 h-4" />
-                    Most Targeted Industries (2024-2025)
+                    Tracked Digital Filings by Industry (2025)
                   </h4>
                   <div className="grid md:grid-cols-2 gap-2">
                     {LAWSUIT_STATISTICS.topIndustries.map((industry, i) => (
@@ -753,16 +741,16 @@ export default function ADAComplianceRisks() {
                 {/* Key Insights */}
                 <div className="grid md:grid-cols-3 gap-4">
                   <div className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg text-center">
-                    <div className="text-2xl font-bold text-amber-600">{LAWSUIT_STATISTICS.overlayWidgetLawsuits}%</div>
-                    <div className="text-xs text-muted-foreground">of lawsuits target sites using accessibility overlays/widgets</div>
+                    <div className="text-2xl font-bold text-amber-600">{LAWSUIT_STATISTICS.ecommerceShare2026}%</div>
+                    <div className="text-xs text-muted-foreground">of tracked 2026 filings involve e-commerce</div>
                   </div>
                   <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-center">
-                    <div className="text-2xl font-bold text-purple-600">{LAWSUIT_STATISTICS.smallBusinessTarget}%</div>
-                    <div className="text-xs text-muted-foreground">target companies with &lt;$25M annual revenue</div>
+                    <div className="text-2xl font-bold text-purple-600">{LAWSUIT_STATISTICS.companiesUnder50M2026}%</div>
+                    <div className="text-xs text-muted-foreground">involve companies below $50M annual revenue</div>
                   </div>
                   <div className="p-3 bg-rose-50 dark:bg-rose-900/20 rounded-lg text-center">
-                    <div className="text-2xl font-bold text-rose-600">{LAWSUIT_STATISTICS.repeatDefendants}%</div>
-                    <div className="text-xs text-muted-foreground">of defendants have been sued multiple times</div>
+                    <div className="text-2xl font-bold text-rose-600">{LAWSUIT_STATISTICS.repeatFederalDefendants2025}%</div>
+                    <div className="text-xs text-muted-foreground">of 2025 federal filings involved repeat defendants</div>
                   </div>
                 </div>
 
@@ -789,7 +777,7 @@ export default function ADAComplianceRisks() {
                   Data Sources & Methodology
                 </CardTitle>
                 <CardDescription>
-                  This assessment is based on authoritative sources and established standards
+                  Dated sources and model context used for planning
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -814,8 +802,8 @@ export default function ADAComplianceRisks() {
                   <p className="text-xs text-blue-700 dark:text-blue-300">
                     <strong>Methodology:</strong> Risk scores are calculated using weighted factors including 
                     industry litigation rates, violation severity (based on WCAG impact levels), compliance 
-                    status, traffic exposure, and jurisdictional legal climate. Financial estimates are derived 
-                    from settlement data analysis and defense cost averages from published case outcomes.
+                    status, traffic exposure, and jurisdictional context. Cost ranges are planning scenarios,
+                    not observed averages or forecasts for a specific organization.
                   </p>
                 </div>
               </CardContent>
@@ -854,6 +842,7 @@ export default function ADAComplianceRisks() {
 
   return (
     <div className="space-y-6">
+      <h2 className="sr-only">ADA risk planning workspace</h2>
       {/* Sample Data Banner */}
       <Card className="border-dashed border-2 border-amber-500/30 bg-gradient-to-r from-amber-500/5 to-orange-500/10">
         <CardContent className="py-4">
@@ -890,7 +879,7 @@ export default function ADAComplianceRisks() {
               <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                 {Object.entries(RISK_FACTOR_WEIGHTS).map(([factor, weight]) => (
                   <div key={factor} className="text-center p-2 bg-white dark:bg-slate-800 rounded-lg">
-                    <div className="text-lg font-bold text-blue-600">{weight}%</div>
+                    <div className="text-lg font-bold text-blue-700 dark:text-blue-300">{weight}%</div>
                     <div className="text-xs text-muted-foreground capitalize">
                       {factor.replace(/([A-Z])/g, ' $1').trim()}
                     </div>
@@ -898,7 +887,7 @@ export default function ADAComplianceRisks() {
                 ))}
               </div>
               <p className="text-xs text-muted-foreground mt-3">
-                Based on DOJ 2024 guidance, WCAG 2.2 standards, and analysis of {LAWSUIT_STATISTICS.totalLawsuits2024.toLocaleString()}+ lawsuits in 2024
+                Planning weights are documented below. Research context reviewed July 2026.
               </p>
             </div>
           </div>
@@ -963,7 +952,7 @@ export default function ADAComplianceRisks() {
                   value={assessmentData.industryType || 'other'}
                   onValueChange={(value) => updateField('industryType', value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Industry type">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -979,7 +968,7 @@ export default function ADAComplianceRisks() {
                   </SelectContent>
                 </Select>
                 <p className="text-xs text-muted-foreground mt-1">
-                  E-commerce accounts for 77% of ADA website lawsuits
+                  E-commerce represented 79% of tracked filings in the 2026 midyear source
                 </p>
               </div>
               <div>
@@ -988,7 +977,7 @@ export default function ADAComplianceRisks() {
                   value={assessmentData.companySize || 'small'}
                   onValueChange={(value) => updateField('companySize', value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Company size">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -1009,7 +998,7 @@ export default function ADAComplianceRisks() {
                   value={assessmentData.annualRevenue || 'under-1m'}
                   onValueChange={(value) => updateField('annualRevenue', value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Annual revenue range">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -1030,7 +1019,7 @@ export default function ADAComplianceRisks() {
                   value={assessmentData.geographicLocation || 'us'}
                   onValueChange={(value) => updateField('geographicLocation', value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Primary operating region">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -1115,7 +1104,7 @@ export default function ADAComplianceRisks() {
                   value={assessmentData.websiteType || 'other'}
                   onValueChange={(value) => updateField('websiteType', value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Primary website type">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -1136,7 +1125,7 @@ export default function ADAComplianceRisks() {
                   value={assessmentData.trafficVolume || 'medium'}
                   onValueChange={(value) => updateField('trafficVolume', value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Monthly traffic volume">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -1242,7 +1231,7 @@ export default function ADAComplianceRisks() {
                   value={assessmentData.currentWCAGLevel || 'none'}
                   onValueChange={(value) => updateField('currentWCAGLevel', value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Current WCAG conformance level">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>

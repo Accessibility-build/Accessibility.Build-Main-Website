@@ -108,7 +108,7 @@ export function DashboardPreview({ tokens, contrastModel }: PreviewProps) {
     >
       <div className="grid grid-cols-[180px_1fr]" style={{ minHeight: 360 }}>
         {/* Sidebar */}
-        <aside
+        <div
           className="border-r p-3"
           style={{ backgroundColor: tokens.surface, borderColor: tokens.border }}
         >
@@ -120,7 +120,7 @@ export function DashboardPreview({ tokens, contrastModel }: PreviewProps) {
             />
             <span className="text-sm font-semibold">Studio</span>
           </div>
-          <nav className="space-y-1">
+          <div className="space-y-1">
             {navItems.map((item) => {
               const Icon = item.icon
               return (
@@ -140,11 +140,11 @@ export function DashboardPreview({ tokens, contrastModel }: PreviewProps) {
                 </a>
               )
             })}
-          </nav>
-        </aside>
+          </div>
+        </div>
 
         {/* Main */}
-        <main className="p-4">
+        <div className="p-4">
           <header className="mb-4 flex items-center justify-between">
             <div>
               <h3 className="text-base font-semibold">Overview</h3>
@@ -188,7 +188,7 @@ export function DashboardPreview({ tokens, contrastModel }: PreviewProps) {
             <ContrastBadge fg={tokens.primaryForeground} bg={tokens.primary} tokens={tokens} contrastModel={contrastModel} small />
             <ContrastBadge fg={tokens.muted} bg={tokens.background} tokens={tokens} contrastModel={contrastModel} small />
           </div>
-        </main>
+        </div>
       </div>
     </div>
   )
@@ -704,10 +704,10 @@ export function MarketingPreview({ tokens, contrastModel }: PreviewProps) {
             className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium"
             style={{ backgroundColor: tokens.primarySurface, color: tokens.primary }}
           >
-            New · WCAG 3 ready
+            New · APCA comparison
           </span>
           <h3 className="mt-3 text-2xl font-bold leading-tight">
-            Ship a palette that actually passes APCA.
+            Compare a palette across WCAG 2.2 and APCA estimates.
           </h3>
           <p className="mt-2 text-sm" style={{ color: tokens.muted }}>
             Eleven-stop OKLCH scales, state-aware grading, and one-click Figma + Tailwind + iOS exports.

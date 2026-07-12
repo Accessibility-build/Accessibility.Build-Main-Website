@@ -4,15 +4,15 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "Color Contrast Checker | WCAG 2.2 & 3.0",
+  title: "Color Contrast Checker | WCAG 2.2 & APCA",
   description:
-    "Professional WCAG contrast checker supporting both WCAG 2.2 and 3.0 (APCA). Test contrast ratios instantly, get real-time feedback, and ensure your design meets accessibility standards for all users including those with visual impairments.",
+    "Test foreground and background colors against WCAG 2.2 contrast requirements, with live previews, accessible suggestions, and an experimental APCA estimate.",
   keywords: [
     "wcag contrast checker",
     "color contrast checker",
     "WCAG contrast ratio",
     "WCAG 2.2 compliance",
-    "WCAG 3.0 APCA",
+    "APCA contrast estimate",
     "accessibility testing",
     "color accessibility",
     "contrast ratio calculator", 
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     "advanced perceptual contrast"
   ],
   openGraph: {
-    title: "Advanced Color Contrast Checker - WCAG 2.2 & 3.0 Support",
-    description: "Professional contrast checker with WCAG 2.2 and 3.0 APCA support. Test accessibility compliance instantly.",
+    title: "Color Contrast Checker - WCAG 2.2 & APCA",
+    description: "Test WCAG 2.2 contrast requirements and compare an experimental APCA estimate with live previews.",
     type: "website",
     url: "https://accessibility.build/tools/contrast-checker",
     images: [
@@ -43,8 +43,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Advanced Color Contrast Checker - WCAG 2.2 & 3.0",
-    description: "Professional contrast checker with WCAG 2.2 and 3.0 APCA support. Test accessibility compliance instantly.",
+    title: "Color Contrast Checker - WCAG 2.2 & APCA",
+    description: "Test WCAG 2.2 contrast requirements and compare an experimental APCA estimate with live previews.",
     images: ["https://accessibility.build/images/tools/contrast-checker-twitter.png"]
   },
   alternates: {
@@ -75,17 +75,13 @@ export default function ContrastCheckerPage() {
       {/* Enhanced Schema Markup */}
       <AccessibilityToolStructuredData
         name="Advanced Color Contrast Checker"
-        description="Professional color contrast checker supporting WCAG 2.2 and 3.0 APCA for comprehensive accessibility compliance testing"
+        description="Color contrast checker for WCAG 2.2 requirements with live previews, accessible suggestions, and an experimental APCA estimate"
         url="https://accessibility.build/tools/contrast-checker"
         applicationCategory="AccessibilityApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",
           priceCurrency: "USD"
-        }}
-        aggregateRating={{
-          ratingValue: "4.8",
-          reviewCount: "1250"
         }}
         accessibilityFeatures={[
           "keyboardNavigation",

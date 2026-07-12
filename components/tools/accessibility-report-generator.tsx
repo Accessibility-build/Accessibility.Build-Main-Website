@@ -407,6 +407,7 @@ export default function AccessibilityReportGenerator() {
 
   return (
     <div className="space-y-6">
+      <h2 className="sr-only">Accessibility report workspace</h2>
       {/* Sample Data Banner */}
       <Card className="border-dashed border-2 border-primary/30 bg-gradient-to-r from-primary/5 to-primary/10">
         <CardContent className="py-4">
@@ -430,8 +431,8 @@ export default function AccessibilityReportGenerator() {
 
       <Tabs value={inputMethod} onValueChange={(value) => setInputMethod(value as any)}>
         <TabsList>
-          <TabsTrigger value="manual">Manual Entry</TabsTrigger>
-          <TabsTrigger value="import">Import Data</TabsTrigger>
+          <TabsTrigger value="manual" className="text-slate-700 dark:text-slate-200">Manual Entry</TabsTrigger>
+          <TabsTrigger value="import" className="text-slate-700 dark:text-slate-200">Import Data</TabsTrigger>
         </TabsList>
 
         <TabsContent value="manual" className="space-y-6">
@@ -476,7 +477,7 @@ export default function AccessibilityReportGenerator() {
                     value={reportData.reportType || 'executive'}
                     onValueChange={(value) => updateField('reportType', value)}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger aria-label="Report type">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -524,7 +525,7 @@ export default function AccessibilityReportGenerator() {
                     value={newViolation.impact || 'moderate'}
                     onValueChange={(value) => setNewViolation(prev => ({ ...prev, impact: value as any }))}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger aria-label="Violation impact level">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -635,19 +636,19 @@ export default function AccessibilityReportGenerator() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
                   <div className="text-2xl font-bold text-red-600">{reportData.summary?.critical || 0}</div>
-                  <div className="text-sm text-muted-foreground">Critical</div>
+                  <div className="text-sm text-slate-700 dark:text-slate-200">Critical</div>
                 </div>
                 <div className="text-center p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
                   <div className="text-2xl font-bold text-orange-600">{reportData.summary?.serious || 0}</div>
-                  <div className="text-sm text-muted-foreground">Serious</div>
+                  <div className="text-sm text-slate-700 dark:text-slate-200">Serious</div>
                 </div>
                 <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                   <div className="text-2xl font-bold text-blue-600">{reportData.summary?.moderate || 0}</div>
-                  <div className="text-sm text-muted-foreground">Moderate</div>
+                  <div className="text-sm text-slate-700 dark:text-slate-200">Moderate</div>
                 </div>
                 <div className="text-center p-4 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
                   <div className="text-2xl font-bold text-gray-600">{reportData.summary?.minor || 0}</div>
-                  <div className="text-sm text-muted-foreground">Minor</div>
+                  <div className="text-sm text-slate-700 dark:text-slate-200">Minor</div>
                 </div>
               </div>
             </CardContent>
@@ -692,11 +693,15 @@ export default function AccessibilityReportGenerator() {
         <CardContent className="space-y-4">
           <Tabs value={previewFormat} onValueChange={(value) => setPreviewFormat(value as any)}>
             <TabsList className="xs:flex flex-col h-auto xs:w-full xs2:block xs2:w-auto">
-              <TabsTrigger value="html" className="xs:w-full xs2:w-auto">HTML Preview</TabsTrigger>
-              <TabsTrigger value="markdown" className="xs:w-full xs2:w-auto">Markdown Preview</TabsTrigger>
+              <TabsTrigger value="html" className="xs:w-full xs2:w-auto text-slate-700 dark:text-slate-200">HTML Preview</TabsTrigger>
+              <TabsTrigger value="markdown" className="xs:w-full xs2:w-auto text-slate-700 dark:text-slate-200">Markdown Preview</TabsTrigger>
             </TabsList>
             <TabsContent value={previewFormat} className="mt-4">
-              <div className="border rounded-lg p-4 bg-slate-50 dark:bg-slate-900 max-h-96 overflow-auto">
+              <div
+                className="border rounded-lg p-4 bg-slate-50 dark:bg-slate-900 max-h-96 overflow-auto"
+                tabIndex={0}
+                aria-label="Scrollable report preview"
+              >
                 {previewFormat === 'html' ? (
                   <iframe
                     srcDoc={generatePreview()}
@@ -735,4 +740,3 @@ export default function AccessibilityReportGenerator() {
     </div>
   )
 }
-

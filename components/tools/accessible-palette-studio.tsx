@@ -37,7 +37,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import { gradeTokens } from "@/lib/color/grade"
-import { isValidHex, oklchToHex } from "@/lib/color/oklch"
+import { contrastRatioWCAG, isValidHex, oklchToHex } from "@/lib/color/oklch"
 import { describeHex } from "@/lib/color/names"
 import { generatePalette, STOPS, FAMILY_NAMES, type FamilyName } from "@/lib/color/scales"
 import { deriveTokens, type SemanticTokens } from "@/lib/color/tokens"
@@ -369,6 +369,7 @@ export default function AccessiblePaletteStudio() {
 
   return (
     <div className="space-y-6">
+      <h2 className="sr-only">Palette design workspace</h2>
       <CVDFilterDefs />
 
       {/* === Header / Controls ================================================ */}
@@ -636,17 +637,17 @@ export default function AccessiblePaletteStudio() {
       {/* === Tabs: Preview / Report / Export ================================== */}
       <Tabs value={view} onValueChange={(v) => setView(v as typeof view)} className="w-full">
         <TabsList className="grid w-full grid-cols-3 md:w-auto md:inline-grid">
-          <TabsTrigger value="preview">
+          <TabsTrigger value="preview" className="text-slate-700 dark:text-slate-200">
             <Sparkles className="mr-1.5 h-3.5 w-3.5" />
             Live UI
           </TabsTrigger>
-          <TabsTrigger value="report">
+          <TabsTrigger value="report" className="text-slate-700 dark:text-slate-200">
             <FileCheck className="mr-1.5 h-3.5 w-3.5" />
             Report ({report.summary.fail + report.summary.caution > 0
               ? `${report.summary.fail + report.summary.caution} issues`
               : "all pass"})
           </TabsTrigger>
-          <TabsTrigger value="export">
+          <TabsTrigger value="export" className="text-slate-700 dark:text-slate-200">
             <Download className="mr-1.5 h-3.5 w-3.5" />
             Export
           </TabsTrigger>
@@ -678,7 +679,7 @@ export default function AccessiblePaletteStudio() {
               </p>
             )}
 
-            <div style={cvdStyle}>
+            <div style={cvdStyle} aria-hidden="true" inert>
               {renderPreview(previewTab, { tokens: activeTokens, contrastModel })}
             </div>
           </div>
@@ -838,17 +839,20 @@ function ScaleStripRow({
         {colors.map((hex, i) => {
           const stop = STOPS[i]
           const isCopied = copiedHex === hex
-          const textColor = i < 5 ? "rgba(0,0,0,0.7)" : "rgba(255,255,255,0.85)"
+          const blackRatio = contrastRatioWCAG("#000000", hex)
+          const whiteRatio = contrastRatioWCAG("#ffffff", hex)
+          const textColor = blackRatio >= whiteRatio ? "#000000" : "#ffffff"
           return (
             <button
               key={stop}
               type="button"
               onClick={() => onCopy(hex)}
+              aria-label={`${family} ${stop}, ${hex}. Copy color.`}
               className="group relative h-12 rounded-md border text-left text-[10px] font-mono transition-transform hover:-translate-y-0.5"
               style={{ backgroundColor: hex, color: textColor, borderColor: "rgba(0,0,0,0.08)" }}
               title={`${family}-${stop} · ${hex} · ${describeHex(hex)}`}
             >
-              <span className="absolute left-1 top-1 opacity-70">{stop}</span>
+              <span className="absolute left-1 top-1">{stop}</span>
               <span className="absolute bottom-1 right-1 opacity-0 transition-opacity group-hover:opacity-90">
                 {isCopied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
               </span>

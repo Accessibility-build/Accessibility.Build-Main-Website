@@ -1,10 +1,11 @@
 import type { Metadata } from "next"
 import ToolsClientPage from "./ToolsClientPage"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
+import { toolCatalog } from "@/lib/tool-catalog"
 
 export const metadata: Metadata = {
   title: "Accessibility Tools | WCAG 2.2 & 3.0 Compliance",
-  description: "Comprehensive suite of AI-powered accessibility tools including contrast checkers, alt text generators, and WCAG compliance auditors.",
+  description: "Practical accessibility testing, content, design, planning, and developer tools for building more inclusive digital products.",
   keywords: [
     "accessibility tools",
     "wcag tools",
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Accessibility Tools | WCAG 2.2 & 3.0 Compliance",
-    description: "Comprehensive suite of AI-powered accessibility tools including contrast checkers, alt text generators, and WCAG compliance auditors.",
+    description: "Practical accessibility testing, content, design, planning, and developer tools for building more inclusive digital products.",
     type: "website",
     url: "https://accessibility.build/tools",
     images: [
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Accessibility Tools | WCAG 2.2 & 3.0 Compliance",
-    description: "Comprehensive suite of AI-powered accessibility tools including contrast checkers, alt text generators, and WCAG compliance auditors.",
+    description: "Practical accessibility testing, content, design, planning, and developer tools for building more inclusive digital products.",
     images: ["/og-image.png"]
   },
   alternates: {
@@ -51,30 +52,17 @@ export default function ToolsPage() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Accessibility Tools Suite",
-    "description": "Comprehensive suite of AI-powered accessibility tools including contrast checkers, alt text generators, and WCAG compliance auditors.",
+    "description": "Practical accessibility testing, content, design, planning, and developer tools for building more inclusive digital products.",
     "url": "https://accessibility.build/tools",
     "mainEntity": {
       "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "url": "https://accessibility.build/tools/contrast-checker",
-          "name": "Color Contrast Checker"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "url": "https://accessibility.build/tools/alt-text-generator",
-          "name": "AI Alt Text Generator"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "url": "https://accessibility.build/tools/accessibility-audit-helper",
-          "name": "AI Accessibility Audit Helper"
-        }
-      ]
+      "numberOfItems": toolCatalog.length,
+      "itemListElement": toolCatalog.map((tool, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": `https://accessibility.build/tools/${tool.slug}`,
+        "name": tool.title
+      }))
     }
   }
 

@@ -184,6 +184,17 @@ const guides = [
     gradient: "from-sky-600 to-indigo-600",
   },
   {
+    title: "React Accessibility Guide",
+    description:
+      "Build accessible React apps: semantic JSX, focus management on route changes, accessible modals, ARIA in JSX, live-region announcements, forms with useId, and a testing workflow with eslint-plugin-jsx-a11y, jest-axe, and Playwright — mapped to WCAG 2.2 AA.",
+    icon: Code2,
+    difficulty: "Intermediate",
+    readingTime: "20 min",
+    topics: ["React", "Focus Management", "ARIA in JSX", "useId", "jest-axe"],
+    href: "/guides/react-accessibility",
+    gradient: "from-cyan-600 to-blue-600",
+  },
+  {
     title: "Accessible Forms Guide",
     description:
       "Build forms everyone can complete. Labels, required fields, inline validation, accessible error messages tied with aria-describedby, fieldset grouping, autocomplete, and multi-step patterns — mapped to WCAG 2.2 AA with copy-ready code.",

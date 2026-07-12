@@ -10,7 +10,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 export const metadata: Metadata = {
   title: "PDF Accessibility Checker | WCAG & PDF/UA",
   description:
-    "Upload any PDF and instantly check for accessibility issues. Analyze document structure, alt text, reading order, bookmarks, and language against WCAG 2.2 and PDF/UA standards. AI-powered fix suggestions included.",
+    "Upload a PDF to inspect detectable document structure, metadata, text, image, and navigation signals, with AI-assisted review guidance.",
   keywords: [
     "pdf accessibility checker",
     "pdf accessibility",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free PDF Accessibility Checker - WCAG & PDF/UA Compliance",
     description:
-      "Upload a PDF and get instant accessibility analysis with AI-powered fix suggestions. Check structure, alt text, bookmarks, and WCAG compliance.",
+      "Inspect detectable PDF structure, metadata, text, image, and navigation signals with AI-assisted guidance.",
     type: "website",
     url: "https://accessibility.build/tools/pdf-accessibility-checker",
     images: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free PDF Accessibility Checker",
     description:
-      "Upload a PDF and check for accessibility issues. WCAG 2.2 and PDF/UA compliance with AI-powered fix suggestions.",
+      "Inspect detectable PDF accessibility signals with AI-assisted fix suggestions; manual PDF/UA review is still required.",
   },
   alternates: {
     canonical: "/tools/pdf-accessibility-checker",
@@ -101,12 +101,11 @@ export default function PDFAccessibilityCheckerPage() {
     <>
       <AccessibilityToolStructuredData
         name="PDF Accessibility Checker"
-        description="Free online PDF accessibility checker. Upload a PDF and instantly check for WCAG and PDF/UA compliance issues including document structure, alt text, reading order, and bookmarks."
+        description="Inspect detectable PDF structure, metadata, text, image, and navigation signals. Manual PDF/UA review remains required."
         url="https://accessibility.build/tools/pdf-accessibility-checker"
         applicationCategory="AccessibilityApplication"
         operatingSystem="Web Browser"
         offers={{ price: "0", priceCurrency: "USD" }}
-        aggregateRating={{ ratingValue: "4.8", reviewCount: "920" }}
         accessibilityFeatures={[
           "highContrastDisplay",
           "keyboardNavigation",
@@ -172,8 +171,8 @@ export default function PDFAccessibilityCheckerPage() {
               </h1>
 
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                Upload any PDF and instantly check for accessibility issues. AI-powered analysis with
-                <span className="font-semibold text-foreground"> WCAG and PDF/UA compliance checks</span>
+                Upload a PDF to inspect detectable accessibility signals. AI-assisted analysis with
+                <span className="font-semibold text-foreground"> automated WCAG and PDF/UA-oriented checks</span>
               </p>
 
               {/* Key Benefits Bar */}

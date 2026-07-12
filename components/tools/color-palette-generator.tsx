@@ -807,6 +807,7 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
 
   return (
     <div className="max-w-6xl mx-auto">
+      <h2 className="sr-only">Color palette generation workspace</h2>
       {/* Controls */}
       <Card className="mb-8">
         <CardHeader>
@@ -851,7 +852,7 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
             <div className="space-y-2">
               <Label htmlFor="harmony">Color Harmony</Label>
               <Select value={harmony} onValueChange={(value) => setHarmony(value as ColorHarmony)}>
-                <SelectTrigger className="bg-background">
+                <SelectTrigger className="bg-background" aria-label="Color harmony">
                   <SelectValue placeholder="Select harmony" />
                 </SelectTrigger>
                 <SelectContent className="bg-background border">

@@ -23,7 +23,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 export const metadata: Metadata = {
   title: "Accessible Typography Studio | WCAG + APCA",
   description:
-    "Build a WCAG 2.2 + APCA-aware typography system: modular OKLCH-quality type scales, dyslexia / cognitive / low-vision presets, fluid clamp() sizing, readability scoring, and exports to Tailwind, Figma, CSS, iOS, and Android.",
+    "Build a typography system with WCAG-oriented checks, experimental APCA estimates, fluid type scales, readability analysis, and design-token exports.",
   keywords: [
     "accessible typography",
     "WCAG typography",
@@ -125,7 +125,6 @@ export default function AccessibleTypographyStudioPage() {
         applicationCategory="DesignApplication"
         operatingSystem="Any"
         offers={{ price: "0", priceCurrency: "USD" }}
-        aggregateRating={{ ratingValue: "4.9", reviewCount: "180" }}
         accessibilityFeatures={[
           "largePrint",
           "displayTransformability",
@@ -156,8 +155,8 @@ export default function AccessibleTypographyStudioPage() {
               </h1>
 
               <p className="mb-6 text-lg leading-relaxed text-muted-foreground md:text-xl">
-                Build a modular type scale that meets WCAG&nbsp;2.2 + APCA, scales fluidly across
-                viewports, and ships with one click to Tailwind, Figma, CSS, iOS, and Android.
+                Build a modular type scale with WCAG-oriented checks and experimental APCA
+                estimates, then export it to Tailwind, Figma, CSS, iOS, or Android.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
@@ -217,7 +216,7 @@ export default function AccessibleTypographyStudioPage() {
               iconColor="text-green-600 dark:text-green-400"
               bgColor="bg-green-100 dark:bg-green-950"
               title="WCAG 2.2 + APCA grading"
-              description="Body size, line-height, line-length, heading hierarchy, paragraph spacing, and per-role contrast against your palette — all graded automatically with deep-links to W3C SC."
+              description="Review body size, spacing resilience, line length, hierarchy, and per-role contrast with links to the relevant W3C criteria."
             />
             <FeatureCard
               icon={BookOpen}
@@ -256,9 +255,8 @@ export default function AccessibleTypographyStudioPage() {
                 Color contrast gets all the attention because contrast checkers are easy to find.
                 Typography accessibility is harder — it's spread across WCAG 1.4.4 (resize), 1.4.8
                 (visual presentation), 1.4.12 (text spacing), 1.4.3 (contrast), and a half-dozen
-                cognitive guidelines from WCAG 2.2 and the upcoming WCAG 3. Most teams handle one
-                or two and ship anyway. The Studio handles all of them in a single tool, then
-                exports the whole system to your stack of choice.
+                readability considerations that sit outside a single pass/fail rule. The Studio
+                brings these checks into one workspace, then exports the system to your stack.
               </p>
             </div>
 
@@ -316,27 +314,27 @@ export default function AccessibleTypographyStudioPage() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <h3 className="mb-2 font-semibold">Body size (WCAG 1.4.4)</h3>
+                <h3 className="mb-2 font-semibold">Body size and resize resilience</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  Body text minimum is 16px on desktop. The Studio passes anything at or above
-                  16px (after fluid clamp at the smallest viewport), warns between 14–16px, and
-                  fails below 14px.
+                  WCAG 1.4.4 does not set a minimum font size; it requires text to resize without
+                  loss of content or functionality. The Studio uses 16px as a practical starting
+                  point and flags smaller sizes for manual readability review.
                 </p>
               </div>
               <div>
                 <h3 className="mb-2 font-semibold">Line height &amp; spacing (WCAG 1.4.12)</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  Body line-height must reach 1.5 — paragraph spacing at least 2× font size,
-                  letter-spacing 0.12em, word-spacing 0.16em. Toggle the override switch in any
-                  specimen to verify your layout survives the worst-case rendering.
+                  WCAG 1.4.12 requires content to remain usable when users apply specified spacing
+                  values. Toggle the override to test those user styles for clipping, overlap, or
+                  lost content; the values are test conditions, not mandatory default styles.
                 </p>
               </div>
               <div>
                 <h3 className="mb-2 font-semibold">Line length (WCAG 1.4.8)</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  Comfortable reading width is 45–80 characters per line. The Studio computes
-                  characters per line from your max-width and body font size and warns when the
-                  measure goes too narrow or too wide.
+                  WCAG 1.4.8 is a Level AAA criterion that limits blocks of text to no more than
+                  80 characters or glyphs per line. The Studio also shows a narrower comfort band
+                  as design guidance and keeps it distinct from conformance.
                 </p>
               </div>
               <div>
@@ -344,8 +342,8 @@ export default function AccessibleTypographyStudioPage() {
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   When you paste a palette primary, the report grades each text role's contrast
                   against the derived background — body, small, caption, code, all H tags —
-                  using both the WCAG luminance ratio and the WCAG 3 APCA Lc model. Catches
-                  dark-mode body text that scores 4.7:1 but still fails APCA.
+                  using both the normative WCAG 2.2 luminance ratio and an experimental APCA Lc
+                  estimate. APCA output is supplemental design guidance, not a conformance result.
                 </p>
               </div>
               <div>

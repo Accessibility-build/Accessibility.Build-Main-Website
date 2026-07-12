@@ -56,8 +56,8 @@ export default function URLEncoderDecoderPage() {
   return (
     <>
       <ToolStructuredData
-        name="URL Encoder/Decoder by Alaikas"
-        description="Free online URL encoder and decoder by Alaikas. Handle special characters, spaces, and international characters in URLs and query parameters safely."
+        name="URL Encoder/Decoder"
+        description="Free local URL encoder and decoder for components, query values, and complete URLs."
         url="https://accessibility.build/tools/url-encoder-decoder"
         applicationCategory="DeveloperApplication"
         operatingSystem="Any"
@@ -65,15 +65,11 @@ export default function URLEncoderDecoderPage() {
           price: "0",
           priceCurrency: "USD"
         }}
-        aggregateRating={{
-          ratingValue: "4.8",
-          reviewCount: "340"
-        }}
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-        <div className="container-wide py-12">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+        <div className="container-wide py-10 sm:py-12">
           <URLEncoderDecoder />
 
           <div className="mt-16">
@@ -89,4 +85,3 @@ export default function URLEncoderDecoderPage() {
     </>
   )
 }
-

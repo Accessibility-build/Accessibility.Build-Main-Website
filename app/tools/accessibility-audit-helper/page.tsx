@@ -6,13 +6,13 @@ import { RelatedContent } from "@/components/seo/related-content"
 export const metadata: Metadata = {
   title: "AI Accessibility Audit Helper | Issue Analysis",
   description:
-    "Get expert accessibility analysis with AI. Describe issues, add code snippets, specify your tech stack and receive detailed WCAG compliance recommendations, code fixes, and implementation guidance.",
+    "Describe an accessibility issue, add code and stack context, and receive AI-assisted WCAG references, implementation ideas, and testing considerations.",
   keywords: [
     "accessibility audit",
     "WCAG compliance",
     "accessibility issues",
     "code recommendations",
-    "accessibility expert",
+    "accessibility issue analysis",
     "AI accessibility",
     "accessibility analysis",
     "accessibility consulting",
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     "web accessibility"
   ],
   openGraph: {
-    title: "AI Accessibility Audit Helper | Expert Issue Analysis",
-    description: "Get expert accessibility analysis with AI. Comprehensive issue analysis, WCAG compliance recommendations, and code fixes.",
+    title: "AI Accessibility Audit Helper | Issue Analysis",
+    description: "Analyze accessibility issues with AI-assisted WCAG references, implementation ideas, and testing considerations.",
     type: "website",
     url: "https://accessibility.build/tools/accessibility-audit-helper",
     images: [
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Accessibility Audit Helper | Expert Issue Analysis",
-    description: "Get expert accessibility analysis with AI. Comprehensive issue analysis, WCAG compliance recommendations, and code fixes.",
+    title: "AI Accessibility Audit Helper | Issue Analysis",
+    description: "Analyze accessibility issues with AI-assisted WCAG references, implementation ideas, and testing considerations.",
     images: ["https://accessibility.build/images/tools/audit-helper-twitter.png"]
   },
   alternates: {
@@ -57,17 +57,13 @@ export default function AccessibilityAuditHelperPage() {
     <>
       <AccessibilityToolStructuredData
         name="AI Accessibility Audit Helper"
-        description="Expert accessibility analysis with AI. Get detailed WCAG compliance recommendations and code fixes."
+        description="AI-assisted accessibility issue analysis with WCAG references, implementation ideas, and testing considerations."
         url="https://accessibility.build/tools/accessibility-audit-helper"
         applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",
           priceCurrency: "USD"
-        }}
-        aggregateRating={{
-          ratingValue: "4.9",
-          reviewCount: "520"
         }}
         accessibilityFeatures={[
           "screenReaderSupport",
@@ -91,4 +87,4 @@ export default function AccessibilityAuditHelperPage() {
       </div>
     </>
   )
-} 
+}

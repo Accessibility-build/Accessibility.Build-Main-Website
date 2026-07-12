@@ -4,7 +4,6 @@ import { useState, useCallback, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Input } from "@/components/ui/input"
@@ -451,6 +450,7 @@ export default function JsonFormatter() {
 
   return (
     <div className="max-w-full mx-auto space-y-6">
+      <h2 className="sr-only">JSON editing workspace</h2>
       {/* Header Controls */}
       <Card>
         <CardHeader>
@@ -609,6 +609,7 @@ export default function JsonFormatter() {
                 <Button
                   variant="outline"
                   size="sm"
+                  aria-label="Copy current output"
                   onClick={() => copyToClipboard(getOutputContent(), outputType)}
                   disabled={!activeFile.parsed}
                 >
@@ -621,6 +622,7 @@ export default function JsonFormatter() {
                 <Button
                   variant="outline"
                   size="sm"
+                  aria-label="Download current output"
                   onClick={() => downloadFile(getOutputContent(), `${activeFile.name}-${outputType}.${outputType === 'tree' || outputType === 'paths' || outputType === 'diff' ? 'txt' : 'json'}`)}
                   disabled={!activeFile.parsed}
                 >
@@ -630,36 +632,34 @@ export default function JsonFormatter() {
             </div>
             
             {/* Output Type Selector */}
-            <Tabs value={outputType} onValueChange={setOutputType}>
-              <TabsList className="grid w-full grid-cols-3 xs2:grid-cols-5 h-auto">
-                <TabsTrigger value="formatted" className="flex items-center gap-1">
+            <div className="grid w-full grid-cols-3 gap-1 rounded-md bg-muted p-1 xs2:grid-cols-5" role="group" aria-label="Output format">
+                <Button type="button" size="sm" variant={outputType === "formatted" ? "default" : "ghost"} onClick={() => setOutputType("formatted")} aria-pressed={outputType === "formatted"} className="flex items-center gap-1">
                   <Maximize2 className="h-3 w-3" />
                   Format
-                </TabsTrigger>
-                <TabsTrigger value="minified" className="flex items-center gap-1">
+                </Button>
+                <Button type="button" size="sm" variant={outputType === "minified" ? "default" : "ghost"} onClick={() => setOutputType("minified")} aria-pressed={outputType === "minified"} className="flex items-center gap-1">
                   <Minimize2 className="h-3 w-3" />
                   Minify
-                </TabsTrigger>
-                <TabsTrigger value="tree" className="flex items-center gap-1">
+                </Button>
+                <Button type="button" size="sm" variant={outputType === "tree" ? "default" : "ghost"} onClick={() => setOutputType("tree")} aria-pressed={outputType === "tree"} className="flex items-center gap-1">
                   <GitBranch className="h-3 w-3" />
                   Tree
-                </TabsTrigger>
-                <TabsTrigger value="paths" className="flex items-center gap-1">
+                </Button>
+                <Button type="button" size="sm" variant={outputType === "paths" ? "default" : "ghost"} onClick={() => setOutputType("paths")} aria-pressed={outputType === "paths"} className="flex items-center gap-1">
                   <Filter className="h-3 w-3" />
                   Paths
-                </TabsTrigger>
-                                 <TabsTrigger value="diff" className="flex items-center gap-1">
-                   <GitCompare className="h-3 w-3" />
-                   Diff
-                 </TabsTrigger>
-              </TabsList>
-            </Tabs>
+                </Button>
+                <Button type="button" size="sm" variant={outputType === "diff" ? "default" : "ghost"} onClick={() => setOutputType("diff")} aria-pressed={outputType === "diff"} className="flex items-center gap-1">
+                  <GitCompare className="h-3 w-3" />
+                  Diff
+                </Button>
+            </div>
           </CardHeader>
           
           <CardContent className="flex-1 flex flex-col">
             {/* Output Display */}
             <div className="flex-1">
-              <pre className="bg-muted p-4 rounded-lg overflow-auto text-sm font-mono h-full min-h-[400px] border">
+              <pre className="bg-muted p-4 rounded-lg overflow-auto text-sm font-mono h-full min-h-[400px] border" tabIndex={0} role="region" aria-label="JSON output">
                 <code>{getOutputContent()}</code>
               </pre>
             </div>
@@ -821,4 +821,4 @@ export default function JsonFormatter() {
       )}
     </div>
   )
-} 
+}

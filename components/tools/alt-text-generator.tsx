@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -444,6 +444,7 @@ export default function AltTextGenerator() {
 
   return (
     <div className="space-y-8">
+      <h2 className="sr-only">Alt text generation workspace</h2>
       {/* Main Generator Card */}
       <Card className="overflow-hidden border-2 shadow-lg">
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border-b">
@@ -462,12 +463,12 @@ export default function AltTextGenerator() {
             {!isSignedIn ? (
               <Alert className="border-blue-200 bg-blue-50 dark:bg-blue-950/20">
                 <Info className="h-4 w-4 text-blue-600" />
-                <AlertTitle className="text-blue-800 dark:text-blue-200">
+                <p className="mb-1 font-medium leading-none text-blue-800 dark:text-blue-200">
                   Free Trial Available
-                </AlertTitle>
+                </p>
 
                 <AlertDescription className="text-blue-700 dark:text-blue-300">
-                  Try this tool up to 2 times for free! Then{" "}
+                  Guest generations use the shared daily AI-tool allowance. Then{" "}
                   <Link href="/sign-in" className="underline font-medium">
                     sign in
                   </Link>{" "}
@@ -483,8 +484,7 @@ export default function AltTextGenerator() {
                   </div>
                   {results.length > 0 && results[0].trialStatus && (
                     <div className="mt-2 text-sm">
-                      Trial uses: {results[0].trialStatus.usageCount}/2 •{" "}
-                      {results[0].trialStatus.remainingUses} remaining
+                      {results[0].trialStatus.remainingUses} guest uses remaining today
                     </div>
                   )}
                 </AlertDescription>
@@ -519,7 +519,7 @@ export default function AltTextGenerator() {
                 className={
                   "flex-1 min-w-0 self-stretch flex items-center justify-center gap-2 " +
                   "px-2 xs:px-2 xs2:px-3 xs3:px-4 py-2 leading-none " +
-                  "text-sm xs:text-sm xs2:text-sm xs3:text-base md:text-base"
+                  "text-sm xs:text-sm xs2:text-sm xs3:text-base md:text-base text-slate-700 dark:text-slate-200"
                 }
               >
                 <Upload className="h-4 w-4 xs:h-3 xs:w-3 xs2:h-3 xs2:w-3 xs3:h-4 xs3:w-4" />
@@ -531,7 +531,7 @@ export default function AltTextGenerator() {
                 className={
                   "flex-1 min-w-0 self-stretch flex items-center justify-center gap-2 " +
                   "px-2 xs:px-2 xs2:px-3 xs3:px-4 py-2 leading-none " +
-                  "text-sm xs:text-sm xs2:text-sm xs3:text-base md:text-base"
+                  "text-sm xs:text-sm xs2:text-sm xs3:text-base md:text-base text-slate-700 dark:text-slate-200"
                 }
               >
                 <Link2 className="h-4 w-4 xs:h-3 xs:w-3 xs2:h-3 xs2:w-3 xs3:h-4 xs3:w-4" />
@@ -862,7 +862,7 @@ export default function AltTextGenerator() {
           {error && (
             <Alert variant="destructive" className="mt-6">
               <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
+              <p className="mb-1 font-medium leading-none">Error</p>
               <AlertDescription>
                 {error}
                 {error.includes("Insufficient credits") && (
@@ -960,8 +960,7 @@ export default function AltTextGenerator() {
                 ) : result.trialStatus ? (
                   <>
                     <Info className="h-4 w-4" />
-                    Trial {result.trialStatus.usageCount}/2 •{" "}
-                    {result.trialStatus.remainingUses} remaining
+                    {result.trialStatus.remainingUses} guest uses remaining today
                   </>
                 ) : (
                   <>

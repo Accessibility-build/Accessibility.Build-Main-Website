@@ -15,11 +15,11 @@ import { RelatedContent } from "@/components/seo/related-content"
 export const metadata: Metadata = {
   title: "Mobile Accessibility Checker | Touch Targets",
   description:
-    "Test mobile accessibility with focus on touch targets, mobile-specific WCAG requirements, and responsive design compliance. Ensure your mobile experience is accessible.",
+    "Scan a public page at mobile viewport sizes for touch-target, viewport, responsive-layout, performance, and automated accessibility findings.",
   keywords: "mobile accessibility, touch targets, mobile WCAG, responsive accessibility, mobile screen reader, accessibility testing",
   openGraph: {
     title: "Mobile Accessibility Checker | Touch Targets & Mobile WCAG",
-    description: "Test mobile accessibility with focus on touch targets, mobile-specific WCAG requirements, and responsive design compliance.",
+    description: "Scan mobile viewports for touch-target, viewport, responsive-layout, performance, and automated accessibility findings.",
     type: "website",
     url: "https://accessibility.build/tools/mobile-accessibility-checker",
     images: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Mobile Accessibility Checker | Touch Targets & Mobile WCAG",
-    description: "Test mobile accessibility with focus on touch targets, mobile-specific WCAG requirements, and responsive design compliance.",
+    description: "Scan mobile viewports for touch-target, viewport, responsive-layout, performance, and automated accessibility findings.",
     images: ["https://accessibility.build/images/tools/mobile-checker-twitter.png"]
   },
   alternates: {
@@ -53,17 +53,13 @@ export default function MobileAccessibilityCheckerPage() {
     <>
       <AccessibilityToolStructuredData
         name="Mobile Accessibility Checker"
-        description="Test mobile accessibility with focus on touch targets, mobile-specific WCAG requirements, and responsive design compliance."
+        description="Scan mobile viewports for touch-target, viewport, responsive-layout, performance, and automated accessibility findings."
         url="https://accessibility.build/tools/mobile-accessibility-checker"
         applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",
           priceCurrency: "USD"
-        }}
-        aggregateRating={{
-          ratingValue: "4.7",
-          reviewCount: "380"
         }}
         accessibilityFeatures={[
           "screenReaderSupport",
@@ -96,7 +92,7 @@ export default function MobileAccessibilityCheckerPage() {
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
                 Test mobile-specific accessibility requirements including touch targets,
                 <br className="hidden md:block" />
-                viewport settings, and mobile-first WCAG compliance.
+                viewport settings, responsive behavior, and automated WCAG-oriented findings.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
@@ -250,4 +246,4 @@ export default function MobileAccessibilityCheckerPage() {
       </div>
     </>
   )
-} 
+}

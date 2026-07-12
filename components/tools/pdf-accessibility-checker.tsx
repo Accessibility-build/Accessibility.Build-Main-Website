@@ -8,9 +8,9 @@ import {
   Upload,
   Loader2,
   Copy,
+  Download,
   CheckCircle,
   XCircle,
-  AlertTriangle,
   AlertCircle,
   Info,
   Sparkles,
@@ -19,7 +19,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
@@ -175,6 +175,23 @@ export default function PDFAccessibilityChecker() {
     toast.success("Results copied to clipboard!")
   }, [result])
 
+  const downloadResults = useCallback(() => {
+    if (!result) return
+    const payload = {
+      generatedAt: new Date().toISOString(),
+      notice: "Automated checks do not establish WCAG or PDF/UA conformance. Manual review is required.",
+      ...result,
+    }
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" })
+    const href = URL.createObjectURL(blob)
+    const anchor = document.createElement("a")
+    anchor.href = href
+    anchor.download = `${result.fileName.replace(/\.pdf$/i, "")}-accessibility-scan.json`
+    anchor.click()
+    URL.revokeObjectURL(href)
+    toast.success("JSON evidence downloaded")
+  }, [result])
+
   const getScoreColor = (score: number) => {
     if (score >= 90) return "text-green-600 dark:text-green-400"
     if (score >= 70) return "text-yellow-600 dark:text-yellow-400"
@@ -196,6 +213,7 @@ export default function PDFAccessibilityChecker() {
 
   return (
     <div className="container mx-auto max-w-4xl py-8 px-4 sm:px-6">
+      <h2 className="sr-only">PDF accessibility scan workspace</h2>
       {/* Upload Section */}
       <Card>
         <CardHeader>
@@ -204,7 +222,7 @@ export default function PDFAccessibilityChecker() {
             PDF Accessibility Checker
           </CardTitle>
           <CardDescription>
-            Upload a PDF to check for accessibility issues. We analyze document structure, metadata, text content, images, and navigation against WCAG and PDF/UA standards.
+            Upload a PDF to inspect detectable structure, metadata, text, image, and navigation signals. Manual PDF/UA review is still required.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -266,7 +284,7 @@ export default function PDFAccessibilityChecker() {
           {error && (
             <Alert variant="destructive" className="mt-4">
               <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
+              <p className="mb-1 font-medium leading-none">Error</p>
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
@@ -274,7 +292,7 @@ export default function PDFAccessibilityChecker() {
           {!isSignedIn && (
             <Alert className="mt-4">
               <Info className="h-4 w-4" />
-              <AlertTitle>Sign In Required</AlertTitle>
+              <p className="mb-1 font-medium leading-none">Sign In Required</p>
               <AlertDescription>
                 Please sign in to use the PDF Accessibility Checker. Each scan costs 2 credits.
               </AlertDescription>
@@ -296,10 +314,16 @@ export default function PDFAccessibilityChecker() {
                     {result.pageCount} pages &middot; {(result.fileSize / 1024).toFixed(0)} KB
                   </p>
                 </div>
-                <Button variant="outline" size="sm" onClick={copyResults}>
-                  <Copy className="mr-2 h-3 w-3" />
-                  Copy
-                </Button>
+                <div className="flex flex-wrap gap-2">
+                  <Button variant="outline" size="sm" onClick={copyResults}>
+                    <Copy className="mr-2 h-3 w-3" />
+                    Copy
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={downloadResults}>
+                    <Download className="mr-2 h-3 w-3" />
+                    JSON
+                  </Button>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -309,7 +333,7 @@ export default function PDFAccessibilityChecker() {
                     {result.score}
                     <span className="text-lg text-muted-foreground">/100</span>
                   </div>
-                  <p className="text-sm text-muted-foreground mt-1">Accessibility Score</p>
+                  <p className="text-sm text-muted-foreground mt-1">Automated Scan Score</p>
                   <Progress value={result.score} className="mt-2 h-2" />
                 </div>
 

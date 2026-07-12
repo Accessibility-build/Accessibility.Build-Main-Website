@@ -25,7 +25,7 @@ export default function ContrastCheckerPage() {
   const [wcagAA, setWcagAA] = useState(true);
   const [wcagAAA, setWcagAAA] = useState(true);
   const [copied, setCopied] = useState(false);
-  const [wcagVersion, setWcagVersion] = useState<"2.2" | "3.0">("2.2");
+  const [contrastMethod, setContrastMethod] = useState<"wcag22" | "apca">("wcag22");
   const [textSize, setTextSize] = useState<"normal" | "large">("normal");
 
   // RGB values for sliders
@@ -36,7 +36,7 @@ export default function ContrastCheckerPage() {
     b: 255,
   });
 
-  // WCAG 3.0 APCA calculation
+  // Experimental APCA estimate for comparison with the normative WCAG 2.2 ratio.
   const calculateAPCA = (fgLuminance: number, bgLuminance: number) => {
     const Ybg = bgLuminance;
     const Yfg = fgLuminance;
@@ -45,8 +45,6 @@ export default function ContrastCheckerPage() {
     const Ntx = 0.57;
     const Nrx = 0.62;
     const Rco = 0.55;
-    const Rca = 0.43;
-    const Rbc = 0.1;
     const Rtx = 0.1;
 
     let Yc = Ybg;
@@ -116,7 +114,7 @@ export default function ContrastCheckerPage() {
       const fgLuminance = calculateLuminance(fgRGB);
       const bgLuminance = calculateLuminance(bgRGB);
 
-      if (wcagVersion === "2.2") {
+      if (contrastMethod === "wcag22") {
         const ratio =
           (Math.max(fgLuminance, bgLuminance) + 0.05) /
           (Math.min(fgLuminance, bgLuminance) + 0.05);
@@ -131,11 +129,11 @@ export default function ContrastCheckerPage() {
           setWcagAAA(ratio >= 4.5);
         }
       } else {
-        // WCAG 3.0 APCA
+        // APCA is presented as experimental guidance, not a WCAG 3 conformance result.
         const apcaScore = calculateAPCA(fgLuminance, bgLuminance);
         setContrastRatio(Math.abs(apcaScore));
 
-        // WCAG 3.0 compliance thresholds (simplified)
+        // Simplified readability targets used only as guidance.
         if (textSize === "normal") {
           setWcagAA(Math.abs(apcaScore) >= 60);
           setWcagAAA(Math.abs(apcaScore) >= 75);
@@ -147,7 +145,7 @@ export default function ContrastCheckerPage() {
     };
 
     calculateContrastRatio();
-  }, [foreground, background, wcagVersion, textSize]);
+  }, [foreground, background, contrastMethod, textSize]);
 
   // Update RGB values when hex changes
   useEffect(() => {
@@ -162,8 +160,11 @@ export default function ContrastCheckerPage() {
         : { r: 0, g: 0, b: 0 };
     };
 
-    setForegroundRGB(hexToRgb(foreground));
-    setBackgroundRGB(hexToRgb(background));
+    const frame = window.requestAnimationFrame(() => {
+      setForegroundRGB(hexToRgb(foreground));
+      setBackgroundRGB(hexToRgb(background));
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [foreground, background]);
 
   // Update hex when RGB changes
@@ -197,8 +198,9 @@ export default function ContrastCheckerPage() {
   // Copy color combination
   const copyColorCombination = () => {
     const versionText =
-      wcagVersion === "2.2" ? `${contrastRatio}:1` : `${contrastRatio}Lc`;
-    const text = `Foreground: ${foreground}\nBackground: ${background}\nWCAG ${wcagVersion} ${wcagVersion === "2.2" ? "Contrast Ratio" : "APCA Score"}: ${versionText}\nText Size: ${textSize}\nAA: ${wcagAA ? "Pass" : "Fail"}\nAAA: ${wcagAAA ? "Pass" : "Fail"}`;
+      contrastMethod === "wcag22" ? `${contrastRatio}:1` : `${contrastRatio} Lc`;
+    const standard = contrastMethod === "wcag22" ? "WCAG 2.2 contrast ratio" : "Experimental APCA estimate";
+    const text = `Foreground: ${foreground}\nBackground: ${background}\n${standard}: ${versionText}\nText Size: ${textSize}\nPrimary target: ${wcagAA ? "Met" : "Not met"}\nEnhanced target: ${wcagAAA ? "Met" : "Not met"}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -225,16 +227,8 @@ export default function ContrastCheckerPage() {
   };
 
   // Color scheme types
-  const [selectedScheme, setSelectedScheme] = useState<string>("professional");
   const [showRecommendations, setShowRecommendations] =
     useState<boolean>(false);
-
-  const colorSchemes = {
-    monochrome: "Monochrome",
-    complementary: "Complementary",
-    professional: "Professional",
-    highContrast: "High Contrast",
-  };
 
   // Calculate exact foreground color needed for target contrast ratio
   const calculateTargetForeground = (
@@ -743,8 +737,8 @@ export default function ContrastCheckerPage() {
       xs:text-left md:text-center
     "
         >
-          Test color combinations against WCAG 2.2 and 3.0 standards with
-          professional-grade accuracy.
+          Test WCAG 2.2 contrast requirements and compare an experimental APCA
+          estimate for additional design context.
         </p>
 
         {/* WCAG Version + Text Size */}
@@ -759,19 +753,19 @@ export default function ContrastCheckerPage() {
       md:!flex-row md:justify-center
     "
         >
-          {/* WCAG Version block */}
+          {/* Contrast method block */}
           <div className="flex items-center space-x-3 justify-start min-w-0 w-full xs3:w-auto">
             <Label
               htmlFor="wcag-version"
               className="text-sm font-medium whitespace-nowrap"
             >
-              WCAG Version:
+              Contrast method:
             </Label>
 
             <div className="flex items-center space-x-2 flex-wrap min-w-0">
               <Badge
-                onClick={() => setWcagVersion("2.2")}
-                variant={wcagVersion === "2.2" ? "default" : "secondary"}
+                onClick={() => setContrastMethod("wcag22")}
+                variant={contrastMethod === "wcag22" ? "default" : "secondary"}
                 className="cursor-pointer shrink-0"
               >
                 2.2
@@ -780,19 +774,19 @@ export default function ContrastCheckerPage() {
               <div className="shrink-0">
                 <Switch
                   id="wcag-version"
-                  checked={wcagVersion === "3.0"}
+                  checked={contrastMethod === "apca"}
                   onCheckedChange={(checked) =>
-                    setWcagVersion(checked ? "3.0" : "2.2")
+                    setContrastMethod(checked ? "apca" : "wcag22")
                   }
                 />
               </div>
 
               <Badge
-                onClick={() => setWcagVersion("3.0")}
-                variant={wcagVersion === "3.0" ? "default" : "secondary"}
+                onClick={() => setContrastMethod("apca")}
+                variant={contrastMethod === "apca" ? "default" : "secondary"}
                 className="cursor-pointer shrink-0 inline-flex items-center"
               >
-                3.0 <Zap className="h-3 w-3 ml-1" />
+                APCA <Zap className="h-3 w-3 ml-1" />
               </Badge>
             </div>
           </div>
@@ -837,6 +831,7 @@ export default function ContrastCheckerPage() {
         </div>
       </div>
 
+      <h2 className="sr-only">Contrast testing workspace</h2>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           {/* Color Picker */}
@@ -850,8 +845,8 @@ export default function ContrastCheckerPage() {
             <CardContent>
               <Tabs defaultValue="hex">
                 <TabsList className="mb-4">
-                  <TabsTrigger value="hex">Hex Values</TabsTrigger>
-                  <TabsTrigger value="rgb">RGB Sliders</TabsTrigger>
+                  <TabsTrigger value="hex" className="text-slate-700 dark:text-slate-200">Hex Values</TabsTrigger>
+                  <TabsTrigger value="rgb" className="text-slate-700 dark:text-slate-200">RGB Sliders</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="hex" className="space-y-6">
@@ -861,6 +856,7 @@ export default function ContrastCheckerPage() {
                       <div className="flex">
                         <input
                           type="color"
+                          aria-label="Choose foreground color"
                           value={foreground}
                           onChange={(e) => setForeground(e.target.value)}
                           className="h-10 w-10 rounded-l-md border cursor-pointer"
@@ -890,6 +886,7 @@ export default function ContrastCheckerPage() {
                       <div className="flex">
                         <input
                           type="color"
+                          aria-label="Choose background color"
                           value={background}
                           onChange={(e) => setBackground(e.target.value)}
                           className="h-10 w-10 rounded-l-md border cursor-pointer"
@@ -1160,6 +1157,7 @@ export default function ContrastCheckerPage() {
                     style={{
                       borderColor: foreground,
                       color: foreground,
+                      backgroundColor: background,
                     }}
                     size={textSize === "large" ? "lg" : "default"}
                   >
@@ -1196,7 +1194,7 @@ export default function ContrastCheckerPage() {
                     aria-hidden="true"
                   />
                   <div className="min-w-0">
-                    <div className="font-mono font-medium text-sm text-slate-100 truncate">
+                    <div className="font-mono font-medium text-sm text-slate-800 dark:text-slate-100 truncate">
                       {foreground}
                     </div>
                     <div className="text-xs text-muted-foreground truncate">
@@ -1242,7 +1240,7 @@ export default function ContrastCheckerPage() {
                   />
 
                   <div className="text-sm min-w-0">
-                    <div className="font-mono font-medium text-sm text-slate-100 truncate">
+                    <div className="font-mono font-medium text-sm text-slate-800 dark:text-slate-100 truncate">
                       {background}
                     </div>
                     <div className="text-xs text-muted-foreground truncate">
@@ -1286,7 +1284,7 @@ export default function ContrastCheckerPage() {
         px-2 py-[2px]
       "
                 >
-                  WCAG {wcagVersion}
+                  {contrastMethod === "wcag22" ? "WCAG 2.2" : "Experimental"}
                 </Badge>
               </CardTitle>
 
@@ -1299,23 +1297,23 @@ export default function ContrastCheckerPage() {
       md:text-base
     "
               >
-                {wcagVersion === "2.2"
+                {contrastMethod === "wcag22"
                   ? "WCAG 2.2 contrast ratio compliance information"
-                  : "WCAG 3.0 APCA (Advanced Perceptual Contrast Algorithm) results"}
+                  : "APCA estimate for design exploration; not a conformance result"}
               </CardDescription>
             </CardHeader>
 
             <CardContent>
               <div className="text-center mb-6">
                 <div className="text-5xl font-bold mb-2">
-                  {wcagVersion === "2.2"
+                  {contrastMethod === "wcag22"
                     ? `${contrastRatio}:1`
-                    : `${contrastRatio}Lc`}
+                    : `${contrastRatio} Lc`}
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  {wcagVersion === "2.2" ? "Contrast Ratio" : "APCA Score"}
+                  {contrastMethod === "wcag22" ? "Contrast Ratio" : "APCA Estimate"}
                 </div>
-                {wcagVersion === "3.0" && (
+                {contrastMethod === "apca" && (
                   <div className="text-xs text-muted-foreground mt-1">
                     Higher scores indicate better contrast
                   </div>
@@ -1329,12 +1327,12 @@ export default function ContrastCheckerPage() {
                       className={`h-3 w-3 rounded-full ${wcagAA ? "bg-green-500" : "bg-red-500"}`}
                     />
                     <span className="font-medium">
-                      {wcagVersion === "2.2" ? "AA Level" : "Bronze Level"} (
+                      {contrastMethod === "wcag22" ? "AA Level" : "Primary target"} (
                       {textSize} text)
                     </span>
                   </div>
                   <Badge variant={wcagAA ? "default" : "destructive"}>
-                    {wcagAA ? "Pass" : "Fail"}
+                    {wcagAA ? "Met" : "Not met"}
                   </Badge>
                 </div>
 
@@ -1344,24 +1342,24 @@ export default function ContrastCheckerPage() {
                       className={`h-3 w-3 rounded-full ${wcagAAA ? "bg-green-500" : "bg-red-500"}`}
                     />
                     <span className="font-medium">
-                      {wcagVersion === "2.2" ? "AAA Level" : "Silver Level"} (
+                      {contrastMethod === "wcag22" ? "AAA Level" : "Enhanced target"} (
                       {textSize} text)
                     </span>
                   </div>
                   <Badge variant={wcagAAA ? "default" : "destructive"}>
-                    {wcagAAA ? "Pass" : "Fail"}
+                    {wcagAAA ? "Met" : "Not met"}
                   </Badge>
                 </div>
 
                 {/* Thresholds info */}
                 <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                   <h4 className="font-medium text-blue-900 dark:text-blue-100 mb-2">
-                    {wcagVersion === "2.2"
+                    {contrastMethod === "wcag22"
                       ? "WCAG 2.2 Requirements"
-                      : "WCAG 3.0 Requirements"}
+                      : "Experimental APCA Targets"}
                   </h4>
                   <div className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
-                    {wcagVersion === "2.2" ? (
+                    {contrastMethod === "wcag22" ? (
                       <>
                         <div>
                           • AA Level: {textSize === "normal" ? "4.5:1" : "3:1"}{" "}
@@ -1375,11 +1373,11 @@ export default function ContrastCheckerPage() {
                     ) : (
                       <>
                         <div>
-                          • Bronze Level:{" "}
+                          • Primary target:{" "}
                           {textSize === "normal" ? "60Lc" : "45Lc"} minimum
                         </div>
                         <div>
-                          • Silver Level:{" "}
+                          • Enhanced target:{" "}
                           {textSize === "normal" ? "75Lc" : "60Lc"} minimum
                         </div>
                       </>
@@ -1484,14 +1482,14 @@ export default function ContrastCheckerPage() {
                           <div className="space-y-2">
                             {recs.slice(0, 3).map((rec, index) => {
                               const meetsAA =
-                                wcagVersion === "2.2"
+                                contrastMethod === "wcag22"
                                   ? (rec.ratio || 0) >=
                                     (textSize === "normal" ? 4.5 : 3)
                                   : (rec.apca || 0) >=
                                     (textSize === "normal" ? 60 : 45);
 
                               const meetsAAA =
-                                wcagVersion === "2.2"
+                                contrastMethod === "wcag22"
                                   ? (rec.ratio || 0) >=
                                     (textSize === "normal" ? 7 : 4.5)
                                   : (rec.apca || 0) >=
@@ -1538,7 +1536,7 @@ export default function ContrastCheckerPage() {
                                       </div>
 
                                       <div className="text-xs text-muted-foreground mt-1">
-                                        {wcagVersion === "2.2"
+                                        {contrastMethod === "wcag22"
                                           ? `${rec.ratio?.toFixed(1)}:1 ratio`
                                           : `${rec.apca?.toFixed(0)}Lc score`}
                                       </div>
@@ -1558,9 +1556,9 @@ export default function ContrastCheckerPage() {
                                         variant="default"
                                         className="text-xs"
                                       >
-                                        {wcagVersion === "2.2"
+                                        {contrastMethod === "wcag22"
                                           ? "AAA"
-                                          : "Silver"}
+                                          : "Enhanced target"}
                                       </Badge>
                                     )}
                                     {meetsAA && !meetsAAA && (
@@ -1568,9 +1566,9 @@ export default function ContrastCheckerPage() {
                                         variant="secondary"
                                         className="text-xs"
                                       >
-                                        {wcagVersion === "2.2"
+                                        {contrastMethod === "wcag22"
                                           ? "AA"
-                                          : "Bronze"}
+                                          : "Primary target"}
                                       </Badge>
                                     )}
                                     {!meetsAA && (
@@ -1578,7 +1576,7 @@ export default function ContrastCheckerPage() {
                                         variant="destructive"
                                         className="text-xs"
                                       >
-                                        Fail
+                                        {contrastMethod === "wcag22" ? "Fail" : "Below target"}
                                       </Badge>
                                     )}
 
@@ -1620,7 +1618,7 @@ export default function ContrastCheckerPage() {
             <CardHeader>
               <CardTitle>About Contrast Standards</CardTitle>
               <CardDescription>
-                Understanding WCAG 2.2 and 3.0 contrast requirements.
+                Understanding the normative WCAG 2.2 ratio and experimental APCA estimates.
               </CardDescription>
             </CardHeader>
             <CardContent className="text-sm space-y-4">
@@ -1649,22 +1647,22 @@ export default function ContrastCheckerPage() {
 
               <div>
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <Badge variant="outline">WCAG 3.0</Badge>
+                  <Badge variant="outline">Experimental</Badge>
                   <Zap className="h-4 w-4" />
                   APCA (Advanced)
                 </h3>
                 <p className="mb-3">
-                  WCAG 3.0 introduces APCA (Advanced Perceptual Contrast
-                  Algorithm), which better reflects human visual perception and
-                  provides more accurate contrast measurements.
+                  APCA (Advanced Perceptual Contrast Algorithm) offers another
+                  way to explore perceived contrast. This tool provides an
+                  estimate for design comparison, not a WCAG conformance result.
                 </p>
                 <ul className="space-y-1 list-disc pl-5">
                   <li>
-                    <strong>Bronze Level:</strong> 60Lc (normal), 45Lc (large
+                    <strong>Primary target:</strong> 60Lc (normal), 45Lc (large
                     text)
                   </li>
                   <li>
-                    <strong>Silver Level:</strong> 75Lc (normal), 60Lc (large
+                    <strong>Enhanced target:</strong> 75Lc (normal), 60Lc (large
                     text)
                   </li>
                   <li>
@@ -1676,8 +1674,9 @@ export default function ContrastCheckerPage() {
 
               <div className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
                 <p className="text-amber-800 dark:text-amber-200">
-                  <strong>Note:</strong> WCAG 3.0 is still in development. Use
-                  WCAG 2.2 for current compliance requirements.
+                  <strong>Important:</strong> Use WCAG 2.2 for current
+                  conformance decisions. WCAG 3 remains an incomplete draft and
+                  its final requirements may differ.
                 </p>
               </div>
             </CardContent>

@@ -65,39 +65,27 @@ export default function PasswordGeneratorPage() {
           price: "0",
           priceCurrency: "USD"
         }}
-        aggregateRating={{
-          ratingValue: "4.9",
-          reviewCount: "2100"
-        }}
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-green-50/30">
-        <div className="container-wide py-16">
-          <div className="max-w-4xl mx-auto mb-12 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+        <div className="container-wide py-10 sm:py-12">
+          <div className="max-w-4xl mx-auto mb-8">
+            <p className="text-sm font-semibold text-teal-700 dark:text-teal-300">Developer utility</p>
+            <h1 className="mt-1 text-3xl font-semibold text-slate-950 sm:text-4xl dark:text-white">
               Password Generator
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Create strong, secure, and unbreakable passwords with advanced customization options.
-              Generate random passwords with strength analysis and security recommendations.
+            <p className="mt-3 max-w-2xl leading-7 text-slate-600 dark:text-slate-400">
+              Generate cryptographically random passwords locally with configurable length, character rules, presets, and strength feedback.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span>Cryptographically Secure</span>
+                <span>Secure browser randomness</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span>Strength Analysis</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                <span>No Storage</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                <span>Free Tool</span>
+                <span>Generated and processed locally</span>
               </div>
             </div>
           </div>
@@ -150,4 +138,4 @@ export default function PasswordGeneratorPage() {
       </div>
     </>
   )
-} 
+}

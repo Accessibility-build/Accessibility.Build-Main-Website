@@ -103,10 +103,6 @@ export default function ColorPaletteGeneratorPage() {
           price: "0",
           priceCurrency: "USD"
         }}
-        aggregateRating={{
-          ratingValue: "4.9",
-          reviewCount: "850"
-        }}
         accessibilityFeatures={[
           "highContrastDisplay",
           "colorContrastAnalysis",

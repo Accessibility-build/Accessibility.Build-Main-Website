@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
+import { LabeledSlider as Slider } from "@/components/tools/labeled-slider"
 import { Switch } from "@/components/ui/switch"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -39,6 +39,8 @@ interface PasswordOptions {
   excludeAmbiguous: boolean
 }
 
+type PasswordPreset = "balanced" | "memorable" | "pin"
+
 export default function PasswordGenerator() {
   const [passwords, setPasswords] = useState<string[]>([])
   const [passwordCount, setPasswordCount] = useState(1)
@@ -53,6 +55,39 @@ export default function PasswordGenerator() {
     excludeSimilar: false,
     excludeAmbiguous: false
   })
+
+  const applyPreset = (preset: PasswordPreset) => {
+    const presets: Record<PasswordPreset, PasswordOptions> = {
+      balanced: {
+        length: 20,
+        includeUppercase: true,
+        includeLowercase: true,
+        includeNumbers: true,
+        includeSymbols: true,
+        excludeSimilar: true,
+        excludeAmbiguous: false,
+      },
+      memorable: {
+        length: 24,
+        includeUppercase: true,
+        includeLowercase: true,
+        includeNumbers: true,
+        includeSymbols: false,
+        excludeSimilar: true,
+        excludeAmbiguous: true,
+      },
+      pin: {
+        length: 8,
+        includeUppercase: false,
+        includeLowercase: false,
+        includeNumbers: true,
+        includeSymbols: false,
+        excludeSimilar: false,
+        excludeAmbiguous: false,
+      },
+    }
+    setOptions(presets[preset])
+  }
 
   const analyzePasswordStrength = useCallback((password: string): PasswordStrength => {
     let score = 0
@@ -94,54 +129,63 @@ export default function PasswordGenerator() {
 
     if (score >= 85) {
       level = 'Very Strong'
-      color = 'text-green-600'
+      color = 'text-green-700 dark:text-green-300'
     } else if (score >= 70) {
       level = 'Strong'
-      color = 'text-green-500'
+      color = 'text-green-700 dark:text-green-300'
     } else if (score >= 55) {
       level = 'Good'
-      color = 'text-blue-500'
+      color = 'text-blue-700 dark:text-blue-300'
     } else if (score >= 40) {
       level = 'Fair'
-      color = 'text-yellow-500'
+      color = 'text-yellow-700 dark:text-yellow-300'
     } else if (score >= 25) {
       level = 'Weak'
-      color = 'text-orange-500'
+      color = 'text-orange-700 dark:text-orange-300'
     } else {
       level = 'Very Weak'
-      color = 'text-red-500'
+      color = 'text-red-700 dark:text-red-300'
     }
 
     return { score: Math.max(0, Math.min(100, score)), level, color, feedback }
   }, [])
 
   const generateSecurePassword = useCallback((opts: PasswordOptions): string => {
-    let charset = ''
-    
-    if (opts.includeLowercase) charset += 'abcdefghijklmnopqrstuvwxyz'
-    if (opts.includeUppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    if (opts.includeNumbers) charset += '0123456789'
-    if (opts.includeSymbols) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?'
-    
-    // Remove similar characters if requested
-    if (opts.excludeSimilar) {
-      charset = charset.replace(/[il1Lo0O]/g, '')
+    const sets: string[] = []
+    if (opts.includeLowercase) sets.push("abcdefghijklmnopqrstuvwxyz")
+    if (opts.includeUppercase) sets.push("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    if (opts.includeNumbers) sets.push("0123456789")
+    if (opts.includeSymbols) sets.push("!@#$%^&*()_+-=[]{}|;:,.<>?")
+
+    const sanitize = (value: string) => {
+      let next = value
+      if (opts.excludeSimilar) next = next.replace(/[il1Lo0O]/g, "")
+      if (opts.excludeAmbiguous) next = next.replace(/[{}[\]()\/\\'"~,;.<>]/g, "")
+      return next
     }
-    
-    // Remove ambiguous characters if requested
-    if (opts.excludeAmbiguous) {
-      charset = charset.replace(/[{}[\]()\/\\'"~,;.<>]/g, '')
+    const availableSets = sets.map(sanitize).filter(Boolean)
+    if (availableSets.length === 0) throw new Error("No character set selected")
+
+    const secureIndex = (length: number) => {
+      const maximum = Math.floor(0x100000000 / length) * length
+      const values = new Uint32Array(1)
+      do crypto.getRandomValues(values)
+      while (values[0] >= maximum)
+      return values[0] % length
     }
 
-    if (!charset) {
-      throw new Error('No character set selected')
+    const allCharacters = availableSets.join("")
+    const characters = availableSets.map((set) => set[secureIndex(set.length)])
+    while (characters.length < opts.length) {
+      characters.push(allCharacters[secureIndex(allCharacters.length)])
     }
 
-    // Use crypto.getRandomValues for cryptographically secure randomness
-    const array = new Uint32Array(opts.length)
-    crypto.getRandomValues(array)
-    
-    return Array.from(array, (x) => charset[x % charset.length]).join('')
+    for (let index = characters.length - 1; index > 0; index -= 1) {
+      const swapIndex = secureIndex(index + 1)
+      ;[characters[index], characters[swapIndex]] = [characters[swapIndex], characters[index]]
+    }
+
+    return characters.slice(0, opts.length).join("")
   }, [])
 
   const generatePasswords = useCallback(() => {
@@ -181,14 +225,16 @@ export default function PasswordGenerator() {
 
   // Generate initial passwords
   useEffect(() => {
-    generatePasswords()
-  }, [])
+    const frame = window.requestAnimationFrame(generatePasswords)
+    return () => window.cancelAnimationFrame(frame)
+  }, [generatePasswords])
 
   const hasValidOptions = options.includeUppercase || options.includeLowercase || 
                          options.includeNumbers || options.includeSymbols
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
+      <h2 className="sr-only">Password generation workspace</h2>
       {/* Configuration */}
       <Card>
         <CardHeader>
@@ -201,6 +247,15 @@ export default function PasswordGenerator() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
+          <div className="space-y-2">
+            <Label>Presets</Label>
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Password presets">
+              <Button type="button" size="sm" variant="outline" onClick={() => applyPreset("balanced")}>Balanced</Button>
+              <Button type="button" size="sm" variant="outline" onClick={() => applyPreset("memorable")}>No symbols</Button>
+              <Button type="button" size="sm" variant="outline" onClick={() => applyPreset("pin")}>Numeric PIN</Button>
+            </div>
+          </div>
+
           {/* Length Slider */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
@@ -208,6 +263,7 @@ export default function PasswordGenerator() {
               <span className="text-sm font-medium">{options.length} characters</span>
             </div>
             <Slider
+              label="Password length"
               value={[options.length]}
               onValueChange={(value) => setOptions(prev => ({ ...prev, length: value[0] }))}
               min={8}
@@ -378,7 +434,7 @@ export default function PasswordGenerator() {
                         {strength.level}
                       </Badge>
                     </div>
-                    <Progress value={strength.score} className="h-2" />
+                    <Progress value={strength.score} className="h-2" aria-label={`Password strength score: ${strength.score} out of 100`} />
                     <div className="text-xs text-muted-foreground">
                       Score: {strength.score}/100
                     </div>
@@ -415,4 +471,4 @@ export default function PasswordGenerator() {
       </Card>
     </div>
   )
-} 
+}

@@ -64,24 +64,20 @@ export default function JsonFormatterPage() {
           price: "0",
           priceCurrency: "USD"
         }}
-        aggregateRating={{
-          ratingValue: "4.9",
-          reviewCount: "1250"
-        }}
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-blue-50/30">
-        <div className="container-wide py-16">
-          <div className="max-w-4xl mx-auto mb-12 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+        <div className="container-wide py-10 sm:py-12">
+          <header className="mb-8 max-w-3xl">
+            <p className="text-sm font-semibold text-teal-700 dark:text-teal-300">Developer utility</p>
+            <h1 className="mt-2 text-4xl font-semibold text-slate-950 dark:text-white">
               JSON Formatter & Validator
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Professional JSON formatter with syntax highlighting, validation, minification, and tree view.
-              Perfect for developers working with APIs and data structures.
+            <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+              Format, validate, compare, search, merge, inspect, and export JSON in a multi-file workspace.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+            <div className="mt-5 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 <span>Syntax Highlighting</span>
@@ -99,7 +95,7 @@ export default function JsonFormatterPage() {
                 <span>Free Tool</span>
               </div>
             </div>
-          </div>
+          </header>
 
           <JsonFormatter />
 
@@ -109,7 +105,7 @@ export default function JsonFormatterPage() {
             <p>
               Our JSON formatter goes beyond basic formatting to provide a complete JSON development experience.
               Whether you're debugging API responses, preparing data for storage, or validating JSON structures,
-              our tool offers enterprise-grade features for free.
+              the workspace keeps validation, comparison, search, and export in one place.
             </p>
 
             <h3>Key Features</h3>
@@ -141,4 +137,4 @@ export default function JsonFormatterPage() {
       </div>
     </>
   )
-} 
+}

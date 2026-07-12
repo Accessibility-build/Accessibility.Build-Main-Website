@@ -64,15 +64,18 @@ export default function ScopeCheckerPage() {
           price: "0",
           priceCurrency: "USD",
         }}
-        aggregateRating={{
-          ratingValue: "4.8",
-          reviewCount: "210",
-        }}
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/40 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
-        <div className="container-wide py-12">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+        <div className="container-wide py-10 sm:py-12">
+          <header className="mb-8 max-w-3xl">
+            <p className="text-sm font-semibold text-teal-700 dark:text-teal-300">Audit inventory</p>
+            <h1 className="mt-2 text-4xl font-semibold text-slate-950 dark:text-white">Website scope checker</h1>
+            <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+              Discover internal pages, documents, and external references before estimating an accessibility audit.
+            </p>
+          </header>
           <ScopeChecker />
 
           <div className="mt-16">

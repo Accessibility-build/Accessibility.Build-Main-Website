@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { toast } from 'sonner'
@@ -33,12 +34,44 @@ interface ColorPalette {
   createdAt: Date
 }
 
+const rgbToHex = (r: number, g: number, b: number): string => {
+  return `#${[r, g, b].map((value) => value.toString(16).padStart(2, '0')).join('')}`
+}
+
+const rgbToHsl = (r: number, g: number, b: number): { h: number; s: number; l: number } => {
+  const red = r / 255
+  const green = g / 255
+  const blue = b / 255
+  const max = Math.max(red, green, blue)
+  const min = Math.min(red, green, blue)
+  let h = 0
+  let s = 0
+  const l = (max + min) / 2
+
+  if (max !== min) {
+    const difference = max - min
+    s = l > 0.5 ? difference / (2 - max - min) : difference / (max + min)
+    if (max === red) h = (green - blue) / difference + (green < blue ? 6 : 0)
+    if (max === green) h = (blue - red) / difference + 2
+    if (max === blue) h = (red - green) / difference + 4
+    h /= 6
+  }
+
+  return {
+    h: Math.round(h * 360),
+    s: Math.round(s * 100),
+    l: Math.round(l * 100),
+  }
+}
+
 export default function ImageColorPicker() {
   const [image, setImage] = useState<string | null>(null)
   const [selectedColors, setSelectedColors] = useState<ColorData[]>([])
   const [isPickingColor, setIsPickingColor] = useState(false)
   const [savedPalettes, setSavedPalettes] = useState<ColorPalette[]>([])
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 })
+  const [sampleX, setSampleX] = useState(0)
+  const [sampleY, setSampleY] = useState(0)
   
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
@@ -63,69 +96,32 @@ export default function ImageColorPicker() {
       const img = new Image()
       img.onload = () => {
         setImageSize({ width: img.width, height: img.height })
+        setSampleX(Math.floor(img.width / 2))
+        setSampleY(Math.floor(img.height / 2))
       }
       img.src = imageUrl
     }
     reader.readAsDataURL(file)
   }, [])
 
-  const handleImageClick = useCallback((event: React.MouseEvent<HTMLImageElement>) => {
-    event.preventDefault()
-    event.stopPropagation()
-    
-    console.log('Image clicked, isPickingColor:', isPickingColor)
-    
-    if (!isPickingColor) {
-      console.log('Not in picking mode')
-      return
-    }
-
-    if (!imageRef.current) {
-      console.log('No image ref')
-      return
-    }
-
-    const rect = imageRef.current.getBoundingClientRect()
-    const scaleX = imageRef.current.naturalWidth / rect.width
-    const scaleY = imageRef.current.naturalHeight / rect.height
-    
-    const x = Math.floor((event.clientX - rect.left) * scaleX)
-    const y = Math.floor((event.clientY - rect.top) * scaleY)
-
-    console.log('Click coordinates:', { x, y, rect, scaleX, scaleY })
-
-    // Use the existing image element directly
+  const extractColor = useCallback((x: number, y: number) => {
     const canvas = canvasRef.current
-    if (!canvas) {
-      console.log('No canvas ref')
-      return
-    }
-    
+    const sourceImage = imageRef.current
+    if (!canvas || !sourceImage) return
+
     const ctx = canvas.getContext('2d')
-    if (!ctx) {
-      console.log('No canvas context')
-      return
-    }
+    if (!ctx) return
 
-    // Set canvas size to match image
-    canvas.width = imageRef.current.naturalWidth
-    canvas.height = imageRef.current.naturalHeight
-    
-    // Draw the image onto canvas
-    ctx.drawImage(imageRef.current, 0, 0)
+    canvas.width = sourceImage.naturalWidth
+    canvas.height = sourceImage.naturalHeight
+    ctx.drawImage(sourceImage, 0, 0)
 
-    // Ensure coordinates are within bounds
     const clampedX = Math.max(0, Math.min(x, canvas.width - 1))
     const clampedY = Math.max(0, Math.min(y, canvas.height - 1))
-
-    console.log('Clamped coordinates:', { clampedX, clampedY, canvasWidth: canvas.width, canvasHeight: canvas.height })
 
     try {
       const imageData = ctx.getImageData(clampedX, clampedY, 1, 1)
       const [r, g, b] = imageData.data
-
-      console.log('Extracted RGB:', { r, g, b })
-
       const hex = rgbToHex(r, g, b)
       const hsl = rgbToHsl(r, g, b)
 
@@ -137,48 +133,31 @@ export default function ImageColorPicker() {
         y: clampedY
       }
 
-      setSelectedColors(prev => [...prev, colorData])
+      setSelectedColors((current) => {
+        const withoutDuplicate = current.filter((color) => color.hex !== colorData.hex)
+        return [...withoutDuplicate, colorData]
+      })
+      setSampleX(clampedX)
+      setSampleY(clampedY)
       setIsPickingColor(false)
       toast.success(`Color picked: ${hex}`)
     } catch (error) {
       console.error('Error extracting color:', error)
       toast.error('Failed to extract color. Please try again.')
     }
-  }, [isPickingColor])
+  }, [])
 
-  const rgbToHex = (r: number, g: number, b: number): string => {
-    return `#${[r, g, b].map(x => x.toString(16).padStart(2, '0')).join('')}`
-  }
+  const handleImageClick = useCallback((event: React.MouseEvent<HTMLImageElement>) => {
+    if (!isPickingColor || !imageRef.current) return
+    const rect = imageRef.current.getBoundingClientRect()
+    const scaleX = imageRef.current.naturalWidth / rect.width
+    const scaleY = imageRef.current.naturalHeight / rect.height
+    extractColor(
+      Math.floor((event.clientX - rect.left) * scaleX),
+      Math.floor((event.clientY - rect.top) * scaleY),
+    )
+  }, [extractColor, isPickingColor])
 
-  const rgbToHsl = (r: number, g: number, b: number): { h: number; s: number; l: number } => {
-    r /= 255
-    g /= 255
-    b /= 255
-
-    const max = Math.max(r, g, b)
-    const min = Math.min(r, g, b)
-    let h = 0
-    let s = 0
-    const l = (max + min) / 2
-
-    if (max !== min) {
-      const d = max - min
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
-
-      switch (max) {
-        case r: h = (g - b) / d + (g < b ? 6 : 0); break
-        case g: h = (b - r) / d + 2; break
-        case b: h = (r - g) / d + 4; break
-      }
-      h /= 6
-    }
-
-    return {
-      h: Math.round(h * 360),
-      s: Math.round(s * 100),
-      l: Math.round(l * 100)
-    }
-  }
 
   const copyToClipboard = (text: string, format: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -253,21 +232,22 @@ export default function ImageColorPicker() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
-      <div className="container mx-auto px-4 py-8">
+    <div className="bg-transparent">
+      <div className="container mx-auto px-0 py-0">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="p-3 bg-purple-100 rounded-full">
-              <Palette className="h-8 w-8 text-purple-600" />
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-3 bg-purple-100 dark:bg-purple-950/50 rounded-md">
+              <Palette className="h-7 w-7 text-purple-600 dark:text-purple-300" />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900">Image Color Picker</h1>
+            <h1 className="text-3xl font-semibold text-slate-950 dark:text-white">Image Color Picker</h1>
           </div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Upload an image and click anywhere to pick colors. Extract color palettes, copy values, and export in multiple formats.
+          <p className="text-slate-600 dark:text-slate-400 max-w-2xl">
+            Upload an image and sample colors by pointer or exact coordinates. Build a palette, copy values, and export reusable tokens.
           </p>
         </div>
 
+        <h2 className="sr-only">Image color sampling workspace</h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Image Upload & Display */}
           <div className="lg:col-span-2">
@@ -285,10 +265,10 @@ export default function ImageColorPicker() {
                 {!image ? (
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 md:p-12 text-center">
                     <Upload className="h-10 w-10 md:h-12 md:w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600 mb-4 text-sm md:text-base">Click to upload an image</p>
+                    <p className="text-slate-700 dark:text-slate-300 mb-4 text-sm md:text-base">Click to upload an image</p>
                     <Button 
                       onClick={() => fileInputRef.current?.click()}
-                      className="bg-purple-600 hover:bg-purple-700"
+                      className="bg-purple-700 text-white hover:bg-purple-800"
                     >
                       <Upload className="h-4 w-4 mr-2" />
                       Choose Image
@@ -316,7 +296,6 @@ export default function ImageColorPicker() {
                               toast.error('Please upload an image first')
                               return
                             }
-                            console.log('Pick color button clicked, current state:', isPickingColor)
                             setIsPickingColor(!isPickingColor)
                             if (!isPickingColor) {
                               toast.info('Click anywhere on the image to pick a color')
@@ -339,6 +318,8 @@ export default function ImageColorPicker() {
                     </div>
                     
                     <div className="relative">
+                      {/* Data URLs are sampled through canvas, so a native image avoids optimization rewrites. */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         ref={imageRef}
                         src={image}
@@ -362,6 +343,35 @@ export default function ImageColorPicker() {
                           </div>
                         </div>
                       )}
+                    </div>
+
+                    <div className="grid gap-3 rounded-lg border border-slate-200 p-4 dark:border-slate-700 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+                      <div className="space-y-1.5">
+                        <label htmlFor="sample-x" className="text-sm font-medium">X coordinate</label>
+                        <Input
+                          id="sample-x"
+                          type="number"
+                          min={0}
+                          max={Math.max(0, imageSize.width - 1)}
+                          value={sampleX}
+                          onChange={(event) => setSampleX(Number(event.target.value))}
+                        />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label htmlFor="sample-y" className="text-sm font-medium">Y coordinate</label>
+                        <Input
+                          id="sample-y"
+                          type="number"
+                          min={0}
+                          max={Math.max(0, imageSize.height - 1)}
+                          value={sampleY}
+                          onChange={(event) => setSampleY(Number(event.target.value))}
+                        />
+                      </div>
+                      <Button type="button" variant="outline" onClick={() => extractColor(sampleX, sampleY)}>
+                        <Pipette className="h-4 w-4" />
+                        Sample coordinate
+                      </Button>
                     </div>
                     
                     <input
@@ -401,7 +411,7 @@ export default function ImageColorPicker() {
               </CardHeader>
               <CardContent>
                 {selectedColors.length === 0 ? (
-                  <p className="text-gray-500 text-center py-8">
+                  <p className="text-slate-600 dark:text-slate-400 text-center py-8">
                     No colors picked yet. Upload an image and click to pick colors.
                   </p>
                 ) : (
@@ -417,7 +427,7 @@ export default function ImageColorPicker() {
                             <div className="font-mono text-sm font-medium">
                               {color.hex}
                             </div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-slate-600 dark:text-slate-400">
                               Position: {color.x}, {color.y}
                             </div>
                           </div>
@@ -533,7 +543,7 @@ export default function ImageColorPicker() {
                     <Separator />
                     <Button
                       onClick={savePalette}
-                      className="w-full bg-purple-600 hover:bg-purple-700"
+                      className="w-full bg-purple-700 text-white hover:bg-purple-800"
                     >
                       <Palette className="h-4 w-4 mr-2" />
                       Save Palette
@@ -554,5 +564,5 @@ export default function ImageColorPicker() {
     </div>
   )
 } 
- 
+
  

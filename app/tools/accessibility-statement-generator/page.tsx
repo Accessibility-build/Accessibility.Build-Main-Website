@@ -72,10 +72,6 @@ export default function AccessibilityStatementGeneratorPage() {
           price: "0",
           priceCurrency: "USD"
         }}
-        aggregateRating={{
-          ratingValue: "4.8",
-          reviewCount: "320"
-        }}
         accessibilityFeatures={[
           "keyboardNavigation",
           "screenReaderSupport",
@@ -90,11 +86,11 @@ export default function AccessibilityStatementGeneratorPage() {
         },
         {
           question: "Do I need an accessibility statement?",
-          answer: "Yes, an accessibility statement is required for WCAG 2.2 Level AA conformance and is recommended for legal compliance (ADA, Section 508). It demonstrates your commitment to accessibility and provides transparency to users."
+          answer: "WCAG 2.2 does not require publishing an accessibility statement as a condition of conformance. A clear statement can still help users understand scope, known limitations, contact routes, and ongoing work; separate legal requirements may apply by jurisdiction."
         },
         {
           question: "What formats can I export?",
-          answer: "You can export your accessibility statement in HTML (ready to embed), Markdown, plain text, or PDF format. All formats are WCAG 2.2 compliant and professionally formatted."
+          answer: "You can export a draft in HTML, Markdown, plain text, or PDF. Review the content for accuracy and test the published page or document for accessibility before release."
         },
         {
           question: "Is this tool free?",
@@ -129,6 +125,7 @@ export default function AccessibilityStatementGeneratorPage() {
           </div>
 
           {/* Features */}
+          <h2 className="sr-only">Statement generator capabilities</h2>
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <Card>
               <CardHeader>
@@ -159,7 +156,7 @@ export default function AccessibilityStatementGeneratorPage() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Choose from basic, comprehensive, legal-focused, or developer-friendly templates
+                  Choose from basic, comprehensive, policy-focused, or developer-friendly templates
                 </CardDescription>
               </CardContent>
             </Card>

@@ -6,7 +6,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 export const metadata: Metadata = {
   title: "URL Accessibility Auditor | axe-core + AI",
   description:
-    "Comprehensive website accessibility testing powered by axe-core and AI. Get detailed WCAG compliance reports, violation analysis, and actionable recommendations for any URL.",
+    "Run an automated axe-core scan against a public URL, organize findings by impact and WCAG mapping, and review AI-assisted remediation ideas.",
   keywords: [
     "url accessibility audit",
     "website accessibility testing",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "URL Accessibility Auditor | Comprehensive Testing with AI Analysis",
-    description: "Test any website for accessibility compliance with axe-core and get AI-powered recommendations. Detailed WCAG violation reports and priority fixes.",
+    description: "Run an axe-core scan against a public URL and review prioritized findings with AI-assisted remediation ideas.",
     type: "website",
     url: "https://accessibility.build/tools/url-accessibility-auditor",
     images: [
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "URL Accessibility Auditor | Comprehensive Testing with AI Analysis",
-    description: "Test any website for accessibility compliance with axe-core and get AI-powered recommendations. Detailed WCAG violation reports and priority fixes.",
+    description: "Run an axe-core scan against a public URL and review prioritized findings with AI-assisted remediation ideas.",
     images: ["https://accessibility.build/images/tools/url-auditor-twitter.png"]
   },
   alternates: {
@@ -58,17 +58,13 @@ export default function UrlAccessibilityAuditorPage() {
     <>
       <AccessibilityToolStructuredData
         name="URL Accessibility Auditor"
-        description="Comprehensive website accessibility testing powered by axe-core and AI. Get detailed WCAG compliance reports and actionable recommendations."
+        description="Automated axe-core URL scanning with prioritized findings, WCAG mappings, and AI-assisted remediation ideas."
         url="https://accessibility.build/tools/url-accessibility-auditor"
         applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",
           priceCurrency: "USD"
-        }}
-        aggregateRating={{
-          ratingValue: "4.8",
-          reviewCount: "640"
         }}
         accessibilityFeatures={[
           "screenReaderSupport",
@@ -93,4 +89,4 @@ export default function UrlAccessibilityAuditorPage() {
       </div>
     </>
   )
-} 
+}

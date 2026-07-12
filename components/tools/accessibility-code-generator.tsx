@@ -515,6 +515,7 @@ export default function AccessibilityCodeGenerator() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
+      <h2 className="sr-only">Accessible code generation workspace</h2>
       {/* Unlimited Access Banner */}
       {unlimitedAccess && (
         <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 shadow-lg mb-8 rounded-lg overflow-hidden">
@@ -560,7 +561,7 @@ export default function AccessibilityCodeGenerator() {
             AI Code Generator
           </CardTitle>
           <CardDescription>
-            Generate WCAG 2.2 compliant components with AI assistance
+            Generate accessibility-oriented component drafts with AI assistance
           </CardDescription>
         </CardHeader>
 
@@ -569,7 +570,7 @@ export default function AccessibilityCodeGenerator() {
             <div className="space-y-2">
               <Label htmlFor="component-type">Component Type</Label>
               <Select value={componentType} onValueChange={setComponentType}>
-                <SelectTrigger className="bg-background">
+                <SelectTrigger className="bg-background" aria-label="Component type">
                   <SelectValue placeholder="Select component type" />
                 </SelectTrigger>
                 <SelectContent className="bg-background border">
@@ -590,7 +591,7 @@ export default function AccessibilityCodeGenerator() {
             <div className="space-y-2">
               <Label htmlFor="framework">Framework</Label>
               <Select value={framework} onValueChange={setFramework}>
-                <SelectTrigger className="bg-background">
+                <SelectTrigger className="bg-background" aria-label="Framework">
                   <SelectValue placeholder="Select framework" />
                 </SelectTrigger>
                 <SelectContent className="bg-background border">
@@ -611,7 +612,7 @@ export default function AccessibilityCodeGenerator() {
             <div className="space-y-2">
               <Label htmlFor="wcag-version">WCAG Version</Label>
               <Select value={wcagVersion} onValueChange={setWcagVersion}>
-                <SelectTrigger className="bg-background">
+                <SelectTrigger className="bg-background" aria-label="WCAG version">
                   <SelectValue placeholder="Select WCAG version" />
                 </SelectTrigger>
                 <SelectContent className="bg-background border">
@@ -627,7 +628,7 @@ export default function AccessibilityCodeGenerator() {
             <div className="space-y-2">
               <Label htmlFor="compliance-level">Compliance Level</Label>
               <Select value={complianceLevel} onValueChange={setComplianceLevel}>
-                <SelectTrigger className="bg-background">
+                <SelectTrigger className="bg-background" aria-label="Target conformance level">
                   <SelectValue placeholder="Select compliance level" />
                 </SelectTrigger>
                 <SelectContent className="bg-background border">
@@ -811,7 +812,7 @@ export default function AccessibilityCodeGenerator() {
                 Generated Accessible Code
               </CardTitle>
               <CardDescription>
-                Production-ready, WCAG 2.2 compliant component code
+                Component draft with accessibility notes and review targets
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -1259,7 +1260,7 @@ export default function AccessibilityCodeGenerator() {
                       Production Ready
                     </h4>
                     <p className="text-sm text-blue-700 dark:text-blue-300">
-                      This code is intended to be production-ready; please run
+                      Treat this as a starting draft; run
                       your usual integration tests and accessibility
                       verification before shipping.
                     </p>

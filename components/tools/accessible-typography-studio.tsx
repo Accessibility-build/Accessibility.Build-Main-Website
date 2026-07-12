@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
+import { LabeledSlider as Slider } from "@/components/tools/labeled-slider"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -234,6 +234,7 @@ export default function AccessibleTypographyStudio() {
 
   return (
     <div className="space-y-6">
+      <h2 className="sr-only">Typography design workspace</h2>
       {/* Inject the active webfonts at runtime so the preview reflects real choices. */}
       {importHrefs.map((href) => (
         <link key={href} rel="stylesheet" href={href} />
@@ -307,6 +308,7 @@ export default function AccessibleTypographyStudio() {
               Base size · <span className="font-mono">{state.basePx}px</span>
             </Label>
             <Slider
+              label="Base font size"
               className="mt-2"
               value={[state.basePx]}
               min={12}
@@ -318,6 +320,7 @@ export default function AccessibleTypographyStudio() {
           <div>
             <Label className="text-xs">Type scale ratio</Label>
             <select
+              aria-label="Type scale ratio"
               value={state.ratio}
               onChange={(e) => setState((s) => ({ ...s, ratio: parseFloat(e.target.value) }))}
               className="mt-2 h-9 w-full rounded-md border bg-background px-2 text-sm"
@@ -334,6 +337,7 @@ export default function AccessibleTypographyStudio() {
               Line height boost · <span className="font-mono">{state.lineHeightBoost.toFixed(2)}</span>
             </Label>
             <Slider
+              label="Line height boost"
               className="mt-2"
               value={[state.lineHeightBoost]}
               min={-0.1}
@@ -347,6 +351,7 @@ export default function AccessibleTypographyStudio() {
               Max line length · <span className="font-mono">{state.maxLineLengthCh}ch</span>
             </Label>
             <Slider
+              label="Maximum line length"
               className="mt-2"
               value={[state.maxLineLengthCh]}
               min={40}
@@ -414,6 +419,7 @@ export default function AccessibleTypographyStudio() {
                   Letter spacing boost · <span className="font-mono">{state.letterSpacingBoost.toFixed(2)}em</span>
                 </Label>
                 <Slider
+                  label="Letter spacing boost"
                   className="mt-2"
                   value={[state.letterSpacingBoost]}
                   min={0}
@@ -427,6 +433,7 @@ export default function AccessibleTypographyStudio() {
                   Paragraph spacing × <span className="font-mono">{state.paragraphSpacingMultiplier.toFixed(2)}</span>
                 </Label>
                 <Slider
+                  label="Paragraph spacing multiplier"
                   className="mt-2"
                   value={[state.paragraphSpacingMultiplier]}
                   min={1}
@@ -495,21 +502,21 @@ export default function AccessibleTypographyStudio() {
       {/* === Tabs =========================================================== */}
       <Tabs value={view} onValueChange={(v) => setView(v as typeof view)} className="w-full">
         <TabsList className="grid w-full grid-cols-4 md:w-auto md:inline-grid">
-          <TabsTrigger value="preview">
+          <TabsTrigger value="preview" className="text-slate-700 dark:text-slate-200">
             <Sparkles className="mr-1.5 h-3.5 w-3.5" />
             Specimen
           </TabsTrigger>
-          <TabsTrigger value="report">
+          <TabsTrigger value="report" className="text-slate-700 dark:text-slate-200">
             <FileCheck className="mr-1.5 h-3.5 w-3.5" />
             Report ({report.summary.fail + report.summary.caution > 0
               ? `${report.summary.fail + report.summary.caution} issues`
               : "all pass"})
           </TabsTrigger>
-          <TabsTrigger value="readability">
+          <TabsTrigger value="readability" className="text-slate-700 dark:text-slate-200">
             <Wand2 className="mr-1.5 h-3.5 w-3.5" />
             Readability
           </TabsTrigger>
-          <TabsTrigger value="export">
+          <TabsTrigger value="export" className="text-slate-700 dark:text-slate-200">
             <Download className="mr-1.5 h-3.5 w-3.5" />
             Export
           </TabsTrigger>
@@ -526,15 +533,17 @@ export default function AccessibleTypographyStudio() {
                 </Badge>
               )}
             </div>
-            <TypographyPreview
-              tokens={tokens}
-              specimen={specimen}
-              background={paletteTokens.background}
-              foreground={paletteTokens.foreground}
-              muted={paletteTokens.muted}
-              accent={paletteTokens.primary}
-              applyTextSpacingOverride={applyOverride}
-            />
+            <div aria-hidden="true" inert>
+              <TypographyPreview
+                tokens={tokens}
+                specimen={specimen}
+                background={paletteTokens.background}
+                foreground={paletteTokens.foreground}
+                muted={paletteTokens.muted}
+                accent={paletteTokens.primary}
+                applyTextSpacingOverride={applyOverride}
+              />
+            </div>
           </div>
         </TabsContent>
 
@@ -576,6 +585,7 @@ function FontPicker({
     <div>
       <Label className="text-xs">{label}</Label>
       <select
+        aria-label={`${label} font stack`}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="mt-1 h-9 w-full rounded-md border bg-background px-2 text-sm"

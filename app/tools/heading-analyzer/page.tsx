@@ -18,14 +18,14 @@ import { RelatedContent } from "@/components/seo/related-content"
 export const metadata: Metadata = {
   title: "Heading Structure Analyzer | SEO & Accessibility",
   description:
-    "Free heading structure analyzer for SEO and accessibility. Check H1-H6 hierarchy, improve screen reader navigation, and boost search rankings with proper heading structure. WCAG 2.2 compliant analysis.",
+    "Inspect H1-H6 hierarchy from a public URL or pasted HTML, identify skipped levels and empty headings, and copy a review report.",
   keywords: [
     "heading structure analyzer",
     "H1 H2 H3 hierarchy",
     "SEO headings checker",
     "accessibility heading analysis",
     "screen reader navigation",
-    "WCAG heading compliance",
+    "WCAG heading review",
     "semantic HTML checker",
     "heading SEO optimization",
     "document outline analyzer",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Free Heading Structure Analyzer | SEO & Accessibility Testing",
-    description: "Analyze H1-H6 heading hierarchy for SEO and accessibility. Free tool for WCAG compliance and better search rankings.",
+    description: "Inspect H1-H6 hierarchy, skipped levels, empty headings, and duplicate labels from a URL or pasted HTML.",
     type: "website",
     images: [
       {
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Free Heading Structure Analyzer - SEO & Accessibility",
-    description: "Check H1-H6 hierarchy for WCAG compliance and SEO optimization. Free online tool.",
+    description: "Inspect H1-H6 hierarchy and common structural issues from a URL or pasted HTML.",
     images: ["https://accessibility.build/images/tools/heading-analyzer-og.png"]
   },
   alternates: {
@@ -90,17 +90,13 @@ export default function Page() {
       {/* Enhanced Structured Data */}
       <ToolStructuredData
         name="Heading Structure Analyzer"
-        description="Free tool to analyze H1-H6 heading hierarchy for SEO optimization and WCAG accessibility compliance"
+        description="Tool for reviewing H1-H6 hierarchy, skipped levels, empty headings, and duplicate labels"
         url="https://accessibility.build/tools/heading-analyzer"
         applicationCategory="WebApplication"
         operatingSystem="Any"
         offers={{
           price: "0",
           priceCurrency: "USD"
-        }}
-        aggregateRating={{
-          ratingValue: "4.9",
-          reviewCount: "1247"
         }}
         steps={howToSteps}
       />
@@ -109,7 +105,7 @@ export default function Page() {
 
       <HowToStructuredData
         name="How to Analyze Heading Structure for SEO and Accessibility"
-        description="Complete guide to analyzing and optimizing H1-H6 heading structure for better search rankings and accessibility compliance"
+        description="Review H1-H6 heading structure and investigate common outline heuristics"
         image="https://accessibility.build/images/guides/heading-analysis-guide.png"
         totalTime="PT5M"
         estimatedCost="0"
@@ -118,32 +114,17 @@ export default function Page() {
       />
 
       <div className="container-wide py-12">
-        {/* Enhanced Hero Section */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="flex items-center justify-center mb-6">
-            <div className="relative">
-              <div className="absolute inset-0 bg-blue-600/20 rounded-full blur-lg animate-pulse"></div>
-              <div className="relative bg-blue-600 p-4 rounded-full">
-                <Hash className="h-8 w-8 text-white" />
-              </div>
-            </div>
+        <header className="mb-8 max-w-3xl">
+          <div className="flex h-11 w-11 items-center justify-center rounded-md bg-slate-900 text-white dark:bg-white dark:text-slate-950">
+            <Hash className="h-5 w-5" aria-hidden="true" />
           </div>
-
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-              Heading Structure
-            </span>
-            <br />
-            <span className="text-slate-900 dark:text-white">Analyzer</span>
-          </h1>
-
-          <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Analyze your website's H1-H6 heading hierarchy for perfect SEO optimization and WCAG accessibility compliance.
-            Improve search rankings and screen reader navigation with proper semantic structure.
+          <h1 className="mt-5 text-4xl font-semibold text-slate-950 dark:text-white">Heading Structure Analyzer</h1>
+          <p className="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+            Inspect the page outline, find common structural problems, and prepare a report for manual review.
           </p>
 
           {/* Feature Badges */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
+          <div className="mt-5 flex flex-wrap gap-2">
             <Badge className="bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400 px-4 py-2">
               <CheckCircle className="h-4 w-4 mr-2" />
               100% Free
@@ -158,10 +139,10 @@ export default function Page() {
             </Badge>
             <Badge className="bg-orange-100 text-orange-800 dark:bg-orange-900/20 dark:text-orange-400 px-4 py-2">
               <Search className="h-4 w-4 mr-2" />
-              SEO Optimized
+              SEO Heuristics
             </Badge>
           </div>
-        </div>
+        </header>
 
         {/* Main Tool Component */}
         <HeadingAnalyzer />
@@ -183,7 +164,7 @@ export default function Page() {
                 </div>
                 <CardTitle className="text-blue-700 dark:text-blue-300">SEO Optimization</CardTitle>
                 <CardDescription>
-                  Ensure proper H1-H6 hierarchy for better search engine rankings and content structure understanding.
+                  Review semantic hierarchy and make section topics easier for people and crawlers to interpret.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -193,9 +174,9 @@ export default function Page() {
                 <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
                   <Eye className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-green-700 dark:text-green-300">Accessibility Compliance</CardTitle>
+                <CardTitle className="text-green-700 dark:text-green-300">Assistive Technology Review</CardTitle>
                 <CardDescription>
-                  Meet WCAG 2.2 guidelines for screen reader navigation and assistive technology compatibility.
+                  Identify outline patterns that can make heading navigation confusing, then verify them in context.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -267,7 +248,7 @@ export default function Page() {
               <CardContent>
                 <p className="text-slate-600 dark:text-slate-300">
                   Heading structure analysis examines the H1-H6 hierarchy on your webpage to ensure proper semantic organization,
-                  SEO optimization, and accessibility compliance. It identifies missing heading levels, improper nesting, and opportunities for improvement.
+                  semantic structure, and accessibility review. It identifies missing heading levels, improper nesting, and opportunities for manual investigation.
                 </p>
               </CardContent>
             </Card>

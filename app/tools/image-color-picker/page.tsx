@@ -62,15 +62,11 @@ export default function ImageColorPickerPage() {
           price: "0",
           priceCurrency: "USD"
         }}
-        aggregateRating={{
-          ratingValue: "4.7",
-          reviewCount: "230"
-        }}
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-        <div className="container-wide py-12">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+        <div className="container-wide py-10 sm:py-12">
           <ImageColorPicker />
 
           <div className="mt-16">
@@ -86,4 +82,3 @@ export default function ImageColorPickerPage() {
     </>
   )
 }
-

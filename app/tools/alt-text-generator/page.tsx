@@ -20,11 +20,11 @@ import { RelatedContent } from "@/components/seo/related-content"
 export const metadata: Metadata = {
   title: "AI Alt Text Generator | GPT-4 Vision",
   description:
-    "Generate professional, descriptive alt text for images using OpenAI GPT-4 Vision. Improve accessibility for screen readers with AI-powered descriptions that boost SEO and user experience.",
+    "Generate context-aware alt text drafts for images, then review purpose, accuracy, surrounding content, and whether the image should be marked decorative.",
   keywords: "alt text generator, AI alt text, OpenAI GPT-4 Vision, accessibility, screen reader, SEO, image description",
   openGraph: {
     title: "AI Alt Text Generator - Powered by GPT-4 Vision",
-    description: "Generate professional alt text instantly. Boost SEO and accessibility with AI.",
+    description: "Generate context-aware alt text drafts with controls for image purpose, detail, language, and tone.",
     type: "website",
     url: "https://accessibility.build/tools/alt-text-generator",
     images: [
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "AI Alt Text Generator - Powered by GPT-4 Vision",
-    description: "Generate professional alt text instantly. Boost SEO and accessibility with AI.",
+    description: "Generate context-aware alt text drafts and review them before publishing.",
     images: ["https://accessibility.build/images/tools/alt-text-generator-twitter.png"]
   },
   alternates: {
@@ -58,17 +58,13 @@ export default function AltTextGeneratorPage() {
     <>
       <AccessibilityToolStructuredData
         name="AI Alt Text Generator"
-        description="Generate professional, descriptive alt text for images using OpenAI GPT-4 Vision"
+        description="Generate context-aware alt text drafts with controls for purpose, detail, language, and tone"
         url="https://accessibility.build/tools/alt-text-generator"
         applicationCategory="AccessibilityApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",
           priceCurrency: "USD"
-        }}
-        aggregateRating={{
-          ratingValue: "4.9",
-          reviewCount: "850"
         }}
         accessibilityFeatures={[
           "screenReaderSupport",
@@ -94,7 +90,7 @@ export default function AltTextGeneratorPage() {
               </h1>
 
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                Transform your images into accessible, SEO-optimized content with professional alt text powered by
+                Draft image descriptions with AI, then review them against the image purpose and surrounding content using
                 <span className="font-semibold text-foreground"> OpenAI's most advanced vision model</span>
               </p>
 
@@ -139,13 +135,13 @@ export default function AltTextGeneratorPage() {
                     </div>
                     <div>
                       <CardTitle className="text-lg">Screen Reader Accessibility</CardTitle>
-                      <CardDescription>WCAG 2.2 AA Compliant</CardDescription>
+                      <CardDescription>Review against WCAG guidance</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Generate alt text that works perfectly with screen readers, helping blind and visually
+                    Generate an alt text draft for screen-reader users, then verify it against the image purpose and surrounding
                     impaired users understand your visual content with detailed, contextual descriptions.
                   </p>
                 </CardContent>
@@ -197,7 +193,7 @@ export default function AltTextGeneratorPage() {
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                  Our advanced AI analyzes your images and generates professional alt text in seconds
+                  AI analyzes image content and prepares a draft that still needs contextual review
                 </p>
               </div>
 
@@ -218,7 +214,7 @@ export default function AltTextGeneratorPage() {
                   {
                     step: "3",
                     title: "Generate & Copy",
-                    description: "Our AI creates professional alt text that you can instantly copy and use anywhere.",
+                    description: "Copy a context-aware draft, then verify accuracy, purpose, and surrounding content before publishing.",
                     icon: "✨"
                   }
                 ].map((item, index) => (

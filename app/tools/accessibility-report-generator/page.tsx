@@ -3,7 +3,7 @@ import AccessibilityReportGenerator from "@/components/tools/accessibility-repor
 import { AccessibilityToolStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileText, Download, Upload, FileSpreadsheet, CheckCircle } from "lucide-react"
+import { FileText, Upload, FileSpreadsheet, CheckCircle } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Accessibility Report Generator | PDF & Excel",
@@ -71,10 +71,6 @@ export default function AccessibilityReportGeneratorPage() {
           price: "0",
           priceCurrency: "USD"
         }}
-        aggregateRating={{
-          ratingValue: "4.7",
-          reviewCount: "280"
-        }}
         accessibilityFeatures={[
           "keyboardNavigation",
           "screenReaderSupport",
@@ -128,6 +124,7 @@ export default function AccessibilityReportGeneratorPage() {
           </div>
 
           {/* Features */}
+          <h2 className="sr-only">Report generator capabilities</h2>
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <Card>
               <CardHeader>
@@ -181,4 +178,3 @@ export default function AccessibilityReportGeneratorPage() {
     </>
   )
 }
-

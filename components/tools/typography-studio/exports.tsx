@@ -60,6 +60,7 @@ export function TypographyExportsPanel({ name, tokens }: ExportsProps) {
       <div className="flex flex-wrap items-center justify-end gap-2">
         <span className="text-[10px] uppercase tracking-wide text-muted-foreground">Prefix</span>
         <select
+          aria-label="Export token prefix"
           value={prefixKey}
           onChange={(e) => setPrefixKey(e.target.value)}
           className="rounded-md border bg-background px-2 py-1 text-xs"

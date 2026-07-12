@@ -22,12 +22,12 @@ import { RelatedContent } from "@/components/seo/related-content"
 export const metadata: Metadata = {
   title: "Accessible Palette Studio | OKLCH + APCA",
   description:
-    "Build a full WCAG 2.2 and WCAG 3 / APCA accessible color system. Eleven-stop OKLCH scales, color-blindness simulation, state-aware grading, and one-click exports to Tailwind, Figma, CSS variables, iOS, and Android.",
+    "Build an OKLCH color system with WCAG 2.2 checks, experimental APCA estimates, color-vision simulations, state previews, and design-token exports.",
   keywords: [
     "accessible palette studio",
     "OKLCH color generator",
     "APCA color palette",
-    "WCAG 3 color system",
+    "experimental APCA color system",
     "design system color generator",
     "Tailwind color generator",
     "Figma variables generator",
@@ -77,7 +77,7 @@ const faqs = [
   {
     question: "What is APCA and how does it differ from WCAG 2.2 contrast?",
     answer:
-      "APCA (Accessible Perceptual Contrast Algorithm) is the contrast model under consideration for WCAG 3. It computes Lc, a signed value typically between −108 and +106, that accounts for font size, weight, and polarity (light vs. dark backgrounds). WCAG 2.2 uses a luminance ratio (e.g. 4.5:1) which can incorrectly pass or fail certain dark-mode color combinations. The Studio shows both side-by-side so you can future-proof a palette without losing your current 2.2 compliance.",
+      "APCA (Accessible Perceptual Contrast Algorithm) is an experimental perceptual contrast model. It produces a signed Lc estimate that reflects polarity and is interpreted with text size and weight. The Studio shows APCA beside the normative WCAG 2.2 luminance ratio for design exploration; APCA results are not a WCAG conformance claim.",
   },
   {
     question: "Why OKLCH instead of HSL?",
@@ -116,7 +116,6 @@ export default function AccessiblePaletteStudioPage() {
         applicationCategory="DesignApplication"
         operatingSystem="Any"
         offers={{ price: "0", priceCurrency: "USD" }}
-        aggregateRating={{ ratingValue: "4.9", reviewCount: "240" }}
         accessibilityFeatures={[
           "highContrastDisplay",
           "colorContrastAnalysis",
@@ -205,7 +204,7 @@ export default function AccessiblePaletteStudioPage() {
               iconColor="text-green-600 dark:text-green-400"
               bgColor="bg-green-100 dark:bg-green-950"
               title="WCAG 2.2 + APCA, side-by-side"
-              description="Every pairing is graded by both the WCAG 2.2 luminance ratio and APCA Lc (the WCAG 3 draft model). Catch dark-mode contrast issues that WCAG 2.2 misses."
+              description="Every pairing includes the normative WCAG 2.2 luminance ratio and an experimental APCA Lc estimate for additional design context."
             />
             <FeatureCard
               icon={Eye}
@@ -244,7 +243,7 @@ export default function AccessiblePaletteStudioPage() {
                 Color systems for production design teams
               </Badge>
               <h2 className="text-3xl font-bold tracking-tight">
-                Beyond contrast checkers — a full WCAG 3-ready color system
+                Beyond one-off contrast checks: a complete color-system workspace
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
                 Most color tools stop at a contrast ratio between two hex codes. Production design
@@ -252,8 +251,8 @@ export default function AccessiblePaletteStudioPage() {
                 translucent overlay states; that work in light and dark mode; that survive
                 deuteranopia; and that drop straight into Tailwind, Figma, iOS, and Android without
                 hand-tuning. The Accessible Palette Studio builds that system from a single base
-                color in one pass, then grades every pairing against both WCAG 2.2 and the WCAG 3
-                APCA draft so you can ship today and be ready for what's next.
+                color in one pass, then compares every pairing with WCAG 2.2 requirements and
+                experimental APCA estimates so teams can make better-informed design decisions.
               </p>
             </div>
 
@@ -321,10 +320,9 @@ export default function AccessiblePaletteStudioPage() {
               <div>
                 <h3 className="font-semibold mb-2">APCA Lc scoring</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  APCA computes a signed Lc value that respects polarity. Lc ≥ 75 is recommended
-                  for body text, ≥ 60 for large text, ≥ 45 for non-text UI elements. Unlike WCAG
-                  2.2 ratios, APCA accounts for the asymmetric perception of dark text on light
-                  backgrounds versus light text on dark.
+                  APCA computes a signed Lc estimate that respects polarity. The Studio uses
+                  configurable target bands to help compare text and interface colors. Treat
+                  these bands as experimental design guidance, not WCAG conformance thresholds.
                 </p>
               </div>
               <div>

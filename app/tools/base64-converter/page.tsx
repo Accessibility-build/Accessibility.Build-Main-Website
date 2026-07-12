@@ -65,15 +65,11 @@ export default function Base64ConverterPage() {
           price: "0",
           priceCurrency: "USD"
         }}
-        aggregateRating={{
-          ratingValue: "4.8",
-          reviewCount: "150"
-        }}
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-        <div className="container-wide py-12">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+        <div className="container-wide py-10 sm:py-12">
           <Base64Converter />
 
           <div className="mt-16">
@@ -89,4 +85,3 @@ export default function Base64ConverterPage() {
     </>
   )
 }
-

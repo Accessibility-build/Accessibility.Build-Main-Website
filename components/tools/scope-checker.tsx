@@ -194,6 +194,7 @@ export default function ScopeChecker() {
 
   return (
     <div className="max-w-7xl mx-auto space-y-8">
+      <h2 className="sr-only">Website scope discovery workspace</h2>
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -204,7 +205,14 @@ export default function ScopeChecker() {
             Crawl a website in scoped mode (max 2 minutes) and capture internal URLs, document links, extra external links, and page titles for accessibility audits.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent>
+          <form
+            className="space-y-6"
+            onSubmit={(event) => {
+              event.preventDefault()
+              void runScopeCheck()
+            }}
+          >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="md:col-span-3 space-y-2">
               <Label htmlFor="scope-url">Website URL</Label>
@@ -256,7 +264,7 @@ export default function ScopeChecker() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Button onClick={runScopeCheck} disabled={isRunning || !url.trim()}>
+            <Button type="submit" disabled={isRunning || !url.trim()}>
               {isRunning ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -273,6 +281,7 @@ export default function ScopeChecker() {
               2-minute hard limit
             </Badge>
           </div>
+          </form>
         </CardContent>
       </Card>
 

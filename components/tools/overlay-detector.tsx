@@ -8,6 +8,7 @@ import {
   XCircle,
   Loader2,
   Copy,
+  Download,
   ExternalLink,
   Search,
   AlertCircle,
@@ -120,6 +121,23 @@ export default function OverlayDetector() {
     toast.success("Results copied to clipboard!")
   }, [result])
 
+  const downloadResults = useCallback(() => {
+    if (!result) return
+    const payload = {
+      generatedAt: new Date().toISOString(),
+      notice: "Overlay signatures and automated checks require manual verification.",
+      ...result,
+    }
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" })
+    const href = URL.createObjectURL(blob)
+    const anchor = document.createElement("a")
+    anchor.href = href
+    anchor.download = "overlay-detection-evidence.json"
+    anchor.click()
+    URL.revokeObjectURL(href)
+    toast.success("JSON evidence downloaded")
+  }, [result])
+
   const getScoreColor = (score: number) => {
     if (score >= 90) return "text-green-600 dark:text-green-400"
     if (score >= 70) return "text-yellow-600 dark:text-yellow-400"
@@ -129,6 +147,7 @@ export default function OverlayDetector() {
 
   return (
     <div className="container mx-auto max-w-4xl py-8 px-4 sm:px-6">
+      <h2 className="sr-only">Overlay detection workspace</h2>
       {/* Input Section */}
       <Card>
         <CardHeader>
@@ -228,10 +247,16 @@ export default function OverlayDetector() {
                     Scanned in {(result.scanDuration / 1000).toFixed(1)}s
                   </p>
                 </div>
-                <Button variant="outline" size="sm" onClick={copyResults}>
-                  <Copy className="mr-2 h-3 w-3" />
-                  Copy
-                </Button>
+                <div className="flex flex-wrap gap-2">
+                  <Button variant="outline" size="sm" onClick={copyResults}>
+                    <Copy className="mr-2 h-3 w-3" />
+                    Copy
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={downloadResults}>
+                    <Download className="mr-2 h-3 w-3" />
+                    JSON
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -311,7 +336,7 @@ export default function OverlayDetector() {
               <CardDescription>
                 {result.overlayDetected
                   ? "These are real WCAG violations found while the overlay is running. The overlay does not fix these issues."
-                  : "WCAG 2.2 AA compliance scan results for this page."}
+                    : "Automated WCAG-oriented scan results for this page; manual testing is still required."}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -321,7 +346,7 @@ export default function OverlayDetector() {
                   {result.accessibilityScore}
                   <span className="text-lg text-muted-foreground">/100</span>
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">Accessibility Score</p>
+                <p className="text-sm text-muted-foreground mt-1">Automated Scan Score</p>
                 <Progress
                   value={result.accessibilityScore}
                   className="mt-3 h-2 max-w-xs mx-auto"
@@ -420,7 +445,7 @@ export default function OverlayDetector() {
                 <ul className="list-disc pl-5 space-y-1.5">
                   <li>They cannot fix most WCAG violations — automated tools catch only 30-40% of issues, and overlays can fix even fewer</li>
                   <li>They may introduce new accessibility barriers (focus traps, screen reader conflicts, performance issues)</li>
-                  <li>They do not provide legal protection — courts have ruled that overlays do not constitute compliance</li>
+                  <li>The presence of an overlay does not itself demonstrate legal or WCAG conformance</li>
                   <li>They are not a substitute for building accessibility into your design and development process</li>
                 </ul>
               </div>

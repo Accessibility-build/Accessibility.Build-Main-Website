@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import {
   Search,
@@ -406,7 +406,7 @@ export default function AccessibilityAuditHelper() {
                         },
                         {
                           field: "recommendations",
-                          label: "Expert Recommendations",
+                          label: "Review Recommendations",
                           pattern: /"recommendations":\s*"([^"]*)"?$/,
                         },
                         {
@@ -487,7 +487,7 @@ export default function AccessibilityAuditHelper() {
 
                       return {
                         section: "Initializing Analysis",
-                        text: "Connecting to accessibility expert AI...",
+                        text: "Preparing accessibility analysis...",
                       };
                     };
 
@@ -754,8 +754,8 @@ export default function AccessibilityAuditHelper() {
               </h1>
 
               <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
-                Get expert accessibility analysis with AI-powered insights and
-                WCAG compliance recommendations
+                Get AI-assisted accessibility analysis with WCAG references,
+                implementation ideas, and testing considerations
               </p>
 
               <p className="text-sm text-slate-500 dark:text-slate-400 mb-8">
@@ -778,6 +778,7 @@ export default function AccessibilityAuditHelper() {
             </div>
 
             {/* Integrated Form */}
+            <h2 className="sr-only">Accessibility issue analysis workspace</h2>
             <Card className="border-2 border-slate-200 dark:border-slate-700 shadow-xl overflow-hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm">
               <div className="bg-gradient-to-r from-blue-50 to-slate-50 dark:from-blue-950/20 dark:to-slate-900/50 border-b border-slate-200 dark:border-slate-700">
                 <CardHeader className="pb-6">
@@ -787,7 +788,7 @@ export default function AccessibilityAuditHelper() {
                     </CardTitle>
                     <CardDescription className="text-lg text-slate-600 dark:text-slate-400">
                       Provide details about your accessibility challenge and get
-                      expert AI-powered analysis
+                      a structured AI-assisted review
                     </CardDescription>
                   </div>
 
@@ -795,12 +796,12 @@ export default function AccessibilityAuditHelper() {
                     <Alert className="border-blue-200 bg-blue-50 dark:bg-blue-950/20">
                       <Info className="h-4 w-4 text-blue-600" />
 
-                      <AlertTitle className="text-blue-800 dark:text-blue-200">
+                      <p className="mb-1 font-medium leading-none text-blue-800 dark:text-blue-200">
                         Free Trial Available
-                      </AlertTitle>
+                      </p>
 
                       <AlertDescription className="text-blue-700 dark:text-blue-300 space-y-2">
-                        Try this tool up to 2 times for free! Then{" "}
+                        Guest uses come from the shared daily AI-tool allowance. Then{" "}
                         <Link href="/sign-in" className="underline font-medium">
                           sign in
                         </Link>{" "}
@@ -1002,7 +1003,7 @@ export default function AccessibilityAuditHelper() {
                   {error && (
                     <Alert variant="destructive">
                       <AlertCircle className="h-4 w-4" />
-                      <AlertTitle>Error</AlertTitle>
+                      <p className="mb-1 font-medium leading-none">Error</p>
                       <AlertDescription>
                         {error}
                         {error.includes("Insufficient credits") && (
@@ -1072,10 +1073,10 @@ export default function AccessibilityAuditHelper() {
                   <Lightbulb className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-                  Expert AI Analysis
+                  AI-Assisted Analysis
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Advanced AI trained on WCAG guidelines
+                  Structured against WCAG-oriented prompts
                 </p>
               </div>
 
@@ -1096,10 +1097,10 @@ export default function AccessibilityAuditHelper() {
                   <FileText className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-                  WCAG Compliance
+                  WCAG References
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Meet WCAG 2.2 Level AA standards
+                  Verify relevant criteria and test requirements
                 </p>
               </div>
             </div>
@@ -1121,7 +1122,7 @@ export default function AccessibilityAuditHelper() {
                     <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
                     <div>
                       <CardTitle className="text-xl text-slate-900 dark:text-white">
-                        AI Accessibility Expert is Analyzing
+                        AI Accessibility Review in Progress
                       </CardTitle>
                       <CardDescription className="text-slate-600 dark:text-slate-400">
                         {currentStatus}
@@ -1238,7 +1239,7 @@ export default function AccessibilityAuditHelper() {
                         </div>
                         <CardTitle className="text-lg text-slate-900 dark:text-white flex items-center gap-2">
                           <Lightbulb className="h-5 w-5" />
-                          Expert Recommendations
+                          Review Recommendations
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -1351,7 +1352,7 @@ export default function AccessibilityAuditHelper() {
               <Card className="border-2 border-slate-200 dark:border-slate-700 shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-xl text-slate-900 dark:text-white">
-                    WCAG Compliance Requirements
+                    WCAG Criteria and Review Requirements
                   </CardTitle>
                   <CardDescription>
                     Relevant WCAG criteria that apply to this accessibility
@@ -1387,7 +1388,7 @@ export default function AccessibilityAuditHelper() {
                 <CardHeader>
                   <CardTitle className="text-xl text-slate-900 dark:text-white flex items-center gap-2">
                     <Lightbulb className="h-6 w-6" />
-                    Expert Recommendations
+                    Review Recommendations
                   </CardTitle>
                   <CardDescription>
                     Detailed guidance on how to fix this accessibility issue
@@ -1535,8 +1536,8 @@ export default function AccessibilityAuditHelper() {
                   Ready to Analyze
                 </h3>
                 <p className="text-lg text-slate-600 dark:text-slate-400 mb-6 max-w-md">
-                  Describe your accessibility issue above and get expert AI
-                  analysis with detailed recommendations.
+                  Describe your accessibility issue above and get an AI-assisted
+                  review with detailed recommendations to verify.
                 </p>
                 <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
                   <Coins className="h-5 w-5" />

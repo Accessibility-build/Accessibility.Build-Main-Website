@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AiAnalysisDashboard } from "@/components/tools/ai-analysis-dashboard"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -263,7 +263,7 @@ export default function UrlAccessibilityAuditor() {
         </div>
         <p className="text-xl text-muted-foreground mb-8">
           Comprehensive accessibility testing powered by axe-core and AI analysis. 
-          Get detailed WCAG compliance reports with actionable recommendations.
+          Find automated accessibility issues, review WCAG mappings, and plan manual verification.
         </p>
         
         {/* Key Features */}
@@ -278,7 +278,7 @@ export default function UrlAccessibilityAuditor() {
           </div>
           <div className="flex items-center gap-2 p-4 rounded-lg bg-primary/5">
             <Shield className="h-5 w-5 text-primary" />
-            <span className="font-medium">WCAG Compliance</span>
+            <span className="font-medium">WCAG Mapping</span>
           </div>
           <div className="flex items-center gap-2 p-4 rounded-lg bg-primary/5">
             <Download className="h-5 w-5 text-primary" />
@@ -288,14 +288,15 @@ export default function UrlAccessibilityAuditor() {
       </div>
 
       {/* Main Content with Tabs */}
+      <h2 className="sr-only">URL accessibility audit workspace</h2>
       <div className="max-w-7xl mx-auto">
         <Tabs defaultValue="audit" className="space-y-8">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="audit" className="flex items-center gap-2">
+            <TabsTrigger value="audit" className="flex items-center gap-2 text-slate-700 dark:text-slate-200">
               <Search className="h-4 w-4" />
               New Audit
             </TabsTrigger>
-            <TabsTrigger value="history" className="flex items-center gap-2">
+            <TabsTrigger value="history" className="flex items-center gap-2 text-slate-700 dark:text-slate-200">
               <History className="h-4 w-4" />
               Audit History
             </TabsTrigger>
@@ -312,14 +313,14 @@ export default function UrlAccessibilityAuditor() {
                       <Search className="h-5 w-5" />
                       Website URL
                     </CardTitle>
-                    <CardDescription>
-                      Enter the URL you want to audit for accessibility compliance
+                    <CardDescription className="text-slate-700 dark:text-slate-200">
+                      Enter the public URL you want to scan for detectable accessibility issues
                     </CardDescription>
                     
                     {!isSignedIn ? (
                       <Alert className="border-blue-200 bg-blue-50">
                         <Info className="h-4 w-4 text-blue-600" />
-                        <AlertTitle className="text-blue-800">Authentication Required</AlertTitle>
+                        <p className="mb-1 font-medium leading-none text-blue-800">Authentication Required</p>
                         <AlertDescription className="text-blue-700">
                           <Link href="/sign-in" className="underline font-medium">Sign in</Link> or{" "}
                           <Link href="/sign-up" className="underline font-medium">create an account</Link> to use this tool.
@@ -356,7 +357,7 @@ export default function UrlAccessibilityAuditor() {
                     {error && (
                       <Alert className="border-red-200 bg-red-50">
                         <XCircle className="h-4 w-4 text-red-600" />
-                        <AlertTitle className="text-red-800">Error</AlertTitle>
+                        <p className="mb-1 font-medium leading-none text-red-800">Error</p>
                         <AlertDescription className="text-red-700">
                           {error}
                         </AlertDescription>
@@ -468,7 +469,7 @@ export default function UrlAccessibilityAuditor() {
                               <span className="text-sm font-medium">axe-core Scan</span>
                             </div>
                             <p className="text-xs text-muted-foreground mt-1">
-                              WCAG compliance testing
+                              Automated WCAG-oriented testing
                             </p>
                           </div>
 
@@ -512,7 +513,7 @@ export default function UrlAccessibilityAuditor() {
                     <CardContent>
                       <Alert className="border-red-200 bg-red-50">
                         <XCircle className="h-4 w-4 text-red-600" />
-                        <AlertTitle className="text-red-800">Analysis Failed</AlertTitle>
+                        <p className="mb-1 font-medium leading-none text-red-800">Analysis Failed</p>
                         <AlertDescription className="text-red-700">
                           {currentAudit.errorMessage}
                         </AlertDescription>
@@ -883,4 +884,4 @@ export default function UrlAccessibilityAuditor() {
       </div>
     </div>
   )
-} 
+}
