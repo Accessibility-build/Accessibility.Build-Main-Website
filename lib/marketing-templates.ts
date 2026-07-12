@@ -197,31 +197,31 @@ We put together a short checklist that maps each new criterion to the code patte
     reason: 'Monthly newsletter: plain-English WCAG 2.2 summary',
   },
   {
-    id: 'selected-work',
-    name: 'Selected Work (Confidential Project Record)',
-    category: 'social_proof',
+    id: 'sample-report-evidence',
+    name: 'Sample Audit Report Evidence',
+    category: 'outreach',
     description:
-      'Share a public project record with its confidentiality and evidence limitations intact.',
-    subject: 'How an accessibility operations platform was structured',
+      'Share the public sample report so prospects can inspect the deliverable structure.',
+    subject: 'Inspect an accessibility audit report before engaging',
     preheader:
-      'A transparent project record covering scope, constraints, decisions, and delivery approach.',
-    heading: 'A connected accessibility operations workflow',
-    body: `Accessibility.build has published a selected-work record showing how audit intake, finding evidence, remediation ownership, and ongoing accessibility maintenance can connect in one operational workflow.
+      'A clearly labelled fictional example covering scope, findings, evidence, remediation, and limitations.',
+    heading: 'See how findings are documented',
+    body: `Accessibility.build has published a sample accessibility audit report so teams can inspect the reporting structure before commissioning work.
 
-The record covers:
-- The problem and agreed accessibility responsibilities
-- Architecture and workflow decisions
-- Evidence, handoff, and maintenance considerations
-- Clear confidentiality and verification limitations
+The sample covers:
+- Scope, environments, standards, and exclusions
+- Reproducible findings with user impact and WCAG mapping
+- Evidence, remediation guidance, and verification status
+- Report-level limitations and interpretation notes
 
-The client identity is withheld and no endorsement is implied. The page avoids invented metrics and presents only the project details that can be responsibly described.
+The scenario and product are fictional and clearly labelled. It is a format example, not a client engagement, endorsement, certification, or claim of conformance.
 
-If your team is trying to connect auditing with remediation and governance, the record offers a useful model for scoping that work.
+The accessible HTML version is the primary format, with a downloadable PDF also available.
 
 — Khushwant Parihar, Accessibility.build`,
-    ctaLabel: 'Read the project record',
-    ctaUrl: 'https://accessibility.build/case-studies/enterprise-accessibility-operations-suite',
-    reason: 'Share a published selected-work record without unsupported client claims',
+    ctaLabel: 'Inspect the sample report',
+    ctaUrl: 'https://accessibility.build/sample-audit-report',
+    reason: 'Share a clearly labelled report-format example without client claims',
   },
   {
     id: 're-engagement',

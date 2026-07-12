@@ -9,11 +9,11 @@ export const metadata = createMetadata({
   title: "Accessibility Case Studies and Selected Work",
   path: "/case-studies",
   description:
-    "Selected accessibility platform, audit workflow, and CMS remediation work led by Khushwant Parihar, presented with clear confidentiality and evidence disclosures.",
+    "Selected accessibility audit workflow and CMS remediation work led by Khushwant Parihar, presented with clear confidentiality and evidence disclosures.",
   keywords: [
     "accessibility case studies",
     "WCAG remediation case study",
-    "accessibility audit platform",
+    "accessibility project records",
     "accessible product development",
   ],
   authors: [{ name: company.legalOperator, url: company.founderWebsite }],

@@ -6,6 +6,8 @@ import { caseStudies } from "@/lib/authority-content"
 import { company } from "@/lib/company"
 import { createMetadata } from "@/lib/metadata"
 
+export const dynamicParams = false
+
 export function generateStaticParams() {
   return caseStudies.map((study) => ({ slug: study.slug }))
 }

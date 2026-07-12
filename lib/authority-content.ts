@@ -15,39 +15,6 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "enterprise-accessibility-operations-suite",
-    title: "Enterprise Accessibility Operations Suite",
-    category: "Platform architecture and accessible delivery",
-    summary:
-      "A connected client, administration, and developer platform for managing the accessibility lifecycle from audit intake through remediation and ongoing maintenance.",
-    engagement: "Product architecture, accessible frontend engineering, workflow design, and quality validation",
-    disclosure:
-      "The client identity and confidential implementation details are withheld. This selected-work record is based on Khushwant Parihar's delivery record and is not presented as a client endorsement.",
-    challenge:
-      "Accessibility work was distributed across teams, spreadsheets, documents, and status updates. Different roles needed one dependable workflow without losing ownership, evidence, or remediation history.",
-    approach: [
-      "Designed separate client, administration, and developer experiences around role-specific tasks.",
-      "Modelled the complete audit, validation, remediation, verification, and maintenance lifecycle.",
-      "Applied semantic structure, keyboard operation, focus management, status communication, and accessible form patterns across shared components.",
-      "Created role-based access and review states so findings could move through the workflow without losing accountability.",
-      "Tested critical workflows using keyboard interaction, screen-reader review, and automated checks as supporting evidence.",
-    ],
-    deliverables: [
-      "Three connected role-based portals",
-      "Audit and finding lifecycle workflows",
-      "Accessible shared component patterns",
-      "Remediation ownership and status history",
-      "Validation and handoff documentation",
-    ],
-    outcomes: [
-      "Created one operational source of truth for accessibility activity.",
-      "Made ownership and remediation status visible across client and delivery roles.",
-      "Embedded accessibility behavior into the platform interface instead of treating it as a reporting-only feature.",
-    ],
-    technologies: ["React", "Node.js", "PostgreSQL", "REST APIs", "WCAG 2.2"],
-    evidenceLevel: "Founder project record",
-  },
-  {
     slug: "accessible-audit-management-platform",
     title: "Accessible Audit Management Platform",
     category: "Audit workflow and remediation operations",
