@@ -49,8 +49,8 @@ export function StatCard({ value, label, icon: Icon, trend, source, className }:
             variant="ghost"
             size="sm"
             onClick={copyToClipboard}
-            className="opacity-0 group-hover:opacity-100 transition-opacity h-8 w-8 p-0"
-            aria-label="Copy statistic"
+            className="h-8 w-8 p-0 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100 sm:focus-visible:opacity-100"
+            aria-label={copied ? `${label} copied` : `Copy ${label} statistic`}
           >
             {copied ? (
               <Check className="h-4 w-4 text-green-600" />
@@ -94,7 +94,7 @@ export function StatCard({ value, label, icon: Icon, trend, source, className }:
         )}
 
         {source && (
-          <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">
+          <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
             Source: {source}
           </p>
         )}

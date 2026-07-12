@@ -1,73 +1,67 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useMemo, useState } from "react"
 import {
-  BarChart,
-  Bar,
-  LineChart,
-  Line,
-  AreaChart,
   Area,
-  XAxis,
-  YAxis,
+  AreaChart,
+  Bar,
+  BarChart,
   CartesianGrid,
+  Cell,
   ResponsiveContainer,
   Tooltip,
-  Legend,
-  Cell,
+  XAxis,
+  YAxis,
 } from "recharts"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
-  Scale,
-  TrendingUp,
-  TrendingDown,
-  DollarSign,
-  Building2,
-  MapPin,
-  Gavel,
   AlertTriangle,
-  ArrowUpRight,
   ArrowDownRight,
-  Minus,
-  ChevronUp,
+  ArrowUpRight,
   ChevronDown,
+  ChevronUp,
+  CircleDollarSign,
+  ExternalLink,
+  Gavel,
   Info,
+  MapPin,
+  Minus,
 } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { StatCard } from "@/components/research/stat-card"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card"
 import { ChartSection } from "@/components/research/chart-section"
-import { MethodologySection } from "@/components/research/methodology-section"
 import { EmbeddableWidget } from "@/components/research/embeddable-widget"
+import { MethodologySection } from "@/components/research/methodology-section"
+import { cn } from "@/lib/utils"
 import {
+  keyRulings,
+  lawsuitSummary,
+  lawsuitsByIndustry,
   lawsuitsByYear,
   may2026RegulatorySnapshot,
-  lawsuitsByIndustry,
   settlementData,
-  keyRulings,
   topStates,
-  lawsuitSummary,
 } from "@/lib/data/lawsuit-statistics"
 
 type SortField = "rank" | "state" | "count" | "perCapita"
 type SortDirection = "asc" | "desc"
 
+const SEYFARTH_2025_URL =
+  "https://www.adatitleiii.com/2026/03/federal-court-website-accessibility-lawsuit-filings-bounce-back-in-2025/"
+const USABLENET_2025_URL =
+  "https://info.usablenet.com/2025-year-end-report-on-web-accessibility-lawsuits"
+const AUDIOEYE_2026_URL =
+  "https://www.audioeye.com/guides/2026-web-accessibility-litigation-report/"
+
 function formatCurrency(value: number): string {
-  if (value >= 1000000) {
-    return `$${(value / 1000000).toFixed(1)}M`
-  }
-  if (value >= 1000) {
-    return `$${(value / 1000).toFixed(0)}K`
-  }
+  if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`
+  if (value >= 1_000) return `$${(value / 1_000).toFixed(0)}K`
   return `$${value.toLocaleString()}`
 }
 
 function TrendIcon({ trend }: { trend: "up" | "down" | "stable" }) {
-  if (trend === "up") return <ArrowUpRight className="h-4 w-4 text-red-500" />
-  if (trend === "down") return <ArrowDownRight className="h-4 w-4 text-green-500" />
-  return <Minus className="h-4 w-4 text-slate-400" />
+  if (trend === "up") return <ArrowUpRight aria-hidden="true" className="h-4 w-4 text-red-600 dark:text-red-400" />
+  if (trend === "down") return <ArrowDownRight aria-hidden="true" className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+  return <Minus aria-hidden="true" className="h-4 w-4 text-slate-500 dark:text-slate-400" />
 }
 
 export function LawsuitTrackerClient() {
@@ -75,709 +69,413 @@ export function LawsuitTrackerClient() {
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc")
 
   const sortedStates = useMemo(() => {
-    const sorted = [...topStates].sort((a, b) => {
-      let aVal: number | string
-      let bVal: number | string
-
-      switch (sortField) {
-        case "rank":
-          aVal = topStates.indexOf(a)
-          bVal = topStates.indexOf(b)
-          break
-        case "state":
-          aVal = a.state
-          bVal = b.state
-          return sortDirection === "asc"
-            ? (aVal as string).localeCompare(bVal as string)
-            : (bVal as string).localeCompare(aVal as string)
-        case "count":
-          aVal = a.count
-          bVal = b.count
-          break
-        case "perCapita":
-          aVal = a.perCapita
-          bVal = b.perCapita
-          break
-        default:
-          aVal = a.count
-          bVal = b.count
+    return [...topStates].sort((a, b) => {
+      if (sortField === "state") {
+        return sortDirection === "asc"
+          ? a.state.localeCompare(b.state)
+          : b.state.localeCompare(a.state)
       }
 
-      return sortDirection === "asc"
-        ? (aVal as number) - (bVal as number)
-        : (bVal as number) - (aVal as number)
+      const aValue = sortField === "rank" ? topStates.indexOf(a) : a[sortField]
+      const bValue = sortField === "rank" ? topStates.indexOf(b) : b[sortField]
+      return sortDirection === "asc" ? aValue - bValue : bValue - aValue
     })
-    return sorted
-  }, [sortField, sortDirection])
+  }, [sortDirection, sortField])
 
   function handleSort(field: SortField) {
     if (sortField === field) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc")
-    } else {
-      setSortField(field)
-      setSortDirection("desc")
+      setSortDirection((direction) => (direction === "asc" ? "desc" : "asc"))
+      return
     }
+    setSortField(field)
+    setSortDirection(field === "state" || field === "rank" ? "asc" : "desc")
   }
 
-  function renderSortIndicator(field: SortField) {
-    if (sortField !== field) {
-      return <ChevronDown className="h-3 w-3 opacity-30" />
-    }
+  function setMobileSort(value: string) {
+    const [field, direction] = value.split(":") as [SortField, SortDirection]
+    setSortField(field)
+    setSortDirection(direction)
+  }
+
+  function sortIndicator(field: SortField) {
+    if (sortField !== field) return <ChevronDown aria-hidden="true" className="h-3.5 w-3.5 opacity-40" />
     return sortDirection === "asc" ? (
-      <ChevronUp className="h-3 w-3" />
+      <ChevronUp aria-hidden="true" className="h-3.5 w-3.5" />
     ) : (
-      <ChevronDown className="h-3 w-3" />
+      <ChevronDown aria-hidden="true" className="h-3.5 w-3.5" />
     )
   }
 
-  // Prepare chart data for industry horizontal bar chart (sorted ascending for bottom-to-top display)
-  const industryChartData = [...lawsuitsByIndustry].sort((a, b) => a.percentage - b.percentage)
+  function ariaSort(field: SortField): "ascending" | "descending" | "none" {
+    if (sortField !== field) return "none"
+    return sortDirection === "asc" ? "ascending" : "descending"
+  }
 
-  // Calculate max settlement range for normalization
-  const maxSettlementValue = Math.max(...settlementData.map((d) => d.range.max))
+  const industryChartData = [...lawsuitsByIndustry].sort((a, b) => a.percentage - b.percentage)
+  const maxSettlementValue = Math.max(...settlementData.map((item) => item.range.max))
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-16">
-      {/* Section 1: Key Stats Banner */}
-      <section aria-labelledby="stats-heading">
-        <h2 id="stats-heading" className="sr-only">
-          Key Statistics
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          <StatCard
-            value={lawsuitSummary.totalLawsuitsFiled.toLocaleString()}
-            label="Federal Filings (2018-2025)"
-            icon={Scale}
-            source="Cumulative ADA Title III digital cases"
-          />
-          <StatCard
-            value={lawsuitSummary.latestYearTotal.toLocaleString()}
-            label="2025 Federal Filings"
-            icon={Scale}
-            trend={{
-              direction: lawsuitSummary.yearOverYearChange < 0 ? "down" : "up",
-              percentage: Math.abs(lawsuitSummary.yearOverYearChange),
-              label: "vs 2024",
-            }}
-          />
-          <StatCard
-            value={`$${lawsuitSummary.averageSettlement.toLocaleString()}`}
-            label="Average Settlement"
-            icon={DollarSign}
-            source="Out-of-court resolution"
-          />
-          <StatCard
-            value={lawsuitSummary.mostTargetedIndustry}
-            label="Most Targeted Industry"
-            icon={Building2}
-            source={`${lawsuitSummary.mostTargetedIndustryShare}% of all 2025 lawsuits`}
-          />
-        </div>
-      </section>
+    <div className="mx-auto max-w-7xl space-y-14 px-4 py-10 sm:px-6 md:space-y-16 md:py-14 lg:px-8">
+      <MethodologySection
+        id="methodology"
+        title="Methodology, scope, and source notes"
+        summary="The primary trend is a federal-court series. Broader state-court and industry reports are identified separately so unlike datasets are not presented as one continuous count."
+        dataSources={[
+          {
+            name: "Seyfarth Shaw 2025 federal filing review",
+            url: SEYFARTH_2025_URL,
+            description:
+              "Primary source for the 2018-2025 federal series and the 2025 state distribution. Entries were keyword searched and manually reviewed by the source.",
+          },
+          {
+            name: "UsableNet 2025 year-end report",
+            url: USABLENET_2025_URL,
+            description:
+              "A separate industry dataset covering ADA-based digital accessibility litigation in federal and selected state courts.",
+          },
+          {
+            name: "AudioEye 2026 litigation report",
+            url: AUDIOEYE_2026_URL,
+            description:
+              "Analysis of publicly available federal and state filings from January through September 2025, plus reported cost and industry observations.",
+          },
+          {
+            name: "PACER and published court records",
+            url: "https://pacer.uscourts.gov/",
+            description:
+              "Public federal docket records and published settlement reporting used for case-level cross-checking.",
+          },
+        ]}
+        sampleSize="21,550 identified federal website-accessibility filings from 2018 through 2025"
+        dateRange="Federal trend: 2018-2025; legal developments reviewed through July 9, 2026"
+        limitations={[
+          "The federal trend excludes state-court matters and private demand letters.",
+          "Different publishers use different court sources, search terms, date windows, and deduplication rules; their totals are not directly interchangeable.",
+          "Demand-letter and settlement figures are estimates because many resolutions are confidential.",
+          "2026 is not shown as an observed filing total because a comparable full-year federal count is not yet available.",
+          "This page provides research and general information, not legal advice.",
+        ]}
+        lastUpdated="July 12, 2026"
+      />
 
-      {/* Section 2: Lawsuits by Year (Area Chart) */}
-      <section aria-labelledby="yearly-trends-heading">
+      <section id="trends" className="scroll-mt-28" aria-labelledby="yearly-trends-heading">
         <ChartSection
-          title="Federal Accessibility Lawsuits by Year"
-          description="ADA Title III digital accessibility lawsuits filed in U.S. federal courts (2018-2025). 2026 federal-court figures are not yet publicly tabulated; the regulatory snapshot below summarizes the May 2026 enforcement landscape."
-          source="Seyfarth Shaw / adatitleiii.com, UsableNet, PACER"
+          title="Federal accessibility lawsuits by year"
+          titleId="yearly-trends-heading"
+          headingLevel={2}
+          description="Identified ADA Title III website-accessibility cases filed in U.S. federal courts. The series uses one source and one methodology across all eight years."
+          source="Seyfarth Shaw ADA Title III"
+          sourceUrl={SEYFARTH_2025_URL}
           downloadData={{
-            filename: "accessibility-lawsuits-by-year",
-            data: lawsuitsByYear.map((d) => ({
-              year: d.year,
-              totalFiled: d.totalFiled,
-              federalCourt: d.federalCourt,
-              demandLetters: d.demandLetters,
-              yearOverYearChange: d.yearOverYearChange,
+            filename: "federal-accessibility-lawsuits-2018-2025",
+            data: lawsuitsByYear.map((item) => ({
+              year: item.year,
+              federalFilings: item.federalCourt,
+              yearOverYearChangePercent: item.yearOverYearChange,
             })),
           }}
         >
           <div
-            className="h-[350px] md:h-[420px]"
+            className="h-[330px] md:h-[420px]"
             role="img"
-            aria-label="Area chart showing federal accessibility lawsuits by year from 2018 to 2025. 2025 closed at 3,117 federal filings, a 27% increase over 2024."
+            aria-label="Area chart of federal website-accessibility lawsuits from 2018 through 2025. Filings rose from 2,258 in 2018 to 3,117 in 2025, with a high of 3,255 in 2022."
           >
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={lawsuitsByYear} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <defs>
-                  <linearGradient id="colorFiled" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.02} />
+                  <linearGradient id="federalFilingsFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#2563eb" stopOpacity={0.28} />
+                    <stop offset="95%" stopColor="#2563eb" stopOpacity={0.02} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  className="stroke-slate-200 dark:stroke-slate-700"
-                />
+                <CartesianGrid strokeDasharray="3 3" className="stroke-slate-200 dark:stroke-slate-700" />
                 <XAxis
                   dataKey="year"
-                  className="text-xs"
-                  tick={{ fill: "currentColor" }}
+                  interval={0}
+                  minTickGap={0}
+                  tick={{ fill: "currentColor", fontSize: 11 }}
                   tickLine={{ stroke: "currentColor" }}
                 />
                 <YAxis
-                  className="text-xs"
-                  tick={{ fill: "currentColor" }}
+                  width={44}
+                  tick={{ fill: "currentColor", fontSize: 11 }}
                   tickLine={{ stroke: "currentColor" }}
-                  tickFormatter={(value) => value.toLocaleString()}
+                  tickFormatter={(value) => Number(value).toLocaleString()}
                 />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: "var(--color-card, #fff)",
                     border: "1px solid var(--color-border, #e2e8f0)",
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                    borderRadius: "6px",
                   }}
-                  formatter={(value: number, name: string) => {
-                    if (name === "totalFiled") return [value.toLocaleString(), "Total Filed"]
-                    if (name === "demandLetters")
-                      return [value.toLocaleString(), "Demand Letters (Est.)"]
-                    return [value.toLocaleString(), name]
-                  }}
-                  labelFormatter={(label) => {
-                    const yearData = lawsuitsByYear.find((d) => d.year === label)
-                    const yoyText = yearData
-                      ? ` | YoY: ${yearData.yearOverYearChange > 0 ? "+" : ""}${yearData.yearOverYearChange}%`
-                      : ""
-                    return `Year: ${label}${yoyText}`
-                  }}
-                />
-                <Legend
-                  formatter={(value) => {
-                    if (value === "totalFiled") return "Federal Lawsuits"
-                    if (value === "demandLetters") return "Demand Letters (Est.)"
-                    return value
-                  }}
+                  formatter={(value: number) => [value.toLocaleString(), "Federal filings"]}
+                  labelFormatter={(label) => `Year: ${label}`}
                 />
                 <Area
                   type="monotone"
-                  dataKey="totalFiled"
-                  stroke="#3b82f6"
+                  dataKey="federalCourt"
+                  name="Federal filings"
+                  stroke="#2563eb"
                   strokeWidth={2.5}
-                  fill="url(#colorFiled)"
-                  dot={{ fill: "#3b82f6", strokeWidth: 2, r: 5 }}
-                  activeDot={{ r: 7, strokeWidth: 2 }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="demandLetters"
-                  stroke="#f59e0b"
-                  strokeWidth={2}
-                  strokeDasharray="5 5"
-                  dot={{ fill: "#f59e0b", strokeWidth: 2, r: 4 }}
+                  fill="url(#federalFilingsFill)"
+                  dot={{ fill: "#2563eb", strokeWidth: 2, r: 4 }}
+                  activeDot={{ r: 6, strokeWidth: 2 }}
                 />
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          <div className="mt-4 flex flex-wrap gap-3 text-xs text-slate-500 dark:text-slate-400">
-            <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800/50 rounded-full px-3 py-1.5">
-              <AlertTriangle className="h-3 w-3 text-amber-500" />
-              <span>2020: COVID-19 accelerated digital shift and litigation</span>
-            </div>
-            <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800/50 rounded-full px-3 py-1.5">
-              <AlertTriangle className="h-3 w-3 text-blue-500" />
-              <span>2025: 3,117 federal filings (+27% YoY); 5,000+ when state-court cases are included</span>
-            </div>
-            <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800/50 rounded-full px-3 py-1.5">
-              <AlertTriangle className="h-3 w-3 text-red-500" />
-              <span>2026: projected to exceed 5,500 federal filings (H1 2025 ran +37% YoY)</span>
-            </div>
-            <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800/50 rounded-full px-3 py-1.5">
-              <AlertTriangle className="h-3 w-3 text-emerald-500" />
-              <span>Apr 20, 2026: DOJ extended Title II compliance to 2027/2028</span>
-            </div>
-          </div>
-
-          {/* May 2026 regulatory snapshot */}
-          <div className="mt-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900/60 dark:to-slate-950/40 p-5 md:p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Gavel className="h-4 w-4 text-slate-700 dark:text-slate-300" />
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-                Regulatory snapshot &mdash; as of{" "}
-                {new Date(may2026RegulatorySnapshot.asOfDate).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </p>
-            </div>
-            <ul className="space-y-3">
-              {may2026RegulatorySnapshot.items.map((item) => {
-                const tone =
-                  item.tone === "critical"
-                    ? {
-                        bar: "bg-red-500",
-                        label: "text-red-700 dark:text-red-300",
-                      }
-                    : item.tone === "warning"
-                      ? {
-                          bar: "bg-amber-500",
-                          label: "text-amber-700 dark:text-amber-300",
-                        }
-                      : {
-                          bar: "bg-blue-500",
-                          label: "text-blue-700 dark:text-blue-300",
-                        }
-                return (
-                  <li
-                    key={item.label}
-                    className="flex gap-3 rounded-lg bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-3 md:p-4"
-                  >
-                    <span className={cn("w-1 rounded-full shrink-0", tone.bar)} aria-hidden="true" />
-                    <div>
-                      <p className={cn("text-sm font-semibold mb-1", tone.label)}>{item.label}</p>
-                      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                        {item.detail}
-                      </p>
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </ChartSection>
-      </section>
-
-      {/* Section 3: Lawsuits by Industry (Horizontal Bar Chart) */}
-      <section aria-labelledby="industry-heading">
-        <ChartSection
-          title="Lawsuits by Industry"
-          description="Percentage breakdown of digital accessibility lawsuits by industry sector (2025)"
-          source="UsableNet Annual Reports"
-          downloadData={{
-            filename: "accessibility-lawsuits-by-industry",
-            data: lawsuitsByIndustry.map((d) => ({
-              industry: d.industry,
-              percentage: d.percentage,
-              count: d.count,
-              trend: d.trend,
-            })),
-          }}
-        >
-          <div
-            className="h-[400px] md:h-[480px]"
-            role="img"
-            aria-label="Horizontal bar chart showing accessibility lawsuits by industry. E-Commerce and Retail leads with 70%."
-          >
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                data={industryChartData}
-                layout="vertical"
-                margin={{ top: 5, right: 40, left: 0, bottom: 5 }}
-              >
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  horizontal={false}
-                  className="stroke-slate-200 dark:stroke-slate-700"
-                />
-                <XAxis
-                  type="number"
-                  className="text-xs"
-                  tick={{ fill: "currentColor" }}
-                  tickFormatter={(value) => `${value}%`}
-                />
-                <YAxis
-                  dataKey="industry"
-                  type="category"
-                  width={140}
-                  className="text-xs"
-                  tick={{ fill: "currentColor" }}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "var(--color-card, #fff)",
-                    border: "1px solid var(--color-border, #e2e8f0)",
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
-                  }}
-                  formatter={(value: number, _name: string, props: any) => {
-                    const entry = props.payload
-                    return [`${value}% (${entry.count.toLocaleString()} cases)`, "Share"]
-                  }}
-                />
-                <Bar
-                  dataKey="percentage"
-                  radius={[0, 4, 4, 0]}
-                  label={{
-                    position: "right",
-                    formatter: (value: number) => `${value}%`,
-                    fill: "currentColor",
-                    fontSize: 12,
-                  }}
-                >
-                  {industryChartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-          {/* Trend indicators below chart */}
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-            {lawsuitsByIndustry.slice(0, 8).map((industry) => (
-              <div
-                key={industry.industry}
-                className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400"
-              >
-                <div
-                  className="w-3 h-3 rounded-full shrink-0"
-                  style={{ backgroundColor: industry.color }}
-                />
-                <span className="truncate">{industry.industry}</span>
-                <TrendIcon trend={industry.trend} />
+          <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-slate-200 bg-slate-200 dark:border-slate-700 dark:bg-slate-700 sm:hidden">
+            {lawsuitsByYear.map((item) => (
+              <div key={item.year} className="bg-white p-3 dark:bg-slate-900">
+                <dt className="text-xs font-medium text-slate-500 dark:text-slate-400">{item.year}</dt>
+                <dd className="mt-1 font-semibold tabular-nums text-slate-900 dark:text-white">
+                  {item.federalCourt.toLocaleString()}
+                </dd>
               </div>
             ))}
+          </dl>
+          <div className="mt-5 flex flex-wrap gap-2 text-xs text-slate-600 dark:text-slate-300">
+            <span className="rounded-full bg-blue-50 px-3 py-1.5 dark:bg-blue-950/40">2025: 3,117 filings</span>
+            <span className="rounded-full bg-red-50 px-3 py-1.5 dark:bg-red-950/30">+27% from 2024</span>
+            <span className="rounded-full bg-slate-100 px-3 py-1.5 dark:bg-slate-800">Federal court only</span>
           </div>
         </ChartSection>
       </section>
 
-      {/* Section 4: Settlement Costs */}
-      <section aria-labelledby="settlement-heading">
-        <ChartSection
-          title="Settlement & Legal Costs"
-          description="Cost ranges by resolution type, from demand letters to class actions"
-          source="Public court records, legal industry reports"
-          downloadData={{
-            filename: "accessibility-settlement-costs",
-            data: settlementData.map((d) => ({
-              category: d.category,
-              averageCost: d.averageCost,
-              medianCost: d.medianCost,
-              rangeMin: d.range.min,
-              rangeMax: d.range.max,
-            })),
-          }}
-        >
-          {/* Color-coded severity scale */}
-          <div className="hidden sm:flex items-center justify-end gap-1.5 mb-4 text-xs text-slate-500 dark:text-slate-400">
-            <span>Severity:</span>
-            <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-emerald-500" /> Low</span>
-            <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-blue-500" /> Moderate</span>
-            <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-amber-500" /> High</span>
-            <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-red-500" /> Critical</span>
-          </div>
-
-          <div className="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
-            {/* Table header - desktop */}
-            <div className="hidden sm:grid sm:grid-cols-[1fr,100px,100px,1fr] gap-0 bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-700 px-5 py-3">
-              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Resolution Type</span>
-              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Average</span>
-              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Median</span>
-              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Range</span>
-            </div>
-
-            {/* Rows */}
-            {settlementData.map((item, index) => {
-              const logMin = Math.log10(Math.max(item.range.min, 1))
-              const logMax = Math.log10(Math.max(item.range.max, 1))
-              const logGlobalMax = Math.log10(maxSettlementValue)
-              const logGlobalMin = Math.log10(1000)
-              const logSpan = logGlobalMax - logGlobalMin
-
-              const barLeft = ((logMin - logGlobalMin) / logSpan) * 100
-              const barRight = ((logMax - logGlobalMin) / logSpan) * 100
-              const barWidth = Math.max(barRight - barLeft, 4)
-              const avgPos = ((Math.log10(item.averageCost) - logGlobalMin) / logSpan) * 100
-              const medPos = ((Math.log10(item.medianCost) - logGlobalMin) / logSpan) * 100
-
-              // Color based on average cost severity
-              const severityColor =
-                item.averageCost >= 200000
-                  ? "from-red-400 to-red-500 dark:from-red-500 dark:to-red-600"
-                  : item.averageCost >= 50000
-                    ? "from-amber-400 to-amber-500 dark:from-amber-500 dark:to-amber-600"
-                    : item.averageCost >= 20000
-                      ? "from-blue-400 to-blue-500 dark:from-blue-500 dark:to-blue-600"
-                      : "from-emerald-400 to-emerald-500 dark:from-emerald-500 dark:to-emerald-600"
-
-              const accentTextColor =
-                item.averageCost >= 200000
-                  ? "text-red-600 dark:text-red-400"
-                  : item.averageCost >= 50000
-                    ? "text-amber-600 dark:text-amber-400"
-                    : item.averageCost >= 20000
-                      ? "text-blue-600 dark:text-blue-400"
-                      : "text-emerald-600 dark:text-emerald-400"
-
-              return (
-                <div
-                  key={item.category}
-                  className={cn(
-                    "group sm:grid sm:grid-cols-[1fr,100px,100px,1fr] gap-0 items-center px-5 py-4 transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/40",
-                    index < settlementData.length - 1 && "border-b border-slate-100 dark:border-slate-800"
-                  )}
-                >
-                  {/* Category name */}
-                  <div className="mb-2 sm:mb-0">
-                    <h3 className="font-semibold text-slate-900 dark:text-white text-sm md:text-[15px] leading-tight">
-                      {item.category}
-                    </h3>
-                    <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5 sm:hidden">
-                      Range: {formatCurrency(item.range.min)} – {formatCurrency(item.range.max)}
-                    </p>
-                  </div>
-
-                  {/* Average */}
-                  <div className="hidden sm:block text-right">
-                    <p className={cn("text-base font-bold tabular-nums", accentTextColor)}>
-                      {formatCurrency(item.averageCost)}
-                    </p>
-                  </div>
-
-                  {/* Median */}
-                  <div className="hidden sm:block text-right">
-                    <p className="text-sm font-medium text-slate-600 dark:text-slate-300 tabular-nums">
-                      {formatCurrency(item.medianCost)}
-                    </p>
-                  </div>
-
-                  {/* Mobile: inline avg/median + range bar */}
-                  <div className="flex items-center gap-4 sm:hidden mb-2">
-                    <div>
-                      <span className="text-[10px] text-slate-400 uppercase tracking-wide">Avg </span>
-                      <span className={cn("text-sm font-bold tabular-nums", accentTextColor)}>{formatCurrency(item.averageCost)}</span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-slate-400 uppercase tracking-wide">Med </span>
-                      <span className="text-sm font-medium text-slate-600 dark:text-slate-300 tabular-nums">{formatCurrency(item.medianCost)}</span>
-                    </div>
-                  </div>
-
-                  {/* Range visualization */}
-                  <div className="relative h-8 sm:px-4">
-                    {/* Track background */}
-                    <div className="absolute inset-x-0 sm:inset-x-4 top-1/2 -translate-y-1/2 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full" />
-
-                    {/* Filled range bar */}
-                    <div
-                      className={cn("absolute top-1/2 -translate-y-1/2 h-2.5 rounded-full bg-gradient-to-r shadow-sm", severityColor)}
-                      style={{
-                        left: `${Math.max(barLeft, 0)}%`,
-                        width: `${barWidth}%`,
-                      }}
-                    />
-
-                    {/* Median diamond marker */}
-                    <div
-                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-white dark:bg-slate-200 border-2 border-slate-500 dark:border-slate-400 z-10 shadow-sm"
-                      style={{ left: `${medPos}%` }}
-                      title={`Median: ${formatCurrency(item.medianCost)}`}
-                    />
-
-                    {/* Average circle marker */}
-                    <div
-                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-slate-900 dark:bg-white border-2 border-white dark:border-slate-900 z-20 shadow-sm"
-                      style={{ left: `${avgPos}%` }}
-                      title={`Average: ${formatCurrency(item.averageCost)}`}
-                    />
-
-                    {/* Min label */}
-                    <span
-                      className="absolute -bottom-0.5 text-[9px] text-slate-400 dark:text-slate-500 tabular-nums"
-                      style={{ left: `${Math.max(barLeft, 0)}%` }}
-                    >
-                      {formatCurrency(item.range.min)}
-                    </span>
-
-                    {/* Max label */}
-                    <span
-                      className="absolute -bottom-0.5 text-[9px] text-slate-400 dark:text-slate-500 tabular-nums translate-x-[-100%]"
-                      style={{ left: `${barLeft + barWidth}%` }}
-                    >
-                      {formatCurrency(item.range.max)}
-                    </span>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* Legend */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 mt-4 px-1">
-            <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
-              <div className="w-3 h-3 rounded-full bg-slate-900 dark:bg-white border-2 border-white dark:border-slate-900 shadow-sm" />
-              Average
-            </div>
-            <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
-              <div className="w-2.5 h-2.5 rotate-45 bg-white dark:bg-slate-200 border-2 border-slate-500 dark:border-slate-400 shadow-sm" />
-              Median
-            </div>
-            <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
-              <div className="w-6 h-2.5 rounded-full bg-gradient-to-r from-blue-400 to-blue-500" />
-              Cost Range
-            </div>
-          </div>
-
-          {/* Record settlement callout */}
-          <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-950/20 p-5">
-            <div className="shrink-0">
-              <p className="text-3xl md:text-4xl font-bold text-red-600 dark:text-red-400 tabular-nums">
-                $5.15M
-              </p>
-              <p className="text-xs text-red-700/70 dark:text-red-300/70">
-                Record class-action settlement
-              </p>
-            </div>
-            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              In July 2025, online retailer <strong>Fashion Nova</strong> agreed to a{" "}
-              <strong>$5.15 million</strong> settlement in{" "}
-              <em>Alcazar v. Fashion Nova</em> after blind shoppers alleged its website was
-              inaccessible to screen readers — the second-largest publicly known web accessibility
-              settlement on record, behind only NFB v. Target (2008). A reminder that class-action
-              exposure, not just demand letters, is a real tail risk for e-commerce.
-            </p>
-          </div>
-        </ChartSection>
-      </section>
-
-      {/* Section 5: State-by-State Table */}
-      <section aria-labelledby="state-heading">
+      <section id="developments" className="scroll-mt-28" aria-labelledby="regulatory-heading">
         <Card>
           <CardHeader>
-            <div className="flex items-center gap-3 mb-1">
-              <div className="p-2 bg-violet-100 dark:bg-violet-900/50 rounded-lg">
-                <MapPin className="h-5 w-5 text-violet-600 dark:text-violet-400" />
-              </div>
+            <div className="flex items-start gap-3">
+              <Gavel aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
               <div>
-                <CardTitle id="state-heading" className="text-xl md:text-2xl">
-                  Lawsuits by State
-                </CardTitle>
+                <h2 id="regulatory-heading" className="text-xl font-bold text-slate-900 dark:text-white md:text-2xl">
+                  2026 legal and regulatory snapshot
+                </h2>
                 <CardDescription className="mt-1">
-                  Top 10 states by federal accessibility lawsuit filings. Click column headers to
-                  sort.
+                  Status as reviewed on July 9, 2026. Deadline extensions do not erase underlying accessibility obligations.
                 </CardDescription>
               </div>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm" role="table">
+            <ul className="grid gap-3 md:grid-cols-2">
+              {may2026RegulatorySnapshot.items.map((item) => (
+                <li key={item.label} className="rounded-md border border-slate-200 p-4 dark:border-slate-700">
+                  <p className="font-semibold text-slate-900 dark:text-white">{item.label}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{item.detail}</p>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      </section>
+
+      <section id="industries" className="scroll-mt-28" aria-labelledby="industry-heading">
+        <ChartSection
+          title="Lawsuits by industry"
+          titleId="industry-heading"
+          headingLevel={2}
+          description="Industry share reported for 2025 digital accessibility litigation. This is a broader industry dataset, not the federal-only series above."
+          source="UsableNet 2025 year-end report"
+          sourceUrl={USABLENET_2025_URL}
+          downloadData={{
+            filename: "accessibility-lawsuits-by-industry-2025",
+            data: lawsuitsByIndustry.map((item) => ({
+              industry: item.industry,
+              percentage: item.percentage,
+              estimatedCount: item.count,
+              trend: item.trend,
+            })),
+          }}
+        >
+          <div className="space-y-3 sm:hidden">
+            {lawsuitsByIndustry.map((industry) => (
+              <div key={industry.industry}>
+                <div className="mb-1 flex items-center justify-between gap-3 text-sm">
+                  <span className="flex min-w-0 items-center gap-2 font-medium text-slate-800 dark:text-slate-200">
+                    <span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ backgroundColor: industry.color }} />
+                    <span>{industry.industry}</span>
+                    <TrendIcon trend={industry.trend} />
+                  </span>
+                  <span className="shrink-0 font-semibold tabular-nums text-slate-900 dark:text-white">{industry.percentage}%</span>
+                </div>
+                <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+                  <div className="h-full rounded-full" style={{ width: `${industry.percentage}%`, backgroundColor: industry.color }} />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div
+            className="hidden h-[480px] sm:block"
+            role="img"
+            aria-label="Horizontal bar chart showing e-commerce and retail as the largest reported industry category at 70 percent, followed by food and beverage at 21 percent."
+          >
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={industryChartData} layout="vertical" margin={{ top: 5, right: 45, left: 10, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} className="stroke-slate-200 dark:stroke-slate-700" />
+                <XAxis type="number" tick={{ fill: "currentColor", fontSize: 11 }} tickFormatter={(value) => `${value}%`} />
+                <YAxis dataKey="industry" type="category" width={145} tick={{ fill: "currentColor", fontSize: 11 }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "var(--color-card, #fff)",
+                    border: "1px solid var(--color-border, #e2e8f0)",
+                    borderRadius: "6px",
+                  }}
+                  formatter={(value: number, _name: string, props: { payload?: { count?: number } }) => [
+                    `${value}% (${props.payload?.count?.toLocaleString() ?? "not reported"} estimated cases)`,
+                    "Share",
+                  ]}
+                />
+                <Bar dataKey="percentage" radius={[0, 4, 4, 0]}>
+                  {industryChartData.map((entry) => (
+                    <Cell key={entry.industry} fill={entry.color} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </ChartSection>
+      </section>
+
+      <section id="costs" className="scroll-mt-28" aria-labelledby="settlement-heading">
+        <ChartSection
+          title="Reported settlement and legal-cost benchmarks"
+          titleId="settlement-heading"
+          headingLevel={2}
+          description="Illustrative ranges from published settlements and legal-industry reporting. These figures are not a quote, prediction, or substitute for legal advice."
+          source="Published court records and litigation reports"
+          downloadData={{
+            filename: "accessibility-litigation-cost-benchmarks",
+            data: settlementData.map((item) => ({
+              category: item.category,
+              averageCost: item.averageCost,
+              medianCost: item.medianCost,
+              rangeMinimum: item.range.min,
+              rangeMaximum: item.range.max,
+            })),
+          }}
+        >
+          <div className="overflow-hidden rounded-md border border-slate-200 dark:border-slate-700">
+            <div className="hidden grid-cols-[minmax(190px,1fr)_180px_minmax(260px,1.2fr)] gap-6 border-b bg-slate-50 px-5 py-3 text-xs font-semibold uppercase text-slate-600 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300 sm:grid">
+              <span>Resolution type</span>
+              <span>Reported benchmark</span>
+              <span>Published range</span>
+            </div>
+            {settlementData.map((item, index) => {
+              const logGlobalMin = Math.log10(1_000)
+              const logSpan = Math.log10(maxSettlementValue) - logGlobalMin
+              const left = ((Math.log10(Math.max(item.range.min, 1_000)) - logGlobalMin) / logSpan) * 100
+              const right = ((Math.log10(item.range.max) - logGlobalMin) / logSpan) * 100
+              const width = Math.max(right - left, 3)
+
+              return (
+                <div
+                  key={item.category}
+                  className={cn(
+                    "grid gap-3 px-5 py-4 sm:grid-cols-[minmax(190px,1fr)_180px_minmax(260px,1.2fr)] sm:items-center sm:gap-6",
+                    index < settlementData.length - 1 && "border-b border-slate-100 dark:border-slate-800"
+                  )}
+                >
+                  <p className="font-semibold text-slate-900 dark:text-white">{item.category}</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-300">
+                    <span className="font-semibold text-slate-900 dark:text-white">Avg {formatCurrency(item.averageCost)}</span>
+                    <span className="mx-1.5 text-slate-400" aria-hidden="true">/</span>
+                    Median {formatCurrency(item.medianCost)}
+                  </p>
+                  <div>
+                    <div className="relative h-3 rounded-full bg-slate-100 dark:bg-slate-800" aria-hidden="true">
+                      <span
+                        className="absolute inset-y-0 rounded-full bg-blue-500 dark:bg-blue-400"
+                        style={{ left: `${left}%`, width: `${width}%` }}
+                      />
+                    </div>
+                    <p className="mt-1.5 flex justify-between gap-3 text-[11px] font-medium text-slate-600 dark:text-slate-300">
+                      <span>{formatCurrency(item.range.min)}</span>
+                      <span>{formatCurrency(item.range.max)}</span>
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+          <div className="mt-5 flex items-start gap-3 rounded-md bg-amber-50 p-4 text-sm text-amber-950 dark:bg-amber-950/30 dark:text-amber-100">
+            <CircleDollarSign aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0" />
+            <p>Private settlements are often confidential, and remediation, monitoring, claimant payments, and defense fees may be reported separately. Treat these as directional benchmarks only.</p>
+          </div>
+        </ChartSection>
+      </section>
+
+      <section id="states" className="scroll-mt-28" aria-labelledby="state-heading">
+        <Card>
+          <CardHeader>
+            <div className="flex items-start gap-3">
+              <MapPin aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-violet-600 dark:text-violet-400" />
+              <div>
+                <h2 id="state-heading" className="text-xl font-bold text-slate-900 dark:text-white md:text-2xl">2025 federal filings by state</h2>
+                <CardDescription className="mt-1">States reported in Seyfarth Shaw&apos;s federal-court review. State-court matters are not included.</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="mb-4 md:hidden">
+              <label htmlFor="state-sort" className="mb-1.5 block text-sm font-medium text-slate-800 dark:text-slate-200">Sort state data</label>
+              <select
+                id="state-sort"
+                value={`${sortField}:${sortDirection}`}
+                onChange={(event) => setMobileSort(event.target.value)}
+                className="h-10 w-full rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
+              >
+                <option value="count:desc">Most filings</option>
+                <option value="perCapita:desc">Highest per 100K residents</option>
+                <option value="state:asc">State A-Z</option>
+                <option value="rank:asc">Source order</option>
+              </select>
+            </div>
+
+            <div className="space-y-2 md:hidden">
+              {sortedStates.map((state) => (
+                <div key={state.abbreviation} className="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 rounded-md border border-slate-200 p-3 dark:border-slate-700">
+                  <p className="font-semibold text-slate-900 dark:text-white"><span className="mr-2 text-xs text-slate-500 dark:text-slate-400">{state.abbreviation}</span>{state.state}</p>
+                  <p className="font-semibold tabular-nums text-slate-900 dark:text-white">{state.count.toLocaleString()}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Federal filings</p>
+                  <p className="text-right text-xs text-slate-600 dark:text-slate-300">{state.perCapita.toFixed(2)} per 100K</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="hidden overflow-x-auto md:block">
+              <table className="w-full text-sm">
+                <caption className="sr-only">Federal website-accessibility lawsuit filings by state in 2025. Use the column buttons to sort the table.</caption>
                 <thead>
                   <tr className="border-b border-slate-200 dark:border-slate-700">
-                    <th
-                      className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                      onClick={() => handleSort("rank")}
-                      scope="col"
-                      aria-sort={
-                        sortField === "rank"
-                          ? sortDirection === "asc"
-                            ? "ascending"
-                            : "descending"
-                          : "none"
-                      }
-                    >
-                      <span className="flex items-center gap-1">
-                        # {renderSortIndicator("rank")}
-                      </span>
-                    </th>
-                    <th
-                      className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                      onClick={() => handleSort("state")}
-                      scope="col"
-                      aria-sort={
-                        sortField === "state"
-                          ? sortDirection === "asc"
-                            ? "ascending"
-                            : "descending"
-                          : "none"
-                      }
-                    >
-                      <span className="flex items-center gap-1">
-                        State {renderSortIndicator("state")}
-                      </span>
-                    </th>
-                    <th
-                      className="text-right py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                      onClick={() => handleSort("count")}
-                      scope="col"
-                      aria-sort={
-                        sortField === "count"
-                          ? sortDirection === "asc"
-                            ? "ascending"
-                            : "descending"
-                          : "none"
-                      }
-                    >
-                      <span className="flex items-center justify-end gap-1">
-                        Total Lawsuits {renderSortIndicator("count")}
-                      </span>
-                    </th>
-                    <th
-                      className="text-right py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                      onClick={() => handleSort("perCapita")}
-                      scope="col"
-                      aria-sort={
-                        sortField === "perCapita"
-                          ? sortDirection === "asc"
-                            ? "ascending"
-                            : "descending"
-                          : "none"
-                      }
-                    >
-                      <span className="flex items-center justify-end gap-1">
-                        Per 100K Residents {renderSortIndicator("perCapita")}
-                      </span>
-                    </th>
+                    {([
+                      ["rank", "Source rank", "text-left"],
+                      ["state", "State", "text-left"],
+                      ["count", "Federal filings", "text-right"],
+                      ["perCapita", "Per 100K residents", "text-right"],
+                    ] as const).map(([field, label, alignment]) => (
+                      <th key={field} scope="col" aria-sort={ariaSort(field)} className={cn("p-0 font-semibold text-slate-700 dark:text-slate-200", alignment)}>
+                        <button
+                          type="button"
+                          onClick={() => handleSort(field)}
+                          className={cn("inline-flex w-full items-center gap-1 px-3 py-3 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:text-blue-300", alignment === "text-right" && "justify-end")}
+                          aria-label={`Sort by ${label}`}
+                        >
+                          {label} {sortIndicator(field)}
+                        </button>
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {sortedStates.map((state, index) => {
-                    const originalIndex = topStates.findIndex(
-                      (s) => s.abbreviation === state.abbreviation
-                    )
-                    const barWidth = (state.count / topStates[0].count) * 100
-
+                  {sortedStates.map((state) => {
+                    const sourceRank = topStates.findIndex((item) => item.abbreviation === state.abbreviation) + 1
                     return (
-                      <tr
-                        key={state.abbreviation}
-                        className={cn(
-                          "border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors",
-                          index === 0 && "bg-blue-50/50 dark:bg-blue-950/10"
-                        )}
-                      >
-                        <td className="py-3 px-3 text-slate-500 dark:text-slate-400 font-mono">
-                          {originalIndex + 1}
-                        </td>
-                        <td className="py-3 px-3">
-                          <div className="flex items-center gap-2">
-                            <Badge
-                              variant="outline"
-                              className="font-mono text-xs w-8 justify-center"
-                            >
-                              {state.abbreviation}
-                            </Badge>
-                            <span className="font-medium text-slate-900 dark:text-white">
-                              {state.state}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="py-3 px-3 text-right">
-                          <div className="flex items-center justify-end gap-3">
-                            <div className="hidden sm:block w-24 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                              <div
-                                className="h-full bg-blue-500 dark:bg-blue-400 rounded-full transition-all duration-500"
-                                style={{ width: `${barWidth}%` }}
-                              />
-                            </div>
-                            <span className="font-semibold text-slate-900 dark:text-white tabular-nums">
-                              {state.count.toLocaleString()}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="py-3 px-3 text-right">
-                          <span
-                            className={cn(
-                              "font-medium tabular-nums",
-                              state.perCapita >= 5
-                                ? "text-red-600 dark:text-red-400"
-                                : state.perCapita >= 2
-                                  ? "text-amber-600 dark:text-amber-400"
-                                  : "text-slate-700 dark:text-slate-300"
-                            )}
-                          >
-                            {state.perCapita.toFixed(1)}
-                          </span>
-                        </td>
+                      <tr key={state.abbreviation} className="border-b border-slate-100 hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/50">
+                        <td className="px-3 py-3 font-mono text-slate-500 dark:text-slate-400">{sourceRank}</td>
+                        <td className="px-3 py-3 font-medium text-slate-900 dark:text-white"><Badge variant="outline" className="mr-2 font-mono text-xs">{state.abbreviation}</Badge>{state.state}</td>
+                        <td className="px-3 py-3 text-right font-semibold tabular-nums text-slate-900 dark:text-white">{state.count.toLocaleString()}</td>
+                        <td className="px-3 py-3 text-right tabular-nums text-slate-700 dark:text-slate-300">{state.perCapita.toFixed(2)}</td>
                       </tr>
                     )
                   })}
@@ -788,198 +486,87 @@ export function LawsuitTrackerClient() {
         </Card>
       </section>
 
-      {/* Section 6: Key Court Rulings Timeline */}
       <section aria-labelledby="rulings-heading">
         <Card>
           <CardHeader>
-            <div className="flex items-center gap-3 mb-1">
-              <div className="p-2 bg-amber-100 dark:bg-amber-900/50 rounded-lg">
-                <Gavel className="h-5 w-5 text-amber-600 dark:text-amber-400" />
-              </div>
+            <div className="flex items-start gap-3">
+              <Gavel aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
               <div>
-                <CardTitle id="rulings-heading" className="text-xl md:text-2xl">
-                  Key Court Rulings
-                </CardTitle>
-                <CardDescription className="mt-1">
-                  Landmark cases that have shaped digital accessibility law in the United States
-                </CardDescription>
+                <h2 id="rulings-heading" className="text-xl font-bold text-slate-900 dark:text-white md:text-2xl">Key legal developments</h2>
+                <CardDescription className="mt-1">Court decisions, regulations, enforcement, and settlements are labeled by type rather than reduced to misleading win-or-loss badges.</CardDescription>
               </div>
             </div>
           </CardHeader>
-          <CardContent>
-            <div className="relative">
-              {/* Vertical timeline line */}
-              <div className="absolute left-[7px] md:left-[120px] top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-700" />
-
-              <div className="space-y-8">
-                {keyRulings.map((ruling, index) => {
-                  const outcomeConfig = {
-                    plaintiff: {
-                      color: "bg-green-500",
-                      borderColor: "border-l-4 border-l-green-500 border-green-200 dark:border-green-800",
-                      bgColor: "bg-green-50 dark:bg-green-950/20",
-                      badgeClass:
-                        "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 border-green-200 dark:border-green-800",
-                      label: "Plaintiff Won",
-                    },
-                    defendant: {
-                      color: "bg-red-500",
-                      borderColor: "border-l-4 border-l-red-500 border-red-200 dark:border-red-800",
-                      bgColor: "bg-red-50 dark:bg-red-950/20",
-                      badgeClass:
-                        "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 border-red-200 dark:border-red-800",
-                      label: "Defendant Won",
-                    },
-                    settled: {
-                      color: "bg-yellow-500",
-                      borderColor: "border-l-4 border-l-yellow-500 border-yellow-200 dark:border-yellow-800",
-                      bgColor: "bg-yellow-50 dark:bg-yellow-950/20",
-                      badgeClass:
-                        "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 border-yellow-200 dark:border-yellow-800",
-                      label: "Settled",
-                    },
-                  }
-                  const config = outcomeConfig[ruling.outcome]
-
-                  return (
-                    <div key={index} className="relative flex gap-4 md:gap-6">
-                      {/* Date on left (hidden on small screens) */}
-                      <div className="hidden md:block w-[100px] shrink-0 text-right pt-1">
-                        <time
-                          dateTime={ruling.date}
-                          className="text-sm font-medium text-slate-500 dark:text-slate-400"
-                        >
-                          {new Date(ruling.date).toLocaleDateString("en-US", {
-                            month: "short",
-                            year: "numeric",
-                          })}
-                        </time>
-                      </div>
-
-                      {/* Timeline dot */}
-                      <div className="relative shrink-0">
-                        <div
-                          className={cn(
-                            "w-3.5 h-3.5 rounded-full border-2 border-white dark:border-slate-900 z-10 relative",
-                            config.color
-                          )}
-                        />
-                      </div>
-
-                      {/* Content */}
-                      <div
-                        className={cn(
-                          "flex-1 rounded-lg p-4 md:p-5 -mt-1",
-                          config.borderColor,
-                          config.bgColor
-                        )}
-                      >
-                        {/* Date on small screens */}
-                        <time
-                          dateTime={ruling.date}
-                          className="md:hidden text-xs font-medium text-slate-500 dark:text-slate-400 mb-2 block"
-                        >
-                          {new Date(ruling.date).toLocaleDateString("en-US", {
-                            month: "long",
-                            day: "numeric",
-                            year: "numeric",
-                          })}
-                        </time>
-
-                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
-                          <div>
-                            <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                              {ruling.caseName}
-                            </h3>
-                            <Badge variant="secondary" className="mt-1 text-xs">
-                              {ruling.court}
-                            </Badge>
-                          </div>
-                          <Badge
-                            variant="outline"
-                            className={cn("shrink-0 w-fit", config.badgeClass)}
-                          >
-                            {config.label}
-                          </Badge>
-                        </div>
-
-                        <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">
-                          {ruling.summary}
-                        </p>
-
-                        <div className="flex items-start gap-2 bg-white/60 dark:bg-slate-900/40 rounded-md p-2.5">
-                          <Info className="h-4 w-4 text-blue-500 shrink-0 mt-0.5" />
-                          <p className="text-xs text-slate-600 dark:text-slate-400">
-                            <span className="font-semibold text-blue-700 dark:text-blue-300">
-                              Significance:
-                            </span>{" "}
-                            {ruling.significance}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
+          <CardContent className="space-y-3">
+            {[...keyRulings].sort((a, b) => b.date.localeCompare(a.date)).map((ruling) => (
+              <details key={`${ruling.date}-${ruling.caseName}`} className="group rounded-md border border-slate-200 dark:border-slate-700">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 [&::-webkit-details-marker]:hidden">
+                  <span className="min-w-0">
+                    <span className="mb-2 flex flex-wrap items-center gap-2">
+                      <time dateTime={ruling.date} className="text-xs font-medium text-slate-600 dark:text-slate-300">
+                        {new Date(`${ruling.date}T00:00:00`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                      </time>
+                      <Badge variant="outline" className="text-xs">{ruling.type}</Badge>
+                    </span>
+                    <span className="block font-semibold text-slate-900 dark:text-white">{ruling.caseName}</span>
+                    <span className="mt-1 block text-sm text-slate-500 dark:text-slate-400">{ruling.court}</span>
+                  </span>
+                  <ChevronDown aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-slate-500 transition-transform group-open:rotate-180 dark:text-slate-400" />
+                </summary>
+                <div className="border-t border-slate-200 px-4 pb-4 pt-3 dark:border-slate-700">
+                  <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{ruling.summary}</p>
+                  <div className="mt-3 flex items-start gap-2 rounded-md bg-slate-50 p-3 dark:bg-slate-800/60">
+                    <Info aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-blue-600 dark:text-blue-400" />
+                    <p className="text-sm text-slate-600 dark:text-slate-300"><strong className="text-slate-900 dark:text-white">Why it matters:</strong> {ruling.significance}</p>
+                  </div>
+                  {ruling.sourceUrl && (
+                    <a
+                      href={ruling.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-blue-700 underline underline-offset-4 hover:text-blue-900 dark:text-blue-300 dark:hover:text-blue-100"
+                    >
+                      Review source <ExternalLink aria-hidden="true" className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                </div>
+              </details>
+            ))}
           </CardContent>
         </Card>
       </section>
 
-      {/* Section 7: Methodology */}
-      <section aria-labelledby="methodology-heading">
-        <MethodologySection
-          title="Methodology & Data Sources"
-          dataSources={[
-            {
-              name: "UsableNet ADA Digital Accessibility Reports",
-              description:
-                "Annual and 2026 trend reports tracking ADA Title III digital accessibility lawsuits filed in federal and state courts across the United States.",
-            },
-            {
-              name: "Seyfarth Shaw ADA Title III Blog",
-              description:
-                "Legal analysis and tracking of ADA Title III lawsuit trends from one of the leading employment and labor law firms.",
-            },
-            {
-              name: "AudioEye 2026 Web Accessibility Litigation Report",
-              description:
-                "Mid-2026 litigation analysis of federal and state filings, platform and industry breakdowns, and settlement benchmarks.",
-            },
-            {
-              name: "Public Court Records (PACER) & published settlements",
-              description:
-                "Federal court electronic records and publicly reported settlements (e.g. Alcazar v. Fashion Nova) used to verify and cross-reference filing and cost data.",
-            },
-          ]}
-          sampleSize="Federal court website-accessibility filings, 2018-2025 (Seyfarth Shaw 2025 year-end review); 2026 figures from mid-year industry reports"
-          dateRange="2018 - 2025 (federal-court trend); regulatory & litigation snapshot reflects July 2026"
-          limitations={[
-            "Yearly chart tracks federal-court filings only; 2025's widely cited 5,000+ figure includes state-court cases (mostly NY and CA)",
-            "Demand letter counts are estimates from industry trackers, not official records",
-            "Settlement amounts are drawn from publicly available data; private settlements may not be represented",
-            "Same case may appear across multiple trackers if refiled or amended",
-            "2026 federal-court totals are not yet publicly tabulated; the 5,500+ figure is a projection from H1 2025's +37% year-over-year pace. This update incorporates the April 20, 2026 DOJ Title II extension, the May 11, 2026 HHS Section 504 deadline (now in force), and the $5.15M Fashion Nova settlement",
-          ]}
-          lastUpdated="July 9, 2026"
-        />
+      <section className="scroll-mt-28 border-y border-slate-200 py-10 dark:border-slate-800" aria-labelledby="response-heading">
+        <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+          <div>
+            <p className="text-sm font-semibold uppercase text-blue-700 dark:text-blue-300">Practical response</p>
+            <h2 id="response-heading" className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">What organizations should do with this data</h2>
+            <p className="mt-3 text-slate-600 dark:text-slate-300">Litigation counts describe reported activity, not the accessibility of a specific website. Use them to prioritize an evidence-based program, not to make a promise that any single tool prevents legal claims.</p>
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {[
+              "Test complete user journeys with keyboard and screen readers, not only the homepage.",
+              "Combine automated checks with expert manual review and documented retesting.",
+              "Publish an accessibility statement and maintain a responsive feedback channel.",
+              "Ask qualified counsel to interpret legal exposure for your jurisdictions and facts.",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                <AlertTriangle aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
-      {/* Section 8: Share & Embed */}
-      <section aria-labelledby="share-heading">
-        <h2 id="share-heading" className="sr-only">
-          Share and Embed
-        </h2>
-        <EmbeddableWidget
-          title="Accessibility Lawsuit Tracker 2026"
-          description="Share this research data or embed it on your website."
-          url="https://accessibility.build/research/accessibility-lawsuits"
-          stat={{
-            value: `${lawsuitSummary.totalLawsuitsFiled.toLocaleString()}+`,
-            label: "accessibility lawsuits filed (2018-2025)",
-          }}
-        />
-      </section>
+      <EmbeddableWidget
+        id="share"
+        headingLevel={2}
+        title="Accessibility Lawsuit Tracker 2026"
+        description="Share this research page or embed a linked reference on your website. The canonical URL remains unchanged."
+        url="https://accessibility.build/research/accessibility-lawsuits"
+        stat={{ value: lawsuitSummary.latestYearTotal.toLocaleString(), label: "federal website-accessibility filings identified in 2025" }}
+      />
     </div>
   )
 }

@@ -12,6 +12,10 @@ interface MethodologySectionProps {
   limitations?: string[]
   lastUpdated?: string
   className?: string
+  id?: string
+  summary?: string
+  headingLevel?: 2 | 3
+  defaultExpanded?: boolean
 }
 
 export function MethodologySection({
@@ -22,29 +26,46 @@ export function MethodologySection({
   limitations,
   lastUpdated,
   className,
+  id = "methodology",
+  summary,
+  headingLevel = 2,
+  defaultExpanded = false,
 }: MethodologySectionProps) {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded)
+  const contentId = `${id}-details`
+  const Heading = headingLevel === 2 ? "h2" : "h3"
 
   return (
-    <div className={cn("border rounded-xl overflow-hidden bg-white dark:bg-slate-900", className)}>
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
-        aria-expanded={isExpanded}
-      >
-        <div className="flex items-center gap-3">
-          <BookOpen className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-          <span className="text-lg font-semibold text-slate-900 dark:text-white">{title}</span>
-        </div>
-        {isExpanded ? (
-          <ChevronUp className="h-5 w-5 text-slate-400" />
-        ) : (
-          <ChevronDown className="h-5 w-5 text-slate-400" />
-        )}
-      </button>
+    <div id={id} className={cn("scroll-mt-28 overflow-hidden rounded-lg border bg-white dark:bg-slate-900", className)}>
+      <Heading>
+        <button
+          type="button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50 sm:px-6"
+          aria-expanded={isExpanded}
+          aria-controls={contentId}
+        >
+          <span className="flex items-start gap-3">
+            <BookOpen className="mt-0.5 h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />
+            <span>
+              <span className="block text-lg font-semibold text-slate-900 dark:text-white">{title}</span>
+              {summary && (
+                <span className="mt-1 block text-sm font-normal leading-relaxed text-slate-600 dark:text-slate-400">
+                  {summary}
+                </span>
+              )}
+            </span>
+          </span>
+          {isExpanded ? (
+            <ChevronUp className="mt-0.5 h-5 w-5 shrink-0 text-slate-500 dark:text-slate-400" />
+          ) : (
+            <ChevronDown className="mt-0.5 h-5 w-5 shrink-0 text-slate-500 dark:text-slate-400" />
+          )}
+        </button>
+      </Heading>
 
       {isExpanded && (
-        <div className="px-6 pb-6 space-y-6 border-t dark:border-slate-800">
+        <div id={contentId} className="space-y-6 border-t px-5 pb-6 dark:border-slate-800 sm:px-6">
           {/* Data Sources */}
           <div className="pt-4">
             <div className="flex items-center gap-2 mb-3">
@@ -125,7 +146,7 @@ export function MethodologySection({
 
           {/* Last Updated */}
           {lastUpdated && (
-            <p className="text-xs text-slate-400 dark:text-slate-500 pt-2 border-t dark:border-slate-800">
+            <p className="border-t pt-2 text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">
               Last updated: {lastUpdated}
             </p>
           )}

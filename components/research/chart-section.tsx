@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Download, ExternalLink } from "lucide-react"
@@ -14,6 +14,8 @@ interface ChartSectionProps {
   children: React.ReactNode
   downloadData?: { filename: string; data: Record<string, unknown>[] }
   className?: string
+  titleId?: string
+  headingLevel?: 2 | 3
 }
 
 export function ChartSection({
@@ -24,6 +26,8 @@ export function ChartSection({
   children,
   downloadData,
   className,
+  titleId,
+  headingLevel = 3,
 }: ChartSectionProps) {
   const [downloading, setDownloading] = useState(false)
 
@@ -62,11 +66,17 @@ export function ChartSection({
   }
 
   return (
-    <Card className={cn("overflow-hidden", className)}>
+    <Card className={cn("overflow-hidden", className)} aria-labelledby={titleId}>
       <CardHeader>
-        <CardTitle className="text-xl font-bold text-slate-900 dark:text-white">
-          {title}
-        </CardTitle>
+        {headingLevel === 2 ? (
+          <h2 id={titleId} className="text-xl font-bold text-slate-900 dark:text-white md:text-2xl">
+            {title}
+          </h2>
+        ) : (
+          <h3 id={titleId} className="text-xl font-bold text-slate-900 dark:text-white">
+            {title}
+          </h3>
+        )}
         {description && (
           <CardDescription className="text-slate-600 dark:text-slate-400">
             {description}
@@ -75,7 +85,7 @@ export function ChartSection({
       </CardHeader>
       <CardContent>{children}</CardContent>
       {(source || downloadData) && (
-        <CardFooter className="flex items-center justify-between border-t bg-slate-50/50 dark:bg-slate-900/30 px-6 py-3">
+        <CardFooter className="flex flex-col items-start justify-between gap-3 border-t bg-slate-50/50 px-6 py-3 dark:bg-slate-900/30 sm:flex-row sm:items-center">
           {source && (
             <p className="text-xs text-slate-500 dark:text-slate-400">
               Source:{" "}
@@ -101,6 +111,7 @@ export function ChartSection({
               onClick={handleDownloadCSV}
               disabled={downloading}
               className="text-xs"
+              aria-label={`${downloading ? "Downloading" : "Download"} ${title} data as CSV`}
             >
               <Download className="h-3 w-3 mr-1" />
               {downloading ? "Downloading..." : "Download CSV"}

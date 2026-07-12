@@ -12,9 +12,11 @@ interface EmbeddableWidgetProps {
   url: string
   stat?: { value: string; label: string }
   className?: string
+  headingLevel?: 2 | 3
+  id?: string
 }
 
-export function EmbeddableWidget({ title, description, url, stat, className }: EmbeddableWidgetProps) {
+export function EmbeddableWidget({ title, description, url, stat, className, headingLevel = 3, id }: EmbeddableWidgetProps) {
   const [copiedLink, setCopiedLink] = useState(false)
   const [copiedEmbed, setCopiedEmbed] = useState(false)
 
@@ -28,6 +30,7 @@ export function EmbeddableWidget({ title, description, url, stat, className }: E
     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(tweetText)}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
   }
+  const Heading = headingLevel === 2 ? "h2" : "h3"
 
   const copyToClipboard = async (text: string, type: "link" | "embed") => {
     try {
@@ -50,12 +53,12 @@ export function EmbeddableWidget({ title, description, url, stat, className }: E
   }
 
   return (
-    <div className={cn("border rounded-xl bg-white dark:bg-slate-900 overflow-hidden", className)}>
+    <div id={id} className={cn("scroll-mt-28 overflow-hidden rounded-lg border bg-white dark:bg-slate-900", className)}>
       <div className="px-6 py-4 border-b dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
-        <h3 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+        <Heading className="flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
           <Share2 className="h-4 w-4 text-blue-600" />
           Share & Embed
-        </h3>
+        </Heading>
         {description && (
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{description}</p>
         )}

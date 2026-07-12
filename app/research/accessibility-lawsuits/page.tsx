@@ -8,7 +8,7 @@ import { LawsuitTrackerClient } from "./LawsuitTrackerClient"
 export const metadata: Metadata = {
   title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
   description:
-    "Comprehensive data on web accessibility lawsuits in the United States. 2025 closed at 3,117 federal filings (+27% YoY) — over 5,000 with state-court cases — and 2026 is projected to top 5,500. Fashion Nova settled for $5.15M; HHS Section 504 is now in force; DOJ Title II was extended to 2027. Updated July 2026.",
+    "Source-linked data on U.S. website accessibility lawsuits: 21,550 identified federal filings from 2018-2025, 3,117 in 2025, state trends, reported costs, methodology, and 2026 legal updates.",
   keywords: [
     "accessibility lawsuits",
     "ada lawsuit tracker",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
     description:
-      "2025 closed at 3,117 federal website-accessibility lawsuits (+27% YoY); over 5,000 with state-court cases. 2026 is on pace to exceed 5,500. Fashion Nova settled for $5.15M; HHS Section 504 is now in force; DOJ Title II was extended to 2027/2028.",
+      "Source-linked federal website-accessibility lawsuit data through 2025, plus state trends, reported costs, methodology, and 2026 legal updates.",
     url: "https://accessibility.build/research/accessibility-lawsuits",
     type: "article",
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Accessibility Lawsuit Tracker 2026",
     description:
-      "3,117 federal filings in 2025 (+27% YoY), with 2026 projected to top 5,500. Fashion Nova settled for $5.15M; HHS Section 504 now in force; DOJ Title II pushed to 2027.",
+      "3,117 identified federal website-accessibility filings in 2025, up 27% from 2024. Explore the source-linked series, state data, costs, and methodology.",
   },
 }
 
@@ -56,13 +56,16 @@ export default function AccessibilityLawsuitsPage() {
       <ArticleStructuredData
         headline="Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data"
         description="Comprehensive data on web accessibility lawsuits in the United States. Track trends by year, industry, state, and settlement costs."
-        author={{ name: "Accessibility.build Research", url: "https://accessibility.build" }}
+        author={{
+          name: "Khushwant Parihar",
+          url: "https://accessibility.build/authors/khushwant-parihar",
+        }}
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-01-15"
-        dateModified="2026-07-09"
+        dateModified="2026-07-12"
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-lawsuits"
         wordCount={3500}
@@ -86,7 +89,7 @@ export default function AccessibilityLawsuitsPage() {
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <span className="text-slate-500 dark:text-slate-500">Research</span>
+              <span className="text-slate-500 dark:text-slate-400">Research</span>
             </li>
             <li aria-hidden="true">/</li>
             <li>
@@ -99,75 +102,92 @@ export default function AccessibilityLawsuitsPage() {
       </nav>
 
       {/* Hero Section with Server-Rendered Stats for SEO */}
-      <header className="bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <header className="border-b border-slate-800 bg-slate-950 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
           <div className="max-w-4xl">
-            <p className="text-blue-300 font-semibold text-sm tracking-wider uppercase mb-4">
+            <p className="mb-4 text-sm font-semibold uppercase text-blue-300">
               Research & Data
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              Accessibility Lawsuit{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-                Tracker 2026
-              </span>
+            <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+              Accessibility Lawsuit Tracker 2026
             </h1>
-            <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
-              Comprehensive data on ADA and digital accessibility lawsuits filed in the United
-              States. Federal-court trends through 2025, the mid-2026 landscape (2026 on pace to
-              exceed 5,500 filings, HHS Section 504 now in force, DOJ Title II extended), the
-              record $5.15M Fashion Nova settlement, and settlement-cost benchmarks.
+            <p className="max-w-3xl text-lg leading-relaxed text-slate-300 md:text-xl">
+              A source-linked view of U.S. website-accessibility litigation, built around a
+              consistent federal-court series through 2025. Compare annual filings, industries,
+              reported costs, states, and legal developments without mixing incompatible datasets.
             </p>
+            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-slate-300">
+              <span>
+                By{" "}
+                <Link href="/authors/khushwant-parihar" className="font-semibold text-white underline decoration-slate-500 underline-offset-4 hover:decoration-white">
+                  Khushwant Parihar
+                </Link>
+              </span>
+              <span aria-hidden="true" className="text-slate-600">|</span>
+              <time dateTime="2026-07-12">Updated July 12, 2026</time>
+              <span aria-hidden="true" className="text-slate-600">|</span>
+              <span>Federal series through 2025</span>
+            </div>
           </div>
 
           {/* Server-rendered key stats for SEO crawlers */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-              <p className="text-slate-400 text-sm font-medium mb-1">Federal Filings (2018-2025)</p>
+          <div id="overview" className="mt-10 grid scroll-mt-28 grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+            <div className="rounded-md border border-slate-700 bg-slate-900 p-4 md:p-5">
+              <p className="mb-1 text-sm font-medium text-slate-300">Federal filings, 2018-2025</p>
               <p className="text-3xl md:text-4xl font-bold text-white">
                 {lawsuitSummary.totalLawsuitsFiled.toLocaleString()}
               </p>
-              <p className="text-slate-400 text-xs mt-1">
-                Cumulative ADA Title III digital cases
-              </p>
+              <p className="mt-1 text-xs text-slate-400">Identified website-accessibility cases</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-              <p className="text-slate-400 text-sm font-medium mb-1">2025 Federal Lawsuits</p>
+            <div className="rounded-md border border-slate-700 bg-slate-900 p-4 md:p-5">
+              <p className="mb-1 text-sm font-medium text-slate-300">2025 federal filings</p>
               <p className="text-3xl md:text-4xl font-bold text-white">
                 {lawsuitSummary.latestYearTotal.toLocaleString()}
               </p>
-              <p className="text-red-300 text-xs mt-1">
-                +{lawsuitSummary.yearOverYearChange}% vs 2024
-              </p>
+              <p className="mt-1 text-xs text-slate-400">Observed full-year count</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-              <p className="text-slate-400 text-sm font-medium mb-1">2025 Federal + State</p>
-              <p className="text-3xl md:text-4xl font-bold text-white">
-                {lawsuitSummary.combinedFederalStateTotal2025.toLocaleString()}+
-              </p>
-              <p className="text-slate-400 text-xs mt-1">
-                Including NY/CA state-court filings
-              </p>
+            <div className="rounded-md border border-slate-700 bg-slate-900 p-4 md:p-5">
+              <p className="mb-1 text-sm font-medium text-slate-300">Year-over-year change</p>
+              <p className="text-3xl md:text-4xl font-bold text-white">+{lawsuitSummary.yearOverYearChange}%</p>
+              <p className="mt-1 text-xs text-slate-400">2025 compared with 2024</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-              <p className="text-slate-400 text-sm font-medium mb-1">Most Targeted Industry</p>
-              <p className="text-xl md:text-2xl font-bold text-white">
-                {lawsuitSummary.mostTargetedIndustry}
-              </p>
-              <p className="text-slate-400 text-xs mt-1">
-                {lawsuitSummary.mostTargetedIndustryShare}% of all 2025 filings
-              </p>
+            <div className="rounded-md border border-slate-700 bg-slate-900 p-4 md:p-5">
+              <p className="mb-1 text-sm font-medium text-slate-300">Leading federal venue</p>
+              <p className="text-3xl md:text-4xl font-bold text-white">1,021</p>
+              <p className="mt-1 text-xs text-slate-400">New York filings in 2025</p>
             </div>
           </div>
+          <p className="mt-4 max-w-4xl text-xs leading-relaxed text-slate-400">
+            Headline figures use Seyfarth Shaw&apos;s manually reviewed federal-court series. See the{" "}
+            <a href="#methodology" className="font-medium text-blue-300 underline underline-offset-4 hover:text-white">methodology and limitations</a>{" "}
+            before comparing them with broader state-court reports.
+          </p>
         </div>
       </header>
 
-      {/* Interactive Client Component */}
-      <main>
-        <LawsuitTrackerClient />
-      </main>
+      <nav aria-label="On this page" className="sticky top-12 z-30 border-b border-slate-200 bg-white/95 backdrop-blur dark:border-slate-800 dark:bg-slate-950/95">
+        <div className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
+          {[
+            ["#overview", "Overview"],
+            ["#methodology", "Methodology"],
+            ["#trends", "Trends"],
+            ["#industries", "Industries"],
+            ["#costs", "Costs"],
+            ["#states", "States"],
+            ["#developments", "Developments"],
+            ["#faq", "FAQ"],
+          ].map(([href, label]) => (
+            <a key={href} href={href} className="whitespace-nowrap rounded px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white">
+              {label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <LawsuitTrackerClient />
 
       {/* FAQ Section with Schema.org Microdata for SEO */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <section id="faq" className="mx-auto max-w-7xl scroll-mt-28 px-4 py-14 sm:px-6 md:py-16 lg:px-8">
         <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-10 text-center">
           Frequently Asked Questions
         </h2>
@@ -176,85 +196,80 @@ export default function AccessibilityLawsuitsPage() {
           itemScope
           itemType="https://schema.org/FAQPage"
         >
-          <div
-            className="border border-slate-200 dark:border-slate-700 rounded-lg p-6"
+          <details
+            className="group overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700"
             itemScope
             itemProp="mainEntity"
             itemType="https://schema.org/Question"
           >
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
-              How many accessibility lawsuits are filed each year?
-            </h3>
-            <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+            <summary className="cursor-pointer list-none px-5 py-4 font-semibold text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:text-white [&::-webkit-details-marker]:hidden">
+              <span itemProp="name">How many accessibility lawsuits are filed each year?</span>
+            </summary>
+            <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
                 In 2025, plaintiffs filed <strong>3,117 website accessibility lawsuits in U.S.
                 federal court</strong> &mdash; a 27% jump over 2024&apos;s 2,452 cases (Seyfarth
-                Shaw / adatitleiii.com). Including state-court filings (mostly in New York and
-                California), total digital accessibility lawsuits topped <strong>5,000</strong> for
-                the year (UsableNet). <strong>2026 is on pace for a record</strong>: U.S. courts
-                logged over 2,000 filings in the first half of 2025 (+37% year over year), and if
-                that trajectory holds, federal filings are projected to exceed <strong>5,500 in
-                2026</strong>. Federal volume has fluctuated between roughly 2,256 and 4,011 each
-                year since 2018, and several thousand additional demand letters are sent annually
-                that never reach formal litigation. Roughly 40% of 2025&apos;s federal filings were
-                filed pro se, with plaintiffs increasingly using generative AI to draft complaints.
+                Shaw / adatitleiii.com). Federal volume in that source series ranged from 2,256 to
+                3,255 filings per year between 2018 and 2025. State-court cases and private demand
+                letters are additional activity, but their totals should be cited from the relevant
+                publisher rather than added to the federal series. A comparable full-year 2026
+                federal count is not yet available on this page.
               </p>
             </div>
-          </div>
+          </details>
 
-          <div
-            className="border border-slate-200 dark:border-slate-700 rounded-lg p-6"
+          <details
+            className="group overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700"
             itemScope
             itemProp="mainEntity"
             itemType="https://schema.org/Question"
           >
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
-              Which industries are most targeted by accessibility lawsuits?
-            </h3>
-            <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+            <summary className="cursor-pointer list-none px-5 py-4 font-semibold text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:text-white [&::-webkit-details-marker]:hidden">
+              <span itemProp="name">Which industries are most targeted by accessibility lawsuits?</span>
+            </summary>
+            <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
                 E-Commerce and Retail businesses are the most targeted industry, accounting for
                 approximately 70% of all 2025 digital accessibility lawsuits. Food and Beverage
-                companies are the second most targeted at 21%, followed by Healthcare (~2.5%, and
-                rising fast ahead of the May 11, 2026 HHS Section 504 deadline), Entertainment
+                companies are the second most targeted at 21%, followed by Healthcare (~2.5%), Entertainment
                 (~2%), and Travel and Hospitality (~1.5%).
               </p>
             </div>
-          </div>
+          </details>
 
-          <div
-            className="border border-slate-200 dark:border-slate-700 rounded-lg p-6"
+          <details
+            className="group overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700"
             itemScope
             itemProp="mainEntity"
             itemType="https://schema.org/Question"
           >
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
-              How much does an accessibility lawsuit cost to settle?
-            </h3>
-            <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+            <summary className="cursor-pointer list-none px-5 py-4 font-semibold text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:text-white [&::-webkit-details-marker]:hidden">
+              <span itemProp="name">How much does an accessibility lawsuit cost to settle?</span>
+            </summary>
+            <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
                 Settlement costs vary widely. Demand letter settlements typically range from $1,000
                 to $25,000. Out-of-court settlements average around $30,000 but can reach $150,000.
                 Court judgments average $85,000 and class action settlements can exceed $6 million.
-                In July 2025, online retailer <strong>Fashion Nova agreed to a $5.15 million
-                class-action settlement</strong> (Alcazar v. Fashion Nova) — the second-largest
-                web accessibility settlement on record, behind only NFB v. Target (2008). Even
+                In 2025, online retailer <strong>Fashion Nova agreed to a proposed $5.15 million
+                class-action settlement</strong> in Alcazar v. Fashion Nova. The proposal has faced
+                objections and should not be treated as a final judgment or admission of liability. Even
                 defending a lawsuit with no damages typically costs $5,000 to $125,000 in legal
                 fees.
               </p>
             </div>
-          </div>
+          </details>
 
-          <div
-            className="border border-slate-200 dark:border-slate-700 rounded-lg p-6"
+          <details
+            className="group overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700"
             itemScope
             itemProp="mainEntity"
             itemType="https://schema.org/Question"
           >
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
-              Does the ADA apply to websites?
-            </h3>
-            <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+            <summary className="cursor-pointer list-none px-5 py-4 font-semibold text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:text-white [&::-webkit-details-marker]:hidden">
+              <span itemProp="name">Does the ADA apply to websites?</span>
+            </summary>
+            <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
                 While the ADA does not explicitly mention websites, multiple federal courts have
                 ruled that websites of businesses open to the public are subject to ADA Title III
@@ -264,98 +279,93 @@ export default function AccessibilityLawsuitsPage() {
                 <strong> April 20, 2026</strong>, the DOJ issued an Interim Final Rule extending
                 its Title II web/mobile compliance dates by a year — large public entities
                 (population ≥ 50,000) now must conform to WCAG 2.1 Level AA by April 26, 2027,
-                and smaller entities by April 26, 2028. The separate <strong>HHS Section 504 web
-                accessibility rule</strong> is not extended and takes effect <strong>May 11,
-                2026</strong> for healthcare entities receiving HHS funding. Private-sector
-                courts continue to cite both rules as persuasive authority in ADA Title III cases.
+                and smaller entities by April 26, 2028. HHS also extended the first Section 504
+                web-accessibility deadline for covered funding recipients to <strong>May 11,
+                2027</strong>. A federal lawsuit filed in May 2026 challenges the DOJ and HHS
+                extensions. These rules concern Title II and Section 504; they do not create a
+                general safe harbor from private Title III litigation.
               </p>
             </div>
-          </div>
+          </details>
 
-          <div
-            className="border border-slate-200 dark:border-slate-700 rounded-lg p-6"
+          <details
+            className="group overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700"
             itemScope
             itemProp="mainEntity"
             itemType="https://schema.org/Question"
           >
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
-              Which states have the most accessibility lawsuits?
-            </h3>
-            <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+            <summary className="cursor-pointer list-none px-5 py-4 font-semibold text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:text-white [&::-webkit-details-marker]:hidden">
+              <span itemProp="name">Which states have the most accessibility lawsuits?</span>
+            </summary>
+            <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
                 In 2025, New York led federal-court filings with 1,021 cases, followed by
                 Florida (961, nearly double its 2024 total of 470), Illinois (585), Minnesota
-                (162), and Pennsylvania (137). California fell to just 4 federal filings after
-                state-court rulings closed off ADA coverage for online-only businesses, pushing
-                California-targeted plaintiffs to state court instead — which is why combined
-                federal-plus-state totals exceed 5,000 even though federal-only is 3,117.
+                (162), and Pennsylvania (137). California recorded just 4 federal filings in the
+                same review. The source attributes California&apos;s low federal count partly to appellate
+                decisions concerning online-only businesses. It also notes that state-court lawsuits
+                and demand letters are outside the federal figures shown here.
               </p>
             </div>
-          </div>
+          </details>
 
-          <div
-            className="border border-slate-200 dark:border-slate-700 rounded-lg p-6"
+          <details
+            className="group overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700"
             itemScope
             itemProp="mainEntity"
             itemType="https://schema.org/Question"
           >
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
-              How can businesses protect themselves from accessibility lawsuits?
-            </h3>
-            <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+            <summary className="cursor-pointer list-none px-5 py-4 font-semibold text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:text-white [&::-webkit-details-marker]:hidden">
+              <span itemProp="name">How can businesses reduce accessibility barriers and litigation risk?</span>
+            </summary>
+            <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
-                The best protection against accessibility lawsuits is proactive WCAG 2.2 Level AA
-                compliance. Businesses should conduct regular accessibility audits, implement
+                No checklist can guarantee that an organization will avoid a claim. A practical
+                response is to work toward WCAG 2.2 Level AA, conduct regular accessibility audits, implement
                 automated and manual testing, train development teams on accessible coding
                 practices, publish an accessibility statement, and establish a process for receiving
-                and addressing accessibility feedback. An ongoing accessibility program is far less
-                expensive than litigation.
+                and addressing accessibility feedback. Organizations should ask qualified counsel
+                to assess their specific legal obligations and jurisdictions.
               </p>
             </div>
-          </div>
+          </details>
 
-          <div
-            className="border border-slate-200 dark:border-slate-700 rounded-lg p-6"
+          <details
+            className="group overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700"
             itemScope
             itemProp="mainEntity"
             itemType="https://schema.org/Question"
           >
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
-              Do accessibility overlay widgets protect against lawsuits?
-            </h3>
-            <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+            <summary className="cursor-pointer list-none px-5 py-4 font-semibold text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:text-white [&::-webkit-details-marker]:hidden">
+              <span itemProp="name">Do accessibility overlay widgets protect against lawsuits?</span>
+            </summary>
+            <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
-                No. Overlay and widget products do not prevent litigation and are frequently named
-                in it. In the first half of 2025, roughly <strong>456 lawsuits (about 22.6% of all
-                filings)</strong> targeted websites that already had an accessibility overlay
-                installed — a share that rose sharply year over year. About 38.5% of sued
-                businesses reported already having some accessibility solution in place. The 2025
-                FTC settlement with a major overlay provider further undermined the
-                &ldquo;overlay-as-compliance&rdquo; defense. Real protection comes from fixing the
-                underlying code to meet WCAG 2.2 Level AA, not from a third-party script.
+                No product can guarantee that a website is accessible or immune from a lawsuit.
+                Industry reporting continues to identify claims involving sites that had widgets or
+                other accessibility products in place. Automated tools can support a program, but
+                they do not replace code remediation, keyboard and screen-reader testing, accessible
+                design, monitoring, or a process for responding to disabled users&apos; feedback.
               </p>
             </div>
-          </div>
+          </details>
 
-          <div
-            className="border border-slate-200 dark:border-slate-700 rounded-lg p-6"
+          <details
+            className="group overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700"
             itemScope
             itemProp="mainEntity"
             itemType="https://schema.org/Question"
           >
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
-              How is AI changing accessibility litigation in 2026?
-            </h3>
-            <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+            <summary className="cursor-pointer list-none px-5 py-4 font-semibold text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:text-white [&::-webkit-details-marker]:hidden">
+              <span itemProp="name">How is AI changing accessibility litigation in 2026?</span>
+            </summary>
+            <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
-                Generative AI has sharply lowered the cost of filing. Roughly 40% of 2025&apos;s
-                federal ADA Title III filings were brought <strong>pro se</strong> (without a
-                lawyer), with plaintiffs using AI tools to draft complaints in minutes and
-                automated scanners to flag violations such as missing alt text or empty links —
-                no technical expertise required. Combined with repeat-defendant activity (46% of
-                federal cases in 2025 involved companies that had already been sued), the barrier
-                to entry has collapsed, which is a major reason 2026 is projected to exceed 5,500
-                federal filings. See our guide on{" "}
+                AI-assisted drafting and automated scanning can reduce the effort needed to identify
+                recurring barriers and prepare legal documents, but public datasets do not provide a
+                consistent measure of how many filings were created with AI. Organizations should
+                focus on the underlying user barriers and review complete journeys rather than trying
+                to infer a claimant&apos;s tools. See our guide on{" "}
                 <Link
                   href="/guides/ai-accessibility-lawsuits"
                   className="text-blue-600 dark:text-blue-400 hover:underline"
@@ -365,7 +375,7 @@ export default function AccessibilityLawsuitsPage() {
                 for the full picture.
               </p>
             </div>
-          </div>
+          </details>
         </div>
       </section>
 
@@ -383,7 +393,7 @@ export default function AccessibilityLawsuitsPage() {
             { href: "/guides/ada-website-lawsuit-cost", title: "What a Lawsuit Costs", description: "Demand letters, settlements, and defense fees" },
             { href: "/tools/ada-compliance-risks", title: "Assess Your Risk", description: "Interactive risk assessment with current lawsuit data" },
             { href: "/checklists/wcag-2-2", title: "WCAG 2.2 Checklist", description: "The standard courts and regulators point to" },
-            { href: "/services/accessibility-audits", title: "Professional Audit", description: "Expert review before plaintiffs' scanners find issues" },
+            { href: "/services/accessibility-audits", title: "Professional Audit", description: "Manual and automated review of priority user journeys" },
           ].map((item) => (
             <Link
               key={item.href}
