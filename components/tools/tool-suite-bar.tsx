@@ -134,7 +134,8 @@ export function ToolSuiteBar() {
                               setOpen(false)
                               router.push(getToolHref(tool))
                             }}
-                            className="gap-3 py-2.5"
+                            className="cursor-pointer gap-3 py-2.5"
+                            style={{ pointerEvents: "auto" }}
                           >
                             <ToolIcon name={tool.icon} className="h-4 w-4 shrink-0 text-slate-500 dark:text-slate-400" />
                             <span className="min-w-0 flex-1 truncate">{tool.title}</span>
