@@ -219,7 +219,7 @@ export function ProjectBriefBuilder({ requestedService, requestedPackage }: Proj
       <div className="py-10 text-center" role="status">
         <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-700 dark:text-emerald-300" aria-hidden="true" />
         <h3 className="mt-4 text-2xl font-semibold">Project brief received</h3>
-        <p className="mx-auto mt-3 max-w-xl leading-7 text-muted-foreground">Thank you. Khushwant will review the scope, delivery preferences, and procurement requirements and respond within two business days.</p>
+        <p className="mx-auto mt-3 max-w-xl leading-7 text-muted-foreground">Thank you. The scope, delivery preferences, and procurement requirements will normally be reviewed within two business days.</p>
         <Button type="button" variant="outline" className="mt-6" onClick={() => { setData(initialData); setStep(1); window.location.reload() }}>Start another brief</Button>
       </div>
     )

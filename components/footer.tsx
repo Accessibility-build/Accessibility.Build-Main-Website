@@ -127,7 +127,7 @@ export function Footer() {
       <div className="container-wide">
         <div className="grid gap-10 py-12 lg:grid-cols-12 lg:gap-12 lg:py-16">
           <div className="min-w-0 lg:col-span-7">
-            <div className="flex items-center gap-4">
+            <div className="flex items-start gap-4">
               <Link
                 href="/"
                 aria-label="Accessibility.build home"
@@ -135,9 +135,9 @@ export function Footer() {
               >
                 <Logo className="h-8 w-8" />
               </Link>
-              <div>
-                <p className="text-sm font-medium text-teal-300">Independent accessibility practice</p>
-                <h2 className="mt-1 text-3xl font-semibold text-white sm:text-4xl">Accessibility.build</h2>
+              <div className="min-w-0">
+                <p className="break-words text-sm font-medium text-teal-300 [overflow-wrap:anywhere]">Independent accessibility practice</p>
+                <h2 className="mt-1 break-words text-3xl font-semibold text-white [overflow-wrap:anywhere] sm:text-4xl">Accessibility.build</h2>
               </div>
             </div>
 
