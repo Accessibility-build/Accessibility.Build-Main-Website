@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import HomeClientPage from "./client-page"
 import { company } from "@/lib/company"
 
+export const revalidate = 300
+
 export const metadata: Metadata = {
   title: { absolute: "Accessibility.build | Founder-Led Accessibility Audits & WCAG Tools" },
   description:
