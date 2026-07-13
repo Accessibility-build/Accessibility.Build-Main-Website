@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   Keyboard,
+  Focus,
   AudioLines,
   ArrowRight,
   PlayCircle,
@@ -215,6 +216,17 @@ const guides = [
     topics: ["Focus Management", "Skip Links", "Roving Tabindex", "Keyboard Traps"],
     href: "/guides/keyboard-accessibility",
     gradient: "from-emerald-600 to-teal-600",
+  },
+  {
+    title: "Focus Management Guide",
+    description:
+      "The complete guide to managing keyboard focus: tabindex, :focus-visible, moving focus programmatically, focus traps, restoration, roving tabindex, skip links, and route-change focus — mapped to WCAG 2.2 (2.4.3, 2.4.7, 2.4.11) with copy-ready code.",
+    icon: Focus,
+    difficulty: "Intermediate",
+    readingTime: "24 min",
+    topics: ["tabindex", ":focus-visible", "Focus Traps", "Roving Tabindex", "WCAG 2.4.11"],
+    href: "/guides/focus-management",
+    gradient: "from-blue-600 to-indigo-600",
   },
   {
     title: "Screen Reader Testing Guide",

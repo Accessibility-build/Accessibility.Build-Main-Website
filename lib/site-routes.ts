@@ -111,6 +111,7 @@ const guides: SiteRoute[] = [
   { route: "/guides/react-accessibility", label: "React Accessibility Guide", group: "Guides", lastModified: "2026-07-12", priority: 0.95 },
   { route: "/guides/accessible-forms", label: "Accessible Forms Guide", group: "Guides", lastModified: "2026-07-10", priority: 0.94 },
   { route: "/guides/keyboard-accessibility", label: "Keyboard Accessibility", group: "Guides", lastModified: "2026-03-15", priority: 0.94 },
+  { route: "/guides/focus-management", label: "Focus Management Guide", group: "Guides", lastModified: "2026-07-13", priority: 0.94 },
   { route: "/guides/accessible-color-palettes", label: "Accessible Color Palettes", group: "Guides", lastModified: "2026-04-28", priority: 0.94 },
   { route: "/guides/screen-reader-testing", label: "Screen Reader Testing", group: "Guides", lastModified: "2026-03-15", priority: 0.93 },
   { route: "/guides/ada-website-lawsuit-cost", label: "ADA Website Lawsuit Cost", group: "Guides", lastModified: "2026-07-09", priority: 0.91 },
