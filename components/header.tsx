@@ -286,7 +286,7 @@ export function Header() {
     <>
       <header
         className={cn(
-          "sticky top-4 z-40 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 transition-all duration-300",
+          "sticky top-4 z-40 mx-auto w-full max-w-7xl px-4 transition-all duration-300 sm:px-6 lg:px-8 2xl:max-w-[90rem]",
           isScrolled ? "top-2" : "top-4"
         )}
       >
@@ -600,7 +600,7 @@ export function Header() {
 
         {/* Enhanced Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm md:hidden">
+          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm xl:hidden">
             <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-background shadow-2xl">
               <div className="flex flex-col h-full">
                 {/* Header */}
