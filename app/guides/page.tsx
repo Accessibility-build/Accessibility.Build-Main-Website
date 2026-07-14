@@ -9,6 +9,7 @@ import {
   Keyboard,
   Focus,
   AudioLines,
+  Ear,
   ArrowRight,
   PlayCircle,
   Code2,
@@ -238,6 +239,17 @@ const guides = [
     topics: ["NVDA", "JAWS", "VoiceOver", "TalkBack"],
     href: "/guides/screen-reader-testing",
     gradient: "from-violet-600 to-purple-600",
+  },
+  {
+    title: "NVDA Screen Reader Testing Guide",
+    description:
+      "The complete guide to testing with NVDA, the free Windows screen reader: install and configure it, master browse vs focus mode, use the NVDA modifier key and Elements List, and run a repeatable testing workflow with a full keyboard command cheat sheet — mapped to WCAG 2.2 AA.",
+    icon: Ear,
+    difficulty: "Intermediate",
+    readingTime: "18 min",
+    topics: ["NVDA", "Browse Mode", "Focus Mode", "Cheat Sheet", "WCAG 4.1.2"],
+    href: "/guides/nvda-screen-reader-testing",
+    gradient: "from-purple-600 to-fuchsia-600",
   },
   {
     title: "Accessibility Overlays: Why They Fail",
