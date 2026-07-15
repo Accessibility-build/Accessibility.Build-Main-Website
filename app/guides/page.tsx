@@ -252,6 +252,17 @@ const guides = [
     gradient: "from-purple-600 to-fuchsia-600",
   },
   {
+    title: "VoiceOver Screen Reader Testing Guide",
+    description:
+      "The complete guide to testing with VoiceOver, Apple's built-in screen reader on macOS and iOS: turn it on, master the VO keys and the Rotor, use iPhone gestures, and run a repeatable testing workflow with full macOS and iOS command cheat sheets — mapped to WCAG 2.2 AA.",
+    icon: Signal,
+    difficulty: "Intermediate",
+    readingTime: "18 min",
+    topics: ["VoiceOver", "macOS", "iOS", "Rotor", "WCAG 4.1.2"],
+    href: "/guides/voiceover-screen-reader-testing",
+    gradient: "from-sky-600 to-blue-600",
+  },
+  {
     title: "Accessibility Overlays: Why They Fail",
     description:
       "An evidence-based look at accessibility overlay widgets — what they can and cannot fix, the lawsuit data on overlay-equipped sites, and what to do instead.",
