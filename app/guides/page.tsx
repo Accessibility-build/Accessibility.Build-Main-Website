@@ -263,6 +263,17 @@ const guides = [
     gradient: "from-sky-600 to-blue-600",
   },
   {
+    title: "JAWS Screen Reader Testing Guide",
+    description:
+      "The complete guide to testing with JAWS, the most widely used Windows screen reader: install it in demo mode, master the JAWS key, the Virtual Cursor and Forms Mode, quick navigation keys, and run a repeatable testing workflow with a full command cheat sheet — mapped to WCAG 2.2 AA.",
+    icon: AudioLines,
+    difficulty: "Intermediate",
+    readingTime: "18 min",
+    topics: ["JAWS", "Virtual Cursor", "Forms Mode", "Cheat Sheet", "WCAG 4.1.2"],
+    href: "/guides/jaws-screen-reader-testing",
+    gradient: "from-indigo-600 to-violet-600",
+  },
+  {
     title: "Accessibility Overlays: Why They Fail",
     description:
       "An evidence-based look at accessibility overlay widgets — what they can and cannot fix, the lawsuit data on overlay-equipped sites, and what to do instead.",

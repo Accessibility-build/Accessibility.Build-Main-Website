@@ -273,11 +273,19 @@ export default function NvdaScreenReaderTestingGuidePage() {
                   catch roughly a third of issues; the rest — does this actually
                   make sense when read aloud? — needs a human listening with a
                   real screen reader. This guide is the NVDA-specific companion
-                  to our broader{" "}
+                  to our{" "}
+                  <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    JAWS testing guide
+                  </Link>
+                  , our{" "}
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    VoiceOver testing guide
+                  </Link>
+                  , and our broader{" "}
                   <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
                     screen reader testing guide
                   </Link>
-                  , which also covers JAWS, VoiceOver, and TalkBack.
+                  , which also covers TalkBack.
                 </p>
               </div>
             </div>

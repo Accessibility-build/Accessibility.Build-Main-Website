@@ -290,13 +290,17 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                   needs a human listening with a real screen reader. This guide
                   is the VoiceOver-specific companion to our{" "}
                   <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
-                    NVDA testing guide
+                    NVDA
                   </Link>{" "}
-                  and our broader{" "}
+                  and{" "}
+                  <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    JAWS testing guides
+                  </Link>{" "}
+                  for Windows, and to our broader{" "}
                   <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
                     screen reader testing guide
                   </Link>
-                  , which also covers JAWS and TalkBack.
+                  , which also covers TalkBack.
                 </p>
               </div>
             </div>
