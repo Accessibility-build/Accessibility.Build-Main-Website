@@ -426,6 +426,11 @@ export default function RootLayout({
               __html: JSON.stringify(structuredData),
             }}
           />
+          <script
+            async
+            src="https://docaccessible.com/site/v1.js"
+            data-site-key="site_pk_peMrEUBgXgeHh-6UXiSc2AQehswRWGUR"
+          />
         </body>
       </html>
     </ClerkProvider>
