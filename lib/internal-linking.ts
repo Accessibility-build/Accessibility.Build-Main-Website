@@ -405,6 +405,7 @@ const MORE_LINKS: InternalLink[] = [
   { url: "/guides/nvda-screen-reader-testing", title: "NVDA Screen Reader Testing Guide", description: "Test websites with NVDA, the free Windows screen reader: install, browse vs focus mode, the NVDA modifier key, Elements List, and a full keyboard command cheat sheet mapped to WCAG 2.2 AA", type: "guide", keywords: ["nvda", "nvda screen reader", "nvda testing", "how to use nvda", "nvda keyboard shortcuts", "nvda cheat sheet", "nvda browse mode", "nvda focus mode", "nvda modifier key", "screen reader testing", "elements list", "status messages", "wcag 4.1.2", "wcag 4.1.3"], priority: 9 },
   { url: "/guides/voiceover-screen-reader-testing", title: "VoiceOver Screen Reader Testing Guide", description: "Test websites with VoiceOver on macOS and iOS: turn it on, master the VO keys and the Rotor, use iPhone gestures, and run a repeatable testing workflow with full command cheat sheets mapped to WCAG 2.2 AA", type: "guide", keywords: ["voiceover", "voiceover screen reader", "voiceover testing", "how to use voiceover", "voiceover mac", "voiceover ios", "voiceover iphone", "voiceover keyboard shortcuts", "voiceover rotor", "vo keys", "voiceover gestures", "voiceover cheat sheet", "screen reader testing", "wcag 4.1.2", "wcag 4.1.3"], priority: 9 },
   { url: "/guides/jaws-screen-reader-testing", title: "JAWS Screen Reader Testing Guide", description: "Test websites with JAWS, the most used Windows screen reader: demo mode install, the JAWS key, Virtual Cursor vs Forms Mode, quick navigation keys, element lists, and a full command cheat sheet mapped to WCAG 2.2 AA", type: "guide", keywords: ["jaws", "jaws screen reader", "jaws testing", "how to use jaws", "jaws keyboard shortcuts", "jaws cheat sheet", "jaws commands", "jaws key", "jaws virtual cursor", "jaws forms mode", "jaws quick navigation keys", "freedom scientific", "jaws vs nvda", "screen reader testing", "wcag 4.1.2", "wcag 4.1.3"], priority: 9 },
+  { url: "/guides/talkback-screen-reader-testing", title: "TalkBack Screen Reader Testing Guide", description: "Test websites with TalkBack, Android's built-in screen reader: explore by touch, swipe navigation, reading controls, multi-finger gestures, and a full workflow mapped to WCAG 2.2 AA including Target Size and Pointer Gestures", type: "guide", keywords: ["talkback", "talkback screen reader", "talkback testing", "how to use talkback", "talkback gestures", "talkback cheat sheet", "talkback reading controls", "android screen reader", "android accessibility", "explore by touch", "mobile accessibility testing", "talkback vs voiceover", "screen reader testing", "wcag 2.5.8", "wcag 2.5.1", "wcag 4.1.2"], priority: 9 },
   { url: "/guides/accessibility-overlay-alternatives", title: "Accessibility Overlay Alternatives", description: "Real alternatives to overlay widgets — remediation, testing, audits, and training", type: "guide", keywords: ["overlay alternatives", "accessibe alternative", "userway alternative", "overlay replacement", "instead of overlay"], priority: 8 },
   { url: "/guides/automated-vs-manual-accessibility-testing", title: "Automated vs Manual Accessibility Testing", description: "What automated scans catch, what only manual testing finds, and the hybrid workflow", type: "guide", keywords: ["automated testing", "manual testing", "accessibility testing comparison", "testing workflow", "ci testing"], priority: 8 },
   { url: "/guides/axe-vs-wave", title: "axe vs WAVE Comparison", description: "Factual comparison of the two most popular accessibility testing tools", type: "guide", keywords: ["axe", "wave", "axe vs wave", "testing tools", "axe-core", "webaim wave"], priority: 8 },
@@ -445,11 +446,14 @@ const ALL_LINKS: InternalLink[] = [
 /**
  * Get related internal links for content
  */
-export function getRelatedLinks(content: string, maxResults: number = 5): ContentMatch[] {
+export function getRelatedLinks(content: string, maxResults: number = 5, excludeUrl?: string): ContentMatch[] {
   const contentKeywords = content.toLowerCase().split(' ')
   const matches: ContentMatch[] = []
 
   ALL_LINKS.forEach(link => {
+    // A page is never "related" to itself.
+    if (excludeUrl && link.url === excludeUrl) return
+
     let score = 0
     const matchedKeywords: string[] = []
     

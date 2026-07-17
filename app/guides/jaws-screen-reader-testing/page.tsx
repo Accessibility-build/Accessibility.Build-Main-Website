@@ -304,8 +304,12 @@ export default function JawsScreenReaderTestingGuidePage() {
                   listening. This guide is the JAWS-specific companion to our{" "}
                   <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
                     VoiceOver testing guide
+                  </Link>
+                  , our{" "}
+                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    TalkBack testing guide
                   </Link>{" "}
-                  and our broader{" "}
+                  for Android, and our broader{" "}
                   <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
                     screen reader testing guide
                   </Link>

@@ -296,11 +296,15 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                   <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
                     JAWS testing guides
                   </Link>{" "}
-                  for Windows, and to our broader{" "}
+                  for Windows, to our{" "}
+                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    TalkBack testing guide
+                  </Link>{" "}
+                  for the Android half of mobile, and to our broader{" "}
                   <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
                     screen reader testing guide
                   </Link>
-                  , which also covers TalkBack.
+                  .
                 </p>
               </div>
             </div>

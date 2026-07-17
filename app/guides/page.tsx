@@ -10,6 +10,7 @@ import {
   Focus,
   AudioLines,
   Ear,
+  Smartphone,
   ArrowRight,
   PlayCircle,
   Code2,
@@ -272,6 +273,17 @@ const guides = [
     topics: ["JAWS", "Virtual Cursor", "Forms Mode", "Cheat Sheet", "WCAG 4.1.2"],
     href: "/guides/jaws-screen-reader-testing",
     gradient: "from-indigo-600 to-violet-600",
+  },
+  {
+    title: "TalkBack Screen Reader Testing Guide",
+    description:
+      "The complete guide to testing with TalkBack, Android's built-in screen reader: turn it on, master explore by touch, swipe navigation, reading controls, and multi-finger gestures, and run a repeatable mobile testing workflow — mapped to WCAG 2.2 AA including Target Size and Pointer Gestures.",
+    icon: Smartphone,
+    difficulty: "Intermediate",
+    readingTime: "18 min",
+    topics: ["TalkBack", "Android", "Explore by Touch", "Reading Controls", "WCAG 2.5.8"],
+    href: "/guides/talkback-screen-reader-testing",
+    gradient: "from-teal-600 to-emerald-600",
   },
   {
     title: "Accessibility Overlays: Why They Fail",

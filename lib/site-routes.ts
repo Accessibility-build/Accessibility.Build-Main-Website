@@ -117,6 +117,7 @@ const guides: SiteRoute[] = [
   { route: "/guides/nvda-screen-reader-testing", label: "NVDA Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-14", priority: 0.94 },
   { route: "/guides/voiceover-screen-reader-testing", label: "VoiceOver Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-15", priority: 0.94 },
   { route: "/guides/jaws-screen-reader-testing", label: "JAWS Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-16", priority: 0.94 },
+  { route: "/guides/talkback-screen-reader-testing", label: "TalkBack Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-17", priority: 0.94 },
   { route: "/guides/ada-website-lawsuit-cost", label: "ADA Website Lawsuit Cost", group: "Guides", lastModified: "2026-07-09", priority: 0.91 },
   { route: "/guides/accessibility-overlays", label: "Accessibility Overlays", group: "Guides", lastModified: "2026-03-30", priority: 0.91 },
   { route: "/guides/accessibility-overlay-alternatives", label: "Overlay Alternatives", group: "Guides", lastModified: "2026-07-09", priority: 0.9 },

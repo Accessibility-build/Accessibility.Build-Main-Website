@@ -33,6 +33,8 @@ interface RelatedContentProps {
   title?: string
   maxItems?: number
   showDescriptions?: boolean
+  /** URL of the current page, so it is not suggested as related to itself. */
+  excludeUrl?: string
 }
 
 const typeIcons = {
@@ -51,16 +53,17 @@ const typeColors = {
   guide: "bg-slate-100 text-slate-800 dark:bg-slate-900/20 dark:text-slate-400"
 }
 
-export function RelatedContent({ 
+export function RelatedContent({
   content,
-  links, 
-  title = "Related Resources", 
+  links,
+  title = "Related Resources",
   maxItems = 3,
-  showDescriptions = true
+  showDescriptions = true,
+  excludeUrl
 }: RelatedContentProps) {
   // Use smart linking if content is provided, otherwise use manual links
-  const relatedItems: EnhancedRelatedLink[] = content 
-    ? getRelatedLinks(content, maxItems).map(match => ({
+  const relatedItems: EnhancedRelatedLink[] = content
+    ? getRelatedLinks(content, maxItems, excludeUrl).map(match => ({
         ...match.link,
         relevanceScore: match.relevanceScore,
         matchedKeywords: match.matchedKeywords
