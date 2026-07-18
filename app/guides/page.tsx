@@ -33,6 +33,7 @@ import {
   FileText,
   GitCompareArrows,
   TestTubes,
+  Braces,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -196,6 +197,17 @@ const guides = [
     topics: ["React", "Focus Management", "ARIA in JSX", "useId", "jest-axe"],
     href: "/guides/react-accessibility",
     gradient: "from-cyan-600 to-blue-600",
+  },
+  {
+    title: "Angular Accessibility Guide",
+    description:
+      "Build accessible Angular apps: semantic templates, ARIA binding with [attr.aria-*], focus management on router navigation, dialogs with cdkTrapFocus, LiveAnnouncer for dynamic updates, accessible reactive forms, and testing with @angular-eslint, jasmine-axe, and Playwright — mapped to WCAG 2.2 AA.",
+    icon: Braces,
+    difficulty: "Intermediate",
+    readingTime: "20 min",
+    topics: ["Angular", "CDK a11y", "[attr.aria-*]", "Router Focus", "LiveAnnouncer"],
+    href: "/guides/angular-accessibility",
+    gradient: "from-rose-600 to-red-600",
   },
   {
     title: "Accessible Forms Guide",
