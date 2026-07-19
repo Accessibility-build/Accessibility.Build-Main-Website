@@ -34,6 +34,7 @@ import {
   GitCompareArrows,
   TestTubes,
   Braces,
+  Component,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -208,6 +209,17 @@ const guides = [
     topics: ["Angular", "CDK a11y", "[attr.aria-*]", "Router Focus", "LiveAnnouncer"],
     href: "/guides/angular-accessibility",
     gradient: "from-rose-600 to-red-600",
+  },
+  {
+    title: "Vue Accessibility Guide",
+    description:
+      "Build accessible Vue 3 apps: semantic templates, reactive :aria-* binding, focus on Vue Router navigation, dialogs with Teleport, live regions that actually announce, the $attrs fallthrough fix, accessible forms, and testing with eslint-plugin-vuejs-accessibility and vitest-axe — mapped to WCAG 2.2 AA.",
+    icon: Component,
+    difficulty: "Intermediate",
+    readingTime: "20 min",
+    topics: ["Vue 3", ":aria-*", "$attrs", "Teleport", "vitest-axe"],
+    href: "/guides/vue-accessibility",
+    gradient: "from-emerald-600 to-green-600",
   },
   {
     title: "Accessible Forms Guide",

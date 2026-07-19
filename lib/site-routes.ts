@@ -110,6 +110,7 @@ const guides: SiteRoute[] = [
   { route: "/guides/accessible-typography-wcag", label: "Accessible Typography", group: "Guides", lastModified: "2026-05-23", priority: 0.95 },
   { route: "/guides/react-accessibility", label: "React Accessibility Guide", group: "Guides", lastModified: "2026-07-12", priority: 0.95 },
   { route: "/guides/angular-accessibility", label: "Angular Accessibility Guide", group: "Guides", lastModified: "2026-07-18", priority: 0.95 },
+  { route: "/guides/vue-accessibility", label: "Vue Accessibility Guide", group: "Guides", lastModified: "2026-07-19", priority: 0.95 },
   { route: "/guides/accessible-forms", label: "Accessible Forms Guide", group: "Guides", lastModified: "2026-07-10", priority: 0.94 },
   { route: "/guides/keyboard-accessibility", label: "Keyboard Accessibility", group: "Guides", lastModified: "2026-03-15", priority: 0.94 },
   { route: "/guides/focus-management", label: "Focus Management Guide", group: "Guides", lastModified: "2026-07-13", priority: 0.94 },

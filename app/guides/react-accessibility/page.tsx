@@ -256,7 +256,22 @@ export default function ReactAccessibilityGuidePage() {
                   hides markup behind reusable components, so a single wrong
                   choice (a div for a button, a missing label) is repeated
                   everywhere it is used. Get these three right and most of React
-                  accessibility falls into place.
+                  accessibility falls into place. Working in another framework?
+                  The same principles carry over to our{" "}
+                  <Link
+                    href="/guides/vue-accessibility"
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    Vue accessibility guide
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    href="/guides/angular-accessibility"
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    Angular accessibility guide
+                  </Link>
+                  .
                 </p>
               </div>
             </div>

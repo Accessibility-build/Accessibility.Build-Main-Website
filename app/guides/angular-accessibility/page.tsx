@@ -273,12 +273,19 @@ export default function AngularAccessibilityGuidePage() {
                   (<code>[attr.aria-*]</code>), not property binding. Get that,
                   the routing focus, and the live regions right and most of
                   Angular accessibility falls into place. If you also work in
-                  React, the same principles map cleanly onto our{" "}
+                  React or Vue, the same principles map cleanly onto our{" "}
                   <Link
                     href="/guides/react-accessibility"
                     className="text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     React accessibility guide
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    href="/guides/vue-accessibility"
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    Vue accessibility guide
                   </Link>
                   .
                 </p>
