@@ -35,6 +35,7 @@ import {
   TestTubes,
   Braces,
   Component,
+  AppWindow,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -253,6 +254,17 @@ const guides = [
     topics: ["tabindex", ":focus-visible", "Focus Traps", "Roving Tabindex", "WCAG 2.4.11"],
     href: "/guides/focus-management",
     gradient: "from-blue-600 to-indigo-600",
+  },
+  {
+    title: "Accessible Tabs Guide",
+    description:
+      "Build tabs the right way with the WAI-ARIA Tabs pattern: the tablist, tab, and tabpanel roles, aria-selected and aria-controls, roving tabindex, arrow-key navigation, automatic vs manual activation, and vertical tabs — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
+    icon: AppWindow,
+    difficulty: "Intermediate",
+    readingTime: "18 min",
+    topics: ["ARIA Tabs", "tablist / tabpanel", "Roving Tabindex", "aria-selected", "Arrow Keys"],
+    href: "/guides/accessible-tabs",
+    gradient: "from-indigo-600 to-violet-600",
   },
   {
     title: "Screen Reader Testing Guide",

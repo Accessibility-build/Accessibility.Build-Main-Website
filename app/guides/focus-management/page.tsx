@@ -593,7 +593,10 @@ function removeRow(row) {
                 6. Roving tabindex for Composite Widgets
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Tabs, toolbars, menus, and radio-style groups should be a{" "}
+                <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  Tabs
+                </Link>
+                , toolbars, menus, and radio-style groups should be a{" "}
                 <em>single</em> Tab stop — you Tab into the widget, then arrow keys
                 move between its items, and Tab moves on to the next widget.
                 Roving <code>tabindex</code> is the standard technique: exactly one
