@@ -311,9 +311,15 @@ export default function AccessibleTabsGuidePage() {
                       navigation — use a <code>&lt;nav&gt;</code> with real{" "}
                       <code>&lt;a href&gt;</code> links, not{" "}
                       <code>role=&quot;tab&quot;</code>. If sections should expand
-                      independently or several be open at once, use an accordion.
-                      Tabs are for switching between peer panels where exactly one
-                      is visible at a time.
+                      independently or several be open at once, use an{" "}
+                      <Link
+                        href="/guides/accessible-accordion"
+                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        accordion
+                      </Link>
+                      . Tabs are for switching between peer panels where exactly
+                      one is visible at a time.
                     </span>
                   </p>
                 </div>

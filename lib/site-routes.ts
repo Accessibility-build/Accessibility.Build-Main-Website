@@ -115,6 +115,7 @@ const guides: SiteRoute[] = [
   { route: "/guides/keyboard-accessibility", label: "Keyboard Accessibility", group: "Guides", lastModified: "2026-03-15", priority: 0.94 },
   { route: "/guides/focus-management", label: "Focus Management Guide", group: "Guides", lastModified: "2026-07-13", priority: 0.94 },
   { route: "/guides/accessible-tabs", label: "Accessible Tabs Guide", group: "Guides", lastModified: "2026-07-20", priority: 0.94 },
+  { route: "/guides/accessible-accordion", label: "Accessible Accordion & Disclosure Guide", group: "Guides", lastModified: "2026-07-21", priority: 0.94 },
   { route: "/guides/accessible-color-palettes", label: "Accessible Color Palettes", group: "Guides", lastModified: "2026-04-28", priority: 0.94 },
   { route: "/guides/screen-reader-testing", label: "Screen Reader Testing", group: "Guides", lastModified: "2026-03-15", priority: 0.93 },
   { route: "/guides/nvda-screen-reader-testing", label: "NVDA Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-14", priority: 0.94 },

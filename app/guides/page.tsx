@@ -35,6 +35,7 @@ import {
   TestTubes,
   Braces,
   Component,
+  ListCollapse,
   AppWindow,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
@@ -265,6 +266,17 @@ const guides = [
     topics: ["ARIA Tabs", "tablist / tabpanel", "Roving Tabindex", "aria-selected", "Arrow Keys"],
     href: "/guides/accessible-tabs",
     gradient: "from-indigo-600 to-violet-600",
+  },
+  {
+    title: "Accessible Accordion & Disclosure Guide",
+    description:
+      "Build accordions and disclosure widgets the right way: the aria-expanded state, the button-in-heading structure, aria-controls, the native details and summary element, single vs multi-expand, and the keyboard model — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
+    icon: ListCollapse,
+    difficulty: "Intermediate",
+    readingTime: "16 min",
+    topics: ["ARIA Disclosure", "aria-expanded", "details / summary", "Heading Structure", "Expand / Collapse"],
+    href: "/guides/accessible-accordion",
+    gradient: "from-amber-500 to-orange-600",
   },
   {
     title: "Screen Reader Testing Guide",
