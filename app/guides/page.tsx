@@ -37,6 +37,7 @@ import {
   Component,
   ListCollapse,
   AppWindow,
+  TextSearch,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -277,6 +278,17 @@ const guides = [
     topics: ["ARIA Disclosure", "aria-expanded", "details / summary", "Heading Structure", "Expand / Collapse"],
     href: "/guides/accessible-accordion",
     gradient: "from-amber-500 to-orange-600",
+  },
+  {
+    title: "Accessible Combobox & Autocomplete Guide",
+    description:
+      "Build autocomplete the right way with the WAI-ARIA Combobox pattern: role=combobox on the input, aria-expanded, aria-autocomplete, and the aria-activedescendant focus model that keeps focus in the field while arrow keys move a virtual highlight — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
+    icon: TextSearch,
+    difficulty: "Advanced",
+    readingTime: "20 min",
+    topics: ["ARIA Combobox", "aria-activedescendant", "aria-autocomplete", "Listbox", "Typeahead"],
+    href: "/guides/accessible-combobox",
+    gradient: "from-sky-500 to-cyan-600",
   },
   {
     title: "Screen Reader Testing Guide",

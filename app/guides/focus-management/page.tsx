@@ -621,8 +621,11 @@ toolbar.addEventListener("keydown", (e) => {
               <p className="text-muted-foreground leading-relaxed mt-4">
                 The alternative, <code>aria-activedescendant</code>, keeps DOM
                 focus on the container and points at a virtually-active child by
-                id — better when focus must stay on a text input, as in a
-                combobox. Follow the exact key bindings in the{" "}
+                id — better when focus must stay on a text input, as in a{" "}
+                <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  combobox
+                </Link>
+                . Follow the exact key bindings in the{" "}
                 <a
                   href="https://www.w3.org/WAI/ARIA/apg/patterns/"
                   target="_blank"
