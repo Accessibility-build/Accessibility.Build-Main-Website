@@ -16,6 +16,13 @@ interface ToolStructuredDataProps {
     price: string
     priceCurrency: string
   }
+  /**
+   * Only pass this when the rating is backed by real reviews AND those reviews
+   * are visible on the page. Google requires review markup to reflect content
+   * users can actually see, and invented ratings risk a manual action for
+   * spammy structured markup. Ratings about our own products or services are
+   * self-serving and are not eligible for review snippets at all.
+   */
   aggregateRating?: {
     ratingValue: string
     reviewCount: string
@@ -101,6 +108,13 @@ interface ServiceStructuredDataProps {
     priceCurrency: string
     availability: string
   }>
+  /**
+   * Only pass this when the rating is backed by real reviews AND those reviews
+   * are visible on the page. Google requires review markup to reflect content
+   * users can actually see, and invented ratings risk a manual action for
+   * spammy structured markup. Ratings about our own products or services are
+   * self-serving and are not eligible for review snippets at all.
+   */
   aggregateRating?: {
     ratingValue: string
     reviewCount: string

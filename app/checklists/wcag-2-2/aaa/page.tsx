@@ -71,10 +71,6 @@ export default function WCAGAAAChecklistPage() {
           price: "0",
           priceCurrency: "USD"
         }}
-        aggregateRating={{
-          ratingValue: "4.9",
-          reviewCount: "890"
-        }}
         accessibilityFeatures={[
           "keyboardNavigation",
           "screenReaderSupport",

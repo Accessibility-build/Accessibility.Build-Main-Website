@@ -202,10 +202,6 @@ export default function WcagChecklistPage() {
           price: "0",
           priceCurrency: "USD"
         }}
-        aggregateRating={{
-          ratingValue: "4.9",
-          reviewCount: "1250"
-        }}
         accessibilityFeatures={[
           "keyboardNavigation",
           "screenReaderSupport",
