@@ -163,24 +163,15 @@ export function SocialShare({
         </Button>
       </div>
 
-      {/* Schema markup for social sharing */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SocialMediaPosting",
-            url: url,
-            headline: title,
-            description: description,
-            datePublished: new Date().toISOString(),
-            author: {
-              "@type": "Organization",
-              name: "Accessibility.build",
-            },
-          }),
-        }}
-      />
+      {/*
+        No JSON-LD here on purpose. This component only renders share buttons —
+        the page is not a social media post, and every page that uses it already
+        emits its own Article/BlogPosting entity. The SocialMediaPosting node
+        that used to live here made pages eligible for Google's discussion-forum
+        rich result, which requires text/image/video and a full author, so it
+        surfaced in Search Console as invalid. It also stamped datePublished with
+        the build time rather than the real publish date.
+      */}
     </div>
   );
 }
