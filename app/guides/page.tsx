@@ -38,6 +38,7 @@ import {
   ListCollapse,
   AppWindow,
   TextSearch,
+  SquareMenu,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -289,6 +290,17 @@ const guides = [
     topics: ["ARIA Combobox", "aria-activedescendant", "aria-autocomplete", "Listbox", "Typeahead"],
     href: "/guides/accessible-combobox",
     gradient: "from-sky-500 to-cyan-600",
+  },
+  {
+    title: "Accessible Menu & Menu Button Guide",
+    description:
+      "Most dropdowns should not use role=menu at all. Learn when the WAI-ARIA Menu pattern applies, how to build a menu button with aria-haspopup and roving tabindex, how menuitemcheckbox and menuitemradio work, and the disclosure pattern your navigation dropdown should use instead.",
+    icon: SquareMenu,
+    difficulty: "Advanced",
+    readingTime: "20 min",
+    topics: ["ARIA Menu", "aria-haspopup", "Roving tabindex", "Menu Button", "Nav Dropdowns"],
+    href: "/guides/accessible-menu",
+    gradient: "from-fuchsia-600 to-purple-600",
   },
   {
     title: "Screen Reader Testing Guide",

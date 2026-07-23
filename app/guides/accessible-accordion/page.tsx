@@ -732,7 +732,11 @@ export default function AccessibleAccordionGuidePage() {
                 <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
                   keyboard accessibility guide
                 </Link>
-                .
+                , and the{" "}
+                <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  menu and menu button guide
+                </Link>{" "}
+                for the disclosure-based pattern a navigation dropdown should use.
               </p>
             </div>
           </section>

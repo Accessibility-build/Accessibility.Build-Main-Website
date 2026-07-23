@@ -314,7 +314,11 @@ export default function AccessibleComboboxGuidePage() {
                   <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 hover:underline">
                     tabs
                   </Link>{" "}
-                  or a menu, focus must never leave the input — the user has to
+                  or a{" "}
+                  <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    menu
+                  </Link>
+                  , focus must never leave the input — the user has to
                   keep typing while moving through options. The pattern solves
                   this with <code>aria-activedescendant</code>: a virtual focus
                   that highlights an option without the caret ever leaving the
