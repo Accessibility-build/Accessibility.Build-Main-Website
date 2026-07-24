@@ -9,6 +9,7 @@
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.mjs,.cjs",
         "type-check": "tsc --noEmit",
         "a11y:smoke": "node scripts/a11y-smoke.mjs",
+        "seo:audit-jsonld": "node scripts/audit-jsonld.mjs",
         "db:migrate": "drizzle-kit migrate",
         "clerk:test-session-token": "node scripts/create-clerk-session-token.mjs",
         "billing:test-e2e": "node scripts/test-razorpay-credit-flow.mjs",
