@@ -684,7 +684,12 @@ export default function AccessibleMenuGuidePage() {
                   The focus management guide
                 </Link>{" "}
                 covers the technique in depth, including focus restoration, which
-                a menu depends on when it closes.
+                a menu depends on when it closes — and the{" "}
+                <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  accessible dialog guide
+                </Link>{" "}
+                shows how the native <code>&lt;dialog&gt;</code> element does
+                that restoration for you.
               </p>
             </div>
           </section>

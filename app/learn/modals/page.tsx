@@ -379,6 +379,9 @@ function CommonIssuesSection() {
                     <li>Confirm focus returns to the trigger</li>
                 </ol>
             </TipBox>
+            <TipBox title="Go Deeper" variant="info">
+                The <Link href="/guides/accessible-dialog" className="underline font-medium">Accessible Dialog &amp; Modal Guide</Link> covers the native <code>&lt;dialog&gt;</code> element and <code>showModal()</code>, which replaces the hand-written focus trap entirely — plus where initial focus belongs, what to do when the trigger is removed, and <code>alertdialog</code>.
+            </TipBox>
         </div>
     );
 }

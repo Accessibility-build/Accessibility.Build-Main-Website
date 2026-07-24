@@ -504,7 +504,12 @@ focusTarget(heading)`}</code></pre>
                 page is inert. This is the one place an intentional focus trap is
                 correct. The native <code>&lt;dialog&gt;</code> element with{" "}
                 <code>showModal()</code> implements the whole pattern for you,
-                including Escape-to-close.
+                including Escape-to-close — the{" "}
+                <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  accessible dialog guide
+                </Link>{" "}
+                covers that element in full, including where initial focus
+                belongs and what to do when the trigger no longer exists.
               </p>
               <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<dialog id="confirm" aria-labelledby="confirm-title">
   <h2 id="confirm-title">Delete this project?</h2>

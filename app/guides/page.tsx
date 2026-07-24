@@ -37,6 +37,7 @@ import {
   Component,
   ListCollapse,
   AppWindow,
+  PanelTop,
   TextSearch,
   SquareMenu,
 } from "lucide-react"
@@ -301,6 +302,17 @@ const guides = [
     topics: ["ARIA Menu", "aria-haspopup", "Roving tabindex", "Menu Button", "Nav Dropdowns"],
     href: "/guides/accessible-menu",
     gradient: "from-fuchsia-600 to-purple-600",
+  },
+  {
+    title: "Accessible Dialog & Modal Guide",
+    description:
+      "The hand-rolled focus trap is obsolete. Learn the native <dialog> element and showModal(), where initial focus really belongs (not the close button), focus restoration when the trigger is gone, the inert top layer, alertdialog, zero-JavaScript dialogs with commandfor, and scroll locking at 400% zoom.",
+    icon: PanelTop,
+    difficulty: "Advanced",
+    readingTime: "20 min",
+    topics: ["HTML dialog", "showModal", "Focus trap", "inert", "alertdialog"],
+    href: "/guides/accessible-dialog",
+    gradient: "from-violet-600 to-indigo-700",
   },
   {
     title: "Screen Reader Testing Guide",
