@@ -297,6 +297,19 @@ export default function HowToAuditWebsiteAccessibilityPage() {
               developer or product team can execute. Work top-to-bottom — each
               step builds context for the next.
             </p>
+            <p>
+              If you need a formal, citable procedure — for a procurement
+              requirement, a legal engagement, or a report another evaluator
+              must be able to reproduce — the W3C publishes one: the WCAG
+              Evaluation Methodology. Its 2.0 release covers apps, kiosks and
+              documents rather than websites alone, and it defines how to draw a
+              representative sample so an audit measures the product instead of
+              the auditor. See{" "}
+              <Link href="/blog/wcag-em-2-evaluation-methodology-published">
+                what changed in WCAG-EM 2.0
+              </Link>
+              . The workflow here is compatible with it, but lighter weight.
+            </p>
           </section>
 
           <ol className="space-y-6 mb-16">
