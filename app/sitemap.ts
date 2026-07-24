@@ -8,6 +8,13 @@ import { siteRoutes } from "@/lib/site-routes"
 
 const baseUrl = "https://accessibility.build"
 
+// Regenerate hourly rather than freezing at build time. Without this the
+// getBlogPosts() call below is served from Next's persistent fetch cache, which
+// survives across deploys on Vercel — so a post published after the last cache
+// entry was written could stay out of the sitemap indefinitely, even through
+// repeated rebuilds. Matches the revalidate window on app/blog/[slug]/page.tsx.
+export const revalidate = 3600
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries = siteRoutes.map(({ route, lastModified, priority, changeFrequency }) => ({
     url: `${baseUrl}${route}`,
