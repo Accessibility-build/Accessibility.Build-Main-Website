@@ -579,7 +579,17 @@ export default function AccessibleFormsGuidePage() {
                 >
                   ARIA roles &amp; attributes reference
                 </Link>{" "}
-                for the exact patterns.
+                for the exact patterns. One caveat before you reach for a
+                checkbox: if the control takes effect the instant it is toggled
+                rather than when the form is submitted, it is a switch, not a
+                checkbox — see the{" "}
+                <Link
+                  href="/guides/accessible-switch"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  accessible switch &amp; toggle guide
+                </Link>
+                .
               </p>
             </div>
           </section>

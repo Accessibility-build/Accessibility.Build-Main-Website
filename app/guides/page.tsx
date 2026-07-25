@@ -40,6 +40,7 @@ import {
   PanelTop,
   TextSearch,
   SquareMenu,
+  ToggleRight,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -313,6 +314,17 @@ const guides = [
     topics: ["HTML dialog", "showModal", "Focus trap", "inert", "alertdialog"],
     href: "/guides/accessible-dialog",
     gradient: "from-violet-600 to-indigo-700",
+  },
+  {
+    title: "Accessible Switch & Toggle Guide",
+    description:
+      "A toggle switch is not a checkbox. Learn when a switch is the right control and when a checkbox is, the native input type=checkbox role=switch path that needs almost no JavaScript, why the accessible name must stay fixed as the state moves, non-text contrast for the track and thumb, immediate-effect semantics, and React.",
+    icon: ToggleRight,
+    difficulty: "Intermediate",
+    readingTime: "18 min",
+    topics: ["role=switch", "aria-checked", "Switch vs checkbox", "Non-text contrast", "Toggle"],
+    href: "/guides/accessible-switch",
+    gradient: "from-teal-500 to-green-600",
   },
   {
     title: "Screen Reader Testing Guide",
