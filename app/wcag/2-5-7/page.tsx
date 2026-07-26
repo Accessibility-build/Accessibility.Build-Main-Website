@@ -624,7 +624,16 @@ export default function WCAG257Page() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
               The simplest way to satisfy 2.5.7 for a slider is to not build one:
               a native range input passes under the User-agent control exception
-              and supports clicking and keyboard out of the box.
+              and supports clicking and keyboard out of the box. For the full
+              pattern — the keyboard contract, aria-valuetext, and dual-thumb
+              range sliders — see the{" "}
+              <Link
+                href="/guides/accessible-slider"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                accessible slider &amp; range input guide
+              </Link>
+              .
             </p>
             <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
               <code>{`<label for="volume">Volume</label>

@@ -41,6 +41,7 @@ import {
   TextSearch,
   SquareMenu,
   ToggleRight,
+  SlidersHorizontal,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -325,6 +326,17 @@ const guides = [
     topics: ["role=switch", "aria-checked", "Switch vs checkbox", "Non-text contrast", "Toggle"],
     href: "/guides/accessible-switch",
     gradient: "from-teal-500 to-green-600",
+  },
+  {
+    title: "Accessible Slider & Range Input Guide",
+    description:
+      "A slider is a value, not two states. Learn the native input type=range that gives you role=slider, keyboard, and click-to-set for free, the full arrow / Home / End / Page keyboard contract, aria-valuenow and the aria-valuetext that turns \"2\" into \"Medium\", the 2.5.7 dragging-alternative rule, and dual-thumb range sliders.",
+    icon: SlidersHorizontal,
+    difficulty: "Advanced",
+    readingTime: "22 min",
+    topics: ["role=slider", "aria-valuenow", "aria-valuetext", "Dragging Movements", "Range input"],
+    href: "/guides/accessible-slider",
+    gradient: "from-orange-500 to-rose-600",
   },
   {
     title: "Screen Reader Testing Guide",
