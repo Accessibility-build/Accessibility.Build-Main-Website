@@ -1,9 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ExternalLink, MapPin, ScanSearch, Wrench } from "lucide-react"
+import { Award, ArrowRight, ExternalLink, MapPin, ScanSearch, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { createMetadata } from "@/lib/metadata"
-import { businessLocation, company } from "@/lib/company"
+import { businessLocation, company, founderCredentials, founderCredentialSchema } from "@/lib/company"
 
 const portrait = "/images/authors/khushwant-parihar.jpeg"
 
@@ -72,6 +72,7 @@ export default function KhushwantPariharAuthorPage() {
         "VoiceOver",
         "Accessible frontend development",
       ],
+      hasCredential: founderCredentialSchema,
     },
   }
 
@@ -95,7 +96,7 @@ export default function KhushwantPariharAuthorPage() {
             <p className="text-sm font-semibold uppercase text-teal-300">Founder profile</p>
             <h1 className="mt-3 text-4xl font-semibold leading-tight sm:text-6xl">Khushwant Parihar</h1>
             <p className="mt-5 max-w-3xl text-xl leading-8 text-slate-300">
-              Founder of Accessibility.build, accessibility specialist, consultant, and developer focused on practical auditing, remediation, and accessible product delivery.
+              Founder of Accessibility.build and CPACC-certified accessibility specialist, consultant, and developer focused on practical auditing, remediation, and accessible product delivery.
             </p>
             <p className="mt-4 flex items-center gap-2 text-slate-300">
               <MapPin className="h-4 w-4" aria-hidden="true" /> {businessLocation}
@@ -129,6 +130,41 @@ export default function KhushwantPariharAuthorPage() {
           <p>
             AI and automated testing are used as supporting tools. Findings represented as confirmed issues remain subject to human review, reproducible evidence, and an agreed testing scope.
           </p>
+        </div>
+      </section>
+
+      <section className="container-wide grid gap-12 pb-4 lg:grid-cols-[0.7fr_1.3fr]">
+        <div>
+          <Award className="h-7 w-7 text-primary" aria-hidden="true" />
+          <h2 className="mt-4 text-3xl font-semibold">Certifications</h2>
+        </div>
+        <div>
+          <ul className="space-y-8">
+            {founderCredentials.map((credential) => (
+              <li key={credential.abbreviation} className="border-t pt-5">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <h3 className="text-xl font-semibold">{credential.name}</h3>
+                  <span className="rounded bg-primary/10 px-2 py-0.5 text-sm font-semibold text-primary">
+                    {credential.abbreviation}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Issued by{" "}
+                  <a
+                    href={credential.issuerUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-primary hover:underline"
+                  >
+                    {credential.issuer} ({credential.issuerShort})
+                    <ExternalLink className="ml-1 inline h-3.5 w-3.5" aria-hidden="true" />
+                  </a>
+                  {" · "}Awarded {credential.year}
+                </p>
+                <p className="mt-3 leading-7 text-muted-foreground">{credential.description}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
