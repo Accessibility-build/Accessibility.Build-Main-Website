@@ -176,7 +176,7 @@ export default function AboutPage() {
               Khushwant founded Accessibility.build in 2023 to combine practical accessibility testing, remediation engineering, and useful public tools in one accountable practice.
             </p>
             <p>
-              He has more than four years of professional accessibility and software testing experience, including accessibility work at FIS Global and current specialist work with product teams. His experience covers manual and automated auditing, keyboard evaluation, screen-reader testing with NVDA, JAWS, and VoiceOver, accessible frontend implementation, and accessibility quality processes. He holds the IAAP Certified Professional in Accessibility Core Competencies (CPACC) certification.
+              He has more than four years of professional accessibility and software testing experience, including accessibility work at FIS Global and current specialist work with product teams. His experience covers manual and automated auditing, keyboard evaluation, screen-reader testing with NVDA, JAWS, and VoiceOver, accessible frontend implementation, and accessibility quality processes. He holds the IAAP Certified Professional in Accessibility Core Competencies (CPACC) and the U.S. Department of Homeland Security Trusted Tester certifications, with additional certifications in accessible web design and usability.
             </p>
             <p>
               Accessibility.build is intentionally founder-led. Khushwant remains responsible for scoping, delivery quality, client communication, and the accuracy of published business information. Specialist collaborators may support an engagement when agreed with the client; responsibility is not passed to an anonymous delivery team.

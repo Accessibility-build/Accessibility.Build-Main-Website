@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Award, ArrowRight, ExternalLink, MapPin, ScanSearch, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { createMetadata } from "@/lib/metadata"
-import { businessLocation, company, founderCredentials, founderCredentialSchema } from "@/lib/company"
+import { businessLocation, company, founderCertifications, founderCourses, founderCredentialSchema } from "@/lib/company"
 
 const portrait = "/images/authors/khushwant-parihar.jpeg"
 
@@ -137,31 +137,82 @@ export default function KhushwantPariharAuthorPage() {
         <div>
           <Award className="h-7 w-7 text-primary" aria-hidden="true" />
           <h2 className="mt-4 text-3xl font-semibold">Certifications</h2>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            Professional accessibility certifications, plus additional credentials relevant to the practice.
+          </p>
         </div>
         <div>
           <ul className="space-y-8">
-            {founderCredentials.map((credential) => (
-              <li key={credential.abbreviation} className="border-t pt-5">
+            {founderCertifications.map((credential) => (
+              <li key={credential.name} className="border-t pt-5">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <h3 className="text-xl font-semibold">{credential.name}</h3>
-                  <span className="rounded bg-primary/10 px-2 py-0.5 text-sm font-semibold text-primary">
-                    {credential.abbreviation}
-                  </span>
+                  {credential.tag ? (
+                    <span className="rounded bg-primary/10 px-2 py-0.5 text-sm font-semibold text-primary">
+                      {credential.tag}
+                    </span>
+                  ) : null}
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Issued by{" "}
+                  {credential.issuerUrl ? (
+                    <a
+                      href={credential.issuerUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-primary hover:underline"
+                    >
+                      {credential.issuer}
+                      {credential.issuerShort ? ` (${credential.issuerShort})` : ""}
+                      <ExternalLink className="ml-1 inline h-3.5 w-3.5" aria-hidden="true" />
+                    </a>
+                  ) : (
+                    <span className="font-medium text-foreground">
+                      {credential.issuer}
+                      {credential.issuerShort ? ` (${credential.issuerShort})` : ""}
+                    </span>
+                  )}
+                  {" · "}Issued {credential.issued}
+                  {credential.credentialId ? (
+                    <>
+                      {" · "}
+                      <span className="whitespace-nowrap">Credential ID {credential.credentialId}</span>
+                    </>
+                  ) : null}
+                </p>
+                {credential.description ? (
+                  <p className="mt-3 leading-7 text-muted-foreground">{credential.description}</p>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-12 text-sm font-semibold uppercase tracking-wide text-primary">
+            Additional certifications
+          </p>
+          <ul className="mt-5 divide-y border-t border-b">
+            {founderCourses.map((course) => (
+              <li key={course.credentialId} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-4">
+                <div className="max-w-xl">
+                  <p className="font-medium">{course.name}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {course.issuer}
+                    {course.platform ? ` · ${course.platform}` : ""}
+                    {" · "}Issued {course.issued}
+                  </p>
+                </div>
+                {course.verifyUrl ? (
                   <a
-                    href={credential.issuerUrl}
+                    href={course.verifyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-primary hover:underline"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
                   >
-                    {credential.issuer} ({credential.issuerShort})
-                    <ExternalLink className="ml-1 inline h-3.5 w-3.5" aria-hidden="true" />
+                    Verify
+                    <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                    <span className="sr-only"> {course.name} on {course.platform ?? course.issuer}</span>
                   </a>
-                  {" · "}Awarded {credential.year}
-                </p>
-                <p className="mt-3 leading-7 text-muted-foreground">{credential.description}</p>
+                ) : null}
               </li>
             ))}
           </ul>
