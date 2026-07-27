@@ -605,6 +605,10 @@ function removeRow(row) {
                 <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
                   menus
                 </Link>
+                ,{" "}
+                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  tree views
+                </Link>
                 , and radio-style groups should be a{" "}
                 <em>single</em> Tab stop — you Tab into the widget, then arrow keys
                 move between its items, and Tab moves on to the next widget.

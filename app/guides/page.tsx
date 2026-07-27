@@ -42,6 +42,7 @@ import {
   SquareMenu,
   ToggleRight,
   SlidersHorizontal,
+  ListTree,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -337,6 +338,17 @@ const guides = [
     topics: ["role=slider", "aria-valuenow", "aria-valuetext", "Dragging Movements", "Range input"],
     href: "/guides/accessible-slider",
     gradient: "from-orange-500 to-rose-600",
+  },
+  {
+    title: "Accessible Tree View Guide",
+    description:
+      "A tree view browses and selects nodes in a hierarchy. Learn the role=tree / treeitem / group structure, the roving-tabindex focus model, the context-sensitive Right and Left arrows that expand, collapse, and move between parent and child, aria-expanded, aria-selected, aria-level / setsize / posinset, single vs multi-select, and when a nested list of links is the better choice.",
+    icon: ListTree,
+    difficulty: "Advanced",
+    readingTime: "22 min",
+    topics: ["role=tree", "treeitem", "Roving tabindex", "aria-expanded", "aria-level"],
+    href: "/guides/accessible-tree-view",
+    gradient: "from-lime-500 to-emerald-600",
   },
   {
     title: "Screen Reader Testing Guide",

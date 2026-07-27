@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
+import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -1063,8 +1064,14 @@ function DynamicList() {
                   designation) between items within the group.
                 </p>
                 <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                  This pattern is used in toolbars, tab lists, menu bars, tree
-                  views, and radio groups. The user Tabs into the widget, uses
+                  This pattern is used in toolbars, tab lists, menu bars,{" "}
+                  <Link
+                    href="/guides/accessible-tree-view"
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    tree views
+                  </Link>
+                  , and radio groups. The user Tabs into the widget, uses
                   Arrow keys to navigate within it, and Tabs out to the next
                   component. Home jumps to the first item, End jumps to the
                   last. This drastically reduces the number of keystrokes
