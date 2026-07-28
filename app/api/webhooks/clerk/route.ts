@@ -6,6 +6,7 @@ import { users, creditTransactions } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import { errorLogger } from '@/lib/error-logger'
 import { sendWelcomeEmail, sendServicesIntroEmail } from '@/lib/email/service'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 export const runtime = 'nodejs'
 
@@ -317,6 +318,24 @@ async function handleUserCreated(userData: ClerkUserData) {
         status: 'completed',
       })
     })
+
+    const posthog = getPostHogClient()
+    if (posthog) {
+      posthog.capture({
+        distinctId: userData.id,
+        event: 'user_signed_up',
+        properties: {
+          initial_credits: defaultCredits,
+        },
+      })
+      posthog.identify({
+        distinctId: userData.id,
+        properties: {
+          createdAt: createdAt.toISOString(),
+        },
+      })
+      await posthog.flush()
+    }
 
     // Send welcome email (fire-and-forget — never blocks webhook response)
     sendWelcomeEmail({

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useForm, ValidationError } from "@formspree/react"
+import posthog from 'posthog-js'
 import { CheckCircle2, Loader2, Mail, MessageSquareText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -83,6 +84,13 @@ export function QuickContactForm({ requestedTopic }: QuickContactFormProps) {
     }
 
     setError("")
+    posthog.capture('contact_form_submitted', {
+      form_type: 'quick_message',
+      topic,
+      has_organization: organization.trim().length > 0,
+      has_deadline: deadline.length > 0,
+      message_length: message.trim().length,
+    })
     const honeypot = new FormData(event.currentTarget).get("_gotcha")
     const form = new FormData()
     form.append("form_type", "Accessibility.build contact message")

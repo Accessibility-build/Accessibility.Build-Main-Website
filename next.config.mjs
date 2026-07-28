@@ -25,6 +25,23 @@ const nextConfig = {
     serverExternalPackages: ['razorpay', 'puppeteer-core', '@sparticuz/chromium-min', 'puppeteer', 'axe-core', 'pdfjs-dist'],
     compress: true,
     poweredByHeader: false,
+    skipTrailingSlashRedirect: true,
+    async rewrites() {
+        return [
+            {
+                source: '/ingest/static/:path*',
+                destination: 'https://us-assets.i.posthog.com/static/:path*',
+            },
+            {
+                source: '/ingest/array/:path*',
+                destination: 'https://us-assets.i.posthog.com/array/:path*',
+            },
+            {
+                source: '/ingest/:path*',
+                destination: 'https://us.i.posthog.com/:path*',
+            },
+        ]
+    },
     async redirects() {
         return [{
             source: '/case-studies',

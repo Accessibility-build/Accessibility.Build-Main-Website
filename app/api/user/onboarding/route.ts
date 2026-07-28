@@ -5,6 +5,7 @@ import { db } from "@/lib/db"
 import { users } from "@/lib/db/schema"
 import { eq } from "drizzle-orm"
 import { getUser } from "@/lib/credits"
+import { getPostHogClient } from "@/lib/posthog-server"
 
 const onboardingSchema = z.object({
   role: z.enum(["developer", "designer", "product", "content", "consultant", "other"]),
@@ -47,6 +48,20 @@ export async function POST(request: Request) {
       updatedAt: new Date(),
     })
     .where(eq(users.id, user.id))
+
+  const posthog = getPostHogClient()
+  if (posthog) {
+    posthog.capture({
+      distinctId: userId,
+      event: 'onboarding_completed',
+      properties: {
+        role: parsed.data.role,
+        goals: parsed.data.goals,
+        goals_count: parsed.data.goals.length,
+      },
+    })
+    await posthog.flush()
+  }
 
   return NextResponse.json({ ok: true })
 }
