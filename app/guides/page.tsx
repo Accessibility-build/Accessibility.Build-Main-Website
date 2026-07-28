@@ -43,6 +43,7 @@ import {
   ToggleRight,
   SlidersHorizontal,
   ListTree,
+  Grid3x3,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -349,6 +350,17 @@ const guides = [
     topics: ["role=tree", "treeitem", "Roving tabindex", "aria-expanded", "aria-level"],
     href: "/guides/accessible-tree-view",
     gradient: "from-lime-500 to-emerald-600",
+  },
+  {
+    title: "Accessible Data Grid Guide",
+    description:
+      "A data grid is a table the user operates, not one they read. Learn the role=grid / row / gridcell structure built on a real <table>, two-dimensional arrow-key navigation, roving tabindex, the two focus modes (Enter to enter a cell, Escape to leave), editable cells, selection, and aria-rowcount / rowindex / colindex for virtualized grids — plus when a plain semantic table is the better choice.",
+    icon: Grid3x3,
+    difficulty: "Advanced",
+    readingTime: "24 min",
+    topics: ["role=grid", "gridcell", "2-D navigation", "Actionable mode", "aria-rowindex"],
+    href: "/guides/accessible-data-grid",
+    gradient: "from-cyan-600 to-blue-700",
   },
   {
     title: "Screen Reader Testing Guide",

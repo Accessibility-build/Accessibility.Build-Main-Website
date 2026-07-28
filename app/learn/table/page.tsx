@@ -517,7 +517,8 @@ function ResponsiveTableSection() {
 
       <TipBox title="When to Use Which Pattern" variant="info">
         <strong>Use Horizontal Scroll</strong> when users need to compare values across rows (e.g., financial data, comparison tables).<br/>
-        <strong>Use Stacked Cards</strong> when users browse one item at a time (e.g., employee directory, product listings).
+        <strong>Use Stacked Cards</strong> when users browse one item at a time (e.g., employee directory, product listings).<br/>
+        <strong>Need arrow-key cell navigation or editable cells?</strong> That is an interactive <em>data grid</em> (<code>role="grid"</code>), a different pattern from these static tables — see the <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 underline hover:no-underline">accessible data grid guide</Link>.
       </TipBox>
     </div>
   );
