@@ -11,6 +11,7 @@ import {
   getBillingCurrencyPolicyFromRequestHeaders,
   sanitizeCheckoutCurrencyForPolicy,
 } from '@/lib/billing/region'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 const LOG_PREFIX = '[billing:checkout-session]'
 
@@ -233,6 +234,21 @@ export async function POST(request: NextRequest) {
       status: result.mode,
       metadata: { returnPath, ...regionMetadata, requestId },
     })
+
+    const posthog = getPostHogClient()
+    if (posthog) {
+      posthog.capture({
+        distinctId: user.id,
+        event: 'checkout_session_created',
+        properties: {
+          catalog_key: catalogKey,
+          currency,
+          payment_provider: provider,
+          order_id: result.orderId,
+        },
+      })
+      await posthog.flush()
+    }
 
     return NextResponse.json(result)
   } catch (error) {

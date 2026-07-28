@@ -4,6 +4,7 @@ import { emailSubscriptions } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { sendNewsletterWelcomeEmail } from '@/lib/email/service'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 const subscribeSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -89,6 +90,19 @@ export async function POST(request: NextRequest) {
       recipient: { email },
       source,
     })
+
+    const posthog = getPostHogClient()
+    if (posthog) {
+      posthog.capture({
+        distinctId: 'newsletter_subscriber',
+        event: 'newsletter_subscribed',
+        properties: {
+          source,
+          new_subscription: true,
+        },
+      })
+      await posthog.flush()
+    }
 
     return NextResponse.json({
       success: true,

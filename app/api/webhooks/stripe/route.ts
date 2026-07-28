@@ -5,6 +5,7 @@ import { processStripeWebhookEvent } from '@/lib/billing/service'
 import { getStripeClient, getStripeWebhookSecret } from '@/lib/billing/stripe'
 import { isProviderEnabled } from '@/lib/billing/provider'
 import { errorLogger } from '@/lib/error-logger'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 export const runtime = 'nodejs'
 
@@ -43,6 +44,22 @@ export async function POST(request: NextRequest) {
     const event = stripe.webhooks.constructEvent(rawBody, stripeSignature, webhookSecret)
 
     const result = await processStripeWebhookEvent(event)
+
+    if (!result.duplicate && result.orderId) {
+      const posthog = getPostHogClient()
+      if (posthog) {
+        posthog.capture({
+          distinctId: result.orderId,
+          event: 'payment_completed',
+          properties: {
+            payment_provider: 'stripe',
+            order_id: result.orderId,
+            stripe_event_type: event.type,
+          },
+        })
+        await posthog.flush()
+      }
+    }
 
     return NextResponse.json({
       received: true,

@@ -4,6 +4,7 @@ import { isProviderEnabled } from '@/lib/billing/provider'
 import { processProviderWebhookEvent } from '@/lib/billing/service'
 import { verifyRazorpayWebhookSignature } from '@/lib/billing/razorpay'
 import { errorLogger } from '@/lib/error-logger'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 export const runtime = 'nodejs'
 
@@ -63,6 +64,22 @@ export async function POST(request: NextRequest) {
       eventType,
       payload,
     })
+
+    if (!result.duplicate && result.orderId) {
+      const posthog = getPostHogClient()
+      if (posthog) {
+        posthog.capture({
+          distinctId: result.orderId,
+          event: 'payment_completed',
+          properties: {
+            payment_provider: 'razorpay',
+            order_id: result.orderId,
+            event_type: eventType,
+          },
+        })
+        await posthog.flush()
+      }
+    }
 
     return NextResponse.json({
       received: true,

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useForm, ValidationError } from "@formspree/react"
+import posthog from 'posthog-js'
 import {
   ArrowLeft,
   ArrowRight,
@@ -193,6 +194,17 @@ export function ProjectBriefBuilder({ requestedService, requestedPackage }: Proj
     }
 
     setError("")
+    posthog.capture('contact_form_submitted', {
+      form_type: 'project_brief',
+      service_type: data.serviceType,
+      technology: data.technology === 'Other' ? 'Other' : data.technology,
+      deliverable: data.deliverable,
+      timeline: data.timeline,
+      budget: data.budget,
+      has_procurement_requirements: data.procurement.length > 0 && !data.procurement.includes('none'),
+      procurement_count: data.procurement.filter((p) => p !== 'none').length,
+      page_count: Number(data.pageCount) || 0,
+    })
     const honeypot = new FormData(event.currentTarget).get("_gotcha")
     const form = new FormData()
     form.append("form_type", "Accessibility service project brief")

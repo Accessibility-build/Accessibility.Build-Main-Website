@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { CheckoutCatalogKey, CheckoutCurrency } from '@/lib/billing/types'
 import { trackBillingClientEvent } from './client-events'
+import posthog from 'posthog-js'
 
 declare global {
   interface Window {
@@ -115,6 +116,11 @@ export function CheckoutButton({
 
     try {
       setIsLoading(true)
+      posthog.capture('checkout_clicked', {
+        catalog_key: catalogKey,
+        currency: selectedCurrency,
+        source_path: pathname || '/pricing',
+      })
       trackBillingClientEvent({
         eventType: 'checkout_click',
         sourcePath: pathname || '/pricing',

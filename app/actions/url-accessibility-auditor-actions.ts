@@ -25,6 +25,7 @@ import {
   openrouter,
 } from "@/lib/openrouter"
 import { hasServerUnlimitedAccess } from "@/lib/unlimited-access-server"
+import { getPostHogClient } from "@/lib/posthog-server"
 
 const CREDIT_COST = 5
 const DEFAULT_MODEL = "gpt-4o"
@@ -382,6 +383,25 @@ export async function runUrlAccessibilityAudit(
       result.auditId = savedAuditId
     } else if (!effectiveUnlimitedAccess) {
       await recordTrialUsage("url_accessibility_auditor")
+    }
+
+    const posthog = getPostHogClient()
+    if (posthog) {
+      const distinctId = currentUserObj?.id ?? 'anonymous_auditor'
+      posthog.capture({
+        distinctId,
+        event: 'url_audit_completed',
+        properties: {
+          overall_score: overallScore,
+          total_violations: totalViolations,
+          critical_count: criticalCount,
+          serious_count: seriousCount,
+          is_authenticated: Boolean(currentUserObj),
+          used_trial: !currentUserObj && !effectiveUnlimitedAccess,
+          credits_used: currentUserObj && !effectiveUnlimitedAccess ? CREDIT_COST : 0,
+        },
+      })
+      await posthog.flush()
     }
 
     return result
