@@ -63,6 +63,7 @@ export default function WCAG142Page() {
         guideline="1.4 Distinguishable"
         url="https://accessibility.build/wcag/1-4-2"
         category="Distinguishable"
+        faqs={faqs}
       />
       <BreadcrumbStructuredData
         breadcrumbs={[

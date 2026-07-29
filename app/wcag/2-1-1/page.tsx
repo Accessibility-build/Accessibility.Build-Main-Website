@@ -111,6 +111,7 @@ export default function WCAG211Page() {
         guideline="2.1 Keyboard Accessible"
         url="https://accessibility.build/wcag/2-1-1"
         category="Keyboard Accessible"
+        faqs={faqs}
       />
       <BreadcrumbStructuredData
         breadcrumbs={[

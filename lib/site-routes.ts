@@ -246,6 +246,15 @@ const highValueWcag = new Set([
   "3-3-8", "4-1-2", "4-1-3", "1-4-4", "1-4-5",
 ])
 
+/**
+ * The real last-modified date for a WCAG criterion page, by slug ("1-3-1").
+ * Single source of truth shared by the XML sitemap and the page's JSON-LD, so
+ * schema dates can never drift from the sitemap.
+ */
+export function getWcagPageDate(slug: string): string {
+  return wcagPageDates[slug] ?? WCAG_BUILDOUT_DATE
+}
+
 const wcagPages: SiteRoute[] = [
   { route: "/wcag", label: "WCAG Success Criteria Hub", group: "WCAG", lastModified: "2026-07-09", priority: 0.94, changeFrequency: "weekly" },
   ...wcagCriteria.map((c) => {

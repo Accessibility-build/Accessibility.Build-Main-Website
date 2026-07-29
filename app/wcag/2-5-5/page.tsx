@@ -93,6 +93,7 @@ export default function WCAG255Page() {
         category="Input Modalities"
         hasInteractiveDemo={false}
         relatedCriteria={["2.5.8", "2.5.2", "2.5.7"]}
+        faqs={faqs}
       />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">

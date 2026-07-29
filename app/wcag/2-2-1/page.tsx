@@ -107,6 +107,7 @@ export default function WCAG221Page() {
         guideline="2.2 Enough Time"
         url="https://accessibility.build/wcag/2-2-1"
         category="Enough Time"
+        faqs={faqs}
       />
       <BreadcrumbStructuredData
         breadcrumbs={[

@@ -54,6 +54,7 @@ export default function WCAG121Page() {
         guideline="1.2 Time-based Media"
         url="https://accessibility.build/wcag/1-2-1"
         category="Time-based Media"
+        faqs={faqs}
       />
       <BreadcrumbStructuredData
         breadcrumbs={[

@@ -92,6 +92,7 @@ export default function WCAG322Page() {
         timeToRead={9}
         hasInteractiveDemo={false}
         relatedCriteria={["3.2.1", "3.3.2", "2.4.3", "4.1.2"]}
+        faqs={faqs}
       />
 
       {/* FAQ structured data */}

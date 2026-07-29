@@ -118,6 +118,7 @@ export default function WCAG144Page() {
         url="https://accessibility.build/wcag/1-4-4"
         category="Distinguishable"
         relatedCriteria={["1.4.5", "1.4.10", "1.4.12"]}
+        faqs={faqs}
       />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">

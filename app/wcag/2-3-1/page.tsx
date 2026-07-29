@@ -111,6 +111,7 @@ export default function WCAG231Page() {
         category="Seizures and Physical Reactions"
         hasInteractiveDemo={false}
         relatedCriteria={["2.3.2", "2.3.3", "2.2.2"]}
+        faqs={faqs}
       />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">

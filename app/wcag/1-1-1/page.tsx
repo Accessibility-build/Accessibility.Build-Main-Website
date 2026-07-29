@@ -54,6 +54,7 @@ export default function WCAG111Page() {
         guideline="1.1 Text Alternatives"
         url="https://accessibility.build/wcag/1-1-1"
         category="Text Alternatives"
+        faqs={faqs}
       />
       <BreadcrumbStructuredData
         breadcrumbs={[

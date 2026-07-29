@@ -1,3 +1,6 @@
+import { getWcagPageDate } from "@/lib/site-routes";
+import { wcagSlug } from "@/lib/wcag-pages";
+
 interface WCAGSEOProps {
   title: string;
   description: string;
@@ -15,6 +18,13 @@ interface WCAGSEOProps {
   timeToRead?: number; // in minutes
   hasInteractiveDemo?: boolean;
   relatedCriteria?: string[];
+  /**
+   * The page's real, visible FAQs. FAQPage schema is emitted ONLY from these —
+   * Google requires marked-up Q&A to be present on the page, so we never
+   * generate questions that the reader cannot see. Omit on pages that already
+   * render <FAQStructuredData> themselves, to avoid two FAQPage nodes.
+   */
+  faqs?: { q: string; a: string }[];
 }
 
 // Static dates for each WCAG criteria to ensure consistency (Google penalizes changing dates)
@@ -41,14 +51,20 @@ const WCAG_PUBLISH_DATES: Record<string, string> = {
   "2.4.4": "2024-04-15",
 };
 
-// Get stable dates for SEO consistency
+// Get stable dates for SEO consistency.
+// dateModified comes from lib/site-routes.ts — the same source the XML sitemap
+// uses — so the schema, the sitemap, and reality cannot drift apart.
 function getStableDates(criteria: string, providedPublished?: string, providedModified?: string) {
-  const baseDate = WCAG_PUBLISH_DATES[criteria] || "2024-01-01";
+  const routeDate = getWcagPageDate(wcagSlug(criteria));
+  const baseDate = WCAG_PUBLISH_DATES[criteria] || routeDate;
   const publishDate = providedPublished || `${baseDate}T10:00:00Z`;
-  // Modified date should be more recent but stable
-  const modifiedDate = providedModified || "2025-01-15T10:00:00Z";
+  const modifiedDate = providedModified || `${routeDate}T10:00:00Z`;
 
-  return { publishDate, modifiedDate };
+  // Never claim the page was modified before it was published.
+  return {
+    publishDate,
+    modifiedDate: modifiedDate < publishDate ? publishDate : modifiedDate,
+  };
 }
 
 export default function WCAGSEOEnhancements({
@@ -63,10 +79,13 @@ export default function WCAGSEOEnhancements({
   dateModified,
   author = "Khushwant Parihar",
   category,
-  wordCount = 2500,
+  // No default: a hardcoded count would claim the same length for all 86
+  // criterion pages. Omitted from the schema entirely when not supplied.
+  wordCount,
   timeToRead = 8,
   hasInteractiveDemo = true,
-  relatedCriteria = []
+  relatedCriteria = [],
+  faqs
 }: WCAGSEOProps) {
 
   const { publishDate, modifiedDate } = getStableDates(criteria, datePublished, dateModified);
@@ -85,10 +104,11 @@ export default function WCAGSEOEnhancements({
     "name": title,
     "description": description,
     "author": {
-      "@type": "Organization",
-      "@id": "https://accessibility.build/#organization",
+      // A named human is a Person, not an Organization.
+      "@type": "Person",
+      "@id": "https://accessibility.build/#person",
       "name": author,
-      "url": "https://accessibility.build"
+      "url": "https://accessibility.build/about"
     },
     "publisher": {
       "@type": "Organization",
@@ -114,8 +134,7 @@ export default function WCAGSEOEnhancements({
       "height": 630
     },
     "articleSection": category,
-    "articleBody": `Comprehensive guide to ${title} covering requirements, implementation techniques, testing methods, and code examples.`,
-    "wordCount": wordCount,
+    ...(wordCount ? { "wordCount": wordCount } : {}),
     "timeRequired": `PT${timeToRead}M`,
     "inLanguage": "en-US",
     "isAccessibleForFree": true,
@@ -170,7 +189,7 @@ export default function WCAGSEOEnhancements({
       "audienceType": ["Web Developers", "UX Designers", "Accessibility Specialists", "QA Engineers"]
     },
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "copyrightYear": 2024,
+    "copyrightYear": Number(publishDate.slice(0, 4)),
     "copyrightHolder": {
       "@type": "Organization",
       "name": "Accessibility Build"
@@ -242,54 +261,27 @@ export default function WCAGSEOEnhancements({
     ]
   };
 
-  // Enhanced FAQPage Schema with specific, valuable answers (improves rich snippet chances)
-  const faqSchema = {
+  // FAQPage schema built ONLY from the page's real, visible FAQs.
+  //
+  // This previously emitted five templated questions with the criterion number
+  // swapped in, which (a) were not the Q&A actually rendered on the page —
+  // a Google FAQ-policy violation — (b) produced 86 near-duplicate FAQPage
+  // nodes across the site, and (c) asserted unverified statistics ("lawsuits
+  // increased 300% since 2018", "$13 trillion disability market",
+  // "15-20% of the population") as fact inside machine-readable data.
+  const faqSchema = faqs && faqs.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "@id": `${url}#faq`,
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": `What is WCAG ${criteria} ${criteriaName}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `WCAG ${criteria} "${criteriaName}" is a Level ${level} success criterion under the ${principle} principle and ${guideline} guideline. It requires that ${description.toLowerCase()}. This criterion is ${level === 'A' ? 'essential for basic accessibility' : level === 'AA' ? 'required for most legal compliance standards including ADA and Section 508' : 'recommended for enhanced accessibility'}. Meeting this criterion helps ensure your website is accessible to users with disabilities.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `How do I test for WCAG ${criteria} compliance?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `To test WCAG ${criteria} compliance: 1) Use automated tools like axe DevTools, WAVE, or Lighthouse to detect obvious violations. 2) Perform manual testing using keyboard-only navigation and screen readers (NVDA, JAWS, VoiceOver). 3) Check the specific requirements in our interactive demo above. 4) Verify with real users who have disabilities when possible. Our interactive testing tool on this page provides hands-on practice for this specific criterion.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `What are the consequences of failing WCAG ${criteria}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Failing WCAG ${criteria} can result in: 1) Legal liability under ADA, Section 508, EAA (Europe), or AODA (Canada) - accessibility lawsuits increased 300% since 2018. 2) Exclusion of ${level === 'A' ? 'users with severe disabilities who cannot access basic functionality' : level === 'AA' ? 'approximately 15-20% of the population with various disabilities' : 'users needing enhanced accessibility features'}. 3) SEO penalties as search engines increasingly favor accessible sites. 4) Damage to brand reputation and customer trust. 5) Lost revenue from the $13 trillion disability market.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `What is the difference between WCAG Level A, AA, and AAA?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `WCAG has three conformance levels: Level A (minimum/essential) - 31 criteria that address the most critical barriers. Level AA (standard/recommended) - 24 additional criteria that most laws require (ADA, Section 508, EN 301 549). Level AAA (enhanced/optimal) - 31 additional criteria for maximum accessibility, bringing the WCAG 2.2 total to 86. WCAG ${criteria} is Level ${level}, which means it is ${level === 'A' ? 'a fundamental requirement for any accessible website' : level === 'AA' ? 'required for legal compliance in most jurisdictions' : 'an enhancement that goes beyond typical requirements'}.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `How do I fix WCAG ${criteria} violations?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `To fix WCAG ${criteria} violations: 1) Identify all instances using automated scanning and manual testing. 2) Review our implementation examples and code snippets in the Implementation section below. 3) Apply the fixes using semantic HTML, ARIA attributes, or CSS as appropriate. 4) Test your fixes with assistive technologies. 5) Document your remediation for compliance records. Our interactive demo includes copyable code examples for common ${criteriaName?.toLowerCase() || 'accessibility'} scenarios.`
-        }
+    "mainEntity": faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      "name": q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": a
       }
-    ]
-  };
+    }))
+  } : null;
 
   // ItemList for related criteria (improves internal linking signals)
   const relatedContentSchema = relatedCriteria.length > 0 ? {
@@ -320,11 +312,13 @@ export default function WCAGSEOEnhancements({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
 
-      {/* FAQ Schema - Rich Snippets */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      {/* FAQ Schema - only when the page passes its real, visible FAQs */}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* Related Content Schema */}
       {relatedContentSchema && (

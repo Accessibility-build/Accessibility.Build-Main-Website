@@ -96,6 +96,7 @@ export default function WCAG315Page() {
         url="https://accessibility.build/wcag/3-1-5"
         category="Readable"
         relatedCriteria={["3.1.1", "3.1.6", "1.4.12", "2.4.6"]}
+        faqs={faqs}
       />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">

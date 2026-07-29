@@ -91,6 +91,7 @@ export default function WCAG2410Page() {
         category="Navigable"
         hasInteractiveDemo={false}
         relatedCriteria={["1.3.1", "2.4.6", "2.4.1"]}
+        faqs={faqs}
       />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">

@@ -94,6 +94,7 @@ export default function WCAG336Page() {
         url="https://accessibility.build/wcag/3-3-6"
         category="Input Assistance"
         relatedCriteria={["3.3.4", "3.3.1", "3.3.3", "3.3.5"]}
+        faqs={faqs}
       />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">

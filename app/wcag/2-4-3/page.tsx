@@ -132,6 +132,7 @@ export default function WCAG243Page() {
         guideline="2.4 Navigable"
         url="https://accessibility.build/wcag/2-4-3"
         category="Navigation"
+        faqs={faqs}
       />
       <BreadcrumbStructuredData
         breadcrumbs={[

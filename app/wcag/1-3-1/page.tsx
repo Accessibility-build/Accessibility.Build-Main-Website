@@ -54,6 +54,7 @@ export default function WCAG131Page() {
         guideline="1.3 Adaptable"
         url="https://accessibility.build/wcag/1-3-1"
         category="Adaptable"
+        faqs={faqs}
       />
       <BreadcrumbStructuredData
         breadcrumbs={[

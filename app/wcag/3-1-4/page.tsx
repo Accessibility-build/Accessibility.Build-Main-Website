@@ -91,6 +91,7 @@ export default function WCAG314Page() {
         category="Readable"
         hasInteractiveDemo={false}
         relatedCriteria={["3.1.3", "3.1.5", "3.1.1"]}
+        faqs={faqs}
       />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">

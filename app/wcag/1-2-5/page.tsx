@@ -119,6 +119,7 @@ export default function WCAG125Page() {
         url="https://accessibility.build/wcag/1-2-5"
         category="Time-based Media"
         relatedCriteria={["1.2.3", "1.2.4", "1.2.7"]}
+        faqs={faqs}
       />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
