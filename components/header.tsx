@@ -292,10 +292,14 @@ export function Header() {
       >
         <div
           className={cn(
-            "rounded-full border border-border/40 backdrop-blur-md transition-all duration-300",
+            // Padding stays constant: the header is sticky, so it occupies
+            // normal-flow space. Shrinking it on scroll moved every element
+            // below it and counted against CLS (scroll does not exempt a
+            // layout shift). Only background and shadow change on scroll.
+            "rounded-full border border-border/40 py-3 backdrop-blur-md transition-all duration-300",
             isScrolled
-              ? "bg-background/80 py-2 shadow-lg"
-              : "bg-background/60 py-3"
+              ? "bg-background/80 shadow-lg"
+              : "bg-background/60"
           )}
         >
           <div className="flex min-w-0 items-center justify-between px-4 sm:px-6 lg:px-8">

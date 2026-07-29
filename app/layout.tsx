@@ -20,8 +20,13 @@ import { company } from "@/lib/company"
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: 'swap',
+  // 'optional' instead of 'swap': the browser never re-renders text in a second
+  // font mid-load, so large headings cannot shift layout (CLS). Combined with
+  // next/font's automatic fallback metric adjustment, the fallback matches the
+  // real font's metrics closely enough that the swap is not worth the shift.
+  display: 'optional',
   preload: true,
+  adjustFontFallback: true,
 })
 
 const verificationOther: Record<string, string> = {}
@@ -361,8 +366,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <head>
           {/* Preconnect to external domains */}
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          {/* Fonts are self-hosted by next/font — no Google Fonts preconnect needed. */}
           <link rel="preconnect" href="https://api.openai.com" />
           <link rel="preconnect" href="https://clerk.com" />
 
