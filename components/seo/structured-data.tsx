@@ -32,6 +32,14 @@ interface ToolStructuredDataProps {
     text: string
     url?: string
   }>
+  /**
+   * What this specific tool actually does. Pass real capabilities — a shared
+   * default would have every tool claiming the same feature set (the palette
+   * generator advertising "Screen Reader Testing", for example).
+   */
+  featureList?: string[]
+  /** Only pass a version you actually ship and can keep accurate. */
+  softwareVersion?: string
 }
 
 interface FAQStructuredDataProps {
@@ -305,7 +313,9 @@ export function ToolStructuredData({
   applicationCategory, 
   operatingSystem,
   offers,
-  steps
+  steps,
+  featureList,
+  softwareVersion
 }: ToolStructuredDataProps) {
   const toolSchema = {
     "@context": "https://schema.org",
@@ -316,8 +326,9 @@ export function ToolStructuredData({
     "applicationCategory": applicationCategory,
     "operatingSystem": operatingSystem,
     "browserRequirements": "Requires JavaScript. Supported browsers: Chrome, Firefox, Safari, Edge",
-    "softwareVersion": "2.0",
-    "releaseNotes": "Enhanced accessibility testing with AI-powered analysis",
+    // Only claim a version when the caller supplies a real one. The previous
+    // hardcoded "2.0" + release notes applied to every tool indiscriminately.
+    ...(softwareVersion ? { "softwareVersion": softwareVersion } : {}),
     ...(offers && {
       "offers": {
         "@type": "Offer",
@@ -333,13 +344,9 @@ export function ToolStructuredData({
       "url": "https://accessibility.build",
       "logo": "https://accessibility.build/android-chrome-512x512.png"
     },
-    "featureList": [
-      "WCAG 2.2 Compliance Testing",
-      "AI-Powered Analysis",
-      "Real-time Feedback",
-      "Detailed Reports",
-      "Accessibility Recommendations"
-    ]
+    // Per-tool capabilities only — no generic default, so a tool never
+    // advertises features it does not have.
+    ...(featureList && featureList.length > 0 ? { "featureList": featureList } : {})
   }
 
   // Add HowTo schema if steps are provided
@@ -784,7 +791,9 @@ export function AccessibilityToolStructuredData({
   applicationCategory = "AccessibilityApplication",
   operatingSystem = "Any",
   offers,
-  accessibilityFeatures
+  accessibilityFeatures,
+  featureList,
+  softwareVersion
 }: ToolStructuredDataProps & {
   accessibilityFeatures?: string[]
 }) {
@@ -797,8 +806,7 @@ export function AccessibilityToolStructuredData({
     "applicationCategory": applicationCategory,
     "operatingSystem": operatingSystem,
     "browserRequirements": "Requires JavaScript. Supported browsers: Chrome, Firefox, Safari, Edge",
-    "softwareVersion": "2.0",
-    "releaseNotes": "Enhanced accessibility testing with AI-powered analysis",
+    ...(softwareVersion ? { "softwareVersion": softwareVersion } : {}),
     "accessibilityFeature": accessibilityFeatures || [
       "highContrastDisplay",
       "keyboardNavigation", 
@@ -824,16 +832,9 @@ export function AccessibilityToolStructuredData({
       "url": "https://accessibility.build",
       "logo": "https://accessibility.build/android-chrome-512x512.png"
     },
-    "featureList": [
-      "WCAG 2.2 Compliance Testing",
-      "AI-Powered Analysis", 
-      "Real-time Feedback",
-      "Detailed Reports",
-      "Accessibility Recommendations",
-      "Color Contrast Analysis",
-      "Screen Reader Testing",
-      "Keyboard Navigation Testing"
-    ],
+    // Per-tool capabilities only — no generic default, so a tool never
+    // advertises features it does not have.
+    ...(featureList && featureList.length > 0 ? { "featureList": featureList } : {}),
     "applicationSubCategory": "Web Accessibility Testing Tool",
     "downloadUrl": url,
     "installUrl": url,

@@ -51,7 +51,27 @@ const nextConfig = {
             source: '/case-studies/:slug*',
             destination: '/services',
             permanent: true,
+        }, {
+            // Google has been crawling this 404 since at least Jul 2026 and we
+            // rank for "contrast checker" queries — send that equity to the
+            // real tool instead of dropping it. The page lives at
+            // /tools/contrast-checker.
+            source: '/tools/color-contrast-checker',
+            destination: '/tools/contrast-checker',
+            permanent: true,
+        }, {
+            source: '/resources/tools',
+            destination: '/tools',
+            permanent: true,
+        }, {
+            source: '/support',
+            destination: '/contact',
+            permanent: true,
         }]
+        // Deliberately NOT redirected: /old-home, /new-home, /offer, /fr,
+        // /bad/keyboard, /issues*, /statements/*, /media/*.vtt. These never had
+        // a real equivalent, so 404 is the correct answer — redirecting them to
+        // the homepage would just create soft 404s.
     },
     async headers() {
         return [{

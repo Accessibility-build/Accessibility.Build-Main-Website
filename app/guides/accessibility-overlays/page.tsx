@@ -25,7 +25,7 @@ import {
 
 export const metadata: Metadata = {
   title:
-    "Accessibility Overlays: What They Are, Why They Fail & What To Do Instead | Accessibility.build",
+    "Accessibility Overlays: Why They Fail & What To Do Instead",
   description:
     "Learn why accessibility overlays like accessiBe, UserWay, and AudioEye don't work. Understand the legal risks, technical limitations, and better alternatives for WCAG compliance.",
   keywords: [

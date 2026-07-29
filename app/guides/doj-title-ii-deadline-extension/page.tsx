@@ -9,7 +9,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
   title:
-    "DOJ Title II Deadline Extension (April 2026): What Changed, What Didn't, Why You Shouldn't Slow Down",
+    "DOJ Title II Deadline Extension 2026: What Actually Changed",
   description:
     "The DOJ's April 20, 2026 Interim Final Rule pushed ADA Title II web accessibility deadlines to 2027 and 2028. Here's exactly what changed, what didn't, and our editorial take: the extension is a setback for disability rights, but the WCAG 2.1 AA standard is unchanged and lawsuits continue at record pace.",
   keywords: [

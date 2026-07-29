@@ -83,9 +83,17 @@ export default function ContrastCheckerPage() {
           price: "0",
           priceCurrency: "USD"
         }}
+        featureList={[
+          "WCAG 2.2 contrast ratio calculation",
+          "Level AA and AAA pass/fail results",
+          "Normal and large text thresholds",
+          "Live foreground and background preview",
+          "Accessible colour suggestions",
+          "Experimental APCA contrast estimate",
+        ]}
         accessibilityFeatures={[
           "keyboardNavigation",
-          "screenReaderSupport", 
+          "screenReaderSupport",
           "highContrastDisplay",
           "colorBlindFriendly"
         ]}

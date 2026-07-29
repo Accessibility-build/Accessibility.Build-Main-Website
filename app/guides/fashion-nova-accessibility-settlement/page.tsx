@@ -9,7 +9,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
   title:
-    "The $5.15M Fashion Nova Web Accessibility Settlement: What It Means for E-Commerce",
+    "$5.15M Fashion Nova Accessibility Settlement Explained",
   description:
     "Alcazar v. Fashion Nova settled for $5.15 million in 2025 — the second-largest web accessibility settlement on record. A breakdown of the case, the ADA and California Unruh Act claims, the class structure, WCAG 2.1 remediation terms, and the lessons for every online retailer.",
   keywords: [

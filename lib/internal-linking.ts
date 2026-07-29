@@ -43,8 +43,16 @@ const INTERNAL_LINKS: InternalLink[] = [
     title: 'Color Contrast Checker',
     description: 'WCAG compliant color contrast ratio checker for accessibility',
     type: 'tool',
-    keywords: ['color', 'contrast', 'ratio', 'wcag', 'accessibility', 'vision', 'colorblind'],
-    priority: 8
+    // We already appear for these head terms but rank poorly on them, so the
+    // tool needs to win the internal link whenever a page mentions contrast.
+    keywords: [
+      'color', 'contrast', 'ratio', 'wcag', 'accessibility', 'vision', 'colorblind',
+      'contrast checker', 'color contrast checker', 'colour contrast checker',
+      'wcag contrast checker', 'contrast ratio', 'contrast ratio checker',
+      'aa contrast', 'aaa contrast', 'non-text contrast', '4.5:1', '3:1',
+      'apca', 'check color contrast', 'accessibility color checker',
+    ],
+    priority: 9
   },
   {
     url: '/checklists/wcag-2-2',
@@ -434,9 +442,12 @@ const MORE_LINKS: InternalLink[] = [
   // Remaining on-topic tools
   { url: "/tools/alt-text-generator", title: "AI Alt Text Generator", description: "Generate accessible alt text for images with AI", type: "tool", keywords: ["alt text", "image accessibility", "alt text generator", "image description"], priority: 8 },
   { url: "/tools/mobile-accessibility-checker", title: "Mobile Accessibility Checker", description: "Check touch targets and mobile WCAG compliance", type: "tool", keywords: ["mobile accessibility", "touch targets", "mobile wcag", "tap target"], priority: 7 },
-  { url: "/tools/color-palette-generator", title: "Accessible Color Palette Generator", description: "Generate WCAG-compliant color palettes with live UI preview", type: "tool", keywords: ["color palette generator", "accessible palette", "wcag colors"], priority: 7 },
-  { url: "/tools/accessible-palette-studio", title: "Accessible Palette Studio", description: "OKLCH + APCA + WCAG color system builder with design tokens export", type: "tool", keywords: ["palette studio", "oklch generator", "apca palette", "design tokens"], priority: 7 },
-  { url: "/tools/accessible-typography-studio", title: "Accessible Typography Studio", description: "WCAG + APCA type scale generator with readability analysis", type: "tool", keywords: ["typography studio", "type scale generator", "readability analyzer", "fluid typography"], priority: 7 },
+  // The colour tools are the site's highest-traffic entry points (they carry
+  // almost all organic clicks), so they get top priority and full keyword
+  // coverage of the palette/colour query cluster rather than three terms each.
+  { url: "/tools/color-palette-generator", title: "Accessible Color Palette Generator", description: "Generate WCAG-compliant color palettes with live UI preview", type: "tool", keywords: ["color palette generator", "accessible color palette generator", "accessible palette", "accessible colors", "wcag colors", "wcag color palette", "wcag color palette generator", "color palette builder", "accessible color scheme", "accessible color combinations", "ada color palette", "508 compliant colors", "dark mode palette", "color tokens", "tailwind colors", "colour palette generator", "accessible colour palette"], priority: 9 },
+  { url: "/tools/accessible-palette-studio", title: "Accessible Palette Studio", description: "OKLCH + APCA + WCAG color system builder with design tokens export", type: "tool", keywords: ["palette studio", "oklch generator", "oklch", "apca palette", "apca contrast", "design tokens", "color system builder", "accessible design system colors", "perceptual color space"], priority: 9 },
+  { url: "/tools/accessible-typography-studio", title: "Accessible Typography Studio", description: "WCAG + APCA type scale generator with readability analysis", type: "tool", keywords: ["typography studio", "type scale generator", "readability analyzer", "fluid typography", "accessible typography", "font size accessibility", "line height accessibility", "wcag text spacing"], priority: 9 },
   { url: "/tools/url-accessibility-auditor", title: "URL Accessibility Auditor", description: "Audit any URL with axe-core and AI analysis", type: "tool", keywords: ["url auditor", "website audit", "axe-core", "page audit"], priority: 8 },
   { url: "/tools/scope-checker", title: "Scope Checker", description: "Crawl a site to find URLs, documents, and page titles for audit scoping", type: "tool", keywords: ["scope checker", "site crawler", "audit scope", "url finder"], priority: 6 },
   { url: "/tools/accessibility-code-generator", title: "AI Accessibility Code Generator", description: "Generate WCAG-compliant component code with AI", type: "tool", keywords: ["code generator", "accessible code", "component generator"], priority: 7 },

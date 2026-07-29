@@ -84,6 +84,16 @@ export async function GET(req: NextRequest) {
         </div>
       </div>
     ),
-    { width: 1200, height: 630 }
+    {
+      width: 1200,
+      height: 630,
+      headers: {
+        // These are social preview images, not pages. Keeping them out of the
+        // index stops ~130 /api/og?title=... URLs burning crawl budget; social
+        // scrapers fetch the bytes regardless of this header.
+        "X-Robots-Tag": "noindex",
+        "Cache-Control": "public, max-age=31536000, immutable",
+      },
+    }
   )
 }

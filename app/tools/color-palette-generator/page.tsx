@@ -103,6 +103,13 @@ export default function ColorPaletteGeneratorPage() {
           price: "0",
           priceCurrency: "USD"
         }}
+        featureList={[
+          "WCAG 2.2 contrast-aware palette generation",
+          "Light and dark mode preview",
+          "Real UI state previews (buttons, forms, cards, alerts, links, charts)",
+          "Hover, focus, and disabled state checks",
+          "Copyable colour tokens",
+        ]}
         accessibilityFeatures={[
           "highContrastDisplay",
           "colorContrastAnalysis",

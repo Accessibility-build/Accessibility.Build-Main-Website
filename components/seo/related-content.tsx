@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -33,7 +34,10 @@ interface RelatedContentProps {
   title?: string
   maxItems?: number
   showDescriptions?: boolean
-  /** URL of the current page, so it is not suggested as related to itself. */
+  /**
+   * URL of the current page, so it is not suggested as related to itself.
+   * Defaults to the current pathname, so callers do not have to pass it.
+   */
   excludeUrl?: string
 }
 
@@ -61,14 +65,21 @@ export function RelatedContent({
   showDescriptions = true,
   excludeUrl
 }: RelatedContentProps) {
+  // Default to the current page so no page ever links to itself. Callers may
+  // still pass excludeUrl explicitly to override.
+  const pathname = usePathname()
+  const selfUrl = excludeUrl ?? pathname
+
   // Use smart linking if content is provided, otherwise use manual links
   const relatedItems: EnhancedRelatedLink[] = content
-    ? getRelatedLinks(content, maxItems, excludeUrl).map(match => ({
+    ? getRelatedLinks(content, maxItems, selfUrl).map(match => ({
         ...match.link,
         relevanceScore: match.relevanceScore,
         matchedKeywords: match.matchedKeywords
       }))
-    : (links || []).map(link => ({ ...link }))
+    : (links || [])
+        .filter(link => link.url !== selfUrl)
+        .map(link => ({ ...link }))
   
   if (relatedItems.length === 0) {
     return null
@@ -161,9 +172,10 @@ export function RelatedContentSidebar({
   maxItems = 5 
 }: { 
   content: string
-  maxItems?: number 
+  maxItems?: number
 }) {
-  const relatedLinks = getRelatedLinks(content, maxItems)
+  const pathname = usePathname()
+  const relatedLinks = getRelatedLinks(content, maxItems, pathname)
   
   if (relatedLinks.length === 0) {
     return null
@@ -209,7 +221,8 @@ export function RelatedContentSidebar({
 
 // Quick tools suggestions for CTAs
 export function QuickToolSuggestions({ content }: { content: string }) {
-  const relatedLinks = getRelatedLinks(content, 3).filter(({ link }) => link.type === 'tool')
+  const pathname = usePathname()
+  const relatedLinks = getRelatedLinks(content, 3, pathname).filter(({ link }) => link.type === 'tool')
   
   if (relatedLinks.length === 0) {
     return null

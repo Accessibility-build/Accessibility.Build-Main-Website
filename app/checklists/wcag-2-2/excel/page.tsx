@@ -3,7 +3,7 @@ import WCAGExcelDownload from "./excel-download"
 import { BreadcrumbStructuredData, AccessibilityToolStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 
 export const metadata: Metadata = {
-  title: "WCAG 2.2 Checklist Excel Template | Free Download | All 78 Criteria",
+  title: "WCAG 2.2 Checklist Excel Template | All 86 Criteria",
   description:
     "Download free WCAG 2.2 checklist Excel template with all 86 success criteria. Includes progress tracking, audit summary, and professional formatting for accessibility audits.",
   keywords: [

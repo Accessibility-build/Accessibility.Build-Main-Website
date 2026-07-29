@@ -9,7 +9,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
   title:
-    "HHS Section 504 Web Accessibility Deadline (May 11, 2026): The Rule That Wasn't Extended",
+    "HHS Section 504 Web Accessibility Deadline (May 2026)",
   description:
     "The HHS Section 504 web accessibility rule took effect May 11, 2026 — and unlike the DOJ Title II deadline, it was not extended. Here's exactly who's covered, what WCAG 2.1 AA requires, what to do if you missed the deadline, and why HHS holding firm was the right call.",
   keywords: [

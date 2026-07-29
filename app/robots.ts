@@ -20,6 +20,7 @@ const PRIVATE_PATHS = [
   "/admin/",
   "/_next/",
   "/private/",
+  "/ingest/",
   "/dashboard*",
   "/profile*",
   "/sign-in*",

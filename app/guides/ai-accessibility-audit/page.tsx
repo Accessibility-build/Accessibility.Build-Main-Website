@@ -9,7 +9,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
   title:
-    "AI Accessibility Audit: Fix WCAG Violations 10x Faster | Accessibility.build",
+    "AI Accessibility Audit: Fix WCAG Violations Faster",
   description:
     "Use AI to triage accessibility issues, map them to WCAG 2.2 criteria, and generate code-level fixes. See how AI-assisted audits compare to manual audits, with real workflows for developers, QA, and compliance teams.",
   keywords: [
