@@ -44,6 +44,7 @@ import {
   SlidersHorizontal,
   ListTree,
   Grid3x3,
+  List,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -361,6 +362,17 @@ const guides = [
     topics: ["role=grid", "gridcell", "2-D navigation", "Actionable mode", "aria-rowindex"],
     href: "/guides/accessible-data-grid",
     gradient: "from-cyan-600 to-blue-700",
+  },
+  {
+    title: "Accessible Listbox Guide",
+    description:
+      "A listbox lets a user pick from a set of choices — one, or several. Learn the role=listbox / option / group structure, single-select where selection follows focus, multi-select with aria-multiselectable and Space to toggle, aria-selected, the roving-tabindex vs aria-activedescendant focus choice, grouped and disabled options, type-ahead — and when a group of checkboxes or a native select is the better choice.",
+    icon: List,
+    difficulty: "Advanced",
+    readingTime: "20 min",
+    topics: ["role=listbox", "option", "aria-selected", "Multi-select", "Selection follows focus"],
+    href: "/guides/accessible-listbox",
+    gradient: "from-rose-500 to-pink-600",
   },
   {
     title: "Screen Reader Testing Guide",

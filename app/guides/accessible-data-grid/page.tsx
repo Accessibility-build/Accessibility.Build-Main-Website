@@ -1112,7 +1112,11 @@ grid.addEventListener("keydown", (e) => {
                 <strong className="text-slate-900 dark:text-white">
                   <code>aria-selected</code>
                 </strong>{" "}
-                — the same property a listbox and a{" "}
+                — the same property a{" "}
+                <Link href="/guides/accessible-listbox" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  listbox
+                </Link>{" "}
+                and a{" "}
                 <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 hover:underline">
                   tree
                 </Link>{" "}
