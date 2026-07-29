@@ -2,39 +2,21 @@
 
 import Link from "next/link"
 import Script from "next/script"
-import { useSyncExternalStore } from "react"
 import { Button } from "@/components/ui/button"
-
-type ConsentChoice = "accepted" | "rejected"
-type ConsentState = ConsentChoice | null | "unresolved"
-
-const STORAGE_KEY = "accessibility-build-analytics-consent"
-const CONSENT_EVENT = "accessibility-build:open-cookie-settings"
-
-function subscribeToConsent(callback: () => void) {
-  window.addEventListener(CONSENT_EVENT, callback)
-  return () => window.removeEventListener(CONSENT_EVENT, callback)
-}
-
-function getConsentSnapshot(): ConsentState {
-  const stored = window.localStorage.getItem(STORAGE_KEY)
-  return stored === "accepted" || stored === "rejected" ? stored : null
-}
-
-function getServerConsentSnapshot(): ConsentState {
-  return "unresolved"
-}
+import {
+  clearAnalyticsConsent,
+  setAnalyticsConsent,
+  useAnalyticsConsent,
+  type ConsentChoice,
+} from "@/lib/analytics/consent"
 
 export function AnalyticsConsent() {
-  const choice = useSyncExternalStore(
-    subscribeToConsent,
-    getConsentSnapshot,
-    getServerConsentSnapshot,
-  )
+  // Shared store: this one choice gates Google Analytics here and PostHog in
+  // components/analytics/posthog-provider.tsx.
+  const choice = useAnalyticsConsent()
 
   const saveChoice = (nextChoice: ConsentChoice) => {
-    window.localStorage.setItem(STORAGE_KEY, nextChoice)
-    window.dispatchEvent(new Event(CONSENT_EVENT))
+    setAnalyticsConsent(nextChoice)
   }
 
   return (
@@ -67,7 +49,7 @@ export function AnalyticsConsent() {
                 Optional analytics
               </h2>
               <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                We use Google Analytics only with your permission. Essential account and security storage continues to work when analytics is declined. Read our{" "}
+                We use Google Analytics and PostHog only with your permission. Essential account and security storage continues to work when analytics is declined. Read our{" "}
                 <Link href="/cookies" className="font-medium underline underline-offset-4">
                   cookie policy
                 </Link>
@@ -89,8 +71,7 @@ export function AnalyticsConsent() {
 
 export function CookieSettingsButton() {
   const reopenSettings = () => {
-    window.localStorage.removeItem(STORAGE_KEY)
-    window.dispatchEvent(new Event(CONSENT_EVENT))
+    clearAnalyticsConsent()
   }
 
   return (

@@ -32,7 +32,7 @@ export default function CookiesPage() {
           <div>
             <h2 className="font-semibold">Your analytics choice</h2>
             <p className="mt-1 text-sm leading-6 text-muted-foreground">
-              Reopen the consent notice to allow or decline Google Analytics on this device.
+              Reopen the consent notice to allow or decline Google Analytics and PostHog on this device.
             </p>
           </div>
           <CookieSettingsButton />
@@ -63,7 +63,10 @@ export default function CookiesPage() {
             Google Analytics is optional and loads only after you select “Allow analytics”. It may set cookies such as <code>_ga</code> and <code>_ga_*</code> to distinguish browsers and understand aggregated usage. Google determines the precise cookie duration and may update it; browser controls can remove the data earlier.
           </p>
           <p>
-            Vercel Analytics and Speed Insights help us understand aggregate traffic and performance. We configure the site so the separately identified Google Analytics script remains consent-controlled.
+            PostHog is also optional and captures only after you select “Allow analytics”. It helps us understand which pages, guides, and tools are used, and how features perform, by recording page views and interaction events. It may set storage such as a <code>ph_*</code> identifier to distinguish browsers. Session replay is not enabled, so we do not record your screen or interactions as a replayable session, and no PostHog events are sent while analytics is declined or undecided. Declining also clears any <code>ph_*</code> cookie or storage already present on that browser.
+          </p>
+          <p>
+            Vercel Analytics and Speed Insights help us understand aggregate traffic and performance. We configure the site so the separately identified Google Analytics and PostHog scripts remain consent-controlled.
           </p>
 
           <h2>4. What we do not currently use</h2>
@@ -73,7 +76,7 @@ export default function CookiesPage() {
 
           <h2>5. Changing or withdrawing your choice</h2>
           <p>
-            Use the “Review analytics choice” button above at any time. Declining prevents Google Analytics from loading on future page views on that browser. It does not automatically delete information already processed before withdrawal; browser controls can remove existing cookies and local storage.
+            Use the “Review analytics choice” button above at any time. Declining prevents Google Analytics and PostHog from capturing on future page views on that browser. It does not automatically delete information already processed before withdrawal; browser controls can remove existing cookies and local storage.
           </p>
           <p>
             Consent is stored per browser and device. Private browsing, clearing site data, or using a different browser may cause the preference notice to appear again.
@@ -83,6 +86,7 @@ export default function CookiesPage() {
           <ul>
             <li><a href="https://clerk.com/legal/privacy" target="_blank" rel="noopener noreferrer">Clerk privacy information</a></li>
             <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google privacy information</a></li>
+            <li><a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">PostHog privacy information</a></li>
             <li><a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel privacy information</a></li>
             <li><a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Stripe privacy information</a></li>
             <li><a href="https://razorpay.com/privacy/" target="_blank" rel="noopener noreferrer">Razorpay privacy information</a></li>

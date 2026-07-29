@@ -24,6 +24,14 @@ export const subprocessors = [
     policy: "https://policies.google.com/privacy",
   },
   {
+    provider: "PostHog",
+    purpose: "Optional product analytics, including page and event tracking. Session replay is not enabled",
+    data: "Consent-dependent browser, page, event, interaction, and approximate location data",
+    location: "Provider-controlled global infrastructure",
+    conditional: "Captures only after analytics consent",
+    policy: "https://posthog.com/privacy",
+  },
+  {
     provider: "Stripe",
     purpose: "International payment processing, billing, fraud prevention, and refunds",
     data: "Billing identity, payment and transaction data",

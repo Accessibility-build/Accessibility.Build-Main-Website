@@ -1,19 +1,15 @@
-import posthog from 'posthog-js'
+/**
+ * Client instrumentation.
+ *
+ * PostHog is deliberately NOT initialised here. Next.js runs this file on every
+ * page load, before React mounts and with no access to the analytics-consent
+ * banner, so initialising PostHog at this point started autocapture, exception
+ * capture and session recording for visitors who had not answered the banner —
+ * or who had actively declined. Initialisation now lives in
+ * `components/analytics/posthog-provider.tsx`, which waits for an explicit
+ * "Allow analytics" choice (the same gate Google Analytics already used).
+ *
+ * Anything added to this file must be safe to run without consent.
+ */
 
-const token = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN
-
-if (!token) {
-  if (process.env.NODE_ENV === 'development') {
-    console.error(
-      'NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN is configured'
-    )
-  }
-} else {
-  posthog.init(token, {
-    api_host: '/ingest',
-    ui_host: 'https://us.posthog.com',
-    defaults: '2026-01-30',
-    capture_exceptions: true,
-    debug: process.env.NODE_ENV === 'development',
-  })
-}
+export {}

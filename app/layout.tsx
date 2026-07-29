@@ -14,7 +14,7 @@ import { AdminLayoutWrapper } from "@/components/admin/admin-layout-wrapper"
 import { BrowserSafetyProvider } from "@/components/browser-safety-provider"
 import { clerkThemeAppearance } from "@/lib/clerk-auth-appearance"
 import { AnalyticsConsent } from "@/components/privacy/analytics-consent"
-import { PostHogUserSync } from "@/components/posthog-user-sync"
+import { PostHogProvider } from "@/components/analytics/posthog-provider"
 import { company } from "@/lib/company"
 
 const fontSans = FontSans({
@@ -416,7 +416,8 @@ export default function RootLayout({
         <body className={cn("min-h-screen font-sans antialiased", fontSans.variable)}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <BrowserSafetyProvider />
-            <PostHogUserSync />
+            {/* Loads PostHog (and identifies the user) only after consent. */}
+            <PostHogProvider />
             <SkipLink />
             <AdminLayoutWrapper>
               {children}
