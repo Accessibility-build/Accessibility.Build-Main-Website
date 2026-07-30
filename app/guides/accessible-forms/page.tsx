@@ -540,6 +540,17 @@ export default function AccessibleFormsGuidePage() {
                 <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 hover:underline">
                   3.3.3
                 </Link>
+                . Error handling has more depth than one section can hold — for
+                the full lifecycle, including <em>when</em> to validate, the
+                error-summary focus move, avoiding double-announced errors, and
+                WCAG&nbsp;2.2&apos;s Redundant Entry and Accessible
+                Authentication, see the{" "}
+                <Link
+                  href="/guides/accessible-form-validation"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  accessible form validation &amp; error handling guide
+                </Link>
                 .
               </p>
             </div>

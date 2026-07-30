@@ -45,6 +45,7 @@ import {
   ListTree,
   Grid3x3,
   List,
+  ShieldAlert,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -241,6 +242,17 @@ const guides = [
     topics: ["Labels", "Validation", "Error Messages", "WCAG 3.3.x"],
     href: "/guides/accessible-forms",
     gradient: "from-teal-600 to-cyan-600",
+  },
+  {
+    title: "Accessible Form Validation & Error Handling",
+    description:
+      "Error handling is where forms fail. Learn when to validate (submit vs blur vs keystroke), tying an error to its field with aria-invalid and aria-describedby, the error-summary pattern with focus management, announcing errors through live regions without double-speaking, error suggestion and prevention, and WCAG 2.2's Redundant Entry and Accessible Authentication — mapped to WCAG 3.3.1 through 3.3.9.",
+    icon: ShieldAlert,
+    difficulty: "Intermediate",
+    readingTime: "24 min",
+    topics: ["When to validate", "aria-invalid", "Error summary", "Redundant Entry", "3.3.8 Auth"],
+    href: "/guides/accessible-form-validation",
+    gradient: "from-red-600 to-orange-600",
   },
   {
     title: "Complete Keyboard Accessibility Guide",
