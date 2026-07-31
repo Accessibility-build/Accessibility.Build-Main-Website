@@ -266,7 +266,16 @@ export default function AccessibleColorPalettesGuidePage() {
                   decisions that a static swatch board hides: whether link text
                   is distinguishable, whether a focus indicator is visible,
                   whether chart bars remain readable, and whether error states
-                  have enough contrast against the surface behind them.
+                  have enough contrast against the surface behind them. Color is
+                  only half of chart accessibility — for the data table, SVG
+                  labelling, and never-color-alone series cues, see the{" "}
+                  <Link
+                    href="/guides/accessible-charts"
+                    className="font-medium text-primary underline underline-offset-4"
+                  >
+                    accessible charts &amp; data visualization guide
+                  </Link>
+                  .
                 </p>
               </section>
 

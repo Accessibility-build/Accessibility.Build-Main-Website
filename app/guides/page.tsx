@@ -46,6 +46,7 @@ import {
   Grid3x3,
   List,
   ShieldAlert,
+  BarChart3,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -176,6 +177,17 @@ const guides = [
     topics: ["WCAG Contrast", "Design Tokens", "Dark Mode", "UI States"],
     href: "/guides/accessible-color-palettes",
     gradient: "from-blue-600 to-emerald-600",
+  },
+  {
+    title: "Accessible Charts & Data Visualization",
+    description:
+      "A chart is a picture of data — the accessible version is the data itself, as text. Learn the data table that is the real text alternative, choosing SVG vs canvas vs images, labelling an SVG with role=img and aria-labelledby, never coding a series by color alone, keeping axis labels as scalable text, keyboard-navigable interactive charts and hover-or-focus tooltips, and what charting libraries actually give you.",
+    icon: BarChart3,
+    difficulty: "Intermediate",
+    readingTime: "22 min",
+    topics: ["Data table alternative", "SVG role=img", "Color not alone", "1.4.13 tooltips", "Charting libraries"],
+    href: "/guides/accessible-charts",
+    gradient: "from-emerald-600 to-cyan-600",
   },
   {
     title: "OKLCH + APCA Color Systems",
