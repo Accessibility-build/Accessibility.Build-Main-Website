@@ -47,6 +47,7 @@ import {
   List,
   ShieldAlert,
   BarChart3,
+  Captions,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -177,6 +178,17 @@ const guides = [
     topics: ["WCAG Contrast", "Design Tokens", "Dark Mode", "UI States"],
     href: "/guides/accessible-color-palettes",
     gradient: "from-blue-600 to-emerald-600",
+  },
+  {
+    title: "Accessible Video & Media Players",
+    description:
+      "Accessible media is a stack of parallel alternatives: captions turn the audio into text, audio description turns the picture into sound, and a transcript covers everyone. Learn which alternatives your media owes (prerecorded vs live, audio vs picture), captions vs subtitles, WebVTT and the <track> element, when audio description is required, keyboard-operable players that never autoplay sound, embedded YouTube/Vimeo, and React.",
+    icon: Captions,
+    difficulty: "Intermediate",
+    readingTime: "24 min",
+    topics: ["Captions vs subtitles", "Transcripts", "Audio description", "WebVTT & track", "Keyboard player"],
+    href: "/guides/accessible-video-player",
+    gradient: "from-sky-600 to-indigo-700",
   },
   {
     title: "Accessible Charts & Data Visualization",

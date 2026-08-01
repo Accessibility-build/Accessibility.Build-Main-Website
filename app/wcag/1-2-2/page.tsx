@@ -608,7 +608,16 @@ Captions help deaf and hard-of-hearing viewers.
               ))}
             </ol>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
-              For a structured audit, work through the full{" "}
+              For the full implementation walkthrough — writing real captions
+              instead of auto-captions, adding transcripts and audio description,
+              and building a keyboard-operable player — see the{" "}
+              <Link
+                href="/guides/accessible-video-player"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                accessible video &amp; media player guide
+              </Link>
+              . For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
