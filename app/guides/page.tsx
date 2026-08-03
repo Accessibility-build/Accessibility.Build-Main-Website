@@ -48,6 +48,7 @@ import {
   ShieldAlert,
   BarChart3,
   Captions,
+  Flame,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -255,6 +256,17 @@ const guides = [
     topics: ["Vue 3", ":aria-*", "$attrs", "Teleport", "vitest-axe"],
     href: "/guides/vue-accessibility",
     gradient: "from-emerald-600 to-green-600",
+  },
+  {
+    title: "Svelte Accessibility Guide",
+    description:
+      "Build accessible Svelte 5 and SvelteKit apps: the compiler's built-in a11y warnings, reactive ARIA with runes, focus traps packaged as use: actions, SvelteKit route announcements and focus, live regions that announce, accessible forms, and testing with svelte-check and vitest-axe — mapped to WCAG 2.2 AA.",
+    icon: Flame,
+    difficulty: "Intermediate",
+    readingTime: "22 min",
+    topics: ["Svelte 5", "a11y warnings", "use: actions", "SvelteKit", "svelte-check"],
+    href: "/guides/svelte-accessibility",
+    gradient: "from-orange-500 to-red-600",
   },
   {
     title: "Accessible Forms Guide",

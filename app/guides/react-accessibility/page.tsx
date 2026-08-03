@@ -270,6 +270,13 @@ export default function ReactAccessibilityGuidePage() {
                     className="text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     Angular accessibility guide
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    href="/guides/svelte-accessibility"
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    Svelte accessibility guide
                   </Link>
                   .
                 </p>

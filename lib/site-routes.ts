@@ -117,6 +117,7 @@ const guides: SiteRoute[] = [
   { route: "/guides/react-accessibility", label: "React Accessibility Guide", group: "Guides", lastModified: "2026-07-12", priority: 0.95 },
   { route: "/guides/angular-accessibility", label: "Angular Accessibility Guide", group: "Guides", lastModified: "2026-07-18", priority: 0.95 },
   { route: "/guides/vue-accessibility", label: "Vue Accessibility Guide", group: "Guides", lastModified: "2026-07-19", priority: 0.95 },
+  { route: "/guides/svelte-accessibility", label: "Svelte Accessibility Guide", group: "Guides", lastModified: "2026-08-03", priority: 0.95 },
   { route: "/guides/accessible-forms", label: "Accessible Forms Guide", group: "Guides", lastModified: "2026-07-10", priority: 0.94 },
   { route: "/guides/accessible-form-validation", label: "Accessible Form Validation & Error Handling Guide", group: "Guides", lastModified: "2026-07-30", priority: 0.94 },
   { route: "/guides/keyboard-accessibility", label: "Keyboard Accessibility", group: "Guides", lastModified: "2026-03-15", priority: 0.94 },
