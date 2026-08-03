@@ -799,7 +799,7 @@ export function StateOfAccessibilityClient({
               {data.contextFindings.ariaUsage}% of homepages used ARIA, and
               homepages now carry{" "}
               {data.contextFindings.ariaAttributesPerPage} ARIA attributes on
-              average — up{" "}
+              average, up{" "}
               {data.contextFindings.ariaAttributeIncreaseYearOverYear}% in one
               year. Pages with ARIA averaged{" "}
               {data.contextFindings.averageErrorsWithAria} detected errors
@@ -899,7 +899,7 @@ export function StateOfAccessibilityClient({
                   measure: "Had a skip link",
                   value: `${data.structuralFindings.skipLinkPresent}%`,
                   matters:
-                    "One in ten of those skip links was broken — hidden inaccessibly or pointing at a target that was not there.",
+                    "One in ten of those skip links was broken: hidden inaccessibly, or pointing at a target that was not there.",
                 },
                 {
                   key: "headings",
@@ -967,8 +967,9 @@ export function StateOfAccessibilityClient({
           >
             contrast checker
           </NextLink>
-          . For unlabeled inputs — {data.structuralFindings.formInputsUnlabeled}%
-          of all form inputs in the sample — see the{" "}
+          . For unlabeled inputs, which were{" "}
+          {data.structuralFindings.formInputsUnlabeled}% of all form inputs in
+          the sample, see the{" "}
           <NextLink
             href="/guides/accessible-forms"
             className="font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-300"

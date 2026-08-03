@@ -32,7 +32,7 @@ const webaimUrl = "https://webaim.org/projects/million/";
 export const metadata: Metadata = {
   title: "State of Web Accessibility 2026 | Research Report & Statistics",
   description:
-    "WebAIM Million 2026 found 95.9% of one million homepages had detectable WCAG failures — up from 94.8%, reversing six years of gradual improvement. Source-linked findings, trend data, and downloadable data.",
+    "WebAIM Million 2026 found 95.9% of one million homepages had detectable WCAG failures, up from 94.8%. That reverses six years of gradual improvement. Source-linked findings, trend data, and downloadable data.",
   keywords: [
     "state of web accessibility",
     "accessibility statistics",
@@ -92,13 +92,13 @@ const faqs = [
   {
     question: "What is the most common detected accessibility failure?",
     answer:
-      "Low contrast text was again the most common failure reported by WebAIM in 2026, appearing on 83.9% of the homepages evaluated — a sharp increase from 79.1% in 2025. Homepages averaged 34 distinct instances of low-contrast text, up 15% year over year. The same six failure types have topped the list for seven consecutive years and account for 96% of all detected errors.",
+      "Low contrast text was again the most common failure reported by WebAIM in 2026, appearing on 83.9% of the homepages evaluated, a sharp increase from 79.1% in 2025. Homepages averaged 34 distinct instances of low-contrast text, up 15% year over year. The same six failure types have topped the list for seven consecutive years and account for 96% of all detected errors.",
   },
   {
     question:
       "How many accessibility errors were found on an average homepage?",
     answer:
-      "The WebAIM Million 2026 study detected 56,114,377 distinct errors across the sample — an average of 56.1 automatically detected errors per homepage, a 10.1% increase over the 51 errors per page found in 2025. The number does not include barriers that require manual review or user testing.",
+      "The WebAIM Million 2026 study detected 56,114,377 distinct errors across the sample, an average of 56.1 automatically detected errors per homepage, a 10.1% increase over the 51 errors per page found in 2025. The number does not include barriers that require manual review or user testing.",
   },
   {
     question: "Does an automated accessibility score prove WCAG conformance?",
@@ -235,7 +235,7 @@ export default function StateOfAccessibilityPage() {
               <p className="mt-2 max-w-4xl text-lg font-semibold leading-7 text-slate-950 dark:text-white">
                 95.9% of the one million homepages evaluated had automatically
                 detectable WCAG failures, with 56.1 detected errors per homepage
-                on average — both figures worse than 2025, reversing six
+                on average. Both figures are worse than 2025, reversing six
                 consecutive years of gradual improvement.
               </p>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
@@ -317,8 +317,8 @@ export default function StateOfAccessibilityPage() {
                 </h2>
                 <p className="mt-5 max-w-[68ch] leading-7 text-slate-600 dark:text-slate-400">
                   For six straight years the share of homepages with detectable
-                  failures inched downward. In February 2026 it rose instead —
-                  from 94.8% to 95.9% — while the average number of detected
+                  failures inched downward. In February 2026 it rose instead,
+                  from 94.8% to 95.9%, while the average number of detected
                   errors per homepage climbed 10.1%. Two years of measured
                   progress were erased in a single cycle, putting the web back
                   at roughly its 2024 position.
@@ -340,7 +340,7 @@ export default function StateOfAccessibilityPage() {
                   [
                     "02",
                     "Complexity is outrunning remediation",
-                    "The average homepage contained 1,437 elements in February 2026 — a 22.5% jump in a single year, and nearly double the 2019 figure. ARIA attributes grew 27% in the same period.",
+                    "The average homepage contained 1,437 elements in February 2026, a 22.5% jump in a single year and nearly double the 2019 figure. ARIA attributes grew 27% in the same period.",
                   ],
                   [
                     "03",
