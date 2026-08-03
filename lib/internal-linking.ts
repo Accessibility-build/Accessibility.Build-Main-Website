@@ -72,6 +72,22 @@ const INTERNAL_LINKS: InternalLink[] = [
     priority: 10
   },
   {
+    url: '/research/accessibility-by-technology',
+    title: 'Web Accessibility by Technology Stack',
+    description: 'Average detected accessibility errors per home page by CMS, JavaScript framework, library, web framework, and ecommerce platform, measured across one million sites in February 2026',
+    type: 'resource',
+    keywords: ['most accessible cms', 'cms accessibility', 'wordpress accessibility', 'drupal accessibility', 'squarespace accessibility', 'wix accessibility', 'shopify accessibility', 'magento accessibility', 'accessible javascript framework', 'react accessibility statistics', 'vue accessibility statistics', 'astro accessibility', 'next.js accessibility', 'jquery accessibility', 'bootstrap accessibility', 'carousel accessibility', 'javascript library accessibility', 'platform accessibility comparison', 'accessibility by technology'],
+    priority: 9
+  },
+  {
+    url: '/research/accessibility-by-industry',
+    title: 'Web Accessibility by Industry',
+    description: 'Average detected accessibility errors per home page across 29 industry sectors and 17 languages, showing why regulated sectors such as government and education lead while retail trails',
+    type: 'resource',
+    keywords: ['accessibility by industry', 'accessibility by sector', 'government website accessibility', 'ecommerce accessibility statistics', 'healthcare website accessibility', 'education website accessibility', 'retail accessibility', 'industry benchmark', 'sector accessibility comparison', 'accessibility statistics by industry', 'wcag compliance by industry'],
+    priority: 9
+  },
+  {
     url: '/research/accessibility-lawsuits',
     title: 'Accessibility Lawsuit Tracker',
     description: 'Updated statistics on ADA and accessibility lawsuits by year, industry, and jurisdiction with settlement cost data',

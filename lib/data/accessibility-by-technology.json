@@ -1,0 +1,326 @@
+{
+  "lastUpdated": "2026-08-03",
+  "reportPeriod": "February 2026",
+  "baselineErrors": 56.1,
+  "totalSitesAnalyzed": 1000000,
+  "source": {
+    "name": "WebAIM Million 2026",
+    "url": "https://webaim.org/projects/million/",
+    "published": "2026-03-30",
+    "dataPeriod": "February 2026",
+    "description": "Automated WAVE evaluation of the home pages for the top one million websites in February 2026. Technology and category detection was performed alongside the accessibility scan."
+  },
+  "groups": [
+    {
+      "id": "cms",
+      "label": "Content management systems and site builders",
+      "intro": "Most sites on a mainstream CMS scored better than the million-page average. The platform you publish on sets a floor, not a ceiling.",
+      "rows": [
+        {
+          "name": "Adobe Experience Manager",
+          "homePages": 6572,
+          "avgErrors": 29.9,
+          "vsAverage": -46.7
+        },
+        {
+          "name": "Squarespace",
+          "homePages": 2669,
+          "avgErrors": 33.0,
+          "vsAverage": -41.2
+        },
+        {
+          "name": "Wix",
+          "homePages": 3183,
+          "avgErrors": 33.3,
+          "vsAverage": -40.6
+        },
+        {
+          "name": "Hubspot CMS",
+          "homePages": 4237,
+          "avgErrors": 35.1,
+          "vsAverage": -37.4
+        },
+        {
+          "name": "TYPO3 CMS",
+          "homePages": 5371,
+          "avgErrors": 38.5,
+          "vsAverage": -31.3
+        },
+        {
+          "name": "Drupal",
+          "homePages": 18222,
+          "avgErrors": 41.2,
+          "vsAverage": -26.5
+        },
+        {
+          "name": "Joomla",
+          "homePages": 3981,
+          "avgErrors": 45.7,
+          "vsAverage": -18.6
+        },
+        {
+          "name": "WordPress",
+          "homePages": 252302,
+          "avgErrors": 52.8,
+          "vsAverage": -5.8
+        },
+        {
+          "name": "1C-Bitrix",
+          "homePages": 8769,
+          "avgErrors": 106.5,
+          "vsAverage": 89.8
+        }
+      ]
+    },
+    {
+      "id": "js-frameworks",
+      "label": "JavaScript frameworks",
+      "intro": "The spread here is the widest of any group, from 84% below average to 48% above it.",
+      "rows": [
+        {
+          "name": "Astro",
+          "homePages": 5472,
+          "avgErrors": 9.0,
+          "vsAverage": -84.0
+        },
+        {
+          "name": "Next.js",
+          "homePages": 23863,
+          "avgErrors": 40.9,
+          "vsAverage": -27.1
+        },
+        {
+          "name": "React",
+          "homePages": 45673,
+          "avgErrors": 43.5,
+          "vsAverage": -22.5
+        },
+        {
+          "name": "Nuxt.js",
+          "homePages": 14232,
+          "avgErrors": 54.7,
+          "vsAverage": -2.6
+        },
+        {
+          "name": "Stimulus",
+          "homePages": 8474,
+          "avgErrors": 60.4,
+          "vsAverage": 7.7
+        },
+        {
+          "name": "Vue.js",
+          "homePages": 55049,
+          "avgErrors": 64.6,
+          "vsAverage": 15.1
+        },
+        {
+          "name": "AMP",
+          "homePages": 23261,
+          "avgErrors": 65.0,
+          "vsAverage": 15.9
+        },
+        {
+          "name": "RequireJS",
+          "homePages": 14365,
+          "avgErrors": 70.7,
+          "vsAverage": 26.1
+        },
+        {
+          "name": "AngularJS",
+          "homePages": 6054,
+          "avgErrors": 76.6,
+          "vsAverage": 36.4
+        },
+        {
+          "name": "Firebase",
+          "homePages": 8426,
+          "avgErrors": 82.9,
+          "vsAverage": 47.7
+        }
+      ]
+    },
+    {
+      "id": "web-frameworks",
+      "label": "Web frameworks",
+      "intro": "Bootstrap is on more home pages than any other framework in this group and sits above the average error count.",
+      "rows": [
+        {
+          "name": "Next.js",
+          "homePages": 23863,
+          "avgErrors": 40.9,
+          "vsAverage": -27.1
+        },
+        {
+          "name": "Express",
+          "homePages": 8121,
+          "avgErrors": 52.0,
+          "vsAverage": -7.3
+        },
+        {
+          "name": "ZURB foundation",
+          "homePages": 11905,
+          "avgErrors": 54.3,
+          "vsAverage": -3.3
+        },
+        {
+          "name": "UIkit",
+          "homePages": 6220,
+          "avgErrors": 57.3,
+          "vsAverage": 2.1
+        },
+        {
+          "name": "Microsoft ASP",
+          "homePages": 36141,
+          "avgErrors": 58.4,
+          "vsAverage": 4.1
+        },
+        {
+          "name": "Bootstrap",
+          "homePages": 240869,
+          "avgErrors": 63.3,
+          "vsAverage": 12.8
+        }
+      ]
+    },
+    {
+      "id": "js-libraries",
+      "label": "JavaScript libraries",
+      "intro": "Almost every widely used library in the sample was associated with more detected errors, not fewer. The carousel, lightbox and custom-select widgets are the worst of them.",
+      "rows": [
+        {
+          "name": "Lodash",
+          "homePages": 10586,
+          "avgErrors": 55.3,
+          "vsAverage": -1.5
+        },
+        {
+          "name": "Modernizr",
+          "homePages": 64148,
+          "avgErrors": 57.0,
+          "vsAverage": 1.5
+        },
+        {
+          "name": "jQuery Migrate",
+          "homePages": 180237,
+          "avgErrors": 57.5,
+          "vsAverage": 2.5
+        },
+        {
+          "name": "jQuery",
+          "homePages": 560294,
+          "avgErrors": 64.9,
+          "vsAverage": 15.7
+        },
+        {
+          "name": "Slider Revolution",
+          "homePages": 15871,
+          "avgErrors": 67.2,
+          "vsAverage": 19.8
+        },
+        {
+          "name": "DataTables",
+          "homePages": 6724,
+          "avgErrors": 69.6,
+          "vsAverage": 24.0
+        },
+        {
+          "name": "Lightbox",
+          "homePages": 38846,
+          "avgErrors": 70.5,
+          "vsAverage": 25.7
+        },
+        {
+          "name": "OWL Carousel",
+          "homePages": 83396,
+          "avgErrors": 70.7,
+          "vsAverage": 26.1
+        },
+        {
+          "name": "Slick",
+          "homePages": 98069,
+          "avgErrors": 70.9,
+          "vsAverage": 26.4
+        },
+        {
+          "name": "Underscore.js",
+          "homePages": 34701,
+          "avgErrors": 73.5,
+          "vsAverage": 31.0
+        },
+        {
+          "name": "Swiper",
+          "homePages": 52861,
+          "avgErrors": 74.0,
+          "vsAverage": 31.8
+        },
+        {
+          "name": "jQuery UI",
+          "homePages": 53076,
+          "avgErrors": 79.9,
+          "vsAverage": 42.3
+        },
+        {
+          "name": "prettyPhoto",
+          "homePages": 7810,
+          "avgErrors": 80.4,
+          "vsAverage": 43.3
+        },
+        {
+          "name": "Moment.js",
+          "homePages": 23875,
+          "avgErrors": 80.6,
+          "vsAverage": 43.6
+        },
+        {
+          "name": "Select2",
+          "homePages": 15211,
+          "avgErrors": 82.0,
+          "vsAverage": 46.2
+        },
+        {
+          "name": "Clipboard.js",
+          "homePages": 6619,
+          "avgErrors": 89.2,
+          "vsAverage": 59.0
+        },
+        {
+          "name": "FancyBox",
+          "homePages": 18011,
+          "avgErrors": 90.0,
+          "vsAverage": 60.3
+        },
+        {
+          "name": "SweetAlert2",
+          "homePages": 10571,
+          "avgErrors": 101.6,
+          "vsAverage": 81.0
+        }
+      ]
+    },
+    {
+      "id": "ecommerce",
+      "label": "Ecommerce platforms",
+      "intro": "Every ecommerce platform measured sat above the average, consistent with the Shopping category being one of the worst-performing sectors.",
+      "rows": [
+        {
+          "name": "Shopify",
+          "homePages": 42516,
+          "avgErrors": 75.1,
+          "vsAverage": 33.9
+        },
+        {
+          "name": "Magento",
+          "homePages": 7996,
+          "avgErrors": 75.8,
+          "vsAverage": 35.0
+        },
+        {
+          "name": "Prestashop",
+          "homePages": 5044,
+          "avgErrors": 143.2,
+          "vsAverage": 155.3
+        }
+      ]
+    }
+  ]
+}

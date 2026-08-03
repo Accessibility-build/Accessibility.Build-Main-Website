@@ -80,6 +80,8 @@ const tools: SiteRoute[] = [
 const research: SiteRoute[] = [
   { route: "/research", label: "Research Hub", group: "Research", lastModified: "2026-07-09", priority: 0.92, changeFrequency: "weekly" },
   { route: "/research/state-of-accessibility", label: "State of Accessibility Report", group: "Research", lastModified: "2026-08-03", priority: 0.95 },
+  { route: "/research/accessibility-by-technology", label: "Web Accessibility by Technology Stack", group: "Research", lastModified: "2026-08-03", priority: 0.94 },
+  { route: "/research/accessibility-by-industry", label: "Web Accessibility by Industry", group: "Research", lastModified: "2026-08-03", priority: 0.94 },
   { route: "/research/accessibility-laws", label: "Accessibility Laws by Jurisdiction", group: "Research", lastModified: "2026-03-30", priority: 0.94 },
   { route: "/research/accessibility-lawsuits", label: "Accessibility Lawsuit Tracker", group: "Research", lastModified: "2026-07-09", priority: 0.93 },
 ]

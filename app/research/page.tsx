@@ -5,7 +5,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { BarChart3, Scale, ArrowRight, TrendingUp, CalendarDays, BookOpen, Globe } from "lucide-react"
+import { BarChart3, Scale, ArrowRight, TrendingUp, CalendarDays, BookOpen, Globe, Boxes, Building2 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
 export const metadata: Metadata = {
@@ -38,6 +38,30 @@ const researchReports = [
     href: "/research/state-of-accessibility",
     stat: { label: "Dataset coverage", value: "Up to 1M" },
     gradient: "from-blue-600 to-indigo-600",
+  },
+  {
+    title: "Accessibility by Technology Stack",
+    description:
+      "Which CMS, JavaScript framework, and platform ships the fewest accessibility errors? WordPress, Drupal, React, Vue, Shopify, Bootstrap and 40 more, ranked against the million-page average. The finding that matters: almost every popular widget library correlates with more errors, not fewer.",
+    icon: Boxes,
+    badge: "New 2026",
+    badgeColor:
+      "bg-teal-100 text-teal-800 border-teal-200 dark:bg-teal-900/20 dark:text-teal-400 dark:border-teal-800",
+    href: "/research/accessibility-by-technology",
+    stat: { label: "Technologies compared", value: "46" },
+    gradient: "from-teal-600 to-cyan-600",
+  },
+  {
+    title: "Accessibility by Industry",
+    description:
+      "Government, non-profit and education lead; shopping and sport trail by roughly 29 errors per page. Average detected errors across 29 sectors and 17 languages, with the sectors that have been legally obliged the longest sitting at the top of the table.",
+    icon: Building2,
+    badge: "New 2026",
+    badgeColor:
+      "bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-800",
+    href: "/research/accessibility-by-industry",
+    stat: { label: "Sectors ranked", value: "29" },
+    gradient: "from-purple-600 to-fuchsia-600",
   },
   {
     title: "Accessibility Lawsuit Tracker",

@@ -994,6 +994,25 @@ export function StateOfAccessibilityClient({
           explains why most navigation dropdowns should not use{" "}
           <code>role=&quot;menu&quot;</code> at all.
         </p>
+
+        <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-400">
+          The same February 2026 sample can be cut two other ways. See how the
+          error count varies{" "}
+          <NextLink
+            href="/research/accessibility-by-technology"
+            className="font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-300"
+          >
+            by technology stack
+          </NextLink>{" "}
+          across content management systems, frameworks and libraries, or{" "}
+          <NextLink
+            href="/research/accessibility-by-industry"
+            className="font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-300"
+          >
+            by industry
+          </NextLink>{" "}
+          across 29 sectors.
+        </p>
       </section>
 
       <MethodologySection

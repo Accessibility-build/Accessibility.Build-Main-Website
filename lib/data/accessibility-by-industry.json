@@ -1,0 +1,294 @@
+{
+  "lastUpdated": "2026-08-03",
+  "reportPeriod": "February 2026",
+  "baselineErrors": 56.1,
+  "totalSitesAnalyzed": 1000000,
+  "source": {
+    "name": "WebAIM Million 2026",
+    "url": "https://webaim.org/projects/million/",
+    "published": "2026-03-30",
+    "dataPeriod": "February 2026",
+    "description": "Automated WAVE evaluation of the home pages for the top one million websites in February 2026. Technology and category detection was performed alongside the accessibility scan."
+  },
+  "categoryNote": "Site categories were assigned by WebAIM using Amazon Web Services Bedrock AI, then averaged across the home pages in each category.",
+  "categories": [
+    {
+      "name": "Government",
+      "homePages": 22345,
+      "avgErrors": 42.4,
+      "vsAverage": -24.4
+    },
+    {
+      "name": "Non-Profit/Charity",
+      "homePages": 52884,
+      "avgErrors": 43.0,
+      "vsAverage": -23.3
+    },
+    {
+      "name": "Science",
+      "homePages": 4420,
+      "avgErrors": 45.0,
+      "vsAverage": -19.8
+    },
+    {
+      "name": "Personal Finance",
+      "homePages": 33383,
+      "avgErrors": 45.4,
+      "vsAverage": -19.0
+    },
+    {
+      "name": "Careers",
+      "homePages": 7903,
+      "avgErrors": 46.2,
+      "vsAverage": -17.7
+    },
+    {
+      "name": "Law/Government/Politics",
+      "homePages": 10829,
+      "avgErrors": 46.6,
+      "vsAverage": -17.0
+    },
+    {
+      "name": "Social Media",
+      "homePages": 10110,
+      "avgErrors": 48.8,
+      "vsAverage": -13.0
+    },
+    {
+      "name": "Education",
+      "homePages": 41711,
+      "avgErrors": 48.9,
+      "vsAverage": -12.8
+    },
+    {
+      "name": "Technology & Computing",
+      "homePages": 300245,
+      "avgErrors": 49.0,
+      "vsAverage": -12.6
+    },
+    {
+      "name": "Business",
+      "homePages": 107509,
+      "avgErrors": 52.6,
+      "vsAverage": -6.3
+    },
+    {
+      "name": "Gambling/Casinos",
+      "homePages": 36977,
+      "avgErrors": 54.1,
+      "vsAverage": -3.5
+    },
+    {
+      "name": "Health & Fitness",
+      "homePages": 26648,
+      "avgErrors": 54.4,
+      "vsAverage": -3.1
+    },
+    {
+      "name": "Family & Parenting",
+      "homePages": 5856,
+      "avgErrors": 56.7,
+      "vsAverage": 1.1
+    },
+    {
+      "name": "Gaming",
+      "homePages": 41237,
+      "avgErrors": 56.9,
+      "vsAverage": 1.3
+    },
+    {
+      "name": "Food & Drink",
+      "homePages": 21921,
+      "avgErrors": 57.4,
+      "vsAverage": 2.3
+    },
+    {
+      "name": "Religion & Spirituality",
+      "homePages": 6217,
+      "avgErrors": 57.5,
+      "vsAverage": 2.4
+    },
+    {
+      "name": "Society",
+      "homePages": 4721,
+      "avgErrors": 59.0,
+      "vsAverage": 5.1
+    },
+    {
+      "name": "News/Weather/Information",
+      "homePages": 79157,
+      "avgErrors": 59.2,
+      "vsAverage": 5.5
+    },
+    {
+      "name": "Arts & Entertainment",
+      "homePages": 64224,
+      "avgErrors": 60.4,
+      "vsAverage": 7.7
+    },
+    {
+      "name": "Automotive",
+      "homePages": 24422,
+      "avgErrors": 60.6,
+      "vsAverage": 8.0
+    },
+    {
+      "name": "Pets",
+      "homePages": 5161,
+      "avgErrors": 61.1,
+      "vsAverage": 8.8
+    },
+    {
+      "name": "Adult Content",
+      "homePages": 29843,
+      "avgErrors": 61.8,
+      "vsAverage": 10.2
+    },
+    {
+      "name": "Travel",
+      "homePages": 128711,
+      "avgErrors": 61.9,
+      "vsAverage": 10.4
+    },
+    {
+      "name": "Real Estate",
+      "homePages": 33059,
+      "avgErrors": 63.3,
+      "vsAverage": 12.9
+    },
+    {
+      "name": "Hobbies & Interests",
+      "homePages": 38063,
+      "avgErrors": 63.6,
+      "vsAverage": 13.4
+    },
+    {
+      "name": "Home & Garden",
+      "homePages": 11141,
+      "avgErrors": 65.9,
+      "vsAverage": 17.4
+    },
+    {
+      "name": "Style and Fashion",
+      "homePages": 21184,
+      "avgErrors": 66.7,
+      "vsAverage": 18.9
+    },
+    {
+      "name": "Shopping",
+      "homePages": 95039,
+      "avgErrors": 71.0,
+      "vsAverage": 26.6
+    },
+    {
+      "name": "Sports",
+      "homePages": 15640,
+      "avgErrors": 71.4,
+      "vsAverage": 27.3
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "homePages": 521826,
+      "avgErrors": 46.0,
+      "vsAverage": -18.0
+    },
+    {
+      "name": "Dutch",
+      "homePages": 13292,
+      "avgErrors": 46.5,
+      "vsAverage": -17.1
+    },
+    {
+      "name": "German",
+      "homePages": 36134,
+      "avgErrors": 46.9,
+      "vsAverage": -16.4
+    },
+    {
+      "name": "French",
+      "homePages": 25036,
+      "avgErrors": 58.5,
+      "vsAverage": 4.2
+    },
+    {
+      "name": "No language specified",
+      "homePages": 127455,
+      "avgErrors": 60.3,
+      "vsAverage": 7.5
+    },
+    {
+      "name": "Portuguese",
+      "homePages": 26278,
+      "avgErrors": 61.1,
+      "vsAverage": 8.8
+    },
+    {
+      "name": "Japanese",
+      "homePages": 23943,
+      "avgErrors": 62.2,
+      "vsAverage": 10.8
+    },
+    {
+      "name": "Spanish",
+      "homePages": 35228,
+      "avgErrors": 64.3,
+      "vsAverage": 14.7
+    },
+    {
+      "name": "Italian",
+      "homePages": 12615,
+      "avgErrors": 64.4,
+      "vsAverage": 14.8
+    },
+    {
+      "name": "Turkish",
+      "homePages": 11248,
+      "avgErrors": 66.2,
+      "vsAverage": 17.9
+    },
+    {
+      "name": "Polish",
+      "homePages": 10059,
+      "avgErrors": 68.7,
+      "vsAverage": 22.5
+    },
+    {
+      "name": "Arabic",
+      "homePages": 5413,
+      "avgErrors": 69.3,
+      "vsAverage": 23.5
+    },
+    {
+      "name": "Indonesian",
+      "homePages": 15161,
+      "avgErrors": 72.5,
+      "vsAverage": 29.2
+    },
+    {
+      "name": "Vietnamese",
+      "homePages": 10847,
+      "avgErrors": 74.5,
+      "vsAverage": 32.8
+    },
+    {
+      "name": "Russian",
+      "homePages": 44288,
+      "avgErrors": 78.1,
+      "vsAverage": 39.2
+    },
+    {
+      "name": "Korean",
+      "homePages": 6628,
+      "avgErrors": 94.6,
+      "vsAverage": 68.7
+    },
+    {
+      "name": "Chinese",
+      "homePages": 17909,
+      "avgErrors": 136.2,
+      "vsAverage": 142.8
+    }
+  ]
+}
