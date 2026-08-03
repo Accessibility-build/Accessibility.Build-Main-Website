@@ -27,19 +27,20 @@ import snapshotData from "@/lib/data/accessibility-snapshot.json";
 import { StateOfAccessibilityClient } from "./StateOfAccessibilityClient";
 
 const reportUrl = "https://accessibility.build/research/state-of-accessibility";
-const webaimUrl = "https://webaim.org/projects/million/2025";
+const webaimUrl = "https://webaim.org/projects/million/";
 
 export const metadata: Metadata = {
   title: "State of Web Accessibility 2026 | Research Report & Statistics",
   description:
-    "An independently reviewed synthesis of WebAIM Million 2025 and HTTP Archive accessibility research, with source-linked findings and downloadable data.",
+    "WebAIM Million 2026 found 95.9% of one million homepages had detectable WCAG failures — up from 94.8%, reversing six years of gradual improvement. Source-linked findings, trend data, and downloadable data.",
   keywords: [
     "state of web accessibility",
     "accessibility statistics",
-    "WebAIM Million 2025",
+    "WebAIM Million 2026",
     "web accessibility report",
     "WCAG failure statistics",
     "automated accessibility testing data",
+    "web accessibility trends 2026",
   ],
   authors: [
     {
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     url: reportUrl,
     type: "article",
     publishedTime: "2026-02-15T00:00:00Z",
-    modifiedTime: "2026-07-12T00:00:00Z",
+    modifiedTime: "2026-08-03T00:00:00Z",
     authors: ["https://accessibility.build"],
     images: [
       {
@@ -81,28 +82,33 @@ const faqs = [
     question:
       "What percentage of homepages have detectable accessibility failures?",
     answer:
-      "WebAIM found automatically detectable WCAG 2 failures on 94.8% of the one million homepages evaluated in February 2025. This is a homepage-level automated result, not a full-site conformance assessment.",
+      "WebAIM found automatically detectable WCAG 2 failures on 95.9% of the one million homepages evaluated in February 2026, up from 94.8% in 2025. This is a homepage-level automated result, not a full-site conformance assessment. Because only automatically detectable failures were counted, the rate of full WCAG 2 A/AA conformance is certainly lower than the remaining 4.1%.",
+  },
+  {
+    question: "Did web accessibility get better or worse in 2026?",
+    answer:
+      "Worse, by both of WebAIM's headline measures. The share of homepages with detected WCAG failures rose from 94.8% to 95.9%, and the average number of detected errors per homepage rose 10.1%, from 51 to 56.1. WebAIM describes this as reversing a trend of small improvements in each of the previous six years, returning the web to roughly its 2024 position. WebAIM attributes the reversal primarily to rapidly increasing page complexity and ARIA usage, and suggests it reflects broader shifts in web development including heavier reliance on third-party frameworks and libraries and automated or AI-assisted coding practices.",
   },
   {
     question: "What is the most common detected accessibility failure?",
     answer:
-      "Low contrast text was the most common failure reported by WebAIM in 2025, appearing on 79.1% of the homepages evaluated.",
+      "Low contrast text was again the most common failure reported by WebAIM in 2026, appearing on 83.9% of the homepages evaluated — a sharp increase from 79.1% in 2025. Homepages averaged 34 distinct instances of low-contrast text, up 15% year over year. The same six failure types have topped the list for seven consecutive years and account for 96% of all detected errors.",
   },
   {
     question:
       "How many accessibility errors were found on an average homepage?",
     answer:
-      "The WebAIM Million 2025 study reported an average of 51 automatically detected errors per homepage. The number does not include barriers that require manual review or user testing.",
+      "The WebAIM Million 2026 study detected 56,114,377 distinct errors across the sample — an average of 56.1 automatically detected errors per homepage, a 10.1% increase over the 51 errors per page found in 2025. The number does not include barriers that require manual review or user testing.",
   },
   {
     question: "Does an automated accessibility score prove WCAG conformance?",
     answer:
-      "No. Automated tools evaluate only a subset of WCAG requirements. Manual testing, assistive-technology testing, and evaluation of real user journeys remain necessary.",
+      "No. Automated tools evaluate only a subset of WCAG requirements. WebAIM is explicit that the absence of detected errors does not indicate that a page is accessible or conformant. Manual testing, assistive-technology testing, and evaluation of real user journeys remain necessary.",
   },
   {
     question: "Where does this report's data come from?",
     answer:
-      "The primary measurements come from WebAIM Million 2025. HTTP Archive's 2024 accessibility chapter provides separate supporting context; the two datasets are not merged into a single sample.",
+      "The primary measurements come from WebAIM Million 2026, published 30 March 2026 and based on a February 2026 crawl evaluated with the WAVE engine against WCAG 2.2 A/AA. The HTTP Archive Web Almanac 2025 accessibility chapter, published in January 2026 and based on Lighthouse and axe-core, provides separate supporting context; the two datasets are not merged into a single sample.",
   },
 ];
 
@@ -112,6 +118,7 @@ const reportLinks = [
   { href: "#barriers", label: "Common failures" },
   { href: "#trends", label: "Trends" },
   { href: "#context", label: "Interpretation" },
+  { href: "#why", label: "What changed" },
   { href: "#methodology", label: "Methodology" },
   { href: "#downloads", label: "Downloads" },
 ];
@@ -128,7 +135,7 @@ export default function StateOfAccessibilityPage() {
       />
       <ArticleStructuredData
         headline="State of Web Accessibility 2026"
-        description="An independently reviewed synthesis of WebAIM Million 2025 and HTTP Archive accessibility research."
+        description="An independently reviewed synthesis of WebAIM Million 2026 and HTTP Archive accessibility research."
         author={{
           name: "Accessibility.build",
           url: "https://accessibility.build",
@@ -139,7 +146,7 @@ export default function StateOfAccessibilityPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-02-15"
-        dateModified="2026-07-12"
+        dateModified="2026-08-03"
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={2400}
@@ -181,8 +188,8 @@ export default function StateOfAccessibilityPage() {
             <div className="mt-6 flex flex-wrap gap-2">
               <Badge variant="secondary">Research report</Badge>
               <Badge variant="secondary">Published 2026</Badge>
-              <Badge variant="outline">Primary data: Feb 2025</Badge>
-              <Badge variant="outline">Reviewed: Jul 12, 2026</Badge>
+              <Badge variant="outline">Primary data: Feb 2026</Badge>
+              <Badge variant="outline">Reviewed: Aug 3, 2026</Badge>
             </div>
 
             <div className="mt-6 max-w-4xl">
@@ -226,9 +233,10 @@ export default function StateOfAccessibilityPage() {
                 Headline finding
               </p>
               <p className="mt-2 max-w-4xl text-lg font-semibold leading-7 text-slate-950 dark:text-white">
-                94.8% of the one million homepages evaluated had automatically
-                detectable WCAG failures, with 51 detected errors per homepage
-                on average.
+                95.9% of the one million homepages evaluated had automatically
+                detectable WCAG failures, with 56.1 detected errors per homepage
+                on average — both figures worse than 2025, reversing six
+                consecutive years of gradual improvement.
               </p>
               <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
                 Source:{" "}
@@ -238,7 +246,7 @@ export default function StateOfAccessibilityPage() {
                   rel="noopener noreferrer"
                   className="font-medium text-teal-800 underline-offset-4 hover:underline dark:text-teal-300"
                 >
-                  WebAIM Million 2025
+                  WebAIM Million 2026
                 </a>
                 . Automated results do not establish full WCAG conformance.
               </p>
@@ -264,7 +272,7 @@ export default function StateOfAccessibilityPage() {
                   <CalendarDays className="h-4 w-4" aria-hidden="true" />
                   Primary period
                 </dt>
-                <dd className="mt-1.5 font-semibold">February 2025</dd>
+                <dd className="mt-1.5 font-semibold">February 2026</dd>
               </div>
             </dl>
           </div>
@@ -305,13 +313,15 @@ export default function StateOfAccessibilityPage() {
                   id="summary-heading"
                   className="mt-2 text-3xl font-semibold text-slate-950 dark:text-white"
                 >
-                  Progress is visible, but widespread barriers remain
+                  In 2026 the web moved backwards
                 </h2>
                 <p className="mt-5 max-w-[68ch] leading-7 text-slate-600 dark:text-slate-400">
-                  Automatically detectable failures appeared on nearly nineteen
-                  out of every twenty homepages in the 2025 WebAIM sample. The
-                  percentage has improved since 2019, but the pace is gradual
-                  and the modern homepage continues to grow more complex.
+                  For six straight years the share of homepages with detectable
+                  failures inched downward. In February 2026 it rose instead —
+                  from 94.8% to 95.9% — while the average number of detected
+                  errors per homepage climbed 10.1%. Two years of measured
+                  progress were erased in a single cycle, putting the web back
+                  at roughly its 2024 position.
                 </p>
                 <p className="mt-4 max-w-[68ch] text-sm leading-6 text-slate-500 dark:text-slate-400">
                   This report keeps measurements from different studies separate
@@ -324,13 +334,13 @@ export default function StateOfAccessibilityPage() {
                 {[
                   [
                     "01",
-                    "Recurring failures dominate",
-                    "Six categories account for 96% of the automatically detected errors in WebAIM's sample.",
+                    "The same six failures, for a seventh year",
+                    "Six categories account for 96% of the automatically detected errors in WebAIM's sample, and the list has not changed in seven years. Four of the six became more common in 2026.",
                   ],
                   [
                     "02",
-                    "Complexity increases the burden",
-                    "The average homepage contained 1,257 elements in 2025, 61% more than in 2019.",
+                    "Complexity is outrunning remediation",
+                    "The average homepage contained 1,437 elements in February 2026 — a 22.5% jump in a single year, and nearly double the 2019 figure. ARIA attributes grew 27% in the same period.",
                   ],
                   [
                     "03",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import NextLink from "next/link";
 import {
   Bar,
   BarChart,
@@ -48,7 +49,9 @@ interface AccessibilityData {
     totalSitesAnalyzed: number;
     percentWithErrors: number;
     averageErrorsPerPage: number;
+    totalErrorsDetected: number;
     errorDensity: number;
+    elementsPerError: number;
     fiveOrFewerErrors: number;
     tenOrFewerErrors: number;
   };
@@ -56,6 +59,7 @@ interface AccessibilityData {
     id: string;
     name: string;
     percentage: number;
+    previousPercentage: number;
     wcagCriteria: string;
     description: string;
   }[];
@@ -67,11 +71,25 @@ interface AccessibilityData {
   contextFindings: {
     averageElementsPerPage: number;
     complexityIncreaseYearOverYear: number;
-    complexityIncreaseSince2019: number;
     ariaUsage: number;
+    ariaAttributesPerPage: number;
+    ariaAttributeIncreaseYearOverYear: number;
     averageErrorsWithAria: number;
     averageErrorsWithoutAria: number;
     medianLighthouseScore: number;
+  };
+  structuralFindings: {
+    regionsPresent: number;
+    mainLandmarkPresent: number;
+    skipLinkPresent: number;
+    multipleH1: number;
+    skippedHeadingLevels: number;
+    noHeadings: number;
+    ambiguousLinkText: number;
+    formInputsUnlabeled: number;
+    imagesMissingAlt: number;
+    ariaMenuPages: number;
+    ariaMenuWithBarriers: number;
   };
 }
 
@@ -88,7 +106,7 @@ interface MetricProps {
 
 const REPORT_URL =
   "https://accessibility.build/research/state-of-accessibility";
-const WEBAIM_URL = "https://webaim.org/projects/million/2025";
+const WEBAIM_URL = "https://webaim.org/projects/million/";
 
 function Metric({ value, label, detail, icon: Icon }: MetricProps) {
   return (
@@ -107,6 +125,20 @@ function Metric({ value, label, detail, icon: Icon }: MetricProps) {
       </p>
     </article>
   );
+}
+
+/**
+ * Renders a year-over-year change in percentage points using words rather than
+ * a bare +/- sign, so the direction never depends on colour or on a screen
+ * reader announcing the sign glyph (WCAG 1.4.1).
+ */
+function formatDelta(delta: number) {
+  const rounded = Math.round(delta * 10) / 10;
+  if (rounded === 0) return "no change";
+  const magnitude = Math.abs(rounded);
+  return `${rounded > 0 ? "up" : "down"} ${magnitude} ${
+    magnitude === 1 ? "pt" : "pts"
+  }`;
 }
 
 function downloadBlobAs(blob: Blob, filename: string) {
@@ -177,12 +209,20 @@ export function StateOfAccessibilityClient({
       `Homepages analyzed,${data.keyFindings.totalSitesAnalyzed}`,
       `Homepages with detectable WCAG failures,${data.keyFindings.percentWithErrors}%`,
       `Average detected errors per homepage,${data.keyFindings.averageErrorsPerPage}`,
+      `Total distinct errors detected,${data.keyFindings.totalErrorsDetected}`,
       `Page elements with a detected error,${data.keyFindings.errorDensity}%`,
+      `Homepages with 5 or fewer errors,${data.keyFindings.fiveOrFewerErrors}%`,
+      `Homepages with 10 or fewer errors,${data.keyFindings.tenOrFewerErrors}%`,
+      `Average page elements per homepage,${data.contextFindings.averageElementsPerPage}`,
+      `Homepages using ARIA,${data.contextFindings.ariaUsage}%`,
       "",
       "COMMON DETECTED FAILURES",
-      "Failure,WCAG criterion,Percentage of homepages",
+      "Failure,WCAG criterion,Percentage of homepages,Percentage in 2025,Change in percentage points",
       ...sortedViolations.map(
-        (item) => `"${item.name}",${item.wcagCriteria},${item.percentage}%`,
+        (item) =>
+          `"${item.name}",${item.wcagCriteria},${item.percentage}%,${item.previousPercentage}%,${
+            Math.round((item.percentage - item.previousPercentage) * 10) / 10
+          }`,
       ),
       "",
       "YEAR-OVER-YEAR",
@@ -236,6 +276,11 @@ export function StateOfAccessibilityClient({
           `${data.keyFindings.averageErrorsPerPage} per homepage`,
         ],
         ["Elements with a detected error", `${data.keyFindings.errorDensity}%`],
+        [
+          "Average page elements",
+          data.contextFindings.averageElementsPerPage.toLocaleString(),
+        ],
+        ["Homepages using ARIA", `${data.contextFindings.ariaUsage}%`],
       ],
       theme: "striped",
       headStyles: { fillColor: [15, 118, 110] },
@@ -248,11 +293,12 @@ export function StateOfAccessibilityClient({
     doc.text("Six most common detected failures", 14, firstTableEnd + 12);
     autoTable(doc, {
       startY: firstTableEnd + 16,
-      head: [["Failure", "WCAG", "% of homepages"]],
+      head: [["Failure", "WCAG", "% of homepages", "Change vs 2025"]],
       body: sortedViolations.map((item) => [
         item.name,
         item.wcagCriteria,
         `${item.percentage}%`,
+        formatDelta(item.percentage - item.previousPercentage),
       ]),
       theme: "striped",
       headStyles: { fillColor: [15, 118, 110] },
@@ -281,7 +327,7 @@ export function StateOfAccessibilityClient({
     doc.setFontSize(10);
     doc.setTextColor(70);
     const methodology = doc.splitTextToSize(
-      "This report is an independent synthesis of public research. WebAIM evaluated one million homepages using automated tests in February 2025. Automated detection covers only a subset of WCAG requirements, evaluates homepages rather than complete websites, and cannot establish conformance. HTTP Archive findings are presented as separate context and are not merged into the WebAIM sample.",
+      "This report is an independent synthesis of public research. WebAIM evaluated one million homepages using automated tests in February 2026, publishing on 30 March 2026. Automated detection covers only a subset of WCAG requirements, evaluates homepages rather than complete websites, and cannot establish conformance. HTTP Archive Web Almanac 2025 findings are presented as separate context and are not merged into the WebAIM sample.",
       180,
     );
     doc.text(methodology, 14, trendTableEnd + 22);
@@ -306,7 +352,7 @@ export function StateOfAccessibilityClient({
       <table className="w-full min-w-[620px] border-collapse text-sm">
         <caption className="sr-only">
           Six most common automatically detected WCAG failures in the WebAIM
-          Million 2025 study
+          Million 2026 study, with the change in percentage points since 2025
         </caption>
         <thead>
           <tr className="border-b border-slate-300 dark:border-slate-700">
@@ -321,6 +367,9 @@ export function StateOfAccessibilityClient({
             </th>
             <th scope="col" className="px-3 py-3 text-right font-semibold">
               Homepages
+            </th>
+            <th scope="col" className="px-3 py-3 text-right font-semibold">
+              Change vs 2025
             </th>
           </tr>
         </thead>
@@ -347,6 +396,15 @@ export function StateOfAccessibilityClient({
               <td className="px-3 py-3 text-right font-semibold tabular-nums">
                 {item.percentage}%
               </td>
+              <td
+                className={`px-3 py-3 text-right tabular-nums ${
+                  item.percentage > item.previousPercentage
+                    ? "text-amber-700 dark:text-amber-300"
+                    : "text-teal-700 dark:text-teal-300"
+                }`}
+              >
+                {formatDelta(item.percentage - item.previousPercentage)}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -359,7 +417,7 @@ export function StateOfAccessibilityClient({
       <table className="w-full min-w-[560px] border-collapse text-sm">
         <caption className="sr-only">
           WebAIM Million year-over-year detectable failure and average error
-          data
+          data, 2019 to 2026
         </caption>
         <thead>
           <tr className="border-b border-slate-300 dark:border-slate-700">
@@ -421,7 +479,7 @@ export function StateOfAccessibilityClient({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 hover:underline dark:text-teal-300"
           >
-            WebAIM Million 2025
+            WebAIM Million 2026
             <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
           </a>
         </div>
@@ -436,19 +494,19 @@ export function StateOfAccessibilityClient({
           <Metric
             value={`${data.keyFindings.percentWithErrors}%`}
             label="With detectable WCAG failures"
-            detail="Automatically detectable failures only; not a full conformance result."
+            detail="Up from 94.8% in 2025. Automatically detectable failures only; not a full conformance result."
             icon={AlertTriangle}
           />
           <Metric
             value={String(data.keyFindings.averageErrorsPerPage)}
             label="Average errors per homepage"
-            detail="The mean number of detected errors in the 2025 sample."
+            detail="The mean across the February 2026 sample, up 10.1% from 51 in 2025."
             icon={ScanSearch}
           />
           <Metric
             value={`${data.keyFindings.errorDensity}%`}
             label="Elements with detected errors"
-            detail="About one detected error for every 24 page elements."
+            detail={`About one detected error for every ${data.keyFindings.elementsPerError} page elements.`}
             icon={Gauge}
           />
         </div>
@@ -463,18 +521,22 @@ export function StateOfAccessibilityClient({
           title="Six common detectable failures"
           titleId="barriers-heading"
           headingLevel={2}
-          description="The six failure types reported by WebAIM across the one-million-homepage sample."
-          insight="Low contrast remains the most widespread detected issue. Together, these six categories account for 96% of all errors WebAIM detected."
-          source="WebAIM Million 2025"
+          description="The six failure types reported by WebAIM across the one-million-homepage sample, and how each moved since 2025."
+          insight="Low contrast remains the most widespread detected issue and grew sharply, from 79.1% to 83.9% of homepages. Four of the six categories became more common in 2026; only missing alternative text and missing document language improved. Together these six account for 96% of all errors WebAIM detected, and the list has been unchanged for seven years."
+          source="WebAIM Million 2026"
           sourceUrl={WEBAIM_URL}
           dataTable={violationsTable}
           downloadData={{
-            filename: "common-detected-accessibility-failures-2025",
+            filename: "common-detected-accessibility-failures-2026",
             data: sortedViolations.map((item, index) => ({
               Rank: index + 1,
               Failure: item.name,
               WCAG: item.wcagCriteria,
               "Percentage of homepages": item.percentage,
+              "Percentage in 2025": item.previousPercentage,
+              "Change in percentage points":
+                Math.round((item.percentage - item.previousPercentage) * 10) /
+                10,
             })),
           }}
         >
@@ -562,16 +624,16 @@ export function StateOfAccessibilityClient({
         className="scroll-mt-40"
       >
         <ChartSection
-          title="Progress remains gradual"
+          title="Six years of progress, undone in one"
           titleId="trends-heading"
           headingLevel={2}
-          description="WebAIM Million results for detectable failures and average errors per homepage, 2019-2025."
-          insight="The share of homepages with detectable failures improved by 3 percentage points from 2019 to 2025, but 94.8% still had at least one detected failure."
-          source="WebAIM Million 2025"
+          description="WebAIM Million results for detectable failures and average errors per homepage, 2019-2026."
+          insight="Every year from 2020 to 2025 improved on the one before it. 2026 broke the pattern: detectable failures rose from 94.8% to 95.9% and average errors rose from 51 to 56.1, returning both measures to roughly where they stood in 2024."
+          source="WebAIM Million 2026"
           sourceUrl={WEBAIM_URL}
           dataTable={trendsTable}
           downloadData={{
-            filename: "webaim-million-year-over-year-2019-2025",
+            filename: "webaim-million-year-over-year-2019-2026",
             data: data.yearOverYearTrends.map((item) => ({
               Year: item.year,
               "Percentage with failures": item.percentWithErrors,
@@ -608,7 +670,7 @@ export function StateOfAccessibilityClient({
           <div
             className="hidden h-[410px] md:block"
             role="img"
-            aria-label="Line chart showing the percentage of homepages with detectable failures and the average errors per homepage from 2019 through 2025"
+            aria-label="Line chart showing the percentage of homepages with detectable failures and the average errors per homepage from 2019 through 2026, with both measures worsening in 2026"
           >
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
@@ -720,9 +782,9 @@ export function StateOfAccessibilityClient({
                 elements
               </strong>{" "}
               per homepage, up{" "}
-              {data.contextFindings.complexityIncreaseYearOverYear}% in one year
-              and {data.contextFindings.complexityIncreaseSince2019}% since
-              2019.
+              {data.contextFindings.complexityIncreaseYearOverYear}% in a single
+              year and nearly double the 2019 figure. More markup means more
+              places for a barrier to appear.
             </p>
           </article>
           <article className="bg-white p-6 dark:bg-slate-950">
@@ -734,11 +796,15 @@ export function StateOfAccessibilityClient({
               ARIA is not a shortcut
             </h3>
             <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
-              {data.contextFindings.ariaUsage}% of homepages used ARIA. Pages
-              with ARIA averaged {data.contextFindings.averageErrorsWithAria}{" "}
-              detected errors versus{" "}
-              {data.contextFindings.averageErrorsWithoutAria} without it, an
-              association that also reflects greater page complexity.
+              {data.contextFindings.ariaUsage}% of homepages used ARIA, and
+              homepages now carry{" "}
+              {data.contextFindings.ariaAttributesPerPage} ARIA attributes on
+              average — up{" "}
+              {data.contextFindings.ariaAttributeIncreaseYearOverYear}% in one
+              year. Pages with ARIA averaged{" "}
+              {data.contextFindings.averageErrorsWithAria} detected errors
+              versus {data.contextFindings.averageErrorsWithoutAria} without it,
+              an association that also reflects greater page complexity.
             </p>
           </article>
           <article className="bg-white p-6 dark:bg-slate-950">
@@ -750,13 +816,183 @@ export function StateOfAccessibilityClient({
               A score is not conformance
             </h3>
             <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
-              HTTP Archive reported a median Lighthouse accessibility score of{" "}
-              {data.contextFindings.medianLighthouseScore} in 2024. Lighthouse
+              The HTTP Archive Web Almanac reported a median Lighthouse
+              accessibility score above{" "}
+              {data.contextFindings.medianLighthouseScore} in 2025, improving 1%
+              year over year even as WebAIM&apos;s error counts rose. Lighthouse
               tests only part of WCAG, so even a perfect automated score cannot
               establish accessibility.
             </p>
           </article>
         </div>
+      </section>
+
+      <section
+        id="why"
+        aria-labelledby="why-heading"
+        className="scroll-mt-40"
+      >
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold text-teal-700 dark:text-teal-300">
+            What changed
+          </p>
+          <h2
+            id="why-heading"
+            className="mt-1 text-2xl font-semibold text-slate-950 dark:text-white"
+          >
+            Why 2026 moved backwards
+          </h2>
+          <p className="mt-3 leading-7 text-slate-600 dark:text-slate-400">
+            WebAIM attributes the reversal primarily to two things that grew
+            faster than remediation did: page complexity and ARIA. Homepages
+            gained 22.5% more elements in a single year and 27% more ARIA
+            attributes. In WebAIM&apos;s own reading, this likely reflects
+            heavier reliance on third-party frameworks and libraries alongside
+            automated and AI-assisted coding practices. Their conclusion is that
+            accessibility at scale will need both better practices and simpler
+            systems.
+          </p>
+          <p className="mt-4 leading-7 text-slate-600 dark:text-slate-400">
+            The underlying structural measures below show where that complexity
+            lands. They are drawn from the same February 2026 sample and are
+            useful as a benchmark when auditing your own pages.
+          </p>
+        </div>
+
+        <div className="mt-7 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+          <table className="w-full min-w-[560px] border-collapse text-sm">
+            <caption className="sr-only">
+              Structural accessibility measures across one million homepages in
+              February 2026, and why each one matters
+            </caption>
+            <thead>
+              <tr className="border-b border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
+                <th scope="col" className="px-3 py-3 text-left font-semibold">
+                  Measure
+                </th>
+                <th scope="col" className="px-3 py-3 text-right font-semibold">
+                  Homepages
+                </th>
+                <th scope="col" className="px-3 py-3 text-left font-semibold">
+                  Why it matters
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                {
+                  key: "regions",
+                  measure: "Had at least one landmark region",
+                  value: `${data.structuralFindings.regionsPresent}%`,
+                  matters:
+                    "Landmarks let screen reader users jump straight to a section instead of reading linearly.",
+                },
+                {
+                  key: "main",
+                  measure: "Had a main element or main landmark",
+                  value: `${data.structuralFindings.mainLandmarkPresent}%`,
+                  matters:
+                    "Fewer than half of homepages mark their primary content, so most offer no reliable jump target.",
+                },
+                {
+                  key: "skip",
+                  measure: "Had a skip link",
+                  value: `${data.structuralFindings.skipLinkPresent}%`,
+                  matters:
+                    "One in ten of those skip links was broken — hidden inaccessibly or pointing at a target that was not there.",
+                },
+                {
+                  key: "headings",
+                  measure: "Had skipped heading levels",
+                  value: `${data.structuralFindings.skippedHeadingLevels}%`,
+                  matters:
+                    "Headings are the primary way screen reader users navigate; skipped levels misrepresent the document outline.",
+                },
+                {
+                  key: "h1",
+                  measure: "Had more than one h1",
+                  value: `${data.structuralFindings.multipleH1}%`,
+                  matters:
+                    "Up from 16.3% in 2025. Multiple top-level headings obscure what the page is actually about.",
+                },
+                {
+                  key: "ambiguous",
+                  measure: "Had ambiguous link text",
+                  value: `${data.structuralFindings.ambiguousLinkText}%`,
+                  matters:
+                    "Links such as “click here” or “more” carry no meaning when read out of context in a links list.",
+                },
+                {
+                  key: "menus",
+                  measure: "Used an ARIA menu role",
+                  value: `${data.structuralFindings.ariaMenuPages}%`,
+                  matters: `${data.structuralFindings.ariaMenuWithBarriers}% of those menus introduced barriers through missing menu markup or interactions.`,
+                },
+              ].map((row) => (
+                <tr
+                  key={row.key}
+                  className="border-b border-slate-200 last:border-0 dark:border-slate-800"
+                >
+                  <th
+                    scope="row"
+                    className="px-3 py-3 text-left font-medium text-slate-900 dark:text-white"
+                  >
+                    {row.measure}
+                  </th>
+                  <td className="px-3 py-3 text-right font-semibold tabular-nums">
+                    {row.value}
+                  </td>
+                  <td className="px-3 py-3 text-slate-600 dark:text-slate-400">
+                    {row.matters}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mt-5 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-400">
+          Each of these maps onto a fixable pattern. For the contrast failures
+          that top the list, see{" "}
+          <NextLink
+            href="/wcag/1-4-3"
+            className="font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-300"
+          >
+            1.4.3 Contrast (Minimum)
+          </NextLink>{" "}
+          and the{" "}
+          <NextLink
+            href="/tools/contrast-checker"
+            className="font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-300"
+          >
+            contrast checker
+          </NextLink>
+          . For unlabeled inputs — {data.structuralFindings.formInputsUnlabeled}%
+          of all form inputs in the sample — see the{" "}
+          <NextLink
+            href="/guides/accessible-forms"
+            className="font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-300"
+          >
+            accessible forms guide
+          </NextLink>
+          . For broken skip links, see{" "}
+          <NextLink
+            href="/wcag/2-4-1"
+            className="font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-300"
+          >
+            2.4.1 Bypass Blocks
+          </NextLink>
+          . And for the ARIA menus that introduced barriers on a fifth of the
+          pages using them, the{" "}
+          <NextLink
+            href="/guides/accessible-menu"
+            className="font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-300"
+          >
+            accessible menu &amp; menu button guide
+          </NextLink>{" "}
+          explains why most navigation dropdowns should not use{" "}
+          <code>role=&quot;menu&quot;</code> at all.
+        </p>
       </section>
 
       <MethodologySection
@@ -767,12 +1003,13 @@ export function StateOfAccessibilityClient({
         defaultExpanded
         dataSources={methodologyDataSources}
         sampleSize="1,000,000 homepages in the primary WebAIM dataset"
-        dateRange={`${data.reportPeriod} primary sample; June 2024 HTTP Archive context`}
+        dateRange={`${data.reportPeriod} primary sample; 2025 HTTP Archive context`}
         limitations={[
           "Automated tests evaluate only a subset of WCAG requirements and cannot establish conformance.",
           "The primary WebAIM sample covers homepages, not every template or user journey on each website.",
-          "HTTP Archive findings are presented as separate context and are not merged into the WebAIM sample.",
-          "Observed associations, including the relationship between ARIA usage and detected errors, do not prove causation.",
+          "HTTP Archive findings are presented as separate context and are not merged into the WebAIM sample. The two sources use different engines (WAVE versus Lighthouse and axe-core) and can move in different directions in the same period.",
+          "Observed associations, including the relationship between ARIA usage and detected errors, do not prove causation. WebAIM notes that pages using more ARIA were also more complex.",
+          "Year-over-year comparisons reflect a changing sample: the underlying one-million-site list is rebuilt from Tranco rankings each year, so some movement reflects which sites were measured.",
         ]}
         lastUpdated={data.lastUpdated}
       />
