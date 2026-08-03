@@ -88,6 +88,38 @@ const INTERNAL_LINKS: InternalLink[] = [
     priority: 9
   },
   {
+    url: '/research/disability-statistics',
+    title: 'US Disability Prevalence',
+    description: 'How many adults report a disability, prevalence by type from cognitive to vision, and the 2016 to 2022 trend, from CDC BRFSS data',
+    type: 'resource',
+    keywords: ['disability statistics', 'how many people have a disability', 'disability prevalence', 'percentage of adults with disabilities', 'cdc disability data', 'cognitive disability statistics', 'vision impairment statistics', 'hearing loss statistics', 'mobility disability', 'disability by type', 'accessibility business case', 'disability demographics'],
+    priority: 10
+  },
+  {
+    url: '/research/section-508-assessment',
+    title: 'Section 508 Federal Agency Assessment',
+    description: 'How United States federal agencies scored on accessibility conformance, policy, acquisition, and testing in the FY2025 governmentwide Section 508 assessment, with all 60 agencies ranked',
+    type: 'resource',
+    keywords: ['section 508 assessment', 'federal agency accessibility', 'section 508 compliance statistics', 'government accessibility data', 'accessibility conformance index', 'gsa section 508 report', 'federal accessibility scorecard', 'government website accessibility'],
+    priority: 9
+  },
+  {
+    url: '/research/accessibility-salary',
+    title: 'Digital Accessibility Salary Report',
+    description: 'What digital accessibility professionals earn by country, experience, work location, organisation size, and role, from the WebAIM global salary survey',
+    type: 'resource',
+    keywords: ['accessibility salary', 'digital accessibility salary', 'a11y salary', 'accessibility specialist salary', 'accessibility jobs', 'accessibility career', 'accessibility consultant rates', 'webaim salary survey', 'accessibility pay'],
+    priority: 9
+  },
+  {
+    url: '/research/european-accessibility-act',
+    title: 'European Accessibility Act Tracker',
+    description: 'Every EAA statutory date quoted from Directive (EU) 2019/882, national transposition measures for all 27 Member States, and the status of enforcement data',
+    type: 'resource',
+    keywords: ['european accessibility act', 'eaa deadline', 'eaa transposition', 'directive 2019/882', 'eaa enforcement', 'eu accessibility law', '28 june 2025', 'eaa member states', 'eaa compliance date'],
+    priority: 9
+  },
+  {
     url: '/research/accessibility-lawsuits',
     title: 'Accessibility Lawsuit Tracker',
     description: 'Updated statistics on ADA and accessibility lawsuits by year, industry, and jurisdiction with settlement cost data',

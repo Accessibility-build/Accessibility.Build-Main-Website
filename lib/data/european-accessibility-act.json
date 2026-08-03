@@ -1,0 +1,103 @@
+{
+  "lastUpdated": "2026-08-03",
+  "directive": {
+    "title": "Directive (EU) 2019/882 of the European Parliament and of the Council of 17 April 2019 on the accessibility requirements for products and services",
+    "shortName": "European Accessibility Act",
+    "celex": "32019L0882",
+    "adopted": "2019-04-17",
+    "officialJournal": "OJ L 151, 7.6.2019, pp. 70 to 115",
+    "eli": "http://data.europa.eu/eli/dir/2019/882/oj",
+    "textUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32019L0882",
+    "transpositionTrackerUrl": "https://eur-lex.europa.eu/legal-content/EN/NIM/?uri=CELEX:32019L0882",
+    "status": "In force"
+  },
+  "keyDates": [
+    {
+      "date": "2022-06-28",
+      "label": "Transposition deadline",
+      "article": "Article 31(1)",
+      "quote": "Member States shall adopt and publish, by 28 June 2022, the laws, regulations and administrative provisions necessary to comply with this Directive.",
+      "status": "past"
+    },
+    {
+      "date": "2025-06-28",
+      "label": "Application date",
+      "article": "Article 31(2)",
+      "quote": "They shall apply those measures from 28 June 2025.",
+      "status": "past",
+      "note": "This is the date the obligations began to bite for in-scope products and services."
+    },
+    {
+      "date": "2027-06-28",
+      "label": "Article 4(8) derogation ends",
+      "article": "Article 31(3)",
+      "quote": "Member States may decide to apply the measures regarding the obligations set out in Article 4(8) at the latest from 28 June 2027.",
+      "status": "future"
+    },
+    {
+      "date": "2030-06-28",
+      "label": "Transitional period ends",
+      "article": "Article 32(1)",
+      "quote": "Member States shall provide for a transitional period ending on 28 June 2030 during which service providers may continue to provide their services using products which were lawfully used by them to provide similar services before that date.",
+      "status": "future"
+    },
+    {
+      "date": "2030-06-28",
+      "label": "First Commission report due",
+      "article": "Article 33(1)",
+      "quote": "By 28 June 2030, and every five years thereafter, the Commission shall submit to the European Parliament, to the Council, to the European Economic and Social Committee and to the Committee of the Regions a report on the application of this Directive.",
+      "status": "future",
+      "note": "This is why no official EU-wide compliance or enforcement dataset exists yet."
+    }
+  ],
+  "otherTransitionalRules": [
+    {
+      "article": "Article 32(1)",
+      "rule": "Service contracts agreed before 28 June 2025 may continue without alteration until they expire, but no longer than five years from that date."
+    },
+    {
+      "article": "Article 32(2)",
+      "rule": "Self-service terminals lawfully used to provide services before 28 June 2025 may continue to be used until the end of their economically useful life, but no longer than 20 years after their entry into use."
+    }
+  ],
+  "transposition": {
+    "asOf": "2026-08-03",
+    "memberStatesReporting": 27,
+    "totalMeasures": 378,
+    "deadline": "2022-06-28",
+    "caveat": "These counts are the number of national instruments each Member State has communicated to the Commission, not a measure of implementation quality or completeness. A state with one consolidated act is not behind a state with fifty amendments; it reflects legislative drafting style. EUR-Lex states that Member States bear sole responsibility for this information and that it does not prejudge Commission verification of completeness and correctness.",
+    "measures": [
+      { "country": "Germany", "code": "DEU", "measures": 59 },
+      { "country": "Hungary", "code": "HUN", "measures": 37 },
+      { "country": "Estonia", "code": "EST", "measures": 34 },
+      { "country": "Czechia", "code": "CZE", "measures": 31 },
+      { "country": "Lithuania", "code": "LTU", "measures": 26 },
+      { "country": "Finland", "code": "FIN", "measures": 22 },
+      { "country": "Slovakia", "code": "SVK", "measures": 22 },
+      { "country": "Belgium", "code": "BEL", "measures": 21 },
+      { "country": "France", "code": "FRA", "measures": 21 },
+      { "country": "Slovenia", "code": "SVN", "measures": 17 },
+      { "country": "Netherlands", "code": "NLD", "measures": 11 },
+      { "country": "Croatia", "code": "HRV", "measures": 9 },
+      { "country": "Italy", "code": "ITA", "measures": 9 },
+      { "country": "Latvia", "code": "LVA", "measures": 9 },
+      { "country": "Greece", "code": "GRC", "measures": 8 },
+      { "country": "Sweden", "code": "SWE", "measures": 8 },
+      { "country": "Poland", "code": "POL", "measures": 7 },
+      { "country": "Luxembourg", "code": "LUX", "measures": 6 },
+      { "country": "Austria", "code": "AUT", "measures": 4 },
+      { "country": "Denmark", "code": "DNK", "measures": 4 },
+      { "country": "Bulgaria", "code": "BGR", "measures": 3 },
+      { "country": "Portugal", "code": "PRT", "measures": 3 },
+      { "country": "Romania", "code": "ROU", "measures": 2 },
+      { "country": "Spain", "code": "ESP", "measures": 2 },
+      { "country": "Cyprus", "code": "CYP", "measures": 1 },
+      { "country": "Ireland", "code": "IRL", "measures": 1 },
+      { "country": "Malta", "code": "MLT", "measures": 1 }
+    ]
+  },
+  "enforcementDataStatus": {
+    "officialDatasetExists": false,
+    "explanation": "There is no official EU-wide compliance or enforcement dataset for the European Accessibility Act, and there will not be one before 2030. Article 33(1) sets the first Commission report on the application of the Directive at 28 June 2030. Claims circulating about enforcement activity in individual Member States generally originate from vendors selling remediation services and could not be verified against a primary regulatory source. Anything on this subject should be sourced to a named national regulator, one country at a time."
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "lastUpdated": "2026-08-03",
+  "surveyPeriod": "December 2025 and January 2026",
+  "responses": 300,
+  "countriesRepresented": 23,
+  "source": {
+    "name": "WebAIM Global Digital Accessibility Salary Survey #2",
+    "url": "https://webaim.org/projects/salary2/",
+    "published": "2026-01-29",
+    "publisher": "WebAIM, in conjunction with the GAAD Foundation",
+    "previousSurvey": "https://webaim.org/projects/salary/",
+    "description": "Survey of professionals whose job responsibilities primarily focus on making technology and digital products accessible and usable to people with disabilities. 300 responses collected across 23 countries. Salaries converted to US dollars at January 2026 rates."
+  },
+  "overall": {
+    "averageSalaryUsd": 101688,
+    "medianSalaryUsd": 94394,
+    "previousAverageUsd": 109542,
+    "previousYear": 2025,
+    "changeNote": "WebAIM attributes most of the year-over-year decline to the 2026 survey having fewer respondents reporting significant (25+ years) experience and tenure, both of which align with higher salaries. It should not be read as a fall in market rates.",
+    "averageYearsExperience": 9.5,
+    "percentReportingDisability": 60.7
+  },
+  "byLocation": [
+    { "location": "United States", "localAverage": "$121,083 USD", "averageUsd": 121083, "medianUsd": 119500 },
+    { "location": "Australia", "localAverage": "$139,271 AUD", "averageUsd": 96097, "medianUsd": 95392 },
+    { "location": "Canada", "localAverage": "$118,626 CAD", "averageUsd": 86597, "medianUsd": 88111 },
+    { "location": "United Kingdom", "localAverage": "£60,523 GBP", "averageUsd": 82917, "medianUsd": 77094 },
+    { "location": "European Union", "localAverage": "€69,060 EUR", "averageUsd": 82181, "medianUsd": 65450 }
+  ],
+  "byExperience": [
+    { "band": "10 years or fewer", "averageUsd": 90544 },
+    { "band": "More than 10 years", "averageUsd": 123078 }
+  ],
+  "experienceGapPercent": 35.9,
+  "experienceDistribution": [
+    { "band": "0 to 5 years", "respondents": 102, "percent": 34.0 },
+    { "band": "5.1 to 10 years", "respondents": 98, "percent": 32.7 },
+    { "band": "10.1 to 15 years", "respondents": 50, "percent": 16.7 },
+    { "band": "15.1 to 20 years", "respondents": 29, "percent": 9.7 },
+    { "band": "20.1 to 25 years", "respondents": 20, "percent": 6.7 },
+    { "band": "25.1 years or more", "respondents": 1, "percent": 0.3 }
+  ],
+  "byWorkLocation": [
+    { "mode": "Remote", "respondents": 164, "percent": 55.0, "averageUsd": 109852 },
+    { "mode": "Hybrid", "respondents": 107, "percent": 35.9, "averageUsd": 96099 },
+    { "mode": "In office", "respondents": 27, "percent": 9.1, "averageUsd": 76008 }
+  ],
+  "byOrgSize": [
+    { "band": "Fewer than 100 employees", "averageUsd": 85147 },
+    { "band": "10,000 or more employees", "averageUsd": 113421 }
+  ],
+  "byCountryRespondents": [
+    { "country": "United States", "respondents": 135, "percent": 46.6 },
+    { "country": "United Kingdom", "respondents": 47, "percent": 16.2 },
+    { "country": "Australia", "respondents": 35, "percent": 12.1 },
+    { "country": "Canada", "respondents": 21, "percent": 7.2 },
+    { "country": "France", "respondents": 8, "percent": 2.8 },
+    { "country": "Spain", "respondents": 7, "percent": 2.4 },
+    { "country": "New Zealand", "respondents": 6, "percent": 2.1 },
+    { "country": "Other", "respondents": 31, "percent": 10.6 }
+  ],
+  "byDisability": [
+    { "type": "Neurodivergent", "respondents": 95, "percent": 31.7, "averageUsd": 98700 },
+    { "type": "Medical or chronic health-related", "respondents": 42, "percent": 14.0, "averageUsd": 103696 },
+    { "type": "Psychological or psychiatric", "respondents": 33, "percent": 11.0, "averageUsd": 108049 },
+    { "type": "Low vision or visually impaired", "respondents": 26, "percent": 8.7, "averageUsd": 110518 },
+    { "type": "Cognitive or learning", "respondents": 23, "percent": 7.7, "averageUsd": 96358 },
+    { "type": "Deafness or hard of hearing", "respondents": 20, "percent": 6.7, "averageUsd": 100221 },
+    { "type": "Motor", "respondents": 20, "percent": 6.7, "averageUsd": 82283 },
+    { "type": "Blindness", "respondents": 18, "percent": 6.0, "averageUsd": 116572 }
+  ],
+  "byRole": [
+    { "role": "Individual contributor", "respondents": 75, "percent": 25.2 },
+    { "role": "Staff", "respondents": 61, "percent": 20.7 },
+    { "role": "Contractor or consultant", "respondents": 47, "percent": 16.0 },
+    { "role": "Team lead", "respondents": 39, "percent": 13.3 },
+    { "role": "Manager", "respondents": 27, "percent": 9.2 },
+    { "role": "Director", "respondents": 16, "percent": 5.4 },
+    { "role": "Chief Accessibility Officer", "respondents": 10, "percent": 3.4 },
+    { "role": "Owner or self-employed", "respondents": 4, "percent": 1.4 },
+    { "role": "Vice president", "respondents": 2, "percent": 0.7 },
+    { "role": "Chief Executive Officer", "respondents": 2, "percent": 0.7 },
+    { "role": "Senior director", "respondents": 1, "percent": 0.3 },
+    { "role": "Other", "respondents": 11, "percent": 3.7 }
+  ],
+  "employmentStatus": [
+    { "status": "Full time", "respondents": 259, "percent": 88.1 },
+    { "status": "Freelancer or self-employed", "respondents": 17, "percent": 5.8 },
+    { "status": "Part time", "respondents": 13, "percent": 4.4 },
+    { "status": "Other", "respondents": 5, "percent": 1.7 }
+  ],
+  "worksForAccessibilityVendor": { "yes": 70, "yesPercent": 23.8, "no": 224, "noPercent": 76.2 }
+}

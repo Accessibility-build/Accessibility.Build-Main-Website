@@ -1,0 +1,152 @@
+{
+  "lastUpdated": "2026-08-03",
+  "dataYear": 2022,
+  "source": {
+    "name": "CDC Disability and Health Data System (DHDS)",
+    "url": "https://data.cdc.gov/d/s2qv-b27b",
+    "publisher": "Centers for Disease Control and Prevention, National Center on Birth Defects and Developmental Disabilities",
+    "dataSource": "Behavioral Risk Factor Surveillance System (BRFSS)",
+    "measure": "Age-adjusted prevalence",
+    "geography": "United States, DC & Territories",
+    "license": "Public Domain",
+    "infographic": "https://www.cdc.gov/disability-and-health/articles-documents/disability-impacts-all-of-us-infographic.html",
+    "description": "Age-adjusted prevalence of disability among US adults aged 18 and over, from BRFSS survey data published through the CDC Disability and Health Data System."
+  },
+  "types": [
+    {
+      "id": "any",
+      "label": "Any disability",
+      "prevalence": 28.7,
+      "ciLow": 28.4,
+      "ciHigh": 29.0,
+      "adults": 73434428,
+      "sampleSize": 132827
+    },
+    {
+      "id": "cognitive",
+      "label": "Cognitive",
+      "prevalence": 13.9,
+      "ciLow": 13.7,
+      "ciHigh": 14.1,
+      "adults": 33183737,
+      "sampleSize": 50100
+    },
+    {
+      "id": "mobility",
+      "label": "Mobility",
+      "prevalence": 12.2,
+      "ciLow": 12.0,
+      "ciHigh": 12.4,
+      "adults": 34073740,
+      "sampleSize": 68081
+    },
+    {
+      "id": "independent-living",
+      "label": "Independent Living",
+      "prevalence": 7.7,
+      "ciLow": 7.5,
+      "ciHigh": 7.9,
+      "adults": 19570433,
+      "sampleSize": 32447
+    },
+    {
+      "id": "hearing",
+      "label": "Hearing",
+      "prevalence": 6.2,
+      "ciLow": 6.1,
+      "ciHigh": 6.4,
+      "adults": 17692113,
+      "sampleSize": 38946
+    },
+    {
+      "id": "vision",
+      "label": "Vision",
+      "prevalence": 5.5,
+      "ciLow": 5.3,
+      "ciHigh": 5.7,
+      "adults": 14434811,
+      "sampleSize": 23658
+    },
+    {
+      "id": "self-care",
+      "label": "Self-care",
+      "prevalence": 3.6,
+      "ciLow": 3.4,
+      "ciHigh": 3.7,
+      "adults": 9526478,
+      "sampleSize": 16813
+    }
+  ],
+  "trend": [
+    {
+      "year": 2016,
+      "any": 24.6,
+      "cognitive": 10.8,
+      "mobility": 12.6,
+      "independent-living": 6.5,
+      "hearing": 5.3,
+      "vision": 4.5,
+      "self-care": 3.5
+    },
+    {
+      "year": 2017,
+      "any": 25.6,
+      "cognitive": 11.4,
+      "mobility": 12.9,
+      "independent-living": 7.0,
+      "hearing": 5.6,
+      "vision": 4.7,
+      "self-care": 3.8
+    },
+    {
+      "year": 2018,
+      "any": 26.0,
+      "cognitive": 11.5,
+      "mobility": 12.4,
+      "independent-living": 6.8,
+      "hearing": 5.9,
+      "vision": 5.0,
+      "self-care": 3.5
+    },
+    {
+      "year": 2019,
+      "any": 26.7,
+      "cognitive": 12.0,
+      "mobility": 12.8,
+      "independent-living": 7.0,
+      "hearing": 5.9,
+      "vision": 5.0,
+      "self-care": 3.8
+    },
+    {
+      "year": 2020,
+      "any": 24.8,
+      "cognitive": 10.9,
+      "mobility": 11.1,
+      "independent-living": 6.4,
+      "hearing": 5.7,
+      "vision": 4.9,
+      "self-care": 3.0
+    },
+    {
+      "year": 2021,
+      "any": 27.2,
+      "cognitive": 12.8,
+      "mobility": 12.1,
+      "independent-living": 7.2,
+      "hearing": 6.1,
+      "vision": 4.8,
+      "self-care": 3.6
+    },
+    {
+      "year": 2022,
+      "any": 28.7,
+      "cognitive": 13.9,
+      "mobility": 12.2,
+      "independent-living": 7.7,
+      "hearing": 6.2,
+      "vision": 5.5,
+      "self-care": 3.6
+    }
+  ]
+}

@@ -82,6 +82,10 @@ const research: SiteRoute[] = [
   { route: "/research/state-of-accessibility", label: "State of Accessibility Report", group: "Research", lastModified: "2026-08-03", priority: 0.95 },
   { route: "/research/accessibility-by-technology", label: "Web Accessibility by Technology Stack", group: "Research", lastModified: "2026-08-03", priority: 0.94 },
   { route: "/research/accessibility-by-industry", label: "Web Accessibility by Industry", group: "Research", lastModified: "2026-08-03", priority: 0.94 },
+  { route: "/research/section-508-assessment", label: "Section 508 Federal Agency Assessment", group: "Research", lastModified: "2026-08-03", priority: 0.94 },
+  { route: "/research/disability-statistics", label: "US Disability Prevalence", group: "Research", lastModified: "2026-08-03", priority: 0.95 },
+  { route: "/research/accessibility-salary", label: "Digital Accessibility Salary Report", group: "Research", lastModified: "2026-08-03", priority: 0.94 },
+  { route: "/research/european-accessibility-act", label: "European Accessibility Act Tracker", group: "Research", lastModified: "2026-08-03", priority: 0.94 },
   { route: "/research/accessibility-laws", label: "Accessibility Laws by Jurisdiction", group: "Research", lastModified: "2026-03-30", priority: 0.94 },
   { route: "/research/accessibility-lawsuits", label: "Accessibility Lawsuit Tracker", group: "Research", lastModified: "2026-07-09", priority: 0.93 },
 ]

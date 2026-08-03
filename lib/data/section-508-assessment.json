@@ -1,0 +1,554 @@
+{
+  "lastUpdated": "2026-08-03",
+  "fiscalYear": "FY2025",
+  "totalAgencies": 60,
+  "source": {
+    "name": "Governmentwide Section 508 Assessment, FY2025",
+    "url": "https://www.section508.gov/manage/section-508-assessment/",
+    "published": "2026-03-02",
+    "publisher": "U.S. General Services Administration",
+    "dataFile": "https://www.section508.gov/~assets/files/assessment/2025/fy25-governmentwide-section-508-assessment-agency-response-data.csv",
+    "description": "Annual assessment of federal agency Section 508 programmes, mandated by the Consolidated Appropriations Act, 2023. Responses from 60 federal agencies, published as open data by GSA."
+  },
+  "levels": [
+    "Very Low",
+    "Low",
+    "Moderate",
+    "High",
+    "Very High"
+  ],
+  "factors": [
+    {
+      "id": "conformance",
+      "label": "Accessibility Conformance Index",
+      "description": "How conformant an agency's ICT actually is, the outcome measure.",
+      "distribution": [
+        {
+          "level": "Very Low",
+          "agencies": 17,
+          "percent": 28.3
+        },
+        {
+          "level": "Low",
+          "agencies": 18,
+          "percent": 30.0
+        },
+        {
+          "level": "Moderate",
+          "agencies": 11,
+          "percent": 18.3
+        },
+        {
+          "level": "High",
+          "agencies": 6,
+          "percent": 10.0
+        },
+        {
+          "level": "Very High",
+          "agencies": 8,
+          "percent": 13.3
+        }
+      ],
+      "percentLowOrVeryLow": 58.3,
+      "percentHighOrVeryHigh": 23.3
+    },
+    {
+      "id": "implementation",
+      "label": "Accessibility Implementation Index",
+      "description": "How well an agency has built the programme needed to deliver accessible ICT.",
+      "distribution": [
+        {
+          "level": "Very Low",
+          "agencies": 3,
+          "percent": 5.0
+        },
+        {
+          "level": "Low",
+          "agencies": 13,
+          "percent": 21.7
+        },
+        {
+          "level": "Moderate",
+          "agencies": 17,
+          "percent": 28.3
+        },
+        {
+          "level": "High",
+          "agencies": 19,
+          "percent": 31.7
+        },
+        {
+          "level": "Very High",
+          "agencies": 8,
+          "percent": 13.3
+        }
+      ],
+      "percentLowOrVeryLow": 26.7,
+      "percentHighOrVeryHigh": 45.0
+    },
+    {
+      "id": "policy",
+      "label": "Policy Integration",
+      "description": "Whether Section 508 requirements are written into agency policy and governance.",
+      "distribution": [
+        {
+          "level": "Very Low",
+          "agencies": 5,
+          "percent": 8.3
+        },
+        {
+          "level": "Low",
+          "agencies": 11,
+          "percent": 18.3
+        },
+        {
+          "level": "Moderate",
+          "agencies": 14,
+          "percent": 23.3
+        },
+        {
+          "level": "High",
+          "agencies": 14,
+          "percent": 23.3
+        },
+        {
+          "level": "Very High",
+          "agencies": 16,
+          "percent": 26.7
+        }
+      ],
+      "percentLowOrVeryLow": 26.7,
+      "percentHighOrVeryHigh": 50.0
+    },
+    {
+      "id": "acquisition",
+      "label": "Acquisition",
+      "description": "Whether accessibility requirements make it into contracts and procurement.",
+      "distribution": [
+        {
+          "level": "Very Low",
+          "agencies": 2,
+          "percent": 3.3
+        },
+        {
+          "level": "Low",
+          "agencies": 9,
+          "percent": 15.0
+        },
+        {
+          "level": "Moderate",
+          "agencies": 12,
+          "percent": 20.0
+        },
+        {
+          "level": "High",
+          "agencies": 9,
+          "percent": 15.0
+        },
+        {
+          "level": "Very High",
+          "agencies": 28,
+          "percent": 46.7
+        }
+      ],
+      "percentLowOrVeryLow": 18.3,
+      "percentHighOrVeryHigh": 61.7
+    },
+    {
+      "id": "testing",
+      "label": "Testing and Remediation",
+      "description": "Whether the agency actually tests ICT for accessibility and fixes what it finds.",
+      "distribution": [
+        {
+          "level": "Very Low",
+          "agencies": 19,
+          "percent": 31.7
+        },
+        {
+          "level": "Low",
+          "agencies": 18,
+          "percent": 30.0
+        },
+        {
+          "level": "Moderate",
+          "agencies": 6,
+          "percent": 10.0
+        },
+        {
+          "level": "High",
+          "agencies": 9,
+          "percent": 15.0
+        },
+        {
+          "level": "Very High",
+          "agencies": 8,
+          "percent": 13.3
+        }
+      ],
+      "percentLowOrVeryLow": 61.7,
+      "percentHighOrVeryHigh": 28.3
+    }
+  ],
+  "agencies": [
+    {
+      "name": "Department of Health and Human Services",
+      "size": "Very Large Agencies (>=75,000 employees)",
+      "conformance": "Very Low",
+      "implementation": "High"
+    },
+    {
+      "name": "Department of Housing and Urban Development",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Very Low",
+      "implementation": "Very Low"
+    },
+    {
+      "name": "Department of Labor",
+      "size": "Large Agencies (10,000-74,999 employees)",
+      "conformance": "Very Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "Department of the Treasury",
+      "size": "Very Large Agencies (>=75,000 employees)",
+      "conformance": "Very Low",
+      "implementation": "High"
+    },
+    {
+      "name": "Federal Communications Commission",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Very Low",
+      "implementation": "High"
+    },
+    {
+      "name": "Federal Deposit Insurance Corporation",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Very Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "Federal Energy Regulatory Commission",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Very Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "General Services Administration",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Very Low",
+      "implementation": "High"
+    },
+    {
+      "name": "Millennium Challenge Corporation",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Very Low",
+      "implementation": "High"
+    },
+    {
+      "name": "Morris K. Udall and Stewart L. Udall Foundation",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Very Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "National Aeronautics and Space Administration",
+      "size": "Large Agencies (10,000-74,999 employees)",
+      "conformance": "Very Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "National Labor Relations Board",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Very Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "Nuclear Regulatory Commission",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Very Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "Office of Government Ethics",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Very Low",
+      "implementation": "High"
+    },
+    {
+      "name": "Postal Regulatory Commission",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Very Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Tennessee Valley Authority",
+      "size": "Large Agencies (10,000-74,999 employees)",
+      "conformance": "Very Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "United States International Development Finance Corporation",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Very Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Administrative Conference of United States",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "American Battle Monuments Commission",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "Court Services and Offender Supervision Agency for the District",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Department of Energy",
+      "size": "Large Agencies (10,000-74,999 employees)",
+      "conformance": "Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Department of Homeland Security",
+      "size": "Very Large Agencies (>=75,000 employees)",
+      "conformance": "Low",
+      "implementation": "Very High"
+    },
+    {
+      "name": "Department of Justice",
+      "size": "Very Large Agencies (>=75,000 employees)",
+      "conformance": "Low",
+      "implementation": "Very Low"
+    },
+    {
+      "name": "Department of Veterans Affairs",
+      "size": "Very Large Agencies (>=75,000 employees)",
+      "conformance": "Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "Election Assistance Commission",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Low",
+      "implementation": "Very High"
+    },
+    {
+      "name": "Environmental Protection Agency",
+      "size": "Large Agencies (10,000-74,999 employees)",
+      "conformance": "Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "Export-Import Bank of the United States",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Low",
+      "implementation": "High"
+    },
+    {
+      "name": "Federal Maritime Commission",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Low",
+      "implementation": "Very Low"
+    },
+    {
+      "name": "Federal Mine Safety and Health Review Commission",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Low",
+      "implementation": "High"
+    },
+    {
+      "name": "Gulf Coast Ecosystem Restoration Council",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "James Madison Memorial Fellowship Foundation",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "National Science Foundation",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Low",
+      "implementation": "Low"
+    },
+    {
+      "name": "National Transportation Safety Board",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Postal Service",
+      "size": "Very Large Agencies (>=75,000 employees)",
+      "conformance": "Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Securities and Exchange Commission",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Low",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Barry Goldwater Scholarship and Excellence in Education Foundation",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Moderate",
+      "implementation": "High"
+    },
+    {
+      "name": "Delta Regional Authority",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Moderate",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Department of Commerce",
+      "size": "Large Agencies (10,000-74,999 employees)",
+      "conformance": "Moderate",
+      "implementation": "Very High"
+    },
+    {
+      "name": "Department of Education",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Moderate",
+      "implementation": "High"
+    },
+    {
+      "name": "Department of Transportation",
+      "size": "Large Agencies (10,000-74,999 employees)",
+      "conformance": "Moderate",
+      "implementation": "High"
+    },
+    {
+      "name": "Department of War",
+      "size": "Very Large Agencies (>=75,000 employees)",
+      "conformance": "Moderate",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Department of the Interior",
+      "size": "Large Agencies (10,000-74,999 employees)",
+      "conformance": "Moderate",
+      "implementation": "High"
+    },
+    {
+      "name": "Federal Housing Finance Agency",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Moderate",
+      "implementation": "High"
+    },
+    {
+      "name": "National Endowment for the Arts",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Moderate",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Pension Benefit Guaranty Corporation",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Moderate",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Selective Service System",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Moderate",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Bureau of Consumer Financial Protection",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "High",
+      "implementation": "Low"
+    },
+    {
+      "name": "Department of State",
+      "size": "Large Agencies (10,000-74,999 employees)",
+      "conformance": "High",
+      "implementation": "High"
+    },
+    {
+      "name": "Equal Employment Opportunity Commission",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "High",
+      "implementation": "High"
+    },
+    {
+      "name": "Farm Credit Administration",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "High",
+      "implementation": "High"
+    },
+    {
+      "name": "Federal Labor Relations Authority",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "High",
+      "implementation": "Moderate"
+    },
+    {
+      "name": "Trade and Development Agency",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "High",
+      "implementation": "Low"
+    },
+    {
+      "name": "Access Board",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Very High",
+      "implementation": "Very High"
+    },
+    {
+      "name": "Department of Agriculture",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Very High",
+      "implementation": "Very High"
+    },
+    {
+      "name": "Farm Credit System Insurance Corporation",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Very High",
+      "implementation": "High"
+    },
+    {
+      "name": "Federal Trade Commission",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Very High",
+      "implementation": "High"
+    },
+    {
+      "name": "National Archives and Records Administration",
+      "size": "Medium Agencies (1,000-9,999 employees)",
+      "conformance": "Very High",
+      "implementation": "Very High"
+    },
+    {
+      "name": "National Credit Union Administration",
+      "size": "Small Agencies (100-999 employees)",
+      "conformance": "Very High",
+      "implementation": "High"
+    },
+    {
+      "name": "National Mediation Board",
+      "size": "Very Small Agencies (<100 employees)",
+      "conformance": "Very High",
+      "implementation": "Very High"
+    },
+    {
+      "name": "Social Security Administration",
+      "size": "Large Agencies (10,000-74,999 employees)",
+      "conformance": "Very High",
+      "implementation": "Very High"
+    }
+  ]
+}

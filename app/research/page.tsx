@@ -5,7 +5,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { BarChart3, Scale, ArrowRight, TrendingUp, CalendarDays, BookOpen, Globe, Boxes, Building2 } from "lucide-react"
+import { BarChart3, Scale, ArrowRight, TrendingUp, CalendarDays, BookOpen, Globe, Boxes, Building2, Landmark, Users, Banknote, FileCheck2 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
 export const metadata: Metadata = {
@@ -38,6 +38,54 @@ const researchReports = [
     href: "/research/state-of-accessibility",
     stat: { label: "Dataset coverage", value: "Up to 1M" },
     gradient: "from-blue-600 to-indigo-600",
+  },
+  {
+    title: "US Disability Prevalence",
+    description:
+      "28.7% of US adults report a disability, about 73.4 million people. Prevalence by type plus the 2016 to 2022 trend, straight from the CDC data API. Cognitive disability is now the largest category and the fastest growing, which is not where most accessibility effort goes.",
+    icon: Users,
+    badge: "New 2026",
+    badgeColor:
+      "bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-800",
+    href: "/research/disability-statistics",
+    stat: { label: "Of US adults", value: "28.7%" },
+    gradient: "from-rose-600 to-pink-600",
+  },
+  {
+    title: "Section 508 Federal Scorecard",
+    description:
+      "58% of US federal agencies scored Low or Very Low on whether their technology is actually accessible, and 62% scored that low on testing. Every one of the 60 agencies ranked, computed from the government's own published response data.",
+    icon: Landmark,
+    badge: "FY2025 data",
+    badgeColor:
+      "bg-sky-100 text-sky-800 border-sky-200 dark:bg-sky-900/20 dark:text-sky-400 dark:border-sky-800",
+    href: "/research/section-508-assessment",
+    stat: { label: "Agencies scored", value: "60" },
+    gradient: "from-sky-600 to-blue-700",
+  },
+  {
+    title: "Digital Accessibility Salary Report",
+    description:
+      "What accessibility professionals earn by country, experience, work location, and organisation size. The dividing line is ten years of experience, worth a 36% premium. 60.7% of respondents report having a disability themselves.",
+    icon: Banknote,
+    badge: "New 2026",
+    badgeColor:
+      "bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800",
+    href: "/research/accessibility-salary",
+    stat: { label: "Average full-time", value: "$101,688" },
+    gradient: "from-emerald-600 to-teal-600",
+  },
+  {
+    title: "European Accessibility Act Tracker",
+    description:
+      "Every EAA date quoted from Directive (EU) 2019/882 itself, plus transposition measures for all 27 Member States. Includes the answer nobody else gives straight: there is no EU-wide enforcement data, and the first Commission report is not due until 2030.",
+    icon: FileCheck2,
+    badge: "New 2026",
+    badgeColor:
+      "bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-900/20 dark:text-indigo-400 dark:border-indigo-800",
+    href: "/research/european-accessibility-act",
+    stat: { label: "Member States", value: "27 of 27" },
+    gradient: "from-indigo-600 to-violet-600",
   },
   {
     title: "Accessibility by Technology Stack",
