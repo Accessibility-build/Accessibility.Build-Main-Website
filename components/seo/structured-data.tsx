@@ -580,83 +580,15 @@ export function HowToStructuredData({
   )
 }
 
-// WebSite schema. Keep this factual: Google retired the sitelinks search box
-// result feature, and this app does not expose a global /search results route.
-export function WebSiteStructuredData() {
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Accessibility.build",
-    "description": "Founder-led accessibility services, practical WCAG 2.2 tools, implementation guides, research, and resources for inclusive digital experiences.",
-    "url": "https://accessibility.build",
-    "publisher": {
-      "@type": "Organization",
-      "@id": "https://accessibility.build/#organization",
-      "name": "Accessibility.build",
-      "logo": "https://accessibility.build/android-chrome-512x512.png"
-    }
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: serializeSchema(websiteSchema)
-      }}
-    />
-  )
-}
-
-// Organization Schema with Enhanced Details
-export function OrganizationStructuredData() {
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Accessibility.build",
-    "description": "Accessibility.build publishes accessibility testing tools, WCAG guidance, compliance resources, and original accessibility research.",
-    "url": "https://accessibility.build",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://accessibility.build/android-chrome-512x512.png",
-      "width": 512,
-      "height": 512
-    },
-    "image": "https://accessibility.build/og-image.png",
-    "sameAs": [
-      "https://twitter.com/accessibilitybuild",
-      "https://github.com/accessibility-build",
-      "https://linkedin.com/company/accessibility-build"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "support@accessibility.build",
-      "availableLanguage": ["English"],
-      "areaServed": "Worldwide"
-    },
-    "areaServed": "Worldwide",
-    "knowsAbout": [
-      "Web accessibility",
-      "WCAG 2.2",
-      "WCAG 3.0",
-      "ADA compliance",
-      "Section 508",
-      "European Accessibility Act",
-      "Assistive technology",
-      "Accessible design",
-      "Accessibility testing"
-    ]
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: serializeSchema(organizationSchema)
-      }}
-    />
-  )
-}
+// NOTE: The canonical Organization and WebSite entities are emitted site-wide
+// from the JSON-LD @graph in app/layout.tsx, sourced from lib/company.ts (stable
+// @ids #organization / #website / #founder, verified email, address, sameAs, and
+// founder linkage). Standalone Organization/WebSite emitters used to live here
+// but had drifted out of sync (a support@ email, a hyphenated LinkedIn URL, and
+// an unverified Twitter handle that contradicted lib/company.ts). They were
+// unused and have been removed so there is a single source of truth for the
+// entity — do not reintroduce a second Organization/WebSite node here. Edit the
+// graph in app/layout.tsx (and the facts in lib/company.ts) instead.
 
 // Enhanced Service Schema for Accessibility Services
 export function ServiceStructuredData({
