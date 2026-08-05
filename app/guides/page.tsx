@@ -12,12 +12,9 @@ import {
   Ear,
   Smartphone,
   ArrowRight,
-  PlayCircle,
   Code2,
-  Download,
   Clock,
   Signal,
-  FileCode2,
   FormInput,
   Palette,
   Search,
@@ -546,12 +543,133 @@ const guides = [
   },
 ]
 
-const comingSoonGuides = [
+// Guides grouped into scannable categories. Membership is by href so the
+// `guides` data array above stays the single source of truth; any guide not
+// listed here still renders under "More Guides" so nothing is ever dropped.
+const categories = [
   {
-    title: "ARIA Patterns Guide",
-    description:
-      "Comprehensive reference for WAI-ARIA design patterns including combobox, dialog, menu, tabs, and tree view with accessible implementations.",
-    icon: FileCode2,
+    slug: "standards",
+    label: "Standards & Compliance",
+    blurb:
+      "Understand what WCAG 2.2 actually requires, and how the versions differ, before you build.",
+    icon: ListChecks,
+    hrefs: [
+      "/guides/wcag-2-2-aa-requirements",
+      "/guides/wcag-2-1-vs-2-2",
+    ],
+  },
+  {
+    slug: "testing",
+    label: "Testing & Auditing",
+    blurb:
+      "Audit any site and pick the right tools, from automated scanners to hands-on manual review.",
+    icon: TestTubes,
+    hrefs: [
+      "/guides/how-to-audit-website-accessibility",
+      "/guides/ai-accessibility-audit",
+      "/guides/automated-vs-manual-accessibility-testing",
+      "/guides/axe-vs-wave",
+    ],
+  },
+  {
+    slug: "screen-readers",
+    label: "Screen Reader Testing",
+    blurb:
+      "Test with the screen readers real users run — NVDA, JAWS, VoiceOver, and TalkBack.",
+    icon: AudioLines,
+    hrefs: [
+      "/guides/screen-reader-testing",
+      "/guides/nvda-screen-reader-testing",
+      "/guides/jaws-screen-reader-testing",
+      "/guides/voiceover-screen-reader-testing",
+      "/guides/talkback-screen-reader-testing",
+    ],
+  },
+  {
+    slug: "foundations",
+    label: "Forms, Keyboard & Focus",
+    blurb:
+      "The core interaction layer every accessible interface depends on.",
+    icon: Keyboard,
+    hrefs: [
+      "/guides/accessible-forms",
+      "/guides/accessible-form-validation",
+      "/guides/keyboard-accessibility",
+      "/guides/focus-management",
+    ],
+  },
+  {
+    slug: "patterns",
+    label: "ARIA Component Patterns",
+    blurb:
+      "Build the WAI-ARIA Authoring Practices components correctly, with copy-ready HTML, JavaScript, and React.",
+    icon: Component,
+    hrefs: [
+      "/guides/accessible-tabs",
+      "/guides/accessible-accordion",
+      "/guides/accessible-combobox",
+      "/guides/accessible-menu",
+      "/guides/accessible-dialog",
+      "/guides/accessible-switch",
+      "/guides/accessible-slider",
+      "/guides/accessible-tree-view",
+      "/guides/accessible-data-grid",
+      "/guides/accessible-listbox",
+    ],
+  },
+  {
+    slug: "frameworks",
+    label: "Frameworks & Platforms",
+    blurb:
+      "Framework-specific accessibility for React, Angular, Vue, Svelte, and native mobile.",
+    icon: Code2,
+    hrefs: [
+      "/guides/react-accessibility",
+      "/guides/angular-accessibility",
+      "/guides/vue-accessibility",
+      "/guides/svelte-accessibility",
+      "/guides/mobile-accessibility",
+    ],
+  },
+  {
+    slug: "design",
+    label: "Design, Content & Media",
+    blurb:
+      "Color, typography, data visualization, media, and documents that work for everyone.",
+    icon: Palette,
+    hrefs: [
+      "/guides/accessible-color-palettes",
+      "/guides/oklch-apca-color-systems",
+      "/guides/accessible-typography-wcag",
+      "/guides/accessible-charts",
+      "/guides/accessible-video-player",
+      "/guides/pdf-accessibility",
+    ],
+  },
+  {
+    slug: "law",
+    label: "Law & Litigation",
+    blurb:
+      "The lawsuits, settlements, and compliance deadlines shaping web accessibility in 2026.",
+    icon: Scale,
+    hrefs: [
+      "/guides/fashion-nova-accessibility-settlement",
+      "/guides/ada-website-lawsuit-cost",
+      "/guides/ai-accessibility-lawsuits",
+      "/guides/doj-title-ii-deadline-extension",
+      "/guides/section-504-web-accessibility-deadline",
+    ],
+  },
+  {
+    slug: "overlays",
+    label: "Accessibility Overlays",
+    blurb:
+      "Why accessibility overlay widgets fall short, and what to do instead.",
+    icon: Layers,
+    hrefs: [
+      "/guides/accessibility-overlays",
+      "/guides/accessibility-overlay-alternatives",
+    ],
   },
 ]
 
@@ -564,7 +682,79 @@ const difficultyColors: Record<string, string> = {
     "bg-red-100 text-red-800 border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800",
 }
 
+function GuideCard({ guide }: { guide: (typeof guides)[number] }) {
+  const Icon = guide.icon
+  return (
+    <Card className="group relative flex h-full flex-col overflow-hidden border-slate-200 dark:border-slate-700 hover:border-emerald-300 dark:hover:border-emerald-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+      {/* Top accent line */}
+      <div
+        className={`absolute top-0 left-0 h-1 w-full bg-gradient-to-r ${guide.gradient}`}
+      />
+
+      <CardHeader className="pb-4">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div
+            className={`shrink-0 rounded-xl bg-gradient-to-r ${guide.gradient} p-2.5 shadow-lg transition-shadow duration-300 group-hover:shadow-xl`}
+          >
+            <Icon className="h-5 w-5 text-white" />
+          </div>
+          <div className="flex flex-wrap items-center justify-end gap-2">
+            <Badge className={difficultyColors[guide.difficulty]}>
+              <Signal className="mr-1 h-3 w-3" />
+              {guide.difficulty}
+            </Badge>
+            <Badge
+              variant="outline"
+              className="border-slate-200 dark:border-slate-700"
+            >
+              <Clock className="mr-1 h-3 w-3" />
+              {guide.readingTime}
+            </Badge>
+          </div>
+        </div>
+
+        <CardTitle className="text-lg text-slate-900 dark:text-white transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+          {guide.title}
+        </CardTitle>
+        <CardDescription className="mt-2 leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">
+          {guide.description}
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent className="flex flex-1 flex-col pt-0">
+        {/* Topic pills */}
+        <div className="mb-4 flex flex-wrap gap-2">
+          {guide.topics.slice(0, 4).map((topic) => (
+            <Badge
+              key={topic}
+              variant="secondary"
+              className="bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300"
+            >
+              {topic}
+            </Badge>
+          ))}
+        </div>
+
+        <Button
+          asChild
+          variant="outline"
+          className="mt-auto w-full group/btn border-emerald-200 dark:border-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-900/50"
+        >
+          <Link href={guide.href}>
+            Read Guide
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+          </Link>
+        </Button>
+      </CardContent>
+    </Card>
+  )
+}
+
 export default function GuidesPage() {
+  const guidesByHref = new Map(guides.map((guide) => [guide.href, guide]))
+  const categorizedHrefs = new Set(categories.flatMap((category) => category.hrefs))
+  const uncategorized = guides.filter((guide) => !categorizedHrefs.has(guide.href))
+
   return (
     <div className="min-h-screen">
       <BreadcrumbStructuredData
@@ -576,167 +766,121 @@ export default function GuidesPage() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50 dark:from-slate-950 dark:via-slate-900 dark:to-emerald-950 border-b border-slate-200 dark:border-slate-800">
-        <div className="container-wide pt-12 pb-16 md:pb-24">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-emerald-900 to-emerald-700 dark:from-white dark:via-emerald-200 dark:to-emerald-400 bg-clip-text text-transparent leading-tight">
+        <div className="container-wide pt-12 pb-12 md:pb-16">
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="mb-6 bg-gradient-to-r from-slate-900 via-emerald-900 to-emerald-700 bg-clip-text text-4xl font-bold leading-tight text-transparent dark:from-white dark:via-emerald-200 dark:to-emerald-400 md:text-6xl">
               Accessibility Guides
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed">
-              In-depth, interactive guides that go beyond theory. Each guide
-              includes live demos, real code examples, and downloadable
-              checklists so you can apply what you learn immediately.
+            <p className="mx-auto mb-8 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-400 md:text-xl">
+              In-depth, practical guides that go beyond theory — real code, live
+              patterns, and testing workflows you can apply immediately, every
+              one mapped to WCAG 2.2 AA.
             </p>
 
-            {/* Stats Bar */}
-            <div className="flex flex-wrap items-center justify-center gap-8 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="p-2 bg-emerald-100 dark:bg-emerald-900/50 rounded-full">
-                  <PlayCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                </div>
-                <span className="font-medium text-slate-700 dark:text-slate-300">
-                  Interactive Demos
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-full">
-                  <Code2 className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                </div>
-                <span className="font-medium text-slate-700 dark:text-slate-300">
-                  Code Examples
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="p-2 bg-purple-100 dark:bg-purple-900/50 rounded-full">
-                  <Download className="h-4 w-4 text-purple-600 dark:text-purple-400" />
-                </div>
-                <span className="font-medium text-slate-700 dark:text-slate-300">
-                  Free Downloads
-                </span>
-              </div>
+            {/* Stats */}
+            <div className="mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <span>
+                <strong className="text-slate-900 dark:text-white">
+                  {guides.length}
+                </strong>{" "}
+                in-depth guides
+              </span>
+              <span aria-hidden="true" className="text-slate-300 dark:text-slate-600">
+                &bull;
+              </span>
+              <span>
+                <strong className="text-slate-900 dark:text-white">
+                  {categories.length}
+                </strong>{" "}
+                topics
+              </span>
+              <span aria-hidden="true" className="text-slate-300 dark:text-slate-600">
+                &bull;
+              </span>
+              <span>Mapped to WCAG 2.2 AA</span>
+              <span aria-hidden="true" className="text-slate-300 dark:text-slate-600">
+                &bull;
+              </span>
+              <span>Free, no signup</span>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Guide Cards */}
-      <section className="container-wide py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {guides.map((guide) => {
-            const Icon = guide.icon
-            return (
-              <Card
-                key={guide.title}
-                className="group relative overflow-hidden border-slate-200 dark:border-slate-700 hover:border-emerald-300 dark:hover:border-emerald-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-              >
-                {/* Top accent line */}
-                <div
-                  className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${guide.gradient}`}
-                />
-
-                <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <div
-                      className={`p-3 bg-gradient-to-r ${guide.gradient} rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
+            {/* Category jump navigation */}
+            <nav aria-label="Guide categories">
+              <ul className="flex flex-wrap items-center justify-center gap-2">
+                {categories.map((category) => (
+                  <li key={category.slug}>
+                    <a
+                      href={`#${category.slug}`}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-sm font-medium text-slate-700 backdrop-blur transition-colors hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-emerald-700 dark:hover:bg-emerald-900/40 dark:hover:text-emerald-300"
                     >
-                      <Icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Badge className={difficultyColors[guide.difficulty]}>
-                        <Signal className="h-3 w-3 mr-1" />
-                        {guide.difficulty}
-                      </Badge>
-                      <Badge
-                        variant="outline"
-                        className="border-slate-200 dark:border-slate-700"
-                      >
-                        <Clock className="h-3 w-3 mr-1" />
-                        {guide.readingTime}
-                      </Badge>
-                    </div>
-                  </div>
-
-                  <CardTitle className="text-xl text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                    {guide.title}
-                  </CardTitle>
-                  <CardDescription className="text-slate-600 dark:text-slate-400 leading-relaxed mt-2">
-                    {guide.description}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="pt-0 space-y-4">
-                  {/* Topic pills */}
-                  <div className="flex flex-wrap gap-2">
-                    {guide.topics.map((topic) => (
-                      <Badge
-                        key={topic}
-                        variant="secondary"
-                        className="bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300"
-                      >
-                        {topic}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full group/btn border-emerald-200 dark:border-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-900/50"
-                  >
-                    <Link href={guide.href}>
-                      Read Guide
-                      <ArrowRight className="h-4 w-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            )
-          })}
-        </div>
-      </section>
-
-      {/* Coming Soon Section */}
-      <section className="container-wide pb-16 md:pb-20">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">
-            Coming Soon
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {comingSoonGuides.map((guide) => {
-              const Icon = guide.icon
-              return (
-                <Card
-                  key={guide.title}
-                  className="relative overflow-hidden border-slate-200 dark:border-slate-700 opacity-60"
-                >
-                  {/* Top accent line */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-300 to-slate-400 dark:from-slate-600 dark:to-slate-700" />
-
-                  <CardHeader className="pb-4">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="p-3 bg-slate-200 dark:bg-slate-700 rounded-xl">
-                        <Icon className="h-6 w-6 text-slate-500 dark:text-slate-400" />
-                      </div>
-                      <Badge
-                        variant="outline"
-                        className="border-slate-300 text-slate-500 dark:border-slate-600 dark:text-slate-400"
-                      >
-                        Coming Soon
-                      </Badge>
-                    </div>
-
-                    <CardTitle className="text-xl text-slate-500 dark:text-slate-400">
-                      {guide.title}
-                    </CardTitle>
-                    <CardDescription className="text-slate-400 dark:text-slate-500 leading-relaxed mt-2">
-                      {guide.description}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              )
-            })}
+                      {category.label}
+                      <span className="text-xs text-slate-400 dark:text-slate-500">
+                        {category.hrefs.length}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </div>
       </section>
+
+      {/* Categorized guide sections */}
+      <div className="container-wide space-y-16 py-16 md:space-y-20 md:py-20">
+        {categories.map((category) => {
+          const CategoryIcon = category.icon
+          const items = category.hrefs
+            .map((href) => guidesByHref.get(href))
+            .filter((guide): guide is (typeof guides)[number] => Boolean(guide))
+
+          if (items.length === 0) return null
+
+          return (
+            <section key={category.slug} id={category.slug} className="scroll-mt-24">
+              <div className="mb-8 border-b border-slate-200 pb-5 dark:border-slate-800">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-400">
+                    <CategoryIcon className="h-5 w-5" />
+                  </span>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl">
+                    {category.label}
+                  </h2>
+                  <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-sm font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                    {items.length}
+                  </span>
+                </div>
+                <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-400">
+                  {category.blurb}
+                </p>
+              </div>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                {items.map((guide) => (
+                  <GuideCard key={guide.href} guide={guide} />
+                ))}
+              </div>
+            </section>
+          )
+        })}
+
+        {uncategorized.length > 0 && (
+          <section id="more" className="scroll-mt-24">
+            <div className="mb-8 border-b border-slate-200 pb-5 dark:border-slate-800">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl">
+                More Guides
+              </h2>
+              <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-400">
+                Additional guides across the rest of the library.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              {uncategorized.map((guide) => (
+                <GuideCard key={guide.href} guide={guide} />
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
 
       {/* Related Content */}
       <section className="container-wide pb-16 md:pb-20">
