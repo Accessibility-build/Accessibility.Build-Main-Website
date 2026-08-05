@@ -317,6 +317,12 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                   <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
                     screen reader testing guide
                   </Link>
+                  . To build for those mobile-specific criteria in the first place
+                  &mdash; across native iOS, native Android, and mobile web &mdash;
+                  see the{" "}
+                  <Link href="/guides/mobile-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    mobile accessibility guide
+                  </Link>
                   .
                 </p>
               </div>

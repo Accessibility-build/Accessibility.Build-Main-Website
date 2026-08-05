@@ -49,6 +49,7 @@ import {
   BarChart3,
   Captions,
   Flame,
+  TabletSmartphone,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -267,6 +268,17 @@ const guides = [
     topics: ["Svelte 5", "a11y warnings", "use: actions", "SvelteKit", "svelte-check"],
     href: "/guides/svelte-accessibility",
     gradient: "from-orange-500 to-red-600",
+  },
+  {
+    title: "Mobile Accessibility Guide",
+    description:
+      "Build accessible mobile apps and mobile web: touch target sizing, pointer gestures and cancellation, orientation and text scaling, native iOS (UIKit & SwiftUI), native Android (View & Jetpack Compose), mobile web, and VoiceOver + TalkBack testing — mapped to WCAG 2.2 AA and WCAG2ICT.",
+    icon: TabletSmartphone,
+    difficulty: "Intermediate",
+    readingTime: "24 min",
+    topics: ["iOS", "Android", "Touch Targets", "SwiftUI", "Compose"],
+    href: "/guides/mobile-accessibility",
+    gradient: "from-cyan-600 to-teal-600",
   },
   {
     title: "Accessible Forms Guide",

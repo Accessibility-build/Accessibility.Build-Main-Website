@@ -304,6 +304,12 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                   <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
                     screen reader testing guide
                   </Link>
+                  . For the build side &mdash; touch targets, gestures, Dynamic
+                  Type, and the native iOS accessibility APIs behind VoiceOver
+                  &mdash; see the{" "}
+                  <Link href="/guides/mobile-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    mobile accessibility guide
+                  </Link>
                   .
                 </p>
               </div>
