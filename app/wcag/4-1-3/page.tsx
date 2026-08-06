@@ -491,7 +491,16 @@ export default function WCAG413Page() {
               >
                 the ARIA reference
               </Link>{" "}
-              for how these roles map to states and properties.
+              for how these roles map to states and properties. The hardest
+              real-world case of this criterion is a streaming AI response that
+              must be announced without flooding the screen reader; the{" "}
+              <Link
+                href="/guides/accessible-ai-chat"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                accessible AI chat interfaces guide
+              </Link>{" "}
+              works it through end to end.
             </p>
           </section>
 

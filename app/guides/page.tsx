@@ -47,6 +47,7 @@ import {
   Captions,
   Flame,
   TabletSmartphone,
+  MessagesSquare,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -68,6 +69,17 @@ export const metadata: Metadata = {
 }
 
 const guides = [
+  {
+    title: "Accessible AI Chat Interfaces & Conversational UI",
+    description:
+      "Build accessible AI chat and chatbot interfaces: announce streaming responses without flooding the screen reader, structure the message log, keep focus in the composer, make Send, Stop, and per-message actions keyboard-operable, and render AI output as semantic HTML. Mapped to WCAG 2.2 with copy-ready React.",
+    icon: MessagesSquare,
+    difficulty: "Intermediate",
+    readingTime: "22 min",
+    topics: ["AI Chat", "Streaming", "Live Regions", "WCAG 4.1.3"],
+    href: "/guides/accessible-ai-chat",
+    gradient: "from-violet-600 to-fuchsia-600",
+  },
   {
     title: "Fashion Nova's $5.15M Accessibility Settlement",
     description:
@@ -621,7 +633,7 @@ const categories = [
     slug: "frameworks",
     label: "Frameworks & Platforms",
     blurb:
-      "Framework-specific accessibility for React, Angular, Vue, Svelte, and native mobile.",
+      "Framework-specific accessibility for React, Angular, Vue, Svelte, native mobile, and AI-powered chat features.",
     icon: Code2,
     hrefs: [
       "/guides/react-accessibility",
@@ -629,6 +641,7 @@ const categories = [
       "/guides/vue-accessibility",
       "/guides/svelte-accessibility",
       "/guides/mobile-accessibility",
+      "/guides/accessible-ai-chat",
     ],
   },
   {
