@@ -462,6 +462,16 @@ export default function AccessibleTypographyGuidePage() {
                   recommendations: larger body text (18px+), looser line-height
                   (1.5+), generous letter and word spacing, shorter line length
                   (≤ 60ch), sans-serif typefaces with distinctive letterforms.
+                  Typography is one lever; for the wider picture of plain
+                  language, memory load, and the WCAG 2.2 cognitive criteria, see
+                  the{" "}
+                  <Link
+                    href="/guides/cognitive-accessibility"
+                    className="font-medium text-primary underline underline-offset-4"
+                  >
+                    cognitive accessibility &amp; plain language guide
+                  </Link>
+                  .
                 </p>
                 <p className="mt-4 leading-relaxed text-muted-foreground">
                   Two typefaces deserve specific mention. Atkinson Hyperlegible,

@@ -48,6 +48,7 @@ import {
   Flame,
   TabletSmartphone,
   MessagesSquare,
+  Brain,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -233,6 +234,17 @@ const guides = [
     topics: ["Modular scale", "WCAG 1.4.12", "Fluid typography", "Dyslexia", "Design Tokens"],
     href: "/guides/accessible-typography-wcag",
     gradient: "from-sky-600 to-indigo-600",
+  },
+  {
+    title: "Cognitive Accessibility & Plain Language",
+    description:
+      "Design for the largest and most varied group of disabled users, and the one checkers help least. Plain language and reading level, scannable structure, consistent navigation and help, less reliance on memory, and forgiving forms, mapped to the WCAG 2.2 cognitive criteria (3.2.6 Consistent Help, 3.3.7 Redundant Entry, 3.3.8 Accessible Authentication) and the W3C COGA guidance.",
+    icon: Brain,
+    difficulty: "Intermediate",
+    readingTime: "26 min",
+    topics: ["Plain language", "Reading level", "Consistent Help 3.2.6", "Redundant Entry 3.3.7", "Memory load"],
+    href: "/guides/cognitive-accessibility",
+    gradient: "from-violet-600 to-purple-700",
   },
   {
     title: "React Accessibility Guide",
@@ -648,12 +660,13 @@ const categories = [
     slug: "design",
     label: "Design, Content & Media",
     blurb:
-      "Color, typography, data visualization, media, and documents that work for everyone.",
+      "Color, typography, plain language, data visualization, media, and documents that work for everyone.",
     icon: Palette,
     hrefs: [
       "/guides/accessible-color-palettes",
       "/guides/oklch-apca-color-systems",
       "/guides/accessible-typography-wcag",
+      "/guides/cognitive-accessibility",
       "/guides/accessible-charts",
       "/guides/accessible-video-player",
       "/guides/pdf-accessibility",
