@@ -49,6 +49,7 @@ import {
   TabletSmartphone,
   MessagesSquare,
   Brain,
+  Accessibility,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -70,6 +71,17 @@ export const metadata: Metadata = {
 }
 
 const guides = [
+  {
+    title: "How to Use ARIA: Roles, States & Properties",
+    description:
+      "ARIA changes what a screen reader announces and nothing else, so a wrong attribute makes your interface lie to assistive technology. The cornerstone guide to using ARIA correctly: the five rules of ARIA, when native HTML wins, roles vs states vs properties, accessible names (aria-label vs aria-labelledby vs aria-describedby), landmark roles, the aria-hidden traps that break keyboard users, live regions, and the most common ARIA mistakes. Mapped to WCAG 2.2.",
+    icon: Accessibility,
+    difficulty: "Intermediate",
+    readingTime: "24 min",
+    topics: ["Five rules of ARIA", "Roles, states, properties", "aria-label vs labelledby", "aria-hidden", "Landmarks"],
+    href: "/guides/using-aria",
+    gradient: "from-sky-600 to-blue-700",
+  },
   {
     title: "Accessible AI Chat Interfaces & Conversational UI",
     description:
@@ -626,9 +638,10 @@ const categories = [
     slug: "patterns",
     label: "ARIA Component Patterns",
     blurb:
-      "Build the WAI-ARIA Authoring Practices components correctly, with copy-ready HTML, JavaScript, and React.",
+      "Start with the rules of ARIA, then build the WAI-ARIA Authoring Practices components correctly, with copy-ready HTML, JavaScript, and React.",
     icon: Component,
     hrefs: [
+      "/guides/using-aria",
       "/guides/accessible-tabs",
       "/guides/accessible-accordion",
       "/guides/accessible-combobox",

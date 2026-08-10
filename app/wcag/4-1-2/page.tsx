@@ -444,8 +444,16 @@ export default function WCAG412Page() {
               <strong>visible</strong> label or visible text content, because it
               names the control for everyone and keeps the accessible name in sync
               with what sighted users see. Reserve <code className="text-sm">aria-label</code>{" "}
-              for controls that have no visible text, like icon buttons. For more
-              on the attributes themselves, see the{" "}
+              for controls that have no visible text, like icon buttons. For the
+              full discipline of applying roles, states, and properties without
+              making things worse, see the{" "}
+              <Link
+                href="/guides/using-aria"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                guide to using ARIA the right way
+              </Link>
+              . For more on the attributes themselves, see the{" "}
               <Link
                 href="/reference/aria"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
