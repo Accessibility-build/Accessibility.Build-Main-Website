@@ -746,10 +746,15 @@ export default function AccessibleChartsGuidePage() {
                 both from the same data so they can never disagree — a table that
                 has drifted out of sync with the chart is worse than no table at
                 all. For the full set of rules on building the table itself, the{" "}
+                <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  accessible data tables guide
+                </Link>{" "}
+                covers headers, captions, complex tables with the headers and id
+                method, and responsive patterns, and the{" "}
                 <Link href="/learn/table" className="text-blue-600 dark:text-blue-400 hover:underline">
                   accessible tables demo
                 </Link>{" "}
-                walks through headers, captions, and responsive patterns.
+                shows the patterns live.
               </p>
             </div>
           </section>

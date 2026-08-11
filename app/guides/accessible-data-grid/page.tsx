@@ -427,7 +427,11 @@ export default function AccessibleDataGridGuidePage() {
                       </Link>
                       . Reserve <code>role=&quot;grid&quot;</code> for when the
                       user navigates or edits cells with the keyboard. Section 1 is
-                      the decision.
+                      the decision, and when a plain table is the answer, the{" "}
+                      <Link href="/guides/accessible-data-tables" className="underline">
+                        accessible data tables guide
+                      </Link>{" "}
+                      covers building it.
                     </span>
                   </p>
                 </div>

@@ -138,6 +138,7 @@ const guides: SiteRoute[] = [
   { route: "/guides/accessible-listbox", label: "Accessible Listbox Guide", group: "Guides", lastModified: "2026-07-29", priority: 0.94 },
   { route: "/guides/accessible-color-palettes", label: "Accessible Color Palettes", group: "Guides", lastModified: "2026-04-28", priority: 0.94 },
   { route: "/guides/accessible-charts", label: "Accessible Charts & Data Visualization Guide", group: "Guides", lastModified: "2026-07-31", priority: 0.94 },
+  { route: "/guides/accessible-data-tables", label: "Accessible Data Tables Guide", group: "Guides", lastModified: "2026-08-11", priority: 0.94 },
   { route: "/guides/accessible-video-player", label: "Accessible Video & Media Player Guide", group: "Guides", lastModified: "2026-08-01", priority: 0.94 },
   { route: "/guides/screen-reader-testing", label: "Screen Reader Testing", group: "Guides", lastModified: "2026-03-15", priority: 0.93 },
   { route: "/guides/nvda-screen-reader-testing", label: "NVDA Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-14", priority: 0.94 },

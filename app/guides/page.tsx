@@ -50,6 +50,7 @@ import {
   MessagesSquare,
   Brain,
   Accessibility,
+  Table,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -224,6 +225,17 @@ const guides = [
     topics: ["Data table alternative", "SVG role=img", "Color not alone", "1.4.13 tooltips", "Charting libraries"],
     href: "/guides/accessible-charts",
     gradient: "from-emerald-600 to-cyan-600",
+  },
+  {
+    title: "Accessible Data Tables",
+    description:
+      "A data table is accessible when the markup says which cell is a header for which data. Learn the semantic table, caption, and th scope structure, when to use scope vs the headers and id method for complex tables, responsive tables that survive 320px, sortable tables with aria-sort and named row controls, and when a plain table beats an ARIA grid — with copy-ready HTML mapped to WCAG 2.2.",
+    icon: Table,
+    difficulty: "Intermediate",
+    readingTime: "22 min",
+    topics: ["th scope", "caption", "headers/id", "aria-sort", "Responsive tables"],
+    href: "/guides/accessible-data-tables",
+    gradient: "from-teal-600 to-emerald-700",
   },
   {
     title: "OKLCH + APCA Color Systems",
@@ -673,7 +685,7 @@ const categories = [
     slug: "design",
     label: "Design, Content & Media",
     blurb:
-      "Color, typography, plain language, data visualization, media, and documents that work for everyone.",
+      "Color, typography, plain language, data visualization, data tables, media, and documents that work for everyone.",
     icon: Palette,
     hrefs: [
       "/guides/accessible-color-palettes",
@@ -681,6 +693,7 @@ const categories = [
       "/guides/accessible-typography-wcag",
       "/guides/cognitive-accessibility",
       "/guides/accessible-charts",
+      "/guides/accessible-data-tables",
       "/guides/accessible-video-player",
       "/guides/pdf-accessibility",
     ],
