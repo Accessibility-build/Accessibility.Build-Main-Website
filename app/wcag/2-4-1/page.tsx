@@ -512,6 +512,18 @@ export default function WCAG241Page() {
             <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
               <code>{landmarksHtml}</code>
             </pre>
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-6">
+              For the full build, from the visually-hidden-until-focused CSS and
+              the focusable-target bug to multiple skip links and skip links in
+              single-page apps, see the{" "}
+              <Link
+                href="/guides/skip-links"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                skip links &amp; bypass blocks guide
+              </Link>
+              .
+            </p>
           </section>
 
           {/* Interactive demo */}

@@ -51,6 +51,7 @@ import {
   Brain,
   Accessibility,
   Table,
+  SkipForward,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -370,6 +371,17 @@ const guides = [
     gradient: "from-blue-600 to-indigo-600",
   },
   {
+    title: "Skip Links & Bypass Blocks Guide",
+    description:
+      "Build a skip link that actually works: the first-focusable HTML, the visually-hidden-until-focused CSS, and the number one bug where the page scrolls but focus never moves because the target is not focusable. Plus landmarks and headings as the real bypass for screen reader users, multiple skip links, and skip links in single-page apps and React, mapped to WCAG 2.4.1.",
+    icon: SkipForward,
+    difficulty: "Beginner",
+    readingTime: "18 min",
+    topics: ["Skip Links", "Bypass Blocks", "tabindex -1", "Landmarks", "WCAG 2.4.1"],
+    href: "/guides/skip-links",
+    gradient: "from-sky-600 to-indigo-600",
+  },
+  {
     title: "Accessible Tabs Guide",
     description:
       "Build tabs the right way with the WAI-ARIA Tabs pattern: the tablist, tab, and tabpanel roles, aria-selected and aria-controls, roving tabindex, arrow-key navigation, automatic vs manual activation, and vertical tabs — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
@@ -644,6 +656,7 @@ const categories = [
       "/guides/accessible-form-validation",
       "/guides/keyboard-accessibility",
       "/guides/focus-management",
+      "/guides/skip-links",
     ],
   },
   {
