@@ -92,9 +92,23 @@ export default function robots(): MetadataRoute.Robots {
       // Default rule (all conventional crawlers)
       // "/api/og" is the dynamic OG image generator — it must stay fetchable
       // even though the rest of /api/ is disallowed.
+      //
+      // "/_next/static/" must also stay fetchable. Crawlers render the page to
+      // judge it (Google renders mobile-first), and every stylesheet, script
+      // chunk and font lives under /_next/static/chunks/ or /_next/static/media/
+      // (one tool page references ~325 of them). Blocking those means a crawler
+      // sees an unstyled skeleton and can misjudge mobile-friendliness. The
+      // broader "/_next/" disallow stays, so build internals are still not
+      // crawled as content; Allow is more specific here, so it wins.
+      //
+      // Googlebot was never affected: its own group below omits "/_next/", and
+      // a crawler obeys only its most specific user-agent group. That exemption
+      // was incidental rather than deliberate, so this makes the CSS/JS allow
+      // explicit for everything that falls through to "*" — Bingbot (which
+      // feeds Microsoft Copilot), Applebot, DuckDuckBot, and the rest.
       {
         userAgent: "*",
-        allow: ["/", "/api/og"],
+        allow: ["/", "/api/og", "/_next/static/"],
         disallow: PRIVATE_PATHS,
       },
       // Per-engine refinements
