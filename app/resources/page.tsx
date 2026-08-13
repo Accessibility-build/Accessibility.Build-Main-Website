@@ -533,7 +533,9 @@ export default function ResourcesPage() {
           {/* All Resources */}
           <TabsContent value="all" className="space-y-6">
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-2">Complete Resource Collection</h3>
+              {/* h2: a top-level page section, peer of "Featured Resources".
+                  CardTitle renders an h3, so the cards inside nest under it. */}
+              <h2 className="text-2xl font-bold mb-2">Complete Resource Collection</h2>
               <p className="text-muted-foreground">Browse all {resources.length} verified accessibility resources across every category</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -577,10 +579,10 @@ export default function ResourcesPage() {
           {categories.slice(1).map((category) => (
             <TabsContent key={category.id} value={category.id} className="space-y-6">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
-                  <category.icon className="h-6 w-6 text-primary" />
+                <h2 className="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
+                  <category.icon className="h-6 w-6 text-primary" aria-hidden="true" />
                   {category.name}
-                </h3>
+                </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">{category.description}</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -631,7 +633,7 @@ export default function ResourcesPage() {
         <div className="mt-16 text-center">
           <Card className="max-w-2xl mx-auto bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-4">Missing a Resource?</h3>
+              <h2 className="text-2xl font-bold mb-4">Missing a Resource?</h2>
               <p className="text-muted-foreground mb-6">
                 Know of an amazing accessibility resource that should be included? We're always looking to expand our collection with community recommendations.
               </p>

@@ -159,9 +159,9 @@ export default function ToolsClientPage() {
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,460px)] lg:items-end">
               <div>
                 <p className="text-sm font-semibold text-teal-700 dark:text-teal-300">Accessibility.build utilities</p>
-                <h1 className="mt-2 text-4xl font-semibold text-slate-950 sm:text-5xl dark:text-white">Tools for accessibility work</h1>
+                <h1 className="mt-2 text-4xl font-semibold text-slate-950 sm:text-5xl dark:text-white">Accessibility tools for developers, designers, and QA teams</h1>
                 <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-                  Test interfaces, prepare content, build design tokens, organize findings, and handle common developer tasks in one workspace.
+                  Free WCAG 2.2 testing and authoring tools: check colour contrast, generate accessible palettes, audit a URL, inspect heading structure, and produce audit reports and accessibility statements. Test interfaces, prepare content, build design tokens, organize findings, and handle common developer tasks in one workspace.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
                   <span><strong className="text-slate-950 dark:text-white">{toolCatalog.length}</strong> tools</span>
