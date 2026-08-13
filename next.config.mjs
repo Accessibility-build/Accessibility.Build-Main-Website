@@ -46,17 +46,21 @@ const nextConfig = {
         return [{
             // Canonical host is the apex, accessibility.build. Search Console
             // (Aug 2026) showed 12 paths indexed on BOTH hosts, splitting ~32k
-            // impressions, because www redirects with a 307 TEMPORARY, which
+            // impressions, because www redirected with a 307 TEMPORARY, which
             // tells Google not to consolidate the two.
             //
-            // NOTE: today this rule never fires. The 307 is issued by Vercel at
-            // the edge (response has `server: Vercel`, `content-type:
+            // RESOLVED 2026-08-13: the www.accessibility.build domain redirect
+            // was set to 308 Permanent in the Vercel dashboard, and verified
+            // live (308, single hop, path and query preserved, apex serves 200
+            // with no loop, sitemap and canonicals apex-only).
+            //
+            // This rule does not normally fire: the redirect is issued by Vercel
+            // at the edge (response has `server: Vercel`, `content-type:
             // text/plain`, and no Next.js headers), so the request never reaches
-            // the app. THE REAL FIX IS IN THE VERCEL DASHBOARD: set the
-            // www.accessibility.build domain redirect to 308 Permanent.
-            // This rule is defence in depth, so that if www is ever re-added as
-            // an alias that serves the app rather than as an edge redirect, the
-            // app still canonicalises permanently instead of serving duplicates.
+            // the app. Keep it as defence in depth, so that if www is ever
+            // re-added as an alias that serves the app rather than as an edge
+            // redirect, the app still canonicalises permanently instead of
+            // serving duplicate content on both hosts.
             source: '/:path*',
             has: [{ type: 'host', value: 'www.accessibility.build' }],
             destination: 'https://accessibility.build/:path*',
