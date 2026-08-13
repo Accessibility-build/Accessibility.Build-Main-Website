@@ -52,6 +52,7 @@ import {
   Accessibility,
   Table,
   SkipForward,
+  Mail,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -237,6 +238,17 @@ const guides = [
     topics: ["th scope", "caption", "headers/id", "aria-sort", "Responsive tables"],
     href: "/guides/accessible-data-tables",
     gradient: "from-teal-600 to-emerald-700",
+  },
+  {
+    title: "Accessible Email HTML",
+    description:
+      "Email clients force you into the nested-table, inline-CSS layouts the web abandoned, so email accessibility is about making that table soup read as a linear document. Learn role=\"presentation\" on layout tables, real semantic content inside them, the lang attribute templates forget, alt text that survives blocked images, bulletproof accessible buttons, single-column reflow, dark-mode contrast, and how to test an email with a screen reader, with copy-ready HTML mapped to WCAG 2.2.",
+    icon: Mail,
+    difficulty: "Intermediate",
+    readingTime: "22 min",
+    topics: ["role=presentation", "Alt text", "Bulletproof buttons", "lang attribute", "Dark mode"],
+    href: "/guides/accessible-email",
+    gradient: "from-blue-600 to-cyan-600",
   },
   {
     title: "OKLCH + APCA Color Systems",
@@ -707,6 +719,7 @@ const categories = [
       "/guides/cognitive-accessibility",
       "/guides/accessible-charts",
       "/guides/accessible-data-tables",
+      "/guides/accessible-email",
       "/guides/accessible-video-player",
       "/guides/pdf-accessibility",
     ],

@@ -290,7 +290,14 @@ export default function AccessibleDataTablesGuidePage() {
                   and keep the reading order honest. If you are stuck with a legacy
                   layout table, <code>role=&quot;presentation&quot;</code> strips
                   its table semantics so assistive technology ignores the
-                  structure, but rebuilding it in CSS is the real fix.
+                  structure, but rebuilding it in CSS is the real fix. The one
+                  place layout tables remain unavoidable is{" "}
+                  <Link href="/guides/accessible-email" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    HTML email
+                  </Link>
+                  , where clients still require them and{" "}
+                  <code>role=&quot;presentation&quot;</code> becomes the primary
+                  accessibility technique rather than a legacy workaround.
                 </p>
               </div>
             </div>
