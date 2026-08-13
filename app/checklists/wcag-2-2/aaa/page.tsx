@@ -3,12 +3,13 @@ import Link from "next/link"
 import { getWCAGStats } from "@/lib/wcag-data"
 import InteractiveWCAGChecklist from "@/components/checklists/interactive-wcag-checklist"
 import { Shield, Sparkles, Award, ArrowLeft } from "lucide-react"
-import { BreadcrumbStructuredData, AccessibilityToolStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
+import { BreadcrumbStructuredData, AccessibilityToolStructuredData } from "@/components/seo/structured-data"
+import { FaqSection } from "@/components/seo/faq-section"
 
 export const metadata: Metadata = {
   title: "WCAG AAA Checklist | Level AAA Success Criteria | WCAG 2.2 Gold Standard",
   description:
-    "Complete WCAG 2.2 Level AAA checklist with all 28 enhanced accessibility criteria. Track progress, add notes, and export to Excel/PDF. The gold standard for web accessibility.",
+    "Complete WCAG 2.2 Level AAA checklist with all 31 enhanced accessibility criteria. Track progress, add notes, and export to Excel/PDF. The gold standard for web accessibility.",
   keywords: [
     "wcag aaa checklist",
     "WCAG AAA",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "WCAG AAA Checklist - Level AAA Success Criteria | Gold Standard",
-    description: "Complete WCAG 2.2 Level AAA checklist with all 28 enhanced accessibility criteria. The gold standard for web accessibility.",
+    description: "Complete WCAG 2.2 Level AAA checklist with all 31 enhanced accessibility criteria. The gold standard for web accessibility.",
     type: "website",
     url: "https://accessibility.build/checklists/wcag-2-2/aaa",
     images: [
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "WCAG AAA Checklist - Level AAA Gold Standard",
-    description: "Complete WCAG 2.2 Level AAA checklist with all 28 enhanced accessibility criteria.",
+    description: "Complete WCAG 2.2 Level AAA checklist with all 31 enhanced accessibility criteria.",
     images: ["https://accessibility.build/images/checklists/wcag-aaa-og.png"]
   },
   alternates: {
@@ -52,6 +53,31 @@ export const metadata: Metadata = {
 
 export default function WCAGAAAChecklistPage() {
   const stats = getWCAGStats()
+  const aa = stats.byLevel.A + stats.byLevel.AA
+
+  // Rendered on the page AND emitted as FAQPage schema by <FaqSection>, from this
+  // one array. Counts are derived from the criteria data rather than hardcoded,
+  // so they cannot drift out of step with the checklist itself.
+  const faqs = [
+    {
+      question: "What is WCAG Level AAA?",
+      answer: `WCAG Level AAA is the highest level of accessibility conformance in the Web Content Accessibility Guidelines. It includes all Level A and AA criteria plus ${stats.byLevel.AAA} additional enhanced criteria that provide the highest level of accessibility for users with disabilities.`,
+    },
+    {
+      question: "Is WCAG AAA compliance required?",
+      answer:
+        "WCAG AAA is not typically required for entire websites, and the guidelines themselves note that it is not possible to satisfy all AAA criteria for some content. It is worth targeting for specialized content such as educational materials, healthcare information, and government services where maximum accessibility matters, and most laws and procurement rules reference Level AA as the bar instead.",
+    },
+    {
+      question: "What are the main differences between Level AA and AAA?",
+      answer:
+        "Level AAA adds stricter requirements, including a 7:1 contrast ratio for normal text rather than 4.5:1, sign language interpretation for prerecorded audio, extended audio descriptions, no timing limits on interactions, reading level and pronunciation requirements, and context-sensitive help. Several of these depend on producing extra media or editorial work rather than on code changes, which is why AAA is usually scoped to specific content instead of an entire site.",
+    },
+    {
+      question: "How many success criteria are in WCAG 2.2 Level AAA?",
+      answer: `WCAG 2.2 Level AAA includes ${stats.byLevel.AAA} success criteria beyond the ${aa} criteria in Levels A and AA, bringing the total to ${stats.total} success criteria across all three levels (Level A has ${stats.byLevel.A} and Level AA has ${stats.byLevel.AA}).`,
+    },
+  ]
 
   return (
     <>
@@ -77,24 +103,6 @@ export default function WCAGAAAChecklistPage() {
           "highContrastDisplay"
         ]}
       />
-      <FAQStructuredData faqs={[
-        {
-          question: "What is WCAG Level AAA?",
-          answer: "WCAG Level AAA is the highest level of accessibility conformance in the Web Content Accessibility Guidelines. It includes all Level A and AA criteria plus 28 additional enhanced criteria that provide the highest level of accessibility for users with disabilities."
-        },
-        {
-          question: "Is WCAG AAA compliance required?",
-          answer: "WCAG AAA is not typically required for entire websites as some criteria may not apply to all content types. However, it's recommended for specialized content such as educational materials, healthcare information, and government services where maximum accessibility is crucial."
-        },
-        {
-          question: "What are the main differences between Level AA and AAA?",
-          answer: "Level AAA includes stricter requirements such as: no timing limits for interactions, sign language interpretation for audio content, extended audio descriptions, reading level requirements, pronunciation guides, and more stringent contrast ratios (7:1 for normal text)."
-        },
-        {
-          question: "How many success criteria are in WCAG 2.2 Level AAA?",
-          answer: "WCAG 2.2 Level AAA includes 31 success criteria beyond the 55 criteria in Levels A and AA, bringing the total to 86 success criteria across all three levels."
-        }
-      ]} />
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         {/* Hero Section */}
@@ -142,7 +150,7 @@ export default function WCAGAAAChecklistPage() {
                   </div>
                   <div className="flex items-center px-4 py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-full border border-purple-200 dark:border-purple-700">
                     <Shield className="w-4 h-4 text-purple-600 mr-2" />
-                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">24 Criteria</span>
+                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{stats.byLevel.AAA} Criteria</span>
                   </div>
                 </div>
               </div>
@@ -193,6 +201,13 @@ export default function WCAGAAAChecklistPage() {
             <div className="max-w-7xl mx-auto">
               <InteractiveWCAGChecklist initialLevelFilter="AAA" />
             </div>
+          </div>
+        </div>
+
+        {/* FAQ */}
+        <div className="container-wide pb-16">
+          <div className="max-w-3xl mx-auto">
+            <FaqSection faqs={faqs} title="WCAG Level AAA FAQ" />
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import ADAComplianceRisks from "@/components/tools/ada-compliance-risks"
-import { AccessibilityToolStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
+import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
+import { FaqSection, type FaqItem } from "@/components/seo/faq-section"
 import { RelatedContent } from "@/components/seo/related-content"
 import { AlertTriangle } from "lucide-react"
 
@@ -58,6 +59,31 @@ const breadcrumbs = [
   { name: "ADA Compliance Risks", url: "https://accessibility.build/tools/ada-compliance-risks" }
 ]
 
+// Rendered on the page AND emitted as FAQPage schema by <FaqSection>, from this
+// one array, so the two can never drift apart.
+const faqs: FaqItem[] = [
+  {
+    question: "What is ADA compliance risk?",
+    answer:
+      "Accessibility legal risk depends on jurisdiction, business model, user barriers, and applicable law. This tool organizes planning factors but cannot determine legal compliance or predict a claim.",
+  },
+  {
+    question: "How is the risk score calculated?",
+    answer:
+      "The planning score applies documented weights to industry, traffic, geography, known barriers, and program maturity. It is a scenario-comparison aid, not a prediction of whether a claim will be filed or succeed.",
+  },
+  {
+    question: "What industries have the highest ADA compliance risk?",
+    answer:
+      "Digital-accessibility filings have been concentrated in e-commerce and food-service businesses, but exposure varies substantially by jurisdiction, business model, user journeys, and current barriers.",
+  },
+  {
+    question: "How can I reduce my ADA compliance risk?",
+    answer:
+      "Reduce risk by removing user barriers, testing important journeys with disabled users and assistive technologies, maintaining an accessibility program, documenting remediation, and obtaining legal advice for your jurisdiction.",
+  },
+]
+
 export default function ADAComplianceRisksPage() {
   return (
     <>
@@ -78,24 +104,6 @@ export default function ADAComplianceRisksPage() {
         ]}
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
-      <FAQStructuredData faqs={[
-        {
-          question: "What is ADA compliance risk?",
-          answer: "Accessibility legal risk depends on jurisdiction, business model, user barriers, and applicable law. This tool organizes planning factors but cannot determine legal compliance or predict a claim."
-        },
-        {
-          question: "How is the risk score calculated?",
-          answer: "The planning score applies documented weights to industry, traffic, geography, known barriers, and program maturity. It is a scenario-comparison aid, not a prediction of whether a claim will be filed or succeed."
-        },
-        {
-          question: "What industries have the highest ADA compliance risk?",
-          answer: "Digital-accessibility filings have been concentrated in e-commerce and food-service businesses, but exposure varies substantially by jurisdiction, business model, user journeys, and current barriers."
-        },
-        {
-          question: "How can I reduce my ADA compliance risk?",
-          answer: "Reduce risk by removing user barriers, testing important journeys with disabled users and assistive technologies, maintaining an accessibility program, documenting remediation, and obtaining legal advice for your jurisdiction."
-        }
-      ]} />
 
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
         <div className="container-wide py-10 sm:py-12">
@@ -113,6 +121,10 @@ export default function ADAComplianceRisksPage() {
 
           <div className="mt-8">
           <ADAComplianceRisks />
+          </div>
+
+          <div className="mt-16 max-w-3xl">
+            <FaqSection faqs={faqs} />
           </div>
 
           {/* Related Content */}

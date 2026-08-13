@@ -93,7 +93,9 @@ const faqItems = [
       "WAI-ARIA 1.2 is the current W3C Recommendation, published in June 2023. WAI-ARIA 1.3 is in development as a Working Draft. Each new version introduces additional roles, states, and properties while deprecating patterns that are no longer recommended.",
   },
   {
-    question: "What are common ARIA mistakes to avoid?",
+    // Must match the visible wording rendered by client-page.tsx, or this
+    // question appears in FAQPage schema without being on the page.
+    question: "What are common ARIA mistakes?",
     answer:
       "Common ARIA mistakes include using redundant roles on native elements (e.g., role=\"button\" on a <button>), using aria-hidden=\"true\" on focusable elements, applying incorrect roles to interactive widgets, and forgetting to manage focus and keyboard behavior for custom components. ARIA only changes what assistive technology perceives, not how an element actually behaves.",
   },

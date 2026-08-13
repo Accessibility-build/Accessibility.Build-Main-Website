@@ -13,6 +13,38 @@ export const metadata = createMetadata({
   keywords: ["WCAG 2.2 checklist excel", "WCAG 2.2", "accessibility checklist", "success criteria", "compliance", "audit", "interactive", "excel export", "excel template", "WCAG checklist download"]
 })
 
+// Rendered visibly further down AND emitted as the page's FAQPage schema, from
+// this one array. Previously the schema carried three differently-worded
+// questions that appeared nowhere on the page, which Google's FAQ guidelines
+// disallow.
+const faqs = [
+  {
+    question: "Can I download the WCAG 2.2 checklist as an Excel spreadsheet?",
+    answer:
+      "Yes, click the Excel button in the controls bar above. The export includes all 86 success criteria with your progress, notes, an audit summary sheet, and a progress tracking template. You can also download a standalone Excel template from the Excel Template page.",
+  },
+  {
+    question: "Is the WCAG 2.2 accessibility checklist free?",
+    answer:
+      "Completely free. Track your audit progress, add notes, filter by level or principle, and export to Excel or PDF, with no account or payment required.",
+  },
+  {
+    question: "Does this checklist cover all WCAG 2.2 success criteria?",
+    answer:
+      "Yes, all 86 success criteria across Level A (31), Level AA (24), and Level AAA (31). Each criterion includes its WCAG description, parent guideline, and POUR principle for easy reference during accessibility audits.",
+  },
+  {
+    question: "How do I use the Excel export for accessibility compliance tracking?",
+    answer:
+      "Export to Excel, then filter by level to focus on AA compliance (the legal standard for ADA, Section 508, and EN 301 549). Add columns for assignees, remediation dates, and severity. Use the built-in progress tracking sheet to monitor improvements over time.",
+  },
+  {
+    question: "Is my checklist progress saved automatically?",
+    answer:
+      "Yes, your checkmarks and notes auto-save to your browser's local storage. They persist between sessions on the same device and browser. For permanent records, export to Excel or PDF.",
+  },
+]
+
 export default function WcagChecklistPage() {
   const stats = getWCAGStats()
 
@@ -109,28 +141,7 @@ export default function WcagChecklistPage() {
                 WCAG 2.2 Checklist FAQ
               </h2>
               <div className="space-y-3">
-                {[
-                  {
-                    question: "Can I download the WCAG 2.2 checklist as an Excel spreadsheet?",
-                    answer: "Yes — click the Excel button in the controls bar above. The export includes all 86 success criteria with your progress, notes, an audit summary sheet, and a progress tracking template. You can also download a standalone Excel template from the Excel Template page."
-                  },
-                  {
-                    question: "Is the WCAG 2.2 accessibility checklist free?",
-                    answer: "Completely free. Track your audit progress, add notes, filter by level or principle, and export to Excel or PDF — no account or payment required."
-                  },
-                  {
-                    question: "Does this checklist cover all WCAG 2.2 success criteria?",
-                    answer: "Yes — all 86 success criteria across Level A (31), Level AA (24), and Level AAA (31). Each criterion includes its WCAG description, parent guideline, and POUR principle for easy reference during accessibility audits."
-                  },
-                  {
-                    question: "How do I use the Excel export for accessibility compliance tracking?",
-                    answer: "Export to Excel, then filter by level to focus on AA compliance (the legal standard for ADA, Section 508, and EN 301 549). Add columns for assignees, remediation dates, and severity. Use the built-in progress tracking sheet to monitor improvements over time."
-                  },
-                  {
-                    question: "Is my checklist progress saved automatically?",
-                    answer: "Yes — your checkmarks and notes auto-save to your browser's local storage. They'll persist between sessions on the same device and browser. For permanent records, export to Excel or PDF."
-                  }
-                ].map((faq, index) => (
+                {faqs.map((faq, index) => (
                   <div key={index} className="p-4 bg-white dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/50">
                     <h3 className="font-semibold text-slate-900 dark:text-white text-sm">
                       {faq.question}
@@ -178,20 +189,7 @@ export default function WcagChecklistPage() {
       </div>
 
       {/* Structured Data */}
-      <FAQStructuredData faqs={[
-        {
-          question: "Can I export the WCAG 2.2 checklist to Excel?",
-          answer: "Yes! Click the Excel button to export your complete WCAG 2.2 checklist with all your progress, notes, and completion status. The Excel file includes multiple sheets: the main checklist, an audit summary, and a progress tracking template."
-        },
-        {
-          question: "What's included in the Excel export?",
-          answer: "The Excel export includes: (1) Complete checklist with all 86 success criteria, (2) Your completion status and notes for each criterion, (3) Audit summary with progress statistics, (4) Progress tracking template for ongoing monitoring, (5) Formatted headers and conditional formatting for easy reading."
-        },
-        {
-          question: "Is the WCAG 2.2 checklist free to use?",
-          answer: "Yes, the interactive WCAG 2.2 checklist is completely free. You can track your progress, add notes, filter criteria, and export to Excel or PDF without any cost or registration required."
-        }
-      ]} />
+      <FAQStructuredData faqs={faqs} />
       <AccessibilityToolStructuredData
         name="WCAG 2.2 Checklist Excel Export"
         description="Export your WCAG 2.2 accessibility checklist to Excel format with progress tracking, notes, and professional formatting"
