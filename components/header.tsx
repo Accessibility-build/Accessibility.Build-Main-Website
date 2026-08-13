@@ -420,6 +420,20 @@ export function Header() {
 
               <ThemeToggle />
 
+              {/* Contact: outside the auth check, since an enquiry matters
+                  whether or not someone has an account. Outline rather than
+                  primary so it reads as a CTA without competing with Sign Up.
+                  size="sm" matches the auth buttons, so the header keeps its
+                  constant 66px height and does not reintroduce layout shift. */}
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="hidden rounded-full sm:inline-flex"
+              >
+                <Link href="/contact">Contact</Link>
+              </Button>
+
               {/* Authentication */}
               {isSignedIn ? (
                 <div className="flex items-center gap-3">
@@ -763,6 +777,23 @@ export function Header() {
 
                 {/* Mobile Footer */}
                 <div className="border-t border-border p-6">
+                  {/* Contact sits above the auth buttons and outside the
+                      !isSignedIn check: the desktop Contact button is hidden
+                      below sm, so without this it would be unreachable on a
+                      phone, and signed-in users would never see it at all. */}
+                  <Button
+                    variant="outline"
+                    asChild
+                    className="mb-4 w-full rounded-full"
+                  >
+                    <Link
+                      href="/contact"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Contact
+                    </Link>
+                  </Button>
+
                   {!isSignedIn && (
                     <div className="flex flex-col gap-3 mb-4">
                       <Button asChild className="w-full rounded-full">
