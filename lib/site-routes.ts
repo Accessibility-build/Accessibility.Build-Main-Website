@@ -141,6 +141,7 @@ const guides: SiteRoute[] = [
   { route: "/guides/accessible-data-tables", label: "Accessible Data Tables Guide", group: "Guides", lastModified: "2026-08-11", priority: 0.94 },
   { route: "/guides/skip-links", label: "Skip Links & Bypass Blocks Guide", group: "Guides", lastModified: "2026-08-12", priority: 0.94 },
   { route: "/guides/accessible-email", label: "Accessible Email HTML Guide", group: "Guides", lastModified: "2026-08-13", priority: 0.94 },
+  { route: "/guides/accessible-maps", label: "Accessible Maps & Geospatial Content Guide", group: "Guides", lastModified: "2026-08-14", priority: 0.94 },
   { route: "/guides/accessible-video-player", label: "Accessible Video & Media Player Guide", group: "Guides", lastModified: "2026-08-01", priority: 0.94 },
   { route: "/guides/screen-reader-testing", label: "Screen Reader Testing", group: "Guides", lastModified: "2026-03-15", priority: 0.93 },
   { route: "/guides/nvda-screen-reader-testing", label: "NVDA Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-14", priority: 0.94 },

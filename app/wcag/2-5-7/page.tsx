@@ -489,7 +489,16 @@ export default function WCAG257Page() {
                   Offer directional pan buttons (up, down, left, right) and zoom
                   in/out buttons so the view can be moved without dragging. Most
                   mapping libraries include these controls — make sure they are
-                  enabled and reachable.
+                  enabled and reachable. For the full picture, including the
+                  map-plus-list pattern, marker names, and static-map
+                  alternatives, see the{" "}
+                  <Link
+                    href="/guides/accessible-maps"
+                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  >
+                    accessible maps guide
+                  </Link>
+                  .
                 </p>
               </div>
               <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-6">

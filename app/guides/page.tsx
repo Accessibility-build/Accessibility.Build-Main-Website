@@ -53,6 +53,7 @@ import {
   Table,
   SkipForward,
   Mail,
+  MapPinned,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -249,6 +250,17 @@ const guides = [
     topics: ["role=presentation", "Alt text", "Bulletproof buttons", "lang attribute", "Dark mode"],
     href: "/guides/accessible-email",
     gradient: "from-blue-600 to-cyan-600",
+  },
+  {
+    title: "Accessible Maps & Geospatial Content",
+    description:
+      "An interactive map is a picture of spatial data, so the accessible version is usually the same information delivered as text and controls, not the pixels. Learn how to decide what job the map is doing, build the map-plus-list pattern where the list is the source of truth, add titles to embedded maps, make markers and pan and zoom controls keyboard operable, provide a single-pointer alternative to dragging, write alt text for static maps, and make choropleth data maps accessible as charts, with copy-ready HTML mapped to WCAG 2.2.",
+    icon: MapPinned,
+    difficulty: "Intermediate",
+    readingTime: "24 min",
+    topics: ["Map + list pattern", "iframe title", "Keyboard pan/zoom", "Marker names", "Data maps"],
+    href: "/guides/accessible-maps",
+    gradient: "from-green-600 to-teal-700",
   },
   {
     title: "OKLCH + APCA Color Systems",
@@ -720,6 +732,7 @@ const categories = [
       "/guides/accessible-charts",
       "/guides/accessible-data-tables",
       "/guides/accessible-email",
+      "/guides/accessible-maps",
       "/guides/accessible-video-player",
       "/guides/pdf-accessibility",
     ],
