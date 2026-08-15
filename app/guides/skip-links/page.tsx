@@ -761,7 +761,14 @@ export default function SkipLinksGuidePage() {
                   <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, and{" "}
                   <code>&lt;aside&gt;</code> elements over{" "}
                   <code>role=&quot;navigation&quot;</code> and friends on a{" "}
-                  <code>&lt;div&gt;</code>.
+                  <code>&lt;div&gt;</code>. For the full landmark model, the
+                  scoping rule where a header or footer is only a landmark at the
+                  top level, when a <code>&lt;section&gt;</code> becomes a region,
+                  and how screen reader users jump between regions, see the{" "}
+                  <Link href="/guides/landmarks-page-structure" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    landmarks and page structure guide
+                  </Link>
+                  .
                 </p>
               </div>
             </div>

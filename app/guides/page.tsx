@@ -54,6 +54,7 @@ import {
   SkipForward,
   Mail,
   MapPinned,
+  LayoutTemplate,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -406,6 +407,17 @@ const guides = [
     gradient: "from-sky-600 to-indigo-600",
   },
   {
+    title: "ARIA Landmarks & Page Structure Guide",
+    description:
+      "The two maps a screen reader user navigates by: landmarks and headings. Covers the eight landmark roles and the HTML that provides them, the scoping rule almost everyone misses (header and footer are only landmarks at the top level), the section trap where a section is not a landmark until you name it, one main and naming repeated regions, the heading map and the HTML5 outline myth, and how real screen readers jump around by structure, mapped to WCAG 1.3.1.",
+    icon: LayoutTemplate,
+    difficulty: "Beginner",
+    readingTime: "20 min",
+    topics: ["ARIA Landmarks", "Semantic HTML", "Page Structure", "Heading Levels", "WCAG 1.3.1"],
+    href: "/guides/landmarks-page-structure",
+    gradient: "from-slate-600 to-blue-700",
+  },
+  {
     title: "Accessible Tabs Guide",
     description:
       "Build tabs the right way with the WAI-ARIA Tabs pattern: the tablist, tab, and tabpanel roles, aria-selected and aria-controls, roving tabindex, arrow-key navigation, automatic vs manual activation, and vertical tabs — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
@@ -673,7 +685,7 @@ const categories = [
     slug: "foundations",
     label: "Forms, Keyboard & Focus",
     blurb:
-      "The core interaction layer every accessible interface depends on.",
+      "The semantic structure and core interaction layer every accessible interface depends on.",
     icon: Keyboard,
     hrefs: [
       "/guides/accessible-forms",
@@ -681,6 +693,7 @@ const categories = [
       "/guides/keyboard-accessibility",
       "/guides/focus-management",
       "/guides/skip-links",
+      "/guides/landmarks-page-structure",
     ],
   },
   {
