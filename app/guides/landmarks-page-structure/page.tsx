@@ -715,7 +715,16 @@ export default function LandmarksPageStructureGuidePage() {
                     4.1.2 Name, Role, Value
                   </Link>{" "}
                   tie-in for structure: the role comes from the element, and you
-                  supply the name that distinguishes one instance from another.
+                  supply the name that distinguishes one instance from another. The{" "}
+                  <code>Breadcrumb</code> navigation above is a pattern in its own
+                  right; for marking the current page with{" "}
+                  <code>aria-current</code>, hiding the separators from assistive
+                  technology, and keeping the visible trail in sync with{" "}
+                  <code>BreadcrumbList</code> structured data, see the{" "}
+                  <Link href="/guides/accessible-breadcrumbs" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    accessible breadcrumbs guide
+                  </Link>
+                  .
                 </p>
               </div>
             </div>

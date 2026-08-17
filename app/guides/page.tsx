@@ -55,6 +55,7 @@ import {
   Mail,
   MapPinned,
   LayoutTemplate,
+  Milestone,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -418,6 +419,17 @@ const guides = [
     gradient: "from-slate-600 to-blue-700",
   },
   {
+    title: "Accessible Breadcrumb Navigation Guide",
+    description:
+      "A breadcrumb answers to two audiences at once: screen reader users through ARIA, and search engines through BreadcrumbList structured data. Covers the semantic markup (a named nav landmark wrapping an ordered list), marking the current page with aria-current, hiding the separators from assistive technology, keeping the visible trail and the structured data in sync, and truncating long trails on mobile without breaking either, mapped to WCAG 2.4.8.",
+    icon: Milestone,
+    difficulty: "Beginner",
+    readingTime: "16 min",
+    topics: ["Breadcrumbs", "aria-current", "BreadcrumbList Schema", "nav aria-label", "WCAG 2.4.8"],
+    href: "/guides/accessible-breadcrumbs",
+    gradient: "from-amber-600 to-orange-700",
+  },
+  {
     title: "Accessible Tabs Guide",
     description:
       "Build tabs the right way with the WAI-ARIA Tabs pattern: the tablist, tab, and tabpanel roles, aria-selected and aria-controls, roving tabindex, arrow-key navigation, automatic vs manual activation, and vertical tabs — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
@@ -694,6 +706,7 @@ const categories = [
       "/guides/focus-management",
       "/guides/skip-links",
       "/guides/landmarks-page-structure",
+      "/guides/accessible-breadcrumbs",
     ],
   },
   {
