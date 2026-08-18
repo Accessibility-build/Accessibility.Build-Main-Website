@@ -597,7 +597,11 @@ export default function AccessibleBreadcrumbsGuidePage() {
                     <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                       <tr>
                         <th scope="row" className="px-4 py-3 font-medium text-slate-900 dark:text-white align-top"><code>page</code></th>
-                        <td className="px-4 py-3 align-top">The current page within a set of pages. This is the breadcrumb value, and also the one for the active link in a site menu.</td>
+                        <td className="px-4 py-3 align-top">The current page within a set of pages. This is the breadcrumb value, and also how a{" "}
+                          <Link href="/guides/accessible-pagination" className="text-blue-600 dark:text-blue-400 hover:underline">
+                            pagination control
+                          </Link>{" "}
+                          and the active link in a site menu mark the current page.</td>
                       </tr>
                       <tr>
                         <th scope="row" className="px-4 py-3 font-medium text-slate-900 dark:text-white align-top"><code>step</code></th>

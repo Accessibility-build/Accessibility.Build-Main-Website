@@ -56,6 +56,7 @@ import {
   MapPinned,
   LayoutTemplate,
   Milestone,
+  GalleryHorizontalEnd,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -430,6 +431,17 @@ const guides = [
     gradient: "from-amber-600 to-orange-700",
   },
   {
+    title: "Accessible Pagination Guide",
+    description:
+      "Pagination is navigation, not a widget: a named nav landmark wrapping a list of controls. Covers giving each control a name that says what it does so \"Go to page 3\" replaces a bare \"3\", marking the current page with aria-current, choosing links or buttons on purpose, the Previous and Next disabled-state trap, hiding the ellipsis while keeping pages reachable, and announcing the change in single-page apps, with the Load More and infinite-scroll alternatives, mapped to WCAG 2.4.4.",
+    icon: GalleryHorizontalEnd,
+    difficulty: "Beginner",
+    readingTime: "18 min",
+    topics: ["Pagination", "aria-current", "Link vs Button", "Load More", "WCAG 2.4.4"],
+    href: "/guides/accessible-pagination",
+    gradient: "from-violet-600 to-purple-700",
+  },
+  {
     title: "Accessible Tabs Guide",
     description:
       "Build tabs the right way with the WAI-ARIA Tabs pattern: the tablist, tab, and tabpanel roles, aria-selected and aria-controls, roving tabindex, arrow-key navigation, automatic vs manual activation, and vertical tabs — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
@@ -707,6 +719,7 @@ const categories = [
       "/guides/skip-links",
       "/guides/landmarks-page-structure",
       "/guides/accessible-breadcrumbs",
+      "/guides/accessible-pagination",
     ],
   },
   {
