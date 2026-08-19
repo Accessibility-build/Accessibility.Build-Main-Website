@@ -548,6 +548,23 @@ wrapper.addEventListener("focusout", () =>
   display: none;
 }`}</code>
             </pre>
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-6">
+              These three rules are the criterion-level requirements. For the full
+              build, including when to use a tooltip versus a toggletip, why the{" "}
+              <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">
+                title
+              </code>{" "}
+              attribute is not an accessible tooltip, the rule that a tooltip can
+              never contain a link or a button, and how to name an icon-only control,
+              see the{" "}
+              <Link
+                href="/guides/accessible-tooltip"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                accessible tooltips and toggletips guide
+              </Link>
+              .
+            </p>
           </section>
 
           {/* Common mistakes */}

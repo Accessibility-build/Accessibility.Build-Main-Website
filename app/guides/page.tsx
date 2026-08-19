@@ -57,6 +57,7 @@ import {
   LayoutTemplate,
   Milestone,
   GalleryHorizontalEnd,
+  MessageSquareText,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -552,6 +553,17 @@ const guides = [
     gradient: "from-rose-500 to-pink-600",
   },
   {
+    title: "Accessible Tooltip & Toggletip Guide",
+    description:
+      "A tooltip and a toggletip look alike but are two different patterns, and choosing wrong is the most common hover-help bug. Learn the fork: a tooltip is a supplement wired with aria-describedby that shows on hover and focus and holds only plain text, while a toggletip is a button plus a live region that reveals requested information. Covers role=tooltip, why the title attribute is not a tooltip, the rule that a tooltip can never hold a link or button, naming an icon-only control, touch and reflow, mapped to WCAG 1.4.13.",
+    icon: MessageSquareText,
+    difficulty: "Intermediate",
+    readingTime: "18 min",
+    topics: ["role=tooltip", "Toggletip", "aria-describedby", "1.4.13", "Hover or focus"],
+    href: "/guides/accessible-tooltip",
+    gradient: "from-cyan-600 to-sky-700",
+  },
+  {
     title: "Screen Reader Testing Guide",
     description:
       "A practical guide to testing your websites and applications with the most popular screen readers. Covers NVDA and JAWS on Windows, VoiceOver on macOS and iOS, and TalkBack on Android with step-by-step workflows.",
@@ -740,6 +752,7 @@ const categories = [
       "/guides/accessible-tree-view",
       "/guides/accessible-data-grid",
       "/guides/accessible-listbox",
+      "/guides/accessible-tooltip",
     ],
   },
   {
