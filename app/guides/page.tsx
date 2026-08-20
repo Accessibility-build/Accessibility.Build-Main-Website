@@ -58,6 +58,7 @@ import {
   Milestone,
   GalleryHorizontalEnd,
   MessageSquareText,
+  BellRing,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -564,6 +565,17 @@ const guides = [
     gradient: "from-cyan-600 to-sky-700",
   },
   {
+    title: "Accessible Notifications & Toasts Guide",
+    description:
+      "A toast asks a screen reader user to hear a message and act on it before it disappears, and those demands pull against each other. Learn the two questions that pick the pattern, the live region that must exist before the message, the role=status versus role=alert politeness fork, why auto-dismiss collides with WCAG 2.2.1, why a toast never steals focus, stacking without flooding, and status that never rides on color alone. Copy-ready HTML, JavaScript, and React mapped to WCAG 4.1.3.",
+    icon: BellRing,
+    difficulty: "Intermediate",
+    readingTime: "20 min",
+    topics: ["role=status", "role=alert", "aria-live", "Auto-dismiss", "4.1.3"],
+    href: "/guides/accessible-notifications",
+    gradient: "from-amber-500 to-rose-600",
+  },
+  {
     title: "Screen Reader Testing Guide",
     description:
       "A practical guide to testing your websites and applications with the most popular screen readers. Covers NVDA and JAWS on Windows, VoiceOver on macOS and iOS, and TalkBack on Android with step-by-step workflows.",
@@ -753,6 +765,7 @@ const categories = [
       "/guides/accessible-data-grid",
       "/guides/accessible-listbox",
       "/guides/accessible-tooltip",
+      "/guides/accessible-notifications",
     ],
   },
   {

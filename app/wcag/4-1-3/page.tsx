@@ -726,7 +726,16 @@ export default function WCAG413Page() {
               >
                 URL Accessibility Auditor
               </Link>
-              .
+              . The most common real-world home for this criterion is a toast or
+              notification, where the live region collides with an auto-dismiss
+              timer; the{" "}
+              <Link
+                href="/guides/accessible-notifications"
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+              >
+                accessible notifications and toasts guide
+              </Link>{" "}
+              builds that component end to end.
             </p>
           </section>
 
