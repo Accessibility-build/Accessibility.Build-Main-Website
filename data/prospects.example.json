@@ -1,0 +1,51 @@
+[
+  {
+    "company": "Nimbus Kettle Company",
+    "website": "https://nimbus-kettle.example",
+    "country": "UK",
+    "sector": "Ecommerce — small appliances",
+    "tier": "send-now",
+    "sendability": "PECR corporate-subscriber exemption; B2B address published for trade enquiries",
+    "emailAddress": "trade@nimbus-kettle.example",
+    "addressSource": "Trade enquiries page footer",
+    "contactRole": "Ecommerce Director",
+    "overlay": "accessiBe",
+    "hasStatement": true,
+    "statementNote": "Statement exists but is 61 words and names no conformance target",
+    "findings": [
+      { "n": 1, "text": "31 pieces of text on the homepage fall below the 4.5:1 contrast minimum (WCAG 1.4.3)" },
+      { "n": 2, "text": "The basket quantity stepper has no accessible name, announcing only as \"button\" (WCAG 4.1.2)" },
+      { "n": 3, "text": "Product images carry filenames as alt text, so screen readers announce \"IMG-4471\" (WCAG 1.1.1)" }
+    ],
+    "evidence": "Scanned the homepage and one product page with axe-core in a desktop viewport. The accessiBe widget is present and loads before the failures above, which it does not fix — the contrast failures are in the site's own stylesheet, not in content the overlay rewrites.",
+    "subject": "Three checkout blockers on nimbus-kettle.example",
+    "emailBody": "Hi,\n\nI ran an accessibility check on your homepage and one product page this morning. Three things stood out, all of them verifiable in about ten seconds:\n\n1. 31 pieces of text fall below the 4.5:1 contrast minimum.\n2. The basket quantity stepper announces only as \"button\" to a screen reader.\n3. Product images use filenames as alt text.\n\nI noticed you already run accessiBe. Overlays do not reach any of the three above, because they sit in your stylesheet and markup rather than in what the widget rewrites at runtime.\n\nHappy to send the full finding sheet with the exact selectors, no charge and no call required. Would that be useful?\n\nBest,\nKhushwant",
+    "caution": null,
+    "score": 88,
+    "scannedAt": "2026-08-14T09:12:00.000Z"
+  },
+  {
+    "company": "Verdant Ledger SARL",
+    "website": "https://verdant-ledger.example",
+    "country": "FR",
+    "sector": "SaaS — bookkeeping",
+    "tier": "hold",
+    "sendability": "France applies opt-in to B2B addresses; no soft opt-in available here",
+    "emailAddress": null,
+    "addressSource": null,
+    "contactRole": "Head of Product",
+    "overlay": null,
+    "hasStatement": false,
+    "statementNote": "No accessibility statement found at /accessibility, /accessibility-statement or /accessibility-policy",
+    "findings": [
+      { "n": 1, "text": "The sign-up form has 4 inputs with no associated label (WCAG 3.3.2)" },
+      { "n": 2, "text": "Heading levels skip from h1 to h4, breaking the outline screen readers navigate by (WCAG 1.3.1)" }
+    ],
+    "evidence": "Scanned the marketing homepage and the public sign-up page. No overlay present. The EAA brings this service in scope from June 2025 and there is no statement published on any of the three conventional paths.",
+    "subject": "Sign-up form labels on verdant-ledger.example",
+    "emailBody": "Bonjour,\n\nI checked your public sign-up page and found four inputs without an associated label, plus a heading level that skips from h1 straight to h4.\n\nBoth are small fixes, and both are the kind of thing the EAA statement requirement will surface.\n\nWould a short written finding sheet be useful?\n\nBest,\nKhushwant",
+    "caution": "Do not email — France applies opt-in to corporate addresses. LinkedIn only.",
+    "score": 42,
+    "scannedAt": "2026-08-14T10:40:00.000Z"
+  }
+]

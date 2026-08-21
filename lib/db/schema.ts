@@ -494,3 +494,53 @@ export interface ReportIssue {
 export type PublishedReport = typeof publishedReports.$inferSelect
 export type NewPublishedReport = typeof publishedReports.$inferInsert
 
+// Sales prospects — researched outreach leads, one row per company. Every row
+// carries a verified accessibility finding and a hand-written email that the
+// admin panel displays for copy-and-paste; nothing here is ever sent from the
+// app. Research columns are refreshed by scripts/seed-prospects.mjs, while
+// `status` and `notes` belong to the operator and a re-seed must not touch them.
+export const prospects = pgTable('prospects', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  company: text('company').notNull().unique(), // Upsert key for the seed script
+  website: text('website'),
+  country: text('country'), // ISO-ish short code, e.g. "UK", "IE", "CA"
+  sector: text('sector'),
+  tier: text('tier'), // 'send-now' | 'send-careful' | 'linkedin-only' | 'hold'
+  sendability: text('sendability'), // Short legal note, e.g. "PECR corporate-subscriber exemption"
+  emailAddress: text('email_address'), // Verified published address; null when none was found
+  addressSource: text('address_source'), // Where that address is published
+  contactRole: text('contact_role'), // Job title to approach
+  overlay: text('overlay'), // Detected overlay widget, e.g. "accessiBe"
+  hasStatement: boolean('has_statement').notNull().default(false),
+  statementNote: text('statement_note'),
+  findings: jsonb('findings').$type<ProspectFinding[]>(),
+  evidence: text('evidence'), // The verified signal paragraph
+  subject: text('subject'),
+  emailBody: text('email_body'),
+  caution: text('caution'), // Warning shown prominently, e.g. "Do not email, France is opt-in"
+  score: integer('score').notNull().default(0),
+  status: text('status').notNull().default('new'), // 'new' | 'sent' | 'replied' | 'won' | 'dead'
+  notes: text('notes'),
+  scannedAt: timestamp('scanned_at'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (t) => ({
+  tierIdx: index('prospects_tier_idx').on(t.tier),
+  statusIdx: index('prospects_status_idx').on(t.status),
+  scoreIdx: index('prospects_score_idx').on(t.score),
+}))
+
+export interface ProspectFinding {
+  n: number
+  text: string
+}
+
+export const PROSPECT_TIERS = ['send-now', 'send-careful', 'linkedin-only', 'hold'] as const
+export const PROSPECT_STATUSES = ['new', 'sent', 'replied', 'won', 'dead'] as const
+
+export type ProspectTier = (typeof PROSPECT_TIERS)[number]
+export type ProspectStatus = (typeof PROSPECT_STATUSES)[number]
+
+export type Prospect = typeof prospects.$inferSelect
+export type NewProspect = typeof prospects.$inferInsert
+

@@ -35,3 +35,13 @@ next-env.d.ts
 # session tooling logs
 .waylog/
 .env.local
+
+# prospect research data — real company names, findings and email addresses.
+# This repository is public: never commit the seed data. Only the shape is
+# documented, in the committed data/prospects.example.json.
+/data/prospects.seed.json
+/data/prospects*.json
+!/data/prospects.example.json
+# raw input/output of scripts/prospect-scan.mjs, if run from the repo root
+/prospects.json
+/findings.json

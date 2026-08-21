@@ -19,6 +19,7 @@ import {
   Menu,
   SearchCheck,
   ShieldCheck,
+  Target,
   TriangleAlert,
   UsersRound,
   Wrench,
@@ -65,6 +66,7 @@ const adminNavGroups: AdminNavGroup[] = [
     items: [
       { name: "Tool analytics", description: "Usage and reliability", href: "/admin/tools", icon: Wrench },
       { name: "Marketing", description: "Audience and campaigns", href: "/admin/marketing", icon: MailPlus },
+      { name: "Prospects", description: "Outreach leads and emails", href: "/admin/prospects", icon: Target },
       { name: "SEO review", description: "Content and crawl checks", href: "/admin/seo-dashboard", icon: SearchCheck },
     ],
   },
