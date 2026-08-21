@@ -74,6 +74,56 @@ const STATUS_CLASSES: Record<string, string> = {
 
 const PILL = "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold"
 
+/**
+ * Freshness. The daily routine adds a small number of prospects each day, and
+ * those are the ones worth acting on first, so they need to be findable without
+ * reading the whole table.
+ *
+ * Comparison is done on the viewer's local calendar day rather than on elapsed
+ * hours, because "today" is what the person actually means.
+ */
+function localDayKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(
+    date.getDate()
+  ).padStart(2, "0")}`
+}
+
+export function addedOnDay(prospect: { createdAt: string | null }, offsetDays = 0) {
+  if (!prospect.createdAt) return false
+  const created = new Date(prospect.createdAt)
+  if (Number.isNaN(created.getTime())) return false
+  const target = new Date()
+  target.setDate(target.getDate() - offsetDays)
+  return localDayKey(created) === localDayKey(target)
+}
+
+export const isAddedToday = (prospect: { createdAt: string | null }) => addedOnDay(prospect, 0)
+
+export function isAddedWithinDays(prospect: { createdAt: string | null }, days: number) {
+  if (!prospect.createdAt) return false
+  const created = new Date(prospect.createdAt)
+  if (Number.isNaN(created.getTime())) return false
+  const cutoff = new Date()
+  cutoff.setDate(cutoff.getDate() - days)
+  cutoff.setHours(0, 0, 0, 0)
+  return created.getTime() >= cutoff.getTime()
+}
+
+/** Carries its own text, so it never depends on colour to read as "new". */
+export function NewTodayBadge({ className }: { className?: string }) {
+  return (
+    <span
+      className={cn(
+        PILL,
+        "border-teal-400 bg-teal-100 text-teal-950 dark:border-teal-500 dark:bg-teal-900 dark:text-teal-50",
+        className
+      )}
+    >
+      New today
+    </span>
+  )
+}
+
 export function tierLabel(tier: string | null) {
   if (!tier) return "Untiered"
   return TIER_LABELS[tier] ?? tier

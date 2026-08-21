@@ -45,3 +45,9 @@ next-env.d.ts
 # raw input/output of scripts/prospect-scan.mjs, if run from the repo root
 /prospects.json
 /findings.json
+
+# Local-only prospecting tooling. Describes outreach methodology, so it stays
+# off a public repo, but it must live in the project rather than /tmp because
+# the daily routine depends on it.
+/scripts/prospecting/
+!/scripts/prospecting/candidates.example.json

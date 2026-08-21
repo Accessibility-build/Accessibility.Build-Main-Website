@@ -2,10 +2,13 @@
 
 import { useEffect, useId, useMemo, useState } from "react"
 import Link from "next/link"
-import { Filter, ListChecks, Search } from "lucide-react"
+import { Filter, ListChecks, Search, Sparkles } from "lucide-react"
 import { AdminPageHeader } from "@/components/admin/admin-page-header"
 import {
+  isAddedToday,
+  isAddedWithinDays,
   LiveRegion,
+  NewTodayBadge,
   STATUS_LABELS,
   StatusBadge,
   TIER_LABELS,
@@ -19,13 +22,22 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
-type SortKey = "score-desc" | "score-asc" | "company-asc" | "scanned-desc"
+type SortKey = "newest" | "score-desc" | "score-asc" | "company-asc" | "scanned-desc"
 
 const SORT_LABELS: Record<SortKey, string> = {
+  newest: "Newest first",
   "score-desc": "Score, highest first",
   "score-asc": "Score, lowest first",
   "company-asc": "Company, A to Z",
   "scanned-desc": "Most recently scanned",
+}
+
+type AddedKey = "all" | "today" | "week"
+
+const ADDED_LABELS: Record<AddedKey, string> = {
+  all: "Any time",
+  today: "Added today",
+  week: "Added in the last 7 days",
 }
 
 const SELECT_CLASSES =
@@ -33,6 +45,8 @@ const SELECT_CLASSES =
 
 function compare(a: ProspectRecord, b: ProspectRecord, sort: SortKey) {
   switch (sort) {
+    case "newest":
+      return (b.createdAt ?? "").localeCompare(a.createdAt ?? "") || b.score - a.score
     case "score-asc":
       return a.score - b.score
     case "company-asc":
@@ -56,6 +70,7 @@ export function AdminProspectsClient({
   const [tier, setTier] = useState("all")
   const [status, setStatus] = useState("all")
   const [country, setCountry] = useState("all")
+  const [added, setAdded] = useState<AddedKey>("all")
   const [sort, setSort] = useState<SortKey>("score-desc")
 
   const { message, announce } = useAnnouncer()
@@ -64,7 +79,16 @@ export function AdminProspectsClient({
   const tierId = useId()
   const statusId = useId()
   const countryId = useId()
+  const addedId = useId()
   const sortId = useId()
+
+  // The daily routine drops a couple of prospects in each morning. Those are the
+  // ones to act on first, so they get their own panel above the table rather
+  // than being left to surface through a filter nobody remembers to set.
+  const todays = useMemo(
+    () => prospects.filter(isAddedToday).sort((a, b) => b.score - a.score),
+    [prospects]
+  )
 
   const countries = useMemo(() => {
     const set = new Set<string>()
@@ -82,15 +106,17 @@ export function AdminProspectsClient({
 
     let sendNow = 0
     let withAddress = 0
+    let thisWeek = 0
 
     prospects.forEach((prospect) => {
       byStatus[prospect.status] = (byStatus[prospect.status] ?? 0) + 1
       if (prospect.tier === "send-now") sendNow += 1
       if (prospect.emailAddress) withAddress += 1
+      if (isAddedWithinDays(prospect, 7)) thisWeek += 1
     })
 
-    return { total: prospects.length, sendNow, withAddress, byStatus }
-  }, [prospects])
+    return { total: prospects.length, sendNow, withAddress, byStatus, thisWeek, today: todays.length }
+  }, [prospects, todays.length])
 
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase()
@@ -100,13 +126,16 @@ export function AdminProspectsClient({
         if (tier !== "all" && (prospect.tier ?? "") !== tier) return false
         if (status !== "all" && prospect.status !== status) return false
         if (country !== "all" && (prospect.country ?? "") !== country) return false
+        if (added === "today" && !isAddedToday(prospect)) return false
+        if (added === "week" && !isAddedWithinDays(prospect, 7)) return false
         if (term && !prospect.company.toLowerCase().includes(term)) return false
         return true
       })
       .sort((a, b) => compare(a, b, sort))
-  }, [prospects, search, tier, status, country, sort])
+  }, [prospects, search, tier, status, country, added, sort])
 
-  const filtersActive = search.trim() !== "" || tier !== "all" || status !== "all" || country !== "all"
+  const filtersActive =
+    search.trim() !== "" || tier !== "all" || status !== "all" || country !== "all" || added !== "all"
 
   // Announce the result count whenever the filtered set changes, so keyboard
   // and screen reader users learn the effect of a filter without hunting for it.
@@ -120,7 +149,18 @@ export function AdminProspectsClient({
     setTier("all")
     setStatus("all")
     setCountry("all")
+    setAdded("all")
     announce("Filters cleared.")
+  }
+
+  const showTodaysOnly = () => {
+    setSearch("")
+    setTier("all")
+    setStatus("all")
+    setCountry("all")
+    setAdded("today")
+    setSort("newest")
+    announce(`Filtered to the ${todays.length} prospect${todays.length === 1 ? "" : "s"} added today.`)
   }
 
   return (
@@ -144,14 +184,99 @@ export function AdminProspectsClient({
         </div>
       ) : null}
 
+      {/* Today's arrivals. Deliberately the first thing on the page and the only
+          panel with a filled heading bar, because acting on these the day they
+          land is the entire point of the daily routine. */}
+      <section
+        aria-labelledby="prospects-today-heading"
+        className="overflow-hidden rounded-md border-2 border-teal-500 bg-white dark:border-teal-500 dark:bg-slate-900"
+      >
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b-2 border-teal-500 bg-teal-600 px-5 py-3 text-white dark:bg-teal-700">
+          <Sparkles className="h-5 w-5 shrink-0" aria-hidden="true" />
+          <h2 id="prospects-today-heading" className="text-base font-semibold">
+            Fresh today
+          </h2>
+          <span className="text-sm text-teal-50">
+            {todays.length === 0
+              ? "Nothing new yet"
+              : `${todays.length} new prospect${todays.length === 1 ? "" : "s"}`}
+          </span>
+        </div>
+
+        <div className="p-5">
+          {todays.length === 0 ? (
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              No prospects have been added today. The daily routine adds two each morning, and they
+              appear here first.{" "}
+              {counts.thisWeek > 0 ? (
+                <>
+                  {counts.thisWeek.toLocaleString()} arrived in the last 7 days.
+                </>
+              ) : null}
+            </p>
+          ) : (
+            <>
+              <ul className="space-y-3">
+                {todays.map((prospect) => (
+                  <li
+                    key={prospect.id}
+                    className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2 rounded-md border border-slate-200 p-4 dark:border-slate-800"
+                  >
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Link
+                          href={`/admin/prospects/${prospect.id}`}
+                          className="font-semibold underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 dark:focus-visible:ring-teal-300"
+                        >
+                          {prospect.company}
+                        </Link>
+                        <NewTodayBadge />
+                        <TierBadge tier={prospect.tier} />
+                      </div>
+                      <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                        {[prospect.country, prospect.sector].filter(Boolean).join(" · ") || "Details pending"}
+                      </p>
+                      {prospect.caution ? (
+                        <p className="mt-2 text-sm font-semibold text-red-700 dark:text-red-300">
+                          Caution: {prospect.caution}
+                        </p>
+                      ) : null}
+                    </div>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {prospect.emailAddress ? (
+                        <span className="break-all">{prospect.emailAddress}</span>
+                      ) : (
+                        "No published address, use LinkedIn"
+                      )}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              {todays.length > 3 ? (
+                <Button type="button" variant="outline" className="mt-4" onClick={showTodaysOnly}>
+                  Show only today&rsquo;s prospects
+                </Button>
+              ) : null}
+            </>
+          )}
+        </div>
+      </section>
+
       <section aria-labelledby="prospect-counts-heading">
         <h2 id="prospect-counts-heading" className="sr-only">
           Pipeline summary
         </h2>
-        <dl className="grid overflow-hidden rounded-md border border-slate-200 bg-white sm:grid-cols-2 xl:grid-cols-4 dark:border-slate-800 dark:bg-slate-900">
+        <dl className="grid overflow-hidden rounded-md border border-slate-200 bg-white sm:grid-cols-2 xl:grid-cols-5 dark:border-slate-800 dark:bg-slate-900">
           <div className="border-b border-slate-200 p-5 sm:border-r xl:border-b-0 dark:border-slate-800">
             <dt className="text-sm text-slate-500">Total prospects</dt>
             <dd className="mt-2 text-2xl font-semibold">{counts.total.toLocaleString()}</dd>
+          </div>
+          <div className="border-b border-slate-200 p-5 xl:border-b-0 xl:border-r dark:border-slate-800">
+            <dt className="text-sm text-slate-500">Added today</dt>
+            <dd className="mt-2 text-2xl font-semibold">{counts.today.toLocaleString()}</dd>
+            <p className="mt-1 text-xs text-slate-500">
+              {counts.thisWeek.toLocaleString()} in the last 7 days
+            </p>
           </div>
           <div className="border-b border-slate-200 p-5 xl:border-b-0 xl:border-r dark:border-slate-800">
             <dt className="text-sm text-slate-500">Tier: send now</dt>
@@ -280,6 +405,22 @@ export function AdminProspectsClient({
               </select>
             </div>
 
+            <div>
+              <Label htmlFor={addedId}>Added</Label>
+              <select
+                id={addedId}
+                className={`${SELECT_CLASSES} mt-1.5`}
+                value={added}
+                onChange={(event) => setAdded(event.target.value as AddedKey)}
+              >
+                {Object.entries(ADDED_LABELS).map(([key, label]) => (
+                  <option key={key} value={key}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <div className="flex items-end gap-2 xl:col-span-2">
               <Button type="submit">Apply</Button>
               <Button type="button" variant="outline" onClick={resetFilters} disabled={!filtersActive}>
@@ -346,6 +487,7 @@ export function AdminProspectsClient({
                         >
                           {prospect.company}
                         </Link>
+                        {isAddedToday(prospect) ? <NewTodayBadge className="ml-2 align-middle" /> : null}
                         {prospect.caution ? (
                           <span className="mt-1 block text-xs font-semibold text-red-700 dark:text-red-300">
                             Caution: {prospect.caution}
