@@ -51,3 +51,9 @@ next-env.d.ts
 # the daily routine depends on it.
 /scripts/prospecting/
 !/scripts/prospecting/candidates.example.json
+
+# Search Console / cloud service-account credentials — NEVER commit (repo is public)
+/secrets/
+*service-account*.json
+*gsc*.json
+gcp-*.json

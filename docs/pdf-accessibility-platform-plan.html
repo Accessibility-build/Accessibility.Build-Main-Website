@@ -1,0 +1,1630 @@
+<title>Tagged and Verified</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  /* ---------- tokens: light is the base, defined on bare :root ---------- */
+  :root {
+    --paper:      #EDF0EE;
+    --surface:    #FFFFFF;
+    --surface-2:  #F5F7F5;
+    --ink:        #10171A;
+    --ink-2:      #38474A;
+    --muted:      #61716F;
+    --rule:       #D4DAD7;
+    --rule-soft:  #E3E8E5;
+    --accent:     #0B6E5F;
+    --accent-ink: #06483E;
+    --accent-bg:  #E2EFEB;
+    --signal:     #A8501A;
+    --signal-bg:  #F6EAE0;
+    --critical:   #8A2F3C;
+    --critical-bg:#F6E5E7;
+    --shadow:     0 1px 2px rgba(16,23,26,.05), 0 8px 24px -12px rgba(16,23,26,.18);
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --measure: 68ch;
+    --pad: clamp(1.1rem, 4vw, 2.5rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #0C1211;
+      --surface:    #141C1B;
+      --surface-2:  #1A2322;
+      --ink:        #E7EDEA;
+      --ink-2:      #B7C4C1;
+      --muted:      #8A9A97;
+      --rule:       #2B3634;
+      --rule-soft:  #212B2A;
+      --accent:     #55CDB2;
+      --accent-ink: #8FE3CE;
+      --accent-bg:  #122E29;
+      --signal:     #E09454;
+      --signal-bg:  #2E2117;
+      --critical:   #E4818E;
+      --critical-bg:#2E191D;
+      --shadow:     0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #0C1211;
+    --surface:    #141C1B;
+    --surface-2:  #1A2322;
+    --ink:        #E7EDEA;
+    --ink-2:      #B7C4C1;
+    --muted:      #8A9A97;
+    --rule:       #2B3634;
+    --rule-soft:  #212B2A;
+    --accent:     #55CDB2;
+    --accent-ink: #8FE3CE;
+    --accent-bg:  #122E29;
+    --signal:     #E09454;
+    --signal-bg:  #2E2117;
+    --critical:   #E4818E;
+    --critical-bg:#2E191D;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  }
+
+  /* ---------- base ---------- */
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 82rem;
+    margin: 0 auto;
+    padding: 0 var(--pad) 6rem;
+  }
+
+  .col { max-width: var(--measure); }
+
+  p { margin: 0 0 1.1em; }
+  a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--display);
+    color: var(--ink);
+    text-wrap: balance;
+    margin: 0;
+    letter-spacing: -0.015em;
+  }
+
+  /* ---------- masthead ---------- */
+  header.masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: clamp(2.5rem, 7vw, 5rem) 0 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(2.3rem, 6.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
+  .standfirst {
+    font-size: clamp(1.06rem, 2.1vw, 1.3rem);
+    color: var(--ink-2);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  .standfirst strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- stat strip ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: .75rem;
+  }
+
+  .stat { background: var(--surface); padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: .3rem; }
+  .stat b {
+    font-family: var(--display);
+    font-size: 1.65rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat span { font-family: var(--display); font-size: .78rem; line-height: 1.3; color: var(--muted); }
+
+  /* ---------- contents ---------- */
+  nav.toc {
+    border-bottom: 1px solid var(--rule);
+    padding: 2rem 0 2.25rem;
+  }
+  nav.toc h2 {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: .1rem 2rem;
+    counter-reset: toc;
+  }
+  nav.toc li { counter-increment: toc; border-top: 1px solid var(--rule-soft); }
+  nav.toc a {
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    gap: .5rem;
+    padding: .55rem 0;
+    font-family: var(--display);
+    font-size: .93rem;
+    color: var(--ink-2);
+    text-decoration: none;
+  }
+  nav.toc a::before {
+    content: counter(toc, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: .74rem;
+    color: var(--accent);
+    padding-top: .2rem;
+  }
+  nav.toc a:hover { color: var(--accent-ink); }
+
+  /* ---------- sections ---------- */
+  section.part {
+    padding-top: 3.5rem;
+    scroll-margin-top: 1rem;
+  }
+
+  .part-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    border-top: 2px solid var(--ink);
+    padding-top: .8rem;
+    margin-bottom: 1.75rem;
+  }
+  .part-num {
+    font-family: var(--mono);
+    font-size: .8rem;
+    color: var(--accent);
+    letter-spacing: .08em;
+    flex: none;
+  }
+  .part-head h2 {
+    font-size: clamp(1.5rem, 3.4vw, 2.05rem);
+    font-weight: 700;
+    letter-spacing: -.028em;
+  }
+
+  h3 {
+    font-size: 1.16rem;
+    font-weight: 700;
+    margin: 2.2rem 0 .7rem;
+  }
+  h4 {
+    font-size: .84rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--muted);
+    margin: 1.8rem 0 .6rem;
+  }
+
+  ul, ol { margin: 0 0 1.2em; padding-left: 1.35em; }
+  li { margin-bottom: .45em; }
+  li::marker { color: var(--accent); }
+
+  code {
+    font-family: var(--mono);
+    font-size: .84em;
+    background: var(--surface-2);
+    border: 1px solid var(--rule-soft);
+    border-radius: 3px;
+    padding: .08em .32em;
+  }
+
+  /* ---------- tables ---------- */
+  .scroller {
+    overflow-x: auto;
+    margin: 1.5rem 0 1.9rem;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 44rem;
+    font-family: var(--display);
+    font-size: .875rem;
+    font-variant-numeric: tabular-nums;
+  }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: .8rem 1rem .55rem;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  th, td {
+    text-align: left;
+    padding: .6rem .85rem;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  thead th {
+    font-weight: 600;
+    font-size: .74rem;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--muted);
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td strong { font-weight: 600; }
+  .num { text-align: right; font-family: var(--mono); font-size: .82rem; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .04em;
+    padding: .12rem .42rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .pill-ok   { background: var(--accent-bg);   color: var(--accent-ink); border-color: var(--accent); }
+  .pill-warn { background: var(--signal-bg);   color: var(--signal);     border-color: var(--signal); }
+  .pill-bad  { background: var(--critical-bg); color: var(--critical);   border-color: var(--critical); }
+  .pill-neu  { background: var(--surface-2);   color: var(--muted);      border-color: var(--rule); }
+
+  /* ---------- callouts ---------- */
+  .note {
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    padding: 1rem 1.15rem;
+    margin: 1.6rem 0;
+    box-shadow: var(--shadow);
+  }
+  .note.warn { border-left-color: var(--signal); }
+  .note.bad  { border-left-color: var(--critical); }
+  .note h4 { margin-top: 0; color: var(--ink); }
+  .note p:last-child { margin-bottom: 0; }
+
+  /* ---------- loophole cards ---------- */
+  .gaps { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 1.8rem 0; }
+  .gap { background: var(--surface); padding: 1.15rem 1.25rem; display: grid; grid-template-columns: 2.6rem 1fr; gap: .3rem 1rem; }
+  .gap .g-num { font-family: var(--mono); font-size: .78rem; color: var(--signal); padding-top: .25rem; }
+  .gap h3 { grid-column: 2; margin: 0 0 .35rem; font-size: 1.02rem; }
+  .gap div.g-body { grid-column: 2; }
+  .gap p { margin-bottom: .55rem; font-size: .96rem; }
+  .gap p:last-child { margin-bottom: 0; }
+  .gap .verdict {
+    font-family: var(--display);
+    font-size: .82rem;
+    color: var(--ink-2);
+    border-top: 1px dashed var(--rule);
+    padding-top: .5rem;
+    margin-top: .6rem;
+  }
+  .gap .verdict b { font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--signal); }
+
+  /* ---------- pipeline ---------- */
+  .stages { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 1.8rem 0; }
+  .stage { background: var(--surface); padding: 1.1rem 1.25rem; display: grid; grid-template-columns: 4.5rem 1fr; gap: .2rem 1rem; }
+  .stage .s-id {
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .06em;
+    color: var(--accent); padding-top: .3rem;
+  }
+  .stage h3 { grid-column: 2; margin: 0 0 .3rem; font-size: 1.02rem; }
+  .stage .s-body { grid-column: 2; font-size: .96rem; }
+  .stage .s-body p { margin-bottom: .5rem; }
+  .stage .s-body p:last-child { margin-bottom: 0; }
+  .stack {
+    font-family: var(--mono); font-size: .74rem; color: var(--muted);
+    margin-top: .5rem; display: block;
+  }
+
+  /* ---------- phases ---------- */
+  .phase {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 1.15rem 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .phase-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem 1rem; margin-bottom: .6rem; }
+  .phase-top h3 { margin: 0; font-size: 1.06rem; }
+  .phase ul { margin-bottom: 0; font-size: .96rem; }
+
+  footer.end {
+    border-top: 2px solid var(--ink);
+    margin-top: 4rem;
+    padding-top: 1.4rem;
+    font-family: var(--display);
+    font-size: .84rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .gap, .stage { grid-template-columns: 1fr; }
+    .gap h3, .gap .g-body, .stage h3, .stage .s-body { grid-column: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="eyebrow">
+    <span>Technical research &amp; build plan</span>
+    <span>21 August 2026</span>
+    <span>Accessibility.build</span>
+  </div>
+  <h1>Tagged and Verified</h1>
+  <p class="standfirst">
+    Auto-tagging a PDF with AI is now a solved, commoditised, <strong>Apache-2.0-licensed</strong> problem.
+    Proving the result is WCAG&nbsp;2.2 conformant is not. That gap is the product.
+  </p>
+  <div class="stats">
+    <div class="stat"><b>136</b><span>PDF/UA failure conditions in the Matterhorn Protocol</span></div>
+    <div class="stat"><b>47</b><span>Of them that no software can decide &mdash; human judgment only</span></div>
+    <div class="stat"><b>25&ndash;30%</b><span>Of real accessibility barriers that rule-based checkers detect</span></div>
+    <div class="stat"><b>0.85</b><span>Best frontier-LLM accuracy on a 7-criterion PDF a11y benchmark</span></div>
+    <div class="stat"><b>$0.30&ndash;0.50</b><span>Per page charged by automated competitors today</span></div>
+    <div class="stat"><b>&lt;$0.01</b><span>Per page the AI layer actually costs to run</span></div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#p1">What a tagged PDF actually is</a></li>
+    <li><a href="#p2">The compliance target you are aiming at</a></li>
+    <li><a href="#p3">Market timing and regulatory pressure</a></li>
+    <li><a href="#p4">The tool landscape, and what each one really does</a></li>
+    <li><a href="#p5">Evidence: what automation actually achieves</a></li>
+    <li><a href="#p6">The loopholes vendors leave open</a></li>
+    <li><a href="#p7">Open-source bill of materials</a></li>
+    <li><a href="#p8">Recommended architecture</a></li>
+    <li><a href="#p9">Designing the verification, not the tagger</a></li>
+    <li><a href="#p10">Claims policy and legal exposure</a></li>
+    <li><a href="#p11">Build plan, effort and unit economics</a></li>
+    <li><a href="#p12">Risk register</a></li>
+    <li><a href="#p13">What I would build</a></li>
+  </ol>
+</nav>
+
+<!-- ============================================================ -->
+<section class="part" id="p1">
+  <div class="part-head"><span class="part-num">01</span><h2>What a tagged PDF actually is</h2></div>
+  <div class="col">
+    <p>
+      A PDF page is a sequence of drawing operators. It says "put this glyph at these coordinates in this font."
+      It does not say "this is a level-2 heading." Accessibility in PDF is a <em>parallel structure</em> bolted
+      onto that drawing model, and understanding its four moving parts is the difference between building a real
+      remediation engine and building a wrapper around someone else's API.
+    </p>
+    <ul>
+      <li><strong>Marked content.</strong> Inside each page's content stream, runs of operators are wrapped in
+        <code>/P &lt;&lt;/MCID 0&gt;&gt; BDC &hellip; EMC</code> pairs. The MCID is a per-page integer that names that run of ink.</li>
+      <li><strong>The structure tree.</strong> <code>/StructTreeRoot</code> in the document catalog holds a tree of
+        <code>StructElem</code> dictionaries &mdash; <code>Document → Sect → H1 → P → Table → TR → TH</code> &mdash; whose leaves point
+        back at MCIDs. This tree, not the visual layout, is the reading order a screen reader follows.</li>
+      <li><strong>The parent tree.</strong> <code>/ParentTree</code> is the reverse index: MCID and annotation → owning structure element.
+        Screen readers use it to answer "what am I inside?" It must stay consistent with the structure tree or the file is broken.</li>
+      <li><strong>The role map and document-level flags.</strong> <code>/RoleMap</code> maps custom tags onto the standard set;
+        <code>/MarkInfo &lt;&lt;/Marked true&gt;&gt;</code>, <code>/Lang</code>, <code>/ViewerPreferences &lt;&lt;/DisplayDocTitle true&gt;&gt;</code>
+        and an XMP <code>dc:title</code> are all separately required.</li>
+    </ul>
+
+    <h3>Why post-hoc tagging is fundamentally lossy</h3>
+    <p>
+      The semantics you are trying to recover <em>existed</em> in the source document and were deliberately thrown away at
+      render time. The CHI 2026 Best Paper <em>iTagPDF</em> (Mowar, Steinfeld &amp; Bigham, CMU) puts it plainly: tags today are
+      generated visually rather than semantically, and when you feed the original source alongside the PDF, the automatically
+      produced metadata <em>exceeds</em> what human authors currently submit to ACM conferences. Their reported figure for the
+      installed base is that roughly 95% of publicly available PDFs remain inaccessible.
+    </p>
+    <div class="note">
+      <h4>Strategic consequence</h4>
+      <p>
+        Any pipeline that only ever looks at the rendered PDF is competing at a permanent information disadvantage.
+        The highest-accuracy path is always <strong>source-first</strong>: if a DOCX, PPTX, InDesign, HTML or LaTeX original
+        exists, tag from that and export. Build the pixel-and-operator reconstruction path as the fallback, not the flagship.
+        Almost no commercial vendor does this, and it is a genuine differentiator.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p2">
+  <div class="part-head"><span class="part-num">02</span><h2>The compliance target you are aiming at</h2></div>
+  <div class="col">
+    <p>
+      "WCAG 2.2 compliant PDF" is not one standard. It is the union of two overlapping ones, and conflating them is the
+      single most common source of false compliance claims in this market.
+    </p>
+  </div>
+
+  <div class="scroller">
+    <table>
+      <caption>The standards stack, and what each one is for</caption>
+      <thead><tr><th style="width:16%">Standard</th><th style="width:22%">What it is</th><th>What it governs</th><th style="width:22%">2026 status</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>PDF/UA-1</strong><br><span class="pill pill-ok">Target this</span></td>
+          <td>ISO 14289-1:2014, built on PDF 1.7</td>
+          <td>File-format requirements: structure tree correctness, artifacts, metadata, annotations, fonts, Unicode mapping.</td>
+          <td>Still the practical target &mdash; the version every validator and authoring tool actually supports.</td>
+        </tr>
+        <tr>
+          <td><strong>PDF/UA-2</strong></td>
+          <td>ISO 14289-2:2024, built on PDF 2.0</td>
+          <td>Adds MathML in the structure tree, expanded annotation rules, new element types.</td>
+          <td>Published; tooling still catching up. Support it as an <em>output option</em>, not the default.</td>
+        </tr>
+        <tr>
+          <td><strong>WTPDF 1.0</strong></td>
+          <td>PDF Association spec, Feb 2024</td>
+          <td>Well-Tagged PDF. Its accessibility conformance level is format-identical to PDF/UA-2.</td>
+          <td>The spec the leading open-source auto-tagger targets. Useful as an intermediate representation.</td>
+        </tr>
+        <tr>
+          <td><strong>WCAG 2.2 AA</strong><br><span class="pill pill-ok">Target this too</span></td>
+          <td>W3C Recommendation, Oct 2023</td>
+          <td>Outcome requirements: contrast, link purpose, language of parts, meaningful sequence, non-text content.</td>
+          <td>The standard the laws increasingly name. Not satisfiable by tag structure alone.</td>
+        </tr>
+        <tr>
+          <td><strong>Matterhorn Protocol 1.1</strong></td>
+          <td>PDF Association testing model</td>
+          <td>31 checkpoints, 136 failure conditions that operationalise PDF/UA-1 into testable statements.</td>
+          <td>The de facto QA checklist. Two conditions (23-001, 27-001) have no defined test at all.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <h3>The two gaps nobody markets</h3>
+    <p>
+      <strong>Gap one: PDF/UA is necessary but not sufficient for WCAG.</strong> A file can be flawlessly PDF/UA-1 conformant
+      and still fail WCAG 2.2 AA on 1.4.3 Contrast, 2.4.4 Link Purpose, 3.1.2 Language of Parts, 1.4.1 Use of Colour, and
+      1.4.11 Non-text Contrast. None of those live in the tag tree. They live in the rendered pixels and in the meaning of
+      the words. Any product promising WCAG 2.2 must run a second, rasterisation-based analysis layer that most PDF tools do
+      not have at all.
+    </p>
+    <p>
+      <strong>Gap two: WCAG 2.2's newest criteria are mostly viewer-level for PDF.</strong> 2.4.11 Focus Not Obscured,
+      2.5.7 Dragging, 2.5.8 Target Size, 3.2.6 Consistent Help, 3.3.7 Redundant Entry and 3.3.8 Accessible Authentication
+      are largely inapplicable to a static document &mdash; but they <em>do</em> bite on interactive AcroForm PDFs, where field
+      hit-area size and multi-step form flows are yours to answer for. Document that applicability analysis per file rather
+      than hand-waving it; procurement teams increasingly ask.
+    </p>
+
+    <h3>The machine / human split</h3>
+    <p>
+      Of the Matterhorn Protocol's 136 failure conditions, sources put <strong>87&ndash;89 as software-decidable</strong> and
+      <strong>47 as requiring human judgment</strong>. That ratio &mdash; roughly one third of the standard being undecidable by any
+      tool &mdash; is the reason Adobe's own community experts state that Acrobat deliberately refuses to stamp the PDF/UA
+      identifier automatically. It is also the number every "100% automated compliance" claim in this market is quietly
+      ignoring.
+    </p>
+    <div class="note warn">
+      <h4>The conditions that will always need a person</h4>
+      <p>
+        Tags in logical reading order &middot; heading text tagged as a heading and at the right level &middot; irrelevant
+        content correctly marked as Artifact &middot; alternative text that is actually <em>correct and sufficient</em> &middot;
+        OCR text free of significant errors &middot; structure elements nested in a semantically appropriate way &middot;
+        table header/data associations that reflect the real meaning of the table &middot; colour not used as the sole carrier
+        of information.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p3">
+  <div class="part-head"><span class="part-num">03</span><h2>Market timing and regulatory pressure</h2></div>
+  <div class="col">
+    <p>
+      The demand curve here is regulatory, not aesthetic. Three things drive it, and one of them moved recently in a way
+      that matters for how you sequence the build.
+    </p>
+    <ul>
+      <li>
+        <strong>ADA Title II (United States).</strong> The DOJ web rule requires WCAG 2.1 AA for state and local government
+        content, PDFs explicitly included. On <strong>17 April 2026</strong> the DOJ issued an interim final rule extending the
+        compliance dates by a year: large public entities now have until <strong>26 April 2027</strong>, smaller entities and
+        special districts until <strong>26 April 2028</strong>. The DOJ has said it fully anticipates enforcing at the new dates.
+        <span class="pill pill-warn">Timing note</span> This bought the market twelve extra months. It did not reduce the
+        backlog &mdash; every county, school district and transit authority still has a decade of PDFs to fix, and now has
+        budget cycles in FY27 to do it.
+      </li>
+      <li>
+        <strong>European Accessibility Act.</strong> Enforceable since <strong>28 June 2025</strong>. Fines range from roughly
+        &euro;60,000 (Ireland) to around &euro;900,000 (Sweden). The first EAA lawsuits were filed in France in November 2025 and
+        enforcement is ramping across member states through 2026. EN&nbsp;301&nbsp;549 v3.2.1 currently points at WCAG 2.1 AA;
+        <strong>v4.1.1, expected during 2026, moves to WCAG 2.2</strong> &mdash; so building to 2.2 now is the correct call.
+      </li>
+      <li>
+        <strong>Section 508 and sector rules.</strong> US federal procurement plus HHS's own May 2026 deadline keep a steady
+        institutional pipeline running independently of Title II.
+      </li>
+    </ul>
+
+    <h3>What the market pays today</h3>
+  </div>
+
+  <div class="scroller">
+    <table>
+      <caption>Observed 2026 price points, per page</caption>
+      <thead><tr><th>Tier</th><th>Provider examples</th><th class="num">Price / page</th><th>What you get</th></tr></thead>
+      <tbody>
+        <tr><td>Manual outsourced remediation</td><td>Allyant, DigitalA11Y, Microassist, Skynet</td><td class="num">$4 &ndash; $25</td><td>Human tagging and QA. $40&ndash;60 for complex scanned material.</td></tr>
+        <tr><td>Human-reviewed AI</td><td>Accessibility on Demand "Expert Review"</td><td class="num">$12+</td><td>Automated pass plus human correction, sold with a "100% compliance score guarantee".</td></tr>
+        <tr><td>Enhanced automated</td><td>Accessibility on Demand "Enhanced"</td><td class="num">$1.80</td><td>Contextual alt text, form tagging, "95%+ WCAG 2.1 AA" claim.</td></tr>
+        <tr><td>Self-serve automated</td><td>AccessiblePDF.app</td><td class="num">$0.50 → $0.33</td><td>Auto-tag, OCR, alt text, PAC validation, optional $50/mo tag editor.</td></tr>
+        <tr><td>Bulk automated</td><td>Accessibility on Demand "Standard"</td><td class="num">$0.30</td><td>Tagging, OCR, basic alt text, compliance certificate.</td></tr>
+        <tr>
+          <td><strong>Flat-fee licence</strong><br><span class="pill pill-warn">Undercuts per-page</span></td>
+          <td>PDFix Federal Extended POC</td>
+          <td class="num">$23,495<br><span style="font-family:var(--mono);font-size:.72rem;color:var(--muted)">/ year, unlimited</span></td>
+          <td>SDK Enterprise (4 processes, <em>unlimited annual page volume</em>) + 5 Desktop Pro seats + setup and training. Marketed as "$0.93/page" against 25,000 pages &mdash; but at 100,000 pages it is $0.24 and at a million it is $0.02. Excludes reviewer labour.</td>
+        </tr>
+        <tr><td><strong>Your AI compute cost</strong></td><td>Haiku/Sonnet blend, Batch API, cached prompts</td><td class="num"><strong>&lt; $0.01</strong></td><td>See §11 for the arithmetic.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <p>
+      The spread between the $0.30 floor and the $12 human tier is where the entire business is. The automated floor is a
+      race to zero that an Apache-2.0 tagger will finish. The $12 tier is a labour business. The interesting, defensible
+      position is a <strong>$1.50&ndash;3.00 verified tier</strong> where AI does 90% of the work and a structured human workflow
+      does the 10% that carries the legal weight &mdash; at a fraction of the review time manual vendors need.
+    </p>
+    <div class="note">
+      <h4>Scale of the underlying problem</h4>
+      <p>
+        A 2024 study of 20,000 scholarly PDFs published 2014&ndash;2023 found that <strong>fewer than 3.2%</strong> satisfied all
+        six tested accessibility criteria, and <strong>74.9% satisfied none of them</strong>. Accessibility actually <em>declined</em>
+        after 2019 among open-access papers. This is not a niche remediation market; it is essentially the entire
+        installed base of PDFs.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p4">
+  <div class="part-head"><span class="part-num">04</span><h2>The tool landscape, and what each one really does</h2></div>
+
+  <div class="scroller">
+    <table>
+      <caption>Commercial and institutional tools &mdash; capability and honesty audit</caption>
+      <thead>
+        <tr><th style="width:14%">Tool</th><th style="width:11%">Model</th><th style="width:30%">What it genuinely does well</th><th style="width:27%">Where it stops</th><th>Claim posture</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Adobe Acrobat Pro + Auto-Tag API</strong></td>
+          <td>Desktop + cloud API; 500 free document transactions/month</td>
+          <td>Best-in-class heading level detection, borderless table recognition, lists spanning pages, header/footer identification, multi-column reading order. Real production deployments: one consultancy reports near-100% tagging on planning documents; Adobe's own team processed 4,000 documents in ~4 hours with &lt;1% needing follow-up.</td>
+          <td>Generates no alternative text at all. Complex tables still need remediation. Advanced layouts still misread order and heading hierarchy. Vector/CAD content returns poor results.</td>
+          <td><span class="pill pill-ok">Honest</span> Deliberately refuses to set the PDF/UA identifier because ~1/3 of criteria need human verification.</td>
+        </tr>
+        <tr>
+          <td><strong>PDFix</strong></td>
+          <td>Desktop + SDK, on-prem, page-based licence; free build watermarks output</td>
+          <td>The most engineer-friendly commercial stack. Modular "Actions Marketplace" wraps IBM Docling, PaddleX, deepdoctection, Tesseract, BLIP, OpenAI and Amazon Textract as Docker actions, each with a public GitHub repo. Includes veraPDF and Arlington validation actions.</td>
+          <td>Production auto-tagging requires the Enterprise licence. The free build is fully featured but watermarks every saved file, so it cannot ship &mdash; though it is perfectly usable as a benchmark opponent and a correctness oracle (see below).</td>
+          <td><span class="pill pill-ok">Honest</span> States plainly: "we do not guarantee 100% accessibility."</td>
+        </tr>
+        <tr>
+          <td><strong>OpenDataLoader PDF</strong><br><span class="pill pill-ok">Key</span></td>
+          <td>Apache-2.0 core, Java engine, Python/Node/Java SDKs; enterprise add-ons</td>
+          <td>First open-source tool to generate Tagged PDFs end to end. Built with the PDF Association and Dual&nbsp;Lab (the veraPDF developers), targets the WTPDF spec, validated programmatically with veraPDF. Benchmarks #1 overall (0.907) on 200 real PDFs; 0.934 reading order, 0.928 tables.</td>
+          <td><strong>PDF/UA-1 and PDF/UA-2 export is the enterprise gate.</strong> Auto-tagging is free; the last conformance step is not. Machine engine has no OCR or alt text &mdash; those need hybrid mode.</td>
+          <td><span class="pill pill-ok">Honest</span> States "Tagged isn't the same as accessible" and "Can I fully trust the AI? No."</td>
+        </tr>
+        <tr>
+          <td><strong>Equidox</strong></td>
+          <td>Web-based, zone-editor model</td>
+          <td>Smart Zone AI; strong on tables, lists and scanned files; no tag-tree expertise required from the operator.</td>
+          <td>A competitor's comparison notes it "does not tag PDF files to the standards and does not provide a compliance report."</td>
+          <td><span class="pill pill-neu">Mixed</span> Automation accuracy is the load-bearing assumption.</td>
+        </tr>
+        <tr>
+          <td><strong>CommonLook / Allyant</strong></td>
+          <td>Desktop, checkpoint-driven</td>
+          <td>The most rigorous validation UX: walks the operator through manual verification checkpoints for Section 508, WCAG 2.x, PDF/UA and HHS, and emits a compliance report.</td>
+          <td>Slow, expert-operated, licence-heavy. Not an automation play.</td>
+          <td><span class="pill pill-ok">Honest</span> Its "100% compliance" claim is explicitly predicated on <em>manual verification of every checkpoint</em>.</td>
+        </tr>
+        <tr>
+          <td><strong>axesPDF / PAC 2024</strong></td>
+          <td>Desktop app + free checker</td>
+          <td>PAC is the de facto free reference checker for the machine-verifiable Matterhorn conditions plus a large part of WCAG. Everyone in the industry validates against it.</td>
+          <td>PAC's technical tests are based on WCAG 2.1. It cannot check the ~47 human conditions and treats reading order and contrast as visual-inspection warnings, not failures. Passing PAC and passing Acrobat's checker are different tests.</td>
+          <td><span class="pill pill-ok">Honest</span> Explicitly ships a "required visual check" step.</td>
+        </tr>
+        <tr>
+          <td><strong>PREP (Continual Engine)</strong></td>
+          <td>SaaS + Auto-Tag API</td>
+          <td>Claims up to 95% auto-tagging and 80% manual-effort reduction; nested lists and TOC handling; side-by-side screen reader preview. Human QA team checks every file.</td>
+          <td>The 95% figure has no published methodology, dataset or per-criterion breakdown.</td>
+          <td><span class="pill pill-warn">Unsubstantiated</span> Marketing percentage with no benchmark behind it.</td>
+        </tr>
+        <tr>
+          <td><strong>PAVE 2.0 (ZHAW)</strong></td>
+          <td>Free academic web tool</td>
+          <td>Step-by-step guided remediation designed for non-experts, including a method for alt text on mathematical formulas. The only tool in this list with a peer-reviewed usability evaluation.</td>
+          <td>Not built for volume or for commercial SLAs.</td>
+          <td><span class="pill pill-ok">Honest</span> Published measured outcomes rather than claims.</td>
+        </tr>
+        <tr>
+          <td><strong>AccessiblePDF.app</strong></td>
+          <td>Self-serve SaaS, $0.50/page metered</td>
+          <td>The closest thing to your intended product that already exists. Upload → scan → one-click remediate → review → publish, with a tag editor, veraPDF + PAC validation, and automatic refunds on failed pages. Stack is Next.js/TypeScript/Python/Supabase/Postgres.</td>
+          <td>Positions itself as needing auditor verification; does not guarantee conformance.</td>
+          <td><span class="pill pill-ok">Honest</span> "Automated remediation isn't a rubber stamp."</td>
+        </tr>
+        <tr>
+          <td><strong>Accessibility on Demand</strong></td>
+          <td>Tiered SaaS, $0.30 / $1.80 / $12+</td>
+          <td>Clear tiering and fast turnaround; validates with PAC and publishes a compliance score formula.</td>
+          <td>See §6 &mdash; the score formula is the loophole.</td>
+          <td><span class="pill pill-bad">Risky</span> "95%+ WCAG 2.1 AA" and a "100% Compliance Score Guarantee" on a machine-only metric.</td>
+        </tr>
+        <tr>
+          <td><strong>ASU CIC PDF_Accessibility</strong></td>
+          <td>MIT-licensed AWS reference architecture</td>
+          <td>Complete working blueprint: S3, Lambda, Step Functions, ECS Fargate, Adobe PDF Services for tagging, Bedrock Nova Pro for alt text, plus a PDF-to-HTML alternative path.</td>
+          <td>Explicitly "not suitable for production"; relaxed auth; no accuracy metrics published; depends on an Adobe enterprise contract.</td>
+          <td><span class="pill pill-ok">Honest</span> Ships with a clear as-is disclaimer.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <h3>The competitive motion to watch: PDFix's Federal Extended POC</h3>
+    <p>
+      PDFix-US is running a three-month pilot for federal and state agencies &mdash; roughly 2,500 documents / 25,000 pages
+      for <strong>$23,495</strong>, pitched directly against "outsourced remediation runs $5&ndash;8 per page (about $125,000)."
+      Applications close <strong>31 December 2026</strong>, which puts conversions in FY27 exactly as the extended ADA Title II
+      deadline lands. It is a well-timed land-and-expand play and it will win accounts.
+    </p>
+    <p>
+      Three things in it matter for how you position:
+    </p>
+    <ul>
+      <li>
+        <strong>The per-page price is a flat fee in disguise.</strong> The bundle includes an SDK Enterprise licence with
+        <em>unlimited annual page volume</em>. The advertised ~93&cent;/page only holds at exactly 25,000 pages; at 100,000
+        it is 24&cent; and at a million it is 2&cent;. Any high-volume institutional buyer will do this arithmetic, and
+        per-page SaaS loses to it above roughly 30,000 pages a year. <span class="pill pill-warn">Pricing implication</span>
+        See §11 &mdash; a flat-rate unlimited tier is not optional.
+      </li>
+      <li>
+        <strong>They concede the human-review cost and then exclude it from the quote.</strong> The Month 3 deliverable is
+        literally to "measure how long manual review of all 2,500 documents takes", and pricing "excludes internal reviewer
+        labor." At three minutes a page that is ~1,250 hours &mdash; <strong>$50,000&ndash;75,000 of loaded labour, two to three
+        times the software cost</strong>, unquoted. That unpriced line item is precisely what the review workspace in §9
+        exists to attack.
+      </li>
+      <li>
+        <strong>It targets WCAG 2.1 AA, not 2.2.</strong> Correct for ADA Title II as written today, but EN 301 549 v4.1.1
+        moves to WCAG 2.2 during 2026. A 2.2-native pitch is a genuine wedge in EU accounts and with anyone future-proofing.
+      </li>
+    </ul>
+    <div class="note">
+      <h4>Build vs. buy &mdash; and a free move worth making this week</h4>
+      <p>
+        Licensing PDFix SDK Enterprise as your tagging engine would ship months faster than building the writer in §8D.
+        I would still not do it: it makes you a reseller of a direct competitor, puts a floor under your gross margin, and
+        leaves you undifferentiated in the one layer customers can actually see.
+      </p>
+      <p>
+        But the free PDFix build is fully featured &mdash; no key, no registration, all features including auto-tagging &mdash;
+        and only watermarks saved files. So install it now and use it as a <strong>benchmark opponent</strong> on your golden
+        set and as a <strong>correctness oracle</strong> for what valid PDF/UA output looks like while you debug your own
+        tag writer. Free, legal, and it de-risks the hardest module in the build.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p5">
+  <div class="part-head"><span class="part-num">05</span><h2>Evidence: what automation actually achieves</h2></div>
+  <div class="col">
+    <p>
+      This is the part vendors do not publish, so it is worth assembling from the research literature. Every number below
+      comes from a peer-reviewed study, a published benchmark, or a hands-on evaluation by a named accessibility practitioner.
+    </p>
+  </div>
+
+  <div class="scroller">
+    <table>
+      <caption>Measured performance of automated PDF accessibility approaches</caption>
+      <thead><tr><th style="width:26%">Source</th><th style="width:24%">What was measured</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Benchmarking PDF Accessibility Evaluation</strong><br>ASSETS '25, arXiv 2509.18965</td>
+          <td>125 expert-annotated PDFs, 7 criteria, 5 LLMs, four-way labels (Passed / Failed / Not Present / Cannot Tell)</td>
+          <td>Best model 0.85 average accuracy. Alt-text <em>quality</em> was the worst criterion at 0.70 (others 0.40&ndash;0.50). Models collapsed on "Not Present" (0.35&ndash;0.55). One model <strong>fabricated alt text in 32% of Cannot-Tell cases</strong> and then graded its own invention. Conclusion: rule-based tools "typically detect only 25&ndash;30% of accessibility barriers"; LLMs alone "cannot yet replace manual assessments."</td>
+        </tr>
+        <tr>
+          <td><strong>PAVE 2.0 remediation study</strong><br>arXiv 2503.22216</td>
+          <td>19 participants remediating real PDFs, measured tag accuracy before/after guided workflow</td>
+          <td>Experienced users <strong>42.0% → 80.1%</strong>. Novices <strong>39.2% → 75.2%</strong>. Note the ceiling: even <em>guided humans</em> land around 75&ndash;80%. This is the realistic bar, and it argues hard for verification-driven workflows over "trust the operator".</td>
+        </tr>
+        <tr>
+          <td><strong>iTagPDF</strong><br>CHI 2026 Best Paper, CMU</td>
+          <td>Source-informed tagging vs. visual-only tagging on research papers</td>
+          <td>Combining the PDF with its LaTeX source produced metadata that "in many cases surpassed the quality of manual tagging". Confirms the source-first thesis.</td>
+        </tr>
+        <tr>
+          <td><strong>AbilityNet evaluation of Adobe cloud auto-tag</strong></td>
+          <td>Hands-on comparison, cloud vs. local auto-tagging</td>
+          <td>Clear wins: heading levels, tables broken across pages, borderless tables, header/footer artifacting. Clear gaps: no alt text at all, complex tables still need work, advanced layouts still misread order. Verdict: "it is not perfect &mdash; it remains very important to manually review the tags it produces."</td>
+        </tr>
+        <tr>
+          <td><strong>OpenDataLoader benchmark</strong><br>200 real-world PDFs</td>
+          <td>Reading order, table and heading extraction across 12 parsers</td>
+          <td>Hybrid mode 0.907 overall / 0.934 reading order / 0.928 table / 0.821 heading, at 0.46 s/page. Docling 0.882 (MIT). Marker 0.861 (GPL-3.0). MinerU 0.831 (AGPL-3.0). Pure-local deterministic mode 0.831 at 0.015 s/page.</td>
+        </tr>
+        <tr>
+          <td><strong>XY-Cut++</strong><br>arXiv 2504.10258</td>
+          <td>Reading order recovery on a layout-ordering benchmark</td>
+          <td>98.8 BLEU, state of the art, with no neural inference required. On complex layouts, geometric partitioning reaches 88.0% vs. classic XY-cut 75.3% and LayoutReader 24.6%.</td>
+        </tr>
+        <tr>
+          <td><strong>Scholarly PDF accessibility survey</strong><br>arXiv 2410.03022</td>
+          <td>20,000 PDFs, 2014&ndash;2023, six criteria</td>
+          <td>&lt;3.2% passed everything; 74.9% passed nothing; accessibility declined after 2019 among open-access papers.</td>
+        </tr>
+        <tr>
+          <td><strong>Field reports on testing effort</strong></td>
+          <td>Federal agency Matterhorn testing programmes</td>
+          <td>Agencies "initially underestimated testing duration by 60&ndash;70% when relying on automated tools alone."</td>
+        </tr>
+        <tr>
+          <td><strong>Alt-text usability research</strong></td>
+          <td>AI alt text vs. human alt text with real screen reader users</td>
+          <td>AI scores well on technical accuracy (objects, colours, spatial relations) but task-completion rates drop against human-written text. One participant's term for technically-correct-but-useless description: <em>"functional blindness."</em> Compliance scores rose while user complaints and task abandonment also rose.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <div class="note">
+      <h4>What the evidence collectively says</h4>
+      <p>
+        Structure detection &mdash; headings, paragraphs, lists, reading order, simple tables &mdash; is now genuinely good:
+        0.90+ on public benchmarks, and improving fast in open source. <strong>Semantic correctness is not.</strong> Alt-text
+        quality, complex table header associations, "is this decorative or meaningful", and "does this reading order match
+        the author's intent" all sit in the 0.4&ndash;0.7 band for the best available models, with active hallucination risk.
+        A credible product design must treat the first category as automatable and the second as <em>routed</em>, not automated.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p6">
+  <div class="part-head"><span class="part-num">06</span><h2>The loopholes vendors leave open</h2></div>
+  <div class="col">
+    <p>
+      You asked specifically for this. Here are the ten places where the marketing and the reality diverge, in
+      rough order of how much money is riding on the gap. Each one is simultaneously a competitor weakness and a
+      trap you can fall into yourself.
+    </p>
+  </div>
+
+  <div class="gaps">
+    <div class="gap">
+      <span class="g-num">01</span>
+      <h3>"Compliance score" is a score against a tool, not against a standard</h3>
+      <div class="g-body">
+        <p>
+          One vendor publishes its formula openly: <code>(Total Checks &minus; Failed Checks) &divide; Total Checks</code>, computed
+          in PAC. PAC only evaluates machine-verifiable conditions. So a document with all 47 human-judgment conditions
+          entirely unexamined &mdash; wrong reading order, meaningless alt text, tables whose headers point at the wrong cells &mdash;
+          scores 100%. The guarantee attached to that number ("100% Compliance Score Guarantee") is technically satisfiable
+          on a file that a screen reader user cannot use.
+        </p>
+        <p class="verdict"><b>Use it</b> Publish a two-number result on every file: machine-verified conformance <em>and</em> human-verified conformance, never a single blended percentage.</p>
+      </div>
+    </div>
+
+    <div class="gap">
+      <span class="g-num">02</span>
+      <h3>Stamping the PDF/UA identifier is an assertion, not a computation</h3>
+      <div class="g-body">
+        <p>
+          The PDF/UA identifier is an XMP entry declaring conformance with ISO 14289. Adobe deliberately does not set it
+          after auto-tagging, on the stated grounds that roughly a third of the criteria require human verification.
+          Any tool that stamps it automatically at the end of an unattended pipeline is making a conformance claim on your
+          behalf that nobody verified.
+        </p>
+        <p class="verdict"><b>Use it</b> Gate the identifier behind human sign-off. Make "we don't stamp what we haven't verified" a stated policy &mdash; it is a genuine trust differentiator against the $0.30 tier.</p>
+      </div>
+    </div>
+
+    <div class="gap">
+      <span class="g-num">03</span>
+      <h3>"PDF/UA compliant" quietly substituted for "WCAG compliant"</h3>
+      <div class="g-body">
+        <p>
+          The two standards overlap but neither contains the other. Contrast (1.4.3, 1.4.11), link purpose (2.4.4),
+          language of parts (3.1.2), and use of colour (1.4.1) are outside the tag tree entirely. A vendor that validates
+          only with veraPDF or PAC's PDF/UA profile and then sells "WCAG 2.2 AA" has not tested the WCAG-only criteria at all.
+        </p>
+        <p class="verdict"><b>Use it</b> Rasterise every page and run real contrast analysis on text runs against their actual backdrops. Almost nobody in the PDF space does this well.</p>
+      </div>
+    </div>
+
+    <div class="gap">
+      <span class="g-num">04</span>
+      <h3>Checkers verify that alt text <em>exists</em>, not that it is <em>right</em></h3>
+      <div class="g-body">
+        <p>
+          Every automated checker on the market treats a non-empty <code>/Alt</code> string as a pass. Generate
+          "image" for 400 figures and the file passes. Research with real screen reader users found AI descriptions that
+          scored well on technical accuracy still caused measurably worse task completion &mdash; and models hallucinate
+          descriptions of images they cannot see in roughly a third of ambiguous cases.
+        </p>
+        <p class="verdict"><b>Use it</b> Score alt text on a rubric (identifies subject, conveys function in context, omits redundancy, right length) with a second model and human spot-checks. Never emit placeholder alt text to clear a checker.</p>
+      </div>
+    </div>
+
+    <div class="gap">
+      <span class="g-num">05</span>
+      <h3>Complex tables are effectively never automated correctly</h3>
+      <div class="g-body">
+        <p>
+          Simple tables need <code>TH</code> with a <code>/Scope</code>. Tables with merged or nested headers need every
+          <code>TH</code> to carry an <code>/ID</code> and every <code>TD</code> to carry a <code>/Headers</code> array
+          pointing at the right ones. Practitioner guidance is blunt: auto-tag "almost never creates TH tags correctly."
+          Structure recognition can find the grid; deciding <em>which header governs which cell</em> is semantic work.
+        </p>
+        <p class="verdict"><b>Use it</b> Detect complex tables and route them, with a purpose-built grid editor. This is the single highest-value UI you can build.</p>
+      </div>
+    </div>
+
+    <div class="gap">
+      <span class="g-num">06</span>
+      <h3>Interactive forms are a separate, mostly unsolved problem</h3>
+      <div class="g-body">
+        <p>
+          AcroForm fields need tagging, an accessible name (the tooltip), a correct tab order, and correct association with
+          their visible labels. Adobe's own behaviour is that adding a form field does not create the associated tag, so the
+          field is invisible to screen readers. Non-fillable form-like layouts also confuse auto-tag into merging elements.
+          Most "automated remediation" pricing tiers exclude or barely touch forms.
+        </p>
+        <p class="verdict"><b>Use it</b> Detect AcroForms at ingest and price them as a distinct product. Every government agency has form PDFs and almost nobody automates them.</p>
+      </div>
+    </div>
+
+    <div class="gap">
+      <span class="g-num">07</span>
+      <h3>The carve-outs are buried in the FAQ</h3>
+      <div class="g-body">
+        <p>
+          Read the fine print and the exclusions appear: scanned pages with unfixable contrast, vector art, CAD drawings,
+          illustrations, mathematical notation, embedded media, third-party subdomains. Adobe states plainly that files
+          containing illustrations, CAD or vector art "may not return high quality results." These carve-outs are rarely
+          surfaced before purchase.
+        </p>
+        <p class="verdict"><b>Use it</b> Run a triage pass at upload and show the customer, before they pay, exactly which pages your pipeline can and cannot fully handle.</p>
+      </div>
+    </div>
+
+    <div class="gap">
+      <span class="g-num">08</span>
+      <h3>Accuracy percentages with no methodology</h3>
+      <div class="g-body">
+        <p>
+          "Up to 95% auto-tagging." "95%+ WCAG 2.1 AA." "Near-100% accuracy." None of these are accompanied by a dataset,
+          a per-criterion breakdown, an inter-rater protocol, or a reproducible benchmark. Meanwhile the open-source project
+          that does publish a benchmark reports 0.907 overall and is candid that its own AI "is a strong first opinion,
+          not the last word."
+        </p>
+        <p class="verdict"><b>Use it</b> Build a labelled golden set of a few hundred pages across document types and publish per-criterion precision and recall. Nobody in this market has done it. It becomes both your QA harness and your best marketing asset.</p>
+      </div>
+    </div>
+
+    <div class="gap">
+      <span class="g-num">09</span>
+      <h3>PAC's own limits are not the same as PDF/UA's limits</h3>
+      <div class="g-body">
+        <p>
+          PAC 2024's technical tests are based on WCAG 2.1, not 2.2. It flags reading order and contrast as visual-inspection
+          warnings rather than hard failures. Acrobat's checker and PAC disagree routinely, and passing one does not imply
+          passing the other. A pipeline tuned to make PAC go green is optimising for a proxy.
+        </p>
+        <p class="verdict"><b>Use it</b> Validate against multiple independent engines (veraPDF profiles, PAC, Acrobat) and report disagreement as a signal rather than hiding it.</p>
+      </div>
+    </div>
+
+    <div class="gap">
+      <span class="g-num">10</span>
+      <h3>The FTC has already priced this kind of claim</h3>
+      <div class="g-body">
+        <p>
+          In January 2025 the FTC ordered accessiBe to pay <strong>$1 million</strong> for deceptive claims that its automated
+          product made websites WCAG compliant; the final order was approved in April 2025. Two findings are directly on
+          point here: the claims "were not supported by competent and reliable evidence," and the company failed to
+          adequately disclose that certain content types &mdash; <strong>PDFs explicitly named</strong> &mdash; were not remediated
+          unless separately purchased. The FTC also cited undisclosed material connections to seemingly independent reviewers.
+        </p>
+        <p class="verdict"><b>Use it</b> Treat substantiation as a build requirement, not a legal afterthought. See §10.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p7">
+  <div class="part-head"><span class="part-num">07</span><h2>Open-source bill of materials</h2></div>
+  <div class="col">
+    <p>
+      The single most important finding of this research: <strong>you no longer have to build or license a tagger.</strong>
+      As of Q2 2026 there is an Apache-2.0 engine, built with the PDF Association and the veraPDF developers, that takes an
+      untagged PDF and emits a Tagged PDF, and it currently leads the public extraction benchmarks. What it does <em>not</em>
+      give away is the final PDF/UA export step. That is the seam to build in.
+    </p>
+  </div>
+
+  <div class="scroller">
+    <table>
+      <caption>Components, licences, and what each does and does not give you</caption>
+      <thead><tr><th style="width:16%">Component</th><th style="width:10%">Licence</th><th style="width:34%">What it gives you</th><th>What you still have to build</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>OpenDataLoader PDF</strong><br><span class="pill pill-ok">Core</span></td>
+          <td>Apache-2.0</td>
+          <td>Untagged → Tagged PDF, end to end. XY-Cut++ reading order, heading hierarchy, lists, tables, bounding boxes for every element, header/footer/watermark filtering, prompt-injection filtering. Hybrid mode adds OCR (80+ languages), complex tables, LaTeX formula extraction and AI picture descriptions. Java core, Python/Node/Java SDKs.</td>
+          <td>PDF/UA-1 / UA-2 conformance export (enterprise-gated). Alt-text quality control. Everything downstream of "tagged".</td>
+        </tr>
+        <tr>
+          <td><strong>veraPDF</strong><br><span class="pill pill-ok">Core</span></td>
+          <td>GPL-3.0 / MPL-2.0 dual</td>
+          <td>The industry reference validator, backed by the Open Preservation Foundation and the PDF Association. Ships validation profiles for PDF/UA-1, PDF/UA-2, WTPDF and <em>WCAG 2.2</em>, plus a companion library of heuristic WCAG algorithms including contrast calculation.</td>
+          <td>Run it as a separate CLI process, not linked into your code, and take legal advice on the dual licence. Wrap its XML/JSON output into your own findings model.</td>
+        </tr>
+        <tr>
+          <td><strong>Docling</strong></td>
+          <td>MIT</td>
+          <td>IBM's layout engine: RT-DETR layout model trained on DocLayNet (80,863 annotated pages, 11 classes) plus TableFormer for borderless and spanning tables. 0.882 on the same benchmark. MIT means no copyleft exposure at all.</td>
+          <td>Produces a document model, not a tagged PDF. You supply the writer.</td>
+        </tr>
+        <tr>
+          <td><strong>PaddleOCR / PP-StructureV3</strong></td>
+          <td>Apache-2.0</td>
+          <td>Strong multilingual OCR and layout, good on tabular line items. Safe licence for SaaS.</td>
+          <td>Integration and post-processing.</td>
+        </tr>
+        <tr>
+          <td><strong>Tesseract</strong></td>
+          <td>Apache-2.0</td>
+          <td>Baseline OCR with a searchable text layer, adequate for clean 300 DPI+ scans.</td>
+          <td>Quality gating &mdash; OCR error rate is itself a Matterhorn human-judgment condition.</td>
+        </tr>
+        <tr>
+          <td><strong>pikepdf / qpdf</strong><br><span class="pill pill-ok">Core</span></td>
+          <td>MPL-2.0 / Apache-2.0</td>
+          <td>The low-level surgical layer: parse and rewrite content streams, create and edit indirect objects, build <code>StructTreeRoot</code> / <code>ParentTree</code> / <code>RoleMap</code>, write XMP. Permissive licences.</td>
+          <td>There is <strong>no high-level tagged-PDF API</strong> &mdash; the feature request has been open since 2021 with a community proof of concept but no wrapper. This is the module you own and it is the technical heart of the product.</td>
+        </tr>
+        <tr>
+          <td><strong>pdf.js / pdfium</strong></td>
+          <td>Apache-2.0 / BSD</td>
+          <td>Rendering for the review UI, page rasterisation for contrast analysis and for VLM input.</td>
+          <td>Overlay UI for tag boxes and reading order.</td>
+        </tr>
+        <tr>
+          <td><strong>PDFix Action Docker images</strong></td>
+          <td>Public repos</td>
+          <td>Reference implementations worth reading even if you never ship them: Docling auto-tag, Textract auto-tag, deepdoctection auto-tag, BLIP and OpenAI alt text, veraPDF and Arlington validators, MathML formula generation, language detection.</td>
+          <td>The SDK they call is commercially licensed.</td>
+        </tr>
+        <tr>
+          <td><strong>ASU CIC PDF_Accessibility</strong></td>
+          <td>MIT</td>
+          <td>A complete, readable AWS orchestration blueprint for this exact workload.</td>
+          <td>Everything it disclaims: auth, security, production hardening, accuracy.</td>
+        </tr>
+        <tr>
+          <td><strong>Apache PDFBox</strong></td>
+          <td>Apache-2.0</td>
+          <td>General PDF manipulation in Java.</td>
+          <td>Poor tagged-PDF support &mdash; documented structure-tree loss on split and merge. Not a tagging foundation.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <div class="note bad">
+      <h4>Licence landmines &mdash; check these before you pip install</h4>
+      <p>
+        <strong>Avoid in a hosted SaaS:</strong> <code>marker</code> (GPL-3.0), <code>MinerU</code> (AGPL-3.0),
+        <code>PyMuPDF</code> and <code>pymupdf4llm</code> (AGPL-3.0). AGPL's network clause reaches software you never
+        distribute but do serve over a network, which is exactly your deployment model. <strong>Prefer:</strong>
+        OpenDataLoader, PaddleOCR, Tesseract, pdfium, PDFBox (Apache-2.0); Docling (MIT); pikepdf (MPL-2.0).
+        veraPDF's GPL/MPL dual licence is workable if you invoke the CLI as a subprocess, but get that reviewed.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p8">
+  <div class="part-head"><span class="part-num">08</span><h2>Recommended architecture</h2></div>
+  <div class="col">
+    <p>
+      One non-negotiable design constraint drives everything: <strong>do not rebuild the PDF.</strong> These are legal,
+      financial and regulatory documents. Regenerating them from extracted content changes pagination, kerning, signature
+      appearance and print output, and destroys the customer's trust the first time a figure moves. Every fix must be an
+      in-place object-graph edit that leaves the rendered pixels byte-identical.
+    </p>
+  </div>
+
+  <div class="stages">
+    <div class="stage">
+      <span class="s-id">A · INGEST</span>
+      <h3>Triage and route before you spend a cent</h3>
+      <div class="s-body">
+        <p>
+          Classify each page: digital-born text / scanned raster / vector-heavy / form / mathematical / mixed. Detect an
+          existing structure tree and its quality. Ask whether a source document exists. Produce a per-page confidence
+          forecast and a quotable price <em>before</em> processing, with explicit "cannot fully automate" flags. This single
+          step neutralises loophole #7 and turns your carve-outs into a trust signal.
+        </p>
+        <span class="stack">pdfium · pikepdf · lightweight page classifier</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <span class="s-id">B · SOURCE</span>
+      <h3>Source-first path, when the original exists</h3>
+      <div class="s-body">
+        <p>
+          If the customer can supply the DOCX, PPTX, InDesign, HTML or LaTeX original, remediate <em>there</em> and export a
+          tagged PDF. This is the highest-accuracy path available and it is the direct implication of the iTagPDF result.
+          It also produces a durable fix: next month's version of the document comes out accessible by default.
+        </p>
+        <span class="stack">Word/LibreOffice export · InDesign export · HTML→tagged PDF · tagpdf (LaTeX)</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <span class="s-id">C · LAYOUT</span>
+      <h3>Structure recovery</h3>
+      <div class="s-body">
+        <p>
+          Deterministic engine first: OpenDataLoader local mode at 0.015 s/page gives reading order, headings, lists, simple
+          tables and bounding boxes, with reproducible output. Escalate only the pages it flags as uncertain to the hybrid
+          AI mode or to Docling/TableFormer. Deterministic-by-default matters: customers re-running the same file must get
+          the same result, and you must be able to explain why a tag was chosen.
+        </p>
+        <span class="stack">OpenDataLoader (XY-Cut++) → Docling/TableFormer → PaddleOCR/Tesseract for scans</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <span class="s-id">D · WRITE</span>
+      <h3>The tag writer &mdash; the module you own</h3>
+      <div class="s-body">
+        <p>
+          Inject <code>BDC/EMC</code> pairs with fresh MCIDs into each page's content stream without altering any drawing
+          operator; build the <code>StructTreeRoot</code> hierarchy; maintain <code>/ParentTree</code> consistency;
+          write <code>/RoleMap</code>, <code>/MarkInfo</code>, <code>/Lang</code>, <code>/ViewerPreferences</code> and XMP
+          <code>dc:title</code>; artifact headers, footers, watermarks and decorative rules; associate link annotations with
+          <code>Link</code> structure elements; attach MathML as an associated file on <code>Formula</code> elements.
+        </p>
+        <p>
+          Verify byte-level render equivalence after every write by rasterising before and after and comparing.
+        </p>
+        <span class="stack">pikepdf / qpdf · custom Python module · render-diff gate</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <span class="s-id">E · ENRICH</span>
+      <h3>The semantic layer, confidence-gated</h3>
+      <div class="s-body">
+        <p>
+          Alt text and figure descriptions, table header/scope/ID assignment, list normalisation, decorative-vs-meaningful
+          decisions, link purpose rewriting, language-of-parts detection, formula MathML. Run a cheap model over every page,
+          escalate low-confidence pages to a frontier model, and escalate <em>disagreement between the two</em> to a human.
+          Never write a value the model was not confident about &mdash; leave it empty and flag it, because an empty alt
+          attribute that a human fills is far better than a plausible fabrication that clears a checker.
+        </p>
+        <span class="stack">Claude Haiku 4.5 first pass → Sonnet 5 / Opus 5 escalation → Batch API for bulk → prompt caching on the shared rubric</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <span class="s-id">F · VERIFY</span>
+      <h3>Three-layer verification</h3>
+      <div class="s-body">
+        <p>See §9. This is the product.</p>
+        <span class="stack">veraPDF profiles · rasterised contrast analysis · adversarial LLM review · human workspace</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <span class="s-id">G · CERTIFY</span>
+      <h3>Evidence pack, not a green tick</h3>
+      <div class="s-body">
+        <p>
+          Emit a versioned conformance report: which profile was run, which rules passed, which human conditions were
+          verified, by whom, when, with what evidence, and what remains unverified. Only stamp the PDF/UA identifier when a
+          named human has signed the human-judgment checklist. Generate an accessibility conformance report (ACR/VPAT-style)
+          suitable for procurement.
+        </p>
+        <span class="stack">Postgres audit trail · signed PDF report · public verification URL per document</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>Deployment notes for your existing stack</h3>
+    <p>
+      The site is Next.js 16 on Vercel with Clerk, Drizzle/Postgres, Supabase and both Stripe and Razorpay already wired.
+      Keep the app there and put the pipeline behind a queue, because PDF work is minutes-long and memory-hungry, not
+      request-shaped.
+    </p>
+    <ul>
+      <li><strong>Worker tier:</strong> a containerised Python + Java service (OpenDataLoader needs a JVM) on Fly.io, Railway or AWS ECS Fargate. Not Vercel functions.</li>
+      <li><strong>Queue and state:</strong> Postgres-backed job table you already have the ORM for; per-page rows so partial failures are recoverable and refundable.</li>
+      <li><strong>Storage:</strong> Supabase Storage or S3, with per-tenant prefixes, encryption at rest, and an explicit retention policy (customers will ask, because these are often confidential).</li>
+      <li><strong>Reuse what exists:</strong> <code>app/tools/pdf-accessibility-checker</code> and <code>app/tools/alt-text-generator</code> are already live and already have the pdf-lib / pdfjs-dist plumbing. The checker is the natural free on-ramp to the paid pipeline.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p9">
+  <div class="part-head"><span class="part-num">09</span><h2>Designing the verification, not the tagger</h2></div>
+  <div class="col">
+    <p>
+      Everything above this section is table stakes within eighteen months. This section is the durable product.
+    </p>
+
+    <h3>Layer 1 &mdash; machine, deterministic</h3>
+    <p>
+      Run veraPDF's published profiles and turn the raw output into findings against your own model. Measured rule counts
+      in the current profile repository:
+    </p>
+  </div>
+
+  <div class="scroller">
+    <table>
+      <caption>veraPDF validation profiles &mdash; rule counts as of August 2026</caption>
+      <thead><tr><th>Profile</th><th class="num">Rules</th><th>Use it for</th></tr></thead>
+      <tbody>
+        <tr><td><code>PDFUA-1.xml</code></td><td class="num">106</td><td>The core machine-decidable PDF/UA-1 conformance gate. Non-negotiable pass condition.</td></tr>
+        <tr><td><code>PDFUA-2.xml</code></td><td class="num">91</td><td>PDF/UA-2 output option for customers on PDF 2.0.</td></tr>
+        <tr><td><code>WCAG-2-2-Machine.xml</code></td><td class="num">106</td><td>Machine-decidable WCAG 2.2 rules layered on PDF/UA-1.</td></tr>
+        <tr><td><code>WCAG-2-2-Complete.xml</code></td><td class="num">152</td><td>Adds semantic heuristics &mdash; see below. Your independent second opinion.</td></tr>
+        <tr><td><code>WTPDF-1-0-Accessibility.xml</code></td><td class="num">1,723</td><td>Exhaustive parent/child structure relationship validation. Catches malformed trees your writer produces.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <div class="note">
+      <h4>The trick worth stealing</h4>
+      <p>
+        veraPDF's <code>WCAG-2-2-Complete</code> profile contains heuristic <em>semantic</em> rules, not just format rules.
+        Real rule descriptions from the shipped profile: <em>"This structure element should be a heading instead of a
+        paragraph"</em>, <em>"The number of columns of this table does not match the number of columns of the visual
+        representation of this table"</em>, <em>"This cell is to the right of some cells in the next column"</em>,
+        <em>"This structure element should be a table cell instead of a table header"</em>, <em>"Redundant heading"</em>,
+        <em>"TOCI page label shall match the destination page"</em>.
+      </p>
+      <p>
+        Run these <strong>against your own tagger's output</strong>. Your tagger and this verifier are independent codebases
+        written by different people from different specifications &mdash; so agreement is real evidence, and disagreement is a
+        precise, actionable routing signal for human review. No competitor is using it this way.
+      </p>
+    </div>
+
+    <h3>Layer 1b &mdash; the WCAG-only checks nobody runs</h3>
+    <p>
+      Rasterise each page and compute genuine contrast ratios for every text run against the pixels actually behind it
+      (1.4.3, 1.4.6), plus non-text contrast for UI-like graphics (1.4.11). Detect colour-only information encoding (1.4.1).
+      Evaluate link text for purpose in isolation (2.4.4/2.4.9). Detect language changes mid-document (3.1.2). This is
+      where "WCAG 2.2" stops being a marketing word.
+    </p>
+
+    <h3>Layer 2 &mdash; AI, adversarial and confidence-scored</h3>
+    <p>
+      Not a second tagger &mdash; a reviewer. Give a vision model the rendered page and the tag tree side by side and ask it to
+      find disagreements between what is drawn and what is declared. Score alt text against a published rubric. Judge whether
+      table headers match the table's meaning. Critically, calibrate for the failure modes the ASSETS '25 benchmark found:
+      require the model to emit <em>Not Present</em> and <em>Cannot Tell</em> as first-class answers, and treat a description
+      of an image the model was not given as an automatic escalation.
+    </p>
+
+    <h3>Layer 3 &mdash; human, structured and evidenced</h3>
+    <p>
+      A review workspace, not a tag tree in a sidebar. Ordered roughly by how much review time each saves:
+    </p>
+    <ol>
+      <li><strong>Reading-order overlay</strong> &mdash; numbered boxes drawn over the rendered page, drag to reorder, keyboard-operable.</li>
+      <li><strong>Table grid editor</strong> &mdash; the merged-header case made tractable: click a header, paint the cells it governs, generate <code>/ID</code> and <code>/Headers</code> automatically.</li>
+      <li><strong>Alt-text queue</strong> &mdash; image, surrounding context, AI draft, rubric score, accept/edit/mark-decorative, batched across the whole document.</li>
+      <li><strong>Heading outline</strong> &mdash; the document's H-structure as a tree, with level-skip warnings inline.</li>
+      <li><strong>Screen reader preview</strong> &mdash; linearised text as an AT would encounter it, with artifacts hidden.</li>
+      <li><strong>The 47-condition checklist</strong> &mdash; each human-judgment Matterhorn condition as an explicit item, pre-answered where Layer 2 was confident, requiring an affirmative human tick where it was not, capturing who and when.</li>
+    </ol>
+    <p>
+      Real screen-reader verification (NVDA or JAWS against Acrobat) resists automation and should be a <em>sampled</em>
+      activity with recorded evidence, not a claimed per-file step. Say so.
+    </p>
+    <p>
+      Target: get a straightforward 20-page report from raw upload to signed-off in under fifteen minutes of human time.
+      Against a manual baseline of several hours, that is the entire economic argument for the product.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p10">
+  <div class="part-head"><span class="part-num">10</span><h2>Claims policy and legal exposure</h2></div>
+  <div class="col">
+    <p>
+      Given the FTC's $1M accessiBe order, the claims policy is a build requirement with the same status as the schema.
+      Write it before you write the landing page.
+    </p>
+
+    <h4>Never say</h4>
+    <ul>
+      <li>"AI makes your PDFs WCAG compliant" &mdash; the exact claim the FTC found deceptive.</li>
+      <li>"100% compliant" on any unattended automated output.</li>
+      <li>"Certified" for anything a named human did not sign.</li>
+      <li>Any accuracy percentage you cannot reproduce from a published dataset.</li>
+      <li>"Guaranteed to pass an audit" &mdash; you do not control the auditor.</li>
+    </ul>
+
+    <h4>Say instead</h4>
+    <ul>
+      <li>"Passes all 106 machine-verifiable PDF/UA-1 rules and all 106 machine-verifiable WCAG 2.2 rules in veraPDF, validated on 21 Aug 2026."</li>
+      <li>"All 47 Matterhorn conditions requiring human judgment were reviewed and signed off by [name] on [date]."</li>
+      <li>"3 items could not be automatically remediated and are listed with recommended manual fixes."</li>
+      <li>"Automated remediation reduces manual effort; it does not replace human verification."</li>
+    </ul>
+
+    <h3>Two SKUs, one honest boundary</h3>
+    <p>
+      Sell <strong>Remediated (machine-verified)</strong> and <strong>Certified (human-verified)</strong> as separate products
+      at separate prices. Only the second stamps the PDF/UA identifier, only the second issues a conformance statement, and
+      the first says clearly on its own output what has and has not been verified. This maps exactly onto the real machine/human
+      split in the standard, which means the boundary is defensible rather than arbitrary.
+    </p>
+
+    <h4>Substantiation file</h4>
+    <p>
+      Maintain a dated, versioned record of your golden-set benchmark results, methodology, and the per-criterion numbers
+      behind every public claim. The FTC's finding against accessiBe was not "the product is bad" &mdash; it was
+      "the claims were not supported by competent and reliable evidence." A benchmark you can hand a regulator is the
+      difference.
+    </p>
+
+    <div class="note bad">
+      <h4>Patent exposure &mdash; get counsel before launch</h4>
+      <p>
+        US 11,675,970 B2 and its continuation US 12,118,294, assigned to <strong>Open Text Corporation</strong>, priority date
+        14 February 2020, expiring 2041, claim a method that: collects training data from structured PDFs, trains a machine
+        learning engine on it, and uses that engine to convert untagged PDFs into tagged, accessible PDFs. That is a broad
+        reading of the mainstream approach.
+      </p>
+      <p>
+        This is not legal advice and I am not qualified to give it. Get a freedom-to-operate opinion. Note for that
+        conversation that potential design-arounds exist: deterministic geometric analysis rather than a trained classifier
+        (OpenDataLoader's local mode), general-purpose vision-language models not trained on a tagged-PDF corpus, and
+        source-first tagging that never classifies a rendered page at all.
+      </p>
+    </div>
+
+    <h4>Data handling</h4>
+    <p>
+      These documents are often confidential &mdash; medical records, court filings, tender responses, financial statements.
+      Commit publicly and contractually to: no training on customer content, encryption in transit and at rest, a stated
+      retention window with hard deletion, named subprocessors, and a data residency option. Competitors already advertise
+      US-only processing; if you are serving EU customers under the EAA, an EU processing region will become a sales
+      requirement.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p11">
+  <div class="part-head"><span class="part-num">11</span><h2>Build plan, effort and unit economics</h2></div>
+  <div class="col">
+    <p>
+      Sequenced so that each phase ships something sellable and each phase's output de-risks the next.
+    </p>
+  </div>
+
+  <div class="phase">
+    <div class="phase-top"><h3>Phase 0 &mdash; Turn the free checker into a real one</h3><span class="pill pill-neu">2&ndash;3 weeks</span></div>
+    <ul>
+      <li>Replace the current heuristic checker at <code>app/tools/pdf-accessibility-checker</code> with a veraPDF-backed worker running the PDFUA-1 and WCAG-2-2-Machine profiles.</li>
+      <li>Report findings in three buckets: machine-passed, machine-failed, requires-human-judgment &mdash; with the 47 conditions named explicitly.</li>
+      <li>Add the rasterised contrast pass, since nobody else's free checker does it.</li>
+      <li><strong>Why first:</strong> it is a genuine free tool that ranks, it educates the market on the machine/human split you will later charge for, and every upload is a qualified lead with a page count attached.</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase-top"><h3>Phase 1 &mdash; Auto-tag MVP, digital-born text PDFs only</h3><span class="pill pill-neu">6&ndash;8 weeks</span></div>
+    <ul>
+      <li>Worker service: OpenDataLoader local mode → your pikepdf-based PDF/UA finisher → veraPDF gate → render-diff gate.</li>
+      <li>Scope discipline: no scans, no forms, no complex tables, no maths. Triage rejects them with a clear explanation. Shipping a narrow thing that works beats a broad thing that half-works.</li>
+      <li>Alt text with Haiku-first / Sonnet-escalation, rubric-scored, left empty and flagged when confidence is low.</li>
+      <li>Build the golden set in parallel &mdash; 200&ndash;300 pages, hand-labelled, spanning report / brochure / academic / government-form / scan. This is your regression harness forever.</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase-top"><h3>Phase 2 &mdash; The review workspace</h3><span class="pill pill-neu">6&ndash;8 weeks</span></div>
+    <ul>
+      <li>Reading-order overlay, table grid editor, alt-text queue, heading outline, screen reader preview, 47-condition checklist.</li>
+      <li>Full keyboard operability and screen reader support in the workspace itself &mdash; an inaccessible accessibility tool is an own goal you will be called out for.</li>
+      <li>This is where the price moves from $0.50 to $2&ndash;3 per page, because it is where verified output becomes possible.</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase-top"><h3>Phase 3 &mdash; The hard content types</h3><span class="pill pill-neu">6&ndash;8 weeks</span></div>
+    <ul>
+      <li>Scanned documents: OCR with quality gating, because OCR error rate is itself a conformance condition.</li>
+      <li>Complex tables: automated <code>/ID</code> and <code>/Headers</code> generation from the grid editor's paint interaction.</li>
+      <li>AcroForms: field tagging, tooltips as accessible names, tab order, label association. Priced separately.</li>
+      <li>Formulas: MathML as an associated file on <code>Formula</code> elements, with alt-text fallback.</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase-top"><h3>Phase 4 &mdash; Certification and evidence</h3><span class="pill pill-neu">4 weeks</span></div>
+    <ul>
+      <li>Signed conformance reports, ACR/VPAT-style output, public per-document verification URLs.</li>
+      <li>Human sign-off workflow gating the PDF/UA identifier.</li>
+      <li>Publish the golden-set benchmark. This is the marketing asset and the substantiation file simultaneously.</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase-top"><h3>Phase 5 &mdash; Scale and moat</h3><span class="pill pill-neu">Ongoing</span></div>
+    <ul>
+      <li>Batch API, watched folders, CMS connectors, SharePoint/Drive sync, on-prem deployment for government.</li>
+      <li><strong>Source-first connectors</strong> &mdash; Word add-in, InDesign export, LaTeX pipeline. Highest accuracy, highest switching cost, and almost no competitor has it.</li>
+      <li>Extend to DOCX/PPTX/XLSX remediation, which is where the recurring revenue is.</li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>Unit economics</h3>
+    <p>
+      Assume a rendered page at roughly 1000&times;1300 px ≈ 1,800 image tokens, ~1,200 tokens of cached rubric and layout
+      context, ~400 output tokens.
+    </p>
+  </div>
+
+  <div class="scroller">
+    <table>
+      <caption>Per-page AI cost, by routing tier (Batch API halves all of these)</caption>
+      <thead><tr><th>Model</th><th class="num">Input $/1M</th><th class="num">Output $/1M</th><th class="num">Cost / page</th><th class="num">Batched</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Haiku 4.5 &mdash; first pass, ~80% of pages</td><td class="num">$1.00</td><td class="num">$5.00</td><td class="num">$0.0050</td><td class="num">$0.0025</td></tr>
+        <tr><td>Claude Sonnet 5 &mdash; escalation, ~15%</td><td class="num">$3.00</td><td class="num">$15.00</td><td class="num">$0.0150</td><td class="num">$0.0075</td></tr>
+        <tr><td>Claude Opus 5 &mdash; hard pages, ~5%</td><td class="num">$5.00</td><td class="num">$25.00</td><td class="num">$0.0250</td><td class="num">$0.0125</td></tr>
+        <tr><td><strong>Blended, batched</strong></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num"><strong>~$0.004</strong></td></tr>
+        <tr><td>Plus compute, OCR, storage, egress</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">~$0.003</td></tr>
+        <tr><td><strong>Total marginal cost per page</strong></td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num"><strong>&lt; $0.01</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <p>
+      Prompt caching keeps the shared rubric and system prompt at roughly a tenth of input cost across every page of a
+      document, so the marginal page in a 300-page report is cheaper still. The binding cost is not inference &mdash; it is
+      <strong>human review minutes</strong>. At $25/hour fully loaded, three minutes per page is $1.25; if the workspace gets a
+      simple page to one minute, it is $0.42. Every hour of engineering spent on the review UI beats an hour spent shaving
+      model cost.
+    </p>
+
+    <div class="note">
+      <h4>Suggested pricing</h4>
+      <p>
+        <strong>Free:</strong> checker, unlimited, no remediation &mdash; the lead magnet.
+        <strong>$0.75/page:</strong> Remediated, machine-verified, no human sign-off, no PDF/UA stamp.
+        <strong>$2.50/page:</strong> Certified, human-verified, PDF/UA stamped, conformance report included.
+        You undercut the $12 human tier by 5&times; while holding a much better gross margin than the $0.30 race-to-zero tier,
+        and the two SKUs mirror the standard's own machine/human boundary.
+      </p>
+    </div>
+
+    <div class="note warn">
+      <h4>Per-page pricing has a hard ceiling &mdash; you need a flat tier</h4>
+      <p>
+        PDFix sells federal agencies an SDK Enterprise licence with <em>unlimited annual page volume</em> inside a
+        $23,495 bundle (§4). Run the comparison: at 25,000 pages a year, $0.75/page is $18,750 and competitive. At 100,000
+        pages it is $75,000 against their $23,495. At 500,000 pages it is $375,000 against the same $23,495. <strong>Metered
+        pricing loses every large institutional account above roughly 30,000 pages a year</strong>, and those are exactly the
+        accounts with a decade of PDFs and an April 2027 deadline.
+      </p>
+      <p>
+        Fix it with a third SKU: <strong>Platform &mdash; flat annual fee, unlimited pages, on-prem or private-region
+        deployment, SSO, audit logs, source-first connectors, and a named verification lead.</strong> Price it against the
+        labour it replaces, not the pages it processes. Their own POC hands you the argument &mdash; their quote excludes
+        $50,000&ndash;75,000 of reviewer time, and your workspace is what compresses it. Sell "software plus the review hours
+        it removes", and the flat number can be several times theirs while still being the cheaper line in the agency's budget.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p12">
+  <div class="part-head"><span class="part-num">12</span><h2>Risk register</h2></div>
+
+  <div class="scroller">
+    <table>
+      <caption>What can go wrong, and the mitigation that goes in the build</caption>
+      <thead><tr><th style="width:22%">Risk</th><th style="width:9%">Severity</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>The tagger commoditises entirely</strong></td>
+          <td><span class="pill pill-bad">High</span></td>
+          <td>Already happening &mdash; an Apache-2.0 engine leads the benchmarks. Do not build a tagger business. Build a verification and workflow business that treats the tagger as a swappable dependency, and keep two engines wired so you are never hostage to one.</td>
+        </tr>
+        <tr>
+          <td><strong>Visual regression on customer documents</strong></td>
+          <td><span class="pill pill-bad">High</span></td>
+          <td>Hard render-diff gate on every write. Any page whose rasterisation changes fails the job rather than shipping. Never regenerate a PDF from extracted content.</td>
+        </tr>
+        <tr>
+          <td><strong>Overclaiming compliance</strong></td>
+          <td><span class="pill pill-bad">High</span></td>
+          <td>§10 in full. Two SKUs, no automatic PDF/UA stamping, substantiation file, published benchmark.</td>
+        </tr>
+        <tr>
+          <td><strong>Patent claim from Open Text</strong></td>
+          <td><span class="pill pill-warn">Med</span></td>
+          <td>Freedom-to-operate opinion before launch. Prefer deterministic geometric analysis and general-purpose VLMs over a classifier trained on a tagged-PDF corpus.</td>
+        </tr>
+        <tr>
+          <td><strong>Accuracy ceiling on complex material</strong></td>
+          <td><span class="pill pill-warn">Med</span></td>
+          <td>Triage at ingest and decline honestly. A narrow, reliable product that says "not this file" outperforms a broad one that quietly produces bad tags.</td>
+        </tr>
+        <tr>
+          <td><strong>Confidential document handling</strong></td>
+          <td><span class="pill pill-warn">Med</span></td>
+          <td>No-training commitment, encryption, stated retention, named subprocessors, EU region option. Publish it before customers ask.</td>
+        </tr>
+        <tr>
+          <td><strong>AGPL contamination</strong></td>
+          <td><span class="pill pill-warn">Med</span></td>
+          <td>Licence gate in CI. Ban PyMuPDF, MinerU and marker from the dependency tree; whitelist Apache-2.0, MIT, BSD, MPL-2.0.</td>
+        </tr>
+        <tr>
+          <td><strong>Long documents timing out</strong></td>
+          <td><span class="pill pill-neu">Low</span></td>
+          <td>Per-page job rows, resumable pipelines, partial-refund logic. A 900-page tender document must not be an all-or-nothing job.</td>
+        </tr>
+        <tr>
+          <td><strong>Adobe bundles this into Acrobat</strong></td>
+          <td><span class="pill pill-neu">Low</span></td>
+          <td>They already ship auto-tagging and deliberately stop short of certifying. Their restraint is your market.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="part" id="p13">
+  <div class="part-head"><span class="part-num">13</span><h2>What I would build</h2></div>
+  <div class="col">
+    <p>
+      Not an AI auto-tagger. That race is over and Apache-2.0 won it. Build the thing that the auto-taggers all
+      explicitly refuse to do: <strong>assert, with evidence, that a specific document conforms.</strong>
+    </p>
+    <p>
+      The shape of it: upload a PDF, get a per-page triage and a quote in seconds; automated remediation lands a
+      machine-verified file in minutes; a purpose-built workspace takes a human through only the decisions a machine
+      genuinely cannot make; and the output is a stamped, signed, permanently verifiable conformance record you can hand to
+      a procurement officer, a regulator, or a plaintiff's lawyer.
+    </p>
+    <p>
+      Four things make that defensible, and none of them are the model:
+    </p>
+    <ol>
+      <li><strong>The verification layer</strong> &mdash; independent engines cross-checking your own output, including veraPDF's semantic heuristics used adversarially and a rasterised contrast pass almost nobody runs.</li>
+      <li><strong>The review workspace</strong> &mdash; compressing hours of expert work into minutes is the actual product, and it is a real UI engineering effort rather than a prompt.</li>
+      <li><strong>The published benchmark</strong> &mdash; per-criterion precision and recall on a labelled golden set. Every competitor is quoting unsubstantiated percentages; being the only one with numbers is both the marketing and the FTC defence.</li>
+      <li><strong>Source-first remediation</strong> &mdash; the CHI 2026 result says this beats everything else, and essentially nobody is productising it.</li>
+    </ol>
+    <p>
+      It also fits the business already standing. The site has an audit practice, a remediation-support service, compliance
+      documentation, procurement pages and a live PDF checker with the PDF plumbing already installed. A verification-first
+      PDF platform is not a pivot into an unrelated market &mdash; it is the same customer, the same standard, the same buyer,
+      with a product attached to the service.
+    </p>
+    <div class="note">
+      <h4>The one-sentence positioning</h4>
+      <p>
+        <em>Everyone else automates the tagging and hopes. We automate the tagging, verify it against the standard with
+        independent engines, route only what genuinely needs a human, and give you the evidence.</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="end">
+  Research compiled 21 August 2026. Standards and benchmark figures are cited from the PDF Association, W3C, veraPDF's
+  published validation profiles, ACM/arXiv papers (2410.03022, 2503.22216, 2504.10258, 2509.18965, CHI&nbsp;2026), vendor
+  documentation, and the FTC's 2025 order against accessiBe. Rule counts were measured directly from the veraPDF profile
+  repository. Nothing here is legal advice; the patent and claims sections need a qualified attorney.
+</footer>
+
+</div>

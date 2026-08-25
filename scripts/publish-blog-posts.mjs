@@ -80,7 +80,8 @@ async function main() {
       _type: 'post',
       title: mod.title,
       slug: { _type: 'slug', current: mod.slug },
-      author: { _type: 'reference', _ref: AUTHOR_ID },
+      // Modules may set their own byline via `authorId`; default is Khushwant.
+      author: { _type: 'reference', _ref: mod.authorId || AUTHOR_ID },
       categories: catRefs,
       publishedAt: mod.publishedAt,
       excerpt: mod.excerpt,
