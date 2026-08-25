@@ -38,6 +38,8 @@ export type ProspectRecord = {
   status: string
   notes: string | null
   scannedAt: string | null
+  sentAt: string | null
+  resendId: string | null
   createdAt: string | null
   updatedAt: string | null
 }

@@ -522,6 +522,8 @@ export const prospects = pgTable('prospects', {
   status: text('status').notNull().default('new'), // 'new' | 'sent' | 'replied' | 'won' | 'dead'
   notes: text('notes'),
   scannedAt: timestamp('scanned_at'),
+  sentAt: timestamp('sent_at'), // When the outreach email was actually sent from the admin panel
+  resendId: text('resend_id'), // Resend message id for the sent email, for delivery audit
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 }, (t) => ({

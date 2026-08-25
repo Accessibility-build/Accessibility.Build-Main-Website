@@ -4,8 +4,9 @@ import { AdminAccessError, requireAdminApi } from '@/lib/admin-auth'
 import { db } from '@/lib/db'
 import { prospects } from '@/lib/db/schema'
 
-// Read-only listing for the prospects admin screen. This feature displays and
-// copies outreach text; it never sends anything.
+// Read-only listing for the prospects admin screen. Sending happens per-prospect
+// from the detail screen (POST /api/admin/prospects/[id]/send); this route only
+// lists rows.
 export async function GET() {
   try {
     await requireAdminApi()

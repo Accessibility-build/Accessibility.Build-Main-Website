@@ -1,8 +1,8 @@
 "use client"
 
-import { useId, useMemo, useState } from "react"
+import { useId, useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, ExternalLink, Mail, ShieldAlert, TriangleAlert } from "lucide-react"
+import { ArrowLeft, ExternalLink, ShieldAlert, TriangleAlert } from "lucide-react"
 import { AdminPageHeader } from "@/components/admin/admin-page-header"
 import {
   CopyButton,
@@ -14,6 +14,7 @@ import {
   useAnnouncer,
   type ProspectRecord,
 } from "@/components/admin/prospect-ui"
+import { ProspectSendPanel, type EmailConfig } from "@/components/admin/prospect-send-panel"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -31,7 +32,13 @@ function DetailRow({ label, children }: { label: string; children: React.ReactNo
   )
 }
 
-export function AdminProspectDetailClient({ prospect }: { prospect: ProspectRecord }) {
+export function AdminProspectDetailClient({
+  prospect,
+  emailConfig,
+}: {
+  prospect: ProspectRecord
+  emailConfig: EmailConfig
+}) {
   const { message, announce } = useAnnouncer()
 
   const [status, setStatus] = useState(prospect.status)
@@ -44,13 +51,6 @@ export function AdminProspectDetailClient({ prospect }: { prospect: ProspectReco
   const notesId = useId()
 
   const dirty = status !== saved.status || notes.trim() !== saved.notes.trim()
-
-  const subjectAndBody = useMemo(() => {
-    const subject = prospect.subject ? `Subject: ${prospect.subject}` : null
-    const body = prospect.emailBody ?? null
-    if (!subject && !body) return null
-    return [subject, body].filter(Boolean).join("\n\n")
-  }, [prospect.subject, prospect.emailBody])
 
   const handleSave = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -109,8 +109,8 @@ export function AdminProspectDetailClient({ prospect }: { prospect: ProspectReco
         title={prospect.company}
         description={
           summary
-            ? `${summary}. Read the finding, then copy the email into your mail client.`
-            : "Read the finding, then copy the email into your mail client."
+            ? `${summary}. Read the finding, tweak the note, then send it or copy it out.`
+            : "Read the finding, tweak the note, then send it or copy it out."
         }
         actions={
           <div className="flex flex-wrap items-center gap-2">
@@ -136,62 +136,16 @@ export function AdminProspectDetailClient({ prospect }: { prospect: ProspectReco
 
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
-          <Card>
-            <CardHeader>
-              <h2 className="flex items-center gap-2 text-lg font-semibold leading-none tracking-tight">
-                <Mail className="h-5 w-5" aria-hidden="true" />
-                The email
-              </h2>
-            </CardHeader>
-            <CardContent className="space-y-5">
-              <div>
-                <h3 className="text-sm font-medium text-slate-500">Subject</h3>
-                <div className="mt-2 flex flex-wrap items-start gap-3">
-                  <p className="min-w-0 flex-1 break-words rounded-md border border-slate-200 bg-slate-50 px-3 py-2 font-medium dark:border-slate-800 dark:bg-slate-900">
-                    {prospect.subject ?? "No subject line recorded."}
-                  </p>
-                  <CopyButton
-                    value={prospect.subject}
-                    label="Copy subject"
-                    announcement="Subject copied to the clipboard"
-                    onAnnounce={announce}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <h3 className="text-sm font-medium text-slate-500">Body</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <CopyButton
-                      value={subjectAndBody}
-                      label="Copy subject + body"
-                      announcement="Subject and body copied to the clipboard"
-                      onAnnounce={announce}
-                    />
-                    <CopyButton
-                      value={prospect.emailBody}
-                      label="Copy email"
-                      announcement="Email body copied to the clipboard"
-                      onAnnounce={announce}
-                      variant="default"
-                      size="lg"
-                      className="font-semibold"
-                    />
-                  </div>
-                </div>
-                {prospect.emailBody ? (
-                  <pre className="mt-2 whitespace-pre-wrap break-words rounded-md border border-slate-200 bg-slate-50 p-4 font-mono text-sm leading-6 text-slate-900 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100">
-                    {prospect.emailBody}
-                  </pre>
-                ) : (
-                  <p className="mt-2 rounded-md border border-dashed border-slate-300 p-4 text-sm dark:border-slate-700">
-                    No email body recorded for this prospect yet.
-                  </p>
-                )}
-              </div>
-            </CardContent>
-          </Card>
+          <ProspectSendPanel
+            prospect={prospect}
+            emailConfig={emailConfig}
+            onAnnounce={announce}
+            onSent={(updated) => {
+              setStatus(updated.status)
+              setSaved((prev) => ({ ...prev, status: updated.status }))
+              announce(`Email sent to ${updated.company}. Status is now Sent.`)
+            }}
+          />
 
           <Card>
             <CardHeader>

@@ -30,6 +30,8 @@ export function serializeProspect(row: Prospect): ProspectRecord {
     status: row.status,
     notes: row.notes,
     scannedAt: row.scannedAt ? row.scannedAt.toISOString() : null,
+    sentAt: row.sentAt ? row.sentAt.toISOString() : null,
+    resendId: row.resendId ?? null,
     createdAt: row.createdAt ? row.createdAt.toISOString() : null,
     updatedAt: row.updatedAt ? row.updatedAt.toISOString() : null,
   }

@@ -6,12 +6,24 @@ import { prospects } from '@/lib/db/schema'
 import { serializeProspect } from '@/lib/prospects'
 import { AdminLayout } from '@/components/admin/admin-layout'
 import { AdminProspectDetailClient } from '@/components/admin/admin-prospect-detail-client'
+import { isEmailServiceEnabled, getEmailFromAddress } from '@/lib/email/resend'
+
+function readEmailConfig(replyTo: string | null) {
+  const configured = isEmailServiceEnabled()
+  let fromAddress: string | null = null
+  try {
+    fromAddress = getEmailFromAddress()
+  } catch {
+    fromAddress = null
+  }
+  return { configured, fromAddress, replyTo }
+}
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 export const metadata = {
   title: 'Prospect | Admin Dashboard',
-  description: 'Read the verified finding and copy the outreach email',
+  description: 'Read the verified finding, then send or copy the outreach email',
   robots: { index: false, follow: false },
 }
 
@@ -20,7 +32,8 @@ export default async function AdminProspectDetailPage({
 }: {
   params: Promise<{ id: string }>
 }) {
-  await requireAdmin('/admin/prospects')
+  const admin = await requireAdmin('/admin/prospects')
+  const replyTo = admin?.emailAddresses?.[0]?.emailAddress ?? null
 
   const { id } = await params
 
@@ -36,7 +49,10 @@ export default async function AdminProspectDetailPage({
 
   return (
     <AdminLayout>
-      <AdminProspectDetailClient prospect={serializeProspect(record)} />
+      <AdminProspectDetailClient
+        prospect={serializeProspect(record)}
+        emailConfig={readEmailConfig(replyTo)}
+      />
     </AdminLayout>
   )
 }

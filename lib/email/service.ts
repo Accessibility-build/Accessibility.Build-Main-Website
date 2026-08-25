@@ -11,6 +11,7 @@ import {
   renderMarketingCampaignEmail,
   renderPurchaseConfirmationEmail,
   renderRefundNotificationEmail,
+  renderProspectOutreachEmail,
 } from './templates'
 import type {
   TransactionalEmailData,
@@ -64,6 +65,8 @@ async function sendEmailViaResend(params: {
   to: string
   subject: string
   html: string
+  text?: string
+  replyTo?: string
   idempotencyKey: string
   emailType: string
 }): Promise<EmailSendResult> {
@@ -83,6 +86,8 @@ async function sendEmailViaResend(params: {
       to: [params.to],
       subject: params.subject,
       html: params.html,
+      ...(params.text ? { text: params.text } : {}),
+      ...(params.replyTo ? { replyTo: params.replyTo } : {}),
       headers: {
         'X-Entity-Ref-ID': params.idempotencyKey,
       },
@@ -290,5 +295,56 @@ export function sendRefundNotificationEmail(data: RefundNotificationEmailData): 
       error: err instanceof Error ? err.message : String(err),
       orderId: data.orderId,
     }))
+  })
+}
+
+/**
+ * Send a single prospect outreach email from the admin panel. Unlike the
+ * account emails above this is an awaited, operator-initiated action: it returns
+ * a result the caller surfaces in the UI, and it is never fired automatically.
+ * The body is the drafted text verbatim, wrapped in the minimalist personal
+ * template so it reads like a real note rather than a marketing send.
+ */
+export async function sendProspectOutreachEmail(data: {
+  prospectId: string
+  to: string
+  subject: string
+  body: string
+  replyTo?: string
+  includeOptOut?: boolean
+  /** Distinguishes a test send or a deliberate resend from the first send. */
+  idempotencySuffix?: string
+}): Promise<EmailSendResult> {
+  if (!isEmailServiceEnabled()) {
+    return { success: false, error: 'Email sending is not configured. Set RESEND_API_KEY and RESEND_FROM_ADDRESS.' }
+  }
+
+  const to = data.to?.trim()
+  if (!to || isSyntheticEmail(to)) {
+    return { success: false, error: 'Recipient email is not eligible' }
+  }
+
+  const subject = data.subject?.trim()
+  const body = data.body?.trim()
+  if (!subject) return { success: false, error: 'Subject is required' }
+  if (!body) return { success: false, error: 'Email body is required' }
+
+  const rendered = renderProspectOutreachEmail({
+    subject,
+    body,
+    includeOptOut: data.includeOptOut,
+  })
+
+  const base = `prospect_${data.prospectId}_${sanitizeEmailForIdempotency(to)}`
+  const idempotencyKey = data.idempotencySuffix ? `${base}_${data.idempotencySuffix}` : base
+
+  return sendEmailViaResend({
+    to,
+    subject: rendered.subject,
+    html: rendered.html,
+    text: rendered.text,
+    replyTo: data.replyTo?.trim() || undefined,
+    idempotencyKey,
+    emailType: 'prospect_outreach',
   })
 }

@@ -115,6 +115,88 @@ function renderPlainTextAsHtmlParagraphs(value: string): string {
     .join('\n')
 }
 
+/**
+ * Turn a plain-text block into HTML paragraphs, but also make bare URLs and
+ * email addresses clickable. Kept local to the outreach template so the
+ * account/marketing emails keep their existing, more conservative rendering.
+ */
+function renderOutreachBodyAsHtml(value: string): string {
+  const linkify = (escaped: string): string =>
+    escaped
+      // Bare web addresses, with or without a scheme. Escaped text means we
+      // match on the already-safe string, so no attribute injection is possible.
+      .replace(
+        /\b((?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s<]*)?)/gi,
+        (match) => {
+          const href = match.startsWith('http') ? match : `https://${match}`
+          return `<a href="${href}">${match}</a>`
+        },
+      )
+      // Email addresses become mailto links.
+      .replace(
+        /\b([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,})\b/gi,
+        (match) => `<a href="mailto:${match}">${match}</a>`,
+      )
+
+  const trimmed = value.trim()
+  if (!trimmed) return ''
+
+  return trimmed
+    .split(/\n{2,}/)
+    .map((block) => `<p>${linkify(escapeHtml(block)).replace(/\n/g, '<br />')}</p>`)
+    .join('\n')
+}
+
+/**
+ * A deliberately minimalist, personal-looking outreach email. No logo banner,
+ * no card chrome, no marketing footer, no CTA button. It reads like a short
+ * note a person typed in their own mail client, which is the whole point of the
+ * prospecting method: a designed campaign template would undo the credibility
+ * the finding earns. `body` is passed through verbatim (it already carries the
+ * signature); only paragraph spacing, link styling, and a single quiet opt-out
+ * line are added.
+ */
+export function renderProspectOutreachEmail(data: {
+  subject: string
+  body: string
+  includeOptOut?: boolean
+}): { subject: string; html: string; text: string } {
+  const includeOptOut = data.includeOptOut ?? true
+  const optOutText = 'If you would rather not hear from me, reply to this note and I will not write again.'
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>${escapeHtml(data.subject)}</title>
+  <style>
+    body { margin: 0; padding: 0; background-color: #ffffff; -webkit-text-size-adjust: 100%; }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 32px 24px; }
+    .wrap, .wrap p { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.65; color: #1f2937; }
+    .wrap p { margin: 0 0 16px; }
+    .wrap p:last-of-type { margin-bottom: 0; }
+    .wrap a { color: #0f766e; text-decoration: underline; }
+    .sig-rule { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0 16px; }
+    .optout { font-size: 12px; line-height: 1.5; color: #9ca3af; margin: 0; }
+    .preheader { display: none; max-height: 0; overflow: hidden; mso-hide: all; }
+  </style>
+</head>
+<body>
+  <span class="preheader">${escapeHtml(data.subject)}</span>
+  <div class="wrap">
+    ${renderOutreachBodyAsHtml(data.body)}
+    ${includeOptOut ? `<hr class="sig-rule" />\n    <p class="optout">${escapeHtml(optOutText)}</p>` : ''}
+  </div>
+</body>
+</html>`
+
+  const text = includeOptOut ? `${data.body.trim()}\n\n---\n${optOutText}` : data.body.trim()
+
+  return { subject: data.subject, html, text }
+}
+
 export function renderWelcomeEmail(data: {
   firstName?: string | null
   credits: number
