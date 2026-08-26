@@ -54,7 +54,7 @@ const faqs = [
   {
     question: "How much does a WCAG audit cost for a small business website?",
     answer:
-      "There is no single market rate, and most UK and Irish agencies do not publish prices at all. US vendors such as Accessible.org, AudioEye and DigitalA11Y publish ranges of roughly $1,500 to $5,500 for small business sites, with per-page rates around $100 to $250. In the UK, independent consultant Jim Byrne publishes audit prices from 2,500 GBP. Our own fixed-price WCAG 2.2 AA audits start at $950, including manual testing, assistive technology checks, a full report, and a verification retest. Whatever you pay, get the scope itemised in writing so you can compare quotes like with like.",
+      "There is no single market rate, and most UK and Irish agencies do not publish prices at all. US vendors such as AudioEye and DigitalA11Y publish ranges of roughly $1,500 to $5,500 for small business sites, with per-page rates around $100 to $250. In the UK, independent consultant Jim Byrne publishes audit prices from 2,500 GBP. Our own fixed-price WCAG 2.2 AA audits start at $950, including manual testing, assistive technology checks, a full report, and a verification retest. Whatever you pay, get the scope itemised in writing so you can compare quotes like with like.",
   },
   {
     question: "Why do audit prices vary so much?",
@@ -189,11 +189,11 @@ export default function AccessibilityAuditCostPage() {
             <ul className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed list-disc pl-5 mb-4">
               <li>
                 <strong className="text-slate-900 dark:text-white">Published US figures.</strong>{" "}
-                US vendors such as Accessible.org, AudioEye and DigitalA11Y publish ranges of
-                roughly $1,500 to $5,500 for small business sites, per-page rates around $100 to
-                $250, and $50,000 or more for large enterprise engagements. These are US market
-                figures from vendor-published content, not quotes, and your site may sit anywhere
-                on or off those ranges depending on scope.
+                US vendors such as AudioEye and DigitalA11Y publish ranges of roughly $1,500 to
+                $5,500 for small business sites, per-page rates around $100 to $250, and $50,000
+                or more for large enterprise engagements. These are US market figures from
+                vendor-published content, not quotes, and your site may sit anywhere on or off
+                those ranges depending on scope.
               </li>
               <li>
                 <strong className="text-slate-900 dark:text-white">The one published UK data point we know of.</strong>{" "}
@@ -210,11 +210,8 @@ export default function AccessibilityAuditCostPage() {
                   accessibility audits
                 </Link>{" "}
                 from $950, including manual testing, assistive technology checks, a full report,
-                and verification retests. Full details are on our{" "}
-                <Link href="/pricing" className="text-blue-600 dark:text-blue-400 hover:underline">
-                  pricing page
-                </Link>
-                .
+                and verification retests, with each tier and what it covers listed on the service
+                page.
               </li>
             </ul>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
