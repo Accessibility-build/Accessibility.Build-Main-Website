@@ -59,6 +59,10 @@ import {
   GalleryHorizontalEnd,
   MessageSquareText,
   BellRing,
+  Calculator,
+  FileSignature,
+  FileBadge2,
+  Globe2,
 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 
@@ -123,6 +127,50 @@ const guides = [
     topics: ["Settlement Costs", "ADA", "Risk", "ROI"],
     href: "/guides/ada-website-lawsuit-cost",
     gradient: "from-blue-600 to-cyan-600",
+  },
+  {
+    title: "How Much Does a Web Accessibility Audit Cost?",
+    description:
+      "The honest buying guide: attributed market ranges, why quotes vary so wildly, the structural factors that actually drive price, why an automated scan is a different product, and the UK and Ireland legal drivers behind the spend.",
+    icon: Calculator,
+    difficulty: "Beginner",
+    readingTime: "12 min",
+    topics: ["Audit Pricing", "UK & Ireland", "Scoping", "Buying"],
+    href: "/guides/accessibility-audit-cost",
+    gradient: "from-emerald-600 to-teal-600",
+  },
+  {
+    title: "How to Write an Accessibility Statement",
+    description:
+      "Three legal regimes, one page: the mandatory PSBAR model for UK public bodies, the EU model statement for the public sector, and the EAA information duty for private companies. What every good statement contains and the mistakes that create risk.",
+    icon: FileSignature,
+    difficulty: "Beginner",
+    readingTime: "14 min",
+    topics: ["Statements", "PSBAR", "EAA", "Templates"],
+    href: "/guides/how-to-write-an-accessibility-statement",
+    gradient: "from-indigo-600 to-blue-600",
+  },
+  {
+    title: "VPAT & Accessibility Conformance Reports",
+    description:
+      "The procurement document demystified: VPAT versus ACR, the four editions and who asks for each, how to read one before you buy, how to produce one that survives scrutiny, and why European buyers now ask for the EN 301 549 edition.",
+    icon: FileBadge2,
+    difficulty: "Intermediate",
+    readingTime: "14 min",
+    topics: ["VPAT", "ACR", "Procurement", "EN 301 549"],
+    href: "/guides/vpat-accessibility-conformance-report",
+    gradient: "from-slate-600 to-zinc-700",
+  },
+  {
+    title: "Do Overlays Meet the EAA and UK Law?",
+    description:
+      "The legal answer on accessibility overlays in Europe: why a widget does not change WCAG conformance, what the European Disability Forum reports, the obligation-of-result principle, and the litigation data on sued overlay customers.",
+    icon: Globe2,
+    difficulty: "Beginner",
+    readingTime: "11 min",
+    topics: ["Overlays", "EAA", "Equality Act", "Legal"],
+    href: "/guides/accessibility-overlays-eu-uk-law",
+    gradient: "from-rose-600 to-red-700",
   },
   {
     title: "How AI Is Fueling ADA Website Lawsuits in 2026",
@@ -700,6 +748,7 @@ const categories = [
     hrefs: [
       "/guides/wcag-2-2-aa-requirements",
       "/guides/wcag-2-1-vs-2-2",
+      "/guides/vpat-accessibility-conformance-report",
     ],
   },
   {
@@ -811,6 +860,8 @@ const categories = [
     hrefs: [
       "/guides/fashion-nova-accessibility-settlement",
       "/guides/ada-website-lawsuit-cost",
+      "/guides/accessibility-audit-cost",
+      "/guides/how-to-write-an-accessibility-statement",
       "/guides/ai-accessibility-lawsuits",
       "/guides/doj-title-ii-deadline-extension",
       "/guides/section-504-web-accessibility-deadline",
@@ -825,6 +876,7 @@ const categories = [
     hrefs: [
       "/guides/accessibility-overlays",
       "/guides/accessibility-overlay-alternatives",
+      "/guides/accessibility-overlays-eu-uk-law",
     ],
   },
 ]

@@ -116,6 +116,24 @@ const guides = [
     facts: ["Incorporates WCAG 2.1 AA", "Presumption of conformity for EAA/WAD"],
   },
   {
+    href: "/compliance/uk",
+    region: "United Kingdom",
+    title: "United Kingdom",
+    subtitle: "Equality Act 2010 & PSBAR",
+    description:
+      "The outcome-based UK regime: the Equality Act's anticipatory reasonable-adjustments duty for every service provider, PSBAR's mandatory statements for the public sector, and the new statutory Services Code of Practice in force since August 2026.",
+    facts: ["Anticipatory duty, no named standard", "GDS monitors against WCAG 2.2 AA"],
+  },
+  {
+    href: "/compliance/eaa-ireland",
+    region: "Ireland",
+    title: "Ireland",
+    subtitle: "EAA via S.I. No. 636/2023",
+    description:
+      "Ireland enforces the European Accessibility Act with criminal penalties: fines up to EUR 60,000 and up to 18 months imprisonment on indictment, six sectoral regulators, and personal liability for company officers.",
+    facts: ["Criminal offence + officer liability", "Six regulators, CCPC to Central Bank"],
+  },
+  {
     href: "/compliance/california",
     region: "United States · California",
     title: "California",

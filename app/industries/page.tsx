@@ -5,6 +5,7 @@ import {
   HeartPulse,
   GraduationCap,
   Landmark,
+  Banknote,
   Scale,
   FileSearch,
   ClipboardCheck,
@@ -18,13 +19,13 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 export const metadata = {
   title: "Accessibility by Industry",
   description:
-    "See how accessibility law and WCAG apply to your industry. Practical compliance guides for e-commerce, healthcare, education, and government digital teams.",
+    "See how accessibility law and WCAG apply to your industry. Practical compliance guides for e-commerce, healthcare, education, government, and financial services digital teams.",
   alternates: { canonical: "/industries" },
   openGraph: {
     type: "website",
     title: "Accessibility by Industry",
     description:
-      "See how accessibility law and WCAG apply to your industry. Practical compliance guides for e-commerce, healthcare, education, and government digital teams.",
+      "See how accessibility law and WCAG apply to your industry. Practical compliance guides for e-commerce, healthcare, education, government, and financial services digital teams.",
     url: "/industries",
     images: [
       {
@@ -39,7 +40,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Accessibility by Industry",
     description:
-      "See how accessibility law and WCAG apply to your industry. Practical compliance guides for e-commerce, healthcare, education, and government digital teams.",
+      "See how accessibility law and WCAG apply to your industry. Practical compliance guides for e-commerce, healthcare, education, government, and financial services digital teams.",
     images: ["/api/og?title=Accessibility%20by%20Industry&section=Industries"],
   },
 }
@@ -71,7 +72,7 @@ const industries = [
       "Patient portals, telehealth, and intake forms now sit under some of the strictest accessibility rules in US law, including the HHS Section 504 web rule.",
     highlights: [
       "ADA, Section 1557 of the ACA, and the Section 504 web rule",
-      "The May 11, 2026 WCAG 2.1 AA deadline has already passed",
+      "First Section 504 web deadline extended to May 11, 2027",
       "Forms, medical PDFs, and telehealth video are the top risks",
     ],
   },
@@ -103,6 +104,21 @@ const industries = [
       "Section 508 for federal, Title II rule for state and local",
       "PDF backlogs, online forms, and legacy systems",
       "Procurement, VPATs, and vendor accountability",
+    ],
+  },
+  {
+    title: "Banking & Finance",
+    href: "/industries/finance",
+    icon: Banknote,
+    color: "from-sky-500 to-blue-600",
+    bgColor: "bg-sky-50 dark:bg-sky-950/30",
+    borderColor: "border-sky-200 dark:border-sky-800",
+    description:
+      "Consumer banking is named in the European Accessibility Act, the FCA Consumer Duty raises the bar in the UK, and Ireland enforces with criminal penalties.",
+    highlights: [
+      "EAA consumer banking scope, Central Bank enforcement in Ireland",
+      "Authentication, session timeouts, and untagged PDF statements",
+      "ATMs and payment terminals as self-service terminals",
     ],
   },
 ]

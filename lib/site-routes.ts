@@ -65,6 +65,7 @@ const tools: SiteRoute[] = [
   { route: "/tools/mobile-accessibility-checker", label: "Mobile Accessibility Checker", group: "Tools", lastModified: "2025-11-25", priority: 0.94 },
   { route: "/tools/accessibility-code-generator", label: "AI Accessibility Code Generator", group: "Tools", lastModified: "2025-11-25", priority: 0.93 },
   { route: "/tools/overlay-detector", label: "Accessibility Overlay Detector", group: "Tools", lastModified: "2026-03-30", priority: 0.93 },
+  { route: "/tools/eaa-scope-checker", label: "EAA Scope Checker", group: "Tools", lastModified: "2026-08-27", priority: 0.92 },
   { route: "/tools/alt-text-generator", label: "AI Alt Text Generator", group: "Tools", lastModified: "2025-11-25", priority: 0.92 },
   { route: "/tools/pdf-accessibility-checker", label: "PDF Accessibility Checker", group: "Tools", lastModified: "2026-03-30", priority: 0.92 },
   { route: "/tools/url-accessibility-auditor", label: "URL Accessibility Auditor", group: "Tools", lastModified: "2025-11-25", priority: 0.91 },
@@ -98,6 +99,8 @@ const compliance: SiteRoute[] = [
   { route: "/compliance/en-301-549", label: "EN 301 549 Standard", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/california", label: "California & the Unruh Act", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/new-york", label: "New York Accessibility Laws", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
+  { route: "/compliance/uk", label: "UK Website Accessibility Law", group: "Compliance", lastModified: "2026-08-27", priority: 0.94 },
+  { route: "/compliance/eaa-ireland", label: "EAA Compliance in Ireland", group: "Compliance", lastModified: "2026-08-27", priority: 0.94 },
 ]
 
 const industries: SiteRoute[] = [
@@ -106,6 +109,7 @@ const industries: SiteRoute[] = [
   { route: "/industries/healthcare", label: "Healthcare Accessibility", group: "Industries", lastModified: "2026-07-09", priority: 0.88 },
   { route: "/industries/education", label: "Education Accessibility", group: "Industries", lastModified: "2026-07-09", priority: 0.88 },
   { route: "/industries/government", label: "Government Accessibility", group: "Industries", lastModified: "2026-07-09", priority: 0.88 },
+  { route: "/industries/finance", label: "Banking & Financial Services Accessibility", group: "Industries", lastModified: "2026-08-27", priority: 0.9 },
 ]
 
 const guides: SiteRoute[] = [
@@ -154,6 +158,10 @@ const guides: SiteRoute[] = [
   { route: "/guides/jaws-screen-reader-testing", label: "JAWS Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-16", priority: 0.94 },
   { route: "/guides/talkback-screen-reader-testing", label: "TalkBack Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-17", priority: 0.94 },
   { route: "/guides/ada-website-lawsuit-cost", label: "ADA Website Lawsuit Cost", group: "Guides", lastModified: "2026-07-09", priority: 0.91 },
+  { route: "/guides/accessibility-audit-cost", label: "Accessibility Audit Cost (UK & Ireland)", group: "Guides", lastModified: "2026-08-27", priority: 0.93 },
+  { route: "/guides/how-to-write-an-accessibility-statement", label: "How to Write an Accessibility Statement", group: "Guides", lastModified: "2026-08-27", priority: 0.93 },
+  { route: "/guides/vpat-accessibility-conformance-report", label: "VPAT & Accessibility Conformance Reports", group: "Guides", lastModified: "2026-08-27", priority: 0.92 },
+  { route: "/guides/accessibility-overlays-eu-uk-law", label: "Overlays and EU/UK Law", group: "Guides", lastModified: "2026-08-27", priority: 0.92 },
   { route: "/guides/accessibility-overlays", label: "Accessibility Overlays", group: "Guides", lastModified: "2026-03-30", priority: 0.91 },
   { route: "/guides/accessibility-overlay-alternatives", label: "Overlay Alternatives", group: "Guides", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/guides/automated-vs-manual-accessibility-testing", label: "Automated vs Manual Testing", group: "Guides", lastModified: "2026-07-09", priority: 0.9 },

@@ -229,6 +229,15 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['overlay', 'widget', 'accessibe', 'userway', 'audioeye', 'equalweb', 'overlay detector', 'overlay detection', 'accessibility widget'],
     priority: 9
   },
+  // EAA Scope Checker Tool
+  {
+    url: '/tools/eaa-scope-checker',
+    title: 'EAA Scope Checker',
+    description: 'Answer four questions about your customers, sector, and size to see whether the European Accessibility Act likely applies to your business, including the e-commerce net and the microenterprise exemption',
+    type: 'tool',
+    keywords: ['eaa scope', 'european accessibility act scope', 'does the eaa apply to me', 'eaa applicability', 'eaa checker', 'eaa microenterprise', 'is my website covered by the eaa', 'eaa quiz'],
+    priority: 9
+  },
   // PDF Accessibility Checker Tool
   {
     url: '/tools/pdf-accessibility-checker',
@@ -382,6 +391,38 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['ada website lawsuit cost', 'accessibility lawsuit', 'settlement cost', 'settlement costs', 'lawsuit defense cost', 'ada compliance', 'litigation', 'roi', 'lawsuit risk'],
     priority: 8
   },
+  {
+    url: '/guides/accessibility-audit-cost',
+    title: 'Web Accessibility Audit Cost (UK & Ireland)',
+    description: 'What accessibility audits actually cost and why prices vary: attributed market ranges, the structural factors that drive quotes (templates, flows, depth, platforms, deliverables), why automated-only scans are a different product, and the UK and Ireland legal drivers from the Equality Act to EAA criminal penalties',
+    type: 'guide',
+    keywords: ['accessibility audit cost', 'web accessibility audit cost uk', 'wcag audit cost', 'how much does an accessibility audit cost', 'accessibility audit pricing', 'audit cost ireland', 'accessibility audit quote'],
+    priority: 9
+  },
+  {
+    url: '/guides/how-to-write-an-accessibility-statement',
+    title: 'How to Write an Accessibility Statement',
+    description: 'The three statement regimes kept straight: the mandatory PSBAR model format for UK public bodies, the EU Web Accessibility Directive model in Implementing Decision 2018/1523, and the EAA Annex V information duty for private companies that has no template. Plus what every good statement contains, the mistakes that create risk, and the free generator',
+    type: 'guide',
+    keywords: ['accessibility statement', 'how to write an accessibility statement', 'accessibility statement template', 'accessibility statement example', 'psbar statement', 'eaa accessibility statement', 'wcag statement', 'accessibility statement generator'],
+    priority: 9
+  },
+  {
+    url: '/guides/vpat-accessibility-conformance-report',
+    title: 'VPAT & Accessibility Conformance Report Guide',
+    description: 'VPAT and ACR demystified: the template versus the report, the four editions (508, EU, WCAG, INT) and who asks for each, how to read an ACR before buying, how to produce one that survives scrutiny with testing behind it, and why EAA-era European buyers ask for the EN 301 549 edition',
+    type: 'guide',
+    keywords: ['vpat', 'accessibility conformance report', 'acr', 'vpat template', 'how to create a vpat', 'vpat 508', 'vpat en 301 549', 'read a vpat', 'vpat guide', 'section 508 procurement'],
+    priority: 9
+  },
+  {
+    url: '/guides/accessibility-overlays-eu-uk-law',
+    title: 'Do Accessibility Overlays Meet the EAA and UK Law?',
+    description: 'The legal answer on overlays in Europe: why an overlay widget does not change WCAG conformance of the delivered page, what the EDF and European Commission say, the obligation-of-result principle from the Caen ruling, the Equality Act anticipatory duty, and the litigation data showing roughly 20% of sued companies ran an overlay',
+    type: 'guide',
+    keywords: ['accessibility overlay eaa', 'overlay european accessibility act', 'overlay legal compliance', 'overlay equality act', 'accessibe eaa', 'userway eaa', 'overlay lawsuit europe', 'accessibility widget legal'],
+    priority: 8
+  },
   // AI-Driven Accessibility Lawsuits
   {
     url: '/guides/ai-accessibility-lawsuits',
@@ -445,11 +486,14 @@ const MORE_LINKS: InternalLink[] = [
   { url: "/compliance/section-508", title: "Section 508 Compliance Guide", description: "Section 508 requirements for federal agencies and vendors, VPATs, and WCAG mapping", type: "guide", keywords: ["section 508", "508 compliance", "vpat", "federal accessibility", "government procurement"], priority: 8 },
   { url: "/compliance/en-301-549", title: "EN 301 549 Standard Guide", description: "The EU ICT accessibility standard explained: structure, WCAG relationship, and who needs it", type: "guide", keywords: ["en 301 549", "eu standard", "ict accessibility", "harmonized standard"], priority: 8 },
   { url: "/compliance/california", title: "California Website Accessibility & Unruh Act", description: "California web accessibility law: the Unruh Act, statutory damages, and lawsuit trends", type: "guide", keywords: ["california accessibility", "unruh act", "california ada", "unruh damages"], priority: 8 },
+  { url: "/compliance/uk", title: "UK Website Accessibility Law: Equality Act & PSBAR", description: "How UK law reaches websites: the Equality Act 2010 anticipatory reasonable-adjustments duty, PSBAR and its mandatory accessibility statements, GDS monitoring against WCAG 2.2 AA, the new statutory Services Code of Practice in force August 2026, and how the European Accessibility Act catches UK businesses selling into the EU", type: "guide", keywords: ["uk website accessibility law", "equality act website", "equality act 2010 web accessibility", "psbar", "public sector bodies accessibility regulations", "reasonable adjustments website", "uk web accessibility requirements", "wcag uk law", "accessibility law uk", "gds accessibility monitoring"], priority: 9 },
+  { url: "/compliance/eaa-ireland", title: "EAA Compliance in Ireland: S.I. 636/2023", description: "The European Accessibility Act as Irish law: S.I. No. 636/2023, the six sectoral regulators from the CCPC to the Central Bank, criminal penalties up to EUR 60,000 and 18 months imprisonment with personal officer liability, the microenterprise exemption, the 2030 transitional misconception, and the EN 301 549 route to conformity", type: "guide", keywords: ["european accessibility act ireland", "eaa ireland", "si 636 2023", "irish accessibility regulations", "ccpc accessibility", "irish website accessibility law", "eaa compliance ireland", "accessibility law ireland", "eaa criminal penalties"], priority: 9 },
   { url: "/compliance/new-york", title: "New York Website Accessibility Laws", description: "New York web accessibility litigation landscape and state/city human rights laws", type: "guide", keywords: ["new york accessibility", "ny ada lawsuits", "nyshrl", "nychrl"], priority: 8 },
   // Industries
   { url: "/industries", title: "Accessibility by Industry", description: "Industry-specific accessibility compliance guides", type: "resource", keywords: ["industry accessibility", "sector compliance"], priority: 7 },
   { url: "/industries/ecommerce", title: "E-commerce Accessibility Guide", description: "WCAG and ADA compliance for online stores: product images, checkout, and lawsuit risk", type: "guide", keywords: ["ecommerce accessibility", "online store", "retail accessibility", "checkout accessibility", "shopify accessibility"], priority: 8 },
   { url: "/industries/healthcare", title: "Healthcare Website Accessibility Guide", description: "Accessibility compliance for healthcare: ADA, Section 1557, patient portals, telehealth", type: "guide", keywords: ["healthcare accessibility", "patient portal", "telehealth accessibility", "section 1557", "hospital website"], priority: 8 },
+  { url: "/industries/finance", title: "Banking & Financial Services Accessibility", description: "Accessibility for banks, insurers, and fintechs: EAA consumer banking obligations enforced by the Central Bank of Ireland with criminal penalties, the FCA Consumer Duty and Equality Act in the UK, ADA exposure in the US, and the WCAG failures that block customers most, from 3.3.8 authentication to untagged PDF statements and session timeouts", type: "guide", keywords: ["banking accessibility", "financial services accessibility", "accessible banking website", "fintech accessibility", "eaa banking", "bank wcag compliance", "insurance website accessibility", "accessible online banking", "fca consumer duty accessibility"], priority: 8 },
   { url: "/industries/education", title: "Education & EdTech Accessibility Guide", description: "Accessibility for schools and universities: Title II deadlines, Section 504, LMS content", type: "guide", keywords: ["education accessibility", "university accessibility", "edtech", "lms accessibility", "school website"], priority: 8 },
   { url: "/industries/government", title: "Government Web Accessibility Guide", description: "Section 508 and DOJ Title II requirements for government websites", type: "guide", keywords: ["government accessibility", "public sector", "title ii", "508 government", "municipal website"], priority: 8 },
   // Glossary + version/comparison guides

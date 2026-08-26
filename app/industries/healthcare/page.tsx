@@ -47,9 +47,9 @@ export const metadata = {
 
 const stats = [
   {
-    value: "May 11, 2026",
+    value: "May 11, 2027",
     label:
-      "HHS Section 504 web rule deadline for most covered entities — already in effect, and it was not extended",
+      "extended HHS Section 504 web rule deadline for recipients with 15 or more employees; the extension is being challenged in court",
   },
   {
     value: "1 in 4",
@@ -68,9 +68,9 @@ const stats = [
 const legalExposure = [
   {
     icon: Gavel,
-    title: "The HHS Section 504 web rule — the deadline that already passed",
+    title: "The HHS Section 504 web rule and the extended deadline",
     description:
-      "In May 2024, HHS finalized a rule under Section 504 of the Rehabilitation Act requiring recipients of HHS funding — hospitals that bill Medicare or Medicaid, clinics, state health agencies, health plans, and grantees — to make websites, patient portals, kiosks, and mobile apps conform to WCAG 2.1 Level AA. The compliance date for most covered entities was May 11, 2026, with smaller entities on phased timelines. Unlike the DOJ's Title II web rule, this deadline was not extended. If your organization takes HHS money and your digital front door is not WCAG 2.1 AA conformant today, you are out of compliance. See our Section 504 deadline guide for who is covered and what to do if you missed it.",
+      "In May 2024, HHS finalized a rule under Section 504 of the Rehabilitation Act requiring recipients of HHS funding, including hospitals that bill Medicare or Medicaid, clinics, state health agencies, health plans, and grantees, to make websites, patient portals, kiosks, and mobile apps conform to WCAG 2.1 Level AA. The first compliance date was May 11, 2026, but in May 2026 HHS issued an interim final rule extending it by one year: recipients with 15 or more employees now have until May 11, 2027, and smaller recipients until May 10, 2028. The National Federation of the Blind is challenging that extension in court, so covered organizations should keep remediating rather than banking on the new date. See our Section 504 deadline guide for who is covered and how to plan.",
   },
   {
     icon: Scale,
@@ -183,7 +183,7 @@ const faqs = [
   {
     question: "What is the Section 504 web accessibility deadline, and what if we missed it?",
     answer:
-      "The HHS Section 504 rule set a compliance date of May 11, 2026 for most covered entities, with smaller entities on phased later timelines — and unlike the DOJ Title II rule, it was not extended. If you missed it, do not wait for a complaint: commission an audit immediately, fix the highest-impact barriers (portal login, scheduling, forms, key PDFs) first, and document a dated remediation plan. Demonstrable progress and a credible plan are the strongest position you can be in if OCR opens an investigation.",
+      "The HHS Section 504 rule originally set a compliance date of May 11, 2026 for most covered entities. In May 2026, HHS extended the first deadline by one year: recipients with 15 or more employees now have until May 11, 2027, and smaller recipients until May 10, 2028. The extension is being challenged in court by the National Federation of the Blind, so treat the extra year as remediation time, not a reprieve: commission an audit, fix the highest-impact barriers (portal login, scheduling, forms, key PDFs) first, and document a dated remediation plan. Demonstrable progress and a credible plan are the strongest position you can be in if OCR opens an investigation.",
   },
   {
     question: "Do patient portals and mobile health apps have to meet WCAG?",
@@ -248,7 +248,7 @@ export default function HealthcareIndustryPage() {
         <h1 className="text-4xl font-bold mb-4">Healthcare Website Accessibility &amp; Compliance</h1>
         <p className="text-xl text-muted-foreground">
           Healthcare's digital front door — portals, scheduling, telehealth, and medical documents — now sits under
-          the strictest accessibility rules in US law, and the first hard WCAG deadline has already passed. Here is
+          the strictest accessibility rules in US law, with a hard WCAG deadline of May 11, 2027 that is under legal challenge. Here is
           what applies to you and how to close the gap.
         </p>
       </div>
@@ -323,8 +323,8 @@ export default function HealthcareIndustryPage() {
           Deep dive: read our guide to the{" "}
           <Link href="/guides/section-504-web-accessibility-deadline" className="text-primary hover:underline">
             Section 504 web accessibility deadline
-          </Link>{" "}
-          — the rule that was not extended.
+          </Link>
+          , now extended to May 11, 2027, with the extension under legal challenge.
         </p>
       </section>
 
@@ -370,7 +370,7 @@ export default function HealthcareIndustryPage() {
       <section className="mb-16 max-w-4xl mx-auto">
         <h2 className="text-3xl font-bold mb-2 text-center">A compliance roadmap for health organizations</h2>
         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
-          With the Section 504 deadline already passed for most covered entities, the sequence below is built for
+          With the extended Section 504 deadline of May 11, 2027 approaching and under legal challenge, the sequence below is built for
           catching up fast and documenting progress.
         </p>
         <ol className="space-y-4">
@@ -454,7 +454,7 @@ export default function HealthcareIndustryPage() {
       {/* CTA */}
       <div className="max-w-4xl mx-auto bg-primary/5 rounded-2xl p-8 border border-primary/20">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold mb-2">The Section 504 deadline has passed — know where you stand</h2>
+          <h2 className="text-2xl font-bold mb-2">The Section 504 clock is running: know where you stand</h2>
           <p className="text-muted-foreground">
             We audit patient portals, scheduling flows, telehealth platforms, and document pipelines against WCAG 2.1
             AA, and deliver a remediation plan you can show a regulator.

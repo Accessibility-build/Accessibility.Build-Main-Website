@@ -244,6 +244,18 @@ export const toolCatalog: ToolCatalogItem[] = [
     credits: 0,
   },
   {
+    slug: "eaa-scope-checker",
+    title: "EAA Scope Checker",
+    shortTitle: "EAA Scope",
+    description: "Answer four questions to see whether the European Accessibility Act likely applies to your business.",
+    category: "Business planning",
+    icon: "scale",
+    features: ["Scope questions", "Microenterprise test", "Next steps"],
+    keywords: ["eaa", "european accessibility act", "scope", "applicability", "microenterprise"],
+    credits: 0,
+    popular: true,
+  },
+  {
     slug: "accessibility-roi-calculator",
     title: "Accessibility ROI Calculator",
     shortTitle: "ROI Calculator",

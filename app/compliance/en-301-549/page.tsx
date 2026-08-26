@@ -157,6 +157,10 @@ const versions = [
     version: "v3.2.1 (2021)",
     note: "Current baseline cited for the Web Accessibility Directive; WCAG 2.1 A/AA for web, documents, and software",
   },
+  {
+    version: "v4.1.0 (final draft, 2026)",
+    note: "In the ETSI approval pipeline: aligns web, document, and software chapters with WCAG 2.2, adds Annex ZB mapping requirements to the EAA, and rewrites the real-time text clause. Not yet published or cited in the Official Journal",
+  },
 ]
 
 export default function EN301549Page() {
@@ -406,6 +410,63 @@ export default function EN301549Page() {
               conformance reports, always name the exact version and check the
               Official Journal for the version currently harmonized for the
               law you care about.
+            </p>
+          </section>
+
+          <section className="mb-12" aria-labelledby="v4-heading">
+            <h2 id="v4-heading" className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+              EN 301 549 v4: exactly what is changing
+            </h2>
+            <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-xl p-5 mb-6">
+              <p className="text-sm text-blue-900 dark:text-blue-200 leading-relaxed">
+                <strong>Status as of 27 August 2026:</strong> the final draft, EN 301 549
+                V4.1.0 (2026-06), is public on ETSI&apos;s site and sitting in the national
+                Vote phase of the approval procedure. It has NOT been published as a final
+                standard and NOT been cited in the Official Journal, so v3.2.1 remains the
+                version that carries the legal presumption of conformity. Expect the published
+                edition and Official Journal citation to follow; until then, test and cite
+                against v3.2.1 while planning for the changes below.
+              </p>
+            </div>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              These changes come from the Foreword of the final draft itself, produced by ETSI
+              under the Commission&apos;s standardisation request M/587, not from second-hand
+              summaries:
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed list-disc pl-5 mb-4">
+              <li>
+                <strong className="text-slate-900 dark:text-white">WCAG 2.2 alignment.</strong>{" "}
+                Clauses 9 (web), 10 (documents), and 11 (software) are updated to align with
+                WCAG 2.2, referenced as the W3C Recommendation of 12 December 2024 and as
+                ISO/IEC 40500:2025. WCAG 2.2 is now also an ISO standard, which matters for
+                procurement language.
+              </li>
+              <li>
+                <strong className="text-slate-900 dark:text-white">A dedicated EAA mapping.</strong>{" "}
+                A new Annex ZB maps the standard&apos;s requirements to the European
+                Accessibility Act across five tables covering products and services, and a new
+                clause A.2 lets a specific product or service be evaluated for EAA conformance.
+                Today&apos;s v3.2.1 was harmonized for the Web Accessibility Directive; v4 is
+                built to serve the EAA directly.
+              </li>
+              <li>
+                <strong className="text-slate-900 dark:text-white">Real-time text rewritten.</strong>{" "}
+                Clause 6.2 on real-time text is significantly revised and extended to cover
+                total conversation, which connects to the EAA&apos;s June 2027 date for
+                accessible answering of 112 emergency communications.
+              </li>
+              <li>
+                <strong className="text-slate-900 dark:text-white">Web Accessibility Directive mapping refreshed.</strong>{" "}
+                A new Annex ZA replaces the old Annex A for the 2016/2102 Directive mapping.
+              </li>
+            </ul>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+              Practical takeaway: if you are remediating now, audit against the{" "}
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                WCAG 2.2 AA checklist
+              </Link>{" "}
+              rather than 2.1. WCAG 2.2 is backwards-compatible with 2.1, so work done against
+              2.2 satisfies today&apos;s v3.2.1 and is already aligned with where v4 lands.
             </p>
           </section>
 
