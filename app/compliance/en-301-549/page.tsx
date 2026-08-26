@@ -466,7 +466,12 @@ export default function EN301549Page() {
                 WCAG 2.2 AA checklist
               </Link>{" "}
               rather than 2.1. WCAG 2.2 is backwards-compatible with 2.1, so work done against
-              2.2 satisfies today&apos;s v3.2.1 and is already aligned with where v4 lands.
+              2.2 satisfies today&apos;s v3.2.1 and is already aligned with where v4 lands. To
+              work through the standard itself, clause by clause, use our free{" "}
+              <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+                interactive EN 301 549 checklist
+              </Link>{" "}
+              with all 285 requirements, product-type scopes, and Excel export.
             </p>
           </section>
 
