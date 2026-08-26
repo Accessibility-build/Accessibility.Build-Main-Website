@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     url: reportUrl,
     type: "article",
     publishedTime: "2026-08-03T00:00:00Z",
-    modifiedTime: "2026-08-03T00:00:00Z",
+    modifiedTime: "2026-08-27T00:00:00Z",
     authors: ["https://accessibility.build"],
     images: [
       {
@@ -147,7 +147,7 @@ export default function Section508AssessmentPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-03"
+        dateModified="2026-08-27"
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1800}
@@ -169,7 +169,7 @@ export default function Section508AssessmentPage() {
             "Research report",
             `${assessmentData.fiscalYear} data`,
             `${assessmentData.totalAgencies} agencies`,
-            "Reviewed: Aug 3, 2026",
+            "Reviewed: Aug 27, 2026",
           ]}
           headline={`${conformance?.percentLowOrVeryLow}% of federal agencies rated Low or Very Low on whether their technology is actually accessible. On testing and remediation, the weakest factor in the assessment, ${testing?.percentLowOrVeryLow}% rated that low.`}
           sourceName={assessmentData.source.name}

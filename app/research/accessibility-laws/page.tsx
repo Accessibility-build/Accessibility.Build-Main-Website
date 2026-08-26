@@ -8,7 +8,7 @@ import { AccessibilityLawsClient } from "./AccessibilityLawsClient"
 export const metadata: Metadata = {
   title: "Accessibility Laws by Jurisdiction: Global Tracker",
   description:
-    "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers ADA Title II April 2026 deadline, European Accessibility Act, Section 508, and more.",
+    "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed August 27, 2026.",
   keywords: [
     "accessibility laws",
     "ada compliance",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Accessibility Laws by Jurisdiction: Global Tracker",
     description:
-      "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers ADA Title II April 2026 deadline, European Accessibility Act, Section 508, and more.",
+      "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed August 27, 2026.",
     url: "https://accessibility.build/research/accessibility-laws",
     type: "article",
   },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Accessibility Laws by Jurisdiction | Global Legal Tracker 2026",
     description:
-      "Track 50+ accessibility laws across 35+ jurisdictions. Compare WCAG requirements, penalties, and enforcement. ADA Title II deadline April 2026.",
+      "Track 50+ accessibility laws across 35+ jurisdictions. Compare WCAG requirements, penalties, and enforcement. ADA Title II deadline now April 2027.",
   },
 }
 
@@ -66,7 +66,7 @@ export default function AccessibilityLawsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-03-15"
-        dateModified="2026-03-30"
+        dateModified="2026-08-27"
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-laws"
         wordCount={4000}
@@ -85,7 +85,7 @@ export default function AccessibilityLawsPage() {
         description="Structured dataset of 50+ accessibility laws and regulations across 35+ jurisdictions worldwide, including WCAG requirements, penalties, enforcement mechanisms, and compliance deadlines."
         url="https://accessibility.build/research/accessibility-laws"
         datePublished="2026-03-15"
-        dateModified="2026-03-30"
+        dateModified="2026-08-27"
         creator={{ name: "Accessibility.build", url: "https://accessibility.build" }}
         temporalCoverage="1959/2026"
         keywords={[
@@ -126,7 +126,7 @@ export default function AccessibilityLawsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-4xl">
             <p className="text-blue-300 font-semibold text-sm tracking-wider uppercase mb-4">
-              Research Report &bull; Updated March 2026 &bull; 35+ Jurisdictions
+              Research Report &bull; Updated August 27, 2026 &bull; 35+ Jurisdictions
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               Accessibility Laws{" "}
@@ -172,9 +172,11 @@ export default function AccessibilityLawsPage() {
           {/* Critical Deadline Alert */}
           <div className="mt-8 bg-red-500/15 border border-red-400/30 rounded-xl p-5">
             <p className="text-red-200 font-semibold text-sm">
-              <span className="uppercase tracking-wider">CRITICAL DEADLINE:</span>{" "}
-              ADA Title II compliance required by April 24, 2026 for state and local government
-              websites serving 50,000+ people.
+              <span className="uppercase tracking-wider">DEADLINE EXTENDED:</span>{" "}
+              ADA Title II compliance for state and local government websites serving 50,000+
+              people was extended from April 24, 2026 to April 26, 2027 by a DOJ Interim Final
+              Rule issued April 20, 2026. The extension is being challenged in court, so
+              remediation should continue. Checked August 27, 2026.
             </p>
           </div>
         </div>
@@ -282,15 +284,19 @@ export default function AccessibilityLawsPage() {
             itemType="https://schema.org/Question"
           >
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2" itemProp="name">
-              What is the ADA Title II April 2026 deadline?
+              What happened to the ADA Title II April 2026 deadline?
             </h3>
             <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
-                The ADA Title II final rule, published April 24, 2024, requires state and local
-                government entities with populations of 50,000 or more to make their websites and
-                mobile apps conform to WCAG 2.1 Level AA by April 24, 2026. Smaller entities have
-                until April 24, 2027. This is the first time the DOJ has codified specific technical
-                standards for web accessibility under the ADA.
+                The ADA Title II final rule, published April 24, 2024, originally required state and
+                local government entities with populations of 50,000 or more to make their websites
+                and mobile apps conform to WCAG 2.1 Level AA by April 24, 2026. On April 20, 2026,
+                days before that deadline, the DOJ issued an Interim Final Rule extending it by one
+                year to April 26, 2027, with smaller entities and special districts now due April
+                26, 2028. The National Federation of the Blind is challenging the extension in
+                federal court, and WCAG 2.1 AA remains the required standard, so covered entities
+                should continue remediation. This is still the first time the DOJ has codified
+                specific technical standards for web accessibility under the ADA.
               </p>
             </div>
           </div>

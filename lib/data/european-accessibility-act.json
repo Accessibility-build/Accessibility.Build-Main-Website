@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-03",
+  "lastUpdated": "2026-08-27",
   "directive": {
     "title": "Directive (EU) 2019/882 of the European Parliament and of the Council of 17 April 2019 on the accessibility requirements for products and services",
     "shortName": "European Accessibility Act",
@@ -61,7 +61,7 @@
     }
   ],
   "transposition": {
-    "asOf": "2026-08-03",
+    "asOf": "2026-08-27",
     "memberStatesReporting": 27,
     "totalMeasures": 378,
     "deadline": "2022-06-28",
@@ -98,6 +98,6 @@
   },
   "enforcementDataStatus": {
     "officialDatasetExists": false,
-    "explanation": "There is no official EU-wide compliance or enforcement dataset for the European Accessibility Act, and there will not be one before 2030. Article 33(1) sets the first Commission report on the application of the Directive at 28 June 2030. Claims circulating about enforcement activity in individual Member States generally originate from vendors selling remediation services and could not be verified against a primary regulatory source. Anything on this subject should be sourced to a named national regulator, one country at a time."
+    "explanation": "There is no official EU-wide compliance or enforcement dataset for the European Accessibility Act, and there will not be one before 2030. Article 33(1) sets the first Commission report on the application of the Directive at 28 June 2030. Claims circulating about enforcement activity in individual Member States generally originate from vendors selling remediation services and could not be verified against a primary regulatory source. Anything on this subject should be sourced to a named national regulator or court, one country at a time. As of a 27 August 2026 review, two developments do trace to primary sources: on 4 June 2026 the Tribunal judiciaire de Caen ordered Carrefour to make its website and app accessible within six months under a 500 euro daily penalty, treating accessibility as an obligation of result, in a case brought by the associations ApiDV and Droit Pluriel; and on 24 March 2026 the Dutch regulator ACM published findings that 61% of the largest Dutch webshops are not digitally accessible and warned that companies that fail to improve risk enforcement. No monetary fine issued by a national regulator under an EAA transposition law had been confirmed as of that review."
   }
 }

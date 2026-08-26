@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     url: reportUrl,
     type: "article",
     publishedTime: "2026-08-03T00:00:00Z",
-    modifiedTime: "2026-08-03T00:00:00Z",
+    modifiedTime: "2026-08-27T00:00:00Z",
     authors: ["https://accessibility.build"],
     images: [
       {
@@ -149,7 +149,7 @@ export default function AccessibilityByIndustryPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-03"
+        dateModified="2026-08-27"
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1900}
@@ -194,7 +194,7 @@ export default function AccessibilityByIndustryPage() {
               <Badge variant="outline">
                 {industryData.categories.length} sectors
               </Badge>
-              <Badge variant="outline">Reviewed: Aug 3, 2026</Badge>
+              <Badge variant="outline">Reviewed: Aug 27, 2026</Badge>
             </div>
 
             <div className="mt-6 max-w-4xl">

@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     url: reportUrl,
     type: "article",
     publishedTime: "2026-08-03T00:00:00Z",
-    modifiedTime: "2026-08-03T00:00:00Z",
+    modifiedTime: "2026-08-27T00:00:00Z",
     authors: ["https://accessibility.build"],
     images: [
       {
@@ -139,7 +139,7 @@ export default function DisabilityStatisticsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-03"
+        dateModified="2026-08-27"
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1700}
@@ -161,7 +161,7 @@ export default function DisabilityStatisticsPage() {
             "Research report",
             `Data year ${disabilityData.dataYear}`,
             "Public domain source",
-            "Reviewed: Aug 3, 2026",
+            "Reviewed: Aug 27, 2026",
           ]}
           headline={`${any?.prevalence}% of United States adults report a disability, about ${((any?.adults ?? 0) / 1_000_000).toFixed(1)} million people. Cognitive disability is now the largest category at ${cognitive?.prevalence}%, having overtaken mobility and grown faster than any other type.`}
           sourceName={disabilityData.source.name}

@@ -147,7 +147,7 @@ export function LawsuitTrackerClient() {
           },
         ]}
         sampleSize="21,550 identified federal website-accessibility filings from 2018 through 2025"
-        dateRange="Federal trend: 2018-2025; legal developments reviewed through July 9, 2026"
+        dateRange="Federal trend: 2018-2025; legal developments reviewed through August 27, 2026"
         limitations={[
           "The federal trend excludes state-court matters and private demand letters.",
           "Different publishers use different court sources, search terms, date windows, and deduplication rules; their totals are not directly interchangeable.",
@@ -155,7 +155,7 @@ export function LawsuitTrackerClient() {
           "2026 is not shown as an observed filing total because a comparable full-year federal count is not yet available.",
           "This page provides research and general information, not legal advice.",
         ]}
-        lastUpdated="July 12, 2026"
+        lastUpdated="August 27, 2026"
       />
 
       <section id="trends" className="scroll-mt-28" aria-labelledby="yearly-trends-heading">
@@ -252,7 +252,7 @@ export function LawsuitTrackerClient() {
                   2026 legal and regulatory snapshot
                 </h2>
                 <CardDescription className="mt-1">
-                  Status as reviewed on July 9, 2026. Deadline extensions do not erase underlying accessibility obligations.
+                  Status as re-checked on August 27, 2026. Deadline extensions do not erase underlying accessibility obligations.
                 </CardDescription>
               </div>
             </div>

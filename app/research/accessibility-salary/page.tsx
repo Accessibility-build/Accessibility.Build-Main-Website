@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     url: reportUrl,
     type: "article",
     publishedTime: "2026-08-03T00:00:00Z",
-    modifiedTime: "2026-08-03T00:00:00Z",
+    modifiedTime: "2026-08-27T00:00:00Z",
     authors: ["https://accessibility.build"],
     images: [
       {
@@ -134,7 +134,7 @@ export default function AccessibilitySalaryPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-03"
+        dateModified="2026-08-27"
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1700}
@@ -156,7 +156,7 @@ export default function AccessibilitySalaryPage() {
             "Research report",
             `Survey ${salaryData.surveyPeriod}`,
             `${salaryData.responses} responses`,
-            "Reviewed: Aug 3, 2026",
+            "Reviewed: Aug 27, 2026",
           ]}
           headline={`Full-time digital accessibility professionals averaged $${overall.averageSalaryUsd.toLocaleString()}, but experience is what separates the field: past ten years the average jumps to $${(byExperience[1].averageUsd ?? 0).toLocaleString()}, a ${salaryData.experienceGapPercent}% premium.`}
           sourceName={salaryData.source.name}

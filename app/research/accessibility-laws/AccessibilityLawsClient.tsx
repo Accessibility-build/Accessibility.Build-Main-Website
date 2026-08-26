@@ -247,7 +247,7 @@ export function AccessibilityLawsClient() {
     doc.setFontSize(10)
     doc.setTextColor(100)
     doc.text("Comprehensive legal landscape analysis | accessibility.build", 14, 30)
-    doc.text("Last Updated: March 2026", 14, 36)
+    doc.text("Last Updated: August 27, 2026", 14, 36)
 
     // Table 1: Federal Laws
     doc.setTextColor(0)
@@ -369,10 +369,10 @@ export function AccessibilityLawsClient() {
             source="Global coverage"
           />
           <StatCard
-            value="April 2026"
-            label="ADA Title II Deadline"
+            value="April 2027"
+            label="ADA Title II Deadline (extended)"
             icon={Calendar}
-            source="DOJ final rule (2024)"
+            source="DOJ Interim Final Rule (April 2026)"
           />
           <StatCard
             value="$150K"
@@ -1085,14 +1085,14 @@ export function AccessibilityLawsClient() {
             },
           ]}
           sampleSize="50+ laws across 35+ jurisdictions"
-          dateRange="1959 - March 2026"
+          dateRange="1959 - August 2026"
           limitations={[
             "Laws change frequently \u2014 verify current requirements with legal counsel",
             "Penalties shown are statutory maximums; actual fines may differ",
             "Pending legislation may not pass as proposed",
             "International penalty amounts are converted to USD at approximate rates",
           ]}
-          lastUpdated="March 2026"
+          lastUpdated="August 27, 2026"
         />
       </section>
 

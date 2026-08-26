@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     url: reportUrl,
     type: "article",
     publishedTime: "2026-08-03T00:00:00Z",
-    modifiedTime: "2026-08-03T00:00:00Z",
+    modifiedTime: "2026-08-27T00:00:00Z",
     authors: ["https://accessibility.build"],
     images: [
       {
@@ -86,7 +86,7 @@ const faqs = [
   {
     question: "How many companies are complying with the EAA?",
     answer:
-      "Nobody knows, and no official source can tell you. There is no EU-wide compliance or enforcement dataset for the European Accessibility Act. Article 33(1) requires the Commission to report on the application of the Directive by 28 June 2030 and every five years after that, so the first authoritative picture is four years away. Claims about enforcement activity in specific Member States circulate widely, but they generally originate from companies selling remediation services and we could not verify them against primary regulatory sources.",
+      "Nobody knows, and no official source can tell you. There is no EU-wide compliance or enforcement dataset for the European Accessibility Act. Article 33(1) requires the Commission to report on the application of the Directive by 28 June 2030 and every five years after that, so the first authoritative picture is four years away. Most claims about enforcement activity circulate from companies selling remediation services, but two developments do trace to primary sources as of our 27 August 2026 review: a June 2026 ruling of the Tribunal judiciaire de Caen ordering Carrefour to make its site and app fully accessible, and a March 2026 report by the Dutch regulator ACM finding 61% of the largest Dutch webshops inaccessible. Neither is a fine, and no monetary penalty under an EAA transposition law has been confirmed.",
   },
   {
     question: "What are the remaining EAA deadlines?",
@@ -135,7 +135,7 @@ export default function EuropeanAccessibilityActPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-03"
+        dateModified="2026-08-27"
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1800}
@@ -157,7 +157,7 @@ export default function EuropeanAccessibilityActPage() {
             "Research report",
             "Directive (EU) 2019/882",
             `${transposition.memberStatesReporting} Member States`,
-            "Reviewed: Aug 3, 2026",
+            "Reviewed: Aug 27, 2026",
           ]}
           headline={`All ${transposition.memberStatesReporting} Member States have communicated transposition measures, ${transposition.totalMeasures} instruments in total. But there is no EU-wide compliance or enforcement dataset, and under Article 33 the first Commission report is not due until 28 June 2030.`}
           sourceName="EUR-Lex, Directive (EU) 2019/882"

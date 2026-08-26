@@ -114,9 +114,9 @@ const researchReports = [
   {
     title: "Accessibility Lawsuit Tracker",
     description:
-      "Tracking ADA digital accessibility litigation across federal and state courts. 2025 closed at 3,117 federal filings with 2026 on pace to top 5,500. Explore filing trends, the record $5.15M Fashion Nova settlement, target industries, and settlement costs.",
+      "Tracking ADA digital accessibility litigation across federal and state courts. 2025 closed at 3,117 federal filings, and industry projections put combined 2026 filings above 6,000. Explore filing trends, the proposed $5.15M Fashion Nova settlement, target industries, and settlement costs.",
     icon: Scale,
-    badge: "Updated 2026",
+    badge: "Updated Aug 2026",
     badgeColor:
       "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800",
     href: "/research/accessibility-lawsuits",

@@ -1,5 +1,9 @@
 // Accessibility Laws by Jurisdiction — Global Legal Tracker 2026
 // Data compiled from DOJ, W3C WAI, EU Commission, UsableNet, state legislature records
+// Reviewed and updated August 27, 2026: DOJ Title II deadlines extended by the April 20, 2026
+// Interim Final Rule; HHS Section 504 deadline extended May 2026; Caen court ruling on the EAA
+// (June 4, 2026); UK Services Code of Practice in force August 5, 2026; FCC caption display
+// settings compliance date reached August 17, 2026; California AB 2190 status from leginfo.
 
 export interface AccessibilityLaw {
   id: string
@@ -52,8 +56,8 @@ export interface StateFilingEntry {
 export const lawsSummary = {
   totalLawsTracked: 50,
   totalJurisdictions: 35,
-  nextMajorDeadline: "April 24, 2026",
-  nextMajorDeadlineLabel: "ADA Title II Compliance",
+  nextMajorDeadline: "April 26, 2027",
+  nextMajorDeadlineLabel: "ADA Title II Compliance (extended)",
   maxFederalPenalty: "$150,000",
   totalUsLawsuits2025: 3117,
 }
@@ -68,7 +72,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     lawName: "ADA Title II (State & Local Government)",
     citation: "42 U.S.C. \u00A7\u00A7 12131\u201312165; 28 CFR Part 35",
     yearEnacted: 1990,
-    effectiveDate: "2026-04-24",
+    effectiveDate: "2027-04-26",
     appliesTo: ["government", "education"],
     wcagVersion: "2.1 AA",
     enforcement: ["government", "complaints", "private-lawsuit"],
@@ -79,9 +83,9 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "USD",
     },
     status: "active",
-    keyDate: "2026-04-24",
-    keyDateLabel: "Compliance deadline for entities serving 50,000+ people",
-    recentUpdate: "DOJ final rule (April 2024) formally requires WCAG 2.1 AA for state/local government websites. Compliance deadline April 24, 2026 for large entities, April 26, 2027 for smaller ones.",
+    keyDate: "2027-04-26",
+    keyDateLabel: "Extended compliance deadline for entities serving 50,000+ people",
+    recentUpdate: "DOJ final rule (April 2024) formally requires WCAG 2.1 AA for state/local government websites. On April 20, 2026 a DOJ Interim Final Rule extended the compliance deadlines by one year: April 26, 2027 for entities serving 50,000+ people and April 26, 2028 for smaller entities and special districts. The National Federation of the Blind is challenging the extension in federal court.",
     sourceUrl: "https://www.ada.gov/law-and-regs/regulations/title-ii-web-access/",
   },
   {
@@ -144,7 +148,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "Increasingly used in education and healthcare accessibility complaints alongside ADA claims.",
+    recentUpdate: "HHS extended the first web and mobile-app compliance deadline under its Section 504 rule to May 11, 2027 for recipients with 15 or more employees (May 10, 2028 for smaller recipients) via a May 2026 interim final rule that is being challenged in court. Increasingly used in education and healthcare accessibility complaints alongside ADA claims.",
     sourceUrl: "https://www.hhs.gov/civil-rights/for-individuals/section-504/",
   },
   {
@@ -165,7 +169,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "Readily Accessible captioning rules for streaming and video platforms taking effect in 2026.",
+    recentUpdate: "The FCC's closed captioning display settings rule, requiring caption settings to be readily accessible on covered devices and services, reached its compliance deadline on August 17, 2026 and is now in effect.",
     sourceUrl: "https://www.fcc.gov/general/twenty-first-century-communications-and-video-accessibility-act-0",
   },
 
@@ -188,7 +192,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "3,252 ADA/Unruh filings in 2025, leading all states. AB 1757 pending — would mandate WCAG 2.1 AA for all California businesses.",
+    recentUpdate: "3,252 ADA/Unruh filings in 2025, leading all states. AB 1757 died without passage in 2024; its successor AB 2190, which would mandate WCAG conformance for California business websites, was moved to the Assembly inactive file on May 21, 2026 and had not been revived as of August 27, 2026.",
     sourceUrl: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=51.&lawCode=CIV",
   },
   {
@@ -394,7 +398,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     status: "active",
     keyDate: "2025-06-28",
     keyDateLabel: "EAA enforcement began across all EU member states",
-    recentUpdate: "Enforceable since June 28, 2025. Covers e-commerce, banking, transport, telecoms. France began interim proceedings against retailers in November 2025. Netherlands conducting audits.",
+    recentUpdate: "Enforceable since June 28, 2025. Covers e-commerce, banking, transport, telecoms. First court ruling: on June 4, 2026 the Tribunal judiciaire de Caen ordered Carrefour to make its site and app accessible within six months under a 500 euro daily penalty, holding accessibility to be an obligation of result. The Dutch regulator ACM reported in March 2026 that 61% of the largest Dutch webshops fail accessibility requirements and warned of enforcement.",
     sourceUrl: "https://ec.europa.eu/social/main.jsp?catId=1202",
   },
   {
@@ -415,7 +419,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "GBP",
     },
     status: "active",
-    recentUpdate: "WCAG 2.2 AA is now the benchmark. UK businesses serving EU customers are also subject to EAA requirements.",
+    recentUpdate: "WCAG 2.2 AA is now the benchmark. A new statutory Code of Practice for Services, Public Functions and Associations under the Equality Act came into force on August 5, 2026, replacing the 2011 code. UK businesses serving EU customers are also subject to EAA requirements.",
     sourceUrl: "https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps",
   },
   {
@@ -436,7 +440,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "CAD",
     },
     status: "active",
-    recentUpdate: "EN 301 549 / WCAG 2.1 AA binding since May 2024. December 2025 regulation updates expanded scope. Penalties up to $250K CAD.",
+    recentUpdate: "Amending regulations registered December 5, 2025 (SOR/2025-255) add ICT requirements incorporating the CAN/ASC EN 301 549 standard, phasing in from December 2027 for the federal public sector and large federally regulated employers. Penalties up to $250K CAD.",
     sourceUrl: "https://laws-lois.justice.gc.ca/eng/acts/A-0.6/",
   },
   {
@@ -558,42 +562,44 @@ export const enforcementTrends: EnforcementTrend[] = [
 ]
 
 // ===== UPCOMING DEADLINES =====
+// Reviewed August 27, 2026. The original April 24, 2026 ADA Title II deadline was extended
+// before it took effect by the DOJ Interim Final Rule of April 20, 2026.
 export const upcomingDeadlines: UpcomingDeadline[] = [
-  {
-    date: "2026-04-24",
-    jurisdiction: "US Federal (ADA Title II)",
-    description: "State and local government entities serving 50,000+ people must conform to WCAG 2.1 AA. This is the most significant US web accessibility deadline in history.",
-    impact: "critical",
-  },
   {
     date: "2026-12-31",
     jurisdiction: "Ontario, Canada (AODA)",
-    description: "Next compliance reporting deadline for organizations under AODA. All public-facing websites and web content must meet WCAG 2.0 Level AA.",
+    description: "Accessibility compliance reports due from businesses and non-profits with 20+ employees and designated public-sector organizations. All public-facing websites and web content must meet WCAG 2.0 Level AA.",
     impact: "medium",
   },
   {
     date: "2027-04-26",
-    jurisdiction: "US Federal (ADA Title II — Small Entities)",
-    description: "State and local government entities serving fewer than 50,000 people must conform to WCAG 2.1 AA.",
+    jurisdiction: "US Federal (ADA Title II)",
+    description: "Extended deadline: state and local government entities serving 50,000+ people must conform to WCAG 2.1 AA. Moved from April 24, 2026 by the DOJ Interim Final Rule of April 20, 2026; the extension is being challenged in court by the NFB.",
+    impact: "critical",
+  },
+  {
+    date: "2027-05-11",
+    jurisdiction: "US Federal (HHS Section 504)",
+    description: "Extended first compliance deadline for web and mobile-app accessibility under the HHS Section 504 rule, for federally funded recipients with 15 or more employees. Smaller recipients have until May 10, 2028.",
     impact: "high",
   },
   {
     date: "2027-06-28",
-    jurisdiction: "European Union (EAA Transition)",
-    description: "Two-year transition period ends for existing products and services under the European Accessibility Act. All covered products must fully comply.",
+    jurisdiction: "European Union (EAA)",
+    description: "End of the Article 4(8) derogation: the final date by which Member States may begin applying the obligations on answering emergency communications to the single European emergency number 112.",
     impact: "high",
   },
   {
-    date: "2026-06-30",
-    jurisdiction: "EU Member States",
-    description: "First EAA compliance reports due from national monitoring authorities. Member states report to European Commission on enforcement activities.",
+    date: "2027-12-05",
+    jurisdiction: "Canada (Federal ACA)",
+    description: "First wave of the Accessible Canada Regulations ICT requirements (SOR/2025-255, incorporating CAN/ASC EN 301 549) comes into force, two years after registration.",
     impact: "medium",
   },
   {
-    date: "2026-09-01",
-    jurisdiction: "Canada (Federal ACA)",
-    description: "Next wave of Accessible Canada Act regulations expected. Expanding scope to cover additional sectors and digital services.",
-    impact: "medium",
+    date: "2028-04-26",
+    jurisdiction: "US Federal (ADA Title II, Small Entities)",
+    description: "Extended deadline: state and local government entities serving fewer than 50,000 people and special district governments must conform to WCAG 2.1 AA.",
+    impact: "high",
   },
 ]
 
