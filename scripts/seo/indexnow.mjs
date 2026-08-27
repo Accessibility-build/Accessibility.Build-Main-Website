@@ -108,6 +108,22 @@ const EXPLAIN = {
   429: 'Too many requests (treated as potential spam). Back off and retry later.',
 }
 
+/**
+ * A first submission from a new key usually 403s with SiteVerificationNotCompleted
+ * while IndexNow fetches the key file out of band. That is a wait, not a fault, and
+ * it is worth separating from a genuinely bad key, which returns the same 403.
+ */
+function explain(status, text) {
+  if (status === 403 && /SiteVerificationNotCompleted/i.test(text || '')) {
+    return [
+      'The key file is being verified. This is normal for a first submission.',
+      'Nothing is wrong with the key: this script already confirmed it is live and correct.',
+      'Verification usually finishes within minutes to a few hours. Re-run the same command then.',
+    ].join('\n')
+  }
+  return EXPLAIN[status] || 'Unexpected response.'
+}
+
 async function main() {
   if (has('init')) {
     const existing = findKey()
@@ -200,7 +216,7 @@ async function main() {
   for (let i = 0; i < urlList.length; i += MAX_PER_REQUEST) {
     const batch = urlList.slice(i, i + MAX_PER_REQUEST)
     const { status, statusText, text } = await submit(batch, key, keyLocation)
-    const note = EXPLAIN[status] || 'Unexpected response.'
+    const note = explain(status, text)
     console.log(`\nIndexNow response: ${status} ${statusText}${text ? ` ${text}` : ''}`)
     console.log(note)
     if (status === 200 || status === 202) {
