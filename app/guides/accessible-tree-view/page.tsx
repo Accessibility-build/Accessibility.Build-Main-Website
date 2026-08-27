@@ -24,7 +24,7 @@ import {
   CheckSquare,
 } from "lucide-react"
 
-const pageTitle = "Accessible Tree View Guide (role=tree, treeitem & roving tabindex)"
+const pageTitle = "Accessible Tree View Guide: role=tree & Roving Tabindex"
 const pageDescription =
   "Build an accessible tree view the right way: the role=tree / treeitem / group structure, the roving-tabindex focus model, the context-sensitive Right and Left arrow keys that expand, collapse, and move between parent and child, aria-expanded, aria-selected, aria-level, aria-setsize and aria-posinset, single vs multi-select, type-ahead, and React — with copy-ready code mapped to WCAG 2.2, plus when a plain nested list of links is the better choice."
 

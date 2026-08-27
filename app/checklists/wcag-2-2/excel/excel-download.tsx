@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { getWCAGStats, wcagCriteria } from "@/lib/wcag-data"
 import * as XLSX from "xlsx"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -686,11 +686,13 @@ export default function WCAGExcelDownload() {
                   </div>
                 </div>
               </div>
-              <CardTitle className="text-4xl font-bold mb-4">
+              {/* The page title, so it must be the h1. CardTitle renders an h3,
+                  which left this page with no h1 and its headings starting at 3. */}
+              <h1 className="text-4xl font-bold leading-none tracking-tight mb-4">
                 <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
-                  Professional Excel Templates
+                  WCAG 2.2 Checklist Excel Templates
                 </span>
-              </CardTitle>
+              </h1>
               <CardDescription className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
                 Download professionally formatted Excel templates with all {stats.total} WCAG 2.2 success criteria.
                 Clean layouts, organized sheets, and ready for your audit workflow.

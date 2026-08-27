@@ -9,8 +9,7 @@ import {
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title:
-    "How to Audit a Website for Accessibility (2026): Step-by-Step WCAG Guide",
+  title: "How to Audit a Website for Accessibility (2026 Guide)",
   description:
     "A practical, step-by-step guide to auditing any website for WCAG 2.2 accessibility compliance. Includes a free checklist, automated and manual testing workflows, common issues to look for, and AI-assisted remediation.",
   keywords: [

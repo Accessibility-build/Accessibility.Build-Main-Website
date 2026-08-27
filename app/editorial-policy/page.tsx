@@ -4,7 +4,7 @@ import { company, legalLastUpdated } from "@/lib/company"
 import { createMetadata } from "@/lib/metadata"
 
 export const metadata = createMetadata({
-  title: "Editorial Policy",
+  title: "Editorial Policy | Accessibility.build",
   path: "/editorial-policy",
   description:
     "Accessibility.build's standards for named authorship, sourcing, technical review, AI assistance, legal content, research disclosure, updates, and conflicts of interest.",

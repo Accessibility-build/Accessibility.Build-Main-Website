@@ -13,7 +13,7 @@ const pageDescription =
   "Fixed-price accessibility remediation from $1,250, with scoped code fixes, engineering guidance, assistive technology validation, and handoff."
 
 export const metadata: Metadata = {
-  title: "Remediation Support",
+  title: "Remediation Support | Accessibility.build",
   description: pageDescription,
   keywords: ["accessibility remediation services", "WCAG remediation cost", "accessibility code fixes", "audit remediation"],
   alternates: { canonical: "/services/remediation-support" },

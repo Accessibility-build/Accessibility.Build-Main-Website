@@ -13,7 +13,7 @@ const pageDescription =
   "Fixed-price accessible design reviews from $650 for product flows, responsive states, interaction patterns, and design systems before development."
 
 export const metadata: Metadata = {
-  title: "Accessible Design Reviews",
+  title: "Accessible Design Reviews | Accessibility.build",
   description: pageDescription,
   keywords: ["accessible design review", "accessibility design audit", "Figma accessibility review", "design system accessibility"],
   alternates: { canonical: "/services/design-reviews" },

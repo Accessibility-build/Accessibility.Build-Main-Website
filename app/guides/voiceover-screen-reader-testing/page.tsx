@@ -24,7 +24,7 @@ import {
   FileText,
 } from "lucide-react"
 
-const pageTitle = "VoiceOver Screen Reader Testing: The Complete Guide (macOS & iOS)"
+const pageTitle = "VoiceOver Screen Reader Testing Guide (macOS & iOS)"
 const pageDescription =
   "Learn to test websites with VoiceOver, Apple's built-in screen reader: turn it on, master the VO modifier keys and the Rotor, use gestures on iPhone, and run a repeatable testing workflow with full macOS and iOS command cheat sheets — mapped to WCAG 2.2 AA."
 

@@ -5,7 +5,7 @@ import { createMetadata } from "@/lib/metadata"
 import { company, legalLastUpdated } from "@/lib/company"
 
 export const metadata = createMetadata({
-  title: "Cookie Policy",
+  title: "Cookie Policy | Accessibility.build",
   path: "/cookies",
   description:
     "The essential storage and optional analytics used by Accessibility.build, including how to accept, decline, or revisit analytics consent.",

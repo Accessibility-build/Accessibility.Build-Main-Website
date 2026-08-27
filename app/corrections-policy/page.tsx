@@ -4,7 +4,7 @@ import { company, legalLastUpdated } from "@/lib/company"
 import { createMetadata } from "@/lib/metadata"
 
 export const metadata = createMetadata({
-  title: "Corrections Policy",
+  title: "Corrections Policy | Accessibility.build",
   path: "/corrections-policy",
   description:
     "How Accessibility.build receives, investigates, corrects, documents, and communicates substantive errors in technical, research, legal, and editorial content.",

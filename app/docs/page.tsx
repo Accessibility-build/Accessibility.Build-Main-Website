@@ -14,7 +14,7 @@ import {
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
-  title: "Developer Resources",
+  title: "Developer Resources | Accessibility.build",
   description:
     "Practical Accessibility.build resources for accessible frontend development, local tools, WCAG testing, structured exports, and the macOS desktop app.",
   alternates: { canonical: "/docs" },

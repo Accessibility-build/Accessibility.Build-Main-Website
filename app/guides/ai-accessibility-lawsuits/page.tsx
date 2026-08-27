@@ -8,8 +8,7 @@ import {
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title:
-    "How AI Is Fueling ADA Website Lawsuits in 2026 (Pro Se, Scanners & Complaints)",
+  title: "How AI Is Fueling ADA Website Lawsuits in 2026",
   description:
     "Generative AI and automated scanners have collapsed the cost of filing a web accessibility lawsuit. ~40% of 2025's federal ADA cases were pro se, 46% targeted repeat defendants, and 2026 is projected to top 5,500 filings. Here's how AI changed the litigation math — and how to protect your site.",
   keywords: [

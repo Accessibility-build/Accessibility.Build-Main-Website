@@ -133,9 +133,12 @@ function MarketingSpecimen({
       >
         New · v2.0
       </span>
-      <h1 style={styleToCss(tokens, tokens.styles.display, override)}>
+      {/* Sample copy demonstrating the display style, not a real page heading.
+          As an h1 it put a second h1 in the document and inserted "Type that
+          everyone can read." into the heading outline of the studio page. */}
+      <p style={styleToCss(tokens, tokens.styles.display, override)}>
         Type that everyone can read.
-      </h1>
+      </p>
       <p style={{ ...styleToCss(tokens, tokens.styles.lead, override), maxWidth: tokens.bodyMaxWidth, color: muted }}>
         Build a typography system that meets WCAG 2.2, scales fluidly across viewports,
         and stays readable for people with low vision, dyslexia, and cognitive disabilities.

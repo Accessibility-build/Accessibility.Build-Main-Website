@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ShieldCheck, ListChecks } from "lucide-react"
 
-const pageTitle = "ARIA Landmarks & Page Structure: A Complete Accessibility Guide"
+const pageTitle = "ARIA Landmarks & Page Structure: Complete Guide"
 const pageDescription =
   "Landmarks and headings are the two maps a screen reader user navigates by. This guide covers the eight landmark roles and the HTML that gives them to you, the scoping rule almost everyone misses (header and footer are only landmarks at the top level), the section trap where a section is not a landmark until you name it, one main and naming repeated regions, the heading map and the HTML5 outline myth, complete coverage, and how screen reader users jump around a page by structure. Copy-ready HTML mapped to WCAG 2.2 (1.3.1)."
 

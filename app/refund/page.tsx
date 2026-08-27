@@ -7,7 +7,7 @@ import Link from "next/link"
 import { company, legalLastUpdated, registeredBusinessAddress } from "@/lib/company"
 
 export const metadata: Metadata = {
-  title: "Cancellation & Refund Policy",
+  title: "Cancellation & Refund Policy | Accessibility.build",
   description: "Cancellation and refund terms for Accessibility.build credit purchases and professional accessibility services.",
   keywords: [
     "cancellation policy",

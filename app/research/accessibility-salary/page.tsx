@@ -23,7 +23,7 @@ const reportUrl = "https://accessibility.build/research/accessibility-salary";
 const pageTitle = "Digital Accessibility Salary Report";
 
 export const metadata: Metadata = {
-  title: "Accessibility Salary Report 2026 | What A11y Professionals Earn",
+  title: "Accessibility Salary Report 2026: What A11y Pros Earn",
   description:
     "Digital accessibility professionals averaged $101,688 in 2026, with a 36% premium past ten years of experience. Pay by country, experience, work location, organisation size, and role.",
   keywords: [

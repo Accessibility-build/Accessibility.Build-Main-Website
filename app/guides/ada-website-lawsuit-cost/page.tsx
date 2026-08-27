@@ -9,8 +9,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 import { settlementData } from "@/lib/data/lawsuit-statistics"
 
 export const metadata: Metadata = {
-  title:
-    "How Much Does an ADA Website Lawsuit Cost? (2026 Settlement & Defense Data)",
+  title: "How Much Does an ADA Website Lawsuit Cost? (2026 Data)",
   description:
     "A data-backed breakdown of what a web accessibility lawsuit actually costs in 2026 — demand-letter settlements ($1K–$25K), out-of-court settlements (~$30K), court judgments (~$85K), class actions (up to $5.15M), and legal-defense fees. Plus how to cut your risk for a fraction of the price.",
   keywords: [

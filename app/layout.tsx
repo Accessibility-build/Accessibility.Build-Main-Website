@@ -57,7 +57,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://accessibility.build"),
   title: {
     default: "Professional Accessibility Tools | Accessibility.build",
-    template: "%s | Accessibility.build",
+    // No brand suffix. It used to be "%s | Accessibility.build", which added 22
+    // characters to all 283 child pages and pushed 246 of them past the ~60
+    // character mark where Google and Bing truncate (Bing Webmaster Tools flagged
+    // this as "Title too long"). The suffix was the first thing cut, so it rarely
+    // survived to be read, and both engines now render the site name beside the
+    // title anyway, which made it redundant as well as expensive.
+    //
+    // Pages that genuinely need the brand (short utility and service titles that
+    // read as generic on their own, such as "Sitemap") append it themselves.
+    template: "%s",
   },
   description:
     "Founder-led accessibility services, practical WCAG 2.2 tools, implementation guides, research, and resources for more inclusive digital products.",

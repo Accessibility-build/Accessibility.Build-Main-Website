@@ -3,7 +3,7 @@ import { createMetadata } from "@/lib/metadata"
 import { company, legalLastUpdated, registeredBusinessAddress } from "@/lib/company"
 
 export const metadata = createMetadata({
-  title: "Terms of Service",
+  title: "Terms of Service | Accessibility.build",
   path: "/terms",
   description:
     "Terms governing use of Accessibility.build tools, content, accounts, credit purchases, and professional accessibility services.",

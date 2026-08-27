@@ -7,7 +7,7 @@ import { BreadcrumbStructuredData, AccessibilityToolStructuredData } from "@/com
 import { FaqSection } from "@/components/seo/faq-section"
 
 export const metadata: Metadata = {
-  title: "WCAG AAA Checklist | Level AAA Success Criteria | WCAG 2.2 Gold Standard",
+  title: "WCAG 2.2 AAA Checklist: All Level AAA Success Criteria",
   description:
     "Complete WCAG 2.2 Level AAA checklist with all 31 enhanced accessibility criteria. Track progress, add notes, and export to Excel/PDF. The gold standard for web accessibility.",
   keywords: [

@@ -13,7 +13,7 @@ const pageDescription =
   "Fixed-price accessibility training from $600, including live role-based workshops, practical exercises, accessible materials, and follow-up guidance."
 
 export const metadata: Metadata = {
-  title: "Accessibility Training",
+  title: "Accessibility Training | Accessibility.build",
   description: pageDescription,
   keywords: ["accessibility training", "WCAG workshop", "accessibility training cost", "developer accessibility training"],
   alternates: { canonical: "/services/accessibility-training" },

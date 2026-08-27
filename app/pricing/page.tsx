@@ -22,7 +22,7 @@ import {
 import type { CheckoutCatalogKey } from "@/lib/billing/types"
 
 export const metadata: Metadata = {
-  title: "Credit Packages - One-Time Credit Packs",
+  title: "Pricing: One-Time Credit Packs | Accessibility.build",
   description:
     "Simple one-time credit packs for accessibility testing. No recurring subscriptions and no hidden fees.",
   keywords: [

@@ -26,7 +26,7 @@ import {
   Rows3,
 } from "lucide-react"
 
-const pageTitle = "Accessible Data Grid Guide (role=grid, gridcell & 2-D keyboard navigation)"
+const pageTitle = "Accessible Data Grid Guide: role=grid & Keyboard Nav"
 const pageDescription =
   "Build an accessible data grid the right way: the role=grid / row / gridcell / columnheader structure built on a real <table>, two-dimensional arrow-key navigation, roving tabindex, the two focus modes (navigation vs actionable — Enter to enter a cell, Escape to leave), editable cells, cell and row selection, aria-rowcount / aria-colcount / aria-rowindex / aria-colindex for virtualized grids, treegrid, and React — with copy-ready code mapped to WCAG 2.2, plus when a plain semantic table is the better choice."
 

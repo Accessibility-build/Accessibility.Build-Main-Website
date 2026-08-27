@@ -24,8 +24,7 @@ import {
   Sparkles,
 } from "lucide-react"
 
-const pageTitle =
-  "Accessible Form Validation & Error Handling Guide (WCAG 3.3.x)"
+const pageTitle = "Accessible Form Validation & Error Handling (WCAG 3.3)"
 const pageDescription =
   "Handle form errors so everyone can recover: when to validate (submit vs blur vs input), tying an error to its field with aria-invalid and aria-describedby, the error-summary pattern with focus management, announcing inline errors through live regions without the double-announcement trap, error suggestion and prevention, WCAG 2.2's Redundant Entry and Accessible Authentication, and React — with copy-ready code mapped to WCAG 3.3.1 through 3.3.9."
 

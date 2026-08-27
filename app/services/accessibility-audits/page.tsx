@@ -13,7 +13,7 @@ const pageDescription =
   "Fixed-price WCAG 2.2 AA accessibility audits from $950, with manual testing, assistive technology checks, reports, and verification retests."
 
 export const metadata: Metadata = {
-  title: "Accessibility Audits",
+  title: "Accessibility Audits | Accessibility.build",
   description: pageDescription,
   keywords: ["accessibility audit services", "WCAG audit cost", "manual accessibility audit", "WCAG 2.2 AA audit"],
   alternates: { canonical: "/services/accessibility-audits" },

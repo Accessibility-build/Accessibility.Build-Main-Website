@@ -25,7 +25,7 @@ import {
   Move,
 } from "lucide-react"
 
-const pageTitle = "Accessible Slider & Range Input Guide (role=slider + aria-valuenow)"
+const pageTitle = "Accessible Slider & Range Input Guide (role=slider)"
 const pageDescription =
   "Build accessible sliders and range inputs the right way: the native <input type=\"range\"> that gives you role=slider, keyboard, and a click-to-set drag alternative for free; the full arrow / Home / End / Page keyboard contract; aria-valuenow, aria-valuemin, aria-valuemax and the aria-valuetext property that turns \"2\" into \"Medium\"; the 2.5.7 Dragging Movements requirement; dual-thumb range sliders; and React — with copy-ready code mapped to WCAG 2.2."
 

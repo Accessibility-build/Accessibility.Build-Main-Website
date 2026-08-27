@@ -8,8 +8,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 import ScreenReaderGuideClient from "./ScreenReaderGuideClient"
 
 export const metadata: Metadata = {
-  title:
-    "Screen Reader Testing Guide | NVDA, JAWS, VoiceOver & TalkBack",
+  title: "Screen Reader Testing Guide: NVDA, JAWS & VoiceOver",
   description:
     "The complete guide to testing websites with screen readers. Setup guides, command references, and testing procedures for NVDA, JAWS, VoiceOver (macOS/iOS), and TalkBack. Downloadable checklists included.",
   keywords: [

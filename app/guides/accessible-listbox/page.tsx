@@ -25,7 +25,7 @@ import {
   Users,
 } from "lucide-react"
 
-const pageTitle = "Accessible Listbox Guide (role=listbox, option & single vs multi-select)"
+const pageTitle = "Accessible Listbox Guide: role=listbox & Multi-Select"
 const pageDescription =
   "Build an accessible listbox the right way: the role=listbox / option / group structure, single-select where selection follows focus, multi-select with aria-multiselectable and Space to toggle, aria-selected, the roving-tabindex vs aria-activedescendant focus choice, grouped and disabled options, type-ahead, and React — with copy-ready code mapped to WCAG 2.2, plus when a group of checkboxes or a native select is the better choice."
 

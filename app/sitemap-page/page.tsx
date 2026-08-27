@@ -5,7 +5,7 @@ import { siteRoutes, type SiteRoute } from "@/lib/site-routes"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export const metadata: Metadata = {
-  title: "Sitemap",
+  title: "Sitemap | Accessibility.build",
   description: "A complete list of all pages on Accessibility.build",
   alternates: { canonical: "/sitemap-page" },
 }

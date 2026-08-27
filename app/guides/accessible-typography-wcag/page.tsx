@@ -21,7 +21,7 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Accessible Typography Guide | WCAG 2.2 + 3 Modular Type Scale",
+  title: "Accessible Typography Guide: WCAG 2.2 & Type Scale",
   description:
     "A complete guide to building accessible typography systems: modular type scales, fluid clamp() sizing, WCAG 1.4.4 / 1.4.8 / 1.4.12 compliance, dyslexia and cognitive disability research, Flesch-Kincaid readability, and design-token exports.",
   keywords: [

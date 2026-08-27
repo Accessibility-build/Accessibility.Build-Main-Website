@@ -23,7 +23,7 @@ const reportUrl = "https://accessibility.build/research/disability-statistics";
 const pageTitle = "US Disability Prevalence";
 
 export const metadata: Metadata = {
-  title: "Disability Statistics 2026 | How Many People Have a Disability",
+  title: "Disability Statistics 2026: How Many Have a Disability",
   description:
     "28.7% of US adults, about 73.4 million people, report a disability. Prevalence by type (cognitive, mobility, independent living, hearing, vision, self-care) plus the 2016 to 2022 trend, from CDC BRFSS data.",
   keywords: [

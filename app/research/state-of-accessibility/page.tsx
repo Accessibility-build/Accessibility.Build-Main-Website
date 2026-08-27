@@ -30,7 +30,7 @@ const reportUrl = "https://accessibility.build/research/state-of-accessibility";
 const webaimUrl = "https://webaim.org/projects/million/";
 
 export const metadata: Metadata = {
-  title: "State of Web Accessibility 2026 | Research Report & Statistics",
+  title: "State of Web Accessibility 2026: Report & Statistics",
   description:
     "WebAIM Million 2026 found 95.9% of one million homepages had detectable WCAG failures, up from 94.8%. That reverses six years of gradual improvement. Source-linked findings, trend data, and downloadable data.",
   keywords: [

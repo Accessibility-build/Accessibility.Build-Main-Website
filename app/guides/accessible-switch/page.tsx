@@ -23,7 +23,7 @@ import {
   Focus,
 } from "lucide-react"
 
-const pageTitle = "Accessible Switch & Toggle Guide (role=switch + aria-checked)"
+const pageTitle = "Accessible Switch & Toggle Guide (role=switch)"
 const pageDescription =
   "A toggle switch is not a checkbox. This guide covers role=\"switch\" and aria-checked, when a switch is the right control and when a checkbox is, the native <input type=checkbox role=switch> path that needs almost no JavaScript, keeping the accessible name constant as the state moves, non-text contrast for the track and thumb, immediate-effect semantics, and React — with copy-ready code mapped to WCAG 2.2."
 

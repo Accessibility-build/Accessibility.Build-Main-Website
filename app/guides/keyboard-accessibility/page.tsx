@@ -6,11 +6,11 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { Badge } from "@/components/ui/badge"
 import KeyboardGuideClient from "./KeyboardGuideClient"
 
 export const metadata: Metadata = {
-  title:
-    "Complete Keyboard Accessibility Guide | Interactive Demos & Code Examples",
+  title: "Keyboard Accessibility Guide: Focus, Traps & Demos",
   description:
     "The definitive guide to keyboard accessibility. Master focus management, skip links, roving tabindex, keyboard traps, and modal focus trapping with interactive demos and copy-ready code examples.",
   keywords: [
@@ -176,6 +176,27 @@ export default function KeyboardAccessibilityGuidePage() {
             </nav>
           </div>
         </div>
+
+        {/* Hero. The interactive guide below opens at an h2 ("Introduction"),
+            so the page title has to live here or the document has no h1 at all. */}
+        <section className="pt-12 pb-8 px-4 sm:px-6">
+          <div className="container mx-auto max-w-4xl text-center">
+            <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
+              Implementation Guide &bull; Updated August 2026
+            </Badge>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Keyboard Accessibility
+            </h1>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Every feature on a page has to be reachable and operable with a
+              keyboard alone, and that one requirement decides how you build
+              focus order, skip links, custom widgets, and modals. This guide
+              covers focus management, roving tabindex, keyboard traps, and
+              focus trapping, with interactive demos and copy-ready code mapped
+              to WCAG 2.2.
+            </p>
+          </div>
+        </section>
 
         {/* Interactive Guide */}
         <KeyboardGuideClient />

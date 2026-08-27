@@ -24,7 +24,7 @@ const reportUrl =
 const pageTitle = "European Accessibility Act Tracker";
 
 export const metadata: Metadata = {
-  title: "European Accessibility Act Tracker 2026 | Dates & Transposition",
+  title: "European Accessibility Act Tracker 2026: Transposition",
   description:
     "Every EAA date quoted from Directive (EU) 2019/882, plus national transposition measures for all 27 Member States. Includes the honest answer on enforcement data: the first Commission report is not due until 2030.",
   keywords: [

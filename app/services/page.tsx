@@ -10,7 +10,7 @@ const pageDescription =
   "Fixed-price accessibility audits, remediation, design reviews, training, disabled user testing, and compliance documentation with published scope and delivery."
 
 export const metadata = {
-  title: "Accessibility Services",
+  title: "Accessibility Services | Accessibility.build",
   description: pageDescription,
   keywords: [
     "accessibility services pricing",

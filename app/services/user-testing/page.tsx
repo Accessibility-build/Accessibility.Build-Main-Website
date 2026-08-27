@@ -13,7 +13,7 @@ const pageDescription =
   "Fixed-price accessibility user testing from $2,400, including disabled participant recruitment, honoraria, moderated sessions, analysis, and reporting."
 
 export const metadata: Metadata = {
-  title: "Accessibility User Testing",
+  title: "Accessibility User Testing | Accessibility.build",
   description: pageDescription,
   keywords: ["accessibility user testing", "disabled user research", "assistive technology user testing", "inclusive usability testing"],
   alternates: { canonical: "/services/user-testing" },

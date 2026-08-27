@@ -13,7 +13,7 @@ const pageDescription =
   "Fixed-price accessibility statements, procurement documentation, and evidence-based VPAT Accessibility Conformance Reports from $450."
 
 export const metadata: Metadata = {
-  title: "Compliance Documentation",
+  title: "Compliance Documentation | Accessibility.build",
   description: pageDescription,
   keywords: ["VPAT service cost", "Accessibility Conformance Report", "accessibility statement service", "ACR documentation"],
   alternates: { canonical: "/services/compliance-documentation" },

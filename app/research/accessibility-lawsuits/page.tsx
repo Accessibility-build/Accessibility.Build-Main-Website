@@ -6,7 +6,7 @@ import { lawsuitSummary } from "@/lib/data/lawsuit-statistics"
 import { LawsuitTrackerClient } from "./LawsuitTrackerClient"
 
 export const metadata: Metadata = {
-  title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
+  title: "Accessibility Lawsuit Tracker 2026: ADA Litigation Data",
   description:
     "Source-linked data on U.S. website accessibility lawsuits: 21,550 identified federal filings from 2018-2025, 3,117 in 2025, state trends, reported costs, methodology, and 2026 legal updates.",
   keywords: [

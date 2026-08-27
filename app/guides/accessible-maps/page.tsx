@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ShieldCheck, ListChecks } from "lucide-react"
 
-const pageTitle = "Accessible Maps: Interactive Maps, Store Locators & Data Maps"
+const pageTitle = "Accessible Maps: Interactive Maps & Store Locators"
 const pageDescription =
   "An interactive map is a picture of spatial data, so the accessible version is usually the same information delivered as text and structured controls, not the pixels. Learn how to decide what job the map is doing, build the map-plus-list pattern where the list is the source of truth, add titles to embedded maps, make markers and pan and zoom controls keyboard operable, provide single-pointer alternatives to dragging, handle static maps and alt text, make choropleth and data maps accessible as charts, and test the whole thing. Copy-ready HTML mapped to WCAG 2.2."
 

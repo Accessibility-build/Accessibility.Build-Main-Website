@@ -25,8 +25,7 @@ import {
   Sparkles,
 } from "lucide-react"
 
-const pageTitle =
-  "Accessible Video & Media Player Guide (Captions, Transcripts, Audio Description, WCAG 2.2)"
+const pageTitle = "Accessible Video Player Guide: Captions & Transcripts"
 const pageDescription =
   "Make video and audio accessible: decide which alternatives your media owes (captions, transcript, audio description) based on prerecorded-vs-live and where the information lives, write real captions instead of auto-captions, provide a descriptive transcript, add audio description for on-screen-only information, build a keyboard-operable player that never autoplays sound, wire the HTML <video> and <track> elements, handle embedded YouTube and Vimeo players, and do it in React — mapped to WCAG 2.2 (1.2.1–1.2.5, 1.4.2, 2.1.1, 2.2.2, 4.1.2)."
 

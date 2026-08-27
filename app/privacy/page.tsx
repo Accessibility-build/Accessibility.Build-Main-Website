@@ -4,7 +4,7 @@ import { createMetadata } from "@/lib/metadata"
 import { company, legalLastUpdated, registeredBusinessAddress } from "@/lib/company"
 
 export const metadata = createMetadata({
-  title: "Privacy Policy",
+  title: "Privacy Policy | Accessibility.build",
   path: "/privacy",
   description:
     "How Accessibility.build, operated by Khushwant Parihar, collects, uses, shares, retains, and protects information across its website, tools, accounts, and services.",
