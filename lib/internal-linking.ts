@@ -31,6 +31,14 @@ const INTERNAL_LINKS: InternalLink[] = [
     priority: 10
   },
   {
+    url: '/tools/accessibility-statement-checker',
+    title: 'Accessibility Statement Checker',
+    description: 'Check whether an accessibility statement contains what PSBAR, the EU Web Accessibility Directive, or the EAA requires',
+    type: 'tool',
+    keywords: ['accessibility statement', 'statement checker', 'psbar', 'eaa', 'compliance', 'enforcement', 'public sector', 'model statement'],
+    priority: 9
+  },
+  {
     url: '/tools/heading-analyzer',
     title: 'Heading Structure Analyzer',
     description: 'Free tool to analyze H1-H6 heading hierarchy for SEO and accessibility',

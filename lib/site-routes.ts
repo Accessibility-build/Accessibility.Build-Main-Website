@@ -57,6 +57,7 @@ const reference: SiteRoute[] = [
 
 const tools: SiteRoute[] = [
   { route: "/tools", label: "Tools Hub", group: "Tools", lastModified: "2026-05-22", priority: 0.98, changeFrequency: "weekly" },
+  { route: "/tools/accessibility-statement-checker", label: "Accessibility Statement Checker", group: "Tools", lastModified: "2026-08-28", priority: 0.97 },
   { route: "/tools/heading-analyzer", label: "Heading Structure Analyzer", group: "Tools", lastModified: "2025-11-25", priority: 0.97 },
   { route: "/tools/contrast-checker", label: "Color Contrast Checker", group: "Tools", lastModified: "2025-12-12", priority: 0.96 },
   { route: "/tools/accessible-palette-studio", label: "Accessible Palette Studio", group: "Tools", lastModified: "2026-05-22", priority: 0.96 },

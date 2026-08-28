@@ -177,6 +177,17 @@ export const toolCatalog: ToolCatalogItem[] = [
     credits: 0,
   },
   {
+    slug: "accessibility-statement-checker",
+    title: "Accessibility Statement Checker",
+    shortTitle: "Statement Checker",
+    description: "Find a site's accessibility statement and check it contains the compliance status, feedback route, enforcement body, and review date the law requires.",
+    category: "Audit and testing",
+    icon: "statement",
+    features: ["UK PSBAR, EU WAD, EAA rules", "Finds the statement for you", "Flags stale statements"],
+    keywords: ["statement", "psbar", "eaa", "compliance", "enforcement", "public sector"],
+    credits: 0,
+  },
+  {
     slug: "accessibility-statement-generator",
     title: "Accessibility Statement Generator",
     shortTitle: "Statement Generator",

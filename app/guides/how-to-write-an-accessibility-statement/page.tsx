@@ -416,6 +416,18 @@ export default function HowToWriteAccessibilityStatementPage() {
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               A bad statement is worse than no statement. The failure patterns are consistent:
             </p>
+            <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+              If a statement is already published, the{" "}
+              <Link
+                href="/tools/accessibility-statement-checker"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                accessibility statement checker
+              </Link>{" "}
+              will read it and report which of the required elements are actually present. When GDS
+              monitored 593 UK public sector sites, only about 7 percent had a fully compliant
+              statement, while 83 percent had published one that was missing mandatory information.
+            </p>
             <ul className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed list-disc pl-5 mb-4">
               <li>
                 <strong className="text-slate-900 dark:text-white">Overclaiming.</strong>{" "}
