@@ -25,12 +25,11 @@ const PRIVATE_PATHS = [
   "/profile*",
   "/sign-in*",
   "/sign-up*",
-  "/*/edit",
-  "/*/delete",
-  "/*?*utm_*",
-  "/*?*ref=*",
-  "/*?*fbclid=*",
-  "/*?*gclid=*",
+  // Tracking-parameter variants (?utm_*, ?ref=, ?fbclid=, ?gclid=) are
+  // deliberately NOT disallowed. Every page carries a self-referencing
+  // canonical, and a crawler can only read that canonical if it is allowed to
+  // fetch the URL; blocking the variants stopped Bing and DuckDuckGo from
+  // consolidating them. Googlebot has its own group and was never affected.
   "/search?*",
   "/api/preview",
   "/*?preview=",

@@ -1,38 +1,57 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Home, Search } from "lucide-react"
+import { BookOpenText, Home, ListChecks, Wrench } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Page not found",
+  description: "The page you requested does not exist on Accessibility.build.",
+  robots: { index: false, follow: true },
+}
+
+const startingPoints = [
+  { href: "/tools", label: "Free accessibility tools", icon: Wrench },
+  { href: "/guides", label: "Implementation guides", icon: BookOpenText },
+  { href: "/wcag", label: "WCAG 2.2 success criteria", icon: ListChecks },
+]
 
 export default function NotFound() {
   return (
-    <div className="container-wide flex flex-col items-center justify-center min-h-[70vh] py-16 text-center">
-      <h1 className="text-6xl font-bold mb-4">404</h1>
-      <h2 className="text-2xl font-semibold mb-6">Page Not Found</h2>
-      <p className="text-muted-foreground max-w-md mb-8">
-        Sorry, we couldn't find the page you're looking for. It might have been moved, deleted, or never existed.
+    <div className="container-wide flex min-h-[70vh] flex-col items-center justify-center py-16 text-center">
+      <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Error 404</p>
+      <h1 className="mt-2 text-4xl font-bold sm:text-5xl">Page not found</h1>
+      <p className="mt-6 max-w-md text-muted-foreground">
+        The address may be mistyped, or the page may have moved. Nothing here was deleted recently, so a
+        link that brought you here is probably out of date.
       </p>
 
-      <div className="flex flex-col sm:flex-row gap-4 mb-12">
+      <div className="mt-8 flex flex-col gap-4 sm:flex-row">
         <Button asChild>
           <Link href="/">
-            <Home className="mr-2 h-4 w-4" />
-            Back to Home
+            <Home className="mr-2 h-4 w-4" aria-hidden="true" />
+            Back to home
           </Link>
         </Button>
-        <Button variant="outline">
-          <Link href="/contact">Report this issue</Link>
+        <Button asChild variant="outline">
+          <Link href="/contact?topic=website">Report a broken link</Link>
         </Button>
       </div>
 
-      <div className="w-full max-w-md">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <input
-            type="search"
-            placeholder="Search for resources..."
-            className="w-full rounded-full border border-input bg-background py-2 pl-10 pr-4 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          />
-        </div>
-      </div>
+      <nav aria-label="Starting points" className="mt-12 w-full max-w-md">
+        <ul className="grid gap-3 text-left">
+          {startingPoints.map(({ href, label, icon: Icon }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className="flex items-center gap-3 rounded-md border px-4 py-3 text-sm font-medium transition-colors hover:bg-muted"
+              >
+                <Icon className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   )
 }

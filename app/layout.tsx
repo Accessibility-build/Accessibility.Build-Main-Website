@@ -15,7 +15,7 @@ import { BrowserSafetyProvider } from "@/components/browser-safety-provider"
 import { clerkThemeAppearance } from "@/lib/clerk-auth-appearance"
 import { AnalyticsConsent } from "@/components/privacy/analytics-consent"
 import { PostHogProvider } from "@/components/analytics/posthog-provider"
-import { company } from "@/lib/company"
+import { company, founderCredentialSchema } from "@/lib/company"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -99,7 +99,7 @@ export const metadata: Metadata = {
   publisher: company.brandName,
   category: "Technology",
   classification: "Accessibility Tools and Resources",
-  referrer: "origin-when-cross-origin",
+  referrer: "strict-origin-when-cross-origin",
   robots: {
     index: true,
     follow: true,
@@ -111,7 +111,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  manifest: "/site.webmanifest",
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -140,8 +140,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@accessibilitybuild",
-    creator: "@accessibilitybuild",
+    // No site/creator handle: the @accessibilitybuild X account does not exist.
     title: "Professional Accessibility Tools | Accessibility.build",
     description: "AI-powered accessibility tools, WCAG compliance testing, and comprehensive resources for inclusive web development.",
     images: ["/og-image.png"],
@@ -206,7 +205,7 @@ const structuredData = {
         company.linkedin,
         company.founderWebsite,
         company.founderLinkedin,
-        "https://github.com/accessibility-build"
+        company.organizationGithub,
       ],
       founder: {
         "@id": "https://accessibility.build/#founder"
@@ -239,22 +238,35 @@ const structuredData = {
       "@type": "Person",
       "@id": "https://accessibility.build/#founder",
       name: company.legalOperator,
-      url: company.founderWebsite,
+      // The author page is the entity's home on this site; the personal site
+      // is a sameAs, not the canonical URL.
+      url: `${company.website}/authors/khushwant-parihar`,
       jobTitle: "Founder and Accessibility Consultant",
+      description:
+        "Founder of Accessibility.build. IAAP Certified Professional in Accessibility Core Competencies (CPACC) and DHS Trusted Tester for Section 508.",
       image: `${company.website}/images/authors/khushwant-parihar.jpeg`,
       mainEntityOfPage: `${company.website}/authors/khushwant-parihar`,
-      sameAs: [company.founderWebsite, company.founderLinkedin],
+      sameAs: [company.founderWebsite, company.founderLinkedin, company.founderGithub],
       worksFor: {
         "@id": "https://accessibility.build/#organization"
       },
+      homeLocation: {
+        "@type": "Place",
+        name: `${company.location.city}, ${company.location.region}, ${company.location.country}`,
+      },
+      // Same list as /about and /authors so the entity reads identically everywhere.
       knowsAbout: [
         "Web accessibility",
         "WCAG 2.2",
         "Section 508",
         "Accessibility auditing",
         "Screen reader testing",
+        "NVDA",
+        "JAWS",
+        "VoiceOver",
         "Accessible frontend development"
-      ]
+      ],
+      hasCredential: founderCredentialSchema,
     },
     {
       "@type": "WebSite",
@@ -315,47 +327,6 @@ const structuredData = {
         }
       ]
     },
-    {
-      "@type": "WebApplication",
-      "@id": "https://accessibility.build/#webapp",
-      name: "Accessibility.build Tools",
-      url: "https://accessibility.build/tools",
-      description: "Browser-based accessibility utilities for testing, planning, content review, and WCAG 2.2 implementation support",
-      applicationCategory: "DeveloperApplication",
-      operatingSystem: "Any",
-      browserRequirements: "Requires JavaScript. Supported browsers: Chrome, Firefox, Safari, Edge.",
-      isAccessibleForFree: true,
-      publisher: {
-        "@id": "https://accessibility.build/#organization"
-      },
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "USD",
-        description: "Accessibility utilities available through the Accessibility.build website"
-      },
-      featureList: [
-        "AI-assisted alt text drafting",
-        "WCAG 2.2 contrast checking",
-        "Heading and content analysis",
-        "Downloadable reports and structured exports"
-      ]
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://accessibility.build/#software",
-      name: "Alt Text Generator",
-      url: "https://accessibility.build/tools/alt-text-generator",
-      description: "AI-assisted alt text drafting tool with guidance for human review and WCAG 2.2 implementation",
-      applicationCategory: "DeveloperApplication",
-      operatingSystem: "Any",
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "USD",
-        description: "New accounts receive welcome credits; additional tool usage may require purchased credits"
-      }
-    }
   ]
 }
 
@@ -374,40 +345,21 @@ export default function RootLayout({
     >
       <html lang="en" suppressHydrationWarning>
         <head>
-          {/* Preconnect to external domains */}
-          {/* Fonts are self-hosted by next/font — no Google Fonts preconnect needed. */}
-          <link rel="preconnect" href="https://api.openai.com" />
-          <link rel="preconnect" href="https://clerk.com" />
+          {/* Fonts are self-hosted by next/font, so no font preconnect is needed.
+              Security headers live in next.config.mjs (meta http-equiv copies are
+              ignored by browsers), and nothing is preloaded or prefetched here:
+              a previous /api/health preload cost a serverless call per pageview. */}
 
           {/* DNS prefetch for performance */}
           <link rel="dns-prefetch" href="//images.clerk.dev" />
           <link rel="dns-prefetch" href="//clerk.com" />
-          <link rel="dns-prefetch" href="//api.openai.com" />
           <link rel="dns-prefetch" href="//vercel.com" />
           <link rel="dns-prefetch" href="//vitals.vercel-insights.com" />
-          <link rel="dns-prefetch" href="//analytics.ahrefs.com" />
-          <link rel="dns-prefetch" href="//www.googletagmanager.com" />
 
           {/* Content discovery */}
           <link rel="alternate" type="application/rss+xml" title="Accessibility.build Blog RSS Feed" href="/feed.xml" />
           <link rel="alternate" type="application/atom+xml" title="Accessibility.build Blog Atom Feed" href="/atom.xml" />
           <link rel="alternate" type="text/plain" title="Accessibility.build LLMs.txt" href="/llms.txt" />
-
-          {/* Critical resource hints */}
-          <link rel="prefetch" href="/tools" />
-          <link rel="prefetch" href="/blog" />
-          <link rel="prefetch" href="/faq" />
-
-          {/* Security and performance headers */}
-          <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-          <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-          <meta httpEquiv="X-DNS-Prefetch-Control" content="on" />
-
-          {/* Performance optimization hints */}
-          <meta httpEquiv="Accept-CH" content="DPR, Viewport-Width, Width" />
-
-          {/* Eliminate render-blocking for non-critical CSS */}
-          <link rel="preload" href="/api/health" as="fetch" crossOrigin="anonymous" />
 
           {/* Critical inline CSS for above-the-fold content */}
           <style dangerouslySetInnerHTML={{

@@ -13,18 +13,23 @@ const nextConfig = {
         root: __dirname,
     },
     images: {
-        remotePatterns: [{
-            protocol: 'https',
-            hostname: '**',
-        }],
+        // Only the hosts the site actually loads through next/image. A '**'
+        // wildcard turned the optimiser into an open image proxy for any origin.
+        remotePatterns: [
+            { protocol: 'https', hostname: 'cdn.sanity.io' },
+            { protocol: 'https', hostname: 'img.clerk.com' },
+            { protocol: 'https', hostname: 'images.clerk.dev' },
+        ],
         formats: ['image/webp', 'image/avif'],
-        dangerouslyAllowSVG: true,
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     },
     serverExternalPackages: ['razorpay', 'puppeteer-core', '@sparticuz/chromium-min', 'puppeteer', 'axe-core', 'pdfjs-dist'],
     compress: true,
     poweredByHeader: false,
+    // Required so the PostHog reverse proxy under /ingest/ receives trailing-slash
+    // API paths untouched. proxy.ts re-creates the trailing-slash 308 for every
+    // other path, so pages are not served at two URLs.
     skipTrailingSlashRedirect: true,
     async rewrites() {
         return [
@@ -111,12 +116,16 @@ const nextConfig = {
                     value: 'nosniff'
                 },
                 {
-                    key: 'X-XSS-Protection',
-                    value: '1; mode=block'
+                    // Disables browser features the site never uses. (The
+                    // deprecated X-XSS-Protection header used to sit here; modern
+                    // browsers ignore it and it could enable filter-based attacks.)
+                    key: 'Permissions-Policy',
+                    value: 'camera=(), microphone=(), geolocation=(), usb=(), interest-cohort=()'
                 },
                 {
+                    // Must match the `referrer` value in app/layout.tsx metadata.
                     key: 'Referrer-Policy',
-                    value: 'origin-when-cross-origin'
+                    value: 'strict-origin-when-cross-origin'
                 },
                 {
                     key: 'X-Frame-Options',

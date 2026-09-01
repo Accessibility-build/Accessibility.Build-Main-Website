@@ -1,15 +1,41 @@
 import type { Metadata } from "next"
 import { company } from "@/lib/company"
 
+/**
+ * Longest meta description that survives intact in a search snippet. Google and
+ * Bing truncate at roughly 155 to 160 characters and frequently rewrite anything
+ * longer, so the meta tag gets the clamped text while Open Graph keeps the full
+ * version (social cards have no such limit).
+ */
+export const META_DESCRIPTION_MAX = 155
+
+/**
+ * Trim a description to META_DESCRIPTION_MAX characters. Prefers the last
+ * sentence boundary that fits, so the snippet reads as a complete thought;
+ * falls back to a word boundary with an ellipsis when no sentence fits.
+ */
+export function clampDescription(text: string, max: number = META_DESCRIPTION_MAX): string {
+  const clean = text.replace(/\s+/g, " ").trim()
+  if (clean.length <= max) return clean
+  const window = clean.slice(0, max)
+  const sentenceEnd = Math.max(window.lastIndexOf(". "), window.lastIndexOf("! "), window.lastIndexOf("? "))
+  if (sentenceEnd >= 80) return window.slice(0, sentenceEnd + 1)
+  if (window.endsWith(".") || window.endsWith("!") || window.endsWith("?")) return window
+  const wordEnd = window.lastIndexOf(" ")
+  return `${window.slice(0, wordEnd > 60 ? wordEnd : max - 1).replace(/[,;:\s]+$/, "")}…`
+}
+
 // Base metadata that can be extended for specific pages
 // Note: metadataBase is set once in app/layout.tsx — do not redeclare it here or in pages.
 export const baseMetadata: Metadata = {
   title: {
-    default: "Accessibility.build | Modern Accessibility Resources",
-    template: "%s | Accessibility.build",
+    default: "Accessibility.build | Founder-Led WCAG Audits & Tools",
+    // No brand suffix: the root layout dropped "%s | Accessibility.build" in
+    // August 2026 because it pushed most titles past the 60-character mark.
+    template: "%s",
   },
   description:
-    "A modern platform offering comprehensive accessibility resources, interactive tools, and in-depth education to help you design and develop inclusive digital experiences.",
+    "Founder-led accessibility services, practical WCAG 2.2 tools, implementation guides, research, and resources for more inclusive digital products.",
   keywords: [
     "accessibility",
     "a11y",
@@ -29,9 +55,9 @@ export const baseMetadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://accessibility.build",
-    title: "Accessibility.build | Modern Accessibility Resources",
+    title: "Accessibility.build | Founder-Led WCAG Audits & Tools",
     description:
-      "A modern platform offering comprehensive accessibility resources, interactive tools, and in-depth education to help you design and develop inclusive digital experiences.",
+      "Founder-led accessibility services, practical WCAG 2.2 tools, implementation guides, research, and resources for more inclusive digital products.",
     siteName: "Accessibility.build",
     images: [
       {
@@ -44,9 +70,9 @@ export const baseMetadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Accessibility.build | Modern Accessibility Resources",
+    title: "Accessibility.build | Founder-Led WCAG Audits & Tools",
     description:
-      "A modern platform offering comprehensive accessibility resources, interactive tools, and in-depth education to help you design and develop inclusive digital experiences.",
+      "Founder-led accessibility services, practical WCAG 2.2 tools, implementation guides, research, and resources for more inclusive digital products.",
     images: ["https://accessibility.build/og-image.png"],
   },
   icons: {
@@ -54,12 +80,13 @@ export const baseMetadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/site.webmanifest",
+  manifest: "/manifest.webmanifest",
 }
 
 // Helper function to create metadata for specific pages
 export function createMetadata(options: {
   title?: string
+  /** Full description. The meta tag receives a clamped copy; Open Graph and Twitter keep the full text. */
   description?: string
   /** Route path starting with "/" (e.g. "/wcag/1-1-1"). Emits the page's self-referencing canonical URL. */
   path?: string
@@ -75,7 +102,7 @@ export function createMetadata(options: {
 
   return {
     title: title,
-    description: description,
+    description: description ? clampDescription(description) : undefined,
     ...(path && { alternates: { canonical: path } }),
     ...(noIndex && { robots: { index: false, follow: false } }),
     keywords: keywords ? [...(baseMetadata.keywords as string[]), ...keywords] : baseMetadata.keywords,
