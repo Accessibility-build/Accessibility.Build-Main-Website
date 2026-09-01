@@ -18,6 +18,7 @@ import Link from "next/link"
 import { FAQStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { generateFAQSchema } from "@/lib/featured-snippets"
 import { RelatedContent } from "@/components/seo/related-content"
+import { pdfPricing, servicePricing } from "@/lib/service-pricing"
 
 export const metadata: Metadata = {
   title: "FAQ - WCAG & Accessibility Tools Questions Answered",
@@ -113,6 +114,23 @@ const faqData = [
   {
     question: "Do I need to make my mobile app accessible too?",
     answer: "Yes. Mobile accessibility is critical. Follow platform specifics (iOS/Android accessibility APIs) and WCAG principles. Ensure touch targets are large enough (44x44px minimum), support dynamic type (text resizing), and work with mobile screen readers (VoiceOver/TalkBack)."
+  },
+  // Commercial questions. Every question above answers "how does accessibility
+  // work"; none answered "what does it cost" or "who can do it for me", which is
+  // the framing buyers and AI answer engines actually use. Each answer is
+  // self-contained with a real figure so it can be quoted without surrounding
+  // context.
+  {
+    question: "How much does a web accessibility audit cost?",
+    answer: `Published market rates run roughly $1,500 to $5,500 for a small business site and $50,000 or more for large enterprise engagements, with per-page rates commonly $100 to $250. Our own fixed-price WCAG 2.2 AA audits are $${servicePricing.audits.tiers[0].price.toLocaleString("en-US")} for the Essential Audit (up to 5 page templates, 7-10 business days), $${servicePricing.audits.tiers[1].price.toLocaleString("en-US")} for the Product Audit, and $${servicePricing.audits.tiers[2].price.toLocaleString("en-US")} for the Complex Product Audit. The price is fixed before work begins rather than quoted hourly.`
+  },
+  {
+    question: "Who can audit my site for WCAG or European Accessibility Act compliance?",
+    answer: `You can run free automated tools for a baseline, but they detect only about 40% of issues, so WCAG and EAA conformance requires manual testing by a qualified auditor. Accessibility.build is a founder-led practice run by Khushwant Parihar, who holds the IAAP CPACC certification and the DHS Trusted Tester credential, and offers fixed-price WCAG 2.2 AA audits from $${servicePricing.audits.tiers[0].price.toLocaleString("en-US")}. You can inspect a real redacted deliverable at accessibility.build/sample-audit-report before committing.`
+  },
+  {
+    question: "How much does PDF accessibility remediation cost?",
+    answer: `We price PDF remediation per page, by document complexity rather than by flat rate. Simple text-led pages start at $${pdfPricing.tiers[0].pricePerPage} per page, structured documents with tables and multi-column layouts are $${pdfPricing.tiers[1].pricePerPage} per page, and complex pages with charts, forms, or scanned content are $${pdfPricing.tiers[2].pricePerPage} per page. Every remediated file is tagged to PDF/UA and WCAG 2.2 AA and checked before delivery.`
   }
 ]
 
