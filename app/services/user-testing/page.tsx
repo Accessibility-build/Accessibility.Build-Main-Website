@@ -4,7 +4,7 @@ import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
 import { ServicePricing } from "@/components/services/service-pricing"
-import { ServiceStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
+import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
 import { servicePricing, toStructuredOffers } from "@/lib/service-pricing"
 import { Check, Users, Target, FileText, Video, PieChart } from "lucide-react"
@@ -112,7 +112,6 @@ export default function UserTestingPage() {
         offers={toStructuredOffers(servicePricing.userTesting)}
         serviceOutput="Moderated research with disabled participants, task analysis, findings report, and stakeholder readout"
       />
-      <FAQStructuredData faqs={faqs} />
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },

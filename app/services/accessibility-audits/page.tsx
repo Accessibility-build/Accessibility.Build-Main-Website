@@ -4,7 +4,7 @@ import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
 import { ServicePricing } from "@/components/services/service-pricing"
-import { ServiceStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
+import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
 import { servicePricing, toStructuredOffers } from "@/lib/service-pricing"
 import { Check, FileText, BarChart, ListChecks, Clock, Users, Eye } from "lucide-react"
@@ -114,7 +114,6 @@ export default function AccessibilityAuditsPage() {
         offers={toStructuredOffers(servicePricing.audits)}
         serviceOutput="WCAG 2.2 AA audit report, evidence-backed issue register, and prioritized remediation plan"
       />
-      <FAQStructuredData faqs={faqs} />
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },

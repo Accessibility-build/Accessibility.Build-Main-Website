@@ -4,7 +4,7 @@ import { ServiceHero } from "@/components/services/service-hero"
 import { ProcessSteps } from "@/components/services/process-steps"
 import { FAQSection } from "@/components/services/faq-section"
 import { ServicePricing } from "@/components/services/service-pricing"
-import { ServiceStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
+import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { Button } from "@/components/ui/button"
 import { servicePricing, toStructuredOffers } from "@/lib/service-pricing"
 import { Check, BookOpen, Users, Code, Pencil, Monitor, MessageSquare } from "lucide-react"
@@ -112,7 +112,6 @@ export default function AccessibilityTrainingPage() {
         offers={toStructuredOffers(servicePricing.training)}
         serviceOutput="Live accessibility workshop, accessible training materials, practical exercises, and follow-up guidance"
       />
-      <FAQStructuredData faqs={faqs} />
       <BreadcrumbStructuredData
         breadcrumbs={[
           { name: "Home", url: "https://accessibility.build" },
