@@ -11,7 +11,7 @@ interface AdminLayoutWrapperProps {
 
 export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
   const pathname = usePathname()
-  
+
   // Check if we're on an admin route
   const isAdminRoute = pathname?.startsWith('/admin')
 
@@ -24,19 +24,23 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
     )
   }
 
-  // Everything else (including blog posts) uses the full site header and footer
+  // Everything else (including blog posts) uses the full site header and footer.
+  //
+  // There is deliberately NO Suspense boundary around {children} here. With one,
+  // React streamed every page's content out of order: the served HTML had
+  // <main> holding only the "Loading..." fallback, and the real page sat in a
+  // <div hidden id="S:0"> after the footer, swapped in by an inline script.
+  // Readability-style extractors (used by many crawlers and reader modes) skip
+  // nodes with the hidden attribute, so they saw a page consisting of the word
+  // "Loading...", and the main landmark announced the same to assistive
+  // technology until hydration. Components that call useSearchParams() carry
+  // their own local Suspense boundary instead (see pricing-auto-checkout,
+  // billing-status-banner, and the ROI calculator client).
   return (
     <div className="relative flex min-h-screen flex-col">
       <Header />
       <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
-        {/*
-          The fallback reserves a full viewport rather than a short 400px box:
-          real page content is much taller, so a small placeholder pushed the
-          footer down when it resolved and produced a large layout shift (CLS).
-        */}
-        <Suspense fallback={<div className="flex items-center justify-center min-h-screen" role="status">Loading...</div>}>
-          {children}
-        </Suspense>
+        {children}
       </main>
       <Footer />
     </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import { ArrowRight, Coins, Crown, HelpCircle, Shield, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -149,7 +150,9 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
         <div className="container-wide py-16 relative">
-          <PricingAutoCheckout />
+          <Suspense fallback={null}>
+            <PricingAutoCheckout />
+          </Suspense>
 
           {/* Hero */}
           <div className="text-center mb-16">

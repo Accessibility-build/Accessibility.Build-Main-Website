@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import { currentUser } from '@clerk/nextjs/server'
 import Link from 'next/link'
@@ -188,7 +189,9 @@ export default async function BillingPage({ searchParams }: BillingPageProps) {
             </div>
           )}
 
-          <BillingStatusBanner orderStatuses={orderStatuses} />
+          <Suspense fallback={null}>
+            <BillingStatusBanner orderStatuses={orderStatuses} />
+          </Suspense>
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
