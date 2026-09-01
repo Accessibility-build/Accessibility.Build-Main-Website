@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.5.3 Label in Name — Match Visible Text",
   description:
-    "Complete guide to WCAG 2.5.3 Label in Name. Why the accessible name must contain the visible label, how speech input users are affected, aria-label pitfalls, and how to test.",
+    clampDescription("Complete guide to WCAG 2.5.3 Label in Name. Why the accessible name must contain the visible label, how speech input users are affected, aria-label pitfalls, and how to test."),
   keywords: [
     "WCAG 2.5.3",
     "Label in Name",
@@ -131,6 +133,7 @@ export default function WCAG253Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.5.3: Label in Name
             </h1>
+            <PageByline route="/wcag/2-5-3" source={{ label: "W3C: Understanding 2.5.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Voice-control users operate a page by speaking what they see:
               &ldquo;Click Send.&rdquo; That only works if the words on the button are

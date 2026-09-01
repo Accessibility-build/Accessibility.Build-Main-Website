@@ -18,6 +18,8 @@ import {
 } from "@/components/research/report-hero";
 import salaryData from "@/lib/data/accessibility-salary.json";
 import { AccessibilitySalaryClient } from "./AccessibilitySalaryClient";
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 const reportUrl = "https://accessibility.build/research/accessibility-salary";
 const pageTitle = "Digital Accessibility Salary Report";
@@ -25,7 +27,7 @@ const pageTitle = "Digital Accessibility Salary Report";
 export const metadata: Metadata = {
   title: "Accessibility Salary Report 2026: What A11y Pros Earn",
   description:
-    "Digital accessibility professionals averaged $101,688 in 2026, with a 36% premium past ten years of experience. Pay by country, experience, work location, organisation size, and role.",
+    clampDescription("Digital accessibility professionals averaged $101,688 in 2026, with a 36% premium past ten years of experience. Pay by country, experience, work location, organisation size, and role."),
   keywords: [
     "accessibility salary",
     "digital accessibility salary",
@@ -134,7 +136,7 @@ export default function AccessibilitySalaryPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-27"
+        dateModified={getRouteDate("/research/accessibility-salary") ?? "2026-08-27"}
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1700}

@@ -2,10 +2,11 @@ import { Metadata } from 'next'
 import URLEncoderDecoder from '@/components/tools/url-encoder-decoder'
 import { ToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: 'URL Encoder & Decoder',
-  description: 'Free online URL encoder and decoder. Handle special characters, spaces, and international characters in URLs and query parameters safely. Professional web development tool.',
+  description: clampDescription('Free online URL encoder and decoder. Handle special characters, spaces, and international characters in URLs and query parameters safely. Professional web development tool.'),
   keywords: [
     'url encoder',
     'url decoder',

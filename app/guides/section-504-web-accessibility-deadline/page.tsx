@@ -6,12 +6,15 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title:
     "HHS Section 504 Web Accessibility Deadline (May 2026)",
   description:
-    "The HHS Section 504 web accessibility rule took effect May 11, 2026 — and unlike the DOJ Title II deadline, it was not extended. Here's exactly who's covered, what WCAG 2.1 AA requires, what to do if you missed the deadline, and why HHS holding firm was the right call.",
+    clampDescription("The HHS Section 504 web accessibility rule took effect May 11, 2026 — and unlike the DOJ Title II deadline, it was not extended. Here's exactly who's covered, what WCAG 2.1 AA requires, what to do if you missed the deadline, and why HHS holding firm was the right call."),
   keywords: [
     "Section 504 deadline",
     "HHS Section 504 web rule",
@@ -130,7 +133,7 @@ export default function Section504DeadlinePage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-05-18"
-        dateModified="2026-05-18"
+        dateModified={getRouteDate("/guides/section-504-web-accessibility-deadline") ?? "2026-05-18"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/section-504-web-accessibility-deadline"
         wordCount={2300}
@@ -179,6 +182,7 @@ export default function Section504DeadlinePage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               Section 504 Took Effect May 11. HHS Was Right Not to Extend It.
             </h1>
+            <PageByline route="/guides/section-504-web-accessibility-deadline" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               One week ago, on May 11, 2026, the HHS Section 504 web
               accessibility rule took effect for most healthcare entities

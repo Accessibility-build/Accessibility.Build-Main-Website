@@ -15,11 +15,13 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata = {
   title: "Healthcare Website Accessibility & Compliance",
   description:
-    "How the ADA, Section 1557, and the HHS Section 504 web rule apply to hospitals, clinics, telehealth, and patient portals — plus the WCAG fixes that matter most.",
+    clampDescription("How the ADA, Section 1557, and the HHS Section 504 web rule apply to hospitals, clinics, telehealth, and patient portals — plus the WCAG fixes that matter most."),
   alternates: { canonical: "/industries/healthcare" },
   openGraph: {
     type: "website",
@@ -246,6 +248,7 @@ export default function HealthcareIndustryPage() {
           Industry Guide
         </div>
         <h1 className="text-4xl font-bold mb-4">Healthcare Website Accessibility &amp; Compliance</h1>
+        <PageByline route="/industries/healthcare" className="mb-5" />
         <p className="text-xl text-muted-foreground">
           Healthcare's digital front door — portals, scheduling, telehealth, and medical documents — now sits under
           the strictest accessibility rules in US law, with a hard WCAG deadline of May 11, 2027 that is under legal challenge. Here is

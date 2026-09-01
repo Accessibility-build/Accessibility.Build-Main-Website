@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements";
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb";
 import { CriterionLinks } from "@/components/wcag/criterion-links";
 import { RelatedContent } from "@/components/seo/related-content";
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.3.1 Three Flashes or Below Threshold (Level A)",
   description:
-    "Master WCAG 2.3.1 Three Flashes or Below Threshold: seizure prevention techniques, the general and red flash thresholds explained, safe animation patterns, code examples, and a complete testing guide for photosensitive epilepsy protection.",
+    clampDescription("Master WCAG 2.3.1 Three Flashes or Below Threshold: seizure prevention techniques, the general and red flash thresholds explained, safe animation patterns, code examples, and a complete testing guide for photosensitive epilepsy protection."),
   keywords: [
     "WCAG 2.3.1",
     "Three Flashes",
@@ -137,6 +139,7 @@ export default function WCAG231Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.3.1: Three Flashes or Below Threshold
             </h1>
+            <PageByline route="/wcag/2-3-1" source={{ label: "W3C: Understanding 2.3.1", href: "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Most accessibility failures make a page harder to use. This one
               can put someone in the hospital. Flashing content can trigger

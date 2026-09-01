@@ -4,6 +4,11 @@ import ToolsClientPage from "./ToolsClientPage"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { toolCatalog } from "@/lib/tool-catalog"
 
+// The four generic developer utilities (JSON, Base64, URL, password) are
+// noindexed and off-topic for an accessibility hub, so they are neither listed
+// nor counted here. They stay reachable from the in-tool suite bar.
+const accessibilityTools = toolCatalog.filter((tool) => tool.category !== "Developer utilities")
+
 export const metadata: Metadata = {
   title: "Accessibility Tools | WCAG 2.2 Testing and Guidance",
   description: "Practical accessibility testing, content, design, planning, and developer tools for building more inclusive digital products.",
@@ -57,8 +62,8 @@ export default function ToolsPage() {
     "url": "https://accessibility.build/tools",
     "mainEntity": {
       "@type": "ItemList",
-      "numberOfItems": toolCatalog.length,
-      "itemListElement": toolCatalog.map((tool, index) => ({
+      "numberOfItems": accessibilityTools.length,
+      "itemListElement": accessibilityTools.map((tool, index) => ({
         "@type": "ListItem",
         "position": index + 1,
         "url": `https://accessibility.build/tools/${tool.slug}`,

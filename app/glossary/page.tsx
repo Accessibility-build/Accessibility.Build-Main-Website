@@ -2,11 +2,12 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Web Accessibility Glossary: 50+ Terms Explained",
   description:
-    "Plain-language definitions of 50+ web accessibility terms — WCAG, ARIA, alt text, screen readers, VPAT, EAA, Section 508, and more — in one A-Z glossary.",
+    clampDescription("Plain-language definitions of 50+ web accessibility terms — WCAG, ARIA, alt text, screen readers, VPAT, EAA, Section 508, and more — in one A-Z glossary."),
   keywords: [
     "accessibility glossary",
     "web accessibility terms",

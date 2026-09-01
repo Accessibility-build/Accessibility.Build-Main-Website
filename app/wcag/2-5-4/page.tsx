@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.5.4 Motion Actuation — Shake & Tilt Controls",
   description:
-    "Complete guide to WCAG 2.5.4 Motion Actuation. Why shake, tilt, and camera-motion features need UI alternatives and a disable option, the two exceptions, code, and testing.",
+    clampDescription("Complete guide to WCAG 2.5.4 Motion Actuation. Why shake, tilt, and camera-motion features need UI alternatives and a disable option, the two exceptions, code, and testing."),
   keywords: [
     "WCAG 2.5.4",
     "Motion Actuation",
@@ -131,6 +133,7 @@ export default function WCAG254Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.5.4: Motion Actuation
             </h1>
+            <PageByline route="/wcag/2-5-4" source={{ label: "W3C: Understanding 2.5.4", href: "https://www.w3.org/WAI/WCAG22/Understanding/motion-actuation.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               &ldquo;Shake to undo&rdquo; assumes you can shake a phone — and that you
               never shake it by accident. Both assumptions fail for many people. This

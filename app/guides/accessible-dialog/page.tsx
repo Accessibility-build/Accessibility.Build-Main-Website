@@ -22,6 +22,9 @@ import {
   Undo2,
   Sparkles,
 } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "Accessible Dialog & Modal Guide (WAI-ARIA + <dialog>)"
 const pageDescription =
@@ -29,7 +32,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "accessible dialog",
     "accessible modal",
@@ -252,6 +255,7 @@ export default function AccessibleDialogGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/accessible-dialog" title={pageTitle} description={pageDescription} datePublished="2026-07-24" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -297,11 +301,12 @@ export default function AccessibleDialogGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Component Pattern Guide &bull; Updated July 2026
+                Component Pattern Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Dialog &amp; Modal Guide
               </h1>
+              <PageByline route="/guides/accessible-dialog" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 You almost certainly do not need a hand-rolled focus trap any
                 more. This guide covers the native{" "}

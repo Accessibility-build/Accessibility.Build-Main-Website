@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.4.12 Text Spacing — The Four Metrics & Fixes",
   description:
-    "Complete guide to WCAG 1.4.12 Text Spacing. Learn the four values users must be able to set — line height 1.5, paragraph spacing 2×, letter spacing 0.12, word spacing 0.16 — the test bookmarklet, why fixed-height containers clip text, copy-ready CSS fixes, and common mistakes.",
+    clampDescription("Complete guide to WCAG 1.4.12 Text Spacing. Learn the four values users must be able to set — line height 1.5, paragraph spacing 2×, letter spacing 0.12, word spacing 0.16 — the test bookmarklet, why fixed-height containers clip text, copy-ready CSS fixes, and common mistakes."),
   keywords: [
     "WCAG 1.4.12",
     "Text Spacing",
@@ -135,7 +138,7 @@ export default function WCAG1412Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-07"
-        dateModified="2026-07-07"
+        dateModified={getRouteDate("/wcag/1-4-12") ?? "2026-07-07"}
         image="https://accessibility.build/api/og?title=WCAG%201.4.12%20Text%20Spacing&section=WCAG"
         url="https://accessibility.build/wcag/1-4-12"
         wordCount={2900}
@@ -221,6 +224,7 @@ export default function WCAG1412Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.4.12: Text Spacing
             </h1>
+            <PageByline route="/wcag/1-4-12" source={{ label: "W3C: Understanding 1.4.12", href: "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Some readers need{" "}
               <strong className="text-slate-900 dark:text-white">

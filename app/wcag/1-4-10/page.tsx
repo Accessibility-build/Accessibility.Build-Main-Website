@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.4.10 Reflow — No Horizontal Scrolling at 320px",
   description:
-    "Complete guide to WCAG 1.4.10 Reflow. Learn why content must reflow to 320 CSS pixels wide without two-dimensional scrolling or loss of information, how to test at 400% zoom, the exceptions for tables and maps, copy-ready responsive CSS, and common mistakes.",
+    clampDescription("Complete guide to WCAG 1.4.10 Reflow. Learn why content must reflow to 320 CSS pixels wide without two-dimensional scrolling or loss of information, how to test at 400% zoom, the exceptions for tables and maps, copy-ready responsive CSS, and common mistakes."),
   keywords: [
     "WCAG 1.4.10",
     "Reflow",
@@ -136,7 +139,7 @@ export default function WCAG1410Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-05"
-        dateModified="2026-07-05"
+        dateModified={getRouteDate("/wcag/1-4-10") ?? "2026-07-05"}
         image="https://accessibility.build/api/og?title=WCAG%201.4.10%20Reflow&section=WCAG"
         url="https://accessibility.build/wcag/1-4-10"
         wordCount={2800}
@@ -222,6 +225,7 @@ export default function WCAG1410Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.4.10: Reflow
             </h1>
+            <PageByline route="/wcag/1-4-10" source={{ label: "W3C: Understanding 1.4.10", href: "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A person with low vision may zoom a page to 400% just to read it. At
               that magnification, a fixed-width layout forces them to scroll left

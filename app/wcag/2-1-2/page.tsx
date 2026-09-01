@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from '@/components/seo/structured-data'
 import WCAGSEOEnhancements from '@/components/wcag/seo-enhancements'
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import KeyboardTrapDemo from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata: Metadata = {
   title: 'WCAG 2.1.2 No Keyboard Trap - Interactive Demo',
@@ -172,6 +173,7 @@ export default function WCAG212Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.1.2: No Keyboard Trap
             </h1>
+            <PageByline route="/wcag/2-1-2" source={{ label: "W3C: Understanding 2.1.2", href: "https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A keyboard user should be able to move <em>into</em> any component and,
               just as importantly,{" "}

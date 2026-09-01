@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import AltTextDemo from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata = createMetadata({
   title: "WCAG 1.1.1 Non-text Content - Complete Guide",
@@ -119,6 +120,7 @@ export default function WCAG111Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.1.1: Non-text Content
             </h1>
+            <PageByline route="/wcag/1-1-1" source={{ label: "W3C: Understanding 1.1.1", href: "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A screen reader cannot describe a photo, a braille display cannot render a
               chart, and a search engine cannot index an icon. This criterion asks that{" "}

@@ -16,11 +16,13 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata = {
   title: "Education & EdTech Accessibility Compliance",
   description:
-    "What the DOJ Title II rule, Section 504, and the ADA require of schools, universities, and edtech — deadlines, OCR risk, and the WCAG issues to fix first.",
+    clampDescription("What the DOJ Title II rule, Section 504, and the ADA require of schools, universities, and edtech — deadlines, OCR risk, and the WCAG issues to fix first."),
   alternates: { canonical: "/industries/education" },
   openGraph: {
     type: "website",
@@ -247,6 +249,7 @@ export default function EducationIndustryPage() {
           Industry Guide
         </div>
         <h1 className="text-4xl font-bold mb-4">Education &amp; EdTech Accessibility Compliance</h1>
+        <PageByline route="/industries/education" className="mb-5" />
         <p className="text-xl text-muted-foreground">
           Schools, universities, and the edtech products they buy now face explicit WCAG deadlines under the ADA
           Title II rule, ongoing Section 504 obligations, and a steady stream of OCR complaints. Here is the legal

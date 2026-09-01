@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import type React from "react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -155,7 +156,7 @@ const checklistData: { title: string; items: string[] }[] = [
 /*  Main Component                                                             */
 /* -------------------------------------------------------------------------- */
 
-export default function ScreenReaderGuideClient() {
+export default function ScreenReaderGuideClient({ byline }: { byline?: React.ReactNode }) {
   const [activeSection, setActiveSection] = useState("introduction")
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean[]>>({})
 
@@ -274,6 +275,7 @@ export default function ScreenReaderGuideClient() {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Screen Reader Testing Guide
           </h1>
+          {byline}
           <p className="text-lg md:text-xl text-blue-100 max-w-3xl mb-6">
             The complete reference for testing websites with NVDA, JAWS,
             VoiceOver, and TalkBack. Includes setup instructions, command

@@ -4,11 +4,13 @@ import { ArticleStructuredData, BreadcrumbStructuredData, DatasetStructuredData 
 import { RelatedContent } from "@/components/seo/related-content"
 import { lawsSummary } from "@/lib/data/accessibility-laws"
 import { AccessibilityLawsClient } from "./AccessibilityLawsClient"
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Accessibility Laws by Jurisdiction: Global Tracker",
   description:
-    "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed August 27, 2026.",
+    clampDescription("Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed August 27, 2026."),
   keywords: [
     "accessibility laws",
     "ada compliance",
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
     canonical: "https://accessibility.build/research/accessibility-laws",
   },
   openGraph: {
+    images: [{ url: "/api/og?title=Accessibility%20Laws%20by%20Jurisdiction&section=Research", width: 1200, height: 630, alt: "Accessibility Laws by Jurisdiction" }],
     title: "Accessibility Laws by Jurisdiction: Global Tracker",
     description:
       "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed August 27, 2026.",
@@ -35,6 +38,7 @@ export const metadata: Metadata = {
     type: "article",
   },
   twitter: {
+    images: ["/api/og?title=Accessibility%20Laws%20by%20Jurisdiction&section=Research"],
     card: "summary_large_image",
     title: "Accessibility Laws by Jurisdiction | Global Legal Tracker 2026",
     description:
@@ -66,7 +70,7 @@ export default function AccessibilityLawsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-03-15"
-        dateModified="2026-08-27"
+        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-08-27"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-laws"
         wordCount={4000}
@@ -85,7 +89,7 @@ export default function AccessibilityLawsPage() {
         description="Structured dataset of 50+ accessibility laws and regulations across 35+ jurisdictions worldwide, including WCAG requirements, penalties, enforcement mechanisms, and compliance deadlines."
         url="https://accessibility.build/research/accessibility-laws"
         datePublished="2026-03-15"
-        dateModified="2026-08-27"
+        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-08-27"}
         creator={{ name: "Accessibility.build", url: "https://accessibility.build" }}
         temporalCoverage="1959/2026"
         keywords={[

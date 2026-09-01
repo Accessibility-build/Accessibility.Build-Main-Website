@@ -2,13 +2,15 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 const ogTitle = encodeURIComponent("ADA Website Compliance: Requirements & Deadlines")
 
 export const metadata: Metadata = {
   title: "ADA Website Compliance: Requirements & Deadlines",
   description:
-    "How the ADA applies to websites: Title II vs Title III, the DOJ web rule and WCAG 2.1 AA deadlines, the circuit split, lawsuit trends, and practical compliance steps.",
+    clampDescription("How the ADA applies to websites: Title II vs Title III, the DOJ web rule and WCAG 2.1 AA deadlines, the circuit split, lawsuit trends, and practical compliance steps."),
   keywords: [
     "ada website compliance",
     "ada title iii website",
@@ -144,6 +146,7 @@ export default function AdaCompliancePage() {
                 Compliance
               </span>
             </h1>
+            <PageByline route="/compliance/ada" className="mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               How the Americans with Disabilities Act applies to websites and mobile apps: the
               DOJ&apos;s Title II web rule and its WCAG 2.1 AA standard, the Title III case-law

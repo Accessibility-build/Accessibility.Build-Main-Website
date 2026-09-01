@@ -25,6 +25,8 @@ import {
 import { RelatedContent } from "@/components/seo/related-content";
 import technologyData from "@/lib/data/accessibility-by-technology.json";
 import { AccessibilityByTechnologyClient } from "./AccessibilityByTechnologyClient";
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 const reportUrl =
   "https://accessibility.build/research/accessibility-by-technology";
@@ -35,7 +37,7 @@ const pageTitle = "Web Accessibility by Technology Stack";
 export const metadata: Metadata = {
   title: "Accessibility by CMS & Framework 2026 | Research Report",
   description:
-    "Which CMS, JavaScript framework, and platform ships the fewest accessibility errors? Measured across one million home pages in February 2026, with WordPress, Drupal, React, Vue, Shopify, Bootstrap, and 40 more compared against the average.",
+    clampDescription("Which CMS, JavaScript framework, and platform ships the fewest accessibility errors? Measured across one million home pages in February 2026, with WordPress, Drupal, React, Vue, Shopify, Bootstrap, and 40 more compared against the average."),
   keywords: [
     "most accessible CMS",
     "WordPress accessibility",
@@ -164,7 +166,7 @@ export default function AccessibilityByTechnologyPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-27"
+        dateModified={getRouteDate("/research/accessibility-by-technology") ?? "2026-08-27"}
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={2100}

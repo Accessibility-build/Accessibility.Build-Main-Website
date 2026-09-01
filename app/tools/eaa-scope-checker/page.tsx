@@ -7,13 +7,14 @@ import {
   FAQStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { clampDescription } from "@/lib/metadata"
 
 const ogTitle = encodeURIComponent("EAA Scope Checker: Does the Act Apply to You?")
 
 export const metadata: Metadata = {
   title: "EAA Scope Checker: Does the Act Apply to You?",
   description:
-    "Free interactive checker for the European Accessibility Act. Answer four questions about your customers, sector, and size to see whether the EAA likely applies to your business.",
+    clampDescription("Free interactive checker for the European Accessibility Act. Answer four questions about your customers, sector, and size to see whether the EAA likely applies to your business."),
   keywords: [
     "eaa scope checker",
     "does the european accessibility act apply to me",

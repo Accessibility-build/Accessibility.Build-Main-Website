@@ -7,11 +7,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { settlementData } from "@/lib/data/lawsuit-statistics"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "How Much Does an ADA Website Lawsuit Cost? (2026 Data)",
   description:
-    "A data-backed breakdown of what a web accessibility lawsuit actually costs in 2026 — demand-letter settlements ($1K–$25K), out-of-court settlements (~$30K), court judgments (~$85K), class actions (up to $5.15M), and legal-defense fees. Plus how to cut your risk for a fraction of the price.",
+    clampDescription("A data-backed breakdown of what a web accessibility lawsuit actually costs in 2026 — demand-letter settlements ($1K–$25K), out-of-court settlements (~$30K), court judgments (~$85K), class actions (up to $5.15M), and legal-defense fees. Plus how to cut your risk for a fraction of the price."),
   keywords: [
     "ADA website lawsuit cost",
     "accessibility lawsuit settlement amount",
@@ -109,7 +112,7 @@ export default function ADALawsuitCostPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/guides/ada-website-lawsuit-cost") ?? "2026-07-09"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/ada-website-lawsuit-cost"
         wordCount={2000}
@@ -158,6 +161,7 @@ export default function ADALawsuitCostPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               How Much Does an ADA Website Lawsuit Actually Cost?
             </h1>
+            <PageByline route="/guides/ada-website-lawsuit-cost" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               The honest answer: anywhere from a $1,000 demand letter to a $5.15
               million class-action settlement — with most single-plaintiff cases

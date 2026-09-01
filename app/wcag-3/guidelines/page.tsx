@@ -22,6 +22,7 @@ import {
   Layers,
   ArrowLeftRight,
 } from "lucide-react"
+import { getRouteDate } from "@/lib/site-routes"
 
 export const metadata = createMetadata({
   title: "WCAG 3.0 Guidelines: All 12 Categories Explained",
@@ -330,7 +331,7 @@ export default function WCAG3GuidelinesPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-03-01"
-        dateModified="2026-03-15"
+        dateModified={getRouteDate("/wcag-3/guidelines") ?? "2026-03-15"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/wcag-3/guidelines"
         wordCount={3500}

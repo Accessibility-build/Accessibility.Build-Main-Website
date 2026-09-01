@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.4.6 Contrast (Enhanced) — 7:1 Ratio Guide",
   description:
-    "WCAG 1.4.6 requires 7:1 text contrast (4.5:1 for large text) at Level AAA. The exact thresholds, exceptions, AAA vs AA differences, CSS examples, and testing.",
+    clampDescription("WCAG 1.4.6 requires 7:1 text contrast (4.5:1 for large text) at Level AAA. The exact thresholds, exceptions, AAA vs AA differences, CSS examples, and testing."),
   keywords: [
     "WCAG 1.4.6",
     "Contrast Enhanced",
@@ -111,6 +113,7 @@ export default function WCAG146Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.4.6: Contrast (Enhanced)
             </h1>
+            <PageByline route="/wcag/1-4-6" source={{ label: "W3C: Understanding 1.4.6", href: "https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Level AA contrast compensates for moderately low vision. This AAA criterion
               raises the bar for people with more significant vision loss:{" "}

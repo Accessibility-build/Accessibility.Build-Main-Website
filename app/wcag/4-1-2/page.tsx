@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 4.1.2 Name, Role, Value — Complete Developer Guide",
   description:
-    "Complete guide to WCAG 4.1.2 Name, Role, Value: what name, role, state, and value mean, how the accessible name is computed, native HTML vs ARIA, copy-ready code examples, the most common failures, and how to test with the accessibility tree.",
+    clampDescription("Complete guide to WCAG 4.1.2 Name, Role, Value: what name, role, state, and value mean, how the accessible name is computed, native HTML vs ARIA, copy-ready code examples, the most common failures, and how to test with the accessibility tree."),
   keywords: [
     "WCAG 4.1.2",
     "Name Role Value",
@@ -140,7 +143,7 @@ export default function WCAG412Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-06-24"
-        dateModified="2026-06-24"
+        dateModified={getRouteDate("/wcag/4-1-2") ?? "2026-06-24"}
         image="https://accessibility.build/api/og?title=WCAG%204.1.2%20Name%2C%20Role%2C%20Value&section=WCAG"
         url="https://accessibility.build/wcag/4-1-2"
         wordCount={2900}
@@ -226,6 +229,7 @@ export default function WCAG412Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 4.1.2: Name, Role, Value
             </h1>
+            <PageByline route="/wcag/4-1-2" source={{ label: "W3C: Understanding 4.1.2", href: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               For every user-interface component, the{" "}
               <strong className="text-slate-900 dark:text-white">

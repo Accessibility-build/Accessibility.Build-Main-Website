@@ -8,11 +8,14 @@ import {
 import { RelatedContent } from "@/components/seo/related-content"
 import { Badge } from "@/components/ui/badge"
 import KeyboardGuideClient from "./KeyboardGuideClient"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Keyboard Accessibility Guide: Focus, Traps & Demos",
   description:
-    "The definitive guide to keyboard accessibility. Master focus management, skip links, roving tabindex, keyboard traps, and modal focus trapping with interactive demos and copy-ready code examples.",
+    clampDescription("The definitive guide to keyboard accessibility. Master focus management, skip links, roving tabindex, keyboard traps, and modal focus trapping with interactive demos and copy-ready code examples."),
   keywords: [
     "keyboard accessibility",
     "keyboard navigation",
@@ -123,7 +126,7 @@ export default function KeyboardAccessibilityGuidePage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2025-01-15"
-        dateModified="2025-06-01"
+        dateModified={getRouteDate("/guides/keyboard-accessibility") ?? "2025-06-01"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/keyboard-accessibility"
         wordCount={8500}
@@ -182,11 +185,12 @@ export default function KeyboardAccessibilityGuidePage() {
         <section className="pt-12 pb-8 px-4 sm:px-6">
           <div className="container mx-auto max-w-4xl text-center">
             <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-              Implementation Guide &bull; Updated August 2026
+              Implementation Guide
             </Badge>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
               Keyboard Accessibility
             </h1>
+            <PageByline route="/guides/keyboard-accessibility" className="mb-5" />
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Every feature on a page has to be reachable and operable with a
               keyboard alone, and that one requirement decides how you build

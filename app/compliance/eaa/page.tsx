@@ -6,13 +6,16 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "European Accessibility Act (EAA): Compliance Guide"
 
 export const metadata: Metadata = {
   title: pageTitle,
   description:
-    "What the European Accessibility Act requires, who must comply, the June 28, 2025 deadline, the 2030 service transition, EN 301 549, penalties by member state, and practical compliance steps.",
+    clampDescription("What the European Accessibility Act requires, who must comply, the June 28, 2025 deadline, the 2030 service transition, EN 301 549, penalties by member state, and practical compliance steps."),
   keywords: [
     "european accessibility act",
     "EAA compliance",
@@ -131,14 +134,16 @@ const coveredServices = [
   },
 ]
 
-const penaltyExamples = [
+const penaltyExamples: { state: string; regime: string; source?: { label: string; href: string } }[] = [
   {
     state: "Ireland",
     regime: "Fines up to EUR 60,000 and potential criminal liability for serious offences",
+    source: { label: "S.I. No. 636/2023", href: "https://www.irishstatutebook.ie/eli/2023/si/636/made/en/print" },
   },
   {
     state: "Germany",
     regime: "Administrative fines up to EUR 100,000 under the BFSG",
+    source: { label: "BFSG §37", href: "https://www.gesetze-im-internet.de/bfsg/" },
   },
   {
     state: "France",
@@ -193,7 +198,7 @@ export default function EAACompliancePage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/compliance/eaa") ?? "2026-07-09"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/compliance/eaa"
         wordCount={2600}
@@ -238,11 +243,12 @@ export default function EAACompliancePage() {
           <header className="mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950/40 text-blue-800 dark:text-blue-200 text-xs font-semibold uppercase tracking-wide mb-5">
               <span aria-hidden="true">●</span>
-              Compliance Guide · Updated July 2026
+              Compliance Guide
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               European Accessibility Act (EAA) Compliance Guide
             </h1>
+            <PageByline route="/compliance/eaa" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               The European Accessibility Act — Directive (EU) 2019/882 — is the
               EU&apos;s single biggest expansion of digital accessibility law
@@ -489,6 +495,19 @@ export default function EAACompliancePage() {
                       </th>
                       <td className="p-4 text-slate-600 dark:text-slate-400">
                         {row.regime}
+                        {row.source ? (
+                          <>
+                            {" "}
+                            <a
+                              href={row.source.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="whitespace-nowrap text-blue-700 underline underline-offset-2 dark:text-blue-300"
+                            >
+                              ({row.source.label})
+                            </a>
+                          </>
+                        ) : null}
                       </td>
                     </tr>
                   ))}

@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.2.6 Sign Language (Prerecorded) — AAA Guide",
   description:
-    "WCAG 1.2.6 requires sign language interpretation for all prerecorded audio in synchronized media. Who it helps, how to implement and test it, plus code examples.",
+    clampDescription("WCAG 1.2.6 requires sign language interpretation for all prerecorded audio in synchronized media. Who it helps, how to implement and test it, plus code examples."),
   keywords: [
     "WCAG 1.2.6",
     "Sign Language Prerecorded",
@@ -110,6 +112,7 @@ export default function WCAG126Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.2.6: Sign Language (Prerecorded)
             </h1>
+            <PageByline route="/wcag/1-2-6" source={{ label: "W3C: Understanding 1.2.6", href: "https://www.w3.org/WAI/WCAG22/Understanding/sign-language-prerecorded.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               For many Deaf people, sign language is a first language and written text a
               second. Captions help, but they force fast reading in that second language.

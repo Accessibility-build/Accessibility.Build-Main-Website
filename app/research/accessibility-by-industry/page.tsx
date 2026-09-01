@@ -26,6 +26,8 @@ import {
 import { RelatedContent } from "@/components/seo/related-content";
 import industryData from "@/lib/data/accessibility-by-industry.json";
 import { AccessibilityByIndustryClient } from "./AccessibilityByIndustryClient";
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 const reportUrl =
   "https://accessibility.build/research/accessibility-by-industry";
@@ -36,7 +38,7 @@ const pageTitle = "Web Accessibility by Industry";
 export const metadata: Metadata = {
   title: "Accessibility by Industry 2026 | Sector Benchmark Report",
   description:
-    "Which industries build the most accessible websites? Government, education, and non-profit lead; shopping and sports trail. Average WCAG errors per home page across 29 sectors, measured on one million sites in February 2026.",
+    clampDescription("Which industries build the most accessible websites? Government, education, and non-profit lead; shopping and sports trail. Average WCAG errors per home page across 29 sectors, measured on one million sites in February 2026."),
   keywords: [
     "accessibility by industry",
     "web accessibility statistics by sector",
@@ -149,7 +151,7 @@ export default function AccessibilityByIndustryPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-27"
+        dateModified={getRouteDate("/research/accessibility-by-industry") ?? "2026-08-27"}
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1900}

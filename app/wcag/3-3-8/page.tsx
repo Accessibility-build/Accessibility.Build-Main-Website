@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.3.8 Accessible Authentication (Minimum) Guide",
   description:
-    "Complete guide to WCAG 3.3.8 Accessible Authentication (Minimum). Learn why logins must not depend on a cognitive function test, the four exceptions, why password managers and copy-paste must work, accessible CAPTCHA and passkey patterns, copy-ready code, testing, and common mistakes.",
+    clampDescription("Complete guide to WCAG 3.3.8 Accessible Authentication (Minimum). Learn why logins must not depend on a cognitive function test, the four exceptions, why password managers and copy-paste must work, accessible CAPTCHA and passkey patterns, copy-ready code, testing, and common mistakes."),
   keywords: [
     "WCAG 3.3.8",
     "Accessible Authentication",
@@ -164,7 +167,7 @@ export default function WCAG338Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-01"
-        dateModified="2026-07-01"
+        dateModified={getRouteDate("/wcag/3-3-8") ?? "2026-07-01"}
         image="https://accessibility.build/api/og?title=WCAG%203.3.8%20Accessible%20Authentication%20%28Minimum%29&section=WCAG"
         url="https://accessibility.build/wcag/3-3-8"
         wordCount={2900}
@@ -250,6 +253,7 @@ export default function WCAG338Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.3.8: Accessible Authentication (Minimum)
             </h1>
+            <PageByline route="/wcag/3-3-8" source={{ label: "W3C: Understanding 3.3.8", href: "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Signing in should never depend on your{" "}
               <strong className="text-slate-900 dark:text-white">

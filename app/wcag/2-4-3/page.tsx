@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import FocusOrderDemo from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata = createMetadata({
   title: "WCAG 2.4.3 Focus Order — Logical Tab Order",
@@ -197,6 +198,7 @@ export default function WCAG243Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.3: Focus Order
             </h1>
+            <PageByline route="/wcag/2-4-3" source={{ label: "W3C: Understanding 2.4.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A mouse user can click anything in any order. A keyboard user moves through
               the page one <kbd className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-base">Tab</kbd>{" "}

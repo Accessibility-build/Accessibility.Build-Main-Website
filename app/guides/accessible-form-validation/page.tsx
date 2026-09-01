@@ -23,6 +23,9 @@ import {
   AlertTriangle,
   Sparkles,
 } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "Accessible Form Validation & Error Handling (WCAG 3.3)"
 const pageDescription =
@@ -30,7 +33,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "accessible form validation",
     "accessible error messages",
@@ -172,6 +175,7 @@ export default function AccessibleFormValidationGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/accessible-form-validation" title={pageTitle} description={pageDescription} datePublished="2026-07-30" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -217,11 +221,12 @@ export default function AccessibleFormValidationGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Forms &amp; WCAG Guide &bull; Updated July 2026
+                Forms &amp; WCAG Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Form Validation &amp; Error Handling
               </h1>
+              <PageByline route="/guides/accessible-form-validation" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Error handling is where most forms fail their users. This guide
                 covers the part every checklist glosses over: <em>when</em> to

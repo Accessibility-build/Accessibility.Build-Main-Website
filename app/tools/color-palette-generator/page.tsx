@@ -14,11 +14,12 @@ import {
 } from "lucide-react"
 import { AccessibilityToolStructuredData, BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Accessible Color Palette Generator | WCAG 2.2",
   description:
-    "Generate WCAG-aware color palettes and preview buttons, cards, forms, alerts, links, charts, hover states, disabled states, and focus states in light and dark mode.",
+    clampDescription("Generate WCAG-aware color palettes and preview buttons, cards, forms, alerts, links, charts, hover states, disabled states, and focus states in light and dark mode."),
   keywords: [
     "accessible color palette generator",
     "WCAG color palette generator",

@@ -5,13 +5,14 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "Accessibility Compliance Guides: ADA, EAA, 508"
 
 export const metadata: Metadata = {
   title: pageTitle,
   description:
-    "Plain-English guides to web accessibility law: the ADA, European Accessibility Act, Section 508, EN 301 549, and California and New York state requirements — deadlines, standards, penalties.",
+    clampDescription("Plain-English guides to web accessibility law: the ADA, European Accessibility Act, Section 508, EN 301 549, and California and New York state requirements — deadlines, standards, penalties."),
   keywords: [
     "accessibility compliance",
     "web accessibility laws",

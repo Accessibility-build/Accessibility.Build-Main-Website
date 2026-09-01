@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.2.8 Media Alternative (Prerecorded) Guide",
   description:
-    "WCAG 1.2.8 requires a full text alternative — a descriptive transcript — for prerecorded synchronized media and video-only media. What it must contain and how to test.",
+    clampDescription("WCAG 1.2.8 requires a full text alternative — a descriptive transcript — for prerecorded synchronized media and video-only media. What it must contain and how to test."),
   keywords: [
     "WCAG 1.2.8",
     "Media Alternative Prerecorded",
@@ -110,6 +112,7 @@ export default function WCAG128Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.2.8: Media Alternative (Prerecorded)
             </h1>
+            <PageByline route="/wcag/1-2-8" source={{ label: "W3C: Understanding 1.2.8", href: "https://www.w3.org/WAI/WCAG22/Understanding/media-alternative-prerecorded.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Captions serve people who cannot hear; audio description serves people who
               cannot see. For someone who is deafblind, neither works. This AAA criterion

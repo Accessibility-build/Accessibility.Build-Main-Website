@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import AudioAltDemo from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata = createMetadata({
   title: "WCAG 1.2.1 Audio-only and Video-only (Prerecorded)",
@@ -119,6 +120,7 @@ export default function WCAG121Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.2.1: Audio-only and Video-only (Prerecorded)
             </h1>
+            <PageByline route="/wcag/1-2-1" source={{ label: "W3C: Understanding 1.2.1", href: "https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A deaf user cannot hear a podcast, and a blind user cannot see a silent
               animation. This criterion asks that prerecorded media which is{" "}

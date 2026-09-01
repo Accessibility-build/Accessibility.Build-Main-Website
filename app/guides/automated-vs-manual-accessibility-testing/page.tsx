@@ -19,6 +19,9 @@ import {
   Users,
   Zap,
 } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "Automated vs Manual Accessibility Testing"
 const pageDescription =
@@ -26,7 +29,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "automated vs manual accessibility testing",
     "automated accessibility testing",
@@ -115,6 +118,7 @@ export default function AutomatedVsManualTestingGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/automated-vs-manual-accessibility-testing" title={pageTitle} description={pageDescription} datePublished="2026-07-09" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -160,12 +164,13 @@ export default function AutomatedVsManualTestingGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Comparison Guide &bull; Updated July 2026
+                Comparison Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Automated vs Manual Accessibility Testing: What Each Really
                 Catches
               </h1>
+              <PageByline route="/guides/automated-vs-manual-accessibility-testing" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Automated scanners are fast, cheap, and tireless — and they
                 still miss most of what makes a site unusable for people with

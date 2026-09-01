@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import PageTitleDemo from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata = createMetadata({
   title: "WCAG 2.4.2 Page Titled — Descriptive Page Titles",
@@ -185,6 +186,7 @@ export default function WCAG242Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.2: Page Titled
             </h1>
+            <PageByline route="/wcag/2-4-2" source={{ label: "W3C: Understanding 2.4.2", href: "https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               The page title is the label on the browser tab, the text saved to a
               bookmark, the headline in search results, and{" "}

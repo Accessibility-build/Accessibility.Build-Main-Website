@@ -4,6 +4,7 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata: Metadata = {
   title: "WCAG 1.2.4 Captions (Live) — Real-Time Captions",
@@ -141,6 +142,7 @@ export default function WCAG124Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.2.4: Captions (Live)
             </h1>
+            <PageByline route="/wcag/1-2-4" source={{ label: "W3C: Understanding 1.2.4", href: "https://www.w3.org/WAI/WCAG22/Understanding/captions-live.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A recorded video can be captioned tomorrow; a live broadcast
               cannot. This criterion closes that gap:{" "}

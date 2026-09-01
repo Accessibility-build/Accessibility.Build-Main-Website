@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.1.3 Unusual Words — Jargon & Idioms Guide",
   description:
-    "WCAG 3.1.3 requires a mechanism for finding definitions of jargon, idioms, and words used in a restricted way. Glossaries, inline definitions, and how to test.",
+    clampDescription("WCAG 3.1.3 requires a mechanism for finding definitions of jargon, idioms, and words used in a restricted way. Glossaries, inline definitions, and how to test."),
   keywords: [
     "WCAG 3.1.3",
     "Unusual Words",
@@ -114,6 +116,7 @@ export default function WCAG313Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.1.3: Unusual Words
             </h1>
+            <PageByline route="/wcag/3-1-3" source={{ label: "W3C: Understanding 3.1.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/unusual-words.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Every field has words outsiders cannot parse — and every language
               has idioms that mean nothing when read literally. This criterion

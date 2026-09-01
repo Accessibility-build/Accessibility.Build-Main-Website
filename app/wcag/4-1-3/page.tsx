@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 4.1.3 Status Messages — ARIA Live Regions Guide",
   description:
-    "Complete guide to WCAG 4.1.3 Status Messages. Learn how to announce form errors, success toasts, search results, and loading states to screen readers with role=\"status\", role=\"alert\", and aria-live — with copy-ready code, testing methods, and common mistakes.",
+    clampDescription("Complete guide to WCAG 4.1.3 Status Messages. Learn how to announce form errors, success toasts, search results, and loading states to screen readers with role=\"status\", role=\"alert\", and aria-live — with copy-ready code, testing methods, and common mistakes."),
   keywords: [
     "WCAG 4.1.3",
     "Status Messages",
@@ -138,7 +141,7 @@ export default function WCAG413Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-06-29"
-        dateModified="2026-06-29"
+        dateModified={getRouteDate("/wcag/4-1-3") ?? "2026-06-29"}
         image="https://accessibility.build/api/og?title=WCAG%204.1.3%20Status%20Messages&section=WCAG"
         url="https://accessibility.build/wcag/4-1-3"
         wordCount={3100}
@@ -224,6 +227,7 @@ export default function WCAG413Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 4.1.3: Status Messages
             </h1>
+            <PageByline route="/wcag/4-1-3" source={{ label: "W3C: Understanding 4.1.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               When something changes &mdash; a form is saved, a search returns
               results, an error appears, an upload finishes &mdash; sighted users

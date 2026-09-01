@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.4.5 Multiple Ways — Find Pages More Than 1 Way",
   description:
-    "Complete guide to WCAG 2.4.5 Multiple Ways. What counts as a 'way' to locate a page, the process exception, pass/fail examples, code samples, and how to test Level AA.",
+    clampDescription("Complete guide to WCAG 2.4.5 Multiple Ways. What counts as a 'way' to locate a page, the process exception, pass/fail examples, code samples, and how to test Level AA."),
   keywords: [
     "WCAG 2.4.5",
     "Multiple Ways",
@@ -113,7 +116,7 @@ export default function WCAG245Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/wcag/2-4-5") ?? "2026-07-09"}
         image="https://accessibility.build/api/og?title=WCAG%202.4.5%20Multiple%20Ways&section=WCAG"
         url="https://accessibility.build/wcag/2-4-5"
         wordCount={2700}
@@ -198,6 +201,7 @@ export default function WCAG245Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.5: Multiple Ways
             </h1>
+            <PageByline route="/wcag/2-4-5" source={{ label: "W3C: Understanding 2.4.5", href: "https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Different people find pages differently. Some drill through menus,
               some scan a sitemap, some type a query into search. This criterion

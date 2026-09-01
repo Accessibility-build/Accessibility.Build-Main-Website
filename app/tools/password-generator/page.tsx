@@ -1,10 +1,11 @@
 import PasswordGenerator from "@/components/tools/password-generator"
 import { ToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata = {
   title: "Password Generator | Strong & Random Passwords",
-  description: "Generate strong, secure, and random passwords with customizable options. Create unbreakable passwords with uppercase, lowercase, numbers, symbols. Free password generator with strength analysis.",
+  description: clampDescription("Generate strong, secure, and random passwords with customizable options. Create unbreakable passwords with uppercase, lowercase, numbers, symbols. Free password generator with strength analysis."),
   keywords: [
     "password generator",
     "strong password generator",

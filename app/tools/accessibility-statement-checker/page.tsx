@@ -6,11 +6,12 @@ import { Badge } from "@/components/ui/badge"
 import { ToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { FaqSection, type FaqItem } from "@/components/seo/faq-section"
 import { RelatedContent } from "@/components/seo/related-content"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Accessibility Statement Checker for UK PSBAR & EAA",
   description:
-    "Check whether an accessibility statement contains what the law requires: compliance status, non-accessible content, feedback route, enforcement body, and review date.",
+    clampDescription("Check whether an accessibility statement contains what the law requires: compliance status, non-accessible content, feedback route, enforcement body, and review date."),
   keywords: [
     "accessibility statement checker",
     "accessibility statement validator",
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
     canonical: "https://accessibility.build/tools/accessibility-statement-checker",
   },
   openGraph: {
+    images: [{ url: "/api/og?title=Accessibility%20Statement%20Checker&section=Tool", width: 1200, height: 630, alt: "Accessibility Statement Checker" }],
     title: "Accessibility Statement Checker: does yours meet the rules?",
     description:
       "Most published accessibility statements are missing mandatory information. Check yours against UK PSBAR, the EU Web Accessibility Directive, or the European Accessibility Act.",
@@ -34,6 +36,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
   },
   twitter: {
+    images: ["/api/og?title=Accessibility%20Statement%20Checker&section=Tool"],
     card: "summary_large_image",
     title: "Accessibility Statement Checker: does yours meet the rules?",
     description:

@@ -25,6 +25,8 @@ import {
 import { RelatedContent } from "@/components/seo/related-content";
 import snapshotData from "@/lib/data/accessibility-snapshot.json";
 import { StateOfAccessibilityClient } from "./StateOfAccessibilityClient";
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 const reportUrl = "https://accessibility.build/research/state-of-accessibility";
 const webaimUrl = "https://webaim.org/projects/million/";
@@ -32,7 +34,7 @@ const webaimUrl = "https://webaim.org/projects/million/";
 export const metadata: Metadata = {
   title: "State of Web Accessibility 2026: Report & Statistics",
   description:
-    "WebAIM Million 2026 found 95.9% of one million homepages had detectable WCAG failures, up from 94.8%. That reverses six years of gradual improvement. Source-linked findings, trend data, and downloadable data.",
+    clampDescription("WebAIM Million 2026 found 95.9% of one million homepages had detectable WCAG failures, up from 94.8%. That reverses six years of gradual improvement. Source-linked findings, trend data, and downloadable data."),
   keywords: [
     "state of web accessibility",
     "accessibility statistics",
@@ -146,7 +148,7 @@ export default function StateOfAccessibilityPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-02-15"
-        dateModified="2026-08-27"
+        dateModified={getRouteDate("/research/state-of-accessibility") ?? "2026-08-27"}
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={2400}

@@ -4,6 +4,7 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata: Metadata = {
   title: "WCAG 2.4.9 Link Purpose (Link Only) — AAA Guide",
@@ -116,6 +117,7 @@ export default function WCAG249Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.9: Link Purpose (Link Only)
             </h1>
+            <PageByline route="/wcag/2-4-9" source={{ label: "W3C: Understanding 2.4.9", href: "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-link-only.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Screen reader users routinely pull up a list of every link on a
               page and read it out of context. This criterion asks that{" "}

@@ -2,11 +2,12 @@ import type { Metadata } from "next"
 import ContrastCheckerClientPage from "./ContrastCheckerClientPage"
 import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Color Contrast Checker | WCAG 2.2 & APCA",
   description:
-    "Test foreground and background colors against WCAG 2.2 contrast requirements, with live previews, accessible suggestions, and an experimental APCA estimate.",
+    clampDescription("Test foreground and background colors against WCAG 2.2 contrast requirements, with live previews, accessible suggestions, and an experimental APCA estimate."),
   keywords: [
     "wcag contrast checker",
     "color contrast checker",

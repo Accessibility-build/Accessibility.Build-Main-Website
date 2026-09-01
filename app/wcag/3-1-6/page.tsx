@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.1.6 Pronunciation — Complete Guide",
   description:
-    "Guide to WCAG 3.1.6 Pronunciation: when ambiguous words need a pronunciation mechanism, ruby annotations, glossaries, audio clips, code examples, and testing.",
+    clampDescription("Guide to WCAG 3.1.6 Pronunciation: when ambiguous words need a pronunciation mechanism, ruby annotations, glossaries, audio clips, code examples, and testing."),
   keywords: [
     "WCAG 3.1.6",
     "Pronunciation",
@@ -118,6 +120,7 @@ export default function WCAG316Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.1.6: Pronunciation
             </h1>
+            <PageByline route="/wcag/3-1-6" source={{ label: "W3C: Understanding 3.1.6", href: "https://www.w3.org/WAI/WCAG22/Understanding/pronunciation.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Read this aloud: &ldquo;The soldier decided to desert in the
               desert.&rdquo; Same letters, two words, two pronunciations — and if you

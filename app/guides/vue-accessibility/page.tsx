@@ -24,6 +24,9 @@ import {
   Braces,
   PanelTop,
 } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "Vue Accessibility Guide"
 const pageDescription =
@@ -31,7 +34,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "vue accessibility",
     "accessible vue components",
@@ -163,6 +166,7 @@ export default function VueAccessibilityGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/vue-accessibility" title={pageTitle} description={pageDescription} datePublished="2026-07-18" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -208,11 +212,12 @@ export default function VueAccessibilityGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Implementation Guide &bull; Updated July 2026
+                Implementation Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Vue Accessibility: The Complete WCAG 2.2 Guide
               </h1>
+              <PageByline route="/guides/vue-accessibility" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Vue is accessible when you build it that way. This guide covers
                 the patterns that actually trip Vue 3 apps up: semantic
@@ -696,7 +701,7 @@ watch(open, async (isOpen) => {
                 <code>aria-labelledby</code>, and Escape-to-close yourself. For
                 production dialogs, headless libraries like{" "}
                 <a
-                  href="https://headlessui.com/vue/dialog"
+                  href="https://headlessui.com/v1/vue/dialog"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 dark:text-blue-400 hover:underline"

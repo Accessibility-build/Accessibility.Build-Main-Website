@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.2.2 On Input — Predictable Form Controls",
   description:
-    "Complete guide to WCAG 3.2.2 On Input. Why changing a setting must not auto-navigate or submit, the advance-warning exception, select onchange fixes, and how to test.",
+    clampDescription("Complete guide to WCAG 3.2.2 On Input. Why changing a setting must not auto-navigate or submit, the advance-warning exception, select onchange fixes, and how to test."),
   keywords: [
     "WCAG 3.2.2",
     "On Input",
@@ -131,6 +133,7 @@ export default function WCAG322Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.2.2: On Input
             </h1>
+            <PageByline route="/wcag/3-2-2" source={{ label: "W3C: Understanding 3.2.2", href: "https://www.w3.org/WAI/WCAG22/Understanding/on-input.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Choosing an option from a dropdown should not teleport you to another
               page. This criterion requires that{" "}

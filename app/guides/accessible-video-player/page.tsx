@@ -24,6 +24,9 @@ import {
   AlertTriangle,
   Sparkles,
 } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "Accessible Video Player Guide: Captions & Transcripts"
 const pageDescription =
@@ -31,7 +34,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "accessible video player",
     "accessible media",
@@ -176,6 +179,7 @@ export default function AccessibleVideoPlayerGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/accessible-video-player" title={pageTitle} description={pageDescription} datePublished="2026-08-01" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -221,11 +225,12 @@ export default function AccessibleVideoPlayerGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Time-based Media &amp; WCAG Guide &bull; Updated August 2026
+                Time-based Media &amp; WCAG Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Video &amp; Media Players
               </h1>
+              <PageByline route="/guides/accessible-video-player" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A single video can fail three different groups at once — deaf
                 viewers who cannot hear it, blind viewers who cannot see it, and

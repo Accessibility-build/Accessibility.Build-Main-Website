@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.5.6 Concurrent Input Mechanisms Guide",
   description:
-    "WCAG 2.5.6 says content must not restrict which input methods users can use — touch, keyboard, mouse, or stylus, in any combination. Failures, fixes, and testing.",
+    clampDescription("WCAG 2.5.6 says content must not restrict which input methods users can use — touch, keyboard, mouse, or stylus, in any combination. Failures, fixes, and testing."),
   keywords: [
     "WCAG 2.5.6",
     "Concurrent Input Mechanisms",
@@ -118,6 +120,7 @@ export default function WCAG256Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.5.6: Concurrent Input Mechanisms
             </h1>
+            <PageByline route="/wcag/2-5-6" source={{ label: "W3C: Understanding 2.5.6", href: "https://www.w3.org/WAI/WCAG22/Understanding/concurrent-input-mechanisms.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               People do not use one input method — they use whichever works
               for them, moment to moment: touch, then keyboard, then stylus,

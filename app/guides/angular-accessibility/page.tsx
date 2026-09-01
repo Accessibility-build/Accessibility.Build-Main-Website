@@ -24,6 +24,9 @@ import {
   Braces,
   Radio,
 } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "Angular Accessibility Guide"
 const pageDescription =
@@ -31,7 +34,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "angular accessibility",
     "accessible angular components",
@@ -162,6 +165,7 @@ export default function AngularAccessibilityGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/angular-accessibility" title={pageTitle} description={pageDescription} datePublished="2026-07-18" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -207,11 +211,12 @@ export default function AngularAccessibilityGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Implementation Guide &bull; Updated July 2026
+                Implementation Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Angular Accessibility: The Complete WCAG 2.2 Guide
               </h1>
+              <PageByline route="/guides/angular-accessibility" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Angular is accessible when you build it that way — and it ships a
                 dedicated toolkit to help. This guide covers the patterns that

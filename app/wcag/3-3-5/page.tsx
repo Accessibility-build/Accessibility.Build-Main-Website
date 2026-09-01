@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.3.5 Help — Context-Sensitive Help Guide",
   description:
-    "Guide to WCAG 3.3.5 Help: providing context-sensitive help for forms — field-level instructions, help links, and assistants — with code, examples, and testing.",
+    clampDescription("Guide to WCAG 3.3.5 Help: providing context-sensitive help for forms — field-level instructions, help links, and assistants — with code, examples, and testing."),
   keywords: [
     "WCAG 3.3.5",
     "Help",
@@ -118,6 +120,7 @@ export default function WCAG335Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.3.5: Help
             </h1>
+            <PageByline route="/wcag/3-3-5" source={{ label: "W3C: Understanding 3.3.5", href: "https://www.w3.org/WAI/WCAG22/Understanding/help.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A label tells you a field is called &ldquo;Policy number.&rdquo; It does
               not tell you where on earth to find your policy number. This criterion

@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.4.12 Focus Not Obscured (Enhanced) Guide",
   description:
-    "WCAG 2.4.12 requires that no part of a focused element is hidden by author content. How it strengthens 2.4.11, sticky header fixes with scroll-padding, and testing.",
+    clampDescription("WCAG 2.4.12 requires that no part of a focused element is hidden by author content. How it strengthens 2.4.11, sticky header fixes with scroll-padding, and testing."),
   keywords: [
     "WCAG 2.4.12",
     "Focus Not Obscured Enhanced",
@@ -119,6 +121,7 @@ export default function WCAG2412Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.12: Focus Not Obscured (Enhanced)
             </h1>
+            <PageByline route="/wcag/2-4-12" source={{ label: "W3C: Understanding 2.4.12", href: "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-enhanced.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A keyboard user&rsquo;s only sense of &ldquo;where am I?&rdquo;
               is the focused element. This criterion — the strict AAA sibling

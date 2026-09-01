@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { FAQStructuredData } from "@/components/seo/structured-data"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.2.6 Timeouts — Warn Users About Data Loss",
   description:
-    "WCAG 2.2.6 Timeouts explained: warn users how long inactivity can last before data is lost, unless data is preserved over 20 hours. Patterns, wording, testing.",
+    clampDescription("WCAG 2.2.6 Timeouts explained: warn users how long inactivity can last before data is lost, unless data is preserved over 20 hours. Patterns, wording, testing."),
   keywords: [
     "WCAG 2.2.6",
     "Timeouts",
@@ -123,6 +125,7 @@ export default function WCAG226Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.2.6: Timeouts
             </h1>
+            <PageByline route="/wcag/2-2-6" source={{ label: "W3C: Understanding 2.2.6", href: "https://www.w3.org/WAI/WCAG22/Understanding/timeouts.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Inactivity timeouts are invisible until they strike. A user pauses to
               find a document, help a child, or rest — and returns to a cleared form.

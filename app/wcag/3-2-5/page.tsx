@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.2.5 Change on Request — Complete Guide",
   description:
-    "Guide to WCAG 3.2.5 Change on Request: context changes only when users ask — no auto-redirects, auto-refresh, or surprise popups. Examples, code, and testing.",
+    clampDescription("Guide to WCAG 3.2.5 Change on Request: context changes only when users ask — no auto-redirects, auto-refresh, or surprise popups. Examples, code, and testing."),
   keywords: [
     "WCAG 3.2.5",
     "Change on Request",
@@ -118,6 +120,7 @@ export default function WCAG325Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.2.5: Change on Request
             </h1>
+            <PageByline route="/wcag/3-2-5" source={{ label: "W3C: Understanding 3.2.5", href: "https://www.w3.org/WAI/WCAG22/Understanding/change-on-request.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Nothing disorients a user faster than a page that acts on its own — a
               redirect mid-read, a popup stealing focus, a form that submits because

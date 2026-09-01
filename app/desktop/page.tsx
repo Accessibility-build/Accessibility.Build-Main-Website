@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "macOS Accessibility App — Contrast, Capture, Colorblind Lens",
   description:
-    "A free menu-bar app for designers and developers: pick any two colors on screen for WCAG + APCA contrast verdicts, capture and annotate issues mapped to WCAG criteria, and view your screen through color-blindness simulation. Everything runs locally.",
+    clampDescription("A free menu-bar app for designers and developers: pick any two colors on screen for WCAG + APCA contrast verdicts, capture and annotate issues mapped to WCAG criteria, and view your screen through color-blindness simulation. Everything runs locally."),
   alternates: { canonical: "https://accessibility.build/desktop" },
 };
 

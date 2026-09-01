@@ -5,11 +5,12 @@ import Link from "next/link"
 import { Shield, Search, Zap, Eye, CheckCircle, AlertTriangle, Star, Globe, ArrowRight } from "lucide-react"
 import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Accessibility Overlay Detector | Scan Any Site",
   description:
-    "Detect if any website uses an accessibility overlay widget like accessiBe, UserWay, AudioEye, or EqualWeb. See the vendor, scan for real WCAG violations the overlay fails to fix, and get expert recommendations.",
+    clampDescription("Detect if any website uses an accessibility overlay widget like accessiBe, UserWay, AudioEye, or EqualWeb. See the vendor, scan for real WCAG violations the overlay fails to fix, and get expert recommendations."),
   keywords: [
     "accessibility overlay detector",
     "accessibe detector",
@@ -134,25 +135,6 @@ export default function OverlayDetectorPage() {
         }}
       />
 
-      {/* HowTo Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "HowTo",
-            "name": "How to Detect Accessibility Overlays on Any Website",
-            "description": "Use the free Accessibility Overlay Detector to check if a website uses an overlay widget and see real WCAG violations.",
-            "step": [
-              { "@type": "HowToStep", "name": "Enter Website URL", "text": "Type or paste the URL of any website you want to check for accessibility overlays.", "position": 1 },
-              { "@type": "HowToStep", "name": "Scan for Overlays", "text": "Our tool loads the page in a real browser, detects overlay vendor scripts and widgets, then runs a full WCAG 2.2 AA audit using axe-core.", "position": 2 },
-              { "@type": "HowToStep", "name": "Review Results", "text": "See which overlay vendor was detected, view real accessibility violations the overlay fails to fix, and get recommendations for proper remediation.", "position": 3 }
-            ],
-            "tool": { "@type": "HowToTool", "name": "Accessibility.build Overlay Detector" },
-            "totalTime": "PT30S"
-          }),
-        }}
-      />
 
       <div className="min-h-screen bg-gradient-to-br from-amber-50/50 via-background to-red-50/50 dark:from-amber-950/10 dark:via-background dark:to-red-950/10">
         {/* Hero Section */}

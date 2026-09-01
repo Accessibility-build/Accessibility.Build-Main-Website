@@ -4,11 +4,13 @@ import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/se
 import { RelatedContent } from "@/components/seo/related-content"
 import { lawsuitSummary } from "@/lib/data/lawsuit-statistics"
 import { LawsuitTrackerClient } from "./LawsuitTrackerClient"
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Accessibility Lawsuit Tracker 2026: ADA Litigation Data",
   description:
-    "Source-linked data on U.S. website accessibility lawsuits: 21,550 identified federal filings from 2018-2025, 3,117 in 2025, state trends, reported costs, methodology, and 2026 legal updates.",
+    clampDescription("Source-linked data on U.S. website accessibility lawsuits: 21,550 identified federal filings from 2018-2025, 3,117 in 2025, state trends, reported costs, methodology, and 2026 legal updates."),
   keywords: [
     "accessibility lawsuits",
     "ada lawsuit tracker",
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
     canonical: "https://accessibility.build/research/accessibility-lawsuits",
   },
   openGraph: {
+    images: [{ url: "/api/og?title=Accessibility%20Lawsuit%20Tracker%202026&section=Research", width: 1200, height: 630, alt: "Accessibility Lawsuit Tracker 2026" }],
     title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
     description:
       "Source-linked federal website-accessibility lawsuit data through 2025, plus state trends, reported costs, methodology, and 2026 legal updates.",
@@ -35,6 +38,7 @@ export const metadata: Metadata = {
     type: "article",
   },
   twitter: {
+    images: ["/api/og?title=Accessibility%20Lawsuit%20Tracker%202026&section=Research"],
     card: "summary_large_image",
     title: "Accessibility Lawsuit Tracker 2026",
     description:
@@ -69,7 +73,7 @@ export default function AccessibilityLawsuitsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-01-15"
-        dateModified="2026-08-27"
+        dateModified={getRouteDate("/research/accessibility-lawsuits") ?? "2026-08-27"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-lawsuits"
         wordCount={3500}

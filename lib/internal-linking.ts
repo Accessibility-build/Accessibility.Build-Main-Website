@@ -585,11 +585,35 @@ const ALL_LINKS: InternalLink[] = [
   ...MORE_LINKS,
 ]
 
+const STOPWORDS = new Set([
+  "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "how", "in",
+  "is", "it", "of", "on", "or", "that", "the", "this", "to", "use", "using",
+  "with", "your", "you", "we", "our", "all", "can", "not", "into", "than",
+])
+
+function tokenize(text: string): string[] {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9.\s-]/g, " ")
+    .split(/\s+/)
+    .map((t) => t.replace(/^[.-]+|[.-]+$/g, ""))
+    .filter((t) => t.length >= 3 && !STOPWORDS.has(t))
+}
+
 /**
- * Get related internal links for content
+ * Get related internal links for content.
+ *
+ * Scoring is whole-word: a link keyword matches only when every one of its
+ * words appears in the content (as a word, not a substring). Multi-word
+ * keywords score more than single words, and a keyword that appears in the
+ * content as an exact phrase scores more again. The previous version used
+ * `includes()` in both directions on space-split tokens, so the substring
+ * "accessible" matched almost every page and the top results were noise.
  */
 export function getRelatedLinks(content: string, maxResults: number = 5, excludeUrl?: string): ContentMatch[] {
-  const contentKeywords = content.toLowerCase().split(' ')
+  const normalizedContent = ` ${content.toLowerCase().replace(/[^a-z0-9.\s-]/g, " ").replace(/\s+/g, " ")} `
+  const contentTokens = new Set(tokenize(content))
+  if (contentTokens.size === 0) return []
   const matches: ContentMatch[] = []
 
   ALL_LINKS.forEach(link => {
@@ -598,28 +622,32 @@ export function getRelatedLinks(content: string, maxResults: number = 5, exclude
 
     let score = 0
     const matchedKeywords: string[] = []
-    
-    // Check for keyword matches
-    contentKeywords.forEach(keyword => {
-      link.keywords.forEach(linkKeyword => {
-        if (keyword.includes(linkKeyword) || linkKeyword.includes(keyword)) {
-          score += 2
-          if (!matchedKeywords.includes(linkKeyword)) {
-            matchedKeywords.push(linkKeyword)
-          }
-        }
-      })
+
+    link.keywords.forEach(linkKeyword => {
+      const words = tokenize(linkKeyword)
+      if (words.length === 0) return
+      const allWordsPresent = words.every((w) => contentTokens.has(w))
+      if (!allWordsPresent) return
+      const phrase = ` ${linkKeyword.toLowerCase().trim()} `
+      const exactPhrase = words.length > 1 && normalizedContent.includes(phrase)
+      // 1 word: 2 points. 2+ words all present: 3. Exact phrase: 5.
+      score += exactPhrase ? 5 : words.length > 1 ? 3 : 2
+      if (!matchedKeywords.includes(linkKeyword)) matchedKeywords.push(linkKeyword)
     })
-    
+
+    // A title match is a strong signal that the pages are about the same thing.
+    const titleWords = tokenize(link.title)
+    if (titleWords.length > 0 && titleWords.every((w) => contentTokens.has(w))) score += 3
+
     if (score > 0) {
       matches.push({
         link,
-        relevanceScore: score,
+        relevanceScore: score + (link.priority ?? 0) / 10,
         matchedKeywords
       })
     }
   })
-  
+
   return matches
     .sort((a, b) => b.relevanceScore - a.relevanceScore)
     .slice(0, maxResults)

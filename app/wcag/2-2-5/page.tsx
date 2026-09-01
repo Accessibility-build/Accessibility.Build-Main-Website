@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { FAQStructuredData } from "@/components/seo/structured-data"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.2.5 Re-authenticating — No Data Loss on Login",
   description:
-    "WCAG 2.2.5 Re-authenticating explained: when a session expires, users must be able to continue without losing data after logging back in. Patterns and testing.",
+    clampDescription("WCAG 2.2.5 Re-authenticating explained: when a session expires, users must be able to continue without losing data after logging back in. Patterns and testing."),
   keywords: [
     "WCAG 2.2.5",
     "Re-authenticating",
@@ -123,6 +125,7 @@ export default function WCAG225Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.2.5: Re-authenticating
             </h1>
+            <PageByline route="/wcag/2-2-5" source={{ label: "W3C: Understanding 2.2.5", href: "https://www.w3.org/WAI/WCAG22/Understanding/re-authenticating.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               You spend forty minutes on a form. The session expires. You log back in
               — and everything is gone. That experience is exactly what this

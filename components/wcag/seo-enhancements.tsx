@@ -67,6 +67,12 @@ function getStableDates(criteria: string, providedPublished?: string, providedMo
   };
 }
 
+// JSON-LD sits inside a <script> element, so a literal "</script>" or "<h1>"
+// in an FAQ answer must be escaped or it is parsed as markup.
+function serialize(schema: unknown): string {
+  return JSON.stringify(schema).replace(/</g, "\\u003c")
+}
+
 export default function WCAGSEOEnhancements({
   title,
   description,
@@ -104,16 +110,17 @@ export default function WCAGSEOEnhancements({
     "name": title,
     "description": description,
     "author": {
-      // A named human is a Person, not an Organization.
+      // References the site-wide founder node emitted by app/layout.tsx on
+      // every page, so all 86 criterion pages share one author entity.
       "@type": "Person",
-      "@id": "https://accessibility.build/#person",
+      "@id": "https://accessibility.build/#founder",
       "name": author,
-      "url": "https://accessibility.build/about"
+      "url": "https://accessibility.build/authors/khushwant-parihar"
     },
     "publisher": {
       "@type": "Organization",
       "@id": "https://accessibility.build/#organization",
-      "name": "Accessibility Build",
+      "name": "Accessibility.build",
       "logo": {
         "@type": "ImageObject",
         "url": "https://accessibility.build/android-chrome-512x512.png",
@@ -192,11 +199,12 @@ export default function WCAGSEOEnhancements({
     "copyrightYear": Number(publishDate.slice(0, 4)),
     "copyrightHolder": {
       "@type": "Organization",
-      "name": "Accessibility Build"
+      "@id": "https://accessibility.build/#organization",
+      "name": "Accessibility.build"
     }
   };
 
-  // Enhanced WebPage Schema with speakable for voice search
+  // WebPage schema
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -216,39 +224,10 @@ export default function WCAGSEOEnhancements({
     "mainEntity": {
       "@id": `${url}#article`
     },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://accessibility.build"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "WCAG 2.2 Checklist",
-          "item": "https://accessibility.build/wcag"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": principle,
-          "item": `https://accessibility.build/wcag#${principle.toLowerCase()}`
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "name": `WCAG ${criteria}`,
-          "item": url
-        }
-      ]
-    },
-    "speakable": {
-      "@type": "SpeakableSpecification",
-      "cssSelector": ["h1", ".summary", ".key-requirements", ".testing-methods"]
-    },
+    // No embedded BreadcrumbList here: every criterion page already renders
+    // its own BreadcrumbStructuredData, and two conflicting trails on one page
+    // is worse than one. SpeakableSpecification was also dropped (it is a
+    // news-article feature, and the selectors it named did not exist).
     "lastReviewed": modifiedDate,
     "reviewedBy": {
       "@type": "Organization",
@@ -303,20 +282,20 @@ export default function WCAGSEOEnhancements({
       {/* TechArticle Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: serialize(articleSchema) }}
       />
 
-      {/* WebPage Schema with Speakable */}
+      {/* WebPage Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+        dangerouslySetInnerHTML={{ __html: serialize(webPageSchema) }}
       />
 
       {/* FAQ Schema - only when the page passes its real, visible FAQs */}
       {faqSchema && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          dangerouslySetInnerHTML={{ __html: serialize(faqSchema) }}
         />
       )}
 
@@ -324,7 +303,7 @@ export default function WCAGSEOEnhancements({
       {relatedContentSchema && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(relatedContentSchema) }}
+          dangerouslySetInnerHTML={{ __html: serialize(relatedContentSchema) }}
         />
       )}
     </>

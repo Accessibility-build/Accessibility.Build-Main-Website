@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
 
 const ogTitle = encodeURIComponent("How to Write an Accessibility Statement (2026 Guide)")
 
@@ -101,6 +103,7 @@ export default function HowToWriteAccessibilityStatementPage() {
           },
         ]}
       />
+      <GuideArticleSchema route="/guides/how-to-write-an-accessibility-statement" title="How to Write an Accessibility Statement (2026 Guide)" description="Who must publish an accessibility statement under PSBAR, the EU directive, and the EAA, what every good statement contains, and a free generator." datePublished="2026-08-27" />
       <FAQStructuredData faqs={faqs} />
 
       {/* Breadcrumb Navigation */}
@@ -141,6 +144,7 @@ export default function HowToWriteAccessibilityStatementPage() {
                 Accessibility Statement
               </span>
             </h1>
+            <PageByline route="/guides/how-to-write-an-accessibility-statement" className="mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               Three different legal regimes ask for three different documents, and most guides
               blur them together. This one keeps the UK&apos;s PSBAR model statement, the EU Web

@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { FAQStructuredData } from "@/components/seo/structured-data"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.1.3 Keyboard (No Exception) — Full Keyboard Use",
   description:
-    "WCAG 2.1.3 Keyboard (No Exception) explained: every function must work from a keyboard, with no path-based exception. Examples, code, testing steps, and FAQs.",
+    clampDescription("WCAG 2.1.3 Keyboard (No Exception) explained: every function must work from a keyboard, with no path-based exception. Examples, code, testing steps, and FAQs."),
   keywords: [
     "WCAG 2.1.3",
     "Keyboard No Exception",
@@ -123,6 +125,7 @@ export default function WCAG213Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.1.3: Keyboard (No Exception)
             </h1>
+            <PageByline route="/wcag/2-1-3" source={{ label: "W3C: Understanding 2.1.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/keyboard-no-exception.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               The Level A keyboard rule, 2.1.1, has exactly one escape hatch:
               functionality that depends on the <em>path</em> of the user&rsquo;s

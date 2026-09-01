@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { getBlogPosts, getBlogCategories } from "@/lib/sanity"
 import BlogClientPage from "./BlogClientPage"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
+import { clampDescription } from "@/lib/metadata"
 
 // Revalidate the blog index every 5 minutes so newly published Sanity posts
 // appear promptly (24h was too slow for a CMS-driven blog).
@@ -10,11 +11,12 @@ export const revalidate = 300
 export const metadata: Metadata = {
   title: "Accessibility Blog: WCAG Guides & Best Practices",
   description:
-    "Explore articles, guides, and tutorials that break down web accessibility concepts into practical steps. Stay informed about best practices and WCAG updates.",
+    clampDescription("Explore articles, guides, and tutorials that break down web accessibility concepts into practical steps. Stay informed about best practices and WCAG updates."),
   alternates: {
     canonical: "https://accessibility.build/blog",
   },
   openGraph: {
+    images: [{ url: "/api/og?title=Accessibility%20Blog&section=Blog", width: 1200, height: 630, alt: "Accessibility Blog" }],
     title: "Accessibility Blog | Accessibility.build",
     description: "Explore articles, guides, and tutorials that break down web accessibility concepts into practical steps. Stay informed about best practices and WCAG updates.",
     url: "https://accessibility.build/blog",
@@ -22,6 +24,7 @@ export const metadata: Metadata = {
     siteName: "Accessibility.build",
   },
   twitter: {
+    images: ["/api/og?title=Accessibility%20Blog&section=Blog"],
     card: "summary_large_image",
     title: "Accessibility Blog | Accessibility.build",
     description: "Explore articles, guides, and tutorials that break down web accessibility concepts into practical steps.",

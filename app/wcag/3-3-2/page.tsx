@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.3.2 Labels or Instructions — Form Labels Guide",
   description:
-    "Complete guide to WCAG 3.3.2 Labels or Instructions. Learn how to label every form field, the four ways to associate a label, why placeholders are not labels, required-field and format hints, code examples, testing methods, and common mistakes.",
+    clampDescription("Complete guide to WCAG 3.3.2 Labels or Instructions. Learn how to label every form field, the four ways to associate a label, why placeholders are not labels, required-field and format hints, code examples, testing methods, and common mistakes."),
   keywords: [
     "WCAG 3.3.2",
     "Labels or Instructions",
@@ -135,7 +138,7 @@ export default function WCAG332Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-06-25"
-        dateModified="2026-06-25"
+        dateModified={getRouteDate("/wcag/3-3-2") ?? "2026-06-25"}
         image="https://accessibility.build/api/og?title=WCAG%203.3.2%20Labels%20or%20Instructions&section=WCAG"
         url="https://accessibility.build/wcag/3-3-2"
         wordCount={2700}
@@ -221,6 +224,7 @@ export default function WCAG332Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.3.2: Labels or Instructions
             </h1>
+            <PageByline route="/wcag/3-3-2" source={{ label: "W3C: Understanding 3.3.2", href: "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Whenever content requires user input, provide{" "}
               <strong className="text-slate-900 dark:text-white">

@@ -6,11 +6,12 @@ import { FaqSection, type FaqItem } from "@/components/seo/faq-section"
 import { RelatedContent } from "@/components/seo/related-content"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, Upload, FileSpreadsheet, CheckCircle } from "lucide-react"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Accessibility Report Generator | PDF & Excel",
   description:
-    "Generate professional accessibility audit reports in PDF, Excel, HTML, or Markdown format. Import violation data or create reports manually with our free report generator.",
+    clampDescription("Generate professional accessibility audit reports in PDF, Excel, HTML, or Markdown format. Import violation data or create reports manually with our free report generator."),
   keywords: [
     "accessibility report generator",
     "accessibility audit report",

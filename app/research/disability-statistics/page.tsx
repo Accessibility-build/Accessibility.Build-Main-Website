@@ -18,6 +18,8 @@ import {
 } from "@/components/research/report-hero";
 import disabilityData from "@/lib/data/disability-statistics.json";
 import { DisabilityStatisticsClient } from "./DisabilityStatisticsClient";
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 const reportUrl = "https://accessibility.build/research/disability-statistics";
 const pageTitle = "US Disability Prevalence";
@@ -25,7 +27,7 @@ const pageTitle = "US Disability Prevalence";
 export const metadata: Metadata = {
   title: "Disability Statistics 2026: How Many Have a Disability",
   description:
-    "28.7% of US adults, about 73.4 million people, report a disability. Prevalence by type (cognitive, mobility, independent living, hearing, vision, self-care) plus the 2016 to 2022 trend, from CDC BRFSS data.",
+    clampDescription("28.7% of US adults, about 73.4 million people, report a disability. Prevalence by type (cognitive, mobility, independent living, hearing, vision, self-care) plus the 2016 to 2022 trend, from CDC BRFSS data."),
   keywords: [
     "disability statistics",
     "how many people have a disability",
@@ -139,7 +141,7 @@ export default function DisabilityStatisticsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-27"
+        dateModified={getRouteDate("/research/disability-statistics") ?? "2026-08-27"}
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1700}

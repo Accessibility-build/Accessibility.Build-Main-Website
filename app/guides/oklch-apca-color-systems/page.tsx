@@ -20,11 +20,14 @@ import {
   Sparkles,
   TrendingUp,
 } from "lucide-react"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "OKLCH + APCA Color Systems for Accessible Design Systems",
   description:
-    "A complete guide to building WCAG 2.2 + APCA-aware color systems in OKLCH. Why perceptual lightness matters, how APCA differs from WCAG ratios, how to design 11-stop scales that hold up under color-blindness, and how to export tokens to Tailwind, Figma, iOS, and Android.",
+    clampDescription("A complete guide to building WCAG 2.2 + APCA-aware color systems in OKLCH. Why perceptual lightness matters, how APCA differs from WCAG ratios, how to design 11-stop scales that hold up under color-blindness, and how to export tokens to Tailwind, Figma, iOS, and Android."),
   keywords: [
     "OKLCH color system",
     "APCA color contrast",
@@ -163,7 +166,7 @@ export default function OklchApcaColorSystemsGuidePage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-05-23"
-        dateModified="2026-05-23"
+        dateModified={getRouteDate("/guides/oklch-apca-color-systems") ?? "2026-05-23"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/oklch-apca-color-systems"
         wordCount={2600}
@@ -191,6 +194,7 @@ export default function OklchApcaColorSystemsGuidePage() {
               <h1 className="text-4xl font-bold tracking-tight text-slate-950 dark:text-white md:text-6xl">
                 OKLCH + APCA color systems, end to end
               </h1>
+              <PageByline route="/guides/oklch-apca-color-systems" className="mb-5" />
               <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl">
                 The complete blueprint for shipping a color system that's
                 perceptually consistent, accessible under both WCAG 2.2 and the
@@ -211,7 +215,7 @@ export default function OklchApcaColorSystemsGuidePage() {
                 </Button>
               </div>
               <p className="mt-4 text-xs text-slate-500 dark:text-slate-400">
-                ~12 min read · Updated May 2026
+                ~12 min read
               </p>
             </div>
           </div>

@@ -8,6 +8,9 @@ import { RelatedContent } from "@/components/seo/related-content"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ShieldCheck, ListChecks } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "Mobile Accessibility Guide"
 const pageDescription =
@@ -15,7 +18,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "mobile accessibility",
     "mobile app accessibility",
@@ -158,6 +161,7 @@ export default function MobileAccessibilityGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/mobile-accessibility" title={pageTitle} description={pageDescription} datePublished="2026-08-05" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -203,11 +207,12 @@ export default function MobileAccessibilityGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Implementation Guide &bull; Updated August 2026
+                Implementation Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Mobile Accessibility: iOS, Android &amp; Mobile Web
               </h1>
+              <PageByline route="/guides/mobile-accessibility" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Mobile accessibility is not desktop accessibility on a small
                 screen, and it is not just &ldquo;turn on a screen

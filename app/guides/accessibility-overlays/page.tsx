@@ -22,12 +22,15 @@ import {
   Gavel,
   ArrowRight,
 } from "lucide-react"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title:
     "Accessibility Overlays: Why They Fail & What To Do Instead",
   description:
-    "Learn why accessibility overlays like accessiBe, UserWay, and AudioEye don't work. Understand the legal risks, technical limitations, and better alternatives for WCAG compliance.",
+    clampDescription("Learn why accessibility overlays like accessiBe, UserWay, and AudioEye don't work. Understand the legal risks, technical limitations, and better alternatives for WCAG compliance."),
   keywords: [
     "accessibility overlay",
     "accessibe alternative",
@@ -134,7 +137,7 @@ export default function AccessibilityOverlaysGuidePage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2025-03-30"
-        dateModified="2025-03-30"
+        dateModified={getRouteDate("/guides/accessibility-overlays") ?? "2025-03-30"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/accessibility-overlays"
         wordCount={2500}
@@ -215,12 +218,13 @@ export default function AccessibilityOverlaysGuidePage() {
                 variant="secondary"
                 className="mb-4 text-sm px-3 py-1"
               >
-                Expert Guide &bull; Updated March 2025
+                Expert Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessibility Overlays: What They Are, Why They Fail, and What
                 To Do Instead
               </h1>
+              <PageByline route="/guides/accessibility-overlays" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Accessibility overlay widgets promise one-click WCAG compliance,
                 but the reality is far more complicated. This guide explains

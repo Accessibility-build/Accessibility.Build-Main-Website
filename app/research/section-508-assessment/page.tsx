@@ -18,6 +18,8 @@ import {
 } from "@/components/research/report-hero";
 import assessmentData from "@/lib/data/section-508-assessment.json";
 import { Section508Client } from "./Section508Client";
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 const reportUrl =
   "https://accessibility.build/research/section-508-assessment";
@@ -26,7 +28,7 @@ const pageTitle = "Section 508 Assessment: How Federal Agencies Scored";
 export const metadata: Metadata = {
   title: "Section 508 Assessment FY2025 | Federal Agency Scorecard",
   description:
-    "58% of US federal agencies scored Low or Very Low on accessibility conformance, and 62% scored that low on testing and remediation. Full FY2025 governmentwide Section 508 assessment data for all 60 agencies.",
+    clampDescription("58% of US federal agencies scored Low or Very Low on accessibility conformance, and 62% scored that low on testing and remediation. Full FY2025 governmentwide Section 508 assessment data for all 60 agencies."),
   keywords: [
     "Section 508 assessment",
     "federal agency accessibility",
@@ -147,7 +149,7 @@ export default function Section508AssessmentPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-27"
+        dateModified={getRouteDate("/research/section-508-assessment") ?? "2026-08-27"}
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1800}

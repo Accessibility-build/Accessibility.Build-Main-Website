@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from '@/components/seo/structured-data'
 import WCAGSEOEnhancements from '@/components/wcag/seo-enhancements'
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import ShortcutDemo from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata: Metadata = {
   title: 'WCAG 2.1.4 Character Key Shortcuts - Interactive Demo',
@@ -168,6 +169,7 @@ export default function WCAG214Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.1.4: Character Key Shortcuts
             </h1>
+            <PageByline route="/wcag/2-1-4" source={{ label: "W3C: Understanding 2.1.4", href: "https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A shortcut that fires on a bare{" "}
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-lg">

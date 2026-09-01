@@ -6,13 +6,16 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "Section 508 Compliance: Requirements & VPAT Guide"
 
 export const metadata: Metadata = {
   title: pageTitle,
   description:
-    "Who must comply with Section 508, what the 2017 refresh requires (WCAG 2.0 AA), how VPATs and ACRs work, Trusted Tester testing, and how 508 differs from the ADA.",
+    clampDescription("Who must comply with Section 508, what the 2017 refresh requires (WCAG 2.0 AA), how VPATs and ACRs work, Trusted Tester testing, and how 508 differs from the ADA."),
   keywords: [
     "section 508 compliance",
     "section 508 requirements",
@@ -185,7 +188,7 @@ export default function Section508CompliancePage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/compliance/section-508") ?? "2026-07-09"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/compliance/section-508"
         wordCount={2500}
@@ -230,11 +233,12 @@ export default function Section508CompliancePage() {
           <header className="mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950/40 text-blue-800 dark:text-blue-200 text-xs font-semibold uppercase tracking-wide mb-5">
               <span aria-hidden="true">●</span>
-              Compliance Guide · Updated July 2026
+              Compliance Guide
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               Section 508 Compliance: Requirements, VPATs, and Testing
             </h1>
+            <PageByline route="/compliance/section-508" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Section 508 of the Rehabilitation Act requires US federal
               agencies to make their information and communications technology

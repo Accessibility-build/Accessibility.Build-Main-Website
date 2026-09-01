@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.4.7 Low or No Background Audio — AAA Guide",
   description:
-    "WCAG 1.4.7 requires speech audio with no background sound, a turn-off option, or background at least 20 dB quieter. Scope, exceptions, examples, and testing.",
+    clampDescription("WCAG 1.4.7 requires speech audio with no background sound, a turn-off option, or background at least 20 dB quieter. Scope, exceptions, examples, and testing."),
   keywords: [
     "WCAG 1.4.7",
     "Low or No Background Audio",
@@ -110,6 +112,7 @@ export default function WCAG147Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.4.7: Low or No Background Audio
             </h1>
+            <PageByline route="/wcag/1-4-7" source={{ label: "W3C: Understanding 1.4.7", href: "https://www.w3.org/WAI/WCAG22/Understanding/low-or-no-background-audio.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A music bed that sounds &ldquo;subtle&rdquo; to a hearing producer can bury
               every consonant for a hard-of-hearing listener. For prerecorded speech

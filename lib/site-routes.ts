@@ -32,18 +32,18 @@ export interface SiteRoute {
 }
 
 const core: SiteRoute[] = [
-  { route: "", label: "Home", group: "Core", lastModified: "2026-07-09", priority: 1.0, changeFrequency: "weekly" },
-  { route: "/pricing", label: "Pricing", group: "Core", lastModified: "2026-03-06", priority: 0.9 },
-  { route: "/faq", label: "FAQ", group: "Core", lastModified: "2025-11-25", priority: 0.91, changeFrequency: "weekly" },
-  { route: "/about", label: "About Accessibility.build", group: "Core", lastModified: "2026-07-12", priority: 0.88 },
-  { route: "/contact", label: "Contact", group: "Core", lastModified: "2026-07-12", priority: 0.82 },
-  { route: "/trust", label: "Trust Centre", group: "Core", lastModified: "2026-07-12", priority: 0.78 },
+  { route: "", label: "Home", group: "Core", lastModified: "2026-09-02", priority: 1.0, changeFrequency: "weekly" },
+  { route: "/pricing", label: "Pricing", group: "Core", lastModified: "2026-09-01", priority: 0.9 },
+  { route: "/faq", label: "FAQ", group: "Core", lastModified: "2026-09-02", priority: 0.91, changeFrequency: "weekly" },
+  { route: "/about", label: "About Accessibility.build", group: "Core", lastModified: "2026-07-28", priority: 0.88 },
+  { route: "/contact", label: "Contact", group: "Core", lastModified: "2026-08-13", priority: 0.82 },
+  { route: "/trust", label: "Trust Centre", group: "Core", lastModified: "2026-09-02", priority: 0.78 },
   { route: "/methodology", label: "Audit Methodology", group: "Core", lastModified: "2026-07-12", priority: 0.84 },
-  { route: "/authors/khushwant-parihar", label: "Khushwant Parihar", group: "Core", lastModified: "2026-07-12", priority: 0.82 },
-  { route: "/sample-audit-report", label: "Sample Accessibility Audit Report", group: "Core", lastModified: "2026-07-12", priority: 0.86 },
+  { route: "/authors/khushwant-parihar", label: "Khushwant Parihar", group: "Core", lastModified: "2026-07-28", priority: 0.82 },
+  { route: "/sample-audit-report", label: "Sample Accessibility Audit Report", group: "Core", lastModified: "2026-09-02", priority: 0.86 },
   { route: "/procurement", label: "Procurement Centre", group: "Core", lastModified: "2026-07-12", priority: 0.76 },
-  { route: "/subprocessors", label: "Subprocessor Register", group: "Core", lastModified: "2026-07-12", priority: 0.55 },
-  { route: "/resources", label: "Resources", group: "Core", lastModified: "2026-01-24", priority: 0.85, changeFrequency: "weekly" },
+  { route: "/subprocessors", label: "Subprocessor Register", group: "Core", lastModified: "2026-09-02", priority: 0.55 },
+  { route: "/resources", label: "Resources", group: "Core", lastModified: "2026-08-13", priority: 0.85, changeFrequency: "weekly" },
   { route: "/desktop", label: "Desktop App", group: "Core", lastModified: "2026-07-06", priority: 0.7 },
   { route: "/docs", label: "Developer Resources", group: "Core", lastModified: "2026-07-13", priority: 0.7 },
   { route: "/help", label: "Help Center", group: "Core", lastModified: "2026-07-13", priority: 0.7 },
@@ -56,7 +56,7 @@ const reference: SiteRoute[] = [
 ]
 
 const tools: SiteRoute[] = [
-  { route: "/tools", label: "Tools Hub", group: "Tools", lastModified: "2026-05-22", priority: 0.98, changeFrequency: "weekly" },
+  { route: "/tools", label: "Tools Hub", group: "Tools", lastModified: "2026-09-02", priority: 0.98, changeFrequency: "weekly" },
   { route: "/tools/accessibility-statement-checker", label: "Accessibility Statement Checker", group: "Tools", lastModified: "2026-08-28", priority: 0.97 },
   { route: "/tools/heading-analyzer", label: "Heading Structure Analyzer", group: "Tools", lastModified: "2025-11-25", priority: 0.97 },
   { route: "/tools/contrast-checker", label: "Color Contrast Checker", group: "Tools", lastModified: "2025-12-12", priority: 0.96 },
@@ -64,19 +64,19 @@ const tools: SiteRoute[] = [
   { route: "/tools/accessible-typography-studio", label: "Accessible Typography Studio", group: "Tools", lastModified: "2026-05-22", priority: 0.96 },
   { route: "/tools/color-palette-generator", label: "Color Palette Generator", group: "Tools", lastModified: "2026-05-22", priority: 0.95 },
   { route: "/tools/mobile-accessibility-checker", label: "Mobile Accessibility Checker", group: "Tools", lastModified: "2025-11-25", priority: 0.94 },
-  { route: "/tools/accessibility-code-generator", label: "AI Accessibility Code Generator", group: "Tools", lastModified: "2025-11-25", priority: 0.93 },
+  { route: "/tools/accessibility-code-generator", label: "AI Accessibility Code Generator", group: "Tools", lastModified: "2026-09-02", priority: 0.93 },
   { route: "/tools/overlay-detector", label: "Accessibility Overlay Detector", group: "Tools", lastModified: "2026-03-30", priority: 0.93 },
   { route: "/tools/eaa-scope-checker", label: "EAA Scope Checker", group: "Tools", lastModified: "2026-08-27", priority: 0.92 },
-  { route: "/tools/alt-text-generator", label: "AI Alt Text Generator", group: "Tools", lastModified: "2025-11-25", priority: 0.92 },
+  { route: "/tools/alt-text-generator", label: "AI Alt Text Generator", group: "Tools", lastModified: "2026-07-13", priority: 0.92 },
   { route: "/tools/pdf-accessibility-checker", label: "PDF Accessibility Checker", group: "Tools", lastModified: "2026-03-30", priority: 0.92 },
-  { route: "/tools/url-accessibility-auditor", label: "URL Accessibility Auditor", group: "Tools", lastModified: "2025-11-25", priority: 0.91 },
+  { route: "/tools/url-accessibility-auditor", label: "URL Accessibility Auditor", group: "Tools", lastModified: "2026-09-02", priority: 0.91 },
   { route: "/tools/accessibility-roi-calculator", label: "Accessibility ROI Calculator", group: "Tools", lastModified: "2026-03-15", priority: 0.91 },
-  { route: "/tools/scope-checker", label: "Scope Checker", group: "Tools", lastModified: "2026-03-06", priority: 0.9 },
-  { route: "/tools/accessibility-audit-helper", label: "AI Accessibility Audit Helper", group: "Tools", lastModified: "2025-11-25", priority: 0.9 },
+  { route: "/tools/scope-checker", label: "Scope Checker", group: "Tools", lastModified: "2026-09-02", priority: 0.9 },
+  { route: "/tools/accessibility-audit-helper", label: "AI Accessibility Audit Helper", group: "Tools", lastModified: "2026-09-02", priority: 0.9 },
   { route: "/tools/accessibility-report-generator", label: "Accessibility Report Generator", group: "Tools", lastModified: "2025-12-05", priority: 0.9 },
   { route: "/tools/accessibility-statement-generator", label: "Accessibility Statement Generator", group: "Tools", lastModified: "2026-02-11", priority: 0.9 },
   { route: "/tools/ada-compliance-risks", label: "ADA Compliance Risk Assessment", group: "Tools", lastModified: "2025-12-05", priority: 0.88 },
-  { route: "/tools/image-color-picker", label: "Image Color Picker", group: "Tools", lastModified: "2025-11-25", priority: 0.8 },
+  { route: "/tools/image-color-picker", label: "Image Color Picker", group: "Tools", lastModified: "2026-09-02", priority: 0.8 },
 ]
 
 const research: SiteRoute[] = [
@@ -93,11 +93,11 @@ const research: SiteRoute[] = [
 ]
 
 const compliance: SiteRoute[] = [
-  { route: "/compliance", label: "Compliance & Laws Hub", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
+  { route: "/compliance", label: "Compliance & Laws Hub", group: "Compliance", lastModified: "2026-08-27", priority: 0.9 },
   { route: "/compliance/ada", label: "ADA Website Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.93 },
-  { route: "/compliance/eaa", label: "European Accessibility Act (EAA)", group: "Compliance", lastModified: "2026-07-09", priority: 0.93 },
+  { route: "/compliance/eaa", label: "European Accessibility Act (EAA)", group: "Compliance", lastModified: "2026-09-02", priority: 0.93 },
   { route: "/compliance/section-508", label: "Section 508 Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.91 },
-  { route: "/compliance/en-301-549", label: "EN 301 549 Standard", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
+  { route: "/compliance/en-301-549", label: "EN 301 549 Standard", group: "Compliance", lastModified: "2026-08-27", priority: 0.9 },
   { route: "/compliance/california", label: "California & the Unruh Act", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/new-york", label: "New York Accessibility Laws", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/uk", label: "UK Website Accessibility Law", group: "Compliance", lastModified: "2026-08-27", priority: 0.94 },
@@ -105,48 +105,48 @@ const compliance: SiteRoute[] = [
 ]
 
 const industries: SiteRoute[] = [
-  { route: "/industries", label: "Accessibility by Industry", group: "Industries", lastModified: "2026-07-09", priority: 0.85 },
+  { route: "/industries", label: "Accessibility by Industry", group: "Industries", lastModified: "2026-08-27", priority: 0.85 },
   { route: "/industries/ecommerce", label: "E-commerce Accessibility", group: "Industries", lastModified: "2026-07-09", priority: 0.89 },
-  { route: "/industries/healthcare", label: "Healthcare Accessibility", group: "Industries", lastModified: "2026-07-09", priority: 0.88 },
+  { route: "/industries/healthcare", label: "Healthcare Accessibility", group: "Industries", lastModified: "2026-08-27", priority: 0.88 },
   { route: "/industries/education", label: "Education Accessibility", group: "Industries", lastModified: "2026-07-09", priority: 0.88 },
   { route: "/industries/government", label: "Government Accessibility", group: "Industries", lastModified: "2026-07-09", priority: 0.88 },
   { route: "/industries/finance", label: "Banking & Financial Services Accessibility", group: "Industries", lastModified: "2026-08-27", priority: 0.9 },
 ]
 
 const guides: SiteRoute[] = [
-  { route: "/guides", label: "Guides Hub", group: "Guides", lastModified: "2026-07-09", priority: 0.91, changeFrequency: "weekly" },
+  { route: "/guides", label: "Guides Hub", group: "Guides", lastModified: "2026-08-27", priority: 0.91, changeFrequency: "weekly" },
   { route: "/guides/wcag-2-1-vs-2-2", label: "WCAG 2.1 vs 2.2", group: "Guides", lastModified: "2026-07-09", priority: 0.94 },
   { route: "/guides/wcag-2-2-aa-requirements", label: "WCAG 2.2 AA Requirements", group: "Guides", lastModified: "2026-07-09", priority: 0.94 },
   { route: "/guides/oklch-apca-color-systems", label: "OKLCH & APCA Color Systems", group: "Guides", lastModified: "2026-05-23", priority: 0.95 },
-  { route: "/guides/accessible-typography-wcag", label: "Accessible Typography", group: "Guides", lastModified: "2026-05-23", priority: 0.95 },
-  { route: "/guides/react-accessibility", label: "React Accessibility Guide", group: "Guides", lastModified: "2026-07-12", priority: 0.95 },
-  { route: "/guides/angular-accessibility", label: "Angular Accessibility Guide", group: "Guides", lastModified: "2026-07-18", priority: 0.95 },
-  { route: "/guides/vue-accessibility", label: "Vue Accessibility Guide", group: "Guides", lastModified: "2026-07-19", priority: 0.95 },
+  { route: "/guides/accessible-typography-wcag", label: "Accessible Typography", group: "Guides", lastModified: "2026-08-07", priority: 0.95 },
+  { route: "/guides/react-accessibility", label: "React Accessibility Guide", group: "Guides", lastModified: "2026-08-03", priority: 0.95 },
+  { route: "/guides/angular-accessibility", label: "Angular Accessibility Guide", group: "Guides", lastModified: "2026-08-03", priority: 0.95 },
+  { route: "/guides/vue-accessibility", label: "Vue Accessibility Guide", group: "Guides", lastModified: "2026-08-03", priority: 0.95 },
   { route: "/guides/svelte-accessibility", label: "Svelte Accessibility Guide", group: "Guides", lastModified: "2026-08-03", priority: 0.95 },
   { route: "/guides/mobile-accessibility", label: "Mobile Accessibility Guide", group: "Guides", lastModified: "2026-08-05", priority: 0.95 },
   { route: "/guides/accessible-ai-chat", label: "Accessible AI Chat Interfaces Guide", group: "Guides", lastModified: "2026-08-06", priority: 0.95 },
   { route: "/guides/cognitive-accessibility", label: "Cognitive Accessibility & Plain Language Guide", group: "Guides", lastModified: "2026-08-07", priority: 0.95 },
   { route: "/guides/using-aria", label: "How to Use ARIA: Roles, States & Properties", group: "Guides", lastModified: "2026-08-10", priority: 0.95 },
-  { route: "/guides/accessible-forms", label: "Accessible Forms Guide", group: "Guides", lastModified: "2026-07-10", priority: 0.94 },
+  { route: "/guides/accessible-forms", label: "Accessible Forms Guide", group: "Guides", lastModified: "2026-07-30", priority: 0.94 },
   { route: "/guides/accessible-form-validation", label: "Accessible Form Validation & Error Handling Guide", group: "Guides", lastModified: "2026-07-30", priority: 0.94 },
   { route: "/guides/keyboard-accessibility", label: "Keyboard Accessibility", group: "Guides", lastModified: "2026-03-15", priority: 0.94 },
-  { route: "/guides/focus-management", label: "Focus Management Guide", group: "Guides", lastModified: "2026-07-13", priority: 0.94 },
-  { route: "/guides/accessible-tabs", label: "Accessible Tabs Guide", group: "Guides", lastModified: "2026-07-20", priority: 0.94 },
-  { route: "/guides/accessible-accordion", label: "Accessible Accordion & Disclosure Guide", group: "Guides", lastModified: "2026-07-21", priority: 0.94 },
-  { route: "/guides/accessible-combobox", label: "Accessible Combobox & Autocomplete Guide", group: "Guides", lastModified: "2026-07-22", priority: 0.94 },
-  { route: "/guides/accessible-menu", label: "Accessible Menu & Menu Button Guide", group: "Guides", lastModified: "2026-07-23", priority: 0.94 },
+  { route: "/guides/focus-management", label: "Focus Management Guide", group: "Guides", lastModified: "2026-07-28", priority: 0.94 },
+  { route: "/guides/accessible-tabs", label: "Accessible Tabs Guide", group: "Guides", lastModified: "2026-07-21", priority: 0.94 },
+  { route: "/guides/accessible-accordion", label: "Accessible Accordion & Disclosure Guide", group: "Guides", lastModified: "2026-07-23", priority: 0.94 },
+  { route: "/guides/accessible-combobox", label: "Accessible Combobox & Autocomplete Guide", group: "Guides", lastModified: "2026-07-29", priority: 0.94 },
+  { route: "/guides/accessible-menu", label: "Accessible Menu & Menu Button Guide", group: "Guides", lastModified: "2026-07-24", priority: 0.94 },
   { route: "/guides/accessible-dialog", label: "Accessible Dialog & Modal Guide", group: "Guides", lastModified: "2026-07-24", priority: 0.94 },
   { route: "/guides/accessible-switch", label: "Accessible Switch & Toggle Guide", group: "Guides", lastModified: "2026-07-25", priority: 0.94 },
   { route: "/guides/accessible-slider", label: "Accessible Slider & Range Input Guide", group: "Guides", lastModified: "2026-07-26", priority: 0.94 },
   { route: "/guides/accessible-tree-view", label: "Accessible Tree View Guide", group: "Guides", lastModified: "2026-07-27", priority: 0.94 },
-  { route: "/guides/accessible-data-grid", label: "Accessible Data Grid Guide", group: "Guides", lastModified: "2026-07-28", priority: 0.94 },
+  { route: "/guides/accessible-data-grid", label: "Accessible Data Grid Guide", group: "Guides", lastModified: "2026-08-11", priority: 0.94 },
   { route: "/guides/accessible-listbox", label: "Accessible Listbox Guide", group: "Guides", lastModified: "2026-07-29", priority: 0.94 },
-  { route: "/guides/accessible-color-palettes", label: "Accessible Color Palettes", group: "Guides", lastModified: "2026-04-28", priority: 0.94 },
-  { route: "/guides/accessible-charts", label: "Accessible Charts & Data Visualization Guide", group: "Guides", lastModified: "2026-07-31", priority: 0.94 },
-  { route: "/guides/accessible-data-tables", label: "Accessible Data Tables Guide", group: "Guides", lastModified: "2026-08-11", priority: 0.94 },
-  { route: "/guides/skip-links", label: "Skip Links & Bypass Blocks Guide", group: "Guides", lastModified: "2026-08-12", priority: 0.94 },
-  { route: "/guides/landmarks-page-structure", label: "ARIA Landmarks & Page Structure Guide", group: "Guides", lastModified: "2026-08-15", priority: 0.94 },
-  { route: "/guides/accessible-breadcrumbs", label: "Accessible Breadcrumb Navigation Guide", group: "Guides", lastModified: "2026-08-17", priority: 0.94 },
+  { route: "/guides/accessible-color-palettes", label: "Accessible Color Palettes", group: "Guides", lastModified: "2026-07-31", priority: 0.94 },
+  { route: "/guides/accessible-charts", label: "Accessible Charts & Data Visualization Guide", group: "Guides", lastModified: "2026-08-11", priority: 0.94 },
+  { route: "/guides/accessible-data-tables", label: "Accessible Data Tables Guide", group: "Guides", lastModified: "2026-08-13", priority: 0.94 },
+  { route: "/guides/skip-links", label: "Skip Links & Bypass Blocks Guide", group: "Guides", lastModified: "2026-08-15", priority: 0.94 },
+  { route: "/guides/landmarks-page-structure", label: "ARIA Landmarks & Page Structure Guide", group: "Guides", lastModified: "2026-08-17", priority: 0.94 },
+  { route: "/guides/accessible-breadcrumbs", label: "Accessible Breadcrumb Navigation Guide", group: "Guides", lastModified: "2026-08-18", priority: 0.94 },
   { route: "/guides/accessible-pagination", label: "Accessible Pagination Guide", group: "Guides", lastModified: "2026-08-18", priority: 0.94 },
   { route: "/guides/accessible-tooltip", label: "Accessible Tooltip & Toggletip Guide", group: "Guides", lastModified: "2026-08-19", priority: 0.94 },
   { route: "/guides/accessible-notifications", label: "Accessible Notifications & Toasts Guide", group: "Guides", lastModified: "2026-08-20", priority: 0.94 },
@@ -154,21 +154,21 @@ const guides: SiteRoute[] = [
   { route: "/guides/accessible-maps", label: "Accessible Maps & Geospatial Content Guide", group: "Guides", lastModified: "2026-08-14", priority: 0.94 },
   { route: "/guides/accessible-video-player", label: "Accessible Video & Media Player Guide", group: "Guides", lastModified: "2026-08-01", priority: 0.94 },
   { route: "/guides/screen-reader-testing", label: "Screen Reader Testing", group: "Guides", lastModified: "2026-03-15", priority: 0.93 },
-  { route: "/guides/nvda-screen-reader-testing", label: "NVDA Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-14", priority: 0.94 },
-  { route: "/guides/voiceover-screen-reader-testing", label: "VoiceOver Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-15", priority: 0.94 },
-  { route: "/guides/jaws-screen-reader-testing", label: "JAWS Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-16", priority: 0.94 },
-  { route: "/guides/talkback-screen-reader-testing", label: "TalkBack Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-17", priority: 0.94 },
+  { route: "/guides/nvda-screen-reader-testing", label: "NVDA Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-16", priority: 0.94 },
+  { route: "/guides/voiceover-screen-reader-testing", label: "VoiceOver Screen Reader Testing Guide", group: "Guides", lastModified: "2026-08-05", priority: 0.94 },
+  { route: "/guides/jaws-screen-reader-testing", label: "JAWS Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-17", priority: 0.94 },
+  { route: "/guides/talkback-screen-reader-testing", label: "TalkBack Screen Reader Testing Guide", group: "Guides", lastModified: "2026-08-05", priority: 0.94 },
   { route: "/guides/ada-website-lawsuit-cost", label: "ADA Website Lawsuit Cost", group: "Guides", lastModified: "2026-07-09", priority: 0.91 },
   { route: "/guides/accessibility-audit-cost", label: "Accessibility Audit Cost (UK & Ireland)", group: "Guides", lastModified: "2026-08-27", priority: 0.93 },
-  { route: "/guides/how-to-write-an-accessibility-statement", label: "How to Write an Accessibility Statement", group: "Guides", lastModified: "2026-08-27", priority: 0.93 },
+  { route: "/guides/how-to-write-an-accessibility-statement", label: "How to Write an Accessibility Statement", group: "Guides", lastModified: "2026-08-28", priority: 0.93 },
   { route: "/guides/vpat-accessibility-conformance-report", label: "VPAT & Accessibility Conformance Reports", group: "Guides", lastModified: "2026-08-27", priority: 0.92 },
   { route: "/guides/accessibility-overlays-eu-uk-law", label: "Overlays and EU/UK Law", group: "Guides", lastModified: "2026-08-27", priority: 0.92 },
   { route: "/guides/accessibility-overlays", label: "Accessibility Overlays", group: "Guides", lastModified: "2026-03-30", priority: 0.91 },
   { route: "/guides/accessibility-overlay-alternatives", label: "Overlay Alternatives", group: "Guides", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/guides/automated-vs-manual-accessibility-testing", label: "Automated vs Manual Testing", group: "Guides", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/guides/axe-vs-wave", label: "axe vs WAVE", group: "Guides", lastModified: "2026-07-09", priority: 0.89 },
-  { route: "/guides/pdf-accessibility", label: "PDF Accessibility", group: "Guides", lastModified: "2026-03-30", priority: 0.91 },
-  { route: "/guides/how-to-audit-website-accessibility", label: "How to Audit Website Accessibility", group: "Guides", lastModified: "2026-05-18", priority: 0.91 },
+  { route: "/guides/pdf-accessibility", label: "PDF Accessibility", group: "Guides", lastModified: "2026-09-01", priority: 0.91 },
+  { route: "/guides/how-to-audit-website-accessibility", label: "How to Audit Website Accessibility", group: "Guides", lastModified: "2026-07-24", priority: 0.91 },
   { route: "/guides/ai-accessibility-audit", label: "AI Accessibility Audit", group: "Guides", lastModified: "2026-05-18", priority: 0.9 },
   { route: "/guides/ai-accessibility-lawsuits", label: "AI Accessibility Lawsuits", group: "Guides", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/guides/fashion-nova-accessibility-settlement", label: "Fashion Nova Settlement", group: "Guides", lastModified: "2026-07-09", priority: 0.9 },
@@ -177,28 +177,28 @@ const guides: SiteRoute[] = [
 ]
 
 const checklists: SiteRoute[] = [
-  { route: "/checklists", label: "Checklists Hub", group: "Checklists", lastModified: "2026-03-15", priority: 0.87 },
-  { route: "/checklists/wcag-2-2", label: "WCAG 2.2 Checklist", group: "Checklists", lastModified: "2026-03-15", priority: 0.96 },
+  { route: "/checklists", label: "Checklists Hub", group: "Checklists", lastModified: "2026-08-27", priority: 0.87 },
+  { route: "/checklists/wcag-2-2", label: "WCAG 2.2 Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.96 },
   { route: "/checklists/en-301-549", label: "EN 301 549 Interactive Checklist", group: "Checklists", lastModified: "2026-08-27", priority: 0.94 },
-  { route: "/checklists/wcag-2-2/aaa", label: "WCAG 2.2 AAA Checklist", group: "Checklists", lastModified: "2025-12-05", priority: 0.8 },
-  { route: "/checklists/wcag-2-2/excel", label: "WCAG 2.2 Excel Checklist", group: "Checklists", lastModified: "2025-12-06", priority: 0.75 },
-  { route: "/checklists/interactive", label: "Interactive Checklist", group: "Checklists", lastModified: "2025-11-15", priority: 0.85 },
+  { route: "/checklists/wcag-2-2/aaa", label: "WCAG 2.2 AAA Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.8 },
+  { route: "/checklists/wcag-2-2/excel", label: "WCAG 2.2 Excel Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.75 },
+  { route: "/checklists/interactive", label: "Interactive Checklist", group: "Checklists", lastModified: "2026-09-02", priority: 0.85 },
 ]
 
 const learn: SiteRoute[] = [
-  { route: "/learn", label: "Component Patterns Hub", group: "Learn", lastModified: "2026-02-11", priority: 0.85 },
-  { route: "/learn/carousels", label: "Accessible Carousels", group: "Learn", lastModified: "2026-02-11", priority: 0.8 },
-  { route: "/learn/modals", label: "Accessible Modals", group: "Learn", lastModified: "2026-02-11", priority: 0.8 },
-  { route: "/learn/pagination", label: "Accessible Pagination", group: "Learn", lastModified: "2026-02-11", priority: 0.8 },
-  { route: "/learn/search", label: "Accessible Search", group: "Learn", lastModified: "2026-02-11", priority: 0.8 },
-  { route: "/learn/table", label: "Accessible Tables", group: "Learn", lastModified: "2026-02-11", priority: 0.8 },
+  { route: "/learn", label: "Component Patterns Hub", group: "Learn", lastModified: "2026-09-02", priority: 0.85 },
+  { route: "/learn/carousels", label: "Accessible Carousels", group: "Learn", lastModified: "2026-09-02", priority: 0.8 },
+  { route: "/learn/modals", label: "Accessible Modals", group: "Learn", lastModified: "2026-09-02", priority: 0.8 },
+  { route: "/learn/pagination", label: "Accessible Pagination", group: "Learn", lastModified: "2026-09-02", priority: 0.8 },
+  { route: "/learn/search", label: "Accessible Search", group: "Learn", lastModified: "2026-09-02", priority: 0.8 },
+  { route: "/learn/table", label: "Accessible Tables", group: "Learn", lastModified: "2026-09-02", priority: 0.8 },
 ]
 
 const wcag3: SiteRoute[] = [
   { route: "/wcag-3", label: "WCAG 3.0 Guide", group: "WCAG 3.0", lastModified: "2026-03-15", priority: 0.88 },
   { route: "/wcag-3/comparison", label: "WCAG 3.0 vs 2.2", group: "WCAG 3.0", lastModified: "2026-03-15", priority: 0.85 },
   { route: "/wcag-3/concepts", label: "WCAG 3.0 Concepts", group: "WCAG 3.0", lastModified: "2026-03-15", priority: 0.85 },
-  { route: "/wcag-3/guidelines", label: "WCAG 3.0 Guidelines", group: "WCAG 3.0", lastModified: "2026-03-15", priority: 0.85 },
+  { route: "/wcag-3/guidelines", label: "WCAG 3.0 Guidelines", group: "WCAG 3.0", lastModified: "2026-07-24", priority: 0.85 },
   { route: "/wcag-3/preparation", label: "Preparing for WCAG 3.0", group: "WCAG 3.0", lastModified: "2026-03-15", priority: 0.85 },
 ]
 
@@ -206,26 +206,26 @@ const wcag3: SiteRoute[] = [
 // to the XML sitemap (app/sitemap.ts) and HTML sitemap (app/sitemap-page) from
 // the CMS at request time, so they are not hardcoded here.
 const blog: SiteRoute[] = [
-  { route: "/blog", label: "Blog", group: "Blog", lastModified: "2026-07-09", priority: 0.95, changeFrequency: "daily" },
+  { route: "/blog", label: "Blog", group: "Blog", lastModified: "2026-07-10", priority: 0.95, changeFrequency: "daily" },
 ]
 
 const services: SiteRoute[] = [
-  { route: "/services", label: "Services Hub", group: "Services", lastModified: "2026-07-12", priority: 0.93 },
-  { route: "/services/accessibility-audits", label: "Accessibility Audits", group: "Services", lastModified: "2026-07-12", priority: 0.88 },
-  { route: "/services/accessibility-training", label: "Accessibility Training", group: "Services", lastModified: "2026-07-12", priority: 0.86 },
-  { route: "/services/compliance-documentation", label: "Compliance Documentation", group: "Services", lastModified: "2026-07-12", priority: 0.84 },
-  { route: "/services/pdf-remediation", label: "PDF Accessibility Remediation (from $3 per page)", group: "Services", lastModified: "2026-09-01", priority: 0.87 },
-  { route: "/services/remediation-support", label: "Remediation Support", group: "Services", lastModified: "2026-07-12", priority: 0.82 },
-  { route: "/services/design-reviews", label: "Design Reviews", group: "Services", lastModified: "2026-07-12", priority: 0.8 },
-  { route: "/services/user-testing", label: "User Testing", group: "Services", lastModified: "2026-07-12", priority: 0.78 },
+  { route: "/services", label: "Services Hub", group: "Services", lastModified: "2026-09-02", priority: 0.93 },
+  { route: "/services/accessibility-audits", label: "Accessibility Audits", group: "Services", lastModified: "2026-09-02", priority: 0.88 },
+  { route: "/services/accessibility-training", label: "Accessibility Training", group: "Services", lastModified: "2026-09-02", priority: 0.86 },
+  { route: "/services/compliance-documentation", label: "Compliance Documentation", group: "Services", lastModified: "2026-09-02", priority: 0.84 },
+  { route: "/services/pdf-remediation", label: "PDF Accessibility Remediation (from $3 per page)", group: "Services", lastModified: "2026-09-02", priority: 0.87 },
+  { route: "/services/remediation-support", label: "Remediation Support", group: "Services", lastModified: "2026-09-02", priority: 0.82 },
+  { route: "/services/design-reviews", label: "Design Reviews", group: "Services", lastModified: "2026-09-02", priority: 0.8 },
+  { route: "/services/user-testing", label: "User Testing", group: "Services", lastModified: "2026-09-02", priority: 0.78 },
 ]
 
 const legal: SiteRoute[] = [
-  { route: "/accessibility", label: "Accessibility Statement", group: "Legal", lastModified: "2026-07-12", priority: 0.7, changeFrequency: "yearly" },
-  { route: "/privacy", label: "Privacy Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
+  { route: "/accessibility", label: "Accessibility Statement", group: "Legal", lastModified: "2026-09-02", priority: 0.7, changeFrequency: "yearly" },
+  { route: "/privacy", label: "Privacy Policy", group: "Legal", lastModified: "2026-09-02", priority: 0.4, changeFrequency: "yearly" },
   { route: "/terms", label: "Terms of Service", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
-  { route: "/cookies", label: "Cookie Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
-  { route: "/refund", label: "Refund Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
+  { route: "/cookies", label: "Cookie Policy", group: "Legal", lastModified: "2026-07-30", priority: 0.4, changeFrequency: "yearly" },
+  { route: "/refund", label: "Refund Policy", group: "Legal", lastModified: "2026-09-02", priority: 0.4, changeFrequency: "yearly" },
   { route: "/editorial-policy", label: "Editorial Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.5, changeFrequency: "yearly" },
   { route: "/corrections-policy", label: "Corrections Policy", group: "Legal", lastModified: "2026-07-12", priority: 0.45, changeFrequency: "yearly" },
 ]
@@ -287,6 +287,32 @@ const highValueWcag = new Set([
  */
 export function getWcagPageDate(slug: string): string {
   return wcagPageDates[slug] ?? WCAG_BUILDOUT_DATE
+}
+
+/**
+ * Last substantive content date for any route in the table, as YYYY-MM-DD.
+ * This is the single source for the XML sitemap's lastmod, for schema
+ * dateModified on guides and compliance pages, and for the visible "Updated"
+ * byline, so the three can never disagree. Returns null for routes that are
+ * not in the table (callers should then omit the date rather than invent one).
+ */
+export function getRouteDate(route: string): string | null {
+  const normalized = route === "/" ? "" : route.replace(/\/+$/, "")
+  const match = siteRoutes.find((r) => r.route === normalized)
+  return match?.lastModified ?? null
+}
+
+/** Human-readable form of a route date, e.g. "September 2026". */
+export function formatRouteDate(date: string | null, style: "month" | "long" = "month"): string | null {
+  if (!date) return null
+  const parsed = new Date(`${date}T00:00:00Z`)
+  if (Number.isNaN(parsed.getTime())) return null
+  return parsed.toLocaleDateString("en-US", {
+    timeZone: "UTC",
+    year: "numeric",
+    month: "long",
+    ...(style === "long" ? { day: "numeric" } : {}),
+  })
 }
 
 const wcagPages: SiteRoute[] = [

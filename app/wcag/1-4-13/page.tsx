@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.4.13 Content on Hover or Focus — Tooltips Guide",
   description:
-    "Complete guide to WCAG 1.4.13 Content on Hover or Focus. Learn the three conditions — Dismissible, Hoverable, Persistent — how to build accessible tooltips and hover menus, why the title attribute fails, copy-ready code, testing methods, and common mistakes.",
+    clampDescription("Complete guide to WCAG 1.4.13 Content on Hover or Focus. Learn the three conditions — Dismissible, Hoverable, Persistent — how to build accessible tooltips and hover menus, why the title attribute fails, copy-ready code, testing methods, and common mistakes."),
   keywords: [
     "WCAG 1.4.13",
     "Content on Hover or Focus",
@@ -129,7 +132,7 @@ export default function WCAG1413Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-06"
-        dateModified="2026-07-06"
+        dateModified={getRouteDate("/wcag/1-4-13") ?? "2026-07-06"}
         image="https://accessibility.build/api/og?title=WCAG%201.4.13%20Content%20on%20Hover%20or%20Focus&section=WCAG"
         url="https://accessibility.build/wcag/1-4-13"
         wordCount={2900}
@@ -215,6 +218,7 @@ export default function WCAG1413Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.4.13: Content on Hover or Focus
             </h1>
+            <PageByline route="/wcag/1-4-13" source={{ label: "W3C: Understanding 1.4.13", href: "https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               When extra content appears because a user{" "}
               <strong className="text-slate-900 dark:text-white">

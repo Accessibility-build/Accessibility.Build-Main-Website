@@ -18,6 +18,8 @@ import {
 } from "@/components/research/report-hero";
 import eaaData from "@/lib/data/european-accessibility-act.json";
 import { EuropeanAccessibilityActClient } from "./EuropeanAccessibilityActClient";
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 const reportUrl =
   "https://accessibility.build/research/european-accessibility-act";
@@ -26,7 +28,7 @@ const pageTitle = "European Accessibility Act Tracker";
 export const metadata: Metadata = {
   title: "European Accessibility Act Tracker 2026: Transposition",
   description:
-    "Every EAA date quoted from Directive (EU) 2019/882, plus national transposition measures for all 27 Member States. Includes the honest answer on enforcement data: the first Commission report is not due until 2030.",
+    clampDescription("Every EAA date quoted from Directive (EU) 2019/882, plus national transposition measures for all 27 Member States. Includes the honest answer on enforcement data: the first Commission report is not due until 2030."),
   keywords: [
     "European Accessibility Act",
     "EAA deadline",
@@ -135,7 +137,7 @@ export default function EuropeanAccessibilityActPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified="2026-08-27"
+        dateModified={getRouteDate("/research/european-accessibility-act") ?? "2026-08-27"}
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1800}

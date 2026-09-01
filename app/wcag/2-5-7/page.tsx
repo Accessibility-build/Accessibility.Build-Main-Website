@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.5.7 Dragging Movements — Pointer Alternatives",
   description:
-    "Complete guide to WCAG 2.5.7 Dragging Movements, new in WCAG 2.2. Learn why every drag action needs a single-pointer alternative, the two exceptions, accessible patterns for sliders, sortable lists and maps, code examples, testing methods, and common mistakes.",
+    clampDescription("Complete guide to WCAG 2.5.7 Dragging Movements, new in WCAG 2.2. Learn why every drag action needs a single-pointer alternative, the two exceptions, accessible patterns for sliders, sortable lists and maps, code examples, testing methods, and common mistakes."),
   keywords: [
     "WCAG 2.5.7",
     "Dragging Movements",
@@ -125,7 +128,7 @@ export default function WCAG257Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-02"
-        dateModified="2026-07-02"
+        dateModified={getRouteDate("/wcag/2-5-7") ?? "2026-07-02"}
         image="https://accessibility.build/api/og?title=WCAG%202.5.7%20Dragging%20Movements&section=WCAG"
         url="https://accessibility.build/wcag/2-5-7"
         wordCount={2700}
@@ -211,6 +214,7 @@ export default function WCAG257Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.5.7: Dragging Movements
             </h1>
+            <PageByline route="/wcag/2-5-7" source={{ label: "W3C: Understanding 2.5.7", href: "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               All functionality that uses a dragging movement can also be
               operated by a{" "}

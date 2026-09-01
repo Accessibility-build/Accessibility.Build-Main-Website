@@ -8,6 +8,9 @@ import { RelatedContent } from "@/components/seo/related-content"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ShieldCheck, ListChecks } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "ARIA Landmarks & Page Structure: Complete Guide"
 const pageDescription =
@@ -15,7 +18,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "aria landmarks",
     "landmark roles",
@@ -161,6 +164,7 @@ export default function LandmarksPageStructureGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/landmarks-page-structure" title={pageTitle} description={pageDescription} datePublished="2026-08-15" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -206,11 +210,12 @@ export default function LandmarksPageStructureGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Implementation Guide &bull; Updated August 2026
+                Implementation Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 ARIA Landmarks &amp; Page Structure
               </h1>
+              <PageByline route="/guides/landmarks-page-structure" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A sighted user sees a page&rsquo;s structure at a glance: header
                 on top, main column in the middle, sidebar to one side, footer at

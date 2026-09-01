@@ -15,6 +15,7 @@ import {
   Lightbulb,
   ArrowRightLeft,
 } from "lucide-react"
+import { getRouteDate } from "@/lib/site-routes"
 
 export const metadata = createMetadata({
   title: "WCAG 3.0 Key Concepts: Outcomes, Methods & Assertions",
@@ -300,7 +301,7 @@ export default function WCAG3ConceptsPage() {
         author={{ name: "Khushwant Parihar", url: "https://accessibility.build/about" }}
         publisher={{ name: "Accessibility.build", logo: "https://accessibility.build/android-chrome-512x512.png" }}
         datePublished="2025-03-01"
-        dateModified="2026-03-15"
+        dateModified={getRouteDate("/wcag-3/concepts") ?? "2026-03-15"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/wcag-3/concepts"
         wordCount={3500}

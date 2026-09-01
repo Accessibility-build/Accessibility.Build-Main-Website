@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.4.7 Focus Visible — Keyboard Focus Indicators",
   description:
-    "Complete guide to WCAG 2.4.7 Focus Visible. Learn why a visible keyboard focus indicator is required, how to style :focus-visible without breaking accessibility, never use outline:none, contrast and thickness expectations, code examples, testing methods, and common mistakes.",
+    clampDescription("Complete guide to WCAG 2.4.7 Focus Visible. Learn why a visible keyboard focus indicator is required, how to style :focus-visible without breaking accessibility, never use outline:none, contrast and thickness expectations, code examples, testing methods, and common mistakes."),
   keywords: [
     "WCAG 2.4.7",
     "Focus Visible",
@@ -129,7 +132,7 @@ export default function WCAG247Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-06-26"
-        dateModified="2026-06-26"
+        dateModified={getRouteDate("/wcag/2-4-7") ?? "2026-06-26"}
         image="https://accessibility.build/api/og?title=WCAG%202.4.7%20Focus%20Visible&section=WCAG"
         url="https://accessibility.build/wcag/2-4-7"
         wordCount={2900}
@@ -215,6 +218,7 @@ export default function WCAG247Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.7: Focus Visible
             </h1>
+            <PageByline route="/wcag/2-4-7" source={{ label: "W3C: Understanding 2.4.7", href: "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               When someone navigates your page with the keyboard, they must
               always be able to{" "}

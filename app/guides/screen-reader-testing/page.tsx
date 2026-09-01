@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import ScreenReaderGuideClient from "./ScreenReaderGuideClient"
+import { PageByline } from "@/components/seo/page-byline"
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Screen Reader Testing Guide: NVDA, JAWS & VoiceOver",
   description:
-    "The complete guide to testing websites with screen readers. Setup guides, command references, and testing procedures for NVDA, JAWS, VoiceOver (macOS/iOS), and TalkBack. Downloadable checklists included.",
+    clampDescription("The complete guide to testing websites with screen readers. Setup guides, command references, and testing procedures for NVDA, JAWS, VoiceOver (macOS/iOS), and TalkBack. Downloadable checklists included."),
   keywords: [
     "screen reader testing guide",
     "nvda testing guide",
@@ -27,6 +30,7 @@ export const metadata: Metadata = {
     canonical: "https://accessibility.build/guides/screen-reader-testing",
   },
   openGraph: {
+    images: [{ url: "/api/og?title=Screen%20Reader%20Testing%20Guide&section=Guide", width: 1200, height: 630, alt: "Screen Reader Testing Guide" }],
     title: "Screen Reader Testing Guide | NVDA, JAWS, VoiceOver & TalkBack",
     description:
       "The complete guide to testing websites with screen readers. Setup guides, command references, and testing procedures for NVDA, JAWS, VoiceOver (macOS/iOS), and TalkBack.",
@@ -102,7 +106,7 @@ export default function ScreenReaderTestingGuidePage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2024-12-01"
-        dateModified="2025-01-15"
+        dateModified={getRouteDate("/guides/screen-reader-testing") ?? "2025-01-15"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/screen-reader-testing"
         wordCount={8500}
@@ -118,7 +122,9 @@ export default function ScreenReaderTestingGuidePage() {
         ]}
       />
 
-      <ScreenReaderGuideClient />
+      <ScreenReaderGuideClient
+        byline={<PageByline route="/guides/screen-reader-testing" className="mb-6 text-slate-300 [&_a]:text-white [&_a]:decoration-slate-500" />}
+      />
 
       {/* FAQ Section with inline microdata */}
       <section className="max-w-5xl mx-auto px-4 py-16">

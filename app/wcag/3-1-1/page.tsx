@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.1.1 Language of Page — The HTML lang Attribute",
   description:
-    "Complete guide to WCAG 3.1.1 Language of Page. Learn why the html lang attribute matters for screen reader pronunciation, which BCP 47 language codes to use, copy-ready HTML examples, common mistakes like lang=\"EN\" or a missing attribute, and exactly how to test it.",
+    clampDescription("Complete guide to WCAG 3.1.1 Language of Page. Learn why the html lang attribute matters for screen reader pronunciation, which BCP 47 language codes to use, copy-ready HTML examples, common mistakes like lang=\"EN\" or a missing attribute, and exactly how to test it."),
   keywords: [
     "WCAG 3.1.1",
     "Language of Page",
@@ -107,7 +110,7 @@ export default function WCAG311Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/wcag/3-1-1") ?? "2026-07-09"}
         image="https://accessibility.build/api/og?title=WCAG%203.1.1%20Language%20of%20Page&section=WCAG"
         url="https://accessibility.build/wcag/3-1-1"
         wordCount={2900}
@@ -193,6 +196,7 @@ export default function WCAG311Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.1.1: Language of Page
             </h1>
+            <PageByline route="/wcag/3-1-1" source={{ label: "W3C: Understanding 3.1.1", href: "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A screen reader cannot pronounce words correctly unless it knows
               what language they are in. This criterion asks one simple thing:{" "}

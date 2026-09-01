@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.2.7 Extended Audio Description — AAA Guide",
   description:
-    "WCAG 1.2.7 requires extended audio description — pausing video for longer narration — when normal pauses can't convey the visuals. How it works and how to test.",
+    clampDescription("WCAG 1.2.7 requires extended audio description — pausing video for longer narration — when normal pauses can't convey the visuals. How it works and how to test."),
   keywords: [
     "WCAG 1.2.7",
     "Extended Audio Description",
@@ -115,6 +117,7 @@ export default function WCAG127Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.2.7: Extended Audio Description (Prerecorded)
             </h1>
+            <PageByline route="/wcag/1-2-7" source={{ label: "W3C: Understanding 1.2.7", href: "https://www.w3.org/WAI/WCAG22/Understanding/extended-audio-description-prerecorded.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Standard audio description has a hard constraint: the narration must fit
               into the pauses between dialogue. When a video never stops talking, those

@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.1.2 Language of Parts — Inline lang Attributes",
   description:
-    "Complete guide to WCAG 3.1.2 Language of Parts. When foreign-language passages need a lang attribute, the four exceptions, inline code samples, and how to test Level AA.",
+    clampDescription("Complete guide to WCAG 3.1.2 Language of Parts. When foreign-language passages need a lang attribute, the four exceptions, inline code samples, and how to test Level AA."),
   keywords: [
     "WCAG 3.1.2",
     "Language of Parts",
@@ -113,7 +116,7 @@ export default function WCAG312Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/wcag/3-1-2") ?? "2026-07-09"}
         image="https://accessibility.build/api/og?title=WCAG%203.1.2%20Language%20of%20Parts&section=WCAG"
         url="https://accessibility.build/wcag/3-1-2"
         wordCount={2800}
@@ -198,6 +201,7 @@ export default function WCAG312Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.1.2: Language of Parts
             </h1>
+            <PageByline route="/wcag/3-1-2" source={{ label: "W3C: Understanding 3.1.2", href: "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A French quotation read aloud with English pronunciation rules is
               noise, not language. When a passage or phrase switches to a

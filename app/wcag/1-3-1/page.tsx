@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import SemanticsDemo from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata = createMetadata({
   title: "WCAG 1.3.1 Info and Relationships - Complete Guide",
@@ -119,6 +120,7 @@ export default function WCAG131Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.3.1: Info and Relationships
             </h1>
+            <PageByline route="/wcag/1-3-1" source={{ label: "W3C: Understanding 1.3.1", href: "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Sighted users read structure at a glance: a heading is bigger, a list has
               bullets, a table lines data up in a grid. This criterion asks that the same{" "}

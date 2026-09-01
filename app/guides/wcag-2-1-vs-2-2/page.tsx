@@ -7,6 +7,9 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { wcagCriteria } from "@/lib/wcag-data"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "WCAG 2.1 vs 2.2: What Changed & How to Migrate"
 const pageDescription =
@@ -14,7 +17,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "WCAG 2.1 vs 2.2",
     "WCAG 2.2 changes",
@@ -187,7 +190,7 @@ export default function Wcag21Vs22Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/guides/wcag-2-1-vs-2-2") ?? "2026-07-09"}
         image={`https://accessibility.build/api/og?title=${encodeURIComponent(pageTitle)}&section=Guide`}
         url="https://accessibility.build/guides/wcag-2-1-vs-2-2"
         wordCount={2600}
@@ -237,6 +240,7 @@ export default function Wcag21Vs22Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               WCAG 2.1 vs 2.2: What Changed and How to Migrate
             </h1>
+            <PageByline route="/guides/wcag-2-1-vs-2-2" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               WCAG 2.2 became the official W3C Recommendation on{" "}
               <strong>October 5, 2023</strong>. It adds{" "}

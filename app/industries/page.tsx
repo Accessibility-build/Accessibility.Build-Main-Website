@@ -15,11 +15,12 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { IconShell } from "@/components/ui/icon-shell"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata = {
   title: "Accessibility by Industry",
   description:
-    "See how accessibility law and WCAG apply to your industry. Practical compliance guides for e-commerce, healthcare, education, government, and financial services digital teams.",
+    clampDescription("See how accessibility law and WCAG apply to your industry. Practical compliance guides for e-commerce, healthcare, education, government, and financial services digital teams."),
   alternates: { canonical: "/industries" },
   openGraph: {
     type: "website",

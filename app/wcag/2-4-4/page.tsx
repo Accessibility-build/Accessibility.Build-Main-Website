@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.4.4 Link Purpose (In Context) — Link Text Guide",
   description:
-    "Complete guide to WCAG 2.4.4 Link Purpose (In Context). Learn how to write descriptive link text, fix 'click here' and 'read more' links, use aria-label and aria-labelledby correctly, and handle icon, image, and ambiguous links — with code examples, testing methods, and common mistakes.",
+    clampDescription("Complete guide to WCAG 2.4.4 Link Purpose (In Context). Learn how to write descriptive link text, fix 'click here' and 'read more' links, use aria-label and aria-labelledby correctly, and handle icon, image, and ambiguous links — with code examples, testing methods, and common mistakes."),
   keywords: [
     "WCAG 2.4.4",
     "Link Purpose",
@@ -133,7 +136,7 @@ export default function WCAG244Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-06-28"
-        dateModified="2026-06-28"
+        dateModified={getRouteDate("/wcag/2-4-4") ?? "2026-06-28"}
         image="https://accessibility.build/api/og?title=WCAG%202.4.4%20Link%20Purpose%20%28In%20Context%29&section=WCAG"
         url="https://accessibility.build/wcag/2-4-4"
         wordCount={3000}
@@ -219,6 +222,7 @@ export default function WCAG244Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.4: Link Purpose (In Context)
             </h1>
+            <PageByline route="/wcag/2-4-4" source={{ label: "W3C: Understanding 2.4.4", href: "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A link should tell you where it goes{" "}
               <strong className="text-slate-900 dark:text-white">

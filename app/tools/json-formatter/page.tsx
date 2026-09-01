@@ -1,10 +1,11 @@
 import JsonFormatter from "@/components/tools/json-formatter"
 import { ToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata = {
   title: "JSON Formatter & Validator | Beautify & Minify",
-  description: "Professional JSON formatter, validator, and beautifier. Format, minify, validate JSON data with syntax highlighting, error detection, and tree view. Free online tool for developers.",
+  description: clampDescription("Professional JSON formatter, validator, and beautifier. Format, minify, validate JSON data with syntax highlighting, error detection, and tree view. Free online tool for developers."),
   keywords: [
     "json formatter",
     "json validator",

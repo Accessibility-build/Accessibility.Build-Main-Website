@@ -7,11 +7,14 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "How to Audit a Website for Accessibility (2026 Guide)",
   description:
-    "A practical, step-by-step guide to auditing any website for WCAG 2.2 accessibility compliance. Includes a free checklist, automated and manual testing workflows, common issues to look for, and AI-assisted remediation.",
+    clampDescription("A practical, step-by-step guide to auditing any website for WCAG 2.2 accessibility compliance. Includes a free checklist, automated and manual testing workflows, common issues to look for, and AI-assisted remediation."),
   keywords: [
     "how to audit a website for accessibility",
     "accessibility audit",
@@ -163,7 +166,7 @@ export default function HowToAuditWebsiteAccessibilityPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-05-17"
-        dateModified="2026-05-17"
+        dateModified={getRouteDate("/guides/how-to-audit-website-accessibility") ?? "2026-05-17"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/how-to-audit-website-accessibility"
         wordCount={2400}
@@ -230,12 +233,13 @@ export default function HowToAuditWebsiteAccessibilityPage() {
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <header className="mb-12">
             <p className="text-sm font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-400 mb-3">
-              WCAG 2.2 Audit Guide · Updated May 2026
+              WCAG 2.2 Audit Guide
             </p>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
               How to Audit a Website for Accessibility: A Step-by-Step WCAG 2.2
               Guide
             </h1>
+            <PageByline route="/guides/how-to-audit-website-accessibility" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               An accessibility audit is the difference between hoping your site
               is compliant and knowing it is. This guide walks through the

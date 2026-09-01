@@ -22,6 +22,9 @@ import {
   Volume2,
   FileText,
 } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "NVDA Screen Reader Testing: The Complete Guide"
 const pageDescription =
@@ -29,7 +32,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "nvda",
     "nvda screen reader",
@@ -181,6 +184,7 @@ export default function NvdaScreenReaderTestingGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/nvda-screen-reader-testing" title={pageTitle} description={pageDescription} datePublished="2026-07-14" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -226,11 +230,12 @@ export default function NvdaScreenReaderTestingGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Testing Guide &bull; Updated July 2026
+                Testing Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 NVDA Screen Reader Testing: The Complete Guide
               </h1>
+              <PageByline route="/guides/nvda-screen-reader-testing" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 NVDA is the free Windows screen reader you should test with
                 first. This guide takes you from install to a repeatable testing

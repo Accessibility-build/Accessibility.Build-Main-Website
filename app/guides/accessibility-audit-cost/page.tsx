@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
 
 const ogTitle = encodeURIComponent("Web Accessibility Audit Cost (UK & Ireland Guide)")
 
@@ -101,6 +103,7 @@ export default function AccessibilityAuditCostPage() {
           },
         ]}
       />
+      <GuideArticleSchema route="/guides/accessibility-audit-cost" title="Web Accessibility Audit Cost (UK & Ireland Guide)" description="What a WCAG audit really costs: sourced US price ranges, one published UK figure, fixed pricing from $950, and the factors that drive quotes up or down." datePublished="2026-08-27" />
       <FAQStructuredData faqs={faqs} />
 
       {/* Breadcrumb Navigation */}
@@ -141,6 +144,7 @@ export default function AccessibilityAuditCostPage() {
                 Audit Cost?
               </span>
             </h1>
+            <PageByline route="/guides/accessibility-audit-cost" className="mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               The honest answer: it depends on what you are buying, and in the UK and Ireland it is
               hard to even find out, because most firms quote on request rather than publishing

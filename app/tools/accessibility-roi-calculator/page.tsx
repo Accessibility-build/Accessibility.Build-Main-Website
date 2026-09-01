@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     "accessibility budget justification",
   ],
   openGraph: {
+    images: [{ url: "/api/og?title=Accessibility%20ROI%20Calculator&section=Tool", width: 1200, height: 630, alt: "Accessibility ROI Calculator" }],
     title: "Accessibility ROI Calculator | Free Business Case Tool",
     description:
       "Model accessibility investment costs and benefits with transparent, editable assumptions.",

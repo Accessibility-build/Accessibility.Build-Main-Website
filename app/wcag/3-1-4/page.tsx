@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.1.4 Abbreviations — The abbr Element Guide",
   description:
-    "WCAG 3.1.4 requires a mechanism for the expanded form of abbreviations. First-use expansion, the abbr element, glossaries — with code examples and testing steps.",
+    clampDescription("WCAG 3.1.4 requires a mechanism for the expanded form of abbreviations. First-use expansion, the abbr element, glossaries — with code examples and testing steps."),
   keywords: [
     "WCAG 3.1.4",
     "Abbreviations",
@@ -114,6 +116,7 @@ export default function WCAG314Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.1.4: Abbreviations
             </h1>
+            <PageByline route="/wcag/3-1-4" source={{ label: "W3C: Understanding 3.1.4", href: "https://www.w3.org/WAI/WCAG22/Understanding/abbreviations.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Every industry writes in shorthand — and every reader outside it
               pays the price. This criterion asks that{" "}

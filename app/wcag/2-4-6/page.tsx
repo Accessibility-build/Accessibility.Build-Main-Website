@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.4.6 Headings and Labels — Descriptive Headings",
   description:
-    "Complete guide to WCAG 2.4.6 Headings and Labels. Learn what counts as a 'label', why descriptive headings and labels matter for screen reader navigation, copy-ready HTML examples, common mistakes like generic 'More' links and placeholder-only labels, and exactly how to test it.",
+    clampDescription("Complete guide to WCAG 2.4.6 Headings and Labels. Learn what counts as a 'label', why descriptive headings and labels matter for screen reader navigation, copy-ready HTML examples, common mistakes like generic 'More' links and placeholder-only labels, and exactly how to test it."),
   keywords: [
     "WCAG 2.4.6",
     "Headings and Labels",
@@ -108,7 +111,7 @@ export default function WCAG246Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-08"
-        dateModified="2026-07-08"
+        dateModified={getRouteDate("/wcag/2-4-6") ?? "2026-07-08"}
         image="https://accessibility.build/api/og?title=WCAG%202.4.6%20Headings%20and%20Labels&section=WCAG"
         url="https://accessibility.build/wcag/2-4-6"
         wordCount={2800}
@@ -194,6 +197,7 @@ export default function WCAG246Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.6: Headings and Labels
             </h1>
+            <PageByline route="/wcag/2-4-6" source={{ label: "W3C: Understanding 2.4.6", href: "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Screen reader users skim a page the way sighted users do — by jumping
               between headings and reading the labels on controls. This criterion asks

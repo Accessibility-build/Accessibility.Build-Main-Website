@@ -18,11 +18,14 @@ import {
   Palette,
   Sun,
 } from "lucide-react"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Accessible Color Palette Guide | WCAG Color Systems for UI",
   description:
-    "Learn how to create WCAG-accessible color palettes for buttons, cards, forms, alerts, links, charts, focus states, hover states, disabled states, and dark mode.",
+    clampDescription("Learn how to create WCAG-accessible color palettes for buttons, cards, forms, alerts, links, charts, focus states, hover states, disabled states, and dark mode."),
   keywords: [
     "accessible color palette guide",
     "WCAG color palette",
@@ -133,7 +136,7 @@ export default function AccessibleColorPalettesGuidePage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-04-27"
-        dateModified="2026-04-27"
+        dateModified={getRouteDate("/guides/accessible-color-palettes") ?? "2026-04-27"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/accessible-color-palettes"
         wordCount={1900}
@@ -166,6 +169,7 @@ export default function AccessibleColorPalettesGuidePage() {
               <h1 className="text-4xl font-bold tracking-tight text-slate-950 dark:text-white md:text-6xl">
                 Accessible Color Palettes for UI Design Systems
               </h1>
+              <PageByline route="/guides/accessible-color-palettes" className="mb-5" />
               <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl">
                 Accessible color work starts when colors are tested in context.
                 This guide shows how to move from isolated swatches to practical

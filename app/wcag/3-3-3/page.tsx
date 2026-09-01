@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.3.3 Error Suggestion — Suggest Fixes for Errors",
   description:
-    "Complete guide to WCAG 3.3.3 Error Suggestion. Learn how to suggest corrections when a form error is detected, when the security/purpose exception applies, accessible suggestion patterns, aria-describedby and live regions, copy-ready code, testing methods, and common mistakes.",
+    clampDescription("Complete guide to WCAG 3.3.3 Error Suggestion. Learn how to suggest corrections when a form error is detected, when the security/purpose exception applies, accessible suggestion patterns, aria-describedby and live regions, copy-ready code, testing methods, and common mistakes."),
   keywords: [
     "WCAG 3.3.3",
     "Error Suggestion",
@@ -127,7 +130,7 @@ export default function WCAG333Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-06-30"
-        dateModified="2026-06-30"
+        dateModified={getRouteDate("/wcag/3-3-3") ?? "2026-06-30"}
         image="https://accessibility.build/api/og?title=WCAG%203.3.3%20Error%20Suggestion&section=WCAG"
         url="https://accessibility.build/wcag/3-3-3"
         wordCount={2700}
@@ -213,6 +216,7 @@ export default function WCAG333Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.3.3: Error Suggestion
             </h1>
+            <PageByline route="/wcag/3-3-3" source={{ label: "W3C: Understanding 3.3.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               When a form rejects an entry and you already know how to fix it,
               you must{" "}

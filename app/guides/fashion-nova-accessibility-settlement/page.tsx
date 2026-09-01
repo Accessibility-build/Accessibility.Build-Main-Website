@@ -6,12 +6,15 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title:
     "$5.15M Fashion Nova Accessibility Settlement Explained",
   description:
-    "Alcazar v. Fashion Nova settled for $5.15 million in 2025 — the second-largest web accessibility settlement on record. A breakdown of the case, the ADA and California Unruh Act claims, the class structure, WCAG 2.1 remediation terms, and the lessons for every online retailer.",
+    clampDescription("Alcazar v. Fashion Nova settled for $5.15 million in 2025 — the second-largest web accessibility settlement on record. A breakdown of the case, the ADA and California Unruh Act claims, the class structure, WCAG 2.1 remediation terms, and the lessons for every online retailer."),
   keywords: [
     "Fashion Nova settlement",
     "Fashion Nova accessibility lawsuit",
@@ -111,7 +114,7 @@ export default function FashionNovaSettlementPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/guides/fashion-nova-accessibility-settlement") ?? "2026-07-09"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/fashion-nova-accessibility-settlement"
         wordCount={2100}
@@ -160,6 +163,7 @@ export default function FashionNovaSettlementPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               A $5.15 Million Reminder That Websites Are Places of Business
             </h1>
+            <PageByline route="/guides/fashion-nova-accessibility-settlement" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               In 2025, online fashion retailer Fashion Nova agreed to a{" "}
               <strong>$5.15 million</strong> class-action settlement after

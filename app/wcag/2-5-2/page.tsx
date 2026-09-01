@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.5.2 Pointer Cancellation — The Up-Event Rule",
   description:
-    "Complete guide to WCAG 2.5.2 Pointer Cancellation. Why actions must fire on the up-event, the four ways to conform, mousedown vs click code examples, and how to test.",
+    clampDescription("Complete guide to WCAG 2.5.2 Pointer Cancellation. Why actions must fire on the up-event, the four ways to conform, mousedown vs click code examples, and how to test."),
   keywords: [
     "WCAG 2.5.2",
     "Pointer Cancellation",
@@ -131,6 +133,7 @@ export default function WCAG252Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.5.2: Pointer Cancellation
             </h1>
+            <PageByline route="/wcag/2-5-2" source={{ label: "W3C: Understanding 2.5.2", href: "https://www.w3.org/WAI/WCAG22/Understanding/pointer-cancellation.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Everyone mis-taps. The question is whether a mis-tap is recoverable. This
               criterion requires that{" "}

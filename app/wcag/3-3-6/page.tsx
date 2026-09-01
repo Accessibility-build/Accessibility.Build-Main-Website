@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.3.6 Error Prevention (All) — Full Guide",
   description:
-    "Guide to WCAG 3.3.6 Error Prevention (All): every submission must be reversible, checked, or confirmed — not just legal and financial ones. Code and testing.",
+    clampDescription("Guide to WCAG 3.3.6 Error Prevention (All): every submission must be reversible, checked, or confirmed — not just legal and financial ones. Code and testing."),
   keywords: [
     "WCAG 3.3.6",
     "Error Prevention All",
@@ -117,6 +119,7 @@ export default function WCAG336Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.3.6: Error Prevention (All)
             </h1>
+            <PageByline route="/wcag/3-3-6" source={{ label: "W3C: Understanding 3.3.6", href: "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-all.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               At Level AA, WCAG protects users from irreversible mistakes on legal and
               financial forms. This criterion asks a simple question: why only those?{" "}

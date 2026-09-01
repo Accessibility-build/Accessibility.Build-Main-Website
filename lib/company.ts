@@ -37,6 +37,10 @@ export const company = {
   founderWebsite: "https://khushwantparihar.com",
   linkedin: "https://linkedin.com/company/accessibilitybuild",
   founderLinkedin: "https://www.linkedin.com/in/khushwantparihar",
+  // The founder's personal GitHub account (the one khushwantparihar.com lists
+  // as its own sameAs). github.com/khushwantparihar is an empty placeholder.
+  founderGithub: "https://github.com/WOLFIEEEE",
+  organizationGithub: "https://github.com/accessibility-build",
 } as const
 
 export const legalLastUpdated = "July 12, 2026"

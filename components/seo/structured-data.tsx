@@ -1,5 +1,6 @@
 "use client"
 
+import { company } from "@/lib/company"
 import { type StructuredDataProps } from "@/types/seo"
 
 function serializeSchema(schema: Record<string, any>) {
@@ -349,26 +350,10 @@ export function ToolStructuredData({
     ...(featureList && featureList.length > 0 ? { "featureList": featureList } : {})
   }
 
-  // Add HowTo schema if steps are provided
-  const howToSchema = steps ? {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": `How to use ${name}`,
-    "description": `Step-by-step guide to using ${name} for accessibility testing`,
-    "totalTime": "PT5M",
-    "estimatedCost": {
-      "@type": "MonetaryAmount",
-      "currency": "USD",
-      "value": offers?.price || "0"
-    },
-    "step": steps.map((step, index) => ({
-      "@type": "HowToStep",
-      "position": index + 1,
-      "name": step.name,
-      "text": step.text,
-      ...(step.url && { "url": step.url })
-    }))
-  } : null
+  // `steps` is accepted for backwards compatibility but no longer emits a
+  // HowTo node: Google retired the HowTo rich result in 2023, and the generic
+  // "How to use <tool>" text added nothing a reader could see.
+  void steps
 
   return (
     <>
@@ -378,14 +363,6 @@ export function ToolStructuredData({
           __html: serializeSchema(toolSchema)
         }}
       />
-      {howToSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: serializeSchema(howToSchema)
-          }}
-        />
-      )}
     </>
   )
 }
@@ -453,28 +430,30 @@ export function ArticleStructuredData({
   articleType = "Article",
   authorType = "Person"
 }: ArticleStructuredDataProps) {
+  const isFounder = authorType === "Person" && author.name.trim() === company.legalOperator
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": articleType,
     "headline": headline,
     "description": description,
-    "author": {
-      "@type": authorType,
-      "name": author.name,
-      ...(author.url && { "url": author.url }),
-      ...(author.description && { "description": author.description }),
-      ...(author.image && {
-        "image": {
-          "@type": "ImageObject",
-          "url": author.image
+    // One author entity site-wide. A human author is the founder node that
+    // app/layout.tsx emits on every page (referenced by @id, never re-declared
+    // with different details); anything else is the Organization. Invented
+    // Person names such as "Accessibility.build Editorial" are not emitted.
+    "author": isFounder
+      ? {
+          "@type": "Person",
+          "@id": "https://accessibility.build/#founder",
+          "name": company.legalOperator,
+          "url": "https://accessibility.build/authors/khushwant-parihar",
+          ...(author.image && { "image": { "@type": "ImageObject", "url": author.image } }),
         }
-      }),
-      ...(authorType === "Person" && {
-        "worksFor": {
-          "@id": "https://accessibility.build/#organization"
-        }
-      })
-    },
+      : {
+          "@type": "Organization",
+          "@id": "https://accessibility.build/#organization",
+          "name": "Accessibility.build",
+          "url": "https://accessibility.build",
+        },
     "publisher": {
       "@type": "Organization",
       "@id": "https://accessibility.build/#organization",
@@ -524,60 +503,11 @@ export function HowToStructuredData({
   tool,
   steps
 }: HowToStructuredDataProps) {
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": name,
-    "description": description,
-    ...(image && {
-      "image": {
-        "@type": "ImageObject",
-        "url": image
-      }
-    }),
-    ...(totalTime && { "totalTime": totalTime }),
-    ...(estimatedCost && {
-      "estimatedCost": {
-        "@type": "MonetaryAmount",
-        "currency": "USD",
-        "value": estimatedCost
-      }
-    }),
-    ...(supply && {
-      "supply": supply.map(item => ({
-        "@type": "HowToSupply",
-        "name": item
-      }))
-    }),
-    ...(tool && {
-      "tool": tool.map(item => ({
-        "@type": "HowToTool",
-        "name": item
-      }))
-    }),
-    "step": steps.map((step, index) => ({
-      "@type": "HowToStep",
-      "position": index + 1,
-      "name": step.name,
-      "text": step.text,
-      ...(step.image && {
-        "image": {
-          "@type": "ImageObject",
-          "url": step.image
-        }
-      }),
-      ...(step.url && { "url": step.url })
-    }))
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: serializeSchema(howToSchema)
-      }}
-    />
-  )
+  // Retired. Google removed the HowTo rich result in September 2023 and no
+  // other consumer acts on it. Callers keep their step arrays for the visible
+  // content; nothing is emitted. Kept as a no-op so existing imports compile.
+  void name; void description; void image; void totalTime; void estimatedCost; void supply; void tool; void steps
+  return null
 }
 
 // NOTE: The canonical Organization and WebSite entities are emitted site-wide
@@ -621,12 +551,8 @@ export function ServiceStructuredData({
         }
       })
     },
-    ...(areaServed && {
-      "areaServed": areaServed.map(area => ({
-        "@type": "Place",
-        "name": area
-      }))
-    }),
+    // Plain text: "Worldwide" is not a Place.
+    ...(areaServed && { "areaServed": areaServed.length === 1 ? areaServed[0] : areaServed }),
     ...(offers && {
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -739,15 +665,9 @@ export function AccessibilityToolStructuredData({
     "operatingSystem": operatingSystem,
     "browserRequirements": "Requires JavaScript. Supported browsers: Chrome, Firefox, Safari, Edge",
     ...(softwareVersion ? { "softwareVersion": softwareVersion } : {}),
-    "accessibilityFeature": accessibilityFeatures || [
-      "highContrastDisplay",
-      "keyboardNavigation", 
-      "screenReaderSupport",
-      "largePrint",
-      "reducedAnimation"
-    ],
-    "accessibilityHazard": "none",
-    "accessibilitySummary": "Fully accessible tool designed for accessibility professionals and developers",
+    // Only what the caller can vouch for. The old default advertised five
+    // accessibility features and a "fully accessible" summary on every tool.
+    ...(accessibilityFeatures && accessibilityFeatures.length > 0 ? { "accessibilityFeature": accessibilityFeatures } : {}),
     ...(offers && {
       "offers": {
         "@type": "Offer",
@@ -767,13 +687,9 @@ export function AccessibilityToolStructuredData({
     // Per-tool capabilities only — no generic default, so a tool never
     // advertises features it does not have.
     ...(featureList && featureList.length > 0 ? { "featureList": featureList } : {}),
-    "applicationSubCategory": "Web Accessibility Testing Tool",
-    "downloadUrl": url,
-    "installUrl": url,
-    "softwareHelp": {
-      "@type": "CreativeWork",
-      "url": `${url}#help`
-    }
+    "applicationSubCategory": "Web Accessibility Testing Tool"
+    // No downloadUrl/installUrl/softwareHelp: these are browser tools with
+    // nothing to download or install, and no "#help" anchor exists.
   }
 
   return (

@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.2.1 On Focus — No Surprise Context Changes",
   description:
-    "Complete guide to WCAG 3.2.1 On Focus. What a change of context is, why focusing a control must never trigger one, code examples of focus traps and popups, and how to test.",
+    clampDescription("Complete guide to WCAG 3.2.1 On Focus. What a change of context is, why focusing a control must never trigger one, code examples of focus traps and popups, and how to test."),
   keywords: [
     "WCAG 3.2.1",
     "On Focus",
@@ -131,6 +133,7 @@ export default function WCAG321Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.2.1: On Focus
             </h1>
+            <PageByline route="/wcag/3-2-1" source={{ label: "W3C: Understanding 3.2.1", href: "https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Keyboard users move focus through a page just to see what is there. That
               exploration has to be safe. This criterion requires that{" "}

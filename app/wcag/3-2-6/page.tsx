@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.2.6 Consistent Help — Keep Help in One Place",
   description:
-    "Complete guide to WCAG 3.2.6 Consistent Help. Learn why help mechanisms — contact details, chat, help links, self-help — must appear in the same relative order across pages, which help types are covered, copy-ready code, testing methods, and common mistakes.",
+    clampDescription("Complete guide to WCAG 3.2.6 Consistent Help. Learn why help mechanisms — contact details, chat, help links, self-help — must appear in the same relative order across pages, which help types are covered, copy-ready code, testing methods, and common mistakes."),
   keywords: [
     "WCAG 3.2.6",
     "Consistent Help",
@@ -135,7 +138,7 @@ export default function WCAG326Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-04"
-        dateModified="2026-07-04"
+        dateModified={getRouteDate("/wcag/3-2-6") ?? "2026-07-04"}
         image="https://accessibility.build/api/og?title=WCAG%203.2.6%20Consistent%20Help&section=WCAG"
         url="https://accessibility.build/wcag/3-2-6"
         wordCount={2700}
@@ -221,6 +224,7 @@ export default function WCAG326Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.2.6: Consistent Help
             </h1>
+            <PageByline route="/wcag/3-2-6" source={{ label: "W3C: Understanding 3.2.6", href: "https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               When a user needs help, they shouldn&apos;t have to hunt for it. If
               your site offers a help mechanism — a contact number, a chat widget,

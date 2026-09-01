@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.4.10 Section Headings — AAA Guide",
   description:
-    "WCAG 2.4.10 asks that section headings organize your content. Learn what counts as a section, how it relates to 1.3.1 and 2.4.6, heading structure examples, and testing.",
+    clampDescription("WCAG 2.4.10 asks that section headings organize your content. Learn what counts as a section, how it relates to 1.3.1 and 2.4.6, heading structure examples, and testing."),
   keywords: [
     "WCAG 2.4.10",
     "Section Headings",
@@ -114,6 +116,7 @@ export default function WCAG2410Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.10: Section Headings
             </h1>
+            <PageByline route="/wcag/2-4-10" source={{ label: "W3C: Understanding 2.4.10", href: "https://www.w3.org/WAI/WCAG22/Understanding/section-headings.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A three-thousand-word page with no headings is a wall of text for
               everyone — and a dead end for screen reader users who navigate by

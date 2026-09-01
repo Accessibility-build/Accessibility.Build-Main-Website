@@ -19,11 +19,14 @@ import {
   Sparkles,
   Type as TypeIcon,
 } from "lucide-react"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "Accessible Typography Guide: WCAG 2.2 & Type Scale",
   description:
-    "A complete guide to building accessible typography systems: modular type scales, fluid clamp() sizing, WCAG 1.4.4 / 1.4.8 / 1.4.12 compliance, dyslexia and cognitive disability research, Flesch-Kincaid readability, and design-token exports.",
+    clampDescription("A complete guide to building accessible typography systems: modular type scales, fluid clamp() sizing, WCAG 1.4.4 / 1.4.8 / 1.4.12 compliance, dyslexia and cognitive disability research, Flesch-Kincaid readability, and design-token exports."),
   keywords: [
     "accessible typography",
     "WCAG typography",
@@ -176,7 +179,7 @@ export default function AccessibleTypographyGuidePage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-05-23"
-        dateModified="2026-05-23"
+        dateModified={getRouteDate("/guides/accessible-typography-wcag") ?? "2026-05-23"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/accessible-typography-wcag"
         wordCount={2700}
@@ -210,6 +213,7 @@ export default function AccessibleTypographyGuidePage() {
               <h1 className="text-4xl font-bold tracking-tight text-slate-950 dark:text-white md:text-6xl">
                 Accessible typography, end to end
               </h1>
+              <PageByline route="/guides/accessible-typography-wcag" className="mb-5" />
               <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl">
                 The complete blueprint for shipping a typography system that
                 meets WCAG 2.2, supports dyslexia and low-vision users, reads
@@ -230,7 +234,7 @@ export default function AccessibleTypographyGuidePage() {
                 </Button>
               </div>
               <p className="mt-4 text-xs text-slate-500 dark:text-slate-400">
-                ~13 min read · Updated May 2026
+                ~13 min read
               </p>
             </div>
           </div>

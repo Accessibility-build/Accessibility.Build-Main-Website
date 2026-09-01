@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { FAQStructuredData } from "@/components/seo/structured-data"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.2.3 No Timing — Remove Time Limits Entirely",
   description:
-    "WCAG 2.2.3 No Timing explained: timing must not be essential to any activity, except real-time events and synchronized media. Examples, exceptions, and testing.",
+    clampDescription("WCAG 2.2.3 No Timing explained: timing must not be essential to any activity, except real-time events and synchronized media. Examples, exceptions, and testing."),
   keywords: [
     "WCAG 2.2.3",
     "No Timing",
@@ -123,6 +125,7 @@ export default function WCAG223Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.2.3: No Timing
             </h1>
+            <PageByline route="/wcag/2-2-3" source={{ label: "W3C: Understanding 2.2.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/no-timing.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Level A says time limits must be adjustable. Level AAA asks a sharper
               question:{" "}

@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.5.5 Target Size (Enhanced) — 44px Targets",
   description:
-    "WCAG 2.5.5 requires pointer targets of at least 44 by 44 CSS pixels, with four exceptions. How it compares to 2.5.8's 24px rule, CSS fixes, and testing steps.",
+    clampDescription("WCAG 2.5.5 requires pointer targets of at least 44 by 44 CSS pixels, with four exceptions. How it compares to 2.5.8's 24px rule, CSS fixes, and testing steps."),
   keywords: [
     "WCAG 2.5.5",
     "Target Size Enhanced",
@@ -116,6 +118,7 @@ export default function WCAG255Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.5.5: Target Size (Enhanced)
             </h1>
+            <PageByline route="/wcag/2-5-5" source={{ label: "W3C: Understanding 2.5.5", href: "https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Small targets punish anyone whose pointer is not
               pixel-precise — fingers on phones, hands with tremor, styluses

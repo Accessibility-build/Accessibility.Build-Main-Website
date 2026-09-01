@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.5.1 Pointer Gestures — Gesture Alternatives",
   description:
-    "Complete guide to WCAG 2.5.1 Pointer Gestures. What counts as a multipoint or path-based gesture, the single-pointer alternatives you must provide, code examples, and how to test.",
+    clampDescription("Complete guide to WCAG 2.5.1 Pointer Gestures. What counts as a multipoint or path-based gesture, the single-pointer alternatives you must provide, code examples, and how to test."),
   keywords: [
     "WCAG 2.5.1",
     "Pointer Gestures",
@@ -131,6 +133,7 @@ export default function WCAG251Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.5.1: Pointer Gestures
             </h1>
+            <PageByline route="/wcag/2-5-1" source={{ label: "W3C: Understanding 2.5.1", href: "https://www.w3.org/WAI/WCAG22/Understanding/pointer-gestures.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Pinching to zoom, swiping through a carousel, drawing a shape to trigger a
               command — these gestures are impossible for many people. This criterion

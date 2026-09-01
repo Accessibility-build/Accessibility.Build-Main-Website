@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import ContrastChecker from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata = createMetadata({
   title: "WCAG 1.4.3 Contrast (Minimum) - Complete Guide",
@@ -131,6 +132,7 @@ export default function WCAG143Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.4.3: Contrast (Minimum)
             </h1>
+            <PageByline route="/wcag/1-4-3" source={{ label: "W3C: Understanding 1.4.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Low-contrast text is the single most common accessibility problem on the
               web. This criterion sets a measurable floor:{" "}

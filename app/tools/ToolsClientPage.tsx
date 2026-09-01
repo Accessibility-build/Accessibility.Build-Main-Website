@@ -18,6 +18,12 @@ import {
   type ToolCategory,
 } from "@/lib/tool-catalog"
 
+// The hub lists accessibility tools only. The generic developer utilities
+// (JSON, Base64, URL, password) are noindexed and off-topic here; they remain
+// reachable from the in-tool suite bar.
+const hubTools = toolCatalog.filter((tool) => tool.category !== "Developer utilities")
+const hubCategories = toolCategories.filter((category) => category !== "Developer utilities")
+
 const FAVORITES_KEY = "accessibility-build-tool-favorites"
 const RECENTS_KEY = "accessibility-build-tool-recents"
 
@@ -126,7 +132,7 @@ export default function ToolsClientPage() {
 
   const filteredTools = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
-    return toolCatalog.filter((tool) => {
+    return hubTools.filter((tool) => {
       const matchesCategory = category === "All" || tool.category === category
       const searchable = `${tool.title} ${tool.description} ${tool.features.join(" ")} ${tool.keywords.join(" ")}`.toLowerCase()
       return matchesCategory && (!normalizedQuery || searchable.includes(normalizedQuery))
@@ -149,7 +155,7 @@ export default function ToolsClientPage() {
     window.dispatchEvent(new Event("tool-preferences-change"))
   }
 
-  const freeCount = toolCatalog.filter((tool) => tool.credits === 0).length
+  const freeCount = hubTools.filter((tool) => tool.credits === 0).length
 
   return (
     <TooltipProvider>
@@ -164,7 +170,7 @@ export default function ToolsClientPage() {
                   Free WCAG 2.2 testing and authoring tools: check colour contrast, generate accessible palettes, audit a URL, inspect heading structure, and produce audit reports and accessibility statements. Test interfaces, prepare content, build design tokens, organize findings, and handle common developer tasks in one workspace.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
-                  <span><strong className="text-slate-950 dark:text-white">{toolCatalog.length}</strong> tools</span>
+                  <span><strong className="text-slate-950 dark:text-white">{hubTools.length}</strong> tools</span>
                   <span><strong className="text-slate-950 dark:text-white">{freeCount}</strong> free utilities</span>
                   <span>Local processing where supported</span>
                 </div>
@@ -220,7 +226,7 @@ export default function ToolsClientPage() {
                 </p>
               </div>
               <div className="mt-5 flex max-w-full gap-2 overflow-x-auto pb-1" role="group" aria-label="Filter tools by category">
-                {["All" as const, ...toolCategories].map((item) => (
+                {["All" as const, ...hubCategories].map((item) => (
                   <Button
                     key={item}
                     type="button"

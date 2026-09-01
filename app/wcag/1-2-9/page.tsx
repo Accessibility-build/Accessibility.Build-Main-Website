@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.2.9 Audio-only (Live) — AAA Guide",
   description:
-    "WCAG 1.2.9 requires a text alternative for live audio-only content — live captions via CART or a script for scripted broadcasts. Requirements, examples, testing.",
+    clampDescription("WCAG 1.2.9 requires a text alternative for live audio-only content — live captions via CART or a script for scripted broadcasts. Requirements, examples, testing."),
   keywords: [
     "WCAG 1.2.9",
     "Audio-only Live",
@@ -110,6 +112,7 @@ export default function WCAG129Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.2.9: Audio-only (Live)
             </h1>
+            <PageByline route="/wcag/1-2-9" source={{ label: "W3C: Understanding 1.2.9", href: "https://www.w3.org/WAI/WCAG22/Understanding/audio-only-live.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A live audio stream with no text alternative is simply silence for someone
               who is Deaf or hard of hearing. This AAA criterion requires that{" "}

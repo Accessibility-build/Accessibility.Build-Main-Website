@@ -22,6 +22,9 @@ import {
   Zap,
   FileText,
 } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "JAWS Screen Reader Testing: The Complete Guide (2026)"
 const pageDescription =
@@ -29,7 +32,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "jaws",
     "jaws screen reader",
@@ -194,6 +197,7 @@ export default function JawsScreenReaderTestingGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/jaws-screen-reader-testing" title={pageTitle} description={pageDescription} datePublished="2026-07-14" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -239,11 +243,12 @@ export default function JawsScreenReaderTestingGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Testing Guide &bull; Updated July 2026
+                Testing Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 JAWS Screen Reader Testing: The Complete Guide
               </h1>
+              <PageByline route="/guides/jaws-screen-reader-testing" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 JAWS is the screen reader your enterprise and government users
                 are most likely running — and you can test with it today without

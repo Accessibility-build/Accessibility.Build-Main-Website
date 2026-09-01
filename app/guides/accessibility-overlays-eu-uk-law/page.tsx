@@ -3,6 +3,8 @@ import Link from "next/link"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { FaqSection } from "@/components/seo/faq-section"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
 
 const ogTitle = encodeURIComponent("Do Accessibility Overlays Meet the EAA and UK Law?")
 
@@ -98,6 +100,7 @@ export default function OverlaysEuUkLawPage() {
           },
         ]}
       />
+      <GuideArticleSchema route="/guides/accessibility-overlays-eu-uk-law" title="Do Accessibility Overlays Meet the EAA and UK Law?" description="Overlay widgets do not make a site EAA or Equality Act compliant. What EN 301 549 requires, what EU institutions say, and what actually satisfies the law." datePublished="2026-08-27" />
 
       {/* Breadcrumb Navigation */}
       <nav aria-label="Breadcrumb" className="border-b border-slate-200 dark:border-slate-800">
@@ -137,6 +140,7 @@ export default function OverlaysEuUkLawPage() {
                 the EAA and UK Law?
               </span>
             </h1>
+            <PageByline route="/guides/accessibility-overlays-eu-uk-law" className="mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               Overlay vendors now market their widgets as a shortcut to European Accessibility Act
               and Equality Act compliance. But every relevant legal test in the EU and UK is

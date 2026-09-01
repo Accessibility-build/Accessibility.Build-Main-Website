@@ -1,6 +1,7 @@
-// Hardcoded entries for the static blog posts that live under app/blog/<slug>/page.tsx
-// (not managed in Sanity). Used by the blog index to list and link these posts
-// alongside CMS-managed ones. Titles/excerpts mirror each page's metadata export.
+// Index entries for the twelve original blog posts. The posts themselves were
+// migrated into Sanity in July 2026 and render via app/blog/[slug]; this list is
+// kept only as a build-time fallback for the homepage post list and as the slug
+// registry for lib/internal-linking.ts. Bylines match the Sanity author record.
 
 export interface StaticBlogPost {
   slug: string
@@ -22,7 +23,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Complete accessibility audit checklist covering WCAG 2.2 compliance, automated testing, manual testing, and remediation strategies. Free downloadable checklist included.",
     date: "2024-01-15",
     category: "Audit",
-    author: "Maya Rodriguez",
+    author: "The Accessibility.build Team",
     readingTime: 12,
   },
   {
@@ -52,7 +53,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Master alt text writing, image accessibility, and WCAG compliance. Learn when to use alt text, how to write effective descriptions, and handle complex images with practical examples.",
     date: "2024-01-08",
     category: "Development",
-    author: "Maya Rodriguez",
+    author: "The Accessibility.build Team",
     readingTime: 10,
   },
   {
@@ -122,7 +123,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
       "Learn web accessibility fundamentals, WCAG basics, and practical implementation tips. Perfect step-by-step guide for developers, designers, and content creators new to accessibility.",
     date: "2024-01-12",
     category: "Fundamentals",
-    author: "Alex Johnson",
+    author: "The Accessibility.build Team",
     readingTime: 8,
   },
   {

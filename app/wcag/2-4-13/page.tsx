@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.4.13 Focus Appearance — Indicator Size",
   description:
-    "WCAG 2.4.13 sets a minimum size and 3:1 contrast for keyboard focus indicators: at least a 2 CSS px thick perimeter. CSS examples, exceptions, and how to test.",
+    clampDescription("WCAG 2.4.13 sets a minimum size and 3:1 contrast for keyboard focus indicators: at least a 2 CSS px thick perimeter. CSS examples, exceptions, and how to test."),
   keywords: [
     "WCAG 2.4.13",
     "Focus Appearance",
@@ -114,6 +116,7 @@ export default function WCAG2413Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.13: Focus Appearance
             </h1>
+            <PageByline route="/wcag/2-4-13" source={{ label: "W3C: Understanding 2.4.13", href: "https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               2.4.7 says a focus indicator must exist. This criterion says what
               a <em>good</em> one looks like:{" "}

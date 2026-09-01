@@ -17,6 +17,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata = {
   title: "Banking & Financial Services Accessibility",
@@ -265,6 +266,7 @@ export default function FinanceIndustryPage() {
           Industry Guide
         </div>
         <h1 className="text-4xl font-bold mb-4">Banking &amp; Financial Services Accessibility</h1>
+        <PageByline route="/industries/finance" className="mb-5" />
         <p className="text-xl text-muted-foreground">
           Banking is an essential service, and its digital front door now sits under binding accessibility law on
           both sides of the Atlantic: the European Accessibility Act applies to consumer banking since June 2025,

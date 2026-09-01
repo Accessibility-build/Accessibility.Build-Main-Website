@@ -14,8 +14,10 @@ import type { Metadata } from "next"
 import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { SocialShare } from "@/components/seo/social-share"
 import { RelatedContent } from "@/components/seo/related-content"
+import { MorePosts } from "@/components/blog/more-posts"
 import { ListenFeature } from "@/components/blog/listen-feature"
 import { company } from "@/lib/company"
+import { clampDescription } from "@/lib/metadata"
 
 type BlogCategory = {
   title: string
@@ -117,7 +119,7 @@ export async function generateMetadata({
 
     return {
       title: post.seo?.metaTitle || post.title,
-      description: post.seo?.metaDescription || post.excerpt,
+      description: clampDescription(post.seo?.metaDescription || post.excerpt || ""),
       ...(keywords?.length && { keywords }),
       authors: [{
         name: post.author?.name || company.legalOperator,
@@ -448,6 +450,12 @@ export default async function BlogPostPage({
               />
             </div>
           </section>
+
+          <MorePosts
+            currentSlug={slug}
+            categorySlug={post.categories?.[0]?.slug?.current}
+            categoryTitle={primaryCategory}
+          />
         </div>
 
         {/* The global site header and footer are supplied by the layout. */}

@@ -20,11 +20,14 @@ import {
 } from "lucide-react"
 import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "How to Make PDFs Accessible: WCAG & PDF/UA Guide",
   description:
-    "Learn how to create accessible PDFs that comply with WCAG 2.2 and PDF/UA standards. Covers tagged PDFs, headings, alt text, reading order, bookmarks, forms, and remediation techniques.",
+    clampDescription("Learn how to create accessible PDFs that comply with WCAG 2.2 and PDF/UA standards. Covers tagged PDFs, headings, alt text, reading order, bookmarks, forms, and remediation techniques."),
   keywords: [
     "accessible pdf",
     "pdf accessibility",
@@ -42,6 +45,7 @@ export const metadata: Metadata = {
     "ada pdf compliance",
   ],
   openGraph: {
+    images: [{ url: "/api/og?title=How%20to%20Make%20PDFs%20Accessible&section=Guide", width: 1200, height: 630, alt: "How to Make PDFs Accessible" }],
     title: "How to Make PDFs Accessible — WCAG & PDF/UA Guide",
     description:
       "Complete guide to creating accessible PDFs. Learn about tags, headings, alt text, and how to test with our free PDF accessibility checker.",
@@ -49,6 +53,7 @@ export const metadata: Metadata = {
     url: "https://accessibility.build/guides/pdf-accessibility",
   },
   twitter: {
+    images: ["/api/og?title=How%20to%20Make%20PDFs%20Accessible&section=Guide"],
     card: "summary_large_image",
     title: "How to Make PDFs Accessible",
     description: "Complete WCAG & PDF/UA guide for creating accessible PDF documents.",
@@ -121,7 +126,7 @@ export default function PdfAccessibilityGuidePage() {
         description="Learn how to create accessible PDFs that comply with WCAG 2.2 and PDF/UA standards."
         url="https://accessibility.build/guides/pdf-accessibility"
         datePublished="2025-03-30"
-        dateModified="2026-03-30"
+        dateModified={getRouteDate("/guides/pdf-accessibility") ?? "2026-03-30"}
         author={{ name: "Khushwant Parihar", url: "https://accessibility.build/about" }}
         publisher={{ name: "Accessibility.build", logo: "https://accessibility.build/images/logo.png" }}
         image="https://accessibility.build/images/guides/pdf-accessibility-og.png"
@@ -149,13 +154,14 @@ export default function PdfAccessibilityGuidePage() {
           <header className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-200/50 dark:border-red-800/50 mb-6">
               <BookOpen className="h-4 w-4 text-red-600 dark:text-red-400" />
-              <span className="text-sm font-medium text-red-700 dark:text-red-300">Expert Guide &bull; Updated March 2026</span>
+              <span className="text-sm font-medium text-red-700 dark:text-red-300">Expert Guide</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
               How to Make PDFs{" "}
               <span className="text-red-600 dark:text-red-400">Accessible</span>
             </h1>
+            <PageByline route="/guides/pdf-accessibility" className="mb-5" />
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               A complete guide to creating WCAG 2.2 and PDF/UA compliant PDF documents. From authoring to testing to remediation.
             </p>

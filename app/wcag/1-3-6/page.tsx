@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.3.6 Identify Purpose — AAA Guide",
   description:
-    "WCAG 1.3.6 requires that the purpose of UI components, icons, and regions can be programmatically determined — enabling personalization. Techniques and testing.",
+    clampDescription("WCAG 1.3.6 requires that the purpose of UI components, icons, and regions can be programmatically determined — enabling personalization. Techniques and testing."),
   keywords: [
     "WCAG 1.3.6",
     "Identify Purpose",
@@ -111,6 +113,7 @@ export default function WCAG136Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.3.6: Identify Purpose
             </h1>
+            <PageByline route="/wcag/1-3-6" source={{ label: "W3C: Understanding 1.3.6", href: "https://www.w3.org/WAI/WCAG22/Understanding/identify-purpose.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Personalization tools can replace buttons with familiar symbols, strip away
               distractions, and keep &ldquo;search&rdquo; looking identical on every site

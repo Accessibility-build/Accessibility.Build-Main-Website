@@ -5,11 +5,12 @@ import InteractiveWCAGChecklist from "@/components/checklists/interactive-wcag-c
 import { Shield, Sparkles, Award, ArrowLeft } from "lucide-react"
 import { BreadcrumbStructuredData, AccessibilityToolStructuredData } from "@/components/seo/structured-data"
 import { FaqSection } from "@/components/seo/faq-section"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.2 AAA Checklist: All Level AAA Success Criteria",
   description:
-    "Complete WCAG 2.2 Level AAA checklist with all 31 enhanced accessibility criteria. Track progress, add notes, and export to Excel/PDF. The gold standard for web accessibility.",
+    clampDescription("Complete WCAG 2.2 Level AAA checklist with all 31 enhanced accessibility criteria. Track progress, add notes, and export to Excel/PDF. The gold standard for web accessibility."),
   keywords: [
     "wcag aaa checklist",
     "WCAG AAA",

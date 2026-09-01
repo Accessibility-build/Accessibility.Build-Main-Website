@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.4.8 Visual Presentation — AAA Text Guide",
   description:
-    "WCAG 1.4.8's five requirements for blocks of text: selectable colors, 80-character lines, no justification, 1.5 line spacing, and 200% resize without scrolling.",
+    clampDescription("WCAG 1.4.8's five requirements for blocks of text: selectable colors, 80-character lines, no justification, 1.5 line spacing, and 200% resize without scrolling."),
   keywords: [
     "WCAG 1.4.8",
     "Visual Presentation",
@@ -144,6 +146,7 @@ export default function WCAG148Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.4.8: Visual Presentation
             </h1>
+            <PageByline route="/wcag/1-4-8" source={{ label: "W3C: Understanding 1.4.8", href: "https://www.w3.org/WAI/WCAG22/Understanding/visual-presentation.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Reading is where low vision, dyslexia, and cognitive load all collide with
               typography. This AAA criterion bundles{" "}

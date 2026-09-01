@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 1.4.9 Images of Text (No Exception) Guide",
   description:
-    "Guide to WCAG 1.4.9 Images of Text (No Exception): why real text beats pictures of text, the only two exceptions, pass/fail examples, CSS techniques, and testing.",
+    clampDescription("Guide to WCAG 1.4.9 Images of Text (No Exception): why real text beats pictures of text, the only two exceptions, pass/fail examples, CSS techniques, and testing."),
   keywords: [
     "WCAG 1.4.9",
     "Images of Text No Exception",
@@ -118,6 +120,7 @@ export default function WCAG149Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.4.9: Images of Text (No Exception)
             </h1>
+            <PageByline route="/wcag/1-4-9" source={{ label: "W3C: Understanding 1.4.9", href: "https://www.w3.org/WAI/WCAG22/Understanding/images-of-text-no-exception.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               When text is baked into an image, users lose every control they have over
               how text looks — size, font, spacing, colors, contrast. This Level AAA

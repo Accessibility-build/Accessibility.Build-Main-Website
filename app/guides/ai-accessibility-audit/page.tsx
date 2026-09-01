@@ -6,12 +6,15 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title:
     "AI Accessibility Audit: Fix WCAG Violations Faster",
   description:
-    "Use AI to triage accessibility issues, map them to WCAG 2.2 criteria, and generate code-level fixes. See how AI-assisted audits compare to manual audits, with real workflows for developers, QA, and compliance teams.",
+    clampDescription("Use AI to triage accessibility issues, map them to WCAG 2.2 criteria, and generate code-level fixes. See how AI-assisted audits compare to manual audits, with real workflows for developers, QA, and compliance teams."),
   keywords: [
     "AI accessibility audit",
     "AI WCAG audit",
@@ -142,7 +145,7 @@ export default function AIAccessibilityAuditPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-05-17"
-        dateModified="2026-05-17"
+        dateModified={getRouteDate("/guides/ai-accessibility-audit") ?? "2026-05-17"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/ai-accessibility-audit"
         wordCount={2100}
@@ -201,6 +204,7 @@ export default function AIAccessibilityAuditPage() {
             <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
               Fix WCAG violations 10x faster with an AI accessibility audit
             </h1>
+            <PageByline route="/guides/ai-accessibility-audit" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10">
               Paste any accessibility issue — a symptom, a screenshot, an
               axe-core rule, or a raw code snippet — and the AI Audit Helper

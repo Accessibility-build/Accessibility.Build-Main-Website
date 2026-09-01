@@ -15,11 +15,13 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata = {
   title: "Government Web Accessibility: 508 & Title II",
   description:
-    "How Section 508 and the ADA Title II web rule apply to federal, state, and local government sites — deadlines, standards, and a practical path to compliance.",
+    clampDescription("How Section 508 and the ADA Title II web rule apply to federal, state, and local government sites — deadlines, standards, and a practical path to compliance."),
   alternates: { canonical: "/industries/government" },
   openGraph: {
     type: "website",
@@ -247,6 +249,7 @@ export default function GovernmentIndustryPage() {
           Industry Guide
         </div>
         <h1 className="text-4xl font-bold mb-4">Government Web Accessibility: Section 508 &amp; Title II</h1>
+        <PageByline route="/industries/government" className="mb-5" />
         <p className="text-xl text-muted-foreground">
           Residents cannot choose a different government. That is why federal agencies answer to Section 508, state
           and local entities now face explicit WCAG deadlines under the ADA Title II rule, and inaccessible PDFs,

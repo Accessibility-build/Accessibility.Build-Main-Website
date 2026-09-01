@@ -6,11 +6,14 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "How AI Is Fueling ADA Website Lawsuits in 2026",
   description:
-    "Generative AI and automated scanners have collapsed the cost of filing a web accessibility lawsuit. ~40% of 2025's federal ADA cases were pro se, 46% targeted repeat defendants, and 2026 is projected to top 5,500 filings. Here's how AI changed the litigation math — and how to protect your site.",
+    clampDescription("Generative AI and automated scanners have collapsed the cost of filing a web accessibility lawsuit. ~40% of 2025's federal ADA cases were pro se, 46% targeted repeat defendants, and 2026 is projected to top 5,500 filings. Here's how AI changed the litigation math — and how to protect your site."),
   keywords: [
     "AI accessibility lawsuits",
     "AI generated ADA lawsuits",
@@ -102,7 +105,7 @@ export default function AILawsuitsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/guides/ai-accessibility-lawsuits") ?? "2026-07-09"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/ai-accessibility-lawsuits"
         wordCount={2000}
@@ -151,6 +154,7 @@ export default function AILawsuitsPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               AI Writes the Complaint. A Scanner Finds the Violations. You Get Sued.
             </h1>
+            <PageByline route="/guides/ai-accessibility-lawsuits" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               The economics of web accessibility litigation just changed. For a
               decade, filing a lawsuit required a lawyer to draft it and some

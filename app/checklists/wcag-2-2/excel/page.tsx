@@ -3,11 +3,12 @@ import WCAGExcelDownload from "./excel-download"
 import { getWCAGStats } from "@/lib/wcag-data"
 import { BreadcrumbStructuredData, AccessibilityToolStructuredData } from "@/components/seo/structured-data"
 import { FaqSection } from "@/components/seo/faq-section"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.2 Checklist Excel Template | All 86 Criteria",
   description:
-    "Download free WCAG 2.2 checklist Excel template with all 86 success criteria. Includes progress tracking, audit summary, and professional formatting for accessibility audits.",
+    clampDescription("Download free WCAG 2.2 checklist Excel template with all 86 success criteria. Includes progress tracking, audit summary, and professional formatting for accessibility audits."),
   keywords: [
     "wcag 2.2 checklist excel",
     "WCAG checklist download",

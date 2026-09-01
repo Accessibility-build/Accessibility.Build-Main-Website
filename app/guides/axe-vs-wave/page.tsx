@@ -17,6 +17,9 @@ import {
   Layers,
   Terminal,
 } from "lucide-react"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "axe vs WAVE: Accessibility Testing Tools Compared"
 const pageDescription =
@@ -24,7 +27,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "axe vs wave",
     "wave vs axe",
@@ -113,6 +116,7 @@ export default function AxeVsWaveGuidePage() {
   return (
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
+      <GuideArticleSchema route="/guides/axe-vs-wave" title={pageTitle} description={pageDescription} datePublished="2026-07-09" />
       <FAQStructuredData faqs={faqs} />
 
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
@@ -158,11 +162,12 @@ export default function AxeVsWaveGuidePage() {
           <section className="pt-12 pb-8 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl text-center">
               <Badge variant="secondary" className="mb-4 text-sm px-3 py-1">
-                Tool Comparison &bull; Updated July 2026
+                Tool Comparison
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 axe vs WAVE: Which Accessibility Testing Tool Should You Use?
               </h1>
+              <PageByline route="/guides/axe-vs-wave" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 axe by Deque and WAVE by WebAIM are the two most widely used
                 free accessibility checkers. They overlap less than you might

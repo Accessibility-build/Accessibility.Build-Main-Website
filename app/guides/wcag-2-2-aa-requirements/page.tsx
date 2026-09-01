@@ -8,6 +8,9 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { wcagCriteria, type SuccessCriterion } from "@/lib/wcag-data"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "WCAG 2.2 Level AA Requirements: Complete List"
 const pageDescription =
@@ -15,7 +18,7 @@ const pageDescription =
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "WCAG 2.2 AA requirements",
     "WCAG 2.2 AA checklist",
@@ -187,7 +190,7 @@ export default function Wcag22AaRequirementsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/guides/wcag-2-2-aa-requirements") ?? "2026-07-09"}
         image={`https://accessibility.build/api/og?title=${encodeURIComponent(pageTitle)}&section=Guide`}
         url="https://accessibility.build/guides/wcag-2-2-aa-requirements"
         wordCount={3200}
@@ -208,7 +211,7 @@ export default function Wcag22AaRequirementsPage() {
           url: "https://accessibility.build/about",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/guides/wcag-2-2-aa-requirements") ?? "2026-07-09"}
         itemListElement={aaScopeCriteria.map((criterion, index) => ({
           name: `${criterion.number} ${criterion.title} (Level ${criterion.level})`,
           description: criterion.description,
@@ -253,6 +256,7 @@ export default function Wcag22AaRequirementsPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               WCAG 2.2 Level AA Requirements: The Complete List
             </h1>
+            <PageByline route="/guides/wcag-2-2-aa-requirements" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               &ldquo;WCAG 2.2 AA conformance&rdquo; means satisfying{" "}
               <strong>

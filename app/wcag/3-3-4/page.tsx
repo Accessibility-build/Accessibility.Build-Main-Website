@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.3.4 Error Prevention — Reverse, Check, Confirm",
   description:
-    "Complete guide to WCAG 3.3.4 Error Prevention (Legal, Financial, Data). Which pages it covers, the reversible/checked/confirmed rule, code samples, and testing.",
+    clampDescription("Complete guide to WCAG 3.3.4 Error Prevention (Legal, Financial, Data). Which pages it covers, the reversible/checked/confirmed rule, code samples, and testing."),
   keywords: [
     "WCAG 3.3.4",
     "Error Prevention",
@@ -113,7 +116,7 @@ export default function WCAG334Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/wcag/3-3-4") ?? "2026-07-09"}
         image="https://accessibility.build/api/og?title=WCAG%203.3.4%20Error%20Prevention&section=WCAG"
         url="https://accessibility.build/wcag/3-3-4"
         wordCount={2900}
@@ -198,6 +201,7 @@ export default function WCAG334Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.3.4: Error Prevention (Legal, Financial, Data)
             </h1>
+            <PageByline route="/wcag/3-3-4" source={{ label: "W3C: Understanding 3.3.4", href: "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A typo in a search box costs a second. A typo in a wire transfer,
               a signed agreement, or an account deletion can cost far more. For

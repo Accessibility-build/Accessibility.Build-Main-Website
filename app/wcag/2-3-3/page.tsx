@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { FAQStructuredData } from "@/components/seo/structured-data"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.3.3 Animation from Interactions — Reduce Motion",
   description:
-    "WCAG 2.3.3 explained: motion animation triggered by interaction must be disableable unless essential. prefers-reduced-motion CSS and JS patterns, plus testing.",
+    clampDescription("WCAG 2.3.3 explained: motion animation triggered by interaction must be disableable unless essential. prefers-reduced-motion CSS and JS patterns, plus testing."),
   keywords: [
     "WCAG 2.3.3",
     "Animation from Interactions",
@@ -123,6 +125,7 @@ export default function WCAG233Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.3.3: Animation from Interactions
             </h1>
+            <PageByline route="/wcag/2-3-3" source={{ label: "W3C: Understanding 2.3.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               The user scrolls; the page answers with parallax layers, zooming
               heroes, and elements swooping in from the sides. For someone with a

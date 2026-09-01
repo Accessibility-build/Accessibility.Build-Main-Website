@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { FAQStructuredData } from "@/components/seo/structured-data"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.4.8 Location — Show Users Where They Are",
   description:
-    "WCAG 2.4.8 Location explained: give users information about where they are within a site — breadcrumbs, aria-current navigation, and site maps. Code and testing.",
+    clampDescription("WCAG 2.4.8 Location explained: give users information about where they are within a site — breadcrumbs, aria-current navigation, and site maps. Code and testing."),
   keywords: [
     "WCAG 2.4.8",
     "Location",
@@ -123,6 +125,7 @@ export default function WCAG248Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.8: Location
             </h1>
+            <PageByline route="/wcag/2-4-8" source={{ label: "W3C: Understanding 2.4.8", href: "https://www.w3.org/WAI/WCAG22/Understanding/location.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Half of your visitors never see your home page — they arrive from a
               search engine, deep inside the site, with no idea how this page relates

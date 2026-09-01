@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
 
 const ogTitle = encodeURIComponent("UK Website Accessibility Law: Equality Act & PSBAR")
 
@@ -138,6 +139,7 @@ export default function UKCompliancePage() {
                 Equality Act &amp; PSBAR
               </span>
             </h1>
+            <PageByline route="/compliance/uk" className="mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               No UK statute names WCAG for private websites, yet the legal duty is real and it is
               anticipatory. The Equality Act 2010 expects service providers to plan reasonable

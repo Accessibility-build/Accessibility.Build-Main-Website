@@ -135,25 +135,6 @@ export default function PDFAccessibilityCheckerPage() {
         }}
       />
 
-      {/* HowTo Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "HowTo",
-            "name": "How to Check PDF Accessibility",
-            "description": "Upload a PDF file to check for WCAG and PDF/UA accessibility issues with AI-powered fix suggestions.",
-            "step": [
-              { "@type": "HowToStep", "name": "Upload Your PDF", "text": "Drag and drop or browse to upload any PDF file up to 10MB in size.", "position": 1 },
-              { "@type": "HowToStep", "name": "Automated Analysis", "text": "Our tool analyzes the PDF using pdf-lib and pdfjs-dist, checking 14 accessibility criteria including tags, headings, alt text, bookmarks, fonts, and forms.", "position": 2 },
-              { "@type": "HowToStep", "name": "AI-Powered Report", "text": "Get a detailed accessibility score with AI-generated plain-language explanations and prioritized fix suggestions powered by GPT-4o.", "position": 3 }
-            ],
-            "tool": { "@type": "HowToTool", "name": "Accessibility.build PDF Checker" },
-            "totalTime": "PT15S"
-          }),
-        }}
-      />
 
       <div className="min-h-screen pt-12 bg-gradient-to-br from-red-50/50 via-background to-rose-50/50 dark:from-red-950/10 dark:via-background dark:to-rose-950/10">
         <div className="container-wide pb-12">
@@ -254,13 +235,13 @@ export default function PDFAccessibilityCheckerPage() {
                     </div>
                     <div>
                       <CardTitle className="text-lg">AI-Powered Remediation</CardTitle>
-                      <CardDescription>GPT-4o Fix Suggestions</CardDescription>
+                      <CardDescription>GPT-4o mini Fix Suggestions</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    GPT-4o analyzes your results and provides plain-language explanations of each issue, prioritized fix suggestions, and a step-by-step remediation plan.
+                    GPT-4o mini analyzes your results and provides plain-language explanations of each issue, prioritized fix suggestions, and a step-by-step remediation plan.
                   </p>
                 </CardContent>
               </Card>

@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import MotionDemo from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata: Metadata = {
   title: 'WCAG 2.2.2 Pause, Stop, Hide - Interactive Demo',
@@ -172,6 +173,7 @@ export default function WCAG222Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.2.2: Pause, Stop, Hide
             </h1>
+            <PageByline route="/wcag/2-2-2" source={{ label: "W3C: Understanding 2.2.2", href: "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               An auto-advancing carousel, a scrolling news ticker, a looping background
               video, a feed that refreshes on its own — for many people these are not

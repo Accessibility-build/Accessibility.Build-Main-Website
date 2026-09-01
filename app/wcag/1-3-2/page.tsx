@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import MeaningfulSequenceDemo from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata = createMetadata({
   title: "WCAG 1.3.2 Meaningful Sequence - Complete Guide",
@@ -127,6 +128,7 @@ export default function WCAG132Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.3.2: Meaningful Sequence
             </h1>
+            <PageByline route="/wcag/1-3-2" source={{ label: "W3C: Understanding 1.3.2", href: "https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               CSS can move content anywhere on screen, but screen readers, braille
               displays, and keyboard focus quietly follow the{" "}

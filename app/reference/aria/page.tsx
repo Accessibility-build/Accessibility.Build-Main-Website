@@ -3,11 +3,13 @@ import Link from "next/link"
 import { BreadcrumbStructuredData, ArticleStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { AriaReferenceClient } from "./client-page"
+import { getRouteDate } from "@/lib/site-routes"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "ARIA Roles & Attributes: Interactive Reference",
   description:
-    "The complete interactive WAI-ARIA reference with searchable roles, attributes, live playground, screen reader behavior, ARIA vs native HTML comparisons, and copy-paste code patterns.",
+    clampDescription("The complete interactive WAI-ARIA reference with searchable roles, attributes, live playground, screen reader behavior, ARIA vs native HTML comparisons, and copy-paste code patterns."),
   keywords: [
     "aria roles",
     "aria attributes",
@@ -27,6 +29,7 @@ export const metadata: Metadata = {
     "aria vs html",
   ],
   openGraph: {
+    images: [{ url: "/api/og?title=ARIA%20Roles%20%26%20Attributes%20Reference&section=Reference", width: 1200, height: 630, alt: "ARIA Roles & Attributes Reference" }],
     title: "ARIA Roles & Attributes Reference | Interactive Cheat Sheet & Playground",
     description:
       "The complete interactive WAI-ARIA reference with searchable roles, attributes, live playground, screen reader behavior, and copy-paste code patterns.",
@@ -34,6 +37,7 @@ export const metadata: Metadata = {
     type: "article",
   },
   twitter: {
+    images: ["/api/og?title=ARIA%20Roles%20%26%20Attributes%20Reference&section=Reference"],
     card: "summary_large_image",
     title: "ARIA Roles & Attributes Reference | Accessibility.build",
     description:
@@ -115,7 +119,7 @@ export default function AriaReferencePage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-03-30"
-        dateModified="2026-03-30"
+        dateModified={getRouteDate("/reference/aria") ?? "2026-03-30"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/reference/aria"
         wordCount={5000}
@@ -149,37 +153,6 @@ export default function AriaReferencePage() {
         }}
       />
 
-      {/* HowTo Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "HowTo",
-            name: "How to Test ARIA Markup in the Live Playground",
-            step: [
-              {
-                "@type": "HowToStep",
-                name: "Write HTML with ARIA",
-                text: "Type or paste HTML with ARIA roles and attributes into the editor.",
-                position: 1,
-              },
-              {
-                "@type": "HowToStep",
-                name: "Preview Accessibility Tree",
-                text: "See the computed roles, names, and states as they appear to assistive technology.",
-                position: 2,
-              },
-              {
-                "@type": "HowToStep",
-                name: "Check Screen Reader Output",
-                text: "Review what screen readers would announce for your markup.",
-                position: 3,
-              },
-            ],
-          }),
-        }}
-      />
 
       <div className="min-h-screen pt-12 bg-gradient-to-br from-violet-50/50 via-background to-indigo-50/50 dark:from-violet-950/10 dark:via-background dark:to-indigo-950/10">
         {/* Breadcrumb Navigation */}

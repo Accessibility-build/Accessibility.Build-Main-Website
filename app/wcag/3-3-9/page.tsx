@@ -3,11 +3,13 @@ import Link from "next/link"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.3.9 Accessible Authentication (Enhanced)",
   description:
-    "Guide to WCAG 3.3.9 Accessible Authentication (Enhanced): no cognitive test at any login step — no object-recognition or personal-content exceptions. Code and testing.",
+    clampDescription("Guide to WCAG 3.3.9 Accessible Authentication (Enhanced): no cognitive test at any login step — no object-recognition or personal-content exceptions. Code and testing."),
   keywords: [
     "WCAG 3.3.9",
     "Accessible Authentication Enhanced",
@@ -124,6 +126,7 @@ export default function WCAG339Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.3.9: Accessible Authentication (Enhanced)
             </h1>
+            <PageByline route="/wcag/3-3-9" source={{ label: "W3C: Understanding 3.3.9", href: "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Logging in should prove who you are, not how good your memory or puzzle
               solving is. At Level AA,{" "}

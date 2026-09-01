@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.4.11 Focus Not Obscured (Minimum) Guide",
   description:
-    "Complete guide to WCAG 2.4.11 Focus Not Obscured (Minimum), new in WCAG 2.2. Learn why sticky headers, cookie banners, and floating buttons hide the focused element, and how to fix it with scroll-margin, scroll-padding, and CSS — with copy-ready code, testing methods, and common mistakes.",
+    clampDescription("Complete guide to WCAG 2.4.11 Focus Not Obscured (Minimum), new in WCAG 2.2. Learn why sticky headers, cookie banners, and floating buttons hide the focused element, and how to fix it with scroll-margin, scroll-padding, and CSS — with copy-ready code, testing methods, and common mistakes."),
   keywords: [
     "WCAG 2.4.11",
     "Focus Not Obscured",
@@ -139,7 +142,7 @@ export default function WCAG2411Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-06-29"
-        dateModified="2026-06-29"
+        dateModified={getRouteDate("/wcag/2-4-11") ?? "2026-06-29"}
         image="https://accessibility.build/api/og?title=WCAG%202.4.11%20Focus%20Not%20Obscured%20%28Minimum%29&section=WCAG"
         url="https://accessibility.build/wcag/2-4-11"
         wordCount={3000}
@@ -228,6 +231,7 @@ export default function WCAG2411Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.4.11: Focus Not Obscured (Minimum)
             </h1>
+            <PageByline route="/wcag/2-4-11" source={{ label: "W3C: Understanding 2.4.11", href: "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A keyboard user presses <kbd>Tab</kbd>, the browser scrolls the
               next control into view &mdash; and it lands{" "}

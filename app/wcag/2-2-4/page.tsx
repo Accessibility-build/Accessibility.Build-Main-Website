@@ -4,11 +4,13 @@ import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import WCAGBreadcrumb from "@/components/wcag/breadcrumb"
 import { FAQStructuredData } from "@/components/seo/structured-data"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 2.2.4 Interruptions — Postpone & Suppress Alerts",
   description:
-    "WCAG 2.2.4 Interruptions explained: users must be able to postpone or suppress interruptions except emergencies. Notification patterns, code, and testing steps.",
+    clampDescription("WCAG 2.2.4 Interruptions explained: users must be able to postpone or suppress interruptions except emergencies. Notification patterns, code, and testing steps."),
   keywords: [
     "WCAG 2.2.4",
     "Interruptions",
@@ -123,6 +125,7 @@ export default function WCAG224Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 2.2.4: Interruptions
             </h1>
+            <PageByline route="/wcag/2-2-4" source={{ label: "W3C: Understanding 2.2.4", href: "https://www.w3.org/WAI/WCAG22/Understanding/interruptions.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A toast slides in. A chat window pops open. The news feed reflows and
               the paragraph you were reading jumps off-screen. For many users these

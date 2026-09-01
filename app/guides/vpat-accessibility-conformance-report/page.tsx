@@ -2,13 +2,16 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PageByline } from "@/components/seo/page-byline"
+import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
+import { clampDescription } from "@/lib/metadata"
 
 const ogTitle = encodeURIComponent("VPAT & ACR Guide: How to Read and Produce One")
 
 export const metadata: Metadata = {
   title: "VPAT & ACR Guide: How to Read and Produce One",
   description:
-    "What a VPAT is, how it differs from an ACR, the four editions (508, EU, WCAG, INT), how buyers read one, and how to produce a report that survives scrutiny.",
+    clampDescription("What a VPAT is, how it differs from an ACR, the four editions (508, EU, WCAG, INT), how buyers read one, and how to produce a report that survives scrutiny."),
   keywords: [
     "vpat",
     "accessibility conformance report",
@@ -103,6 +106,7 @@ export default function VpatAcrGuidePage() {
           },
         ]}
       />
+      <GuideArticleSchema route="/guides/vpat-accessibility-conformance-report" title="VPAT & ACR Guide: How to Read and Produce One" description="What a VPAT is, how it differs from an ACR, the four editions (508, EU, WCAG, INT), how buyers read one, and how to produce a report that survives scrutiny." datePublished="2026-08-27" />
       <FAQStructuredData faqs={faqs} />
 
       {/* Breadcrumb Navigation */}
@@ -143,6 +147,7 @@ export default function VpatAcrGuidePage() {
                 Accessibility Conformance Reports
               </span>
             </h1>
+            <PageByline route="/guides/vpat-accessibility-conformance-report" className="mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               When a buyer asks for your VPAT, they are really asking a harder question: do you
               actually know how accessible your product is, and can you prove it? This guide

@@ -17,11 +17,13 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata = {
   title: "E-commerce Accessibility: WCAG & ADA Compliance",
   description:
-    "Online stores face more ADA web lawsuits than any other industry. Understand your legal exposure, the WCAG issues that matter most, and a practical fix roadmap.",
+    clampDescription("Online stores face more ADA web lawsuits than any other industry. Understand your legal exposure, the WCAG issues that matter most, and a practical fix roadmap."),
   alternates: { canonical: "/industries/ecommerce" },
   openGraph: {
     type: "website",
@@ -248,6 +250,7 @@ export default function EcommerceIndustryPage() {
           Industry Guide
         </div>
         <h1 className="text-4xl font-bold mb-4">E-commerce Accessibility: WCAG &amp; ADA Compliance</h1>
+        <PageByline route="/industries/ecommerce" className="mb-5" />
         <p className="text-xl text-muted-foreground">
           Online retail is the most-sued industry in digital accessibility — and the one with the clearest business
           case for fixing it. Here is what the law demands of your store, where storefronts actually fail, and how to

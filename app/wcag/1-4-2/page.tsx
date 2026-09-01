@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import WCAGSEOEnhancements from "@/components/wcag/seo-enhancements"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
 import AudioControlDemo from "./interactive-demo"
+import { PageByline } from "@/components/seo/page-byline"
 
 export const metadata = createMetadata({
   title: "WCAG 1.4.2 Audio Control - Complete Guide",
@@ -128,6 +129,7 @@ export default function WCAG142Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 1.4.2: Audio Control
             </h1>
+            <PageByline route="/wcag/1-4-2" source={{ label: "W3C: Understanding 1.4.2", href: "https://www.w3.org/WAI/WCAG22/Understanding/audio-control.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Sound that starts on its own is not just annoying — for someone using
               a screen reader it can drown out the speech they depend on to use the

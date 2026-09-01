@@ -6,12 +6,15 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title:
     "DOJ Title II Deadline Extension 2026: What Actually Changed",
   description:
-    "The DOJ's April 20, 2026 Interim Final Rule pushed ADA Title II web accessibility deadlines to 2027 and 2028. Here's exactly what changed, what didn't, and our editorial take: the extension is a setback for disability rights, but the WCAG 2.1 AA standard is unchanged and lawsuits continue at record pace.",
+    clampDescription("The DOJ's April 20, 2026 Interim Final Rule pushed ADA Title II web accessibility deadlines to 2027 and 2028. Here's exactly what changed, what didn't, and our editorial take: the extension is a setback for disability rights, but the WCAG 2.1 AA standard is unchanged and lawsuits continue at record pace."),
   keywords: [
     "Title II deadline extension",
     "DOJ Title II extension",
@@ -127,7 +130,7 @@ export default function TitleIIExtensionPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-05-18"
-        dateModified="2026-05-18"
+        dateModified={getRouteDate("/guides/doj-title-ii-deadline-extension") ?? "2026-05-18"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/doj-title-ii-deadline-extension"
         wordCount={2400}
@@ -176,6 +179,7 @@ export default function TitleIIExtensionPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               The DOJ Just Pushed Title II to 2027. Don&apos;t Slow Down.
             </h1>
+            <PageByline route="/guides/doj-title-ii-deadline-extension" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               On April 20, 2026 — four days before the original deadline — the
               U.S. Department of Justice issued an Interim Final Rule extending

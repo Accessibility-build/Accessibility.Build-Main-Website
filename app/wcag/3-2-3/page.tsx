@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.2.3 Consistent Navigation — Same Nav Order",
   description:
-    "Complete guide to WCAG 3.2.3 Consistent Navigation. Why repeated navigation must keep the same relative order on every page, pass/fail examples, code, and testing.",
+    clampDescription("Complete guide to WCAG 3.2.3 Consistent Navigation. Why repeated navigation must keep the same relative order on every page, pass/fail examples, code, and testing."),
   keywords: [
     "WCAG 3.2.3",
     "Consistent Navigation",
@@ -113,7 +116,7 @@ export default function WCAG323Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/wcag/3-2-3") ?? "2026-07-09"}
         image="https://accessibility.build/api/og?title=WCAG%203.2.3%20Consistent%20Navigation&section=WCAG"
         url="https://accessibility.build/wcag/3-2-3"
         wordCount={2700}
@@ -198,6 +201,7 @@ export default function WCAG323Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.2.3: Consistent Navigation
             </h1>
+            <PageByline route="/wcag/3-2-3" source={{ label: "W3C: Understanding 3.2.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Users learn where things are. The search box top right, the skip
               link first, Home before Products before Pricing. This criterion

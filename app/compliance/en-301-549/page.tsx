@@ -6,13 +6,16 @@ import {
   BreadcrumbStructuredData,
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 const pageTitle = "EN 301 549: EU ICT Accessibility Standard Guide"
 
 export const metadata: Metadata = {
   title: pageTitle,
   description:
-    "EN 301 549 explained: the EU's harmonized ICT accessibility standard, its chapter structure, how it incorporates WCAG 2.1 AA, its role under the EAA and Web Accessibility Directive, and who needs it.",
+    clampDescription("EN 301 549 explained: the EU's harmonized ICT accessibility standard, its chapter structure, how it incorporates WCAG 2.1 AA, its role under the EAA and Web Accessibility Directive, and who needs it."),
   keywords: [
     "EN 301 549",
     "EN 301 549 explained",
@@ -179,7 +182,7 @@ export default function EN301549Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-07-09"
-        dateModified="2026-07-09"
+        dateModified={getRouteDate("/compliance/en-301-549") ?? "2026-07-09"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/compliance/en-301-549"
         wordCount={2300}
@@ -224,11 +227,12 @@ export default function EN301549Page() {
           <header className="mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950/40 text-blue-800 dark:text-blue-200 text-xs font-semibold uppercase tracking-wide mb-5">
               <span aria-hidden="true">●</span>
-              Compliance Guide · Updated July 2026
+              Compliance Guide
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               EN 301 549: The EU&apos;s ICT Accessibility Standard, Explained
             </h1>
+            <PageByline route="/compliance/en-301-549" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               EN 301 549 is the harmonized European standard that defines what
               &ldquo;accessible&rdquo; means for technology in EU law. It sits

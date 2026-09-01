@@ -6,11 +6,14 @@ import {
 } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { CriterionLinks } from "@/components/wcag/criterion-links"
+import { getRouteDate } from "@/lib/site-routes"
+import { PageByline } from "@/components/seo/page-byline"
+import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
   title: "WCAG 3.3.1 Error Identification — Form Errors Guide",
   description:
-    "Complete guide to WCAG 3.3.1 Error Identification. Learn how to identify the field in error and describe it in text, why color alone fails, aria-invalid and aria-describedby, error summaries, live regions, code examples, testing methods, and common mistakes.",
+    clampDescription("Complete guide to WCAG 3.3.1 Error Identification. Learn how to identify the field in error and describe it in text, why color alone fails, aria-invalid and aria-describedby, error summaries, live regions, code examples, testing methods, and common mistakes."),
   keywords: [
     "WCAG 3.3.1",
     "Error Identification",
@@ -129,7 +132,7 @@ export default function WCAG331Page() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-06-26"
-        dateModified="2026-06-26"
+        dateModified={getRouteDate("/wcag/3-3-1") ?? "2026-06-26"}
         image="https://accessibility.build/api/og?title=WCAG%203.3.1%20Error%20Identification&section=WCAG"
         url="https://accessibility.build/wcag/3-3-1"
         wordCount={2800}
@@ -215,6 +218,7 @@ export default function WCAG331Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight">
               WCAG 3.3.1: Error Identification
             </h1>
+            <PageByline route="/wcag/3-3-1" source={{ label: "W3C: Understanding 3.3.1", href: "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               When a form rejects what someone typed, you must tell them{" "}
               <strong className="text-slate-900 dark:text-white">
