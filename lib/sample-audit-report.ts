@@ -416,7 +416,7 @@ export const sampleAuditReport = {
     "Northstar Checkout is a fictional product created solely to demonstrate the structure and evidence quality of an Accessibility.build audit report. It is not a client, an endorsement, or a conformance claim, and the findings below describe a product that does not exist.",
   version: "1.0",
   issued: "July 12, 2026",
-  auditor: "Accessibility.build",
+  auditor: "Khushwant Parihar (CPACC, DHS Trusted Tester)",
   target: "WCAG 2.2 Level A and AA",
   methodology:
     "Manual testing against WCAG 2.2 Level A and AA, carried out by a CPACC-certified auditor, with automated checks used only to surface candidates for manual review. Every finding below was reproduced by hand.",

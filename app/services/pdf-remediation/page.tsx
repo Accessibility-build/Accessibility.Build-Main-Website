@@ -8,13 +8,14 @@ import { ServiceStructuredData, BreadcrumbStructuredData } from "@/components/se
 import { Button } from "@/components/ui/button"
 import { pdfPricing } from "@/lib/service-pricing"
 import { Check, FileCheck2, FileSearch, FileStack, ListChecks, ScanLine, Table2 } from "lucide-react"
+import { clampDescription } from "@/lib/metadata"
 
 const pageDescription =
   "PDF accessibility remediation priced per page, from $3 for standard pages. Tagged to PDF/UA and WCAG 2.2 AA, with a conformance check on every file before delivery."
 
 export const metadata: Metadata = {
   title: "PDF Accessibility Remediation",
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "PDF accessibility remediation",
     "PDF remediation cost per page",
@@ -49,13 +50,13 @@ const remediationProcess = [
   {
     title: "Document Triage",
     description:
-      "We open every file and band each page as standard, structured, or complex, then confirm a fixed total before any work begins.",
+      "I open every file and band each page as standard, structured, or complex, then confirm a fixed total before any work begins.",
     icon: FileSearch,
   },
   {
     title: "Structure and Tagging",
     description:
-      "We build the tag tree by hand: headings, lists, links, and a reading order that matches how the document is meant to be read.",
+      "I build the tag tree by hand: headings, lists, links, and a reading order that matches how the document is meant to be read.",
     icon: ListChecks,
   },
   {
@@ -86,12 +87,12 @@ const faqs = [
   {
     question: "How do you decide which band a page falls into?",
     answer:
-      "By what has to be built in the tag tree, not by how the page looks. A page with running text, headings, and links is standard. Once meaning depends on a data table, multiple columns, or footnote relationships, it is structured. When a page needs labelled form fields, a described chart, or OCR to recover text from an image, it is complex. We band every page from the real document and show you the split before you commit.",
+      "By what has to be built in the tag tree, not by how the page looks. A page with running text, headings, and links is standard. Once meaning depends on a data table, multiple columns, or footnote relationships, it is structured. When a page needs labelled form fields, a described chart, or OCR to recover text from an image, it is complex. I band every page from the real document and show you the split before you commit.",
   },
   {
     question: "What standard do you remediate to?",
     answer:
-      "PDF/UA (ISO 14289-1) together with the applicable WCAG 2.2 Level AA criteria. That combination is what the European Accessibility Act, Section 508, and most procurement rules expect for documents. If you need a specific profile such as PDF/UA-2 or a Section 508 attestation, say so at quoting and we will confirm it in scope.",
+      "PDF/UA (ISO 14289-1) together with the applicable WCAG 2.2 Level AA criteria. That combination is what the European Accessibility Act, Section 508, and most procurement rules expect for documents. If you need a specific profile such as PDF/UA-2 or a Section 508 attestation, say so at quoting and I will confirm it in scope.",
   },
   {
     question: "Can you fix the source file so future exports are accessible?",
@@ -271,7 +272,7 @@ export default function PdfRemediationPage() {
         <div className="bg-primary/5 rounded-3xl p-8 md:p-12 border border-primary/20 text-center">
           <h2 className="text-3xl font-bold mb-4">Send Us Your Documents</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Share the files you need remediated and we will band the pages and return a fixed total. If you would rather
+            Share the files you need remediated and I will band the pages and return a fixed total. If you would rather
             check the current state first, the free PDF checker gives you a baseline in a few seconds.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

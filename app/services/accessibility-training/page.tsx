@@ -42,17 +42,17 @@ export const metadata: Metadata = {
 const trainingProcess = [
   {
     title: "Needs Assessment",
-    description: "We evaluate your team's current knowledge and identify specific training needs.",
+    description: "I evaluate your team's current knowledge and identify specific training needs.",
     icon: Users,
   },
   {
     title: "Customized Curriculum",
-    description: "We develop a tailored training program based on your team's roles and requirements.",
+    description: "I build the training program around your team's roles and requirements.",
     icon: BookOpen,
   },
   {
     title: "Interactive Workshops",
-    description: "We deliver engaging, hands-on training sessions with practical exercises.",
+    description: "I deliver live, hands-on workshops with practical exercises, remote by default.",
     icon: Monitor,
   },
   {
@@ -62,7 +62,7 @@ const trainingProcess = [
   },
   {
     title: "Ongoing Support",
-    description: "We provide resources and follow-up sessions to reinforce learning and answer questions.",
+    description: "I provide resources and follow-up sessions to reinforce learning and answer questions.",
     icon: MessageSquare,
   },
 ]
@@ -71,17 +71,17 @@ const faqs = [
   {
     question: "Who should attend accessibility training?",
     answer:
-      "Our training is valuable for anyone involved in creating digital products, including designers, developers, content creators, product managers, QA testers, and leadership. We tailor the content to be relevant for each role and experience level.",
+      "The training is valuable for anyone involved in creating digital products, including designers, developers, content creators, product managers, QA testers, and leadership. I tailor the content to each role and experience level.",
   },
   {
     question: "Do participants need prior accessibility knowledge?",
     answer:
-      "No prior knowledge is required. Our training programs are designed to accommodate all levels of experience, from beginners to those with some accessibility background who want to deepen their knowledge.",
+      "No prior knowledge is required. The programs accommodate all levels of experience, from beginners to those with some accessibility background who want to deepen their knowledge.",
   },
   {
     question: "Can training be conducted remotely?",
     answer:
-      "Yes, we offer both in-person and remote training options. Our virtual workshops are interactive and engaging, with hands-on exercises and opportunities for questions and discussion.",
+      "Yes. Workshops are delivered live and remote by default; on-site delivery is a published add-on. The remote sessions are interactive, with hands-on exercises and time for questions and discussion.",
   },
   {
     question: "How many people can participate in a training session?",
@@ -121,7 +121,7 @@ export default function AccessibilityTrainingPage() {
       />
       <ServiceHero
         title="Accessibility Training"
-        description="Empower your team with the knowledge and skills to create accessible digital products through our specialized training programs."
+        description="Live, role-specific workshops that give your team the knowledge and skills to create accessible digital products."
         cta="Book Training"
         ctaLink="/contact?service=training"
         icon={Users}
@@ -230,8 +230,7 @@ export default function AccessibilityTrainingPage() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Our Training Process</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            We deliver effective, engaging training through a structured process that ensures practical learning and
-            retention.
+            Every program follows the same structured process, from needs assessment to follow-up support.
           </p>
         </div>
         <ProcessSteps steps={trainingProcess} />
@@ -245,7 +244,8 @@ export default function AccessibilityTrainingPage() {
         <div className="bg-primary/5 rounded-3xl p-8 md:p-12 border border-primary/20 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Empower Your Team?</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Contact us today to discuss your training needs and schedule a workshop for your team.
+            Tell me who is attending and what they build, and I will confirm the program, format, and a fixed price
+            before scheduling.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full">

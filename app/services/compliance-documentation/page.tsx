@@ -42,27 +42,30 @@ export const metadata: Metadata = {
 const documentationProcess = [
   {
     title: "Requirements Analysis",
-    description: "We identify the specific documentation needs based on your regulatory requirements.",
+    description:
+      "I confirm which documents you need, who will read them, and which regulations or procurement rules they must answer.",
     icon: FileSearch,
   },
   {
     title: "Product Evaluation",
-    description: "We assess your digital products against relevant accessibility standards.",
+    description:
+      "I assess your digital product against the relevant accessibility standards, or work from current audit evidence you already hold.",
     icon: ClipboardCheck,
   },
   {
     title: "Documentation Creation",
-    description: "We develop comprehensive, accurate documentation tailored to your needs.",
+    description: "I write the documentation so every conformance statement is backed by evidence rather than assumption.",
     icon: FileText,
   },
   {
-    title: "Legal Review",
-    description: "We ensure documentation meets legal requirements and industry best practices.",
+    title: "Regulatory Mapping",
+    description:
+      "I map the findings to the regulations you name, such as Section 508, EN 301 549, or the European Accessibility Act, so the documents answer the questions your reviewers ask. This is regulatory context, not legal advice.",
     icon: Scale,
   },
   {
     title: "Implementation Support",
-    description: "We provide guidance on how to effectively use and maintain your documentation.",
+    description: "I hand over guidance on publishing, maintaining, and refreshing the documentation as your product changes.",
     icon: BookOpen,
   },
 ]
@@ -86,17 +89,17 @@ const faqs = [
   {
     question: "Can you help with documentation for legal defense?",
     answer:
-      "Yes, we can help create documentation that demonstrates your good-faith efforts toward accessibility, which can be valuable in legal situations. This includes documenting your accessibility policy, ongoing efforts, remediation plans, and user feedback mechanisms. While no documentation can guarantee legal protection, thorough documentation of your accessibility efforts can be an important part of a legal defense strategy.",
+      "Yes. I can help document your good-faith accessibility efforts: your accessibility policy, ongoing work, remediation plans, and user feedback mechanisms. That record can be useful to your legal team, but it is not legal advice and no documentation guarantees legal protection. Review it with your own counsel.",
   },
   {
     question: "Do you provide documentation for mobile apps?",
     answer:
-      "Yes, we provide accessibility documentation for all digital products, including mobile applications for iOS and Android. Mobile app documentation addresses platform-specific accessibility features and guidelines in addition to general WCAG principles.",
+      "Yes. I document mobile applications for iOS and Android as well as web products. Mobile documentation addresses platform-specific accessibility features and guidelines in addition to general WCAG principles.",
   },
   {
     question: "Can you help with international accessibility compliance documentation?",
     answer:
-      "Yes, we can create documentation that addresses international accessibility requirements, including the European Accessibility Act, Canada's Accessible Canada Act, Australia's Disability Discrimination Act, and other global regulations. We tailor documentation to the specific jurisdictions relevant to your organization.",
+      "Yes. I can map documentation to the requirements you name, including the European Accessibility Act, Canada's Accessible Canada Act, and Australia's Disability Discrimination Act. The mapping is regulatory context for the jurisdictions relevant to your organization, not jurisdiction-specific legal advice.",
   },
 ]
 
@@ -121,7 +124,7 @@ export default function ComplianceDocumentationPage() {
       />
       <ServiceHero
         title="Compliance Documentation"
-        description="Professional documentation services to help you meet legal and regulatory accessibility requirements."
+        description="Evidence-based accessibility statements, procurement documentation, and Accessibility Conformance Reports, mapped to the regulations you name."
         cta="Get Documentation"
         ctaLink="/contact?service=documentation"
         icon={Scale}
@@ -182,9 +185,9 @@ export default function ComplianceDocumentationPage() {
                   <FileText className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold">Legal Compliance</h4>
+                  <h4 className="font-semibold">Regulatory Context</h4>
                   <p className="text-muted-foreground">
-                    Meet regulatory requirements with accurate, comprehensive documentation.
+                    Documentation that maps evidence to the regulations you name, so reviewers can see where you stand.
                   </p>
                 </div>
               </li>
@@ -230,7 +233,7 @@ export default function ComplianceDocumentationPage() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Our Documentation Process</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            We follow a structured process to create accurate, comprehensive accessibility documentation.
+            Every document follows the same process, so each conformance statement can be traced back to evidence.
           </p>
         </div>
         <ProcessSteps steps={documentationProcess} />
@@ -244,7 +247,8 @@ export default function ComplianceDocumentationPage() {
         <div className="bg-primary/5 rounded-3xl p-8 md:p-12 border border-primary/20 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Document Your Accessibility Compliance?</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Contact us today to discuss your documentation needs and ensure you meet all regulatory requirements.
+            Tell me which documents you need and which regulations they must answer, and I will confirm scope and a
+            fixed price before work begins.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full">

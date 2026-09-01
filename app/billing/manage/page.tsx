@@ -18,6 +18,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { getUser } from '@/lib/credits'
 import { getBillingOrdersForUser } from '@/lib/billing/service'
 import { getBillingCurrencyPolicyFromHeaders } from '@/lib/billing/region'
+import { company } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Billing Center',
@@ -271,8 +272,8 @@ export default async function BillingManagePage({ searchParams }: BillingManageP
                 </div>
                 <p className="text-xs text-muted-foreground mt-4">
                   Need profile updates? Contact{' '}
-                  <Link className="underline text-primary hover:no-underline" href="mailto:support@accessibility.build">
-                    support@accessibility.build
+                  <Link className="underline text-primary hover:no-underline" href={`mailto:${company.email}`}>
+                    {company.email}
                   </Link>
                 </p>
               </CardContent>
@@ -307,8 +308,8 @@ export default async function BillingManagePage({ searchParams }: BillingManageP
                 </div>
                 <p className="text-sm text-muted-foreground">
                   For refund requests, email{' '}
-                  <Link className="underline text-primary hover:no-underline" href="mailto:refunds@accessibility.build">
-                    refunds@accessibility.build
+                  <Link className="underline text-primary hover:no-underline" href={`mailto:${company.billingEmail}`}>
+                    {company.billingEmail}
                   </Link>{' '}
                   with your order ID.
                 </p>

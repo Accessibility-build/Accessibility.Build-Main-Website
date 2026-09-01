@@ -159,6 +159,17 @@ export default function RefundPage() {
               <li><strong>Violation of Terms:</strong> No refunds will be provided if your account is terminated due to violation of our Terms of Service</li>
             </ul>
 
+            <h3 className="text-xl font-semibold mb-3 mt-6">2.3 Professional Services Engagements</h3>
+            <p>
+              Audits, remediation, training, design reviews, user testing, compliance documentation, and PDF remediation are not sold as credits. Each engagement is governed by its statement of work (SOW), which sets out the scope, delivery schedule, payment terms, and any deposit. Where the SOW and this page differ, the SOW applies.
+            </p>
+            <ul>
+              <li><strong>Deposit:</strong> If a deposit is taken, its amount and the terms attached to it are stated in the SOW</li>
+              <li><strong>Cancellation before work starts:</strong> Refunded in full, less any payment-processor fees that cannot be recovered</li>
+              <li><strong>Cancellation after work starts:</strong> Work already delivered is billed pro rata by the milestones in the SOW, and any amount paid beyond that is refunded</li>
+              <li><strong>Disputes:</strong> Raise them first by email at <Link href={`mailto:${company.email}`} className="text-primary hover:underline">{company.email}</Link>; the process in section 7 then applies</li>
+            </ul>
+
             <Alert className="not-prose mt-4">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>
@@ -175,7 +186,7 @@ export default function RefundPage() {
             <h3 className="text-xl font-semibold mb-3">3.1 How to Request a Refund</h3>
             <p>To request a refund, please follow these steps:</p>
             <ol>
-              <li>Send an email to <Link href="mailto:refunds@accessibility.build" className="text-primary hover:underline">refunds@accessibility.build</Link> with the subject line "Refund Request"</li>
+              <li>Send an email to <Link href={`mailto:${company.billingEmail}`} className="text-primary hover:underline">{company.billingEmail}</Link> with the subject line "Refund Request"</li>
               <li>Include the following information:
                 <ul>
                   <li>Your registered email address and account details</li>
@@ -186,7 +197,7 @@ export default function RefundPage() {
                   <li>Proof of purchase (receipt/invoice)</li>
                 </ul>
               </li>
-              <li>Our support team will review your request within 2-3 business days</li>
+              <li>{company.legalOperator}, who operates the business, reviews each request personally, {company.responseTime.toLowerCase()}</li>
               <li>You will receive an email confirmation once your refund is approved or if additional information is needed</li>
             </ol>
 
@@ -198,8 +209,8 @@ export default function RefundPage() {
                   <CardTitle className="text-lg">Request Review</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm">
-                  <p className="mb-2"><strong>Timeline:</strong> 2-3 business days</p>
-                  <p>We review your refund request and verify eligibility based on our policy and applicable laws.</p>
+                  <p className="mb-2"><strong>Timeline:</strong> {company.responseTime}</p>
+                  <p>Your refund request is reviewed and eligibility verified against this policy and applicable laws.</p>
                 </CardContent>
               </Card>
               
@@ -343,9 +354,9 @@ export default function RefundPage() {
               We encourage you to contact us first to resolve any issues with refunds or cancellations:
             </p>
             <ul>
-              <li>Email us at <Link href="mailto:support@accessibility.build" className="text-primary hover:underline">support@accessibility.build</Link></li>
-              <li>We aim to respond to all disputes within 48 hours</li>
-              <li>Our team will work with you to find a fair resolution</li>
+              <li>Email us at <Link href={`mailto:${company.email}`} className="text-primary hover:underline">{company.email}</Link></li>
+              <li>Disputes are answered {company.responseTime.toLowerCase()}</li>
+              <li>{company.legalOperator} handles disputes personally and will work with you to find a fair resolution</li>
             </ul>
 
             <h3 className="text-xl font-semibold mb-3 mt-6">7.2 Consumer Protection Rights</h3>
@@ -362,8 +373,7 @@ export default function RefundPage() {
 
             <h3 className="text-xl font-semibold mb-3 mt-6">7.3 Jurisdiction</h3>
             <p>
-              Any disputes arising from this policy shall be subject to the exclusive jurisdiction of the 
-              courts in Bangalore, Karnataka, India.
+              This policy is governed by the laws of India. Subject to mandatory consumer rights and any agreed dispute procedure, courts having jurisdiction over the registered office in {company.registeredOffice.region}, India will have jurisdiction, consistent with our <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link>.
             </p>
           </section>
 
@@ -375,7 +385,7 @@ export default function RefundPage() {
               If you experience technical issues that prevent you from using our services:
             </p>
             <ul>
-              <li>Contact our support team immediately with details of the issue</li>
+              <li>Email {company.email} immediately with details of the issue</li>
               <li>We will work to resolve the technical problem as quickly as possible</li>
               <li>If we cannot resolve the issue within 7 days, we will offer a full refund or credit extension</li>
               <li>Credits used during the period of technical issues may be restored to your account</li>
@@ -513,7 +523,7 @@ export default function RefundPage() {
               <AlertDescription>
                 We are committed to providing fair and transparent services. If you have any questions about 
                 this policy, please don't hesitate to contact us at{" "}
-                <Link href="mailto:support@accessibility.build" className="underline">support@accessibility.build</Link>.
+                <Link href={`mailto:${company.email}`} className="underline">{company.email}</Link>.
               </AlertDescription>
             </Alert>
           </section>

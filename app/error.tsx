@@ -24,7 +24,7 @@ export default function Error({
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">Something went wrong</h1>
           <p className="text-muted-foreground">
-            We apologize for the inconvenience. Our team has been notified and is working to fix the issue.
+            Sorry about that. The error has been logged and will be investigated.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

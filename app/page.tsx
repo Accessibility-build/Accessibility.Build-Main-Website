@@ -7,7 +7,7 @@ export const revalidate = 300
 export const metadata: Metadata = {
   title: { absolute: "Accessibility.build | Founder-Led WCAG Audits & Tools" },
   description:
-    "Founder-led accessibility audits, remediation, training, and practical WCAG tools from Khushwant Parihar. Inspect fixed-scope services, methodology, selected work, and sample evidence.",
+    "Founder-led accessibility audits, remediation, training, and practical WCAG tools from Khushwant Parihar. Inspect fixed-scope services and sample evidence.",
   authors: [{ name: company.legalOperator, url: `${company.website}/authors/khushwant-parihar` }],
   alternates: {
     canonical: "/",

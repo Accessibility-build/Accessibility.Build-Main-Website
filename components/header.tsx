@@ -42,6 +42,11 @@ import {
   ChartColumn,
   GraduationCap,
   type LucideIcon,
+  Info,
+  Microscope,
+  FileText,
+  ShieldCheck,
+  CircleHelp,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -220,7 +225,52 @@ const navItems: NavItem[] = [
   { name: "WCAG 2.2 Checklist", href: "/checklists/wcag-2-2" },
   { name: "Services", href: "/services" },
   { name: "Blog", href: "/blog" },
-  { name: "About", href: "/about" },
+  {
+    name: "About",
+    href: "/about",
+    menuLabel: "About the practice",
+    menuIcon: Info,
+    viewAllLabel: "About Accessibility.build",
+    viewAllIcon: Info,
+    children: [
+      {
+        name: "Founder profile",
+        href: "/authors/khushwant-parihar",
+        description: "Khushwant Parihar, CPACC, DHS Trusted Tester",
+        icon: UserRound,
+      },
+      {
+        name: "Audit methodology",
+        href: "/methodology",
+        description: "How audits are scoped, tested, and reported",
+        icon: Microscope,
+      },
+      {
+        name: "Sample audit report",
+        href: "/sample-audit-report",
+        description: "The structure every audit follows",
+        icon: FileText,
+      },
+      {
+        name: "Trust Centre",
+        href: "/trust",
+        description: "Ownership, legal entity, security, and policies",
+        icon: ShieldCheck,
+      },
+      {
+        name: "Procurement",
+        href: "/procurement",
+        description: "Documents buyers ask for before engaging",
+        icon: Landmark,
+      },
+      {
+        name: "FAQ",
+        href: "/faq",
+        description: "Services, pricing, tools, and accounts",
+        icon: CircleHelp,
+      },
+    ],
+  },
 ];
 
 export function Header() {

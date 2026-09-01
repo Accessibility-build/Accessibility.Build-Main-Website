@@ -1,18 +1,15 @@
 import { type Metadata } from "next"
+import { type ReactNode } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import {
   Shield,
   Code2,
   Zap,
-  Users,
   FileText,
   Lightbulb,
-  CheckCircle,
-  ArrowRight,
-  Star
+  ArrowRight
 } from "lucide-react"
 import Link from "next/link"
 import { FAQStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
@@ -23,7 +20,7 @@ import { pdfPricing, servicePricing } from "@/lib/service-pricing"
 export const metadata: Metadata = {
   title: "FAQ - WCAG & Accessibility Tools Questions Answered",
   description:
-    "Get answers to common questions about web accessibility, WCAG compliance, accessibility testing tools, and building inclusive digital experiences. Expert guidance for developers and designers.",
+    "Answers to common questions about web accessibility, WCAG 2.2 compliance, testing tools, audit costs, and building inclusive digital products.",
   keywords: [
     "accessibility FAQ",
     "WCAG compliance questions",
@@ -37,23 +34,23 @@ export const metadata: Metadata = {
     "accessibility audit FAQ"
   ],
   openGraph: {
-    title: "Accessibility FAQ | Expert Answers to Common Questions",
+    title: "Accessibility FAQ | Services, Pricing, Tools, and WCAG",
     description: "Find answers to frequently asked questions about web accessibility, WCAG compliance, and accessibility testing tools.",
     type: "website",
     images: [
       {
-        url: "https://accessibility.build/images/faq-og.png",
+        url: "/api/og?title=Accessibility%20FAQ&section=Accessibility.build",
         width: 1200,
         height: 630,
-        alt: "Accessibility.build FAQ - Expert answers to accessibility questions"
+        alt: "Accessibility.build FAQ"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Accessibility FAQ - Expert Answers & Guidance",
-    description: "Common questions about WCAG compliance, accessibility testing, and inclusive design answered by experts.",
-    images: ["https://accessibility.build/images/faq-og.png"]
+    title: "Accessibility FAQ | Services, Pricing, Tools, and WCAG",
+    description: "Common questions about WCAG compliance, accessibility testing, and inclusive design.",
+    images: ["/api/og?title=Accessibility%20FAQ&section=Accessibility.build"]
   },
   alternates: {
     canonical: "https://accessibility.build/faq"
@@ -65,15 +62,42 @@ const breadcrumbs = [
   { name: "FAQ", url: "https://accessibility.build/faq" }
 ]
 
-// Comprehensive FAQ data for structured markup
-const faqData = [
+// Comprehensive FAQ data for structured markup. `answer` is plain text and
+// feeds the JSON-LD; `answerJsx` is an optional rendered variant used only in
+// the page so an answer can carry a source link without polluting the schema.
+type FaqItem = {
+  question: string
+  answer: string
+  answerJsx?: ReactNode
+}
+
+const whoDisabilityFactSheet = "https://www.who.int/news-room/fact-sheets/detail/disability-and-health"
+
+const faqData: FaqItem[] = [
   {
     question: "What is web accessibility and why is it important for my business?",
-    answer: "Web accessibility ensures that websites are usable by everyone, including people with disabilities. For businesses, it's essential for legal compliance (ADA, Equality Act), expanding market reach to 15% of the population, improving SEO rankings, and demonstrating social responsibility. Accessible sites also typically provide a better user experience for all visitors."
+    answer: "Web accessibility ensures that websites are usable by everyone, including people with disabilities. For businesses, it's essential for legal compliance (ADA, Equality Act), expanding market reach to an estimated 16 percent of the global population, about 1.3 billion people, improving SEO rankings, and demonstrating social responsibility. Accessible sites also typically provide a better user experience for all visitors.",
+    answerJsx: (
+      <>
+        Web accessibility ensures that websites are usable by everyone, including people with disabilities. For
+        businesses, it&apos;s essential for legal compliance (ADA, Equality Act), expanding market reach to an
+        estimated 16 percent of the global population, about 1.3 billion people (
+        <a
+          href={whoDisabilityFactSheet}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline"
+        >
+          WHO fact sheet
+        </a>
+        ), improving SEO rankings, and demonstrating social responsibility. Accessible sites also typically provide a
+        better user experience for all visitors.
+      </>
+    )
   },
   {
     question: "What are WCAG guidelines and which version should I follow?",
-    answer: "WCAG (Web Content Accessibility Guidelines) are the international standards. WCAG 2.2 is the current recommendation as of late 2023. Most businesses should aim for WCAG 2.2 Level AA compliance, as it is the standard referenced by most legal frameworks and provides a robust level of accessibility without the strict constraints of Level AAA."
+    answer: "WCAG (Web Content Accessibility Guidelines) are the international standards. WCAG 2.2 has been the current W3C Recommendation since October 2023. Most businesses should aim for WCAG 2.2 Level AA compliance, as it is the standard referenced by most legal frameworks and provides a robust level of accessibility without the strict constraints of Level AAA."
   },
   {
     question: "What are the most common web accessibility issues developers should fix?",
@@ -126,7 +150,7 @@ const faqData = [
   },
   {
     question: "Who can audit my site for WCAG or European Accessibility Act compliance?",
-    answer: `You can run free automated tools for a baseline, but they detect only about 40% of issues, so WCAG and EAA conformance requires manual testing by a qualified auditor. Accessibility.build is a founder-led practice run by Khushwant Parihar, who holds the IAAP CPACC certification and the DHS Trusted Tester credential, and offers fixed-price WCAG 2.2 AA audits from $${servicePricing.audits.tiers[0].price.toLocaleString("en-US")}. You can inspect a real redacted deliverable at accessibility.build/sample-audit-report before committing.`
+    answer: `You can run free automated tools for a baseline, but they detect only about 40% of issues, so WCAG and EAA conformance requires manual testing by a qualified auditor. Accessibility.build is a founder-led practice run by Khushwant Parihar, who holds the IAAP CPACC certification and the DHS Trusted Tester credential, and offers fixed-price WCAG 2.2 AA audits from $${servicePricing.audits.tiers[0].price.toLocaleString("en-US")}. Before committing, you can inspect a fully worked sample report at accessibility.build/sample-audit-report, built on a fictional product in the format every audit follows.`
   },
   {
     question: "How much does PDF accessibility remediation cost?",
@@ -183,25 +207,9 @@ export default function FAQPage() {
           </h1>
 
           <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Find expert answers to common questions about web accessibility, WCAG compliance,
+            Find answers to common questions about web accessibility, WCAG compliance,
             and building inclusive digital experiences. Get the guidance you need to create accessible websites.
           </p>
-
-          {/* Quick Stats */}
-          <div className="flex flex-wrap justify-center gap-6 mb-8">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-green-600" />
-              <span className="text-slate-700 dark:text-slate-300 font-medium">Expert Answers</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-yellow-500" />
-              <span className="text-slate-700 dark:text-slate-300 font-medium">WCAG Compliant</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-blue-600" />
-              <span className="text-slate-700 dark:text-slate-300 font-medium">Community Verified</span>
-            </div>
-          </div>
         </div>
 
         {/* FAQ Categories */}
@@ -267,7 +275,7 @@ export default function FAQPage() {
                       itemType="https://schema.org/Answer"
                     >
                       <div itemProp="text">
-                        {faq.answer}
+                        {faq.answerJsx ?? faq.answer}
                       </div>
                     </div>
                   </AccordionContent>
@@ -387,7 +395,7 @@ export default function FAQPage() {
                 </span>
               </CardTitle>
               <CardDescription className="text-lg">
-                Can't find the answer you're looking for? Our team is here to help with your accessibility questions.
+                Can&apos;t find the answer you&apos;re looking for? Send it over. I read every message and reply myself.
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center space-y-4">

@@ -42,29 +42,31 @@ export const metadata: Metadata = {
 const auditProcess = [
   {
     title: "Initial Consultation",
-    description: "We discuss your goals, scope, and specific requirements to tailor the audit to your needs.",
+    description:
+      "I discuss your goals, scope, and specific requirements with you and fix the page and flow sample before work begins.",
     icon: Users,
   },
   {
     title: "Automated Testing",
-    description: "We run automated tools to identify common accessibility issues across your digital product.",
+    description:
+      "I run automated tools to surface candidate issues across your digital product. They guide the manual pass; they do not replace it.",
     icon: BarChart,
   },
   {
-    title: "Manual Expert Review",
-    description:
-      "Our accessibility experts conduct a thorough manual review to identify issues that automated tools miss.",
+    title: "Manual Review",
+    description: "I conduct a thorough manual review by hand to find the issues that automated tools miss.",
     icon: ListChecks,
   },
   {
     title: "Assistive Technology Testing",
-    description: "We test your product with screen readers and other assistive technologies to ensure compatibility.",
+    description:
+      "I test your product with screen readers, keyboard-only navigation, and other assistive technologies, and record what actually happens.",
     icon: FileText,
   },
   {
     title: "Comprehensive Report",
     description:
-      "We deliver a detailed report with all findings, prioritized recommendations, and remediation guidance.",
+      "You receive a detailed report with every finding, reproduction steps, prioritized recommendations, and remediation guidance.",
     icon: Clock,
   },
 ]
@@ -78,27 +80,27 @@ const faqs = [
   {
     question: "What accessibility standards do you test against?",
     answer:
-      "We primarily test against WCAG 2.2 at the AA level, which is the most widely recognized standard and is referenced in most accessibility regulations worldwide. We can also test against AAA level or specific country regulations upon request.",
+      "I test against WCAG 2.2 at the AA level, the most widely recognized standard and the one referenced in most accessibility regulations worldwide. AAA criteria or specific country regulations can be added to the scope on request. Regulatory mapping is provided as context, not legal advice.",
   },
   {
     question: "Will the audit disrupt our website or application?",
     answer:
-      "No, our audit process is completely non-invasive. We only observe and test your digital product without making any changes to it. There will be no downtime or disruption to your users.",
+      "No. The audit is non-invasive: I only observe and test your digital product without making any changes to it. There is no downtime or disruption to your users.",
   },
   {
     question: "What deliverables will we receive?",
     answer:
-      "You'll receive a comprehensive report detailing all identified issues, categorized by severity and WCAG criteria. The report includes screenshots, code examples, and specific recommendations for remediation. For comprehensive and enterprise audits, you'll also receive an executive summary and remediation roadmap.",
+      "You'll receive a comprehensive report detailing all identified issues, categorized by severity and WCAG criteria. The report includes screenshots, code examples, and specific recommendations for remediation. The Product Audit adds an executive brief and a prioritized remediation backlog; the Complex Product Audit adds a leadership summary, a procurement-ready evidence package, and a remediation planning workshop. The Essential Audit includes a severity-ranked issue register and a findings walkthrough.",
   },
   {
     question: "Do you provide remediation services after the audit?",
     answer:
-      "Yes, we offer remediation support services to help you fix the issues identified in the audit. This can range from guidance for your development team to hands-on implementation assistance. These services are separate from the audit but can be bundled for a complete solution.",
+      "Yes. Remediation support is a separate service that ranges from guidance for your development team to hands-on implementation. It can be scoped alongside the audit so the findings flow straight into fixes.",
   },
   {
     question: "How often should we conduct accessibility audits?",
     answer:
-      "We recommend conducting a full audit annually and smaller spot-checks after major updates or releases. This ensures ongoing compliance, especially as your digital product evolves and accessibility standards are updated.",
+      "I recommend a full audit annually and smaller spot-checks after major updates or releases. That keeps your evidence toward WCAG 2.2 AA current as your digital product evolves and the standard is updated.",
   },
 ]
 
@@ -123,7 +125,7 @@ export default function AccessibilityAuditsPage() {
       />
       <ServiceHero
         title="Accessibility Audits"
-        description="Comprehensive evaluation of your digital products against WCAG standards to identify barriers and ensure compliance."
+        description="Manual evaluation of your digital products against WCAG 2.2 AA, producing documented findings you can act on and evidence toward conformance."
         cta="Request an Audit"
         ctaLink="/contact?service=audit"
         icon={Eye}
@@ -189,7 +191,17 @@ export default function AccessibilityAuditsPage() {
                 <div>
                   <h4 className="font-semibold">Expanded Audience Reach</h4>
                   <p className="text-muted-foreground">
-                    Make your digital products accessible to the 15% of the global population with disabilities.
+                    Make your digital products usable by the estimated 16 percent of the global population, about 1.3
+                    billion people, who live with a significant disability (
+                    <a
+                      href="https://www.who.int/news-room/fact-sheets/detail/disability-and-health"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline"
+                    >
+                      WHO fact sheet
+                    </a>
+                    ).
                   </p>
                 </div>
               </li>
@@ -198,9 +210,11 @@ export default function AccessibilityAuditsPage() {
                   <FileText className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold">Legal Compliance</h4>
+                  <h4 className="font-semibold">Regulatory Context</h4>
                   <p className="text-muted-foreground">
-                    Reduce legal risks by ensuring compliance with accessibility regulations like ADA and Section 508.
+                    Findings are mapped to WCAG 2.2 AA, the standard referenced by regulations such as the ADA and
+                    Section 508, giving you documented evidence toward conformance. This is regulatory context, not
+                    legal advice.
                   </p>
                 </div>
               </li>
@@ -235,8 +249,8 @@ export default function AccessibilityAuditsPage() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Our Audit Process</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Our comprehensive accessibility audit process ensures thorough evaluation of your digital products against
-            WCAG standards.
+            Every audit follows the same steps against WCAG 2.2, so you know in advance what is tested, how, and how
+            the findings are documented.
           </p>
         </div>
         <ProcessSteps steps={auditProcess} />

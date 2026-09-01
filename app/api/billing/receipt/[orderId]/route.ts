@@ -5,6 +5,7 @@ import { db } from '@/lib/db'
 import { billingOrders } from '@/lib/db/schema'
 import { getOrCreateUserByClerkId } from '@/lib/credits'
 import { getClerkApiIdentity } from '@/lib/clerk-auth'
+import { company } from '@/lib/company'
 
 export const runtime = 'nodejs'
 
@@ -127,7 +128,7 @@ export async function GET(
 
     doc.setFontSize(10)
     doc.text(
-      'For billing support, contact support@accessibility.build and include your order ID.',
+      `For billing support, contact ${company.billingEmail} and include your order ID.`,
       14,
       154
     )

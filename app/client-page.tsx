@@ -204,7 +204,7 @@ export default async function HomeClientPage() {
                 id="home-hero-heading"
                 className="mt-6 max-w-4xl text-4xl font-semibold leading-[1.08] sm:mt-7 sm:text-6xl lg:text-7xl"
               >
-                Accessibility work that{" "}
+                WCAG audits and accessibility work that{" "}
                 <span className="relative mt-2 inline-block bg-primary px-2 pb-1 text-primary-foreground sm:mt-0">
                   holds up.
                   <span className="absolute -left-1 -top-1 h-3 w-3 border-l-2 border-t-2 border-foreground" aria-hidden="true" />
@@ -354,7 +354,7 @@ export default async function HomeClientPage() {
             <div>
               <p className="text-sm font-semibold uppercase text-teal-300">Research desk</p>
               <h2 id="research-desk-heading" className="mt-3 max-w-xl text-4xl font-semibold">
-                Research that shows its working
+                Research that shows what is working
               </h2>
               <p className="mt-5 max-w-xl leading-7 text-slate-300">
                 Source-linked synthesis, litigation tracking, and jurisdiction research with methodology, limitations, and citation-ready references.

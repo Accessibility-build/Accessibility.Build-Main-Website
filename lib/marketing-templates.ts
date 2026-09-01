@@ -255,13 +255,12 @@ No follow-up sequence, no sales call — just here when it's useful.
       'Announce published business, delivery, and evidence resources to active users.',
     subject: "New ways to evaluate Accessibility.build before engaging",
     preheader:
-      'Founder identity, sample deliverables, selected work, and procurement details are now public.',
+      'Founder identity, sample deliverables, and procurement details are now public.',
     heading: 'More evidence, clearer accountability',
     body: `A short update on the public evidence now available from Accessibility.build:
 
 - A named founder profile with professional experience and authorship
 - A sample accessibility audit report in accessible HTML and downloadable PDF
-- Selected-work records with explicit confidentiality and evidence limitations
 - A procurement centre with GST registration, scope, data, and provider information
 
 These pages are public so teams can inspect how work is scoped and documented before starting a conversation. Questions or corrections are welcome by reply.

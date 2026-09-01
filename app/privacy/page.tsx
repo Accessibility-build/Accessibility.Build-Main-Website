@@ -94,7 +94,7 @@ export default function PrivacyPage() {
 
           <h2>4. Tool inputs and AI processing</h2>
           <p>
-            Some features send the input needed for your request to an AI or infrastructure provider. Depending on the selected feature and configured provider, this may include OpenAI, Anthropic, or OpenRouter. Do not submit information you are not authorized to process, credentials, or highly sensitive personal data.
+            Some features send the input needed for your request to an AI or infrastructure provider. Depending on the selected feature and configured provider, this may include OpenAI or Anthropic. In the audit helper, users with unlimited access can also select Google, Meta, DeepSeek, or Mistral models, which are reached through OpenRouter; the provider of the selected model receives the prompt. Do not submit information you are not authorized to process, credentials, or highly sensitive personal data.
           </p>
           <p>
             AI output can be incomplete or incorrect and should be reviewed by a qualified person. We do not use a tool result as a certification of accessibility or legal compliance.
@@ -107,7 +107,9 @@ export default function PrivacyPage() {
             <li><strong>Stripe and Razorpay:</strong> hosted payment, billing, fraud prevention, and refunds;</li>
             <li><strong>Vercel:</strong> website hosting, performance, and privacy-focused site analytics;</li>
             <li><strong>Google Analytics:</strong> optional usage analytics after consent;</li>
-            <li><strong>OpenAI, Anthropic, and OpenRouter:</strong> AI-assisted features when the relevant provider is used;</li>
+            <li><strong>PostHog:</strong> optional product analytics after consent, without session replay;</li>
+            <li><strong>OpenAI, Anthropic, and OpenRouter (routing to Google, Meta, DeepSeek, and Mistral models):</strong> AI-assisted features when the relevant provider or model is selected;</li>
+            <li><strong>DocAccessible:</strong> a PDF-link detection script operated by the same owner as this website, which reports the URLs of PDF links found on the page;</li>
             <li><strong>Sanity:</strong> content management and blog delivery;</li>
             <li><strong>Formspree and Resend:</strong> contact-form processing and transactional or requested email;</li>
             <li><strong>database and infrastructure providers:</strong> account, usage, billing, and application data storage.</li>
@@ -118,7 +120,7 @@ export default function PrivacyPage() {
 
           <h2>6. Cookies and analytics choices</h2>
           <p>
-            Essential storage supports authentication, security, preferences, and account features. Google Analytics loads only after you choose “Allow analytics” in our preference notice. You can revisit that choice on the <Link href="/cookies">Cookie Policy</Link> page.
+            Essential storage supports authentication, security, preferences, and account features. Google Analytics and PostHog load only after you choose “Allow analytics” in our preference notice. You can revisit that choice on the <Link href="/cookies">Cookie Policy</Link> page.
           </p>
 
           <h2>7. Retention</h2>

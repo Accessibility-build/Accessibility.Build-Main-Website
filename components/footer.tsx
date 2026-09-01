@@ -43,6 +43,8 @@ import {
   ShieldCheck,
   UserRound,
   type LucideIcon,
+  Coins,
+  CircleHelp,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { NewsletterSignup } from "@/components/newsletter-signup"
@@ -91,6 +93,8 @@ const companyLinks: FooterLink[] = [
   { href: "/methodology", label: "Audit Methodology", icon: Microscope },
   { href: "/trust", label: "Trust Centre", icon: ShieldCheck },
   { href: "/procurement", label: "Procurement", icon: Landmark },
+  { href: "/pricing", label: "Tool Credits Pricing", icon: Coins },
+  { href: "/faq", label: "FAQ", icon: CircleHelp },
   { href: "/contact", label: "Contact", icon: Mail },
 ]
 
@@ -137,7 +141,7 @@ export function Footer() {
               </Link>
               <div className="min-w-0">
                 <p className="break-words text-sm font-medium text-teal-300 [overflow-wrap:anywhere]">Independent accessibility practice</p>
-                <h2 className="mt-1 break-words text-3xl font-semibold text-white [overflow-wrap:anywhere] sm:text-4xl">Accessibility.build</h2>
+                <p className="mt-1 break-words text-3xl font-semibold text-white [overflow-wrap:anywhere] sm:text-4xl">Accessibility.build</p>
               </div>
             </div>
 

@@ -67,11 +67,13 @@ export default function SampleAuditReportPage() {
                 {report.product} Accessibility Audit
               </h1>
               <p className="mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                This is the format every Accessibility.build audit is delivered
-                in. Each finding is written so a developer can reproduce it
-                without asking a follow-up question: what the defect is, exactly
-                how to trigger it, what happens, what should happen instead, who
-                it affects, and what to change.
+                This is the structure every audit follows; the delivery format
+                is agreed before work begins. {report.product} is a fictional
+                product, so the findings are illustrative. Each finding is
+                written so a developer can reproduce it without asking a
+                follow-up question: what the defect is, exactly how to trigger
+                it, what happens, what should happen instead, who it affects,
+                and what to change.
               </p>
             </div>
 

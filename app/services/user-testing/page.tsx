@@ -42,27 +42,28 @@ export const metadata: Metadata = {
 const testingProcess = [
   {
     title: "Test Planning",
-    description: "We define objectives, scenarios, and tasks based on your product and goals.",
+    description: "I define objectives, scenarios, and tasks based on your product and goals.",
     icon: Target,
   },
   {
     title: "Participant Recruitment",
-    description: "We recruit diverse participants with relevant disabilities and assistive technology experience.",
+    description:
+      "Participants with relevant disabilities and assistive technology experience are recruited per engagement. The route, whether your own users, partner organizations, or paid panels, is agreed in the statement of work, along with participant compensation.",
     icon: Users,
   },
   {
     title: "Testing Sessions",
-    description: "We conduct moderated sessions observing participants using your product.",
+    description: "I moderate the sessions and observe participants using your product with their own assistive technology.",
     icon: Video,
   },
   {
     title: "Data Analysis",
-    description: "We analyze findings to identify patterns, barriers, and opportunities.",
+    description: "I analyze the findings to identify patterns, barriers, and opportunities.",
     icon: PieChart,
   },
   {
     title: "Comprehensive Reporting",
-    description: "We deliver detailed reports with findings and actionable recommendations.",
+    description: "You receive a detailed report with findings and actionable recommendations, plus a stakeholder readout.",
     icon: FileText,
   },
 ]
@@ -71,7 +72,7 @@ const faqs = [
   {
     question: "Who participates in your user testing?",
     answer:
-      "We recruit participants with various disabilities who use different assistive technologies, including screen reader users, keyboard-only users, magnification users, voice recognition users, and people with cognitive disabilities. We match participant profiles to your specific product and testing objectives.",
+      "Participants are people with disabilities who use different assistive technologies: screen reader users, keyboard-only users, magnification users, voice recognition users, and people with cognitive disabilities. Profiles are matched to your product and testing objectives. Participants are recruited per engagement rather than from a standing panel; the recruitment route (your own users, partner organizations, or paid panels) and participant compensation are agreed in the statement of work.",
   },
   {
     question: "When should we conduct accessibility user testing?",
@@ -96,7 +97,7 @@ const faqs = [
   {
     question: "How do you measure success in accessibility testing?",
     answer:
-      "We measure success through task completion rates, time-on-task metrics, error rates, and participant satisfaction scores. We also collect qualitative feedback about the experience and identify specific barriers that prevent successful interaction.",
+      "Success is measured through task completion rates, time-on-task metrics, error rates, and participant satisfaction scores, alongside qualitative feedback about the experience and the specific barriers that prevented successful interaction.",
   },
 ]
 
@@ -228,7 +229,7 @@ export default function UserTestingPage() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Our Testing Process</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            We follow a structured process to ensure thorough testing and actionable insights.
+            Every study follows the same structured process, from planning to a findings readout.
           </p>
         </div>
         <ProcessSteps steps={testingProcess} />
@@ -242,7 +243,8 @@ export default function UserTestingPage() {
         <div className="bg-primary/5 rounded-3xl p-8 md:p-12 border border-primary/20 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Validate Your Accessibility?</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Contact us today to discuss your testing needs and schedule sessions with diverse users.
+            Tell me what you want to learn and who your users are, and I will confirm the recruitment route, scope,
+            and a fixed price before work begins.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full">

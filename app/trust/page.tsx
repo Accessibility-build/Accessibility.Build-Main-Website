@@ -66,8 +66,10 @@ const providers = [
   ["Clerk", "Authentication and account management"],
   ["Stripe and Razorpay", "Payment processing, billing, fraud prevention, and refunds"],
   ["Vercel", "Hosting, delivery, performance, and aggregate analytics"],
-  ["Google Analytics", "Optional analytics after visitor consent"],
-  ["OpenAI, Anthropic, and OpenRouter", "AI-assisted features when selected or configured"],
+  ["Google Analytics and PostHog", "Optional analytics after visitor consent"],
+  ["OpenAI and Anthropic", "AI-assisted features when selected or configured"],
+  ["OpenRouter (Google, Meta, DeepSeek, Mistral models)", "Audit-helper model routing when a user with unlimited access selects one of those models"],
+  ["DocAccessible", "PDF-link detection script from the same owner; reports PDF URLs found on the page"],
   ["Sanity", "Content management and blog delivery"],
   ["Formspree and Resend", "Contact submissions and requested or transactional email"],
 ]

@@ -42,27 +42,27 @@ export const metadata: Metadata = {
 const reviewProcess = [
   {
     title: "Design Collection",
-    description: "We gather your designs, wireframes, or prototypes for review.",
+    description: "I gather your designs, wireframes, or prototypes for review.",
     icon: Layout,
   },
   {
     title: "Accessibility Evaluation",
-    description: "We analyze designs against WCAG criteria and accessibility best practices.",
+    description: "I analyze the designs against WCAG criteria and accessibility best practices.",
     icon: Eye,
   },
   {
     title: "Pattern Analysis",
-    description: "We identify recurring patterns and systemic accessibility considerations.",
+    description: "I identify recurring patterns and systemic accessibility considerations.",
     icon: Layers,
   },
   {
     title: "Detailed Reporting",
-    description: "We provide comprehensive feedback with specific recommendations.",
+    description: "I provide detailed feedback with specific recommendations.",
     icon: FileText,
   },
   {
     title: "Collaborative Review",
-    description: "We discuss findings with your team and answer questions about implementation.",
+    description: "I walk through the findings with your team and answer questions about implementation.",
     icon: Palette,
   },
 ]
@@ -71,12 +71,12 @@ const faqs = [
   {
     question: "At what stage should we request a design review?",
     answer:
-      "The earlier, the better! We recommend getting reviews during the wireframing or early design phase when changes are easier and less costly to implement. However, we can review designs at any stage, including finished designs before development begins.",
+      "The earlier, the better. I recommend a review during the wireframing or early design phase, when changes are easier and cheaper to make. I can review designs at any stage, though, including finished designs before development begins.",
   },
   {
     question: "What design formats do you accept for review?",
     answer:
-      "We can work with most common design formats, including Figma, Sketch, Adobe XD, InVision, or even PDFs and images. We prefer formats that allow us to inspect elements and measurements, but we can adapt to your workflow.",
+      "Most common design formats work, including Figma, Sketch, Adobe XD, InVision, or even PDFs and images. Formats that let me inspect elements and measurements are preferred, but I can adapt to your workflow.",
   },
   {
     question: "How long does a design review take?",
@@ -86,12 +86,12 @@ const faqs = [
   {
     question: "Will you provide specific solutions or just identify problems?",
     answer:
-      "We provide both. For each accessibility issue identified, we include specific recommendations for how to address it while maintaining your design intent. We often include examples or alternative approaches when appropriate.",
+      "Both. For each accessibility issue identified, I include specific recommendations for how to address it while maintaining your design intent, often with examples or alternative approaches.",
   },
   {
     question: "Do you review mobile app designs?",
     answer:
-      "Yes, we review designs for all platforms, including mobile apps (iOS and Android), web applications, desktop software, and kiosks. We apply both WCAG principles and platform-specific accessibility guidelines.",
+      "Yes. I review designs for all platforms, including mobile apps (iOS and Android), web applications, desktop software, and kiosks, applying both WCAG principles and platform-specific accessibility guidelines.",
   },
   {
     question: "How do design reviews differ from accessibility audits?",
@@ -121,7 +121,7 @@ export default function DesignReviewsPage() {
       />
       <ServiceHero
         title="Accessible Design Reviews"
-        description="Expert evaluation of your designs to ensure accessibility from the start, preventing costly remediation later."
+        description="Evaluation of your designs against WCAG before development, so accessibility issues are caught while they are still cheap to fix."
         cta="Request Review"
         ctaLink="/contact?service=design-review"
         icon={Palette}
@@ -230,7 +230,7 @@ export default function DesignReviewsPage() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Our Design Review Process</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            We follow a structured process to thoroughly evaluate designs and provide actionable recommendations.
+            Every review follows the same structured process, from design collection to a collaborative walkthrough.
           </p>
         </div>
         <ProcessSteps steps={reviewProcess} />
@@ -244,7 +244,8 @@ export default function DesignReviewsPage() {
         <div className="bg-primary/5 rounded-3xl p-8 md:p-12 border border-primary/20 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Make Accessibility Part of Your Design Process?</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Contact us today to discuss your design review needs and ensure accessibility from the start.
+            Share the designs or the flow you want reviewed, and I will confirm scope and a fixed price before work
+            begins.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full">

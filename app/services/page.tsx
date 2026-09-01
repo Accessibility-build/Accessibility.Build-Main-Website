@@ -5,13 +5,14 @@ import { cn } from "@/lib/utils"
 import { IconShell } from "@/components/ui/icon-shell"
 import { ServiceStructuredData } from "@/components/seo/structured-data"
 import { pdfPricing, serviceStartingPrices } from "@/lib/service-pricing"
+import { clampDescription } from "@/lib/metadata"
 
 const pageDescription =
   "Fixed-price accessibility audits, remediation, design reviews, training, disabled user testing, and compliance documentation with published scope and delivery."
 
 export const metadata = {
   title: "Accessibility Services | Accessibility.build",
-  description: pageDescription,
+  description: clampDescription(pageDescription),
   keywords: [
     "accessibility services pricing",
     "WCAG consulting",
@@ -83,7 +84,7 @@ const services = [
   },
   {
     title: "Remediation Support",
-    description: "Expert help to fix accessibility issues",
+    description: "Hands-on help fixing accessibility issues",
     startingPrice: serviceStartingPrices.remediation,
     delivery: "1-2 weeks",
     icon: Code,
@@ -308,7 +309,7 @@ export default function ServicesPage() {
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold mb-2">Need More Than a Standard Package?</h2>
           <p className="text-muted-foreground">
-            Send us the pages, flows, participants, or deliverables you need. We will price additional scope from the
+            Send me the pages, flows, participants, or deliverables you need. I will price additional scope from the
             published units on each service page and confirm the project total before kickoff.
           </p>
         </div>

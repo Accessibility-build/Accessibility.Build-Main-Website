@@ -42,27 +42,27 @@ export const metadata: Metadata = {
 const remediationProcess = [
   {
     title: "Issue Assessment",
-    description: "We review your audit results or conduct a quick assessment to understand the issues.",
+    description: "I review your audit results or run a quick assessment to understand the issues.",
     icon: FileText,
   },
   {
     title: "Remediation Planning",
-    description: "We develop a prioritized plan to address issues efficiently and effectively.",
+    description: "I draw up a prioritized plan so the highest-impact issues are addressed first.",
     icon: Code,
   },
   {
     title: "Implementation",
-    description: "We implement fixes or provide detailed guidance for your team to implement.",
+    description: "I implement the fixes, or provide detailed guidance for your team to implement them.",
     icon: Wrench,
   },
   {
     title: "Validation Testing",
-    description: "We verify that the implemented fixes resolve the accessibility issues.",
+    description: "I verify that the implemented fixes resolve the accessibility issues, by hand and with assistive technology.",
     icon: RefreshCw,
   },
   {
     title: "Knowledge Transfer",
-    description: "We provide documentation and training to help prevent similar issues in the future.",
+    description: "I document what changed and why, so your team can avoid the same issues in future work.",
     icon: MessageSquare,
   },
 ]
@@ -71,7 +71,7 @@ const faqs = [
   {
     question: "Do I need an audit before remediation services?",
     answer:
-      "While an audit provides a comprehensive list of issues to address, it's not strictly required. We can conduct a quick assessment to identify key issues if you haven't had a formal audit. However, for complex sites or applications, we recommend starting with an audit for the most thorough results.",
+      "While an audit provides a comprehensive list of issues to address, it's not strictly required. I can run a quick assessment to identify key issues if you haven't had a formal audit. For complex sites or applications, I recommend starting with an audit for the most thorough results.",
   },
   {
     question: "How quickly can you fix accessibility issues?",
@@ -81,22 +81,22 @@ const faqs = [
   {
     question: "Will remediation affect our site's design or functionality?",
     answer:
-      "Our goal is to maintain your design intent and functionality while making it accessible. In most cases, accessibility improvements are invisible to most users. When visual changes are necessary, we work closely with you to ensure they align with your brand and user experience goals.",
+      "The goal is to maintain your design intent and functionality while making it accessible. In most cases, accessibility improvements are invisible to most users. When visual changes are necessary, I work closely with you so they align with your brand and user experience goals.",
   },
   {
     question: "Can you work with our development team?",
     answer:
-      "Yes, we're experienced in collaborating with in-house development teams. We can provide guidance, code examples, and review implementations, or we can handle the implementation entirely, depending on your preference and team capacity.",
+      "Yes. I work directly with in-house development teams: guidance, code examples, and implementation review, or I can handle the implementation entirely, depending on your preference and team capacity.",
   },
   {
     question: "What types of issues can you remediate?",
     answer:
-      "We can address all types of accessibility issues, including keyboard navigation, screen reader compatibility, color contrast, form accessibility, dynamic content, multimedia accessibility, and more. Our expertise covers HTML, CSS, JavaScript, React, Angular, Vue, and other common frameworks.",
+      "All types of accessibility issues, including keyboard navigation, screen reader compatibility, color contrast, form accessibility, dynamic content, and multimedia accessibility. I work in HTML, CSS, JavaScript, React, Angular, Vue, and other common frameworks.",
   },
   {
     question: "How do you ensure the fixes actually work?",
     answer:
-      "We conduct thorough validation testing after implementation, using both automated tools and manual testing with assistive technologies. This ensures that the remediation effectively resolves the issues and doesn't introduce new problems.",
+      "I validate every fix after implementation, using automated tools and manual testing with assistive technologies, to confirm the remediation resolves the issue without introducing new problems.",
   },
 ]
 
@@ -121,7 +121,7 @@ export default function RemediationSupportPage() {
       />
       <ServiceHero
         title="Remediation Support"
-        description="Expert assistance to fix accessibility issues in your digital products, from code-level fixes to content remediation."
+        description="Hands-on help fixing accessibility issues in your digital products, from code-level fixes to content remediation."
         cta="Get Support"
         ctaLink="/contact?service=remediation"
         icon={Code}
@@ -137,8 +137,8 @@ export default function RemediationSupportPage() {
             <h2 className="text-3xl font-bold mb-6">Who Needs Remediation Support?</h2>
             <div className="space-y-4">
               <p className="text-lg">
-                Our remediation support services are designed for organizations that have identified accessibility
-                issues and need expert help to fix them. They're particularly valuable for:
+                Remediation support is for organizations that have identified accessibility issues and need help
+                fixing them. It is particularly valuable for:
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start">
@@ -182,9 +182,10 @@ export default function RemediationSupportPage() {
                   <Code className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold">Expert Implementation</h4>
+                  <h4 className="font-semibold">Accountable Implementation</h4>
                   <p className="text-muted-foreground">
-                    Get fixes implemented by specialists with deep accessibility expertise.
+                    Fixes are implemented or reviewed by Khushwant Parihar (CPACC, DHS Trusted Tester), the same
+                    person who audits and verifies them.
                   </p>
                 </div>
               </li>
@@ -230,7 +231,7 @@ export default function RemediationSupportPage() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Our Remediation Process</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            We follow a structured process to efficiently address accessibility issues and ensure effective solutions.
+            Every engagement follows the same structured process, from assessment to validated fixes.
           </p>
         </div>
         <ProcessSteps steps={remediationProcess} />
@@ -244,7 +245,8 @@ export default function RemediationSupportPage() {
         <div className="bg-primary/5 rounded-3xl p-8 md:p-12 border border-primary/20 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Fix Accessibility Issues?</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Contact us today to discuss your remediation needs and get expert support.
+            Send over your audit findings or a link to the product, and I will confirm scope and a fixed price before
+            work begins.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full">

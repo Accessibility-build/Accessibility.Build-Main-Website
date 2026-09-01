@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button"
 import { createMetadata } from "@/lib/metadata"
 import { businessLocation, company } from "@/lib/company"
 
-const statementLastReviewed = "July 13, 2026"
+const statementLastReviewed = "September 2, 2026"
 
 export const metadata = createMetadata({
   title: "Accessibility Statement and Feedback",
@@ -33,7 +33,7 @@ export const metadata = createMetadata({
 
 const summary = [
   ["Technical target", "WCAG 2.2 Level AA"],
-  ["Formal conformance claim", "Not currently declared"],
+  ["Compliance status", "Partially compliant"],
   ["Assessment basis", "Internal manual and automated review"],
   ["Feedback acknowledgement", "Within two business days"],
 ]
@@ -41,6 +41,8 @@ const summary = [
 const pageLinks = [
   ["Commitment", "#commitment"],
   ["Scope", "#scope"],
+  ["Non-accessible content", "#non-accessible"],
+  ["How the service meets the requirements", "#service"],
   ["How we test", "#testing"],
   ["Compatibility", "#compatibility"],
   ["Feedback and help", "#feedback"],
@@ -99,7 +101,7 @@ export default function AccessibilityPage() {
                 <p className="text-sm font-semibold uppercase text-primary">Current position</p>
                 <h2 id="status-heading" className="mt-2 text-3xl font-semibold">At a glance</h2>
                 <p className="mt-4 max-w-xl leading-7 text-muted-foreground">
-                  We design and test toward WCAG 2.2 Level AA. We are not currently making a formal, site-wide conformance claim or claiming independent certification.
+                  Accessibility.build is partially compliant with WCAG 2.2 Level AA. The site is designed and tested toward that level, and the known exceptions are listed under non-accessible content below. No independent certification is claimed.
                 </p>
               </div>
               <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
@@ -179,6 +181,59 @@ export default function AccessibilityPage() {
           </div>
         </section>
 
+        <section id="non-accessible" className="scroll-mt-24 border-b" aria-labelledby="non-accessible-heading">
+          <div className="container-wide grid gap-10 py-14 lg:grid-cols-[0.7fr_1.3fr] lg:py-16">
+            <div>
+              <CircleAlert className="h-7 w-7 text-amber-700 dark:text-amber-300" aria-hidden="true" />
+              <h2 id="non-accessible-heading" className="mt-4 text-3xl font-semibold">Non-accessible content</h2>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">Known issues as of {statementLastReviewed}. Each is either being fixed or is listed so you know what to expect.</p>
+            </div>
+            <div className="max-w-3xl">
+              <p className="leading-7 text-muted-foreground">
+                The content listed below is not fully accessible for the reasons given. Where a WCAG 2.2 success criterion applies, it is named.
+              </p>
+              <ul className="mt-5 space-y-4 leading-7 text-muted-foreground">
+                <li>
+                  <strong className="text-foreground">Interactive tools require JavaScript.</strong> The contrast checker, palette and typography studios, auditors, and generators do not function with scripting disabled. Guides, references, and research remain readable without it.
+                </li>
+                <li>
+                  <strong className="text-foreground">Some long code samples scroll horizontally.</strong> At a 320 CSS pixel width, code blocks in guides keep their line structure and scroll inside their own container rather than wrapping. WCAG 2.2 success criterion 1.4.10 (Reflow) permits this for code, and it is listed here for transparency.
+                </li>
+                <li>
+                  <strong className="text-foreground">Procurement downloads are plain Markdown files.</strong> The sample statement of work, NDA checklist, and data-processing overview open as plain text in the browser, so their headings are not exposed as structural headings (relevant to 1.3.1, Info and Relationships). Ask for an HTML or tagged PDF copy through the feedback route.
+                </li>
+                <li>
+                  <strong className="text-foreground">Third-party interfaces are reviewed, not controlled.</strong> Sign-in and account management (Clerk), checkout (Razorpay and Stripe), and the analytics consent library are supplied by vendors. Barriers found in them are reported to the vendor and, where possible, worked around.
+                </li>
+                <li>
+                  <strong className="text-foreground">Not every page has had a full manual evaluation.</strong> Core journeys and templates are reviewed manually; automated axe checks run across the rest. Until every one of the more than 280 pages has been manually evaluated against all 86 criteria, the site is described as partially compliant rather than fully compliant.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="service" className="scroll-mt-24 border-b bg-muted/20" aria-labelledby="service-heading">
+          <div className="container-wide grid gap-10 py-14 lg:grid-cols-[0.7fr_1.3fr] lg:py-16">
+            <div>
+              <ShieldCheck className="h-7 w-7 text-primary" aria-hidden="true" />
+              <h2 id="service-heading" className="mt-4 text-3xl font-semibold">How the service meets the accessibility requirements</h2>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">General description of the service and its accessibility features, in the form the European Accessibility Act (Annex V) asks service providers to publish.</p>
+            </div>
+            <div className="max-w-3xl space-y-4 leading-7 text-muted-foreground">
+              <p>
+                <strong className="text-foreground">Description of the service.</strong> Accessibility.build is a website offering free reference content (WCAG success-criterion guides, implementation guides, compliance explainers, research, and a glossary), browser-based accessibility tools, optional accounts that hold tool credits and saved reports, and an enquiry route for professional accessibility services delivered by the founder.
+              </p>
+              <p>
+                <strong className="text-foreground">Accessibility features that support the service.</strong> Pages use semantic HTML with landmarks and a logical heading outline, and every page starts with a skip link to the main content. All controls are operable by keyboard with a visible focus indicator, and dialogs, menus, and expandable sections manage focus and can be closed with Escape. Text alternatives are provided for meaningful images, and decorative graphics are hidden from assistive technology. Body text meets the 4.5:1 contrast minimum in both the light and dark themes, layouts reflow to a 320 CSS pixel width without two-dimensional scrolling for text content, and text can be resized in the browser. Form fields carry visible labels, required-field indicators, and error messages that identify the field and describe the problem. Tool results are presented as text (for example, contrast ratios and pass or fail states) rather than colour alone.
+              </p>
+              <p>
+                <strong className="text-foreground">How conformance is maintained.</strong> The practices under <a className="font-medium text-foreground underline" href="#testing">how we test</a> apply to new pages and tools before release. Barriers reported through the feedback route are triaged by user impact, and the non-accessible content list above is updated when a limitation is confirmed or resolved.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section id="testing" className="scroll-mt-24 border-b" aria-labelledby="testing-heading">
           <div className="container-wide py-14 lg:py-16">
             <div className="max-w-3xl">
@@ -249,6 +304,9 @@ export default function AccessibilityPage() {
               <p className="mt-6 text-sm leading-6 text-slate-400">
                 If your report is not acknowledged within two business days, resend it with “Accessibility escalation” in the subject line.
               </p>
+              <p className="mt-3 text-sm leading-6 text-slate-400">
+                If you are not satisfied with the response, you can raise a complaint with the enforcement body or market surveillance authority responsible for accessibility in your country. For services used from the European Union, that is the authority designated under the European Accessibility Act in your member state.
+              </p>
             </div>
           </div>
         </section>
@@ -271,6 +329,10 @@ export default function AccessibilityPage() {
                     <dd className="mt-1 font-semibold">Internal review and development testing</dd>
                   </div>
                   <div className="border-t pt-4">
+                    <dt className="text-sm text-muted-foreground">Compliance status</dt>
+                    <dd className="mt-1 font-semibold">Partially compliant with WCAG 2.2 AA</dd>
+                  </div>
+                  <div className="border-t pt-4">
                     <dt className="text-sm text-muted-foreground">Independent certification</dt>
                     <dd className="mt-1 font-semibold">Not claimed</dd>
                   </div>
@@ -280,7 +342,7 @@ export default function AccessibilityPage() {
                   </div>
                 </dl>
                 <p className="mt-8 leading-7 text-muted-foreground">
-                  This review clarified the formal status, covered scope, testing approach, compatibility information, feedback route, and escalation process. The statement is reviewed after material website or service changes and when reported barriers show that it is incomplete or inaccurate.
+                  This statement was prepared on July 13, 2026 and last reviewed on {statementLastReviewed}. The September 2026 review added the compliance status in the prescribed wording, the list of non-accessible content, and the description of how the service meets the accessibility requirements, so that the statement satisfies the same checks the site&apos;s own accessibility statement checker applies. The statement is reviewed after material website or service changes and when reported barriers show that it is incomplete or inaccurate.
                 </p>
                 <p className="mt-4 leading-7 text-muted-foreground">
                   Accessibility.build is owned and operated by {company.legalOperator} in {businessLocation}. See the <Link className="font-medium text-foreground underline" href="/trust">Trust Centre</Link>, <Link className="font-medium text-foreground underline" href="/privacy">Privacy Policy</Link>, and <Link className="font-medium text-foreground underline" href="/corrections-policy">Corrections Policy</Link> for related accountability information.

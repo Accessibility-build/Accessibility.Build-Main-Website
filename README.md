@@ -1997,7 +1997,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2024 Accessibility.build
+Copyright (c) 2023-2026 Khushwant Parihar (Accessibility.build)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -2017,6 +2017,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+The MIT licence covers the source code only. Written content under `app/guides`, `app/research`, `app/compliance`, `app/wcag`, and `app/blog` remains copyright Accessibility.build, all rights reserved, and is not licensed for reuse or redistribution.
 
 ---
 

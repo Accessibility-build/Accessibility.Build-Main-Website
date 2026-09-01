@@ -86,7 +86,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     keyDate: "2027-04-26",
     keyDateLabel: "Extended compliance deadline for entities serving 50,000+ people",
     recentUpdate: "DOJ final rule (April 2024) formally requires WCAG 2.1 AA for state/local government websites. On April 20, 2026 a DOJ Interim Final Rule extended the compliance deadlines by one year: April 26, 2027 for entities serving 50,000+ people and April 26, 2028 for smaller entities and special districts. The National Federation of the Blind is challenging the extension in federal court.",
-    sourceUrl: "https://www.ada.gov/law-and-regs/regulations/title-ii-web-access/",
+    sourceUrl: "https://www.ada.gov/resources/2024-03-08-web-rule/",
   },
   {
     id: "ada-title-iii",
