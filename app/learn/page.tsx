@@ -1,306 +1,165 @@
-'use client';
+import Link from "next/link"
+import { LearnHub } from "@/components/learn/learn-hub"
+import { getCriterion, wcagPath } from "@/lib/wcag-pages"
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import {
-  ArrowRight,
-  Table as TableIcon,
-  ListOrdered,
-  Sparkles,
-  BookOpen,
-  Zap,
-  Trophy,
-  Star,
-  Clock,
-  ChevronRight,
-  Rocket,
-  GraduationCap,
-  FormInput,
-  MessageSquare,
-  Navigation,
-  GalleryHorizontal,
-  Search,
-  LucideIcon
-} from 'lucide-react';
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+// The hub itself is a client component (framer-motion, hover state). The
+// explanatory copy below is server-rendered and slotted into the hub between
+// the pattern cards and the Coming Soon section, so it is in the served HTML.
 
-const patterns = [
+const patternCriteria: Array<{
+  pattern: string
+  href: string
+  criteria: string[]
+  guide: { href: string; label: string } | null
+}> = [
   {
-    id: 'table',
-    title: 'Data Tables',
-    description: 'Master semantic tables, sorting, selection, and responsive patterns',
-    href: '/learn/table',
-    icon: TableIcon,
-    gradient: 'from-blue-600 via-cyan-600 to-teal-600',
-    bgGradient: 'from-blue-50 to-cyan-50',
-    borderColor: 'border-blue-200 hover:border-blue-400',
-    iconBg: 'bg-blue-100',
-    iconColor: 'text-blue-600',
-    lessons: 6,
-    difficulty: 'Intermediate',
-    duration: '25 min',
-    topics: ['Semantic HTML', 'Sortable Headers', 'Multi-select', 'Inline Editing'],
-    featured: true,
+    pattern: "Data tables",
+    href: "/learn/table",
+    criteria: ["1.3.1", "4.1.2", "4.1.3", "1.4.10"],
+    guide: { href: "/guides/accessible-data-tables", label: "Accessible data tables guide" },
   },
   {
-    id: 'pagination',
-    title: 'Pagination',
-    description: 'From page numbers to infinite scroll—every navigation pattern explained',
-    href: '/learn/pagination',
-    icon: ListOrdered,
-    gradient: 'from-violet-600 via-purple-600 to-fuchsia-600',
-    bgGradient: 'from-violet-50 to-purple-50',
-    borderColor: 'border-violet-200 hover:border-violet-400',
-    iconBg: 'bg-violet-100',
-    iconColor: 'text-violet-600',
-    lessons: 5,
-    difficulty: 'Beginner',
-    duration: '20 min',
-    topics: ['Numbered Pages', 'Infinite Scroll', 'Load More', 'Focus Management'],
-    featured: true,
+    pattern: "Pagination",
+    href: "/learn/pagination",
+    criteria: ["1.3.1", "2.4.4", "1.4.1", "4.1.3"],
+    guide: { href: "/guides/accessible-pagination", label: "Accessible pagination guide" },
   },
   {
-    id: 'modals',
-    title: 'Modal Dialogs',
-    description: 'Focus trapping, keyboard controls, and proper announcements',
-    href: '/learn/modals',
-    icon: MessageSquare,
-    gradient: 'from-sky-600 via-blue-600 to-indigo-600',
-    bgGradient: 'from-sky-50 to-blue-50',
-    borderColor: 'border-sky-200 hover:border-sky-400',
-    iconBg: 'bg-sky-100',
-    iconColor: 'text-sky-600',
-    lessons: 5,
-    difficulty: 'Intermediate',
-    duration: '20 min',
-    topics: ['Focus Trap', 'Escape to Close', 'aria-modal', 'Return Focus'],
-    featured: false,
+    pattern: "Modal dialogs",
+    href: "/learn/modals",
+    criteria: ["2.1.2", "2.4.3", "4.1.2", "2.4.7"],
+    guide: { href: "/guides/accessible-dialog", label: "Accessible dialog guide" },
   },
   {
-    id: 'carousels',
-    title: 'Carousels',
-    description: 'Auto-play controls, keyboard navigation, and motion preferences',
-    href: '/learn/carousels',
-    icon: GalleryHorizontal,
-    gradient: 'from-rose-600 via-pink-600 to-fuchsia-600',
-    bgGradient: 'from-rose-50 to-pink-50',
-    borderColor: 'border-rose-200 hover:border-rose-400',
-    iconBg: 'bg-rose-100',
-    iconColor: 'text-rose-600',
-    lessons: 5,
-    difficulty: 'Intermediate',
-    duration: '20 min',
-    topics: ['Play/Pause', 'Arrow Navigation', 'prefers-reduced-motion', 'Live Regions'],
-    featured: false,
+    pattern: "Carousels",
+    href: "/learn/carousels",
+    criteria: ["2.2.2", "2.1.1", "4.1.2", "2.5.8"],
+    guide: null,
   },
   {
-    id: 'search',
-    title: 'Search & Autocomplete',
-    description: 'Combobox patterns, keyboard navigation, and result announcements',
-    href: '/learn/search',
-    icon: Search,
-    gradient: 'from-indigo-600 via-violet-600 to-purple-600',
-    bgGradient: 'from-indigo-50 to-violet-50',
-    borderColor: 'border-indigo-200 hover:border-indigo-400',
-    iconBg: 'bg-indigo-100',
-    iconColor: 'text-indigo-600',
-    lessons: 5,
-    difficulty: 'Advanced',
-    duration: '25 min',
-    topics: ['Combobox', 'aria-activedescendant', 'Result Announcements', 'Loading States'],
-    featured: false,
+    pattern: "Search and autocomplete",
+    href: "/learn/search",
+    criteria: ["4.1.2", "3.3.2", "4.1.3", "2.1.1"],
+    guide: { href: "/guides/accessible-combobox", label: "Accessible combobox guide" },
   },
-];
+]
 
-const comingSoon: { title: string; icon: LucideIcon; description: string; color: string }[] = [
-  { title: 'Form Controls', icon: FormInput, description: 'Labels, validation, error handling', color: 'text-emerald-600 bg-emerald-100' },
-  { title: 'Navigation Menus', icon: Navigation, description: 'Dropdowns, mega menus, mobile nav', color: 'text-amber-600 bg-amber-100' },
-];
+function PatternOverview() {
+  return (
+    <section aria-labelledby="learn-overview" className="px-4 py-4">
+      <div className="max-w-6xl mx-auto space-y-8">
+        <div className="max-w-4xl space-y-4">
+          <h2 id="learn-overview" className="text-2xl font-bold text-foreground">
+            What These Demos Teach
+          </h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Each pattern page is a short, self-contained lesson on one interface
+            component that is easy to get wrong: a data table, a set of page
+            controls, a modal dialog, a carousel, or a search box with
+            suggestions. The page is split into sections you move between with
+            the tab bar at the top. Most sections pair a working demo with the
+            code that produced it, and several demos have a toggle that swaps
+            between an inaccessible version and the fixed one so you can feel
+            the difference with a keyboard or a screen reader rather than read
+            about it.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            The accessible versions follow the W3C ARIA Authoring Practices
+            patterns and the relevant WCAG 2.2 success criteria, and each page
+            ends with a list of the mistakes we see most often in production
+            code. The demos are deliberately minimal. They show the essential
+            markup, focus handling, and announcements, not a production
+            component library, and they are teaching aids rather than proof of
+            conformance for any real product. Test your own implementation
+            against the criteria; do not assume that copying a demo settles
+            the question.
+          </p>
+        </div>
 
-const stats = [
-  { icon: BookOpen, value: '26', label: 'Interactive Lessons', color: 'text-blue-600 bg-blue-50' },
-  { icon: Clock, value: '110', label: 'Minutes of Content', color: 'text-violet-600 bg-violet-50' },
-  { icon: Zap, value: '100%', label: 'Hands-on Demos', color: 'text-amber-600 bg-amber-50' },
-];
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
+            <caption className="sr-only">
+              Patterns covered, the WCAG 2.2 success criteria each one exercises, and the in-depth guide for each
+            </caption>
+            <thead className="bg-muted">
+              <tr>
+                <th scope="col" className="p-3 text-left font-semibold">Pattern</th>
+                <th scope="col" className="p-3 text-left font-semibold">WCAG 2.2 criteria you will exercise</th>
+                <th scope="col" className="p-3 text-left font-semibold">In-depth guide</th>
+              </tr>
+            </thead>
+            <tbody>
+              {patternCriteria.map((row) => (
+                <tr key={row.pattern} className="border-t border-border align-top">
+                  <th scope="row" className="p-3 text-left font-medium">
+                    <Link href={row.href} className="text-blue-600 dark:text-blue-400 hover:underline">
+                      {row.pattern}
+                    </Link>
+                  </th>
+                  <td className="p-3 text-muted-foreground">
+                    <ul className="space-y-1">
+                      {row.criteria.map((number) => {
+                        const criterion = getCriterion(number)
+                        return (
+                          <li key={number}>
+                            <Link href={wcagPath(number)} className="hover:underline">
+                              {number} {criterion?.title ?? ""}
+                            </Link>
+                            {criterion ? ` (${criterion.level})` : ""}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </td>
+                  <td className="p-3 text-muted-foreground">
+                    {row.guide ? (
+                      <Link href={row.guide.href} className="text-blue-600 dark:text-blue-400 hover:underline">
+                        {row.guide.label}
+                      </Link>
+                    ) : (
+                      "No separate guide yet; the pattern page carries the full explanation."
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="max-w-4xl space-y-4">
+          <h3 className="text-xl font-semibold text-foreground">How to Get the Most from a Demo</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Put the mouse down. Every accessible demo can be operated with Tab,
+            Shift+Tab, Enter, Space, Escape, and the arrow keys, and each page
+            lists the exact keys it expects. Then turn on a screen reader: on
+            macOS, VoiceOver is built in and starts with Command+F5; on Windows,
+            NVDA is free. Listen for the things sighted users take for granted,
+            such as how many results appeared, which page is current, or that a
+            dialog has opened. If you cannot tell from the audio alone, you have
+            found the gap the lesson is about.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            When you are ready to apply a pattern, the{" "}
+            <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+              keyboard accessibility guide
+            </Link>{" "}
+            covers the conventions every widget shares, the{" "}
+            <Link href="/checklists/interactive" className="text-blue-600 dark:text-blue-400 hover:underline">
+              interactive WCAG checklist
+            </Link>{" "}
+            tracks which criteria you have verified, and the{" "}
+            <Link href="/tools/accessibility-code-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              code generator
+            </Link>{" "}
+            can draft a starting point in your framework for you to review
+            against what you learned here.
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export default function LearnPage() {
-  const [hoveredPattern, setHoveredPattern] = useState<string | null>(null);
-
-  return (
-    <div className="learn-theme min-h-screen bg-background">
-      {/* Hero Section */}
-      <div className="pt-20 pb-16 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-full text-muted-foreground text-sm mb-8">
-              <Sparkles className="w-4 h-4" />
-              Interactive Learning
-            </div>
-
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="text-foreground">Learn Accessibility</span>
-              <br />
-              <span className="text-muted-foreground">By Doing</span>
-            </h1>
-
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
-              Master web accessibility through hands-on interactive demos. No dry documentation—just real patterns you can touch, test, and truly understand.
-            </p>
-
-            {/* Stats */}
-            <div className="flex flex-wrap justify-center gap-6 mb-16">
-              {stats.map((stat, idx) => (
-                <motion.div key={stat.label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + idx * 0.1 }}
-                  className="flex items-center gap-3 px-5 py-3 bg-card border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                  <div className={cn("p-2 rounded-xl", stat.color)}>
-                    <stat.icon className="w-5 h-5" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Main Pattern Cards */}
-      <div className="relative px-4 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="flex items-center gap-3 mb-8">
-            <div className="p-2 bg-green-100 rounded-xl">
-              <Rocket className="w-5 h-5 text-green-600" />
-            </div>
-            <h2 className="text-2xl font-bold text-foreground">Start Learning</h2>
-            <Badge className="bg-green-100 text-green-700 border-green-200">Available Now</Badge>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {patterns.map((pattern, idx) => {
-              const Icon = pattern.icon;
-              const isHovered = hoveredPattern === pattern.id;
-
-              return (
-                <motion.div key={pattern.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 + idx * 0.1 }}>
-                  <Link href={pattern.href} onMouseEnter={() => setHoveredPattern(pattern.id)} onMouseLeave={() => setHoveredPattern(null)} className="block group">
-                    <div className={cn(
-                      "p-7 rounded-2xl border border-border transition-all duration-200 bg-card",
-                      isHovered && "shadow-md -translate-y-0.5"
-                    )}>
-                      {/* Badge */}
-                      {pattern.featured && (
-                        <div className="mb-4">
-                          <Badge className="bg-muted text-foreground border-border">
-                            <Star className="w-3 h-3 mr-1" /> Featured
-                          </Badge>
-                        </div>
-                      )}
-
-                      <div>
-                        {/* Icon */}
-                        <div className={cn("w-14 h-14 rounded-xl flex items-center justify-center mb-6", pattern.iconBg)}>
-                          <Icon className={cn("w-8 h-8", pattern.iconColor)} />
-                        </div>
-
-                        {/* Content */}
-                        <h3 className="text-2xl font-bold text-foreground mb-2">{pattern.title}</h3>
-                        <p className="text-muted-foreground mb-6">{pattern.description}</p>
-
-                        {/* Meta Info */}
-                        <div className="flex flex-wrap gap-3 mb-6">
-                          <span className="inline-flex items-center gap-1 px-3 py-1 bg-muted rounded-full text-sm text-muted-foreground">
-                            <BookOpen className="w-3 h-3" /> {pattern.lessons} lessons
-                          </span>
-                          <span className="inline-flex items-center gap-1 px-3 py-1 bg-muted rounded-full text-sm text-muted-foreground">
-                            <Clock className="w-3 h-3" /> {pattern.duration}
-                          </span>
-                          <span className={cn("inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm",
-                            pattern.difficulty === 'Beginner' ? "bg-green-100 text-green-700" : "bg-orange-100 text-orange-700"
-                          )}>
-                            <Zap className="w-3 h-3" /> {pattern.difficulty}
-                          </span>
-                        </div>
-
-                        {/* Topics */}
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {pattern.topics.map((topic) => (
-                            <span key={topic} className="px-2 py-1 bg-card border border-border rounded-lg text-xs text-muted-foreground">{topic}</span>
-                          ))}
-                        </div>
-
-                        {/* CTA */}
-                        <div className="flex items-center gap-2 font-semibold text-primary">
-                          Start Learning
-                          <motion.div animate={{ x: isHovered ? 5 : 0 }}><ArrowRight className="w-5 h-5" /></motion.div>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Coming Soon Section */}
-      <div className="relative px-4 pb-20">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="flex items-center gap-3 mb-8">
-            <div className="p-2 bg-amber-100 rounded-xl">
-              <GraduationCap className="w-5 h-5 text-amber-600" />
-            </div>
-            <h2 className="text-2xl font-bold text-foreground">Coming Soon</h2>
-            <Badge className="bg-amber-100 text-amber-700 border-amber-200">In Development</Badge>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            {comingSoon.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <motion.div key={item.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 + idx * 0.1 }}
-                  className="p-5 rounded-2xl bg-card border-2 border-dashed border-border hover:border-border/80 hover:shadow-md transition-all group">
-                  <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-transform group-hover:scale-110", item.color)}>
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom CTA */}
-      <div className="relative px-4 pb-20">
-        <div className="max-w-4xl mx-auto">
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1 }}
-            className="p-8 md:p-10 rounded-2xl border border-border bg-card text-center">
-            <div>
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-muted rounded-xl mb-6">
-                <Trophy className="w-7 h-7 text-primary" />
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Ready to Master Accessibility?</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-                Pick a pattern above and start your journey. Each lesson is designed to be completed in under 10 minutes—no excuses!
-              </p>
-
-              <Link href="/learn/table"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 rounded-lg text-primary-foreground font-semibold transition-colors">
-                <Rocket className="w-5 h-5" />
-                Start with Tables
-                <ChevronRight className="w-5 h-5" />
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </div>
-  );
+  return <LearnHub afterPatterns={<PatternOverview />} />
 }

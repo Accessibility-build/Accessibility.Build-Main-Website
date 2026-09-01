@@ -6,10 +6,11 @@ const description =
 
 export const metadata: Metadata = {
   // A plain-string title here would clear the root title template for child
-  // segments (/learn/modals etc.), so re-declare the template alongside the default.
+  // segments (/learn/modals etc.), so re-declare the template alongside the
+  // default. The site convention is no brand suffix, so the template is "%s".
   title: {
     default: title,
-    template: "%s | Accessibility.build",
+    template: "%s",
   },
   description,
   alternates: { canonical: "/learn" },
@@ -17,6 +18,13 @@ export const metadata: Metadata = {
     title,
     description,
     url: "/learn",
+    images: [
+      {
+        url: `/api/og?title=${encodeURIComponent(title)}&section=Learn`,
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
 }
 
