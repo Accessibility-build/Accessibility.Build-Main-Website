@@ -1,10 +1,10 @@
-import { Check, ArrowRight, FileText, Users, Code, Palette, TestTube, ClipboardCheck } from "lucide-react"
+import { Check, ArrowRight, FileText, Users, Code, Palette, TestTube, ClipboardCheck, FileStack } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { IconShell } from "@/components/ui/icon-shell"
 import { ServiceStructuredData } from "@/components/seo/structured-data"
-import { serviceStartingPrices } from "@/lib/service-pricing"
+import { pdfPricing, serviceStartingPrices } from "@/lib/service-pricing"
 
 const pageDescription =
   "Fixed-price accessibility audits, remediation, design reviews, training, disabled user testing, and compliance documentation with published scope and delivery."
@@ -96,6 +96,29 @@ const services = [
     detailLink: "/services/remediation-support",
   },
   {
+    // Billed per page rather than per project, so this entry overrides the
+    // card's default "Packages from" wording.
+    title: "PDF Accessibility Remediation",
+    description: "Tagged, PDF/UA-conformant documents priced per page",
+    startingPrice: pdfPricing.tiers[0].pricePerPage,
+    priceLabel: "From",
+    priceSuffix: "per page",
+    delivery: pdfPricing.tiers[0].turnaround,
+    icon: FileStack,
+    color: "from-red-500 to-orange-600",
+    bgColor: "bg-red-50 dark:bg-red-950/30",
+    borderColor: "border-red-200 dark:border-red-800",
+    features: [
+      "Full tag tree and reading order",
+      "Table headers, forms, and figure descriptions",
+      "OCR for scanned pages",
+      "PDF/UA and WCAG 2.2 AA conformance check",
+    ],
+    cta: "Send Documents",
+    link: "/contact?service=pdf-remediation",
+    detailLink: "/services/pdf-remediation",
+  },
+  {
     title: "Accessible Design Reviews",
     description: "Ensure accessibility from the start",
     startingPrice: serviceStartingPrices.designReviews,
@@ -158,6 +181,23 @@ export default function ServicesPage() {
         serviceType="Digital Accessibility Consulting"
         url="https://accessibility.build/services"
         areaServed={["Worldwide"]}
+        /*
+          Every starting price visible on this page was absent from the
+          structured data, so machines had no confirmation of what is sold at
+          what price. Derived from the same `services` array the cards render, so
+          the schema cannot drift from the visible copy. The unit is appended to
+          the description for per-page services, since a bare price of 3 would
+          otherwise read as the cost of the whole engagement.
+        */
+        offers={services.map((service) => ({
+          name: service.title,
+          description: service.priceSuffix
+            ? `${service.description}. Priced ${service.priceSuffix}, from $${service.startingPrice} ${service.priceSuffix}.`
+            : service.description,
+          price: service.startingPrice,
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+        }))}
         serviceOutput="Scoped accessibility audit, remediation, design review, training, user research, or compliance documentation engagement"
       />
       <div className="max-w-3xl mx-auto text-center mb-16">
@@ -210,13 +250,18 @@ export default function ServicesPage() {
                 <p className="text-muted-foreground">{service.description}</p>
                 <div className="my-5 grid grid-cols-2 gap-4 border-y py-4 text-sm">
                   <div>
-                    <p className="text-muted-foreground">Packages from</p>
+                    <p className="text-muted-foreground">{service.priceLabel ?? "Packages from"}</p>
                     <p className="mt-1 text-xl font-bold">
                       {new Intl.NumberFormat("en-US", {
                         style: "currency",
                         currency: "USD",
                         maximumFractionDigits: 0,
                       }).format(service.startingPrice)}
+                      {service.priceSuffix ? (
+                        <span className="ml-1 text-sm font-normal text-muted-foreground">
+                          {service.priceSuffix}
+                        </span>
+                      ) : null}
                     </p>
                   </div>
                   <div>

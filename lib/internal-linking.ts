@@ -575,6 +575,7 @@ const MORE_LINKS: InternalLink[] = [
   // Research + reference
   { url: "/research", title: "Accessibility Research Hub", description: "Original accessibility research, data, and reports", type: "resource", keywords: ["research", "accessibility data", "reports", "statistics"], priority: 7 },
   { url: "/services/accessibility-audits", title: "Professional Accessibility Audits", description: "Expert manual WCAG audits with prioritized remediation guidance", type: "resource", keywords: ["professional audit", "manual audit", "audit service", "expert audit", "wcag audit service"], priority: 8 },
+  { url: "/services/pdf-remediation", title: "PDF Accessibility Remediation", description: "Per-page PDF tagging to PDF/UA and WCAG 2.2 AA, from $3 per page", type: "resource", keywords: ["pdf remediation", "pdf remediation cost", "pdf tagging service", "accessible pdf service", "pdf/ua", "tagged pdf", "document remediation", "remediate pdf"], priority: 8 },
 ]
 
 const ALL_LINKS: InternalLink[] = [

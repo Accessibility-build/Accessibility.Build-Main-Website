@@ -337,6 +337,20 @@ export default function PdfAccessibilityGuidePage() {
                   <p className="text-sm text-muted-foreground">Tools like CommonLook PDF Validator, axesPDF, and PDFix provide specialized PDF remediation features. For large-scale remediation, consider professional accessibility remediation services.</p>
                 </CardContent>
               </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="font-semibold mb-2">Have It Remediated For You</h3>
+                  <p className="text-sm text-muted-foreground">
+                    If the backlog is larger than your team can absorb, we remediate documents per page and tag them to
+                    PDF/UA and WCAG 2.2 AA. Standard text-led pages are $3 per page, structured pages with tables or
+                    columns are $7, and complex pages with forms, charts, or scanned content are $12. See{" "}
+                    <Link href="/services/pdf-remediation" className="text-primary underline underline-offset-4">
+                      PDF accessibility remediation pricing
+                    </Link>
+                    .
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </section>
 

@@ -214,6 +214,7 @@ const services: SiteRoute[] = [
   { route: "/services/accessibility-audits", label: "Accessibility Audits", group: "Services", lastModified: "2026-07-12", priority: 0.88 },
   { route: "/services/accessibility-training", label: "Accessibility Training", group: "Services", lastModified: "2026-07-12", priority: 0.86 },
   { route: "/services/compliance-documentation", label: "Compliance Documentation", group: "Services", lastModified: "2026-07-12", priority: 0.84 },
+  { route: "/services/pdf-remediation", label: "PDF Accessibility Remediation (from $3 per page)", group: "Services", lastModified: "2026-09-01", priority: 0.87 },
   { route: "/services/remediation-support", label: "Remediation Support", group: "Services", lastModified: "2026-07-12", priority: 0.82 },
   { route: "/services/design-reviews", label: "Design Reviews", group: "Services", lastModified: "2026-07-12", priority: 0.8 },
   { route: "/services/user-testing", label: "User Testing", group: "Services", lastModified: "2026-07-12", priority: 0.78 },

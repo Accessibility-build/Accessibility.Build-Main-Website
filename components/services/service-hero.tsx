@@ -13,6 +13,13 @@ interface ServiceHeroProps {
   gradientTo: string
   startingPrice: number
   delivery: string
+  /**
+   * Overrides for services that are not sold as fixed-price packages. PDF
+   * remediation is billed per page, where "Packages from $3" would misdescribe
+   * the offer. Both default to the fixed-package wording.
+   */
+  priceLabel?: string
+  priceSuffix?: string
 }
 
 export function ServiceHero({
@@ -25,6 +32,8 @@ export function ServiceHero({
   gradientTo,
   startingPrice,
   delivery,
+  priceLabel = "Packages from",
+  priceSuffix,
 }: ServiceHeroProps) {
   return (
     <section className="relative mb-16 overflow-hidden rounded-lg border border-border/50 bg-muted/30">
@@ -61,13 +70,16 @@ export function ServiceHero({
 
           <dl className="mb-8 grid w-full max-w-lg grid-cols-2 border-y text-left">
             <div className="border-r px-4 py-4">
-              <dt className="text-sm text-muted-foreground">Packages from</dt>
+              <dt className="text-sm text-muted-foreground">{priceLabel}</dt>
               <dd className="mt-1 text-2xl font-bold">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
                   currency: "USD",
                   maximumFractionDigits: 0,
                 }).format(startingPrice)}
+                {priceSuffix ? (
+                  <span className="ml-1 text-sm font-normal text-muted-foreground">{priceSuffix}</span>
+                ) : null}
               </dd>
             </div>
             <div className="px-4 py-4">

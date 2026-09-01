@@ -460,6 +460,124 @@ export const servicePricing = {
   },
 } satisfies Record<string, ServicePricingConfig>
 
+/**
+ * PDF remediation is priced per page rather than per project, because the unit
+ * of work is a page and document sets vary from 4 pages to several thousand.
+ * The driver of cost is structural complexity, not page count, so the ladder is
+ * banded by what actually has to be built: reading order and headings at the
+ * bottom, table and form semantics in the middle, OCR and figure descriptions at
+ * the top. A single document is banded per page, so a 40-page report with 6
+ * table pages is billed as 34 standard plus 6 structured.
+ */
+export interface PdfPricingTier {
+  name: string
+  slug: string
+  pricePerPage: number
+  description: string
+  bestFor: string
+  turnaround: string
+  characteristics: string[]
+  deliverables: string[]
+  popular?: boolean
+}
+
+export interface PdfPricingConfig {
+  service: string
+  contactService: string
+  intro: string
+  scopeNote: string
+  minimumOrder: number
+  tiers: PdfPricingTier[]
+  addOns: ServicePricingAddOn[]
+  assumptions: string[]
+}
+
+export const pdfPricing = {
+  service: "PDF accessibility remediation",
+  contactService: "pdf-remediation",
+  intro:
+    "Tagged, PDF/UA-conformant documents priced per page by complexity. Send the files and we band each page before quoting, so the total is fixed before work begins.",
+  scopeNote:
+    "Pages are banded individually within a document. A 40-page report with 6 table-heavy pages is billed as 34 standard pages plus 6 structured pages, not at the higher rate throughout.",
+  minimumOrder: 150,
+  tiers: [
+    {
+      name: "Standard page",
+      slug: "standard-page",
+      pricePerPage: 3,
+      description: "Text-led pages with a single linear reading order.",
+      bestFor: "Reports, policies, letters, and text-led brochures",
+      turnaround: "3-5 business days",
+      characteristics: [
+        "Single-column, text-led layout",
+        "Headings, lists, and links",
+        "Decorative images that can be artifacted",
+        "No tables, forms, or scanned content",
+      ],
+      deliverables: [
+        "Full tag tree with correct semantic structure",
+        "Logical reading order and tab order",
+        "Heading hierarchy mapped to document outline",
+        "Alt text on meaningful images",
+        "Document language, title, and metadata set",
+      ],
+    },
+    {
+      name: "Structured page",
+      slug: "structured-page",
+      pricePerPage: 7,
+      description: "Pages whose meaning depends on layout that must be rebuilt in the tag tree.",
+      bestFor: "Financial statements, data reports, and multi-column publications",
+      turnaround: "5-8 business days",
+      characteristics: [
+        "Data tables needing header scope and spans",
+        "Multi-column or sidebar layouts",
+        "Footnotes, endnotes, and cross-references",
+        "Nested or multi-level lists",
+      ],
+      deliverables: [
+        "Everything in Standard page",
+        "Table header associations, scope, and merged-cell handling",
+        "Corrected reading order across columns and callouts",
+        "Footnote and reference links wired to their targets",
+      ],
+      popular: true,
+    },
+    {
+      name: "Complex page",
+      slug: "complex-page",
+      pricePerPage: 12,
+      description: "Pages needing interactive semantics, described visuals, or recovered text.",
+      bestFor: "Application forms, prospectuses, scanned archives, and infographics",
+      turnaround: "8-12 business days",
+      characteristics: [
+        "Interactive form fields needing labels and tooltips",
+        "Charts, maps, and infographics needing described alternatives",
+        "Scanned or image-only pages needing OCR",
+        "Mathematical or scientific notation",
+      ],
+      deliverables: [
+        "Everything in Structured page",
+        "Labelled, keyboard-operable form fields in correct tab order",
+        "Long descriptions for charts and infographics",
+        "OCR with proofread text layer for scanned pages",
+      ],
+    },
+  ],
+  addOns: [
+    { name: "Accessibility rush", price: "+35%", detail: "Roughly halves the agreed turnaround window." },
+    { name: "Source file rebuild", price: "$18/page", detail: "Rebuilds tags in the InDesign or Word source so future exports stay accessible." },
+    { name: "PDF/UA conformance report", price: "$120", detail: "Per document set, with checkpoint-by-checkpoint evidence." },
+    { name: "Remediation training", price: "$600", detail: "Half-day session on tagging your own documents in Acrobat." },
+  ],
+  assumptions: [
+    "Pricing assumes the supplied PDF is the final approved version; content changes after tagging are re-banded.",
+    "Files are banded from the actual documents before a fixed total is confirmed, never estimated from page count alone.",
+    "Every delivered file is checked against PDF/UA (ISO 14289-1) and the applicable WCAG 2.2 AA criteria before handover.",
+    "Documents containing personal or regulated data are handled under a signed agreement before transfer.",
+  ],
+} satisfies PdfPricingConfig
+
 export const serviceStartingPrices = {
   audits: servicePricing.audits.tiers[0].price,
   training: servicePricing.training.tiers[0].price,
