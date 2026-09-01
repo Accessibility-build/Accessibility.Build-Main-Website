@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/accordion"
 import Link from "next/link"
 import { PricingTable } from "@/components/services/pricing-table"
+import { pdfPricing, servicePricing } from "@/lib/service-pricing"
 import { PricingAutoCheckout } from "@/components/billing/pricing-auto-checkout"
 import { getCatalogPresentationPacks } from "@/lib/billing/catalog"
 import { getUsdToInrQuote } from "@/lib/billing/fx"
@@ -24,7 +25,7 @@ import type { CheckoutCatalogKey } from "@/lib/billing/types"
 export const metadata: Metadata = {
   title: "Pricing: One-Time Credit Packs | Accessibility.build",
   description:
-    "Simple one-time credit packs for accessibility testing. No recurring subscriptions and no hidden fees.",
+    "One-time credit packs for the self-serve accessibility testing tools. No subscriptions, no hidden fees. Audit services are priced separately, from $950.",
   keywords: [
     "accessibility testing pricing",
     "WCAG compliance pricing",
@@ -158,12 +159,55 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
                 One-Time Credit Packs
               </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-4 text-center">
-                Simple, Transparent Pricing
+                Accessibility Tool Credits
               </h1>
             </div>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              One-time credit packs with hosted Razorpay checkout. No recurring subscriptions, no hidden fees, and credits never expire.
+              This page prices credits for the self-serve accessibility testing tools. One-time packs with hosted
+              Razorpay checkout. No recurring subscriptions, no hidden fees, and credits never expire.
             </p>
+
+            {/*
+              Disambiguation. This is the URL people and AI answer engines guess
+              first for "accessibility.build pricing", but it prices tool credits
+              rather than audit services, so an unqualified visitor (or a crawler
+              sampling this page) would otherwise read $4.99 to $799 as the cost
+              of an audit. Plain server-rendered markup and a real link, so it is
+              readable without JavaScript.
+            */}
+            <div className="max-w-3xl mx-auto mb-10 rounded-2xl border border-primary/20 bg-primary/5 p-6 text-left">
+              <h2 className="text-lg font-semibold mb-2">Looking for accessibility audit pricing?</h2>
+              <p className="text-muted-foreground mb-4">
+                Audits are a separate professional service, not credits. Fixed-price WCAG 2.2 AA audits start at{" "}
+                <strong className="text-foreground">
+                  ${servicePricing.audits.tiers[0].price.toLocaleString("en-US")}
+                </strong>{" "}
+                ({servicePricing.audits.tiers[0].name}), with the {servicePricing.audits.tiers[1].name} at $
+                {servicePricing.audits.tiers[1].price.toLocaleString("en-US")} and the{" "}
+                {servicePricing.audits.tiers[2].name} at $
+                {servicePricing.audits.tiers[2].price.toLocaleString("en-US")}.
+              </p>
+              <p className="text-muted-foreground mb-4">
+                PDF accessibility remediation is billed per page instead, from{" "}
+                <strong className="text-foreground">${pdfPricing.tiers[0].pricePerPage} per page</strong> for standard
+                pages, ${pdfPricing.tiers[1].pricePerPage} for structured pages with tables or columns, and $
+                {pdfPricing.tiers[2].pricePerPage} for complex pages with forms, charts, or scanned content.
+              </p>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+                <Button asChild className="rounded-full">
+                  <Link href="/services/accessibility-audits">
+                    See audit packages and pricing
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="rounded-full">
+                  <Link href="/services/pdf-remediation">PDF remediation pricing</Link>
+                </Button>
+                <Button asChild variant="outline" className="rounded-full">
+                  <Link href="/guides/accessibility-audit-cost">What an audit should cost</Link>
+                </Button>
+              </div>
+            </div>
 
             {supportsInr && (
               <div className="flex justify-center mb-8">
