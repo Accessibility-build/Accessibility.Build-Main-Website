@@ -50,6 +50,11 @@ const core: SiteRoute[] = [
   { route: "/sitemap-page", label: "Sitemap", group: "Core", lastModified: "2026-07-09", priority: 0.3 },
 ]
 
+const cases: SiteRoute[] = [
+  { route: "/cases", label: "Accessibility Case Studies", group: "Cases", lastModified: "2026-09-02", priority: 0.9, changeFrequency: "monthly" },
+  { route: "/cases/robles-v-dominos", label: "Robles v. Domino's Pizza", group: "Cases", lastModified: "2026-09-02", priority: 0.92 },
+]
+
 const reference: SiteRoute[] = [
   { route: "/reference/aria", label: "ARIA Roles & Attributes Reference", group: "Reference", lastModified: "2026-03-30", priority: 0.96 },
   { route: "/glossary", label: "Web Accessibility Glossary", group: "Reference", lastModified: "2026-07-09", priority: 0.88 },
@@ -330,6 +335,7 @@ const wcagPages: SiteRoute[] = [
 ]
 
 export const siteRoutes: SiteRoute[] = [
+  ...cases,
   ...core,
   ...reference,
   ...tools,

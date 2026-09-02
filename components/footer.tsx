@@ -71,6 +71,7 @@ const researchLinks: FooterLink[] = [
   { href: "/research", label: "Research Hub", icon: LibraryBig },
   { href: "/research/state-of-accessibility", label: "State of Accessibility", icon: BarChart3 },
   { href: "/research/accessibility-lawsuits", label: "Lawsuit Tracker", icon: Gavel },
+  { href: "/cases", label: "Case Studies", icon: Scale },
   { href: "/compliance", label: "Compliance & Laws", icon: Scale },
   { href: "/wcag-3", label: "WCAG 3.0 Guide", icon: BookOpen },
   { href: "/industries", label: "Industry Guidance", icon: Building2 },

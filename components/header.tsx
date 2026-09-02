@@ -47,6 +47,7 @@ import {
   FileText,
   ShieldCheck,
   CircleHelp,
+  Gavel,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -207,6 +208,12 @@ const navItems: NavItem[] = [
         href: "/research/accessibility-lawsuits",
         description: "ADA accessibility litigation data",
         icon: Scale,
+      },
+      {
+        name: "Case Studies",
+        href: "/cases",
+        description: "What the landmark accessibility cases decided",
+        icon: Gavel,
       },
       {
         name: "Compliance & Laws",

@@ -30,6 +30,7 @@ const sections: Array<{ group: string; heading: string; blurb: string; minPriori
   { group: "Guides", heading: "Guides", blurb: "How-to and explainer articles.", minPriority: 0.88 },
   { group: "Compliance", heading: "Accessibility law & compliance", blurb: "Jurisdiction guides: ADA, EAA, Section 508, EN 301 549, UK, Ireland, and US states. Educational, not legal advice." },
   { group: "Industries", heading: "Accessibility by industry", blurb: "Sector-specific compliance guidance." },
+  { group: "Cases", heading: "Accessibility case studies", blurb: "Long-form studies of the litigation that shaped web accessibility law, built from the filings and judgments, with a section in each correcting claims that are commonly repeated but unsupported by the record." },
   { group: "Research", heading: "Original research & data", blurb: "Citable datasets and reports on accessibility lawsuits, laws, and the state of web accessibility, each with a stated review date and linked primary sources." },
   { group: "Checklists", heading: "Checklists", blurb: "WCAG and EN 301 549 conformance checklists." },
   { group: "Reference", heading: "Reference", blurb: "Glossary and ARIA reference." },
