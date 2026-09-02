@@ -3,6 +3,7 @@ import Link from "next/link"
 import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { PageByline } from "@/components/seo/page-byline"
+import { KeyFacts } from "@/components/research/key-facts"
 
 const ogTitle = encodeURIComponent("UK Website Accessibility Law: Equality Act & PSBAR")
 
@@ -175,7 +176,18 @@ export default function UKCompliancePage() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <div className="max-w-3xl mx-auto space-y-16">
+
+        <KeyFacts
+          title="UK web accessibility, the numbers"
+          facts={[
+            { value: "23 Sep 2020", label: "Deadline by which existing public sector websites had to comply; 23 June 2021 for mobile apps", source: "Public Sector Bodies Accessibility Regulations 2018", sourceHref: "https://www.legislation.gov.uk/uksi/2018/952/contents/made", asOf: "2020-09-23" },
+            { value: "39 of 593", label: "public sector accessibility statements found fully compliant in GDS's first monitoring round", source: "Government Digital Service", sourceHref: "/tools/accessibility-statement-checker", asOf: "2022-01-01" },
+            { value: "1,203", label: "websites and 21 apps monitored by GDS between 2022 and 2024; 85% had published a statement", source: "GDS monitoring report", sourceHref: "https://accessibility.blog.gov.uk/2024/12/17/what-gds-has-found-from-public-sector-accessibility-monitoring/", asOf: "2024-12-17" },
+            { value: "WCAG 2.2 AA", label: "The standard GDS monitors against and the target this page recommends", source: "GDS", sourceHref: "/checklists/wcag-2-2", asOf: "2024-10-01" },
+            { value: "16.1 million", label: "people in the UK with a disability, 24% of the population", source: "House of Commons Library, from the Family Resources Survey", sourceHref: "https://commonslibrary.parliament.uk/research-briefings/cbp-9602/", asOf: "2024-10-07" },
+            { value: "None", label: "technical standard named by the Equality Act 2010; the duty is to make reasonable, anticipatory adjustments", source: "Equality Act 2010, section 20", sourceHref: "https://www.legislation.gov.uk/ukpga/2010/15/section/20", asOf: "2010-10-01" },
+          ]}
+        />        <div className="max-w-3xl mx-auto space-y-16">
           {/* Equality Act */}
           <section aria-labelledby="equality-act-heading">
             <h2 id="equality-act-heading" className="text-3xl font-bold text-slate-900 dark:text-white mb-6">

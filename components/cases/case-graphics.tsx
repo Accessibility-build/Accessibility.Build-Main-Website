@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useId, useState } from "react"
 import { Check, Minus, X } from "lucide-react"
 
@@ -70,7 +71,7 @@ const TONE_STYLES: Record<string, { chip: string; rail: string }> = {
 }
 
 /** Which rule applies where, which is the question a business actually has. */
-export function CircuitPositions() {
+export function CircuitPositions({ showReferenceLink = true }: { showReferenceLink?: boolean } = {}) {
   const headingId = useId()
   return (
     <section aria-labelledby={headingId} className="not-prose my-10">
@@ -117,6 +118,15 @@ export function CircuitPositions() {
         Positions as at 2026. Circuit numbers are shown as chips; a business is exposed to the rule
         of the circuit where it is sued, not where it is based.
       </p>
+      {showReferenceLink ? (
+        <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
+          Every decision behind this map, with its current status, is in the{" "}
+          <Link href="/reference/ada-website-case-law" className="font-medium text-teal-700 underline underline-offset-2 dark:text-teal-300">
+            ADA website case law reference
+          </Link>
+          .
+        </p>
+      ) : null}
     </section>
   )
 }

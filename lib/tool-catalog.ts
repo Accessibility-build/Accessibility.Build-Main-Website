@@ -98,6 +98,18 @@ export const toolCatalog: ToolCatalogItem[] = [
     credits: 0,
   },
   {
+    slug: "accessible-name-previewer",
+    title: "Accessible Name Previewer",
+    shortTitle: "Name Previewer",
+    description: "Paste HTML and see the accessible name and role of every control, the way a screen reader or a browser-use AI agent receives them.",
+    category: "Audit and testing",
+    icon: "scan",
+    features: ["Accessible name computation", "Agent tree view", "Name source explanation"],
+    keywords: ["accessible name", "aria-label", "screen reader", "agent", "button name", "4.1.2"],
+    credits: 0,
+    popular: true,
+  },
+  {
     slug: "contrast-checker",
     title: "Color Contrast Checker",
     shortTitle: "Contrast Checker",

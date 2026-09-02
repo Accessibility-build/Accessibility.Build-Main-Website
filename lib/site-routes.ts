@@ -59,6 +59,7 @@ const cases: SiteRoute[] = [
 
 const reference: SiteRoute[] = [
   { route: "/reference/aria", label: "ARIA Roles & Attributes Reference", group: "Reference", lastModified: "2026-03-30", priority: 0.96 },
+  { route: "/reference/ada-website-case-law", label: "ADA Website Case Law by Circuit", group: "Reference", lastModified: "2026-09-03", priority: 0.94 },
   { route: "/glossary", label: "Web Accessibility Glossary", group: "Reference", lastModified: "2026-07-09", priority: 0.88 },
 ]
 
@@ -66,6 +67,7 @@ const tools: SiteRoute[] = [
   { route: "/tools", label: "Tools Hub", group: "Tools", lastModified: "2026-09-02", priority: 0.98, changeFrequency: "weekly" },
   { route: "/tools/accessibility-statement-checker", label: "Accessibility Statement Checker", group: "Tools", lastModified: "2026-08-28", priority: 0.97 },
   { route: "/tools/heading-analyzer", label: "Heading Structure Analyzer", group: "Tools", lastModified: "2025-11-25", priority: 0.97 },
+  { route: "/tools/accessible-name-previewer", label: "Accessible Name Previewer", group: "Tools", lastModified: "2026-09-03", priority: 0.97 },
   { route: "/tools/contrast-checker", label: "Color Contrast Checker", group: "Tools", lastModified: "2025-12-12", priority: 0.96 },
   { route: "/tools/accessible-palette-studio", label: "Accessible Palette Studio", group: "Tools", lastModified: "2026-05-22", priority: 0.96 },
   { route: "/tools/accessible-typography-studio", label: "Accessible Typography Studio", group: "Tools", lastModified: "2026-05-22", priority: 0.96 },
@@ -89,6 +91,10 @@ const tools: SiteRoute[] = [
 const research: SiteRoute[] = [
   { route: "/research", label: "Research Hub", group: "Research", lastModified: "2026-08-27", priority: 0.92, changeFrequency: "weekly" },
   { route: "/research/state-of-accessibility", label: "State of Accessibility Report", group: "Research", lastModified: "2026-08-27", priority: 0.95 },
+  { route: "/research/web-accessibility-statistics", label: "Web Accessibility Statistics 2026", group: "Research", lastModified: "2026-09-03", priority: 0.96, changeFrequency: "monthly" },
+  { route: "/research/accessibility-testing-tools-benchmark", label: "Accessibility Testing Tools Benchmark 2026", group: "Research", lastModified: "2026-09-03", priority: 0.95 },
+  { route: "/research/ai-agent-readiness", label: "AI Agent Readiness Study 2026", group: "Research", lastModified: "2026-09-03", priority: 0.96 },
+  { route: "/research/accessibility-statements-2026", label: "State of Accessibility Statements 2026", group: "Research", lastModified: "2026-09-03", priority: 0.95 },
   { route: "/research/accessibility-by-technology", label: "Web Accessibility by Technology Stack", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
   { route: "/research/accessibility-by-industry", label: "Web Accessibility by Industry", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
   { route: "/research/section-508-assessment", label: "Section 508 Federal Agency Assessment", group: "Research", lastModified: "2026-08-27", priority: 0.94 },

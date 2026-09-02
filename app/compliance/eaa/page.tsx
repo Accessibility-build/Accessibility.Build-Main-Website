@@ -9,6 +9,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 import { getRouteDate } from "@/lib/site-routes"
 import { PageByline } from "@/components/seo/page-byline"
 import { clampDescription } from "@/lib/metadata"
+import { KeyFacts } from "@/components/research/key-facts"
 
 const pageTitle = "European Accessibility Act (EAA): Compliance Guide"
 
@@ -259,6 +260,17 @@ export default function EAACompliancePage() {
             </p>
           </header>
 
+          <KeyFacts
+            title="The EAA, the numbers"
+            facts={[
+              { value: "28 Jun 2025", label: "Date the obligations began to apply to in-scope products and services", source: "Directive (EU) 2019/882, Article 31(2)", sourceHref: "/research/european-accessibility-act", asOf: "2025-06-28" },
+              { value: "27 of 27", label: "member states that have notified transposing measures, 378 national instruments in total", source: "European Commission transposition register", sourceHref: "/research/european-accessibility-act", asOf: "2026-08-27" },
+              { value: "WCAG 2.1 AA", label: "The web standard incorporated by EN 301 549 v3.2.1, the harmonised standard the EAA relies on", source: "ETSI EN 301 549 v3.2.1", sourceHref: "/compliance/en-301-549", asOf: "2021-03-01" },
+              { value: "v4.1.1", label: "The EN 301 549 revision that moves the baseline to WCAG 2.2, expected to be cited in the Official Journal in late 2026", source: "ETSI", sourceHref: "/blog/en-301-549-v4-1-1-wcag-2-2-eaa", asOf: "2026-08-12" },
+              { value: "28 Jun 2030", label: "End of the transitional period for service contracts agreed before the application date", source: "Directive (EU) 2019/882, Article 32", sourceHref: "/research/european-accessibility-act", asOf: "2025-06-28" },
+              { value: "EUR 60,000", label: "Maximum fine on indictment in Ireland, with up to 18 months' imprisonment; penalties are set by each member state", source: "Irish transposing legislation", sourceHref: "/compliance/eaa-ireland", asOf: "2026-08-27" },
+            ]}
+          />
           <div
             className="rounded-xl border border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30 p-5 mb-12"
             role="note"

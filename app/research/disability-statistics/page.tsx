@@ -20,6 +20,7 @@ import disabilityData from "@/lib/data/disability-statistics.json";
 import { DisabilityStatisticsClient } from "./DisabilityStatisticsClient";
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
+import { DatasetDownloads } from "@/components/research/dataset-downloads"
 
 const reportUrl = "https://accessibility.build/research/disability-statistics";
 const pageTitle = "US Disability Prevalence";
@@ -311,6 +312,21 @@ export default function DisabilityStatisticsPage() {
           </section>
 
           <div className="mt-16 sm:mt-20">
+            <DatasetDownloads
+              dataset="disability-statistics"
+              name="US disability prevalence by type"
+              description="Percentage and number of US adults reporting a disability, by type, with the 2016 to 2022 trend, from the CDC Behavioral Risk Factor Surveillance System."
+              pageUrl="https://accessibility.build/research/disability-statistics"
+              datePublished="2026-08-27"
+              dateModified="2026-08-27"
+              temporalCoverage="2016/2022"
+              attribution="CDC Disability and Health Data System"
+              withSchema={false}
+              tables={[
+                  { key: "types", label: "Prevalence by disability type" },
+                  { key: "trend", label: "2016 to 2022 trend" },
+              ]}
+            />
             <RelatedContent
               content="disability statistics prevalence cognitive vision hearing mobility accessibility business case WCAG contrast reflow plain language keyboard"
               maxItems={3}

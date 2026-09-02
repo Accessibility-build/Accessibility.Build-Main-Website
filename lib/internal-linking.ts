@@ -21,6 +21,54 @@ interface ContentMatch {
 
 // Comprehensive internal link database
 const INTERNAL_LINKS: InternalLink[] = [
+  {
+    url: '/research/ai-agent-readiness',
+    title: 'Can an AI Agent Use Your Website?',
+    description: 'Measured accessibility-tree view of FTSE 100 and UK council home pages: nameless controls, missing alt, unlabelled fields',
+    type: 'resource',
+    keywords: ['agent', 'ai', 'accessibility tree', 'accessible name', 'button', 'study', 'ftse', 'council'],
+    priority: 9
+  },
+  {
+    url: '/research/accessibility-statements-2026',
+    title: 'State of Accessibility Statements 2026',
+    description: 'How many UK councils and FTSE 100 companies publish a statement, and which mandatory elements are missing',
+    type: 'resource',
+    keywords: ['accessibility statement', 'psbar', 'eaa', 'compliance', 'public sector', 'gds', 'study'],
+    priority: 9
+  },
+  {
+    url: '/research/accessibility-testing-tools-benchmark',
+    title: 'Accessibility Testing Tools Benchmark 2026',
+    description: 'axe, Lighthouse, HTML_CodeSniffer and IBM Equal Access tested against thirty seeded WCAG defects',
+    type: 'resource',
+    keywords: ['axe', 'lighthouse', 'pa11y', 'wave', 'ibm equal access', 'automated testing', 'testing tools', 'benchmark', 'false positive'],
+    priority: 9
+  },
+  {
+    url: '/research/web-accessibility-statistics',
+    title: 'Web Accessibility Statistics 2026',
+    description: 'Sourced, dated figures on disability, WCAG failure rates, screen readers, lawsuits, regulation and cost',
+    type: 'resource',
+    keywords: ['statistics', 'data', 'numbers', 'percent', 'lawsuits', 'disability', 'webaim', 'screen reader', 'research'],
+    priority: 10
+  },
+  {
+    url: '/reference/ada-website-case-law',
+    title: 'ADA Website Case Law by Circuit',
+    description: 'Which federal courts have decided whether the ADA covers websites, and which decisions still bind',
+    type: 'resource',
+    keywords: ['ada', 'lawsuit', 'circuit', 'court', 'nexus', 'public accommodation', 'case law', 'title iii'],
+    priority: 9
+  },
+  {
+    url: '/tools/accessible-name-previewer',
+    title: 'Accessible Name Previewer',
+    description: 'See what a screen reader or AI agent will call every control in your markup',
+    type: 'tool',
+    keywords: ['accessible name', 'aria-label', 'screen reader', 'button', 'link', 'label', 'agent', 'name role value'],
+    priority: 9
+  },
   // Tools
   {
     url: '/tools/accessibility-audit-helper',

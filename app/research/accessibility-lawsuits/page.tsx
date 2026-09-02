@@ -6,6 +6,7 @@ import { lawsuitSummary } from "@/lib/data/lawsuit-statistics"
 import { LawsuitTrackerClient } from "./LawsuitTrackerClient"
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
+import { DatasetDownloads } from "@/components/research/dataset-downloads"
 
 export const metadata: Metadata = {
   title: "Accessibility Lawsuit Tracker 2026: ADA Litigation Data",
@@ -412,6 +413,24 @@ export default function AccessibilityLawsuitsPage() {
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">
+            <DatasetDownloads
+              dataset="lawsuits"
+              name="US website accessibility lawsuits, 2018 to 2025"
+              description="Federal-court website accessibility lawsuit filings by year, industry and state, reported settlement costs, and key rulings, from Seyfarth Shaw's manually reviewed series and industry litigation reports."
+              pageUrl="https://accessibility.build/research/accessibility-lawsuits"
+              datePublished="2026-08-27"
+              dateModified="2026-08-27"
+              temporalCoverage="2018/2025"
+              attribution="Seyfarth Shaw; UsableNet; AudioEye; court records"
+              withSchema={true}
+              tables={[
+                  { key: "byYear", label: "Federal filings by year" },
+                  { key: "byIndustry", label: "Filings by industry" },
+                  { key: "settlements", label: "Reported settlement costs" },
+                  { key: "keyRulings", label: "Key rulings and developments" },
+                  { key: "topStates", label: "Filings by state" },
+              ]}
+            />
         <RelatedContent
           content="accessibility lawsuits ADA compliance WCAG audit legal requirements digital accessibility litigation"
           title="Related Resources"

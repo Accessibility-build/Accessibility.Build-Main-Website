@@ -20,6 +20,7 @@ import salaryData from "@/lib/data/accessibility-salary.json";
 import { AccessibilitySalaryClient } from "./AccessibilitySalaryClient";
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
+import { DatasetDownloads } from "@/components/research/dataset-downloads"
 
 const reportUrl = "https://accessibility.build/research/accessibility-salary";
 const pageTitle = "Digital Accessibility Salary Report";
@@ -307,6 +308,24 @@ export default function AccessibilitySalaryPage() {
           </section>
 
           <div className="mt-16 sm:mt-20">
+            <DatasetDownloads
+              dataset="salary"
+              name="Digital accessibility salary survey"
+              description="Salaries of digital accessibility professionals by location, experience, work arrangement, organisation size and disability status, from WebAIM's second global salary survey."
+              pageUrl="https://accessibility.build/research/accessibility-salary"
+              datePublished="2026-08-27"
+              dateModified="2026-08-27"
+              temporalCoverage="2025/2026"
+              attribution="WebAIM Global Digital Accessibility Salary Survey #2"
+              withSchema={false}
+              tables={[
+                  { key: "byLocation", label: "By location" },
+                  { key: "byExperience", label: "By experience" },
+                  { key: "byWorkLocation", label: "By work arrangement" },
+                  { key: "byOrgSize", label: "By organisation size" },
+                  { key: "byDisability", label: "By disability status" },
+              ]}
+            />
             <RelatedContent
               content="accessibility salary career jobs digital accessibility professional experience remote work certification audit screen reader testing"
               maxItems={3}

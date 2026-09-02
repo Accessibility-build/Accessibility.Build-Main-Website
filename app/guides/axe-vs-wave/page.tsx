@@ -669,6 +669,17 @@ export default function AxeVsWaveGuidePage() {
           {/* Related Content */}
           <section className="pb-12 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl">
+            <aside className="mt-12 rounded-lg border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/50">
+              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">Measured, not asserted</p>
+              <p className="mt-2 leading-7 text-slate-700 dark:text-slate-300">
+                We ran axe-core, Lighthouse, HTML_CodeSniffer and IBM Equal Access against one page with thirty seeded defects. Which tool found what, and the five defects none of them can find, are in the{" "}
+                <Link href="/research/accessibility-testing-tools-benchmark" className="font-medium text-teal-700 underline underline-offset-2 dark:text-teal-300">
+                  testing tools benchmark
+                </Link>
+                .
+              </p>
+            </aside>
+
               <RelatedContent
                 content="axe wave accessibility testing tools audit wcag automated checker"
                 title="Related Tools & Resources"

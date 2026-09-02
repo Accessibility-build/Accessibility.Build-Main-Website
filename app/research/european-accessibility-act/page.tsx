@@ -20,6 +20,7 @@ import eaaData from "@/lib/data/european-accessibility-act.json";
 import { EuropeanAccessibilityActClient } from "./EuropeanAccessibilityActClient";
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
+import { DatasetDownloads } from "@/components/research/dataset-downloads"
 
 const reportUrl =
   "https://accessibility.build/research/european-accessibility-act";
@@ -308,6 +309,20 @@ export default function EuropeanAccessibilityActPage() {
           </section>
 
           <div className="mt-16 sm:mt-20">
+            <DatasetDownloads
+              dataset="european-accessibility-act"
+              name="European Accessibility Act tracker"
+              description="Key dates, transposition status across the 27 member states and transitional rules of Directive (EU) 2019/882."
+              pageUrl="https://accessibility.build/research/european-accessibility-act"
+              datePublished="2026-08-27"
+              dateModified="2026-08-27"
+              temporalCoverage="2019/2030"
+              attribution="Directive (EU) 2019/882; European Commission transposition register"
+              withSchema={false}
+              tables={[
+                  { key: "keyDates", label: "Key dates" },
+              ]}
+            />
             <RelatedContent
               content="European Accessibility Act EAA EN 301 549 EU accessibility law compliance directive transposition member states deadline enforcement"
               maxItems={3}

@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { BarChart3, Scale, ArrowRight, TrendingUp, CalendarDays, BookOpen, Globe, Boxes, Building2, Landmark, Users, Banknote, FileCheck2 } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
+import agentReadiness from "@/lib/data/agent-readiness-2026.json"
+import statementsStudy from "@/lib/data/accessibility-statements-2026.json"
 
 export const metadata: Metadata = {
   ...createMetadata({
@@ -27,6 +29,54 @@ export const metadata: Metadata = {
 }
 
 const researchReports = [
+  {
+    title: "Can an AI Agent Use Your Website?",
+    description:
+      "We took the accessibility-tree view a browser-use agent receives of FTSE 100 and UK council home pages and counted the controls it cannot name, the images without alt text and the unlabelled fields. Per-site results and method published.",
+    icon: BarChart3,
+    badge: "Original measurement",
+    badgeColor:
+      "bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-800",
+    href: "/research/ai-agent-readiness",
+    stat: { label: "Home pages measured", value: String(agentReadiness.groups.ftse100.measured + agentReadiness.groups.councils.measured) },
+    gradient: "from-rose-600 to-pink-600",
+  },
+  {
+    title: "State of Accessibility Statements 2026",
+    description:
+      "Our statement checker run over every UK local authority and the FTSE 100: who publishes a statement, how many carry every mandatory element, and which elements are most often missing.",
+    icon: BarChart3,
+    badge: "Original measurement",
+    badgeColor:
+      "bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-800",
+    href: "/research/accessibility-statements-2026",
+    stat: { label: "Organisations checked", value: String(statementsStudy.groups.councils.checked + statementsStudy.groups.ftse100.checked) },
+    gradient: "from-fuchsia-600 to-rose-600",
+  },
+  {
+    title: "Web Accessibility Statistics 2026",
+    description:
+      "Every figure that gets asked for, on one page: disability prevalence, WebAIM Million failure rates, screen reader use, lawsuit counts, public sector monitoring, audit prices and salaries. Each number dated, sourced and written to stand on its own.",
+    icon: BarChart3,
+    badge: "Updated monthly",
+    badgeColor:
+      "bg-teal-100 text-teal-800 border-teal-200 dark:bg-teal-900/20 dark:text-teal-400 dark:border-teal-800",
+    href: "/research/web-accessibility-statistics",
+    stat: { label: "Sourced figures", value: "50+" },
+    gradient: "from-teal-600 to-emerald-600",
+  },
+  {
+    title: "Accessibility Testing Tools Benchmark",
+    description:
+      "axe-core, Lighthouse, HTML_CodeSniffer and IBM Equal Access run against one page seeded with thirty known WCAG defects. Which tool finds what, which defects nobody finds, and what a Lighthouse score of 49 means.",
+    icon: BarChart3,
+    badge: "Original test",
+    badgeColor:
+      "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800",
+    href: "/research/accessibility-testing-tools-benchmark",
+    stat: { label: "Seeded defects found by all four", value: "12 of 30" },
+    gradient: "from-amber-600 to-orange-600",
+  },
   {
     title: "State of Web Accessibility",
     description:

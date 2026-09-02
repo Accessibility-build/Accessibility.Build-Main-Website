@@ -20,6 +20,7 @@ import assessmentData from "@/lib/data/section-508-assessment.json";
 import { Section508Client } from "./Section508Client";
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
+import { DatasetDownloads } from "@/components/research/dataset-downloads"
 
 const reportUrl =
   "https://accessibility.build/research/section-508-assessment";
@@ -321,6 +322,22 @@ export default function Section508AssessmentPage() {
           </section>
 
           <div className="mt-16 sm:mt-20">
+            <DatasetDownloads
+              dataset="section-508"
+              name="Governmentwide Section 508 assessment, FY2025"
+              description="Conformance and implementation maturity of 60 US federal agencies from the annual Section 508 assessment published by GSA."
+              pageUrl="https://accessibility.build/research/section-508-assessment"
+              datePublished="2026-08-27"
+              dateModified="2026-08-27"
+              temporalCoverage="2025"
+              attribution="US General Services Administration"
+              withSchema={false}
+              tables={[
+                  { key: "agencies", label: "Agency results" },
+                  { key: "levels", label: "Maturity levels" },
+                  { key: "factors", label: "Assessment factors" },
+              ]}
+            />
             <RelatedContent
               content="Section 508 federal agency accessibility government compliance procurement VPAT accessibility conformance report audit testing remediation ADA Title II"
               maxItems={3}

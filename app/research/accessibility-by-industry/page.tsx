@@ -28,6 +28,7 @@ import industryData from "@/lib/data/accessibility-by-industry.json";
 import { AccessibilityByIndustryClient } from "./AccessibilityByIndustryClient";
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
+import { DatasetDownloads } from "@/components/research/dataset-downloads"
 
 const reportUrl =
   "https://accessibility.build/research/accessibility-by-industry";
@@ -428,6 +429,21 @@ export default function AccessibilityByIndustryPage() {
           </section>
 
           <div className="mt-16 sm:mt-20">
+            <DatasetDownloads
+              dataset="by-industry"
+              name="Accessibility errors by industry"
+              description="Average detectable WCAG errors per home page by site category and by language, from the WebAIM Million 2026."
+              pageUrl="https://accessibility.build/research/accessibility-by-industry"
+              datePublished="2026-08-27"
+              dateModified="2026-08-27"
+              temporalCoverage="2026"
+              attribution="WebAIM Million 2026"
+              withSchema={true}
+              tables={[
+                  { key: "categories", label: "Errors by category" },
+                  { key: "languages", label: "Errors by language" },
+              ]}
+            />
             <RelatedContent
               content="web accessibility by industry sector government education healthcare ecommerce retail accessibility statistics benchmark WebAIM Million compliance"
               maxItems={3}

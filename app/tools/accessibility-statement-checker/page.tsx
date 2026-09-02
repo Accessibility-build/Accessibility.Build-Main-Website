@@ -189,6 +189,17 @@ export default function Page() {
         </div>
 
         <div className="mt-16">
+            <aside className="mt-12 rounded-lg border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/50">
+              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">What this checker found at scale</p>
+              <p className="mt-2 leading-7 text-slate-700 dark:text-slate-300">
+                We ran it over every UK local authority and the FTSE 100. The results, per organisation and downloadable, are in{" "}
+                <Link href="/research/accessibility-statements-2026" className="font-medium text-teal-700 underline underline-offset-2 dark:text-teal-300">
+                  State of Accessibility Statements 2026
+                </Link>
+                .
+              </p>
+            </aside>
+
           <RelatedContent
             links={[
               {

@@ -27,6 +27,7 @@ import snapshotData from "@/lib/data/accessibility-snapshot.json";
 import { StateOfAccessibilityClient } from "./StateOfAccessibilityClient";
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
+import { DatasetDownloads } from "@/components/research/dataset-downloads"
 
 const reportUrl = "https://accessibility.build/research/state-of-accessibility";
 const webaimUrl = "https://webaim.org/projects/million/";
@@ -441,6 +442,21 @@ export default function StateOfAccessibilityPage() {
           </section>
 
           <div className="mt-16 sm:mt-20">
+            <DatasetDownloads
+              dataset="state-of-accessibility"
+              name="State of web accessibility, WebAIM Million series"
+              description="Detectable WCAG failure rates and error counts across the home pages of the top one million websites, 2019 to 2026, with the most common failure types."
+              pageUrl="https://accessibility.build/research/state-of-accessibility"
+              datePublished="2026-08-27"
+              dateModified="2026-08-27"
+              temporalCoverage="2019/2026"
+              attribution="WebAIM Million; HTTP Archive Web Almanac"
+              withSchema={true}
+              tables={[
+                  { key: "topViolations", label: "Most common failures" },
+                  { key: "yearOverYearTrends", label: "Year-over-year series" },
+              ]}
+            />
             <RelatedContent
               content="web accessibility WCAG automated testing WebAIM Million accessibility research contrast alternative text form labels"
               maxItems={3}

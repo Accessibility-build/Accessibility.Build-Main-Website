@@ -218,6 +218,48 @@ export default function AccessibilityAuditCostPage() {
                 page.
               </li>
             </ul>
+            <div className="mt-8 mb-8 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <table className="w-full border-collapse text-sm">
+                <caption className="px-4 py-3 text-left text-sm text-slate-600 dark:text-slate-400">
+                  Published audit prices, checked 3 September 2026. Only providers that print a price
+                  are listed; a blank in this market is the norm, not the exception.
+                </caption>
+                <thead>
+                  <tr>
+                    {["Provider", "What is priced", "Published price", "Standard", "Source date"].map((h) => (
+                      <th key={h} scope="col" className="border-b border-slate-200 bg-slate-50 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="text-slate-700 dark:text-slate-300">
+                  {[
+                    ["Accessible.org (US)", "Fully manual audit, per page or screen", "$100 to $250 per page; $25 to $100 for light pages; typical project $1,250 to $2,750", "WCAG 2.1 or 2.2 AA", "25 July 2026", "https://accessible.org/pricing/"],
+                    ["Accessible.org (US)", "VPAT or ACR, on top of the audit", "$350 (WCAG), $550 (Section 508), $650 (EN 301 549), $950 (INT)", "As chosen", "25 July 2026", "https://accessible.org/pricing/"],
+                    ["DigitalA11Y (US)", "Web accessibility audit including a screen reader user tester", "$1,500 to $5,000", "WCAG 2.2 AA", "5 February 2026", "https://www.digitala11y.com/how-much-does-a-web-accessibility-audit-cost/"],
+                    ["AudioEye (US), citing industry ranges", "Audit of a typical website", "$1,500 to $5,500; about $175 per page", "WCAG 2.1 AA", "2026", "https://www.audioeye.com/post/web-accessibility-audit-cost/"],
+                    ["AbilityNet (UK)", "Digital Accessibility Review, up to 10 pages, components or features, with screen reader testing", "\u00a34,950 plus VAT, fixed price", "WCAG 2.2", "checked 3 September 2026", "https://abilitynet.org.uk/accessibility-services/digital-accessibility-review"],
+                    ["Jim Byrne (UK)", "Independent WCAG audit", "From \u00a32,500", "WCAG 2.2 AA", "as published", "https://www.jimbyrne.co.uk/"],
+                    ["Accessibility.build", "Fixed-price WCAG 2.2 AA audit with manual and assistive technology testing, report and retests", "From $950", "WCAG 2.2 AA", "3 September 2026", "/services/accessibility-audits"],
+                  ].map(([provider, what, price, standard, date, href]) => (
+                    <tr key={provider + what} className="align-top">
+                      <th scope="row" className="border-b border-slate-200 px-4 py-3 text-left font-medium text-slate-900 dark:border-slate-800 dark:text-white">
+                        {href.startsWith("/") ? (
+                          <Link href={href} className="underline decoration-slate-300 underline-offset-2 hover:decoration-slate-600">{provider}</Link>
+                        ) : (
+                          <a href={href} target="_blank" rel="noopener noreferrer" className="underline decoration-slate-300 underline-offset-2 hover:decoration-slate-600">{provider}</a>
+                        )}
+                      </th>
+                      <td className="border-b border-slate-200 px-4 py-3 dark:border-slate-800">{what}</td>
+                      <td className="border-b border-slate-200 px-4 py-3 font-medium text-slate-900 dark:border-slate-800 dark:text-white">{price}</td>
+                      <td className="border-b border-slate-200 px-4 py-3 dark:border-slate-800">{standard}</td>
+                      <td className="whitespace-nowrap border-b border-slate-200 px-4 py-3 text-slate-500 dark:border-slate-800 dark:text-slate-400">{date}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               The spread between those numbers is not vendors being greedy or cheap. It reflects
               genuinely different products sold under the same word, which is why the next section

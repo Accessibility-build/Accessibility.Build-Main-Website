@@ -280,6 +280,43 @@ export default function ComplianceHubPage() {
               puts you at or ahead of the technical baseline in every
               jurisdiction on this page.
             </p>
+            <div className="mt-8 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <table className="w-full border-collapse text-sm">
+                <caption className="px-4 py-3 text-left text-sm text-slate-600 dark:text-slate-400">
+                  The six regimes side by side, as of 3 September 2026. Each links to its full guide.
+                </caption>
+                <thead>
+                  <tr>
+                    {["Regime", "Who it covers", "Technical standard", "Key date", "How it is enforced"].map((h) => (
+                      <th key={h} scope="col" className="border-b border-slate-200 bg-slate-50 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="text-slate-700 dark:text-slate-300">
+                  {[
+                    ["/compliance/ada", "ADA Title II (US)", "State and local government, including public schools and universities", "WCAG 2.1 AA, in regulation since April 2024", "26 April 2027 for bodies serving 50,000 or more; 26 April 2028 for smaller bodies", "Department of Justice, complaints and private lawsuits"],
+                    ["/compliance/ada", "ADA Title III (US)", "Businesses open to the public; websites where courts find a connection to the business", "None in regulation; courts and settlements name WCAG 2.0 or 2.1 AA", "In force since 1992; no web deadline", "Private lawsuits (injunction and fees, no damages) and DOJ; state laws such as California's Unruh Act add damages"],
+                    ["/compliance/section-508", "Section 508 (US)", "Federal agencies and the technology they buy or build", "WCAG 2.0 AA via the Revised 508 Standards", "In force since 18 January 2018", "Complaints, annual agency assessment, procurement"],
+                    ["/compliance/eaa", "European Accessibility Act (EU)", "In-scope products and services: e-commerce, banking, transport, e-books, telecoms, computers and their operating systems", "EN 301 549, which incorporates WCAG 2.1 AA; v4.1.1 will point at WCAG 2.2", "Applies from 28 June 2025; some existing service contracts run to 2030", "National market surveillance authorities; penalties set by each member state"],
+                    ["/compliance/uk", "Public Sector Bodies Accessibility Regulations 2018 (UK)", "Public sector websites and mobile apps", "WCAG 2.2 AA for monitoring, plus a mandatory accessibility statement", "23 September 2020 for websites; 23 June 2021 for apps", "GDS monitoring; enforcement by the Cabinet Office and the Equality and Human Rights Commission"],
+                    ["/compliance/uk", "Equality Act 2010 (UK)", "Every service provider, public or private", "None named; the duty is to make reasonable adjustments, and it is anticipatory", "In force since 1 October 2010", "Claims in the county court or sheriff court; damages including injury to feelings"],
+                  ].map(([href, regime, who, standard, date, enforcement]) => (
+                    <tr key={regime} className="align-top">
+                      <th scope="row" className="min-w-[12rem] border-b border-slate-200 px-4 py-3 text-left font-medium text-slate-900 dark:border-slate-800 dark:text-white">
+                        <Link href={href} className="underline decoration-slate-300 underline-offset-2 hover:decoration-slate-600">{regime}</Link>
+                      </th>
+                      <td className="min-w-[14rem] border-b border-slate-200 px-4 py-3 dark:border-slate-800">{who}</td>
+                      <td className="min-w-[14rem] border-b border-slate-200 px-4 py-3 dark:border-slate-800">{standard}</td>
+                      <td className="min-w-[12rem] border-b border-slate-200 px-4 py-3 dark:border-slate-800">{date}</td>
+                      <td className="min-w-[14rem] border-b border-slate-200 px-4 py-3 dark:border-slate-800">{enforcement}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               For the raw data behind these guides — statutes, penalties, and
               deadlines across 35+ jurisdictions, plus US litigation trends —

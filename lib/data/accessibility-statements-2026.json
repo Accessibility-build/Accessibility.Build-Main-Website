@@ -1,0 +1,2717 @@
+{
+ "measuredOn": "2026-09-02",
+ "method": "The site's own accessibility statement checker, run over each home page: it follows footer and common-path links to locate the statement, then scores it against the mandatory content of the regime named. Low-confidence hits (hub or help pages rather than a statement) are counted separately.",
+ "groups": {
+  "councils": {
+   "label": "UK local authorities",
+   "regime": "uk-psbar",
+   "checked": 303,
+   "statementFound": 206,
+   "statementFoundPct": 68.0,
+   "lowConfidencePage": 5,
+   "noStatementFound": 92,
+   "verdicts": {
+    "missing-information": 60,
+    "compliant": 123,
+    "not-compliant": 23
+   },
+   "fullyCompliant": 123,
+   "fullyCompliantPctOfFound": 59.7,
+   "medianPercent": 100.0,
+   "meanPercent": 86.5,
+   "mandatoryFailures": [
+    {
+     "id": "non-accessible-content",
+     "label": "Non-accessible content is listed",
+     "count": 45,
+     "pctOfFound": 21.8
+    },
+    {
+     "id": "scope-statement",
+     "label": "Scope of the statement is defined",
+     "count": 39,
+     "pctOfFound": 18.9
+    },
+    {
+     "id": "preparation-date",
+     "label": "Preparation or review date is given",
+     "count": 34,
+     "pctOfFound": 16.5
+    },
+    {
+     "id": "evaluation-method",
+     "label": "Evaluation method is stated",
+     "count": 33,
+     "pctOfFound": 16.0
+    },
+    {
+     "id": "compliance-status",
+     "label": "Compliance status is declared",
+     "count": 29,
+     "pctOfFound": 14.1
+    },
+    {
+     "id": "enforcement-procedure",
+     "label": "Enforcement procedure is named",
+     "count": 24,
+     "pctOfFound": 11.7
+    },
+    {
+     "id": "standard-named",
+     "label": "Accessibility standard is named",
+     "count": 19,
+     "pctOfFound": 9.2
+    },
+    {
+     "id": "feedback-mechanism",
+     "label": "Feedback mechanism is provided",
+     "count": 2,
+     "pctOfFound": 1.0
+    }
+   ],
+   "sites": [
+    {
+     "name": "Cheshire West and Chester",
+     "host": "cheshirewestandchester.gov.uk",
+     "statementUrl": "https://www.cheshirewestandchester.gov.uk/accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "common-path"
+    },
+    {
+     "name": "City of Derby",
+     "host": "derby.gov.uk",
+     "statementUrl": "https://www.derby.gov.uk/site-info/accessibility/",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of York",
+     "host": "york.gov.uk",
+     "statementUrl": "https://www.york.gov.uk/accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Elmbridge",
+     "host": "elmbridge.gov.uk",
+     "statementUrl": "https://www.elmbridge.gov.uk/accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Lichfield",
+     "host": "lichfielddc.gov.uk",
+     "statementUrl": "https://www.lichfielddc.gov.uk/accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Richmond upon Thames",
+     "host": "richmond.gov.uk",
+     "statementUrl": "https://www.richmond.gov.uk/help/web_accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North Kesteven",
+     "host": "n-kesteven.gov.uk",
+     "statementUrl": "https://www.n-kesteven.gov.uk/accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "common-path"
+    },
+    {
+     "name": "Royal Borough of Greenwich",
+     "host": "greenwich.gov.uk",
+     "statementUrl": "https://www.royalgreenwich.gov.uk/accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Shetland Islands Council",
+     "host": "shetland.gov.uk",
+     "statementUrl": "https://www.shetland.gov.uk/accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Surrey Heath",
+     "host": "surreyheath.gov.uk",
+     "statementUrl": "https://www.surreyheath.gov.uk/site-information/accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "West Lindsey",
+     "host": "west-lindsey.gov.uk",
+     "statementUrl": "https://www.west-lindsey.gov.uk/accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "common-path"
+    },
+    {
+     "name": "Woking",
+     "host": "woking.gov.uk",
+     "statementUrl": "https://www.woking.gov.uk/accessibility-statements",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Wyre",
+     "host": "wyre.gov.uk",
+     "statementUrl": "https://www.wyre.gov.uk/accessibility",
+     "percent": 13,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Broxbourne",
+     "host": "broxbourne.gov.uk",
+     "statementUrl": "https://www.broxbourne.gov.uk/communications-marketing/accessibility-statement/1",
+     "percent": 25,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of Leicester",
+     "host": "leicester.gov.uk",
+     "statementUrl": "https://www.leicester.gov.uk/accessibility-statement",
+     "percent": 25,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Clackmannanshire Council",
+     "host": "clacks.gov.uk",
+     "statementUrl": "https://www.clacks.gov.uk/site/webaccessibility/",
+     "percent": 25,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Islington",
+     "host": "islington.gov.uk",
+     "statementUrl": "https://www.islington.gov.uk/accessibility",
+     "percent": 25,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Lewisham",
+     "host": "lewisham.gov.uk",
+     "statementUrl": "https://lewisham.gov.uk/about-this-site/accessibility",
+     "percent": 25,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Norwich",
+     "host": "norwich.gov.uk",
+     "statementUrl": "https://www.norwich.gov.uk/customer-services/accessibility/accessibility-statement",
+     "percent": 25,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 8,
+     "via": "common-path"
+    },
+    {
+     "name": "Slough",
+     "host": "slough.gov.uk",
+     "statementUrl": "https://www.slough.gov.uk/accessibility",
+     "percent": 25,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Brighton and Hove",
+     "host": "brighton-hove.gov.uk",
+     "statementUrl": "https://www.brighton-hove.gov.uk/about-website/website-and-accessibility/accessibility-statement",
+     "percent": 38,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Hartlepool",
+     "host": "hartlepool.gov.uk",
+     "statementUrl": "https://www.hartlepool.gov.uk/accessibility",
+     "percent": 38,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Wokingham",
+     "host": "wokingham.gov.uk",
+     "statementUrl": "https://www.wokingham.gov.uk/accessibility-statement-wokingham-borough-council",
+     "percent": 38,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Epsom and Ewell",
+     "host": "epsom-ewell.gov.uk",
+     "statementUrl": "https://www.epsom-ewell.gov.uk/accessibility",
+     "percent": 63,
+     "verdict": "missing-information",
+     "mandatoryPassed": 5,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Gedling",
+     "host": "gedling.gov.uk",
+     "statementUrl": "https://www.gedling.gov.uk/accessibility-statement",
+     "percent": 63,
+     "verdict": "missing-information",
+     "mandatoryPassed": 5,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Havant",
+     "host": "havant.gov.uk",
+     "statementUrl": "https://www.havant.gov.uk/accessibility-statement",
+     "percent": 63,
+     "verdict": "missing-information",
+     "mandatoryPassed": 5,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "St Albans",
+     "host": "stalbans.gov.uk",
+     "statementUrl": "https://www.stalbans.gov.uk/accessibility-statement",
+     "percent": 63,
+     "verdict": "missing-information",
+     "mandatoryPassed": 5,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Broxtowe",
+     "host": "broxtowe.gov.uk",
+     "statementUrl": "https://www.broxtowe.gov.uk/about-the-council/communications-web-and-social-media/accessibility/",
+     "percent": 75,
+     "verdict": "missing-information",
+     "mandatoryPassed": 6,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "East Hampshire",
+     "host": "easthants.gov.uk",
+     "statementUrl": "https://www.easthants.gov.uk/accessibility-statement",
+     "percent": 75,
+     "verdict": "missing-information",
+     "mandatoryPassed": 6,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Epping Forest",
+     "host": "eppingforestdc.gov.uk",
+     "statementUrl": "https://www.eppingforestdc.gov.uk/accessibility/",
+     "percent": 75,
+     "verdict": "missing-information",
+     "mandatoryPassed": 6,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Gravesham",
+     "host": "gravesham.gov.uk",
+     "statementUrl": "https://www.gravesham.gov.uk/accessibility",
+     "percent": 75,
+     "verdict": "missing-information",
+     "mandatoryPassed": 6,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Newham",
+     "host": "newham.gov.uk",
+     "statementUrl": "https://www.newham.gov.uk/contact-information/website-accessibility/1",
+     "percent": 75,
+     "verdict": "missing-information",
+     "mandatoryPassed": 6,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Mid Devon",
+     "host": "middevon.gov.uk",
+     "statementUrl": "https://www.middevon.gov.uk/accessibility",
+     "percent": 75,
+     "verdict": "missing-information",
+     "mandatoryPassed": 6,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Nuneaton and Bedworth",
+     "host": "nuneatonandbedworth.gov.uk",
+     "statementUrl": "https://www.nuneatonandbedworth.gov.uk/council/accessibility",
+     "percent": 75,
+     "verdict": "missing-information",
+     "mandatoryPassed": 6,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Oadby and Wigston",
+     "host": "oadby-wigston.gov.uk",
+     "statementUrl": "https://www.oadby-wigston.gov.uk/pages/accessibility",
+     "percent": 75,
+     "verdict": "missing-information",
+     "mandatoryPassed": 6,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Thanet",
+     "host": "thanet.gov.uk",
+     "statementUrl": "https://www.thanet.gov.uk/accessibility-statement/",
+     "percent": 75,
+     "verdict": "missing-information",
+     "mandatoryPassed": 6,
+     "mandatoryTotal": 8,
+     "via": "common-path"
+    },
+    {
+     "name": "Angus Council",
+     "host": "angus.gov.uk",
+     "statementUrl": "https://www.angus.gov.uk/communities_and_people/equality_diversity_and_human_rights/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Ashford",
+     "host": "ashford.gov.uk",
+     "statementUrl": "https://www.ashford.gov.uk/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Babergh",
+     "host": "babergh.gov.uk",
+     "statementUrl": "https://www.babergh.gov.uk/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Bedford",
+     "host": "bedford.gov.uk",
+     "statementUrl": "https://www.bedford.gov.uk/your-council/website-information/accessibility-statement-bedford-borough-council",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Blackpool",
+     "host": "blackpool.gov.uk",
+     "statementUrl": "https://www.blackpool.gov.uk/Accessibility.aspx",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Castle Point",
+     "host": "castlepoint.gov.uk",
+     "statementUrl": "https://www.castlepoint.gov.uk/w/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of Edinburgh Council",
+     "host": "edinburgh.gov.uk",
+     "statementUrl": "https://www.edinburgh.gov.uk/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of Kingston upon Hull",
+     "host": "hullcc.gov.uk",
+     "statementUrl": "https://www.hull.gov.uk/web-help/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of Stoke-on-Trent",
+     "host": "stoke.gov.uk",
+     "statementUrl": "https://www.stoke.gov.uk/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of Westminster",
+     "host": "westminster.gov.uk",
+     "statementUrl": "https://www.westminster.gov.uk/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Colchester",
+     "host": "colchester.gov.uk",
+     "statementUrl": "https://www.new.colchester.gov.uk/accessibility-policy",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "common-path"
+    },
+    {
+     "name": "Cornwall",
+     "host": "cornwall.gov.uk",
+     "statementUrl": "https://www.cornwall.gov.uk/the-council-and-democracy/website-help-and-information/website-accessibility-statement/",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Dartford",
+     "host": "dartford.gov.uk",
+     "statementUrl": "https://www.dartford.gov.uk/website-information/website-accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Dundee City Council",
+     "host": "dundeecity.gov.uk",
+     "statementUrl": "https://www.dundeecity.gov.uk/service-area/council-wide/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "East Dunbartonshire Council",
+     "host": "eastdunbarton.gov.uk",
+     "statementUrl": "https://www.eastdunbarton.gov.uk/accessibility-statement/",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "East Suffolk",
+     "host": "eastsuffolk.gov.uk",
+     "statementUrl": "https://www.eastsuffolk.gov.uk/home/accessibilty-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Erewash",
+     "host": "erewash.gov.uk",
+     "statementUrl": "https://www.erewash.gov.uk/accessibility-statement-erewash-borough-council",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Highland Council",
+     "host": "highland.gov.uk",
+     "statementUrl": "https://www.highland.gov.uk/equality-diversity/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Ipswich",
+     "host": "ipswich.gov.uk",
+     "statementUrl": "https://www.ipswich.gov.uk/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Bromley",
+     "host": "bromley.gov.uk",
+     "statementUrl": "https://www.bromley.gov.uk/websites/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Ealing",
+     "host": "ealing.gov.uk",
+     "statementUrl": "https://www.ealing.gov.uk/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Hackney",
+     "host": "hackney.gov.uk",
+     "statementUrl": "https://www.hackney.gov.uk/more-us/accessibility-statement-hackney-council",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Hillingdon",
+     "host": "hillingdon.gov.uk",
+     "statementUrl": "https://pre.hillingdon.gov.uk/website/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Hounslow",
+     "host": "hounslow.gov.uk",
+     "statementUrl": "https://www.hounslow.gov.uk/customer-services/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Lambeth",
+     "host": "lambeth.gov.uk",
+     "statementUrl": "https://www.lambeth.gov.uk/accessibility/accessibility-statement-lambeth-council-website?utm_source=D8LBLFooter",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Southwark",
+     "host": "southwark.gov.uk",
+     "statementUrl": "https://www.southwark.gov.uk/about-council/transparency/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Tower Hamlets",
+     "host": "towerhamlets.gov.uk",
+     "statementUrl": "https://www.towerhamlets.gov.uk/lgnl/council_and_democracy/Website/website_accessibility.aspx",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Mid Suffolk",
+     "host": "midsuffolk.gov.uk",
+     "statementUrl": "https://www.midsuffolk.gov.uk/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North Hertfordshire",
+     "host": "north-herts.gov.uk",
+     "statementUrl": "https://www.north-herts.gov.uk/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North Lanarkshire Council",
+     "host": "northlanarkshire.gov.uk",
+     "statementUrl": "https://www.northlanarkshire.gov.uk/your-council/communication-and-resources/website-guidance/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North Northamptonshire",
+     "host": "northnorthants.gov.uk",
+     "statementUrl": "https://www.northnorthants.gov.uk/web-services-and-communications/accessibility-feedback-and-copyright",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North Somerset",
+     "host": "n-somerset.gov.uk",
+     "statementUrl": "https://n-somerset.gov.uk/council-democracy/equality-diversity-inclusion/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North Warwickshire",
+     "host": "northwarks.gov.uk",
+     "statementUrl": "https://www.northwarks.gov.uk/website-social-media-1/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North West Leicestershire",
+     "host": "nwleics.gov.uk",
+     "statementUrl": "https://www.nwleics.gov.uk/pages/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North Yorkshire",
+     "host": "northyorks.gov.uk",
+     "statementUrl": "https://www.northyorks.gov.uk/your-council/websites-and-media/website-accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Orkney Islands Council",
+     "host": "orkney.gov.uk",
+     "statementUrl": "https://www.orkney.gov.uk/online/web-guide/accessibility/",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Redditch",
+     "host": "redditchbc.gov.uk",
+     "statementUrl": "https://www.redditchbc.gov.uk/legal-pages/accessibility-statement/",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Renfrewshire Council",
+     "host": "renfrewshire.gov.uk",
+     "statementUrl": "https://www.renfrewshire.gov.uk/about-councils-new-website/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "common-path"
+    },
+    {
+     "name": "Runnymede",
+     "host": "runnymede.gov.uk",
+     "statementUrl": "https://www.runnymede.gov.uk/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Rushmoor",
+     "host": "rushmoor.gov.uk",
+     "statementUrl": "https://www.rushmoor.gov.uk/accessibility-statement/",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Sevenoaks",
+     "host": "sevenoaks.gov.uk",
+     "statementUrl": "https://www.sevenoaks.gov.uk/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "South Gloucestershire",
+     "host": "southglos.gov.uk",
+     "statementUrl": "https://www.southglos.gov.uk/general-information/online-services/websites-accessibility/website-accessibility/",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "South Kesteven",
+     "host": "southkesteven.gov.uk",
+     "statementUrl": "https://www.southkesteven.gov.uk/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Southend-on-Sea",
+     "host": "southend.gov.uk",
+     "statementUrl": "https://www.southend.gov.uk/council-8/accessibility-statement/1",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Spelthorne",
+     "host": "spelthorne.gov.uk",
+     "statementUrl": "https://www.spelthorne.gov.uk/page/1611/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Warwick",
+     "host": "warwickdc.gov.uk",
+     "statementUrl": "https://www.warwickdc.gov.uk/accessibility",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "West Northamptonshire",
+     "host": "westnorthants.gov.uk",
+     "statementUrl": "https://www.westnorthants.gov.uk/about-website/accessibility-statement",
+     "percent": 88,
+     "verdict": "missing-information",
+     "mandatoryPassed": 7,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Argyll and Bute Council",
+     "host": "argyll-bute.gov.uk",
+     "statementUrl": "https://www.argyll-bute.gov.uk/my-council/plans-and-policy/accessibility-statement-argyll-and-bute-council",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Arun",
+     "host": "arun.gov.uk",
+     "statementUrl": "https://www.arun.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Ashfield",
+     "host": "ashfield.gov.uk",
+     "statementUrl": "https://www.ashfield.gov.uk/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Bassetlaw",
+     "host": "bassetlaw.gov.uk",
+     "statementUrl": "https://www.bassetlaw.gov.uk/system-pages/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Bath and North East Somerset",
+     "host": "bathnes.gov.uk",
+     "statementUrl": "https://www.bathnes.gov.uk/accessibility-statement-bath-north-east-somerset-council",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Blaby",
+     "host": "blaby.gov.uk",
+     "statementUrl": "https://www.blaby.gov.uk/your-council/data-security-and-access/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Bolsover",
+     "host": "bolsover.gov.uk",
+     "statementUrl": "https://www.bolsover.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Bracknell Forest",
+     "host": "bracknell-forest.gov.uk",
+     "statementUrl": "https://www.bracknell-forest.gov.uk/help/about-site/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Braintree",
+     "host": "braintree.gov.uk",
+     "statementUrl": "https://www.braintree.gov.uk/council/accessibility-statement-wwwbraintreegovuk/1",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Brentwood",
+     "host": "brentwood.gov.uk",
+     "statementUrl": "https://www.brentwood.gov.uk/accessibility-statement-for-wwwbrentwoodgovuk",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Burnley",
+     "host": "burnley.gov.uk",
+     "statementUrl": "https://burnley.gov.uk/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Cambridge",
+     "host": "cambridge.gov.uk",
+     "statementUrl": "https://www.cambridge.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "common-path"
+    },
+    {
+     "name": "Cannock Chase",
+     "host": "cannockchasedc.gov.uk",
+     "statementUrl": "https://www.cannockchasedc.gov.uk/residents/other/website-accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Canterbury",
+     "host": "canterbury.gov.uk",
+     "statementUrl": "https://www.canterbury.gov.uk/strategies-and-policies/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Central Bedfordshire",
+     "host": "centralbedfordshire.gov.uk",
+     "statementUrl": "https://www.centralbedfordshire.gov.uk/contact-us/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Charnwood",
+     "host": "charnwood.gov.uk",
+     "statementUrl": "https://www.charnwood.gov.uk/pages/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Chelmsford",
+     "host": "chelmsford.gov.uk",
+     "statementUrl": "https://www.chelmsford.gov.uk/your-council/about-our-website/accessibility-statement-for-chelmsfordgovuk/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Cheltenham",
+     "host": "cheltenham.gov.uk",
+     "statementUrl": "https://www.cheltenham.gov.uk/support/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Cherwell",
+     "host": "cherwell.gov.uk",
+     "statementUrl": "https://www.cherwell.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Cheshire East",
+     "host": "cheshireeast.gov.uk",
+     "statementUrl": "https://www.cheshireeast.gov.uk/council-and-democracy/council-information/website-information/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Chesterfield",
+     "host": "chesterfield.gov.uk",
+     "statementUrl": "https://www.chesterfield.gov.uk/about-this-website/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of Bristol",
+     "host": "bristol.gov.uk",
+     "statementUrl": "https://www.bristol.gov.uk/council/about-our-website/website-accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of Nottingham",
+     "host": "nottinghamcity.gov.uk",
+     "statementUrl": "https://www.nottinghamcity.gov.uk/footer-pages/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of Peterborough",
+     "host": "peterborough.gov.uk",
+     "statementUrl": "https://www.peterborough.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of Plymouth",
+     "host": "plymouth.gov.uk",
+     "statementUrl": "https://www.plymouth.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "City of Portsmouth",
+     "host": "portsmouth.gov.uk",
+     "statementUrl": "https://www.portsmouth.gov.uk/services/council-and-democracy/transparency/accessibility/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Comhairle nan Eilean Siar",
+     "host": "cne-siar.gov.uk",
+     "statementUrl": "https://www.cne-siar.gov.uk/accessibility-statement-comhairle-nan-eilean-siar",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Cotswold",
+     "host": "cotswold.gov.uk",
+     "statementUrl": "https://www.cotswold.gov.uk/support/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "County Durham",
+     "host": "durham.gov.uk",
+     "statementUrl": "https://www.durham.gov.uk/article/3157/Accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Crawley",
+     "host": "crawley.gov.uk",
+     "statementUrl": "https://crawley.gov.uk/council-information/about-website/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Cumberland",
+     "host": "cumberland.gov.uk",
+     "statementUrl": "https://www.cumberland.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Darlington",
+     "host": "darlington.gov.uk",
+     "statementUrl": "https://www.darlington.gov.uk/about-this-website/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Derbyshire Dales",
+     "host": "derbyshiredales.gov.uk",
+     "statementUrl": "https://www.derbyshiredales.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Dover",
+     "host": "dover.gov.uk",
+     "statementUrl": "https://www.dover.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "common-path"
+    },
+    {
+     "name": "East Ayrshire Council",
+     "host": "east-ayrshire.gov.uk",
+     "statementUrl": "https://www.east-ayrshire.gov.uk/Help/Accessibility-statement.aspx",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "East Cambridgeshire",
+     "host": "eastcambs.gov.uk",
+     "statementUrl": "https://eastcambs.gov.uk/about-council/data-and-information/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "East Hertfordshire",
+     "host": "eastherts.gov.uk",
+     "statementUrl": "https://www.eastherts.gov.uk/accessibility-statement-east-herts-council-website",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "East Riding of Yorkshire",
+     "host": "eastriding.gov.uk",
+     "statementUrl": "https://www.eastriding.gov.uk/council/website-and-accessibility-help/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Falkirk Council",
+     "host": "falkirk.gov.uk",
+     "statementUrl": "https://www.falkirk.gov.uk/help/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Fareham",
+     "host": "fareham.gov.uk",
+     "statementUrl": "https://www.fareham.gov.uk/accessibilitystatement.aspx",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Forest of Dean",
+     "host": "fdean.gov.uk",
+     "statementUrl": "https://www.fdean.gov.uk/support/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Fylde",
+     "host": "fylde.gov.uk",
+     "statementUrl": "https://new.fylde.gov.uk/accessibility-statement-for-fylde-gov-uk/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Gloucester",
+     "host": "gloucester.gov.uk",
+     "statementUrl": "https://www.gloucester.gov.uk/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Guildford",
+     "host": "guildford.gov.uk",
+     "statementUrl": "https://www.guildford.gov.uk/accessibility?ccp=true",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Harborough",
+     "host": "harborough.gov.uk",
+     "statementUrl": "https://www.harborough.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Harlow",
+     "host": "harlow.gov.uk",
+     "statementUrl": "https://www.harlow.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Hart",
+     "host": "hart.gov.uk",
+     "statementUrl": "https://www.hart.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Herefordshire",
+     "host": "herefordshire.gov.uk",
+     "statementUrl": "https://www.herefordshire.gov.uk/site-information/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Hertsmere",
+     "host": "hertsmere.gov.uk",
+     "statementUrl": "https://www.hertsmere.gov.uk/accessibility/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "High Peak",
+     "host": "highpeak.gov.uk",
+     "statementUrl": "https://www.highpeak.gov.uk/article/6174/Accessibility-Statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Huntingdonshire",
+     "host": "huntsdc.gov.uk",
+     "statementUrl": "https://www.huntsdc.gov.uk/council-democracy/our-website/accessibility/accessibility-statement-for-huntingdonshire-district-council/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Hyndburn",
+     "host": "hyndburnbc.gov.uk",
+     "statementUrl": "https://www.hyndburnbc.gov.uk/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Isles of Scilly",
+     "host": "scilly.gov.uk",
+     "statementUrl": "https://scilly.gov.uk/website-accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "King's Lynn and West Norfolk",
+     "host": "west-norfolk.gov.uk",
+     "statementUrl": "https://www.west-norfolk.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Lincoln",
+     "host": "lincoln.gov.uk",
+     "statementUrl": "https://www.lincoln.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Barking and Dagenham",
+     "host": "lbbd.gov.uk",
+     "statementUrl": "https://www.lbbd.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Bexley",
+     "host": "bexley.gov.uk",
+     "statementUrl": "https://www.bexley.gov.uk/accessibility-statement/accessibility-statement-wwwbexleygovuk",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Brent",
+     "host": "brent.gov.uk",
+     "statementUrl": "https://www.brent.gov.uk/accessibility-statements/brent-website",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Camden",
+     "host": "camden.gov.uk",
+     "statementUrl": "https://www.camden.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Croydon",
+     "host": "croydon.gov.uk",
+     "statementUrl": "https://www.croydon.gov.uk/accessibility-statement-croydon-council-0",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Enfield",
+     "host": "enfield.gov.uk",
+     "statementUrl": "https://www.enfield.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Hammersmith and Fulham",
+     "host": "lbhf.gov.uk",
+     "statementUrl": "https://www.lbhf.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Haringey",
+     "host": "haringey.gov.uk",
+     "statementUrl": "https://haringey.gov.uk/about-this-website/accessibility-statements",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Harrow",
+     "host": "harrow.gov.uk",
+     "statementUrl": "https://www.harrow.gov.uk/council/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Havering",
+     "host": "havering.gov.uk",
+     "statementUrl": "https://www.havering.gov.uk/council-democracy/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Merton",
+     "host": "merton.gov.uk",
+     "statementUrl": "https://www.merton.gov.uk/accessibility-statements/merton",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Redbridge",
+     "host": "redbridge.gov.uk",
+     "statementUrl": "https://www.redbridge.gov.uk/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Sutton",
+     "host": "sutton.gov.uk",
+     "statementUrl": "https://www.sutton.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Waltham Forest",
+     "host": "walthamforest.gov.uk",
+     "statementUrl": "https://www.walthamforest.gov.uk/council-and-elections/information-about-website/website-accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Borough of Wandsworth",
+     "host": "wandsworth.gov.uk",
+     "statementUrl": "https://www.wandsworth.gov.uk/about-this-website/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Maldon",
+     "host": "maldon.gov.uk",
+     "statementUrl": "https://www.maldon.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Malvern Hills",
+     "host": "malvernhills.gov.uk",
+     "statementUrl": "https://www.malvernhills.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Mansfield",
+     "host": "mansfield.gov.uk",
+     "statementUrl": "https://www.mansfield.gov.uk/-footer-links/accessibility-1/1",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Medway",
+     "host": "medway.gov.uk",
+     "statementUrl": "https://www.medway.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Melton",
+     "host": "melton.gov.uk",
+     "statementUrl": "https://www.melton.gov.uk/your-council/data-security-and-access/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Mid Sussex",
+     "host": "midsussex.gov.uk",
+     "statementUrl": "https://www.midsussex.gov.uk/about-us/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Middlesbrough",
+     "host": "middlesbrough.gov.uk",
+     "statementUrl": "https://www.middlesbrough.gov.uk/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Midlothian Council",
+     "host": "midlothian.gov.uk",
+     "statementUrl": "https://www.midlothian.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Mole Valley",
+     "host": "molevalley.gov.uk",
+     "statementUrl": "https://www.molevalley.gov.uk/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Newark and Sherwood",
+     "host": "newark-sherwooddc.gov.uk",
+     "statementUrl": "http://www.newark-sherwooddc.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Newcastle-under-Lyme",
+     "host": "newcastle-staffs.gov.uk",
+     "statementUrl": "https://www.newcastle-staffs.gov.uk/website/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North East Derbyshire",
+     "host": "ne-derbyshire.gov.uk",
+     "statementUrl": "https://www.ne-derbyshire.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North East Lincolnshire",
+     "host": "nelincs.gov.uk",
+     "statementUrl": "https://www.nelincs.gov.uk/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "North Norfolk",
+     "host": "north-norfolk.gov.uk",
+     "statementUrl": "https://www.north-norfolk.gov.uk/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Oxford",
+     "host": "oxford.gov.uk",
+     "statementUrl": "https://www.oxford.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Reading",
+     "host": "reading.gov.uk",
+     "statementUrl": "https://www.reading.gov.uk/the-council-and-democracy/council-strategies-plans-and-policies/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Redcar and Cleveland",
+     "host": "redcar-cleveland.gov.uk",
+     "statementUrl": "https://www.redcar-cleveland.gov.uk/site-terms/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Reigate and Banstead",
+     "host": "reigate-banstead.gov.uk",
+     "statementUrl": "https://www.reigate-banstead.gov.uk/info/20315/access_to_council_services/723/accessibility_statement_for_reigate_and_banstead_borough_council",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Ribble Valley",
+     "host": "ribblevalley.gov.uk",
+     "statementUrl": "https://www.ribblevalley.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Rochford",
+     "host": "rochford.gov.uk",
+     "statementUrl": "https://www.rochford.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Rossendale",
+     "host": "rossendale.gov.uk",
+     "statementUrl": "https://www.rossendale.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "common-path"
+    },
+    {
+     "name": "Royal Borough of Kensington and Chelsea",
+     "host": "rbkc.gov.uk",
+     "statementUrl": "https://www.rbkc.gov.uk/web-services/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Royal Borough of Kingston upon Thames",
+     "host": "kingston.gov.uk",
+     "statementUrl": "https://www.kingston.gov.uk/your-council/privacy-and-data/privacy-notice/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Rushcliffe",
+     "host": "rushcliffe.gov.uk",
+     "statementUrl": "https://www.rushcliffe.gov.uk/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Rutland",
+     "host": "rutland.gov.uk",
+     "statementUrl": "https://www.rutland.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Scottish Borders Council",
+     "host": "scotborders.gov.uk",
+     "statementUrl": "https://www.scotborders.gov.uk/access-information/accessibility-statement/1",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Somerset",
+     "host": "somerset.gov.uk",
+     "statementUrl": "https://www.somerset.gov.uk/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "South Cambridgeshire",
+     "host": "scambs.gov.uk",
+     "statementUrl": "https://www.scambs.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "South Lanarkshire Council",
+     "host": "southlanarkshire.gov.uk",
+     "statementUrl": "https://www.southlanarkshire.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "South Oxfordshire",
+     "host": "southoxon.gov.uk",
+     "statementUrl": "https://www.southoxon.gov.uk/south-oxfordshire-district-council/about-the-council/website-accessibility-statement-for-south-oxfordshire-district-council/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "South Staffordshire",
+     "host": "sstaffs.gov.uk",
+     "statementUrl": "https://www.sstaffs.gov.uk/accessibility-statement-south-staffordshire-council",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Stafford",
+     "host": "staffordbc.gov.uk",
+     "statementUrl": "https://www.staffordbc.gov.uk/website-accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Stevenage",
+     "host": "stevenage.gov.uk",
+     "statementUrl": "https://www.stevenage.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Swindon",
+     "host": "swindon.gov.uk",
+     "statementUrl": "https://www.swindon.gov.uk/info/20255/your_council/1654/accessibility_statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Tamworth",
+     "host": "tamworth.gov.uk",
+     "statementUrl": "https://www.tamworth.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Tandridge",
+     "host": "tandridge.gov.uk",
+     "statementUrl": "https://www.tandridge.gov.uk/Your-council/Transparency-and-inclusive-service-standards/Accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Telford and Wrekin",
+     "host": "telford.gov.uk",
+     "statementUrl": "https://www.telford.gov.uk/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Tendring",
+     "host": "tendringdc.gov.uk",
+     "statementUrl": "https://www.tendringdc.gov.uk/policy/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Tewkesbury",
+     "host": "tewkesburybc.gov.uk",
+     "statementUrl": "https://tewkesbury.gov.uk/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "The Moray Council",
+     "host": "moray.gov.uk",
+     "statementUrl": "https://www.moray.gov.uk/accessibility-statement/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Thurrock",
+     "host": "thurrock.gov.uk",
+     "statementUrl": "https://www.thurrock.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Torbay",
+     "host": "torbay.gov.uk",
+     "statementUrl": "https://www.torbay.gov.uk/website-help/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Vale of White Horse",
+     "host": "whitehorsedc.gov.uk",
+     "statementUrl": "https://www.whitehorsedc.gov.uk/vale-of-white-horse-district-council/about-the-council/website-accessibility-statement-for-vale-of-white-horse-district-council/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Warrington",
+     "host": "warrington.gov.uk",
+     "statementUrl": "https://www.warrington.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Watford",
+     "host": "watford.gov.uk",
+     "statementUrl": "https://www.watford.gov.uk/council-13/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Welwyn Hatfield",
+     "host": "welhat.gov.uk",
+     "statementUrl": "https://www.welhat.gov.uk/utilities/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "West Dunbartonshire Council",
+     "host": "west-dunbarton.gov.uk",
+     "statementUrl": "https://www.west-dunbarton.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "West Lothian Council",
+     "host": "westlothian.gov.uk",
+     "statementUrl": "https://www.westlothian.gov.uk/accessibility",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "West Oxfordshire",
+     "host": "westoxon.gov.uk",
+     "statementUrl": "https://westoxon.gov.uk/support/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Westmorland and Furness",
+     "host": "westmorlandandfurness.gov.uk",
+     "statementUrl": "https://www.westmorlandandfurness.gov.uk/accessibility-statement-westmorland-and-furness-council",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Winchester",
+     "host": "winchester.gov.uk",
+     "statementUrl": "https://www.winchester.gov.uk/no-listing/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Windsor and Maidenhead",
+     "host": "rbwm.gov.uk",
+     "statementUrl": "https://www.rbwm.gov.uk/accessibility-statement",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    },
+    {
+     "name": "Worthing",
+     "host": "adur-worthing.gov.uk",
+     "statementUrl": "https://www.adur-worthing.gov.uk/accessibility/",
+     "percent": 100,
+     "verdict": "compliant",
+     "mandatoryPassed": 8,
+     "mandatoryTotal": 8,
+     "via": "footer-link"
+    }
+   ]
+  },
+  "ftse100": {
+   "label": "FTSE 100 constituents",
+   "regime": "eaa",
+   "checked": 127,
+   "statementFound": 53,
+   "statementFoundPct": 41.7,
+   "lowConfidencePage": 30,
+   "noStatementFound": 44,
+   "verdicts": {
+    "not-compliant": 37,
+    "missing-information": 16
+   },
+   "fullyCompliant": 0,
+   "fullyCompliantPctOfFound": 0.0,
+   "medianPercent": 40,
+   "meanPercent": 40.8,
+   "mandatoryFailures": [
+    {
+     "id": "compliance-status",
+     "label": "Compliance status is declared",
+     "count": 53,
+     "pctOfFound": 100.0
+    },
+    {
+     "id": "non-accessible-content",
+     "label": "Non-accessible content is listed",
+     "count": 43,
+     "pctOfFound": 81.1
+    },
+    {
+     "id": "service-description",
+     "label": "Explains how the service meets the requirements",
+     "count": 39,
+     "pctOfFound": 73.6
+    },
+    {
+     "id": "standard-named",
+     "label": "Accessibility standard is named",
+     "count": 21,
+     "pctOfFound": 39.6
+    },
+    {
+     "id": "feedback-mechanism",
+     "label": "Feedback mechanism is provided",
+     "count": 1,
+     "pctOfFound": 1.9
+    }
+   ],
+   "sites": [
+    {
+     "name": "Rightmove",
+     "host": "rightmove.co.uk",
+     "statementUrl": "https://www.rightmove.co.uk/accessibility-statement",
+     "percent": 0,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 0,
+     "mandatoryTotal": 5,
+     "via": "common-path"
+    },
+    {
+     "name": "Barclays",
+     "host": "barclays.co.uk",
+     "statementUrl": "https://www.barclays.co.uk/accessibility/",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "DCC Energy plc",
+     "host": "dcc.ie",
+     "statementUrl": "https://www.dccenergy.com/site-services/accessibility",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Flutter Entertainment",
+     "host": "flutter.com",
+     "statementUrl": "https://flutter.com/accessibility/",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Halma plc",
+     "host": "halma.com",
+     "statementUrl": "https://www.halma.com/site-services/accessibility",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "IHG Hotels & Resorts",
+     "host": "ihgplc.com",
+     "statementUrl": "https://www.ihgplc.com/en/services/accessibility",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Intermediate Capital Group",
+     "host": "icgam.com",
+     "statementUrl": "https://www.icgam.com/who-we-are/leadership-governance/policies-disclosures/website-accessibility/",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "International Airlines Group",
+     "host": "iairgroup.com",
+     "statementUrl": "https://www.iairgroup.com/accessibility/",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "M&G Investments",
+     "host": "mandg.co.uk",
+     "statementUrl": "https://group.mandg.com/site-services/accessibility",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "RELX",
+     "host": "reedelsevier.com",
+     "statementUrl": "https://www.relx.com/site-services/accessibility",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "RELX",
+     "host": "relx.com",
+     "statementUrl": "https://www.relx.com/site-services/accessibility",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "RSA Insurance Group",
+     "host": "rsagroup.com",
+     "statementUrl": "https://www.rsainsurance.co.uk/accessibility/",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "St. James's Place Wealth Management Group",
+     "host": "www1.sjp.co.uk",
+     "statementUrl": "https://www.sjp.co.uk/site-services/accessibility",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "common-path"
+    },
+    {
+     "name": "WPP plc",
+     "host": "wpp.com",
+     "statementUrl": "https://www.wpp.com/en/accessibility",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Whitbread",
+     "host": "whitbread.co.uk",
+     "statementUrl": "https://www.whitbread.co.uk/accessibility/",
+     "percent": 20,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 1,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "3i",
+     "host": "3i.com",
+     "statementUrl": "https://www.3i.com/site-tools/accessibility-statement/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Abrdn",
+     "host": "aberdeenplc.com",
+     "statementUrl": "https://www.aberdeenplc.com/en-gb/accessibility",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Antofagasta plc",
+     "host": "antofagasta.co.uk",
+     "statementUrl": "https://www.antofagasta.co.uk/accessibility/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "BT Group",
+     "host": "bt.com",
+     "statementUrl": "https://www.bt.com/about/accessibility",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Barratt Developments",
+     "host": "barrattdevelopments.co.uk",
+     "statementUrl": "https://www.barrattredrow.co.uk/site-services/accessibility",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "British American Tobacco",
+     "host": "bat.com",
+     "statementUrl": "https://www.bat.com/accessibility",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Bunzl plc",
+     "host": "bunzl.com",
+     "statementUrl": "https://www.bunzl.com/accessibility/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Centrica",
+     "host": "centrica.com",
+     "statementUrl": "https://www.centrica.com/site-tools/accessibility-statement/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Croda International",
+     "host": "croda.com",
+     "statementUrl": "https://www.croda.com/en-gb/accessibility",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Glencore",
+     "host": "glencore.com",
+     "statementUrl": "https://www.glencore.com/en/terms/accessibility",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Homeserve",
+     "host": "homeserveplc.com",
+     "statementUrl": "https://homeservegroup.com/accessibility",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Inmarsat",
+     "host": "inmarsat.com",
+     "statementUrl": "https://www.inmarsat.com/accessibility-statement/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "JD Sports",
+     "host": "jdplc.com",
+     "statementUrl": "https://www.jdplc.com/about-the-website/accessibility/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "JD Sports",
+     "host": "jdsports.be",
+     "statementUrl": "https://www.jdplc.com/about-the-website/accessibility/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "JD Sports",
+     "host": "jdsports.es",
+     "statementUrl": "https://www.jdplc.com/about-the-website/accessibility/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "JD Sports",
+     "host": "jdsports.fr",
+     "statementUrl": "https://www.jdplc.com/about-the-website/accessibility/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Pearson plc",
+     "host": "pearson.com",
+     "statementUrl": "https://www.pearson.com/en-us/legal-information/accessibility.html",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "common-path"
+    },
+    {
+     "name": "Rolls-Royce",
+     "host": "rolls-royce.com",
+     "statementUrl": "https://www.rolls-royce.com/site-services/accessibility.aspx",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Sage Group",
+     "host": "sage.com",
+     "statementUrl": "https://www.sage.com/en-gb/accessibility/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Shire plc",
+     "host": "shire.com",
+     "statementUrl": "https://www.takeda.com/global-accessibility-statement/",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Smurfit Westrock Group",
+     "host": "smurfitkappa.com",
+     "statementUrl": "https://www.smurfitkappa.com/accessibility-statement",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "St. James's Place Wealth Management Group",
+     "host": "partnership.sjp.co.uk",
+     "statementUrl": "https://partnership.sjp.co.uk/legal/accessibility",
+     "percent": 40,
+     "verdict": "not-compliant",
+     "mandatoryPassed": 2,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Avast Limited",
+     "host": "avast.com",
+     "statementUrl": "https://www.avast.com/accessibility-statement",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "common-path"
+    },
+    {
+     "name": "BP",
+     "host": "bp.com",
+     "statementUrl": "https://www.bp.com/en-IN/accessibility-statement",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Barclays",
+     "host": "home.barclays",
+     "statementUrl": "https://home.barclays/accessibility/",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "GSK",
+     "host": "gsk.com",
+     "statementUrl": "https://www.gsk.com/en-gb/accessibility/",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "HSBC",
+     "host": "hsbc.com",
+     "statementUrl": "https://www.hsbc.com/website-accessibility",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Hargreaves Lansdown",
+     "host": "hl.co.uk",
+     "statementUrl": "https://www.hl.co.uk/accessibility",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Informa",
+     "host": "informa.com",
+     "statementUrl": "https://www.informa.com/generic-content/accessibility/",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Kingfisher plc",
+     "host": "kingfisher.com",
+     "statementUrl": "https://www.kingfisher.com/accessibility",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Marks & Spencer",
+     "host": "marksandspencer.com",
+     "statementUrl": "https://corporate.marksandspencer.com/accessibility",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Micro Focus International",
+     "host": "microfocus.com",
+     "statementUrl": "https://www.opentext.com/about/accessibility",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "common-path"
+    },
+    {
+     "name": "NatWest Group",
+     "host": "natwestgroup.com",
+     "statementUrl": "https://www.natwestgroup.com/hygiene/accessibility.html",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Persimmon plc",
+     "host": "persimmonhomes.com",
+     "statementUrl": "https://www.persimmonhomes.com/accessibility",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Prudential plc",
+     "host": "prudentialplc.com",
+     "statementUrl": "https://www.prudentialplc.com/en/site-services/accessibility/",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "Vodafone",
+     "host": "vodafone.com",
+     "statementUrl": "https://www.vodafone.com/site-services/accessibility",
+     "percent": 60,
+     "verdict": "missing-information",
+     "mandatoryPassed": 3,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "London Stock Exchange Group",
+     "host": "lseg.com",
+     "statementUrl": "https://www.lseg.com/en/policies/accessibility-statement",
+     "percent": 80,
+     "verdict": "missing-information",
+     "mandatoryPassed": 4,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    },
+    {
+     "name": "United Utilities",
+     "host": "unitedutilities.com",
+     "statementUrl": "https://www.unitedutilities.com/accessibility/",
+     "percent": 80,
+     "verdict": "missing-information",
+     "mandatoryPassed": 4,
+     "mandatoryTotal": 5,
+     "via": "footer-link"
+    }
+   ]
+  }
+ }
+}

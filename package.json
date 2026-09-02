@@ -73,6 +73,7 @@
         "cmdk": "latest",
         "culori": "^4.0.2",
         "date-fns": "^3.6.0",
+        "dom-accessibility-api": "^0.7.1",
         "dotenv": "^16.6.0",
         "drizzle-orm": "^0.44.2",
         "embla-carousel-react": "8.5.1",

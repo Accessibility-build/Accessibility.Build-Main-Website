@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/st
 import { RelatedContent } from "@/components/seo/related-content"
 import { PageByline } from "@/components/seo/page-byline"
 import { clampDescription } from "@/lib/metadata"
+import { KeyFacts } from "@/components/research/key-facts"
 
 const ogTitle = encodeURIComponent("ADA Website Compliance: Requirements & Deadlines")
 
@@ -181,7 +182,18 @@ export default function AdaCompliancePage() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <div className="max-w-3xl mx-auto space-y-16">
+
+        <KeyFacts
+          title="ADA web accessibility, the numbers"
+          facts={[
+            { value: "26 Apr 2027", label: "Title II deadline for state and local bodies serving 50,000 or more; 26 April 2028 for smaller ones", source: "DOJ interim final rule", sourceHref: "https://www.ada.gov/resources/2024-03-08-web-rule/", asOf: "2026-04-20" },
+            { value: "WCAG 2.1 AA", label: "The technical standard the Title II rule requires; there is no Title III equivalent in regulation", source: "28 CFR Part 35", sourceHref: "https://www.ada.gov/resources/2024-03-08-web-rule/", asOf: "2024-04-24" },
+            { value: "3,117", label: "website accessibility lawsuits filed in US federal courts in 2025, up 27%", source: "Seyfarth Shaw", sourceHref: "/research/accessibility-lawsuits", asOf: "2026-03-01" },
+            { value: "$0", label: "damages available to a private plaintiff under Title III; injunction and fees only", source: "42 U.S.C. 12188", sourceHref: "/reference/ada-website-case-law", asOf: "2026-09" },
+            { value: "5", label: "circuits that require a connection to a physical place before a website is covered", source: "ADA website case law reference", sourceHref: "/reference/ada-website-case-law", asOf: "2026-09" },
+            { value: "0", label: "appellate decisions in force holding that websites are outside Title III", source: "The Eleventh Circuit vacated its own in December 2021", sourceHref: "/cases/gil-v-winn-dixie", asOf: "2021-12-28" },
+          ]}
+        />        <div className="max-w-3xl mx-auto space-y-16">
           {/* Title II vs Title III */}
           <section aria-labelledby="titles-heading">
             <h2 id="titles-heading" className="text-3xl font-bold text-slate-900 dark:text-white mb-6">

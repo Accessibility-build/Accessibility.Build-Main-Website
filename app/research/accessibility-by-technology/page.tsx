@@ -27,6 +27,7 @@ import technologyData from "@/lib/data/accessibility-by-technology.json";
 import { AccessibilityByTechnologyClient } from "./AccessibilityByTechnologyClient";
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
+import { DatasetDownloads } from "@/components/research/dataset-downloads"
 
 const reportUrl =
   "https://accessibility.build/research/accessibility-by-technology";
@@ -453,6 +454,24 @@ export default function AccessibilityByTechnologyPage() {
           </section>
 
           <div className="mt-16 sm:mt-20">
+            <DatasetDownloads
+              dataset="by-technology"
+              name="Accessibility errors by technology stack"
+              description="Average detectable WCAG errors per home page by content management system, framework and other technologies, from the WebAIM Million 2026."
+              pageUrl="https://accessibility.build/research/accessibility-by-technology"
+              datePublished="2026-08-27"
+              dateModified="2026-08-27"
+              temporalCoverage="2026"
+              attribution="WebAIM Million 2026"
+              withSchema={true}
+              tables={[
+                  { key: "cms", label: "Content management systems and site builders" },
+                  { key: "js-frameworks", label: "JavaScript frameworks" },
+                  { key: "web-frameworks", label: "Web frameworks" },
+                  { key: "js-libraries", label: "JavaScript libraries" },
+                  { key: "ecommerce", label: "Ecommerce platforms" },
+              ]}
+            />
             <RelatedContent
               content="web accessibility CMS WordPress Drupal Shopify javascript framework React Vue Angular library jQuery carousel accessibility statistics WebAIM Million platform comparison"
               maxItems={3}

@@ -6,6 +6,7 @@ import { lawsSummary } from "@/lib/data/accessibility-laws"
 import { AccessibilityLawsClient } from "./AccessibilityLawsClient"
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
+import { DatasetDownloads } from "@/components/research/dataset-downloads"
 
 export const metadata: Metadata = {
   title: "Accessibility Laws by Jurisdiction: Global Tracker",
@@ -371,6 +372,20 @@ export default function AccessibilityLawsPage() {
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">
+            <DatasetDownloads
+              dataset="laws"
+              name="Accessibility laws by jurisdiction"
+              description="Digital accessibility statutes, the WCAG version each names, who they apply to, enforcement routes, penalties and key dates, across US federal, US state, EU, UK, Canadian and Asia-Pacific jurisdictions."
+              pageUrl="https://accessibility.build/research/accessibility-laws"
+              datePublished="2026-08-27"
+              dateModified="2026-08-27"
+              temporalCoverage="1990/2028"
+              attribution="primary legislation and regulators"
+              withSchema={false}
+              tables={[
+                  { key: "laws", label: "Laws by jurisdiction" },
+              ]}
+            />
         <RelatedContent
           content="accessibility laws global regulations WCAG compliance ADA Section 508 European Accessibility Act legal requirements"
           title="Related Resources"
