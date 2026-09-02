@@ -546,3 +546,52 @@ export type ProspectStatus = (typeof PROSPECT_STATUSES)[number]
 export type Prospect = typeof prospects.$inferSelect
 export type NewProspect = typeof prospects.$inferInsert
 
+
+// ---------------------------------------------------------------------------
+// Case study comments
+// ---------------------------------------------------------------------------
+// Reader discussion on /cases/<slug>. Sign-in is required to post, which is the
+// single most effective spam control available and means every row has a real
+// Clerk identity behind it. Comments are held for review by default: these pages
+// name real companies and real litigation, so an unmoderated feed is a legal
+// risk as well as a spam one. Flip CASE_COMMENTS_AUTO_APPROVE to change that.
+export const caseCommentStatusEnum = pgEnum('case_comment_status', [
+  'pending',
+  'approved',
+  'rejected',
+  'spam',
+])
+
+export const caseComments = pgTable('case_comments', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  // Slug of the case study, e.g. "robles-v-dominos". Not a foreign key: case
+  // studies are code, not rows, so this is validated against the registry in
+  // lib/case-studies.ts before insert.
+  caseSlug: text('case_slug').notNull(),
+  userId: text('user_id').notNull(), // Clerk user id
+  authorName: text('author_name').notNull(), // Display name captured at post time
+  authorImage: text('author_image'), // Clerk avatar URL, captured at post time
+  body: text('body').notNull(),
+  status: caseCommentStatusEnum('status').notNull().default('pending'),
+  // Set when an admin approves or rejects, for the audit trail.
+  moderatedAt: timestamp('moderated_at'),
+  moderatedBy: text('moderated_by'),
+  moderationNote: text('moderation_note'),
+  // Coarse abuse signals. The IP is stored hashed so the raw address is never
+  // at rest, which keeps this consistent with the privacy policy.
+  ipHash: text('ip_hash'),
+  userAgent: text('user_agent'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (t) => ({
+  caseIdx: index('case_comments_case_idx').on(t.caseSlug),
+  statusIdx: index('case_comments_status_idx').on(t.status),
+  createdIdx: index('case_comments_created_idx').on(t.createdAt),
+  userIdx: index('case_comments_user_idx').on(t.userId),
+}))
+
+export const CASE_COMMENT_STATUSES = ['pending', 'approved', 'rejected', 'spam'] as const
+export type CaseCommentStatus = (typeof CASE_COMMENT_STATUSES)[number]
+
+export type CaseComment = typeof caseComments.$inferSelect
+export type NewCaseComment = typeof caseComments.$inferInsert
