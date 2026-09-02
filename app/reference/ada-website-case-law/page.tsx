@@ -269,8 +269,17 @@ export default function AdaWebsiteCaseLawPage() {
               ]}
             />
 
-            <CircuitPositions />
+            <section aria-labelledby="map-heading" className="mt-12">
 
+              <h2 id="map-heading" className="font-serif text-2xl font-semibold text-slate-900 dark:text-white sm:text-3xl">
+
+                Where each circuit stands today
+
+              </h2>
+
+              <CircuitPositions showReferenceLink={false} />
+
+            </section>
             <section aria-labelledby="decisions-heading" className="mt-12">
               <h2 id="decisions-heading" className="font-serif text-2xl font-semibold text-slate-900 dark:text-white sm:text-3xl">
                 The decisions, in order
