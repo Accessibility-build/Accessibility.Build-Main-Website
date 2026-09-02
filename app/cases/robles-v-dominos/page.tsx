@@ -709,6 +709,24 @@ export default async function RoblesDominosCasePage() {
                   being ignored. The Domino&apos;s record answers it too: there was no accessibility
                   contact route on the site until after the lawsuit was filed.
                 </p>
+                <p>
+                  The same argument ran on Reddit, roughest in the general technology forums and most
+                  practical among web developers, where people who do remediation pushed back in both
+                  directions. One said a site that genuinely passes an audit adds fifty to a hundred
+                  hours to a project at their agency. Another, who had spent two years passing a blind
+                  reviewer&apos;s audit every release, said labels and sensible tab order get you most
+                  of the way and the real work is keyboard navigation.
+                </p>
+                <p>
+                  Blind commenters did not agree with each other either. One described the ordinary
+                  burden of never knowing in advance whether a site will work. Another argued against
+                  regulation, on the grounds that the large vendors already compete on accessibility
+                  and that stacking obligations raises the barrier to starting a company. A third
+                  rejected separate accessible versions of a site, because parallel versions always
+                  decay into the poorer product. The proposition that blind users all want the same
+                  remedy does not survive contact with what they actually wrote.
+                </p>
+
 
                 <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
                   What developers said the day after the ruling
@@ -763,6 +781,26 @@ export default async function RoblesDominosCasePage() {
                   refused summary judgment on the app because whether it was accessible by then was
                   genuinely disputed, and a moving target is hard to enjoin.
                 </p>
+                <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
+                  Disability organisations answered the no-standard argument
+                </h3>
+                <p>
+                  Fourteen disability organisations had backed Robles at the Ninth Circuit, and the
+                  national bodies responded within hours of the denial. The American Council of the
+                  Blind answered the no-standard argument on its merits rather than in general terms:
+                  accessibility guidelines have existed for decades, and the latitude they leave a
+                  business is a benefit to that business rather than a defect. That is the same
+                  answer the Ninth Circuit gave when it said flexibility in the standard was a
+                  feature rather than a bug.
+                </p>
+                <p>
+                  Robles&apos;s own counsel said the outcome was right at every level, and framed the
+                  underlying proposition as one nobody actually disputes: that blind people need
+                  access to websites and apps to take part in ordinary life. That framing is worth
+                  noticing, because it is precisely the proposition large parts of the public
+                  discussion went on to dispute.
+                </p>
+
 
                 <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
                   Blind organisations backed the case and attacked the machinery around it
@@ -837,6 +875,28 @@ export default async function RoblesDominosCasePage() {
                   best-known technical writers, together with the archives of a major community project
                   and a leading accessibility research group, found no mention of this case at all.
                 </p>
+                <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
+                  The critique the profession mostly left alone
+                </h3>
+                <p>
+                  One practitioner did make the argument about the nexus test that the rest of the
+                  field passed over. Writing in 2019, the developer Ben Myers mapped the disagreement
+                  between the circuits and warned that resting the duty on a physical connection
+                  could end up harming the accessible web rather than advancing it, because it leaves
+                  the business that exists only online with the weakest obligation. The pandemic
+                  sharpened the point: when venues close, the website is not an adjunct to the
+                  service, it is the service.
+                </p>
+                <p>
+                  Trade and financial coverage went the other way and overstated the reach. One
+                  widely read investor piece ran under a headline saying the case threatened every
+                  website. It does not: the holding rests on the nexus, and the court expressly
+                  declined to decide the case where none exists. Legal commentary was more careful
+                  but raised a real worry, that a firm facing liability without a defined standard
+                  may withdraw content rather than fix it, which is what happened when a university
+                  removed thousands of public lectures rather than caption them.
+                </p>
+
 
                 <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
                   The ruling that decided the case was never discussed
@@ -961,6 +1021,48 @@ export default async function RoblesDominosCasePage() {
                   published in 2024, adopting WCAG 2.1 Level AA, binds state and local government
                   under Title II only.
                 </p>
+                <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
+                  What has changed since the case closed
+                </h3>
+                <p>
+                  Three developments since 2022 bear on the argument this case started, and two of
+                  them cut against the plaintiffs&apos; bar rather than for it.
+                </p>
+                <p>
+                  In February 2026 the{" "}
+                  <Link href="/blog/doj-opposes-website-accessibility-class-settlement-2026">
+                    Justice Department filed a statement of interest opposing a proposed class
+                    settlement
+                  </Link>{" "}
+                  in a website accessibility case, objecting that the injunctive relief set out no
+                  concrete steps, that monitoring was optional, and that $2.52 million in fees was
+                  disproportionate to what class members received. It recorded that the same counsel
+                  had filed substantially the same lawsuit more than 500 times between 2019 and 2023,
+                  mostly resolving in undisclosed individual settlements, and said it opposed using a
+                  civil claim principally to enrich class counsel on the backs of disabled people.
+                  That is the federal government making, in court, the criticism the National
+                  Federation of the Blind made in its member magazine in 2019.
+                </p>
+                <p>
+                  Second, filings by people representing themselves rose sharply in 2025, which
+                  practitioners attribute to{" "}
+                  <Link href="/blog/chatgpt-is-filing-ada-lawsuits-pro-se-surge-2026">
+                    general-purpose AI tools making a complaint easy to draft
+                  </Link>
+                  . Third, states have begun to respond:{" "}
+                  <Link href="/blog/missouri-sb-907-accessibility-litigation-safe-harbor">
+                    Missouri enacted a safe harbour
+                  </Link>{" "}
+                  for businesses facing website accessibility claims, operative from August 2026,
+                  which lowers litigation risk without lowering the standard.
+                </p>
+                <p>
+                  None of this disturbs the holding. It does mean the honest summary of 2026 is not
+                  that enforcement is uncontested, but that the duty is settled in the Ninth Circuit
+                  while the machinery around it is under pressure from the courts, the regulator and
+                  the disability organisations alike.
+                </p>
+
 
                 <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
                   Did any of it make websites better?
@@ -1116,6 +1218,26 @@ export default async function RoblesDominosCasePage() {
                   <li>
                     <a href="https://news.ycombinator.com/item?id=21188092" target="_blank" rel="noopener noreferrer">
                       The 591-comment developer discussion, 8 October 2019
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.adatitleiii.com/2026/02/doj-throws-wrench-into-proposed-ada-website-accessibility-class-settlement/" target="_blank" rel="noopener noreferrer">
+                      The Justice Department&apos;s February 2026 statement of interest
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://benmyers.dev/blog/dominos-1/" target="_blank" rel="noopener noreferrer">
+                      Ben Myers on the nexus test and the circuit split
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.acb.org/supreme-court-dominos-robles" target="_blank" rel="noopener noreferrer">
+                      American Council of the Blind on the cert denial
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.reddit.com/r/programming/comments/aglo5v/big_win_for_web_accessibility_in_dominos_pizza/" target="_blank" rel="noopener noreferrer">
+                      r/programming, 16 January 2019 (read via the Internet Archive)
                     </a>
                   </li>
                 </ul>
