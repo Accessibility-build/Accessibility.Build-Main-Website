@@ -711,6 +711,36 @@ export default async function RoblesDominosCasePage() {
                 </p>
 
                 <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
+                  What developers said the day after the ruling
+                </h3>
+                <p>
+                  A discussion on r/programming, captured by the Internet Archive on 16 January 2019,
+                  the day after the Ninth Circuit reversed, is worth reading because the objections
+                  are practical rather than ideological, and two of them are correct.
+                </p>
+                <p>
+                  One commenter working at a small company said plainly that being made to bring
+                  their whole platform into compliance would probably put them out of business: too
+                  much work, too small a team, and customer requests would fall behind. That is the
+                  undue-burden argument in its honest form, and it is the argument Domino&apos;s,
+                  a company with thousands of stores, never actually made about itself.
+                </p>
+                <p>
+                  A second pointed at the thing this page keeps returning to. Automated tools will
+                  tell you whether your images have text alternatives, they wrote, but the hard part
+                  is control flow, and screen readers differ. A third made the maintenance point
+                  before anyone had measured it: a single content editor publishing a page can take a
+                  site from compliant yesterday to non-compliant today. That is precisely what the
+                  archived record of the Domino&apos;s app shows happening between 2012 and 2014.
+                </p>
+                <p>
+                  The recurring anxiety across the thread was not whether disabled customers deserve
+                  access. It was that nobody hands out a certificate, so there is no moment at which
+                  you are finished. That is a fair description of the position, and it is the same
+                  gap the company was arguing about in court.
+                </p>
+
+                <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
                   Blind users had already documented the app breaking
                 </h3>
                 <p>
@@ -1090,10 +1120,12 @@ export default async function RoblesDominosCasePage() {
                   </li>
                 </ul>
                 <p className="mt-8 text-sm text-slate-500 dark:text-slate-400">
-                  Nothing on this page is legal advice. Reddit blocks automated access and its
-                  archives are no longer openly queryable, so the developer threads were recovered
-                  from web archive snapshots and the blind community&apos;s own forum discussion could
-                  not be read.
+                  Nothing on this page is legal advice. Reddit blocks automated access, so its
+                  discussion was recovered from Internet Archive captures. Only one of the four
+                  relevant threads was archived with its comments intact; the others were captured as
+                  page shells that load their replies separately, and the blind community&apos;s own
+                  forum discussion could not be recovered at all. Comments are characterised rather
+                  than reproduced.
                 </p>
               </CaseProse>
             </CaseSection>
