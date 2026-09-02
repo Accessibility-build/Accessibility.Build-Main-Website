@@ -162,22 +162,70 @@ export function CaseTimeline({ entries }: { entries: CaseTimelineEntry[] }) {
  * Sets a widely repeated claim against what the record actually says. The
  * labels are real text, not pseudo-content, so they reach assistive technology.
  */
+/**
+ * The list wrapper for corrections. `role="list"` is set explicitly because
+ * removing the marker strips list semantics in some browsers, and the count is
+ * the useful part here: a reader should be told there are eleven of these.
+ */
+export function CaseCorrections({ children }: { children: ReactNode }) {
+  return (
+    <ol
+      role="list"
+      className="mt-8 w-full list-none space-y-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 p-0 dark:border-slate-800 dark:bg-slate-800"
+    >
+      {children}
+    </ol>
+  )
+}
+
+/**
+ * One claim set against the record.
+ *
+ * The two are placed in adjacent columns rather than stacked so the correction
+ * reads as a rebuttal of the line beside it. Each side is marked with an icon
+ * and a word, never colour alone: the distinction between what is said and what
+ * is documented is the whole point of the section, so it cannot be carried by
+ * red and green.
+ */
 export function CaseCorrection({ claim, record }: { claim: string; record: ReactNode }) {
   return (
-    <div className="border-t border-slate-200 py-5 first:border-t-0 dark:border-slate-800">
-      <p className="text-[0.95rem] text-slate-900 dark:text-white">
-        <span className="text-xs font-semibold uppercase tracking-[0.06em] text-slate-500 dark:text-slate-400">
-          Often said:{" "}
-        </span>
-        <span className="font-semibold">{claim}</span>
-      </p>
-      <div className="mt-1.5 text-[0.95rem] leading-7 text-slate-600 dark:text-slate-400">
-        <span className="text-xs font-semibold uppercase tracking-[0.06em] text-emerald-700 dark:text-emerald-400">
-          Record:{" "}
-        </span>
-        {record}
+    <li className="grid gap-x-8 gap-y-4 bg-white p-5 dark:bg-slate-900 md:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] md:p-6">
+      <div>
+        <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-rose-700 dark:text-rose-300">
+          <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 shrink-0" aria-hidden="true">
+            <path
+              d="M4 4l8 8M12 4l-8 8"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.25"
+              strokeLinecap="round"
+            />
+          </svg>
+          Often said
+        </p>
+        <p className="mt-2 text-[0.95rem] font-semibold leading-6 text-slate-900 dark:text-white">
+          {claim}
+        </p>
       </div>
-    </div>
+      <div className="border-t border-slate-200 pt-4 dark:border-slate-800 md:border-l md:border-t-0 md:pl-8 md:pt-0">
+        <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700 dark:text-emerald-300">
+          <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 shrink-0" aria-hidden="true">
+            <path
+              d="M3 8.5l3.5 3.5L13 4.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          The record
+        </p>
+        <div className="mt-2 text-[0.95rem] leading-7 text-slate-600 dark:text-slate-400">
+          {record}
+        </div>
+      </div>
+    </li>
   )
 }
 

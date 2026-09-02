@@ -29,6 +29,7 @@ import {
 } from "@/components/cases/case-illustrations"
 import {
   CaseCorrection,
+  CaseCorrections,
   CaseExitRamp,
   CaseFacts,
   CaseNote,
@@ -987,11 +988,13 @@ export default async function RoblesDominosCasePage() {
                 <p>
                   This case is described inaccurately in a great deal of published commentary,
                   including by vendors selling accessibility products. The differences matter if you
-                  are relying on it to brief a board.
+                  are relying on it to brief a board. Eleven claims circulate widely enough to be
+                  worth answering directly, each set here against what the filings and the judgment
+                  actually say.
                 </p>
               </CaseProse>
 
-              <div className="mx-auto mt-6 w-full max-w-2xl">
+              <CaseCorrections>
                 <CaseCorrection
                   claim="The Supreme Court ruled against Domino's."
                   record="The Court denied certiorari on 7 October 2019. A denial is not a ruling on the merits and sets no precedent. The binding decision is the Ninth Circuit's."
@@ -1036,7 +1039,7 @@ export default async function RoblesDominosCasePage() {
                   claim="The case establishes that all websites are covered by the ADA."
                   record="It does not. The Ninth Circuit relied on the nexus between the website and physical restaurants, and expressly declined to decide the position where no such nexus exists. Other circuits differ."
                 />
-              </div>
+              </CaseCorrections>
             </CaseSection>
 
             <CaseSection id="now" title="What it means now">
