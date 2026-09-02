@@ -53,6 +53,8 @@ const core: SiteRoute[] = [
 const cases: SiteRoute[] = [
   { route: "/cases", label: "Accessibility Case Studies", group: "Cases", lastModified: "2026-09-02", priority: 0.9, changeFrequency: "monthly" },
   { route: "/cases/robles-v-dominos", label: "Robles v. Domino's Pizza", group: "Cases", lastModified: "2026-09-02", priority: 0.92 },
+  { route: "/cases/gil-v-winn-dixie", label: "Gil v. Winn-Dixie Stores", group: "Cases", lastModified: "2026-09-02", priority: 0.92 },
+  { route: "/cases/nfb-v-target", label: "National Federation of the Blind v. Target", group: "Cases", lastModified: "2026-09-02", priority: 0.92 },
 ]
 
 const reference: SiteRoute[] = [

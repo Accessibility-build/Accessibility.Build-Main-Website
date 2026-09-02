@@ -47,22 +47,68 @@ export const caseStudies: CaseStudy[] = [
     citation:
       "Robles v. Domino's Pizza LLC, No. 2:16-cv-06599 (C.D. Cal.), No. 17-55504 (9th Cir.), No. 18-1539 (U.S.)",
     summary:
-      "A blind man could not order a pizza. Every barrier was a Level A failure, and Domino's spent nearly six years and a Supreme Court petition arguing it did not have to fix them.",
+      "A blind customer could not complete a pizza order through Domino's website or app. The resulting six-year case established how the ADA's physical-place nexus applies to those digital services in the Ninth Circuit.",
     jurisdiction: "United States",
     regime: "ADA Title III",
     period: "2016 to 2022",
-    outcome: "Judgment for the plaintiff, then a confidential settlement",
+    outcome: "Website judgment, then settlement on confidential terms",
     datePublished: "2026-09-02",
     facts: [
       { label: "Filed", value: "1 September 2016" },
       { label: "Closed", value: "21 June 2022" },
       { label: "Duration", value: "5 years, 9 months" },
       { label: "Courts", value: "Three" },
-      { label: "Damages", value: "$4,000" },
-      { label: "Outcome", value: "Confidential settlement" },
+      { label: "Damages awarded", value: "$4,000" },
+      { label: "Outcome", value: "Settlement; terms confidential" },
     ],
     tags: ["ADA", "Screen readers", "Mobile apps", "Nexus test", "WCAG 2.0"],
     readingMinutes: 32,
+  },
+  {
+    slug: "gil-v-winn-dixie",
+    title: "Gil v. Winn-Dixie Stores",
+    citation:
+      "Gil v. Winn-Dixie Stores, Inc., No. 1:16-cv-23020 (S.D. Fla.), 257 F. Supp. 3d 1340; No. 17-13467 (11th Cir.), 993 F.3d 1266, vacated as moot, 21 F.4th 775",
+    summary:
+      "The only web accessibility case to go through a full trial. A blind customer won an injunction against a grocery chain, an appeals court reversed two to one, and then erased its own opinion because the injunction had expired while the appeal waited. Nothing it decided binds anyone.",
+    jurisdiction: "United States",
+    regime: "ADA Title III",
+    period: "2016 to 2022",
+    outcome: "Trial judgment, reversed, then vacated as moot",
+    datePublished: "2026-09-02",
+    facts: [
+      { label: "Filed", value: "12 July 2016" },
+      { label: "Closed", value: "10 March 2022" },
+      { label: "Duration", value: "5 years, 8 months" },
+      { label: "Courts", value: "Two" },
+      { label: "Damages awarded", value: "$0" },
+      { label: "Outcome", value: "Judgment vacated as moot" },
+    ],
+    tags: ["ADA", "Screen readers", "Bench trial", "Nexus test", "Mootness", "WCAG 2.0"],
+    readingMinutes: 23,
+  },
+  {
+    slug: "nfb-v-target",
+    title: "National Federation of the Blind v. Target",
+    citation:
+      "National Federation of the Blind v. Target Corp., No. 3:06-cv-01802 (N.D. Cal.), 452 F. Supp. 2d 946 (2006), 582 F. Supp. 2d 1185 (2007)",
+    summary:
+      "The first web accessibility ruling against a retailer. A blind student could not buy towels for his dorm room. The 2006 order created the nexus test every later case has argued about, a nationwide class was certified, and Target settled for a $6 million fund and three years of monitoring.",
+    jurisdiction: "United States",
+    regime: "ADA Title III and California law",
+    period: "2006 to 2009",
+    outcome: "Class settlement, $6 million fund, no admission",
+    datePublished: "2026-09-02",
+    facts: [
+      { label: "Filed", value: "7 February 2006" },
+      { label: "Closed", value: "3 August 2009" },
+      { label: "Duration", value: "3 years, 6 months" },
+      { label: "Courts", value: "Two" },
+      { label: "Class fund", value: "$6,000,000" },
+      { label: "Outcome", value: "Settlement; no admission of liability" },
+    ],
+    tags: ["ADA", "Unruh Act", "Class action", "Nexus test", "Screen readers", "Settlement"],
+    readingMinutes: 20,
   },
 ]
 

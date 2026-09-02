@@ -9,11 +9,14 @@ import { caseStudies } from "@/lib/case-studies"
 
 const pageTitle = "Accessibility Case Studies | Accessibility.build"
 const pageDescription =
-  "Long-form, sourced studies of the accessibility cases that shaped the law. What actually broke, how it was defended, what it cost, and the points where each one could have ended."
+  "Long-form, sourced studies of accessibility cases that shaped the law: what users alleged, what courts found, how defendants responded, and what the public record leaves unknown."
 
 export const metadata: Metadata = {
   title: pageTitle,
   description: clampDescription(pageDescription),
+  authors: [{ name: "The Accessibility.build team", url: "https://accessibility.build/about" }],
+  creator: "The Accessibility.build team",
+  publisher: "Accessibility.build",
   keywords: [
     "accessibility case studies",
     "web accessibility lawsuits",
@@ -103,11 +106,14 @@ export default function CaseStudiesIndexPage() {
             <p className="mt-6 max-w-[65ch] text-lg leading-8 text-slate-600 dark:text-slate-300">
               Most write-ups of accessibility litigation repeat each other, and a surprising number
               of the details they repeat are wrong. These studies are built from the filings and the
-              judgments: what broke, how it was defended, what the record does and does not say, and
-              the points where each dispute could have ended sooner.
+              judgments: what users alleged, what courts found, how the claim was defended, what the
+              record does and does not say, and the points where each dispute could have ended sooner.
             </p>
             <div className="mt-6">
-              <PageByline route="/cases" />
+              <PageByline
+                route="/cases"
+                reviewer={{ name: "The Accessibility.build team", href: "/about", credential: "" }}
+              />
             </div>
           </div>
         </header>

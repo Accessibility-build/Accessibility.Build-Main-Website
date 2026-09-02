@@ -8,14 +8,28 @@
  * Communicates the thing a paragraph struggles with: five stops, two reversals,
  * and six years to arrive where the complaint started.
  */
-export function CourtPathDiagram() {
-  const stops = [
-    { court: "District Court", year: "2017", outcome: "Dismissed", tone: "defence" },
-    { court: "Ninth Circuit", year: "2019", outcome: "Reversed", tone: "plaintiff" },
-    { court: "Supreme Court", year: "2019", outcome: "Declined", tone: "neutral" },
-    { court: "District Court", year: "2021", outcome: "Judgment", tone: "plaintiff" },
-    { court: "Settled", year: "2022", outcome: "Confidential", tone: "neutral" },
-  ] as const
+export interface CourtStop {
+  court: string
+  year: string
+  outcome: string
+  tone: "defence" | "plaintiff" | "neutral"
+}
+
+const DOMINOS_STOPS: CourtStop[] = [
+  { court: "District Court", year: "2017", outcome: "Dismissed", tone: "defence" },
+  { court: "Ninth Circuit", year: "2019", outcome: "Reversed", tone: "plaintiff" },
+  { court: "Supreme Court", year: "2019", outcome: "Declined", tone: "neutral" },
+  { court: "District Court", year: "2021", outcome: "Judgment", tone: "plaintiff" },
+  { court: "Settled", year: "2022", outcome: "Confidential", tone: "neutral" },
+]
+
+export function CourtPathDiagram({
+  stops = DOMINOS_STOPS,
+  duration = "5 years, 9 months",
+}: {
+  stops?: CourtStop[]
+  duration?: string
+} = {}) {
 
   const toneFill: Record<string, string> = {
     defence: "fill-rose-700 dark:fill-rose-400",
@@ -79,7 +93,7 @@ export function CourtPathDiagram() {
             )
           })}
           <text x={380} y={143} textAnchor="middle" className="fill-slate-500 text-[11px] dark:fill-slate-400">
-            5 years, 9 months
+            {duration}
           </text>
         </svg>
 
@@ -90,7 +104,7 @@ export function CourtPathDiagram() {
               {stop.year}, {stop.court}: {stop.outcome}.
             </li>
           ))}
-          <li>Total elapsed time: 5 years, 9 months.</li>
+          <li>Total elapsed time: {duration}.</li>
         </ol>
       </div>
     </figure>
@@ -98,21 +112,20 @@ export function CourtPathDiagram() {
 }
 
 /**
- * The three conformance levels as a stack, with the case's barriers marked at
- * the bottom one. The argument of the whole study in a single image: this was
- * not a hard case at the edge of the standard.
+ * The three conformance levels as a stack, with selected allegations mapped to
+ * Level A. The mapping is editorial rather than a finding made by the court.
  */
 export function ConformanceLevelsDiagram() {
   const levels = [
     { level: "AAA", label: "Enhanced. Rarely required in law.", w: 300, muted: true },
     { level: "AA", label: "The level regulators and contracts name.", w: 420, muted: true },
-    { level: "A", label: "The floor. Every barrier in this case failed here.", w: 540, muted: false },
+    { level: "A", label: "The floor. Several allegations map here.", w: 540, muted: false },
   ]
 
   return (
     <figure className="not-prose my-10">
       <figcaption className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
-        Where the failures sat in the standard
+        How selected allegations map to the standard
       </figcaption>
       <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/40 sm:p-6">
         <svg viewBox="0 0 600 210" className="w-full" role="img" aria-hidden="true">
@@ -162,8 +175,8 @@ export function ConformanceLevelsDiagram() {
         </svg>
         <p className="sr-only">
           The three WCAG conformance levels as a stack. AAA is enhanced and rarely required in law.
-          AA is the level regulators and contracts name. A is the floor, and every barrier alleged in
-          this case failed at that level.
+          AA is the level regulators and contracts often name. A is the floor, and several allegations
+          in this case map to criteria at that level. This is an editorial mapping, not a court finding.
         </p>
       </div>
     </figure>

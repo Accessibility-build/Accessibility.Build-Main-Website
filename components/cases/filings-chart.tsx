@@ -20,7 +20,7 @@ const DATA = [
 // Years the argument turns on, called out on the plot itself so the point does
 // not depend on reading the whole axis.
 const ANNOTATIONS: Record<number, string> = {
-  2018: "Filings triple after the DOJ withdraws its web rulemaking",
+  2018: "Filings rise 177% after the DOJ withdraws its web rulemaking",
   2019: "Flat, in the year certiorari was denied",
 }
 
@@ -42,8 +42,9 @@ export function FilingsChart() {
         Federal website accessibility filings, by year
       </figcaption>
       <p id={descId} className="mb-5 max-w-[60ch] text-sm leading-6 text-slate-600 dark:text-slate-400">
-        The step change came in 2018, after the Justice Department withdrew its web rulemaking. 2019,
-        the year the Supreme Court declined this case, was flat against the year before.
+        The series records a 177% increase in 2018, after the Justice Department withdrew its web
+        rulemaking. Timing alone does not establish causation. In 2019, when the Supreme Court
+        declined this case, the annual total was two cases lower than in 2018.
       </p>
 
       <div role="group" aria-labelledby={titleId} aria-describedby={descId} className="relative rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/40 sm:p-6">

@@ -85,12 +85,12 @@ export function ScreenReaderDemo() {
           id={`${switchId}-heading`}
           className="text-lg font-semibold text-slate-900 dark:text-white"
         >
-          What the order form announced
+          Illustrative screen-reader output
         </h3>
         <p className="mt-2 max-w-[62ch] text-sm leading-6 text-slate-600 dark:text-slate-400">
-          The defects pleaded in this case sound abstract. This is what they mean in practice: the
-          same ordering flow, seen and heard. Switch the accessible names on to hear the difference
-          the fix would have made.
+          The court record does not contain a recording of Robles&apos;s screen reader. This reconstruction
+          shows how the kinds of missing names and text alternatives alleged in the complaint can
+          affect announcements. Exact output varies by markup, browser and assistive technology.
         </p>
 
         <div className="mt-5 flex items-center gap-3">
@@ -118,15 +118,15 @@ export function ScreenReaderDemo() {
                 }`}
               />
             </span>
-            Accessible names
+            Example accessible names
             <span className="font-normal text-slate-500 dark:text-slate-400">
               {fixed ? "on" : "off"}
             </span>
           </button>
           <p id={outputId} aria-live="polite" className="text-sm text-slate-600 dark:text-slate-400">
             {fixed
-              ? "Every control now announces what it is."
-              : "As pleaded in the complaint: seven controls, almost no information."}
+              ? "The illustrative controls now include useful names."
+              : "The illustrative controls provide little identifying information."}
           </p>
         </div>
       </div>
@@ -206,8 +206,9 @@ export function ScreenReaderDemo() {
       </div>
 
       <p className="border-t border-slate-200 px-5 py-4 text-xs leading-5 text-slate-500 dark:border-slate-800 dark:text-slate-400 sm:px-6">
-        Illustrative reconstruction built from the defects pleaded in the complaint, not a capture of
-        Domino&apos;s website. Every criterion listed is Level A, the lowest tier of the standard.
+        Illustrative reconstruction based on categories described in the complaint, not a capture or
+        recording of Domino&apos;s website. The selected criteria shown here are Level A; the court did not
+        make this criterion-by-criterion WCAG mapping.
       </p>
     </section>
   )

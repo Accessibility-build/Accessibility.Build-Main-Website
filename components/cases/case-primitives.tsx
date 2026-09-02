@@ -42,7 +42,10 @@ export function CaseSection({
   children: ReactNode
 }) {
   return (
-    <section id={id} className="scroll-mt-24 border-t-2 border-slate-900 pt-8 dark:border-slate-100">
+    <section
+      id={id}
+      className="scroll-mt-24 border-t-2 border-slate-900 pt-8 dark:border-slate-100"
+    >
       {eyebrow ? (
         <p className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">
           {eyebrow}
@@ -69,6 +72,151 @@ export function CaseFacts({ facts }: { facts: { label: string; value: string }[]
         </div>
       ))}
     </dl>
+  )
+}
+
+/**
+ * A short boundary statement placed before the narrative. Legal case studies
+ * need this early because many readers arrive with a remembered headline and
+ * may not reach the later qualifications.
+ */
+export function CaseScopeSummary({
+  established,
+  notEstablished,
+  children,
+}: {
+  established: ReactNode[]
+  notEstablished: ReactNode[]
+  children?: ReactNode
+}) {
+  return (
+    <aside
+      aria-labelledby="case-scope-title"
+      className="border-y-2 border-slate-900 bg-slate-50/70 py-7 dark:border-slate-100 dark:bg-slate-900/45 sm:py-8"
+    >
+      <div className="max-w-[70ch]">
+        <h2
+          id="case-scope-title"
+          className="text-wrap-balance font-serif text-2xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-3xl"
+        >
+          What this case actually established
+        </h2>
+        <p className="mt-3 text-base leading-7 text-slate-600 dark:text-slate-300">
+          The holding is important, but narrower than the headline version often repeated online.
+        </p>
+      </div>
+
+      <div className="mt-6 grid gap-0 border-y border-slate-200 dark:border-slate-800 md:grid-cols-2 md:divide-x md:divide-slate-200 dark:md:divide-slate-800">
+        <section aria-labelledby="case-scope-established" className="py-5 md:pr-7">
+          <h3
+            id="case-scope-established"
+            className="text-sm font-semibold text-emerald-800 dark:text-emerald-300"
+          >
+            Established by the record
+          </h3>
+          <ul className="mt-3 space-y-3 text-[0.95rem] leading-6 text-slate-700 dark:text-slate-300">
+            {established.map((item, index) => (
+              <li key={index} className="grid grid-cols-[1rem_1fr] gap-2.5">
+                <svg
+                  viewBox="0 0 16 16"
+                  className="mt-1 h-4 w-4 text-emerald-700 dark:text-emerald-400"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 8.5l3.25 3.25L13 4.75"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section
+          aria-labelledby="case-scope-not-established"
+          className="border-t border-slate-200 py-5 dark:border-slate-800 md:border-t-0 md:pl-7"
+        >
+          <h3
+            id="case-scope-not-established"
+            className="text-sm font-semibold text-slate-800 dark:text-slate-200"
+          >
+            Outside the ruling
+          </h3>
+          <ul className="mt-3 space-y-3 text-[0.95rem] leading-6 text-slate-700 dark:text-slate-300">
+            {notEstablished.map((item, index) => (
+              <li key={index} className="grid grid-cols-[1rem_1fr] gap-2.5">
+                <svg
+                  viewBox="0 0 16 16"
+                  className="mt-1 h-4 w-4 text-slate-500 dark:text-slate-400"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.5 8h9"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      {children ? <div className="max-w-[70ch]">{children}</div> : null}
+    </aside>
+  )
+}
+
+export interface CaseSourceLink {
+  label: string
+  href: string
+}
+
+/** Compact, local citations for the claims in a section. */
+export function CaseSourceLinks({
+  label = "Primary record",
+  ariaLabel,
+  sources,
+  className,
+}: {
+  label?: string
+  ariaLabel: string
+  sources: CaseSourceLink[]
+  className?: string
+}) {
+  return (
+    <nav
+      aria-label={ariaLabel}
+      className={cn(
+        "mt-6 flex max-w-[70ch] flex-col gap-2 border-t border-slate-200 pt-4 text-sm sm:flex-row sm:items-baseline sm:gap-4 dark:border-slate-800",
+        className,
+      )}
+    >
+      <p className="shrink-0 font-semibold text-slate-700 dark:text-slate-300">{label}</p>
+      <ul className="flex flex-wrap gap-x-4 gap-y-2">
+        {sources.map((source) => (
+          <li key={source.href}>
+            <a
+              href={source.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-teal-700 underline decoration-teal-700/40 underline-offset-[3px] hover:decoration-teal-700 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 dark:text-teal-300 dark:decoration-teal-300/40 dark:hover:decoration-teal-300 dark:focus-visible:ring-teal-300 dark:focus-visible:ring-offset-slate-950"
+            >
+              {source.label}
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   )
 }
 
@@ -134,7 +282,9 @@ export function CaseTimeline({ entries }: { entries: CaseTimelineEntry[] }) {
           key={`${entry.date}-${entry.title}`}
           className="grid grid-cols-[1fr] gap-x-6 pb-7 sm:grid-cols-[8.5rem_1fr]"
         >
-          <p className="pt-0.5 font-mono text-xs text-slate-500 dark:text-slate-400">{entry.date}</p>
+          <p className="pt-0.5 font-mono text-xs text-slate-500 dark:text-slate-400">
+            {entry.date}
+          </p>
           <div className="relative border-l-2 border-slate-200 pl-5 dark:border-slate-800 sm:pl-6">
             <span
               aria-hidden="true"
@@ -147,7 +297,9 @@ export function CaseTimeline({ entries }: { entries: CaseTimelineEntry[] }) {
                     : "h-2 w-2 bg-slate-400 dark:bg-slate-600",
               )}
             />
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">{entry.title}</h3>
+            <h3 className="text-base font-semibold text-slate-900 dark:text-white">
+              {entry.title}
+            </h3>
             <div className="mt-1.5 text-[0.95rem] leading-7 text-slate-600 dark:text-slate-400">
               {entry.body}
             </div>
@@ -243,7 +395,10 @@ export function CaseExitRamp({
 }) {
   return (
     <div className="grid grid-cols-[2.5rem_1fr] gap-x-4 border-t border-slate-200 py-6 first:border-t-0 dark:border-slate-800">
-      <p aria-hidden="true" className="font-serif text-2xl font-semibold text-rose-700 tabular-nums dark:text-rose-400">
+      <p
+        aria-hidden="true"
+        className="font-serif text-2xl font-semibold text-rose-700 tabular-nums dark:text-rose-400"
+      >
         {n}
       </p>
       <div>
@@ -251,10 +406,10 @@ export function CaseExitRamp({
           <span className="sr-only">Exit point {n}. </span>
           {title}
         </h3>
-        <div className="mt-2 text-[0.95rem] leading-7 text-slate-600 dark:text-slate-400">{children}</div>
-        {cost ? (
-          <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">{cost}</p>
-        ) : null}
+        <div className="mt-2 text-[0.95rem] leading-7 text-slate-600 dark:text-slate-400">
+          {children}
+        </div>
+        {cost ? <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">{cost}</p> : null}
       </div>
     </div>
   )
@@ -282,7 +437,9 @@ export function CaseNote({ title, children }: { title: string; children: ReactNo
       <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500 dark:text-slate-400">
         {title}
       </p>
-      <div className="mt-2 text-[0.95rem] leading-7 text-slate-700 dark:text-slate-300">{children}</div>
+      <div className="mt-2 text-[0.95rem] leading-7 text-slate-700 dark:text-slate-300">
+        {children}
+      </div>
     </aside>
   )
 }

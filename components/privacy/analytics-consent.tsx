@@ -40,27 +40,44 @@ export function AnalyticsConsent() {
 
       {choice === null && (
         <section
-          aria-label="Analytics preferences"
-          className="fixed inset-x-3 bottom-3 z-[100] mx-auto max-w-3xl border border-slate-300 bg-white p-5 shadow-2xl dark:border-slate-700 dark:bg-slate-950 sm:inset-x-6"
+          aria-labelledby="analytics-consent-title"
+          aria-describedby="analytics-consent-description"
+          className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-300 bg-white px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 dark:border-slate-700 dark:bg-slate-950 sm:px-6"
         >
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="max-w-xl">
-              <h2 className="text-base font-semibold text-slate-950 dark:text-white">
+          <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
+            <div className="max-w-3xl">
+              <h2 id="analytics-consent-title" className="sr-only">
                 Optional analytics
               </h2>
-              <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                We use Google Analytics and PostHog only with your permission. Essential account and security storage continues to work when analytics is declined. Read our{" "}
+              <p
+                id="analytics-consent-description"
+                className="text-sm leading-5 text-slate-700 dark:text-slate-300"
+              >
+                <strong className="font-semibold text-slate-950 dark:text-white">
+                  Optional analytics.{" "}
+                </strong>
+                Google Analytics and PostHog load only if you allow them. Essential account and
+                security storage still works if you decline. Read our{" "}
                 <Link href="/cookies" className="font-medium underline underline-offset-4">
                   cookie policy
                 </Link>
                 .
               </p>
             </div>
-            <div className="flex shrink-0 gap-2">
-              <Button variant="outline" onClick={() => saveChoice("rejected")}>
+            <div className="flex w-full shrink-0 gap-2 sm:w-auto">
+              <Button
+                className="min-h-11 flex-1 sm:flex-none"
+                variant="outline"
+                onClick={() => saveChoice("rejected")}
+              >
                 Decline
               </Button>
-              <Button onClick={() => saveChoice("accepted")}>Allow analytics</Button>
+              <Button
+                className="min-h-11 flex-1 sm:flex-none"
+                onClick={() => saveChoice("accepted")}
+              >
+                Allow analytics
+              </Button>
             </div>
           </div>
         </section>
