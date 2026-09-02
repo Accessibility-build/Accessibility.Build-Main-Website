@@ -18,6 +18,12 @@ import { ScreenReaderDemo } from "@/components/cases/screen-reader-demo"
 import { RemediationEvidence } from "@/components/cases/remediation-evidence"
 import { CasePhoto } from "@/components/cases/case-photo"
 import {
+  CircuitPositions,
+  DefenceScorecard,
+  DefendantPlaybook,
+  WhoWasSpeaking,
+} from "@/components/cases/case-graphics"
+import {
   ConformanceLevelsDiagram,
   CourtPathDiagram,
 } from "@/components/cases/case-illustrations"
@@ -521,6 +527,8 @@ export default async function RoblesDominosCasePage() {
               </CaseProse>
             </CaseSection>
 
+              <DefenceScorecard />
+
             <CaseSection id="prevented" title="What could have prevented it">
               <CaseProse>
                 <p>Six moments where the outcome was still open. The cost of acting rose at every one.</p>
@@ -643,6 +651,8 @@ export default async function RoblesDominosCasePage() {
               </CaseNote>
             </CaseSection>
 
+              <DefendantPlaybook />
+
             <CaseSection id="debate" title="How the argument was actually had">
               <CaseProse>
                 <p>
@@ -713,7 +723,9 @@ export default async function RoblesDominosCasePage() {
                 </tbody>
               </CaseTable>
 
-              <CaseProse className="mt-8">
+              <WhoWasSpeaking />
+
+              <CaseProse>
                 <p>
                   Two things stand out. The argument the company actually made, that it lacked fair
                   notice of a specific technical standard, was of almost no interest to working
@@ -1055,6 +1067,11 @@ export default async function RoblesDominosCasePage() {
                   published in 2024, adopting WCAG 2.1 Level AA, binds state and local government
                   under Title II only.
                 </p>
+              </CaseProse>
+
+              <CircuitPositions />
+
+              <CaseProse>
                 <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
                   What has changed since the case closed
                 </h3>
