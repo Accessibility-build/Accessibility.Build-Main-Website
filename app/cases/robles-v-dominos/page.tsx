@@ -16,6 +16,7 @@ import { CaseToc } from "@/components/cases/case-toc"
 import { FilingsChart } from "@/components/cases/filings-chart"
 import { ScreenReaderDemo } from "@/components/cases/screen-reader-demo"
 import { RemediationEvidence } from "@/components/cases/remediation-evidence"
+import { CasePhoto } from "@/components/cases/case-photo"
 import {
   ConformanceLevelsDiagram,
   CourtPathDiagram,
@@ -282,6 +283,17 @@ export default async function RoblesDominosCasePage() {
                 </tbody>
               </CaseTable>
 
+              <CasePhoto
+                src="/images/cases/braille.webp"
+                alt="A refreshable braille display: a long, low device with a row of cells, each raising small rounded pins to form braille characters, and round control buttons along the front edge."
+                caption="A refreshable braille display, one of the ways a blind customer reads a web page. It can only render what the page exposes as text, so a button with no accessible name reaches it as nothing at all. Blind users praised the Domino's app in 2012 for working well with these."
+                credit="Photo by Eddau, Wikimedia Commons, CC0"
+                creditHref="https://commons.wikimedia.org/wiki/File:Refreshable_Braille_display_2010_0123.JPG"
+                width={1600}
+                height={1200}
+                priority
+              />
+
               <ScreenReaderDemo />
 
               <ConformanceLevelsDiagram />
@@ -395,6 +407,15 @@ export default async function RoblesDominosCasePage() {
             </CaseSection>
 
             <CaseSection id="defence" title="How Domino's defended it">
+              <CasePhoto
+                src="/images/cases/ninth-circuit.webp"
+                alt="A courtroom in the James R. Browning United States Court of Appeals Building in San Francisco, with a raised wooden bench beneath an ornate coffered ceiling and a mosaic-tiled arch."
+                caption="The James R. Browning courthouse in San Francisco, home of the Ninth Circuit, where the appeal was argued on 12 October 2018 and decided three months later."
+                credit="Photo by Carol M. Highsmith, Library of Congress, public domain"
+                creditHref="https://commons.wikimedia.org/wiki/File:Courtroom_three_mosaic,_James_R._Browning_U.S._Court_of_Appeals_Building,_San_Francisco,_California_LCCN2010719381.tif"
+                width={1600}
+                height={873}
+              />
               <CaseProse>
                 <p>
                   Five arguments, made across three courts. Understanding why four of them failed is
@@ -898,6 +919,19 @@ export default async function RoblesDominosCasePage() {
                 </p>
 
 
+              </CaseProse>
+
+              <CasePhoto
+                src="/images/cases/supreme-court.webp"
+                alt="The west facade of the United States Supreme Court building, a white marble portico with fluted columns beneath a sculpted pediment."
+                caption="The Supreme Court declined the case on 7 October 2019 without comment. A denial of certiorari produces no opinion and sets no precedent, which is the single most misreported fact about this litigation."
+                credit="Photo by the Architect of the Capitol, Wikimedia Commons, public domain"
+                creditHref="https://commons.wikimedia.org/wiki/File:Flickr_-_USCapitol_-_Supreme_Court_West_Facade_Restoration.jpg"
+                width={1400}
+                height={933}
+              />
+
+              <CaseProse>
                 <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
                   The ruling that decided the case was never discussed
                 </h3>

@@ -105,13 +105,16 @@ export function ScreenReaderDemo() {
           >
             <span
               aria-hidden="true"
-              className={`relative h-5 w-9 shrink-0 rounded-full transition-colors motion-reduce:transition-none ${
+              className={`relative inline-block h-5 w-9 shrink-0 rounded-full align-middle transition-colors motion-reduce:transition-none ${
                 fixed ? "bg-teal-700 dark:bg-teal-500" : "bg-slate-300 dark:bg-slate-600"
               }`}
             >
+              {/* left-0 anchors the knob to the start of the track. Without it the
+                  knob takes its static position and renders flush right when off,
+                  which reads as the opposite of the state it is in. */}
               <span
-                className={`absolute top-0.5 h-4 w-4 rounded-full bg-white transition-transform motion-reduce:transition-none ${
-                  fixed ? "translate-x-4" : "translate-x-0.5"
+                className={`absolute left-0 top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-150 motion-reduce:transition-none ${
+                  fixed ? "translate-x-[18px]" : "translate-x-[2px]"
                 }`}
               />
             </span>
