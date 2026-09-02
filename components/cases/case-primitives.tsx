@@ -15,7 +15,7 @@ export function CaseProse({ children, className }: { children: ReactNode; classN
   return (
     <div
       className={cn(
-        "mx-auto w-full max-w-[68ch] text-[1.0625rem] leading-[1.75] text-slate-700 dark:text-slate-300",
+        "w-full max-w-[70ch] text-[1.0625rem] leading-[1.75] text-slate-700 dark:text-slate-300",
         "[&>p]:mt-5 [&>ul]:mt-5 [&>ol]:mt-5",
         "[&>ul]:list-disc [&>ul]:pl-5 [&>ol]:list-decimal [&>ol]:pl-5",
         "[&_li]:mt-2 [&_li]:marker:text-slate-400 dark:[&_li]:marker:text-slate-500",
@@ -75,7 +75,7 @@ export function CaseFacts({ facts }: { facts: { label: string; value: string }[]
 /** A wide table that scrolls inside its own container rather than the page. */
 export function CaseTable({ caption, children }: { caption?: string; children: ReactNode }) {
   return (
-    <div className="mx-auto mt-6 w-full max-w-3xl">
+    <div className="mt-6 w-full">
       {caption ? (
         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.08em] text-slate-500 dark:text-slate-400">
           {caption}
@@ -128,7 +128,7 @@ export interface CaseTimelineEntry {
 
 export function CaseTimeline({ entries }: { entries: CaseTimelineEntry[] }) {
   return (
-    <ol className="mx-auto mt-6 w-full max-w-3xl space-y-0">
+    <ol className="mt-6 w-full space-y-0">
       {entries.map((entry) => (
         <li
           key={`${entry.date}-${entry.title}`}
@@ -215,7 +215,7 @@ export function CaseExitRamp({
 /** A quotation from a judgment or a public statement, with attribution. */
 export function CaseQuote({ children, source }: { children: ReactNode; source: string }) {
   return (
-    <figure className="mx-auto mt-6 w-full max-w-2xl border-l-[3px] border-teal-700 bg-teal-50/60 py-4 pl-5 pr-4 dark:border-teal-400 dark:bg-teal-950/30">
+    <figure className="mt-6 w-full max-w-[62ch] border-l-[3px] border-teal-700 bg-teal-50/60 py-4 pl-5 pr-4 dark:border-teal-400 dark:bg-teal-950/30">
       <blockquote className="font-serif text-lg leading-8 text-slate-900 dark:text-white">
         {children}
       </blockquote>
@@ -229,7 +229,7 @@ export function CaseNote({ title, children }: { title: string; children: ReactNo
   return (
     <aside
       aria-label={title}
-      className="mx-auto mt-6 w-full max-w-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/50"
+      className="mt-6 w-full max-w-[68ch] border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/50"
     >
       <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500 dark:text-slate-400">
         {title}

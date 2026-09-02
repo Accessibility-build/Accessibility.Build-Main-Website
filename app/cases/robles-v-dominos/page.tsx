@@ -12,6 +12,14 @@ import { caseComments } from "@/lib/db/schema"
 import { ownerUserIds, toPublicComment } from "@/lib/case-comments-server"
 import type { PublicComment } from "@/lib/case-comments"
 import { CaseComments } from "@/components/cases/case-comments"
+import { CaseToc } from "@/components/cases/case-toc"
+import { FilingsChart } from "@/components/cases/filings-chart"
+import { ScreenReaderDemo } from "@/components/cases/screen-reader-demo"
+import { RemediationEvidence } from "@/components/cases/remediation-evidence"
+import {
+  ConformanceLevelsDiagram,
+  CourtPathDiagram,
+} from "@/components/cases/case-illustrations"
 import {
   CaseCorrection,
   CaseExitRamp,
@@ -81,6 +89,19 @@ const breadcrumbs = [
   { name: "Home", url: "https://accessibility.build" },
   { name: "Case Studies", url: "https://accessibility.build/cases" },
   { name: "Robles v. Domino's Pizza", url: `https://accessibility.build/cases/${CASE_SLUG}` },
+]
+
+const TOC = [
+  { id: "what-happened", label: "What happened" },
+  { id: "barriers", label: "What actually broke" },
+  { id: "timeline", label: "Six years, step by step" },
+  { id: "defence", label: "How it was defended" },
+  { id: "prevented", label: "What could have prevented it" },
+  { id: "debate", label: "How the argument was had" },
+  { id: "record", label: "Correcting the record" },
+  { id: "now", label: "What it means now" },
+  { id: "sources", label: "Sources" },
+  { id: "discussion", label: "Discussion" },
 ]
 
 async function loadComments(): Promise<PublicComment[]> {
@@ -162,7 +183,9 @@ export default async function RoblesDominosCasePage() {
         </header>
 
         <div className="container-wide">
-          <div className="mx-auto max-w-3xl space-y-14 py-14">
+          <div className="mx-auto grid max-w-6xl gap-x-12 py-14 lg:grid-cols-[13rem_minmax(0,1fr)]">
+            <CaseToc entries={TOC} />
+            <div className="min-w-0 space-y-14">
             <CaseSection id="what-happened" title="What happened">
               <CaseProse>
                 <p>
@@ -259,6 +282,10 @@ export default async function RoblesDominosCasePage() {
                 </tbody>
               </CaseTable>
 
+              <ScreenReaderDemo />
+
+              <ConformanceLevelsDiagram />
+
               <CaseNote title="The detail that decided the case">
                 <p>
                   Domino&apos;s retained its own expert, a blind accessibility consultant, to assess
@@ -286,6 +313,8 @@ export default async function RoblesDominosCasePage() {
               <CaseProse>
                 <p>Marked points are the moments where the dispute could have ended and did not.</p>
               </CaseProse>
+              <CourtPathDiagram />
+
               <CaseTimeline
                 entries={[
                   {
@@ -884,34 +913,7 @@ export default async function RoblesDominosCasePage() {
                 </p>
               </CaseProse>
 
-              <CaseTable caption="Federal website accessibility filings, by year">
-                <thead>
-                  <tr>
-                    <CaseTh numeric>2017</CaseTh>
-                    <CaseTh numeric>2018</CaseTh>
-                    <CaseTh numeric>2019</CaseTh>
-                    <CaseTh numeric>2020</CaseTh>
-                    <CaseTh numeric>2021</CaseTh>
-                    <CaseTh numeric>2022</CaseTh>
-                    <CaseTh numeric>2023</CaseTh>
-                    <CaseTh numeric>2024</CaseTh>
-                    <CaseTh numeric>2025</CaseTh>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <CaseTd numeric>814</CaseTd>
-                    <CaseTd numeric>2,258</CaseTd>
-                    <CaseTd numeric>2,256</CaseTd>
-                    <CaseTd numeric>2,523</CaseTd>
-                    <CaseTd numeric>2,895</CaseTd>
-                    <CaseTd numeric>3,255</CaseTd>
-                    <CaseTd numeric>2,794</CaseTd>
-                    <CaseTd numeric>2,452</CaseTd>
-                    <CaseTd numeric>3,117</CaseTd>
-                  </tr>
-                </tbody>
-              </CaseTable>
+              <FilingsChart />
 
               <CaseProse className="mt-8">
                 <p>
@@ -951,7 +953,12 @@ export default async function RoblesDominosCasePage() {
                   the scanner is not an audit.
                 </p>
 
-                <h3 className="mt-10 text-xl font-semibold text-slate-900 dark:text-white">
+              </CaseProse>
+
+              <RemediationEvidence />
+
+              <CaseProse>
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
                   What to take from it
                 </h3>
                 <ul>
@@ -1104,6 +1111,7 @@ export default async function RoblesDominosCasePage() {
                 maxItems={4}
                 showDescriptions
               />
+            </div>
             </div>
           </div>
         </div>
