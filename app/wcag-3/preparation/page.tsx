@@ -20,6 +20,7 @@ import {
   Briefcase,
   Scale,
 } from "lucide-react"
+import { getRouteDate } from "@/lib/site-routes"
 
 const faqs = [
   {
@@ -135,7 +136,7 @@ function RoadmapTimelineSVG() {
       viewBox="0 0 700 120"
       className="w-full max-w-3xl mx-auto"
       role="img"
-      aria-label="WCAG 3.0 roadmap timeline showing four stages: Now (WCAG 2.2 is current), 2026 (Working Draft published), Future (Candidate Recommendation), and Later (Final Recommendation). The Now stage is highlighted."
+      aria-label="WCAG 3.0 roadmap timeline showing four stages: Now (WCAG 2.2 is current), September 2026 (latest Working Draft published), Future (Candidate Recommendation), and Later (Final Recommendation). The Now stage is highlighted."
     >
       {/* Connection line */}
       <line
@@ -158,8 +159,8 @@ function RoadmapTimelineSVG() {
       {/* Node 2 — 2026 */}
       <circle cx="270" cy="50" r="14" className="fill-amber-500 dark:fill-amber-600" />
       <circle cx="270" cy="50" r="6" className="fill-white dark:fill-slate-900" />
-      <text x="270" y="92" textAnchor="middle" className="fill-slate-600 dark:fill-slate-400 text-xs font-semibold">2026</text>
-      <text x="270" y="108" textAnchor="middle" className="fill-slate-400 dark:fill-slate-500 text-[9px]">Working Draft Published</text>
+      <text x="270" y="92" textAnchor="middle" className="fill-slate-600 dark:fill-slate-400 text-xs font-semibold">Sept 2026</text>
+      <text x="270" y="108" textAnchor="middle" className="fill-slate-400 dark:fill-slate-500 text-[9px]">Latest Working Draft</text>
 
       {/* Node 3 — Future */}
       <circle cx="440" cy="50" r="14" className="fill-slate-400 dark:fill-slate-500" />
@@ -192,7 +193,7 @@ export default function WCAG3PreparationPage() {
         author={{ name: "Accessibility.build", url: "https://accessibility.build" }}
         publisher={{ name: "Accessibility.build", logo: "https://accessibility.build/logo.png" }}
         datePublished="2026-03-15T00:00:00Z"
-        dateModified="2026-03-15T00:00:00Z"
+        dateModified={getRouteDate("/wcag-3/preparation") ?? "2026-03-15"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/wcag-3/preparation"
         wordCount={3500}

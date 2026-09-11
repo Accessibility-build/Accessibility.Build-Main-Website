@@ -110,7 +110,7 @@ export const staticBlogPosts: StaticBlogPost[] = [
     slug: "wcag-3-what-to-expect",
     title: "WCAG 3.0: What to Expect from the New Standard",
     excerpt:
-      "Explore WCAG 3.0 updates including new outcomes-based approach, bronze/silver/gold levels, and how to prepare for the next generation of accessibility guidelines.",
+      "Explore WCAG 3.0 updates including the 12 guideline categories, the six reporting tiers that replace A/AA/AAA, and how to prepare for the next generation of accessibility guidelines.",
     date: "2025-11-15",
     category: "WCAG",
     author: "Khushwant Parihar",

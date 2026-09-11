@@ -19,11 +19,12 @@ import {
   RefreshCw,
   Sparkles,
 } from "lucide-react"
+import { getRouteDate } from "@/lib/site-routes"
 
 export const metadata = createMetadata({
   title: "WCAG 3.0 Guide: W3C Accessibility Guidelines 3.0",
   description:
-    "Comprehensive guide to WCAG 3.0 (W3C Accessibility Guidelines). Learn about the new conformance model, 12 guideline categories, outcomes-based testing, and how to prepare for the next generation of accessibility standards.",
+    "Comprehensive guide to WCAG 3.0 (W3C Accessibility Guidelines). Learn about the six reporting tiers, the 12 guideline categories, what changed in the September 2026 draft, and how to prepare.",
   keywords: [
     "WCAG 3.0",
     "WCAG 3",
@@ -38,7 +39,7 @@ export const metadata = createMetadata({
   ],
   type: "article" as const,
   publishedTime: "2026-03-15T00:00:00Z",
-  modifiedTime: "2026-03-15T00:00:00Z",
+  modifiedTime: "2026-09-11T00:00:00Z",
   path: "/wcag-3",
 })
 
@@ -46,7 +47,7 @@ const faqs = [
   {
     question: "When will WCAG 3.0 be finalized?",
     answer:
-      "WCAG 3.0 is currently a Working Draft as of March 2026. The W3C Accessibility Guidelines Working Group has stated it still has several years of work remaining. There is no firm date for the final Recommendation, but organizations should monitor progress and begin familiarizing themselves with the new framework now.",
+      "The most recent Working Draft was published on 10 September 2026. The W3C Accessibility Guidelines Working Group states that while the draft has moved closer toward completion, it still has several years of work remaining. There is no firm date for the final Recommendation, but organizations should monitor progress and begin familiarizing themselves with the new framework now.",
   },
   {
     question: "Does WCAG 3.0 replace WCAG 2.2?",
@@ -61,7 +62,7 @@ const faqs = [
   {
     question: "What is the difference between WCAG 2 and WCAG 3?",
     answer:
-      "WCAG 3.0 represents a fundamental redesign. It replaces the 4 POUR principles with 12 guideline categories, introduces outcomes-based testing instead of binary pass/fail, expands scope beyond web content to include apps, tools, and devices, and introduces new concepts like assertions and functional needs. The conformance model moves away from A/AA/AAA levels to a graduated scoring approach.",
+      "WCAG 3.0 represents a fundamental redesign. It replaces the 4 POUR principles with 12 guideline categories, expands scope beyond web content to include apps, tools, and devices, and introduces new concepts like assertions and functional needs. The September 2026 draft also moves the idea of levels out of conformance entirely: conformance is a single bar (meet every core requirement), and progress toward and beyond that bar is expressed through six reporting tiers rather than A/AA/AAA.",
   },
   {
     question: "Will WCAG 3.0 affect legal compliance requirements?",
@@ -71,7 +72,7 @@ const faqs = [
   {
     question: "Is WCAG 3.0 harder to meet than WCAG 2.2?",
     answer:
-      "It is different rather than harder. WCAG 3.0 uses outcomes-based assessment instead of binary pass/fail, which provides more nuance. Content that conforms to WCAG 2.2 Level A and AA is expected to meet most of WCAG 3.0's minimum conformance level, so existing accessible content will largely transfer.",
+      "It is different rather than harder, but it is not a straight swap. The W3C states that content conforming to WCAG 2.2 Level A and Level AA is expected to meet most of the minimum conformance level of the new standard, so existing accessible content largely transfers. It also warns that WCAG 3 adds tests WCAG 2.2 does not have, so additional work will be needed to reach full conformance.",
   },
 ]
 
@@ -115,6 +116,49 @@ const detailPages = [
     gradient: "from-amber-600 to-orange-600",
     badge: "Action Plan",
     badgeColor: "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800",
+  },
+]
+
+const draftChanges = [
+  {
+    title: "Leveling moved out of conformance",
+    detail:
+      "A new Reporting section now carries the idea of levels. The editors write that WCAG 3 “moves the concept of leveling from conformance to reporting”, and use the term “reporting tiers” to keep it distinct from the old “conformance levels”. The previous draft’s Conformance level subsection is gone.",
+  },
+  {
+    title: "Six reporting tiers, with Bronze, Silver, and Gold above conformance",
+    detail:
+      "The tiers are cumulative: 1 avoid physical harm, 2 foundational access, 3 conformance, 4 Bronze, 5 Silver, 6 Gold. Conformance is tier 3, reached when every core requirement is met. Tiers 4 to 6 add supplemental requirements and assertions, and the exact numbers are still marked TBD.",
+  },
+  {
+    title: "Core requirements are tagged by severity",
+    detail:
+      "Every core requirement now carries one of four tags describing the worst-case impact of failing it: Physical Harm, Risk, Barrier, or Friction. These tags are what build the reporting tiers. Assertions are separately tagged as being about Content or about the Organization.",
+  },
+  {
+    title: "Conformance advanced from exploratory to developing",
+    detail:
+      "The Conformance section changed maturity status between the two 2026 drafts. The new Reporting section is still marked exploratory.",
+  },
+  {
+    title: "Best practices renamed Recommended Practices",
+    detail:
+      "They remain informative and are not needed to conform, but they are now named consistently and can take the form of either a provision or a method.",
+  },
+  {
+    title: "Images and media split into nine guidelines",
+    detail:
+      "The old Media alternatives guideline was dissolved. Transcripts, Sign language, and Accessible media player are now guidelines in their own right, and Figure captions moved up to 2.1.2. Transcripts, captions, and audio descriptions each gained a full set of requirements covering speakers, sounds, visual information, style guides, and usability testing.",
+  },
+  {
+    title: "Text appearance gained minimum and enhanced requirements",
+    detail:
+      "Blocks of text readable, text style readable, and text contrast sufficient each now appear in both a minimum and an enhanced form, alongside the existing adjustability requirements.",
+  },
+  {
+    title: "Requirement type moved from headings into tags",
+    detail:
+      "Headings used to read “Core requirement: Images detectable”. They now read “Images detectable”, with the type carried as a tag. Some requirements were also renamed, including No flashing to No flashing over threshold, and No repetitive links to No repetitive adjacent interactive elements.",
   },
 ]
 
@@ -249,10 +293,10 @@ function ConceptHierarchySVG() {
 
 const concepts = [
   { term: "Guidelines", definition: "Outcome statements that describe what accessible content should achieve, organized into 12 functional categories." },
-  { term: "Requirements", definition: "Testable provisions at three levels: core (mandatory), supplemental (additional support), and assertions (organizational commitments)." },
-  { term: "Methods", definition: "Technology-specific approaches for meeting requirements, replacing WCAG 2.x informative techniques with normative testing procedures." },
-  { term: "Assertions", definition: "Documented organizational commitments requiring evidence — a completely new concept not present in WCAG 2.x." },
-  { term: "Outcomes", definition: "Measurable results that guidelines aim to achieve, shifting focus from checkbox compliance to real user impact." },
+  { term: "Requirements", definition: "Testable provisions in two kinds: core requirements, which must all be met to conform, and supplemental requirements, which go beyond conformance." },
+  { term: "Methods", definition: "Technology-specific approaches for meeting a requirement or assertion. A method only counts toward conformance if it is accessibility supported." },
+  { term: "Assertions", definition: "Documented statements about accessibility practices an organization follows — tagged as being about content or about the organization." },
+  { term: "Reporting tiers", definition: "Six cumulative tiers that replace conformance levels, running from avoiding physical harm through conformance to Bronze, Silver, and Gold." },
   { term: "Functional Needs", definition: "User-need-based groupings that drive the entire framework, replacing disability-category approaches with functional descriptions." },
 ]
 
@@ -271,7 +315,7 @@ export default function WCAG3HubPage() {
         author={{ name: "Accessibility.build", url: "https://accessibility.build" }}
         publisher={{ name: "Accessibility.build", logo: "https://accessibility.build/logo.png" }}
         datePublished="2026-03-15T00:00:00Z"
-        dateModified="2026-03-15T00:00:00Z"
+        dateModified={getRouteDate("/wcag-3") ?? "2026-03-15"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/wcag-3"
         wordCount={4000}
@@ -284,7 +328,7 @@ export default function WCAG3HubPage() {
         <div className="container-wide pb-16 md:pb-24">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-700">
-              Working Draft — March 2026
+              Working Draft — 10 September 2026
             </Badge>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-teal-800 to-blue-800 dark:from-white dark:via-teal-200 dark:to-blue-300 bg-clip-text text-transparent leading-tight">
@@ -293,7 +337,7 @@ export default function WCAG3HubPage() {
 
             <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed">
               The W3C Accessibility Guidelines (WCAG) 3.0 represents a fundamental reimagining of accessibility standards.
-              With 12 guideline categories, outcomes-based testing, and scope beyond web content — here is everything you need to know.
+              With 12 guideline categories, six reporting tiers in place of A/AA/AAA, and scope beyond web content — here is everything you need to know.
             </p>
 
             {/* Stats Bar */}
@@ -320,9 +364,81 @@ export default function WCAG3HubPage() {
                 <div className="p-2 bg-emerald-100 dark:bg-emerald-900/50 rounded-full">
                   <Target className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                 </div>
-                <span className="font-medium text-slate-700 dark:text-slate-300">Outcomes-Based</span>
+                <span className="font-medium text-slate-700 dark:text-slate-300">Six Reporting Tiers</span>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What changed in the latest draft */}
+      <section className="bg-slate-50 dark:bg-slate-900/30 border-y border-slate-200 dark:border-slate-800">
+        <div className="container-wide py-16 md:py-20">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <Badge className="mb-4 bg-teal-100 text-teal-800 border-teal-200 dark:bg-teal-900/30 dark:text-teal-400 dark:border-teal-700">
+                Latest draft
+              </Badge>
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">
+                What Changed in the 10 September 2026 Working Draft
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400">
+                This draft supersedes the one published on 3 March 2026. These are the substantive changes.
+              </p>
+            </div>
+
+            <ol className="space-y-4">
+              {draftChanges.map((change, i) => (
+                <li
+                  key={change.title}
+                  className="flex gap-4 p-5 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl"
+                >
+                  <span
+                    className="flex-shrink-0 w-7 h-7 rounded-full bg-teal-100 dark:bg-teal-900/50 text-teal-800 dark:text-teal-300 text-xs font-bold flex items-center justify-center"
+                    aria-hidden="true"
+                  >
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
+                      {change.title}
+                    </h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                      {change.detail}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-8 p-5 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-xl">
+              <div className="flex gap-3">
+                <AlertTriangle className="h-5 w-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-1">
+                    The tier model is not settled
+                  </h3>
+                  <p className="text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
+                    An editor&rsquo;s note in the Reporting section records an alternative proposal that would use
+                    scoring to show progress toward conformance and then award Bronze, Silver, and Gold after it.
+                    The Working Group is inviting public comment on which approach to take, so treat the six tiers
+                    as the current direction rather than a decided outcome.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p className="mt-6 text-sm text-slate-500 dark:text-slate-400 text-center">
+              Source:{" "}
+              <a
+                href="https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/"
+                className="underline decoration-slate-400 hover:decoration-slate-700 dark:hover:decoration-slate-200"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                W3C Accessibility Guidelines (WCAG) 3.0, W3C Working Draft 10 September 2026
+              </a>
+            </p>
           </div>
         </div>
       </section>
@@ -368,11 +484,11 @@ export default function WCAG3HubPage() {
                   <div className="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl shadow-lg w-fit mb-3">
                     <BarChart3 className="h-6 w-6 text-white" />
                   </div>
-                  <CardTitle className="text-lg">Outcomes-Based Conformance</CardTitle>
+                  <CardTitle className="text-lg">Reporting Tiers, Not Levels</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Replaces binary pass/fail with graduated scoring. No more A/AA/AAA levels — instead, a nuanced outcomes-based assessment that measures real user impact rather than checkbox compliance.
+                    No more A/AA/AAA. Conformance is one bar: meet every core requirement. Six cumulative reporting tiers then describe where you are, from avoiding physical harm up through Bronze, Silver, and Gold.
                   </p>
                 </CardContent>
               </Card>

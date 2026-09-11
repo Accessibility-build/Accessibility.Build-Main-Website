@@ -21,6 +21,7 @@ import {
   Lightbulb,
   Compass,
 } from "lucide-react"
+import { getRouteDate } from "@/lib/site-routes"
 
 export const metadata = createMetadata({
   title: "WCAG 3.0 vs WCAG 2.2: Key Differences & Changes",
@@ -38,7 +39,7 @@ export const metadata = createMetadata({
   ],
   type: "article" as const,
   publishedTime: "2026-03-15T00:00:00Z",
-  modifiedTime: "2026-03-15T00:00:00Z",
+  modifiedTime: "2026-09-11T00:00:00Z",
   path: "/wcag-3/comparison",
 })
 
@@ -56,7 +57,7 @@ const faqs = [
   {
     question: "Is WCAG 3.0 harder to meet than WCAG 2.2?",
     answer:
-      "WCAG 3.0 is different rather than harder. The graduated scoring model provides more nuance than the binary pass/fail of WCAG 2.x, meaning partial accessibility efforts receive credit rather than outright failure. Content that already conforms to WCAG 2.2 Level A and AA is expected to meet most of WCAG 3.0's minimum conformance level, so strong WCAG 2.2 compliance is the best preparation.",
+      "WCAG 3.0 is different rather than harder. Individual requirements are still pass or fail, but the six reporting tiers give partial progress somewhere to show rather than reporting it as outright failure. Content that already conforms to WCAG 2.2 Level A and AA is expected to meet most of WCAG 3.0's minimum conformance level, so strong WCAG 2.2 compliance is the best preparation. The W3C does caution that WCAG 3 adds tests WCAG 2.2 does not have, so reaching full conformance will take additional work.",
   },
 ]
 
@@ -84,7 +85,7 @@ const comparisonRows = [
   {
     dimension: "Conformance",
     wcag22: "A / AA / AAA levels",
-    wcag30: "Outcomes-based graduated scoring",
+    wcag30: "Six cumulative reporting tiers",
   },
   {
     dimension: "Testing",
@@ -134,7 +135,7 @@ const whatChanges = [
   {
     title: "New Terminology",
     description:
-      "WCAG 3.0 introduces new vocabulary: outcomes replace success criteria, methods replace techniques, and assertions represent organizational commitments. The entire framework uses updated language.",
+      "WCAG 3.0 introduces new vocabulary: requirements replace success criteria, guidelines are written as outcome statements, methods replace techniques, and assertions represent documented accessibility practices. The entire framework uses updated language.",
     icon: Sparkles,
   },
   {
@@ -144,9 +145,9 @@ const whatChanges = [
     icon: Globe,
   },
   {
-    title: "Nuanced Conformance",
+    title: "Levels Move to Reporting",
     description:
-      "The A/AA/AAA level system is replaced by graduated scoring. Partial accessibility efforts receive credit, and conformance is measured on a spectrum rather than as a binary pass/fail.",
+      "The September 2026 draft moves the concept of leveling out of conformance altogether. Conformance itself is a single bar: meet every core requirement. Progress toward and beyond that bar is expressed through six cumulative reporting tiers instead of A/AA/AAA.",
     icon: BarChart3,
   },
   {
@@ -201,7 +202,7 @@ function ConformanceModelSVG() {
       viewBox="0 0 800 280"
       className="w-full max-w-4xl mx-auto"
       role="img"
-      aria-label="Side-by-side comparison of conformance models. WCAG 2.2 uses three stacked levels (A, AA, AAA) with binary pass or fail. WCAG 3.0 uses a graduated scoring bar from minimum to excellent, measuring outcomes on a spectrum."
+      aria-label="Side-by-side comparison of conformance models. WCAG 2.2 uses three stacked levels (A, AA, AAA) with binary pass or fail. WCAG 3.0 uses six cumulative reporting tiers, from bottom to top: avoid physical harm, foundational access, conformance, Bronze, Silver, and Gold. Conformance sits at tier 3, where all core requirements are met; the tiers above it report achievements beyond conformance."
     >
       {/* WCAG 2.2 Side */}
       <text x="160" y="30" textAnchor="middle" className="fill-blue-700 dark:fill-blue-400 text-sm font-bold">
@@ -247,64 +248,55 @@ function ConformanceModelSVG() {
 
       {/* WCAG 3.0 Side */}
       <text x="620" y="30" textAnchor="middle" className="fill-teal-700 dark:fill-teal-400 text-sm font-bold">
-        WCAG 3.0 Conformance
+        WCAG 3.0 Reporting Tiers
       </text>
 
-      {/* Graduated scoring bar background */}
-      <rect x="470" y="100" width="300" height="60" rx="10" className="fill-slate-100 dark:fill-slate-800/60 stroke-slate-300 dark:stroke-slate-600" strokeWidth="1" />
-
-      {/* Gradient bar */}
-      <defs>
-        <linearGradient id="scoringGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#99f6e4" />
-          <stop offset="33%" stopColor="#5eead4" />
-          <stop offset="66%" stopColor="#14b8a6" />
-          <stop offset="100%" stopColor="#0f766e" />
-        </linearGradient>
-        <linearGradient id="scoringGradientDark" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#134e4a" />
-          <stop offset="33%" stopColor="#115e59" />
-          <stop offset="66%" stopColor="#0d9488" />
-          <stop offset="100%" stopColor="#14b8a6" />
-        </linearGradient>
-      </defs>
-
-      {/* Light mode gradient bar */}
-      <rect x="480" y="110" width="280" height="40" rx="6" fill="url(#scoringGradient)" className="dark:hidden" />
-      {/* Dark mode gradient bar */}
-      <rect x="480" y="110" width="280" height="40" rx="6" fill="url(#scoringGradientDark)" className="hidden dark:block" />
-
-      {/* Scale labels on the bar */}
-      <text x="500" y="135" textAnchor="middle" className="fill-teal-900 dark:fill-teal-200 text-[9px] font-medium">
-        Minimum
-      </text>
-      <text x="620" y="135" textAnchor="middle" className="fill-teal-900 dark:fill-teal-100 text-[9px] font-medium">
-        Acceptable
-      </text>
-      <text x="740" y="135" textAnchor="middle" className="fill-white dark:fill-teal-100 text-[9px] font-medium">
-        Excellent
+      {/* Tier 6: Gold */}
+      <rect x="470" y="46" width="300" height="24" rx="6" className="fill-amber-100 dark:fill-amber-900/30 stroke-amber-400 dark:stroke-amber-700" strokeWidth="1.5" />
+      <text x="620" y="62" textAnchor="middle" className="fill-amber-900 dark:fill-amber-200 text-[9px] font-semibold">
+        Tier 6: Gold
       </text>
 
-      {/* Arrow showing graduated scoring */}
-      <line x1="490" y1="85" x2="750" y2="85" className="stroke-teal-500 dark:stroke-teal-400" strokeWidth="2" markerEnd="url(#tealArrow)" />
-      <text x="620" y="78" textAnchor="middle" className="fill-teal-600 dark:fill-teal-400 text-[10px] font-medium">
-        Graduated Scoring
+      {/* Tier 5: Silver */}
+      <rect x="470" y="74" width="300" height="24" rx="6" className="fill-slate-200 dark:fill-slate-700/50 stroke-slate-400 dark:stroke-slate-500" strokeWidth="1.5" />
+      <text x="620" y="90" textAnchor="middle" className="fill-slate-800 dark:fill-slate-200 text-[9px] font-semibold">
+        Tier 5: Silver
+      </text>
+
+      {/* Tier 4: Bronze */}
+      <rect x="470" y="102" width="300" height="24" rx="6" className="fill-orange-100 dark:fill-orange-900/30 stroke-orange-400 dark:stroke-orange-700" strokeWidth="1.5" />
+      <text x="620" y="118" textAnchor="middle" className="fill-orange-900 dark:fill-orange-200 text-[9px] font-semibold">
+        Tier 4: Bronze
+      </text>
+
+      {/* Conformance line */}
+      <line x1="470" y1="131" x2="770" y2="131" className="stroke-teal-600 dark:stroke-teal-400" strokeWidth="1.5" strokeDasharray="5 3" />
+
+      {/* Tier 3: Conformance */}
+      <rect x="470" y="136" width="300" height="24" rx="6" className="fill-teal-300 dark:fill-teal-700/60 stroke-teal-600 dark:stroke-teal-500" strokeWidth="1.5" />
+      <text x="620" y="152" textAnchor="middle" className="fill-teal-950 dark:fill-teal-50 text-[9px] font-bold">
+        Tier 3: Conformance
+      </text>
+
+      {/* Tier 2: Foundational access */}
+      <rect x="470" y="164" width="300" height="24" rx="6" className="fill-teal-200 dark:fill-teal-800/50 stroke-teal-500 dark:stroke-teal-600" strokeWidth="1.5" />
+      <text x="620" y="180" textAnchor="middle" className="fill-teal-900 dark:fill-teal-100 text-[9px] font-semibold">
+        Tier 2: Foundational access
+      </text>
+
+      {/* Tier 1: Avoid physical harm */}
+      <rect x="470" y="192" width="300" height="24" rx="6" className="fill-teal-100 dark:fill-teal-900/40 stroke-teal-400 dark:stroke-teal-700" strokeWidth="1.5" />
+      <text x="620" y="208" textAnchor="middle" className="fill-teal-900 dark:fill-teal-100 text-[9px] font-semibold">
+        Tier 1: Avoid physical harm
       </text>
 
       {/* Label below */}
-      <text x="620" y="195" textAnchor="middle" className="fill-slate-500 dark:fill-slate-400 text-[10px]">
-        Outcomes-Based Assessment
+      <text x="620" y="233" textAnchor="middle" className="fill-slate-500 dark:fill-slate-400 text-[10px]">
+        Cumulative: each tier includes the ones below it
       </text>
-      <text x="620" y="210" textAnchor="middle" className="fill-slate-400 dark:fill-slate-500 text-[9px]">
-        Partial credit for partial compliance
+      <text x="620" y="248" textAnchor="middle" className="fill-slate-400 dark:fill-slate-500 text-[9px]">
+        Conformance is tier 3, where all core requirements are met
       </text>
-
-      {/* Arrowhead marker */}
-      <defs>
-        <marker id="tealArrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-          <polygon points="0 0, 10 3.5, 0 7" className="fill-teal-500 dark:fill-teal-400" />
-        </marker>
-      </defs>
     </svg>
   )
 }
@@ -325,7 +317,7 @@ export default function WCAG3ComparisonPage() {
         author={{ name: "Accessibility.build", url: "https://accessibility.build" }}
         publisher={{ name: "Accessibility.build", logo: "https://accessibility.build/logo.png" }}
         datePublished="2026-03-15T00:00:00Z"
-        dateModified="2026-03-15T00:00:00Z"
+        dateModified={getRouteDate("/wcag-3/comparison") ?? "2026-03-15"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/wcag-3/comparison"
         wordCount={3500}
@@ -431,7 +423,7 @@ export default function WCAG3ComparisonPage() {
               Conformance Models Compared
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-center mb-10 max-w-2xl mx-auto">
-              The biggest structural change: from tiered pass/fail levels to graduated outcomes-based scoring.
+              The biggest structural change: leveling moves out of conformance and into reporting.
             </p>
 
             <div className="bg-white dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700 p-6 md:p-10">

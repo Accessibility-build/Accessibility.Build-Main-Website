@@ -10,7 +10,7 @@ import {
   Wrench,
   FileCheck,
   Users,
-  Target,
+  BarChart3,
   ArrowRight,
   Lightbulb,
   ArrowRightLeft,
@@ -31,7 +31,7 @@ export const metadata = createMetadata({
   ],
   type: "article" as const,
   publishedTime: "2026-03-15T00:00:00Z",
-  modifiedTime: "2026-03-15T00:00:00Z",
+  modifiedTime: "2026-09-11T00:00:00Z",
   path: "/wcag-3/concepts",
 })
 
@@ -60,13 +60,13 @@ const conceptCards = [
     badgeColor:
       "bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-400 dark:border-indigo-800",
     definition:
-      "Testable provisions that come in three types: core requirements (mandatory for conformance), supplemental requirements (additional support beyond core), and assertions (organizational commitments requiring documentation).",
+      "WCAG 3 has three types of provisions: core requirements, which must all be met to conform; supplemental requirements, which build on the core set and are not required to conform; and assertions, which are documented statements about accessibility practices an organization follows.",
     wcag2Equivalent:
       "\"Success Criteria\" in WCAG 2.x served a similar role, but WCAG 3.0 requirements are more granular and introduce assertions as an entirely new type.",
     example:
       "A core requirement might be: \"All non-decorative images have a text alternative that describes the image\u2019s purpose.\"",
     keyInsight:
-      "The three-tier structure (core / supplemental / assertions) allows more nuanced conformance than WCAG 2.x\u2019s binary pass/fail model.",
+      "These are provision types, not levels. Conformance depends only on the core requirements; supplemental requirements and assertions feed the separate reporting tiers.",
   },
   {
     title: "Methods",
@@ -78,11 +78,11 @@ const conceptCards = [
     definition:
       "Technology-specific approaches for meeting requirements, with detailed test procedures and expected results. Methods tell you exactly how to test a given requirement for a specific technology.",
     wcag2Equivalent:
-      "\"Techniques\" in WCAG 2.x were informative and advisory. WCAG 3.0 methods are normative, with specific test procedures that must be followed.",
+      "\"Techniques\" in WCAG 2.x were informative and advisory. WCAG 3.0 ties methods more tightly to conformance: the methods you rely on must be accessibility supported.",
     example:
       "An HTML method for image alternatives might include: check for the alt attribute, verify it describes the image purpose, and ensure decorative images use an empty alt.",
     keyInsight:
-      "Methods are normative (not just informative) and include specific test procedures, making testing more consistent across auditors and organizations.",
+      "A method only counts toward conformance if browsers and assistive technologies in general use actually support it. WCAG 3 calls this being accessibility supported, and the accessibility support set must be stated in a conformance claim.",
   },
   {
     title: "Assertions",
@@ -117,20 +117,20 @@ const conceptCards = [
       "Centering on functional needs rather than disability categories is more inclusive and technology-resilient \u2014 it future-proofs the standard.",
   },
   {
-    title: "Outcomes",
-    icon: Target,
+    title: "Reporting Tiers",
+    icon: BarChart3,
     gradient: "from-emerald-500 to-emerald-600",
-    badgeText: "Core Shift",
+    badgeText: "New in Sept 2026",
     badgeColor:
       "bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800",
     definition:
-      "Measurable results that guidelines aim to achieve, representing the conceptual shift from \"conformance\" to demonstrating real user impact. Outcomes measure degree of achievement rather than binary pass/fail.",
+      "Six cumulative tiers that describe how far a product has got, each one building on the tiers below it: 1 avoid physical harm, 2 foundational access, 3 conformance, 4 Bronze, 5 Silver, 6 Gold. Conformance itself is tier 3, where every core requirement is met.",
     wcag2Equivalent:
-      "The overall concept of \"conformance\" but measured differently \u2014 WCAG 2.x was binary (pass or fail), while WCAG 3.0 measures the degree of achievement on a graduated scale.",
+      "Closest to WCAG 2.x conformance levels (A / AA / AAA), but the September 2026 draft deliberately separates the two ideas. As the editors put it, WCAG 3 \u201cmoves the concept of leveling from conformance to reporting\u201d, and uses the phrase \u201creporting tiers\u201d to keep them distinct from the old \u201cconformance levels\u201d.",
     example:
-      "Rather than \"alt text exists\" (pass/fail), an outcome measures \"users can understand the purpose of images\" with graduated scoring.",
+      "A product that meets every core requirement has conformed, and reports at tier 3. Reaching tier 5 (Silver) additionally requires a number of supplemental requirements and assertions about content.",
     keyInsight:
-      "Outcomes-based assessment provides more meaningful measurement of real-world accessibility impact than checkbox compliance.",
+      "Conformance is a single bar, not a ladder. The tiers exist to report progress toward it and achievements beyond it. This section is still marked exploratory, and the Working Group is openly asking whether tiers or a scoring model works better.",
   },
 ]
 
@@ -138,7 +138,7 @@ const terminologyMapping = [
   { wcag2: "Success Criteria", wcag3: "Requirements (core / supplemental)" },
   { wcag2: "Techniques (informative)", wcag3: "Methods (normative)" },
   { wcag2: "N/A (new concept)", wcag3: "Assertions" },
-  { wcag2: "Conformance Levels (A / AA / AAA)", wcag3: "Graduated scoring" },
+  { wcag2: "Conformance Levels (A / AA / AAA)", wcag3: "Six reporting tiers" },
   { wcag2: "4 Principles (POUR)", wcag3: "12 Guideline Categories" },
   { wcag2: "Understanding documents", wcag3: "Functional Needs documentation" },
   { wcag2: "Sufficient / Advisory techniques", wcag3: "Core / Supplemental requirements" },

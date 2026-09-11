@@ -39,7 +39,7 @@ export const metadata = createMetadata({
   ],
   type: "article" as const,
   publishedTime: "2026-03-15T00:00:00Z",
-  modifiedTime: "2026-03-15T00:00:00Z",
+  modifiedTime: "2026-09-11T00:00:00Z",
   path: "/wcag-3/guidelines",
 })
 
@@ -49,7 +49,7 @@ const categories = [
     name: "Images and Media",
     icon: Image,
     description:
-      "Covers alternatives for visual and audio content, including text alternatives for images, captions for video, audio descriptions, and accessible media players. This category ensures all non-text content has an equivalent accessible form.",
+      "Covers alternatives for visual and audio content across nine guidelines: image alternatives, figure captions, non-text alternatives, transcripts, captions, audio descriptions, sign language, single sense, and accessible media players. This category ensures all non-text content has an equivalent accessible form.",
     mapsTo: "WCAG 2.x Guideline 1.1, 1.2",
     isNew: false,
     gradient: "from-blue-500 to-blue-600",

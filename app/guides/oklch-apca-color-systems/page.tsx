@@ -139,7 +139,7 @@ const faqItems = [
   {
     question: "Where does this end up under WCAG 3?",
     answer:
-      "WCAG 3 is still a working draft. APCA is currently the contrast model under consideration, but the final spec may change. The safe strategy: pass WCAG 2.2 today, design with OKLCH and APCA so you're ready for whichever direction WCAG 3 goes, and version your design tokens so you can re-grade if requirements shift.",
+      "Still undecided, and the September 2026 Working Draft is unusually blunt about it. Its two text contrast requirements carry a literal placeholder, \"contrast measure to be determined\", and an editor's note stating that the contrast algorithm used in WCAG 3 is yet to be determined. The draft does not name APCA. It does assume the eventual algorithm will include a size or weight factor, which is the main way it differs from the flat 4.5:1 ratio in WCAG 2.2. The safe strategy: pass WCAG 2.2 today, design with OKLCH so you can re-grade cheaply, and version your design tokens so a future threshold change is an edit rather than a rebuild.",
   },
 ]
 

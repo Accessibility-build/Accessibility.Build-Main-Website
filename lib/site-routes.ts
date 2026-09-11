@@ -208,11 +208,11 @@ const learn: SiteRoute[] = [
 ]
 
 const wcag3: SiteRoute[] = [
-  { route: "/wcag-3", label: "WCAG 3.0 Guide", group: "WCAG 3.0", lastModified: "2026-03-15", priority: 0.88 },
-  { route: "/wcag-3/comparison", label: "WCAG 3.0 vs 2.2", group: "WCAG 3.0", lastModified: "2026-03-15", priority: 0.85 },
-  { route: "/wcag-3/concepts", label: "WCAG 3.0 Concepts", group: "WCAG 3.0", lastModified: "2026-03-15", priority: 0.85 },
-  { route: "/wcag-3/guidelines", label: "WCAG 3.0 Guidelines", group: "WCAG 3.0", lastModified: "2026-07-24", priority: 0.85 },
-  { route: "/wcag-3/preparation", label: "Preparing for WCAG 3.0", group: "WCAG 3.0", lastModified: "2026-03-15", priority: 0.85 },
+  { route: "/wcag-3", label: "WCAG 3.0 Guide", group: "WCAG 3.0", lastModified: "2026-09-11", priority: 0.88 },
+  { route: "/wcag-3/comparison", label: "WCAG 3.0 vs 2.2", group: "WCAG 3.0", lastModified: "2026-09-11", priority: 0.85 },
+  { route: "/wcag-3/concepts", label: "WCAG 3.0 Concepts", group: "WCAG 3.0", lastModified: "2026-09-11", priority: 0.85 },
+  { route: "/wcag-3/guidelines", label: "WCAG 3.0 Guidelines", group: "WCAG 3.0", lastModified: "2026-09-11", priority: 0.85 },
+  { route: "/wcag-3/preparation", label: "Preparing for WCAG 3.0", group: "WCAG 3.0", lastModified: "2026-09-11", priority: 0.85 },
 ]
 
 // Only the hub is static. Individual posts now live in Sanity and are appended

@@ -14,7 +14,7 @@ export const metadata = createMetadata({
   ],
   type: "article" as const,
   publishedTime: "2026-03-15T00:00:00Z",
-  modifiedTime: "2026-03-15T00:00:00Z",
+  modifiedTime: "2026-09-11T00:00:00Z",
   path: "/wcag-3/preparation",
 })
 
