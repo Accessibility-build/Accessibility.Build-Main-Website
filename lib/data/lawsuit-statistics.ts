@@ -57,10 +57,13 @@ export const lawsuitsByYear: LawsuitYearData[] = [
 // Snapshot of the mid-2026 regulatory & litigation landscape — used for the post-chart callout.
 // Verified against the DOJ Interim Final Rule (Apr 20, 2026), the HHS Section 504 rule, and
 // the 2026 mid-year litigation reports (AudioEye 2026 Litigation Report, UsableNet 2026 trends).
-// Re-verified August 27, 2026: no Seyfarth mid-year federal count published; NFB challenge and
-// Fashion Nova approval both still pending; UsableNet mid-year projection added.
+// Re-verified September 16, 2026: Seyfarth's 2026 mid-year report (published September 9, 2026)
+// counts 5,006 federal ADA Title III filings for H1 2026, but carries no website-accessibility
+// breakout, so the federal website series above still ends at 2025. The DOJ comment-close date
+// was corrected to June 22, 2026 against the Federal Register API (document 2026-07663). NFB
+// challenge and Fashion Nova final approval both still pending; UsableNet projection unchanged.
 export const may2026RegulatorySnapshot = {
-  asOfDate: "2026-08-27",
+  asOfDate: "2026-09-16",
   items: [
     {
       label: "HHS Section 504 deadline extended to May 11, 2027",
@@ -71,13 +74,13 @@ export const may2026RegulatorySnapshot = {
     {
       label: "DOJ Title II compliance — EXTENDED to 2027/2028",
       detail:
-        "On April 20, 2026 the DOJ issued an Interim Final Rule pushing Phase 1 (entities ≥50,000 pop.) from April 24, 2026 to April 26, 2027, and Phase 2 (smaller entities, special districts) to April 26, 2028. WCAG 2.1 Level AA remains the standard. The public comment window closed June 19, 2026; as of August 27, 2026 no final rule has issued and the extension does not pause private Title III litigation.",
+        "On April 20, 2026 the DOJ issued an Interim Final Rule pushing Phase 1 (entities ≥50,000 pop.) from April 24, 2026 to April 26, 2027, and Phase 2 (smaller entities, special districts) to April 26, 2028. WCAG 2.1 Level AA remains the standard. The public comment window closed June 22, 2026; as of September 16, 2026 no final rule has issued and the extension does not pause private Title III litigation.",
       tone: "warning" as const,
     },
     {
       label: "2025 federal filings closed at 3,117",
       detail:
-        "Seyfarth Shaw identified 3,117 federal website-accessibility lawsuits in 2025, 27% more than in 2024. As of August 27, 2026 Seyfarth has not published a comparable mid-year federal count for 2026, so this tracker does not present a 2026 filing projection as an observed count.",
+        "Seyfarth Shaw identified 3,117 federal website-accessibility lawsuits in 2025, 27% more than in 2024. Seyfarth's 2026 mid-year report, published September 9, 2026, counts 5,006 federal ADA Title III filings in the first half of 2026 against a four-year first-half average of 4,463. That count covers every Title III filing, not website cases specifically, and Seyfarth has still not broken out a mid-year website figure. This tracker therefore carries no 2026 website filing count, and 5,006 should not be read against the 3,117 above.",
       tone: "info" as const,
     },
     {
@@ -132,7 +135,7 @@ export const keyRulings: KeyRuling[] = [
     date: "2026-05-21",
     caseName: "NFB challenges DOJ and HHS deadline extensions",
     court: "U.S. District Court for the District of Maryland",
-    summary: "The National Federation of the Blind filed suit challenging the interim final rules that extended the first DOJ Title II and HHS Section 504 web-accessibility deadlines by one year. The complaint asks the court to set the extensions aside under the Administrative Procedure Act. As of August 27, 2026 the case remains pending with no reported ruling.",
+    summary: "The National Federation of the Blind filed suit challenging the interim final rules that extended the first DOJ Title II and HHS Section 504 web-accessibility deadlines by one year. The complaint asks the court to set the extensions aside under the Administrative Procedure Act. As of September 16, 2026 the case remains pending with no reported ruling.",
     significance: "The operative dates are extended, but the litigation means covered organizations should monitor the case and continue remediation rather than treating the delay as a permanent change.",
     outcome: "plaintiff",
     type: "Litigation",
@@ -142,7 +145,7 @@ export const keyRulings: KeyRuling[] = [
     date: "2025-07-11",
     caseName: "Alcazar v. Fashion Nova — $5.15M Proposed Class Settlement",
     court: "U.S. District Court, N.D. Cal. (No. 4:20-cv-01434)",
-    summary: "Fashion Nova agreed to a proposed $5.15 million class settlement concerning claims that its website was inaccessible to blind shoppers using screen readers. The proposal includes injunctive relief and potential payments of up to $4,000 for eligible California class members. Fashion Nova denies wrongdoing, and the agreement is not an admission of liability. The DOJ filed a statement of interest opposing the deal in February 2026, and after a March 30, 2026 evidentiary hearing the matter remains under review, with no final approval reported as of August 27, 2026.",
+    summary: "Fashion Nova agreed to a proposed $5.15 million class settlement concerning claims that its website was inaccessible to blind shoppers using screen readers. The proposal includes injunctive relief and potential payments of up to $4,000 for eligible California class members. Fashion Nova denies wrongdoing, and the agreement is not an admission of liability. The DOJ filed a statement of interest opposing the deal in February 2026, and after a March 30, 2026 evidentiary hearing the matter remains under review, with no final approval reported as of September 16, 2026.",
     significance: "The proposed amount is one of the largest publicly reported resolutions involving website accessibility. Because court approval has been contested, it should be described as a proposed settlement rather than a final judgment or paid award.",
     outcome: "settled",
     type: "Settlement",

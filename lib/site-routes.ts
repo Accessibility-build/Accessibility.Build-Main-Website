@@ -101,8 +101,8 @@ const research: SiteRoute[] = [
   { route: "/research/disability-statistics", label: "US Disability Prevalence", group: "Research", lastModified: "2026-08-27", priority: 0.95 },
   { route: "/research/accessibility-salary", label: "Digital Accessibility Salary Report", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
   { route: "/research/european-accessibility-act", label: "European Accessibility Act Tracker", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
-  { route: "/research/accessibility-laws", label: "Accessibility Laws by Jurisdiction", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
-  { route: "/research/accessibility-lawsuits", label: "Accessibility Lawsuit Tracker", group: "Research", lastModified: "2026-08-27", priority: 0.93 },
+  { route: "/research/accessibility-laws", label: "Accessibility Laws by Jurisdiction", group: "Research", lastModified: "2026-09-16", priority: 0.94 },
+  { route: "/research/accessibility-lawsuits", label: "Accessibility Lawsuit Tracker", group: "Research", lastModified: "2026-09-16", priority: 0.93 },
 ]
 
 const compliance: SiteRoute[] = [

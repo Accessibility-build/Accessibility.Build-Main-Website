@@ -74,7 +74,7 @@ export default function AccessibilityLawsuitsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-01-15"
-        dateModified={getRouteDate("/research/accessibility-lawsuits") ?? "2026-08-27"}
+        dateModified={getRouteDate("/research/accessibility-lawsuits") ?? "2026-09-16"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-lawsuits"
         wordCount={3500}
@@ -126,7 +126,7 @@ export default function AccessibilityLawsuitsPage() {
               reported costs, states, and legal developments without mixing incompatible datasets.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-slate-300">
-              <time dateTime="2026-08-27">Updated August 27, 2026</time>
+              <time dateTime="2026-09-16">Updated September 16, 2026</time>
               <span aria-hidden="true" className="text-slate-600">|</span>
               <span>Federal series through 2025</span>
             </div>
@@ -419,7 +419,7 @@ export default function AccessibilityLawsuitsPage() {
               description="Federal-court website accessibility lawsuit filings by year, industry and state, reported settlement costs, and key rulings, from Seyfarth Shaw's manually reviewed series and industry litigation reports."
               pageUrl="https://accessibility.build/research/accessibility-lawsuits"
               datePublished="2026-08-27"
-              dateModified="2026-08-27"
+              dateModified={getRouteDate("/research/accessibility-lawsuits") ?? "2026-09-16"}
               temporalCoverage="2018/2025"
               attribution="Seyfarth Shaw; UsableNet; AudioEye; court records"
               withSchema={true}

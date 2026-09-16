@@ -11,7 +11,7 @@ import { DatasetDownloads } from "@/components/research/dataset-downloads"
 export const metadata: Metadata = {
   title: "Accessibility Laws by Jurisdiction: Global Tracker",
   description:
-    clampDescription("Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed August 27, 2026."),
+    clampDescription("Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed September 16, 2026."),
   keywords: [
     "accessibility laws",
     "ada compliance",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     images: [{ url: "/api/og?title=Accessibility%20Laws%20by%20Jurisdiction&section=Research", width: 1200, height: 630, alt: "Accessibility Laws by Jurisdiction" }],
     title: "Accessibility Laws by Jurisdiction: Global Tracker",
     description:
-      "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed August 27, 2026.",
+      "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed September 16, 2026.",
     url: "https://accessibility.build/research/accessibility-laws",
     type: "article",
   },
@@ -71,7 +71,7 @@ export default function AccessibilityLawsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-03-15"
-        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-08-27"}
+        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-09-16"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-laws"
         wordCount={4000}
@@ -90,7 +90,7 @@ export default function AccessibilityLawsPage() {
         description="Structured dataset of 50+ accessibility laws and regulations across 35+ jurisdictions worldwide, including WCAG requirements, penalties, enforcement mechanisms, and compliance deadlines."
         url="https://accessibility.build/research/accessibility-laws"
         datePublished="2026-03-15"
-        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-08-27"}
+        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-09-16"}
         creator={{ name: "Accessibility.build", url: "https://accessibility.build" }}
         temporalCoverage="1959/2026"
         keywords={[
@@ -131,7 +131,7 @@ export default function AccessibilityLawsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-4xl">
             <p className="text-blue-300 font-semibold text-sm tracking-wider uppercase mb-4">
-              Research Report &bull; Updated August 27, 2026 &bull; 35+ Jurisdictions
+              Research Report &bull; Updated September 16, 2026 &bull; 35+ Jurisdictions
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               Accessibility Laws{" "}
@@ -181,7 +181,7 @@ export default function AccessibilityLawsPage() {
               ADA Title II compliance for state and local government websites serving 50,000+
               people was extended from April 24, 2026 to April 26, 2027 by a DOJ Interim Final
               Rule issued April 20, 2026. The extension is being challenged in court, so
-              remediation should continue. Checked August 27, 2026.
+              remediation should continue. Checked September 16, 2026.
             </p>
           </div>
         </div>
@@ -378,7 +378,7 @@ export default function AccessibilityLawsPage() {
               description="Digital accessibility statutes, the WCAG version each names, who they apply to, enforcement routes, penalties and key dates, across US federal, US state, EU, UK, Canadian and Asia-Pacific jurisdictions."
               pageUrl="https://accessibility.build/research/accessibility-laws"
               datePublished="2026-08-27"
-              dateModified="2026-08-27"
+              dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-09-16"}
               temporalCoverage="1990/2028"
               attribution="primary legislation and regulators"
               withSchema={false}

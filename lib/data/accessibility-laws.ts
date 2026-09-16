@@ -4,6 +4,10 @@
 // Interim Final Rule; HHS Section 504 deadline extended May 2026; Caen court ruling on the EAA
 // (June 4, 2026); UK Services Code of Practice in force August 5, 2026; FCC caption display
 // settings compliance date reached August 17, 2026; California AB 2190 status from leginfo.
+// Re-reviewed September 16, 2026: California AB 2190 died on the inactive file when the 2025-26
+// session's August 31, 2026 bill-passage deadline passed (last action still May 21, 2026 per
+// leginfo). EUR-Lex NIM for CELEX 32019L0882 re-counted at 378 measures across 27 member states,
+// unchanged. No DOJ final rule, no ruling in the NFB challenge, and still no confirmed EAA fine.
 
 export interface AccessibilityLaw {
   id: string
@@ -192,7 +196,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "3,252 ADA/Unruh filings in 2025, leading all states. AB 1757 died without passage in 2024; its successor AB 2190, which would mandate WCAG conformance for California business websites, was moved to the Assembly inactive file on May 21, 2026 and had not been revived as of August 27, 2026.",
+    recentUpdate: "3,252 ADA/Unruh filings in 2025, leading all states. AB 1757 died without passage in 2024; its successor AB 2190, which would mandate WCAG conformance for California business websites, was ordered to the Assembly inactive file on May 21, 2026 and was never taken back up. August 31, 2026 was the final day for each house to pass bills in the 2025-26 session, so the bill died there and would have to be reintroduced in the 2027-28 session. California still has no statutory WCAG mandate for private business websites.",
     sourceUrl: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=51.&lawCode=CIV",
   },
   {
@@ -562,8 +566,10 @@ export const enforcementTrends: EnforcementTrend[] = [
 ]
 
 // ===== UPCOMING DEADLINES =====
-// Reviewed August 27, 2026. The original April 24, 2026 ADA Title II deadline was extended
-// before it took effect by the DOJ Interim Final Rule of April 20, 2026.
+// Reviewed September 16, 2026. The original April 24, 2026 ADA Title II deadline was extended
+// before it took effect by the DOJ Interim Final Rule of April 20, 2026. That rule took effect
+// on publication and its comment period closed June 22, 2026 (Federal Register 2026-07663); no
+// final rule has issued, so every date below still rests on the interim rule.
 export const upcomingDeadlines: UpcomingDeadline[] = [
   {
     date: "2026-12-31",

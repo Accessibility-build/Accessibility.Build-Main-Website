@@ -8,6 +8,7 @@ import {
   topStates,
 } from "@/lib/data/lawsuit-statistics"
 import { accessibilityLaws, lawsSummary } from "@/lib/data/accessibility-laws"
+import { getRouteDate } from "@/lib/site-routes"
 import snapshot from "@/lib/data/accessibility-snapshot.json"
 import disability from "@/lib/data/disability-statistics.json"
 import eaa from "@/lib/data/european-accessibility-act.json"
@@ -50,7 +51,7 @@ function build(): Record<string, Dataset> {
     lawsuits: {
       name: "US website accessibility lawsuits",
       page: "https://accessibility.build/research/accessibility-lawsuits",
-      lastUpdated: "2026-08-27",
+      lastUpdated: getRouteDate("/research/accessibility-lawsuits") ?? "2026-09-16",
       tables: {
         byYear: lawsuitsByYear as unknown as Row[],
         byIndustry: lawsuitsByIndustry as unknown as Row[],
@@ -69,7 +70,7 @@ function build(): Record<string, Dataset> {
     laws: {
       name: "Accessibility laws by jurisdiction",
       page: "https://accessibility.build/research/accessibility-laws",
-      lastUpdated: "2026-08-27",
+      lastUpdated: getRouteDate("/research/accessibility-laws") ?? "2026-09-16",
       tables: {
         laws: accessibilityLaws.map((l) => ({
           ...l,

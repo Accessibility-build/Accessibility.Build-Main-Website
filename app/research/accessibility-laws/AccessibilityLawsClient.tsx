@@ -247,7 +247,7 @@ export function AccessibilityLawsClient() {
     doc.setFontSize(10)
     doc.setTextColor(100)
     doc.text("Comprehensive legal landscape analysis | accessibility.build", 14, 30)
-    doc.text("Last Updated: August 27, 2026", 14, 36)
+    doc.text("Last Updated: September 16, 2026", 14, 36)
 
     // Table 1: Federal Laws
     doc.setTextColor(0)
@@ -1092,7 +1092,7 @@ export function AccessibilityLawsClient() {
             "Pending legislation may not pass as proposed",
             "International penalty amounts are converted to USD at approximate rates",
           ]}
-          lastUpdated="August 27, 2026"
+          lastUpdated="September 16, 2026"
         />
       </section>
 
