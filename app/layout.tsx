@@ -361,6 +361,9 @@ export default function RootLayout({
           <link rel="alternate" type="application/atom+xml" title="Accessibility.build Blog Atom Feed" href="/atom.xml" />
           <link rel="alternate" type="text/plain" title="Accessibility.build LLMs.txt" href="/llms.txt" />
 
+          {/* SAIRO indexing verification widget */}
+          <script src="https://sairo.app/widget.js" data-site="sk_3bnin7qkjqj7f4zq2z8qfgxh" async></script>
+
           {/* Critical inline CSS for above-the-fold content */}
           <style dangerouslySetInnerHTML={{
             __html: `
