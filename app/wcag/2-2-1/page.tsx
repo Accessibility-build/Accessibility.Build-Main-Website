@@ -54,19 +54,6 @@ export const metadata: Metadata = {
     description: 'Master WCAG 2.2.1 Timing Adjustable with interactive timing controls and implementation guidance.',
     images: ['/api/og?title=WCAG%202.2.1%20Timing%20Adjustable&section=WCAG'],
   },
-  robots: {
-    index: true,
-    follow: true,
-    nocache: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
 }
 
 const faqs = [

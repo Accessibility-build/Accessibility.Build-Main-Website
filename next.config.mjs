@@ -133,6 +133,49 @@ const nextConfig = {
                 }
             ]
         }, {
+            // Build assets must stay FETCHABLE. robots.txt allows /_next/static/
+            // on purpose so crawlers can render the site, and Googlebot loads
+            // subresources for rendering regardless of this header. But fetchable
+            // also made every hashed chunk an indexing candidate: Search Console
+            // (Sept 2026) listed 133 /_next/static/ URLs under "Crawled -
+            // currently not indexed", 68% of that report, burying the 22 real
+            // pages in it. Vercel Skew Protection multiplies the count further by
+            // appending ?dpl=<deploymentId>, so one chunk hash appears once per
+            // deployment. noindex keeps them renderable and out of the index.
+            // Same approach /api/og already takes for OG images.
+            source: '/_next/static/:path*',
+            headers: [{
+                key: 'X-Robots-Tag',
+                value: 'noindex'
+            }]
+        }, {
+            // A PWA manifest is machine configuration, not a page.
+            source: '/manifest.webmanifest',
+            headers: [{
+                key: 'X-Robots-Tag',
+                value: 'noindex'
+            }]
+        }, {
+            // The Atom feed duplicates /feed.xml in another format and is only
+            // referenced as rel="alternate". feed.xml is deliberately left
+            // indexable: robots.txt submits it as a sitemap, and Google accepts
+            // RSS as a sitemap format.
+            source: '/atom.xml',
+            headers: [{
+                key: 'X-Robots-Tag',
+                value: 'noindex'
+            }]
+        }, {
+            // Download files behind /procurement, not pages of their own. The
+            // three .md files were competing with /procurement for the same
+            // content. Desktop updater files are machine-read. The sample audit
+            // report PDF at /downloads/ is left indexable on purpose.
+            source: '/downloads/:dir(procurement|desktop)/:path*',
+            headers: [{
+                key: 'X-Robots-Tag',
+                value: 'noindex'
+            }]
+        }, {
             // The desktop updater must always see the freshest manifest —
             // a cached copy would hide new releases from installed apps.
             source: '/downloads/desktop/latest.json',
