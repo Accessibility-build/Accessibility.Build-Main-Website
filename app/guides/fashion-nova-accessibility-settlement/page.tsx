@@ -163,7 +163,6 @@ export default function FashionNovaSettlementPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               A $5.15 Million Reminder That Websites Are Places of Business
             </h1>
-            <PageByline route="/guides/fashion-nova-accessibility-settlement" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               In 2025, online fashion retailer Fashion Nova agreed to a{" "}
               <strong>$5.15 million</strong> class-action settlement after
@@ -173,6 +172,7 @@ export default function FashionNovaSettlementPage() {
               case. Here is what happened, how the money was structured, and why
               every e-commerce operator should read it as a warning.
             </p>
+            <PageByline route="/guides/fashion-nova-accessibility-settlement" variant="hero" />
           </header>
 
           <section className="mb-10 grid grid-cols-2 sm:grid-cols-4 gap-4">

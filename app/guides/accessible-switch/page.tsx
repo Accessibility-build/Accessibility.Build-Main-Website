@@ -284,7 +284,6 @@ export default function AccessibleSwitchGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Switch &amp; Toggle Guide
               </h1>
-              <PageByline route="/guides/accessible-switch" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A toggle switch is not a checkbox wearing a costume. This guide
                 covers <code>role=&quot;switch&quot;</code> and{" "}
@@ -295,6 +294,7 @@ export default function AccessibleSwitchGuidePage() {
                 owe, and immediate-effect semantics — with copy-ready code mapped
                 to WCAG 2.2.
               </p>
+              <PageByline route="/guides/accessible-switch" variant="hero" align="center" />
             </div>
           </section>
 

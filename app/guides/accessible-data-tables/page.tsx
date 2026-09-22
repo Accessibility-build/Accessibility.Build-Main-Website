@@ -216,7 +216,6 @@ export default function AccessibleDataTablesGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Data Tables
               </h1>
-              <PageByline route="/guides/accessible-data-tables" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A data table&rsquo;s accessibility lives almost entirely in one
                 thing: whether the markup says which cell is a header for which
@@ -228,6 +227,7 @@ export default function AccessibleDataTablesGuidePage() {
                 and when a plain table beats an ARIA grid. Mapped to WCAG 2.2,
                 with copy-ready HTML.
               </p>
+              <PageByline route="/guides/accessible-data-tables" variant="hero" align="center" />
             </div>
           </section>
 

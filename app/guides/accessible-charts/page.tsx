@@ -232,7 +232,6 @@ export default function AccessibleChartsGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Charts &amp; Data Visualization
               </h1>
-              <PageByline route="/guides/accessible-charts" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A chart is a picture of data — and the accessible version of a
                 chart is the data itself, reachable as text. This guide covers
@@ -247,6 +246,7 @@ export default function AccessibleChartsGuidePage() {
                 tooltips, what charting libraries actually give you, and React —
                 mapped to WCAG&nbsp;2.2.
               </p>
+              <PageByline route="/guides/accessible-charts" variant="hero" align="center" />
             </div>
           </section>
 

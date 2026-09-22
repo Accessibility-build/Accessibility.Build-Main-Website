@@ -170,13 +170,13 @@ export default function OverlayAlternativesGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessibility Overlay Alternatives That Actually Work
               </h1>
-              <PageByline route="/guides/accessibility-overlay-alternatives" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 If you are questioning your overlay subscription, you are in
                 good company. This guide compares the proven alternatives —
                 audits, code remediation, CI testing, and training — by cost,
                 effort, and how much legal risk each one actually removes.
               </p>
+              <PageByline route="/guides/accessibility-overlay-alternatives" variant="hero" align="center" />
             </div>
           </section>
 

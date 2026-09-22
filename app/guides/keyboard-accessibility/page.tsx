@@ -190,7 +190,6 @@ export default function KeyboardAccessibilityGuidePage() {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
               Keyboard Accessibility
             </h1>
-            <PageByline route="/guides/keyboard-accessibility" className="mb-5" />
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Every feature on a page has to be reachable and operable with a
               keyboard alone, and that one requirement decides how you build
@@ -199,6 +198,7 @@ export default function KeyboardAccessibilityGuidePage() {
               focus trapping, with interactive demos and copy-ready code mapped
               to WCAG 2.2.
             </p>
+            <PageByline route="/guides/keyboard-accessibility" variant="hero" align="center" />
           </div>
         </section>
 

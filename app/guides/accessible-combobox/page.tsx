@@ -283,7 +283,6 @@ export default function AccessibleComboboxGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Combobox &amp; Autocomplete Guide
               </h1>
-              <PageByline route="/guides/accessible-combobox" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Autocomplete is the most misused pattern in ARIA. This guide
                 covers <code>role=&quot;combobox&quot;</code> on the input,{" "}
@@ -292,6 +291,7 @@ export default function AccessibleComboboxGuidePage() {
                 focus in the field while the arrow keys move a virtual highlight
                 — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.
               </p>
+              <PageByline route="/guides/accessible-combobox" variant="hero" align="center" />
             </div>
           </section>
 

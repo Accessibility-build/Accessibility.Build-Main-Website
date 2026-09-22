@@ -170,13 +170,13 @@ export default function AutomatedVsManualTestingGuidePage() {
                 Automated vs Manual Accessibility Testing: What Each Really
                 Catches
               </h1>
-              <PageByline route="/guides/automated-vs-manual-accessibility-testing" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Automated scanners are fast, cheap, and tireless — and they
                 still miss most of what makes a site unusable for people with
                 disabilities. Here is an honest breakdown of what each method
                 catches, what it misses, and how to combine them.
               </p>
+              <PageByline route="/guides/automated-vs-manual-accessibility-testing" variant="hero" align="center" />
             </div>
           </section>
 

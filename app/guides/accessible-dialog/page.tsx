@@ -306,7 +306,6 @@ export default function AccessibleDialogGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Dialog &amp; Modal Guide
               </h1>
-              <PageByline route="/guides/accessible-dialog" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 You almost certainly do not need a hand-rolled focus trap any
                 more. This guide covers the native{" "}
@@ -317,6 +316,7 @@ export default function AccessibleDialogGuidePage() {
                 for when you cannot use the native element — with copy-ready
                 code mapped to WCAG 2.2.
               </p>
+              <PageByline route="/guides/accessible-dialog" variant="hero" align="center" />
             </div>
           </section>
 

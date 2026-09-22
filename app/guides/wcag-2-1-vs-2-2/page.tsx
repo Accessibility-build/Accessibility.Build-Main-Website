@@ -240,7 +240,6 @@ export default function Wcag21Vs22Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               WCAG 2.1 vs 2.2: What Changed and How to Migrate
             </h1>
-            <PageByline route="/guides/wcag-2-1-vs-2-2" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               WCAG 2.2 became the official W3C Recommendation on{" "}
               <strong>October 5, 2023</strong>. It adds{" "}
@@ -250,6 +249,7 @@ export default function Wcag21Vs22Page() {
               complete list of changes, what each new criterion means in
               practice, and how to move an existing WCAG 2.1 program to 2.2.
             </p>
+            <PageByline route="/guides/wcag-2-1-vs-2-2" variant="hero" />
           </header>
 
           {/* At-a-glance stats */}

@@ -144,13 +144,13 @@ export default function AccessibilityAuditCostPage() {
                 Audit Cost?
               </span>
             </h1>
-            <PageByline route="/guides/accessibility-audit-cost" className="mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               The honest answer: it depends on what you are buying, and in the UK and Ireland it is
               hard to even find out, because most firms quote on request rather than publishing
               prices. This guide sets out the price figures that are actually published, with
               sources, and the structural factors that make one audit cost five times another.
             </p>
+            <PageByline route="/guides/accessibility-audit-cost" variant="hero" />
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8">

@@ -179,7 +179,6 @@ export default function TitleIIExtensionPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               The DOJ Just Pushed Title II to 2027. Don&apos;t Slow Down.
             </h1>
-            <PageByline route="/guides/doj-title-ii-deadline-extension" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               On April 20, 2026 — four days before the original deadline — the
               U.S. Department of Justice issued an Interim Final Rule extending
@@ -189,6 +188,7 @@ export default function TitleIIExtensionPage() {
               analysis of what that means, what it does not mean, and the
               editorial position we are taking.
             </p>
+            <PageByline route="/guides/doj-title-ii-deadline-extension" variant="hero" />
           </header>
 
           <section className="mb-10 rounded-xl border-2 border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30 p-6">

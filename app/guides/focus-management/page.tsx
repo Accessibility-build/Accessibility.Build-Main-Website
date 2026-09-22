@@ -213,7 +213,6 @@ export default function FocusManagementGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Focus Management: The Complete Accessibility Guide
               </h1>
-              <PageByline route="/guides/focus-management" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Focus is the keyboard user&apos;s cursor. This guide covers every
                 part of managing it well — <code>tabindex</code>,{" "}
@@ -221,6 +220,7 @@ export default function FocusManagementGuidePage() {
                 traps, restoration, roving <code>tabindex</code>, skip links, and
                 route-change focus — with copy-ready code mapped to WCAG 2.2.
               </p>
+              <PageByline route="/guides/focus-management" variant="hero" align="center" />
             </div>
           </section>
 

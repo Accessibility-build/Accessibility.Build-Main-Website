@@ -246,7 +246,6 @@ export default function TalkBackScreenReaderTestingGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 TalkBack Screen Reader Testing: The Complete Guide
               </h1>
-              <PageByline route="/guides/talkback-screen-reader-testing" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 TalkBack is Android&rsquo;s built-in screen reader — free, already
                 on your phone, and the one most of the world&rsquo;s mobile screen
@@ -256,6 +255,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 a full cheat sheet and a repeatable workflow mapped to WCAG 2.2 AA
                 — including the mobile-only criteria the desktop never tests.
               </p>
+              <PageByline route="/guides/talkback-screen-reader-testing" variant="hero" align="center" />
             </div>
           </section>
 

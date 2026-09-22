@@ -247,7 +247,6 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 VoiceOver Screen Reader Testing: The Complete Guide
               </h1>
-              <PageByline route="/guides/voiceover-screen-reader-testing" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 VoiceOver is built into every Mac and iPhone, so it is the screen
                 reader your Apple users already have. This guide takes you from
@@ -257,6 +256,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                 <strong>macOS and iOS</strong> — with every finding mapped to
                 WCAG 2.2 AA.
               </p>
+              <PageByline route="/guides/voiceover-screen-reader-testing" variant="hero" align="center" />
             </div>
           </section>
 

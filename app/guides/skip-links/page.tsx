@@ -211,7 +211,6 @@ export default function SkipLinksGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Skip Links &amp; Bypass Blocks
               </h1>
-              <PageByline route="/guides/skip-links" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A skip link exists mainly for one group of people: sighted
                 keyboard users who never open a screen reader. Screen reader
@@ -222,6 +221,7 @@ export default function SkipLinksGuidePage() {
                 skip links silently fail, and the landmarks and headings that do
                 the real bypass work. Mapped to WCAG 2.2, with copy-ready code.
               </p>
+              <PageByline route="/guides/skip-links" variant="hero" align="center" />
             </div>
           </section>
 

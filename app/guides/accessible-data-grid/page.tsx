@@ -345,7 +345,6 @@ export default function AccessibleDataGridGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Data Grid Guide
               </h1>
-              <PageByline route="/guides/accessible-data-grid" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A data grid lets a user navigate and operate a matrix of cells —
                 a spreadsheet, an editable table, a dense grid of interactive
@@ -360,6 +359,7 @@ export default function AccessibleDataGridGuidePage() {
                 virtualized grids, and React — with copy-ready code mapped to
                 WCAG 2.2, and the one question to ask before you build one at all.
               </p>
+              <PageByline route="/guides/accessible-data-grid" variant="hero" align="center" />
             </div>
           </section>
 

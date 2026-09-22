@@ -161,10 +161,10 @@ export default function PdfAccessibilityGuidePage() {
               How to Make PDFs{" "}
               <span className="text-red-600 dark:text-red-400">Accessible</span>
             </h1>
-            <PageByline route="/guides/pdf-accessibility" className="mb-5" />
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               A complete guide to creating WCAG 2.2 and PDF/UA compliant PDF documents. From authoring to testing to remediation.
             </p>
+            <PageByline route="/guides/pdf-accessibility" variant="hero" align="center" />
           </header>
 
           {/* What Makes a PDF Accessible */}

@@ -194,13 +194,13 @@ export default function OklchApcaColorSystemsGuidePage() {
               <h1 className="text-4xl font-bold tracking-tight text-slate-950 dark:text-white md:text-6xl">
                 OKLCH + APCA color systems, end to end
               </h1>
-              <PageByline route="/guides/oklch-apca-color-systems" className="mb-5" />
               <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl">
                 The complete blueprint for shipping a color system that's
                 perceptually consistent, accessible under both WCAG 2.2 and the
                 APCA draft, survives color-vision deficiency, and exports to
                 every platform you ship to.
               </p>
+              <PageByline route="/guides/oklch-apca-color-systems" variant="hero" />
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg">
                   <Link href="/tools/accessible-palette-studio">

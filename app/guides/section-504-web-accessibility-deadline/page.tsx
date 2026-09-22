@@ -182,7 +182,6 @@ export default function Section504DeadlinePage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               Section 504 Took Effect May 11. HHS Was Right Not to Extend It.
             </h1>
-            <PageByline route="/guides/section-504-web-accessibility-deadline" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               One week ago, on May 11, 2026, the HHS Section 504 web
               accessibility rule took effect for most healthcare entities
@@ -193,6 +192,7 @@ export default function Section504DeadlinePage() {
               about which agency is treating accessibility as a civil right
               and which is treating it as a policy timeline to manage.
             </p>
+            <PageByline route="/guides/section-504-web-accessibility-deadline" variant="hero" />
           </header>
 
           <section className="mb-10 rounded-xl border-2 border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30 p-6">

@@ -239,7 +239,6 @@ export default function HowToAuditWebsiteAccessibilityPage() {
               How to Audit a Website for Accessibility: A Step-by-Step WCAG 2.2
               Guide
             </h1>
-            <PageByline route="/guides/how-to-audit-website-accessibility" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               An accessibility audit is the difference between hoping your site
               is compliant and knowing it is. This guide walks through the
@@ -248,6 +247,7 @@ export default function HowToAuditWebsiteAccessibilityPage() {
               order, with which tools, and how to document findings that your
               development team can actually fix.
             </p>
+            <PageByline route="/guides/how-to-audit-website-accessibility" variant="hero" />
           </header>
 
           <section className="mb-12">

@@ -216,7 +216,6 @@ export default function AngularAccessibilityGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Angular Accessibility: The Complete WCAG 2.2 Guide
               </h1>
-              <PageByline route="/guides/angular-accessibility" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Angular is accessible when you build it that way — and it ships a
                 dedicated toolkit to help. This guide covers the patterns that
@@ -226,6 +225,7 @@ export default function AngularAccessibilityGuidePage() {
                 accessible reactive forms — with copy-ready code and a testing
                 workflow that keeps them accessible.
               </p>
+              <PageByline route="/guides/angular-accessibility" variant="hero" align="center" />
             </div>
           </section>
 

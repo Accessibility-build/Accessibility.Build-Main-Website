@@ -204,7 +204,6 @@ export default function AIAccessibilityAuditPage() {
             <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
               Fix WCAG violations 10x faster with an AI accessibility audit
             </h1>
-            <PageByline route="/guides/ai-accessibility-audit" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10">
               Paste any accessibility issue — a symptom, a screenshot, an
               axe-core rule, or a raw code snippet — and the AI Audit Helper
@@ -212,6 +211,7 @@ export default function AIAccessibilityAuditPage() {
               copy-ready code fix in under thirty seconds. Powered by GPT-4o,
               Claude Sonnet 4, Gemini, and other frontier models.
             </p>
+            <PageByline route="/guides/ai-accessibility-audit" variant="hero" align="center" />
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/tools/accessibility-audit-helper"

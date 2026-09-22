@@ -161,7 +161,6 @@ export default function ADALawsuitCostPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               How Much Does an ADA Website Lawsuit Actually Cost?
             </h1>
-            <PageByline route="/guides/ada-website-lawsuit-cost" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               The honest answer: anywhere from a $1,000 demand letter to a $5.15
               million class-action settlement — with most single-plaintiff cases
@@ -170,6 +169,7 @@ export default function ADALawsuitCostPage() {
               or down, and why the cheapest option is almost always to fix the
               site first.
             </p>
+            <PageByline route="/guides/ada-website-lawsuit-cost" variant="hero" />
           </header>
 
           <section className="mb-12">

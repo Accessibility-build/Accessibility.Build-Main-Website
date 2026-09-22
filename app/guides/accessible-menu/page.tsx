@@ -308,7 +308,6 @@ export default function AccessibleMenuGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Menu &amp; Menu Button Guide
               </h1>
-              <PageByline route="/guides/accessible-menu" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Most dropdowns on the web should not use{" "}
                 <code>role=&quot;menu&quot;</code> at all. This guide covers when
@@ -319,6 +318,7 @@ export default function AccessibleMenuGuidePage() {
                 instead — with copy-ready HTML, JavaScript, and React mapped to
                 WCAG 2.2.
               </p>
+              <PageByline route="/guides/accessible-menu" variant="hero" align="center" />
             </div>
           </section>
 

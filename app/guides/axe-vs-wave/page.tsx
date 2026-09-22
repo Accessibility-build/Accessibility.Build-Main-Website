@@ -167,13 +167,13 @@ export default function AxeVsWaveGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 axe vs WAVE: Which Accessibility Testing Tool Should You Use?
               </h1>
-              <PageByline route="/guides/axe-vs-wave" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 axe by Deque and WAVE by WebAIM are the two most widely used
                 free accessibility checkers. They overlap less than you might
                 think — one is built for developer automation, the other for
                 visual, human-in-the-loop evaluation. Here is how to choose.
               </p>
+              <PageByline route="/guides/axe-vs-wave" variant="hero" align="center" />
             </div>
           </section>
 

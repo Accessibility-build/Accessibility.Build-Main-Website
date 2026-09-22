@@ -256,7 +256,6 @@ export default function Wcag22AaRequirementsPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               WCAG 2.2 Level AA Requirements: The Complete List
             </h1>
-            <PageByline route="/guides/wcag-2-2-aa-requirements" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               &ldquo;WCAG 2.2 AA conformance&rdquo; means satisfying{" "}
               <strong>
@@ -267,6 +266,7 @@ export default function Wcag22AaRequirementsPage() {
               them, grouped by the four POUR principles, with each requirement
               linking to a full reference page with examples and testing steps.
             </p>
+            <PageByline route="/guides/wcag-2-2-aa-requirements" variant="hero" />
           </header>
 
           {/* At-a-glance stats */}

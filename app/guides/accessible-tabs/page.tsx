@@ -263,7 +263,6 @@ export default function AccessibleTabsGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Tabs: The WAI-ARIA Tabs Pattern Guide
               </h1>
-              <PageByline route="/guides/accessible-tabs" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Tabs are one of the most-copied and most-broken UI patterns on the
                 web. This guide walks through the <code>tablist</code>,{" "}
@@ -272,6 +271,7 @@ export default function AccessibleTabsGuidePage() {
                 activation, and vertical tabs — with copy-ready HTML, JavaScript,
                 and React mapped to WCAG 2.2.
               </p>
+              <PageByline route="/guides/accessible-tabs" variant="hero" align="center" />
             </div>
           </section>
 

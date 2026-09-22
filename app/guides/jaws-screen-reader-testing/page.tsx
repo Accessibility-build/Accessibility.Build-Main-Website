@@ -248,7 +248,6 @@ export default function JawsScreenReaderTestingGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 JAWS Screen Reader Testing: The Complete Guide
               </h1>
-              <PageByline route="/guides/jaws-screen-reader-testing" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 JAWS is the screen reader your enterprise and government users
                 are most likely running — and you can test with it today without
@@ -258,6 +257,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                 keys, and a repeatable testing workflow, with full command cheat
                 sheets mapped to WCAG 2.2 AA.
               </p>
+              <PageByline route="/guides/jaws-screen-reader-testing" variant="hero" align="center" />
             </div>
           </section>
 

@@ -217,7 +217,6 @@ export default function UsingAriaGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 How to Use ARIA: Roles, States &amp; Properties
               </h1>
-              <PageByline route="/guides/using-aria" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 ARIA is the most misused tool in accessibility. It does exactly
                 one thing, adjust what a screen reader announces, and it adds no
@@ -229,6 +228,7 @@ export default function UsingAriaGuidePage() {
                 mistakes that show up most in the wild. Mapped to WCAG 2.2, with
                 copy-ready code.
               </p>
+              <PageByline route="/guides/using-aria" variant="hero" align="center" />
             </div>
           </section>
 

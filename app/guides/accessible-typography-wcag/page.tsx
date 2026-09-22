@@ -213,13 +213,13 @@ export default function AccessibleTypographyGuidePage() {
               <h1 className="text-4xl font-bold tracking-tight text-slate-950 dark:text-white md:text-6xl">
                 Accessible typography, end to end
               </h1>
-              <PageByline route="/guides/accessible-typography-wcag" className="mb-5" />
               <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:text-xl">
                 The complete blueprint for shipping a typography system that
                 meets WCAG 2.2, supports dyslexia and low-vision users, reads
                 comfortably under text-spacing overrides, and exports as design
                 tokens to every platform you ship to.
               </p>
+              <PageByline route="/guides/accessible-typography-wcag" variant="hero" />
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg">
                   <Link href="/tools/accessible-typography-studio">

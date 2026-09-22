@@ -140,7 +140,6 @@ export default function OverlaysEuUkLawPage() {
                 the EAA and UK Law?
               </span>
             </h1>
-            <PageByline route="/guides/accessibility-overlays-eu-uk-law" className="mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               Overlay vendors now market their widgets as a shortcut to European Accessibility Act
               and Equality Act compliance. But every relevant legal test in the EU and UK is
@@ -148,6 +147,7 @@ export default function OverlaysEuUkLawPage() {
               which scripts the page loads. This guide walks through what the law really requires
               and where overlays fall short of it.
             </p>
+            <PageByline route="/guides/accessibility-overlays-eu-uk-law" variant="hero" />
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8">

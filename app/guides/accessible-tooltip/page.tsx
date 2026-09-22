@@ -214,7 +214,6 @@ export default function AccessibleTooltipGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Tooltips &amp; Toggletips
               </h1>
-              <PageByline route="/guides/accessible-tooltip" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A tooltip and a toggletip look almost identical on screen, yet they
                 are two different patterns with two different rules, and picking the
@@ -225,6 +224,7 @@ export default function AccessibleTooltipGuidePage() {
                 hold a link or a button, naming an icon-only control, touch and
                 reflow, and testing. Copy-ready HTML mapped to WCAG 2.2.
               </p>
+              <PageByline route="/guides/accessible-tooltip" variant="hero" align="center" />
             </div>
           </section>
 

@@ -214,7 +214,6 @@ export default function AccessibleFormsGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Forms: The Complete WCAG 2.2 Guide
               </h1>
-              <PageByline route="/guides/accessible-forms" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Forms are where most users convert — and where accessibility
                 barriers hurt most. This guide walks through labels, required
@@ -222,6 +221,7 @@ export default function AccessibleFormsGuidePage() {
                 autocomplete, and multi-step patterns, with copy-ready code that
                 works for keyboards and screen readers.
               </p>
+              <PageByline route="/guides/accessible-forms" variant="hero" align="center" />
             </div>
           </section>
 

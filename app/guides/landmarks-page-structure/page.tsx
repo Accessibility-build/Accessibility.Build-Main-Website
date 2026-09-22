@@ -215,7 +215,6 @@ export default function LandmarksPageStructureGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 ARIA Landmarks &amp; Page Structure
               </h1>
-              <PageByline route="/guides/landmarks-page-structure" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A sighted user sees a page&rsquo;s structure at a glance: header
                 on top, main column in the middle, sidebar to one side, footer at
@@ -226,6 +225,7 @@ export default function LandmarksPageStructureGuidePage() {
                 everyone gets wrong, and how real screen readers jump around a
                 page by structure. Copy-ready HTML mapped to WCAG 2.2.
               </p>
+              <PageByline route="/guides/landmarks-page-structure" variant="hero" align="center" />
             </div>
           </section>
 

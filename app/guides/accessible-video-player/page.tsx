@@ -230,7 +230,6 @@ export default function AccessibleVideoPlayerGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Video &amp; Media Players
               </h1>
-              <PageByline route="/guides/accessible-video-player" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A single video can fail three different groups at once — deaf
                 viewers who cannot hear it, blind viewers who cannot see it, and
@@ -245,6 +244,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                 elements, embedded YouTube and Vimeo players, and React — mapped
                 to WCAG&nbsp;2.2.
               </p>
+              <PageByline route="/guides/accessible-video-player" variant="hero" align="center" />
             </div>
           </section>
 

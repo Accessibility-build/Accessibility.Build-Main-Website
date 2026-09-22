@@ -214,7 +214,6 @@ export default function AccessibleNotificationsGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Notifications &amp; Toasts
               </h1>
-              <PageByline route="/guides/accessible-notifications" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A toast asks a screen reader user to hear a message and act on it
                 before it slides away, and those two demands pull against each
@@ -228,6 +227,7 @@ export default function AccessibleNotificationsGuidePage() {
                 on color alone. Copy-ready HTML, JavaScript, and React mapped to
                 WCAG 2.2.
               </p>
+              <PageByline route="/guides/accessible-notifications" variant="hero" align="center" />
             </div>
           </section>
 

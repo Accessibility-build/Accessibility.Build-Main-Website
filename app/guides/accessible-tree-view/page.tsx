@@ -335,7 +335,6 @@ export default function AccessibleTreeViewGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Tree View Guide
               </h1>
-              <PageByline route="/guides/accessible-tree-view" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A tree view lets a user browse and select nodes in a hierarchy —
                 a file explorer, a folder picker, a settings tree. This guide
@@ -348,6 +347,7 @@ export default function AccessibleTreeViewGuidePage() {
                 code mapped to WCAG 2.2, and the one question to ask before you
                 build one at all.
               </p>
+              <PageByline route="/guides/accessible-tree-view" variant="hero" align="center" />
             </div>
           </section>
 

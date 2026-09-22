@@ -226,7 +226,6 @@ export default function AccessibleFormValidationGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Form Validation &amp; Error Handling
               </h1>
-              <PageByline route="/guides/accessible-form-validation" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Error handling is where most forms fail their users. This guide
                 covers the part every checklist glosses over: <em>when</em> to
@@ -238,6 +237,7 @@ export default function AccessibleFormValidationGuidePage() {
                 Redundant Entry and Accessible Authentication — with copy-ready
                 code mapped to WCAG&nbsp;3.3.1 through 3.3.9.
               </p>
+              <PageByline route="/guides/accessible-form-validation" variant="hero" align="center" />
             </div>
           </section>
 

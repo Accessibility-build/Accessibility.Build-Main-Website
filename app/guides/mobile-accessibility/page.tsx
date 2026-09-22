@@ -212,7 +212,6 @@ export default function MobileAccessibilityGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Mobile Accessibility: iOS, Android &amp; Mobile Web
               </h1>
-              <PageByline route="/guides/mobile-accessibility" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Mobile accessibility is not desktop accessibility on a small
                 screen, and it is not just &ldquo;turn on a screen
@@ -224,6 +223,7 @@ export default function MobileAccessibilityGuidePage() {
                 iOS and Android code, mobile web, and a real-device testing
                 workflow &mdash; mapped to WCAG 2.2 AA.
               </p>
+              <PageByline route="/guides/mobile-accessibility" variant="hero" align="center" />
             </div>
           </section>
 

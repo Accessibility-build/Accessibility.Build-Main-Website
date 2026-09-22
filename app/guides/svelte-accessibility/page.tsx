@@ -216,7 +216,6 @@ export default function SvelteAccessibilityGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Svelte Accessibility: The Complete WCAG 2.2 Guide
               </h1>
-              <PageByline route="/guides/svelte-accessibility" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Svelte is the one framework whose compiler warns you about
                 accessibility as you type. This guide covers the patterns that
@@ -227,6 +226,7 @@ export default function SvelteAccessibilityGuidePage() {
                 that announce, and accessible forms — with copy-ready code and a
                 testing workflow that keeps it accessible.
               </p>
+              <PageByline route="/guides/svelte-accessibility" variant="hero" align="center" />
             </div>
           </section>
 

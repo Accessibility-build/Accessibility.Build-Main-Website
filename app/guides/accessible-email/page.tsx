@@ -210,7 +210,6 @@ export default function AccessibleEmailGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Email HTML
               </h1>
-              <PageByline route="/guides/accessible-email" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Email clients force you into the nested-table, inline-CSS layouts
                 the web spent twenty years escaping. So the real work of email
@@ -221,6 +220,7 @@ export default function AccessibleEmailGuidePage() {
                 that block images. This guide covers all of it end to end, mapped
                 to WCAG 2.2, with copy-ready HTML.
               </p>
+              <PageByline route="/guides/accessible-email" variant="hero" align="center" />
             </div>
           </section>
 

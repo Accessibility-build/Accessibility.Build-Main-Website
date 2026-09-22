@@ -123,7 +123,7 @@ export default function ScreenReaderTestingGuidePage() {
       />
 
       <ScreenReaderGuideClient
-        byline={<PageByline route="/guides/screen-reader-testing" className="mb-6 text-slate-300 [&_a]:text-white [&_a]:decoration-slate-500" />}
+        byline={<PageByline route="/guides/screen-reader-testing" variant="hero" tone="inverse" className="mt-0 mb-6" />}
       />
 
       {/* FAQ Section with inline microdata */}

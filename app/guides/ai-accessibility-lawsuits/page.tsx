@@ -154,7 +154,6 @@ export default function AILawsuitsPage() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               AI Writes the Complaint. A Scanner Finds the Violations. You Get Sued.
             </h1>
-            <PageByline route="/guides/ai-accessibility-lawsuits" className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               The economics of web accessibility litigation just changed. For a
               decade, filing a lawsuit required a lawyer to draft it and some
@@ -164,6 +163,7 @@ export default function AILawsuitsPage() {
               projected to top <strong>5,500 federal suits</strong>. Here is how
               the machine works — and how to stay off its list.
             </p>
+            <PageByline route="/guides/ai-accessibility-lawsuits" variant="hero" />
           </header>
 
           <section className="mb-10 grid grid-cols-2 sm:grid-cols-4 gap-4">

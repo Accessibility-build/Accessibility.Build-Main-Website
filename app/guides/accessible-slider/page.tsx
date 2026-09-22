@@ -310,7 +310,6 @@ export default function AccessibleSliderGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Slider &amp; Range Input Guide
               </h1>
-              <PageByline route="/guides/accessible-slider" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A slider is a value, not two states. This guide covers the native{" "}
                 <code>&lt;input type=&quot;range&quot;&gt;</code> that gives you{" "}
@@ -322,6 +321,7 @@ export default function AccessibleSliderGuidePage() {
                 dual-thumb range sliders — with copy-ready code mapped to WCAG
                 2.2.
               </p>
+              <PageByline route="/guides/accessible-slider" variant="hero" align="center" />
             </div>
           </section>
 

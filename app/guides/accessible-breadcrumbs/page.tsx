@@ -216,7 +216,6 @@ export default function AccessibleBreadcrumbsGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Breadcrumb Navigation
               </h1>
-              <PageByline route="/guides/accessible-breadcrumbs" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A breadcrumb trail is one of the most-copied patterns on the web,
                 and almost every version gets it nearly right before tripping on a
@@ -229,6 +228,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                 on mobile without breaking either. Copy-ready HTML and JSON-LD
                 mapped to WCAG 2.2.
               </p>
+              <PageByline route="/guides/accessible-breadcrumbs" variant="hero" align="center" />
             </div>
           </section>
 

@@ -224,13 +224,13 @@ export default function AccessibilityOverlaysGuidePage() {
                 Accessibility Overlays: What They Are, Why They Fail, and What
                 To Do Instead
               </h1>
-              <PageByline route="/guides/accessibility-overlays" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Accessibility overlay widgets promise one-click WCAG compliance,
                 but the reality is far more complicated. This guide explains
                 what overlays are, why they fail, the legal risks they carry,
                 and what you should do instead.
               </p>
+              <PageByline route="/guides/accessibility-overlays" variant="hero" align="center" />
             </div>
           </section>
 

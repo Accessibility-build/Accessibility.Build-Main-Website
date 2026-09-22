@@ -217,7 +217,6 @@ export default function VueAccessibilityGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Vue Accessibility: The Complete WCAG 2.2 Guide
               </h1>
-              <PageByline route="/guides/vue-accessibility" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Vue is accessible when you build it that way. This guide covers
                 the patterns that actually trip Vue 3 apps up: semantic
@@ -228,6 +227,7 @@ export default function VueAccessibilityGuidePage() {
                 <code>&lt;script setup&gt;</code> code and a testing workflow
                 that keeps it accessible.
               </p>
+              <PageByline route="/guides/vue-accessibility" variant="hero" align="center" />
             </div>
           </section>
 

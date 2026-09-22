@@ -210,7 +210,6 @@ export default function AccessibleMapsGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Maps &amp; Geospatial Content
               </h1>
-              <PageByline route="/guides/accessible-maps" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 An interactive map is a picture of spatial data. Just like a
                 chart, the accessible version is usually the same information
@@ -221,6 +220,7 @@ export default function AccessibleMapsGuidePage() {
                 locators, embedded maps, markers, static maps, and data maps end
                 to end, mapped to WCAG 2.2, with copy-ready HTML.
               </p>
+              <PageByline route="/guides/accessible-maps" variant="hero" align="center" />
             </div>
           </section>
 

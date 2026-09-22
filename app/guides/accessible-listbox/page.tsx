@@ -329,7 +329,6 @@ export default function AccessibleListboxGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 Accessible Listbox Guide
               </h1>
-              <PageByline route="/guides/accessible-listbox" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 A listbox lets a user pick from a set of choices — one option, or
                 several. This guide covers the{" "}
@@ -343,6 +342,7 @@ export default function AccessibleListboxGuidePage() {
                 mapped to WCAG 2.2, and the one question to ask before you build
                 one at all.
               </p>
+              <PageByline route="/guides/accessible-listbox" variant="hero" align="center" />
             </div>
           </section>
 

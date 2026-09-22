@@ -212,7 +212,6 @@ export default function ReactAccessibilityGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 React Accessibility: The Complete WCAG 2.2 Guide
               </h1>
-              <PageByline route="/guides/react-accessibility" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 React is accessible when you build it that way. This guide covers
                 the patterns that actually trip React apps up — semantic JSX,
@@ -221,6 +220,7 @@ export default function ReactAccessibilityGuidePage() {
                 copy-ready components and a testing workflow that keeps them
                 accessible.
               </p>
+              <PageByline route="/guides/react-accessibility" variant="hero" align="center" />
             </div>
           </section>
 

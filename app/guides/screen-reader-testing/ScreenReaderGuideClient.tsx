@@ -275,12 +275,12 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Screen Reader Testing Guide
           </h1>
-          {byline}
           <p className="text-lg md:text-xl text-blue-100 max-w-3xl mb-6">
             The complete reference for testing websites with NVDA, JAWS,
             VoiceOver, and TalkBack. Includes setup instructions, command
             references, testing procedures, and downloadable checklists.
           </p>
+          {byline}
 
           <div className="flex flex-wrap gap-4">
             <div className="flex items-center gap-2 text-sm text-blue-200">

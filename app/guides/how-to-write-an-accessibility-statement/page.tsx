@@ -144,7 +144,6 @@ export default function HowToWriteAccessibilityStatementPage() {
                 Accessibility Statement
               </span>
             </h1>
-            <PageByline route="/guides/how-to-write-an-accessibility-statement" className="mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               Three different legal regimes ask for three different documents, and most guides
               blur them together. This one keeps the UK&apos;s PSBAR model statement, the EU Web
@@ -152,6 +151,7 @@ export default function HowToWriteAccessibilityStatementPage() {
               information duty separate, then shows you exactly what to write and how to avoid
               publishing a statement that makes things worse.
             </p>
+            <PageByline route="/guides/how-to-write-an-accessibility-statement" variant="hero" />
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8">

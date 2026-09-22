@@ -235,7 +235,6 @@ export default function NvdaScreenReaderTestingGuidePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 NVDA Screen Reader Testing: The Complete Guide
               </h1>
-              <PageByline route="/guides/nvda-screen-reader-testing" className="mb-5" />
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 NVDA is the free Windows screen reader you should test with
                 first. This guide takes you from install to a repeatable testing
@@ -243,6 +242,7 @@ export default function NvdaScreenReaderTestingGuidePage() {
                 modifier key, the Elements List, and a full keyboard command
                 cheat sheet — with every finding mapped to WCAG 2.2 AA.
               </p>
+              <PageByline route="/guides/nvda-screen-reader-testing" variant="hero" align="center" />
             </div>
           </section>
 

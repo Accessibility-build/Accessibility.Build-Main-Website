@@ -147,13 +147,13 @@ export default function VpatAcrGuidePage() {
                 Accessibility Conformance Reports
               </span>
             </h1>
-            <PageByline route="/guides/vpat-accessibility-conformance-report" className="mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               When a buyer asks for your VPAT, they are really asking a harder question: do you
               actually know how accessible your product is, and can you prove it? This guide
               explains the template, the report it becomes, the four editions, how buyers read
               one, and how to produce one that survives procurement scrutiny.
             </p>
+            <PageByline route="/guides/vpat-accessibility-conformance-report" variant="hero" />
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8">
