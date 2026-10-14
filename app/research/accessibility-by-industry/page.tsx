@@ -197,7 +197,7 @@ export default function AccessibilityByIndustryPage() {
               <Badge variant="outline">
                 {industryData.categories.length} sectors
               </Badge>
-              <Badge variant="outline">Reviewed: Aug 27, 2026</Badge>
+              <Badge variant="outline">Reviewed: Oct 14, 2026</Badge>
             </div>
 
             <div className="mt-6 max-w-4xl">

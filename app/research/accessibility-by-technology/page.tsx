@@ -210,7 +210,7 @@ export default function AccessibilityByTechnologyPage() {
               <Badge variant="secondary">Research report</Badge>
               <Badge variant="outline">Primary data: Feb 2026</Badge>
               <Badge variant="outline">46 technologies</Badge>
-              <Badge variant="outline">Reviewed: Aug 27, 2026</Badge>
+              <Badge variant="outline">Reviewed: Oct 14, 2026</Badge>
             </div>
 
             <div className="mt-6 max-w-4xl">

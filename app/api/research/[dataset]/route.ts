@@ -51,7 +51,7 @@ function build(): Record<string, Dataset> {
     lawsuits: {
       name: "US website accessibility lawsuits",
       page: "https://accessibility.build/research/accessibility-lawsuits",
-      lastUpdated: getRouteDate("/research/accessibility-lawsuits") ?? "2026-09-16",
+      lastUpdated: getRouteDate("/research/accessibility-lawsuits") ?? "2026-10-14",
       tables: {
         byYear: lawsuitsByYear as unknown as Row[],
         byIndustry: lawsuitsByIndustry as unknown as Row[],
@@ -70,7 +70,7 @@ function build(): Record<string, Dataset> {
     laws: {
       name: "Accessibility laws by jurisdiction",
       page: "https://accessibility.build/research/accessibility-laws",
-      lastUpdated: getRouteDate("/research/accessibility-laws") ?? "2026-09-16",
+      lastUpdated: getRouteDate("/research/accessibility-laws") ?? "2026-10-14",
       tables: {
         laws: accessibilityLaws.map((l) => ({
           ...l,

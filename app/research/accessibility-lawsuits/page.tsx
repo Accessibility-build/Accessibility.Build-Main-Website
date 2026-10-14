@@ -80,7 +80,7 @@ export default function AccessibilityLawsuitsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-01-15"
-        dateModified={getRouteDate("/research/accessibility-lawsuits") ?? "2026-09-16"}
+        dateModified={getRouteDate("/research/accessibility-lawsuits") ?? "2026-10-14"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-lawsuits"
         wordCount={3500}
@@ -132,7 +132,7 @@ export default function AccessibilityLawsuitsPage() {
               reported costs, states, and legal developments without mixing incompatible datasets.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-slate-300">
-              <time dateTime="2026-09-16">Updated September 16, 2026</time>
+              <time dateTime="2026-10-14">Updated October 14, 2026</time>
               <span aria-hidden="true" className="text-slate-600">|</span>
               <span>Federal series through 2025</span>
             </div>
@@ -291,15 +291,17 @@ export default function AccessibilityLawsuitsPage() {
                 While the ADA does not explicitly mention websites, multiple federal courts have
                 ruled that websites of businesses open to the public are subject to ADA Title III
                 requirements. The landmark Robles v. Domino&apos;s Pizza case in the 9th Circuit
-                established that the ADA applies to websites and mobile apps. A circuit split
-                exists, as the 11th Circuit ruled differently in Gil v. Winn-Dixie. On
+                held that the ADA covered Domino&apos;s website and app because of their nexus to
+                its restaurants. Courts still disagree on whether a website needs that connection to
+                a physical location. The 11th Circuit&apos;s 2021 panel opinion in Gil v. Winn-Dixie,
+                which went the other way, was vacated as moot and binds no court. On
                 <strong> April 20, 2026</strong>, the DOJ issued an Interim Final Rule extending
                 its Title II web/mobile compliance dates by a year — large public entities
                 (population ≥ 50,000) now must conform to WCAG 2.1 Level AA by April 26, 2027,
                 and smaller entities by April 26, 2028. HHS also extended the first Section 504
                 web-accessibility deadline for covered funding recipients to <strong>May 11,
                 2027</strong>. A federal lawsuit filed in May 2026 challenges the DOJ and HHS
-                extensions. These rules concern Title II and Section 504; they do not create a
+                extensions; the plaintiffs moved for summary judgment on September 28, 2026. These rules concern Title II and Section 504; they do not create a
                 general safe harbor from private Title III litigation.
               </p>
             </div>
@@ -434,7 +436,7 @@ export default function AccessibilityLawsuitsPage() {
               description="Federal-court website accessibility lawsuit filings by year, industry and state, reported settlement costs, and key rulings, from Seyfarth Shaw's manually reviewed series and industry litigation reports."
               pageUrl="https://accessibility.build/research/accessibility-lawsuits"
               datePublished="2026-08-27"
-              dateModified={getRouteDate("/research/accessibility-lawsuits") ?? "2026-09-16"}
+              dateModified={getRouteDate("/research/accessibility-lawsuits") ?? "2026-10-14"}
               temporalCoverage="2018/2025"
               attribution="Seyfarth Shaw; UsableNet; AudioEye; court records"
               withSchema={true}

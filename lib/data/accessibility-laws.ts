@@ -8,6 +8,15 @@
 // session's August 31, 2026 bill-passage deadline passed (last action still May 21, 2026 per
 // leginfo). EUR-Lex NIM for CELEX 32019L0882 re-counted at 378 measures across 27 member states,
 // unchanged. No DOJ final rule, no ruling in the NFB challenge, and still no confirmed EAA fine.
+// Re-reviewed October 14, 2026: NFB moved for summary judgment on September 28, 2026 (D. Md.
+// No. 1:26-cv-02007, docket entry 16), still no ruling. ETSI published EN 301 549 v4.1.1
+// (WCAG 2.2) on September 2, 2026; not yet cited in the Official Journal (NDA Ireland expects
+// December 16, 2026). v3.2.1 is cited only under the Web Accessibility Directive, not the EAA. Hawaii Act 257 signed
+// July 14, 2026; HCRC proposed rules posted September 18, 2026 (comments to October 30, 2026).
+// Corrected: Section 508 still incorporates WCAG 2.0 AA (2017 refresh); Canada ACA business
+// dates are December 5, 2028. Enforcement chart now reuses the lawsuit tracker's federal series.
+
+import { lawsuitsByYear } from "./lawsuit-statistics"
 
 export interface AccessibilityLaw {
   id: string
@@ -36,8 +45,6 @@ export interface AccessibilityLaw {
 export interface EnforcementTrend {
   year: number
   usLawsuits: number
-  euEnforcement: number
-  total: number
 }
 
 export interface UpcomingDeadline {
@@ -89,7 +96,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     status: "active",
     keyDate: "2027-04-26",
     keyDateLabel: "Extended compliance deadline for entities serving 50,000+ people",
-    recentUpdate: "DOJ final rule (April 2024) formally requires WCAG 2.1 AA for state/local government websites. On April 20, 2026 a DOJ Interim Final Rule extended the compliance deadlines by one year: April 26, 2027 for entities serving 50,000+ people and April 26, 2028 for smaller entities and special districts. The National Federation of the Blind is challenging the extension in federal court.",
+    recentUpdate: "DOJ final rule (April 2024) formally requires WCAG 2.1 AA for state/local government websites. On April 20, 2026 a DOJ Interim Final Rule extended the compliance deadlines by one year: April 26, 2027 for entities serving 50,000+ people and April 26, 2028 for smaller entities and special districts. The National Federation of the Blind is challenging the extension in federal court (D. Md. No. 1:26-cv-02007) and moved for summary judgment on September 28, 2026; no ruling as of October 14, 2026.",
     sourceUrl: "https://www.ada.gov/resources/2024-03-08-web-rule/",
   },
   {
@@ -122,7 +129,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     yearEnacted: 1998,
     effectiveDate: "2001-06-21",
     appliesTo: ["government"],
-    wcagVersion: "2.0 AA (WCAG 2.2 incorporated 2024)",
+    wcagVersion: "2.0 AA (36 CFR 1194, 2017 refresh)",
     enforcement: ["complaints", "government"],
     penalties: {
       description: "Federal agencies must comply. Non-compliance results in corrective action orders and potential funding impacts.",
@@ -131,7 +138,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "WCAG 2.2 incorporated into Section 508 standards in 2024. GSA audit found only 23% of top federal websites fully conform.",
+    recentUpdate: "The Revised 508 Standards (36 CFR Part 1194, January 2017 refresh) incorporate WCAG 2.0 Level AA by reference; the Access Board has not adopted WCAG 2.1 or 2.2. The FY2025 Governmentwide Section 508 Assessment, published March 2026, rated 60 federal agencies on conformance and program maturity.",
     sourceUrl: "https://www.section508.gov/",
   },
   {
@@ -152,7 +159,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "HHS extended the first web and mobile-app compliance deadline under its Section 504 rule to May 11, 2027 for recipients with 15 or more employees (May 10, 2028 for smaller recipients) via a May 2026 interim final rule that is being challenged in court. Increasingly used in education and healthcare accessibility complaints alongside ADA claims.",
+    recentUpdate: "HHS extended the first web and mobile-app compliance deadline under its Section 504 rule to May 11, 2027 for recipients with 15 or more employees (May 10, 2028 for smaller recipients) via a May 2026 interim final rule that the NFB is challenging in the same D. Md. case (summary judgment motion filed September 28, 2026). Increasingly used in education and healthcare accessibility complaints alongside ADA claims.",
     sourceUrl: "https://www.hhs.gov/civil-rights/for-individuals/section-504/",
   },
   {
@@ -380,7 +387,29 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     status: "active",
     recentUpdate: "Active enforcement through state human rights commission.",
   },
-
+  {
+    id: "hawaii-act-257",
+    jurisdiction: "Hawaii",
+    region: "us-state",
+    lawName: "Hawaii Act 257 (2026): Digital Accessibility in Public Accommodations",
+    citation: "SLH 2026, Act 257 (S.B. 2852); proposed HAR Title 12, Ch. 46, Subch. 10",
+    yearEnacted: 2026,
+    effectiveDate: "2026-07-14",
+    appliesTo: ["private", "ecommerce"],
+    wcagVersion: "2.1 AA (proposed rules)",
+    enforcement: ["complaints", "regulatory"],
+    penalties: {
+      description: "A violation of the rules is an unlawful discriminatory practice under HRS chapter 489, enforced through the Hawaii Civil Rights Commission complaint process.",
+      maxFine: "Set by HRS ch. 489",
+      maxFineNumeric: 0,
+      currency: "USD",
+    },
+    status: "pending",
+    keyDate: "2026-10-30",
+    keyDateLabel: "Public comment closes on the HCRC proposed digital accessibility rules",
+    recentUpdate: "Signed July 14, 2026, Act 257 makes it a discriminatory practice for a place of public accommodation to require technology that is not accessible, and directs the Hawaii Civil Rights Commission to adopt rules consistent with the DOJ Title II web rule. The HCRC posted proposed rules on September 18, 2026: WCAG 2.1 Level A and AA for web content and mobile apps, 24 months after the final rule for businesses with 100 or more employees and 36 months for everyone else. Comments close October 30, 2026 and the size threshold is still open for comment, so dates and tiers may change.",
+    sourceUrl: "https://labor.hawaii.gov/hcrc/notice-seeking-public-comment-on-proposed-admin-rules-on-digital-accessibility/",
+  },
   // ========== INTERNATIONAL ==========
   {
     id: "eu-eaa",
@@ -402,7 +431,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     status: "active",
     keyDate: "2025-06-28",
     keyDateLabel: "EAA enforcement began across all EU member states",
-    recentUpdate: "Enforceable since June 28, 2025. Covers e-commerce, banking, transport, telecoms. First court ruling: on June 4, 2026 the Tribunal judiciaire de Caen ordered Carrefour to make its site and app accessible within six months under a 500 euro daily penalty, holding accessibility to be an obligation of result. The Dutch regulator ACM reported in March 2026 that 61% of the largest Dutch webshops fail accessibility requirements and warned of enforcement.",
+    recentUpdate: "Enforceable since June 28, 2025. Covers e-commerce, banking, transport, telecoms. First court ruling: on June 4, 2026 the Tribunal judiciaire de Caen ordered Carrefour to make its site and app accessible within six months under a 500 euro daily penalty, holding accessibility to be an obligation of result. The Dutch regulator ACM reported in March 2026 that 61% of the largest Dutch webshops fail accessibility requirements; in June 2026 it met the 10 weakest and said it would re-test them after three months, with fines possible. In France the Lille court dismissed a similar case against Auchan in May 2026 and the associations have appealed. ETSI published EN 301 549 v4.1.1, which incorporates WCAG 2.2 and maps to the EAA, on September 2, 2026. No edition is yet cited in the Official Journal under the EAA (v3.2.1, WCAG 2.1 AA, is cited only for the Web Accessibility Directive and is the working benchmark), so the EAA's presumption of conformity becomes available when v4.1.1 is cited, expected December 2026. No member-state regulator has publicly confirmed an EAA fine as of October 14, 2026.",
     sourceUrl: "https://ec.europa.eu/social/main.jsp?catId=1202",
   },
   {
@@ -444,7 +473,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "CAD",
     },
     status: "active",
-    recentUpdate: "Amending regulations registered December 5, 2025 (SOR/2025-255) add ICT requirements incorporating the CAN/ASC EN 301 549 standard, phasing in from December 2027 for the federal public sector and large federally regulated employers. Penalties up to $250K CAD.",
+    recentUpdate: "Amending regulations registered December 5, 2025 (SOR/2025-255) add ICT requirements incorporating the CAN/ASC EN 301 549 standard, Federal public sector web pages must conform from December 5, 2027; large and medium-sized federally regulated businesses follow on December 5, 2028 for web pages (and, for large businesses, mobile apps and digital documents). Employee training is due December 5, 2027. Penalties up to $250K CAD.",
     sourceUrl: "https://laws-lois.justice.gc.ca/eng/acts/A-0.6/",
   },
   {
@@ -482,13 +511,13 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     wcagVersion: "2.2 AA (recommended)",
     enforcement: ["complaints", "government"],
     penalties: {
-      description: "Complaints to AHRC. Court-ordered damages and compliance orders. Now covers SaaS, AI tools, IoT.",
+      description: "Complaints to AHRC. Court-ordered damages and compliance orders.",
       maxFine: "AUD 100,000",
       maxFineNumeric: 65000,
       currency: "AUD",
     },
     status: "active",
-    recentUpdate: "April 2025 AHRC guidance expanded coverage to SaaS, AI tools, and IoT interfaces. WCAG 2.2 AA recommended as benchmark.",
+    recentUpdate: "The DDA applies to goods, services and facilities offered online. The AHRC's World Wide Web Access advisory notes point to WCAG as the benchmark for accessible online services. The DDA itself does not name a WCAG version.",
     sourceUrl: "https://www.legislation.gov.au/Details/C2022C00367",
   },
   {
@@ -554,19 +583,16 @@ export const accessibilityLaws: AccessibilityLaw[] = [
 ]
 
 // ===== ENFORCEMENT TRENDS (2018-2025) =====
-export const enforcementTrends: EnforcementTrend[] = [
-  { year: 2018, usLawsuits: 2258, euEnforcement: 12, total: 2270 },
-  { year: 2019, usLawsuits: 2256, euEnforcement: 28, total: 2284 },
-  { year: 2020, usLawsuits: 2523, euEnforcement: 45, total: 2568 },
-  { year: 2021, usLawsuits: 2352, euEnforcement: 67, total: 2419 },
-  { year: 2022, usLawsuits: 2387, euEnforcement: 89, total: 2476 },
-  { year: 2023, usLawsuits: 2281, euEnforcement: 124, total: 2405 },
-  { year: 2024, usLawsuits: 2454, euEnforcement: 187, total: 2641 },
-  { year: 2025, usLawsuits: 3117, euEnforcement: 312, total: 3429 },
-]
+// US federal website-accessibility filings, reused from the lawsuit tracker so the two research
+// pages cannot disagree. The earlier EU enforcement series had no traceable source and was removed:
+// no member state publishes a comparable count of EAA or Web Accessibility Directive actions.
+export const enforcementTrends: EnforcementTrend[] = lawsuitsByYear.map((d) => ({
+  year: d.year,
+  usLawsuits: d.federalCourt,
+}))
 
 // ===== UPCOMING DEADLINES =====
-// Reviewed September 16, 2026. The original April 24, 2026 ADA Title II deadline was extended
+// Reviewed October 14, 2026. The original April 24, 2026 ADA Title II deadline was extended
 // before it took effect by the DOJ Interim Final Rule of April 20, 2026. That rule took effect
 // on publication and its comment period closed June 22, 2026 (Federal Register 2026-07663); no
 // final rule has issued, so every date below still rests on the interim rule.
@@ -580,7 +606,7 @@ export const upcomingDeadlines: UpcomingDeadline[] = [
   {
     date: "2027-04-26",
     jurisdiction: "US Federal (ADA Title II)",
-    description: "Extended deadline: state and local government entities serving 50,000+ people must conform to WCAG 2.1 AA. Moved from April 24, 2026 by the DOJ Interim Final Rule of April 20, 2026; the extension is being challenged in court by the NFB.",
+    description: "Extended deadline: state and local government entities serving 50,000+ people must conform to WCAG 2.1 AA. Moved from April 24, 2026 by the DOJ Interim Final Rule of April 20, 2026; the extension is being challenged in court by the NFB, which moved for summary judgment on September 28, 2026.",
     impact: "critical",
   },
   {
@@ -598,7 +624,13 @@ export const upcomingDeadlines: UpcomingDeadline[] = [
   {
     date: "2027-12-05",
     jurisdiction: "Canada (Federal ACA)",
-    description: "First wave of the Accessible Canada Regulations ICT requirements (SOR/2025-255, incorporating CAN/ASC EN 301 549) comes into force, two years after registration.",
+    description: "First wave of the Accessible Canada Regulations ICT requirements (SOR/2025-255, incorporating CAN/ASC EN 301 549): federal public sector web pages, federal accessibility statements, and digital accessibility training for public sector, large and medium-sized employers.",
+    impact: "medium",
+  },
+  {
+    date: "2028-12-05",
+    jurisdiction: "Canada (Federal ACA)",
+    description: "Second wave of SOR/2025-255: large and medium-sized federally regulated businesses must make new and updated web pages conform, large businesses also new mobile apps and digital documents, and large businesses publish their first accessibility statement.",
     impact: "medium",
   },
   {
@@ -647,7 +679,7 @@ export const wcagVersionGroups = [
   {
     version: "WCAG 2.1 AA",
     color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
-    laws: ["ADA Title II", "ADA Title III (de facto)", "EU/EAA (EN 301 549)", "Canada ACA", "Colorado HB21-1110", "California Unruh (via ADA)"],
+    laws: ["ADA Title II", "ADA Title III (de facto)", "EU/EAA (EN 301 549)", "Canada ACA", "Colorado HB21-1110", "California Unruh (via ADA)", "Hawaii Act 257 (proposed rules)"],
   },
   {
     version: "WCAG 2.0 AA",

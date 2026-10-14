@@ -159,7 +159,7 @@ export default function AccessibilitySalaryPage() {
             "Research report",
             `Survey ${salaryData.surveyPeriod}`,
             `${salaryData.responses} responses`,
-            "Reviewed: Aug 27, 2026",
+            "Reviewed: Oct 14, 2026",
           ]}
           headline={`Full-time digital accessibility professionals averaged $${overall.averageSalaryUsd.toLocaleString()}, but experience is what separates the field: past ten years the average jumps to $${(byExperience[1].averageUsd ?? 0).toLocaleString()}, a ${salaryData.experienceGapPercent}% premium.`}
           sourceName={salaryData.source.name}

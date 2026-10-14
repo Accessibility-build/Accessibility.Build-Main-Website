@@ -158,7 +158,7 @@ export default function FashionNovaSettlementPage() {
           <header className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 dark:bg-red-950/40 text-red-800 dark:text-red-200 text-xs font-semibold uppercase tracking-wide mb-5">
               <span aria-hidden="true">●</span>
-              Case Study · Updated July 9, 2026
+              Case Study · Updated October 14, 2026
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               A $5.15 Million Reminder That Websites Are Places of Business
@@ -280,9 +280,10 @@ export default function FashionNovaSettlementPage() {
             <p>
               It is worth keeping perspective: the overwhelming majority of the{" "}
               <Link href="/research/accessibility-lawsuits">
-                5,000+ web accessibility suits filed each year
+                roughly 4,000 to 5,000 web accessibility suits filed each year
               </Link>{" "}
-              resolve quietly for $5,000–$50,000. Fashion Nova is the tail of
+              (4,928 in 2025 by UsableNet&apos;s count of federal and New York and California
+              state courts) resolve quietly for $5,000–$50,000. Fashion Nova is the tail of
               the distribution, not the median. But it is the tail that ends
               careers and board meetings.
             </p>

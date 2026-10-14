@@ -75,7 +75,7 @@ const faqs = [
   {
     question: "What standard do I need to meet?",
     answer:
-      "The technical route to compliance is EN 301 549, the harmonised European standard, which incorporates WCAG at Level AA for web content. Conformity with the harmonised standard gives a presumption of conformity with the accessibility requirements. The currently cited version is EN 301 549 v3.2.1, and a v4 aligned to WCAG 2.2 is in the ETSI approval pipeline in 2026, so building to WCAG 2.2 Level AA now is the sensible target for web content.",
+      "The technical route to compliance is EN 301 549, the harmonised European standard, which incorporates WCAG at Level AA for web content. Once a version is cited in the Official Journal under the EAA, conforming to it gives a presumption of conformity with the accessibility requirements. ETSI published V4.1.1, aligned to WCAG 2.2 and mapped to the EAA, on 2 September 2026; the National Disability Authority expects its citation on 16 December 2026. Until then v3.2.1 is cited only for the Web Accessibility Directive, so building to WCAG 2.2 Level AA now is the sensible target for web content.",
   },
   {
     question: "Which Irish regulator do I answer to?",
@@ -374,15 +374,18 @@ export default function EAAIrelandCompliancePage() {
               <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
                 EN 301 549
               </Link>
-              , the harmonised European accessibility standard. Conformity with the harmonised
-              standard gives a presumption of conformity with the accessibility requirements, which
-              is the strongest position a business can put itself in.
+              , the European ICT accessibility standard. Once a version of it is cited in the
+              Official Journal under the EAA, conformity with it gives a presumption of conformity
+              with the accessibility requirements, which is the strongest position a business can
+              put itself in.
             </p>
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
-              For web content, EN 301 549 incorporates WCAG at Level AA. The currently cited
-              version of the standard is EN 301 549 v3.2.1, and a v4 aligned to WCAG 2.2 is in the
-              ETSI approval pipeline in 2026. Building to WCAG 2.2 Level AA now means you meet the
-              current standard and are already positioned for the next one.
+              For web content, EN 301 549 incorporates WCAG at Level AA. Version 3.2.1 (WCAG 2.1)
+              is the edition cited today, for the Web Accessibility Directive. ETSI published V4.1.1,
+              aligned to WCAG 2.2, on 2 September 2026, and the National Disability Authority
+              expects it to be cited in the Official Journal on 16 December 2026, which would make
+              it the first edition cited under the EAA. Building to WCAG 2.2 Level AA now means you
+              meet the current benchmark and are already positioned for the next one.
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Our{" "}

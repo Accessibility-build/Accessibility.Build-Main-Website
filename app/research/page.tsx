@@ -68,7 +68,7 @@ const researchReports = [
   {
     title: "Accessibility Testing Tools Benchmark",
     description:
-      "axe-core, Lighthouse, HTML_CodeSniffer and IBM Equal Access run against one page seeded with thirty known WCAG defects. Which tool finds what, which defects nobody finds, and what a Lighthouse score of 49 means.",
+      "axe-core, Lighthouse, HTML_CodeSniffer and IBM Equal Access run against one page seeded with thirty known WCAG defects. Which tool finds what, which defects nobody finds, and what a Lighthouse score of 46 means.",
     icon: BarChart3,
     badge: "Original test",
     badgeColor:

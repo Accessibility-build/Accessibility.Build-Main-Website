@@ -70,7 +70,7 @@ const faqs = [
   {
     question: "What does the EAA actually require for a website or app?",
     answer:
-      "Covered services must be perceivable, operable, understandable, and robust — the same four principles as WCAG. In practice, conformance with EN 301 549 (which incorporates WCAG 2.1 Level AA for web content and adds requirements for software, documents, and support services) gives a presumption of conformity. Beyond the interface itself, the EAA requires accessible information about the service, an explanation of how the accessibility requirements are met (usually published in an accessibility statement), and accessible customer support and feedback channels.",
+      "Covered services must be perceivable, operable, understandable, and robust: the same four principles as WCAG. In practice, the benchmark is EN 301 549, which incorporates WCAG Level AA for web content and adds requirements for software, documents, and support services. Conformance with it gives a formal presumption of conformity once a version is cited in the Official Journal under the EAA; V4.1.1 (WCAG 2.2), published in September 2026, is expected to be the first, with citation anticipated in December 2026. Beyond the interface itself, the EAA requires accessible information about the service, an explanation of how the accessibility requirements are met (usually published in an accessibility statement), and accessible customer support and feedback channels.",
   },
   {
     question: "What are the EAA deadlines?",
@@ -264,9 +264,9 @@ export default function EAACompliancePage() {
             title="The EAA, the numbers"
             facts={[
               { value: "28 Jun 2025", label: "Date the obligations began to apply to in-scope products and services", source: "Directive (EU) 2019/882, Article 31(2)", sourceHref: "/research/european-accessibility-act", asOf: "2025-06-28" },
-              { value: "27 of 27", label: "member states that have notified transposing measures, 378 national instruments in total", source: "European Commission transposition register", sourceHref: "/research/european-accessibility-act", asOf: "2026-08-27" },
-              { value: "WCAG 2.1 AA", label: "The web standard incorporated by EN 301 549 v3.2.1, the harmonised standard the EAA relies on", source: "ETSI EN 301 549 v3.2.1", sourceHref: "/compliance/en-301-549", asOf: "2021-03-01" },
-              { value: "v4.1.1", label: "The EN 301 549 revision that moves the baseline to WCAG 2.2, expected to be cited in the Official Journal in late 2026", source: "ETSI", sourceHref: "/blog/en-301-549-v4-1-1-wcag-2-2-eaa", asOf: "2026-08-12" },
+              { value: "27 of 27", label: "member states that have notified transposing measures, 379 national instruments in total", source: "European Commission transposition register", sourceHref: "/research/european-accessibility-act", asOf: "2026-10-14" },
+              { value: "WCAG 2.1 AA", label: "The web standard incorporated by EN 301 549 v3.2.1, the edition cited today for the Web Accessibility Directive and the working benchmark for the EAA", source: "ETSI EN 301 549 v3.2.1", sourceHref: "/compliance/en-301-549", asOf: "2021-03-01" },
+              { value: "v4.1.1", label: "The EN 301 549 revision that moves the baseline to WCAG 2.2, published 2 September 2026 and expected to be cited in the Official Journal, the first edition cited under the EAA, in December 2026", source: "ETSI", sourceHref: "/compliance/en-301-549", asOf: "2026-10-14" },
               { value: "28 Jun 2030", label: "End of the transitional period for service contracts agreed before the application date", source: "Directive (EU) 2019/882, Article 32", sourceHref: "/research/european-accessibility-act", asOf: "2025-06-28" },
               { value: "EUR 60,000", label: "Maximum fine on indictment in Ireland, with up to 18 months' imprisonment; penalties are set by each member state", source: "Irish transposing legislation", sourceHref: "/compliance/eaa-ireland", asOf: "2026-08-27" },
             ]}
@@ -451,12 +451,14 @@ export default function EAACompliancePage() {
               The EAA states functional accessibility requirements rather than
               naming a web standard directly. Conformity is presumed when you
               meet harmonized standards referenced in the Official Journal of
-              the EU — and for ICT, that standard is{" "}
+              the EU under the Act. For ICT, that standard is{" "}
               <Link href="/compliance/en-301-549">EN 301 549</Link>. Its web
               chapter incorporates{" "}
               <Link href="/wcag">WCAG 2.1 Level A and AA</Link> success
               criteria, so for websites and apps, WCAG 2.1 AA conformance is
-              the practical technical baseline. EN 301 549 goes further than
+              the practical technical baseline today. V4.1.1, published in
+              September 2026 and expected to be the first edition cited under
+              the Act, moves that baseline to WCAG 2.2. EN 301 549 goes further than
               WCAG alone: it also covers non-web documents, software,
               hardware, and support services.
             </p>

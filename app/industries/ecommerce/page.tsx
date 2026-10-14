@@ -73,7 +73,7 @@ const legalExposure = [
     icon: Gavel,
     title: "ADA Title III — the primary driver",
     description:
-      "Courts have repeatedly held that the websites and apps of businesses selling goods to the public fall under Title III of the Americans with Disabilities Act. The Ninth Circuit's Robles v. Domino's decision (which the Supreme Court declined to disturb) cemented that an inaccessible site or app can violate the ADA. Retail and e-commerce absorb roughly 70% of the resulting litigation — around 3,500 of the 5,000+ combined federal and state suits filed in 2025 — because storefronts are easy for plaintiff firms to test at scale: scan the product pages, attempt a checkout with a screen reader, and file.",
+      "Courts have repeatedly held that the websites and apps of businesses selling goods to the public fall under Title III of the Americans with Disabilities Act. The Ninth Circuit's Robles v. Domino's decision (which the Supreme Court declined to disturb) cemented that an inaccessible site or app can violate the ADA. Retail and e-commerce absorb roughly 70% of the resulting litigation (around 3,450 of the 4,928 suits UsableNet counted across federal courts and New York and California state courts in 2025), because storefronts are easy for plaintiff firms to test at scale: scan the product pages, attempt a checkout with a screen reader, and file.",
   },
   {
     icon: Scale,

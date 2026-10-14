@@ -11,7 +11,7 @@ import { DatasetDownloads } from "@/components/research/dataset-downloads"
 export const metadata: Metadata = {
   title: "Accessibility Laws by Jurisdiction: Global Tracker",
   description:
-    clampDescription("Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed September 16, 2026."),
+    clampDescription("Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed October 14, 2026."),
   keywords: [
     "accessibility laws",
     "ada compliance",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     images: [{ url: "/api/og?title=Accessibility%20Laws%20by%20Jurisdiction&section=Research", width: 1200, height: 630, alt: "Accessibility Laws by Jurisdiction" }],
     title: "Accessibility Laws by Jurisdiction: Global Tracker",
     description:
-      "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed September 16, 2026.",
+      "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed October 14, 2026.",
     url: "https://accessibility.build/research/accessibility-laws",
     type: "article",
   },
@@ -71,7 +71,7 @@ export default function AccessibilityLawsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-03-15"
-        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-09-16"}
+        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-10-14"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-laws"
         wordCount={4000}
@@ -90,7 +90,7 @@ export default function AccessibilityLawsPage() {
         description="Structured dataset of 50+ accessibility laws and regulations across 35+ jurisdictions worldwide, including WCAG requirements, penalties, enforcement mechanisms, and compliance deadlines."
         url="https://accessibility.build/research/accessibility-laws"
         datePublished="2026-03-15"
-        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-09-16"}
+        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-10-14"}
         creator={{ name: "Accessibility.build", url: "https://accessibility.build" }}
         temporalCoverage="1959/2026"
         keywords={[
@@ -131,7 +131,7 @@ export default function AccessibilityLawsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-4xl">
             <p className="text-blue-300 font-semibold text-sm tracking-wider uppercase mb-4">
-              Research Report &bull; Updated September 16, 2026 &bull; 35+ Jurisdictions
+              Research Report &bull; Updated October 14, 2026 &bull; 35+ Jurisdictions
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               Accessibility Laws{" "}
@@ -180,8 +180,9 @@ export default function AccessibilityLawsPage() {
               <span className="uppercase tracking-wider">DEADLINE EXTENDED:</span>{" "}
               ADA Title II compliance for state and local government websites serving 50,000+
               people was extended from April 24, 2026 to April 26, 2027 by a DOJ Interim Final
-              Rule issued April 20, 2026. The extension is being challenged in court, so
-              remediation should continue. Checked September 16, 2026.
+              Rule issued April 20, 2026. The National Federation of the Blind is challenging the
+              extension in federal court and moved for summary judgment on September 28, 2026; there
+              is no ruling yet, so remediation should continue. Checked October 14, 2026.
             </p>
           </div>
         </div>
@@ -236,8 +237,11 @@ export default function AccessibilityLawsPage() {
                 Most current laws reference WCAG 2.1 Level AA as the minimum standard. The US
                 ADA Title II rule explicitly requires WCAG 2.1 AA for state and local government
                 websites. The European Accessibility Act references EN 301 549, which aligns with
-                WCAG 2.1 AA. Some jurisdictions are beginning to reference WCAG 2.2, published in
-                October 2023.
+                WCAG 2.1 AA. ETSI published EN 301 549 v4.1.1, which incorporates WCAG 2.2, on
+                September 2, 2026; once it is cited in the EU Official Journal (expected December
+                2026) it becomes the first edition that gives a presumption of conformity under the
+                EAA. The UK already uses WCAG 2.2 AA as its public sector benchmark, while US
+                Section 508 still incorporates WCAG 2.0 AA.
               </p>
             </div>
           </div>
@@ -256,8 +260,9 @@ export default function AccessibilityLawsPage() {
                 Penalties vary significantly by jurisdiction. Under US federal law, first-time ADA
                 violations can result in civil penalties up to $75,000, with subsequent violations
                 reaching $150,000. Private lawsuits can add attorney fees and damages. In the EU,
-                member states set their own penalties for EAA non-compliance, with some countries
-                imposing fines up to 5% of annual turnover.
+                member states set their own penalties for EAA non-compliance, so maximum fines range
+                widely from one country to the next. As of October 14, 2026 no regulator has
+                publicly confirmed an EAA fine.
               </p>
             </div>
           </div>
@@ -299,7 +304,8 @@ export default function AccessibilityLawsPage() {
                 days before that deadline, the DOJ issued an Interim Final Rule extending it by one
                 year to April 26, 2027, with smaller entities and special districts now due April
                 26, 2028. The National Federation of the Blind is challenging the extension in
-                federal court, and WCAG 2.1 AA remains the required standard, so covered entities
+                federal court (it moved for summary judgment on September 28, 2026, with no ruling
+                yet), and WCAG 2.1 AA remains the required standard, so covered entities
                 should continue remediation. This is still the first time the DOJ has codified
                 specific technical standards for web accessibility under the ADA.
               </p>
@@ -321,7 +327,9 @@ export default function AccessibilityLawsPage() {
                 California&apos;s Unruh Civil Rights Act allows statutory damages of $4,000 per
                 violation. New York requires state agency websites to meet WCAG standards, and
                 Colorado&apos;s HB21-1110 mandates accessibility for state and local government
-                technology. These state laws often provide additional private rights of action not
+                technology. Hawaii&apos;s Act 257 (2026) goes further: proposed rules published in
+                September 2026 would require private places of public accommodation to meet WCAG
+                2.1 AA, phased in 24 to 36 months after the rules are final. These state laws often provide additional private rights of action not
                 available under Section 508.
               </p>
             </div>
@@ -378,7 +386,7 @@ export default function AccessibilityLawsPage() {
               description="Digital accessibility statutes, the WCAG version each names, who they apply to, enforcement routes, penalties and key dates, across US federal, US state, EU, UK, Canadian and Asia-Pacific jurisdictions."
               pageUrl="https://accessibility.build/research/accessibility-laws"
               datePublished="2026-08-27"
-              dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-09-16"}
+              dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-10-14"}
               temporalCoverage="1990/2028"
               attribution="primary legislation and regulators"
               withSchema={false}

@@ -18,7 +18,7 @@ import { clampDescription } from "@/lib/metadata"
 const ROUTE = "/research/accessibility-testing-tools-benchmark"
 const pageTitle = "Accessibility Testing Tools Benchmark 2026"
 const pageDescription =
-  "axe-core, Lighthouse, HTML_CodeSniffer (via Pa11y) and IBM Equal Access run against one page seeded with thirty known WCAG defects. Per-defect results, what none of them found, and why a Lighthouse score of 49 is not a measure of anything."
+  "axe-core, Lighthouse, HTML_CodeSniffer (via Pa11y) and IBM Equal Access run against one page seeded with thirty known WCAG defects. Per-defect results, what none of them found, and why a Lighthouse score of 46 is not a measure of anything. Re-run October 2026 on current versions."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -106,10 +106,10 @@ const DEFECTS: Defect[] = [
 ]
 
 const TOOLS: { key: keyof Pick<Defect, "axe" | "lighthouse" | "htmlcs" | "ibm">; name: string; version: string; note: string }[] = [
-  { key: "axe", name: "axe-core", version: "4.13.0 via @axe-core/puppeteer", note: "Also reported 26 'region' and 2 'landmark-one-main' best-practice findings that are not WCAG failures." },
-  { key: "lighthouse", name: "Lighthouse", version: "12.8.2, accessibility category only", note: "Runs a subset of axe rules. Scored the page 49 out of 100." },
+  { key: "axe", name: "axe-core", version: "4.14.0 via @axe-core/puppeteer", note: "Also reported 26 'region' and 2 'landmark-one-main' best-practice findings that are not WCAG failures." },
+  { key: "lighthouse", name: "Lighthouse", version: "13.5.0 (axe-core 4.14.0), accessibility category only", note: "Runs a subset of axe rules. Scored the page 46 out of 100; Lighthouse 12.8.2 scored the same page 49 while finding the same fifteen defects." },
   { key: "htmlcs", name: "HTML_CodeSniffer", version: "via Pa11y 10.0.0, WCAG2AA standard", note: "Reported 17 messages; one was a misclassification of a data table." },
-  { key: "ibm", name: "IBM Equal Access", version: "accessibility-checker 4.0.31, WCAG_2_2 policy", note: "20 violations plus 10 potential violations flagged for review." },
+  { key: "ibm", name: "IBM Equal Access", version: "accessibility-checker 4.0.34, WCAG_2_2 policy", note: "20 violations plus 10 potential violations flagged for review." },
 ]
 
 const RESULT_LABEL: Record<Result, { text: string; cls: string; glyph: string }> = {
@@ -127,7 +127,7 @@ const FAQS = [
   {
     question: "Which automated accessibility tool finds the most issues?",
     answer:
-      "On a page with thirty seeded WCAG defects, IBM Equal Access found 19 outright and flagged 3 more for review; axe-core found 16 and flagged 2; Lighthouse found 15; HTML_CodeSniffer found 12. Twelve defects were found by all four, and five were found by none. Coverage is not the only measure: axe produced 28 best-practice findings that are not WCAG failures, and HTML_CodeSniffer misclassified a data table.",
+      "On a page with thirty seeded WCAG defects, IBM Equal Access found 19 outright and flagged 3 more for review; axe-core found 16 and flagged 2; Lighthouse found 15; HTML_CodeSniffer found 12. A re-run on 14 October 2026 with axe-core 4.14.0, Lighthouse 13.5.0 and accessibility-checker 4.0.34 produced identical per-defect results. Twelve defects were found by all four, and five were found by none. Coverage is not the only measure: axe produced 28 best-practice findings that are not WCAG failures, and HTML_CodeSniffer misclassified a data table.",
   },
   {
     question: "What percentage of WCAG issues can automated tools detect?",
@@ -137,7 +137,7 @@ const FAQS = [
   {
     question: "Is a Lighthouse accessibility score of 100 the same as WCAG conformance?",
     answer:
-      "No. Lighthouse runs a subset of axe-core's rules and scores them by weight. This fixture scored 49 with fifteen detected failures; a page could score 100 and still fail every judgement-based criterion. WebAIM's 2026 evaluation found a median Lighthouse score of 85 across the top million home pages, of which 95.9% had detectable failures.",
+      "No. Lighthouse runs a subset of axe-core's rules and scores them by weight. This fixture scored 46 with fifteen detected failures (49 under the previous Lighthouse version, with the same fifteen found); a page could score 100 and still fail every judgement-based criterion. WebAIM's 2026 evaluation found a median Lighthouse score of 85 across the top million home pages, of which 95.9% had detectable failures.",
   },
   {
     question: "Should I run more than one tool?",
@@ -175,7 +175,7 @@ export default function ToolsBenchmarkPage() {
               </ol>
             </nav>
             <p className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">
-              Research &middot; Original test, September 2026
+              Research &middot; Original test, September 2026 &middot; Re-run 14 October 2026
             </p>
             <h1 className="mt-3 max-w-4xl font-serif text-4xl font-semibold leading-[1.1] tracking-tight text-slate-900 dark:text-white sm:text-5xl">
               Four accessibility checkers, one page, thirty known defects
@@ -197,12 +197,12 @@ export default function ToolsBenchmarkPage() {
             <KeyFacts
               title="Headline results"
               facts={[
-                { value: "19 of 30", label: "defects found outright by IBM Equal Access, the most of the four", source: "This benchmark", asOf: "2026-09-02" },
-                { value: "16 of 30", label: "found by axe-core, with 2 more flagged for review", source: "This benchmark", asOf: "2026-09-02" },
-                { value: "15 of 30", label: "found by Lighthouse, which scored the page 49 out of 100", source: "This benchmark", asOf: "2026-09-02" },
-                { value: "12 of 30", label: "found by HTML_CodeSniffer via Pa11y", source: "This benchmark", asOf: "2026-09-02" },
-                { value: `${foundByAll} of 30`, label: "found by all four tools", source: "This benchmark", asOf: "2026-09-02" },
-                { value: `${foundByNone} of 30`, label: "found by none of them", source: "This benchmark", asOf: "2026-09-02" },
+                { value: "19 of 30", label: "defects found outright by IBM Equal Access, the most of the four", source: "This benchmark", asOf: "2026-10-14" },
+                { value: "16 of 30", label: "found by axe-core, with 2 more flagged for review", source: "This benchmark", asOf: "2026-10-14" },
+                { value: "15 of 30", label: "found by Lighthouse, which scored the page 46 out of 100", source: "This benchmark", asOf: "2026-10-14" },
+                { value: "12 of 30", label: "found by HTML_CodeSniffer via Pa11y", source: "This benchmark", asOf: "2026-10-14" },
+                { value: `${foundByAll} of 30`, label: "found by all four tools", source: "This benchmark", asOf: "2026-10-14" },
+                { value: `${foundByNone} of 30`, label: "found by none of them", source: "This benchmark", asOf: "2026-10-14" },
               ]}
             />
 
@@ -216,9 +216,12 @@ export default function ToolsBenchmarkPage() {
                   to a WCAG 2.2 success criterion, chosen to span the common failure classes
                   (text alternatives, names and labels, contrast, structure, ARIA, keyboard, timing
                   and media) and to include several that require judgement rather than pattern
-                  matching. It was served over HTTP from localhost and each tool was run on 2
+                  matching. It was served over HTTP from localhost and each tool was first run on 2
                   September 2026 in headless Chrome 143 with default settings and the WCAG 2.2 AA
-                  policy where a tool offers one.
+                  policy where a tool offers one. On 14 October 2026 we re-ran all four on their
+                  current releases (axe-core 4.14.0, Lighthouse 13.5.0, Pa11y 10.0.0 and
+                  accessibility-checker 4.0.34) in headless Chrome 155. Every per-defect result was
+                  the same; only the Lighthouse score moved, from 49 to 46.
                 </p>
                 <p>
                   A defect counts as found when the tool reports a violation on the right element for
@@ -233,6 +236,12 @@ export default function ToolsBenchmarkPage() {
                     fixture page
                   </a>{" "}
                   and run it yourself. It is marked noindex; each defect is labelled in a comment.
+                  The{" "}
+                  <a href="/benchmarks/tool-benchmark-results-2026-10.json" className="font-medium text-teal-700 underline underline-offset-2 dark:text-teal-300">
+                    raw output of the October run
+                  </a>{" "}
+                  (every violation, incomplete and potential finding from each tool) is published
+                  alongside it.
                 </p>
               </div>
             </section>
@@ -358,8 +367,9 @@ export default function ToolsBenchmarkPage() {
                 </p>
                 <p>
                   <strong className="font-semibold text-slate-900 dark:text-white">A score is not a measurement.</strong>{" "}
-                  Lighthouse gave this page 49. It found fifteen of thirty defects, and its weighting
-                  means the number would move if the same defects were rearranged. WebAIM&apos;s 2026
+                  Lighthouse gave this page 49 in September and 46 in October. It found the same
+                  fifteen of thirty defects both times; the number moved with the tool version, not
+                  with the page. WebAIM&apos;s 2026
                   evaluation found a median Lighthouse score of 85 across the top million home pages,
                   95.9% of which had detectable failures. Use it to spot regressions, not to make a
                   claim.

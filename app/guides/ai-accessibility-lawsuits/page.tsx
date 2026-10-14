@@ -149,7 +149,7 @@ export default function AILawsuitsPage() {
           <header className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-950/40 text-purple-800 dark:text-purple-200 text-xs font-semibold uppercase tracking-wide mb-5">
               <span aria-hidden="true">●</span>
-              Trends · Updated July 9, 2026
+              Trends · Updated October 14, 2026
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               AI Writes the Complaint. A Scanner Finds the Violations. You Get Sued.
@@ -268,8 +268,8 @@ export default function AILawsuitsPage() {
             <p>
               AI lowers the cost of the <em>first</em> filing; repeat-defendant
               dynamics do the rest. In 2025, <strong>46% of federal cases</strong>{" "}
-              targeted companies that had already been sued, and 1,427 of the
-              year&apos;s 5,000+ suits hit prior defendants. The pattern is
+              targeted companies that had already been sued: 1,427 of the
+              year&apos;s 3,117 federal website suits hit prior defendants. The pattern is
               predictable: a business settles, does minimal or no remediation,
               and a new plaintiff — often using the same automated tools — files
               again months later. Paying to settle without fixing the site is an

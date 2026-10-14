@@ -247,7 +247,7 @@ export function AccessibilityLawsClient() {
     doc.setFontSize(10)
     doc.setTextColor(100)
     doc.text("Comprehensive legal landscape analysis | accessibility.build", 14, 30)
-    doc.text("Last Updated: September 16, 2026", 14, 36)
+    doc.text("Last Updated: October 14, 2026", 14, 36)
 
     // Table 1: Federal Laws
     doc.setTextColor(0)
@@ -657,23 +657,21 @@ export function AccessibilityLawsClient() {
       {/* Section 4: Enforcement Trends Chart */}
       <section aria-labelledby="enforcement-heading">
         <ChartSection
-          title="Enforcement Trends (2018-2025)"
-          description="US accessibility lawsuits and EU enforcement actions by year"
-          source="UsableNet, European Commission"
+          title="US Federal Website Accessibility Lawsuits (2018-2025)"
+          description="Federal-court website accessibility filings by year, the same series as the lawsuit tracker. No EU member state publishes a comparable count of enforcement actions."
+          source="Seyfarth Shaw (adatitleiii.com), via the Accessibility.build lawsuit tracker"
           downloadData={{
             filename: "accessibility-enforcement-trends",
             data: enforcementTrends.map((d) => ({
               year: d.year,
-              usLawsuits: d.usLawsuits,
-              euEnforcement: d.euEnforcement,
-              total: d.total,
+              usFederalWebsiteLawsuits: d.usLawsuits,
             })),
           }}
         >
           <div
             className="h-[350px] md:h-[420px]"
             role="img"
-            aria-label="Bar chart showing US accessibility lawsuits and EU enforcement actions from 2018 to 2025."
+            aria-label={`Bar chart of US federal website accessibility lawsuits by year: ${enforcementTrends.map((d) => `${d.year}, ${d.usLawsuits.toLocaleString()}`).join("; ")}.`}
           >
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
@@ -704,22 +702,18 @@ export function AccessibilityLawsClient() {
                     boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                   }}
                   formatter={(value: number, name: string) => {
-                    if (name === "usLawsuits") return [value.toLocaleString(), "US Lawsuits"]
-                    if (name === "euEnforcement")
-                      return [value.toLocaleString(), "EU Enforcement"]
+                    if (name === "usLawsuits") return [value.toLocaleString(), "US federal lawsuits"]
                     return [value.toLocaleString(), name]
                   }}
                   labelFormatter={(label) => `Year: ${label}`}
                 />
                 <Legend
                   formatter={(value) => {
-                    if (value === "usLawsuits") return "US Lawsuits"
-                    if (value === "euEnforcement") return "EU Enforcement"
+                    if (value === "usLawsuits") return "US federal lawsuits"
                     return value
                   }}
                 />
                 <Bar dataKey="usLawsuits" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="euEnforcement" fill="#10b981" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -1085,14 +1079,14 @@ export function AccessibilityLawsClient() {
             },
           ]}
           sampleSize="50+ laws across 35+ jurisdictions"
-          dateRange="1959 - August 2026"
+          dateRange="1959 - October 2026"
           limitations={[
             "Laws change frequently \u2014 verify current requirements with legal counsel",
             "Penalties shown are statutory maximums; actual fines may differ",
             "Pending legislation may not pass as proposed",
             "International penalty amounts are converted to USD at approximate rates",
           ]}
-          lastUpdated="September 16, 2026"
+          lastUpdated="October 14, 2026"
         />
       </section>
 

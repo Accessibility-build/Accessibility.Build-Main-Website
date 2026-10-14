@@ -69,12 +69,12 @@ const faqs = [
   {
     question: "What is the current version of EN 301 549?",
     answer:
-      "Version 3.2.1, published in March 2021, is the established baseline and the version harmonized in the Official Journal of the EU for the Web Accessibility Directive. It aligns web, document, and software requirements with WCAG 2.1. A revised version aligned to the European Accessibility Act's requirements — and expected to track newer WCAG versions — has been in development under the European Commission's standardization request M/587; check the Official Journal for the version currently cited for each law. Conformance claims should always name the version they were tested against.",
+      "Version 3.2.1, published in March 2021, is the established baseline and the version harmonized in the Official Journal of the EU for the Web Accessibility Directive. It aligns web, document, and software requirements with WCAG 2.1. ETSI published V4.1.1 on 2 September 2026: it aligns the standard with WCAG 2.2 and adds a dedicated mapping to the European Accessibility Act. V4.1.1 has not yet been cited in the Official Journal; Ireland's National Disability Authority expects the citation on 16 December 2026. Until then no version of EN 301 549 is cited under the EAA, and v3.2.1 remains the version cited for the Web Accessibility Directive. Conformance claims should always name the version they were tested against.",
   },
   {
     question: "Who needs to conform to EN 301 549?",
     answer:
-      "Three main groups. First, EU public-sector bodies: the Web Accessibility Directive requires their websites and mobile apps to meet the harmonized standard. Second, businesses covered by the European Accessibility Act — e-commerce, banking, e-books, transport, telecoms, and covered products — since EN 301 549 is the route to a presumption of conformity. Third, vendors selling ICT to European public-sector buyers, who are routinely asked for EN 301 549 conformance evidence in procurement (the VPAT EU edition exists exactly for this). Non-EU companies serving EU customers in covered sectors are included.",
+      "Three main groups. First, EU public-sector bodies: the Web Accessibility Directive requires their websites and mobile apps to meet the harmonized standard. Second, businesses covered by the European Accessibility Act (e-commerce, banking, e-books, transport, telecoms, and covered products), since EN 301 549 is the technical benchmark regulators and buyers use, and V4.1.1 is due to become the EAA's harmonised standard once it is cited in the Official Journal. Third, vendors selling ICT to European public-sector buyers, who are routinely asked for EN 301 549 conformance evidence in procurement (the VPAT EU edition exists exactly for this). Non-EU companies serving EU customers in covered sectors are included.",
   },
   {
     question: "Is EN 301 549 a law?",
@@ -161,8 +161,8 @@ const versions = [
     note: "Current baseline cited for the Web Accessibility Directive; WCAG 2.1 A/AA for web, documents, and software",
   },
   {
-    version: "v4.1.0 (final draft, 2026)",
-    note: "In the ETSI approval pipeline: aligns web, document, and software chapters with WCAG 2.2, adds Annex ZB mapping requirements to the EAA, and rewrites the real-time text clause. Not yet published or cited in the Official Journal",
+    version: "v4.1.1 (September 2026)",
+    note: "Published by ETSI on 2 September 2026: aligns web, document, and software chapters with WCAG 2.2, adds Annex ZB mapping requirements to the EAA, and rewrites the real-time text clause. Not yet cited in the Official Journal (expected December 2026)",
   },
 ]
 
@@ -292,7 +292,10 @@ export default function EN301549Page() {
                   <Link href="/compliance/eaa">European Accessibility Act</Link>
                 </strong>{" "}
                 (Directive (EU) 2019/882), which extends accessibility duties
-                to private-sector products and services from June 28, 2025.
+                to private-sector products and services from June 28, 2025. No
+                edition is cited under the EAA yet; V4.1.1 is expected to be the
+                first, with an Official Journal citation anticipated in December
+                2026.
               </li>
             </ul>
           </section>
@@ -407,13 +410,13 @@ export default function EN301549Page() {
               </table>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-4">
-              Version 3.2.1 (March 2021) is the established baseline. A revised
-              edition aligned to the European Accessibility Act has been in
-              development under the European Commission&apos;s standardization
-              request M/587 — when citing the standard in contracts or
-              conformance reports, always name the exact version and check the
-              Official Journal for the version currently harmonized for the
-              law you care about.
+              Version 3.2.1 (March 2021) is the established baseline. Version
+              4.1.1, produced under the European Commission&apos;s
+              standardisation request M/587 and published on 2 September 2026,
+              is the edition aligned to the European Accessibility Act. When
+              citing the standard in contracts or conformance reports, always
+              name the exact version and check the Official Journal for the
+              version currently harmonised for the law you care about.
             </p>
           </section>
 
@@ -423,19 +426,21 @@ export default function EN301549Page() {
             </h2>
             <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-xl p-5 mb-6">
               <p className="text-sm text-blue-900 dark:text-blue-200 leading-relaxed">
-                <strong>Status as of 27 August 2026:</strong> the final draft, EN 301 549
-                V4.1.0 (2026-06), is public on ETSI&apos;s site and sitting in the national
-                Vote phase of the approval procedure. It has NOT been published as a final
-                standard and NOT been cited in the Official Journal, so v3.2.1 remains the
-                version that carries the legal presumption of conformity. Expect the published
-                edition and Official Journal citation to follow; until then, test and cite
-                against v3.2.1 while planning for the changes below.
+                <strong>Status as of 14 October 2026:</strong> ETSI published EN 301 549
+                V4.1.1 (2026-09) on 2 September 2026, after the national vote on the V4.1.0
+                final draft. It has NOT yet been cited in the Official Journal; Ireland&apos;s
+                National Disability Authority expects that on 16 December 2026. Until then,
+                v3.2.1 remains the version cited for the Web Accessibility Directive, and no
+                version is cited under the European Accessibility Act, so the EAA&apos;s
+                presumption of conformity is not yet available through any edition. Test
+                against WCAG 2.2 AA now, and cite the version you tested against.
               </p>
             </div>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-              These changes come from the Foreword of the final draft itself, produced by ETSI
-              under the Commission&apos;s standardisation request M/587, not from second-hand
-              summaries:
+              These changes come from the standard itself, produced by ETSI under the
+              Commission&apos;s standardisation request M/587, not from second-hand summaries.
+              We read them first in the V4.1.0 final draft and re-checked them against the
+              published V4.1.1:
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed list-disc pl-5 mb-4">
               <li>
@@ -493,7 +498,9 @@ export default function EN301549Page() {
                 <strong>Businesses covered by the EAA</strong> — e-commerce,
                 consumer banking, e-books, telecoms, transport services, and
                 manufacturers of covered devices use EN 301 549 conformance as
-                the presumption-of-conformity route. See the{" "}
+                their technical benchmark, which becomes a formal
+                presumption-of-conformity route once V4.1.1 is cited in the
+                Official Journal. See the{" "}
                 <Link href="/compliance/eaa">EAA compliance guide</Link> for
                 scope and deadlines.
               </li>

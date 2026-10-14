@@ -164,7 +164,7 @@ export default function DisabilityStatisticsPage() {
             "Research report",
             `Data year ${disabilityData.dataYear}`,
             "Public domain source",
-            "Reviewed: Aug 27, 2026",
+            "Reviewed: Oct 14, 2026",
           ]}
           headline={`${any?.prevalence}% of United States adults report a disability, about ${((any?.adults ?? 0) / 1_000_000).toFixed(1)} million people. Cognitive disability is now the largest category at ${cognitive?.prevalence}%, having overtaken mobility and grown faster than any other type.`}
           sourceName={disabilityData.source.name}

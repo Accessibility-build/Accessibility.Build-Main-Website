@@ -62,19 +62,24 @@ export const lawsuitsByYear: LawsuitYearData[] = [
 // breakout, so the federal website series above still ends at 2025. The DOJ comment-close date
 // was corrected to June 22, 2026 against the Federal Register API (document 2026-07663). NFB
 // challenge and Fashion Nova final approval both still pending; UsableNet projection unchanged.
+// Re-verified October 14, 2026: no new Seyfarth post since September 9. UsableNet's monthly
+// tracker reports 360 filings for September 2026 (federal plus NY and CA state courts) and a
+// 2025 total of 4,928. NFB moved for summary judgment September 28, 2026; no ruling. Merrell v.
+// Ralph Lauren: jury trial set for July 12, 2027 (Dkt 159); second amended complaint allowed
+// October 7, 2026 (Dkt 167). FTC accessiBe entry re-dated to the April 22, 2025 final order.
 export const may2026RegulatorySnapshot = {
-  asOfDate: "2026-09-16",
+  asOfDate: "2026-10-14",
   items: [
     {
       label: "HHS Section 504 deadline extended to May 11, 2027",
       detail:
-        "HHS extended the first Section 504 web and mobile-app compliance deadline by one year. Covered recipients with 15 or more employees now have until May 11, 2027. The comment period closed July 6, 2026. A May 2026 federal lawsuit challenges that extension, so covered organizations should track the rulemaking and litigation rather than treating the new date as settled indefinitely.",
+        "HHS extended the first Section 504 web and mobile-app compliance deadline by one year. Covered recipients with 15 or more employees now have until May 11, 2027. The comment period closed July 6, 2026. A May 2026 federal lawsuit challenges that extension (the plaintiffs moved for summary judgment on September 28, 2026), so covered organizations should track the rulemaking and litigation rather than treating the new date as settled indefinitely.",
       tone: "warning" as const,
     },
     {
       label: "DOJ Title II compliance — EXTENDED to 2027/2028",
       detail:
-        "On April 20, 2026 the DOJ issued an Interim Final Rule pushing Phase 1 (entities ≥50,000 pop.) from April 24, 2026 to April 26, 2027, and Phase 2 (smaller entities, special districts) to April 26, 2028. WCAG 2.1 Level AA remains the standard. The public comment window closed June 22, 2026; as of September 16, 2026 no final rule has issued and the extension does not pause private Title III litigation.",
+        "On April 20, 2026 the DOJ issued an Interim Final Rule pushing Phase 1 (entities ≥50,000 pop.) from April 24, 2026 to April 26, 2027, and Phase 2 (smaller entities, special districts) to April 26, 2028. WCAG 2.1 Level AA remains the standard. The public comment window closed June 22, 2026; as of October 14, 2026 no final rule has issued and the extension does not pause private Title III litigation.",
       tone: "warning" as const,
     },
     {
@@ -87,6 +92,12 @@ export const may2026RegulatorySnapshot = {
       label: "UsableNet projects roughly 6,000+ combined filings for 2026",
       detail:
         "UsableNet's mid-year 2026 report, based on combined federal and state filings recorded through June 14, projects approximately 6,176 lawsuits for 2026, with about 79% of cases against e-commerce companies and roughly 20% of sued companies running an accessibility widget or overlay. This is a projection from a combined dataset, not an observed federal count, and it is not comparable to the Seyfarth series above.",
+      tone: "info" as const,
+    },
+    {
+      label: "UsableNet counted 360 filings in September 2026",
+      detail:
+        "UsableNet's monthly tracker reports 360 new digital accessibility lawsuits for September 2026. 78 defendants had been sued before, and 91 were running a third-party accessibility widget when sued. UsableNet counts federal courts plus New York and California state courts, and includes claims about websites, mobile apps and video, so this monthly figure belongs with its 2025 total of 4,928, not with the federal website series.",
       tone: "info" as const,
     },
     {
@@ -125,7 +136,7 @@ export const keyRulings: KeyRuling[] = [
     date: "2026-07-09",
     caseName: "Merrell v. Ralph Lauren: Nationwide ADA Injunctive Class Certified",
     court: "U.S. District Court, N.D. Cal. (No. 4:23-cv-06669)",
-    summary: "Judge Haywood S. Gilliam, Jr. granted class certification in part, certifying a nationwide Rule 23(b)(2) injunctive class of blind and low-vision users over the accessibility of ralphlauren.com, reasoning that a single injunction ordering the site into ADA compliance would provide relief to every class member. A California Unruh Act damages class was denied. Per the docket, the parties stipulated to private ADR in August 2026.",
+    summary: "Judge Haywood S. Gilliam, Jr. granted class certification in part, certifying a nationwide Rule 23(b)(2) injunctive class of legally blind people who tried to use ralphlauren.com with screen-reading software, reasoning that a single injunction ordering the site into ADA compliance would provide relief to every class member. A California Unruh Act damages class was denied. Per the docket, the parties stipulated to private ADR in August 2026. An amended scheduling order (Dkt 159, August 14, 2026) sets a seven-day jury trial for July 12, 2027, and on October 7, 2026 the court granted leave to file a second amended complaint (Dkt 167).",
     significance: "One of the first nationwide injunctive classes certified in a website accessibility case. Class treatment raises the stakes well beyond the single-plaintiff, quick-settlement pattern that dominates these filings.",
     outcome: "plaintiff",
     type: "Court decision",
@@ -135,7 +146,7 @@ export const keyRulings: KeyRuling[] = [
     date: "2026-05-21",
     caseName: "NFB challenges DOJ and HHS deadline extensions",
     court: "U.S. District Court for the District of Maryland",
-    summary: "The National Federation of the Blind filed suit challenging the interim final rules that extended the first DOJ Title II and HHS Section 504 web-accessibility deadlines by one year. The complaint asks the court to set the extensions aside under the Administrative Procedure Act. As of September 16, 2026 the case remains pending with no reported ruling.",
+    summary: "The National Federation of the Blind filed suit challenging the interim final rules that extended the first DOJ Title II and HHS Section 504 web-accessibility deadlines by one year. The complaint asks the court to set the extensions aside under the Administrative Procedure Act. The case is No. 1:26-cv-02007 before Judge Richard D. Bennett. The NFB moved for summary judgment on September 28, 2026; as of October 14, 2026 there is no ruling.",
     significance: "The operative dates are extended, but the litigation means covered organizations should monitor the case and continue remediation rather than treating the delay as a permanent change.",
     outcome: "plaintiff",
     type: "Litigation",
@@ -145,7 +156,7 @@ export const keyRulings: KeyRuling[] = [
     date: "2025-07-11",
     caseName: "Alcazar v. Fashion Nova — $5.15M Proposed Class Settlement",
     court: "U.S. District Court, N.D. Cal. (No. 4:20-cv-01434)",
-    summary: "Fashion Nova agreed to a proposed $5.15 million class settlement concerning claims that its website was inaccessible to blind shoppers using screen readers. The proposal includes injunctive relief and potential payments of up to $4,000 for eligible California class members. Fashion Nova denies wrongdoing, and the agreement is not an admission of liability. The DOJ filed a statement of interest opposing the deal in February 2026, and after a March 30, 2026 evidentiary hearing the matter remains under review, with no final approval reported as of September 16, 2026.",
+    summary: "Fashion Nova agreed to a proposed $5.15 million class settlement concerning claims that its website was inaccessible to blind shoppers using screen readers. The proposal includes injunctive relief and potential payments of up to $4,000 for eligible California class members. Fashion Nova denies wrongdoing, and the agreement is not an admission of liability. The DOJ filed a statement of interest opposing the deal in February 2026, and after a March 30, 2026 evidentiary hearing the matter remains under review, with no final approval reported as of October 14, 2026.",
     significance: "The proposed amount is one of the largest publicly reported resolutions involving website accessibility. Because court approval has been contested, it should be described as a proposed settlement rather than a final judgment or paid award.",
     outcome: "settled",
     type: "Settlement",
@@ -172,14 +183,14 @@ export const keyRulings: KeyRuling[] = [
     sourceUrl: "https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/union-equality-strategy-rights-persons-disabilities-2021-2030/european-accessibility-act_en",
   },
   {
-    date: "2025-01-15",
-    caseName: "FTC v. Accessibility Overlay Provider",
+    date: "2025-04-22",
+    caseName: "FTC final order against accessiBe",
     court: "Federal Trade Commission",
-    summary: "FTC reached a $1 million settlement with a prominent accessibility overlay provider for misleading businesses about what their widget could actually do for compliance",
+    summary: "The FTC finalized its order requiring overlay vendor accessiBe to pay $1 million over claims that its AI tool could make any website WCAG compliant, and over reviews presented as independent. The order was proposed on January 3, 2025 and approved on April 22, 2025.",
     significance: "Undermines the overlay-as-compliance defense and validates lawsuit claims against widget-reliant sites",
     outcome: "plaintiff",
     type: "Enforcement",
-    sourceUrl: "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-order-requires-online-marketer-pay-1-million-deceptive-claims-its-ai-product-could-make-websites",
+    sourceUrl: "https://www.ftc.gov/news-events/news/press-releases/2025/04/ftc-approves-final-order-requiring-accessibe-pay-1-million",
   },
   {
     date: "2024-06-28",
@@ -242,8 +253,9 @@ export const lawsuitSummary = {
   totalLawsuitsFiled: 21550,
   latestYearTotal: 3117,
   yearOverYearChange: 27.1,
-  // Combined federal + state-court filings reported by UsableNet for 2025
-  combinedFederalStateTotal2025: 5000,
+  // Combined federal + NY/CA state-court filings reported by UsableNet for 2025 (its tracker FAQ,
+  // checked October 14, 2026). Previously rounded to 5,000.
+  combinedFederalStateTotal2025: 4928,
   averageSettlement: 30000,
   mostTargetedIndustry: "E-Commerce & Retail",
   mostTargetedIndustryShare: 70,

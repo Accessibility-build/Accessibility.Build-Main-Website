@@ -172,7 +172,7 @@ export default function Section508AssessmentPage() {
             "Research report",
             `${assessmentData.fiscalYear} data`,
             `${assessmentData.totalAgencies} agencies`,
-            "Reviewed: Aug 27, 2026",
+            "Reviewed: Oct 14, 2026",
           ]}
           headline={`${conformance?.percentLowOrVeryLow}% of federal agencies rated Low or Very Low on whether their technology is actually accessible. On testing and remediation, the weakest factor in the assessment, ${testing?.percentLowOrVeryLow}% rated that low.`}
           sourceName={assessmentData.source.name}

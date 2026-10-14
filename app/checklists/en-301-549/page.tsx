@@ -27,7 +27,7 @@ const faqs = [
   {
     question: "Which version of EN 301 549 does this checklist cover?",
     answer:
-      "Version 3.2.1 (March 2021), the version cited in the Official Journal of the EU and therefore the one that carries a presumption of conformity for the European Accessibility Act and the Web Accessibility Directive today. A revised edition aligned to WCAG 2.2 (v4) is in the ETSI approval pipeline; until it is published and cited in the Official Journal, v3.2.1 remains the version to test and cite. Because WCAG 2.2 is backwards-compatible, work done against WCAG 2.2 AA already satisfies the WCAG 2.1 clauses here.",
+      "Version 3.2.1 (March 2021), the version cited in the Official Journal of the EU for the Web Accessibility Directive. No version is yet cited under the European Accessibility Act. ETSI published V4.1.1, aligned to WCAG 2.2 and mapped to the EAA, on 2 September 2026; it is expected to be cited in the Official Journal in December 2026, at which point it becomes the version to test and cite for both laws. Because WCAG 2.2 is backwards-compatible, work done against WCAG 2.2 AA already satisfies the WCAG 2.1 clauses here.",
   },
   {
     question: "How many requirements does EN 301 549 contain?",
@@ -52,7 +52,7 @@ const faqs = [
   {
     question: "Is completing this checklist the same as EAA compliance?",
     answer:
-      "No checklist is. EN 301 549 conformance gives a presumption of conformity with the European Accessibility Act's technical requirements, but the summaries here are plain-language explanations, not the normative text, and self-assessment against any checklist is only as good as the testing behind it. Use this to structure and track an assessment, verify findings against the published standard, and consider a professional audit for anything with legal exposure.",
+      "No checklist is. Once a version of EN 301 549 is cited in the Official Journal under the European Accessibility Act (V4.1.1 is expected to be the first, in December 2026), conformance with it gives a presumption of conformity with the Act's accessibility requirements. Even then, the summaries here are plain-language explanations, not the normative text, and self-assessment against any checklist is only as good as the testing behind it. Use this to structure and track an assessment, verify findings against the published standard, and consider a professional audit for anything with legal exposure.",
   },
 ]
 
@@ -106,10 +106,11 @@ export default function EN301549ChecklistPage() {
         <div className="flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-800/60 dark:bg-amber-950/25">
           <TriangleAlert className="mt-0.5 h-5 w-5 shrink-0 text-amber-700 dark:text-amber-300" aria-hidden="true" />
           <p className="text-sm leading-relaxed text-amber-900 dark:text-amber-200">
-            <strong>Version note (reviewed 27 August 2026):</strong> this checklist follows{" "}
-            <strong>v3.2.1</strong>, the version currently cited in the Official Journal and the
-            one that carries legal presumption of conformity. The v4 revision aligned to WCAG 2.2
-            is in the ETSI approval pipeline;{" "}
+            <strong>Version note (reviewed 14 October 2026):</strong> this checklist follows{" "}
+            <strong>v3.2.1</strong>, the version currently cited in the Official Journal for the
+            Web Accessibility Directive. ETSI published V4.1.1, aligned to WCAG 2.2 and mapped to
+            the European Accessibility Act, on 2 September 2026; its Official Journal citation is
+            expected in December 2026, and this checklist will move to it then;{" "}
             <Link href="/compliance/en-301-549" className="underline hover:no-underline">
               see exactly what changes in v4
             </Link>

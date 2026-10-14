@@ -209,12 +209,11 @@ export default function ScreenReaderTestingGuidePage() {
               itemType="https://schema.org/Answer"
             >
               <p itemProp="text" className="text-slate-600 dark:text-slate-400">
-                According to the WebAIM Screen Reader Survey, JAWS holds
-                approximately 40% of the desktop screen reader market, followed
-                by NVDA at around 30%. On mobile devices, VoiceOver dominates
-                iOS usage, and TalkBack is the primary screen reader on Android.
-                Overall, JAWS and NVDA together represent roughly 70% of desktop
-                screen reader usage.
+                In WebAIM&apos;s 2026 Screen Reader User Survey (1,780
+                respondents), JAWS is the primary desktop screen reader for 55.0%
+                of users and NVDA for 32.9%, so the two together cover nearly 88%
+                of desktop use. Most users run more than one (70.3%). On mobile,
+                72.2% of respondents use VoiceOver and 29.5% use TalkBack.
               </p>
             </div>
           </div>

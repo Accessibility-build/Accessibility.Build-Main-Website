@@ -312,7 +312,7 @@ export default function ChecklistsPage() {
                   </div>
                   <div className="text-center p-4 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800/20 dark:to-slate-800/30 rounded-xl border border-slate-200 dark:border-slate-700">
                     <div className="text-2xl font-bold text-slate-700 dark:text-slate-300 mb-1">v3.2.1</div>
-                    <div className="text-xs text-slate-700 dark:text-slate-300 font-medium">Harmonised version</div>
+                    <div className="text-xs text-slate-700 dark:text-slate-300 font-medium">Version covered</div>
                   </div>
                   <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-900/30 rounded-xl border border-blue-200 dark:border-blue-700">
                     <div className="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-1">50</div>
