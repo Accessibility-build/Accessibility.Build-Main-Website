@@ -7,12 +7,18 @@ import { LawsuitTrackerClient } from "./LawsuitTrackerClient"
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
 import { DatasetDownloads } from "@/components/research/dataset-downloads"
+import { SiteScanHandoff } from "@/components/tools/site-scan-handoff"
 
 export const metadata: Metadata = {
-  title: "Accessibility Lawsuit Tracker 2026: ADA Litigation Data",
+  // Search Console, Sept 2026: the short head terms people actually type
+  // ("web accessibility lawsuits", "website accessibility lawsuits") sat on
+  // page 2 while the title carried neither phrase.
+  title: "Web Accessibility Lawsuits 2026: ADA Lawsuit Tracker",
   description:
     clampDescription("Source-linked data on U.S. website accessibility lawsuits: 21,550 identified federal filings from 2018-2025, 3,117 in 2025, state trends, reported costs, methodology, and 2026 legal updates."),
   keywords: [
+    "web accessibility lawsuits",
+    "website accessibility lawsuits",
     "accessibility lawsuits",
     "ada lawsuit tracker",
     "web accessibility litigation",
@@ -32,7 +38,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     images: [{ url: "/api/og?title=Accessibility%20Lawsuit%20Tracker%202026&section=Research", width: 1200, height: 630, alt: "Accessibility Lawsuit Tracker 2026" }],
-    title: "Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data",
+    title: "Web Accessibility Lawsuits 2026: ADA Lawsuit Tracker",
     description:
       "Source-linked federal website-accessibility lawsuit data through 2025, plus state trends, reported costs, methodology, and 2026 legal updates.",
     url: "https://accessibility.build/research/accessibility-lawsuits",
@@ -62,7 +68,7 @@ export default function AccessibilityLawsuitsPage() {
       />
 
       <ArticleStructuredData
-        headline="Accessibility Lawsuit Tracker 2026 | ADA & Digital Accessibility Litigation Data"
+        headline="Web Accessibility Lawsuits 2026: ADA Lawsuit Tracker"
         description="Comprehensive data on web accessibility lawsuits in the United States. Track trends by year, industry, state, and settlement costs."
         author={{
           name: "Accessibility.build",
@@ -118,7 +124,7 @@ export default function AccessibilityLawsuitsPage() {
               Research & Data
             </p>
             <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              Accessibility Lawsuit Tracker 2026
+              Web Accessibility Lawsuit Tracker 2026
             </h1>
             <p className="max-w-3xl text-lg leading-relaxed text-slate-300 md:text-xl">
               A source-linked view of U.S. website-accessibility litigation, built around a
@@ -187,6 +193,15 @@ export default function AccessibilityLawsuitsPage() {
       </nav>
 
       <LawsuitTrackerClient />
+
+      {/* The one place on the site where a reader arrives already worried. */}
+      <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+        <SiteScanHandoff
+          source="lawsuit_tracker"
+          heading="Is your own site exposed?"
+          body="Demand letters and complaints commonly list failures that an automated checker can detect: images without text alternatives, unlabeled form fields, empty links and buttons, and low contrast text. Paste a page and see in a minute or two whether yours has them. A clean automated scan does not prove compliance, but these are the failures a tester can find on your site in minutes."
+        />
+      </div>
 
       {/* FAQ Section with Schema.org Microdata for SEO */}
       <section id="faq" className="mx-auto max-w-7xl scroll-mt-28 px-4 py-14 sm:px-6 md:py-16 lg:px-8">

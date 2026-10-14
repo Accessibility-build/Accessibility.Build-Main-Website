@@ -50,6 +50,13 @@ export function normalizeInputUrl(rawUrl: string): URL | null {
   const trimmed = (rawUrl || "").trim()
   if (!trimmed) return null
 
+  // "ftp://host" or "javascript:..." is a different scheme, not a bare host.
+  // Prefixing it produced "https://ftp//host", which then failed as a DNS error.
+  if (/^[a-z][a-z0-9+.-]*:/i.test(trimmed) && !/^https?:\/\//i.test(trimmed)) {
+    // "example.com:8080/path" is host:port, which is still a bare host.
+    if (!/^[^/]+:\d+(\/|$)/.test(trimmed)) return null
+  }
+
   const candidate = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`
 
   try {

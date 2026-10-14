@@ -24,6 +24,7 @@ import {
   Moon,
   Sun
 } from "lucide-react"
+import { SiteScanHandoff } from "@/components/tools/site-scan-handoff"
 
 interface ColorData {
   hex: string
@@ -537,7 +538,7 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
                   className="rounded text-sm font-semibold underline underline-offset-4"
                   style={{ color: tokens.primary }}
                 >
-                  Contrast checker
+                  WCAG contrast checker
                 </a>
               </div>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -1009,6 +1010,13 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
             </CardContent>
           </Card>
 
+          <SiteScanHandoff
+            source="color_palette_generator"
+            headingLevel="h3"
+            heading="Your palette passes. Does your live site?"
+            body="A palette that meets WCAG on paper still fails in production when a brand color lands on the wrong background, a disabled state drops below 3:1, or text sits on an image. Paste a page and see the contrast and other WCAG failures that are actually shipping."
+          />
+
           {/* Accessibility Information */}
           <Card>
             <CardHeader>
@@ -1025,7 +1033,7 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
                 <CheckCircle className="h-4 w-4" />
                 <AlertDescription>
                   <strong>Remember:</strong> Always test color combinations for sufficient contrast before using them in your designs. 
-                  Use our <a href="/tools/contrast-checker" className="text-primary hover:underline">Contrast Checker</a> to validate 
+                  Use our <a href="/tools/contrast-checker" className="text-primary underline underline-offset-4">WCAG color contrast checker</a> to validate 
                   text and background color combinations meet WCAG requirements.
                 </AlertDescription>
               </Alert>

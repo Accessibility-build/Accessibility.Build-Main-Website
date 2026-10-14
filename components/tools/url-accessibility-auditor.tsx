@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+import posthog from "posthog-js"
 import { useUser } from "@clerk/nextjs"
 import { useCredits } from "@/hooks/use-credits"
 import { Button } from "@/components/ui/button"
@@ -15,6 +16,9 @@ import { Separator } from "@/components/ui/separator"
 import { toast } from "sonner"
 import Link from "next/link"
 import AccessibilityAuditTable from "./accessibility-audit-table"
+import { FreeScanUnlock, AuditNextStep } from "./free-scan-unlock"
+import { SCAN_HANDOFF_STORAGE_KEY } from "@/lib/free-scan"
+import { normalizeInputUrl } from "@/lib/url-safety"
 import { 
   Search, 
   Loader2, 
@@ -135,14 +139,21 @@ export default function UrlAccessibilityAuditor() {
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!url.trim()) return
+  const startAudit = async (rawUrl: string, source: "form" | "handoff") => {
+    // Accept "example.com" as readily as "https://example.com".
+    const normalized = normalizeInputUrl(rawUrl)
+    if (!normalized) {
+      setError("Enter a full public URL, for example https://example.com")
+      return
+    }
+    const targetUrl = normalized.toString()
 
+    setUrl(targetUrl)
     setIsSubmitting(true)
     setError(null)
     setCurrentAudit(null)
     setSelectedHistoryAudit(null)
+    posthog.capture("scan_started", { source, is_signed_in: Boolean(isSignedIn) })
 
     try {
       // Import action dynamically
@@ -152,11 +163,11 @@ export default function UrlAccessibilityAuditor() {
       setCurrentAudit({
         auditId: "pending",
         status: 'processing',
-        url: url.trim(),
+        url: targetUrl,
         createdAt: new Date().toISOString(),
       })
 
-      const result = await runUrlAccessibilityAudit(url.trim(), unlimitedAccess)
+      const result = await runUrlAccessibilityAudit(targetUrl, unlimitedAccess)
 
       if (result.status === 'failed') {
         throw new Error(result.errorMessage || "Audit failed")
@@ -164,17 +175,54 @@ export default function UrlAccessibilityAuditor() {
 
       setCurrentAudit(result)
       toast.success("Audit completed successfully!")
-      refreshCredits()
-      loadAuditHistory()
+      posthog.capture("scan_completed", {
+        source,
+        is_signed_in: Boolean(isSignedIn),
+        is_preview: Boolean(result.preview),
+        overall_score: result.overallScore,
+        total_violations: result.totalViolations,
+        locked_count: result.preview?.lockedCount ?? 0,
+      })
+      if (isSignedIn) {
+        refreshCredits()
+        loadAuditHistory()
+      }
 
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "An unknown error occurred"
+      setCurrentAudit(null)
       setError(errorMessage)
       toast.error(errorMessage)
+      posthog.capture("scan_failed", { source, is_signed_in: Boolean(isSignedIn) })
     } finally {
       setIsSubmitting(false)
     }
   }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!url.trim()) return
+    await startAudit(url, "form")
+  }
+
+  // A tool page (palette generator, contrast checker, lawsuit tracker) can hand
+  // a URL over through sessionStorage. The visitor already pressed "scan" there,
+  // so start straight away. The ref stops React's development double-invoke
+  // from spending their one free scan twice.
+  const handoffConsumed = useRef(false)
+  useEffect(() => {
+    if (handoffConsumed.current) return
+    handoffConsumed.current = true
+    try {
+      const handedOver = window.sessionStorage.getItem(SCAN_HANDOFF_STORAGE_KEY)
+      if (!handedOver) return
+      window.sessionStorage.removeItem(SCAN_HANDOFF_STORAGE_KEY)
+      void startAudit(handedOver, "handoff")
+    } catch {
+      // Storage can be blocked; the form still works.
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const copyToClipboard = (text: string, type: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -186,6 +234,11 @@ export default function UrlAccessibilityAuditor() {
 
   const deleteAudit = async () => {
     if (!currentAudit) return
+
+    if (!isSignedIn) {
+      setCurrentAudit(null)
+      return
+    }
 
     try {
       const { deleteAudit } = await import('@/app/actions/url-accessibility-auditor-actions')
@@ -320,11 +373,12 @@ export default function UrlAccessibilityAuditor() {
                     {!isSignedIn ? (
                       <Alert className="border-blue-200 bg-blue-50">
                         <Info className="h-4 w-4 text-blue-600" />
-                        <p className="mb-1 font-medium leading-none text-blue-800">Authentication Required</p>
+                        <p className="mb-1 font-medium leading-none text-blue-800">One free scan a day, no account needed</p>
                         <AlertDescription className="text-blue-700">
-                          <Link href="/sign-in" className="underline font-medium">Sign in</Link> or{" "}
-                          <Link href="/sign-up" className="underline font-medium">create an account</Link> to use this tool.
-                          <Badge variant="secondary" className="ml-2">100 free credits for new users!</Badge>
+                          You get the score, the severity breakdown and the three most severe findings.{" "}
+                          <Link href="/sign-up" className="underline font-medium">Create a free account</Link> for
+                          100 credits, full results every time and saved history, or{" "}
+                          <Link href="/sign-in" className="underline font-medium">sign in</Link>.
                         </AlertDescription>
                       </Alert>
                     ) : (
@@ -338,7 +392,9 @@ export default function UrlAccessibilityAuditor() {
                 </div>
 
                 <CardContent className="space-y-6 pt-6">
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* noValidate: startAudit accepts "example.com" and adds the scheme, which
+                      the browser's own type="url" check would reject first. */}
+                  <form onSubmit={handleSubmit} noValidate className="space-y-4">
                     <div className="space-y-2">
                       <label htmlFor="url-input" className="text-sm font-medium">
                         Website URL
@@ -346,16 +402,19 @@ export default function UrlAccessibilityAuditor() {
                       <Input
                         id="url-input"
                         type="url"
+                        inputMode="url"
+                        autoComplete="url"
                         placeholder="https://example.com"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
-                        disabled={isSubmitting || !isSignedIn}
+                        aria-invalid={error ? true : undefined}
+                        disabled={isSubmitting}
                         className="h-12 text-base"
                       />
                     </div>
 
                     {error && (
-                      <Alert className="border-red-200 bg-red-50">
+                      <Alert role="alert" className="border-red-200 bg-red-50">
                         <XCircle className="h-4 w-4 text-red-600" />
                         <p className="mb-1 font-medium leading-none text-red-800">Error</p>
                         <AlertDescription className="text-red-700">
@@ -366,7 +425,7 @@ export default function UrlAccessibilityAuditor() {
 
                     <Button 
                       type="submit" 
-                      disabled={!url.trim() || isSubmitting || !isSignedIn}
+                      disabled={!url.trim() || isSubmitting}
                       className="w-full h-12 text-base"
                     >
                       {isSubmitting ? (
@@ -377,7 +436,7 @@ export default function UrlAccessibilityAuditor() {
                       ) : (
                         <>
                           <Search className="mr-2 h-4 w-4" />
-                          Start Accessibility Audit
+                          {isSignedIn ? "Start Accessibility Audit" : "Run My Free Scan"}
                         </>
                       )}
                     </Button>
@@ -761,6 +820,19 @@ export default function UrlAccessibilityAuditor() {
                   </Card>
                 )}
 
+                {/* Free scan: the rest of the findings are held on the server */}
+                {currentAudit.preview && (
+                  <FreeScanUnlock
+                    scanId={currentAudit.preview.scanId}
+                    lockedCount={currentAudit.preview.lockedCount}
+                    onUnlocked={(violations) =>
+                      setCurrentAudit((audit) =>
+                        audit ? { ...audit, violations, preview: undefined } : audit
+                      )
+                    }
+                  />
+                )}
+
                 {/* Comprehensive Data Table */}
                 {currentAudit.violations && currentAudit.violations.length > 0 && (
                   <AccessibilityAuditTable
@@ -781,6 +853,8 @@ export default function UrlAccessibilityAuditor() {
                     }}
                   />
                 )}
+
+                <AuditNextStep isPreview={Boolean(currentAudit.preview)} />
               </div>
             )}
 
@@ -796,7 +870,7 @@ export default function UrlAccessibilityAuditor() {
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <Coins className="h-4 w-4" />
-                      <span>5 credits per audit</span>
+                      <span>{isSignedIn ? "5 credits per audit" : "1 free scan a day"}</span>
                     </div>
                     <Separator orientation="vertical" className="h-4" />
                     <div className="flex items-center gap-2">

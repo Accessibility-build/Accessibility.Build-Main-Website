@@ -3,13 +3,21 @@ import ContrastCheckerClientPage from "./ContrastCheckerClientPage"
 import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { clampDescription } from "@/lib/metadata"
+import { SiteScanHandoff } from "@/components/tools/site-scan-handoff"
 
 export const metadata: Metadata = {
-  title: "Color Contrast Checker | WCAG 2.2 & APCA",
+  // Search Console, Sept 2026: this page drew informational contrast queries
+  // while the tool queries it should own ("wcag colour contrast checker",
+  // "contrast checker wcag", "hex contrast checker") sat at positions 17 to 37.
+  // The title and H1 now name the tool the way those searches do.
+  title: "WCAG Color Contrast Checker: Hex Codes, AA & AAA",
   description:
-    clampDescription("Test foreground and background colors against WCAG 2.2 contrast requirements, with live previews, accessible suggestions, and an experimental APCA estimate."),
+    clampDescription("Free WCAG color contrast checker. Enter two hex codes to get the contrast ratio and AA and AAA pass or fail for normal and large text, with fix suggestions."),
   keywords: [
     "wcag contrast checker",
+    "wcag color contrast checker",
+    "wcag colour contrast checker",
+    "hex contrast checker",
     "color contrast checker",
     "WCAG contrast ratio",
     "WCAG 2.2 compliance",
@@ -29,8 +37,8 @@ export const metadata: Metadata = {
     "advanced perceptual contrast"
   ],
   openGraph: {
-    title: "Color Contrast Checker - WCAG 2.2 & APCA",
-    description: "Test WCAG 2.2 contrast requirements and compare an experimental APCA estimate with live previews.",
+    title: "WCAG Color Contrast Checker: Hex Codes, AA & AAA",
+    description: "Enter two hex codes to get the WCAG 2.2 contrast ratio and AA and AAA pass or fail, with live previews and fix suggestions.",
     type: "website",
     url: "https://accessibility.build/tools/contrast-checker",
     images: [
@@ -44,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Color Contrast Checker - WCAG 2.2 & APCA",
-    description: "Test WCAG 2.2 contrast requirements and compare an experimental APCA estimate with live previews.",
+    title: "WCAG Color Contrast Checker: Hex Codes, AA & AAA",
+    description: "Enter two hex codes to get the WCAG 2.2 contrast ratio and AA and AAA pass or fail, with live previews and fix suggestions.",
     images: ["https://accessibility.build/images/tools/contrast-checker-twitter.png"]
   },
   alternates: {
@@ -67,7 +75,7 @@ export const metadata: Metadata = {
 const breadcrumbs = [
   { name: "Home", url: "https://accessibility.build" },
   { name: "Tools", url: "https://accessibility.build/tools" },
-  { name: "Color Contrast Checker", url: "https://accessibility.build/tools/contrast-checker" }
+  { name: "WCAG Color Contrast Checker", url: "https://accessibility.build/tools/contrast-checker" }
 ]
 
 export default function ContrastCheckerPage() {
@@ -75,8 +83,8 @@ export default function ContrastCheckerPage() {
     <>
       {/* Enhanced Schema Markup */}
       <AccessibilityToolStructuredData
-        name="Advanced Color Contrast Checker"
-        description="Color contrast checker for WCAG 2.2 requirements with live previews, accessible suggestions, and an experimental APCA estimate"
+        name="WCAG Color Contrast Checker"
+        description="WCAG color contrast checker that takes two hex codes and reports the contrast ratio with AA and AAA results, live previews, accessible suggestions, and an experimental APCA estimate"
         url="https://accessibility.build/tools/contrast-checker"
         applicationCategory="AccessibilityApplication"
         operatingSystem="Web Browser"
@@ -85,7 +93,7 @@ export default function ContrastCheckerPage() {
           priceCurrency: "USD"
         }}
         featureList={[
-          "WCAG 2.2 contrast ratio calculation",
+          "WCAG 2.2 contrast ratio calculation from hex codes",
           "Level AA and AAA pass/fail results",
           "Normal and large text thresholds",
           "Live foreground and background preview",
@@ -104,6 +112,14 @@ export default function ContrastCheckerPage() {
 
       {/* Main Tool */}
       <ContrastCheckerClientPage />
+
+      <div className="container-wide pt-4">
+        <SiteScanHandoff
+          source="contrast_checker"
+          heading="Checked one pair. How many are failing on your site?"
+          body="WebAIM's annual analysis of a million home pages finds low contrast text on more of them than any other failure, and it rarely shows up as a single bad pair. Paste a page and the scanner tests the text and background combinations on it, along with the other WCAG rules axe-core can check."
+        />
+      </div>
 
       {/* Enhanced Related Content */}
       <div className="container-wide py-16">
@@ -134,6 +150,20 @@ export default function ContrastCheckerPage() {
                 <div itemProp="text">
                   WCAG 2.2 Level AA requires a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text (18pt+ or 14pt+ bold). 
                   Level AAA requires 7:1 for normal text and 4.5:1 for large text. Our contrast checker tests both levels automatically.
+                </div>
+              </div>
+            </div>
+
+            <div className="faq-item" itemScope itemType="https://schema.org/Question">
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-4" itemProp="name">
+                Can I check contrast from hex codes?
+              </h3>
+              <div className="text-slate-600 dark:text-slate-300" itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
+                <div itemProp="text">
+                  Yes. Type or paste a hex code such as #1D4ED8 for the text colour and another for the background.
+                  This WCAG colour contrast checker converts both to relative luminance, reports the ratio to two
+                  decimal places, and marks AA and AAA as pass or fail for normal or large text. Three-digit
+                  shorthand like #FFF works too.
                 </div>
               </div>
             </div>

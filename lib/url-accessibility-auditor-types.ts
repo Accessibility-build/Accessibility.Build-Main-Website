@@ -38,6 +38,16 @@ export interface UrlAuditResult {
     fixSuggestion: string
     codeExample?: string
   }>
+
+  /**
+   * Present only on an anonymous free scan. `violations` then holds just the
+   * most severe findings; the rest stay on the server until the visitor
+   * unlocks them with `scanId`.
+   */
+  preview?: {
+    scanId: string
+    lockedCount: number
+  }
 }
 
 export interface AuditHistory {

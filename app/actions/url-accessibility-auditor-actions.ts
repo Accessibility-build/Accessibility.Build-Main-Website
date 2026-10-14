@@ -16,6 +16,8 @@ import {
 } from "@/lib/db"
 import { and, desc, eq, gte, sql } from "drizzle-orm"
 import { checkTrialLimit, recordTrialUsage } from "@/lib/trial-usage"
+import { isBlockedHostname, normalizeHostname } from "@/lib/url-safety"
+import { FREE_SCAN_VISIBLE_FINDINGS, sortBySeverity } from "@/lib/free-scan"
 import { UrlAuditResult, AuditHistory } from '@/lib/url-accessibility-auditor-types'
 import { v4 as uuidv4 } from 'uuid'
 import OpenAI from "openai"
@@ -168,14 +170,34 @@ async function generateBusinessSummary(auditData: any): Promise<string> {
 }
 
 
+/** Chromium's navigation errors are accurate and unreadable; say what happened instead. */
+function friendlyScanError(error: unknown): string {
+  const message = error instanceof Error ? error.message : ""
+  if (/ERR_NAME_NOT_RESOLVED/.test(message)) {
+    return "That address could not be found. Check the spelling and try again."
+  }
+  if (/ERR_CONNECTION_(REFUSED|RESET|CLOSED|TIMED_OUT)|ERR_ADDRESS_UNREACHABLE/.test(message)) {
+    return "The site did not respond. It may be down, or it may block automated visitors."
+  }
+  if (/ERR_CERT_|ERR_SSL_/.test(message)) {
+    return "The site's security certificate could not be verified, so the page was not loaded."
+  }
+  if (/timeout|timed out/i.test(message)) {
+    return "The page took longer than 30 seconds to load, so the scan stopped. Try again, or try a lighter page."
+  }
+  if (/ERR_(HTTP_RESPONSE_CODE_FAILURE|TOO_MANY_REDIRECTS|BLOCKED_BY)/.test(message)) {
+    return "The site refused the request or redirected in a loop, so the page was not loaded."
+  }
+  return message || "Unknown system error"
+}
+
 /**
  * Performs a full accessibility audit of the given URL, runs axe-core in a headless browser, computes a weighted accessibility score, obtains an AI-generated business summary, and persists results when a user is signed in.
  *
  * @param url - The full URL to scan (must include scheme, e.g. `https://example.com`).
  * @param unlimitedAccess - If `true`, skip credit deduction checks for authenticated users; does not grant extra behavior for unauthenticated users.
  * @returns The completed or failed UrlAuditResult containing audit metadata, violation list, computed scores, AI summary, timestamps, and error information when applicable.
- * @throws Error - If `url` is not a valid absolute URL (message: "Invalid URL. Please enter a full URL (e.g. https://google.com)").
- * @throws Error - If an authenticated user is found but the account is missing (message: "User account not found.") or the user lacks sufficient credits (message: "You need 5 credits to run an audit.").
+ * Refusals (invalid or non-public URL, missing account, too few credits, free-scan limit reached) come back as a result with `status: 'failed'` and the reason in `errorMessage`; nothing is thrown for them.
  */
 export async function runUrlAccessibilityAudit(
   url: string,
@@ -184,11 +206,33 @@ export async function runUrlAccessibilityAudit(
   const auditId = uuidv4()
   const startTime = new Date()
 
+  // Refusals are RETURNED, not thrown. Next.js replaces the message of any error
+  // thrown from a server action with a generic one in production, which would
+  // hide exactly the text the visitor needs: the daily free-scan limit and how
+  // to get more, the credit shortfall, or why a URL was refused.
+  const refuse = (message: string): UrlAuditResult => ({
+    auditId,
+    status: 'failed',
+    url,
+    createdAt: startTime.toISOString(),
+    errorMessage: message,
+  })
+
   // Step 1: Check if the URL is valid
+  let parsedUrl: URL
   try {
-    new URL(url)
+    parsedUrl = new URL(url)
   } catch {
-    throw new Error("Invalid URL. Please enter a full URL (e.g. https://google.com)")
+    return refuse("Invalid URL. Please enter a full URL (e.g. https://google.com)")
+  }
+
+  // The headless browser runs on our infrastructure, so it must never be
+  // pointed at loopback, link-local (cloud metadata) or private-network hosts.
+  if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") {
+    return refuse("Only http and https URLs can be scanned.")
+  }
+  if (isBlockedHostname(parsedUrl.hostname)) {
+    return refuse("Private or local network URLs cannot be scanned. Enter a public website URL.")
   }
 
   // Step 2: User Authentication & Credit Check
@@ -203,15 +247,15 @@ export async function runUrlAccessibilityAudit(
       const usersList = await db.select().from(users).where(eq(users.id, currentUserObj.id)).limit(1)
       dbUser = usersList[0]
 
-      if (!dbUser) throw new Error("User account not found.")
+      if (!dbUser) return refuse("User account not found.")
 
       currentCredits = dbUser.credits
       if (currentCredits < CREDIT_COST) {
-        throw new Error(`You need ${CREDIT_COST} credits to run an audit.`)
+        return refuse(`You need ${CREDIT_COST} credits to run an audit.`)
       }
     } else {
       const trial = await checkTrialLimit("url_accessibility_auditor")
-      if (!trial.allowed) throw new Error(trial.message)
+      if (!trial.allowed) return refuse(trial.message)
     }
   } else {
     if (currentUserObj) {
@@ -382,7 +426,34 @@ export async function runUrlAccessibilityAudit(
       // Update the result ID to match the real DB ID
       result.auditId = savedAuditId
     } else if (!effectiveUnlimitedAccess) {
-      await recordTrialUsage("url_accessibility_auditor")
+      // Anonymous free scan. Keep the complete result on the server and hand
+      // back only the most severe findings; /api/tools/url-audit-unlock returns
+      // the rest once the visitor asks for them. Storing the scanned domain is
+      // also what turns an anonymous scan into something we can follow up.
+      const ranked = sortBySeverity(processedViolations)
+      const scanId = await recordTrialUsage("url_accessibility_auditor", undefined, {
+        inputData: { url, domain: normalizeHostname(parsedUrl.hostname) },
+        outputData: {
+          title: pageTitle,
+          overallScore,
+          totalViolations,
+          criticalCount,
+          seriousCount,
+          moderateCount,
+          minorCount,
+          violations: ranked,
+        },
+      })
+
+      const lockedCount = Math.max(0, ranked.length - FREE_SCAN_VISIBLE_FINDINGS)
+      if (scanId && lockedCount > 0) {
+        result.violations = ranked.slice(0, FREE_SCAN_VISIBLE_FINDINGS) as any
+        result.preview = { scanId, lockedCount }
+      } else {
+        // Nothing worth locking, or the row could not be written: show it all
+        // rather than hide findings nobody can ever unlock.
+        result.violations = ranked as any
+      }
     }
 
     const posthog = getPostHogClient()
@@ -413,7 +484,7 @@ export async function runUrlAccessibilityAudit(
       status: 'failed',
       url,
       createdAt: startTime.toISOString(),
-      errorMessage: error instanceof Error ? error.message : "Unknown system error"
+      errorMessage: friendlyScanError(error)
     }
   } finally {
     if (browser) await browser.close()

@@ -76,7 +76,7 @@ const faqs: FaqItem[] = [
   {
     question: "How much does an audit cost?",
     answer:
-      "Five credits per audit, and you need to be signed in. Unlimited access accounts are not charged. Completed audits are saved to your history so you can reopen them without paying again.",
+      "One scan a day is free without an account: you get the score, the severity breakdown and the three most severe findings, and can unlock the rest with a work email. Signed in, an audit costs five credits, new accounts start with 100, and completed audits are saved to your history so you can reopen them without paying again. Unlimited access accounts are not charged.",
   },
   {
     question: "Does it cover WCAG 2.2?",
@@ -143,9 +143,10 @@ export default function UrlAccessibilityAuditorPage() {
               </h2>
               <ol className="text-muted-foreground leading-relaxed list-decimal pl-6 space-y-2">
                 <li>
-                  <strong className="text-slate-900 dark:text-white">Sign in.</strong>{" "}
-                  Audits cost five credits and are saved to your account. New
-                  accounts start with free credits.
+                  <strong className="text-slate-900 dark:text-white">Start without an account, or sign in.</strong>{" "}
+                  One scan a day is free and shows the score and the three most severe
+                  findings. Signed in, audits cost five credits, show everything, and
+                  are saved to your account. New accounts start with 100 credits.
                 </li>
                 <li>
                   <strong className="text-slate-900 dark:text-white">Enter a full public URL.</strong>{" "}

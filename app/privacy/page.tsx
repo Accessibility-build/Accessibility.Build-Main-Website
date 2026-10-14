@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Database, Eye, LockKeyhole, ShieldCheck } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
-import { company, legalLastUpdated, registeredBusinessAddress } from "@/lib/company"
+import { company, privacyLastUpdated, registeredBusinessAddress } from "@/lib/company"
 
 export const metadata = createMetadata({
   title: "Privacy Policy | Accessibility.build",
@@ -20,7 +20,7 @@ const summaries = [
   {
     icon: Database,
     title: "Feature-specific processing",
-    text: "URLs, images, code, and other tool inputs are processed only for the feature you request and related security or support needs.",
+    text: "URLs, images, code, and other tool inputs are processed only for the feature you request and related security or support needs. The free URL scan also stores its result, as section 4 explains.",
   },
   {
     icon: LockKeyhole,
@@ -42,7 +42,7 @@ export default function PrivacyPage() {
           <p className="mt-4 max-w-3xl text-lg leading-7 text-muted-foreground">
             This policy explains what Accessibility.build processes, why it is needed, which providers may receive it, and how to contact the responsible business owner.
           </p>
-          <p className="mt-4 text-sm text-muted-foreground">Last updated: {legalLastUpdated}</p>
+          <p className="mt-4 text-sm text-muted-foreground">Last updated: {privacyLastUpdated}</p>
         </header>
 
         <section className="grid gap-6 border-b py-10 md:grid-cols-3" aria-label="Privacy summary">
@@ -98,6 +98,10 @@ export default function PrivacyPage() {
           </p>
           <p>
             AI output can be incomplete or incorrect and should be reviewed by a qualified person. We do not use a tool result as a certification of accessibility or legal compliance.
+          </p>
+          <h3>Free scans on the URL Accessibility Auditor</h3>
+          <p>
+            When you run the free scan without an account, we store the address you scanned, the scan results, your IP address, and your browser user agent. We use the IP address to limit free scans to one a day, and the stored result so that the remaining findings can be shown to you later. If you enter an email address to see every finding, we keep it with the scanned address and results, {company.legalOperator} is notified, and he may email you about that scan. We do not add that address to a newsletter. To have a scan record or your address deleted, email <a href={`mailto:${company.privacyEmail}`}>{company.privacyEmail}</a>.
           </p>
 
           <h2>5. Service providers and disclosures</h2>

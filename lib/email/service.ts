@@ -348,3 +348,78 @@ export async function sendProspectOutreachEmail(data: {
     emailType: 'prospect_outreach',
   })
 }
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+/**
+ * Tell the operator that a visitor ran the free scan and asked for the full
+ * result. This is an internal notification, not a message to the visitor, so
+ * it goes to LEAD_NOTIFICATION_EMAIL (or the public contact address) and sets
+ * the visitor as reply-to so answering the email answers the lead. Never throws.
+ */
+export async function sendInboundScanLeadNotification(data: {
+  scanId: string
+  to: string
+  leadEmail: string
+  domain: string
+  url: string
+  overallScore: number
+  totalViolations: number
+  criticalCount: number
+  seriousCount: number
+  topFindings: string[]
+}): Promise<EmailSendResult> {
+  if (!isEmailServiceEnabled()) {
+    return { success: false, error: 'Email sending is not configured.' }
+  }
+
+  const findings = data.topFindings.length
+    ? data.topFindings
+    : ['No automated findings were recorded for this page.']
+
+  const subject = `Inbound scan lead: ${data.domain} (${data.criticalCount} critical, ${data.seriousCount} serious)`
+
+  const text = [
+    `${data.leadEmail} ran the free scan on ${data.url} and unlocked the full result.`,
+    '',
+    `Score: ${data.overallScore}/100`,
+    `Findings: ${data.totalViolations} (${data.criticalCount} critical, ${data.seriousCount} serious)`,
+    '',
+    'Most severe findings:',
+    ...findings.map((finding, index) => `${index + 1}. ${finding}`),
+    '',
+    'The lead is in the admin prospects list under the Inbound tier.',
+    'Reply to this email to answer them directly.',
+  ].join('\n')
+
+  const html = `
+    <div style="font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;line-height:1.6;color:#0f172a">
+      <p><strong>${escapeHtml(data.leadEmail)}</strong> ran the free scan on
+      <a href="${escapeHtml(data.url)}">${escapeHtml(data.url)}</a> and unlocked the full result.</p>
+      <p>Score: <strong>${data.overallScore}/100</strong><br>
+      Findings: ${data.totalViolations} (${data.criticalCount} critical, ${data.seriousCount} serious)</p>
+      <p style="margin-bottom:4px">Most severe findings:</p>
+      <ol style="margin-top:0">${findings.map((finding) => `<li>${escapeHtml(finding)}</li>`).join('')}</ol>
+      <p>The lead is in the admin prospects list under the Inbound tier. Reply to this email to answer them directly.</p>
+    </div>`
+
+  try {
+    return await sendEmailViaResend({
+      to: data.to,
+      subject,
+      html,
+      text,
+      replyTo: data.leadEmail,
+      idempotencyKey: `inbound_scan_${data.scanId}`,
+      emailType: 'inbound_scan_lead',
+    })
+  } catch (error) {
+    return { success: false, error: error instanceof Error ? error.message : String(error) }
+  }
+}

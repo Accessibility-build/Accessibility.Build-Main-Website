@@ -44,6 +44,8 @@ export const company = {
 } as const
 
 export const legalLastUpdated = "July 12, 2026"
+// The privacy policy moved ahead of the terms when the free scan started storing results.
+export const privacyLastUpdated = "September 21, 2026"
 
 // Founder credentials. Single source of truth for the author profile, the
 // About page, and the Person structured data. Keep every claim verifiable —

@@ -341,7 +341,7 @@ export default function ColorPaletteGeneratorPage() {
                 Read the accessible color guide
               </Link>
               <Link href="/tools/contrast-checker" className="inline-flex min-h-11 items-center justify-center rounded-md border px-5 py-2 text-sm font-semibold transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-                Check individual color pairs
+                Open the WCAG color contrast checker
               </Link>
             </div>
           </section>

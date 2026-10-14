@@ -505,7 +505,7 @@ export const prospects = pgTable('prospects', {
   website: text('website'),
   country: text('country'), // ISO-ish short code, e.g. "UK", "IE", "CA"
   sector: text('sector'),
-  tier: text('tier'), // 'send-now' | 'send-careful' | 'linkedin-only' | 'hold'
+  tier: text('tier'), // 'inbound' | 'send-now' | 'send-careful' | 'linkedin-only' | 'hold'
   sendability: text('sendability'), // Short legal note, e.g. "PECR corporate-subscriber exemption"
   emailAddress: text('email_address'), // Verified published address; null when none was found
   addressSource: text('address_source'), // Where that address is published
@@ -537,7 +537,9 @@ export interface ProspectFinding {
   text: string
 }
 
-export const PROSPECT_TIERS = ['send-now', 'send-careful', 'linkedin-only', 'hold'] as const
+// 'inbound' is set by /api/tools/url-audit-unlock: the visitor ran the free scan
+// and gave their address, so it is a warm lead rather than researched outreach.
+export const PROSPECT_TIERS = ['inbound', 'send-now', 'send-careful', 'linkedin-only', 'hold'] as const
 export const PROSPECT_STATUSES = ['new', 'sent', 'replied', 'won', 'dead'] as const
 
 export type ProspectTier = (typeof PROSPECT_TIERS)[number]

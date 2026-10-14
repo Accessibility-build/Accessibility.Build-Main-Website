@@ -18,6 +18,30 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Copy, Info, Check, RefreshCw, Palette, Eye, Zap } from "lucide-react";
 
+
+/**
+ * Parse #RRGGBB or the #RGB shorthand. The shorthand used to pass validation
+ * and then fall through to black here, so "#FFF on #000" reported 1:1 with no
+ * error shown.
+ */
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  const value = hex.trim().replace(/^#/, "");
+  const full = /^[a-f\d]{3}$/i.test(value)
+    ? value
+        .split("")
+        .map((digit) => digit + digit)
+        .join("")
+    : value;
+  const result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(full);
+  return result
+    ? {
+        r: Number.parseInt(result[1], 16),
+        g: Number.parseInt(result[2], 16),
+        b: Number.parseInt(result[3], 16),
+      }
+    : { r: 0, g: 0, b: 0 };
+}
+
 export default function ContrastCheckerPage() {
   const [foreground, setForeground] = useState("#000000");
   const [background, setBackground] = useState("#FFFFFF");
@@ -74,17 +98,6 @@ export default function ContrastCheckerPage() {
   useEffect(() => {
     const calculateContrastRatio = () => {
       // Convert hex to RGB
-      const hexToRgb = (hex: string) => {
-        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result
-          ? {
-              r: Number.parseInt(result[1], 16),
-              g: Number.parseInt(result[2], 16),
-              b: Number.parseInt(result[3], 16),
-            }
-          : { r: 0, g: 0, b: 0 };
-      };
-
       // Calculate relative luminance
       const calculateLuminance = (rgb: { r: number; g: number; b: number }) => {
         const { r, g, b } = rgb;
@@ -149,17 +162,6 @@ export default function ContrastCheckerPage() {
 
   // Update RGB values when hex changes
   useEffect(() => {
-    const hexToRgb = (hex: string) => {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result
-        ? {
-            r: Number.parseInt(result[1], 16),
-            g: Number.parseInt(result[2], 16),
-            b: Number.parseInt(result[3], 16),
-          }
-        : { r: 0, g: 0, b: 0 };
-    };
-
     const frame = window.requestAnimationFrame(() => {
       setForegroundRGB(hexToRgb(foreground));
       setBackgroundRGB(hexToRgb(background));
@@ -206,18 +208,7 @@ export default function ContrastCheckerPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Helper functions for color calculations
-  const hexToRgb = (hex: string) => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? {
-          r: Number.parseInt(result[1], 16),
-          g: Number.parseInt(result[2], 16),
-          b: Number.parseInt(result[3], 16),
-        }
-      : { r: 0, g: 0, b: 0 };
-  };
-
+  // Helper functions for color calculations (hexToRgb is defined at module level)
   const getLuminance = (r: number, g: number, b: number) => {
     const [rs, gs, bs] = [r, g, b].map((c) => {
       c = c / 255;
@@ -725,7 +716,7 @@ export default function ContrastCheckerPage() {
         leading-tight
       "
           >
-            Advanced Color Contrast Checker
+            WCAG Color Contrast Checker
           </h1>
         </div>
 
@@ -737,8 +728,9 @@ export default function ContrastCheckerPage() {
       xs:text-left md:text-center
     "
         >
-          Test WCAG 2.2 contrast requirements and compare an experimental APCA
-          estimate for additional design context.
+          Enter two hex codes to test a colour pair against WCAG 2.2 AA and AAA
+          contrast ratios, with an experimental APCA estimate for additional
+          design context.
         </p>
 
         {/* WCAG Version + Text Size */}

@@ -45,6 +45,7 @@ export type ProspectRecord = {
 }
 
 export const TIER_LABELS: Record<string, string> = {
+  inbound: "Inbound",
   "send-now": "Send now",
   "send-careful": "Send carefully",
   "linkedin-only": "LinkedIn only",
@@ -60,6 +61,7 @@ export const STATUS_LABELS: Record<string, string> = {
 }
 
 const TIER_CLASSES: Record<string, string> = {
+  inbound: "border-violet-300 bg-violet-50 text-violet-900 dark:border-violet-800 dark:bg-violet-950/50 dark:text-violet-100",
   "send-now": "border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-100",
   "send-careful": "border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-800 dark:bg-amber-950/50 dark:text-amber-100",
   "linkedin-only": "border-sky-300 bg-sky-50 text-sky-900 dark:border-sky-800 dark:bg-sky-950/50 dark:text-sky-100",
