@@ -24,7 +24,7 @@ export default {
   seo: {
     metaTitle: 'EN 301 549 v4.1.1 and WCAG 2.2: What Changes for the EAA',
     metaDescription:
-      'EN 301 549 v4.1.1 updates the EU’s harmonised accessibility standard from WCAG 2.1 to WCAG 2.2, expected in 2026. The new success criteria to close and the non-WCAG requirements to remember.',
+      'EN 301 549 v4.1.1, published September 2026, moves the EU standard to WCAG 2.2 and maps it to the EAA. Citation status and the new criteria to close.',
     keywords: [
       'EN 301 549',
       'EN 301 549 v4.1.1',
@@ -39,12 +39,12 @@ export default {
   body: [
     p(
       span(
-        'Most conversations about the European Accessibility Act reach for WCAG, but WCAG is not the standard the EAA actually points to. That role belongs to EN 301 549, the European harmonised standard for accessibility of ICT products and services. Conforming to it is what gives a business the practical presumption that it has met the directive’s requirements. And EN 301 549 is on the move: the version that grants that presumption is shifting from one built on WCAG 2.1 to one built on WCAG 2.2.'
+        'Most conversations about the European Accessibility Act reach for WCAG, but WCAG is not the standard the EAA actually points to. That role belongs to EN 301 549, the European standard for accessibility of ICT products and services. Under Article 15 of the Act, conforming to a harmonised standard whose reference is published in the Official Journal of the EU gives a business a presumption that it meets the accessibility requirements. And EN 301 549 has just moved: the edition built to carry that presumption for the EAA is built on WCAG 2.2, not WCAG 2.1.'
       )
     ),
     p(
       span(
-        'The current published version, v3.2.1 from March 2021, incorporates WCAG 2.1 Level AA. The next version, v4.1.1, is expected during 2026 and updates the web content requirements to WCAG 2.2 Level AA, alongside significant changes to real-time text. It is anticipated to be cited as the harmonised standard in the Official Journal of the EU later in the process. When that citation lands, the reference point for European accessibility quietly becomes WCAG 2.2, and any programme still measuring itself against 2.1 has a defined gap to close.'
+        'Update, 14 October 2026: ETSI published EN 301 549 v4.1.1 on 2 September 2026. It updates the web, document and software requirements to WCAG 2.2 Level AA, rewrites the real-time text clause, and adds an annex (Annex ZB) that maps the standard to the EAA. It has not yet been cited in the Official Journal; Ireland’s National Disability Authority expects that on 16 December 2026. Until then, note what is and is not cited today. The previous edition, v3.2.1 from March 2021 (WCAG 2.1 Level AA), is cited only under the Web Accessibility Directive for public-sector websites and apps. No edition is yet cited under the EAA, so no version currently gives the EAA presumption of conformity. When the v4.1.1 citation lands, the reference point for European accessibility becomes WCAG 2.2, and any programme still measuring itself against 2.1 has a defined gap to close.'
       )
     ),
 
@@ -56,7 +56,7 @@ export default {
     ),
     p(
       span(
-        'The version number matters because the presumption of conformity is version-specific. A business audited against v3.2.1 was measured against WCAG 2.1. Once v4.1.1 is the referenced standard, the benchmark is WCAG 2.2, and the delta between them is real work, not a rounding error.'
+        'The version number matters because the presumption of conformity is tied to the edition cited. A business audited against v3.2.1 was measured against WCAG 2.1. Once v4.1.1 is the cited standard, the benchmark is WCAG 2.2, and the delta between them is real work, not a rounding error.'
       )
     ),
 
@@ -102,11 +102,16 @@ export default {
     ),
 
     linkBullet('/checklists/wcag-2-2', 'l1', 'Work through every criterion, including the 2.2 additions, with the ', 'WCAG 2.2 checklist', '.'),
-    linkBullet('/research/european-accessibility-act', 'l2', 'See how the standard fits the wider obligation in our ', 'European Accessibility Act guide', '.'),
+    linkBullet('/compliance/en-301-549', 'l5', 'See exactly what changed between v3.2.1 and v4.1.1 in our ', 'EN 301 549 guide', '.'),
+    linkBullet('/research/european-accessibility-act', 'l2', 'Track transposition across the 27 member states in our ', 'European Accessibility Act tracker', '.'),
     linkBullet('/guides/how-to-audit-website-accessibility', 'l3', 'Run a 2.2-level review end to end with the ', 'website accessibility audit guide', '.'),
     linkBullet('/wcag', 'l4', 'Read any criterion in plain language in the ', 'WCAG reference', '.'),
 
     h2('Sources'),
+    sourceLink('https://www.etsi.org/deliver/etsi_en/301500_301599/301549/04.01.01_60/', 's0', 'ETSI: EN 301 549 V4.1.1 (2026-09), published 2 September 2026'),
+    sourceLink('https://nda.ie/news/en301549-published', 's5', 'National Disability Authority: Updated EN 301 549 standard published, expected citation date'),
+    sourceLink('https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32018D2048', 's6', 'EUR-Lex: Commission Implementing Decision (EU) 2018/2048, harmonised standard under the Web Accessibility Directive'),
+    sourceLink('https://eur-lex.europa.eu/eli/dir/2019/882/oj', 's7', 'EUR-Lex: Directive (EU) 2019/882, Article 15 on presumption of conformity'),
     sourceLink('https://en.wikipedia.org/wiki/EN_301_549', 's1', 'Wikipedia: EN 301 549, version history and scope'),
     sourceLink('https://www.levelaccess.com/blog/eu-accessibility-requirements-and-eaa-compliance/', 's2', 'Level Access: EU accessibility requirements and EAA compliance'),
     sourceLink('https://lists.w3.org/Archives/Public/public-wai-announce/2025JulSep/0002.html', 's3', 'W3C WAI: WCAG2ICT updated to coordinate with EN 301 549'),
