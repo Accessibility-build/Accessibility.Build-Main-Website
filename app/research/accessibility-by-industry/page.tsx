@@ -10,12 +10,6 @@ import {
   Microscope,
   ShoppingBag,
 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,6 +23,7 @@ import { AccessibilityByIndustryClient } from "./AccessibilityByIndustryClient";
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
 import { DatasetDownloads } from "@/components/research/dataset-downloads"
+import { WEBAIM_LICENCE } from "@/lib/data/webaim-licence"
 
 const reportUrl =
   "https://accessibility.build/research/accessibility-by-industry";
@@ -406,30 +401,31 @@ export default function AccessibilityByIndustryPage() {
                 </p>
               </div>
               <div className="lg:col-span-8">
-                <Accordion
-                  type="single"
-                  collapsible
-                  className="border-t border-slate-200 dark:border-slate-800"
-                >
-                  {faqs.map((faq, index) => (
-                    <AccordionItem key={faq.question} value={`faq-${index}`}>
-                      <AccordionTrigger className="text-left text-base font-semibold hover:no-underline">
+                <div className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800">
+                  {faqs.map((faq) => (
+                    <details key={faq.question} className="group py-1">
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-md py-4 text-left text-base font-semibold text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 dark:text-white [&::-webkit-details-marker]:hidden">
                         {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <p className="max-w-[72ch] leading-7 text-slate-600 dark:text-slate-400">
-                          {faq.answer}
-                        </p>
-                      </AccordionContent>
-                    </AccordionItem>
+                        <span
+                          aria-hidden="true"
+                          className="shrink-0 text-slate-500 transition-transform group-open:rotate-180 dark:text-slate-400"
+                        >
+                          &#9662;
+                        </span>
+                      </summary>
+                      <p className="max-w-[72ch] pb-4 leading-7 text-slate-600 dark:text-slate-400">
+                        {faq.answer}
+                      </p>
+                    </details>
                   ))}
-                </Accordion>
+                </div>
               </div>
             </div>
           </section>
 
           <div className="mt-16 sm:mt-20">
             <DatasetDownloads
+              licence={WEBAIM_LICENCE}
               dataset="by-industry"
               name="Accessibility errors by industry"
               description="Average detectable WCAG errors per home page by site category and by language, from the WebAIM Million 2026."

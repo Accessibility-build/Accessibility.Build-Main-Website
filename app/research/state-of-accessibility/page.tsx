@@ -9,12 +9,6 @@ import {
   FileSearch,
   Microscope,
 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,6 +22,7 @@ import { StateOfAccessibilityClient } from "./StateOfAccessibilityClient";
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
 import { DatasetDownloads } from "@/components/research/dataset-downloads"
+import { WEBAIM_LICENCE } from "@/lib/data/webaim-licence"
 
 const reportUrl = "https://accessibility.build/research/state-of-accessibility";
 const webaimUrl = "https://webaim.org/projects/million/";
@@ -401,48 +396,46 @@ export default function StateOfAccessibilityPage() {
                 itemScope
                 itemType="https://schema.org/FAQPage"
               >
-                <Accordion
-                  type="single"
-                  collapsible
-                  className="border-t border-slate-200 dark:border-slate-800"
-                >
-                  {faqs.map((faq, index) => (
-                    <AccordionItem
+                <div className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800">
+                  {faqs.map((faq) => (
+                    <details
                       key={faq.question}
-                      value={`faq-${index}`}
+                      className="group py-1"
                       itemScope
                       itemProp="mainEntity"
                       itemType="https://schema.org/Question"
                     >
-                      <AccordionTrigger
-                        className="text-left text-base font-semibold hover:no-underline"
-                        itemProp="name"
-                      >
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <div
-                          itemScope
-                          itemProp="acceptedAnswer"
-                          itemType="https://schema.org/Answer"
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-md py-4 text-left text-base font-semibold text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 dark:text-white [&::-webkit-details-marker]:hidden">
+                        <span itemProp="name">{faq.question}</span>
+                        <span
+                          aria-hidden="true"
+                          className="shrink-0 text-slate-500 transition-transform group-open:rotate-180 dark:text-slate-400"
                         >
-                          <p
-                            className="max-w-[72ch] leading-7 text-slate-600 dark:text-slate-400"
-                            itemProp="text"
-                          >
-                            {faq.answer}
-                          </p>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
+                          &#9662;
+                        </span>
+                      </summary>
+                      <div
+                        itemScope
+                        itemProp="acceptedAnswer"
+                        itemType="https://schema.org/Answer"
+                      >
+                        <p
+                          className="max-w-[72ch] pb-4 leading-7 text-slate-600 dark:text-slate-400"
+                          itemProp="text"
+                        >
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </details>
                   ))}
-                </Accordion>
+                </div>
               </div>
             </div>
           </section>
 
           <div className="mt-16 sm:mt-20">
             <DatasetDownloads
+              licence={WEBAIM_LICENCE}
               dataset="state-of-accessibility"
               name="State of web accessibility, WebAIM Million series"
               description="Detectable WCAG failure rates and error counts across the home pages of the top one million websites, 2019 to 2026, with the most common failure types."

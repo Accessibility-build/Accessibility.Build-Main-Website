@@ -23,6 +23,7 @@ export function DatasetDownloads({
   tables,
   attribution,
   withSchema = true,
+  licence,
 }: {
   /** The /api/research/<dataset> id. */
   dataset: string
@@ -38,6 +39,11 @@ export function DatasetDownloads({
   attribution: string
   /** Pages that already emit a Dataset schema pass false to avoid a duplicate entity. */
   withSchema?: boolean
+  /**
+   * Third-party data under its own terms (e.g. WebAIM's no-cost-reuse terms)
+   * cannot be relicensed as CC BY 4.0. Pass its terms here instead.
+   */
+  licence?: { url: string; text: string }
 }) {
   const base = `/api/research/${dataset}`
   return (
@@ -54,6 +60,7 @@ export function DatasetDownloads({
         dateModified={dateModified}
         temporalCoverage={temporalCoverage}
         keywords={keywords}
+        license={licence?.url}
         creator={{ name: "Accessibility.build", url: "https://accessibility.build" }}
       />
       ) : null}
@@ -67,8 +74,15 @@ export function DatasetDownloads({
             Get the data
           </h2>
           <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-400">
-            Every number on this page is available as CSV and JSON under a CC BY 4.0 licence. Cite
-            Accessibility.build and the underlying sources ({attribution}). Last updated{" "}
+            {licence ? (
+              <>Every number on this page is available as CSV and JSON. {licence.text}{" "}</>
+            ) : (
+              <>
+                Every number on this page is available as CSV and JSON under a CC BY 4.0 licence. Cite
+                Accessibility.build and the underlying sources ({attribution}).{" "}
+              </>
+            )}
+            Last updated{" "}
             <time dateTime={dateModified}>{formatDate(dateModified)}</time>.
           </p>
         </div>

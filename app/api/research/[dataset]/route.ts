@@ -18,6 +18,8 @@ import byIndustry from "@/lib/data/accessibility-by-industry.json"
 import byTechnology from "@/lib/data/accessibility-by-technology.json"
 import agentReadiness from "@/lib/data/agent-readiness-2026.json"
 import statements from "@/lib/data/accessibility-statements-2026.json"
+import screenReaderSurvey from "@/lib/data/screen-reader-survey-2026.json"
+import { WEBAIM_LICENCE } from "@/lib/data/webaim-licence"
 
 // Machine-readable access to every research dataset on the site.
 //
@@ -44,6 +46,8 @@ interface Dataset {
   lastUpdated: string
   tables: Record<string, Row[]>
   extra?: Record<string, unknown>
+  /** Overrides the default CC BY 4.0 licence for third-party data with its own terms. */
+  licence?: string
 }
 
 function build(): Record<string, Dataset> {
@@ -85,6 +89,7 @@ function build(): Record<string, Dataset> {
       name: "State of web accessibility (WebAIM Million synthesis)",
       page: "https://accessibility.build/research/state-of-accessibility",
       lastUpdated: snapshot.lastUpdated,
+      licence: WEBAIM_LICENCE.url,
       tables: {
         topViolations: snapshot.topViolations as Row[],
         yearOverYearTrends: snapshot.yearOverYearTrends as Row[],
@@ -130,6 +135,7 @@ function build(): Record<string, Dataset> {
       name: "Digital accessibility salary survey",
       page: "https://accessibility.build/research/accessibility-salary",
       lastUpdated: salary.lastUpdated,
+      licence: WEBAIM_LICENCE.url,
       tables: {
         byLocation: salary.byLocation as Row[],
         byExperience: salary.byExperience as Row[],
@@ -143,6 +149,7 @@ function build(): Record<string, Dataset> {
       name: "Accessibility errors by industry (WebAIM Million)",
       page: "https://accessibility.build/research/accessibility-by-industry",
       lastUpdated: byIndustry.lastUpdated,
+      licence: WEBAIM_LICENCE.url,
       tables: { categories: byIndustry.categories as Row[], languages: byIndustry.languages as Row[] },
       extra: { baselineErrors: byIndustry.baselineErrors, source: byIndustry.source },
     },
@@ -150,6 +157,7 @@ function build(): Record<string, Dataset> {
       name: "Accessibility errors by technology stack (WebAIM Million)",
       page: "https://accessibility.build/research/accessibility-by-technology",
       lastUpdated: byTechnology.lastUpdated,
+      licence: WEBAIM_LICENCE.url,
       tables: Object.fromEntries(
         (byTechnology.groups as { id: string; label: string; rows: Row[] }[]).map((g) => [g.id, g.rows]),
       ),
@@ -167,6 +175,30 @@ function build(): Record<string, Dataset> {
         method: agentReadiness.method,
         ftse100Summary: { ...agentReadiness.groups.ftse100, sites: undefined },
         councilsSummary: { ...agentReadiness.groups.councils, sites: undefined },
+      },
+    },
+    "screen-reader-survey": {
+      name: "WebAIM Screen Reader User Survey #11 (2026) compared with #10 (2024)",
+      page: "https://accessibility.build/research/screen-reader-survey-2026",
+      lastUpdated: screenReaderSurvey.lastUpdated,
+      licence: screenReaderSurvey.licenceUrl,
+      tables: {
+        // One table per question asked in both surveys: both percentages and the
+        // percentage-point change. Single-survey questions are in data.questions.
+        ...Object.fromEntries(
+          (screenReaderSurvey.questions as { id: string; availability: string; comparison?: Row[] }[])
+            .filter((q) => q.availability === "both")
+            .map((q) => [q.id, q.comparison ?? []]),
+        ),
+        primaryByRegion: screenReaderSurvey.primaryByRegion.rows as Row[],
+      },
+      extra: {
+        surveys: screenReaderSurvey.surveys,
+        comparisonNote: screenReaderSurvey.comparisonNote,
+        licenceNote: screenReaderSurvey.licenceNote,
+        questions: screenReaderSurvey.questions,
+        publishedProseFigures: screenReaderSurvey.publishedProseFigures,
+        survey10OnlyProblematicItems: screenReaderSurvey.survey10OnlyProblematicItems,
       },
     },
     "accessibility-statements": {
@@ -223,11 +255,11 @@ export async function GET(request: NextRequest, context: { params: Promise<{ dat
           "Content-Type": "text/csv; charset=utf-8",
           "Content-Disposition": `attachment; filename="accessibility-build-${dataset}-${table}.csv"`,
           "Cache-Control": "public, max-age=3600, s-maxage=86400",
-          "X-Licence": LICENCE,
+          "X-Licence": ds.licence ?? LICENCE,
         },
       })
     }
-    return NextResponse.json({ dataset, table, name: ds.name, page: ds.page, lastUpdated: ds.lastUpdated, licence: LICENCE, attribution: ATTRIBUTION, rows })
+    return NextResponse.json({ dataset, table, name: ds.name, page: ds.page, lastUpdated: ds.lastUpdated, licence: ds.licence ?? LICENCE, attribution: ATTRIBUTION, rows })
   }
 
   return NextResponse.json(
@@ -236,7 +268,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ dat
       name: ds.name,
       page: ds.page,
       lastUpdated: ds.lastUpdated,
-      licence: LICENCE,
+      licence: ds.licence ?? LICENCE,
       attribution: ATTRIBUTION,
       tables: Object.fromEntries(Object.entries(ds.tables).map(([k, v]) => [k, { rows: v.length, csv: `/api/research/${dataset}?table=${k}&format=csv`, json: `/api/research/${dataset}?table=${k}` }])),
       data: { ...ds.tables, ...(ds.extra ?? {}) },
