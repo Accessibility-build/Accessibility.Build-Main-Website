@@ -5,7 +5,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { BarChart3, Scale, ArrowRight, TrendingUp, CalendarDays, BookOpen, Globe, Boxes, Building2, Landmark, Users, Banknote, FileCheck2 } from "lucide-react"
+import { BarChart3, Scale, ArrowRight, TrendingUp, CalendarDays, BookOpen, Globe, Boxes, Building2, Landmark, Users, Banknote, FileCheck2, Headphones } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
 import agentReadiness from "@/lib/data/agent-readiness-2026.json"
 import statementsStudy from "@/lib/data/accessibility-statements-2026.json"
@@ -112,6 +112,18 @@ const researchReports = [
     href: "/research/section-508-assessment",
     stat: { label: "Agencies scored", value: "60" },
     gradient: "from-sky-600 to-blue-700",
+  },
+  {
+    title: "Screen Reader Survey 2026",
+    description:
+      "WebAIM's 2026 screen reader user survey set against 2024: JAWS rose to 55.0% primary use while NVDA fell to 32.9%, headings-first navigation slipped, and 60.1% now use AI for image descriptions. Both values shown side by side, with the regional split.",
+    icon: Headphones,
+    badge: "New Oct 2026",
+    badgeColor:
+      "bg-violet-100 text-violet-800 border-violet-200 dark:bg-violet-900/20 dark:text-violet-400 dark:border-violet-800",
+    href: "/research/screen-reader-survey-2026",
+    stat: { label: "JAWS primary", value: "55.0%" },
+    gradient: "from-violet-600 to-purple-700",
   },
   {
     title: "Digital Accessibility Salary Report",

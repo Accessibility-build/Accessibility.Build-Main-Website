@@ -291,7 +291,14 @@ export default function JawsScreenReaderTestingGuidePage() {
                   <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
                     NVDA
                   </Link>{" "}
-                  alone does not cover them.
+                  alone does not cover them. In WebAIM&rsquo;s 2026 survey JAWS
+                  was the primary desktop screen reader for 55.0% of
+                  respondents, up from 40.5% in 2024, and 72.5% in North
+                  America; the{" "}
+                  <Link href="/research/screen-reader-survey-2026" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    screen reader survey 2026 analysis
+                  </Link>{" "}
+                  has the full regional split.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   JAWS also has a testing personality worth knowing about: it is{" "}

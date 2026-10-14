@@ -160,6 +160,14 @@ const INTERNAL_LINKS: InternalLink[] = [
     priority: 9
   },
   {
+    url: '/research/screen-reader-survey-2026',
+    title: 'Screen Reader Survey 2026: JAWS, NVDA and AI Use',
+    description: 'WebAIM Screen Reader User Survey #11 compared with #10: primary screen reader share, JAWS vs NVDA by region, headings navigation, AI for alt text, and PDF barriers',
+    type: 'resource',
+    keywords: ['screen reader statistics', 'screen reader usage 2026', 'jaws vs nvda', 'webaim screen reader survey', 'screen reader market share', 'most popular screen reader', 'jaws usage', 'nvda usage', 'voiceover usage', 'screen reader users ai', 'screen reader survey 11'],
+    priority: 9
+  },
+  {
     url: '/research/accessibility-salary',
     title: 'Digital Accessibility Salary Report',
     description: 'What digital accessibility professionals earn by country, experience, work location, organisation size, and role, from the WebAIM global salary survey',

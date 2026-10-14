@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import {
   ArticleStructuredData,
   HowToStructuredData,
@@ -213,7 +214,16 @@ export default function ScreenReaderTestingGuidePage() {
                 respondents), JAWS is the primary desktop screen reader for 55.0%
                 of users and NVDA for 32.9%, so the two together cover nearly 88%
                 of desktop use. Most users run more than one (70.3%). On mobile,
-                72.2% of respondents use VoiceOver and 29.5% use TalkBack.
+                72.2% of respondents use VoiceOver and 29.5% use TalkBack. These
+                are shares of a self-selected survey sample, not market share; our{" "}
+                <Link
+                  href="/research/screen-reader-survey-2026"
+                  className="font-medium text-teal-700 underline underline-offset-2 dark:text-teal-300"
+                >
+                  2026 screen reader survey analysis
+                </Link>{" "}
+                compares every figure with 2024 and breaks JAWS and NVDA down by
+                region.
               </p>
             </div>
           </div>

@@ -268,7 +268,14 @@ export default function NvdaScreenReaderTestingGuidePage() {
                     NVDA (NonVisual Desktop Access)
                   </strong>{" "}
                   is free, open source, and one of the two most used desktop
-                  screen readers in the world. Because it costs nothing to
+                  screen readers in the world: 59.3% of respondents to
+                  WebAIM&rsquo;s 2026 survey commonly use it, and it is the
+                  primary screen reader for most respondents in Asia, Africa and
+                  the Middle East, and South America (see the{" "}
+                  <Link href="/research/screen-reader-survey-2026" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    screen reader survey 2026 analysis
+                  </Link>
+                  ). Because it costs nothing to
                   install, it is the most practical way for any developer or QA
                   engineer to hear their site the way a screen reader user does.
                   Automated scanners like{" "}

@@ -1,0 +1,2747 @@
+{
+  "lastUpdated": "2026-10-14",
+  "title": "WebAIM Screen Reader User Survey #11 compared with #10",
+  "licenceNote": "Survey figures © WebAIM (Web Accessibility in Mind), reproduced with attribution under WebAIM's Copyright & Terms of Use: content may be reproduced only if offered at no cost to recipients, with full credit to WebAIM, a link to webaim.org, and the © WebAIM notice intact.",
+  "licenceUrl": "https://webaim.org/copyright",
+  "comparisonNote": "changePp is the Survey #11 percentage minus the Survey #10 percentage, in percentage points. It is the only figure on this page not published by WebAIM directly. Response labels 'app'/'web' (Survey #10) are shown as 'Mobile app'/'Web site' (Survey #11 wording); 'I Don't Know' is shown as 'I don't know'.",
+  "surveys": {
+    "survey11": {
+      "name": "WebAIM Screen Reader User Survey #11",
+      "shortName": "Survey #11",
+      "year": 2026,
+      "url": "https://webaim.org/projects/screenreadersurvey11/",
+      "publisher": "WebAIM, Institute for Disability Research, Policy, and Practice, Utah State University",
+      "surveyPeriod": "July to August 2026",
+      "validResponses": 1780,
+      "lastUpdatedBySource": "2026-09-29"
+    },
+    "survey10": {
+      "name": "WebAIM Screen Reader User Survey #10",
+      "shortName": "Survey #10",
+      "year": 2024,
+      "url": "https://webaim.org/projects/screenreadersurvey10/",
+      "publisher": "WebAIM, Institute for Disability Research, Policy, and Practice, Utah State University",
+      "surveyPeriod": "December 2023 to January 2024",
+      "validResponses": 1539,
+      "lastUpdatedBySource": "2024-02-22"
+    }
+  },
+  "questions": [
+    {
+      "id": "region",
+      "title": "Region",
+      "questionText": "Please select your region.",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "North America",
+          "respondents": 717,
+          "percent": 47.2
+        },
+        {
+          "response": "Europe",
+          "respondents": 467,
+          "percent": 30.7
+        },
+        {
+          "response": "Asia",
+          "respondents": 97,
+          "percent": 6.4
+        },
+        {
+          "response": "South America",
+          "respondents": 96,
+          "percent": 6.3
+        },
+        {
+          "response": "Africa/Middle East",
+          "respondents": 73,
+          "percent": 4.8
+        },
+        {
+          "response": "Australia and Oceania",
+          "respondents": 50,
+          "percent": 3.3
+        },
+        {
+          "response": "Central America and Caribbean",
+          "respondents": 20,
+          "percent": 1.3
+        }
+      ],
+      "survey11": [
+        {
+          "response": "North America",
+          "respondents": 931,
+          "percent": 54.1
+        },
+        {
+          "response": "Europe",
+          "respondents": 477,
+          "percent": 27.7
+        },
+        {
+          "response": "Asia",
+          "respondents": 106,
+          "percent": 6.2
+        },
+        {
+          "response": "Africa/Middle East",
+          "respondents": 88,
+          "percent": 5.1
+        },
+        {
+          "response": "South America",
+          "respondents": 64,
+          "percent": 3.7
+        },
+        {
+          "response": "Australia and Oceania",
+          "respondents": 47,
+          "percent": 2.7
+        },
+        {
+          "response": "Central America and Caribbean",
+          "respondents": 8,
+          "percent": 0.5
+        }
+      ],
+      "comparison": [
+        {
+          "response": "North America",
+          "percent2024": 47.2,
+          "percent2026": 54.1,
+          "changePp": 6.9
+        },
+        {
+          "response": "Europe",
+          "percent2024": 30.7,
+          "percent2026": 27.7,
+          "changePp": -3.0
+        },
+        {
+          "response": "Asia",
+          "percent2024": 6.4,
+          "percent2026": 6.2,
+          "changePp": -0.2
+        },
+        {
+          "response": "Africa/Middle East",
+          "percent2024": 4.8,
+          "percent2026": 5.1,
+          "changePp": 0.3
+        },
+        {
+          "response": "South America",
+          "percent2024": 6.3,
+          "percent2026": 3.7,
+          "changePp": -2.6
+        },
+        {
+          "response": "Australia and Oceania",
+          "percent2024": 3.3,
+          "percent2026": 2.7,
+          "changePp": -0.6
+        },
+        {
+          "response": "Central America and Caribbean",
+          "percent2024": 1.3,
+          "percent2026": 0.5,
+          "changePp": -0.8
+        }
+      ]
+    },
+    {
+      "id": "age",
+      "title": "Age",
+      "questionText": "Please indicate your age.",
+      "availability": "survey10Only",
+      "survey10": [
+        {
+          "response": "Below 20",
+          "respondents": 94,
+          "percent": 6.1
+        },
+        {
+          "response": "21 - 40",
+          "respondents": 584,
+          "percent": 37.9
+        },
+        {
+          "response": "41 - 60",
+          "respondents": 553,
+          "percent": 35.9
+        },
+        {
+          "response": "60+",
+          "respondents": 308,
+          "percent": 20.0
+        }
+      ],
+      "survey11": null
+    },
+    {
+      "id": "disability",
+      "title": "Use a screen reader due to a disability",
+      "questionText": "Do you use a screen reader due to a disability?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Yes",
+          "respondents": 1372,
+          "percent": 89.9
+        },
+        {
+          "response": "No",
+          "respondents": 154,
+          "percent": 10.1
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Yes",
+          "respondents": 1687,
+          "percent": 94.8
+        },
+        {
+          "response": "No",
+          "respondents": 93,
+          "percent": 5.2
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Yes",
+          "percent2024": 89.9,
+          "percent2026": 94.8,
+          "changePp": 4.9
+        },
+        {
+          "response": "No",
+          "percent2024": 10.1,
+          "percent2026": 5.2,
+          "changePp": -4.9
+        }
+      ]
+    },
+    {
+      "id": "disabilityTypes",
+      "title": "Disability types",
+      "questionText": "Which of the following disabilities do you have?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Blindness",
+          "respondents": 1179,
+          "percent": 76.6
+        },
+        {
+          "response": "Low Vision/Visually-Impaired",
+          "respondents": 306,
+          "percent": 19.9
+        },
+        {
+          "response": "Cognitive or Learning",
+          "respondents": 80,
+          "percent": 5.2
+        },
+        {
+          "response": "Deafness/Hard-of-Hearing",
+          "respondents": 104,
+          "percent": 6.8
+        },
+        {
+          "response": "Motor",
+          "respondents": 34,
+          "percent": 2.2
+        },
+        {
+          "response": "Other",
+          "respondents": 75,
+          "percent": 4.9
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Blindness",
+          "respondents": 1481,
+          "percent": 83.2
+        },
+        {
+          "response": "Low Vision/Visually-Impaired",
+          "respondents": 321,
+          "percent": 18.0
+        },
+        {
+          "response": "Cognitive or Learning",
+          "respondents": 53,
+          "percent": 3.0
+        },
+        {
+          "response": "Deafness/Hard-of-Hearing",
+          "respondents": 133,
+          "percent": 7.5
+        },
+        {
+          "response": "Motor",
+          "respondents": 33,
+          "percent": 1.9
+        },
+        {
+          "response": "Other",
+          "respondents": 54,
+          "percent": 3.0
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Blindness",
+          "percent2024": 76.6,
+          "percent2026": 83.2,
+          "changePp": 6.6
+        },
+        {
+          "response": "Low Vision/Visually-Impaired",
+          "percent2024": 19.9,
+          "percent2026": 18.0,
+          "changePp": -1.9
+        },
+        {
+          "response": "Cognitive or Learning",
+          "percent2024": 5.2,
+          "percent2026": 3.0,
+          "changePp": -2.2
+        },
+        {
+          "response": "Deafness/Hard-of-Hearing",
+          "percent2024": 6.8,
+          "percent2026": 7.5,
+          "changePp": 0.7
+        },
+        {
+          "response": "Motor",
+          "percent2024": 2.2,
+          "percent2026": 1.9,
+          "changePp": -0.3
+        },
+        {
+          "response": "Other",
+          "percent2024": 4.9,
+          "percent2026": 3.0,
+          "changePp": -1.9
+        }
+      ]
+    },
+    {
+      "id": "screenReaderProficiency",
+      "title": "Screen reader proficiency",
+      "questionText": "Please rate your screen reader proficiency.",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Advanced",
+          "respondents": 888,
+          "percent": 58.3
+        },
+        {
+          "response": "Intermediate",
+          "respondents": 548,
+          "percent": 36.0
+        },
+        {
+          "response": "Beginner",
+          "respondents": 87,
+          "percent": 5.7
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Advanced",
+          "respondents": 1014,
+          "percent": 57.8
+        },
+        {
+          "response": "Intermediate",
+          "respondents": 681,
+          "percent": 38.8
+        },
+        {
+          "response": "Beginner",
+          "respondents": 60,
+          "percent": 3.4
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Advanced",
+          "percent2024": 58.3,
+          "percent2026": 57.8,
+          "changePp": -0.5
+        },
+        {
+          "response": "Intermediate",
+          "percent2024": 36.0,
+          "percent2026": 38.8,
+          "changePp": 2.8
+        },
+        {
+          "response": "Beginner",
+          "percent2024": 5.7,
+          "percent2026": 3.4,
+          "changePp": -2.3
+        }
+      ]
+    },
+    {
+      "id": "internetProficiency",
+      "title": "Internet proficiency",
+      "questionText": "Please rate your proficiency using the Internet.",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Advanced",
+          "respondents": 1091,
+          "percent": 71.8
+        },
+        {
+          "response": "Intermediate",
+          "respondents": 401,
+          "percent": 26.4
+        },
+        {
+          "response": "Beginner",
+          "respondents": 28,
+          "percent": 1.8
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Advanced",
+          "respondents": 1134,
+          "percent": 64.6
+        },
+        {
+          "response": "Intermediate",
+          "respondents": 580,
+          "percent": 33.0
+        },
+        {
+          "response": "Beginner",
+          "respondents": 42,
+          "percent": 2.4
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Advanced",
+          "percent2024": 71.8,
+          "percent2026": 64.6,
+          "changePp": -7.2
+        },
+        {
+          "response": "Intermediate",
+          "percent2024": 26.4,
+          "percent2026": 33.0,
+          "changePp": 6.6
+        },
+        {
+          "response": "Beginner",
+          "percent2024": 1.8,
+          "percent2026": 2.4,
+          "changePp": 0.6
+        }
+      ]
+    },
+    {
+      "id": "primaryScreenReader",
+      "title": "Primary desktop/laptop screen reader",
+      "questionText": "Which of the following is your primary desktop/laptop screen reader?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "JAWS",
+          "respondents": 619,
+          "percent": 40.5
+        },
+        {
+          "response": "NVDA",
+          "respondents": 577,
+          "percent": 37.7
+        },
+        {
+          "response": "VoiceOver",
+          "respondents": 148,
+          "percent": 9.7
+        },
+        {
+          "response": "Dolphin SuperNova",
+          "respondents": 57,
+          "percent": 3.7
+        },
+        {
+          "response": "ZoomText/Fusion",
+          "respondents": 41,
+          "percent": 2.7
+        },
+        {
+          "response": "Orca",
+          "respondents": 36,
+          "percent": 2.4
+        },
+        {
+          "response": "Narrator",
+          "respondents": 10,
+          "percent": 0.7
+        },
+        {
+          "response": "Other",
+          "respondents": 41,
+          "percent": 2.7
+        }
+      ],
+      "survey11": [
+        {
+          "response": "JAWS",
+          "respondents": 975,
+          "percent": 55.0
+        },
+        {
+          "response": "NVDA",
+          "respondents": 584,
+          "percent": 32.9
+        },
+        {
+          "response": "VoiceOver",
+          "respondents": 116,
+          "percent": 6.5
+        },
+        {
+          "response": "ZoomText/Fusion",
+          "respondents": 37,
+          "percent": 2.1
+        },
+        {
+          "response": "Orca",
+          "respondents": 25,
+          "percent": 1.4
+        },
+        {
+          "response": "Narrator",
+          "respondents": 7,
+          "percent": 0.4
+        },
+        {
+          "response": "Dolphin SuperNova",
+          "respondents": 3,
+          "percent": 0.2
+        },
+        {
+          "response": "ChromeVox",
+          "respondents": 1,
+          "percent": 0.1
+        },
+        {
+          "response": "Other",
+          "respondents": 25,
+          "percent": 1.4
+        }
+      ],
+      "comparison": [
+        {
+          "response": "JAWS",
+          "percent2024": 40.5,
+          "percent2026": 55.0,
+          "changePp": 14.5
+        },
+        {
+          "response": "NVDA",
+          "percent2024": 37.7,
+          "percent2026": 32.9,
+          "changePp": -4.8
+        },
+        {
+          "response": "VoiceOver",
+          "percent2024": 9.7,
+          "percent2026": 6.5,
+          "changePp": -3.2
+        },
+        {
+          "response": "ZoomText/Fusion",
+          "percent2024": 2.7,
+          "percent2026": 2.1,
+          "changePp": -0.6
+        },
+        {
+          "response": "Orca",
+          "percent2024": 2.4,
+          "percent2026": 1.4,
+          "changePp": -1.0
+        },
+        {
+          "response": "Narrator",
+          "percent2024": 0.7,
+          "percent2026": 0.4,
+          "changePp": -0.3
+        },
+        {
+          "response": "Dolphin SuperNova",
+          "percent2024": 3.7,
+          "percent2026": 0.2,
+          "changePp": -3.5
+        },
+        {
+          "response": "ChromeVox",
+          "percent2024": null,
+          "percent2026": 0.1,
+          "changePp": null
+        },
+        {
+          "response": "Other",
+          "percent2024": 2.7,
+          "percent2026": 1.4,
+          "changePp": -1.3
+        }
+      ]
+    },
+    {
+      "id": "commonlyUsed",
+      "title": "Desktop/laptop screen readers commonly used",
+      "questionText": "Which of the following desktop/laptop screen readers do you commonly use?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "NVDA",
+          "respondents": 1009,
+          "percent": 65.6
+        },
+        {
+          "response": "JAWS",
+          "respondents": 931,
+          "percent": 60.5
+        },
+        {
+          "response": "VoiceOver",
+          "respondents": 675,
+          "percent": 43.9
+        },
+        {
+          "response": "Narrator",
+          "respondents": 574,
+          "percent": 37.3
+        },
+        {
+          "response": "Orca",
+          "respondents": 127,
+          "percent": 8.3
+        },
+        {
+          "response": "ZoomText/Fusion",
+          "respondents": 115,
+          "percent": 7.5
+        },
+        {
+          "response": "Dolphin SuperNova",
+          "respondents": 83,
+          "percent": 5.4
+        },
+        {
+          "response": "ChromeVox",
+          "respondents": 59,
+          "percent": 3.8
+        },
+        {
+          "response": "System Access or System Access to Go",
+          "respondents": 28,
+          "percent": 1.8
+        },
+        {
+          "response": "Window-Eyes",
+          "respondents": 18,
+          "percent": 1.2
+        },
+        {
+          "response": "Other",
+          "respondents": 79,
+          "percent": 5.1
+        }
+      ],
+      "survey11": [
+        {
+          "response": "JAWS",
+          "respondents": 1232,
+          "percent": 69.2
+        },
+        {
+          "response": "NVDA",
+          "respondents": 1056,
+          "percent": 59.3
+        },
+        {
+          "response": "VoiceOver",
+          "respondents": 747,
+          "percent": 42.0
+        },
+        {
+          "response": "Narrator",
+          "respondents": 643,
+          "percent": 36.1
+        },
+        {
+          "response": "ZoomText/Fusion",
+          "respondents": 130,
+          "percent": 7.3
+        },
+        {
+          "response": "Orca",
+          "respondents": 115,
+          "percent": 6.5
+        },
+        {
+          "response": "ChromeVox",
+          "respondents": 65,
+          "percent": 3.7
+        },
+        {
+          "response": "Dolphin SuperNova",
+          "respondents": 23,
+          "percent": 1.3
+        },
+        {
+          "response": "Other",
+          "respondents": 59,
+          "percent": 3.3
+        }
+      ],
+      "comparison": [
+        {
+          "response": "JAWS",
+          "percent2024": 60.5,
+          "percent2026": 69.2,
+          "changePp": 8.7
+        },
+        {
+          "response": "NVDA",
+          "percent2024": 65.6,
+          "percent2026": 59.3,
+          "changePp": -6.3
+        },
+        {
+          "response": "VoiceOver",
+          "percent2024": 43.9,
+          "percent2026": 42.0,
+          "changePp": -1.9
+        },
+        {
+          "response": "Narrator",
+          "percent2024": 37.3,
+          "percent2026": 36.1,
+          "changePp": -1.2
+        },
+        {
+          "response": "ZoomText/Fusion",
+          "percent2024": 7.5,
+          "percent2026": 7.3,
+          "changePp": -0.2
+        },
+        {
+          "response": "Orca",
+          "percent2024": 8.3,
+          "percent2026": 6.5,
+          "changePp": -1.8
+        },
+        {
+          "response": "ChromeVox",
+          "percent2024": 3.8,
+          "percent2026": 3.7,
+          "changePp": -0.1
+        },
+        {
+          "response": "Dolphin SuperNova",
+          "percent2024": 5.4,
+          "percent2026": 1.3,
+          "changePp": -4.1
+        },
+        {
+          "response": "Other",
+          "percent2024": 5.1,
+          "percent2026": 3.3,
+          "changePp": -1.8
+        },
+        {
+          "response": "System Access or System Access to Go",
+          "percent2024": 1.8,
+          "percent2026": null,
+          "changePp": null
+        },
+        {
+          "response": "Window-Eyes",
+          "percent2024": 1.2,
+          "percent2026": null,
+          "changePp": null
+        }
+      ]
+    },
+    {
+      "id": "browsers",
+      "title": "Browser used most often with primary screen reader",
+      "questionText": "When using your primary screen reader, which browser do you use most often?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Chrome",
+          "respondents": 795,
+          "percent": 52.3
+        },
+        {
+          "response": "Microsoft Edge",
+          "respondents": 294,
+          "percent": 19.3
+        },
+        {
+          "response": "Firefox",
+          "respondents": 243,
+          "percent": 16.0
+        },
+        {
+          "response": "Safari",
+          "respondents": 121,
+          "percent": 8.0
+        },
+        {
+          "response": "Internet Explorer",
+          "respondents": 14,
+          "percent": 0.9
+        },
+        {
+          "response": "Other",
+          "respondents": 54,
+          "percent": 3.6
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Chrome",
+          "respondents": 924,
+          "percent": 52.3
+        },
+        {
+          "response": "Microsoft Edge",
+          "respondents": 417,
+          "percent": 23.6
+        },
+        {
+          "response": "Firefox",
+          "respondents": 281,
+          "percent": 15.9
+        },
+        {
+          "response": "Safari",
+          "respondents": 85,
+          "percent": 4.8
+        },
+        {
+          "response": "Other",
+          "respondents": 61,
+          "percent": 3.5
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Chrome",
+          "percent2024": 52.3,
+          "percent2026": 52.3,
+          "changePp": 0.0
+        },
+        {
+          "response": "Microsoft Edge",
+          "percent2024": 19.3,
+          "percent2026": 23.6,
+          "changePp": 4.3
+        },
+        {
+          "response": "Firefox",
+          "percent2024": 16.0,
+          "percent2026": 15.9,
+          "changePp": -0.1
+        },
+        {
+          "response": "Safari",
+          "percent2024": 8.0,
+          "percent2026": 4.8,
+          "changePp": -3.2
+        },
+        {
+          "response": "Other",
+          "percent2024": 3.6,
+          "percent2026": 3.5,
+          "changePp": -0.1
+        },
+        {
+          "response": "Internet Explorer",
+          "percent2024": 0.9,
+          "percent2026": null,
+          "changePp": null
+        }
+      ]
+    },
+    {
+      "id": "browserCombinations",
+      "title": "Screen reader and browser combinations",
+      "questionText": "Most common screen reader and browser combinations",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "JAWS with Chrome",
+          "respondents": 373,
+          "percent": 24.7
+        },
+        {
+          "response": "NVDA with Chrome",
+          "respondents": 323,
+          "percent": 21.3
+        },
+        {
+          "response": "JAWS with Edge",
+          "respondents": 173,
+          "percent": 11.4
+        },
+        {
+          "response": "NVDA with Firefox",
+          "respondents": 152,
+          "percent": 10.0
+        },
+        {
+          "response": "VoiceOver with Safari",
+          "respondents": 107,
+          "percent": 7.0
+        },
+        {
+          "response": "NVDA with Edge",
+          "respondents": 75,
+          "percent": 5.0
+        },
+        {
+          "response": "JAWS with Firefox",
+          "respondents": 39,
+          "percent": 2.6
+        },
+        {
+          "response": "VoiceOver with Chrome",
+          "respondents": 30,
+          "percent": 2.0
+        },
+        {
+          "response": "Orca with Firefox",
+          "respondents": 29,
+          "percent": 1.9
+        },
+        {
+          "response": "Dolphin SuperNova with Chrome",
+          "respondents": 24,
+          "percent": 1.6
+        },
+        {
+          "response": "ZoomText/Fusion with Chrome",
+          "respondents": 18,
+          "percent": 1.2
+        },
+        {
+          "response": "ZoomText/Fusion with Edge",
+          "respondents": 16,
+          "percent": 1.1
+        },
+        {
+          "response": "Other combinations",
+          "respondents": 154,
+          "percent": 10.2
+        }
+      ],
+      "survey11": [
+        {
+          "response": "JAWS with Chrome",
+          "respondents": 549,
+          "percent": 31.2
+        },
+        {
+          "response": "NVDA with Chrome",
+          "respondents": 304,
+          "percent": 17.3
+        },
+        {
+          "response": "JAWS with Edge",
+          "respondents": 299,
+          "percent": 17.0
+        },
+        {
+          "response": "NVDA with Firefox",
+          "respondents": 160,
+          "percent": 9.1
+        },
+        {
+          "response": "NVDA with Edge",
+          "respondents": 95,
+          "percent": 5.4
+        },
+        {
+          "response": "JAWS with Firefox",
+          "respondents": 88,
+          "percent": 5.0
+        },
+        {
+          "response": "VoiceOver with Safari",
+          "respondents": 76,
+          "percent": 4.3
+        },
+        {
+          "response": "VoiceOver with Chrome",
+          "respondents": 28,
+          "percent": 1.6
+        }
+      ],
+      "comparison": [
+        {
+          "response": "JAWS with Chrome",
+          "percent2024": 24.7,
+          "percent2026": 31.2,
+          "changePp": 6.5
+        },
+        {
+          "response": "NVDA with Chrome",
+          "percent2024": 21.3,
+          "percent2026": 17.3,
+          "changePp": -4.0
+        },
+        {
+          "response": "JAWS with Edge",
+          "percent2024": 11.4,
+          "percent2026": 17.0,
+          "changePp": 5.6
+        },
+        {
+          "response": "NVDA with Firefox",
+          "percent2024": 10.0,
+          "percent2026": 9.1,
+          "changePp": -0.9
+        },
+        {
+          "response": "NVDA with Edge",
+          "percent2024": 5.0,
+          "percent2026": 5.4,
+          "changePp": 0.4
+        },
+        {
+          "response": "JAWS with Firefox",
+          "percent2024": 2.6,
+          "percent2026": 5.0,
+          "changePp": 2.4
+        },
+        {
+          "response": "VoiceOver with Safari",
+          "percent2024": 7.0,
+          "percent2026": 4.3,
+          "changePp": -2.7
+        },
+        {
+          "response": "VoiceOver with Chrome",
+          "percent2024": 2.0,
+          "percent2026": 1.6,
+          "changePp": -0.4
+        },
+        {
+          "response": "Orca with Firefox",
+          "percent2024": 1.9,
+          "percent2026": null,
+          "changePp": null
+        },
+        {
+          "response": "Dolphin SuperNova with Chrome",
+          "percent2024": 1.6,
+          "percent2026": null,
+          "changePp": null
+        },
+        {
+          "response": "ZoomText/Fusion with Chrome",
+          "percent2024": 1.2,
+          "percent2026": null,
+          "changePp": null
+        },
+        {
+          "response": "ZoomText/Fusion with Edge",
+          "percent2024": 1.1,
+          "percent2026": null,
+          "changePp": null
+        },
+        {
+          "response": "Other combinations",
+          "percent2024": 10.2,
+          "percent2026": null,
+          "changePp": null
+        }
+      ]
+    },
+    {
+      "id": "operatingSystem",
+      "title": "Operating system with primary screen reader",
+      "questionText": "What operating system are you on when using your primary desktop/laptop screen reader?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Windows",
+          "respondents": 1311,
+          "percent": 86.1
+        },
+        {
+          "response": "Mac",
+          "respondents": 146,
+          "percent": 9.6
+        },
+        {
+          "response": "Linux",
+          "respondents": 44,
+          "percent": 2.9
+        },
+        {
+          "response": "Other",
+          "respondents": 21,
+          "percent": 1.4
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Windows",
+          "respondents": 1607,
+          "percent": 90.7
+        },
+        {
+          "response": "Mac",
+          "respondents": 112,
+          "percent": 6.3
+        },
+        {
+          "response": "Linux",
+          "respondents": 28,
+          "percent": 1.6
+        },
+        {
+          "response": "Other",
+          "respondents": 24,
+          "percent": 1.4
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Windows",
+          "percent2024": 86.1,
+          "percent2026": 90.7,
+          "changePp": 4.6
+        },
+        {
+          "response": "Mac",
+          "percent2024": 9.6,
+          "percent2026": 6.3,
+          "changePp": -3.3
+        },
+        {
+          "response": "Linux",
+          "percent2024": 2.9,
+          "percent2026": 1.6,
+          "changePp": -1.3
+        },
+        {
+          "response": "Other",
+          "percent2024": 1.4,
+          "percent2026": 1.4,
+          "changePp": 0.0
+        }
+      ]
+    },
+    {
+      "id": "javascript",
+      "title": "JavaScript enabled",
+      "questionText": "JavaScript Enabled",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Yes",
+          "respondents": null,
+          "percent": 99.8
+        },
+        {
+          "response": "No",
+          "respondents": null,
+          "percent": 0.2
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Yes",
+          "respondents": null,
+          "percent": 99.7
+        },
+        {
+          "response": "No",
+          "respondents": null,
+          "percent": 0.3
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Yes",
+          "percent2024": 99.8,
+          "percent2026": 99.7,
+          "changePp": -0.1
+        },
+        {
+          "response": "No",
+          "percent2024": 0.2,
+          "percent2026": 0.3,
+          "changePp": 0.1
+        }
+      ]
+    },
+    {
+      "id": "reasonForUse",
+      "title": "Main reason for using primary screen reader",
+      "questionText": "What is the main reason for using your primary screen reader?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Existing Comfort/Expertise",
+          "respondents": 685,
+          "percent": 45.8
+        },
+        {
+          "response": "Features",
+          "respondents": 396,
+          "percent": 26.5
+        },
+        {
+          "response": "Availability",
+          "respondents": 175,
+          "percent": 11.7
+        },
+        {
+          "response": "Cost",
+          "respondents": 137,
+          "percent": 9.2
+        },
+        {
+          "response": "Support",
+          "respondents": 104,
+          "percent": 6.9
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Existing Comfort/Expertise",
+          "respondents": 867,
+          "percent": 49.3
+        },
+        {
+          "response": "Features",
+          "respondents": 427,
+          "percent": 24.3
+        },
+        {
+          "response": "Availability",
+          "respondents": 194,
+          "percent": 11.0
+        },
+        {
+          "response": "Cost",
+          "respondents": 163,
+          "percent": 9.3
+        },
+        {
+          "response": "Support",
+          "respondents": 107,
+          "percent": 6.1
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Existing Comfort/Expertise",
+          "percent2024": 45.8,
+          "percent2026": 49.3,
+          "changePp": 3.5
+        },
+        {
+          "response": "Features",
+          "percent2024": 26.5,
+          "percent2026": 24.3,
+          "changePp": -2.2
+        },
+        {
+          "response": "Availability",
+          "percent2024": 11.7,
+          "percent2026": 11.0,
+          "changePp": -0.7
+        },
+        {
+          "response": "Cost",
+          "percent2024": 9.2,
+          "percent2026": 9.3,
+          "changePp": 0.1
+        },
+        {
+          "response": "Support",
+          "percent2024": 6.9,
+          "percent2026": 6.1,
+          "changePp": -0.8
+        }
+      ]
+    },
+    {
+      "id": "satisfaction",
+      "title": "Satisfaction with primary screen reader",
+      "questionText": "How satisfied are you with your primary screen reader?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Very satisfied",
+          "respondents": 966,
+          "percent": 63.8
+        },
+        {
+          "response": "Somewhat satisfied",
+          "respondents": 475,
+          "percent": 31.4
+        },
+        {
+          "response": "Slightly satisfied",
+          "respondents": 56,
+          "percent": 3.7
+        },
+        {
+          "response": "Not satisfied",
+          "respondents": 18,
+          "percent": 1.2
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Very satisfied",
+          "respondents": 1173,
+          "percent": 66.3
+        },
+        {
+          "response": "Somewhat satisfied",
+          "respondents": 510,
+          "percent": 28.8
+        },
+        {
+          "response": "Slightly satisfied",
+          "respondents": 72,
+          "percent": 4.1
+        },
+        {
+          "response": "Not satisfied",
+          "respondents": 14,
+          "percent": 0.8
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Very satisfied",
+          "percent2024": 63.8,
+          "percent2026": 66.3,
+          "changePp": 2.5
+        },
+        {
+          "response": "Somewhat satisfied",
+          "percent2024": 31.4,
+          "percent2026": 28.8,
+          "changePp": -2.6
+        },
+        {
+          "response": "Slightly satisfied",
+          "percent2024": 3.7,
+          "percent2026": 4.1,
+          "changePp": 0.4
+        },
+        {
+          "response": "Not satisfied",
+          "percent2024": 1.2,
+          "percent2026": 0.8,
+          "changePp": -0.4
+        }
+      ]
+    },
+    {
+      "id": "homeVsWork",
+      "title": "Different screen reader at work or school than at home",
+      "questionText": "Do you use a different screen reader at work or school than at home?",
+      "availability": "survey10Only",
+      "survey10": [
+        {
+          "response": "Yes",
+          "respondents": 266,
+          "percent": 18.6
+        },
+        {
+          "response": "No",
+          "respondents": 1165,
+          "percent": 81.4
+        }
+      ],
+      "survey11": null
+    },
+    {
+      "id": "brailleOutput",
+      "title": "Braille output",
+      "questionText": "Do you use braille output with your screen reader?",
+      "availability": "survey10Only",
+      "survey10": [
+        {
+          "response": "Yes",
+          "respondents": 510,
+          "percent": 38.0
+        },
+        {
+          "response": "No",
+          "respondents": 833,
+          "percent": 62.0
+        }
+      ],
+      "survey11": null
+    },
+    {
+      "id": "freeVsCommercial",
+      "title": "Free or low-cost screen readers are viable alternatives",
+      "questionText": "Do you see free or low-cost desktop screen readers (such as NVDA or VoiceOver) as currently being viable alternatives to more expensive commercial screen readers?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Yes",
+          "respondents": 1171,
+          "percent": 78.1
+        },
+        {
+          "response": "No",
+          "respondents": 181,
+          "percent": 12.1
+        },
+        {
+          "response": "I Don't Know",
+          "respondents": 148,
+          "percent": 9.9
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Yes",
+          "respondents": 1306,
+          "percent": 74.6
+        },
+        {
+          "response": "No",
+          "respondents": 257,
+          "percent": 14.7
+        },
+        {
+          "response": "I don't know",
+          "respondents": 188,
+          "percent": 10.7
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Yes",
+          "percent2024": 78.1,
+          "percent2026": 74.6,
+          "changePp": -3.5
+        },
+        {
+          "response": "No",
+          "percent2024": 12.1,
+          "percent2026": 14.7,
+          "changePp": 2.6
+        },
+        {
+          "response": "I don't know",
+          "percent2024": 9.9,
+          "percent2026": 10.7,
+          "changePp": 0.8
+        }
+      ]
+    },
+    {
+      "id": "mobileUsage",
+      "title": "Use a screen reader on a mobile device",
+      "questionText": "Do you use a screen reader on a mobile device?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Yes",
+          "respondents": 1379,
+          "percent": 91.3
+        },
+        {
+          "response": "No",
+          "respondents": 132,
+          "percent": 8.7
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Yes",
+          "respondents": 1613,
+          "percent": 91.8
+        },
+        {
+          "response": "No",
+          "respondents": 144,
+          "percent": 8.2
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Yes",
+          "percent2024": 91.3,
+          "percent2026": 91.8,
+          "changePp": 0.5
+        },
+        {
+          "response": "No",
+          "percent2024": 8.7,
+          "percent2026": 8.2,
+          "changePp": -0.5
+        }
+      ]
+    },
+    {
+      "id": "mobilePlatform",
+      "title": "Primary mobile/tablet platform",
+      "questionText": "Which of the following is your primary mobile/tablet platform?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Apple iPhone, iPad, or iPod touch",
+          "respondents": 1048,
+          "percent": 70.6
+        },
+        {
+          "response": "Android",
+          "respondents": 409,
+          "percent": 27.6
+        },
+        {
+          "response": "Chrome OS",
+          "respondents": 7,
+          "percent": 0.5
+        },
+        {
+          "response": "Other",
+          "respondents": 19,
+          "percent": 1.3
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Apple iPhone, iPad, or iPod touch",
+          "respondents": 1249,
+          "percent": 73.3
+        },
+        {
+          "response": "Android",
+          "respondents": 410,
+          "percent": 24.0
+        },
+        {
+          "response": "Chrome OS",
+          "respondents": 8,
+          "percent": 0.5
+        },
+        {
+          "response": "Other",
+          "respondents": 38,
+          "percent": 2.2
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Apple iPhone, iPad, or iPod touch",
+          "percent2024": 70.6,
+          "percent2026": 73.3,
+          "changePp": 2.7
+        },
+        {
+          "response": "Android",
+          "percent2024": 27.6,
+          "percent2026": 24.0,
+          "changePp": -3.6
+        },
+        {
+          "response": "Chrome OS",
+          "percent2024": 0.5,
+          "percent2026": 0.5,
+          "changePp": 0.0
+        },
+        {
+          "response": "Other",
+          "percent2024": 1.3,
+          "percent2026": 2.2,
+          "changePp": 0.9
+        }
+      ]
+    },
+    {
+      "id": "mobileScreenReaders",
+      "title": "Mobile/tablet screen readers commonly used",
+      "questionText": "Which of the following mobile/tablet screen readers do you commonly use?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "VoiceOver",
+          "respondents": null,
+          "percent": 70.6
+        },
+        {
+          "response": "TalkBack",
+          "respondents": null,
+          "percent": 34.7
+        },
+        {
+          "response": "Commentary/Jieshuo",
+          "respondents": null,
+          "percent": 10.1
+        },
+        {
+          "response": "Voice Assistant",
+          "respondents": null,
+          "percent": 6.0
+        },
+        {
+          "response": "VoiceView",
+          "respondents": null,
+          "percent": 5.9
+        },
+        {
+          "response": "Mobile Accessibility for Android",
+          "respondents": null,
+          "percent": 4.9
+        },
+        {
+          "response": "Mobile Speak",
+          "respondents": null,
+          "percent": 1.0
+        },
+        {
+          "response": "Nuance Talks",
+          "respondents": null,
+          "percent": 1.0
+        },
+        {
+          "response": "IDEAL",
+          "respondents": null,
+          "percent": 0.5
+        },
+        {
+          "response": "Other",
+          "respondents": null,
+          "percent": 4.7
+        }
+      ],
+      "survey11": [
+        {
+          "response": "VoiceOver",
+          "respondents": null,
+          "percent": 72.2
+        },
+        {
+          "response": "TalkBack",
+          "respondents": null,
+          "percent": 29.5
+        },
+        {
+          "response": "Commentary/Jieshuo",
+          "respondents": null,
+          "percent": 8.2
+        },
+        {
+          "response": "Voice Assistant",
+          "respondents": null,
+          "percent": 5.4
+        },
+        {
+          "response": "VoiceView",
+          "respondents": null,
+          "percent": 4.2
+        },
+        {
+          "response": "Other",
+          "respondents": null,
+          "percent": 5.0
+        }
+      ],
+      "comparison": [
+        {
+          "response": "VoiceOver",
+          "percent2024": 70.6,
+          "percent2026": 72.2,
+          "changePp": 1.6
+        },
+        {
+          "response": "TalkBack",
+          "percent2024": 34.7,
+          "percent2026": 29.5,
+          "changePp": -5.2
+        },
+        {
+          "response": "Commentary/Jieshuo",
+          "percent2024": 10.1,
+          "percent2026": 8.2,
+          "changePp": -1.9
+        },
+        {
+          "response": "Voice Assistant",
+          "percent2024": 6.0,
+          "percent2026": 5.4,
+          "changePp": -0.6
+        },
+        {
+          "response": "VoiceView",
+          "percent2024": 5.9,
+          "percent2026": 4.2,
+          "changePp": -1.7
+        },
+        {
+          "response": "Other",
+          "percent2024": 4.7,
+          "percent2026": 5.0,
+          "changePp": 0.3
+        },
+        {
+          "response": "Mobile Accessibility for Android",
+          "percent2024": 4.9,
+          "percent2026": null,
+          "changePp": null
+        },
+        {
+          "response": "Mobile Speak",
+          "percent2024": 1.0,
+          "percent2026": null,
+          "changePp": null
+        },
+        {
+          "response": "Nuance Talks",
+          "percent2024": 1.0,
+          "percent2026": null,
+          "changePp": null
+        },
+        {
+          "response": "IDEAL",
+          "percent2024": 0.5,
+          "percent2026": null,
+          "changePp": null
+        }
+      ]
+    },
+    {
+      "id": "mobileBrowser",
+      "title": "Primary mobile web browser",
+      "questionText": "Which of the following is your primary mobile web browser?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Safari",
+          "respondents": 854,
+          "percent": 58.2
+        },
+        {
+          "response": "Chrome",
+          "respondents": 410,
+          "percent": 27.9
+        },
+        {
+          "response": "Firefox",
+          "respondents": 68,
+          "percent": 4.6
+        },
+        {
+          "response": "IE or Edge Mobile",
+          "respondents": 39,
+          "percent": 2.7
+        },
+        {
+          "response": "Android Browser",
+          "respondents": 23,
+          "percent": 1.6
+        },
+        {
+          "response": "Samsung Browser",
+          "respondents": 16,
+          "percent": 1.1
+        },
+        {
+          "response": "Other",
+          "respondents": 57,
+          "percent": 3.9
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Safari",
+          "respondents": 945,
+          "percent": 56.0
+        },
+        {
+          "response": "Chrome",
+          "respondents": 475,
+          "percent": 28.2
+        },
+        {
+          "response": "Firefox",
+          "respondents": 87,
+          "percent": 5.2
+        },
+        {
+          "response": "IE or Edge Mobile",
+          "respondents": 36,
+          "percent": 2.1
+        },
+        {
+          "response": "Other",
+          "respondents": 143,
+          "percent": 8.4
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Safari",
+          "percent2024": 58.2,
+          "percent2026": 56.0,
+          "changePp": -2.2
+        },
+        {
+          "response": "Chrome",
+          "percent2024": 27.9,
+          "percent2026": 28.2,
+          "changePp": 0.3
+        },
+        {
+          "response": "Firefox",
+          "percent2024": 4.6,
+          "percent2026": 5.2,
+          "changePp": 0.6
+        },
+        {
+          "response": "IE or Edge Mobile",
+          "percent2024": 2.7,
+          "percent2026": 2.1,
+          "changePp": -0.6
+        },
+        {
+          "response": "Other",
+          "percent2024": 3.9,
+          "percent2026": 8.4,
+          "changePp": 4.5
+        },
+        {
+          "response": "Android Browser",
+          "percent2024": 1.6,
+          "percent2026": null,
+          "changePp": null
+        },
+        {
+          "response": "Samsung Browser",
+          "percent2024": 1.1,
+          "percent2026": null,
+          "changePp": null
+        }
+      ]
+    },
+    {
+      "id": "mobileVsDesktop",
+      "title": "Screen reader used most often on desktop or mobile",
+      "questionText": "Do you use a screen reader most often on a desktop/laptop computer or a mobile/tablet device?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Desktop/laptop",
+          "respondents": 610,
+          "percent": 40.2
+        },
+        {
+          "response": "I use mobile/tablet and desktop/laptop screen readers about the same",
+          "respondents": 751,
+          "percent": 49.5
+        },
+        {
+          "response": "Mobile/tablet device",
+          "respondents": 155,
+          "percent": 10.2
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Desktop/laptop",
+          "respondents": 751,
+          "percent": 42.6
+        },
+        {
+          "response": "I use mobile/tablet and desktop/laptop screen readers about the same",
+          "respondents": 864,
+          "percent": 49.0
+        },
+        {
+          "response": "Mobile/tablet device",
+          "respondents": 147,
+          "percent": 8.3
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Desktop/laptop",
+          "percent2024": 40.2,
+          "percent2026": 42.6,
+          "changePp": 2.4
+        },
+        {
+          "response": "I use mobile/tablet and desktop/laptop screen readers about the same",
+          "percent2024": 49.5,
+          "percent2026": 49.0,
+          "changePp": -0.5
+        },
+        {
+          "response": "Mobile/tablet device",
+          "percent2024": 10.2,
+          "percent2026": 8.3,
+          "changePp": -1.9
+        }
+      ]
+    },
+    {
+      "id": "appVsWebsite",
+      "title": "Mobile app or web site for common tasks",
+      "questionText": "When performing common online tasks such as banking or shopping are you most likely to use a mobile app or the web site?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "app",
+          "respondents": 852,
+          "percent": 58.0
+        },
+        {
+          "response": "web",
+          "respondents": 618,
+          "percent": 42.0
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Mobile app",
+          "respondents": 945,
+          "percent": 54.8
+        },
+        {
+          "response": "Web site",
+          "respondents": 779,
+          "percent": 45.2
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Mobile app",
+          "percent2024": 58.0,
+          "percent2026": 54.8,
+          "changePp": -3.2
+        },
+        {
+          "response": "Web site",
+          "percent2024": 42.0,
+          "percent2026": 45.2,
+          "changePp": 3.2
+        }
+      ]
+    },
+    {
+      "id": "webAccessibilityProgress",
+      "title": "Accessibility of web content over the previous year",
+      "questionText": "Which of the following best describes your feelings regarding the accessibility of web content over the previous year?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Web content has become more accessible",
+          "respondents": 522,
+          "percent": 34.6
+        },
+        {
+          "response": "Web content accessibility has not changed",
+          "respondents": 707,
+          "percent": 46.8
+        },
+        {
+          "response": "Web content has become less accessible",
+          "respondents": 281,
+          "percent": 18.6
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Web content has become more accessible",
+          "respondents": 561,
+          "percent": 32.2
+        },
+        {
+          "response": "Web content accessibility has not changed",
+          "respondents": 781,
+          "percent": 44.9
+        },
+        {
+          "response": "Web content has become less accessible",
+          "respondents": 398,
+          "percent": 22.9
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Web content has become more accessible",
+          "percent2024": 34.6,
+          "percent2026": 32.2,
+          "changePp": -2.4
+        },
+        {
+          "response": "Web content accessibility has not changed",
+          "percent2024": 46.8,
+          "percent2026": 44.9,
+          "changePp": -1.9
+        },
+        {
+          "response": "Web content has become less accessible",
+          "percent2024": 18.6,
+          "percent2026": 22.9,
+          "changePp": 4.3
+        }
+      ]
+    },
+    {
+      "id": "impactOnAccessibility",
+      "title": "Bigger impact on improving web accessibility",
+      "questionText": "Which of the following do you think would have a bigger impact on improvements to web accessibility?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Better assistive technology",
+          "respondents": 213,
+          "percent": 14.1
+        },
+        {
+          "response": "Better (more accessible) web sites",
+          "respondents": 1298,
+          "percent": 85.9
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Better assistive technology",
+          "respondents": 283,
+          "percent": 16.1
+        },
+        {
+          "response": "Better (more accessible) web sites",
+          "respondents": 1475,
+          "percent": 83.9
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Better assistive technology",
+          "percent2024": 14.1,
+          "percent2026": 16.1,
+          "changePp": 2.0
+        },
+        {
+          "response": "Better (more accessible) web sites",
+          "percent2024": 85.9,
+          "percent2026": 83.9,
+          "changePp": -2.0
+        }
+      ]
+    },
+    {
+      "id": "contactingOwners",
+      "title": "Contacting website owners about barriers",
+      "questionText": "How often do you contact a website owner about an accessibility barrier that you encountered?",
+      "availability": "survey10Only",
+      "survey10": [
+        {
+          "response": "Very often",
+          "respondents": 137,
+          "percent": 9.2
+        },
+        {
+          "response": "Somewhat often",
+          "respondents": 370,
+          "percent": 24.8
+        },
+        {
+          "response": "Not very often",
+          "respondents": 661,
+          "percent": 44.3
+        },
+        {
+          "response": "Never",
+          "respondents": 324,
+          "percent": 21.7
+        }
+      ],
+      "survey11": null
+    },
+    {
+      "id": "socialMedia",
+      "title": "Accessibility of social media sites",
+      "questionText": "In general, how accessible are social media web sites to you?",
+      "availability": "survey10Only",
+      "survey10": [
+        {
+          "response": "Very accessible",
+          "respondents": 173,
+          "percent": 11.8
+        },
+        {
+          "response": "Somewhat accessible",
+          "respondents": 824,
+          "percent": 56.3
+        },
+        {
+          "response": "Not very accessible",
+          "respondents": 271,
+          "percent": 18.5
+        },
+        {
+          "response": "Not at all accessible",
+          "respondents": 25,
+          "percent": 1.7
+        },
+        {
+          "response": "I don't know",
+          "respondents": 171,
+          "percent": 11.7
+        }
+      ],
+      "survey11": null
+    },
+    {
+      "id": "virtualMeetingDescriptions",
+      "title": "Describing appearance in virtual meetings",
+      "questionText": "Should a person describe what they look like during a virtual meeting or webinar?",
+      "availability": "survey10Only",
+      "survey10": [
+        {
+          "response": "Yes",
+          "respondents": 363,
+          "percent": 31.8
+        },
+        {
+          "response": "No",
+          "respondents": 779,
+          "percent": 68.2
+        }
+      ],
+      "survey11": null
+    },
+    {
+      "id": "landmarks",
+      "title": "Navigating by landmarks/regions",
+      "questionText": "How often do you navigate by landmarks/regions in your screen reader?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Whenever they're available",
+          "respondents": 268,
+          "percent": 17.9
+        },
+        {
+          "response": "Often",
+          "respondents": 208,
+          "percent": 13.9
+        },
+        {
+          "response": "Sometimes",
+          "respondents": 471,
+          "percent": 31.5
+        },
+        {
+          "response": "Seldom",
+          "respondents": 309,
+          "percent": 20.6
+        },
+        {
+          "response": "Never",
+          "respondents": 241,
+          "percent": 16.1
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Whenever they're available",
+          "respondents": 271,
+          "percent": 15.5
+        },
+        {
+          "response": "Often",
+          "respondents": 223,
+          "percent": 12.8
+        },
+        {
+          "response": "Sometimes",
+          "respondents": 572,
+          "percent": 32.7
+        },
+        {
+          "response": "Seldom",
+          "respondents": 408,
+          "percent": 23.4
+        },
+        {
+          "response": "Never",
+          "respondents": 273,
+          "percent": 15.6
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Whenever they're available",
+          "percent2024": 17.9,
+          "percent2026": 15.5,
+          "changePp": -2.4
+        },
+        {
+          "response": "Often",
+          "percent2024": 13.9,
+          "percent2026": 12.8,
+          "changePp": -1.1
+        },
+        {
+          "response": "Sometimes",
+          "percent2024": 31.5,
+          "percent2026": 32.7,
+          "changePp": 1.2
+        },
+        {
+          "response": "Seldom",
+          "percent2024": 20.6,
+          "percent2026": 23.4,
+          "changePp": 2.8
+        },
+        {
+          "response": "Never",
+          "percent2024": 16.1,
+          "percent2026": 15.6,
+          "changePp": -0.5
+        }
+      ]
+    },
+    {
+      "id": "findingInformation",
+      "title": "First method for finding information on a lengthy page",
+      "questionText": "When trying to find information on a lengthy web page, which of the following are you most likely to do first?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Navigate through the headings on the page",
+          "respondents": 1082,
+          "percent": 71.6
+        },
+        {
+          "response": "Read through the page",
+          "respondents": 96,
+          "percent": 6.4
+        },
+        {
+          "response": "Use the Find feature",
+          "respondents": 205,
+          "percent": 13.6
+        },
+        {
+          "response": "Navigate through the links of the page",
+          "respondents": 72,
+          "percent": 4.8
+        },
+        {
+          "response": "Navigate through the landmarks/regions of the page",
+          "respondents": 56,
+          "percent": 3.7
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Navigate through the headings on the page",
+          "respondents": 1191,
+          "percent": 67.8
+        },
+        {
+          "response": "Read through the page",
+          "respondents": 170,
+          "percent": 9.7
+        },
+        {
+          "response": "Use the Find feature",
+          "respondents": 219,
+          "percent": 12.5
+        },
+        {
+          "response": "Navigate through the links of the page",
+          "respondents": 118,
+          "percent": 6.7
+        },
+        {
+          "response": "Navigate through the landmarks/regions of the page",
+          "respondents": 59,
+          "percent": 3.4
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Navigate through the headings on the page",
+          "percent2024": 71.6,
+          "percent2026": 67.8,
+          "changePp": -3.8
+        },
+        {
+          "response": "Read through the page",
+          "percent2024": 6.4,
+          "percent2026": 9.7,
+          "changePp": 3.3
+        },
+        {
+          "response": "Use the Find feature",
+          "percent2024": 13.6,
+          "percent2026": 12.5,
+          "changePp": -1.1
+        },
+        {
+          "response": "Navigate through the links of the page",
+          "percent2024": 4.8,
+          "percent2026": 6.7,
+          "changePp": 1.9
+        },
+        {
+          "response": "Navigate through the landmarks/regions of the page",
+          "percent2024": 3.7,
+          "percent2026": 3.4,
+          "changePp": -0.3
+        }
+      ]
+    },
+    {
+      "id": "headingLevels",
+      "title": "Usefulness of heading levels",
+      "questionText": "When navigating a web page by headings, how useful are the heading levels (e.g., \"Heading 1\", \"Heading 2\", etc.) to you?",
+      "availability": "both",
+      "survey10": [
+        {
+          "response": "Very useful",
+          "respondents": 855,
+          "percent": 57.0
+        },
+        {
+          "response": "Somewhat useful",
+          "respondents": 477,
+          "percent": 31.8
+        },
+        {
+          "response": "Not very useful",
+          "respondents": 113,
+          "percent": 7.5
+        },
+        {
+          "response": "Not at all useful",
+          "respondents": 27,
+          "percent": 1.8
+        },
+        {
+          "response": "I don't know",
+          "respondents": 29,
+          "percent": 1.9
+        }
+      ],
+      "survey11": [
+        {
+          "response": "Very useful",
+          "respondents": 912,
+          "percent": 51.9
+        },
+        {
+          "response": "Somewhat useful",
+          "respondents": 640,
+          "percent": 36.4
+        },
+        {
+          "response": "Not very useful",
+          "respondents": 125,
+          "percent": 7.1
+        },
+        {
+          "response": "Not at all useful",
+          "respondents": 38,
+          "percent": 2.2
+        },
+        {
+          "response": "I don't know",
+          "respondents": 43,
+          "percent": 2.4
+        }
+      ],
+      "comparison": [
+        {
+          "response": "Very useful",
+          "percent2024": 57.0,
+          "percent2026": 51.9,
+          "changePp": -5.1
+        },
+        {
+          "response": "Somewhat useful",
+          "percent2024": 31.8,
+          "percent2026": 36.4,
+          "changePp": 4.6
+        },
+        {
+          "response": "Not very useful",
+          "percent2024": 7.5,
+          "percent2026": 7.1,
+          "changePp": -0.4
+        },
+        {
+          "response": "Not at all useful",
+          "percent2024": 1.8,
+          "percent2026": 2.2,
+          "changePp": 0.4
+        },
+        {
+          "response": "I don't know",
+          "percent2024": 1.9,
+          "percent2026": 2.4,
+          "changePp": 0.5
+        }
+      ]
+    },
+    {
+      "id": "skipLinks",
+      "title": "Use of skip links",
+      "questionText": "When a \"skip to main content\" or \"skip navigation\" link is available on a page, how often do you use it?",
+      "availability": "survey11Only",
+      "survey10": null,
+      "survey11": [
+        {
+          "response": "Always",
+          "respondents": 359,
+          "percent": 20.4
+        },
+        {
+          "response": "Often",
+          "respondents": 305,
+          "percent": 17.3
+        },
+        {
+          "response": "Sometimes",
+          "respondents": 524,
+          "percent": 29.8
+        },
+        {
+          "response": "Seldom",
+          "respondents": 340,
+          "percent": 19.3
+        },
+        {
+          "response": "Never",
+          "respondents": 232,
+          "percent": 13.2
+        }
+      ]
+    },
+    {
+      "id": "pdfIssues",
+      "title": "PDF documents likely to pose significant accessibility issues",
+      "questionText": "How likely is it that PDF documents will pose significant accessibility issues to you?",
+      "availability": "survey11Only",
+      "survey10": null,
+      "survey11": [
+        {
+          "response": "Very likely",
+          "respondents": 819,
+          "percent": 46.7
+        },
+        {
+          "response": "Somewhat likely",
+          "respondents": 683,
+          "percent": 38.9
+        },
+        {
+          "response": "Somewhat unlikely",
+          "respondents": 126,
+          "percent": 7.2
+        },
+        {
+          "response": "Very unlikely",
+          "respondents": 65,
+          "percent": 3.7
+        },
+        {
+          "response": "I don't know",
+          "respondents": 61,
+          "percent": 3.5
+        }
+      ]
+    },
+    {
+      "id": "wordIssues",
+      "title": "Word documents likely to pose significant accessibility issues",
+      "questionText": "How likely is it that Microsoft Word documents will pose significant accessibility issues to you?",
+      "availability": "survey11Only",
+      "survey10": null,
+      "survey11": [
+        {
+          "response": "Very likely",
+          "respondents": 167,
+          "percent": 9.6
+        },
+        {
+          "response": "Somewhat likely",
+          "respondents": 376,
+          "percent": 21.5
+        },
+        {
+          "response": "Somewhat unlikely",
+          "respondents": 542,
+          "percent": 31.0
+        },
+        {
+          "response": "Very unlikely",
+          "respondents": 586,
+          "percent": 33.5
+        },
+        {
+          "response": "I don't know",
+          "respondents": 76,
+          "percent": 4.4
+        }
+      ]
+    },
+    {
+      "id": "aiUsage",
+      "title": "Ways respondents commonly use AI to improve their online experience",
+      "questionText": "In what ways do you commonly use AI to improve your online experience?",
+      "availability": "survey11Only",
+      "survey10": null,
+      "survey11": [
+        {
+          "response": "To generate image descriptions / alternative text",
+          "respondents": 1069,
+          "percent": 60.1
+        },
+        {
+          "response": "To provide in-depth analysis or description of complex images",
+          "respondents": 885,
+          "percent": 49.7
+        },
+        {
+          "response": "To generate text or other alternatives for multimedia content",
+          "respondents": 510,
+          "percent": 28.7
+        },
+        {
+          "response": "To generate audio alternatives of text content",
+          "respondents": 318,
+          "percent": 17.9
+        },
+        {
+          "response": "To provide summaries of webpages or documents",
+          "respondents": 660,
+          "percent": 37.1
+        },
+        {
+          "response": "To provide guidance in performing an online task",
+          "respondents": 722,
+          "percent": 40.6
+        },
+        {
+          "response": "To perform accessibility evaluations of content",
+          "respondents": 347,
+          "percent": 19.5
+        },
+        {
+          "response": "Other",
+          "respondents": 290,
+          "percent": 16.3
+        }
+      ]
+    }
+  ],
+  "primaryByRegion": {
+    "note": "Published by WebAIM in prose under 'Primary Desktop/Laptop Screen Reader', not as a table. Percent of respondents in each region whose primary desktop screen reader is JAWS or NVDA. Survey #10 did not report South America.",
+    "rows": [
+      {
+        "region": "North America",
+        "jaws2024": 55.5,
+        "nvda2024": 24.0,
+        "jaws2026": 72.5,
+        "nvda2026": 15.6
+      },
+      {
+        "region": "Australia",
+        "jaws2024": 45.8,
+        "nvda2024": 37.5,
+        "jaws2026": 59.6,
+        "nvda2026": 29.8
+      },
+      {
+        "region": "Europe",
+        "jaws2024": 29.7,
+        "nvda2024": 37.2,
+        "jaws2026": 42.8,
+        "nvda2026": 42.3
+      },
+      {
+        "region": "Africa/Middle East",
+        "jaws2024": 23.3,
+        "nvda2024": 69.9,
+        "jaws2026": 13.6,
+        "nvda2026": 83.0
+      },
+      {
+        "region": "Asia",
+        "jaws2024": 22.9,
+        "nvda2024": 70.8,
+        "jaws2026": 17.0,
+        "nvda2026": 77.4
+      },
+      {
+        "region": "South America",
+        "jaws2024": null,
+        "nvda2024": null,
+        "jaws2026": 18.8,
+        "nvda2026": 67.2
+      }
+    ],
+    "survey11Caveat": "This survey had a slightly higher number of respondents from North America where JAWS is more frequently used, but this alone does not account for the notable increase in overall JAWS usage."
+  },
+  "publishedProseFigures": [
+    {
+      "survey": "survey11",
+      "topic": "Other primary screen readers",
+      "text": "Beyond JAWS, NVDA and VoiceOver, all other primary screen readers totalled 5.5% (down from 12.2% in 2024)."
+    },
+    {
+      "survey": "survey11",
+      "topic": "Multiple screen readers",
+      "text": "70.3% use more than one desktop/laptop screen reader; 38.4% use three or more; 15.4% use four or more.",
+      "value": 70.3
+    },
+    {
+      "survey": "survey10",
+      "topic": "Multiple screen readers",
+      "text": "71.6% use more than one desktop/laptop screen reader; 43% use three or more; 17.4% use four or more.",
+      "value": 71.6
+    },
+    {
+      "survey": "survey11",
+      "topic": "Narrator",
+      "text": "Narrator is the primary screen reader of only 0.4% of respondents but is commonly used by 36.1%."
+    },
+    {
+      "survey": "survey11",
+      "topic": "Reason for use by screen reader",
+      "text": "24.3% of NVDA users indicated cost as their primary reason compared to only 1.4% of JAWS users."
+    },
+    {
+      "survey": "survey11",
+      "topic": "Satisfaction by screen reader",
+      "text": "Very or somewhat satisfied: NVDA 96.7%, JAWS 95.9%, VoiceOver 90.3%."
+    },
+    {
+      "survey": "survey10",
+      "topic": "Satisfaction by screen reader",
+      "text": "Very or somewhat satisfied: NVDA 97.6%, JAWS 95.6%, VoiceOver 92.4%, Narrator 88.9%."
+    },
+    {
+      "survey": "survey11",
+      "topic": "Free/low-cost viability by screen reader",
+      "text": "61.9% of JAWS users answered Yes compared with 91.2% of VoiceOver users and 94% of NVDA users."
+    },
+    {
+      "survey": "survey11",
+      "topic": "Landmarks",
+      "text": "Frequent use of landmarks/regions (whenever available or often) decreased to 28.3% in 2026 from 31.8% in 2024.",
+      "value": 28.3,
+      "previous": 31.8
+    },
+    {
+      "survey": "survey11",
+      "topic": "Headings by proficiency",
+      "text": "Advanced screen reader users are much more likely to use headings first (72.1%) than beginners (41.4%)."
+    },
+    {
+      "survey": "survey11",
+      "topic": "Heading levels",
+      "text": "88.3% find heading levels very or somewhat useful (88.8% in Survey #10).",
+      "value": 88.3,
+      "previous": 88.8
+    },
+    {
+      "survey": "survey11",
+      "topic": "Skip links",
+      "text": "Frequent use of skip links (Always or Often) increased from 31.2% in 2021 to 37.7% in 2026. Survey #10 did not ask this question.",
+      "value": 37.7,
+      "previous2021": 31.2
+    },
+    {
+      "survey": "survey11",
+      "topic": "PDF documents",
+      "text": "85.6% said PDF documents are very or somewhat likely to pose accessibility issues, up from 75.1% in 2019. Survey #10 did not ask this question.",
+      "value": 85.6,
+      "previous2019": 75.1
+    },
+    {
+      "survey": "survey11",
+      "topic": "Word documents",
+      "text": "31.1% said Word documents are very or somewhat likely to pose significant accessibility issues (30.9% in 2019).",
+      "value": 31.1,
+      "previous2019": 30.9
+    },
+    {
+      "survey": "survey11",
+      "topic": "AI usage",
+      "text": "Only 8.2% of respondents did not indicate usage of AI in any of the listed ways.",
+      "value": 8.2
+    },
+    {
+      "survey": "survey11",
+      "topic": "Impact on accessibility",
+      "text": "'Better web sites' fell to 83.9% from 85.9% in 2024, the first reversal of a trend running since October 2009 (68.6%)."
+    },
+    {
+      "survey": "survey11",
+      "topic": "Web accessibility progress by disability",
+      "text": "41% of respondents without disabilities thought the web had become more accessible, against 31.8% of those with disabilities."
+    },
+    {
+      "survey": "survey11",
+      "topic": "Operating system",
+      "text": "Windows usage with primary screen reader increased to 90.7% from 86.1% in 2024."
+    },
+    {
+      "survey": "survey11",
+      "topic": "App vs web",
+      "text": "Preference for mobile apps fell from 58% in 2024 to 54.8% in 2026, reversing an increase over the previous three surveys."
+    }
+  ],
+  "survey10OnlyProblematicItems": {
+    "note": "Survey #10 asked respondents to rank their most problematic items. WebAIM published the order (weighted scores, not percentages). Survey #11 did not ask this question, so there is no 2026 ranking.",
+    "rankedItems": [
+      "CAPTCHA - images presenting text used to verify that you are a human user",
+      "Interactive elements like menus, tabs, and dialogs do not behave as expected",
+      "Links or buttons that do not make sense",
+      "Screens or parts of screens that change unexpectedly",
+      "Lack of keyboard accessibility",
+      "Images with missing or improper descriptions (alt text)",
+      "Complex or difficult forms",
+      "Missing or improper headings",
+      "Too many links or navigation items",
+      "Complex data tables",
+      "Inaccessible or missing search functionality",
+      "Lack of \"skip to main content\" or \"skip navigation\" links"
+    ]
+  }
+}

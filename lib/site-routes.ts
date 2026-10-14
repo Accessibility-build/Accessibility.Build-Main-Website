@@ -92,6 +92,7 @@ const research: SiteRoute[] = [
   { route: "/research", label: "Research Hub", group: "Research", lastModified: "2026-08-27", priority: 0.92, changeFrequency: "weekly" },
   { route: "/research/state-of-accessibility", label: "State of Accessibility Report", group: "Research", lastModified: "2026-08-27", priority: 0.95 },
   { route: "/research/web-accessibility-statistics", label: "Web Accessibility Statistics 2026", group: "Research", lastModified: "2026-10-14", priority: 0.96, changeFrequency: "monthly" },
+  { route: "/research/screen-reader-survey-2026", label: "Screen Reader Survey 2026", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
   { route: "/research/accessibility-testing-tools-benchmark", label: "Accessibility Testing Tools Benchmark 2026", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
   { route: "/research/ai-agent-readiness", label: "AI Agent Readiness Study 2026", group: "Research", lastModified: "2026-09-03", priority: 0.96 },
   { route: "/research/accessibility-statements-2026", label: "State of Accessibility Statements 2026", group: "Research", lastModified: "2026-09-03", priority: 0.95 },
