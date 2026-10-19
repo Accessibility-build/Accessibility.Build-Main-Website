@@ -232,7 +232,7 @@ export default function EN301549Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               EN 301 549: The EU&apos;s ICT Accessibility Standard, Explained
             </h1>
-            <PageByline route="/compliance/en-301-549" className="mb-5" />
+            <PageByline route="/compliance/en-301-549" variant="hero" tone="inverse" className="mt-0 mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               EN 301 549 is the harmonized European standard that defines what
               &ldquo;accessible&rdquo; means for technology in EU law. It sits

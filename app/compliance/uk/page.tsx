@@ -140,7 +140,7 @@ export default function UKCompliancePage() {
                 Equality Act &amp; PSBAR
               </span>
             </h1>
-            <PageByline route="/compliance/uk" className="mb-5" />
+            <PageByline route="/compliance/uk" variant="hero" tone="inverse" className="mt-0 mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               No UK statute names WCAG for private websites, yet the legal duty is real and it is
               anticipatory. The Equality Act 2010 expects service providers to plan reasonable

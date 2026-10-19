@@ -139,7 +139,7 @@ export default function EAAIrelandCompliancePage() {
                 in Ireland
               </span>
             </h1>
-            <PageByline route="/compliance/eaa-ireland" className="mb-5" />
+            <PageByline route="/compliance/eaa-ireland" variant="hero" tone="inverse" className="mt-0 mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               Ireland transposed the European Accessibility Act with an enforcement model most of
               the EU did not choose: non-compliance is a criminal offence, policing is split across

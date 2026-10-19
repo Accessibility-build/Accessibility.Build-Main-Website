@@ -243,7 +243,7 @@ export default function EN301549V4Page() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               EN 301 549 V4.1.1, clause by clause: what changed and what it means
             </h1>
-            <PageByline route="/compliance/en-301-549-v4" className="mb-5" />
+            <PageByline route="/compliance/en-301-549-v4" variant="hero" tone="inverse" className="mt-0 mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               The 2026 edition of Europe&apos;s ICT accessibility standard moves clauses 9, 10 and 11 to WCAG
               2.2, rebuilds clause 6 around total conversation and real-time text, turns the functional

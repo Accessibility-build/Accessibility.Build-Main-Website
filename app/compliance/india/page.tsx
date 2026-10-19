@@ -244,7 +244,7 @@ export default function IndiaCompliancePage() {
                 the RPwD Act and IS 17802
               </span>
             </h1>
-            <PageByline route="/compliance/india" className="mb-5" />
+            <PageByline route="/compliance/india" variant="hero" tone="inverse" className="mt-0 mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-6 max-w-2xl">
               India already names a technical standard for digital accessibility. Since May 2023,
               rule 15 of the Rights of Persons with Disabilities Rules has required websites, apps

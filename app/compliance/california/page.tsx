@@ -140,7 +140,7 @@ export default function CaliforniaCompliancePage() {
                 the Unruh Act
               </span>
             </h1>
-            <PageByline route="/compliance/california" className="mb-5" />
+            <PageByline route="/compliance/california" variant="hero" tone="inverse" className="mt-0 mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               California turns web accessibility from an injunction risk into a damages risk. The
               Unruh Civil Rights Act attaches a $4,000 minimum statutory penalty to every ADA

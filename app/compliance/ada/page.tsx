@@ -147,7 +147,7 @@ export default function AdaCompliancePage() {
                 Compliance
               </span>
             </h1>
-            <PageByline route="/compliance/ada" className="mb-5" />
+            <PageByline route="/compliance/ada" variant="hero" tone="inverse" className="mt-0 mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               How the Americans with Disabilities Act applies to websites and mobile apps: the
               DOJ&apos;s Title II web rule and its WCAG 2.1 AA standard, the Title III case-law

@@ -140,7 +140,7 @@ export default function NewYorkCompliancePage() {
                 Lawsuits &amp; Laws
               </span>
             </h1>
-            <PageByline route="/compliance/new-york" className="mb-5" />
+            <PageByline route="/compliance/new-york" variant="hero" tone="inverse" className="mt-0 mb-5" />
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl">
               New York is the epicenter of federal website accessibility litigation. Plaintiff-
               friendly case law in the Southern and Eastern Districts, damages under the State and
