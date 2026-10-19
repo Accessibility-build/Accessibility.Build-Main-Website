@@ -194,6 +194,7 @@ const checklists: SiteRoute[] = [
   { route: "/checklists", label: "Checklists Hub", group: "Checklists", lastModified: "2026-08-27", priority: 0.87 },
   { route: "/checklists/wcag-2-2", label: "WCAG 2.2 Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.96 },
   { route: "/checklists/en-301-549", label: "EN 301 549 Interactive Checklist", group: "Checklists", lastModified: "2026-10-14", priority: 0.94 },
+  { route: "/checklists/eaa", label: "EAA Readiness Checklist", group: "Checklists", lastModified: "2026-10-19", priority: 0.94 },
   { route: "/checklists/wcag-2-2/aaa", label: "WCAG 2.2 AAA Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.8 },
   { route: "/checklists/wcag-2-2/excel", label: "WCAG 2.2 Excel Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.75 },
   { route: "/checklists/interactive", label: "Interactive Checklist", group: "Checklists", lastModified: "2026-09-02", priority: 0.85 },

@@ -17,7 +17,7 @@ import {
   Target,
   Sparkles,
   Award,
-  Zap, ScrollText
+  Zap, ScrollText, ClipboardCheck
 } from "lucide-react"
 
 export const metadata = createMetadata({
@@ -340,6 +340,76 @@ export default function ChecklistsPage() {
                   <Button variant="outline" size="lg" asChild className="border-2 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 text-lg px-8 py-4 rounded-xl">
                     <Link href="/compliance/en-301-549" className="flex items-center gap-3">
                       What is EN 301 549?
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* EAA Readiness Checklist */}
+            <Card className="mt-10 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border border-slate-200 dark:border-slate-700 shadow-xl overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-indigo-50 to-slate-50 dark:from-indigo-900/20 dark:to-slate-900/20 pb-6">
+                <div className="flex items-start justify-between gap-4 flex-wrap">
+                  <div className="flex items-center gap-4">
+                    <div className="p-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl">
+                      <ClipboardCheck className="w-10 h-10 text-white" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-indigo-700 to-slate-800 dark:from-indigo-300 dark:to-slate-200 bg-clip-text text-transparent mb-2">
+                        EAA Readiness Checklist
+                      </CardTitle>
+                      <p className="text-slate-600 dark:text-slate-300 text-lg">
+                        Every obligation in the European Accessibility Act, cited to its article or annex
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <Badge className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white border-0 text-sm px-3 py-1">
+                      New
+                    </Badge>
+                    <Badge className="bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 text-sm px-3 py-1">
+                      Free
+                    </Badge>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="p-8">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                  <div className="text-center p-4 bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-900/30 rounded-xl border border-indigo-200 dark:border-indigo-700">
+                    <div className="text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-1">82</div>
+                    <div className="text-xs text-indigo-800 dark:text-indigo-200 font-medium">Obligations</div>
+                  </div>
+                  <div className="text-center p-4 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800/20 dark:to-slate-800/30 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <div className="text-2xl font-bold text-slate-700 dark:text-slate-300 mb-1">15</div>
+                    <div className="text-xs text-slate-700 dark:text-slate-300 font-medium">Sections of the Act</div>
+                  </div>
+                  <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-900/30 rounded-xl border border-blue-200 dark:border-blue-700">
+                    <div className="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-1">8</div>
+                    <div className="text-xs text-blue-800 dark:text-blue-200 font-medium">Sector scopes</div>
+                  </div>
+                  <div className="text-center p-4 bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-900/30 rounded-xl border border-amber-200 dark:border-amber-700">
+                    <div className="text-2xl font-bold text-amber-700 dark:text-amber-300 mb-1">2019/882</div>
+                    <div className="text-xs text-amber-800 dark:text-amber-200 font-medium">Directive covered</div>
+                  </div>
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-3xl">
+                  The Annex I service and sector requirements, the Article 13 published accessibility
+                  information, the Article 14 disproportionate burden trail, the Article 32 transition and
+                  the enforcement route, one row per obligation. Filter by sector, record the evidence to
+                  keep, track status with notes, and export to Excel. Verified against the EUR-Lex text on
+                  19 October 2026.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white border-0 text-lg px-8 py-4 rounded-xl">
+                    <Link href="/checklists/eaa" className="flex items-center gap-3">
+                      <Eye className="w-5 h-5" />
+                      Start EAA Checklist
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="lg" asChild className="border-2 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 text-lg px-8 py-4 rounded-xl">
+                    <Link href="/compliance/eaa" className="flex items-center gap-3">
+                      What is the EAA?
                     </Link>
                   </Button>
                 </div>

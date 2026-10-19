@@ -217,6 +217,10 @@ export default function EaaScopeCheckerPage() {
                   EN 301 549 explained
                 </Link>
                 , and track your work with the{" "}
+                <Link href="/checklists/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  EAA readiness checklist
+                </Link>{" "}
+                (every obligation in the Act, with Excel export) and the{" "}
                 <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
                   WCAG 2.2 checklist
                 </Link>

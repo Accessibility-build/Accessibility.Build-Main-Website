@@ -493,7 +493,11 @@ export default function EAAIrelandCompliancePage() {
                   EAA scope checker
                 </Link>
                 . If you plan to rely on the microenterprise exemption or a disproportionate burden
-                claim, put the supporting evidence in writing now.
+                claim, put the supporting evidence in writing now. The{" "}
+                <Link href="/checklists/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  EAA readiness checklist
+                </Link>{" "}
+                lists every obligation in the Act with the evidence to keep for each.
               </li>
               <li>
                 <strong className="text-slate-900 dark:text-white">Audit against WCAG 2.2 AA.</strong>{" "}

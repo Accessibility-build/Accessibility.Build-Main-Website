@@ -443,7 +443,10 @@ export default function EAACompliancePage() {
               The transition rules are narrower than many teams assume: they
               protect <em>pre-existing contracts and installed terminals</em>,
               not websites or apps. A consumer-facing website or app operating
-              after June 28, 2025 is expected to comply now.
+              after June 28, 2025 is expected to comply now. Our{" "}
+              <Link href="/checklists/eaa">EAA readiness checklist</Link> turns
+              every obligation in the Act, including the transition rules, into
+              a trackable row with the evidence to keep and an Excel export.
             </p>
 
             <h2>EN 301 549 and WCAG 2.1 AA</h2>
@@ -650,6 +653,11 @@ export default function EAACompliancePage() {
               <li>
                 <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 hover:underline">
                   Accessibility lawsuit tracker
+                </Link>
+              </li>
+              <li>
+                <Link href="/checklists/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  EAA readiness checklist with Excel export
                 </Link>
               </li>
               <li>

@@ -1,0 +1,766 @@
+{
+  "directive": "Directive (EU) 2019/882 of the European Parliament and of the Council of 17 April 2019 on the accessibility requirements for products and services",
+  "shortName": "European Accessibility Act",
+  "celex": "32019L0882",
+  "textUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32019L0882",
+  "verified": "2026-10-19",
+  "sourceNote": "Every row cites the article, annex, section and point of Directive (EU) 2019/882 it comes from, checked against the EUR-Lex text (CELEX 32019L0882) on 19 October 2026. Obligations are plain-language paraphrases written by accessibility.build, not the normative text. Your duties sit in the national law transposing the Directive, which can add detail and sets the penalties.",
+  "standardsNote": "As of 19 October 2026 no edition of EN 301 549 is cited in the Official Journal of the European Union under this Directive. EN 301 549 v3.2.1 is cited under the Web Accessibility Directive only and gives no presumption of conformity under the EAA. ETSI published v4.1.1, aligned to WCAG 2.2, on 2 September 2026; its citation under the EAA is expected in late November or December 2026.",
+  "sections": [
+    { "id": "scope", "title": "Scope, dates and exemptions", "source": "Articles 2, 3, 4 and 31", "summary": "Work out whether the Directive applies to you, which category you fall in, and which content and organisations it leaves out." },
+    { "id": "general-services", "title": "General requirements for all services", "source": "Annex I, Section III", "summary": "The requirements every in-scope service must meet: accessible websites and apps, accessible information about the service, accessible products used to deliver it, and support services that can talk about accessibility." },
+    { "id": "ecommerce", "title": "E-commerce services", "source": "Annex I, Section IV, point (g)", "summary": "Additional requirements for any service that concludes consumer contracts online." },
+    { "id": "banking", "title": "Consumer banking services", "source": "Annex I, Section IV, point (e); Article 3(28)", "summary": "Additional requirements for credit, payment, payment account, e-money and listed investment services offered to consumers." },
+    { "id": "ebooks", "title": "E-books and dedicated software", "source": "Annex I, Section IV, point (f); Article 3(41)", "summary": "Additional requirements for e-book files and the reading software that opens them." },
+    { "id": "transport", "title": "Passenger transport services", "source": "Annex I, Section IV, points (c) and (d); Article 2(2)(c); Article 5", "summary": "Additional requirements for the listed digital elements of air, bus, rail and waterborne passenger transport, and the terminal-only duty for urban, suburban and regional services." },
+    { "id": "telecoms", "title": "Electronic communications services", "source": "Annex I, Section IV, point (a)", "summary": "Additional requirements for voice, text and video communication services, including emergency communications." },
+    { "id": "av-media", "title": "Access to audiovisual media services", "source": "Annex I, Section IV, point (b)", "summary": "Additional requirements for programme guides and for carrying subtitles, audio description and sign language through to the viewer." },
+    { "id": "emergency", "title": "Answering 112 emergency communications", "source": "Annex I, Section V; Article 4(8)", "summary": "A Member State duty on public safety answering points, listed so the whole of Annex I is visible." },
+    { "id": "products", "title": "Products: manufacturer, importer and distributor duties", "source": "Articles 7 to 12; Annex I, Sections I and II; Annex IV", "summary": "What the Directive asks of anyone who makes, imports or sells the listed hardware, terminals and e-readers." },
+    { "id": "service-provider", "title": "Service provider duties and published accessibility information", "source": "Article 13; Annex V", "summary": "The operational duties on every service provider: the information you must publish, the procedures you must run, and what you owe the authorities." },
+    { "id": "burden", "title": "Fundamental alteration and disproportionate burden", "source": "Article 14; Annex VI", "summary": "If you intend to rely on either exception, this is the assessment, documentation, renewal and notification trail the Directive requires." },
+    { "id": "transition", "title": "Transitional measures", "source": "Article 32", "summary": "What the period to 28 June 2030 protects, and what it does not." },
+    { "id": "enforcement", "title": "Authorities, complaints and penalties", "source": "Articles 23, 29 and 30", "summary": "Who checks compliance, how complaints reach them, and what the penalty regime must look like." },
+    { "id": "standards", "title": "Harmonised standards and presumption of conformity", "source": "Article 15", "summary": "How EN 301 549 relates to the Directive, and what changes once an edition is cited in the Official Journal." }
+  ],
+  "rows": [
+    {
+      "id": "scope-services",
+      "section": "scope",
+      "obligation": "Confirm which Article 2(2) service category you provide to consumers, and record when the service was first provided after 28 June 2025.",
+      "source": "Article 2(2)(a) to (f); Article 31(2)",
+      "appliesTo": "Every service provider",
+      "evidence": "A written scope determination naming the category, the Member States served, and the consumer-facing channels (website, app, e-tickets, terminals) it covers.",
+      "notes": "The six categories are electronic communications services, services providing access to audiovisual media services, listed elements of air, bus, rail and waterborne passenger transport, consumer banking services, e-books and dedicated software, and e-commerce services. Article 3(30) defines e-commerce services as services provided at a distance, through websites and mobile device-based services, by electronic means and at the individual request of a consumer with a view to concluding a consumer contract, so any online consumer sales journey is in scope. Business-only services fall outside Article 2(2) because Article 3(22) limits 'consumer' to natural persons acting outside their trade, business, craft or profession."
+    },
+    {
+      "id": "scope-products",
+      "section": "scope",
+      "obligation": "Confirm whether any product you manufacture, import or distribute is listed in Article 2(1) and was placed on the market after 28 June 2025.",
+      "source": "Article 2(1)(a) to (e)",
+      "appliesTo": "Manufacturers, importers and distributors",
+      "evidence": "Product register mapped to the Article 2(1) list with the date each product was placed on the market.",
+      "notes": "Covered products: consumer general purpose computer hardware systems and their operating systems; payment terminals; automated teller machines, ticketing machines, check-in machines and interactive information terminals dedicated to covered services; consumer terminal equipment used for electronic communications services; consumer terminal equipment used for accessing audiovisual media services; and e-readers. Terminals installed as integrated parts of vehicles, aircraft, ships or rolling stock are excluded."
+    },
+    {
+      "id": "scope-microenterprise",
+      "section": "scope",
+      "obligation": "Decide whether you qualify as a microenterprise and, if you rely on the service exemption, keep the headcount and turnover or balance sheet figures that prove it.",
+      "source": "Article 3(23); Article 4(5)",
+      "appliesTo": "Service providers with fewer than 10 staff",
+      "evidence": "Dated headcount and annual turnover or balance sheet total, re-checked each financial year, with a note of the national transposition provision relied on.",
+      "notes": "Article 3(23): fewer than 10 persons employed and an annual turnover not exceeding EUR 2 million or an annual balance sheet total not exceeding EUR 2 million. Article 4(5) exempts microenterprises providing services from the Article 4(3) service requirements and any obligations relating to them. It does not exempt microenterprises dealing with products from the product requirements; Article 14(4) and Article 14(8) only relieve them of documenting and notifying an Article 14 assessment. Crossing either threshold ends the exemption. Article 4(6) obliges Member States to publish guidance and tools for microenterprises, which are worth checking in each country."
+    },
+    {
+      "id": "scope-excluded-content",
+      "section": "scope",
+      "obligation": "Inventory the website and app content that Article 2(4) excludes, and record the ground for each exclusion.",
+      "source": "Article 2(4)(a) to (e)",
+      "appliesTo": "Every service provider operating websites or mobile applications",
+      "evidence": "Content inventory listing each excluded item, the exclusion ground, and its publication or last-edit date.",
+      "notes": "Excluded: pre-recorded time-based media published before 28 June 2025; office file formats published before 28 June 2025; online maps and mapping services where essential information for navigational maps is provided in an accessible digital manner; third-party content that is neither funded, developed by, nor under the control of the economic operator; and archives whose content is not updated or edited after 28 June 2025. Editing an archived page or re-publishing an old PDF removes the exclusion. Embedded payment or identity widgets that you pay for or configure are under your control and are not third-party content for this purpose."
+    },
+    {
+      "id": "scope-national-law",
+      "section": "scope",
+      "obligation": "Identify the national law transposing the Directive in each Member State where you provide the service or place products, and the date it applies from.",
+      "source": "Article 31(1) and (2)",
+      "appliesTo": "Every economic operator",
+      "evidence": "Register of Member States served, with the national instrument, its penalty provisions and the designated authorities for each.",
+      "notes": "The Directive binds Member States; the duties you answer to are in national law, applied from 28 June 2025 (Article 31(2)). Member States could delay only the Article 4(8) emergency-communications duty, to 28 June 2027 at the latest (Article 31(3)). EUR-Lex lists the measures each Member State has communicated under the national transposition tab for CELEX 32019L0882."
+    },
+    {
+      "id": "gs-websites-apps",
+      "section": "general-services",
+      "obligation": "Make every website, related online application and mobile device-based service, including mobile apps, used to provide the service accessible in a consistent and adequate way by making it perceivable, operable, understandable and robust.",
+      "source": "Annex I, Section III, point (c)",
+      "appliesTo": "All in-scope services except urban, suburban and regional transport services (Article 4(3))",
+      "evidence": "Accessibility audit reports for each site and app in the consumer journey against WCAG 2.2 Level AA or EN 301 549 clauses 9 and 11, with retest records and an open issues log.",
+      "notes": "Perceivable, operable, understandable and robust are the four WCAG principles. The practical benchmark is EN 301 549, whose web and software clauses incorporate WCAG at Level AA: v3.2.1 uses WCAG 2.1 and v4.1.1, published by ETSI on 2 September 2026, uses WCAG 2.2. As of 19 October 2026 no edition of EN 301 549 is cited in the Official Journal under this Directive, so conformance is strong evidence rather than a legal presumption until that citation lands (see the harmonised standards section)."
+    },
+    {
+      "id": "gs-products-used",
+      "section": "general-services",
+      "obligation": "Make sure every product used to provide the service meets Annex I Section I, and Section II where applicable.",
+      "source": "Annex I, Section III, point (a)",
+      "appliesTo": "Services delivered through products such as self-service terminals, set-top boxes, card readers or supplied handsets",
+      "evidence": "Register of products used in the service, with each product's EU declaration of conformity or accessibility documentation from the manufacturer.",
+      "notes": "Article 32 allows products lawfully in use before 28 June 2025 to stay in service until 28 June 2030, and self-service terminals for up to 20 years from entry into use where national law provides for it. Products brought into use after 28 June 2025 must comply now."
+    },
+    {
+      "id": "gs-service-information",
+      "section": "general-services",
+      "obligation": "Publish information about how the service works and, where products are used to deliver it, how the service links to those products, their accessibility characteristics and their interoperability with assistive devices and facilities.",
+      "source": "Annex I, Section III, point (b)",
+      "appliesTo": "All in-scope services except urban, suburban and regional transport services",
+      "evidence": "The published service and accessibility information, its URL or location, and its last review date.",
+      "notes": "This is the same information the Annex V document under Article 13(2) describes; one accessible document can serve both, provided it meets the format requirements in the next six rows."
+    },
+    {
+      "id": "gs-info-sensory-channels",
+      "section": "general-services",
+      "obligation": "Make that information available via more than one sensory channel.",
+      "source": "Annex I, Section III, point (b)(i)",
+      "appliesTo": "All in-scope services except urban, suburban and regional transport services",
+      "evidence": "Information published as accessible text that works with screen readers and can be read aloud; any audio or video version carries captions and a transcript.",
+      "notes": "Text that a screen reader can read already reaches sight and hearing. Image-only PDFs and video without transcripts do not."
+    },
+    {
+      "id": "gs-info-understandable",
+      "section": "general-services",
+      "obligation": "Present the information in an understandable way.",
+      "source": "Annex I, Section III, point (b)(ii)",
+      "appliesTo": "All in-scope services except urban, suburban and regional transport services",
+      "evidence": "Plain-language review of the published information; reading-level check; glossary for unavoidable technical terms.",
+      "notes": "The Directive sets no reading level for general services. It does for consumer banking (CEFR level B2, Annex I, Section IV, point (e)(ii)), which is a sensible target everywhere."
+    },
+    {
+      "id": "gs-info-perceivable",
+      "section": "general-services",
+      "obligation": "Present the information to users in ways they can perceive.",
+      "source": "Annex I, Section III, point (b)(iii)",
+      "appliesTo": "All in-scope services except urban, suburban and regional transport services",
+      "evidence": "Contrast, zoom and reflow checks on the pages or documents carrying the information.",
+      "notes": "Maps to the WCAG Perceivable principle: text alternatives, adaptable structure and distinguishable presentation."
+    },
+    {
+      "id": "gs-info-text-formats",
+      "section": "general-services",
+      "obligation": "Make the information content available in text formats that can be used to generate alternative assistive formats, presented in different ways and via more than one sensory channel.",
+      "source": "Annex I, Section III, point (b)(iv)",
+      "appliesTo": "All in-scope services except urban, suburban and regional transport services",
+      "evidence": "Information published as HTML or tagged, text-based documents rather than images or scanned PDFs; braille or large-print versions can be generated on request.",
+      "notes": "Real text is what lets users switch to braille, large print, speech or high contrast."
+    },
+    {
+      "id": "gs-info-typography",
+      "section": "general-services",
+      "obligation": "Present the information in fonts of adequate size and suitable shape, with sufficient contrast and adjustable spacing between letters, lines and paragraphs.",
+      "source": "Annex I, Section III, point (b)(v)",
+      "appliesTo": "All in-scope services except urban, suburban and regional transport services",
+      "evidence": "Contrast ratio results, text resize to 200% and text spacing override tests (WCAG 1.4.3, 1.4.4 and 1.4.12) on the information pages.",
+      "notes": "Fixed-height containers that clip text when spacing is increased are the usual failure."
+    },
+    {
+      "id": "gs-info-non-text",
+      "section": "general-services",
+      "obligation": "Supplement any non-textual content in the information with an alternative presentation of that content.",
+      "source": "Annex I, Section III, point (b)(vi)",
+      "appliesTo": "All in-scope services except urban, suburban and regional transport services",
+      "evidence": "Alt text audit of diagrams, icons and screenshots; transcripts and audio description for video explainers.",
+      "notes": "Covers the instructional diagrams, icons and videos in help centres and onboarding flows, not just marketing images."
+    },
+    {
+      "id": "gs-electronic-information",
+      "section": "general-services",
+      "obligation": "Provide the electronic information needed in the provision of the service in a consistent and adequate way by making it perceivable, operable, understandable and robust.",
+      "source": "Annex I, Section III, point (b)(vii)",
+      "appliesTo": "All in-scope services except urban, suburban and regional transport services",
+      "evidence": "Accessibility checks on transactional emails, invoices, statements, confirmations, e-tickets and downloadable PDFs (tagged PDF or PDF/UA results).",
+      "notes": "This point reaches beyond the website to every electronic document the service sends or generates. Untagged PDF invoices and image-based e-tickets are common gaps."
+    },
+    {
+      "id": "gs-support-services",
+      "section": "general-services",
+      "obligation": "Where you offer support services (help desks, call centres, technical support, relay services or training), make sure they provide information on the accessibility of the service and its compatibility with assistive technologies, in accessible modes of communication.",
+      "source": "Annex I, Section III, point (d)",
+      "appliesTo": "All in-scope services except urban, suburban and regional transport services",
+      "evidence": "Support scripts or knowledge-base entries on accessibility features and assistive technology compatibility; staff training records; at least one text-based and one voice-based contact channel; relay or video service details where offered.",
+      "notes": "A phone-only helpline fails a deaf customer; a chat-only helpline can fail a blind customer if the chat widget is inaccessible. Offer both and test both."
+    },
+    {
+      "id": "ec-product-accessibility-info",
+      "section": "ecommerce",
+      "obligation": "Show the accessibility information for the products and services you sell whenever the responsible economic operator provides it.",
+      "source": "Annex I, Section IV, point (g)(i)",
+      "appliesTo": "E-commerce services (Article 3(30))",
+      "evidence": "Product data model and listing templates with a field for manufacturer-supplied accessibility information; a process for collecting it from suppliers or marketplace sellers.",
+      "notes": "The duty is to pass through accessibility information supplied by the manufacturer or service provider, not to author it. Marketplaces should capture it at seller onboarding."
+    },
+    {
+      "id": "ec-identification-security-payment-function",
+      "section": "ecommerce",
+      "obligation": "Make the identification, security and payment functionality accessible when it is delivered as part of the service instead of a product, by making it perceivable, operable, understandable and robust.",
+      "source": "Annex I, Section IV, point (g)(ii)",
+      "appliesTo": "E-commerce services",
+      "evidence": "Audit results for account creation, login, multi-factor authentication, CAPTCHA alternatives, basket, checkout, address entry, card entry and 3-D Secure steps, including third-party iframes.",
+      "notes": "WCAG 2.2 added 3.3.7 Redundant Entry and 3.3.8 Accessible Authentication (Minimum), which target exactly these steps. Payment gateway iframes you embed are part of your service."
+    },
+    {
+      "id": "ec-identification-signature-payment-services",
+      "section": "ecommerce",
+      "obligation": "Provide identification methods, electronic signatures and payment services that are perceivable, operable, understandable and robust.",
+      "source": "Annex I, Section IV, point (g)(iii)",
+      "appliesTo": "E-commerce services",
+      "evidence": "Test results for each identity provider, e-signature flow and payment method offered (wallets, buy-now-pay-later, bank redirects); accessibility clauses in supplier contracts.",
+      "notes": "Where a bank redirect or wallet provider is inaccessible, offer an accessible alternative payment route and document the remediation request you made to the supplier."
+    },
+    {
+      "id": "bk-scope",
+      "section": "banking",
+      "obligation": "Confirm which of your products fall within consumer banking services as defined in Article 3(28).",
+      "source": "Article 3(28)(a) to (e)",
+      "appliesTo": "Banks, lenders, payment institutions, e-money issuers and investment firms serving consumers",
+      "evidence": "Product list mapped to the five Article 3(28) heads, with the underlying Union act for each.",
+      "notes": "The five heads are consumer and mortgage credit agreements (Directives 2008/48/EC and 2014/17/EU), the listed investment services and activities (points 1, 2, 4 and 5 of Sections A and B of Annex I to Directive 2014/65/EU), payment services (Directive (EU) 2015/2366), services linked to a payment account (Directive 2014/92/EU) and electronic money (Directive 2009/110/EC)."
+    },
+    {
+      "id": "bk-identification-security-payment",
+      "section": "banking",
+      "obligation": "Provide identification methods, electronic signatures, security and payment services that are perceivable, operable, understandable and robust.",
+      "source": "Annex I, Section IV, point (e)(i)",
+      "appliesTo": "Consumer banking services",
+      "evidence": "Audit results for onboarding and identity verification, strong customer authentication, card and app PIN entry, e-signature of agreements, transfers and card controls; an accessible alternative to any biometric-only or image-based step.",
+      "notes": "Annex I, Section I, point 2(l) requires products to offer an alternative to biometric identification and control; apply the same principle to app-based authentication."
+    },
+    {
+      "id": "bk-b2-language",
+      "section": "banking",
+      "obligation": "Keep information understandable, without exceeding level B2 (upper intermediate) of the Council of Europe's Common European Framework of Reference for Languages.",
+      "source": "Annex I, Section IV, point (e)(ii)",
+      "appliesTo": "Consumer banking services",
+      "evidence": "Plain-language review records for terms and conditions, fee information, product pages, app copy and letters; readability test results; an editorial standard that names B2.",
+      "notes": "This is the only reading-level requirement in the Directive. It applies to the information the service provides, which includes contractual and pre-contractual documents, not just marketing pages."
+    },
+    {
+      "id": "eb-synchronised-audio",
+      "section": "ebooks",
+      "obligation": "When an e-book contains audio in addition to text, provide synchronised text and audio.",
+      "source": "Annex I, Section IV, point (f)(i)",
+      "appliesTo": "E-books and dedicated software (Article 3(41))",
+      "evidence": "Media overlays or an equivalent synchronisation mechanism present in read-aloud titles; QA checks on a sample of titles.",
+      "notes": "EPUB 3 media overlays are the usual mechanism."
+    },
+    {
+      "id": "eb-assistive-technology",
+      "section": "ebooks",
+      "obligation": "Ensure e-book digital files do not prevent assistive technology from operating properly.",
+      "source": "Annex I, Section IV, point (f)(ii)",
+      "appliesTo": "E-books and dedicated software",
+      "evidence": "Screen reader and refreshable braille test results on representative titles across the reading apps you offer; automated EPUB accessibility checks.",
+      "notes": "Dedicated reading apps are part of the service under Article 3(41) and also fall under the general website and app requirement in Annex I, Section III, point (c)."
+    },
+    {
+      "id": "eb-structure-navigation",
+      "section": "ebooks",
+      "obligation": "Ensure access to the content, navigation of the file content and layout including dynamic layout, provision of the structure, and flexibility and choice in the presentation of the content.",
+      "source": "Annex I, Section IV, point (f)(iii)",
+      "appliesTo": "E-books and dedicated software",
+      "evidence": "Titles ship with a navigable table of contents, a page list where relevant, headings and a logical reading order; reflowable layout or an accessible alternative to fixed layout; user control of font, size, spacing and colours in the reading software.",
+      "notes": "Fixed-layout files with no reflow and no structure fail this point even if the text is real."
+    },
+    {
+      "id": "eb-alternative-renditions",
+      "section": "ebooks",
+      "obligation": "Allow alternative renditions of the content and its interoperability with a variety of assistive technologies, so that it is perceivable, understandable, operable and robust.",
+      "source": "Annex I, Section IV, point (f)(iv)",
+      "appliesTo": "E-books and dedicated software",
+      "evidence": "Text-to-speech, braille output and visual adjustment verified across the platforms supported; image descriptions present; MathML or described alternatives for formulae.",
+      "notes": "Alternative renditions means the same content delivered as speech, braille, large print or high contrast, not a separate accessible edition."
+    },
+    {
+      "id": "eb-metadata",
+      "section": "ebooks",
+      "obligation": "Make e-books discoverable by providing information through metadata about their accessibility features.",
+      "source": "Annex I, Section IV, point (f)(v)",
+      "appliesTo": "E-books and dedicated software",
+      "evidence": "Accessibility metadata present in each file and in the catalogue feed, and surfaced on product pages.",
+      "notes": "EPUB accessibility metadata (the schema.org accessibility properties in the package document) and the ONIX accessibility codes are the industry mechanisms; retailers should display them to customers."
+    },
+    {
+      "id": "eb-drm",
+      "section": "ebooks",
+      "obligation": "Ensure that digital rights management measures do not block accessibility features.",
+      "source": "Annex I, Section IV, point (f)(vi)",
+      "appliesTo": "E-books and dedicated software",
+      "evidence": "DRM configuration review confirming that text-to-speech, screen reader access, font and colour changes and braille output are not disabled; test results on protected files.",
+      "notes": "DRM settings that switch off read-aloud or restrict the choice of reading system are the most common failure."
+    },
+    {
+      "id": "tr-scope",
+      "section": "transport",
+      "obligation": "Confirm which elements of your passenger transport service are in scope.",
+      "source": "Article 2(2)(c)(i) to (v)",
+      "appliesTo": "Air, bus, rail and waterborne passenger transport services",
+      "evidence": "Inventory of websites, mobile services and apps, electronic tickets and ticketing services, channels delivering transport information including real-time information and interactive information screens in the Union, and interactive self-service terminals in the Union.",
+      "notes": "For urban, suburban and regional transport services (rail, bus and coach, metro, tram and trolley bus under Article 3(35) and (36)) only point (v), interactive self-service terminals, applies. Terminals installed as integrated parts of vehicles, aircraft, ships or rolling stock are excluded."
+    },
+    {
+      "id": "tr-accessibility-information",
+      "section": "transport",
+      "obligation": "Provide information on the accessibility of vehicles, the surrounding infrastructure and the built environment, and on assistance for persons with disabilities.",
+      "source": "Annex I, Section IV, point (c)(i)",
+      "appliesTo": "Air, bus, rail and waterborne passenger transport, except urban, suburban and regional services",
+      "evidence": "Published, accessible pages covering step-free access, on-board facilities, station or terminal accessibility and how to book assistance, kept current.",
+      "notes": "Article 5 deems services that meet the accessible-information duties in the passenger rights Regulations to meet the corresponding EAA requirement, but any additional EAA requirement applies in full."
+    },
+    {
+      "id": "tr-travel-information",
+      "section": "transport",
+      "obligation": "Provide information about smart ticketing (electronic reservation and booking), real-time travel information (timetables, disruptions, connecting services, onward travel with other modes) and additional service information (station staffing, lifts out of order, services temporarily unavailable).",
+      "source": "Annex I, Section IV, point (c)(ii)",
+      "appliesTo": "Air, bus, rail and waterborne passenger transport, except urban, suburban and regional services",
+      "evidence": "Accessibility checks on the booking flow, journey planner, live departure boards and disruption alerts across web, app and interactive screens; a process for publishing lift and staffing status in accessible form.",
+      "notes": "Interactive information screens are covered only where located within the territory of the Union (Article 2(2)(c)(iv))."
+    },
+    {
+      "id": "tr-urban-terminals",
+      "section": "transport",
+      "obligation": "For urban, suburban and regional transport services, ensure the self-service terminals used in the service meet Annex I Section I.",
+      "source": "Annex I, Section IV, point (d)",
+      "appliesTo": "Urban, suburban and regional transport services",
+      "evidence": "Terminal register with the Section I conformity evidence from each supplier and the Article 32(2) entry-into-use date for legacy terminals.",
+      "notes": "These services are exempt from the general Section III requirements under Article 4(3); the terminal duty and the product rules are what apply."
+    },
+    {
+      "id": "tr-passenger-rights-mapping",
+      "section": "transport",
+      "obligation": "Record how your existing compliance with the passenger rights Regulations maps to the Directive, and apply any additional Directive requirement in full.",
+      "source": "Article 5",
+      "appliesTo": "Air, bus, rail and waterborne passenger transport services",
+      "evidence": "Cross-reference table between Regulations (EC) No 261/2004, (EC) No 1107/2006, (EC) No 1371/2007, (EU) No 1177/2010 and (EU) No 181/2011 and the Annex I requirements.",
+      "notes": "The rail Regulation the Directive cites, (EC) No 1371/2007, has since been recast as Regulation (EU) 2021/782."
+    },
+    {
+      "id": "tc-real-time-text",
+      "section": "telecoms",
+      "obligation": "Provide real time text in addition to voice communication.",
+      "source": "Annex I, Section IV, point (a)(i)",
+      "appliesTo": "Electronic communications services (Article 3(8)), excluding transmission services used for machine-to-machine services",
+      "evidence": "Real time text available on the voice service across supported networks and devices; interoperability test records.",
+      "notes": "Article 3(14) defines real time text as text sent so that the conversation is perceived as continuous, character by character, not message by message."
+    },
+    {
+      "id": "tc-total-conversation",
+      "section": "telecoms",
+      "obligation": "Provide total conversation where video is provided in addition to voice communication.",
+      "source": "Annex I, Section IV, point (a)(ii)",
+      "appliesTo": "Electronic communications services",
+      "evidence": "Synchronised voice, real time text and video supported on the video calling service; test records.",
+      "notes": "Total conversation service is defined by reference to Directive (EU) 2018/1972 (Article 3(9))."
+    },
+    {
+      "id": "tc-emergency-communications",
+      "section": "telecoms",
+      "obligation": "Ensure emergency communications using voice and text, including real time text, are synchronised, and where video is provided are synchronised as total conversation, and are transmitted to the most appropriate public safety answering point.",
+      "source": "Annex I, Section IV, point (a)(iii)",
+      "appliesTo": "Electronic communications services",
+      "evidence": "Emergency call routing and media synchronisation test records agreed with the national public safety answering point operator.",
+      "notes": "The answering side of 112 is a Member State duty under Article 4(8) and Annex I, Section V."
+    },
+    {
+      "id": "av-programme-guides",
+      "section": "av-media",
+      "obligation": "Provide electronic programme guides that are perceivable, operable, understandable and robust and that give information about the availability of accessibility features.",
+      "source": "Annex I, Section IV, point (b)(i)",
+      "appliesTo": "Services providing access to audiovisual media services (Article 3(6)), including streaming platforms, TV apps and programme guide providers",
+      "evidence": "Accessibility audit of the programme guide on each platform; accessibility indicators (subtitles, audio description, sign language) shown per programme.",
+      "notes": "Article 3(6) expressly includes electronic programme guides within the service."
+    },
+    {
+      "id": "av-access-services",
+      "section": "av-media",
+      "obligation": "Transmit the access services of the audiovisual media (subtitles for the deaf and hard of hearing, audio description, spoken subtitles and sign language interpretation) fully and with adequate quality for accurate display, synchronised with sound and video, and allow users to control their display and use.",
+      "source": "Annex I, Section IV, point (b)(ii)",
+      "appliesTo": "Services providing access to audiovisual media services",
+      "evidence": "End-to-end checks that access services supplied by broadcasters survive encoding and delivery; player settings that let users switch each access service on and off and adjust its presentation.",
+      "notes": "Dropping or desynchronising subtitles in the delivery chain fails this point even where the broadcaster supplied them correctly."
+    },
+    {
+      "id": "em-psap-answering",
+      "section": "emergency",
+      "obligation": "Answer emergency communications to 112 by the most appropriate public safety answering point using the same communication means as received: synchronised voice and text including real time text, or voice, text and video synchronised as total conversation where video is provided.",
+      "source": "Annex I, Section V; Article 4(8)",
+      "appliesTo": "Member States and public safety answering points, not private service providers",
+      "evidence": "National public safety answering point capability documentation and test records.",
+      "notes": "Article 31(3) allowed Member States to apply this duty at the latest from 28 June 2027. Listed so the full Annex I picture is visible; private operators can mark it not applicable."
+    },
+    {
+      "id": "pr-design-manufacture",
+      "section": "products",
+      "obligation": "Design and manufacture products in accordance with the applicable accessibility requirements: Annex I Section I for all products, plus Section II for all products other than self-service terminals.",
+      "source": "Article 7(1); Article 4(2)",
+      "appliesTo": "Manufacturers, and importers or distributors treated as manufacturers under Article 11",
+      "evidence": "Requirements traceability from Annex I to design specifications; test reports against the EN 301 549 hardware and software clauses.",
+      "notes": "Article 11 makes an importer or distributor a manufacturer when it places a product on the market under its own name or trademark, or modifies a product in a way that may affect compliance."
+    },
+    {
+      "id": "pr-information-on-product",
+      "section": "products",
+      "obligation": "Make the information on the use of the product provided on the product itself (labelling, instructions and warnings) available via more than one sensory channel, understandable, perceivable, and in fonts of adequate size and shape with sufficient contrast and adjustable spacing.",
+      "source": "Annex I, Section I, point 1(a)(i) to (iv)",
+      "appliesTo": "All products in Article 2(1)",
+      "evidence": "Label and on-device text review; tactile or audio alternatives for key markings.",
+      "notes": "Section I opens with the general duty to design and produce products so as to maximise their foreseeable use by persons with disabilities, accompanied where possible by accessible information on their functioning and accessibility features."
+    },
+    {
+      "id": "pr-instructions-for-use",
+      "section": "products",
+      "obligation": "Make the instructions for use that are not on the product itself (for example on a website) publicly available when the product is placed on the market and accessible: multi-sensory, understandable, perceivable, with adequate typography, in text formats usable for alternative formats, with alternatives to non-textual content, and including descriptions of the user interface, of the accessibility functions, and of the hardware and software interfacing with assistive devices, with a list of the assistive devices tested with the product.",
+      "source": "Annex I, Section I, point 1(b)(i) to (ix)",
+      "appliesTo": "All products in Article 2(1)",
+      "evidence": "Accessible online manual containing the required descriptions and the list of assistive technologies tested; publication no later than placing on the market.",
+      "notes": "Points (vii) and (viii) require a point-by-point statement of which of the Section I, point 2 features the product provides."
+    },
+    {
+      "id": "pr-user-interface",
+      "section": "products",
+      "obligation": "Build the user interface and functionality so that people with disabilities can access, perceive, operate, understand and control the product: communication via more than one sensory channel, alternatives to speech, to colour and to audible signals, flexible magnification, brightness and contrast, user control of volume and speed, sequential control and alternatives to fine motor control, no need for extensive reach or great strength, no photosensitive seizure triggers, privacy when using accessibility features, an alternative to biometric identification, consistent functionality with flexible time for interaction, and software and hardware interfaces for assistive technologies.",
+      "source": "Annex I, Section I, point 2(a) to (n)",
+      "appliesTo": "All products in Article 2(1)",
+      "evidence": "Feature-by-feature conformance matrix against points 2(a) to 2(n); usability test results with assistive technology users.",
+      "notes": "Point 2(c) also requires interoperability with programmes and assistive devices used to navigate the interface."
+    },
+    {
+      "id": "pr-sector-specific",
+      "section": "products",
+      "obligation": "Meet the sector-specific product requirements: self-service terminals (text-to-speech, personal headset support, multi-sensory alerts and the possibility to extend time for timed responses, adequate contrast and tactilely discernible keys, accessibility features that can be turned on without first being activated, compatibility with hearing technologies); e-readers (text-to-speech); electronic communications terminals (real time text and high fidelity audio, total conversation with video that supports sign language, effective wireless coupling to hearing technologies, no interference with assistive devices); and audiovisual terminals (make the accessibility components provided by the media service available for user access, selection, control, personalisation and transmission to assistive devices).",
+      "source": "Annex I, Section I, point 2(o)(i) to (iv)",
+      "appliesTo": "Self-service terminals, e-readers, electronic communications terminals and audiovisual terminals",
+      "evidence": "Test reports for each applicable sector point; hearing technology compatibility results.",
+      "notes": "Self-service terminals include payment terminals, ATMs, ticketing machines, check-in machines and interactive information terminals (Article 2(1)(b))."
+    },
+    {
+      "id": "pr-support-services",
+      "section": "products",
+      "obligation": "Where support services exist (help desks, call centres, technical support, relay services or training), make sure they provide information on the accessibility of the product and its compatibility with assistive technologies, in accessible modes of communication.",
+      "source": "Annex I, Section I, point 3",
+      "appliesTo": "All products in Article 2(1)",
+      "evidence": "Support scripts, training records and accessible contact channels.",
+      "notes": "The service-side twin of this duty is Annex I, Section III, point (d)."
+    },
+    {
+      "id": "pr-packaging-instructions",
+      "section": "products",
+      "obligation": "For products other than self-service terminals, make the packaging and the information on it accessible, and publish accessible installation, maintenance, storage and disposal instructions when the product is placed on the market.",
+      "source": "Annex I, Section II, points (a) and (b)(i) to (vi)",
+      "appliesTo": "All products in Article 2(1) except self-service terminals",
+      "evidence": "Packaging review; accessible online instructions meeting the six format requirements in point (b).",
+      "notes": "Section II applies in addition to Section I. When feasible, accessible information about the product's accessibility characteristics should be provided on the package itself."
+    },
+    {
+      "id": "pr-conformity-assessment",
+      "section": "products",
+      "obligation": "Draw up the technical documentation, carry out the Annex IV internal production control procedure, draw up the EU declaration of conformity, affix the CE marking, and keep the documentation and declaration for five years after placing the product on the market.",
+      "source": "Article 7(2) and (3); Annex IV; Articles 16 to 18",
+      "appliesTo": "Manufacturers",
+      "evidence": "Technical documentation with a general description of the product and the list of harmonised standards or technical specifications applied, or the solutions adopted where none were applied; a signed EU declaration of conformity per product model; CE marking on each product.",
+      "notes": "Annex IV, point 2 also requires the technical documentation to demonstrate any Article 14 fundamental alteration or disproportionate burden relied on. There is no notified body route: the manufacturer declares conformity on its sole responsibility, and under Annex IV, point 5 an authorised representative may handle the CE marking and declaration if the mandate says so."
+    },
+    {
+      "id": "pr-series-production",
+      "section": "products",
+      "obligation": "Keep series production in conformity, taking adequate account of changes in product design or characteristics and of changes in the harmonised standards or technical specifications by reference to which conformity is declared.",
+      "source": "Article 7(4)",
+      "appliesTo": "Manufacturers",
+      "evidence": "Change control procedure with an accessibility impact step; standards watch covering EN 301 549.",
+      "notes": "Article 7(4) is the product-side equivalent of Article 13(3) for services."
+    },
+    {
+      "id": "pr-identification-contact",
+      "section": "products",
+      "obligation": "Mark each product with a type, batch or serial number, give your name, registered trade name or registered trade mark and a single contact address, and supply instructions and safety information in a language the Member State requires, all clear, understandable and intelligible.",
+      "source": "Article 7(5), (6) and (7)",
+      "appliesTo": "Manufacturers",
+      "evidence": "Label artwork, packaging and accompanying documents for each market.",
+      "notes": "Importers carry parallel duties under Article 9(4) and (5), and distributors verify both sets under Article 10(2)."
+    },
+    {
+      "id": "pr-non-conformity",
+      "section": "products",
+      "obligation": "If a product you placed on the market does not conform, take corrective measures or withdraw it, immediately inform the competent national authorities of each Member State where it was made available with details of the non-compliance and the corrective action, and keep a register of non-compliant products and related complaints.",
+      "source": "Article 7(8)",
+      "appliesTo": "Manufacturers",
+      "evidence": "Corrective action procedure, authority notification template, and the register of non-compliant products and complaints.",
+      "notes": "Importers (Article 9(8)) and distributors (Article 10(5)) have equivalent duties."
+    },
+    {
+      "id": "pr-authority-requests",
+      "section": "products",
+      "obligation": "Provide a competent national authority, on reasoned request, with all the information and documentation needed to demonstrate conformity, in a language it can easily understand, and cooperate on action to eliminate non-compliance.",
+      "source": "Article 7(9)",
+      "appliesTo": "Manufacturers",
+      "evidence": "Evidence pack ready to release: technical documentation, EU declaration of conformity, test reports and any Article 14 assessment.",
+      "notes": "Article 12 adds that economic operators must be able to identify who supplied them with a product and whom they supplied it to, for five years in each direction."
+    },
+    {
+      "id": "pr-importers",
+      "section": "products",
+      "obligation": "Importers: place only compliant products on the market; before doing so verify that the manufacturer carried out the Annex IV procedure, drew up the technical documentation, affixed the CE marking, supplied the required documents and met Article 7(5) and (6); add your own name and contact address; keep a copy of the EU declaration of conformity for five years; do not place a product you believe is non-conformant and inform the manufacturer and the market surveillance authorities.",
+      "source": "Article 9(1) to (9)",
+      "appliesTo": "Importers",
+      "evidence": "Pre-market verification checklist per product; copy of each EU declaration of conformity; importer contact details on the product or packaging.",
+      "notes": "Article 9(6) also requires storage and transport conditions that do not jeopardise compliance."
+    },
+    {
+      "id": "pr-distributors",
+      "section": "products",
+      "obligation": "Distributors: act with due care; before making a product available verify the CE marking, the required documents, the instructions and safety information in the right language, and that the manufacturer and importer met their identification and contact duties; do not supply a product you believe is non-conformant and inform the manufacturer or importer and the market surveillance authorities; make sure corrective measures are taken where needed.",
+      "source": "Article 10(1) to (6)",
+      "appliesTo": "Distributors",
+      "evidence": "Goods-in verification records; escalation procedure for suspected non-compliance.",
+      "notes": "Article 10(4) also requires storage and transport conditions that do not jeopardise compliance."
+    },
+    {
+      "id": "sp-design-and-provide",
+      "section": "service-provider",
+      "obligation": "Design and provide the service in accordance with the accessibility requirements of the Directive.",
+      "source": "Article 13(1)",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "Accessibility requirements built into design, procurement and development processes; audit results showing the requirements are met.",
+      "notes": "This is the umbrella duty; the Annex I rows above are its content."
+    },
+    {
+      "id": "sp-annex-v-information",
+      "section": "service-provider",
+      "obligation": "Prepare the information required by Annex V and explain how the service meets the applicable accessibility requirements.",
+      "source": "Article 13(2), first sentence; Annex V, point 1",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "The published accessibility information, included in the general terms and conditions or an equivalent document, describing the applicable requirements and covering the design and operation of the service.",
+      "notes": "Annex V calls for inclusion in the general terms and conditions or an equivalent document; an accessibility statement that the terms link to is the common approach. This is distinct from the EU declaration of conformity, which exists only for products (Article 16)."
+    },
+    {
+      "id": "sp-annex-v-description",
+      "section": "service-provider",
+      "obligation": "Include a general description of the service in accessible formats.",
+      "source": "Annex V, point 1(a)",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "Section of the published information describing what the service is and the channels it is delivered through.",
+      "notes": "Annex V, point 1 adds that this information sits on top of the consumer information duties in Directive 2011/83/EU."
+    },
+    {
+      "id": "sp-annex-v-operation",
+      "section": "service-provider",
+      "obligation": "Include the descriptions and explanations necessary for understanding the operation of the service.",
+      "source": "Annex V, point 1(b)",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "Section explaining how customers use the service, including its accessibility features and assistive technology compatibility.",
+      "notes": "Overlaps with Annex I, Section III, point (b); write it once and reference it from both places."
+    },
+    {
+      "id": "sp-annex-v-how-met",
+      "section": "service-provider",
+      "obligation": "Include a description of how the relevant accessibility requirements set out in Annex I are met by the service.",
+      "source": "Annex V, point 1(c); Annex V, point 2",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "Requirement-by-requirement account covering Section III points (a) to (d) and the sector points that apply, citing the audit evidence and any harmonised standard or technical specification applied in full or in part.",
+      "notes": "Annex V, point 2 lets you apply harmonised standards or technical specifications cited in the Official Journal to meet this point. Until an edition of EN 301 549 is cited under the EAA, describe your WCAG and EN 301 549 results as evidence, not as a presumption of conformity."
+    },
+    {
+      "id": "sp-written-and-oral",
+      "section": "service-provider",
+      "obligation": "Make the information available to the public in written and oral format, including in a manner accessible to persons with disabilities.",
+      "source": "Article 13(2), second sentence",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "Accessible web page or document; a telephone or in-person channel whose staff can give the same information orally; alternative formats on request.",
+      "notes": "Oral format is explicit in the Directive; a published page alone does not satisfy it."
+    },
+    {
+      "id": "sp-retain-information",
+      "section": "service-provider",
+      "obligation": "Keep that information for as long as the service is in operation.",
+      "source": "Article 13(2), third sentence",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "Version history or archive of the published information with dates.",
+      "notes": "Keep superseded versions too, so you can show what was published at any point."
+    },
+    {
+      "id": "sp-monitoring-information",
+      "section": "service-provider",
+      "obligation": "Provide information demonstrating that the service delivery process and its monitoring ensure the service keeps complying with Annex V, point 1 and the applicable requirements.",
+      "source": "Annex V, point 3",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "Description of accessibility quality gates, release testing, periodic audits and complaint monitoring, with the cadence and the owner.",
+      "notes": "Authorities read this as the service provider's accessibility management system."
+    },
+    {
+      "id": "sp-procedures",
+      "section": "service-provider",
+      "obligation": "Put procedures in place so that the provision of the service remains in conformity, taking adequate account of changes in the characteristics of the service, in the applicable accessibility requirements, and in the harmonised standards or technical specifications by reference to which conformity is declared.",
+      "source": "Article 13(3)",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "Change management checkpoint for accessibility; standards watch that tracks the Official Journal citation of EN 301 549 v4.1.1 and any technical specifications adopted under Article 15(3).",
+      "notes": "Article 13(3) applies without prejudice to the Article 32 transitional measures."
+    },
+    {
+      "id": "sp-corrective-action",
+      "section": "service-provider",
+      "obligation": "Where the service does not conform, take the corrective measures necessary to bring it into conformity, and immediately inform the competent national authorities of each Member State where the service is provided, giving details of the non-compliance and of the corrective measures taken.",
+      "source": "Article 13(4)",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "Corrective action procedure naming the authority for each Member State; notification template; log of notifications made.",
+      "notes": "The duty to inform is immediate and applies in every Member State where the service is provided, not only where the problem was found."
+    },
+    {
+      "id": "sp-authority-requests",
+      "section": "service-provider",
+      "obligation": "On reasoned request from a competent authority, provide all information necessary to demonstrate conformity, and cooperate on any action to bring the service into compliance.",
+      "source": "Article 13(5)",
+      "appliesTo": "Every in-scope service provider that is not an exempt microenterprise",
+      "evidence": "Evidence pack ready to release: audit reports, the Annex V information, monitoring records and any Article 14 assessment.",
+      "notes": "Article 23(1)(a) ties the authorities' checks to the Article 14 assessment as well, so keep both together."
+    },
+    {
+      "id": "db-decide",
+      "section": "burden",
+      "obligation": "Decide whether you intend to rely on fundamental alteration or disproportionate burden for any requirement; if you do not, record that decision and date it.",
+      "source": "Article 14(1)(a) and (b)",
+      "appliesTo": "Every economic operator",
+      "evidence": "A dated decision note; where reliance is intended, the list of specific requirements and the services or products it concerns.",
+      "notes": "Fundamental alteration means a significant change that alters the basic nature of the product or service. Disproportionate burden is judged against the Annex VI criteria. The requirements still apply to the extent compliance does not cause either, so reliance is requirement by requirement, not a blanket exemption."
+    },
+    {
+      "id": "db-assess",
+      "section": "burden",
+      "obligation": "Carry out the assessment of whether compliance would introduce a fundamental alteration or, based on the Annex VI criteria, impose a disproportionate burden.",
+      "source": "Article 14(2); Annex VI",
+      "appliesTo": "Operators relying on Article 14(1)",
+      "evidence": "The completed assessment, covering each Annex VI criterion in the rows below.",
+      "notes": "Article 14(7) empowers the Commission to adopt delegated acts further specifying the criteria; check whether any such act applies."
+    },
+    {
+      "id": "db-cost-ratio",
+      "section": "burden",
+      "obligation": "Calculate the ratio of the net costs of compliance to the overall operating and capital costs of providing the service (or of manufacturing, distributing or importing the product).",
+      "source": "Annex VI, point 1",
+      "appliesTo": "Operators relying on disproportionate burden",
+      "evidence": "Cost model listing the one-off organisational costs (additional accessibility staff, training, a new accessibility process, guidance material, understanding the legislation) and ongoing costs (design of accessibility features, manufacturing, testing, documentation) under Annex VI, point 1(a)(i) to (v) and point 1(b)(i) to (iv).",
+      "notes": "Net cost means the cost of compliance over and above what you would spend anyway; a redesign you were doing regardless is not a compliance cost."
+    },
+    {
+      "id": "db-cost-benefit",
+      "section": "burden",
+      "obligation": "Estimate the costs and benefits for your organisation, including production processes and investments, in relation to the estimated benefit for persons with disabilities, taking into account the amount and frequency of use of the specific product or service.",
+      "source": "Annex VI, point 2",
+      "appliesTo": "Operators relying on disproportionate burden",
+      "evidence": "Benefit estimate with usage data for the product or service and the population of users affected.",
+      "notes": "Article 14(7) directs the Commission, when refining the criteria, to count benefits for persons with functional limitations as well as persons with disabilities."
+    },
+    {
+      "id": "db-turnover-ratio",
+      "section": "burden",
+      "obligation": "Calculate the ratio of the net costs of compliance to your net turnover.",
+      "source": "Annex VI, point 3",
+      "appliesTo": "Operators relying on disproportionate burden",
+      "evidence": "Net turnover figure and the same net cost elements as Annex VI, point 1, broken down under point 3(a) and (b).",
+      "notes": "Points 1 and 3 use the same cost elements with different denominators; prepare the cost breakdown once."
+    },
+    {
+      "id": "db-document-retain",
+      "section": "burden",
+      "obligation": "Document the assessment, keep all relevant results for five years from the last provision of the service or the last making available of the product, and provide a copy to the authorities on request.",
+      "source": "Article 14(3)",
+      "appliesTo": "Operators relying on Article 14(1)",
+      "evidence": "Signed assessment with the retention date; a copy ready for the service compliance authority or market surveillance authority.",
+      "notes": "Article 14(4) exempts microenterprises dealing with products from documenting the assessment, but they must still supply the relevant facts if a market surveillance authority asks."
+    },
+    {
+      "id": "db-renew",
+      "section": "burden",
+      "obligation": "Renew the disproportionate burden assessment for each category or type of service when the service is altered, when the responsible authority asks, and in any event at least every five years.",
+      "source": "Article 14(5)(a), (b) and (c)",
+      "appliesTo": "Service providers relying on disproportionate burden",
+      "evidence": "Renewal schedule with the next due date and triggers tied to the change management process.",
+      "notes": "A service first assessed in June 2025 needs a fresh assessment by June 2030 at the latest, earlier if the service changes."
+    },
+    {
+      "id": "db-funding",
+      "section": "burden",
+      "obligation": "Confirm you have not received funding from sources other than your own resources, public or private, provided for the purpose of improving accessibility; if you have, you cannot rely on disproportionate burden.",
+      "source": "Article 14(6)",
+      "appliesTo": "Operators relying on disproportionate burden",
+      "evidence": "Statement from finance on accessibility-specific grants, subsidies or funding, reviewed annually.",
+      "notes": "The bar applies only to disproportionate burden (Article 14(1)(b)), not to fundamental alteration."
+    },
+    {
+      "id": "db-notify-authorities",
+      "section": "burden",
+      "obligation": "Send information to the market surveillance authority or the service compliance authority of each Member State where the specific product or service relying on Article 14(1) is placed on the market or provided.",
+      "source": "Article 14(8)",
+      "appliesTo": "Operators other than microenterprises relying on Article 14(1)",
+      "evidence": "Copies of the notifications sent, with dates and recipients.",
+      "notes": "Microenterprises are exempt from this notification under the second subparagraph of Article 14(8)."
+    },
+    {
+      "id": "tn-products-in-use",
+      "section": "transition",
+      "obligation": "List the products used to provide the service that were lawfully in use before 28 June 2025; these may continue to be used to provide similar services until 28 June 2030.",
+      "source": "Article 32(1), first subparagraph",
+      "appliesTo": "Service providers using products (terminals, devices, equipment) to deliver the service",
+      "evidence": "Asset register with entry-into-use dates and a replacement plan that completes before 28 June 2030.",
+      "notes": "The transition covers the products used in the service, not the service itself. Websites, apps and new content had to comply from 28 June 2025."
+    },
+    {
+      "id": "tn-service-contracts",
+      "section": "transition",
+      "obligation": "List the service contracts agreed before 28 June 2025; they may continue without alteration until they expire, but no longer than five years from that date.",
+      "source": "Article 32(1), second subparagraph",
+      "appliesTo": "Every service provider",
+      "evidence": "Contract register with signature and expiry dates; a flag on any amendment, since alteration ends the protection; a plan for contracts that would otherwise run past 28 June 2030.",
+      "notes": "Five years from 28 June 2025 is 28 June 2030. A renewed or amended contract is a new contract for this purpose."
+    },
+    {
+      "id": "tn-self-service-terminals",
+      "section": "transition",
+      "obligation": "List the self-service terminals lawfully used before 28 June 2025; where national law provides for it, they may continue to be used until the end of their economically useful life, but no longer than 20 years after their entry into use.",
+      "source": "Article 32(2)",
+      "appliesTo": "Service providers operating self-service terminals",
+      "evidence": "Terminal register with entry-into-use dates, the national provision relied on, and the resulting end date for each terminal.",
+      "notes": "This is a Member State option (the Directive says Member States may provide), so check the national transposition before relying on it."
+    },
+    {
+      "id": "tn-not-covered",
+      "section": "transition",
+      "obligation": "Confirm that no website, mobile application, electronic document or newly offered service is being treated as covered by the transitional period.",
+      "source": "Article 2(2); Article 31(2); Article 32",
+      "appliesTo": "Every service provider",
+      "evidence": "A short note in the compliance file confirming the transitional period is applied only to pre-existing products, contracts and terminals.",
+      "notes": "This is the most common misreading of Article 32."
+    },
+    {
+      "id": "en-authorities",
+      "section": "enforcement",
+      "obligation": "Identify the authority responsible for checking compliance of services, and the market surveillance authority for products, in each Member State where you operate, and record how to contact them.",
+      "source": "Article 23(2); Articles 19 to 22 for products",
+      "appliesTo": "Every economic operator",
+      "evidence": "Register of authorities per Member State with contact routes.",
+      "notes": "Article 23(2) obliges Member States to inform the public of the existence, responsibilities, identity, work and decisions of these authorities. Several Member States split responsibility by sector (a telecoms regulator for electronic communications, a financial regulator for banking, a consumer authority for e-commerce), so the register may hold more than one authority per country."
+    },
+    {
+      "id": "en-complaints",
+      "section": "enforcement",
+      "obligation": "Operate a working route for consumers to raise accessibility complaints, log them, respond, and feed them into corrective action.",
+      "source": "Article 23(1)(b) and (c); Article 29(2)(a) and (b)",
+      "appliesTo": "Every service provider",
+      "evidence": "Published accessibility contact in the Annex V information; complaint log with response times; link to the corrective action procedure.",
+      "notes": "The Directive does not prescribe a feedback form, but Article 23(1)(b) obliges authorities to follow up complaints about services, Article 29(2)(a) gives consumers the right to act before courts or administrative bodies, and Article 29(2)(b) lets public bodies and associations with a legitimate interest act on a complainant's behalf or in support. A complaint you did not answer is the usual trigger for an authority's first letter."
+    },
+    {
+      "id": "en-penalties",
+      "section": "enforcement",
+      "obligation": "Record the penalty provisions of each national transposition law that applies to you, and brief the people who own the risk.",
+      "source": "Article 30(1), (2) and (4)",
+      "appliesTo": "Every economic operator",
+      "evidence": "Penalty summary per Member State in the compliance file, with the maximum fines or other sanctions and the remedial powers of the authority.",
+      "notes": "Article 30 requires penalties that are effective, proportionate and dissuasive, accompanied by effective remedial action, and that take into account the extent and seriousness of the non-compliance, the number of units of non-complying products or services and the number of persons affected. Article 29(3) and Article 30(5) exclude procurement procedures under Directives 2014/24/EU and 2014/25/EU."
+    },
+    {
+      "id": "st-official-journal",
+      "section": "standards",
+      "obligation": "Track the Official Journal for a harmonised standard cited under this Directive and, once one is cited, align your testing, the Annex V information and your conformity statements to it.",
+      "source": "Article 15(1)",
+      "appliesTo": "Every economic operator",
+      "evidence": "Standards watch entry naming the edition of EN 301 549 relied on, its Official Journal citation status under this Directive, and the date last checked.",
+      "notes": "As of 19 October 2026 no edition of EN 301 549 is cited in the Official Journal under this Directive. EN 301 549 v3.2.1 is cited under the Web Accessibility Directive (Directive (EU) 2016/2102) only and gives no presumption of conformity under the EAA. ETSI published v4.1.1, aligned to WCAG 2.2 and mapped to the EAA requirements, on 2 September 2026; its citation under the EAA is expected in late November or December 2026. Until then conformance with EN 301 549 is strong evidence of meeting Annex I, not a legal presumption."
+    },
+    {
+      "id": "st-technical-specifications",
+      "section": "standards",
+      "obligation": "Check whether the Commission has adopted technical specifications under Article 15(3) for any requirement not covered by a cited harmonised standard; conformity with them also gives a presumption of conformity.",
+      "source": "Article 15(3) and (4)",
+      "appliesTo": "Every economic operator",
+      "evidence": "Note in the standards watch of any implementing act establishing technical specifications, or confirmation that none applies.",
+      "notes": "Technical specifications can be adopted only where no harmonised standard reference is published and either the standardisation request has stalled or been refused, or the Commission can show the specification meets the Annex II criteria of Regulation (EU) No 1025/2012."
+    }
+  ]
+}
