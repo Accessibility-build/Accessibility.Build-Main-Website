@@ -135,6 +135,15 @@ const guides = [
     facts: ["Criminal offence + officer liability", "Six regulators, CCPC to Central Bank"],
   },
   {
+    href: "/compliance/india",
+    region: "India",
+    title: "India",
+    subtitle: "RPwD Act 2016 & IS 17802",
+    description:
+      "India mandates IS 17802, its adoption of EN 301 549 with WCAG 2.1 AA inside, and draft 2026 rules would add turnover-based deadlines, public machine-readable conformance reports, grievance officers and licence sanctions, reaching businesses abroad that serve Indian users.",
+    facts: ["IS 17802 mandatory since May 2023", "Draft 2026 rules: ACRs and deadlines, not yet notified"],
+  },
+  {
     href: "/compliance/california",
     region: "United States · California",
     title: "California",
@@ -283,7 +292,7 @@ export default function ComplianceHubPage() {
             <div className="mt-8 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
               <table className="w-full border-collapse text-sm">
                 <caption className="px-4 py-3 text-left text-sm text-slate-600 dark:text-slate-400">
-                  The six regimes side by side, as of 3 September 2026. Each links to its full guide.
+                  The seven regimes side by side, as of 19 October 2026. Each links to its full guide.
                 </caption>
                 <thead>
                   <tr>
@@ -302,6 +311,7 @@ export default function ComplianceHubPage() {
                     ["/compliance/eaa", "European Accessibility Act (EU)", "In-scope products and services: e-commerce, banking, transport, e-books, telecoms, computers and their operating systems", "EN 301 549, which incorporates WCAG 2.1 AA; v4.1.1 will point at WCAG 2.2", "Applies from 28 June 2025; some existing service contracts run to 2030", "National market surveillance authorities; penalties set by each member state"],
                     ["/compliance/uk", "Public Sector Bodies Accessibility Regulations 2018 (UK)", "Public sector websites and mobile apps", "WCAG 2.2 AA for monitoring, plus a mandatory accessibility statement", "23 September 2020 for websites; 23 June 2021 for apps", "GDS monitoring; enforcement by the Cabinet Office and the Equality and Human Rights Commission"],
                     ["/compliance/uk", "Equality Act 2010 (UK)", "Every service provider, public or private", "None named; the duty is to make reasonable adjustments, and it is anticipatory", "In force since 1 October 2010", "Claims in the county court or sheriff court; damages including injury to feelings"],
+                    ["/compliance/india", "RPwD Act 2016 and rule 15 (India)", "Every establishment, in India or abroad, that makes websites, apps, software, documents or ICT hardware available to persons in India", "IS 17802 (Parts 1 and 2), the Indian adoption of EN 301 549 V3.2.1, so WCAG 2.1 AA for web", "IS 17802 mandatory since 11 May 2023; draft 2026 rules, not yet notified, add 1 year, 18 month and 2 year deadlines from final publication", "Chief and State Commissioners for Persons with Disabilities; section 89 fines up to ₹5 lakh; the draft adds public ACRs, 90-day remediation orders and licence suspension"],
                   ].map(([href, regime, who, standard, date, enforcement]) => (
                     <tr key={regime} className="align-top">
                       <th scope="row" className="min-w-[12rem] border-b border-slate-200 px-4 py-3 text-left font-medium text-slate-900 dark:border-slate-800 dark:text-white">

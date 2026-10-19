@@ -242,6 +242,28 @@ pages for prospects who Google the site, and India is the home market.
   the three-month direction in the judgment; whether final rules have been notified
   (DEPwD site). Mark the page "draft rules" and plan the restamp.
 - **Effort:** 1 day. **Metric:** Indian prospect conversations, IN impressions.
+- **Shipped 19 October 2026** on branch `claude/compassionate-hellman-959c8a` as
+  `app/compliance/india/page.tsx`, wired into `lib/site-routes.ts`,
+  `lib/internal-linking.ts`, the `/compliance` hub card and comparison table, an
+  India row in `lib/data/accessibility-laws.ts` (status `pending`), and a link from
+  `/checklists/en-301-549` offering it as an interim IS 17802 checklist. Every figure
+  was re-read from primary documents: the draft notification S.O. 3962(E) PDF
+  (eGazette ID CG-DL-E-23072026-274669, issued 20 July 2026, e-published 23 July,
+  `https://egazette.gov.in/WriteReadData/2026/274669.pdf`), the 2024 INSC 858
+  judgment PDF on api.sci.gov.in, the 2023 amendment G.S.R. 359(E) Gazette PDF, the
+  IS 17802 (Part 1): 2021 foreword, the GIGW 3.0 manual and the STQC transition
+  plan. Corrections to the facts listed above: IS 17802 has been mandatory under
+  rule 15(1)(c)(iii) since 11 May 2023 (G.S.R. 359(E)), so the draft adds the floor,
+  deadlines, ACRs and enforcement rather than the standard; IS 17802 Part 1's own
+  foreword says it is the technical adoption of EN 301 549 v3.2.1 (not a BIS
+  "modified" listing); Schedule I's 30 web clauses are exactly the WCAG 2.1 Level A
+  criteria, with AA arriving at the two-year full-compliance point; the Supreme
+  Court's three-month deadline was missed and a 29 July 2026 hearing asked the
+  Union to weigh expert suggestions before gazetting, next listing January 2027.
+  eGazette search by ministry for August to October 2026 found no final ICT
+  notification (September has a separate assistive-technology draft). Restamp
+  triggers: final notification in the Gazette, the January 2027 hearing, any BIS
+  revision of IS 17802 towards EN 301 549 V4.1.1.
 
 ### 7. `/compliance/canada`
 
