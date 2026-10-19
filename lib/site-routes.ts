@@ -4,7 +4,7 @@ import { wcagSlug } from "./wcag-pages"
 // Single source of truth for the site's public, indexable routes.
 // Consumed by app/sitemap.ts (XML sitemap) and app/sitemap-page (HTML sitemap).
 //
-// lastModified must be a real content date, never "now" — search engines learn
+// lastModified must be a real content date, never "now", because search engines learn
 // to ignore a lastmod that is always fresh. Dates were seeded from git history
 // (July 2026). When you substantively update a page, update its date here.
 //
@@ -111,7 +111,8 @@ const compliance: SiteRoute[] = [
   { route: "/compliance/ada", label: "ADA Website Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.93 },
   { route: "/compliance/eaa", label: "European Accessibility Act (EAA)", group: "Compliance", lastModified: "2026-10-14", priority: 0.93 },
   { route: "/compliance/section-508", label: "Section 508 Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.91 },
-  { route: "/compliance/en-301-549", label: "EN 301 549 Standard", group: "Compliance", lastModified: "2026-10-14", priority: 0.9 },
+  { route: "/compliance/en-301-549", label: "EN 301 549 Standard", group: "Compliance", lastModified: "2026-10-19", priority: 0.9 },
+  { route: "/compliance/en-301-549-v4", label: "EN 301 549 V4.1.1 Clause by Clause", group: "Compliance", lastModified: "2026-10-19", priority: 0.92 },
   { route: "/compliance/california", label: "California & the Unruh Act", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/new-york", label: "New York Accessibility Laws", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/uk", label: "UK Website Accessibility Law", group: "Compliance", lastModified: "2026-08-27", priority: 0.94 },
@@ -193,7 +194,7 @@ const guides: SiteRoute[] = [
 const checklists: SiteRoute[] = [
   { route: "/checklists", label: "Checklists Hub", group: "Checklists", lastModified: "2026-08-27", priority: 0.87 },
   { route: "/checklists/wcag-2-2", label: "WCAG 2.2 Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.96 },
-  { route: "/checklists/en-301-549", label: "EN 301 549 Interactive Checklist", group: "Checklists", lastModified: "2026-10-14", priority: 0.94 },
+  { route: "/checklists/en-301-549", label: "EN 301 549 Interactive Checklist", group: "Checklists", lastModified: "2026-10-19", priority: 0.94 },
   { route: "/checklists/wcag-2-2/aaa", label: "WCAG 2.2 AAA Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.8 },
   { route: "/checklists/wcag-2-2/excel", label: "WCAG 2.2 Excel Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.75 },
   { route: "/checklists/interactive", label: "Interactive Checklist", group: "Checklists", lastModified: "2026-09-02", priority: 0.85 },
