@@ -307,16 +307,16 @@ export default function ChecklistsPage() {
               <CardContent className="p-8">
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                   <div className="text-center p-4 bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/20 dark:to-teal-900/30 rounded-xl border border-teal-200 dark:border-teal-700">
-                    <div className="text-2xl font-bold text-teal-700 dark:text-teal-300 mb-1">285</div>
-                    <div className="text-xs text-teal-800 dark:text-teal-200 font-medium">Requirements</div>
+                    <div className="text-2xl font-bold text-teal-700 dark:text-teal-300 mb-1">285 / 319</div>
+                    <div className="text-xs text-teal-800 dark:text-teal-200 font-medium">Requirements (v3.2.1 / v4.1.1)</div>
                   </div>
                   <div className="text-center p-4 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800/20 dark:to-slate-800/30 rounded-xl border border-slate-200 dark:border-slate-700">
-                    <div className="text-2xl font-bold text-slate-700 dark:text-slate-300 mb-1">v3.2.1</div>
-                    <div className="text-xs text-slate-700 dark:text-slate-300 font-medium">Version covered</div>
+                    <div className="text-2xl font-bold text-slate-700 dark:text-slate-300 mb-1">2</div>
+                    <div className="text-xs text-slate-700 dark:text-slate-300 font-medium">Editions: v3.2.1 and v4.1.1</div>
                   </div>
                   <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-900/30 rounded-xl border border-blue-200 dark:border-blue-700">
-                    <div className="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-1">50</div>
-                    <div className="text-xs text-blue-800 dark:text-blue-200 font-medium">WCAG-mapped clauses</div>
+                    <div className="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-1">50 / 55</div>
+                    <div className="text-xs text-blue-800 dark:text-blue-200 font-medium">WCAG-mapped web clauses</div>
                   </div>
                   <div className="text-center p-4 bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-900/30 rounded-xl border border-amber-200 dark:border-amber-700">
                     <div className="text-2xl font-bold text-amber-700 dark:text-amber-300 mb-1">4</div>
@@ -324,10 +324,12 @@ export default function ChecklistsPage() {
                   </div>
                 </div>
                 <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-3xl">
-                  Filter by websites, documents, software, or hardware; every web clause links to
-                  its WCAG 2.1 criterion page; void and not-applicable slots are shown so the
-                  numbering makes sense; progress and notes auto-save and export to Excel. Built
-                  for European Accessibility Act and Web Accessibility Directive audits.
+                  Switch between v3.2.1 (cited today) and v4.1.1 (WCAG 2.2, published September
+                  2026, with every new or changed row flagged); filter by websites, documents,
+                  software, hardware, or EAA conformance table; every web clause links to its WCAG
+                  criterion page; void slots are shown so the numbering makes sense; progress and
+                  notes auto-save per edition and export to Excel. Built for European Accessibility
+                  Act and Web Accessibility Directive audits.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white border-0 text-lg px-8 py-4 rounded-xl">

@@ -12,7 +12,7 @@ const pageTitle = "Accessibility Compliance Guides: ADA, EAA, 508"
 export const metadata: Metadata = {
   title: pageTitle,
   description:
-    clampDescription("Plain-English guides to web accessibility law: the ADA, European Accessibility Act, Section 508, EN 301 549, and California and New York state requirements — deadlines, standards, penalties."),
+    clampDescription("Plain-English guides to web accessibility law: the ADA, European Accessibility Act, Section 508, EN 301 549, and California and New York state requirements: deadlines, standards, penalties."),
   keywords: [
     "accessibility compliance",
     "web accessibility laws",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: pageTitle,
     description:
-      "Jurisdiction-by-jurisdiction guides to accessibility law: ADA, EAA, Section 508, EN 301 549, California, and New York — what applies to you and what to do about it.",
+      "Jurisdiction-by-jurisdiction guides to accessibility law: ADA, EAA, Section 508, EN 301 549, California, and New York: what applies to you and what to do about it.",
     url: "/compliance",
     type: "website",
     siteName: "Accessibility.build",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: pageTitle,
     description:
-      "Which accessibility laws apply to you? Guides to the ADA, EAA, Section 508, EN 301 549, and key US state laws — standards, deadlines, and penalties.",
+      "Which accessibility laws apply to you? Guides to the ADA, EAA, Section 508, EN 301 549, and key US state laws: standards, deadlines, and penalties.",
     images: [`/api/og?title=${encodeURIComponent(pageTitle)}&section=Compliance`],
   },
 }
@@ -60,17 +60,17 @@ const faqs = [
   {
     question: "What technical standard should I build to?",
     answer:
-      "WCAG 2.2 Level AA is the safest single target today. The DOJ's ADA Title II rule requires WCAG 2.1 AA, the EU's EN 301 549 incorporates WCAG 2.1 AA, and Section 508 formally requires WCAG 2.0 AA — and because WCAG 2.x versions are backwards-compatible, content that meets 2.2 AA satisfies all three baselines. Building to 2.2 AA also covers the criteria newer laws and procurement requirements are starting to reference.",
+      "WCAG 2.2 Level AA is the safest single target today. The DOJ's ADA Title II rule requires WCAG 2.1 AA, the EU's EN 301 549 incorporates WCAG 2.1 AA, and Section 508 formally requires WCAG 2.0 AA. Because WCAG 2.x versions are backwards-compatible, content that meets 2.2 AA satisfies all three baselines. Building to 2.2 AA also covers the criteria newer laws and procurement requirements are starting to reference.",
   },
   {
     question: "What is the difference between a law and a standard like EN 301 549 or WCAG?",
     answer:
-      "Laws (the ADA, the European Accessibility Act, Section 508, state statutes) create the legal obligation and the enforcement mechanism — lawsuits, regulators, procurement rules. Standards (WCAG, EN 301 549) define the technical test for what 'accessible' means. Laws point at standards: the EAA points at EN 301 549, which points at WCAG 2.1 AA; the ADA Title II rule points directly at WCAG 2.1 AA. You comply with a law by conforming to the standard it references and meeting its process duties, such as accessibility statements and feedback channels.",
+      "Laws (the ADA, the European Accessibility Act, Section 508, state statutes) create the legal obligation and the enforcement mechanism: lawsuits, regulators, procurement rules. Standards (WCAG, EN 301 549) define the technical test for what 'accessible' means. Laws point at standards: the EAA points at EN 301 549, which points at WCAG 2.1 AA; the ADA Title II rule points directly at WCAG 2.1 AA. You comply with a law by conforming to the standard it references and meeting its process duties, such as accessibility statements and feedback channels.",
   },
   {
     question: "Where do I start if I'm not compliant with any of these?",
     answer:
-      "Start with an audit of your highest-traffic user journeys against WCAG 2.2 AA — that tells you your real exposure under every regime at once. Fix blocking barriers in core flows first (navigation, forms, checkout, login), publish an accessibility statement, and add automated checks to your development pipeline so regressions get caught. Then work through the jurisdiction-specific duties — VPATs for federal sales, EAA service information for EU markets — from a foundation that is already solid.",
+      "Start with an audit of your highest-traffic user journeys against WCAG 2.2 AA; that tells you your real exposure under every regime at once. Fix blocking barriers in core flows first (navigation, forms, checkout, login), publish an accessibility statement, and add automated checks to your development pipeline so regressions get caught. Then work through the jurisdiction-specific duties (VPATs for federal sales, EAA service information for EU markets) from a foundation that is already solid.",
   },
 ]
 
@@ -104,7 +104,7 @@ const guides = [
     title: "EAA",
     subtitle: "European Accessibility Act",
     description:
-      "The EU law covering e-commerce, banking, e-books, transport, and consumer devices — including non-EU companies selling into the EU. Applies since June 28, 2025.",
+      "The EU law covering e-commerce, banking, e-books, transport, and consumer devices, including non-EU companies selling into the EU. Applies since June 28, 2025.",
     facts: ["Applied June 28, 2025", "Reaches non-EU sellers"],
   },
   {
@@ -113,8 +113,17 @@ const guides = [
     title: "EN 301 549",
     subtitle: "Harmonized ICT accessibility standard",
     description:
-      "The technical standard behind EU accessibility law. Chapter structure for web, documents, and software, WCAG 2.1 AA incorporation, and version history.",
-    facts: ["Incorporates WCAG 2.1 AA", "Presumption of conformity for EAA/WAD"],
+      "The technical standard behind EU accessibility law. Chapter structure for web, documents, and software, WCAG incorporation, and version history from v1.1.2 to v4.1.1.",
+    facts: ["v3.2.1 cited for the WAD only", "v4.1.1 published, EAA citation pending"],
+  },
+  {
+    href: "/compliance/en-301-549-v4",
+    region: "European Union · Standard",
+    title: "EN 301 549 V4.1.1",
+    subtitle: "The 2026 edition, clause by clause",
+    description:
+      "What changed from v3.2.1: six WCAG 2.2 criteria, the user-preferences rework, total conversation and real-time text, Annex ZB and the A.2 conformance tables, a migration list, and the legal status until the Official Journal citation.",
+    facts: ["WCAG 2.2 AA in clauses 9 to 11", "Built for the EAA; citation expected Dec 2026"],
   },
   {
     href: "/compliance/uk",
@@ -201,7 +210,7 @@ export default function ComplianceHubPage() {
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Web accessibility is regulated by overlapping laws on both sides
-              of the Atlantic — and most organizations answer to more than one.
+              of the Atlantic, and most organizations answer to more than one.
               These guides explain each regime in plain English: who it
               applies to, which technical standard it references, how it is
               enforced, and what to do about it. The good news: they all
@@ -218,7 +227,7 @@ export default function ComplianceHubPage() {
               <strong>Not legal advice.</strong> These guides are educational
               information about accessibility laws and standards, not legal
               advice. Obligations depend on your jurisdiction, sector, and
-              specific facts — consult a qualified lawyer before making
+              specific facts, so consult a qualified lawyer before making
               compliance decisions.
             </p>
           </div>
@@ -328,8 +337,8 @@ export default function ComplianceHubPage() {
             </div>
 
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-              For the raw data behind these guides — statutes, penalties, and
-              deadlines across 35+ jurisdictions, plus US litigation trends —
+              For the raw data behind these guides (statutes, penalties, and
+              deadlines across 35+ jurisdictions, plus US litigation trends),
               see the{" "}
               <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
                 global accessibility laws tracker
@@ -349,7 +358,7 @@ export default function ComplianceHubPage() {
               </h2>
               <p className="text-slate-600 dark:text-slate-300 mb-6">
                 A WCAG 2.2 AA audit tells you your exposure under every one of
-                these laws at once — and gives you the remediation roadmap.
+                these laws at once, and gives you the remediation roadmap.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link

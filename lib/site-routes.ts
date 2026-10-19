@@ -4,7 +4,7 @@ import { wcagSlug } from "./wcag-pages"
 // Single source of truth for the site's public, indexable routes.
 // Consumed by app/sitemap.ts (XML sitemap) and app/sitemap-page (HTML sitemap).
 //
-// lastModified must be a real content date, never "now" — search engines learn
+// lastModified must be a real content date, never "now", because search engines learn
 // to ignore a lastmod that is always fresh. Dates were seeded from git history
 // (July 2026). When you substantively update a page, update its date here.
 //
@@ -111,7 +111,8 @@ const compliance: SiteRoute[] = [
   { route: "/compliance/ada", label: "ADA Website Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.93 },
   { route: "/compliance/eaa", label: "European Accessibility Act (EAA)", group: "Compliance", lastModified: "2026-10-14", priority: 0.93 },
   { route: "/compliance/section-508", label: "Section 508 Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.91 },
-  { route: "/compliance/en-301-549", label: "EN 301 549 Standard", group: "Compliance", lastModified: "2026-10-14", priority: 0.9 },
+  { route: "/compliance/en-301-549", label: "EN 301 549 Standard", group: "Compliance", lastModified: "2026-10-19", priority: 0.9 },
+  { route: "/compliance/en-301-549-v4", label: "EN 301 549 V4.1.1 Clause by Clause", group: "Compliance", lastModified: "2026-10-19", priority: 0.92 },
   { route: "/compliance/california", label: "California & the Unruh Act", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/new-york", label: "New York Accessibility Laws", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/uk", label: "UK Website Accessibility Law", group: "Compliance", lastModified: "2026-08-27", priority: 0.94 },

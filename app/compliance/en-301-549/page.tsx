@@ -59,12 +59,12 @@ const faqs = [
   {
     question: "What is EN 301 549 in plain terms?",
     answer:
-      "EN 301 549, 'Accessibility requirements for ICT products and services,' is the European standard that defines what 'accessible' means for technology in EU law. It was developed jointly by the European standards organizations ETSI, CEN, and CENELEC under a mandate from the European Commission. Where US rules point to WCAG for web content, EU laws point to EN 301 549 — which itself incorporates WCAG 2.1 Level A and AA for web content and extends similar requirements to documents, software, hardware, and support services. Conforming to it gives a legal presumption that you meet the accessibility requirements of the EU laws that reference it.",
+      "EN 301 549, 'Accessibility requirements for ICT products and services,' is the European standard that defines what 'accessible' means for technology in EU law. It was developed jointly by the European standards organizations ETSI, CEN, and CENELEC under a mandate from the European Commission. Where US rules point to WCAG for web content, EU laws point to EN 301 549, which itself incorporates WCAG 2.1 Level A and AA for web content and extends similar requirements to documents, software, hardware, and support services. Conforming to it gives a legal presumption that you meet the accessibility requirements of the EU laws that reference it.",
   },
   {
     question: "How does EN 301 549 relate to WCAG 2.1 AA?",
     answer:
-      "Chapter 9 of EN 301 549 incorporates the WCAG 2.1 Level A and AA success criteria directly for web content — if your site conforms to WCAG 2.1 AA, you satisfy the web chapter. Chapters 10 (non-web documents) and 11 (software, including mobile apps) apply adapted versions of the same criteria to those contexts. So WCAG 2.1 AA is the core of EN 301 549 but not the whole of it: the standard also covers functional performance, hardware, two-way communication, video capabilities, and documentation and support services that WCAG never addressed.",
+      "Chapter 9 of EN 301 549 incorporates the WCAG 2.1 Level A and AA success criteria directly for web content: if your site conforms to WCAG 2.1 AA, you satisfy the web chapter. Chapters 10 (non-web documents) and 11 (software, including mobile apps) apply adapted versions of the same criteria to those contexts. So WCAG 2.1 AA is the core of EN 301 549 but not the whole of it: the standard also covers functional performance, hardware, two-way communication, video capabilities, and documentation and support services that WCAG never addressed.",
   },
   {
     question: "What is the current version of EN 301 549?",
@@ -79,17 +79,17 @@ const faqs = [
   {
     question: "Is EN 301 549 a law?",
     answer:
-      "No — it is a technical standard, not legislation. Its legal force comes from the laws that reference it: the Web Accessibility Directive (2016/2102) for public-sector websites and apps, and the European Accessibility Act (2019/882) for private-sector products and services. When a version of the standard is cited in the Official Journal of the EU as a harmonized standard, conforming to it creates a presumption of conformity with the corresponding law. You can also comply with those laws by other means, but you then carry the burden of demonstrating the requirements are met without the standard's safe harbor.",
+      "No. It is a technical standard, not legislation. Its legal force comes from the laws that reference it: the Web Accessibility Directive (2016/2102) for public-sector websites and apps, and the European Accessibility Act (2019/882) for private-sector products and services. When a version of the standard is cited in the Official Journal of the EU as a harmonized standard, conforming to it creates a presumption of conformity with the corresponding law. You can also comply with those laws by other means, but you then carry the burden of demonstrating the requirements are met without the standard's safe harbor.",
   },
   {
     question: "What do chapters 9, 10, and 11 cover?",
     answer:
-      "These are the three chapters most digital teams work with. Chapter 9 (Web) applies WCAG 2.1 A and AA success criteria to web pages. Chapter 10 (Non-web documents) applies adapted WCAG criteria to documents that are not web pages — PDFs, Office files, e-books — whether distributed on the web or elsewhere. Chapter 11 (Software) applies adapted criteria to non-web software, including native mobile and desktop apps, and adds requirements like interoperability with assistive technology and accessible authoring tools. The adaptations mostly replace web-specific wording; the substance of the criteria stays the same.",
+      "These are the three chapters most digital teams work with. Chapter 9 (Web) applies WCAG 2.1 A and AA success criteria to web pages. Chapter 10 (Non-web documents) applies adapted WCAG criteria to documents that are not web pages (PDFs, Office files, e-books), whether distributed on the web or elsewhere. Chapter 11 (Software) applies adapted criteria to non-web software, including native mobile and desktop apps, and adds requirements like interoperability with assistive technology and accessible authoring tools. The adaptations mostly replace web-specific wording; the substance of the criteria stays the same.",
   },
   {
     question: "How do I test and document EN 301 549 conformance?",
     answer:
-      "For web content, test against WCAG 2.1 AA (or 2.2 AA for headroom) using a combination of automated scanning, manual expert review, and assistive-technology testing — chapter 9 is satisfied by WCAG conformance. For apps and documents, apply the adapted criteria of chapters 11 and 10 respectively. Document the results in an accessibility statement (mandatory for public-sector bodies under the Web Accessibility Directive, and expected under the EAA's service-information requirements) or, for procurement, in an ACR using the VPAT EU edition, which mirrors the standard's clause structure.",
+      "For web content, test against WCAG 2.1 AA (or 2.2 AA for headroom) using a combination of automated scanning, manual expert review, and assistive-technology testing; chapter 9 is satisfied by WCAG conformance. For apps and documents, apply the adapted criteria of chapters 11 and 10 respectively. Document the results in an accessibility statement (mandatory for public-sector bodies under the Web Accessibility Directive, and expected under the EAA's service-information requirements) or, for procurement, in an ACR using the VPAT EU edition, which mirrors the standard's clause structure.",
   },
 ]
 
@@ -121,7 +121,7 @@ const chapters = [
   {
     chapter: "Ch. 9",
     title: "Web",
-    scope: "Websites and web applications — incorporates WCAG 2.1 Level A and AA success criteria",
+    scope: "Websites and web applications: incorporates WCAG 2.1 Level A and AA success criteria (WCAG 2.2 in v4.1.1)",
     highlight: true,
   },
   {
@@ -252,7 +252,7 @@ export default function EN301549Page() {
               <strong>Not legal advice.</strong> This guide is educational
               information about EN 301 549 and the EU laws that reference it,
               not legal advice. Which version of the standard applies, and how,
-              depends on the law, the member state, and your product — consult
+              depends on the law, the member state, and your product, so consult
               a qualified lawyer for compliance decisions.
             </p>
           </div>
@@ -264,8 +264,8 @@ export default function EN301549Page() {
               <em>&ldquo;Accessibility requirements for ICT products and
               services,&rdquo;</em>{" "}
               EN 301 549 is a European standard produced jointly by ETSI, CEN,
-              and CENELEC — the three official European standardization
-              organizations — under mandates from the European Commission. It
+              and CENELEC, the three official European standardization
+              organizations, under mandates from the European Commission. It
               began life as Europe&apos;s answer to the US Section 508
               standards: a single technical yardstick that public buyers and
               regulators could reference instead of writing their own
@@ -336,7 +336,7 @@ export default function EN301549Page() {
               </table>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-3">
-              Highlighted rows — chapters 9, 10, and 11 — are the ones most
+              Highlighted rows (chapters 9, 10, and 11) are the ones most
               digital product teams work with day to day.
             </p>
           </section>
@@ -354,7 +354,7 @@ export default function EN301549Page() {
             <ul>
               <li>
                 <strong>Chapter 10</strong> applies adapted WCAG criteria to
-                non-web documents — PDFs, Office files, e-books.
+                non-web documents: PDFs, Office files, e-books.
               </li>
               <li>
                 <strong>Chapter 11</strong> applies adapted criteria to native
@@ -364,8 +364,8 @@ export default function EN301549Page() {
               </li>
               <li>
                 <strong>Functional performance statements</strong> (chapter 4)
-                describe outcomes — usable without vision, without hearing,
-                with limited manipulation — that act as a benchmark where
+                describe outcomes (usable without vision, without hearing,
+                with limited manipulation) that act as a benchmark where
                 specific technical provisions do not apply.
               </li>
               <li>
@@ -469,6 +469,16 @@ export default function EN301549Page() {
                 A new Annex ZA replaces the old Annex A for the 2016/2102 Directive mapping.
               </li>
             </ul>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              That is the summary. The clause-level detail, including the six WCAG 2.2 criteria now
+              required, the user-preferences rework, the total conversation and real-time text rewrite
+              with its link to the EAA&apos;s 28 June 2027 date for 112 calls, Annex ZB and the clause A.2
+              conformance tables, and a migration list for teams on v3.2.1, is in our{" "}
+              <Link href="/compliance/en-301-549-v4" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                EN 301 549 V4.1.1 clause-by-clause guide
+              </Link>
+              .
+            </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Practical takeaway: if you are remediating now, audit against the{" "}
               <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
@@ -480,7 +490,8 @@ export default function EN301549Page() {
               <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
                 interactive EN 301 549 checklist
               </Link>{" "}
-              with all 285 requirements, product-type scopes, and Excel export.
+              with both editions, 285 requirements in v3.2.1 and 319 in v4.1.1, every new or changed
+              v4 row flagged, product-type and EAA conformance-table scopes, and Excel export.
             </p>
           </section>
 
@@ -488,14 +499,14 @@ export default function EN301549Page() {
             <h2>Who needs EN 301 549</h2>
             <ul>
               <li>
-                <strong>EU public-sector bodies</strong> — websites and mobile
+                <strong>EU public-sector bodies</strong>: websites and mobile
                 apps must meet the harmonized standard under the Web
                 Accessibility Directive, with a published accessibility
                 statement and a feedback mechanism, monitored by national
                 authorities.
               </li>
               <li>
-                <strong>Businesses covered by the EAA</strong> — e-commerce,
+                <strong>Businesses covered by the EAA</strong>: e-commerce,
                 consumer banking, e-books, telecoms, transport services, and
                 manufacturers of covered devices use EN 301 549 conformance as
                 their technical benchmark, which becomes a formal
@@ -505,14 +516,14 @@ export default function EN301549Page() {
                 scope and deadlines.
               </li>
               <li>
-                <strong>Vendors selling ICT to European public buyers</strong>{" "}
-                — public procurement rules require accessible ICT, and buyers
+                <strong>Vendors selling ICT to European public buyers</strong>:
+                public procurement rules require accessible ICT, and buyers
                 request conformance evidence against the standard, typically as
                 an ACR on the VPAT EU edition (the EU counterpart to the US{" "}
                 <Link href="/compliance/section-508">Section 508</Link> VPAT).
               </li>
               <li>
-                <strong>Non-EU companies serving EU customers</strong> — the
+                <strong>Non-EU companies serving EU customers</strong>: the
                 laws that reference the standard apply based on where the
                 product or service is offered, not where the company sits.
               </li>
@@ -525,8 +536,8 @@ export default function EN301549Page() {
               against WCAG 2.1/2.2 AA, apply the adapted criteria to your
               mobile apps and customer-facing documents, verify assistive
               technology compatibility, and make sure support channels and
-              documentation are accessible. Then document it — an accessibility
-              statement for regulators and users, an ACR for procurement — and
+              documentation are accessible. Then document it (an accessibility
+              statement for regulators and users, an ACR for procurement) and
               wire accessibility checks into your release process so
               conformance survives the next sprint. Litigation risk looks
               different in Europe than the US lawsuit wave (tracked in our{" "}
@@ -606,6 +617,11 @@ export default function EN301549Page() {
               <li>
                 <Link href="/compliance" className="text-blue-600 dark:text-blue-400 hover:underline">
                   All compliance guides by jurisdiction
+                </Link>
+              </li>
+              <li>
+                <Link href="/compliance/en-301-549-v4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  EN 301 549 V4.1.1 clause by clause: what changed
                 </Link>
               </li>
               <li>
