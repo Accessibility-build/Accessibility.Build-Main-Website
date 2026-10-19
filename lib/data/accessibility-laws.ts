@@ -15,6 +15,8 @@
 // July 14, 2026; HCRC proposed rules posted September 18, 2026 (comments to October 30, 2026).
 // Corrected: Section 508 still incorporates WCAG 2.0 AA (2017 refresh); Canada ACA business
 // dates are December 5, 2028. Enforcement chart now reuses the lawsuit tracker's federal series.
+// Re-reviewed October 19, 2026: added India (RPwD Act 2016, IS 17802 mandatory since May 11, 2023,
+// draft RPwD (Amendment) Rules 2026 S.O. 3962(E) of July 16, 2026, not yet notified).
 
 import { lawsuitsByYear } from "./lawsuit-statistics"
 
@@ -498,6 +500,27 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     keyDateLabel: "Next AODA compliance reporting deadline",
     recentUpdate: "Still on WCAG 2.0 AA despite federal ACA moving to 2.1. Next reporting deadline December 31, 2026.",
     sourceUrl: "https://www.ontario.ca/laws/statute/05a11",
+  },
+  {
+    id: "india-rpwd-ict",
+    jurisdiction: "India",
+    region: "asia-pacific",
+    lawName: "India: RPwD Act 2016, rule 15 (IS 17802) and Draft RPwD (Amendment) Rules 2026",
+    citation: "Act 49 of 2016, ss. 40, 46, 89; RPwD Rules 2017, r. 15(1)(c)(iii) (G.S.R. 359(E), 10 May 2023); draft S.O. 3962(E), 16 July 2026",
+    yearEnacted: 2016,
+    effectiveDate: "2023-05-11",
+    appliesTo: ["government", "private", "ecommerce", "financial", "education", "healthcare"],
+    wcagVersion: "2.1 AA (via IS 17802, the adoption of EN 301 549 V3.2.1)",
+    enforcement: ["complaints", "regulatory", "government"],
+    penalties: {
+      description: "Section 89 of the RPwD Act: fine up to ₹10,000 for a first contravention and ₹50,000 to ₹5 lakh for subsequent ones. The draft 2026 rules add 90-day remediation orders, enhanced fines, and suspension or cancellation of registrations, certifications or approvals for continued non-compliance.",
+      maxFine: "₹5,00,000",
+      maxFineNumeric: 5700,
+      currency: "INR",
+    },
+    status: "pending",
+    recentUpdate: "IS 17802 (Parts 1 and 2), the Indian adoption of EN 301 549 V3.2.1, has been mandatory for websites, apps and other ICT under rule 15(1)(c)(iii) since May 11, 2023. On November 8, 2024 the Supreme Court (Rajive Raturi v. Union of India, 2024 INSC 858) held rule 15(1) ultra vires for offering guidelines rather than a non-negotiable floor and directed mandatory rules within three months. The draft Rights of Persons with Disabilities (Amendment) Rules, 2026 (S.O. 3962(E), Gazette of India Extraordinary, July 20, 2026) would replace rule 15(1)(c): every establishment, in India or abroad, serving persons in India must meet the Schedule I and II clauses within one year (turnover of ₹500 crore or more) or 18 months (others) and the full standard within two years of final publication, publish human-readable and machine-readable Accessibility Conformance Reports, and name a Grievance Redressal Officer. Comments closed in August 2026; not notified as of October 19, 2026. The Supreme Court listed the matter for January 2027.",
+    sourceUrl: "https://egazette.gov.in/WriteReadData/2026/274669.pdf",
   },
   {
     id: "australia-dda",

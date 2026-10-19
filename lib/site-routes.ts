@@ -107,7 +107,7 @@ const research: SiteRoute[] = [
 ]
 
 const compliance: SiteRoute[] = [
-  { route: "/compliance", label: "Compliance & Laws Hub", group: "Compliance", lastModified: "2026-08-27", priority: 0.9 },
+  { route: "/compliance", label: "Compliance & Laws Hub", group: "Compliance", lastModified: "2026-10-19", priority: 0.9 },
   { route: "/compliance/ada", label: "ADA Website Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.93 },
   { route: "/compliance/eaa", label: "European Accessibility Act (EAA)", group: "Compliance", lastModified: "2026-10-14", priority: 0.93 },
   { route: "/compliance/section-508", label: "Section 508 Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.91 },
@@ -116,6 +116,7 @@ const compliance: SiteRoute[] = [
   { route: "/compliance/new-york", label: "New York Accessibility Laws", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/uk", label: "UK Website Accessibility Law", group: "Compliance", lastModified: "2026-08-27", priority: 0.94 },
   { route: "/compliance/eaa-ireland", label: "EAA Compliance in Ireland", group: "Compliance", lastModified: "2026-10-14", priority: 0.94 },
+  { route: "/compliance/india", label: "India Web Accessibility Law (RPwD Act & IS 17802)", group: "Compliance", lastModified: "2026-10-19", priority: 0.94 },
 ]
 
 const industries: SiteRoute[] = [
@@ -193,7 +194,7 @@ const guides: SiteRoute[] = [
 const checklists: SiteRoute[] = [
   { route: "/checklists", label: "Checklists Hub", group: "Checklists", lastModified: "2026-08-27", priority: 0.87 },
   { route: "/checklists/wcag-2-2", label: "WCAG 2.2 Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.96 },
-  { route: "/checklists/en-301-549", label: "EN 301 549 Interactive Checklist", group: "Checklists", lastModified: "2026-10-14", priority: 0.94 },
+  { route: "/checklists/en-301-549", label: "EN 301 549 Interactive Checklist", group: "Checklists", lastModified: "2026-10-19", priority: 0.94 },
   { route: "/checklists/wcag-2-2/aaa", label: "WCAG 2.2 AAA Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.8 },
   { route: "/checklists/wcag-2-2/excel", label: "WCAG 2.2 Excel Checklist", group: "Checklists", lastModified: "2026-07-24", priority: 0.75 },
   { route: "/checklists/interactive", label: "Interactive Checklist", group: "Checklists", lastModified: "2026-09-02", priority: 0.85 },

@@ -115,7 +115,13 @@ export default function EN301549ChecklistPage() {
               see exactly what changes in v4
             </Link>
             . Auditing against WCAG 2.2 AA today satisfies the WCAG 2.1 clauses here and is
-            already aligned with where v4 lands.
+            already aligned with where v4 lands. In India, IS 17802 (Part 1): 2021 is the
+            technical adoption of this same v3.2.1 text, so this checklist doubles as an interim
+            IS 17802 checklist;{" "}
+            <Link href="/compliance/india" className="underline hover:no-underline">
+              see the India compliance guide
+            </Link>
+            .
           </p>
         </div>
       </div>
@@ -207,6 +213,13 @@ export default function EN301549ChecklistPage() {
                 className="text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 EAA Scope Checker
+              </Link>
+              <span className="text-slate-300 dark:text-slate-700">&middot;</span>
+              <Link
+                href="/compliance/india"
+                className="text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                IS 17802 (India)
               </Link>
               <span className="text-slate-300 dark:text-slate-700">&middot;</span>
               <Link
