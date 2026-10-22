@@ -166,13 +166,15 @@ function build(): Record<string, Dataset> {
     "agent-readiness": {
       name: "AI agent readiness of UK home pages, 2026",
       page: "https://accessibility.build/research/ai-agent-readiness",
-      lastUpdated: agentReadiness.measuredOn,
+      lastUpdated: agentReadiness.corrections[agentReadiness.corrections.length - 1]?.date ?? agentReadiness.measuredOn,
       tables: {
         ftse100: agentReadiness.groups.ftse100.sites as Row[],
         councils: agentReadiness.groups.councils.sites as Row[],
       },
       extra: {
         method: agentReadiness.method,
+        measuredOn: agentReadiness.measuredOn,
+        corrections: agentReadiness.corrections,
         ftse100Summary: { ...agentReadiness.groups.ftse100, sites: undefined },
         councilsSummary: { ...agentReadiness.groups.councils, sites: undefined },
       },

@@ -1,25 +1,31 @@
 {
  "measuredOn": "2026-09-02",
  "method": "Playwright 1.58, Chromium headless shell 145, viewport 1280x900, domcontentloaded plus 2.5 s; the ARIA snapshot of body counted for controls with and without a name; DOM counts for images, form fields, lang, h1, skip link, main landmark, untitled iframes and overlay markers.",
+ "corrections": [
+  {
+   "date": "2026-10-22",
+   "note": "Two duplicate FTSE 100 rows were removed. RELX was listed twice, and Direct Line Group's listed website resolves to aviva.com, so Aviva's home page had been measured twice. The FTSE 100 group is now 97 home pages measured from 125 unique sampled (it was 99 of 127), and every FTSE and combined figure was recomputed from the remaining rows. Per-role totals have no per-site breakdown, so the duplicates' roles were re-measured: RELX matched its original 50 controls and 1 unnamed exactly; Aviva had no unnamed controls, so unnamed counts by role are exact, but the FTSE named link and button counts may each differ from the original measurement by up to 4."
+  }
+ ],
  "groups": {
   "ftse100": {
    "label": "FTSE 100 constituents",
-   "sampled": 127,
-   "measured": 99,
+   "sampled": 125,
+   "measured": 97,
    "excluded": 28,
-   "controls": 7804,
-   "controlsUnnamed": 182,
-   "controlsUnnamedPct": 2.3,
-   "sitesWithUnnamedControl": 35,
-   "sitesWithUnnamedControlPct": 35.4,
+   "controls": 7585,
+   "controlsUnnamed": 181,
+   "controlsUnnamedPct": 2.4,
+   "sitesWithUnnamedControl": 34,
+   "sitesWithUnnamedControlPct": 35.1,
    "medianUnnamedPct": 0.0,
    "byRole": {
     "link": {
-     "named": 6300,
+     "named": 6091,
      "unnamed": 150
     },
     "button": {
-     "named": 1019,
+     "named": 1011,
      "unnamed": 23
     },
     "menuitem": {
@@ -32,7 +38,7 @@
     },
     "textbox": {
      "named": 41,
-     "unnamed": 3
+     "unnamed": 2
     },
     "radio": {
      "named": 21,
@@ -47,7 +53,7 @@
      "unnamed": 3
     },
     "searchbox": {
-     "named": 12,
+     "named": 11,
      "unnamed": 0
     },
     "switch": {
@@ -59,18 +65,18 @@
      "unnamed": 0
     }
    },
-   "images": 3783,
+   "images": 3760,
    "imagesMissingAlt": 308,
    "sitesWithImagesMissingAlt": 25,
-   "fields": 700,
-   "fieldsUnlabeled": 79,
-   "sitesWithFieldsUnlabeled": 30,
+   "fields": 682,
+   "fieldsUnlabeled": 78,
+   "sitesWithFieldsUnlabeled": 29,
    "sitesNoLang": 1,
    "sitesNoH1": 11,
-   "sitesMultipleH1": 22,
-   "sitesSkipLink": 56,
-   "sitesNoMainLandmark": 19,
-   "sitesUntitledIframes": 34,
+   "sitesMultipleH1": 21,
+   "sitesSkipLink": 54,
+   "sitesNoMainLandmark": 18,
+   "sitesUntitledIframes": 33,
    "sitesOverlay": 3,
    "sites": [
     {
@@ -428,23 +434,6 @@
      "skipLink": true,
      "mainLandmark": true,
      "iframesNoTitle": 1,
-     "overlay": false
-    },
-    {
-     "name": "RELX",
-     "host": "relx.com",
-     "controls": 50,
-     "unnamed": 1,
-     "unnamedPct": 2.0,
-     "imagesMissingAlt": 0,
-     "images": 7,
-     "fieldsUnlabeled": 1,
-     "fields": 4,
-     "lang": true,
-     "h1": 2,
-     "skipLink": true,
-     "mainLandmark": false,
-     "iframesNoTitle": 2,
      "overlay": false
     },
     {
@@ -989,23 +978,6 @@
      "skipLink": true,
      "mainLandmark": true,
      "iframesNoTitle": 1,
-     "overlay": false
-    },
-    {
-     "name": "Direct Line Group",
-     "host": "aviva.com",
-     "controls": 169,
-     "unnamed": 0,
-     "unnamedPct": 0.0,
-     "imagesMissingAlt": 0,
-     "images": 16,
-     "fieldsUnlabeled": 0,
-     "fields": 14,
-     "lang": true,
-     "h1": 1,
-     "skipLink": true,
-     "mainLandmark": true,
-     "iframesNoTitle": 0,
      "overlay": false
     },
     {

@@ -19,6 +19,9 @@ import data from "@/lib/data/agent-readiness-2026.json"
 // is published, the method is stated, and the limits are stated with it.
 
 const ROUTE = "/research/ai-agent-readiness"
+// The measurements are dated measuredOn; the dataset itself last changed with
+// its most recent correction.
+const dataUpdated = data.corrections[data.corrections.length - 1]?.date ?? data.measuredOn
 const pageTitle = "AI Agent Readiness: Can an Agent Use Your Website?"
 const pageDescription =
   "We took the accessibility-tree view an AI browser agent receives of the home pages of the FTSE 100 and UK local authorities and counted the controls with no name, the images without alt text and the unlabelled fields. Per-site results and method published."
@@ -373,6 +376,22 @@ export default function AgentReadinessPage() {
                   excluded is reported for each group. A site can be excluded and still be
                   inaccessible; we simply could not measure it.
                 </p>
+                {data.corrections.map((c) => (
+                  <p key={c.date}>
+                    <strong className="font-semibold text-slate-900 dark:text-white">
+                      Correction,{" "}
+                      <time dateTime={c.date}>
+                        {new Date(c.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}
+                      </time>
+                      :
+                    </strong>{" "}
+                    {c.note} Corrections follow our{" "}
+                    <Link href="/corrections-policy" className="font-medium text-teal-700 underline underline-offset-2 dark:text-teal-300">
+                      corrections policy
+                    </Link>
+                    .
+                  </p>
+                ))}
               </div>
             </section>
 
@@ -426,7 +445,7 @@ export default function AgentReadinessPage() {
               description="Per-site measurements of the accessibility-tree view of FTSE 100 and UK local authority home pages: nameless controls by role, images without alt text, unlabelled fields, language, headings, skip links, landmarks, iframes and overlays."
               pageUrl={`https://accessibility.build${ROUTE}`}
               datePublished="2026-09-03"
-              dateModified={data.measuredOn}
+              dateModified={dataUpdated}
               temporalCoverage="2026-09"
               attribution="Accessibility.build measurement; samples from Wikidata"
               tables={[
