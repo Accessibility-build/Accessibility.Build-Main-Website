@@ -320,6 +320,18 @@ export default function AgentReadinessPage() {
                   one.
                 </p>
                 <p>
+                  Google now tells site owners the same thing. Its guide to{" "}
+                  <a
+                    href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide#agentic-experiences"
+                    className="font-medium text-teal-700 underline underline-offset-2 dark:text-teal-300"
+                  >
+                    optimizing for generative AI features in Google Search
+                  </a>{" "}
+                  says browser agents may gather what they need from a site by &ldquo;analyzing visual
+                  renderings (like screenshots), inspecting the DOM structure, and interpreting the
+                  accessibility tree&rdquo;. A control with no name is a gap in that last view.
+                </p>
+                <p>
                   This is not a new class of defect. It is{" "}
                   <Link href="/wcag/4-1-2" className="font-medium text-teal-700 underline underline-offset-2 dark:text-teal-300">WCAG 4.1.2</Link>,
                   the criterion pleaded in{" "}
