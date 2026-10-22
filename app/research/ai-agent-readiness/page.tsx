@@ -96,7 +96,7 @@ interface Group {
   medianUnnamedPct: number
   byRole: Record<string, { named: number; unnamed: number }>
   // Set when byRole covers more home pages than `measured` (FTSE: secondary
-  // sites could not be split out of the role counts).
+  // sites and non-constituents could not be split out of the role counts).
   byRoleHomePages?: number
   images: number
   imagesMissingAlt: number
@@ -113,6 +113,7 @@ interface Group {
   sitesOverlay: number
   sites: AgentSite[]
   secondarySites?: AgentSite[]
+  nonConstituentSites?: AgentSite[]
 }
 
 function pct(n: number, d: number) {
@@ -179,7 +180,7 @@ function GroupSummary({ g }: { g: Group }) {
           <caption className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
             {g.label}: nameless controls by role
             {g.byRoleHomePages && g.byRoleHomePages !== g.measured
-              ? `, across all ${g.byRoleHomePages} home pages measured, including companies' secondary sites`
+              ? `, across all ${g.byRoleHomePages} home pages measured, including secondary sites and companies not in the index on the measurement date`
               : ""}
           </caption>
           <thead>
@@ -361,9 +362,11 @@ export default function AgentReadinessPage() {
               <div className="mt-4 space-y-4 leading-7 text-slate-700 dark:text-slate-300">
                 <p>
                   Two samples, both reproducible from Wikidata queries: companies in the FTSE 100
-                  index with an official website, scored on one home page per company (its main
-                  corporate site), and UK local authorities (unitary, district, county and London
-                  borough councils) with an official website. Each home page was
+                  index on the measurement date that the query found with an official website{" "}
+                  {`(${data.groups.ftse100.sampled} of the 100, with membership checked against FTSE Russell's record of index changes)`},
+                  scored on one home page per company (its main corporate site), and UK local
+                  authorities (unitary, district, county and
+                  London borough councils) with an official website. Each home page was
                   loaded once on {data.measuredOn} in headless Chromium through Playwright at
                   1280 by 900, waited 2.5 seconds after DOM ready, and its ARIA snapshot was taken.
                 </p>
