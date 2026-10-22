@@ -13,6 +13,7 @@ import Image from "next/image"
 import type { Metadata } from "next"
 import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { SocialShare } from "@/components/seo/social-share"
+import { PreferredSource } from "@/components/seo/preferred-source"
 import { RelatedContent } from "@/components/seo/related-content"
 import { MorePosts } from "@/components/blog/more-posts"
 import { ListenFeature } from "@/components/blog/listen-feature"
@@ -433,6 +434,8 @@ export default async function BlogPostPage({
                         showLabel={false}
                       />
                     </div>
+
+                    <PreferredSource className="mt-6" />
                   </footer>
                 </article>
               </div>

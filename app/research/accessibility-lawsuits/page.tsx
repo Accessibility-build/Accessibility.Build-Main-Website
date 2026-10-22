@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PreferredSource } from "@/components/seo/preferred-source"
 import { lawsuitSummary } from "@/lib/data/lawsuit-statistics"
 import { LawsuitTrackerClient } from "./LawsuitTrackerClient"
 import { getRouteDate } from "@/lib/site-routes"
@@ -448,6 +449,7 @@ export default function AccessibilityLawsuitsPage() {
                   { key: "topStates", label: "Filings by state" },
               ]}
             />
+        <PreferredSource className="mb-10" />
         <RelatedContent
           content="accessibility lawsuits ADA compliance WCAG audit legal requirements digital accessibility litigation"
           title="Related Resources"

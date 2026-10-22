@@ -6,6 +6,7 @@ import {
   FAQStructuredData,
 } from "@/components/seo/structured-data";
 import { RelatedContent } from "@/components/seo/related-content";
+import { PreferredSource } from "@/components/seo/preferred-source";
 import {
   ReportHero,
   ReportSectionNav,
@@ -317,6 +318,7 @@ export default function EuropeanAccessibilityActPage() {
                   { key: "keyDates", label: "Key dates" },
               ]}
             />
+            <PreferredSource className="mb-10" />
             <RelatedContent
               content="European Accessibility Act EAA EN 301 549 EU accessibility law compliance directive transposition member states deadline enforcement"
               maxItems={3}

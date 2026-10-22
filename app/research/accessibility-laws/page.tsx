@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArticleStructuredData, BreadcrumbStructuredData, DatasetStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PreferredSource } from "@/components/seo/preferred-source"
 import { lawsSummary } from "@/lib/data/accessibility-laws"
 import { AccessibilityLawsClient } from "./AccessibilityLawsClient"
 import { getRouteDate } from "@/lib/site-routes"
@@ -394,6 +395,7 @@ export default function AccessibilityLawsPage() {
                   { key: "laws", label: "Laws by jurisdiction" },
               ]}
             />
+        <PreferredSource className="mb-10" />
         <RelatedContent
           content="accessibility laws global regulations WCAG compliance ADA Section 508 European Accessibility Act legal requirements"
           title="Related Resources"

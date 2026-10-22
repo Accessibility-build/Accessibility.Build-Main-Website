@@ -4,6 +4,7 @@ import { BreadcrumbStructuredData, FAQStructuredData } from "@/components/seo/st
 import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
 import { PageByline } from "@/components/seo/page-byline"
 import { RelatedContent } from "@/components/seo/related-content"
+import { PreferredSource } from "@/components/seo/preferred-source"
 import { KeyFacts } from "@/components/research/key-facts"
 import { clampDescription } from "@/lib/metadata"
 import eaaData from "@/lib/data/european-accessibility-act.json"
@@ -372,6 +373,8 @@ export default function WebAccessibilityStatisticsPage() {
                 </p>
               </div>
             </section>
+
+            <PreferredSource className="mt-14 max-w-[68ch]" />
 
             <div className="mt-14">
               <RelatedContent
