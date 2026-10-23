@@ -274,7 +274,7 @@ export default function WCAG249Page() {
                 <span className="text-slate-700 dark:text-slate-300 leading-relaxed">
                   <Link
                     href="/wcag/2-4-4"
-                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
                   >
                     2.4.4 Link Purpose (In Context)
                   </Link>{" "}
@@ -313,7 +313,7 @@ export default function WCAG249Page() {
               and satisfy both at once. It also reinforces{" "}
               <Link
                 href="/wcag/2-4-6"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.6 Headings and Labels
               </Link>
@@ -544,7 +544,7 @@ export default function WCAG249Page() {
               through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>{" "}

@@ -241,7 +241,7 @@ export default function SkipLinksGuidePage() {
                   every one of those links,{" "}
                   <em>on every page they visit</em>, before they reach anything
                   new.{" "}
-                  <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     WCAG 2.4.1 Bypass Blocks
                   </Link>{" "}
                   (Level A) requires that a mechanism exists to skip that
@@ -317,7 +317,7 @@ export default function SkipLinksGuidePage() {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 The highlighted row,{" "}
-                <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.1 Bypass Blocks
                 </Link>
                 , is the criterion this guide serves. The rest are the criteria a
@@ -347,7 +347,7 @@ export default function SkipLinksGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.1 Bypass Blocks
                         </Link>
                       </th>
@@ -356,7 +356,7 @@ export default function SkipLinksGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -365,7 +365,7 @@ export default function SkipLinksGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -374,7 +374,7 @@ export default function SkipLinksGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -383,7 +383,7 @@ export default function SkipLinksGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.11 Focus Not Obscured
                         </Link>
                       </th>
@@ -392,7 +392,7 @@ export default function SkipLinksGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -401,7 +401,7 @@ export default function SkipLinksGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -410,7 +410,7 @@ export default function SkipLinksGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.10 Section Headings
                         </Link>
                       </th>
@@ -425,14 +425,14 @@ export default function SkipLinksGuidePage() {
                 criterion, see the{" "}
                 <Link
                   href="/wcag/2-4-1"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.4.1 Bypass Blocks
                 </Link>{" "}
                 reference. The rest of the{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 criteria
                 </Link>{" "}
@@ -636,7 +636,7 @@ export default function SkipLinksGuidePage() {
                   <code>fixed</code>, the target can end up scrolled to the very
                   top of the viewport and then covered by that header, so focus has
                   moved but the user cannot see where. That is a{" "}
-                  <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.11 Focus Not Obscured
                   </Link>{" "}
                   failure. Reserve space with{" "}
@@ -741,7 +741,7 @@ export default function SkipLinksGuidePage() {
                     <code>aria-label</code>, for example{" "}
                     <code>aria-label=&quot;Primary&quot;</code> and{" "}
                     <code>aria-label=&quot;Footer&quot;</code>. This is the{" "}
-                    <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       4.1.2
                     </Link>{" "}
                     tie-in.
@@ -759,7 +759,7 @@ export default function SkipLinksGuidePage() {
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Landmarks are part of the broader semantic structure covered by{" "}
-                  <Link href="/guides/using-aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/using-aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     using ARIA the right way
                   </Link>
                   ; the first rule there applies here too, prefer the native
@@ -770,7 +770,7 @@ export default function SkipLinksGuidePage() {
                   scoping rule where a header or footer is only a landmark at the
                   top level, when a <code>&lt;section&gt;</code> becomes a region,
                   and how screen reader users jump between regions, see the{" "}
-                  <Link href="/guides/landmarks-page-structure" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/landmarks-page-structure" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     landmarks and page structure guide
                   </Link>
                   .
@@ -821,7 +821,7 @@ export default function SkipLinksGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Organizing content under headings is formally recognized as a
                   bypass technique in{" "}
-                  <Link href="/wcag/2-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.10 Section Headings
                   </Link>
                   . That criterion sits at Level AAA, so it is not required for AA
@@ -931,11 +931,11 @@ function Layout({ children }) {
                   main region on navigation also gives screen reader users a clear
                   signal that the view changed, which client-side routing otherwise
                   swallows. This is one facet of a broader topic; the{" "}
-                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     focus management guide
                   </Link>{" "}
                   covers route-change focus in depth, and the{" "}
-                  <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     React accessibility guide
                   </Link>{" "}
                   puts it in the context of a component architecture.
@@ -982,15 +982,15 @@ function Layout({ children }) {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Open the landmark list and the heading list, the two bypass
                   mechanisms screen reader users actually use. In{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   or{" "}
-                  <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     JAWS
                   </Link>
                   , open the elements list; in{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>
                   , use the rotor. Confirm there is exactly one main landmark, that
@@ -1002,7 +1002,7 @@ function Layout({ children }) {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Scanners such as{" "}
-                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     axe and WAVE
                   </Link>{" "}
                   can flag a missing <code>&lt;main&gt;</code> landmark, a page with
@@ -1010,11 +1010,11 @@ function Layout({ children }) {
                   catching. What they cannot check is whether the skip link actually
                   moves focus, which is the failure that matters most, so treat a
                   clean automated report as necessary but not sufficient. The{" "}
-                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     automated versus manual testing guide
                   </Link>{" "}
                   explains where that line falls, and the{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     website audit guide
                   </Link>{" "}
                   puts these steps in order.

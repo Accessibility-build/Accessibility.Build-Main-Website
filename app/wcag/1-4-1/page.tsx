@@ -167,7 +167,7 @@ export default function WCAG141Page() {
               <em>not</em> about: this is not a contrast requirement (that is{" "}
               <Link
                 href="/wcag/1-4-3"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.4.3 Contrast (Minimum)
               </Link>
@@ -336,7 +336,7 @@ export default function WCAG141Page() {
               ratio — that is the job of{" "}
               <Link
                 href="/wcag/1-4-3"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.4.3 Contrast (Minimum)
               </Link>
@@ -600,7 +600,7 @@ a.inline:focus { text-decoration: underline; }`}</code>
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

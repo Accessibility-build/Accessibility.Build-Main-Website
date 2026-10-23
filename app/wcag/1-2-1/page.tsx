@@ -326,7 +326,7 @@ export default function WCAG121Page() {
               page, the article is the text alternative and the recording needs nothing
               extra. Note that 1.2.1 stops at media that is only audio or only video —
               once a clip has both a soundtrack and moving pictures, you move on to the{" "}
-              <Link href="/wcag" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 captions and audio-description criteria
               </Link>{" "}
               under the other 1.2.x guidelines.
@@ -590,7 +590,7 @@ export default function WCAG121Page() {
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

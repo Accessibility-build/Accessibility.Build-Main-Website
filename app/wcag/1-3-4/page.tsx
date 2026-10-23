@@ -548,14 +548,14 @@ await screen.orientation.lock("portrait");
               if a screen fails here it often fails{" "}
               <Link
                 href="/wcag/1-4-10"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.4.10 Reflow
               </Link>{" "}
               too. Track both in the{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

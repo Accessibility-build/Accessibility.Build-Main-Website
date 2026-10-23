@@ -15,7 +15,9 @@
     --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* 42% lightness, not shadcn's 46.9%: that gave 4.3:1 on --muted (inactive
+       tabs), under WCAG 1.4.3's 4.5:1. This is 5.2:1 on --muted, 5.7:1 on white. */
+    --muted-foreground: 215.4 16.3% 42%;
     --accent: 210 40% 96%;
     --accent-foreground: 222.2 84% 4.9%;
     --destructive: 0 84.2% 60.2%;

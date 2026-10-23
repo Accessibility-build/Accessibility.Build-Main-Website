@@ -39,6 +39,11 @@ export interface StateData {
   perCapita: number
 }
 
+// Seyfarth Shaw's 2025 federal filing review, the source of the lawsuitsByYear
+// series below. Cited on /research/accessibility-lawsuits and its embed widget.
+export const SEYFARTH_2025_URL =
+  "https://www.adatitleiii.com/2026/03/federal-court-website-accessibility-lawsuit-filings-bounce-back-in-2025/"
+
 // Federal-court website accessibility lawsuits (ADA Title III digital cases).
 // Sources: Seyfarth Shaw ADA Title III tracker, UsableNet annual reports, PACER.
 // Note: 2025's widely cited "5,000+" figure includes state-court filings (NY/CA mostly);

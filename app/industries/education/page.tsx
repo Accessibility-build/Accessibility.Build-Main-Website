@@ -292,7 +292,7 @@ export default function EducationIndustryPage() {
             interaction — measurably helps students who are multilingual, studying in noisy environments, or learning
             with ADHD and dyslexia. Institutions that fix their content pipelines see fewer accommodation escalations,
             faster course production, and stronger positions in the OCR complaint statistics we track alongside{" "}
-            <Link href="/research/accessibility-lawsuits" className="text-primary hover:underline">
+            <Link href="/research/accessibility-lawsuits" className="text-primary underline underline-offset-2 hover:decoration-2">
               accessibility litigation
             </Link>
             .
@@ -305,8 +305,8 @@ export default function EducationIndustryPage() {
         <h2 className="text-3xl font-bold mb-2 text-center">The legal landscape for education</h2>
         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
           Public institutions answer to the Title II rule and OCR; private institutions to Title III and Section 504.
-          For statutory background, see our <Link href="/compliance/ada" className="text-primary hover:underline">ADA guide</Link>{" "}
-          and <Link href="/compliance/section-508" className="text-primary hover:underline">Section 508 guide</Link>.
+          For statutory background, see our <Link href="/compliance/ada" className="text-primary underline underline-offset-2 hover:decoration-2">ADA guide</Link>{" "}
+          and <Link href="/compliance/section-508" className="text-primary underline underline-offset-2 hover:decoration-2">Section 508 guide</Link>.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {legalExposure.map((item, i) => {
@@ -326,7 +326,7 @@ export default function EducationIndustryPage() {
         </div>
         <p className="text-sm text-muted-foreground text-center mt-6 max-w-2xl mx-auto">
           Deep dive: our analysis of the{" "}
-          <Link href="/guides/doj-title-ii-deadline-extension" className="text-primary hover:underline">
+          <Link href="/guides/doj-title-ii-deadline-extension" className="text-primary underline underline-offset-2 hover:decoration-2">
             DOJ Title II deadline extension
           </Link>{" "}
           — what changed, what didn&apos;t, and why you shouldn&apos;t slow down.
@@ -356,7 +356,7 @@ export default function EducationIndustryPage() {
                         <Link
                           key={criterion.href}
                           href={criterion.href}
-                          className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+                          className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-blue-700 dark:text-primary hover:bg-primary/20 transition-colors"
                         >
                           {criterion.label}
                         </Link>

@@ -796,7 +796,7 @@ export default function UrlAccessibilityAuditor() {
                           <div key={index} className="p-4 rounded-lg border bg-gradient-to-r from-muted/30 to-muted/10 hover:from-muted/40 hover:to-muted/20 transition-colors">
                             <div className="flex items-start justify-between mb-3">
                               <div className="flex items-center gap-3">
-                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-semibold text-sm">
+                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-blue-700 dark:text-primary font-semibold text-sm">
                                   {index + 1}
                                 </div>
                                 <h4 className="font-semibold text-lg">{rec.title}</h4>

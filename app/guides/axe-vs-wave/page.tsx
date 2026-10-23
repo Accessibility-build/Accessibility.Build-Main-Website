@@ -249,7 +249,7 @@ export default function AxeVsWaveGuidePage() {
                 fraction of WCAG issues, as we cover in our{" "}
                 <Link
                   href="/guides/automated-vs-manual-accessibility-testing"
-                  className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
                 >
                   automated vs manual testing guide
                 </Link>
@@ -276,7 +276,7 @@ export default function AxeVsWaveGuidePage() {
                   commercial scanners, and our own{" "}
                   <Link
                     href="/tools/url-accessibility-auditor"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     URL accessibility auditor
                   </Link>
@@ -545,7 +545,7 @@ export default function AxeVsWaveGuidePage() {
                   testing that neither can automate. Our{" "}
                   <Link
                     href="/guides/how-to-audit-website-accessibility"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     step-by-step audit guide
                   </Link>{" "}

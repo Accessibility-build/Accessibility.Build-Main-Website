@@ -191,7 +191,7 @@ export function WcagCriteriaChecklist({ groups, total }: WcagCriteriaChecklistPr
                             <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{criterion.description}</p>
                             <Link
                               href={wcagPath(criterion.number)}
-                              className="mt-2 inline-block text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                              className="mt-2 inline-block text-sm text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                             >
                               How to meet {criterion.number}
                             </Link>

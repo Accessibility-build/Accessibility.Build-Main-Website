@@ -215,7 +215,7 @@ export default function AccessibilityStatementGeneratorPage() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Standard and level.</strong>{" "}
                   Normally{" "}
-                  <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     WCAG 2.2 at Level AA
                   </Link>
                   , which is the level referenced by most laws and procurement
@@ -282,7 +282,7 @@ export default function AccessibilityStatementGeneratorPage() {
                   preserves meaning, or whether an error message helps. If your
                   statement rests on a scan, describe it as a self-assessment
                   using automated testing and avoid a full claim. The{" "}
-                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     automated versus manual testing guide
                   </Link>{" "}
                   explains where the line falls.

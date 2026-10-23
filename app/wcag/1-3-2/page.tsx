@@ -166,7 +166,7 @@ export default function WCAG132Page() {
               pairs closely with{" "}
               <Link
                 href="/wcag/1-3-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.3.1 Info and Relationships
               </Link>
@@ -633,7 +633,7 @@ Item B      Item D
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

@@ -270,7 +270,7 @@ export default function AutomatedVsManualTestingGuidePage() {
                 through our free{" "}
                 <Link
                   href="/tools/url-accessibility-auditor"
-                  className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
                 >
                   URL accessibility auditor
                 </Link>
@@ -308,7 +308,7 @@ export default function AutomatedVsManualTestingGuidePage() {
                       focusable; it cannot verify the journey works. See our{" "}
                       <Link
                         href="/guides/keyboard-accessibility"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                       >
                         keyboard accessibility guide
                       </Link>
@@ -333,7 +333,7 @@ export default function AutomatedVsManualTestingGuidePage() {
                       Our{" "}
                       <Link
                         href="/guides/screen-reader-testing"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                       >
                         screen reader testing guide
                       </Link>{" "}
@@ -378,7 +378,7 @@ export default function AutomatedVsManualTestingGuidePage() {
                       calls — best validated through{" "}
                       <Link
                         href="/services/user-testing"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                       >
                         user testing with disabled participants
                       </Link>
@@ -526,7 +526,7 @@ export default function AutomatedVsManualTestingGuidePage() {
                   our{" "}
                   <Link
                     href="/guides/axe-vs-wave"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     axe vs WAVE comparison
                   </Link>{" "}
@@ -547,7 +547,7 @@ export default function AutomatedVsManualTestingGuidePage() {
                   (crawler-based platforms and online checkers like our{" "}
                   <Link
                     href="/tools/url-accessibility-auditor"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     URL accessibility auditor
                   </Link>
@@ -632,7 +632,7 @@ export default function AutomatedVsManualTestingGuidePage() {
                       A full{" "}
                       <Link
                         href="/services/accessibility-audits"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                       >
                         professional audit
                       </Link>{" "}
@@ -642,7 +642,7 @@ export default function AutomatedVsManualTestingGuidePage() {
                       legal defensibility. Our{" "}
                       <Link
                         href="/guides/how-to-audit-website-accessibility"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                       >
                         website accessibility audit guide
                       </Link>{" "}

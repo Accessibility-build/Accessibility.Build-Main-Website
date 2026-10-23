@@ -293,7 +293,7 @@ export default function WCAG252Page() {
               legal and financial transactions,{" "}
               <Link
                 href="/wcag/3-3-4"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.3.4 Error Prevention
               </Link>{" "}
@@ -619,7 +619,7 @@ control.addEventListener("pointercancel", () => {
               a manual and code-review test. Fold it into the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>{" "}

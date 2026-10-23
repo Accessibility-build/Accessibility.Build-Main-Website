@@ -322,7 +322,7 @@ export default function AccessibleSwitchGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/switch/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     the WAI-ARIA Authoring Practices Switch pattern
                   </a>{" "}
@@ -346,7 +346,7 @@ export default function AccessibleSwitchGuidePage() {
                   But the first decision is not <em>how</em> to build it — it is{" "}
                   <em>whether a switch is the right control at all</em>. A switch
                   and a{" "}
-                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     checkbox
                   </Link>{" "}
                   look interchangeable and are not. Choosing wrong is not a style
@@ -401,7 +401,7 @@ export default function AccessibleSwitchGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -410,7 +410,7 @@ export default function AccessibleSwitchGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -419,7 +419,7 @@ export default function AccessibleSwitchGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -428,7 +428,7 @@ export default function AccessibleSwitchGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.2.2 On Input
                         </Link>
                       </th>
@@ -437,7 +437,7 @@ export default function AccessibleSwitchGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -446,7 +446,7 @@ export default function AccessibleSwitchGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.11 Non-text Contrast
                         </Link>
                       </th>
@@ -455,7 +455,7 @@ export default function AccessibleSwitchGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.8 Target Size (Minimum)
                         </Link>
                       </th>
@@ -464,7 +464,7 @@ export default function AccessibleSwitchGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -475,7 +475,7 @@ export default function AccessibleSwitchGuidePage() {
                 </table>
               </div>
               <p className="text-muted-foreground leading-relaxed mt-6">
-                <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.11 Non-text Contrast
                 </Link>{" "}
                 is the criterion switches fail most often and audits catch least
@@ -532,7 +532,7 @@ export default function AccessibleSwitchGuidePage() {
                       by submitting — &ldquo;I agree&rdquo;, a list of interests,
                       &ldquo;remember me&rdquo;. It can also be{" "}
                       <em>mixed</em>, which a switch cannot. Covered in the{" "}
-                      <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         forms guide
                       </Link>
                       .
@@ -673,7 +673,7 @@ export default function AccessibleSwitchGuidePage() {
                 The thumb moving from one side to the other is doing real
                 accessibility work here, not just decoration: it is what makes
                 the state readable without colour, satisfying{" "}
-                <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.1 Use of Color
                 </Link>
                 . A switch whose only difference between on and off is the track
@@ -729,7 +729,7 @@ export default function AccessibleSwitchGuidePage() {
                 <code>aria-checked=&quot;mixed&quot;</code>, which the switch role
                 does not allow — a switch is strictly on or off. For how each role
                 and state is exposed to assistive technology, see the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -796,7 +796,7 @@ export default function AccessibleSwitchGuidePage() {
                 of the name because it also enlarges the click target — tapping
                 the word toggles the switch. If the switch has only an icon, give
                 it an <code>aria-label</code> (or a{" "}
-                <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   visually associated
                 </Link>{" "}
                 text label), never nothing. An unnamed switch is announced as
@@ -850,7 +850,7 @@ sw.addEventListener("click", () => {
                 <code>preventDefault</code> on Space to stop the page scrolling.
                 That is a lot of code to re-earn what the button gave you for
                 free. The{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>{" "}
                 covers the wider contract every custom control owes.
@@ -901,7 +901,7 @@ sw.addEventListener("click", () => {
                 <code>event.preventDefault()</code> to suppress it. On the native
                 paths this is handled for you. Whichever base you chose, confirm
                 the control is a single Tab stop under{" "}
-                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.1.1 Keyboard
                 </Link>
                 .
@@ -930,7 +930,7 @@ sw.addEventListener("click", () => {
                   The thumb must sit on opposite sides for on and off. A user who
                   cannot distinguish your green from your grey can still see the
                   circle has moved. This is{" "}
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1 Use of Color
                   </Link>{" "}
                   and it is non-negotiable.
@@ -941,7 +941,7 @@ sw.addEventListener("click", () => {
                   </strong>{" "}
                   The track boundary against the page and the thumb against the
                   track each need <strong>3:1</strong> contrast under{" "}
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11 Non-text Contrast
                   </Link>
                   . A white thumb on a pale-blue track, or a faint grey track on
@@ -954,7 +954,7 @@ sw.addEventListener("click", () => {
                   </strong>{" "}
                   The switch, or the label wrapping it, must be at least{" "}
                   <strong>24&nbsp;&times;&nbsp;24</strong> CSS pixels for{" "}
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8 Target Size
                   </Link>{" "}
                   — aim for 44 on touch. Wrapping the control in its{" "}
@@ -979,11 +979,11 @@ sw.addEventListener("click", () => {
               <p className="text-muted-foreground leading-relaxed">
                 Verify the real rendered colours — not the values in the design
                 file, which rarely survive anti-aliasing and opacity — with the{" "}
-                <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   contrast checker
                 </Link>
                 . And remember the label text is held to the stricter{" "}
-                <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.3 Contrast (Minimum)
                 </Link>{" "}
                 at 4.5:1, a separate check from the track and thumb.
@@ -1005,7 +1005,7 @@ sw.addEventListener("click", () => {
                 developers sometimes hang large actions off that toggle — submit
                 the form, reload the results, navigate to a filtered URL. Every
                 one of those is a change of context, and{" "}
-                <Link href="/wcag/3-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.2.2 On Input
                 </Link>{" "}
                 says changing a setting must not cause one unexpectedly.
@@ -1046,12 +1046,12 @@ sw.addEventListener("click", () => {
                 announce the result in an{" "}
                 <code>aria-live=&quot;polite&quot;</code> region so a screen
                 reader user learns what changed —{" "}
-                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.3 Status Messages
                 </Link>
                 . But the better question is usually whether a switch was the
                 right control: an action that navigates wants a{" "}
-                <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   link or a button
                 </Link>
                 , not a toggle dressed up as one.
@@ -1109,15 +1109,15 @@ function DarkModeSwitch() {
                 <code>useSwitch</code>, and Headless UI&apos;s{" "}
                 <code>Switch</code> are all sound choices. The same rules travel
                 to other frameworks: see the{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>{" "}
                 and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 guides, and the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React accessibility guide
                 </Link>{" "}
                 for the surrounding patterns. Whatever you ship, verify it against
@@ -1156,7 +1156,7 @@ function DarkModeSwitch() {
                   You should hear a fixed name, the word &ldquo;switch&rdquo;, and
                   the current state — &ldquo;Dark mode, switch, off&rdquo; — and
                   the state must update as you toggle. The{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>{" "}
                   has the commands.
@@ -1165,7 +1165,7 @@ function DarkModeSwitch() {
                   <strong className="text-slate-900 dark:text-white">Remove colour.</strong>{" "}
                   Switch the display to greyscale and confirm you can still tell
                   on from off. If you cannot, the thumb is not moving enough (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ).
@@ -1173,12 +1173,12 @@ function DarkModeSwitch() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Measure the edges.</strong>{" "}
                   Check the track and thumb boundaries reach 3:1 (
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ) and that the hit area is at least 24&nbsp;&times;&nbsp;24 CSS
                   pixels (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ).
@@ -1191,11 +1191,11 @@ function DarkModeSwitch() {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Layer automated checks on top with <code>axe-core</code>, and see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits. Scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>{" "}
                 to catch a missing name or role before it ships.
@@ -1272,7 +1272,7 @@ function DarkModeSwitch() {
                   <strong className="text-slate-900 dark:text-white">Keyboard works.</strong>{" "}
                   One Tab stop, Space toggles, and the page never scrolls when it
                   does (
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1
                   </Link>
                   ).
@@ -1280,7 +1280,7 @@ function DarkModeSwitch() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">State reads without colour.</strong>{" "}
                   The thumb moves, so on and off survive greyscale (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ).
@@ -1288,11 +1288,11 @@ function DarkModeSwitch() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Edges and target hold up.</strong>{" "}
                   Track and thumb reach 3:1 (
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ); the hit area is at least 24&nbsp;&times;&nbsp;24 px (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ).
@@ -1300,7 +1300,7 @@ function DarkModeSwitch() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Effect stays in place.</strong>{" "}
                   Toggling does not navigate, submit, or reload without warning (
-                  <Link href="/wcag/3-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.2.2
                   </Link>
                   ).
@@ -1308,7 +1308,7 @@ function DarkModeSwitch() {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see the switch in the context of every other requirement.

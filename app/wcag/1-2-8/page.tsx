@@ -159,7 +159,7 @@ export default function WCAG128Page() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               At Level A,{" "}
-              <Link href="/wcag/1-2-3" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.3
               </Link>{" "}
               lets you provide <em>either</em> an audio description <em>or</em> a media
@@ -171,11 +171,11 @@ export default function WCAG128Page() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               The result at AAA is belt and braces: a Deaf user has captions and sign
               language (
-              <Link href="/wcag/1-2-6" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.6
               </Link>
               ), a blind user has audio description (1.2.5,{" "}
-              <Link href="/wcag/1-2-7" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.7
               </Link>
               ), and a deafblind user — or anyone who simply prefers text — has the full

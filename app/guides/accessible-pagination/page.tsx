@@ -245,7 +245,7 @@ export default function AccessiblePaginationGuidePage() {
                   <code>role=&quot;pagination&quot;</code>, and the WAI-ARIA Authoring
                   Practices do not define a pagination widget, because the pieces you
                   need already exist. A named{" "}
-                  <Link href="/guides/landmarks-page-structure" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/landmarks-page-structure" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     navigation landmark
                   </Link>
                   , a list, ordinary links or buttons, and the{" "}
@@ -284,7 +284,7 @@ export default function AccessiblePaginationGuidePage() {
                   keyboard or screen reader user wants when they are working through a
                   long set of results. The rest of this guide is the handful of markup
                   choices that deliver it. There is also an{" "}
-                  <Link href="/learn/pagination" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/learn/pagination" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     interactive pagination demo
                   </Link>{" "}
                   on this site that lets you hear the difference between the accessible
@@ -305,7 +305,7 @@ export default function AccessiblePaginationGuidePage() {
                 No single criterion mandates pagination, but once you build one it has
                 to meet the criteria that apply to any set of navigation controls. The
                 highlighted row,{" "}
-                <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.4 Link Purpose
                 </Link>
                 , is the one pagination most characteristically fails, because a
@@ -335,7 +335,7 @@ export default function AccessiblePaginationGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.4 Link Purpose (In Context)
                         </Link>
                       </th>
@@ -344,7 +344,7 @@ export default function AccessiblePaginationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -353,7 +353,7 @@ export default function AccessiblePaginationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -362,7 +362,7 @@ export default function AccessiblePaginationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -371,7 +371,7 @@ export default function AccessiblePaginationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -380,7 +380,7 @@ export default function AccessiblePaginationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -389,7 +389,7 @@ export default function AccessiblePaginationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.8 Target Size (Minimum)
                         </Link>
                       </th>
@@ -398,7 +398,7 @@ export default function AccessiblePaginationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -413,7 +413,7 @@ export default function AccessiblePaginationGuidePage() {
                 complete{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 criteria
                 </Link>{" "}
@@ -505,7 +505,7 @@ export default function AccessiblePaginationGuidePage() {
                   &ldquo;3, button,&rdquo; which tells a screen reader user nothing
                   about what it does. Out of the visual context of a row of page
                   numbers, a lone digit has no meaning, and that is exactly the case{" "}
-                  <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.4 Link Purpose
                   </Link>{" "}
                   is about. Every control in the pager needs a name that states the
@@ -530,7 +530,7 @@ export default function AccessiblePaginationGuidePage() {
                   user says what they see, an accessible name that starts with the
                   visible text keeps them able to say &ldquo;click 3&rdquo; and hit the
                   control, which is the point of{" "}
-                  <Link href="/wcag/2-5-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.3 Label in Name
                   </Link>
                   . &ldquo;Go to page 3&rdquo; contains the 3, so it is safe.
@@ -606,7 +606,7 @@ export default function AccessiblePaginationGuidePage() {
                   that means &ldquo;the current page in a set of pages,&rdquo; which is
                   precisely a pager. It is the same value a breadcrumb and a site menu
                   use to mark the current page; the{" "}
-                  <Link href="/guides/accessible-breadcrumbs" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-breadcrumbs" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible breadcrumbs guide
                   </Link>{" "}
                   covers the full set of token values, if you want the reference.
@@ -636,7 +636,7 @@ export default function AccessiblePaginationGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Do not let a background color be the only signal that a page is
                   current, which would fail{" "}
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1 Use of Color
                   </Link>
                   . Pair <code>aria-current</code> with a visible cue that does not rely
@@ -808,7 +808,7 @@ export default function AccessiblePaginationGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Finally, make sure the row of numbers does not force the page to
                   scroll horizontally at 320 pixels wide, which would fail{" "}
-                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.10 Reflow
                   </Link>
                   . On a narrow screen, a compact window such as{" "}
@@ -833,7 +833,7 @@ export default function AccessiblePaginationGuidePage() {
                   reloads, so a screen reader has no event to announce, and the user
                   may press Next and have no idea whether anything happened. This is the
                   case{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3 Status Messages
                   </Link>{" "}
                   exists for, and the fix is to announce the change yourself. There are
@@ -895,7 +895,7 @@ function Pager({ page, totalPages, onGoTo }) {
                   readers announce on change. Moving focus is the strongest for
                   keyboard users because it also repositions them, but it is more
                   intrusive; the{" "}
-                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     focus management guide
                   </Link>{" "}
                   covers the mechanics of moving focus without losing the user.
@@ -966,7 +966,7 @@ async function handleLoadMore() {
                   to &ldquo;Loading&hellip;&rdquo; so it cannot be pressed twice and so
                   the state is announced. This is the same discipline as the page-change
                   live region above, and the{" "}
-                  <Link href="/learn/pagination" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/learn/pagination" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     interactive demo
                   </Link>{" "}
                   shows both the Load More and infinite-scroll versions running.
@@ -990,11 +990,11 @@ async function handleLoadMore() {
                   <code>role=&quot;feed&quot;</code>, but for most lists a Load More
                   button is simpler and kinder. For the focus and live-region details
                   these patterns share, see the{" "}
-                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     focus management guide
                   </Link>{" "}
                   and the{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3 Status Messages
                   </Link>{" "}
                   reference.
@@ -1037,11 +1037,11 @@ async function handleLoadMore() {
                   context, your names are missing; if you never hear &ldquo;current
                   page,&rdquo; the <code>aria-current</code> is not there. Verify with
                   more than one reader if you can, using the{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>{" "}
                   guides.
@@ -1061,7 +1061,7 @@ async function handleLoadMore() {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Automated checkers such as{" "}
-                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     axe and WAVE
                   </Link>{" "}
                   will flag a navigation landmark with no accessible name, a control
@@ -1070,12 +1070,12 @@ async function handleLoadMore() {
                   current page is the one actually marked, whether the announcement
                   fires when the page changes, or whether a truncated page is still
                   reachable. As the{" "}
-                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     automated versus manual testing guide
                   </Link>{" "}
                   puts it, the machine gets you to valid markup and a person decides
                   whether it is correct. For where this fits in a full review, see the{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessibility audit guide
                   </Link>
                   .

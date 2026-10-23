@@ -92,7 +92,7 @@ function PatternOverview() {
               {patternCriteria.map((row) => (
                 <tr key={row.pattern} className="border-t border-border align-top">
                   <th scope="row" className="p-3 text-left font-medium">
-                    <Link href={row.href} className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href={row.href} className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       {row.pattern}
                     </Link>
                   </th>
@@ -113,7 +113,7 @@ function PatternOverview() {
                   </td>
                   <td className="p-3 text-muted-foreground">
                     {row.guide ? (
-                      <Link href={row.guide.href} className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href={row.guide.href} className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         {row.guide.label}
                       </Link>
                     ) : (
@@ -140,15 +140,15 @@ function PatternOverview() {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             When you are ready to apply a pattern, the{" "}
-            <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
               keyboard accessibility guide
             </Link>{" "}
             covers the conventions every widget shares, the{" "}
-            <Link href="/checklists/interactive" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <Link href="/checklists/interactive" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
               interactive WCAG checklist
             </Link>{" "}
             tracks which criteria you have verified, and the{" "}
-            <Link href="/tools/accessibility-code-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <Link href="/tools/accessibility-code-generator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
               code generator
             </Link>{" "}
             can draft a starting point in your framework for you to review

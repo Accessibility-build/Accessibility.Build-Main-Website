@@ -380,12 +380,12 @@ export default function WCAG212Page() {
             </h3>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               2.1.2 sits alongside{" "}
-              <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 2.1.1 Keyboard
               </Link>
               , which is about being able to operate functionality with the keyboard at
               all, and{" "}
-              <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 2.4.3 Focus Order
               </Link>
               , which is about focus moving in a sensible sequence. 2.1.2 is narrower and
@@ -675,7 +675,7 @@ export default function WCAG212Page() {
               audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

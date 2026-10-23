@@ -113,7 +113,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
         <ExplainerProse>
           <p>
             The{" "}
-            <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
               accessible combobox guide
             </Link>{" "}
             covers the other variants of the pattern, including editable

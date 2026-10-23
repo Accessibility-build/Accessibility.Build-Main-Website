@@ -361,7 +361,7 @@ export default function EN301549V4Page() {
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-3">
               Counts come from the two datasets behind the{" "}
-              <Link href="/checklists/en-301-549?version=v4" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/en-301-549?version=v4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 interactive checklist
               </Link>
               , generated from the ETSI PDFs by a committed script and reconciled against Annex C and the clause A.2
@@ -734,7 +734,7 @@ export default function EN301549V4Page() {
             <div className="mt-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-5">
               <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                 Work the delta directly: open the{" "}
-                <Link href="/checklists/en-301-549?version=v4" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                <Link href="/checklists/en-301-549?version=v4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                   interactive checklist in its v4.1.1 edition
                 </Link>
                 , tick &ldquo;Only rows that are new or changed since v3.2.1&rdquo;, pick the EAA conformance table that
@@ -815,32 +815,32 @@ export default function EN301549V4Page() {
             </h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <li>
-                <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EN 301 549 explained: structure, versions and who needs it
                 </Link>
               </li>
               <li>
-                <Link href="/blog/en-301-549-v4-1-1-wcag-2-2-eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/blog/en-301-549-v4-1-1-wcag-2-2-eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   News: EN 301 549 V4.1.1 published (September 2026)
                 </Link>
               </li>
               <li>
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 AA checklist
                 </Link>
               </li>
               <li>
-                <Link href="/guides/wcag-2-1-vs-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/wcag-2-1-vs-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.1 vs 2.2: the new criteria explained
                 </Link>
               </li>
               <li>
-                <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EAA compliance in Ireland
                 </Link>
               </li>
               <li>
-                <Link href="/tools/eaa-scope-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/eaa-scope-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EAA scope checker
                 </Link>
               </li>

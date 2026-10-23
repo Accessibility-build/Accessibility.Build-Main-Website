@@ -291,7 +291,7 @@ export default function FinanceIndustryPage() {
         <div className="space-y-4 text-muted-foreground">
           <p>
             One in four US adults lives with a disability, 28.7% per CDC data on our{" "}
-            <Link href="/research/disability-statistics" className="text-primary hover:underline">
+            <Link href="/research/disability-statistics" className="text-primary underline underline-offset-2 hover:decoration-2">
               disability statistics research
             </Link>
             , and disabled customers control significant spending power. Unlike most sectors, banking is not
@@ -312,7 +312,7 @@ export default function FinanceIndustryPage() {
             The industry also has no room for complacency about its baseline. The 2026 WebAIM Million found
             detectable WCAG failures on 95.9% of the top million homepages, and financial sites are not exempt from
             the pattern; see our{" "}
-            <Link href="/research/state-of-accessibility" className="text-primary hover:underline">
+            <Link href="/research/state-of-accessibility" className="text-primary underline underline-offset-2 hover:decoration-2">
               State of Accessibility research
             </Link>{" "}
             for the full picture. The business case follows the compliance case: accessible self-service journeys
@@ -327,10 +327,10 @@ export default function FinanceIndustryPage() {
         <h2 className="text-3xl font-bold mb-2 text-center">Legal exposure in banking, insurance, and fintech</h2>
         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
           Financial institutions typically operate under several regimes at once. For the European framework, start
-          with our <Link href="/compliance/eaa" className="text-primary hover:underline">European Accessibility Act guide</Link>{" "}
-          and the <Link href="/compliance/en-301-549" className="text-primary hover:underline">EN 301 549 standard</Link>;
+          with our <Link href="/compliance/eaa" className="text-primary underline underline-offset-2 hover:decoration-2">European Accessibility Act guide</Link>{" "}
+          and the <Link href="/compliance/en-301-549" className="text-primary underline underline-offset-2 hover:decoration-2">EN 301 549 standard</Link>;
           US litigation trends live on our{" "}
-          <Link href="/research/accessibility-lawsuits" className="text-primary hover:underline">lawsuit tracker</Link>.
+          <Link href="/research/accessibility-lawsuits" className="text-primary underline underline-offset-2 hover:decoration-2">lawsuit tracker</Link>.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {legalExposure.map((item, i) => {
@@ -350,11 +350,11 @@ export default function FinanceIndustryPage() {
         </div>
         <p className="text-sm text-muted-foreground text-center mt-6 max-w-2xl mx-auto">
           Deep dives: the{" "}
-          <Link href="/compliance/eaa-ireland" className="text-primary hover:underline">
+          <Link href="/compliance/eaa-ireland" className="text-primary underline underline-offset-2 hover:decoration-2">
             EAA in Ireland
           </Link>
           , where the Central Bank regulates banking accessibility, and our{" "}
-          <Link href="/compliance/uk" className="text-primary hover:underline">
+          <Link href="/compliance/uk" className="text-primary underline underline-offset-2 hover:decoration-2">
             UK accessibility law guide
           </Link>{" "}
           covering the Equality Act and the Consumer Duty.
@@ -384,7 +384,7 @@ export default function FinanceIndustryPage() {
                         <Link
                           key={criterion.href}
                           href={criterion.href}
-                          className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+                          className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-blue-700 dark:text-primary hover:bg-primary/20 transition-colors"
                         >
                           {criterion.label}
                         </Link>
@@ -399,12 +399,12 @@ export default function FinanceIndustryPage() {
         </div>
         <p className="text-sm text-muted-foreground text-center mt-6 max-w-3xl mx-auto">
           Fix-it guides:{" "}
-          <Link href="/guides/accessible-forms" className="text-primary hover:underline">accessible forms</Link>,{" "}
-          <Link href="/guides/accessible-form-validation" className="text-primary hover:underline">form validation</Link>,{" "}
-          <Link href="/guides/accessible-data-tables" className="text-primary hover:underline">data tables</Link>,{" "}
-          <Link href="/guides/pdf-accessibility" className="text-primary hover:underline">PDF accessibility</Link>,{" "}
-          <Link href="/guides/cognitive-accessibility" className="text-primary hover:underline">cognitive accessibility</Link>, and{" "}
-          <Link href="/guides/mobile-accessibility" className="text-primary hover:underline">mobile accessibility</Link>.
+          <Link href="/guides/accessible-forms" className="text-primary underline underline-offset-2 hover:decoration-2">accessible forms</Link>,{" "}
+          <Link href="/guides/accessible-form-validation" className="text-primary underline underline-offset-2 hover:decoration-2">form validation</Link>,{" "}
+          <Link href="/guides/accessible-data-tables" className="text-primary underline underline-offset-2 hover:decoration-2">data tables</Link>,{" "}
+          <Link href="/guides/pdf-accessibility" className="text-primary underline underline-offset-2 hover:decoration-2">PDF accessibility</Link>,{" "}
+          <Link href="/guides/cognitive-accessibility" className="text-primary underline underline-offset-2 hover:decoration-2">cognitive accessibility</Link>, and{" "}
+          <Link href="/guides/mobile-accessibility" className="text-primary underline underline-offset-2 hover:decoration-2">mobile accessibility</Link>.
         </p>
       </section>
 
@@ -433,11 +433,11 @@ export default function FinanceIndustryPage() {
         </ol>
         <p className="text-sm text-muted-foreground text-center mt-6 max-w-2xl mx-auto">
           Asking vendors for accessibility documentation? Our{" "}
-          <Link href="/guides/vpat-accessibility-conformance-report" className="text-primary hover:underline">
+          <Link href="/guides/vpat-accessibility-conformance-report" className="text-primary underline underline-offset-2 hover:decoration-2">
             VPAT and ACR guide
           </Link>{" "}
           explains what to request and how to read it, and our{" "}
-          <Link href="/sample-audit-report" className="text-primary hover:underline">
+          <Link href="/sample-audit-report" className="text-primary underline underline-offset-2 hover:decoration-2">
             sample audit report
           </Link>{" "}
           shows what a full audit deliverable looks like.

@@ -185,34 +185,34 @@ export default function AccessibilityAuditHelperPage() {
               <ul className="text-muted-foreground leading-relaxed list-disc pl-6 space-y-2 mb-4">
                 <li>
                   Navigation, buttons, dropdowns, tabs, and accordions:{" "}
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">2.1.1 Keyboard</Link>,{" "}
-                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.3 Focus Order</Link>,{" "}
-                  <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.7 Focus Visible</Link>, and{" "}
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">4.1.2 Name, Role, Value</Link>.
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.1.1 Keyboard</Link>,{" "}
+                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.3 Focus Order</Link>,{" "}
+                  <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.7 Focus Visible</Link>, and{" "}
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">4.1.2 Name, Role, Value</Link>.
                 </li>
                 <li>
                   Forms:{" "}
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">1.3.1 Info and Relationships</Link>,{" "}
-                  <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">3.3.1 Error Identification</Link>,{" "}
-                  <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">3.3.2 Labels or Instructions</Link>,{" "}
-                  <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 hover:underline">3.3.3 Error Suggestion</Link>, and{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">4.1.3 Status Messages</Link>.
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.3.1 Info and Relationships</Link>,{" "}
+                  <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.3.1 Error Identification</Link>,{" "}
+                  <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.3.2 Labels or Instructions</Link>,{" "}
+                  <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.3.3 Error Suggestion</Link>, and{" "}
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">4.1.3 Status Messages</Link>.
                 </li>
                 <li>
                   Modals and dialogs:{" "}
-                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">2.1.2 No Keyboard Trap</Link>{" "}
+                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.1.2 No Keyboard Trap</Link>{" "}
                   alongside the focus criteria above.
                 </li>
                 <li>
                   Images and videos:{" "}
-                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">1.1.1 Non-text Content</Link>,{" "}
-                  <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">1.2.2 Captions (Prerecorded)</Link>, and{" "}
-                  <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 hover:underline">1.2.5 Audio Description (Prerecorded)</Link>.
+                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.1.1 Non-text Content</Link>,{" "}
+                  <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.2.2 Captions (Prerecorded)</Link>, and{" "}
+                  <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.2.5 Audio Description (Prerecorded)</Link>.
                 </li>
                 <li>
                   Carousels:{" "}
-                  <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">2.2.2 Pause, Stop, Hide</Link>; tables:{" "}
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">1.3.1</Link>{" "}
+                  <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.2.2 Pause, Stop, Hide</Link>; tables:{" "}
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.3.1</Link>{" "}
                   again, for header and cell relationships.
                 </li>
               </ul>
@@ -247,11 +247,11 @@ export default function AccessibilityAuditHelperPage() {
                   If the write-up is going into a formal report or an
                   accessibility statement, cross-check each criterion against
                   the{" "}
-                  <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     WCAG 2.2 checklist
                   </Link>{" "}
                   and follow the{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     audit methodology guide
                   </Link>{" "}
                   for the parts of the page the helper never looked at.

@@ -262,7 +262,7 @@ export default function AccessibleFormValidationGuidePage() {
                   This is the deep dive on the error side of forms. If you are
                   building a form from scratch — labels, structure, grouping,
                   autocomplete — start with the{" "}
-                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible forms guide
                   </Link>
                   , which covers the whole control. This guide zooms in on the
@@ -277,11 +277,11 @@ export default function AccessibleFormValidationGuidePage() {
                     WCAG 3.3 &ldquo;Input Assistance&rdquo; guidelines
                   </strong>
                   , success criteria 3.3.1 through 3.3.9 — plus{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3 Status Messages
                   </Link>{" "}
                   for the announcements and{" "}
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1 Use of Color
                   </Link>{" "}
                   for never relying on red alone. We will take them in the order
@@ -320,7 +320,7 @@ export default function AccessibleFormValidationGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.1 Error Identification
                         </Link>
                       </th>
@@ -329,7 +329,7 @@ export default function AccessibleFormValidationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.2 Labels or Instructions
                         </Link>
                       </th>
@@ -338,7 +338,7 @@ export default function AccessibleFormValidationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.3 Error Suggestion
                         </Link>
                       </th>
@@ -347,7 +347,7 @@ export default function AccessibleFormValidationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.4 Error Prevention (Legal, Financial, Data)
                         </Link>
                       </th>
@@ -356,7 +356,7 @@ export default function AccessibleFormValidationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.7 Redundant Entry
                         </Link>
                       </th>
@@ -365,7 +365,7 @@ export default function AccessibleFormValidationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.8 Accessible Authentication
                         </Link>
                       </th>
@@ -374,7 +374,7 @@ export default function AccessibleFormValidationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -383,7 +383,7 @@ export default function AccessibleFormValidationGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -395,17 +395,17 @@ export default function AccessibleFormValidationGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Two more sit above these at Level AAA and are worth reaching for:{" "}
-                <Link href="/wcag/3-3-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.6 Error Prevention (All)
                 </Link>{" "}
                 extends the reversible-checked-confirmed safety net to{" "}
                 <em>every</em> submission, and{" "}
-                <Link href="/wcag/3-3-9" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-9" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.9 Accessible Authentication (Enhanced)
                 </Link>{" "}
                 removes the object-recognition exception from 3.3.8. The
                 criterion forms fail most often is{" "}
-                <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.1
                 </Link>
                 , because the error lives in a CSS class and never reaches the
@@ -538,7 +538,7 @@ form.addEventListener("input", (event) => {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 This is the heart of{" "}
-                <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.1
                 </Link>
                 , and it is three moves, none of which is a colour. Mark the
@@ -645,7 +645,7 @@ if (!emailInput.validity.valid) {
                   href="https://design-system.service.gov.uk/components/error-summary/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   GOV.UK Design System
                 </a>{" "}
@@ -717,7 +717,7 @@ summary.addEventListener("click", (event) => {
                   ARIA live region
                 </strong>
                 , which is exactly what{" "}
-                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.3 Status Messages
                 </Link>{" "}
                 requires.
@@ -760,7 +760,7 @@ document.getElementById("form-status").textContent =
                 Live regions are their own small discipline — atomic updates,
                 clearing before re-announcing, <code>role=&quot;status&quot;</code>{" "}
                 versus <code>role=&quot;alert&quot;</code>. The{" "}
-                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Status Messages guide
                 </Link>{" "}
                 covers the full set of rules and the toast, result-count, and
@@ -846,7 +846,7 @@ document.getElementById("form-status").textContent =
                 A review-and-confirm step is the most common answer and the most
                 useful, because it doubles as a place to read back every value
                 one last time. If you can, aim for{" "}
-                <Link href="/wcag/3-3-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.6 Error Prevention (All)
                 </Link>{" "}
                 and extend the same safety net to every submission, not just the
@@ -863,7 +863,7 @@ document.getElementById("form-status").textContent =
                 6. Do Not Ask Twice: Redundant Entry
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.7 Redundant Entry
                 </Link>{" "}
                 (Level A, new in WCAG 2.2) is a cognitive-accessibility
@@ -898,7 +898,7 @@ document.getElementById("form-status").textContent =
                   <code>&quot;street-address&quot;</code>,{" "}
                   <code>&quot;tel&quot;</code>) so the browser and password
                   managers can fill values the user has stored — which also helps{" "}
-                  <Link href="/wcag/1-3-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.5 Identify Input Purpose
                   </Link>
                   .
@@ -926,7 +926,7 @@ document.getElementById("form-status").textContent =
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 The login step is a form too, and{" "}
-                <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.8 Accessible Authentication (Minimum)
                 </Link>{" "}
                 (Level AA, new in WCAG 2.2) governs it. The rule: a login process
@@ -970,7 +970,7 @@ document.getElementById("form-status").textContent =
                   Reading distorted characters is a cognitive-function test.
                   Object-recognition (&ldquo;select the buses&rdquo;) and
                   personal-content checks are the allowed exceptions at AA — but{" "}
-                  <Link href="/wcag/3-3-9" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-9" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.9 (Enhanced, AAA)
                   </Link>{" "}
                   removes even the object one.
@@ -1048,15 +1048,15 @@ document.getElementById("form-status").textContent =
                 go further and handle the wiring for you. Whichever you choose,
                 verify it against the workflow below. The same principles carry to
                 the other frameworks — see the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React
                 </Link>
                 ,{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>
                 , and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 accessibility guides.
@@ -1089,11 +1089,11 @@ document.getElementById("form-status").textContent =
                   Each should announce its label, that it is invalid, and its
                   specific message — proof that <code>aria-invalid</code> and{" "}
                   <code>aria-describedby</code> are wired. Use the commands in the{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>{" "}
                   guides.
@@ -1109,7 +1109,7 @@ document.getElementById("form-status").textContent =
                   Switch the display to greyscale and confirm you can still tell
                   which fields failed and why — the meaning is in text, not in red
                   (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ).
@@ -1118,7 +1118,7 @@ document.getElementById("form-status").textContent =
                   <strong className="text-slate-900 dark:text-white">Read the messages aloud.</strong>{" "}
                   Do they say what to do, or only that something is wrong? Every
                   message should suggest the fix where one is known (
-                  <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.3
                   </Link>
                   ).
@@ -1128,7 +1128,7 @@ document.getElementById("form-status").textContent =
                   Paste into the password field, let a password manager fill it,
                   and check nothing blocks either — and that no
                   character-transcription CAPTCHA stands in the way (
-                  <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.8
                   </Link>
                   ).
@@ -1136,11 +1136,11 @@ document.getElementById("form-status").textContent =
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Layer <code>axe-core</code> on top for the mechanical checks — see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 — and scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>{" "}
                 to catch a missing name or an unassociated error before it ships.
@@ -1201,7 +1201,7 @@ document.getElementById("form-status").textContent =
                   <strong className="text-slate-900 dark:text-white">Error tied to field.</strong>{" "}
                   <code>aria-invalid=&quot;true&quot;</code>, a real text message,
                   and <code>aria-describedby</code> connecting them (
-                  <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.1
                   </Link>
                   ).
@@ -1210,7 +1210,7 @@ document.getElementById("form-status").textContent =
                   <strong className="text-slate-900 dark:text-white">Not colour alone.</strong>{" "}
                   Every error survives greyscale — the meaning is in text, red is
                   a redundant cue (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ).
@@ -1226,7 +1226,7 @@ document.getElementById("form-status").textContent =
                   On-change statuses go through one shared polite live region; no
                   node is both an <code>aria-describedby</code> target and a live
                   region (
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3
                   </Link>
                   ).
@@ -1235,7 +1235,7 @@ document.getElementById("form-status").textContent =
                   <strong className="text-slate-900 dark:text-white">Messages suggest the fix.</strong>{" "}
                   Expected format or a valid value where one is known, not just
                   &ldquo;invalid&rdquo; (
-                  <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.3
                   </Link>
                   ).
@@ -1244,7 +1244,7 @@ document.getElementById("form-status").textContent =
                   <strong className="text-slate-900 dark:text-white">Costly actions protected.</strong>{" "}
                   Legal, financial, or data-changing submissions are reversible,
                   checked, or confirmed (
-                  <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.4
                   </Link>
                   ).
@@ -1252,12 +1252,12 @@ document.getElementById("form-status").textContent =
                 <li>
                   <strong className="text-slate-900 dark:text-white">No redundant entry, accessible login.</strong>{" "}
                   Data carried forward across steps (
-                  <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.7
                   </Link>
                   ); paste, autocomplete, and passkeys allowed, no transcription
                   CAPTCHA (
-                  <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.8
                   </Link>
                   ).
@@ -1265,12 +1265,12 @@ document.getElementById("form-status").textContent =
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see form validation in the context of every other
                 requirement, and the{" "}
-                <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible forms guide
                 </Link>{" "}
                 for labels, grouping, and structure.

@@ -295,7 +295,7 @@ export default function AccessibleMapsGuidePage() {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 The highlighted row,{" "}
-                <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.1.1 Non-text Content
                 </Link>
                 , is the one maps fail most often, because the location or data
@@ -327,7 +327,7 @@ export default function AccessibleMapsGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.1.1 Non-text Content
                         </Link>
                       </th>
@@ -336,7 +336,7 @@ export default function AccessibleMapsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -345,7 +345,7 @@ export default function AccessibleMapsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -354,7 +354,7 @@ export default function AccessibleMapsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -363,7 +363,7 @@ export default function AccessibleMapsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -372,7 +372,7 @@ export default function AccessibleMapsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -381,7 +381,7 @@ export default function AccessibleMapsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.3 Contrast (Minimum)
                         </Link>
                       </th>
@@ -390,7 +390,7 @@ export default function AccessibleMapsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.11 Non-text Contrast
                         </Link>
                       </th>
@@ -399,7 +399,7 @@ export default function AccessibleMapsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.10 Reflow
                         </Link>
                       </th>
@@ -408,7 +408,7 @@ export default function AccessibleMapsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.7 Dragging Movements
                         </Link>
                       </th>
@@ -423,7 +423,7 @@ export default function AccessibleMapsGuidePage() {
                 The complete{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 criteria
                 </Link>{" "}
@@ -506,7 +506,7 @@ export default function AccessibleMapsGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   This is the centerpiece technique, and it is the geospatial
                   version of a rule you may know from{" "}
-                  <Link href="/guides/accessible-charts" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-charts" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible charts
                   </Link>
                   : the accessible form of a picture of data is the data itself, as
@@ -563,7 +563,7 @@ export default function AccessibleMapsGuidePage() {
                       Announce result changes.
                     </strong>{" "}
                     When a search or filter updates the results, update a polite{" "}
-                    <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       live region
                     </Link>{" "}
                     with the new count, so a screen reader user knows the page
@@ -574,11 +574,11 @@ export default function AccessibleMapsGuidePage() {
                       Use real structure.
                     </strong>{" "}
                     Results are a genuine <code>&lt;ul&gt;</code> or a semantic{" "}
-                    <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       data table
                     </Link>
                     , the filters are labeled{" "}
-                    <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       form controls
                     </Link>
                     , and each result&rsquo;s actions are real links and buttons
@@ -644,7 +644,7 @@ export default function AccessibleMapsGuidePage() {
                     Describe what the map tells the reader in context, the place
                     and where it sits, since a pin on a tile conveys nothing to a
                     screen reader. This is a straight application of{" "}
-                    <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.1.1 Non-text Content
                     </Link>
                     .
@@ -658,11 +658,11 @@ export default function AccessibleMapsGuidePage() {
                     link that hands off to the user&rsquo;s maps app. Do not let
                     the only copy of the address be baked into the image, which
                     also fails{" "}
-                    <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.5 Images of Text
                     </Link>{" "}
                     and{" "}
-                    <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.10 Reflow
                     </Link>
                     .
@@ -703,7 +703,7 @@ export default function AccessibleMapsGuidePage() {
                   iframe needs a <code>title</code> so a screen reader announces
                   what the frame contains instead of just &ldquo;frame.&rdquo; The
                   title satisfies{" "}
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2 Name, Role, Value
                   </Link>{" "}
                   for the frame, but it does not make the map&rsquo;s contents
@@ -744,7 +744,7 @@ export default function AccessibleMapsGuidePage() {
                       visible, focusable zoom and pan buttons
                     </strong>{" "}
                     so the controls are discoverable and satisfy{" "}
-                    <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.1.1 Keyboard
                     </Link>
                     .
@@ -756,7 +756,7 @@ export default function AccessibleMapsGuidePage() {
                     Panning by mouse drag is a dragging movement, so it needs a
                     single-pointer alternative. Pan and zoom buttons that move the
                     map with one tap satisfy{" "}
-                    <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.5.7 Dragging Movements
                     </Link>
                     . Make sure the library&rsquo;s controls are enabled and
@@ -823,7 +823,7 @@ export default function AccessibleMapsGuidePage() {
                     When a marker opens an infowindow, move focus into it, let{" "}
                     <kbd>Escape</kbd> close it and return focus to the marker, and
                     build its content from real HTML. This is the{" "}
-                    <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       dialog and disclosure pattern
                     </Link>{" "}
                     applied to the map.
@@ -836,7 +836,7 @@ export default function AccessibleMapsGuidePage() {
                     &ldquo;open,&rdquo; that difference must also be in the
                     accessible name or a text label, not the color of the icon
                     (
-                    <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.1 Use of Color
                     </Link>
                     ).
@@ -876,11 +876,11 @@ export default function AccessibleMapsGuidePage() {
                     </strong>{" "}
                     Street and label text rendered into map tiles is an image of
                     text, so it does not respond to{" "}
-                    <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.4 Resize Text
                     </Link>{" "}
                     or{" "}
-                    <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.10 Reflow
                     </Link>
                     . You cannot fix the provider&rsquo;s tiles, so keep your own
@@ -893,7 +893,7 @@ export default function AccessibleMapsGuidePage() {
                     </strong>{" "}
                     Zoom buttons, your custom controls, route lines, and marker
                     icons all need 3:1 against the background under{" "}
-                    <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.11 Non-text Contrast
                     </Link>
                     . A thin pale route drawn over a pale map fails, so give routes
@@ -914,7 +914,7 @@ export default function AccessibleMapsGuidePage() {
                     </strong>{" "}
                     A focused marker or control needs a clear focus ring that
                     stands out against the map (
-                    <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.4.7 Focus Visible
                     </Link>
                     ). A subtle default outline vanishes over busy tiles.
@@ -967,12 +967,12 @@ export default function AccessibleMapsGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Do not make the colored map the only way to read the numbers, and
                   do not rely on color alone to separate categories. The{" "}
-                  <Link href="/guides/accessible-charts" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-charts" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible charts guide
                   </Link>{" "}
                   covers the data-table-as-text-alternative pattern in full, and
                   the{" "}
-                  <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible data tables guide
                   </Link>{" "}
                   covers building the table itself with a caption and{" "}
@@ -1013,15 +1013,15 @@ export default function AccessibleMapsGuidePage() {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   With{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>
                   ,{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>
                   , or{" "}
-                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     TalkBack
                   </Link>
                   , confirm each result and its actions are announced, that the
@@ -1039,11 +1039,11 @@ export default function AccessibleMapsGuidePage() {
                   alternative and pinch-zoom has button equivalents (2.5.7). Check
                   that your controls, routes, and markers meet 3:1 contrast. For
                   where this fits in a wider process, see the{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessibility audit guide
                   </Link>{" "}
                   and the{" "}
-                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     automated versus manual testing guide
                   </Link>
                   , which explains why the manual pass is the one that catches what

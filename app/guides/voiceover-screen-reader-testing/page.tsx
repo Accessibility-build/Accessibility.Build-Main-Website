@@ -287,32 +287,32 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                   users — and on mobile, VoiceOver on iOS is one of the two
                   screen readers most people use to browse on a phone. Automated
                   scanners like{" "}
-                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     axe and WAVE
                   </Link>{" "}
                   catch roughly a third of issues; the rest — does this actually
                   make sense when read aloud, and can I operate it by swipe? —
                   needs a human listening with a real screen reader. This guide
                   is the VoiceOver-specific companion to our{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     JAWS testing guides
                   </Link>{" "}
                   for Windows, to our{" "}
-                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     TalkBack testing guide
                   </Link>{" "}
                   for the Android half of mobile, and to our broader{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>
                   . For the build side &mdash; touch targets, gestures, Dynamic
                   Type, and the native iOS accessibility APIs behind VoiceOver
                   &mdash; see the{" "}
-                  <Link href="/guides/mobile-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/mobile-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     mobile accessibility guide
                   </Link>
                   .
@@ -465,11 +465,11 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                 whole region as one lump, or you cannot reach cells inside a
                 table, you probably need to interact with it first. The cleanest
                 way to avoid confusing behavior is to build on{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   native, keyboard-operable elements
                 </Link>{" "}
                 and correct{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles and states
                 </Link>
                 .
@@ -590,7 +590,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                   levels do not skip (an <code>&lt;h2&gt;</code> is not followed
                   by an <code>&lt;h4&gt;</code>), and that the outline reads like
                   a table of contents. Maps to{" "}
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.1 Info and Relationships
                   </Link>
                   .
@@ -599,7 +599,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Links.</strong>{" "}
                   Every link should make sense on its own — no bare &ldquo;click
                   here&rdquo; or &ldquo;read more&rdquo; repeated a dozen times (
-                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.x
                   </Link>{" "}
                   link purpose).
@@ -613,7 +613,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Form Controls.</strong>{" "}
                   Each should announce a clear label, not &ldquo;edit text.&rdquo;
                   Cross-check with the{" "}
-                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible forms guide
                   </Link>
                   .
@@ -668,7 +668,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                   Submit a form with an error, add to cart, filter a list.
                   VoiceOver should announce the change without you moving focus —
                   that is{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3 Status Messages
                   </Link>
                   .
@@ -677,7 +677,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Check modals and focus.</strong>{" "}
                   When a dialog opens, focus should move into it and stay trapped;
                   closing should return focus to the trigger. See the{" "}
-                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     focus management guide
                   </Link>
                   .
@@ -727,11 +727,11 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
               <p className="text-muted-foreground leading-relaxed mt-4 text-sm">
                 Fixing most of these comes down to correct roles, names, and
                 states — the domain of the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 . Verify names and roles programmatically under{" "}
-                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.2 Name, Role, Value
                 </Link>
                 .
@@ -762,7 +762,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.1.1 Non-text Content
                         </Link>
                       </th>
@@ -771,7 +771,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -780,7 +780,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -789,7 +789,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -798,7 +798,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -807,7 +807,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -819,11 +819,11 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-4 text-sm">
                 See the full picture in the{" "}
-                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and track your coverage with the{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .
@@ -851,7 +851,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       See the{" "}
-                      <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         NVDA testing guide
                       </Link>{" "}
                       for the Windows side.
@@ -873,7 +873,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       Start with the{" "}
-                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         keyboard accessibility guide
                       </Link>
                       .

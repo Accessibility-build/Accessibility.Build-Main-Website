@@ -136,7 +136,7 @@ export default function DesktopPage() {
 
       <section className="mt-16 border-t pt-8 text-center text-sm text-muted-foreground">
         Prefer the browser? Try our{" "}
-        <Link href="/tools" className="font-medium text-primary hover:underline">
+        <Link href="/tools" className="font-medium text-primary underline underline-offset-2 hover:decoration-2">
           free web tools
         </Link>{" "}
         — contrast checker, alt-text review and more.

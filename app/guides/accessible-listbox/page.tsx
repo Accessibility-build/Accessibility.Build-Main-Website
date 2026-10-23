@@ -359,7 +359,7 @@ export default function AccessibleListboxGuidePage() {
                   too dense for a row of radio buttons or checkboxes to hold
                   comfortably — a scrolling list of tags, a picker of file types,
                   the popup a{" "}
-                  <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     combobox
                   </Link>{" "}
                   opens. On screen it is simply a list. What makes it a{" "}
@@ -374,7 +374,7 @@ export default function AccessibleListboxGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/listbox/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     the WAI-ARIA Authoring Practices Listbox pattern
                   </a>{" "}
@@ -388,11 +388,11 @@ export default function AccessibleListboxGuidePage() {
                   be selected, <code>role=&quot;group&quot;</code> to cluster
                   related options, and <code>aria-disabled</code> for options that
                   cannot be picked. Like a{" "}
-                  <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     tree
                   </Link>{" "}
                   or a{" "}
-                  <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     menu
                   </Link>
                   , there is no single native element that gives you a fully
@@ -462,7 +462,7 @@ export default function AccessibleListboxGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -471,7 +471,7 @@ export default function AccessibleListboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -480,7 +480,7 @@ export default function AccessibleListboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -489,7 +489,7 @@ export default function AccessibleListboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -498,7 +498,7 @@ export default function AccessibleListboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -507,7 +507,7 @@ export default function AccessibleListboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.11 Non-text Contrast
                         </Link>
                       </th>
@@ -516,7 +516,7 @@ export default function AccessibleListboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.8 Target Size (Minimum)
                         </Link>
                       </th>
@@ -525,7 +525,7 @@ export default function AccessibleListboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -537,13 +537,13 @@ export default function AccessibleListboxGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 The criterion a listbox fails most often is{" "}
-                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.2 Name, Role, Value
                 </Link>
                 , because the selected state lives in a CSS class instead of{" "}
                 <code>aria-selected</code>, so a screen reader user can see nothing
                 is chosen — closely followed by{" "}
-                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.1.1 Keyboard
                 </Link>{" "}
                 when the arrow-key model was never wired up at all.
@@ -579,7 +579,7 @@ export default function AccessibleListboxGuidePage() {
                       HTML in a <code>&lt;fieldset&gt;</code> with a{" "}
                       <code>&lt;legend&gt;</code>. No ARIA, no JavaScript, instantly
                       familiar. See the{" "}
-                      <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         forms guide
                       </Link>
                       .
@@ -626,7 +626,7 @@ export default function AccessibleListboxGuidePage() {
                       <strong className="text-slate-900 dark:text-white">types to filter</strong>{" "}
                       a list of suggestions. A text input paired with a listbox
                       popup, focus staying in the input. See the{" "}
-                      <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         combobox guide
                       </Link>
                       .
@@ -710,12 +710,12 @@ export default function AccessibleListboxGuidePage() {
                 visible text, and it should not contain its own interactive
                 controls. If each row needs a button or a link of its own, you are
                 describing a{" "}
-                <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   grid
                 </Link>{" "}
                 or a plain list, not a listbox. For how each role and property
                 surfaces to assistive technology, see the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -823,11 +823,11 @@ export default function AccessibleListboxGuidePage() {
                 does nothing, it does not wrap to the top. For the wider keyboard
                 contract every custom widget owes, and the roving-tabindex
                 technique the next sections build on, see the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>{" "}
                 and the{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management guide
                 </Link>
                 .
@@ -1015,7 +1015,7 @@ function toggle(option) {
                 that internal focus, and for a{" "}
                 <strong className="text-slate-900 dark:text-white">standalone listbox the choice is genuinely open</strong>{" "}
                 — which is what sets it apart from a{" "}
-                <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   combobox
                 </Link>
                 , whose popup is <em>forced</em> to use aria-activedescendant
@@ -1068,7 +1068,7 @@ function toggle(option) {
                 <strong className="text-slate-900 dark:text-white">roving tabindex</strong>{" "}
                 for a self-contained listbox: it is simpler, and the native focus
                 indicator satisfies{" "}
-                <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.7 Focus Visible
                 </Link>{" "}
                 without extra CSS. Reach for{" "}
@@ -1076,7 +1076,7 @@ function toggle(option) {
                 when the list is virtualised (options come and go from the DOM as
                 the user scrolls) or when the same component also powers a combobox
                 where focus must live in the input. See{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management
                 </Link>{" "}
                 for both models side by side.
@@ -1209,15 +1209,15 @@ function toggle(option) {
                 <strong className="text-slate-900 dark:text-white">Radix Select</strong>{" "}
                 cover the common select-style cases. The same principles carry to
                 other frameworks — see the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React
                 </Link>
                 ,{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>
                 , and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 guides. Whatever you ship, verify it against the workflow below
@@ -1266,15 +1266,15 @@ function toggle(option) {
                   the set, and whether it is selected; the listbox should announce
                   its name and, for multi-select, that several options can be
                   chosen. The{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>{" "}
                   has the commands for{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>
                   .
@@ -1282,15 +1282,15 @@ function toggle(option) {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Measure the visuals.</strong>{" "}
                   The focus indicator and the selection indicator each reach 3:1 (
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ) and are distinct from each other; selection is not colour alone (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ); each option is at least 24&nbsp;&times;&nbsp;24 px as a pointer target (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ).
@@ -1298,11 +1298,11 @@ function toggle(option) {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Layer automated checks on top with <code>axe-core</code>, and see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits. Scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>{" "}
                 to catch a missing name, role, or state before it ships.
@@ -1363,11 +1363,11 @@ function toggle(option) {
                   <code>role=&quot;listbox&quot;</code> with an accessible name, and{" "}
                   <code>role=&quot;option&quot;</code> on every choice — options
                   only, no nested controls (
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.1
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2
                   </Link>
                   ).
@@ -1377,7 +1377,7 @@ function toggle(option) {
                   Roving tabindex (one option at <code>0</code>, the rest{" "}
                   <code>-1</code>) or <code>aria-activedescendant</code> — one model,
                   not both (
-                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.3
                   </Link>
                   ).
@@ -1386,7 +1386,7 @@ function toggle(option) {
                   <strong className="text-slate-900 dark:text-white">Full keyboard.</strong>{" "}
                   Up/Down, Home/End, and type-ahead, with{" "}
                   <code>preventDefault</code> so the page does not scroll (
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1
                   </Link>
                   ).
@@ -1402,11 +1402,11 @@ function toggle(option) {
                   <strong className="text-slate-900 dark:text-white">Selection shown, not just coloured.</strong>{" "}
                   A checkmark, checkbox, or outline alongside the colour, and the
                   focus indicator distinct from the selection indicator (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ).
@@ -1421,7 +1421,7 @@ function toggle(option) {
                   <strong className="text-slate-900 dark:text-white">Reachable targets.</strong>{" "}
                   Each option is at least 24&nbsp;&times;&nbsp;24 px as a pointer
                   target (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ).
@@ -1429,7 +1429,7 @@ function toggle(option) {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see the listbox in the context of every other requirement.

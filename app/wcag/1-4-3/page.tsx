@@ -370,7 +370,7 @@ export default function WCAG143Page() {
               For a stricter target, the Level AAA equivalent is{" "}
               <Link
                 href="/wcag/1-4-6"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.4.6 Contrast (Enhanced)
               </Link>
@@ -378,7 +378,7 @@ export default function WCAG143Page() {
               input borders are handled separately by{" "}
               <Link
                 href="/wcag/1-4-11"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.4.11 Non-text Contrast
               </Link>
@@ -641,7 +641,7 @@ export default function WCAG143Page() {
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

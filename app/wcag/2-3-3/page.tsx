@@ -457,7 +457,7 @@ motionQuery.addEventListener("change", setupEffects);`}</code>
               Automated tools can detect whether a stylesheet mentions
               prefers-reduced-motion, but only a manual walkthrough proves the motion
               actually stops. Fold this into the full{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 WCAG 2.2 checklist
               </Link>
               .

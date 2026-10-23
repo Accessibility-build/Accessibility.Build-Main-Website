@@ -323,7 +323,7 @@ export default function WCAG144Page() {
                   exempt here — but{" "}
                   <Link
                     href="/wcag/1-4-5"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     1.4.5 Images of Text
                   </Link>{" "}
@@ -553,7 +553,7 @@ h1 {
               the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>{" "}

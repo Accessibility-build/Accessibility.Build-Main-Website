@@ -38,6 +38,7 @@ import {
   lawsuitsByIndustry,
   lawsuitsByYear,
   may2026RegulatorySnapshot,
+  SEYFARTH_2025_URL,
   settlementData,
   topStates,
 } from "@/lib/data/lawsuit-statistics"
@@ -45,8 +46,6 @@ import {
 type SortField = "rank" | "state" | "count" | "perCapita"
 type SortDirection = "asc" | "desc"
 
-const SEYFARTH_2025_URL =
-  "https://www.adatitleiii.com/2026/03/federal-court-website-accessibility-lawsuit-filings-bounce-back-in-2025/"
 const USABLENET_2025_URL =
   "https://info.usablenet.com/2025-year-end-report-on-web-accessibility-lawsuits"
 const AUDIOEYE_2026_URL =
@@ -563,8 +562,13 @@ export function LawsuitTrackerClient() {
         id="share"
         headingLevel={2}
         title="Accessibility Lawsuit Tracker 2026"
-        description="Share this research page or embed a linked reference on your website. The canonical URL remains unchanged."
+        description="Share this page, or embed the federal filings-by-year chart on your site. The embed updates whenever this tracker does."
         url="https://accessibility.build/research/accessibility-lawsuits"
+        embedUrl="https://accessibility.build/embed/lawsuit-tracker"
+        embedTitle="Federal website accessibility lawsuits by year"
+        embedHeight={500}
+        brandedAttribution
+        autoResize
         stat={{ value: lawsuitSummary.latestYearTotal.toLocaleString(), label: "federal website-accessibility filings identified in 2025" }}
       />
     </div>

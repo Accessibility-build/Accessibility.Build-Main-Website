@@ -316,15 +316,15 @@ export default function AccessibleComboboxGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   What makes the combobox genuinely hard is its focus model.
                   Unlike{" "}
-                  <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     tabs
                   </Link>{" "}
                   a{" "}
-                  <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     menu
                   </Link>
                   , or a standalone{" "}
-                  <Link href="/guides/accessible-listbox" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-listbox" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     listbox
                   </Link>{" "}
                   — where focus moves onto the options themselves — a combobox&apos;s
@@ -338,7 +338,7 @@ export default function AccessibleComboboxGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/combobox/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     WAI-ARIA Authoring Practices Combobox pattern
                   </a>{" "}
@@ -395,7 +395,7 @@ export default function AccessibleComboboxGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -404,7 +404,7 @@ export default function AccessibleComboboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -413,7 +413,7 @@ export default function AccessibleComboboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -422,7 +422,7 @@ export default function AccessibleComboboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -431,7 +431,7 @@ export default function AccessibleComboboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -440,7 +440,7 @@ export default function AccessibleComboboxGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -452,11 +452,11 @@ export default function AccessibleComboboxGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-4 text-sm">
                 See the full picture in the{" "}
-                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and work through the interactive{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .
@@ -559,7 +559,7 @@ export default function AccessibleComboboxGuidePage() {
                 <code>&quot;none&quot;</code> means the list is not filtered by
                 what you type. For how each attribute is exposed to assistive
                 technology, see the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -577,7 +577,7 @@ export default function AccessibleComboboxGuidePage() {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Every other composite widget you have built moves focus. Tabs and
                 menus use{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   roving tabindex
                 </Link>{" "}
                 — real focus hops from element to element. A combobox cannot do
@@ -803,7 +803,7 @@ input.addEventListener("keydown", (e) => {
                 <code>aria-activedescendant</code> and a class — it never calls{" "}
                 <code>focus()</code> — and the result count is written into the
                 polite live region on every filter, satisfying{" "}
-                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.3 Status Messages
                 </Link>
                 . Debounce that announcement for fast typists.
@@ -856,16 +856,16 @@ function FruitCombobox(props) {
                 <strong className="text-slate-900 dark:text-white">Headless UI Combobox</strong>, and{" "}
                 <strong className="text-slate-900 dark:text-white">Radix</strong>.
                 The{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React accessibility guide
                 </Link>{" "}
                 covers <code>useId</code> and live regions; the same libraries
                 have equivalents for{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>{" "}
                 and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>
                 .
@@ -903,7 +903,7 @@ function FruitCombobox(props) {
                   You should hear &ldquo;combobox,&rdquo; the expanded state, each
                   active option as you arrow, and the result count when it changes.
                   Verify with the{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>
                   .
@@ -922,11 +922,11 @@ function FruitCombobox(props) {
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Then layer automated checks on top with{" "}
                 <code>axe-core</code>, and see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits. Scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>
                 .
@@ -1006,7 +1006,7 @@ function FruitCombobox(props) {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Count announced.</strong>{" "}
                   A polite <code>aria-live</code> region reports results (
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3
                   </Link>
                   ).
@@ -1019,7 +1019,7 @@ function FruitCombobox(props) {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see the combobox in the context of every other requirement.

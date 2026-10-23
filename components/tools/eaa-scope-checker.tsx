@@ -342,36 +342,36 @@ export default function EaaScopeChecker() {
                   <ul className="space-y-2 text-slate-600 dark:text-slate-400 mb-6 list-disc pl-5">
                     <li>
                       Establish where you stand with an audit against WCAG 2.2 AA:{" "}
-                      <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         fixed-price audits from $950
                       </Link>{" "}
                       or see a{" "}
-                      <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         sample report
                       </Link>
                       .
                     </li>
                     <li>
                       Understand the standard:{" "}
-                      <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         EN 301 549 explained
                       </Link>{" "}
                       and the{" "}
-                      <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         WCAG 2.2 checklist
                       </Link>
                       .
                     </li>
                     <li>
                       Selling in Ireland? Enforcement there is criminal:{" "}
-                      <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         the EAA in Ireland
                       </Link>
                       .
                     </li>
                     <li>
                       Publish the required accessibility information:{" "}
-                      <Link href="/guides/how-to-write-an-accessibility-statement" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/how-to-write-an-accessibility-statement" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         how to write an accessibility statement
                       </Link>
                       .
@@ -404,11 +404,11 @@ export default function EaaScopeChecker() {
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
                     Accessibility also remains a market advantage and, in the UK, the Equality Act
                     duty applies regardless of size:{" "}
-                    <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       UK web accessibility law
                     </Link>
                     . A light-touch check with our{" "}
-                    <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       free page auditor
                     </Link>{" "}
                     costs nothing.
@@ -438,15 +438,15 @@ export default function EaaScopeChecker() {
                   </p>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
                     See{" "}
-                    <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       UK law
                     </Link>
                     ,{" "}
-                    <Link href="/compliance/ada" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/compliance/ada" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       ADA compliance
                     </Link>
                     , or the full{" "}
-                    <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       global laws tracker
                     </Link>
                     .
@@ -477,7 +477,7 @@ export default function EaaScopeChecker() {
                   </p>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
                     Other laws may still apply where you operate:{" "}
-                    <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       see the global laws tracker
                     </Link>
                     .

@@ -544,7 +544,7 @@ export default function WCAG316Page() {
               editorial review. Track it alongside the rest of your{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>
@@ -562,7 +562,7 @@ export default function WCAG316Page() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               The Readable guideline works as a pipeline from sound to sense.{" "}
-              <Link href="/wcag/3-1-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.1.1 Language of Page
               </Link>{" "}
               (A) and 3.1.2 Language of Parts (AA) tell the speech synthesizer which
@@ -574,12 +574,12 @@ export default function WCAG316Page() {
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               It also pairs naturally with{" "}
-              <Link href="/wcag/3-1-5" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-1-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.1.5 Reading Level
               </Link>{" "}
               (AAA) — the same glossary infrastructure serves both — and any audio
               pronunciations you add must themselves meet{" "}
-              <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.1.1 Non-text Content
               </Link>{" "}
               (A) with text equivalents.

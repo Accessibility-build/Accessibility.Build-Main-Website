@@ -5,6 +5,7 @@ import "./globals.css"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SkipLink } from "@/components/skip-link"
+import { FocusNotObscured } from "@/components/a11y/focus-not-obscured"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ClerkProvider } from '@clerk/nextjs'
@@ -383,6 +384,7 @@ export default function RootLayout({
             {/* Loads PostHog (and identifies the user) only after consent. */}
             <PostHogProvider />
             <SkipLink />
+            <FocusNotObscured />
             <AdminLayoutWrapper>
               {children}
             </AdminLayoutWrapper>

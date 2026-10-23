@@ -489,7 +489,7 @@ export default function WCAG244Page() {
               expectations — see{" "}
               <Link
                 href="/wcag/4-1-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 4.1.2 Name, Role, Value
               </Link>{" "}
@@ -687,14 +687,14 @@ export default function WCAG244Page() {
               reader links-list workflow in the{" "}
               <Link
                 href="/guides/screen-reader-testing"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Screen Reader Testing guide
               </Link>
               , and scan a live page with the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>

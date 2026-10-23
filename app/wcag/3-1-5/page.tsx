@@ -505,7 +505,7 @@ Section 4.2 explains what we check."`}</code>
               You can score your copy right now: the{" "}
               <Link
                 href="/tools/accessible-typography-studio"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Accessible Typography Studio
               </Link>{" "}
@@ -515,7 +515,7 @@ Section 4.2 explains what we check."`}</code>
               through the rest of the{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>
@@ -566,7 +566,7 @@ Section 4.2 explains what we check."`}</code>
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Guideline 3.1 Readable builds up in layers.{" "}
-              <Link href="/wcag/3-1-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.1.1 Language of Page
               </Link>{" "}
               (A) and 3.1.2 Language of Parts (AA) make sure assistive technology
@@ -574,18 +574,18 @@ Section 4.2 explains what we check."`}</code>
               words can be <em>understood</em>: 3.1.3 Unusual Words and 3.1.4
               Abbreviations require mechanisms to explain jargon and acronyms, 3.1.5
               sets the overall reading-level bar, and{" "}
-              <Link href="/wcag/3-1-6" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-1-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.1.6 Pronunciation
               </Link>{" "}
               handles words whose meaning depends on how they are pronounced.
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               Reading level also interacts with presentation: text that meets{" "}
-              <Link href="/wcag/1-4-12" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-4-12" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.4.12 Text Spacing
               </Link>{" "}
               (AA) and is organized under descriptive{" "}
-              <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 2.4.6 Headings and Labels
               </Link>{" "}
               (AA) is dramatically easier to process for exactly the same readers this

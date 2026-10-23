@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 import Script from "next/script"
+import { useEffect, useRef } from "react"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
   clearAnalyticsConsent,
@@ -14,6 +16,30 @@ export function AnalyticsConsent() {
   // Shared store: this one choice gates Google Analytics here and PostHog in
   // components/analytics/posthog-provider.tsx.
   const choice = useAnalyticsConsent()
+  const pathname = usePathname()
+  const bannerRef = useRef<HTMLElement>(null)
+
+  // While the fixed banner is open the page gains bottom room of the banner's
+  // height, so the last links on the page can still scroll up clear of it.
+  // components/a11y/focus-not-obscured.tsx does the scrolling (WCAG 2.4.11).
+  useEffect(() => {
+    const banner = bannerRef.current
+    if (!banner) return
+    const reserve = () => {
+      document.body.style.paddingBottom = `${banner.offsetHeight}px`
+    }
+    reserve()
+    const observer = new ResizeObserver(reserve)
+    observer.observe(banner)
+    return () => {
+      observer.disconnect()
+      document.body.style.paddingBottom = ""
+    }
+  }, [choice])
+
+  // An iframed widget cannot ask for consent on someone else's page, so /embed/
+  // pages show no banner and load no optional analytics.
+  if (pathname?.startsWith("/embed/")) return null
 
   const saveChoice = (nextChoice: ConsentChoice) => {
     setAnalyticsConsent(nextChoice)
@@ -40,10 +66,14 @@ export function AnalyticsConsent() {
 
       {choice === null && (
         <section
+          ref={bannerRef}
           aria-labelledby="analytics-consent-title"
           aria-describedby="analytics-consent-description"
           className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-300 bg-white px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 dark:border-slate-700 dark:bg-slate-950 sm:px-6"
         >
+          {/* The SAIRO chat button (root layout) floats bottom right, on top of
+              this banner's buttons, so it stays hidden until a choice is made. */}
+          <style>{"[data-sairo]{display:none!important}"}</style>
           <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
             <div className="max-w-3xl">
               <h2 id="analytics-consent-title" className="sr-only">

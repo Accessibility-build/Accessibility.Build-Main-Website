@@ -131,14 +131,14 @@ export default function CarouselsLayout({ children }: { children: React.ReactNod
               the table are the reference, along with the W3C{" "}
               <a
                 href="https://www.w3.org/WAI/ARIA/apg/patterns/carousel/"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 ARIA Authoring Practices carousel pattern
               </a>
               . The{" "}
-              <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 2.2.2 Pause, Stop, Hide page
               </Link>{" "}
               covers the timing rules in detail.

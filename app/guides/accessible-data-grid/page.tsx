@@ -388,7 +388,7 @@ export default function AccessibleDataGridGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/grid/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     the WAI-ARIA Authoring Practices Grid pattern
                   </a>{" "}
@@ -404,11 +404,11 @@ export default function AccessibleDataGridGuidePage() {
                   <code>aria-rowcount</code>, <code>aria-colcount</code>,{" "}
                   <code>aria-rowindex</code> and <code>aria-colindex</code> to say
                   where each cell sits in the full data set. Unlike a{" "}
-                  <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     slider
                   </Link>{" "}
                   or a{" "}
-                  <Link href="/guides/accessible-switch" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-switch" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     switch
                   </Link>
                   , there is no single native element that gives you a grid — but,
@@ -482,7 +482,7 @@ export default function AccessibleDataGridGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -491,7 +491,7 @@ export default function AccessibleDataGridGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -500,7 +500,7 @@ export default function AccessibleDataGridGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.2 No Keyboard Trap
                         </Link>
                       </th>
@@ -509,7 +509,7 @@ export default function AccessibleDataGridGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -518,7 +518,7 @@ export default function AccessibleDataGridGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -527,7 +527,7 @@ export default function AccessibleDataGridGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -536,7 +536,7 @@ export default function AccessibleDataGridGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.11 Non-text Contrast
                         </Link>
                       </th>
@@ -545,7 +545,7 @@ export default function AccessibleDataGridGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.8 Target Size (Minimum)
                         </Link>
                       </th>
@@ -554,7 +554,7 @@ export default function AccessibleDataGridGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -566,13 +566,13 @@ export default function AccessibleDataGridGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 The two criteria grids fail most often are{" "}
-                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.1.1 Keyboard
                 </Link>{" "}
                 — because the full two-dimensional model, with row and grid ends
                 and the two focus modes, is a lot to wire and easy to leave
                 half-built — and{" "}
-                <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.1.2 No Keyboard Trap
                 </Link>
                 , when a user steps into a cell full of controls and finds there
@@ -609,7 +609,7 @@ export default function AccessibleDataGridGuidePage() {
                       <code>&lt;table&gt;</code> with{" "}
                       <code>&lt;th scope&gt;</code> headers. No roles, no
                       JavaScript. See the{" "}
-                      <Link href="/learn/table" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/learn/table" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         interactive tables demo
                       </Link>
                       .
@@ -642,7 +642,7 @@ export default function AccessibleDataGridGuidePage() {
                       — a message list grouped into threads, a hierarchical report.{" "}
                       <code>role=&quot;treegrid&quot;</code>: the grid model plus
                       the{" "}
-                      <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         tree
                       </Link>{" "}
                       expand logic. Section 10.
@@ -716,7 +716,7 @@ export default function AccessibleDataGridGuidePage() {
                 <code>row</code>, and every operable thing lives in a{" "}
                 <code>gridcell</code> or a header cell. For how each role and
                 property surfaces to assistive technology, see the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -836,11 +836,11 @@ export default function AccessibleDataGridGuidePage() {
                 a row does nothing, it does not wrap around to the next row. For
                 the wider keyboard contract every custom widget owes, and the
                 roving-tabindex technique the next section builds on, see the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>{" "}
                 and the{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management guide
                 </Link>
                 .
@@ -930,7 +930,7 @@ grid.addEventListener("keydown", (e) => {
                 puts the burden of a visible &ldquo;active cell&rdquo; style
                 entirely on your CSS. Roving tabindex is the more common choice for
                 grids and the one this guide uses. See{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management
                 </Link>{" "}
                 for both models side by side.
@@ -1099,7 +1099,7 @@ grid.addEventListener("keydown", (e) => {
                 edit can fail validation, surface the error with{" "}
                 <code>aria-invalid</code> and an{" "}
                 <code>aria-describedby</code> message, exactly as you would in a{" "}
-                <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   form
                 </Link>{" "}
                 — an editable grid cell is a form control that happens to live in a
@@ -1122,11 +1122,11 @@ grid.addEventListener("keydown", (e) => {
                   <code>aria-selected</code>
                 </strong>{" "}
                 — the same property a{" "}
-                <Link href="/guides/accessible-listbox" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-listbox" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   listbox
                 </Link>{" "}
                 and a{" "}
-                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   tree
                 </Link>{" "}
                 use — placed on whatever unit the user selects. Put{" "}
@@ -1249,7 +1249,7 @@ grid.addEventListener("keydown", (e) => {
                 only your <code>aria-rowcount</code> and{" "}
                 <code>aria-rowindex</code> can tell the user &ldquo;row 4,500 of
                 10,000&rdquo;. They are the grid&apos;s version of the{" "}
-                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   tree&apos;s
                 </Link>{" "}
                 <code>aria-level</code>, <code>aria-setsize</code> and{" "}
@@ -1273,7 +1273,7 @@ grid.addEventListener("keydown", (e) => {
                 an email list grouped into threads, a file browser with columns, a
                 financial report you drill into. It is the grid keyboard model plus
                 the expand/collapse logic of a{" "}
-                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   tree view
                 </Link>
                 : rows carry <code>aria-expanded</code> (on the parent rows only)
@@ -1301,7 +1301,7 @@ grid.addEventListener("keydown", (e) => {
                 web, it is the strongest case of all for reaching for a
                 battle-tested implementation rather than hand-rolling one. If you
                 do build it, read the{" "}
-                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   tree view guide
                 </Link>{" "}
                 for the expand/collapse and focus-restoration details, then layer
@@ -1375,15 +1375,15 @@ grid.addEventListener("keydown", (e) => {
                 above; and grid libraries such as AG Grid ship an accessibility
                 mode you should still verify. The same principles carry to other
                 frameworks — see the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React
                 </Link>
                 ,{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>
                 , and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 guides. Whatever you ship, verify it against the workflow below
@@ -1423,7 +1423,7 @@ grid.addEventListener("keydown", (e) => {
                   On a cell with controls, press Enter to step in, Tab between the
                   controls, then Escape to step back out to navigation mode. If
                   Escape does nothing, you have a keyboard trap (
-                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.2
                   </Link>
                   ).
@@ -1433,15 +1433,15 @@ grid.addEventListener("keydown", (e) => {
                   Each cell should announce its content, its column header, and its
                   position; a virtualized grid should announce the real row and
                   column counts, not the DOM&apos;s. The{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>{" "}
                   has the commands for{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>
                   .
@@ -1449,15 +1449,15 @@ grid.addEventListener("keydown", (e) => {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Measure the visuals.</strong>{" "}
                   The focus indicator and the selection indicator each reach 3:1 (
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ); any clickable target inside a cell is at least 24&nbsp;&times;&nbsp;24 px (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ); selection is not colour alone (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ).
@@ -1465,11 +1465,11 @@ grid.addEventListener("keydown", (e) => {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Layer automated checks on top with <code>axe-core</code>, and see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits. Scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>{" "}
                 to catch a missing name, role, or state before it ships.
@@ -1531,7 +1531,7 @@ grid.addEventListener("keydown", (e) => {
                   <code>&lt;table&gt;</code>, with{" "}
                   <code>&lt;th scope&gt;</code> headers so the header-to-cell
                   relationships come for free (
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.1
                   </Link>
                   ).
@@ -1541,7 +1541,7 @@ grid.addEventListener("keydown", (e) => {
                   Roving tabindex: exactly one cell at{" "}
                   <code>tabindex=&quot;0&quot;</code>, the rest at{" "}
                   <code>-1</code> (
-                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.3
                   </Link>
                   ).
@@ -1550,7 +1550,7 @@ grid.addEventListener("keydown", (e) => {
                   <strong className="text-slate-900 dark:text-white">Full 2-D keyboard.</strong>{" "}
                   All four arrows, Home/End, Ctrl+Home/End, with{" "}
                   <code>preventDefault</code> so the page does not scroll (
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1
                   </Link>
                   ).
@@ -1559,7 +1559,7 @@ grid.addEventListener("keydown", (e) => {
                   <strong className="text-slate-900 dark:text-white">Two focus modes.</strong>{" "}
                   Enter/F2 enters a busy cell, Escape always returns to navigation
                   mode — no keyboard trap (
-                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.2
                   </Link>
                   ).
@@ -1575,7 +1575,7 @@ grid.addEventListener("keydown", (e) => {
                   <code>aria-selected</code> on the selected cells or rows,{" "}
                   <code>aria-multiselectable</code> on the grid, and a non-colour
                   cue (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ).
@@ -1583,11 +1583,11 @@ grid.addEventListener("keydown", (e) => {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Visible and reachable.</strong>{" "}
                   The focus and selection indicators reach 3:1 (
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ); any target inside a cell is at least 24&nbsp;&times;&nbsp;24 px (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ).
@@ -1595,7 +1595,7 @@ grid.addEventListener("keydown", (e) => {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see the grid in the context of every other requirement.

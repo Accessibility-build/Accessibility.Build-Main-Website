@@ -220,7 +220,7 @@ export default function AccessibilityReportGeneratorPage() {
                   <strong className="text-slate-900 dark:text-white">Which criterion it fails.</strong>{" "}
                   The specific WCAG success criterion, so the finding is traceable
                   to the standard. Browse the{" "}
-                  <Link href="/wcag" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     WCAG 2.2 reference
                   </Link>{" "}
                   for exact wording.
@@ -308,11 +308,11 @@ export default function AccessibilityReportGeneratorPage() {
                 and the audit evidence is what lets you fill in a conformance
                 report honestly. If you need to publish a user-facing summary of
                 where you stand instead, use the{" "}
-                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessibility statement generator
                 </Link>
                 . For the end-to-end process behind the findings, see the{" "}
-                <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   website accessibility audit guide
                 </Link>
                 .
@@ -327,7 +327,7 @@ export default function AccessibilityReportGeneratorPage() {
                   error message helps. State your methodology in the report, and
                   add a manual keyboard and screen reader pass before anyone treats
                   it as evidence of conformance. The{" "}
-                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     automated versus manual testing guide
                   </Link>{" "}
                   covers what each layer can and cannot find.

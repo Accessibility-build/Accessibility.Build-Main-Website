@@ -167,7 +167,7 @@ export default function RefundPage() {
               <li><strong>Deposit:</strong> If a deposit is taken, its amount and the terms attached to it are stated in the SOW</li>
               <li><strong>Cancellation before work starts:</strong> Refunded in full, less any payment-processor fees that cannot be recovered</li>
               <li><strong>Cancellation after work starts:</strong> Work already delivered is billed pro rata by the milestones in the SOW, and any amount paid beyond that is refunded</li>
-              <li><strong>Disputes:</strong> Raise them first by email at <Link href={`mailto:${company.email}`} className="text-primary hover:underline">{company.email}</Link>; the process in section 7 then applies</li>
+              <li><strong>Disputes:</strong> Raise them first by email at <Link href={`mailto:${company.email}`} className="text-primary underline underline-offset-2 hover:decoration-2">{company.email}</Link>; the process in section 7 then applies</li>
             </ul>
 
             <Alert className="not-prose mt-4">
@@ -186,7 +186,7 @@ export default function RefundPage() {
             <h3 className="text-xl font-semibold mb-3">3.1 How to Request a Refund</h3>
             <p>To request a refund, please follow these steps:</p>
             <ol>
-              <li>Send an email to <Link href={`mailto:${company.billingEmail}`} className="text-primary hover:underline">{company.billingEmail}</Link> with the subject line "Refund Request"</li>
+              <li>Send an email to <Link href={`mailto:${company.billingEmail}`} className="text-primary underline underline-offset-2 hover:decoration-2">{company.billingEmail}</Link> with the subject line "Refund Request"</li>
               <li>Include the following information:
                 <ul>
                   <li>Your registered email address and account details</li>
@@ -275,7 +275,7 @@ export default function RefundPage() {
             <p>You have the right to delete your account at any time:</p>
             <ul>
               <li>Account deletion can be requested from your account settings or by contacting support</li>
-              <li>Upon deletion, your personal data will be removed as per our <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link></li>
+              <li>Upon deletion, your personal data will be removed as per our <Link href="/privacy" className="text-primary underline underline-offset-2 hover:decoration-2">Privacy Policy</Link></li>
               <li>Unused credits in your account will be forfeited upon account deletion</li>
               <li>If you wish to receive a refund for unused credits, please request a refund before deleting your account</li>
               <li>Account deletion is irreversible and cannot be undone</li>
@@ -354,7 +354,7 @@ export default function RefundPage() {
               We encourage you to contact us first to resolve any issues with refunds or cancellations:
             </p>
             <ul>
-              <li>Email us at <Link href={`mailto:${company.email}`} className="text-primary hover:underline">{company.email}</Link></li>
+              <li>Email us at <Link href={`mailto:${company.email}`} className="text-primary underline underline-offset-2 hover:decoration-2">{company.email}</Link></li>
               <li>Disputes are answered {company.responseTime.toLowerCase()}</li>
               <li>{company.legalOperator} handles disputes personally and will work with you to find a fair resolution</li>
             </ul>
@@ -367,13 +367,13 @@ export default function RefundPage() {
             <ul>
               <li>File a complaint with the National Consumer Helpline (NCH): 1800-11-4000 or 14404</li>
               <li>Approach the Consumer Disputes Redressal Commission at District, State, or National level</li>
-              <li>File a complaint on the National Consumer Helpline portal: <a href="https://consumerhelpline.gov.in" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">consumerhelpline.gov.in</a></li>
+              <li>File a complaint on the National Consumer Helpline portal: <a href="https://consumerhelpline.gov.in" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:decoration-2">consumerhelpline.gov.in</a></li>
               <li>Utilize e-Daakhil facility for online filing of consumer complaints</li>
             </ul>
 
             <h3 className="text-xl font-semibold mb-3 mt-6">7.3 Jurisdiction</h3>
             <p>
-              This policy is governed by the laws of India. Subject to mandatory consumer rights and any agreed dispute procedure, courts having jurisdiction over the registered office in {company.registeredOffice.region}, India will have jurisdiction, consistent with our <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link>.
+              This policy is governed by the laws of India. Subject to mandatory consumer rights and any agreed dispute procedure, courts having jurisdiction over the registered office in {company.registeredOffice.region}, India will have jurisdiction, consistent with our <Link href="/terms" className="text-primary underline underline-offset-2 hover:decoration-2">Terms of Service</Link>.
             </p>
           </section>
 
@@ -463,7 +463,7 @@ export default function RefundPage() {
                     <p className="text-sm text-muted-foreground mb-2">
                       For refund and cancellation requests:
                     </p>
-                    <Link href={`mailto:${company.billingEmail}`} className="text-primary hover:underline">
+                    <Link href={`mailto:${company.billingEmail}`} className="text-primary underline underline-offset-2 hover:decoration-2">
                       {company.billingEmail}
                     </Link>
                   </div>
@@ -476,7 +476,7 @@ export default function RefundPage() {
                     <p className="text-sm text-muted-foreground mb-2">
                       For other queries and support:
                     </p>
-                    <Link href={`mailto:${company.email}`} className="text-primary hover:underline">
+                    <Link href={`mailto:${company.email}`} className="text-primary underline underline-offset-2 hover:decoration-2">
                       {company.email}
                     </Link>
                   </div>
@@ -515,7 +515,7 @@ export default function RefundPage() {
               <li>You have read and understood this Cancellation and Refund Policy</li>
               <li>You agree to abide by the terms outlined in this policy</li>
               <li>You understand your rights under the Consumer Protection Act, 2019</li>
-              <li>You agree that this policy forms an integral part of our <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link></li>
+              <li>You agree that this policy forms an integral part of our <Link href="/terms" className="text-primary underline underline-offset-2 hover:decoration-2">Terms of Service</Link></li>
             </ul>
 
             <Alert className="not-prose mt-6">

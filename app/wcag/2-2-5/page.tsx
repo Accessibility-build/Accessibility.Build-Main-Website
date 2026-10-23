@@ -263,7 +263,7 @@ export default function WCAG225Page() {
                   the account, or locally as a fallback. On the next authenticated
                   visit, restore the draft and tell the user. This pattern also
                   satisfies the data-preservation route of{" "}
-                  <Link href="/wcag/2-2-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-2-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.2.6 Timeouts
                   </Link>{" "}
                   if drafts are kept for more than 20 hours.
@@ -460,7 +460,7 @@ app.post("/login", async (req, res) => {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
               This criterion is untestable by automated scanners — it lives entirely
               in application behavior. Fold it into QA scenarios and the full{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 WCAG 2.2 checklist
               </Link>
               .

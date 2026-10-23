@@ -485,7 +485,7 @@ export default function WCAG2411Page() {
               criterion. Pair this with a strong focus ring per{" "}
               <Link
                 href="/wcag/2-4-7"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.7 Focus Visible
               </Link>{" "}
@@ -696,14 +696,14 @@ a, button, input, select, textarea, [tabindex] {
               regions rendered. Build the habit into your{" "}
               <Link
                 href="/guides/keyboard-accessibility"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 keyboard accessibility testing
               </Link>{" "}
               routine, and scan a live page with the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>

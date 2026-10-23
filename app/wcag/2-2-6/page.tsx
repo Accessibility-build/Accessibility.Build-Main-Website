@@ -158,7 +158,7 @@ export default function WCAG226Page() {
               Two conforming routes, one criterion. The scope is specifically{" "}
               <em>inactivity</em> that causes <em>data loss</em> — a timeout that
               logs you out but keeps your work (see{" "}
-              <Link href="/wcag/2-2-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/2-2-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 2.2.5 Re-authenticating
               </Link>
               ) does not lose data and needs no warning under this criterion.
@@ -263,7 +263,7 @@ export default function WCAG226Page() {
                 <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                   The session may still expire for security; what must survive is
                   the <em>data</em>. Pair with{" "}
-                  <Link href="/wcag/2-2-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-2-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.2.5
                   </Link>{" "}
                   so re-login restores it seamlessly.
@@ -439,7 +439,7 @@ await db.drafts.upsert({
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
               Like the rest of the 2.2.x AAA criteria, this is behavioral testing that
               no scanner can perform. Keep it in your manual audit script and the full{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 WCAG 2.2 checklist
               </Link>
               .

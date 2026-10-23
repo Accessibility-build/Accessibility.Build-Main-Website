@@ -483,7 +483,7 @@ export default function WCAG313Page() {
               Guideline 3.1 Readable attacks comprehension barriers in layers.{" "}
               <Link
                 href="/wcag/3-1-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.1.1 Language of Page
               </Link>{" "}
@@ -492,7 +492,7 @@ export default function WCAG313Page() {
               trio deepens understanding: 3.1.3 defines unusual words,{" "}
               <Link
                 href="/wcag/3-1-4"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.1.4 Abbreviations
               </Link>{" "}

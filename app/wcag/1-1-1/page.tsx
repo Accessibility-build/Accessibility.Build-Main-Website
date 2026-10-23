@@ -343,7 +343,7 @@ export default function WCAG111Page() {
               requirement down rather than dropping it. Audio and video need at least a{" "}
               <em>descriptive identification</em> here (the full alternatives are
               required by the{" "}
-              <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.x Time-based Media criteria
               </Link>
               ). A color-perception test or a music sample only needs to be identified
@@ -606,7 +606,7 @@ export default function WCAG111Page() {
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

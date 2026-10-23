@@ -158,18 +158,18 @@ export default function WCAG126Page() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Guideline 1.2 is a ladder. At Level A,{" "}
-              <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.2 Captions (Prerecorded)
               </Link>{" "}
               requires captions for prerecorded video. At Level AA, 1.2.5 requires audio
               description for blind viewers. Level AAA then adds three enhancements: sign
               language interpretation (this criterion), extended audio description
               (
-              <Link href="/wcag/1-2-7" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.7
               </Link>
               ), and a full text media alternative (
-              <Link href="/wcag/1-2-8" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.8
               </Link>
               ).

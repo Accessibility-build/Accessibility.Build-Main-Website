@@ -148,7 +148,7 @@ export default function KhushwantPariharAuthorPage() {
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <h3 className="text-xl font-semibold">{credential.name}</h3>
                   {credential.tag ? (
-                    <span className="rounded bg-primary/10 px-2 py-0.5 text-sm font-semibold text-primary">
+                    <span className="rounded bg-primary/10 px-2 py-0.5 text-sm font-semibold text-blue-700 dark:text-primary">
                       {credential.tag}
                     </span>
                   ) : null}
@@ -160,7 +160,7 @@ export default function KhushwantPariharAuthorPage() {
                       href={credential.issuerUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-medium text-primary hover:underline"
+                      className="font-medium text-primary underline underline-offset-2 hover:decoration-2"
                     >
                       {credential.issuer}
                       {credential.issuerShort ? ` (${credential.issuerShort})` : ""}
@@ -206,7 +206,7 @@ export default function KhushwantPariharAuthorPage() {
                     href={course.verifyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-2 hover:decoration-2"
                   >
                     Verify
                     <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />

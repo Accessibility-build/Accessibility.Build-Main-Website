@@ -157,7 +157,7 @@ export default function WCAG149Page() {
               Despite the &ldquo;No Exception&rdquo; in the name, two narrow allowances
               remain: decorative images of text, and presentations that are truly
               essential. What disappears at AAA — compared to{" "}
-              <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 1.4.5 Images of Text
               </Link>{" "}
               at AA — is the general permission to use images of text when they are
@@ -559,7 +559,7 @@ export default function WCAG149Page() {
               so this is a visual, manual check. Fold it into your full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>{" "}
@@ -577,7 +577,7 @@ export default function WCAG149Page() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               1.4.9 is the AAA tightening of{" "}
-              <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.4.5 Images of Text
               </Link>{" "}
               (AA). Both share the decoration and essential allowances; 1.4.5
@@ -589,17 +589,17 @@ export default function WCAG149Page() {
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               Three neighbors complete the picture:{" "}
-              <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.1.1 Non-text Content
               </Link>{" "}
               (A) requires the images of text you legitimately keep — logos, specimens
               — to carry a proper text alternative.{" "}
-              <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.4.3 Contrast (Minimum)
               </Link>{" "}
               (AA) applies its contrast ratios to image text just as it does to real
               text. And{" "}
-              <Link href="/wcag/1-4-12" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-4-12" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.4.12 Text Spacing
               </Link>{" "}
               (AA) is a big part of the <em>why</em>: users must be able to override

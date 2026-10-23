@@ -157,7 +157,7 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
           {/* Hero */}
           <div className="text-center mb-16">
             <div className="flex flex-col items-center mb-6">
-              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-blue-700 dark:text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Crown className="h-4 w-4" />
                 One-Time Credit Packs
               </div>

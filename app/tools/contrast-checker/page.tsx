@@ -4,6 +4,7 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 import { clampDescription } from "@/lib/metadata"
 import { SiteScanHandoff } from "@/components/tools/site-scan-handoff"
+import { EmbeddableWidget } from "@/components/research/embeddable-widget"
 
 export const metadata: Metadata = {
   // Search Console, Sept 2026: this page drew informational contrast queries
@@ -118,6 +119,20 @@ export default function ContrastCheckerPage() {
           source="contrast_checker"
           heading="Checked one pair. How many are failing on your site?"
           body="WebAIM's annual analysis of a million home pages finds low contrast text on more of them than any other failure, and it rarely shows up as a single bad pair. Paste a page and the scanner tests the text and background combinations on it, along with the other WCAG rules axe-core can check."
+        />
+      </div>
+
+      <div className="container-wide pt-12">
+        <EmbeddableWidget
+          id="embed"
+          headingLevel={2}
+          title="WCAG Color Contrast Checker"
+          description="Add this checker to your own site, documentation or design system. It is free, needs no sign-up or API key, and keeps a link back to the full tool."
+          url="https://accessibility.build/tools/contrast-checker"
+          embedUrl="https://accessibility.build/embed/contrast-checker"
+          embedHeight={520}
+          brandedAttribution
+          autoResize
         />
       </div>
 

@@ -171,23 +171,23 @@ export default function ImageColorPickerPage() {
               </p>
               <ul className="text-muted-foreground leading-relaxed list-disc pl-6 space-y-2 mb-4">
                 <li>
-                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">1.4.3 Contrast (Minimum)</Link>{" "}
+                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.4.3 Contrast (Minimum)</Link>{" "}
                   (Level AA): text needs a 4.5:1 ratio against its background, or
                   3:1 for large text. Sample the text colour and the background
                   colour, then test the pair.
                 </li>
                 <li>
-                  <Link href="/wcag/1-4-6" className="text-blue-600 dark:text-blue-400 hover:underline">1.4.6 Contrast (Enhanced)</Link>{" "}
+                  <Link href="/wcag/1-4-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.4.6 Contrast (Enhanced)</Link>{" "}
                   (Level AAA): the stricter 7:1 and 4.5:1 thresholds.
                 </li>
                 <li>
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">1.4.11 Non-text Contrast</Link>{" "}
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.4.11 Non-text Contrast</Link>{" "}
                   (Level AA): a 3:1 ratio for the visible boundaries of controls
                   and for the parts of graphics needed to understand them. Sample
                   the border or icon colour, not the fill behind it.
                 </li>
                 <li>
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">1.4.1 Use of Color</Link>{" "}
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.4.1 Use of Color</Link>{" "}
                   (Level A): knowing the exact colours of, say, a red and a green
                   status dot helps you check that something other than hue also
                   distinguishes them.
@@ -195,7 +195,7 @@ export default function ImageColorPickerPage() {
               </ul>
               <p className="text-muted-foreground leading-relaxed">
                 For the ratio itself, paste the HEX values into the{" "}
-                <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Contrast Checker
                 </Link>
                 . Remember that a sample from a screenshot reflects one rendering

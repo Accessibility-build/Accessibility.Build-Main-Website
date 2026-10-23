@@ -305,7 +305,7 @@ export default function AccessibleTooltipGuidePage() {
                 No criterion says &ldquo;you must add tooltips,&rdquo; but the moment
                 content appears on hover or focus, one criterion is written for exactly
                 that situation. The highlighted row,{" "}
-                <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.13 Content on Hover or Focus
                 </Link>
                 , is the defining one, and its three rules (dismissible, hoverable,
@@ -335,7 +335,7 @@ export default function AccessibleTooltipGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.13 Content on Hover or Focus
                         </Link>
                       </th>
@@ -344,7 +344,7 @@ export default function AccessibleTooltipGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -353,7 +353,7 @@ export default function AccessibleTooltipGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -362,7 +362,7 @@ export default function AccessibleTooltipGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -371,7 +371,7 @@ export default function AccessibleTooltipGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -380,7 +380,7 @@ export default function AccessibleTooltipGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.10 Reflow
                         </Link>
                       </th>
@@ -389,7 +389,7 @@ export default function AccessibleTooltipGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.4 Resize Text
                         </Link>
                       </th>
@@ -404,7 +404,7 @@ export default function AccessibleTooltipGuidePage() {
                 complete{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 criteria
                 </Link>{" "}
@@ -489,7 +489,7 @@ export default function AccessibleTooltipGuidePage() {
                   tooltip too, and it is persistent, because only leaving hides it. The
                   third rule, dismissible, needs a few lines of script so Escape can
                   clear a tooltip that overlaps other content. The{" "}
-                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.13 Content on Hover or Focus
                   </Link>{" "}
                   reference walks through the dismissible handler in full; this guide
@@ -586,7 +586,7 @@ export default function AccessibleTooltipGuidePage() {
                   a non-modal container that receives focus and can be dismissed. If it
                   is a focused task that should hold the user until they finish or
                   cancel, that is a{" "}
-                  <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     dialog
                   </Link>
                   , with a focus trap and a return of focus when it closes. Both are
@@ -667,7 +667,7 @@ document.addEventListener("click", (event) => {
                   or a tap on a real button, it works the same on a touchscreen, a
                   mouse, and a keyboard, which a hover tooltip does not. Because the
                   content lives in a{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     status live region
                   </Link>
                   , it is announced when it appears without you having to move focus.
@@ -701,11 +701,11 @@ document.addEventListener("click", (event) => {
                   description but still no name, so a screen reader announces it as
                   &ldquo;button&rdquo; followed by the description, with no label for
                   the control itself. That fails{" "}
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2 Name, Role, Value
                   </Link>{" "}
                   and{" "}
-                  <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.4 Link Purpose
                   </Link>
                   . The control needs a name first.
@@ -788,13 +788,13 @@ document.addEventListener("click", (event) => {
                   At 320 pixels wide, or when a user zooms to 400 percent, the tooltip
                   has to reflow into the viewport rather than force horizontal
                   scrolling, which is{" "}
-                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.10 Reflow
                   </Link>
                   . Give it a sensible <code>max-width</code> and let it wrap, rather
                   than pinning it to a single line that runs off the screen. And when a
                   user increases the text size to 200 percent for{" "}
-                  <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.4 Resize Text
                   </Link>
                   , the box must grow with the text instead of clipping it, so avoid
@@ -839,11 +839,11 @@ document.addEventListener("click", (event) => {
                   it cannot provide. Activate a toggletip and confirm the revealed text
                   is spoken when it appears, which tells you the live region is working.
                   Verify with more than one reader if you can, using the{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>{" "}
                   guides.
@@ -865,7 +865,7 @@ document.addEventListener("click", (event) => {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Automated checkers such as{" "}
-                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     axe and WAVE
                   </Link>{" "}
                   can flag a control with no accessible name and a misused role, and
@@ -873,13 +873,13 @@ document.addEventListener("click", (event) => {
                   tooltip appears on focus, whether it is dismissible and hoverable,
                   whether a link is hiding inside it, or whether the content is
                   reachable on touch. As the{" "}
-                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     automated versus manual testing guide
                   </Link>{" "}
                   puts it, the machine gets you to valid markup and a person decides
                   whether the behavior is right. For where this fits in a full review,
                   see the{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessibility audit guide
                   </Link>
                   .

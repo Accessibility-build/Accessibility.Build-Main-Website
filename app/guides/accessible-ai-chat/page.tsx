@@ -273,7 +273,7 @@ export default function AccessibleAiChatGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   The single biggest mistake teams make is treating the streaming
                   response as something to shout at the screen reader. Point{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     aria-live
                   </Link>{" "}
                   at the element that receives tokens and the screen reader will
@@ -292,17 +292,17 @@ export default function AccessibleAiChatGuidePage() {
                     WCAG2ICT
                   </strong>
                   . The{" "}
-                  <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     European Accessibility Act
                   </Link>
                   , the ADA, and{" "}
-                  <Link href="/compliance/section-508" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/compliance/section-508" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     Section 508
                   </Link>{" "}
                   all reach the AI features in your product, measured against WCAG
                   2.2 Level AA. This guide is the build layer; for the wider
                   picture of how AI is changing accessibility work, see the{" "}
-                  <Link href="/guides/ai-accessibility-audit" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/ai-accessibility-audit" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     AI accessibility audit guide
                   </Link>
                   .
@@ -341,7 +341,7 @@ export default function AccessibleAiChatGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -350,7 +350,7 @@ export default function AccessibleAiChatGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -359,7 +359,7 @@ export default function AccessibleAiChatGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -368,7 +368,7 @@ export default function AccessibleAiChatGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -377,7 +377,7 @@ export default function AccessibleAiChatGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -386,7 +386,7 @@ export default function AccessibleAiChatGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.2.1 Timing Adjustable
                         </Link>
                       </th>
@@ -395,7 +395,7 @@ export default function AccessibleAiChatGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.13 Content on Hover or Focus
                         </Link>
                       </th>
@@ -404,7 +404,7 @@ export default function AccessibleAiChatGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.3 Contrast (Minimum)
                         </Link>
                       </th>
@@ -418,14 +418,14 @@ export default function AccessibleAiChatGuidePage() {
                 For the full list, see the{" "}
                 <Link
                   href="/guides/wcag-2-2-aa-requirements"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and the interactive{" "}
                 <Link
                   href="/checklists/wcag-2-2"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 checklist
                 </Link>
@@ -465,7 +465,7 @@ export default function AccessibleAiChatGuidePage() {
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       A small, usually visually hidden{" "}
-                      <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         live region
                       </Link>{" "}
                       that speaks state: &ldquo;Assistant is responding,&rdquo;
@@ -577,7 +577,7 @@ export default function AccessibleAiChatGuidePage() {
                   Overusing assertive is itself an accessibility failure: it makes
                   the interface feel like it is shouting and it clobbers whatever
                   the user was listening to. The full behavior of both is covered in{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3 Status Messages
                   </Link>
                   .
@@ -588,7 +588,7 @@ export default function AccessibleAiChatGuidePage() {
                   complete&rdquo;), you often have to clear the region first and set
                   the text on the next tick, because a live region only announces a{" "}
                   <em>change</em>. The same trick appears in the{" "}
-                  <Link href="/guides/accessible-form-validation" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-form-validation" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible form validation guide
                   </Link>{" "}
                   for repeated error messages.
@@ -659,7 +659,7 @@ export default function AccessibleAiChatGuidePage() {
                   Color and alignment tell a sighted user which side sent a message.
                   A screen reader user gets none of that, so the sender has to be in
                   the markup (
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.1
                   </Link>
                   ). The lightest reliable technique is a visually hidden label at
@@ -704,7 +704,7 @@ export default function AccessibleAiChatGuidePage() {
                     focus moves only when the user asks it to
                   </strong>
                   , never because content updated on its own (
-                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.3
                   </Link>
                   ). In a chat that means:
@@ -735,7 +735,7 @@ export default function AccessibleAiChatGuidePage() {
                   whether the user is at the bottom and only auto-scroll then. For
                   the underlying focus techniques (roving tabindex, restoration,{" "}
                   <code>tabindex=&#123;-1&#125;</code> targets), see the{" "}
-                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     focus management guide
                   </Link>
                   .
@@ -757,7 +757,7 @@ export default function AccessibleAiChatGuidePage() {
                   visually hidden <code>&lt;label&gt;</code> is the minimum), and
                   Send must be a real <code>&lt;button&gt;</code> with a text name,
                   not a bare icon <code>&lt;div&gt;</code>. Everything in the{" "}
-                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible forms guide
                   </Link>{" "}
                   applies.
@@ -802,18 +802,18 @@ export default function AccessibleAiChatGuidePage() {
                   control must be present, focusable, and named, so a keyboard user
                   can interrupt a long or wrong answer. Hiding it behind hover or
                   removing it from the tab order fails both{" "}
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1 Keyboard
                   </Link>{" "}
                   and, for very long generations,{" "}
-                  <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.2.1 Timing Adjustable
                   </Link>
                   . Per-message actions (copy, regenerate, thumbs up or down) are
                   frequently revealed only on hover; that leaves out keyboard and
                   touch users. Reveal them on focus as well, keep them in the tab
                   order, and let Escape dismiss any transient popover, per{" "}
-                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.13 Content on Hover or Focus
                   </Link>
                   . Give each icon control a name:{" "}
@@ -857,7 +857,7 @@ export default function AccessibleAiChatGuidePage() {
                   If you show an animated indicator, respect{" "}
                   <code>prefers-reduced-motion</code> and provide a non-animated
                   fallback, and make sure the indicator&rsquo;s text (if any) meets{" "}
-                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     contrast
                   </Link>{" "}
                   requirements; faint gray dots on white frequently do not. The
@@ -893,7 +893,7 @@ export default function AccessibleAiChatGuidePage() {
                     real semantic HTML
                   </strong>{" "}
                   so the structure survives (
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.1
                   </Link>
                   ):
@@ -935,7 +935,7 @@ export default function AccessibleAiChatGuidePage() {
                   <strong className="text-slate-900 dark:text-white">alt text and structure as a draft</strong>
                   : review it, and prompt the model to produce descriptive link text
                   and meaningful alternatives in the first place. The{" "}
-                  <Link href="/guides/ai-accessibility-audit" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/ai-accessibility-audit" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     AI accessibility audit guide
                   </Link>{" "}
                   goes deeper on where AI helps and where it quietly does not.
@@ -966,7 +966,7 @@ export default function AccessibleAiChatGuidePage() {
                   generation should always be interruptible with the Stop control
                   from section 5, so no one is forced to wait out a response they do
                   not want. See{" "}
-                  <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.2.1 Timing Adjustable
                   </Link>
                   .
@@ -1082,7 +1082,7 @@ export default function AccessibleAiChatGuidePage() {
                   streams and after it finishes. If you hear every token, or focus
                   jumps to the output, fix it. For the framework specifics of live
                   regions and focus in React, see the{" "}
-                  <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     React accessibility guide
                   </Link>
                   .
@@ -1187,11 +1187,11 @@ export default function AccessibleAiChatGuidePage() {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Then run the whole thing past the{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 and a real{" "}
-                <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   screen reader testing
                 </Link>{" "}
                 pass.

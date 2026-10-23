@@ -285,19 +285,19 @@ export default function AccessibleVideoPlayerGuidePage() {
                   This guide is framework-agnostic and works whether you drop in
                   a native <code>&lt;video&gt;</code>, embed a YouTube player, or
                   ship a React component. The requirements cluster around WCAG&apos;s{" "}
-                  <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.2 Time-based Media
                   </Link>{" "}
                   guideline, plus{" "}
-                  <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.2 Audio Control
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1 Keyboard
                   </Link>
                   , and{" "}
-                  <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.2.2 Pause, Stop, Hide
                   </Link>{" "}
                   for the player. We will start where you should always start:
@@ -336,7 +336,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.2.1 Audio-only &amp; Video-only
                         </Link>
                       </th>
@@ -345,7 +345,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.2.2 Captions (Prerecorded)
                         </Link>
                       </th>
@@ -354,7 +354,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-2-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-2-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.2.3 Audio Description or Media Alternative
                         </Link>
                       </th>
@@ -363,7 +363,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-2-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-2-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.2.4 Captions (Live)
                         </Link>
                       </th>
@@ -372,7 +372,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.2.5 Audio Description (Prerecorded)
                         </Link>
                       </th>
@@ -381,7 +381,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.2 Audio Control
                         </Link>
                       </th>
@@ -390,7 +390,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -399,7 +399,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.2.2 Pause, Stop, Hide
                         </Link>
                       </th>
@@ -408,7 +408,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -447,12 +447,12 @@ export default function AccessibleVideoPlayerGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed">
                 Two criteria are failed far more than the rest. Captions (
-                <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.2.2
                 </Link>
                 ) are the most often <em>attempted but wrong</em> — an
                 auto-generated track left uncorrected — and audio description (
-                <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.2.5
                 </Link>
                 ) is the most often <em>skipped entirely</em>, because teams do
@@ -761,7 +761,7 @@ right under the field.</v>`}</code></pre>
                 not buried in a downloadable PDF or hosted off-site. It should
                 carry speaker labels and, for a descriptive transcript, the visual
                 notes clearly marked. The disclosure pattern is the same one the{" "}
-                <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accordion &amp; disclosure guide
                 </Link>{" "}
                 covers if you want it collapsible.
@@ -799,13 +799,13 @@ right under the field.</v>`}</code></pre>
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 This is the part teams miss.{" "}
-                <Link href="/wcag/1-2-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-2-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.2.3 Audio Description <em>or</em> Media Alternative
                 </Link>{" "}
                 (level A) lets you satisfy the requirement <em>either</em> by
                 adding audio description <em>or</em> by providing a full text
                 alternative — a descriptive transcript — for the whole video. But{" "}
-                <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.2.5 Audio Description
                 </Link>{" "}
                 (level AA) removes the text-alternative escape:{" "}
@@ -824,7 +824,7 @@ right under the field.</v>`}</code></pre>
                 Standard audio description fits inside the existing gaps between
                 dialogue. Sometimes the gaps are too short to describe everything
                 that matters — a fast, visually dense sequence. That is what{" "}
-                <Link href="/wcag/1-2-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-2-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.2.7 Extended Audio Description
                 </Link>{" "}
                 (AAA) addresses: the video pauses to let a longer description play,
@@ -891,7 +891,7 @@ right under the field.</v>`}</code></pre>
                   Every control is a <code>&lt;button&gt;</code> with a text name —
                   an icon alone is not a name. &ldquo;Play&rdquo;, &ldquo;Mute&rdquo;,
                   &ldquo;Captions&rdquo;, &ldquo;Fullscreen&rdquo; (
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2
                   </Link>
                   ).
@@ -901,7 +901,7 @@ right under the field.</v>`}</code></pre>
                   Every control is reachable by Tab and operable with
                   Enter/Space; the seek bar is a real slider with arrow-key
                   support. Nothing is mouse-only, and focus is never trapped (
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1
                   </Link>
                   ).
@@ -910,7 +910,7 @@ right under the field.</v>`}</code></pre>
                   <strong className="text-slate-900 dark:text-white">Visible focus.</strong>{" "}
                   A clear focus indicator on each control, including over the video
                   where contrast is unpredictable — see the{" "}
-                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     focus management guide
                   </Link>
                   .
@@ -922,11 +922,11 @@ right under the field.</v>`}</code></pre>
                   use <code>aria-pressed</code>; the mute and captions toggles do
                   the same. A colour or icon change alone is invisible to a screen
                   reader (
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ).
@@ -941,11 +941,11 @@ right under the field.</v>`}</code></pre>
               <p className="text-muted-foreground leading-relaxed">
                 The keyboard mechanics — roving focus, a slider seek bar, managing
                 focus as menus open — are the same disciplines covered in the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility
                 </Link>{" "}
                 and{" "}
-                <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible slider
                 </Link>{" "}
                 guides. A custom player is one of the most control-heavy widgets
@@ -1228,15 +1228,15 @@ right under the field.</v>`}</code></pre>
                 caption file and the transcript authored from the same reviewed
                 source so they never disagree. The broader framework patterns are
                 in the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React
                 </Link>
                 ,{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>
                 , and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 accessibility guides.
@@ -1263,7 +1263,7 @@ right under the field.</v>`}</code></pre>
                   Read only the captions. Do they carry the dialogue, tell you who
                   is speaking, and describe the meaningful sounds — or are they
                   just the words, out of sync, with obvious errors? (
-                  <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.2.2
                   </Link>
                   )
@@ -1273,7 +1273,7 @@ right under the field.</v>`}</code></pre>
                   Can you follow everything that matters from the soundtrack alone?
                   If a visual moment leaves you lost, that is a missing audio
                   description (
-                  <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.2.5
                   </Link>
                   ).
@@ -1282,7 +1282,7 @@ right under the field.</v>`}</code></pre>
                   <strong className="text-slate-900 dark:text-white">Find the transcript.</strong>{" "}
                   Is there one, on the page, near the player — and for a
                   podcast or audio-only file, is it complete? (
-                  <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.2.1
                   </Link>
                   )
@@ -1292,7 +1292,7 @@ right under the field.</v>`}</code></pre>
                   Tab to the player and operate every control — play, pause, seek,
                   volume, captions, fullscreen — with the keyboard alone, with a
                   visible focus indicator throughout (
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1
                   </Link>
                   ).
@@ -1302,15 +1302,15 @@ right under the field.</v>`}</code></pre>
                   Each control should announce a name and its state — &ldquo;Pause,
                   button&rdquo; when playing, &ldquo;Captions on&rdquo; when
                   enabled — not &ldquo;button&rdquo; with no label. Use the{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   or{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>{" "}
                   guides (
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2
                   </Link>
                   ).
@@ -1319,11 +1319,11 @@ right under the field.</v>`}</code></pre>
                   <strong className="text-slate-900 dark:text-white">Load the page and wait.</strong>{" "}
                   Confirm nothing autoplays with sound, and any auto-playing
                   motion can be paused (
-                  <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.2
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.2.2
                   </Link>
                   ).
@@ -1332,11 +1332,11 @@ right under the field.</v>`}</code></pre>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Layer automated checks on top for the mechanical issues — a missing
                 iframe title, an unlabelled control — see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>
                 , and scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>
                 . But the caption-quality and audio-description checks above are
@@ -1398,7 +1398,7 @@ right under the field.</v>`}</code></pre>
                   Prerecorded video has accurate, synchronized captions with
                   speaker IDs and non-speech sounds — not raw auto-captions, not
                   same-language subtitles (
-                  <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.2.2
                   </Link>
                   ).
@@ -1407,7 +1407,7 @@ right under the field.</v>`}</code></pre>
                   <strong className="text-slate-900 dark:text-white">Transcript on the page.</strong>{" "}
                   A text transcript is available near the media; audio-only content
                   has one as its primary alternative (
-                  <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.2.1
                   </Link>
                   ).
@@ -1417,7 +1417,7 @@ right under the field.</v>`}</code></pre>
                   Video with essential on-screen-only information has audio
                   description; at AA that means a real described version, not just
                   a text alternative (
-                  <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-2-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.2.5
                   </Link>
                   ).
@@ -1426,7 +1426,7 @@ right under the field.</v>`}</code></pre>
                   <strong className="text-slate-900 dark:text-white">Live media captioned.</strong>{" "}
                   Live audio in synchronized media has real-time captions, planned
                   before the event (
-                  <Link href="/wcag/1-2-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-2-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.2.4
                   </Link>
                   ).
@@ -1435,11 +1435,11 @@ right under the field.</v>`}</code></pre>
                   <strong className="text-slate-900 dark:text-white">Keyboard-operable player.</strong>{" "}
                   Every control works by keyboard with visible focus; custom
                   controls expose a name and state (
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2
                   </Link>
                   ).
@@ -1448,11 +1448,11 @@ right under the field.</v>`}</code></pre>
                   <strong className="text-slate-900 dark:text-white">No hostile autoplay.</strong>{" "}
                   Nothing autoplays with sound; any auto-playing motion over five
                   seconds can be paused (
-                  <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.2
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.2.2
                   </Link>
                   ).
@@ -1465,11 +1465,11 @@ right under the field.</v>`}</code></pre>
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see media alongside every other requirement, and the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>{" "}
                 for the player controls in depth.

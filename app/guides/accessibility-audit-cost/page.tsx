@@ -210,7 +210,7 @@ export default function AccessibilityAuditCostPage() {
               <li>
                 <strong className="text-slate-900 dark:text-white">Our pricing.</strong> We publish
                 ours: fixed-price WCAG 2.2 AA{" "}
-                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessibility audits
                 </Link>{" "}
                 from $950, including manual testing, assistive technology checks, a full report,
@@ -304,7 +304,7 @@ export default function AccessibilityAuditCostPage() {
                 <strong className="text-slate-900 dark:text-white">Deliverables.</strong> A raw
                 defect list is cheaper than a full report with remediation guidance, which is
                 cheaper than also producing a{" "}
-                <Link href="/guides/vpat-accessibility-conformance-report" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vpat-accessibility-conformance-report" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   VPAT or Accessibility Conformance Report
                 </Link>{" "}
                 for procurement.
@@ -348,11 +348,11 @@ export default function AccessibilityAuditCostPage() {
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               The smart move is to use both, in order. Run our free{" "}
-              <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 URL accessibility auditor
               </Link>{" "}
               and{" "}
-              <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 contrast checker
               </Link>{" "}
               to establish a baseline before paying anyone. Fix what they find, then spend your
@@ -393,7 +393,7 @@ export default function AccessibilityAuditCostPage() {
             </ul>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Never buy a report sight unseen. We publish a{" "}
-              <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 sample audit report
               </Link>{" "}
               so you can see exactly what the deliverable looks like; ask any vendor you are
@@ -428,7 +428,7 @@ export default function AccessibilityAuditCostPage() {
                 <strong className="text-slate-900 dark:text-white">Do not spend the budget on an overlay instead.</strong>{" "}
                 Overlay widgets do not make a site conform to WCAG and do not remove the need for
                 an audit; our{" "}
-                <Link href="/guides/accessibility-overlays" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessibility-overlays" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   overlay guide
                 </Link>{" "}
                 explains why. Money spent there is money you will spend again on real remediation.
@@ -457,7 +457,7 @@ export default function AccessibilityAuditCostPage() {
                 Service providers owe an anticipatory duty to make reasonable adjustments for
                 disabled people, meaning you are expected to have addressed barriers before a
                 disabled customer encounters them, not after a complaint. Our{" "}
-                <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   UK compliance guide
                 </Link>{" "}
                 covers how this applies to websites.
@@ -466,7 +466,7 @@ export default function AccessibilityAuditCostPage() {
                 <strong className="text-slate-900 dark:text-white">The European Accessibility Act.</strong>{" "}
                 In force since June 2025 for in-scope products and services, with enforcement that
                 in Ireland includes criminal penalties. Our{" "}
-                <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EAA Ireland guide
                 </Link>{" "}
                 explains who is in scope and what is required.
@@ -475,12 +475,12 @@ export default function AccessibilityAuditCostPage() {
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               Weigh the audit price against the cost of not knowing where you stand. For the US
               picture, where an inaccessible site can turn directly into legal spend, see our{" "}
-              <Link href="/guides/ada-website-lawsuit-cost" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/guides/ada-website-lawsuit-cost" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 ADA website lawsuit cost guide
               </Link>
               . And an audit is not only risk avoidance: accessible sites reach more customers, and
               our{" "}
-              <Link href="/tools/accessibility-roi-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/tools/accessibility-roi-calculator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility ROI calculator
               </Link>{" "}
               lets you put your own numbers on that.

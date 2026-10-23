@@ -130,7 +130,7 @@ export default function WCAG339Page() {
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               Logging in should prove who you are, not how good your memory or puzzle
               solving is. At Level AA,{" "}
-              <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 3.3.8
               </Link>{" "}
               banned cognitive function tests with four escape hatches. This AAA
@@ -570,14 +570,14 @@ export default function WCAG339Page() {
               Pair this with the AA baseline in our{" "}
               <Link
                 href="/wcag/3-3-8"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.3.8 guide
               </Link>{" "}
               and the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>
@@ -595,12 +595,12 @@ export default function WCAG339Page() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               WCAG 2.2 added three criteria to Guideline 3.3, and they work as a set.{" "}
-              <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.7 Redundant Entry
               </Link>{" "}
               (A) stops processes from asking for the same information twice —
               cognitive load before authentication.{" "}
-              <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.8 Accessible Authentication (Minimum)
               </Link>{" "}
               (AA) is the compliance target most laws reference, with its four
@@ -612,7 +612,7 @@ export default function WCAG339Page() {
               3.3.9 by swapping its image CAPTCHA for a risk-based or non-interactive
               bot check and adding one non-cognitive sign-in option such as passkeys.
               Any CAPTCHA you retain also owes a text alternative under{" "}
-              <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.1.1 Non-text Content
               </Link>{" "}
               (A) — accessible authentication and accessible bot defense are the same

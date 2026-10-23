@@ -288,14 +288,14 @@ export default function JawsScreenReaderTestingGuidePage() {
                   education, banking, healthcare, and large enterprises, where it
                   is often the standard-issue assistive technology. If your
                   audience includes those users, testing with{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   alone does not cover them. In WebAIM&rsquo;s 2026 survey JAWS
                   was the primary desktop screen reader for 55.0% of
                   respondents, up from 40.5% in 2024, and 72.5% in North
                   America; the{" "}
-                  <Link href="/research/screen-reader-survey-2026" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/research/screen-reader-survey-2026" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader survey 2026 analysis
                   </Link>{" "}
                   has the full regional split.
@@ -309,20 +309,20 @@ export default function JawsScreenReaderTestingGuidePage() {
                   both ways. Something that fails in JAWS is almost certainly
                   broken; something that passes in JAWS is not automatically fine
                   elsewhere. Automated scanners like{" "}
-                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     axe and WAVE
                   </Link>{" "}
                   catch roughly a third of issues; the rest needs a human
                   listening. This guide is the JAWS-specific companion to our{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver testing guide
                   </Link>
                   , our{" "}
-                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     TalkBack testing guide
                   </Link>{" "}
                   for Android, and our broader{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>
                   .
@@ -485,11 +485,11 @@ export default function JawsScreenReaderTestingGuidePage() {
                 a mouse — and is completely unusable. That failure mode is the
                 single best reason to test with JAWS specifically, and it comes
                 down to giving controls a role JAWS understands. See the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>{" "}
                 and the{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management guide
                 </Link>
                 .
@@ -611,7 +611,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                   Confirm there is exactly one <code>&lt;h1&gt;</code>, that levels
                   do not skip, and that the outline alone tells you what the page
                   is about. Maps to{" "}
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.1 Info and Relationships
                   </Link>
                   .
@@ -622,7 +622,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                   </strong>{" "}
                   Read out of context, every link should still make sense — no
                   wall of &ldquo;click here&rdquo; or &ldquo;read more&rdquo; (
-                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.x
                   </Link>{" "}
                   link purpose). This list is the single most damning view of lazy
@@ -634,7 +634,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                   </strong>{" "}
                   Every field should show a real label, not &ldquo;edit.&rdquo;
                   Cross-check with the{" "}
-                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible forms guide
                   </Link>
                   .
@@ -703,7 +703,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Trigger dynamic changes.</strong>{" "}
                   Submit a form with an error, add to cart, filter a list. JAWS
                   should announce the change without you moving focus — that is{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3 Status Messages
                   </Link>
                   . Verify in Speech History if unsure.
@@ -759,7 +759,7 @@ export default function JawsScreenReaderTestingGuidePage() {
               <p className="text-muted-foreground leading-relaxed mt-4 text-sm">
                 Fixing most of these comes down to correct roles, names, and
                 states — verify them programmatically under{" "}
-                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.2 Name, Role, Value
                 </Link>
                 . When you report a JAWS bug, always name the{" "}
@@ -792,7 +792,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.1.1 Non-text Content
                         </Link>
                       </th>
@@ -801,7 +801,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -810,7 +810,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -819,7 +819,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -828,7 +828,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -837,7 +837,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -849,11 +849,11 @@ export default function JawsScreenReaderTestingGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-4 text-sm">
                 See the full picture in the{" "}
-                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and track your coverage with the{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .
@@ -882,7 +882,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       See the{" "}
-                      <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         NVDA testing guide
                       </Link>{" "}
                       for the free alternative.
@@ -904,7 +904,7 @@ export default function JawsScreenReaderTestingGuidePage() {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       Start with the{" "}
-                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         keyboard accessibility guide
                       </Link>
                       .

@@ -204,7 +204,7 @@ export default function ADALawsuitCostPage() {
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-3">
               Source: Accessibility.build{" "}
-              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 Lawsuit Tracker
               </Link>
               , from public court records and legal-industry reports. Figures are

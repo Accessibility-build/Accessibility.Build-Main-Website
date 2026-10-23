@@ -372,14 +372,14 @@ export default function WCAG337Page() {
               disabilities. It sits alongside the other{" "}
               <Link
                 href="/wcag/3-3-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Input Assistance criteria
               </Link>{" "}
               and, because WCAG 2.2 AA is the reference standard for the{" "}
               <Link
                 href="/guides/section-504-web-accessibility-deadline"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 DOJ Title II rule
               </Link>{" "}
@@ -713,14 +713,14 @@ function ContactStep({ formData, onChange }) {
               rarely catch — but you can pair it with a scan from the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>{" "}
               and confirm assistive-technology behavior using the{" "}
               <Link
                 href="/guides/screen-reader-testing"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Screen Reader Testing Guide
               </Link>

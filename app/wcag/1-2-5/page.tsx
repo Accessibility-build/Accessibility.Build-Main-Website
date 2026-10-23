@@ -304,7 +304,7 @@ export default function WCAG125Page() {
                 <h4 className="font-semibold text-slate-900 dark:text-white mb-1">
                   <Link
                     href="/wcag/1-2-3"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     1.2.3 Audio Description or Media Alternative
                   </Link>{" "}
@@ -533,7 +533,7 @@ video_720p.m3u8`}</code>
               process. Track it alongside the other media criteria in the{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

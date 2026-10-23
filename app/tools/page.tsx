@@ -101,7 +101,7 @@ export default function ToolsPage() {
                 excellent at the mechanical layer and cannot judge meaning, so
                 treat any clean report as a starting point rather than proof of
                 conformance. The{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated versus manual testing guide
                 </Link>{" "}
                 explains where that line falls.
@@ -113,15 +113,15 @@ export default function ToolsPage() {
                   </dt>
                   <dd className="mt-1">
                     Start with the{" "}
-                    <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       URL accessibility auditor
                     </Link>{" "}
                     for a page-level scan, the{" "}
-                    <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       contrast checker
                     </Link>{" "}
                     for WCAG 2.2 and APCA ratios, and the{" "}
-                    <Link href="/tools/heading-analyzer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/tools/heading-analyzer" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       heading analyzer
                     </Link>{" "}
                     to catch a broken document outline.
@@ -133,7 +133,7 @@ export default function ToolsPage() {
                   </dt>
                   <dd className="mt-1">
                     The{" "}
-                    <Link href="/tools/color-palette-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/tools/color-palette-generator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       accessible colour palette generator
                     </Link>{" "}
                     produces WCAG-aware palettes and previews them in real UI
@@ -147,11 +147,11 @@ export default function ToolsPage() {
                   </dt>
                   <dd className="mt-1">
                     Track findings against every criterion with the{" "}
-                    <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       interactive WCAG 2.2 checklist
                     </Link>
                     , then turn them into a shareable document with the{" "}
-                    <Link href="/tools/accessibility-report-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/tools/accessibility-report-generator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       accessibility report generator
                     </Link>
                     .
@@ -163,11 +163,11 @@ export default function ToolsPage() {
                   </dt>
                   <dd className="mt-1">
                     Publish where you stand with the{" "}
-                    <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       accessibility statement generator
                     </Link>
                     , and check a vendor&rsquo;s claims against the{" "}
-                    <Link href="/tools/overlay-detector" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/tools/overlay-detector" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       overlay detector
                     </Link>{" "}
                     if they rely on an accessibility widget.
@@ -187,11 +187,11 @@ export default function ToolsPage() {
                 with a screen reader. Those need a keyboard, a screen reader, and
                 a person. Use these tools to clear the mechanical failures fast,
                 then spend the time you saved on the{" "}
-                <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   screen reader testing
                 </Link>{" "}
                 and{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility
                 </Link>{" "}
                 passes that actually decide whether the product is usable.

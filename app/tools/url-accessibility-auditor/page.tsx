@@ -185,31 +185,31 @@ export default function UrlAccessibilityAuditorPage() {
               <ul className="text-muted-foreground leading-relaxed list-disc pl-6 space-y-2 mb-4">
                 <li>
                   Missing alternative text on images and inputs:{" "}
-                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">1.1.1 Non-text Content</Link>.
+                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.1.1 Non-text Content</Link>.
                 </li>
                 <li>
                   Insufficient text contrast:{" "}
-                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">1.4.3 Contrast (Minimum)</Link>.
+                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.4.3 Contrast (Minimum)</Link>.
                 </li>
                 <li>
                   Form fields, buttons, and links without an accessible name,
                   and invalid ARIA attributes or roles:{" "}
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">4.1.2 Name, Role, Value</Link>, with link text also mapped to{" "}
-                  <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.4 Link Purpose (In Context)</Link>.
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">4.1.2 Name, Role, Value</Link>, with link text also mapped to{" "}
+                  <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.4 Link Purpose (In Context)</Link>.
                 </li>
                 <li>
                   Broken list and table structure:{" "}
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">1.3.1 Info and Relationships</Link>.
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.3.1 Info and Relationships</Link>.
                 </li>
                 <li>
                   Missing or invalid page language:{" "}
-                  <Link href="/wcag/3-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">3.1.1 Language of Page</Link>; missing document title:{" "}
-                  <Link href="/wcag/2-4-2" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.2 Page Titled</Link>; no skip link or landmarks:{" "}
-                  <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.1 Bypass Blocks</Link>.
+                  <Link href="/wcag/3-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.1.1 Language of Page</Link>; missing document title:{" "}
+                  <Link href="/wcag/2-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.2 Page Titled</Link>; no skip link or landmarks:{" "}
+                  <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.1 Bypass Blocks</Link>.
                 </li>
                 <li>
                   Small click targets under the WCAG 2.2 rule set:{" "}
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">2.5.8 Target Size (Minimum)</Link>.
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.5.8 Target Size (Minimum)</Link>.
                 </li>
               </ul>
               <p className="text-muted-foreground leading-relaxed">
@@ -233,14 +233,14 @@ export default function UrlAccessibilityAuditorPage() {
                   Nothing is clicked, typed, or scrolled. Menus, modals, form
                   validation, and anything revealed by interaction are not
                   examined, so{" "}
-                  <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">3.3.1 Error Identification</Link>{" "}
+                  <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.3.1 Error Identification</Link>{" "}
                   and dialog focus behaviour are out of reach.
                 </li>
                 <li>
                   <strong className="text-slate-900 dark:text-white">No keyboard or focus testing.</strong>{" "}
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">2.1.1 Keyboard</Link>,{" "}
-                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.3 Focus Order</Link>, and{" "}
-                  <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.7 Focus Visible</Link>{" "}
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.1.1 Keyboard</Link>,{" "}
+                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.3 Focus Order</Link>, and{" "}
+                  <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.7 Focus Visible</Link>{" "}
                   need a person at a keyboard.
                 </li>
                 <li>
@@ -252,13 +252,13 @@ export default function UrlAccessibilityAuditorPage() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Desktop viewport only.</strong>{" "}
                   Reflow at 320 CSS pixels wide (
-                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">1.4.10 Reflow</Link>
+                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.4.10 Reflow</Link>
                   ) and mobile layouts are not exercised.
                 </li>
                 <li>
                   <strong className="text-slate-900 dark:text-white">One page, no login.</strong>{" "}
                   Cross-page criteria such as{" "}
-                  <Link href="/wcag/3-2-3" className="text-blue-600 dark:text-blue-400 hover:underline">3.2.3 Consistent Navigation</Link>{" "}
+                  <Link href="/wcag/3-2-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.2.3 Consistent Navigation</Link>{" "}
                   and anything behind authentication are outside the scan.
                 </li>
                 <li>
@@ -272,11 +272,11 @@ export default function UrlAccessibilityAuditorPage() {
               <p className="text-muted-foreground leading-relaxed">
                 A clean scan is the point where manual testing starts, not where
                 it ends. The{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated versus manual testing guide
                 </Link>{" "}
                 explains what each method catches, and the{" "}
-                <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   step-by-step audit guide
                 </Link>{" "}
                 walks through the manual checks.

@@ -303,7 +303,7 @@ export default function WCAG312Page() {
               attribute (covered by{" "}
               <Link
                 href="/wcag/3-1-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.1.1 Language of Page
               </Link>
@@ -632,7 +632,7 @@ export default function WCAG312Page() {
               point and verify by listening. Then work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

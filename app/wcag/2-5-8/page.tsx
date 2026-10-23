@@ -343,7 +343,7 @@ export default function WCAG258Page() {
               Level AA, while the stricter{" "}
               <a
                 href="#related-criteria"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
               >
                 2.5.5 Target Size (Enhanced)
               </a>{" "}
@@ -649,14 +649,14 @@ export default function WCAG258Page() {
               Run a full sweep with our{" "}
               <Link
                 href="/tools/mobile-accessibility-checker"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Mobile Accessibility Checker
               </Link>{" "}
               and audit a live URL with the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>

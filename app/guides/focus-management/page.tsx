@@ -286,7 +286,7 @@ export default function FocusManagementGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -295,7 +295,7 @@ export default function FocusManagementGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.2 No Keyboard Trap
                         </Link>
                       </th>
@@ -304,7 +304,7 @@ export default function FocusManagementGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -313,7 +313,7 @@ export default function FocusManagementGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -322,7 +322,7 @@ export default function FocusManagementGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.11 Focus Not Obscured (Min)
                         </Link>
                       </th>
@@ -331,7 +331,7 @@ export default function FocusManagementGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.2.1 On Focus
                         </Link>
                       </th>
@@ -343,16 +343,16 @@ export default function FocusManagementGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-4 text-sm">
                 WCAG 2.2 added{" "}
-                <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.11 Focus Not Obscured (Minimum)
                 </Link>{" "}
                 at AA — a common failure with sticky headers and cookie banners.
                 For the full picture see the{" "}
-                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and the interactive{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .
@@ -375,7 +375,7 @@ export default function FocusManagementGuidePage() {
                 <code>order</code>, <code>grid</code> placement) does{" "}
                 <em>not</em> change focus order, so a mismatch between visual and
                 DOM order is a classic{" "}
-                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.3
                 </Link>{" "}
                 failure. The <code>tabindex</code> attribute has exactly three
@@ -398,7 +398,7 @@ export default function FocusManagementGuidePage() {
                 operable without any <code>tabindex</code> at all. Only reach for{" "}
                 <code>tabindex=&#123;0&#125;</code> when you have genuinely built a
                 custom control, and add the matching keyboard handlers. See the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>{" "}
                 for the full interaction model.
@@ -438,11 +438,11 @@ export default function FocusManagementGuidePage() {
                 3:1 against adjacent colors, and give it enough thickness and
                 offset to read clearly. A custom ring must be at least as visible
                 as the browser default it replaces. This satisfies{" "}
-                <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.7 Focus Visible
                 </Link>
                 . Check your indicator colors with the{" "}
-                <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   contrast checker
                 </Link>
                 .
@@ -481,13 +481,13 @@ focusTarget(heading)`}</code></pre>
                 Two rules keep this safe. First, only move focus in response to a
                 user action or a change the user asked for — moving focus out from
                 under someone as they read is disorienting and can fail{" "}
-                <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.2.1 On Focus
                 </Link>
                 . Second, never focus something the user cannot see. If you must
                 announce a change without moving focus, use an{" "}
                 <code>aria-live</code> region instead — covered in the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA reference
                 </Link>
                 .
@@ -510,7 +510,7 @@ focusTarget(heading)`}</code></pre>
                 correct. The native <code>&lt;dialog&gt;</code> element with{" "}
                 <code>showModal()</code> implements the whole pattern for you,
                 including Escape-to-close — the{" "}
-                <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible dialog guide
                 </Link>{" "}
                 covers that element in full, including where initial focus
@@ -535,11 +535,11 @@ focusTarget(heading)`}</code></pre>
                 <code>aria-modal=&quot;true&quot;</code>, an accessible name, a
                 focus trap, Escape-to-close, and focus restoration yourself. Keep
                 the trap <em>escapable</em> — a trap with no keyboard exit fails{" "}
-                <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.1.2 No Keyboard Trap
                 </Link>
                 . React developers can see the ref-based version in the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React accessibility guide
                 </Link>
                 .
@@ -586,7 +586,7 @@ function removeRow(row) {
                 have <code>tabindex=&#123;-1&#125;</code> and, ideally, an{" "}
                 <code>aria-live</code> region announcing what was removed. This
                 keeps the focus order coherent (
-                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.3
                 </Link>
                 ) and prevents the silent &ldquo;where did I go?&rdquo; moment
@@ -603,19 +603,19 @@ function removeRow(row) {
                 6. Roving tabindex for Composite Widgets
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Tabs
                 </Link>
                 , toolbars,{" "}
-                <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   menus
                 </Link>
                 ,{" "}
-                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   tree views
                 </Link>
                 ,{" "}
-                <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   data grids
                 </Link>
                 , and radio-style groups should be a{" "}
@@ -644,7 +644,7 @@ toolbar.addEventListener("keydown", (e) => {
                 The alternative, <code>aria-activedescendant</code>, keeps DOM
                 focus on the container and points at a virtually-active child by
                 id — better when focus must stay on a text input, as in a{" "}
-                <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   combobox
                 </Link>
                 . Follow the exact key bindings in the{" "}
@@ -652,12 +652,12 @@ toolbar.addEventListener("keydown", (e) => {
                   href="https://www.w3.org/WAI/ARIA/apg/patterns/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   ARIA Authoring Practices patterns
                 </a>{" "}
                 and confirm the roles and states in our{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -701,11 +701,11 @@ toolbar.addEventListener("keydown", (e) => {
                 <code>tabindex=&#123;-1&#125;</code>) or its{" "}
                 <code>&lt;main&gt;</code> region so keyboard and screen reader
                 users are not stranded on a stale link. This is a{" "}
-                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.3
                 </Link>{" "}
                 requirement; the framework-specific version is in the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React accessibility guide
                 </Link>
                 .
@@ -722,7 +722,7 @@ toolbar.addEventListener("keydown", (e) => {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 New in WCAG 2.2,{" "}
-                <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.11 Focus Not Obscured (Minimum)
                 </Link>{" "}
                 requires that when an element receives focus, it is not{" "}
@@ -774,7 +774,7 @@ a, button, input, select, textarea {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       More in the{" "}
-                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         keyboard accessibility guide
                       </Link>
                       .
@@ -798,7 +798,7 @@ a, button, input, select, textarea {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       Verify with the{" "}
-                      <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         screen reader testing guide
                       </Link>
                       .
@@ -855,11 +855,11 @@ a, button, input, select, textarea {
                 focus in end-to-end tests (
                 <code>expect(page.locator(&quot;:focus&quot;)).toHaveText(...)</code>
                 ). See{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits, then scan a live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>
                 .
@@ -947,7 +947,7 @@ a, button, input, select, textarea {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see focus in the context of every other requirement.

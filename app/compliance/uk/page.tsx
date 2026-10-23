@@ -214,7 +214,7 @@ export default function UKCompliancePage() {
               was completed. In practice, <strong>WCAG 2.2 Level AA</strong> (previously 2.1 AA) is
               the de facto benchmark used by courts, regulators, and the public sector, so it is
               the sensible target for any UK organisation. Our{" "}
-              <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG 2.2 AA requirements guide
               </Link>{" "}
               explains what the standard actually asks for.
@@ -260,7 +260,7 @@ export default function UKCompliancePage() {
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               The anticipatory duty means these belong in your build and procurement processes, not
               in a reactive fix-on-complaint queue. Working through our{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG 2.2 checklist
               </Link>{" "}
               is a concrete way to turn the abstract duty into a task list.
@@ -297,7 +297,7 @@ export default function UKCompliancePage() {
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               The accessibility statement requirement trips up many teams because the model format
               is specific about structure and content. Our guide on{" "}
-              <Link href="/guides/how-to-write-an-accessibility-statement" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/guides/how-to-write-an-accessibility-statement" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 how to write an accessibility statement
               </Link>{" "}
               walks through what a compliant statement needs to say.
@@ -329,7 +329,7 @@ export default function UKCompliancePage() {
               Commercial pressure compounds the legal kind: public sector procurement pushes WCAG
               requirements onto suppliers, and large private buyers increasingly copy the practice.
               For how the UK regime compares with other jurisdictions, see our{" "}
-              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility laws tracker
               </Link>
               .
@@ -343,7 +343,7 @@ export default function UKCompliancePage() {
             </h2>
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               Post-Brexit, the{" "}
-              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 European Accessibility Act
               </Link>{" "}
               does not apply domestically inside Great Britain. But UK businesses{" "}
@@ -351,7 +351,7 @@ export default function UKCompliancePage() {
               the EAA applies from 28 June 2025. A UK e-commerce site shipping to EU customers, or
               a UK SaaS product sold to EU consumers, needs to meet EAA requirements for that part
               of the business, typically evidenced through{" "}
-              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EN 301 549
               </Link>
               , the European standard that maps onto WCAG.
@@ -363,7 +363,7 @@ export default function UKCompliancePage() {
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Many UK companies feel the EAA first through their Irish operations or customers; our{" "}
-              <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EAA in Ireland guide
               </Link>{" "}
               covers how the directive lands in the nearest EU market.
@@ -385,11 +385,11 @@ export default function UKCompliancePage() {
               <li>
                 <strong className="text-slate-900 dark:text-white">Audit your key user journeys.</strong>{" "}
                 An anticipatory duty means finding barriers before your users do. Our fixed-price{" "}
-                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 AA audits
                 </Link>{" "}
                 start at $950 and combine automated, manual, and screen reader testing; the{" "}
-                <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   sample audit report
                 </Link>{" "}
                 shows exactly what you would receive.
@@ -398,7 +398,7 @@ export default function UKCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Publish an accessibility statement.</strong>{" "}
                 Mandatory for public sector bodies under PSBAR, and good practice for everyone else
                 because it evidences the anticipatory planning the Act expects. Our{" "}
-                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessibility statement generator
                 </Link>{" "}
                 produces a solid starting point in minutes.
@@ -407,7 +407,7 @@ export default function UKCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Fix barriers in the code, not with a widget.</strong>{" "}
                 Overlay tools leave the underlying barriers in place, and the Equality Act cares
                 about actual access. Our{" "}
-                <Link href="/guides/accessibility-overlays" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessibility-overlays" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessibility overlays guide
                 </Link>{" "}
                 explains why they fall short.

@@ -382,14 +382,14 @@ export default function WCAG242Page() {
               heading (covered by{" "}
               <Link
                 href="/wcag/2-4-6"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.6 Headings and Labels
               </Link>{" "}
               and{" "}
               <Link
                 href="/wcag/1-3-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.3.1 Info and Relationships
               </Link>
@@ -596,7 +596,7 @@ export default function WCAG242Page() {
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

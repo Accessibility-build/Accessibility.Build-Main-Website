@@ -335,7 +335,7 @@ export default function WCAG2413Page() {
                 <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
                   <Link
                     href="/wcag/2-4-7"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     2.4.7 Focus Visible
                   </Link>{" "}
@@ -352,7 +352,7 @@ export default function WCAG2413Page() {
                 <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
                   <Link
                     href="/wcag/1-4-11"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     1.4.11 Non-text Contrast
                   </Link>{" "}
@@ -381,14 +381,14 @@ export default function WCAG2413Page() {
               <em>seen</em>:{" "}
               <Link
                 href="/wcag/2-4-11"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.11
               </Link>{" "}
               and{" "}
               <Link
                 href="/wcag/2-4-12"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.12 Focus Not Obscured
               </Link>{" "}
@@ -558,14 +558,14 @@ export default function WCAG2413Page() {
               A contrast checker does the ratio math for you — use the{" "}
               <Link
                 href="/tools/contrast-checker"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Contrast Checker
               </Link>{" "}
               with the before/after pixel colors, and log results in the{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

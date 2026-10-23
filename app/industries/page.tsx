@@ -243,7 +243,7 @@ export default function IndustriesPage() {
             Every organization with a website answers to the Web Content Accessibility Guidelines in some form, but the
             enforcement mechanisms differ dramatically. A private online store is most likely to face a demand letter
             or an ADA Title III lawsuit — over{" "}
-            <Link href="/research/accessibility-lawsuits" className="text-primary hover:underline">
+            <Link href="/research/accessibility-lawsuits" className="text-primary underline underline-offset-2 hover:decoration-2">
               3,100 such suits were filed in federal court in 2025 alone
             </Link>
             , with e-commerce absorbing the overwhelming majority. A hospital answers to HHS enforcement under Section
@@ -256,11 +256,11 @@ export default function IndustriesPage() {
             PDFs matter everywhere — but where you should start depends on which failures carry the most legal and
             human cost in your sector. These guides rank the issues accordingly, and each ends with a roadmap you can
             hand to a development team. When you are ready to validate your work, use our{" "}
-            <Link href="/checklists/wcag-2-2" className="text-primary hover:underline">
+            <Link href="/checklists/wcag-2-2" className="text-primary underline underline-offset-2 hover:decoration-2">
               WCAG 2.2 checklist
             </Link>{" "}
             or request a{" "}
-            <Link href="/services/accessibility-audits" className="text-primary hover:underline">
+            <Link href="/services/accessibility-audits" className="text-primary underline underline-offset-2 hover:decoration-2">
               professional audit
             </Link>
             .

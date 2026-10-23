@@ -283,21 +283,21 @@ export default function SvelteAccessibilityGuidePage() {
                   principles map cleanly onto our{" "}
                   <Link
                     href="/guides/react-accessibility"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     React accessibility guide
                   </Link>
                   ,{" "}
                   <Link
                     href="/guides/vue-accessibility"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     Vue accessibility guide
                   </Link>
                   , and{" "}
                   <Link
                     href="/guides/angular-accessibility"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     Angular accessibility guide
                   </Link>
@@ -336,7 +336,7 @@ export default function SvelteAccessibilityGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -345,7 +345,7 @@ export default function SvelteAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -354,7 +354,7 @@ export default function SvelteAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.2 No Keyboard Trap
                         </Link>
                       </th>
@@ -363,7 +363,7 @@ export default function SvelteAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -372,7 +372,7 @@ export default function SvelteAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -381,7 +381,7 @@ export default function SvelteAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.1 Error Identification
                         </Link>
                       </th>
@@ -390,7 +390,7 @@ export default function SvelteAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -399,7 +399,7 @@ export default function SvelteAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -413,14 +413,14 @@ export default function SvelteAccessibilityGuidePage() {
                 For the full list, see the{" "}
                 <Link
                   href="/guides/wcag-2-2-aa-requirements"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and the interactive{" "}
                 <Link
                   href="/checklists/wcag-2-2"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 checklist
                 </Link>
@@ -557,7 +557,7 @@ export default function SvelteAccessibilityGuidePage() {
                 focus or your toast is announced, which is what the rest of this
                 guide covers. Every role and state the warnings mention is
                 documented in our{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -704,17 +704,17 @@ export function trapFocus(node: HTMLElement) {
                   href="https://bits-ui.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   Bits UI
                 </a>{" "}
                 and Melt UI ship a fully accessible <code>Dialog</code> so you
                 rarely hand-roll one. See the{" "}
-                <Link href="/learn/modals" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/learn/modals" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible modal pattern
                 </Link>{" "}
                 for the full interaction spec and the{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management guide
                 </Link>{" "}
                 for traps and restoration in depth.
@@ -785,11 +785,11 @@ export function trapFocus(node: HTMLElement) {
                 <code>tabindex=&quot;-1&quot;</code> lets{" "}
                 <code>&lt;main&gt;</code> receive programmatic focus without
                 adding it to the Tab order. This supports{" "}
-                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.3 Focus Order
                 </Link>{" "}
                 and depends on a working{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   skip link
                 </Link>
                 . Because SvelteKit already handles the announcement, resist
@@ -843,7 +843,7 @@ export function announce(text: string) {
                 <code>aria-live=&quot;assertive&quot;</code> for urgent,
                 interrupting messages such as a session-timeout warning. This
                 satisfies{" "}
-                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.3 Status Messages
                 </Link>
                 .
@@ -947,11 +947,11 @@ export function announce(text: string) {
                 exists; it is only <em>live regions</em> that must stay mounted.
                 For labels, <code>&lt;fieldset&gt;</code> grouping, validation
                 timing, and error summaries, see the{" "}
-                <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible forms guide
                 </Link>{" "}
                 and the{" "}
-                <Link href="/guides/accessible-form-validation" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-form-validation" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   form validation &amp; error handling guide
                 </Link>
                 .
@@ -975,12 +975,12 @@ export function announce(text: string) {
                       <li>Interactive = real <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code>, never an <code>on:click</code> div.</li>
                       <li>Refine focus on navigation with <code>afterNavigate</code>; move it on overlay open/close.</li>
                       <li>Trap focus in dialogs with a <code>use:trapFocus</code> action; restore it on close.</li>
-                      <li>Keep a visible focus outline (<Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.7</Link>).</li>
+                      <li>Keep a visible focus outline (<Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.7</Link>).</li>
                       <li>Roving <code>tabindex</code> for arrow-key widgets (tabs, menus, listboxes).</li>
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       See the{" "}
-                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         keyboard accessibility guide
                       </Link>
                       .
@@ -1004,7 +1004,7 @@ export function announce(text: string) {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       Test with real AT — the{" "}
-                      <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         screen reader testing guide
                       </Link>
                       .
@@ -1058,7 +1058,7 @@ test("home page is accessible", async ({ page }) => {
                 when the accessibility tree is correct, so writing tests this way
                 surfaces missing names early. Finish every feature with a manual
                 keyboard pass and a screen reader pass. Read our comparison of{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 to see where each fits.
@@ -1154,11 +1154,11 @@ test("home page is accessible", async ({ page }) => {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Scan the deployed build with our{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>{" "}
                 and work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .

@@ -280,12 +280,12 @@ export default function LandmarksPageStructureGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   This is not an edge case for a few users. Structure is the
                   backbone of{" "}
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.1 Info and Relationships
                   </Link>
                   , one of the most-cited WCAG failures on the web, and it is what
                   makes the bypass mechanisms in{" "}
-                  <Link href="/guides/skip-links" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/skip-links" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     skip links and bypass blocks
                   </Link>{" "}
                   possible in the first place. Good structure also happens to be
@@ -306,7 +306,7 @@ export default function LandmarksPageStructureGuidePage() {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 The highlighted row,{" "}
-                <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.3.1 Info and Relationships
                 </Link>
                 , is the heart of the matter: the structure a sighted user
@@ -338,7 +338,7 @@ export default function LandmarksPageStructureGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -347,7 +347,7 @@ export default function LandmarksPageStructureGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.1 Bypass Blocks
                         </Link>
                       </th>
@@ -356,7 +356,7 @@ export default function LandmarksPageStructureGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.2 Page Titled
                         </Link>
                       </th>
@@ -365,7 +365,7 @@ export default function LandmarksPageStructureGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.2 Meaningful Sequence
                         </Link>
                       </th>
@@ -374,7 +374,7 @@ export default function LandmarksPageStructureGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.6 Headings and Labels
                         </Link>
                       </th>
@@ -383,7 +383,7 @@ export default function LandmarksPageStructureGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -392,7 +392,7 @@ export default function LandmarksPageStructureGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.10 Section Headings
                         </Link>
                       </th>
@@ -407,7 +407,7 @@ export default function LandmarksPageStructureGuidePage() {
                 The complete{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 criteria
                 </Link>{" "}
@@ -428,7 +428,7 @@ export default function LandmarksPageStructureGuidePage() {
                   there is a native HTML element that provides the role
                   automatically. The single most important rule of this guide
                   follows the{" "}
-                  <Link href="/guides/using-aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/using-aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     first rule of ARIA
                   </Link>
                   : if a native element gives you the landmark, use the native
@@ -716,7 +716,7 @@ export default function LandmarksPageStructureGuidePage() {
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   This naming is the{" "}
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2 Name, Role, Value
                   </Link>{" "}
                   tie-in for structure: the role comes from the element, and you
@@ -726,7 +726,7 @@ export default function LandmarksPageStructureGuidePage() {
                   <code>aria-current</code>, hiding the separators from assistive
                   technology, and keeping the visible trail in sync with{" "}
                   <code>BreadcrumbList</code> structured data, see the{" "}
-                  <Link href="/guides/accessible-breadcrumbs" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-breadcrumbs" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible breadcrumbs guide
                   </Link>
                   .
@@ -807,7 +807,7 @@ export default function LandmarksPageStructureGuidePage() {
                   an accessible name, so a labeled login or checkout form becomes a
                   form landmark, while a small unnamed inline form does not clutter
                   the list. The dedicated{" "}
-                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible forms guide
                   </Link>{" "}
                   covers labeling and grouping inside forms in depth.
@@ -891,7 +891,7 @@ export default function LandmarksPageStructureGuidePage() {
                   in the landmarks list and the entry in the headings list carry
                   the same words. For a deeper look at how headings underpin the
                   bypass model, see the{" "}
-                  <Link href="/guides/skip-links" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/skip-links" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     skip links and bypass blocks guide
                   </Link>
                   .
@@ -936,7 +936,7 @@ export default function LandmarksPageStructureGuidePage() {
                   move a block visually without moving it in the DOM, and when they
                   disagree, a screen reader user and a keyboard user experience the
                   source order. This is{" "}
-                  <Link href="/wcag/1-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.2 Meaningful Sequence
                   </Link>
                   : the sequence in which content is read must preserve its meaning.
@@ -957,7 +957,7 @@ export default function LandmarksPageStructureGuidePage() {
                   search results. A descriptive, unique, front-loaded title, such as
                   &ldquo;Pricing, Acme&rdquo; rather than &ldquo;Acme&rdquo; on every
                   page, satisfies{" "}
-                  <Link href="/wcag/2-4-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.2 Page Titled
                   </Link>{" "}
                   and is the difference between a user knowing which page they landed
@@ -999,7 +999,7 @@ export default function LandmarksPageStructureGuidePage() {
                     <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                       <tr>
                         <th scope="row" className="px-4 py-3 font-medium text-slate-900 dark:text-white align-top">
-                          <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">NVDA</Link>{" "}(Windows)
+                          <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">NVDA</Link>{" "}(Windows)
                         </th>
                         <td className="px-4 py-3 align-top"><code>D</code> and <code>Shift+D</code> for the next and previous landmark.</td>
                         <td className="px-4 py-3 align-top"><code>H</code> and <code>Shift+H</code>, or number keys <code>1</code> to <code>6</code> for a specific level.</td>
@@ -1007,7 +1007,7 @@ export default function LandmarksPageStructureGuidePage() {
                       </tr>
                       <tr>
                         <th scope="row" className="px-4 py-3 font-medium text-slate-900 dark:text-white align-top">
-                          <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">JAWS</Link>{" "}(Windows)
+                          <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">JAWS</Link>{" "}(Windows)
                         </th>
                         <td className="px-4 py-3 align-top"><code>R</code> and <code>Shift+R</code> cycle through regions, the JAWS term for landmarks.</td>
                         <td className="px-4 py-3 align-top"><code>H</code> and <code>Shift+H</code>, or number keys <code>1</code> to <code>6</code>.</td>
@@ -1015,7 +1015,7 @@ export default function LandmarksPageStructureGuidePage() {
                       </tr>
                       <tr>
                         <th scope="row" className="px-4 py-3 font-medium text-slate-900 dark:text-white align-top">
-                          <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">VoiceOver</Link>{" "}(macOS)
+                          <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">VoiceOver</Link>{" "}(macOS)
                         </th>
                         <td className="px-4 py-3 align-top">Open the rotor with <code>VO+U</code> and arrow to the Landmarks menu.</td>
                         <td className="px-4 py-3 align-top"><code>VO+Command+H</code>, or the Headings menu in the rotor.</td>
@@ -1027,7 +1027,7 @@ export default function LandmarksPageStructureGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   On mobile, the pattern is the same through a gesture rather than a
                   key: VoiceOver on iOS and{" "}
-                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     TalkBack
                   </Link>{" "}
                   on Android both have a rotor or reading-control that includes
@@ -1077,7 +1077,7 @@ export default function LandmarksPageStructureGuidePage() {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Automated checkers such as{" "}
-                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     axe and WAVE
                   </Link>{" "}
                   are genuinely good at the mechanical structural rules: a missing or
@@ -1089,13 +1089,13 @@ export default function LandmarksPageStructureGuidePage() {
                   meaningful, whether the region you marked as main is really the
                   main content, or whether the outline matches the visual design. As
                   the{" "}
-                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     automated versus manual testing guide
                   </Link>{" "}
                   explains, structure is a place where the machine gets you to a
                   valid page and a human decides whether it is a good one. For where
                   this fits in a full review, see the{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessibility audit guide
                   </Link>
                   .

@@ -298,7 +298,7 @@ export default function AccessibleTabsGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/tabs/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     WAI-ARIA Authoring Practices Tabs pattern
                   </a>{" "}
@@ -319,7 +319,7 @@ export default function AccessibleTabsGuidePage() {
                       independently or several be open at once, use an{" "}
                       <Link
                         href="/guides/accessible-accordion"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                       >
                         accordion
                       </Link>
@@ -361,7 +361,7 @@ export default function AccessibleTabsGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -370,7 +370,7 @@ export default function AccessibleTabsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -379,7 +379,7 @@ export default function AccessibleTabsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -388,7 +388,7 @@ export default function AccessibleTabsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -397,7 +397,7 @@ export default function AccessibleTabsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.2.1 On Focus
                         </Link>
                       </th>
@@ -406,7 +406,7 @@ export default function AccessibleTabsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -418,11 +418,11 @@ export default function AccessibleTabsGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-4 text-sm">
                 See the full picture in the{" "}
-                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and work through the interactive{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .
@@ -477,7 +477,7 @@ export default function AccessibleTabsGuidePage() {
                 button is already keyboard operable and announced as interactive, so
                 you inherit correct behavior and only layer the tab semantics on top.
                 For the underlying meaning of each role and state, see the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -543,7 +543,7 @@ export default function AccessibleTabsGuidePage() {
                 removes inactive panels from the accessibility tree so users never
                 hear all three panels stacked together. Hide inactive panels
                 deliberately; see the{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management guide
                 </Link>{" "}
                 for why visibility and the accessibility tree must stay in sync.
@@ -595,12 +595,12 @@ export default function AccessibleTabsGuidePage() {
                 may move to the first, and Left Arrow on the first may move to the
                 last. The single-Tab-stop rule is not optional — it is what makes a
                 tab set feel native and satisfies{" "}
-                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.3 Focus Order
                 </Link>
                 . For the broader technique across menus and toolbars, see roving{" "}
                 <code>tabindex</code> in the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>
                 .
@@ -664,7 +664,7 @@ export default function AccessibleTabsGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed">
                 Manual activation also keeps you safely inside{" "}
-                <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.2.1 On Focus
                 </Link>
                 , because merely moving focus to a tab never triggers a change of
@@ -836,16 +836,16 @@ case "ArrowUp":   next = (current - 1 + tabs.length) % tabs.length; break`}</cod
                 <strong className="text-slate-900 dark:text-white">React Aria</strong>, or{" "}
                 Headless UI — which ships the full keyboard model, roving{" "}
                 <code>tabindex</code>, and orientation handling for you. The{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React accessibility guide
                 </Link>{" "}
                 covers the <code>useId</code> and ref patterns in depth, and the
                 same approach applies in the{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>{" "}
                 and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 accessibility guides.
@@ -886,7 +886,7 @@ case "ArrowUp":   next = (current - 1 + tabs.length) % tabs.length; break`}</cod
                   You should hear the tab&apos;s name, &ldquo;tab,&rdquo; its
                   position (&ldquo;2 of 4&rdquo;), and &ldquo;selected&rdquo; on the
                   active one. Verify with the{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>
                   .
@@ -901,11 +901,11 @@ case "ArrowUp":   next = (current - 1 + tabs.length) % tabs.length; break`}</cod
                 Layer automated checks on top: <code>axe-core</code> flags
                 missing or mismatched <code>aria-controls</code> targets and invalid
                 role nesting. See{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits, then scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>
                 .
@@ -991,7 +991,7 @@ case "ArrowUp":   next = (current - 1 + tabs.length) % tabs.length; break`}</cod
                 <li>
                   <strong className="text-slate-900 dark:text-white">Focus visible.</strong>{" "}
                   The focused tab shows a clear indicator (
-                  <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.7
                   </Link>
                   ).
@@ -999,7 +999,7 @@ case "ArrowUp":   next = (current - 1 + tabs.length) % tabs.length; break`}</cod
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see tabs in the context of every other requirement.

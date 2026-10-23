@@ -350,7 +350,7 @@ export default function WCAG326Page() {
               offer in a consistent, predictable place. It is a sibling to{" "}
               <Link
                 href="/wcag/3-3-7"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.3.7 Redundant Entry
               </Link>{" "}
@@ -358,7 +358,7 @@ export default function WCAG326Page() {
               and, because WCAG 2.2 AA is the reference standard for the{" "}
               <Link
                 href="/guides/section-504-web-accessibility-deadline"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 DOJ Title II rule
               </Link>{" "}
@@ -686,14 +686,14 @@ export default function RootLayout({ children }) {
               rarely catch on their own — but you can pair it with a scan from the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>{" "}
               and confirm assistive-technology behavior using the{" "}
               <Link
                 href="/guides/screen-reader-testing"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Screen Reader Testing Guide
               </Link>

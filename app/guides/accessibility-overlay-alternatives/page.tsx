@@ -192,7 +192,7 @@ export default function OverlayAlternativesGuidePage() {
                 work — and why they fall short technically — in depth in our{" "}
                 <Link
                   href="/guides/accessibility-overlays"
-                  className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
                 >
                   accessibility overlays guide
                 </Link>
@@ -271,7 +271,7 @@ export default function OverlayAlternativesGuidePage() {
                 overlay? Our free{" "}
                 <Link
                   href="/tools/overlay-detector"
-                  className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
                 >
                   overlay detector
                 </Link>{" "}
@@ -314,14 +314,14 @@ export default function OverlayAlternativesGuidePage() {
                       lawsuit would cite. See our{" "}
                       <Link
                         href="/services/accessibility-audits"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                       >
                         accessibility audit services
                       </Link>{" "}
                       and{" "}
                       <Link
                         href="/services/remediation-support"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                       >
                         remediation support
                       </Link>
@@ -375,7 +375,7 @@ export default function OverlayAlternativesGuidePage() {
                       your code. Read our{" "}
                       <Link
                         href="/guides/automated-vs-manual-accessibility-testing"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                       >
                         automated vs manual testing guide
                       </Link>{" "}
@@ -427,7 +427,7 @@ export default function OverlayAlternativesGuidePage() {
                       practical starting point is working through the{" "}
                       <Link
                         href="/checklists/wcag-2-2"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                       >
                         WCAG 2.2 checklist
                       </Link>{" "}
@@ -598,7 +598,7 @@ export default function OverlayAlternativesGuidePage() {
                   Confirm what is installed with the{" "}
                   <Link
                     href="/tools/overlay-detector"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     overlay detector
                   </Link>
@@ -612,7 +612,7 @@ export default function OverlayAlternativesGuidePage() {
                   Commission a professional{" "}
                   <Link
                     href="/services/accessibility-audits"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     accessibility audit
                   </Link>{" "}

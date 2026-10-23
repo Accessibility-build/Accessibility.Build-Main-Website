@@ -405,7 +405,7 @@ export default function OverlayDetector() {
                             href={v.helpUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs text-primary hover:underline inline-flex items-center gap-1"
+                            className="text-xs text-primary underline underline-offset-2 hover:decoration-2 inline-flex items-center gap-1"
                           >
                             Learn more
                             <ExternalLink className="h-3 w-3" />

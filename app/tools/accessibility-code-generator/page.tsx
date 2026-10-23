@@ -203,47 +203,47 @@ export default function AccessibilityCodeGeneratorPage() {
               </p>
               <ul className="text-muted-foreground leading-relaxed list-disc pl-6 space-y-2 mb-4">
                 <li>
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">2.1.1 Keyboard</Link>{" "}
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.1.1 Keyboard</Link>{" "}
                   and{" "}
-                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">2.1.2 No Keyboard Trap</Link>{" "}
+                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.1.2 No Keyboard Trap</Link>{" "}
                   (Level A): every action reachable by keyboard, and focus able
                   to leave.
                 </li>
                 <li>
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">4.1.2 Name, Role, Value</Link>{" "}
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">4.1.2 Name, Role, Value</Link>{" "}
                   (Level A): native elements or correct ARIA roles, accessible
                   names, and state attributes such as aria-expanded and
                   aria-selected.
                 </li>
                 <li>
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">1.3.1 Info and Relationships</Link>{" "}
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">1.3.1 Info and Relationships</Link>{" "}
                   (Level A): labels associated with fields, groups, headings, and
                   list structure expressed in markup.
                 </li>
                 <li>
-                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.3 Focus Order</Link>{" "}
+                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.3 Focus Order</Link>{" "}
                   and{" "}
-                  <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.7 Focus Visible</Link>{" "}
+                  <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.7 Focus Visible</Link>{" "}
                   (Level A and AA): focus moved deliberately in dialogs and
                   menus, and never hidden by CSS.
                 </li>
                 <li>
-                  <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">3.3.1 Error Identification</Link>{" "}
+                  <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.3.1 Error Identification</Link>{" "}
                   and{" "}
-                  <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">3.3.2 Labels or Instructions</Link>{" "}
+                  <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.3.2 Labels or Instructions</Link>{" "}
                   (Level A) for forms, with{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">4.1.3 Status Messages</Link>{" "}
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">4.1.3 Status Messages</Link>{" "}
                   (Level AA) for anything announced through a live region.
                 </li>
                 <li>
                   The criteria new in WCAG 2.2 that the prompt calls out by
                   number when you choose 2.2:{" "}
-                  <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.11 Focus Not Obscured (Minimum)</Link>,{" "}
-                  <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">2.5.7 Dragging Movements</Link>,{" "}
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">2.5.8 Target Size (Minimum)</Link>,{" "}
-                  <Link href="/wcag/3-2-6" className="text-blue-600 dark:text-blue-400 hover:underline">3.2.6 Consistent Help</Link>,{" "}
-                  <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 hover:underline">3.3.7 Redundant Entry</Link>, and{" "}
-                  <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline">3.3.8 Accessible Authentication (Minimum)</Link>.
+                  <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.11 Focus Not Obscured (Minimum)</Link>,{" "}
+                  <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.5.7 Dragging Movements</Link>,{" "}
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.5.8 Target Size (Minimum)</Link>,{" "}
+                  <Link href="/wcag/3-2-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.2.6 Consistent Help</Link>,{" "}
+                  <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.3.7 Redundant Entry</Link>, and{" "}
+                  <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.3.8 Accessible Authentication (Minimum)</Link>.
                 </li>
               </ul>
               <p className="text-muted-foreground leading-relaxed">
@@ -280,11 +280,11 @@ export default function AccessibilityCodeGeneratorPage() {
                   screen reader; check contrast and focus visibility in your
                   real theme; and run an automated checker on the rendered
                   result. The{" "}
-                  <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     keyboard accessibility guide
                   </Link>{" "}
                   covers what to expect from each key, and the{" "}
-                  <Link href="/learn" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/learn" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     interactive pattern demos
                   </Link>{" "}
                   show working modal, table, search, pagination, and carousel

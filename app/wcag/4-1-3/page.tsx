@@ -491,7 +491,7 @@ export default function WCAG413Page() {
               disruptive than a confirmation that arrives a half-second late. See{" "}
               <Link
                 href="/reference/aria"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 the ARIA reference
               </Link>{" "}
@@ -500,7 +500,7 @@ export default function WCAG413Page() {
               must be announced without flooding the screen reader; the{" "}
               <Link
                 href="/guides/accessible-ai-chat"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 accessible AI chat interfaces guide
               </Link>{" "}
@@ -719,14 +719,14 @@ export default function WCAG413Page() {
               workflow with the{" "}
               <Link
                 href="/guides/screen-reader-testing"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Screen Reader Testing guide
               </Link>
               , and scan a live page with the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>
@@ -735,7 +735,7 @@ export default function WCAG413Page() {
               timer; the{" "}
               <Link
                 href="/guides/accessible-notifications"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 accessible notifications and toasts guide
               </Link>{" "}

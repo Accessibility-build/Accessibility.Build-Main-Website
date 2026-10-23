@@ -453,21 +453,21 @@ export default function WCAG412Page() {
               making things worse, see the{" "}
               <Link
                 href="/guides/using-aria"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 guide to using ARIA the right way
               </Link>
               . For more on the attributes themselves, see the{" "}
               <Link
                 href="/reference/aria"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 ARIA Attributes Reference
               </Link>{" "}
               and our{" "}
               <Link
                 href="/blog/aria-labels-guide"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 guide to ARIA labels
               </Link>
@@ -661,21 +661,21 @@ export default function WCAG412Page() {
               Audit a live page with the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>
               , generate correct labels with the{" "}
               <Link
                 href="/tools/accessibility-code-generator"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Accessibility Code Generator
               </Link>
               , and follow the full process in our{" "}
               <Link
                 href="/guides/screen-reader-testing"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Screen Reader Testing guide
               </Link>

@@ -195,7 +195,7 @@ export default function OverlaysEuUkLawPage() {
               accessibility problems automatically at page load, usually adding a floating toolbar of
               display options. Independent testing consistently finds that they fail to fix the
               barriers that matter and sometimes introduce new ones. Our{" "}
-              <Link href="/guides/accessibility-overlays" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/guides/accessibility-overlays" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility overlays guide
               </Link>{" "}
               covers the technical evidence in depth; this page focuses on the legal question for the
@@ -219,7 +219,7 @@ export default function OverlaysEuUkLawPage() {
               e-commerce, banking, and transport services, <strong>meet</strong> its accessibility
               requirements: the actual service must be perceivable, operable, understandable, and
               robust for people with disabilities. The technical benchmark is the European standard{" "}
-              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EN 301 549
               </Link>
               , which incorporates WCAG at Level AA for web content; conformity with it becomes a
@@ -240,7 +240,7 @@ export default function OverlaysEuUkLawPage() {
               So a service owner claiming EAA conformity via EN 301 549 has to show that the
               delivered content conforms, and an overlay contributes nothing to that showing. For how
               the EAA is enforced in a specific member state, see our{" "}
-              <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EAA in Ireland guide
               </Link>
               .
@@ -314,7 +314,7 @@ export default function OverlaysEuUkLawPage() {
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               That framing leaves overlays in the same position they occupy under the EAA. If the
               underlying barriers persist with the widget active, and{" "}
-              <Link href="/guides/accessibility-overlays" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/guides/accessibility-overlays" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 testing consistently shows they do
               </Link>
               , then the disabled user is still excluded and the duty is not met by having installed
@@ -325,7 +325,7 @@ export default function OverlaysEuUkLawPage() {
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               For the wider UK picture, including the public sector regulations that already mandate
               WCAG-based standards, see our{" "}
-              <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 UK accessibility compliance guide
               </Link>
               .
@@ -376,7 +376,7 @@ export default function OverlaysEuUkLawPage() {
               <li>
                 <strong className="text-slate-900 dark:text-white">Find out where you stand.</strong>{" "}
                 A professional{" "}
-                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessibility audit
                 </Link>{" "}
                 against WCAG 2.2 AA, covering your critical user journeys with manual and
@@ -386,7 +386,7 @@ export default function OverlaysEuUkLawPage() {
                 <strong className="text-slate-900 dark:text-white">Fix the code, not the presentation layer.</strong>{" "}
                 Label the controls, repair the keyboard traps, fix the contrast and the focus order
                 in your actual markup and components. Our{" "}
-                <Link href="/guides/accessibility-overlay-alternatives" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessibility-overlay-alternatives" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   overlay alternatives guide
                 </Link>{" "}
                 maps out the remediation options at every budget level.
@@ -395,7 +395,7 @@ export default function OverlaysEuUkLawPage() {
                 <strong className="text-slate-900 dark:text-white">Verify and document.</strong>{" "}
                 Re-test after remediation, publish an accurate accessibility statement, and keep the
                 evidence. Under the EAA, being able to demonstrate conformity with{" "}
-                <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EN 301 549
                 </Link>{" "}
                 is the point of the exercise.
@@ -403,7 +403,7 @@ export default function OverlaysEuUkLawPage() {
               <li>
                 <strong className="text-slate-900 dark:text-white">Check what your site is running today.</strong>{" "}
                 Inherited an overlay from an agency or a previous team? Our free{" "}
-                <Link href="/tools/overlay-detector" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/overlay-detector" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   overlay detector
                 </Link>{" "}
                 shows whether a site is running an overlay, and which one.

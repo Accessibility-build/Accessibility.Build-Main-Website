@@ -456,7 +456,7 @@ export default function WCAG146Page() {
               Measure any pair instantly with the{" "}
               <Link
                 href="/tools/contrast-checker"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Color Contrast Checker
               </Link>

@@ -352,7 +352,7 @@ export default function WCAG122Page() {
               readable text on the same page. This exception is narrow and rarely
               applies. Note that 1.2.2 is only the caption requirement; the same video
               may also need audio description or a full text alternative under the other{" "}
-              <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.x Time-based Media criteria
               </Link>
               , and live video is covered separately by 1.2.4.
@@ -615,14 +615,14 @@ Captions help deaf and hard-of-hearing viewers.
               and building a keyboard-operable player — see the{" "}
               <Link
                 href="/guides/accessible-video-player"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 accessible video &amp; media player guide
               </Link>
               . For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

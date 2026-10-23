@@ -296,7 +296,7 @@ export default function AccessibleAccordionGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     WAI-ARIA Authoring Practices Disclosure pattern
                   </a>{" "}
@@ -305,7 +305,7 @@ export default function AccessibleAccordionGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/accordion/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     Accordion pattern
                   </a>{" "}
@@ -360,7 +360,7 @@ export default function AccessibleAccordionGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -369,7 +369,7 @@ export default function AccessibleAccordionGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -378,7 +378,7 @@ export default function AccessibleAccordionGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -387,7 +387,7 @@ export default function AccessibleAccordionGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -396,7 +396,7 @@ export default function AccessibleAccordionGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -408,11 +408,11 @@ export default function AccessibleAccordionGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-4 text-sm">
                 See the full picture in the{" "}
-                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and work through the interactive{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .
@@ -478,7 +478,7 @@ export default function AccessibleAccordionGuidePage() {
                       <strong className="text-slate-900 dark:text-white">Exactly one</strong>{" "}
                       panel of related peer content visible at a time, with a
                       roving-tabindex tab strip. Use the{" "}
-                      <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         tabs pattern
                       </Link>{" "}
                       instead.
@@ -676,7 +676,7 @@ export default function AccessibleAccordionGuidePage() {
                 reserving <code>role="region"</code> for accordions with a small
                 number of sections. The heading wrapper, however, is not
                 optional. Set the heading level to fit the page outline — see the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>{" "}
                 for how each attribute is exposed.
@@ -730,15 +730,15 @@ export default function AccessibleAccordionGuidePage() {
                 keys are extra. In tabs, the Arrow keys are the primary
                 navigation and the whole strip is a single Tab stop. Do not copy
                 the roving-tabindex model from the{" "}
-                <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   tabs guide
                 </Link>{" "}
                 into an accordion — see the broader technique in the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>
                 , and the{" "}
-                <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   menu and menu button guide
                 </Link>{" "}
                 for the disclosure-based pattern a navigation dropdown should use.
@@ -858,16 +858,16 @@ accordion.addEventListener("keydown", (e) => {
                 <strong className="text-slate-900 dark:text-white">React Aria Disclosure</strong>, or{" "}
                 Headless UI — ships the state, heading structure, and optional
                 keyboard handling for you. The{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React accessibility guide
                 </Link>{" "}
                 covers the <code>useId</code> pattern in depth, and the same
                 approach applies in the{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>{" "}
                 and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 accessibility guides.
@@ -972,7 +972,7 @@ accordion.addEventListener("keydown", (e) => {
                   You should hear the header&apos;s name, &ldquo;button,&rdquo;
                   and &ldquo;collapsed&rdquo; or &ldquo;expanded&rdquo; that
                   flips as you toggle. Verify with the{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>
                   .
@@ -992,11 +992,11 @@ accordion.addEventListener("keydown", (e) => {
                 Then layer automated checks on top: <code>axe-core</code> flags a
                 missing <code>aria-controls</code> target or an{" "}
                 <code>aria-expanded</code> on a non-interactive element. See{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits, then scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>
                 .
@@ -1051,7 +1051,7 @@ accordion.addEventListener("keydown", (e) => {
                   <strong className="text-slate-900 dark:text-white">Right pattern.</strong>{" "}
                   Sections can expand independently — not one-at-a-time peer
                   panels (use{" "}
-                  <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     tabs
                   </Link>
                   ). Consider native <code>&lt;details&gt;</code> first.
@@ -1084,7 +1084,7 @@ accordion.addEventListener("keydown", (e) => {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Focus visible.</strong>{" "}
                   The focused header shows a clear indicator (
-                  <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.7
                   </Link>
                   ).
@@ -1092,7 +1092,7 @@ accordion.addEventListener("keydown", (e) => {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see accordions in the context of every other requirement.

@@ -158,7 +158,7 @@ export default function WCAG129Page() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Guideline 1.2 divides media by two axes: prerecorded vs. live, and
               audio/video composition. Prerecorded audio-only is handled at Level A by{" "}
-              <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.1
               </Link>{" "}
               (transcript). Live <em>synchronized</em> media — video with audio — gets
@@ -327,7 +327,7 @@ export default function WCAG129Page() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
               Live text is read under time pressure — give it generous size, spacing, and
               contrast (see{" "}
-              <Link href="/wcag/1-4-6" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-4-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.4.6 Contrast (Enhanced)
               </Link>
               ).

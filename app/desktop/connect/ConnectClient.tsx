@@ -53,7 +53,7 @@ export function ConnectClient({
           {link && (
             <p className="mt-2">
               Didn&apos;t switch automatically?{' '}
-              <a href={link} className="font-medium text-primary hover:underline">
+              <a href={link} className="font-medium text-primary underline underline-offset-2 hover:decoration-2">
                 Open the app
               </a>
             </p>

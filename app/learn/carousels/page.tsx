@@ -180,11 +180,15 @@ function AccessibleCarousel({ autoPlay = false }: { autoPlay?: boolean }) {
                     </Button>
                 </div>
 
-                <div className="flex gap-2" role="tablist" aria-label="Slide indicators">
+                {/* Each dot sits in a 24px button (WCAG 2.5.8 Target Size). Inactive dots are
+                    slate-500, 4.8:1, so the controls are visible (1.4.11); bg-border was 1.2:1. */}
+                <div className="flex gap-1" role="tablist" aria-label="Slide indicators">
                     {slides.map((_, idx) => (
                         <button key={idx} role="tab" aria-selected={idx === currentSlide} aria-label={`Go to slide ${idx + 1}`}
                             onClick={() => { goToSlide(idx); setIsPlaying(false); }}
-                            className={cn("w-3 h-3 rounded-full transition-all", idx === currentSlide ? "bg-rose-500 w-6" : "bg-border hover:bg-muted-foreground/40")} />
+                            className="group flex h-6 min-w-6 items-center justify-center rounded-full">
+                            <span aria-hidden="true" className={cn("block h-3 rounded-full transition-all", idx === currentSlide ? "w-6 bg-rose-500" : "w-3 bg-slate-500 group-hover:bg-slate-700 dark:bg-slate-400 dark:group-hover:bg-slate-200")} />
+                        </button>
                     ))}
                 </div>
             </div>

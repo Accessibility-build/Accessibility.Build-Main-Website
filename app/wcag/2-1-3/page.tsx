@@ -156,7 +156,7 @@ export default function WCAG213Page() {
             </blockquote>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-4 text-sm">
               Compare this with{" "}
-              <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 2.1.1 Keyboard
               </Link>{" "}
               (Level A): the wording is identical <em>except</em> that 2.1.1 ends with
@@ -259,11 +259,11 @@ export default function WCAG213Page() {
             </ul>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               Also related but distinct:{" "}
-              <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 2.1.2 No Keyboard Trap
               </Link>{" "}
               (A) ensures focus can always leave a component, and{" "}
-              <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 2.5.7 Dragging Movements
               </Link>{" "}
               (AA) requires a single-pointer alternative to dragging. 2.1.3 sits above
@@ -462,7 +462,7 @@ export default function WCAG213Page() {
               Automated scanners can flag missing tabindex or click-only handlers, but
               only a human can judge whether a keyboard route truly accomplishes the
               same function. Work through the full{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 WCAG 2.2 checklist
               </Link>{" "}
               alongside this criterion.

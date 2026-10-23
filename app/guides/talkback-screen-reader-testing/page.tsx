@@ -290,7 +290,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   It is also the mobile screen reader most teams skip, usually
                   because they tested with{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver on an iPhone
                   </Link>{" "}
                   and considered mobile handled. That is a real gap. Android holds
@@ -309,23 +309,23 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                   <strong>2.5.1 Pointer Gestures</strong>,{" "}
                   <strong>1.3.4 Orientation</strong>, and{" "}
                   <strong>1.4.10 Reflow</strong>. No amount of{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   or{" "}
-                  <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     JAWS
                   </Link>{" "}
                   testing on a desktop will surface a tap target that is too small
                   to hit. This guide is the Android companion to those, and to our
                   broader{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>
                   . To build for those mobile-specific criteria in the first place
                   &mdash; across native iOS, native Android, and mobile web &mdash;
                   see the{" "}
-                  <Link href="/guides/mobile-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/mobile-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     mobile accessibility guide
                   </Link>
                   .
@@ -449,7 +449,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                       This is how you find <strong>target size</strong> problems.
                       If you keep landing on the wrong control, or a button is so
                       small your fingertip cannot reliably find it, you have a real{" "}
-                      <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         2.5.8 Target Size
                       </Link>{" "}
                       finding.
@@ -469,7 +469,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     <p>
                       This is the mobile equivalent of tabbing through a desktop
                       page, and it is where{" "}
-                      <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         2.4.3 Focus Order
                       </Link>{" "}
                       problems appear: content that reads in a different order than
@@ -490,11 +490,11 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 <code>touchstart</code> or a custom swipe handler, TalkBack has
                 already consumed that gesture for its own navigation and your
                 handler never fires. See the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>{" "}
                 and the{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management guide
                 </Link>
                 .
@@ -593,7 +593,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 hear the page outline, in order, and it alone should tell you what
                 the page is about — one <code>&lt;h1&gt;</code>, no skipped levels.
                 If you hear nothing, your page has no real headings, which is a{" "}
-                <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.3.1 Info and Relationships
                 </Link>{" "}
                 failure. Then switch to <strong>Links</strong> and do the same:
@@ -620,7 +620,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">
                     Target size (
-                    <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.5.8
                     </Link>
                     , AA).
@@ -634,7 +634,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">
                     Pointer gestures (
-                    <Link href="/wcag/2-5-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-5-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.5.1
                     </Link>
                     , A).
@@ -647,7 +647,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">
                     Orientation (
-                    <Link href="/wcag/1-3-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.3.4
                     </Link>
                     , AA).
@@ -659,7 +659,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">
                     Reflow (
-                    <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.10
                     </Link>
                     , AA).
@@ -681,7 +681,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 desktop DevTools over USB via <code>chrome://inspect</code>, which
                 is far easier than debugging on a phone screen — you keep the real
                 device and the real TalkBack, and get a real console. And the{" "}
-                <Link href="/tools/mobile-accessibility-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/mobile-accessibility-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   mobile accessibility checker
                 </Link>{" "}
                 will flag target-size and viewport issues before you pick the phone
@@ -743,7 +743,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                   Submit the form with an error, add to cart, filter a list.
                   TalkBack should announce the change without you moving focus —
                   that is{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3 Status Messages
                   </Link>
                   .
@@ -804,7 +804,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
               <p className="text-muted-foreground leading-relaxed mt-4 text-sm">
                 Most of these come down to correct roles, names, and states —
                 verify them programmatically under{" "}
-                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.2 Name, Role, Value
                 </Link>
                 . When you report a TalkBack bug, always name the{" "}
@@ -838,7 +838,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.1.1 Non-text Content
                         </Link>
                       </th>
@@ -847,7 +847,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -856,7 +856,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.4 Orientation
                         </Link>
                       </th>
@@ -865,7 +865,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.10 Reflow
                         </Link>
                       </th>
@@ -874,7 +874,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -883,7 +883,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.1 Pointer Gestures
                         </Link>
                       </th>
@@ -892,7 +892,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.8 Target Size (Minimum)
                         </Link>
                       </th>
@@ -901,7 +901,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -910,7 +910,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -923,11 +923,11 @@ export default function TalkBackScreenReaderTestingGuidePage() {
               <p className="text-muted-foreground leading-relaxed mt-4 text-sm">
                 Notice how many of these are unavailable to a desktop screen reader
                 pass. See the full picture in the{" "}
-                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and track your coverage with the{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .
@@ -958,7 +958,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       See the{" "}
-                      <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         VoiceOver testing guide
                       </Link>{" "}
                       for the iOS half of mobile.
@@ -980,7 +980,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       Start with the{" "}
-                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         keyboard accessibility guide
                       </Link>
                       .

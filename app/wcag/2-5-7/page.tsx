@@ -498,7 +498,7 @@ export default function WCAG257Page() {
                   alternatives, see the{" "}
                   <Link
                     href="/guides/accessible-maps"
-                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
                   >
                     accessible maps guide
                   </Link>
@@ -642,7 +642,7 @@ export default function WCAG257Page() {
               range sliders — see the{" "}
               <Link
                 href="/guides/accessible-slider"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 accessible slider &amp; range input guide
               </Link>
@@ -747,14 +747,14 @@ export default function WCAG257Page() {
               Run a full sweep with our{" "}
               <Link
                 href="/tools/mobile-accessibility-checker"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Mobile Accessibility Checker
               </Link>{" "}
               and audit a live URL with the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>

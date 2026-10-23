@@ -194,7 +194,7 @@ export default function ShortcutDemo() {
           <button
             type="button"
             onClick={() => setLog([])}
-            className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+            className="text-sm text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
           >
             Clear
           </button>
