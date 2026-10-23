@@ -180,15 +180,15 @@ export default function EaaScopeCheckerPage() {
               The result is deliberately phrased as likely or unlikely. Scope edge cases, such as
               mixed B2B and consumer offerings or the transitional rules for pre-2025 service
               contracts and terminals, deserve legal advice. For the legislative detail, see our{" "}
-              <Link href="/research/european-accessibility-act" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/european-accessibility-act" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EAA tracker
               </Link>{" "}
               with every statutory date quoted from the Directive, the{" "}
-              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EAA compliance guide
               </Link>
               , and the{" "}
-              <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 Ireland-specific enforcement picture
               </Link>
               .
@@ -202,44 +202,44 @@ export default function EaaScopeCheckerPage() {
             <ol className="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed list-decimal pl-5">
               <li>
                 Find out where you stand: a{" "}
-                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   fixed-price WCAG 2.2 AA audit
                 </Link>{" "}
                 establishes your baseline against the standard the EAA is measured with. See a{" "}
-                <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   sample report
                 </Link>{" "}
                 first.
               </li>
               <li>
                 Understand the technical standard:{" "}
-                <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EN 301 549 explained
                 </Link>
                 , and track your work with the{" "}
-                <Link href="/checklists/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EAA readiness checklist
                 </Link>{" "}
                 (every obligation in the Act, with Excel export) and the{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .
               </li>
               <li>
                 Publish the required accessibility information:{" "}
-                <Link href="/guides/how-to-write-an-accessibility-statement" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/how-to-write-an-accessibility-statement" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   write an accessibility statement
                 </Link>{" "}
                 or generate one with the{" "}
-                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   free statement generator
                 </Link>
                 .
               </li>
               <li>
                 Do not reach for an overlay widget:{" "}
-                <Link href="/guides/accessibility-overlays-eu-uk-law" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessibility-overlays-eu-uk-law" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   overlays do not satisfy the EAA
                 </Link>
                 .

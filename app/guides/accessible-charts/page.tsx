@@ -285,15 +285,15 @@ export default function AccessibleChartsGuidePage() {
                   This guide is framework-agnostic and applies whether you hand-
                   roll SVG, reach for D3, or drop in a React charting library.
                   The requirements cluster around a handful of WCAG criteria —{" "}
-                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.1.1 Non-text Content
                   </Link>{" "}
                   for the text alternative,{" "}
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1 Use of Color
                   </Link>{" "}
                   for the series cues, and{" "}
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11 Non-text Contrast
                   </Link>{" "}
                   for the marks themselves — plus a few more for interactive
@@ -333,7 +333,7 @@ export default function AccessibleChartsGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.1.1 Non-text Content
                         </Link>
                       </th>
@@ -342,7 +342,7 @@ export default function AccessibleChartsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -351,7 +351,7 @@ export default function AccessibleChartsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -360,7 +360,7 @@ export default function AccessibleChartsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.3 Contrast (Minimum)
                         </Link>
                       </th>
@@ -369,7 +369,7 @@ export default function AccessibleChartsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.5 Images of Text
                         </Link>
                       </th>
@@ -378,7 +378,7 @@ export default function AccessibleChartsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.10 Reflow
                         </Link>
                       </th>
@@ -387,7 +387,7 @@ export default function AccessibleChartsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.11 Non-text Contrast
                         </Link>
                       </th>
@@ -396,7 +396,7 @@ export default function AccessibleChartsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.13 Content on Hover or Focus
                         </Link>
                       </th>
@@ -405,7 +405,7 @@ export default function AccessibleChartsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -414,7 +414,7 @@ export default function AccessibleChartsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -426,7 +426,7 @@ export default function AccessibleChartsGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 The criterion charts fail most often is{" "}
-                <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.1.1
                 </Link>
                 , because the data lives only in the pixels and never reaches the
@@ -499,7 +499,7 @@ export default function AccessibleChartsGuidePage() {
                   href="https://www.w3.org/WAI/tutorials/images/complex/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   complex images
                 </a>{" "}
@@ -735,7 +735,7 @@ export default function AccessibleChartsGuidePage() {
                 label, so a screen reader announces &ldquo;January, 40&rdquo;
                 rather than an unanchored &ldquo;40&rdquo; — that programmatic
                 header-to-cell relationship is{" "}
-                <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.3.1 Info and Relationships
                 </Link>
                 . The <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code>{" "}
@@ -751,12 +751,12 @@ export default function AccessibleChartsGuidePage() {
                 both from the same data so they can never disagree — a table that
                 has drifted out of sync with the chart is worse than no table at
                 all. For the full set of rules on building the table itself, the{" "}
-                <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible data tables guide
                 </Link>{" "}
                 covers headers, captions, complex tables with the headers and id
                 method, and responsive patterns, and the{" "}
-                <Link href="/learn/table" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/learn/table" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible tables demo
                 </Link>{" "}
                 shows the patterns live.
@@ -774,7 +774,7 @@ export default function AccessibleChartsGuidePage() {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Charts lean on colour harder than almost any other interface, and
                 that is exactly where they fail{" "}
-                <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.1 Use of Color
                 </Link>
                 . If the only thing separating the &ldquo;desktop&rdquo; line
@@ -835,11 +835,11 @@ export default function AccessibleChartsGuidePage() {
                 Picking the palette itself — a categorical set that stays
                 distinguishable for colour-blind viewers and holds contrast in
                 both light and dark mode — is its own craft. The{" "}
-                <Link href="/guides/accessible-color-palettes" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-color-palettes" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible colour palettes guide
                 </Link>{" "}
                 covers building one, and the{" "}
-                <Link href="/guides/oklch-apca-color-systems" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/oklch-apca-color-systems" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   OKLCH &amp; APCA guide
                 </Link>{" "}
                 covers the perceptual colour maths behind evenly-distinguishable
@@ -865,16 +865,16 @@ export default function AccessibleChartsGuidePage() {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Baking text into a raster image trips three criteria at once. It
                 fails{" "}
-                <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.5 Images of Text
                 </Link>{" "}
                 because the words are pixels, not text; it fails{" "}
-                <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.10 Reflow
                 </Link>{" "}
                 and turns to mush when a low-vision user zooms to 400%; and small
                 baked labels routinely fail{" "}
-                <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.3 Contrast (Minimum)
                 </Link>{" "}
                 with no way to override the colour. Rendering the same labels as
@@ -962,7 +962,7 @@ export default function AccessibleChartsGuidePage() {
                   value must appear when the point receives keyboard focus, it
                   must stay visible while it is pointed at, and it must be
                   dismissible (Escape) without moving focus — that is{" "}
-                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.13 Content on Hover or Focus
                   </Link>
                   .
@@ -971,7 +971,7 @@ export default function AccessibleChartsGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Announce the change.</strong>{" "}
                   As focus moves from point to point, push the new value into a
                   polite{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     live region
                   </Link>{" "}
                   so a screen reader speaks &ldquo;March, 115 tickets&rdquo;
@@ -982,11 +982,11 @@ export default function AccessibleChartsGuidePage() {
                 Managing where focus lands as the user enters, moves through, and
                 leaves the chart is the same discipline as any composite widget —
                 the{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management guide
                 </Link>{" "}
                 covers roving <code>tabindex</code> and restoration, and the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>{" "}
                 covers the key handling. The golden rule for charts:{" "}
@@ -1139,15 +1139,15 @@ export default function AccessibleChartsGuidePage() {
                 your summary, guarantee your colours carry a second cue, or build
                 the table; those stay your job. The same principles carry to the
                 other frameworks — see the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React
                 </Link>
                 ,{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>
                 , and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 accessibility guides.
@@ -1174,7 +1174,7 @@ export default function AccessibleChartsGuidePage() {
                   get the chart&apos;s finding from the summary, and the specific
                   numbers from a table or description? If not, the data is trapped
                   in the pixels (
-                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.1.1
                   </Link>
                   ).
@@ -1184,11 +1184,11 @@ export default function AccessibleChartsGuidePage() {
                   It should announce a meaningful description — not
                   &ldquo;image&rdquo;, not silence, and not a stream of{" "}
                   <code>path</code> elements. Use the commands in the{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>{" "}
                   guides.
@@ -1198,7 +1198,7 @@ export default function AccessibleChartsGuidePage() {
                   Switch the display to greyscale and confirm you can still tell
                   every series and category apart — the distinction is in labels,
                   patterns, or shapes, not only in hue (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ).
@@ -1208,11 +1208,11 @@ export default function AccessibleChartsGuidePage() {
                   Labels should stay crisp and the layout should reflow without a
                   horizontal scrollbar — proof the text is real and the output is
                   vector (
-                  <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.5
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.10
                   </Link>
                   ).
@@ -1223,11 +1223,11 @@ export default function AccessibleChartsGuidePage() {
                   or through the table, confirm hover tooltips also appear on
                   focus and can be dismissed, and listen for the value being
                   announced as focus moves (
-                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.13
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1
                   </Link>
                   ).
@@ -1236,15 +1236,15 @@ export default function AccessibleChartsGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Measure contrast.</strong>{" "}
                   Check the marks against their neighbours and the background for
                   3:1 (
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ) and the label text for 4.5:1 (
-                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.3
                   </Link>
                   ) with the{" "}
-                  <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     contrast checker
                   </Link>
                   .
@@ -1252,11 +1252,11 @@ export default function AccessibleChartsGuidePage() {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Layer <code>axe-core</code> on top for the mechanical checks — see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 — and scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>{" "}
                 to catch an unlabelled graphic or a missing table before it ships.
@@ -1312,7 +1312,7 @@ export default function AccessibleChartsGuidePage() {
                   Every chart has a real text equivalent — a summary — and
                   anything non-trivial has an accessible data table for the
                   numbers (
-                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.1.1
                   </Link>
                   ).
@@ -1334,11 +1334,11 @@ export default function AccessibleChartsGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Not colour alone.</strong>{" "}
                   Every series carries a second cue — direct label, pattern,
                   shape, or dash — and marks meet 3:1 contrast (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ).
@@ -1347,15 +1347,15 @@ export default function AccessibleChartsGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Real, scalable text.</strong>{" "}
                   Labels are live text, not baked pixels; readable at 400% zoom,
                   and label text meets 4.5:1 (
-                  <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.5
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.10
                   </Link>
                   ,{" "}
-                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.3
                   </Link>
                   ).
@@ -1364,7 +1364,7 @@ export default function AccessibleChartsGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Tooltips reachable.</strong>{" "}
                   Hover content also appears on focus, is dismissible, and is
                   never the only source of a value (
-                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.13
                   </Link>
                   ).
@@ -1373,7 +1373,7 @@ export default function AccessibleChartsGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Interactive means keyboard.</strong>{" "}
                   Every data point is reachable by keyboard, or the table is
                   exposed as the equivalent path (
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1
                   </Link>
                   ).
@@ -1382,7 +1382,7 @@ export default function AccessibleChartsGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Changes announced.</strong>{" "}
                   Values revealed on focus, and dynamic updates, go through a
                   polite live region (
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3
                   </Link>
                   ).
@@ -1390,11 +1390,11 @@ export default function AccessibleChartsGuidePage() {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see charts in the context of every other requirement, and the{" "}
-                <Link href="/guides/accessible-color-palettes" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-color-palettes" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible colour palettes guide
                 </Link>{" "}
                 for building a series palette that holds up.

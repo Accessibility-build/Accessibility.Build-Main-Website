@@ -344,14 +344,14 @@ export default function WCAG1410Page() {
               1.4.10 and you have largely solved{" "}
               <Link
                 href="/guides/keyboard-accessibility"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 small-viewport usability
               </Link>{" "}
               at the same time. Because WCAG 2.2 AA is the reference standard for the{" "}
               <Link
                 href="/guides/section-504-web-accessibility-deadline"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 DOJ Title II rule
               </Link>{" "}
@@ -632,14 +632,14 @@ body { font-size: 100%; }      /* respect the user's default */
               still works. Pair the manual zoom test with a scan from the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>{" "}
               and confirm small-viewport behavior with the{" "}
               <Link
                 href="/tools/mobile-accessibility-checker"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Mobile Accessibility Checker
               </Link>

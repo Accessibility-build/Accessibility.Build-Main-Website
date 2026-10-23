@@ -74,7 +74,7 @@ export default async function SitemapPage() {
                     <li key={route.route}>
                       <Link
                         href={route.route || "/"}
-                        className="text-primary hover:underline"
+                        className="text-primary underline underline-offset-2 hover:decoration-2"
                       >
                         {route.label}
                       </Link>
@@ -82,7 +82,7 @@ export default async function SitemapPage() {
                   ))}
                   {extraPosts.map((post) => (
                     <li key={post.route}>
-                      <Link href={post.route} className="text-primary hover:underline">
+                      <Link href={post.route} className="text-primary underline underline-offset-2 hover:decoration-2">
                         {post.label}
                       </Link>
                     </li>

@@ -361,7 +361,7 @@ export default function AccessibleMenuGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/menubar/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     WAI-ARIA Authoring Practices Menu and Menubar pattern
                   </a>{" "}
@@ -425,7 +425,7 @@ export default function AccessibleMenuGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -434,7 +434,7 @@ export default function AccessibleMenuGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -443,7 +443,7 @@ export default function AccessibleMenuGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.2 No Keyboard Trap
                         </Link>
                       </th>
@@ -452,7 +452,7 @@ export default function AccessibleMenuGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -461,7 +461,7 @@ export default function AccessibleMenuGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -470,7 +470,7 @@ export default function AccessibleMenuGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.8 Target Size (Minimum)
                         </Link>
                       </th>
@@ -479,7 +479,7 @@ export default function AccessibleMenuGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -556,11 +556,11 @@ export default function AccessibleMenuGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed">
                 The decision resembles the one between{" "}
-                <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   tabs
                 </Link>{" "}
                 and an{" "}
-                <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accordion
                 </Link>
                 : the pattern you choose is a promise about how the keyboard will
@@ -622,7 +622,7 @@ export default function AccessibleMenuGuidePage() {
                 visible bar of menu buttons, and it swaps the arrow-key axis so
                 Left and Right move between top-level items. For how each role
                 and state is exposed to assistive technology, see the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -669,7 +669,7 @@ export default function AccessibleMenuGuidePage() {
                   <CardContent>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Focus never leaves the input;{" "}
-                      <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         <code>aria-activedescendant</code>
                       </Link>{" "}
                       points at the active option&apos;s id. Used when the user
@@ -685,12 +685,12 @@ export default function AccessibleMenuGuidePage() {
                 about where the user is. The consequence to remember is that{" "}
                 <code>tabindex=&quot;-1&quot;</code> makes an element focusable
                 by script but skipped by Tab — that is the whole trick.{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   The focus management guide
                 </Link>{" "}
                 covers the technique in depth, including focus restoration, which
                 a menu depends on when it closes — and the{" "}
-                <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible dialog guide
                 </Link>{" "}
                 shows how the native <code>&lt;dialog&gt;</code> element does
@@ -805,13 +805,13 @@ export default function AccessibleMenuGuidePage() {
               <p className="text-muted-foreground leading-relaxed mt-6">
                 The two rows people skip are Escape and Tab, and they are the two
                 that keep you clear of{" "}
-                <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.1.2 No Keyboard Trap
                 </Link>
                 . A user must always have a way out of an open menu without
                 activating anything in it. For the broader keyboard contract every
                 custom widget owes, see the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>
                 .
@@ -1025,7 +1025,7 @@ document.addEventListener("pointerdown", (event) => {
               </div>
               <p className="text-muted-foreground leading-relaxed">
                 This is the same disclosure mechanic covered in depth by the{" "}
-                <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accordion and disclosure guide
                 </Link>{" "}
                 — one button, one <code>aria-expanded</code>, one hidden region.
@@ -1118,22 +1118,22 @@ document.addEventListener("pointerdown", (event) => {
                   href="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   Radix DropdownMenu
                 </a>
                 , React Aria&apos;s <code>useMenu</code>, and Headless UI&apos;s{" "}
                 <code>Menu</code> all implement the full pattern and keep pace
                 with ARIA guidance. See the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React accessibility guide
                 </Link>{" "}
                 for how these primitives fit into a component library, and the{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>{" "}
                 and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 guides for their equivalents — Angular&apos;s{" "}
@@ -1167,7 +1167,7 @@ document.addEventListener("pointerdown", (event) => {
                 impairments. On touch screens there is no hover at all, so the
                 interaction has to be redesigned. And nested menus quickly exceed
                 the viewport, colliding with{" "}
-                <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.5.8 Target Size
                 </Link>{" "}
                 and reflow requirements on small screens.
@@ -1228,7 +1228,7 @@ document.addEventListener("pointerdown", (event) => {
                   You should hear the button&apos;s name, &ldquo;menu
                   pop-up,&rdquo; the collapsed or expanded state, and then each
                   item with its position. Use the{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>{" "}
                   for the commands.
@@ -1243,11 +1243,11 @@ document.addEventListener("pointerdown", (event) => {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Layer automated checks on top with <code>axe-core</code>, and see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits. Scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>
                 .
@@ -1328,7 +1328,7 @@ document.addEventListener("pointerdown", (event) => {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Tab escapes.</strong>{" "}
                   Tab closes the menu and continues through the page, satisfying{" "}
-                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.2
                   </Link>
                   .
@@ -1342,7 +1342,7 @@ document.addEventListener("pointerdown", (event) => {
                   <strong className="text-slate-900 dark:text-white">Visible focus, adequate targets.</strong>{" "}
                   A clear focus indicator on the active item, and items at least
                   24 by 24 CSS pixels (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ).
@@ -1350,7 +1350,7 @@ document.addEventListener("pointerdown", (event) => {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see the menu in the context of every other requirement.

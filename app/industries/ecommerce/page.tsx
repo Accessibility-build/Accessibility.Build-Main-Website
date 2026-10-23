@@ -293,7 +293,7 @@ export default function EcommerceIndustryPage() {
             And because storefronts share so much structure — catalog, cart, checkout — plaintiff law firms can test
             hundreds of them quickly. That is why e-commerce absorbs the largest share of accessibility litigation of
             any industry, year after year, as tracked in our{" "}
-            <Link href="/research/accessibility-lawsuits" className="text-primary hover:underline">
+            <Link href="/research/accessibility-lawsuits" className="text-primary underline underline-offset-2 hover:decoration-2">
               accessibility lawsuit tracker
             </Link>
             .
@@ -306,8 +306,8 @@ export default function EcommerceIndustryPage() {
         <h2 className="text-3xl font-bold mb-2 text-center">Your legal exposure as an online retailer</h2>
         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
           Four overlapping regimes drive e-commerce accessibility risk in 2026. For the full legal picture, see our
-          guides to the <Link href="/compliance/ada" className="text-primary hover:underline">ADA</Link> and the{" "}
-          <Link href="/compliance/eaa" className="text-primary hover:underline">European Accessibility Act</Link>.
+          guides to the <Link href="/compliance/ada" className="text-primary underline underline-offset-2 hover:decoration-2">ADA</Link> and the{" "}
+          <Link href="/compliance/eaa" className="text-primary underline underline-offset-2 hover:decoration-2">European Accessibility Act</Link>.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {legalExposure.map((item, i) => {
@@ -350,7 +350,7 @@ export default function EcommerceIndustryPage() {
                         <Link
                           key={criterion.href}
                           href={criterion.href}
-                          className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+                          className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-blue-700 dark:text-primary hover:bg-primary/20 transition-colors"
                         >
                           {criterion.label}
                         </Link>

@@ -349,7 +349,7 @@ export default function AccessibleSliderGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/slider/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     the WAI-ARIA Authoring Practices Slider pattern
                   </a>{" "}
@@ -365,7 +365,7 @@ export default function AccessibleSliderGuidePage() {
                   and <code>aria-valuetext</code>. And unlike almost every other
                   pattern, most of the time you get the whole thing for free from
                   a single native element. Where a{" "}
-                  <Link href="/guides/accessible-switch" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-switch" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     switch
                   </Link>{" "}
                   answers on-or-off with one key, a slider chooses a value from a
@@ -378,7 +378,7 @@ export default function AccessibleSliderGuidePage() {
                   in full, the custom <code>role=&quot;slider&quot;</code> build
                   for when native is not enough, the single-pointer alternative
                   that{" "}
-                  <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.7 Dragging Movements
                   </Link>{" "}
                   demands, dual-thumb range sliders, and the visual rules that
@@ -434,7 +434,7 @@ export default function AccessibleSliderGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -443,7 +443,7 @@ export default function AccessibleSliderGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -452,7 +452,7 @@ export default function AccessibleSliderGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.2 No Keyboard Trap
                         </Link>
                       </th>
@@ -461,7 +461,7 @@ export default function AccessibleSliderGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -470,7 +470,7 @@ export default function AccessibleSliderGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -479,7 +479,7 @@ export default function AccessibleSliderGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.11 Non-text Contrast
                         </Link>
                       </th>
@@ -488,7 +488,7 @@ export default function AccessibleSliderGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.7 Dragging Movements
                         </Link>
                       </th>
@@ -497,7 +497,7 @@ export default function AccessibleSliderGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.8 Target Size (Minimum)
                         </Link>
                       </th>
@@ -506,7 +506,7 @@ export default function AccessibleSliderGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -517,7 +517,7 @@ export default function AccessibleSliderGuidePage() {
                 </table>
               </div>
               <p className="text-muted-foreground leading-relaxed mt-6">
-                <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.5.7 Dragging Movements
                 </Link>{" "}
                 is the criterion that catches teams by surprise, because it is
@@ -576,7 +576,7 @@ export default function AccessibleSliderGuidePage() {
                         a quantity, an exact price, an age
                       </strong>
                       . <code>&lt;input type=&quot;number&quot;&gt;</code> in the{" "}
-                      <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         forms guide
                       </Link>
                       . Pair it with a slider if you want both.
@@ -629,7 +629,7 @@ export default function AccessibleSliderGuidePage() {
                 <code>aria-valuenow</code>, <code>aria-valuemin</code>, and{" "}
                 <code>aria-valuemax</code> for you. That last point also means it
                 satisfies{" "}
-                <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.5.7 Dragging Movements
                 </Link>{" "}
                 under the user-agent exception — the click-to-set behaviour is
@@ -746,7 +746,7 @@ input[type="range"]:focus-visible {
                 failure — the value has no context to be announced against. For
                 how each role and property is surfaced to assistive technology,
                 see the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -860,12 +860,12 @@ function setQuality(el, n) {
                 <code>event.preventDefault()</code>: without it, the arrow keys
                 and the Page keys scroll the page instead of moving the thumb, so
                 the slider is effectively inoperable by keyboard under{" "}
-                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.1.1 Keyboard
                 </Link>
                 . On the native element this is handled for you. For the wider
                 contract every custom control owes, see the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>
                 .
@@ -944,7 +944,7 @@ track.addEventListener("pointerdown", (e) => {
                 move the thumb rather than scrolling. And the{" "}
                 <code>pointerdown</code> handler on the track is not a nicety — it
                 is what satisfies{" "}
-                <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.5.7 Dragging Movements
                 </Link>
                 , giving a mouse or touch user a way to set the value with a
@@ -964,7 +964,7 @@ track.addEventListener("pointerdown", (e) => {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 A slider is the canonical draggable control, which puts it
                 squarely under{" "}
-                <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.5.7 Dragging Movements
                 </Link>{" "}
                 — new in WCAG 2.2. The requirement is precise: anything you can do
@@ -996,7 +996,7 @@ track.addEventListener("pointerdown", (e) => {
                       A custom slider whose thumb can{" "}
                       <em>only</em> be dragged — click the track and nothing
                       happens. Adding keyboard support does not fix it; that is{" "}
-                      <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         2.1.1
                       </Link>
                       , a different requirement for a different group of users.
@@ -1010,7 +1010,7 @@ track.addEventListener("pointerdown", (e) => {
                 and a keyboard is not a pointer. The fix is small — the{" "}
                 <code>pointerdown</code>-on-track handler from section 6, or a
                 pair of stepper buttons — but it must be there. See the full{" "}
-                <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.5.7 Dragging Movements guide
                 </Link>{" "}
                 for the essential and user-agent exceptions and other draggable
@@ -1114,7 +1114,7 @@ track.addEventListener("pointerdown", (e) => {
                   The thumb against its background, and the boundary between the
                   filled and unfilled portions of the track, each need{" "}
                   <strong>3:1</strong> contrast under{" "}
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11 Non-text Contrast
                   </Link>
                   . A pale thumb on a pale track, or two close greys for filled
@@ -1126,7 +1126,7 @@ track.addEventListener("pointerdown", (e) => {
                   </strong>{" "}
                   The thumb is the target, and it must be at least{" "}
                   <strong>24&nbsp;&times;&nbsp;24</strong> CSS pixels for{" "}
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8 Target Size
                   </Link>{" "}
                   — aim for 44 on touch. A 10px handle looks elegant and is
@@ -1140,7 +1140,7 @@ track.addEventListener("pointerdown", (e) => {
                   encode meaning in track colour by itself — a green-to-red
                   &ldquo;risk&rdquo; track is invisible to a colour-blind user
                   unless the value is also spelled out, which is{" "}
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1 Use of Color
                   </Link>
                   .
@@ -1149,15 +1149,15 @@ track.addEventListener("pointerdown", (e) => {
               <p className="text-muted-foreground leading-relaxed">
                 Verify the real rendered colours — not the values in the design
                 file — with the{" "}
-                <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   contrast checker
                 </Link>
                 , and confirm the thumb size on a real device with the{" "}
-                <Link href="/tools/mobile-accessibility-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/mobile-accessibility-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   mobile accessibility checker
                 </Link>
                 . Remember any visible value text is held to the stricter{" "}
-                <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.3 Contrast (Minimum)
                 </Link>{" "}
                 at 4.5:1.
@@ -1217,15 +1217,15 @@ function QualitySlider() {
                 thumbs), React Aria&apos;s <code>useSlider</code> /{" "}
                 <code>useSliderThumb</code>, or Headless UI. The same principles
                 travel to other frameworks — see the{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>{" "}
                 and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 guides, and the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React accessibility guide
                 </Link>{" "}
                 for the surrounding patterns. Whatever you ship, verify it against
@@ -1261,7 +1261,7 @@ function QualitySlider() {
                   current value — and where the raw number is not meaningful, the{" "}
                   <code>aria-valuetext</code> string (&ldquo;Fair&rdquo;,
                   &ldquo;$200&rdquo;) instead. The{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>{" "}
                   has the commands.
@@ -1270,7 +1270,7 @@ function QualitySlider() {
                   <strong className="text-slate-900 dark:text-white">Click the track.</strong>{" "}
                   With the mouse, click a point on the track and confirm the thumb
                   jumps there with no drag — your{" "}
-                  <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.7
                   </Link>{" "}
                   check.
@@ -1278,15 +1278,15 @@ function QualitySlider() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Measure the visuals.</strong>{" "}
                   Thumb, track, and fill boundary reach 3:1 (
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ); the thumb is at least 24&nbsp;&times;&nbsp;24 px (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ); the value shows as text, not colour alone (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ).
@@ -1301,11 +1301,11 @@ function QualitySlider() {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Layer automated checks on top with <code>axe-core</code>, and see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits. Scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>{" "}
                 to catch a missing name, role, or value before it ships.
@@ -1372,7 +1372,7 @@ function QualitySlider() {
                   <code>role=&quot;slider&quot;</code> with{" "}
                   <code>aria-valuenow</code>, <code>aria-valuemin</code>, and{" "}
                   <code>aria-valuemax</code> — all three (
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2
                   </Link>
                   ).
@@ -1386,7 +1386,7 @@ function QualitySlider() {
                   <strong className="text-slate-900 dark:text-white">Full keyboard.</strong>{" "}
                   Arrows, Home, End, Page Up, Page Down all work, and the page
                   never scrolls (
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1
                   </Link>
                   ).
@@ -1395,7 +1395,7 @@ function QualitySlider() {
                   <strong className="text-slate-900 dark:text-white">Drag alternative.</strong>{" "}
                   A single click on the track, or stepper buttons, sets the value
                   without dragging (
-                  <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.7
                   </Link>
                   ).
@@ -1403,11 +1403,11 @@ function QualitySlider() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Visible and reachable.</strong>{" "}
                   Thumb, track, and fill reach 3:1 (
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ); the thumb is at least 24&nbsp;&times;&nbsp;24 px (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ).
@@ -1420,7 +1420,7 @@ function QualitySlider() {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see the slider in the context of every other requirement.

@@ -388,7 +388,7 @@ export default function AccessibilityLawsuitsPage() {
                 to infer a claimant&apos;s tools. See our guide on{" "}
                 <Link
                   href="/guides/ai-accessibility-lawsuits"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   how AI is fueling ADA website lawsuits
                 </Link>{" "}

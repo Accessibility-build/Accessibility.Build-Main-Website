@@ -24,6 +24,16 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
     )
   }
 
+  // Widgets under /embed/ are iframed into other people's sites, so they get no
+  // site chrome. The main landmark stays so the skip link still has a target.
+  if (pathname?.startsWith('/embed/')) {
+    return (
+      <main id="main-content" tabIndex={-1} className="outline-none">
+        {children}
+      </main>
+    )
+  }
+
   // Everything else (including blog posts) uses the full site header and footer.
   //
   // There is deliberately NO Suspense boundary around {children} here. With one,

@@ -248,7 +248,7 @@ export default function AccessibleFormsGuidePage() {
                   Nearly everything below is built on four{" "}
                   <Link
                     href="/wcag/3-3-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
                   >
                     WCAG 2.2
                   </Link>{" "}
@@ -288,7 +288,7 @@ export default function AccessibleFormsGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -297,7 +297,7 @@ export default function AccessibleFormsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.5 Identify Input Purpose
                         </Link>
                       </th>
@@ -306,7 +306,7 @@ export default function AccessibleFormsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -315,7 +315,7 @@ export default function AccessibleFormsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.6 Headings &amp; Labels
                         </Link>
                       </th>
@@ -324,7 +324,7 @@ export default function AccessibleFormsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.1 Error Identification
                         </Link>
                       </th>
@@ -333,7 +333,7 @@ export default function AccessibleFormsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.2 Labels or Instructions
                         </Link>
                       </th>
@@ -342,7 +342,7 @@ export default function AccessibleFormsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.3 Error Suggestion
                         </Link>
                       </th>
@@ -351,7 +351,7 @@ export default function AccessibleFormsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.4 Error Prevention
                         </Link>
                       </th>
@@ -360,7 +360,7 @@ export default function AccessibleFormsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.7 Redundant Entry
                         </Link>
                       </th>
@@ -369,7 +369,7 @@ export default function AccessibleFormsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.8 Accessible Authentication
                         </Link>
                       </th>
@@ -378,7 +378,7 @@ export default function AccessibleFormsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -393,7 +393,7 @@ export default function AccessibleFormsGuidePage() {
                 dragging/target-size criteria are new in{" "}
                 <Link
                   href="/guides/wcag-2-2-aa-requirements"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2
                 </Link>{" "}
@@ -434,7 +434,7 @@ export default function AccessibleFormsGuidePage() {
                 field next to a labeled button), use <code>aria-label</code> or{" "}
                 <code>aria-labelledby</code> so the control still has an
                 accessible name under{" "}
-                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.2
                 </Link>
                 .
@@ -453,7 +453,7 @@ export default function AccessibleFormsGuidePage() {
                 Communicate the required state in more than one way, and put
                 instructions <em>before</em> the input they describe so users
                 encounter them in time (
-                <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.2
                 </Link>
                 ).
@@ -473,7 +473,7 @@ export default function AccessibleFormsGuidePage() {
                 clearly explained asterisk) covers sighted users who do not use
                 assistive tech. Do not signal required state with color alone —
                 that fails{" "}
-                <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.1 Use of Color
                 </Link>
                 .
@@ -538,11 +538,11 @@ export default function AccessibleFormsGuidePage() {
                 <code>blur</code> rather than on every keystroke, and announce
                 dynamic messages through a polite live region so you do not
                 interrupt typing. This satisfies{" "}
-                <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.1
                 </Link>{" "}
                 and{" "}
-                <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.3
                 </Link>
                 . Error handling has more depth than one section can hold — for
@@ -552,7 +552,7 @@ export default function AccessibleFormsGuidePage() {
                 Authentication, see the{" "}
                 <Link
                   href="/guides/accessible-form-validation"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   accessible form validation &amp; error handling guide
                 </Link>
@@ -591,7 +591,7 @@ export default function AccessibleFormsGuidePage() {
                 <code>aria-labelledby</code>. See our{" "}
                 <Link
                   href="/reference/aria"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   ARIA roles &amp; attributes reference
                 </Link>{" "}
@@ -601,7 +601,7 @@ export default function AccessibleFormsGuidePage() {
                 checkbox — see the{" "}
                 <Link
                   href="/guides/accessible-switch"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   accessible switch &amp; toggle guide
                 </Link>
@@ -619,7 +619,7 @@ export default function AccessibleFormsGuidePage() {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 WCAG{" "}
-                <Link href="/wcag/1-3-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-3-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.3.5 Identify Input Purpose
                 </Link>{" "}
                 asks you to declare what a field collects so browsers, password
@@ -663,7 +663,7 @@ export default function AccessibleFormsGuidePage() {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       Full detail in the{" "}
-                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         keyboard accessibility guide
                       </Link>
                       .
@@ -687,7 +687,7 @@ export default function AccessibleFormsGuidePage() {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       Test with real AT — see the{" "}
-                      <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         screen reader testing guide
                       </Link>
                       .
@@ -718,7 +718,7 @@ export default function AccessibleFormsGuidePage() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Don&apos;t make users re-enter data.</strong>{" "}
                   Carry values forward; WCAG 2.2&apos;s{" "}
-                  <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.7 Redundant Entry
                   </Link>{" "}
                   requires it.
@@ -727,7 +727,7 @@ export default function AccessibleFormsGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Make submissions recoverable.</strong>{" "}
                   For legal, financial, or data-deleting actions, provide review,
                   confirm, or undo (
-                  <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.4 Error Prevention
                   </Link>
                   ).
@@ -736,7 +736,7 @@ export default function AccessibleFormsGuidePage() {
                   <strong className="text-slate-900 dark:text-white">Keep authentication accessible.</strong>{" "}
                   Don&apos;t force cognitive puzzles to log in; support paste and
                   password managers (
-                  <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.8
                   </Link>
                   ).
@@ -801,7 +801,7 @@ export default function AccessibleFormsGuidePage() {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Automated scan.</strong>{" "}
                   Run the page through our{" "}
-                  <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     URL accessibility auditor
                   </Link>{" "}
                   to catch missing labels and low contrast.
@@ -819,11 +819,11 @@ export default function AccessibleFormsGuidePage() {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Pair this with the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 and the{" "}
-                <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   website audit guide
                 </Link>
                 .

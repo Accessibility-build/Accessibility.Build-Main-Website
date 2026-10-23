@@ -218,11 +218,11 @@ export default function WCAG148Page() {
               1.4.8 applies to <em>blocks of text</em> — running prose of more than a
               sentence. Headings, navigation labels, and short UI strings are out of
               scope. The criterion sits alongside its AA cousins:{" "}
-              <Link href="/wcag/1-4-12" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-4-12" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.4.12 Text Spacing
               </Link>{" "}
               (user overrides must not break the layout) and{" "}
-              <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.4.10 Reflow
               </Link>{" "}
               (no 2-D scrolling at 400% zoom).

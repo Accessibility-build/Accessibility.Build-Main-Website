@@ -488,7 +488,7 @@ canvas.addEventListener("pointerup", endStroke);`}</code>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               <Link
                 href="/wcag/2-1-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.1.1 Keyboard
               </Link>{" "}
@@ -505,7 +505,7 @@ canvas.addEventListener("pointerup", endStroke);`}</code>
               abortable), and{" "}
               <Link
                 href="/wcag/2-5-7"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.5.7 Dragging Movements
               </Link>{" "}

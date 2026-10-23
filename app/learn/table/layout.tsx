@@ -113,7 +113,7 @@ export default function TableLayout({ children }: { children: React.ReactNode })
         <ExplainerProse>
           <p>
             The{" "}
-            <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
               accessible data tables guide
             </Link>{" "}
             covers complex headers, row and column groups, captions versus
@@ -121,7 +121,7 @@ export default function TableLayout({ children }: { children: React.ReactNode })
             arrow-key navigation between cells or editable cells everywhere,
             that is a data grid, a different widget with its own keyboard
             model; the{" "}
-            <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
               accessible data grid guide
             </Link>{" "}
             explains where the line falls.

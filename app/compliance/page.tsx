@@ -286,13 +286,13 @@ export default function ComplianceHubPage() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Every regime above ultimately points at the Web Content
               Accessibility Guidelines. The ADA Title II rule requires{" "}
-              <Link href="/wcag" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG
               </Link>{" "}
               2.1 AA, EN 301 549 incorporates WCAG 2.1 AA for the EU, and
               Section 508 incorporates WCAG 2.0 AA. Because WCAG versions are
               backwards-compatible, conforming to the{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG 2.2 AA checklist
               </Link>{" "}
               puts you at or ahead of the technical baseline in every
@@ -340,11 +340,11 @@ export default function ComplianceHubPage() {
               For the raw data behind these guides (statutes, penalties, and
               deadlines across 35+ jurisdictions, plus US litigation trends),
               see the{" "}
-              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 global accessibility laws tracker
               </Link>{" "}
               and the{" "}
-              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility lawsuit tracker
               </Link>
               .

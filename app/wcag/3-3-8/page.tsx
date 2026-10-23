@@ -379,7 +379,7 @@ export default function WCAG338Page() {
               legal target — WCAG 2.2 AA is the reference standard for the{" "}
               <Link
                 href="/guides/section-504-web-accessibility-deadline"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 DOJ Title II rule
               </Link>{" "}
@@ -696,14 +696,14 @@ export default function WCAG338Page() {
               Audit a live login page with the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>{" "}
               and confirm assistive-technology behavior using the{" "}
               <Link
                 href="/guides/screen-reader-testing"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Screen Reader Testing Guide
               </Link>

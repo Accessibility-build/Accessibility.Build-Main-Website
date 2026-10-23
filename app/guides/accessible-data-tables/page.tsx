@@ -297,7 +297,7 @@ export default function AccessibleDataTablesGuidePage() {
                   its table semantics so assistive technology ignores the
                   structure, but rebuilding it in CSS is the real fix. The one
                   place layout tables remain unavoidable is{" "}
-                  <Link href="/guides/accessible-email" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-email" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     HTML email
                   </Link>
                   , where clients still require them and{" "}
@@ -317,7 +317,7 @@ export default function AccessibleDataTablesGuidePage() {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 The highlighted row,{" "}
-                <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.3.1 Info and Relationships
                 </Link>
                 , is the criterion this whole guide serves: the header-to-cell
@@ -347,7 +347,7 @@ export default function AccessibleDataTablesGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -356,7 +356,7 @@ export default function AccessibleDataTablesGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.2 Meaningful Sequence
                         </Link>
                       </th>
@@ -365,7 +365,7 @@ export default function AccessibleDataTablesGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.6 Headings and Labels
                         </Link>
                       </th>
@@ -374,7 +374,7 @@ export default function AccessibleDataTablesGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.10 Reflow
                         </Link>
                       </th>
@@ -383,7 +383,7 @@ export default function AccessibleDataTablesGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.1.1 Non-text Content
                         </Link>
                       </th>
@@ -392,7 +392,7 @@ export default function AccessibleDataTablesGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -401,7 +401,7 @@ export default function AccessibleDataTablesGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.11 Non-text Contrast
                         </Link>
                       </th>
@@ -410,7 +410,7 @@ export default function AccessibleDataTablesGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -424,7 +424,7 @@ export default function AccessibleDataTablesGuidePage() {
                 For the full wording of each criterion, browse the{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 reference
                 </Link>
@@ -777,7 +777,7 @@ export default function AccessibleDataTablesGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   This is where table accessibility most often goes wrong. A wide
                   table cannot simply shrink to fit a phone, and{" "}
-                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.10 Reflow
                   </Link>{" "}
                   says the page must not require two-dimensional scrolling at 320
@@ -854,11 +854,11 @@ export default function AccessibleDataTablesGuidePage() {
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   A related reflow tie-in:{" "}
-                  <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.5 Images of Text
                   </Link>{" "}
                   and{" "}
-                  <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.4 Resize Text
                   </Link>{" "}
                   both fail if you render the table as a fixed-width screenshot to
@@ -920,7 +920,7 @@ export default function AccessibleDataTablesGuidePage() {
                   the button text would be noise. Some screen readers announce the
                   <code>aria-sort</code> change on their own; if you want to
                   guarantee feedback, mirror it in a{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     polite live region
                   </Link>{" "}
                   such as &ldquo;Sorted by revenue, ascending&rdquo;.
@@ -958,7 +958,7 @@ export default function AccessibleDataTablesGuidePage() {
                     into grid territory and owe the full{" "}
                     <code>role=&quot;grid&quot;</code> keyboard model. That is a
                     much larger build, covered end to end in the{" "}
-                    <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       accessible data grid guide
                     </Link>
                     . Most tables never need it.
@@ -991,7 +991,7 @@ export default function AccessibleDataTablesGuidePage() {
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   This is the{" "}
-                  <Link href="/guides/using-aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/using-aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     first rule of ARIA
                   </Link>{" "}
                   in action: if a native element already does the job, use it
@@ -1049,7 +1049,7 @@ export default function AccessibleDataTablesGuidePage() {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Scanners such as{" "}
-                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     axe and WAVE
                   </Link>{" "}
                   reliably flag the structural mistakes: a{" "}
@@ -1059,7 +1059,7 @@ export default function AccessibleDataTablesGuidePage() {
                   judge whether your header <em>labels</em> are meaningful or
                   whether <code>scope</code> points the right way, so treat a clean
                   automated report as necessary, not sufficient. See the{" "}
-                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     automated versus manual testing guide
                   </Link>{" "}
                   for where the line falls.
@@ -1074,11 +1074,11 @@ export default function AccessibleDataTablesGuidePage() {
                 <ul className="text-muted-foreground leading-relaxed mb-4 list-disc pl-6 space-y-2">
                   <li>
                     In{" "}
-                    <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       NVDA
                     </Link>{" "}
                     and{" "}
-                    <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       JAWS
                     </Link>
                     , move with Ctrl plus Alt plus the arrow keys. Moving right
@@ -1087,7 +1087,7 @@ export default function AccessibleDataTablesGuidePage() {
                   </li>
                   <li>
                     In{" "}
-                    <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       VoiceOver
                     </Link>
                     , interact with the table and move with Control plus Option plus
@@ -1106,7 +1106,7 @@ export default function AccessibleDataTablesGuidePage() {
                   to confirm any scroll region, sort buttons, and row controls are
                   reachable and operable by keyboard. For the full end-to-end
                   routine, the{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     website accessibility audit guide
                   </Link>{" "}
                   puts these steps in order.

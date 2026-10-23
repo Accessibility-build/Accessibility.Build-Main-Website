@@ -407,7 +407,7 @@ export function Header() {
                             className={cn(
                               "grid min-h-[72px] w-full grid-cols-[36px_minmax(0,1fr)] items-start gap-3 rounded-lg px-3 py-3 text-left text-sm",
                               pathname === child.href
-                                ? "bg-primary/10 text-primary font-semibold"
+                                ? "bg-primary/10 text-blue-700 dark:text-primary font-semibold"
                                 : "hover:bg-primary/5"
                             )}
                           >

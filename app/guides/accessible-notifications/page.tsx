@@ -305,7 +305,7 @@ export default function AccessibleNotificationsGuidePage() {
                   page until answered, and it is built with the{" "}
                   <Link
                     href="/guides/accessible-dialog"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     dialog pattern
                   </Link>
@@ -329,12 +329,12 @@ export default function AccessibleNotificationsGuidePage() {
                 No criterion says &ldquo;you must add toasts,&rdquo; but the moment
                 the page changes without a reload, one criterion is written for
                 exactly that situation. The highlighted row,{" "}
-                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.3 Status Messages
                 </Link>
                 , is the defining one: a change has to be announced to assistive
                 technology without moving focus. Close behind it is{" "}
-                <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.2.1 Timing Adjustable
                 </Link>
                 , the criterion that governs anything auto-dismissing on a timer. The
@@ -363,7 +363,7 @@ export default function AccessibleNotificationsGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -372,7 +372,7 @@ export default function AccessibleNotificationsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.2.1 Timing Adjustable
                         </Link>
                       </th>
@@ -381,7 +381,7 @@ export default function AccessibleNotificationsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -390,7 +390,7 @@ export default function AccessibleNotificationsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -399,7 +399,7 @@ export default function AccessibleNotificationsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -408,7 +408,7 @@ export default function AccessibleNotificationsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.3 Contrast (Minimum)
                         </Link>
                       </th>
@@ -417,7 +417,7 @@ export default function AccessibleNotificationsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.11 Focus Not Obscured
                         </Link>
                       </th>
@@ -426,7 +426,7 @@ export default function AccessibleNotificationsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.10 Reflow
                         </Link>
                       </th>
@@ -441,7 +441,7 @@ export default function AccessibleNotificationsGuidePage() {
                 complete{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 criteria
                 </Link>{" "}
@@ -512,7 +512,7 @@ showToast("Draft saved.")`}</code></pre>
                   rapid updates, such as an announcement on every one percent of an
                   upload, which turns the screen reader into a stutter; debounce to
                   meaningful milestones. The{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3 Status Messages
                   </Link>{" "}
                   reference covers the live-region mechanics in depth; this guide
@@ -629,7 +629,7 @@ announce(politeRegion, "Copied to clipboard.")`}</code></pre>
                   The defining feature of a toast, that it disappears on its own, is
                   also where it collides with accessibility. Removing content on a
                   timer is a time limit, and{" "}
-                  <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.2.1 Timing Adjustable
                   </Link>{" "}
                   requires that time limits on content be adjustable unless they are
@@ -709,7 +709,7 @@ function autoDismiss(toast, ms) {
                   about to disappear on a timer. The whole reason a live region exists
                   is to announce a change{" "}
                   <em>without</em> moving focus, and{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3
                   </Link>{" "}
                   requires exactly that. Keep focus where the user put it, and let the
@@ -759,14 +759,14 @@ function autoDismiss(toast, ms) {
                   restoration when it closes. Build it with the{" "}
                   <Link
                     href="/guides/accessible-dialog"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     accessible dialog guide
                   </Link>
                   , and for the mechanics of moving and restoring focus, see the{" "}
                   <Link
                     href="/guides/focus-management"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     focus management guide
                   </Link>
@@ -806,13 +806,13 @@ function autoDismiss(toast, ms) {
                   Position deserves care too. Toasts usually sit fixed to a corner, and
                   a fixed element can cover the control the user just moved to with the
                   keyboard, which fails{" "}
-                  <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.11 Focus Not Obscured
                   </Link>
                   . Keep the toast area clear of interactive content, or shift it when
                   it would overlap what has focus. And because the toast is fixed, check
                   it at{" "}
-                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     320 pixels wide
                   </Link>
                   : it should reflow to fit the viewport, wrap its text, and keep its
@@ -838,7 +838,7 @@ function autoDismiss(toast, ms) {
                   red one, and a screen reader announces the text, not the background,
                   so a toast whose only difference is its color says the same thing to
                   assistive technology whether it succeeded or failed. That is a{" "}
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1 Use of Color
                   </Link>{" "}
                   failure.
@@ -864,7 +864,7 @@ function autoDismiss(toast, ms) {
                   Do not forget plain contrast either. Tinted success and error
                   surfaces are often paired with pale text that looks fine to a
                   designer but drops below the{" "}
-                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.5 to 1 contrast minimum
                   </Link>
                   . Check the toast text against its actual background, in both light
@@ -951,14 +951,14 @@ function ToastProvider({ children }) {
                   listen. For the wider set of React patterns, the{" "}
                   <Link
                     href="/guides/react-accessibility"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     React accessibility guide
                   </Link>{" "}
                   covers announcing dynamic changes across the app, and the{" "}
                   <Link
                     href="/guides/accessible-ai-chat"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     accessible AI chat guide
                   </Link>{" "}

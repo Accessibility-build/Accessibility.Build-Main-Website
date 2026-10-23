@@ -547,7 +547,7 @@ async redirects() {
               behavioral testing. Record what you find in your{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>
@@ -565,11 +565,11 @@ async redirects() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Guideline 3.2 Predictable escalates in three steps.{" "}
-              <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.2.1 On Focus
               </Link>{" "}
               (A) forbids context changes when a component merely receives focus.{" "}
-              <Link href="/wcag/3-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.2.2 On Input
               </Link>{" "}
               (A) forbids them when a setting is changed — unless the user was advised
@@ -580,11 +580,11 @@ async redirects() {
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               The timing dimension connects to Guideline 2.2:{" "}
-              <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 2.2.1 Timing Adjustable
               </Link>{" "}
               (A) governs time limits (including redirect delays), and{" "}
-              <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 2.2.2 Pause, Stop, Hide
               </Link>{" "}
               (A) covers moving and auto-updating content. An auto-refreshing page

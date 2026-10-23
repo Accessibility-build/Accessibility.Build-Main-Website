@@ -115,7 +115,7 @@ export default function AccessibilityLawsPage() {
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <span className="text-slate-500 dark:text-slate-500">Research</span>
+              <span className="text-slate-500 dark:text-slate-400">Research</span>
             </li>
             <li aria-hidden="true">/</li>
             <li>

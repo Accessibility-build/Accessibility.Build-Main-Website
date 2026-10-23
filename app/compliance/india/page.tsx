@@ -457,7 +457,7 @@ export default function IndiaCompliancePage() {
               that no deficiencies are left behind, and listed the matter for January 2027 with
               compliance affidavits due. For a broader view of how India sits next to other
               regimes, see the{" "}
-              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility laws tracker
               </Link>
               .
@@ -585,7 +585,7 @@ export default function IndiaCompliancePage() {
               communication), clause 7 (ICT with video communication) and clause 8 (hardware) for
               the hardware, electronic goods, consumer products and accessories in items (d) to (h)
               of the scope. Read the full text of the draft in the{" "}
-              <a href={DRAFT_PDF} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <a href={DRAFT_PDF} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 Gazette PDF
               </a>
               ; the English text starts on page 11.
@@ -627,7 +627,7 @@ export default function IndiaCompliancePage() {
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               If you also sell into Europe, the scope logic will feel familiar: the{" "}
-              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 European Accessibility Act
               </Link>{" "}
               likewise reaches non-EU businesses serving EU consumers, and both regimes resolve to
@@ -650,7 +650,7 @@ export default function IndiaCompliancePage() {
               3.2.1&rdquo;, with modifications limited to referencing the RPwD Act and the official
               languages of India, and &ldquo;the technical coverage is otherwise identical&rdquo;.
               Because{" "}
-              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EN 301 549
               </Link>{" "}
               incorporates WCAG 2.1 Level AA, so does IS 17802.
@@ -699,13 +699,13 @@ export default function IndiaCompliancePage() {
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               The practical upshot is that an audit against EN 301 549 V3.2.1 is an audit against
               IS 17802, clause for clause. Our{" "}
-              <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EN 301 549 checklist
               </Link>{" "}
               tracks every requirement of V3.2.1 with WCAG cross-links and Excel export, so it works
               as an interim IS 17802 checklist until BIS publishes the ACR format the draft asks for.
               Work done against WCAG 2.2 AA with the{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG 2.2 checklist
               </Link>{" "}
               covers the WCAG 2.1 clauses, with one caveat: WCAG 2.2 removed 4.1.1 Parsing, but
@@ -783,7 +783,7 @@ export default function IndiaCompliancePage() {
               If you already produce VPAT-based reports for US federal or European buyers, the shape
               is familiar; the Indian additions are the machine-readable copy, the mandatory
               methodology disclosure, the named reviewer credentials and the senior sign-off. Our{" "}
-              <Link href="/guides/vpat-accessibility-conformance-report" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/guides/vpat-accessibility-conformance-report" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 VPAT and ACR guide
               </Link>{" "}
               explains the template and how to fill it honestly.
@@ -883,7 +883,7 @@ export default function IndiaCompliancePage() {
               WCAG 2.1 AA core of IS 17802 clause 9, but it will still need an ACR, a grievance
               officer and the procurement changes the draft demands. For how other public-sector
               regimes handle the same convergence, compare the UK&apos;s{" "}
-              <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 PSBAR monitoring model
               </Link>
               .
@@ -912,16 +912,16 @@ export default function IndiaCompliancePage() {
               <li>
                 <strong className="text-slate-900 dark:text-white">Audit against clause 9 now, Level A first.</strong>{" "}
                 Use the{" "}
-                <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EN 301 549 checklist
                 </Link>{" "}
                 as your interim IS 17802 checklist and clear the thirty Schedule I clauses before
                 the AA set. A{" "}
-                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 AA audit
                 </Link>{" "}
                 gives you the clause-level findings an ACR has to cite; the{" "}
-                <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   sample audit report
                 </Link>{" "}
                 shows the format.
@@ -932,7 +932,7 @@ export default function IndiaCompliancePage() {
                 evidence, a methodology statement covering automated, manual and assistive-technology
                 testing, the reviewer&apos;s credentials, and a Director-level signature. Publish it
                 as HTML and as JSON. The{" "}
-                <Link href="/guides/vpat-accessibility-conformance-report" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vpat-accessibility-conformance-report" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   VPAT and ACR guide
                 </Link>{" "}
                 covers the structure.
@@ -947,11 +947,11 @@ export default function IndiaCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Name a Grievance Redressal Officer.</strong>{" "}
                 Appoint a senior manager, publish their contact details, and run a thirty-day
                 complaint process. Pair it with a public accessibility statement; our{" "}
-                <Link href="/guides/how-to-write-an-accessibility-statement" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/how-to-write-an-accessibility-statement" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessibility statement guide
                 </Link>{" "}
                 and{" "}
-                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   statement generator
                 </Link>{" "}
                 give you a draft.
@@ -988,7 +988,7 @@ export default function IndiaCompliancePage() {
             <ol className="space-y-2 text-sm text-slate-600 dark:text-slate-400 list-decimal pl-5">
               {sources.map((s) => (
                 <li key={s.href}>
-                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     {s.label}
                   </a>
                 </li>

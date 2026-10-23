@@ -709,14 +709,14 @@ export default function WCAG332Page() {
               Audit a live form with the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>{" "}
               and learn the manual steps in the{" "}
               <Link
                 href="/guides/screen-reader-testing"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Screen Reader Testing Guide
               </Link>

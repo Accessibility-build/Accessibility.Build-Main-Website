@@ -154,7 +154,7 @@ export default function WCAG2412Page() {
               Compare the Level AA wording in{" "}
               <Link
                 href="/wcag/2-4-11"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
               >
                 2.4.11
               </Link>
@@ -251,7 +251,7 @@ export default function WCAG2412Page() {
               with{" "}
               <Link
                 href="/wcag/2-4-7"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.7 Focus Visible
               </Link>{" "}
@@ -273,7 +273,7 @@ export default function WCAG2412Page() {
                 <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
                   <Link
                     href="/wcag/2-4-11"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     2.4.11 Focus Not Obscured (Minimum)
                   </Link>{" "}
@@ -520,14 +520,14 @@ a, button, input, select, textarea, [tabindex] {
               pass alongside{" "}
               <Link
                 href="/wcag/2-4-7"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.7 Focus Visible
               </Link>{" "}
               checks, and track it in the{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

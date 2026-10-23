@@ -301,9 +301,9 @@ export default function HealthcareIndustryPage() {
         <h2 className="text-3xl font-bold mb-2 text-center">Healthcare's legal exposure</h2>
         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
           Healthcare organizations typically sit under several regimes at once. For background on the ADA generally,
-          see our <Link href="/compliance/ada" className="text-primary hover:underline">ADA compliance guide</Link>;
+          see our <Link href="/compliance/ada" className="text-primary underline underline-offset-2 hover:decoration-2">ADA compliance guide</Link>;
           public health systems should also review{" "}
-          <Link href="/compliance/section-508" className="text-primary hover:underline">Section 508</Link> if they
+          <Link href="/compliance/section-508" className="text-primary underline underline-offset-2 hover:decoration-2">Section 508</Link> if they
           touch federal programs.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -324,7 +324,7 @@ export default function HealthcareIndustryPage() {
         </div>
         <p className="text-sm text-muted-foreground text-center mt-6 max-w-2xl mx-auto">
           Deep dive: read our guide to the{" "}
-          <Link href="/guides/section-504-web-accessibility-deadline" className="text-primary hover:underline">
+          <Link href="/guides/section-504-web-accessibility-deadline" className="text-primary underline underline-offset-2 hover:decoration-2">
             Section 504 web accessibility deadline
           </Link>
           , now extended to May 11, 2027, with the extension under legal challenge.
@@ -354,7 +354,7 @@ export default function HealthcareIndustryPage() {
                         <Link
                           key={criterion.href}
                           href={criterion.href}
-                          className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+                          className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-blue-700 dark:text-primary hover:bg-primary/20 transition-colors"
                         >
                           {criterion.label}
                         </Link>

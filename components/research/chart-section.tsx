@@ -132,7 +132,7 @@ export function ChartSection({
                   href={sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 inline-flex items-center gap-1"
                 >
                   {source}
                   <ExternalLink className="h-3 w-3" />

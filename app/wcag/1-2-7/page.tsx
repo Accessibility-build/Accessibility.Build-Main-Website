@@ -164,7 +164,7 @@ export default function WCAG127Page() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Three criteria form a progression.{" "}
-              <Link href="/wcag/1-2-3" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.3
               </Link>{" "}
               (Level A) lets you choose between an audio description <em>or</em> a full
@@ -316,7 +316,7 @@ export default function WCAG127Page() {
               For a single-source workflow, define cue points where the player pauses,
               plays a description clip, and resumes. The same cue data can generate a
               text transcript for{" "}
-              <Link href="/wcag/1-2-8" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.8
               </Link>
               .

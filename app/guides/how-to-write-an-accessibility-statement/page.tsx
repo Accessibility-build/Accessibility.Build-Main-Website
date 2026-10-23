@@ -200,7 +200,7 @@ export default function HowToWriteAccessibilityStatementPage() {
                 Regulations 2018 require public sector bodies to publish an accessibility
                 statement in the government&apos;s model format. The content is prescribed, and
                 GDS monitors published statements. Our{" "}
-                <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   UK compliance guide
                 </Link>{" "}
                 covers the wider context.
@@ -215,7 +215,7 @@ export default function HowToWriteAccessibilityStatementPage() {
               <li>
                 <strong className="text-slate-900 dark:text-white">EU private sector: the European Accessibility Act.</strong>{" "}
                 The{" "}
-                <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EAA
                 </Link>
                 , which has applied since 28 June 2025, mandates no statement template at all.
@@ -229,7 +229,7 @@ export default function HowToWriteAccessibilityStatementPage() {
                 own{" "}
                 <Link
                   href="/tools/accessibility-statement-generator"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   accessibility statement generator
                 </Link>{" "}
@@ -286,11 +286,11 @@ export default function HowToWriteAccessibilityStatementPage() {
               GDS reviews statements as part of its PSBAR monitoring programme, and that
               monitoring now tests against WCAG 2.2 AA, so the status you declare should be
               measured against the current standard. Our{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG 2.2 checklist
               </Link>{" "}
               and{" "}
-              <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 UK compliance guide
               </Link>{" "}
               cover what that testing looks for.
@@ -318,7 +318,7 @@ export default function HowToWriteAccessibilityStatementPage() {
               <li>
                 <strong className="text-slate-900 dark:text-white">Explain how it meets the accessibility requirements</strong>{" "}
                 that apply to it. In practice, conformance is assessed against{" "}
-                <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EN 301 549
                 </Link>
                 , the European standard that incorporates WCAG for web content.
@@ -339,11 +339,11 @@ export default function HowToWriteAccessibilityStatementPage() {
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Enforcement is national, and it has teeth. Ireland, for example, enforces the EAA
               with criminal penalties; see our{" "}
-              <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/eaa-ireland" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EAA Ireland guide
               </Link>{" "}
               for the details, and the{" "}
-              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EAA overview
               </Link>{" "}
               for who is in scope.
@@ -365,7 +365,7 @@ export default function HowToWriteAccessibilityStatementPage() {
                 Name the version and level, normally WCAG 2.2 Level AA. Our{" "}
                 <Link
                   href="/guides/wcag-2-2-aa-requirements"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 AA requirements guide
                 </Link>{" "}
@@ -396,14 +396,14 @@ export default function HowToWriteAccessibilityStatementPage() {
                 Say whether the status rests on self-evaluation or a third-party{" "}
                 <Link
                   href="/services/accessibility-audits"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   accessibility audit
                 </Link>
                 , and when. Our{" "}
                 <Link
                   href="/guides/how-to-audit-website-accessibility"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   auditing guide
                 </Link>{" "}
@@ -424,7 +424,7 @@ export default function HowToWriteAccessibilityStatementPage() {
               If a statement is already published, the{" "}
               <Link
                 href="/tools/accessibility-statement-checker"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
               >
                 accessibility statement checker
               </Link>{" "}
@@ -478,7 +478,7 @@ export default function HowToWriteAccessibilityStatementPage() {
                 Our free{" "}
                 <Link
                   href="/tools/accessibility-statement-generator"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   accessibility statement generator
                 </Link>{" "}
@@ -491,7 +491,7 @@ export default function HowToWriteAccessibilityStatementPage() {
                 Run your key pages through the{" "}
                 <Link
                   href="/tools/url-accessibility-auditor"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   URL accessibility auditor
                 </Link>{" "}
@@ -499,12 +499,12 @@ export default function HowToWriteAccessibilityStatementPage() {
                 WCAG. For a conformance status you can stand behind, commission a{" "}
                 <Link
                   href="/services/accessibility-audits"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   professional audit
                 </Link>{" "}
                 with manual and screen reader testing; our{" "}
-                <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   sample audit report
                 </Link>{" "}
                 shows what that evidence looks like.

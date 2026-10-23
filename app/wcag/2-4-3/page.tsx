@@ -394,14 +394,14 @@ export default function WCAG243Page() {
               supports{" "}
               <Link
                 href="/wcag/1-3-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.3.2 Meaningful Sequence
               </Link>
               , and pairs with{" "}
               <Link
                 href="/wcag/2-4-7"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.7 Focus Visible
               </Link>{" "}
@@ -613,7 +613,7 @@ export default function WCAG243Page() {
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

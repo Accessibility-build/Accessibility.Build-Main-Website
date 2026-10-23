@@ -273,7 +273,7 @@ export default function UsingAriaGuidePage() {
                     In the{" "}
                     <Link
                       href="/research/state-of-accessibility"
-                      className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                      className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
                     >
                       WebAIM Million
                     </Link>{" "}
@@ -317,12 +317,12 @@ export default function UsingAriaGuidePage() {
               <p className="text-muted-foreground leading-relaxed mb-6">
                 ARIA is how you satisfy the criteria that require correct semantics
                 for assistive technology. The highlighted row,{" "}
-                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.2 Name, Role, Value
                 </Link>
                 , is the criterion ARIA exists to serve. Note the last row: ARIA
                 does not make anything keyboard operable, so{" "}
-                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.1.1 Keyboard
                 </Link>{" "}
                 remains a separate obligation you meet in JavaScript.
@@ -349,7 +349,7 @@ export default function UsingAriaGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -358,7 +358,7 @@ export default function UsingAriaGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -367,7 +367,7 @@ export default function UsingAriaGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -376,7 +376,7 @@ export default function UsingAriaGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.3 Label in Name
                         </Link>
                       </th>
@@ -385,7 +385,7 @@ export default function UsingAriaGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.6 Headings and Labels
                         </Link>
                       </th>
@@ -394,7 +394,7 @@ export default function UsingAriaGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.1 Error Identification
                         </Link>
                       </th>
@@ -403,7 +403,7 @@ export default function UsingAriaGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.1.1 Non-text Content
                         </Link>
                       </th>
@@ -412,7 +412,7 @@ export default function UsingAriaGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -426,14 +426,14 @@ export default function UsingAriaGuidePage() {
                 For the wording of every criterion, browse the{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 reference
                 </Link>
                 . For a lookup of every role and attribute, the interactive{" "}
                 <Link
                   href="/reference/aria"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   ARIA roles &amp; attributes reference
                 </Link>{" "}
@@ -483,11 +483,11 @@ export default function UsingAriaGuidePage() {
                     If you build a <code>role=&quot;slider&quot;</code> or{" "}
                     <code>role=&quot;menuitem&quot;</code>, it has to respond to the
                     expected keys and be reachable in the tab order. See the{" "}
-                    <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       keyboard accessibility
                     </Link>{" "}
                     and{" "}
-                    <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       focus management
                     </Link>{" "}
                     guides.
@@ -731,7 +731,7 @@ export default function UsingAriaGuidePage() {
                     <strong className="text-slate-900 dark:text-white">
                       The name must contain the visible label.
                     </strong>{" "}
-                    <Link href="/wcag/2-5-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-5-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.5.3 Label in Name
                     </Link>{" "}
                     means a button that visually reads &ldquo;Send&rdquo; must not
@@ -742,7 +742,7 @@ export default function UsingAriaGuidePage() {
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Name computation is the heart of{" "}
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2 Name, Role, Value
                   </Link>
                   ; that page walks the algorithm in more detail with a testing
@@ -870,7 +870,7 @@ export default function UsingAriaGuidePage() {
                     skip to main content
                   </strong>{" "}
                   link as the first focusable element, which satisfies{" "}
-                  <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.1 Bypass Blocks
                   </Link>
                   . Landmarks and a skip link are complementary, not alternatives.
@@ -1015,7 +1015,7 @@ export default function UsingAriaGuidePage() {
                   </strong>{" "}
                   are how ARIA announces these changes politely, without stealing
                   focus. This is the mechanism behind{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.3 Status Messages
                   </Link>
                   .
@@ -1070,15 +1070,15 @@ export default function UsingAriaGuidePage() {
                   Live regions have enough depth to fill their own guide. For the
                   full treatment, including the streaming case and how to re-announce
                   identical messages, see{" "}
-                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     WCAG 4.1.3 Status Messages
                   </Link>
                   , the{" "}
-                  <Link href="/guides/accessible-ai-chat" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-ai-chat" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible AI chat guide
                   </Link>{" "}
                   (streaming without flooding the screen reader), and the{" "}
-                  <Link href="/guides/accessible-form-validation" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-form-validation" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     form validation guide
                   </Link>{" "}
                   (announcing errors without double-speaking).
@@ -1106,29 +1106,29 @@ export default function UsingAriaGuidePage() {
                 </p>
                 <ul className="text-muted-foreground leading-relaxed mb-4 list-disc pl-6 space-y-1">
                   <li>
-                    <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 hover:underline">Tabs</Link>{" "}
+                    <Link href="/guides/accessible-tabs" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">Tabs</Link>{" "}
                     and{" "}
-                    <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 hover:underline">accordions and disclosures</Link>
+                    <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">accordions and disclosures</Link>
                   </li>
                   <li>
-                    <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 hover:underline">Comboboxes and autocomplete</Link>{" "}
+                    <Link href="/guides/accessible-combobox" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">Comboboxes and autocomplete</Link>{" "}
                     and{" "}
-                    <Link href="/guides/accessible-listbox" className="text-blue-600 dark:text-blue-400 hover:underline">listboxes</Link>
+                    <Link href="/guides/accessible-listbox" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">listboxes</Link>
                   </li>
                   <li>
-                    <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">Menus and menu buttons</Link>{" "}
+                    <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">Menus and menu buttons</Link>{" "}
                     and{" "}
-                    <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 hover:underline">dialogs and modals</Link>
+                    <Link href="/guides/accessible-dialog" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">dialogs and modals</Link>
                   </li>
                   <li>
-                    <Link href="/guides/accessible-switch" className="text-blue-600 dark:text-blue-400 hover:underline">Switches and toggles</Link>{" "}
+                    <Link href="/guides/accessible-switch" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">Switches and toggles</Link>{" "}
                     and{" "}
-                    <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 hover:underline">sliders and range inputs</Link>
+                    <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">sliders and range inputs</Link>
                   </li>
                   <li>
-                    <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 hover:underline">Tree views</Link>{" "}
+                    <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">Tree views</Link>{" "}
                     and{" "}
-                    <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 hover:underline">data grids</Link>
+                    <Link href="/guides/accessible-data-grid" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">data grids</Link>
                   </li>
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1136,13 +1136,13 @@ export default function UsingAriaGuidePage() {
                   whether you need the ARIA widget at all, because a native control
                   or a simpler pattern is often the right answer. That is rule one in
                   action. If you work in a framework, the{" "}
-                  <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">React</Link>
+                  <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">React</Link>
                   ,{" "}
-                  <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">Vue</Link>
+                  <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">Vue</Link>
                   ,{" "}
-                  <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">Angular</Link>
+                  <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">Angular</Link>
                   , and{" "}
-                  <Link href="/guides/svelte-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">Svelte</Link>{" "}
+                  <Link href="/guides/svelte-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">Svelte</Link>{" "}
                   guides show how ARIA binds to reactive state in each one, and why a
                   headless component library often carries this weight better than a
                   hand-rolled widget.
@@ -1183,7 +1183,7 @@ export default function UsingAriaGuidePage() {
                     They cannot flag ARIA that is valid but <em>wrong</em>, such as a
                     role that misrepresents the control or a state your code never
                     updates. See{" "}
-                    <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       automated vs manual testing
                     </Link>
                     .
@@ -1196,7 +1196,7 @@ export default function UsingAriaGuidePage() {
                     to what each control announces, its name, its role, and its
                     changing state. This is the only way to catch the valid-but-wrong
                     class of bug. Follow the{" "}
-                    <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       screen reader testing guide
                     </Link>
                     .
@@ -1206,7 +1206,7 @@ export default function UsingAriaGuidePage() {
                       Look up anything you are unsure of.
                     </strong>{" "}
                     The interactive{" "}
-                    <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       ARIA roles and attributes reference
                     </Link>{" "}
                     lists what each role requires and what states it allows, so you
@@ -1216,7 +1216,7 @@ export default function UsingAriaGuidePage() {
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Fold all of this into your broader process with the{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessibility audit guide
                   </Link>
                   .

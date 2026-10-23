@@ -562,7 +562,7 @@ export default function AccessiblePaletteStudio() {
             <button
               type="button"
               onClick={clearOverrides}
-              className="font-semibold text-primary hover:underline"
+              className="font-semibold text-primary underline underline-offset-2 hover:decoration-2"
             >
               Clear
             </button>

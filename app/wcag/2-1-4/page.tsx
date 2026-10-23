@@ -377,7 +377,7 @@ export default function WCAG214Page() {
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">Alt+K</code>,
               and function keys are all outside 2.1.4 because voice input and accidental
               presses will not reproduce them. This is the difference between 2.1.4 and{" "}
-              <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 2.1.1 Keyboard
               </Link>
               : 2.1.1 is about making features operable by keyboard at all, while 2.1.4 is
@@ -633,7 +633,7 @@ document.addEventListener('keydown', (e) => {
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

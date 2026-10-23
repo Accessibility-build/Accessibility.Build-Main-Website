@@ -371,7 +371,7 @@ export default function AccessibleDialogGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     WAI-ARIA Authoring Practices Modal Dialog pattern
                   </a>{" "}
@@ -428,7 +428,7 @@ export default function AccessibleDialogGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -437,7 +437,7 @@ export default function AccessibleDialogGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -446,7 +446,7 @@ export default function AccessibleDialogGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.2 No Keyboard Trap
                         </Link>
                       </th>
@@ -455,7 +455,7 @@ export default function AccessibleDialogGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -464,7 +464,7 @@ export default function AccessibleDialogGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -473,7 +473,7 @@ export default function AccessibleDialogGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.11 Focus Not Obscured
                         </Link>
                       </th>
@@ -482,7 +482,7 @@ export default function AccessibleDialogGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.10 Reflow
                         </Link>
                       </th>
@@ -491,7 +491,7 @@ export default function AccessibleDialogGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -502,7 +502,7 @@ export default function AccessibleDialogGuidePage() {
                 </table>
               </div>
               <p className="text-muted-foreground leading-relaxed mt-6">
-                <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.11 Focus Not Obscured
                 </Link>{" "}
                 is the criterion dialogs fail most often and audits catch least
@@ -569,11 +569,11 @@ export default function AccessibleDialogGuidePage() {
                   <CardContent>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       A dropdown of commands is a{" "}
-                      <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         menu
                       </Link>
                       ; expandable content is an{" "}
-                      <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         accordion or disclosure
                       </Link>
                       ; a whole form is usually just a page. None of these should
@@ -785,7 +785,7 @@ dialog.addEventListener("cancel", (event) => {
                 Point <code>aria-labelledby</code> at the visible heading so the
                 two can never drift apart. For how each role and state is exposed
                 to assistive technology, see the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -899,7 +899,7 @@ dialog.addEventListener("cancel", (event) => {
                 programmatically focusable without adding it to the tab
                 sequence, which is exactly what you want on a heading — you can
                 send focus there, and Tab will never stop on it again. The{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management guide
                 </Link>{" "}
                 covers that technique and its siblings in depth.
@@ -970,7 +970,7 @@ dialog.addEventListener("close", () => {
                 something happened as a result, put the outcome in an{" "}
                 <code>aria-live=&quot;polite&quot;</code> region that already
                 exists on the page, satisfying{" "}
-                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.3 Status Messages
                 </Link>
                 .
@@ -1018,14 +1018,14 @@ dialog.addEventListener("close", () => {
                 Escape is not negotiable. It is the one key every user of every
                 assistive technology tries first, and without it a modal is a
                 keyboard trap under{" "}
-                <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.1.2
                 </Link>
                 . If you cancel the <code>cancel</code> event to protect unsaved
                 work, you must replace the exit you just removed with a visible,
                 keyboard-reachable one in the same breath. For the wider keyboard
                 contract every custom component owes, see the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>
                 .
@@ -1240,13 +1240,13 @@ dialog {
                 </strong>{" "}
                 The backdrop dims the page, but the dialog&apos;s own text still
                 has to meet{" "}
-                <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.4.3 Contrast (Minimum)
                 </Link>{" "}
                 against the dialog surface — not against the dimmed page behind
                 it. A translucent dialog panel over a busy backdrop is a
                 reliable way to fail. Check the real rendered colours with the{" "}
-                <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/contrast-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   contrast checker
                 </Link>
                 .
@@ -1311,7 +1311,7 @@ dialog {
                 A related trap: a timeout warning is not just an{" "}
                 <code>alertdialog</code> problem. If a session can expire while
                 the user is reading, you also owe them{" "}
-                <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.2.1 Timing Adjustable
                 </Link>{" "}
                 — a way to extend the time, announced early enough to act on.
@@ -1402,15 +1402,15 @@ function ConfirmDialog({ open, onClose, onConfirm, count }) {
                 <code>Dialog</code> all implement the pattern and handle the
                 edge cases across browsers. The same guidance applies in other
                 frameworks: see the{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>{" "}
                 and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 guides, and the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React accessibility guide
                 </Link>{" "}
                 for the surrounding patterns. Whatever you ship, verify it
@@ -1463,7 +1463,7 @@ function ConfirmDialog({ open, onClose, onConfirm, count }) {
                   <strong className="text-slate-900 dark:text-white">Zoom to 400% and narrow to 320px.</strong>{" "}
                   The dialog body scrolls, the action buttons stay reachable, and
                   the focused field is never hidden behind a sticky footer (
-                  <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.11
                   </Link>
                   ).
@@ -1473,7 +1473,7 @@ function ConfirmDialog({ open, onClose, onConfirm, count }) {
                   You should hear the dialog&apos;s name on open, then the
                   focused element. Try to read the page behind it — you should
                   not be able to. The{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>{" "}
                   has the commands.
@@ -1487,15 +1487,15 @@ function ConfirmDialog({ open, onClose, onConfirm, count }) {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Layer automated checks on top with <code>axe-core</code>, and see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits. Scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>
                 , and try the interactive{" "}
-                <Link href="/learn/modals" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/learn/modals" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   modal dialog demo
                 </Link>{" "}
                 to feel the difference between a correct and a broken
@@ -1576,7 +1576,7 @@ function ConfirmDialog({ open, onClose, onConfirm, count }) {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Escape works everywhere.</strong>{" "}
                   From any element inside the dialog, satisfying{" "}
-                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.2
                   </Link>
                   .
@@ -1590,7 +1590,7 @@ function ConfirmDialog({ open, onClose, onConfirm, count }) {
                   <strong className="text-slate-900 dark:text-white">It survives zoom.</strong>{" "}
                   The body scrolls, buttons stay reachable at 400%, and the
                   focused element is never obscured (
-                  <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.11
                   </Link>
                   ).
@@ -1603,7 +1603,7 @@ function ConfirmDialog({ open, onClose, onConfirm, count }) {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see the dialog in the context of every other requirement.

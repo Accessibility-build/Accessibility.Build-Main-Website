@@ -157,7 +157,7 @@ export default function WCAG223Page() {
             </blockquote>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-4 text-sm">
               Notice what is missing compared with{" "}
-              <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 2.2.1 Timing Adjustable
               </Link>
               : there is no &ldquo;essential exception&rdquo; you can invoke for your
@@ -306,7 +306,7 @@ export default function WCAG223Page() {
                   <span aria-hidden="true" className="text-purple-500 font-bold">→</span>
                   <span className="text-slate-700 dark:text-slate-300 leading-relaxed">
                     {item.href ? (
-                      <Link href={item.href} className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                      <Link href={item.href} className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                         {item.n}
                       </Link>
                     ) : (
@@ -423,7 +423,7 @@ export default function WCAG223Page() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
               No automated tool can find these failures — timers usually live in
               application logic, not markup. Pair this review with the full{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 WCAG 2.2 checklist
               </Link>
               .

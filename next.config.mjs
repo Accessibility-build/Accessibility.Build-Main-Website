@@ -126,12 +126,17 @@ const nextConfig = {
                     // Must match the `referrer` value in app/layout.tsx metadata.
                     key: 'Referrer-Policy',
                     value: 'strict-origin-when-cross-origin'
-                },
-                {
-                    key: 'X-Frame-Options',
-                    value: 'SAMEORIGIN'
                 }
             ]
+        }, {
+            // No other site may frame our pages, except the widgets under
+            // /embed/, which exist to be iframed elsewhere. A later rule cannot
+            // unset a header, so the exclusion has to live in the source pattern.
+            source: '/((?!embed/).*)',
+            headers: [{
+                key: 'X-Frame-Options',
+                value: 'SAMEORIGIN'
+            }]
         }, {
             // Build assets must stay FETCHABLE. robots.txt allows /_next/static/
             // on purpose so crawlers can render the site, and Googlebot loads

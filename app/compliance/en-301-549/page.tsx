@@ -474,20 +474,20 @@ export default function EN301549Page() {
               required, the user-preferences rework, the total conversation and real-time text rewrite
               with its link to the EAA&apos;s 28 June 2027 date for 112 calls, Annex ZB and the clause A.2
               conformance tables, and a migration list for teams on v3.2.1, is in our{" "}
-              <Link href="/compliance/en-301-549-v4" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/compliance/en-301-549-v4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 EN 301 549 V4.1.1 clause-by-clause guide
               </Link>
               .
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Practical takeaway: if you are remediating now, audit against the{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG 2.2 AA checklist
               </Link>{" "}
               rather than 2.1. WCAG 2.2 is backwards-compatible with 2.1, so work done against
               2.2 satisfies today&apos;s v3.2.1 and is already aligned with where v4 lands. To
               work through the standard itself, clause by clause, use our free{" "}
-              <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 interactive EN 301 549 checklist
               </Link>{" "}
               with both editions, 285 requirements in v3.2.1 and 319 in v4.1.1, every new or changed
@@ -615,37 +615,37 @@ export default function EN301549Page() {
             </h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <li>
-                <Link href="/compliance" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   All compliance guides by jurisdiction
                 </Link>
               </li>
               <li>
-                <Link href="/compliance/en-301-549-v4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/en-301-549-v4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EN 301 549 V4.1.1 clause by clause: what changed
                 </Link>
               </li>
               <li>
-                <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   European Accessibility Act compliance guide
                 </Link>
               </li>
               <li>
-                <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Global accessibility laws tracker
                 </Link>
               </li>
               <li>
-                <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Accessibility lawsuit tracker
                 </Link>
               </li>
               <li>
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 compliance checklist
                 </Link>
               </li>
               <li>
-                <Link href="/wcag" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG success criteria explained
                 </Link>
               </li>

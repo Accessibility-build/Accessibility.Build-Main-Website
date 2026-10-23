@@ -547,7 +547,7 @@ export default function WCAG336Page() {
               whether an undo exists. Work it into your{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>{" "}
@@ -565,7 +565,7 @@ export default function WCAG336Page() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               3.3.6 is{" "}
-              <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.4 Error Prevention (Legal, Financial, Data)
               </Link>{" "}
               (AA) with the scope limit removed: identical reversible / checked /
@@ -576,19 +576,19 @@ export default function WCAG336Page() {
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               The rest of Guideline 3.3 supplies the machinery:{" "}
-              <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.1 Error Identification
               </Link>{" "}
               (A) makes detected errors visible in text,{" "}
-              <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.3 Error Suggestion
               </Link>{" "}
               (AA) requires fixes to be suggested,{" "}
-              <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.2 Labels or Instructions
               </Link>{" "}
               (A) and{" "}
-              <Link href="/wcag/3-3-5" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.5 Help
               </Link>{" "}
               (AAA) prevent errors upstream. Together they describe one lifecycle:

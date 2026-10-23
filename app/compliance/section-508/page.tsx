@@ -360,11 +360,11 @@ export default function Section508CompliancePage() {
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-3">
               Private businesses are sued under the ADA, not Section 508 — see
               our{" "}
-              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility lawsuit tracker
               </Link>{" "}
               for the litigation data, and the{" "}
-              <Link href="/compliance/ada" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/ada" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 ADA compliance guide
               </Link>{" "}
               for that side of US law.
@@ -427,11 +427,11 @@ export default function Section508CompliancePage() {
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-3">
               Selling into the EU as well? The VPAT EU edition maps to{" "}
-              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EN 301 549
               </Link>
               , the standard behind the{" "}
-              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 European Accessibility Act
               </Link>
               .
@@ -532,32 +532,32 @@ export default function Section508CompliancePage() {
             </h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <li>
-                <Link href="/compliance" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   All compliance guides by jurisdiction
                 </Link>
               </li>
               <li>
-                <Link href="/compliance/ada" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/ada" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ADA web accessibility compliance guide
                 </Link>
               </li>
               <li>
-                <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Global accessibility laws tracker
                 </Link>
               </li>
               <li>
-                <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Accessibility lawsuit tracker
                 </Link>
               </li>
               <li>
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 compliance checklist
                 </Link>
               </li>
               <li>
-                <Link href="/wcag" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG success criteria explained
                 </Link>
               </li>

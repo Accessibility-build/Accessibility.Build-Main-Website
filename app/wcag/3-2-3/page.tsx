@@ -320,21 +320,21 @@ export default function WCAG323Page() {
               that is always first (
               <Link
                 href="/wcag/2-4-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.1 Bypass Blocks
               </Link>
               ), a logical focus order (
               <Link
                 href="/wcag/2-4-3"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.3 Focus Order
               </Link>
               ), and consistent naming (
               <Link
                 href="/wcag/3-2-4"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.2.4 Consistent Identification
               </Link>
@@ -663,7 +663,7 @@ const broken = [...NAV_ITEMS].sort((a, b) =>
               perform. Fold it into your template review and the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

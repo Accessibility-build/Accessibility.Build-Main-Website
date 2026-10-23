@@ -7,6 +7,10 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./content/**/*.{js,ts,jsx,tsx,mdx}",
+    // Data and token modules hold class strings too (lib/data/accessibility-laws.ts
+    // badge colours, lib/ui-tokens.ts). Unscanned, their dark: variants were never
+    // generated, leaving a light badge background behind dark-mode text (1.3:1).
+    "./lib/**/*.{js,ts,jsx,tsx}",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {

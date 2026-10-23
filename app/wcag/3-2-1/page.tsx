@@ -325,7 +325,7 @@ export default function WCAG321Page() {
               content must behave is covered by{" "}
               <Link
                 href="/wcag/1-4-13"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.4.13 Content on Hover or Focus
               </Link>
@@ -573,21 +573,21 @@ helpButton.addEventListener("click", () => {
               Pair this test with{" "}
               <Link
                 href="/wcag/2-4-3"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.3 Focus Order
               </Link>{" "}
               and{" "}
               <Link
                 href="/wcag/2-4-7"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.7 Focus Visible
               </Link>{" "}
               — one keyboard pass through the page can verify all three. The complete{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>{" "}

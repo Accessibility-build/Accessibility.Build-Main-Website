@@ -1067,7 +1067,7 @@ function DynamicList() {
                   This pattern is used in toolbars, tab lists, menu bars,{" "}
                   <Link
                     href="/guides/accessible-tree-view"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     tree views
                   </Link>

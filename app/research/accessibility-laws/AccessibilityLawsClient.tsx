@@ -513,9 +513,10 @@ export function AccessibilityLawsClient() {
                                       href={law.sourceUrl}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="text-blue-500 hover:text-blue-600"
+                                      aria-label={`Official source for ${law.lawName} (opens in a new tab)`}
+                                      className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                                     >
-                                      <ExternalLink className="h-3 w-3" />
+                                      <ExternalLink className="h-3 w-3" aria-hidden="true" />
                                     </a>
                                   )}
                                 </div>
@@ -1097,8 +1098,13 @@ export function AccessibilityLawsClient() {
         </h2>
         <EmbeddableWidget
           title="Global Accessibility Legal Tracker 2026"
-          description="Share this research data or embed it on your website."
+          description="Share this page, or embed the upcoming compliance deadlines on your site. The embed updates whenever this tracker does, and past dates drop off."
           url="https://accessibility.build/research/accessibility-laws"
+          embedUrl="https://accessibility.build/embed/compliance-deadlines"
+          embedTitle="Upcoming accessibility compliance deadlines"
+          embedHeight={600}
+          brandedAttribution
+          autoResize
           stat={{
             value: "50+",
             label: "Laws Tracked Across 35+ Jurisdictions",

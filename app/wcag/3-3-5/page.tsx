@@ -527,7 +527,7 @@ export default function WCAG335Page() {
               aria-describedby wiring but not whether the words help. Track it in your{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>
@@ -546,15 +546,15 @@ export default function WCAG335Page() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Guideline 3.3 forms a safety net around user input, and 3.3.5 is its
               proactive layer.{" "}
-              <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.2 Labels or Instructions
               </Link>{" "}
               (A) guarantees the baseline label;{" "}
-              <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.1 Error Identification
               </Link>{" "}
               (A) and{" "}
-              <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.3 Error Suggestion
               </Link>{" "}
               (AA) handle the moment after a mistake — naming it and suggesting a fix.
@@ -564,11 +564,11 @@ export default function WCAG335Page() {
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               At the far end of the pipeline,{" "}
-              <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.4 Error Prevention (Legal, Financial, Data)
               </Link>{" "}
               (AA) and its AAA extension{" "}
-              <Link href="/wcag/3-3-6" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/3-3-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 3.3.6 Error Prevention (All)
               </Link>{" "}
               add review-and-confirm safety at submission. A form that provides help

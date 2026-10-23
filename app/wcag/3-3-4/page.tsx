@@ -384,14 +384,14 @@ export default function WCAG334Page() {
               3.3.4&rsquo;s scope (its cousins{" "}
               <Link
                 href="/wcag/3-3-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.3.1
               </Link>{" "}
               and{" "}
               <Link
                 href="/wcag/3-3-3"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.3.3
               </Link>{" "}
@@ -698,7 +698,7 @@ export default function WCAG334Page() {
               3.3 in the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

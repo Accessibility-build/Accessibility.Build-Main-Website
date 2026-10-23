@@ -209,7 +209,7 @@ export default function CaliforniaCompliancePage() {
               Californians into a claim with a built-in price tag — the economic engine behind
               California&apos;s demand-letter and lawsuit volume. For the federal baseline that
               Unruh builds on, see our{" "}
-              <Link href="/compliance/ada" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/ada" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 ADA website compliance guide
               </Link>
               .
@@ -252,7 +252,7 @@ export default function CaliforniaCompliancePage() {
               — they moved to state court as Unruh actions, which is why combined federal-plus-state
               national totals exceed 5,000 even though the federal-only count is 3,117. Full data
               is in our{" "}
-              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility lawsuit tracker
               </Link>
               .
@@ -319,11 +319,11 @@ export default function CaliforniaCompliancePage() {
               they represent roughly 70% of filings. Restaurants, healthcare providers, and
               hospitality follow. See how California compares with other states&apos; regimes in
               our{" "}
-              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility laws tracker
               </Link>
               , or check your own exposure with the{" "}
-              <Link href="/tools/ada-compliance-risks" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/tools/ada-compliance-risks" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 ADA compliance risk checker
               </Link>
               .
@@ -340,11 +340,11 @@ export default function CaliforniaCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Treat WCAG 2.1/2.2 AA as your target.</strong>{" "}
                 Unruh claims are usually premised on ADA violations, and WCAG is how those are
                 measured. Start with our{" "}
-                <Link href="/wcag" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG guide
                 </Link>{" "}
                 and the{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .
@@ -353,7 +353,7 @@ export default function CaliforniaCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Audit before a plaintiff does.</strong>{" "}
                 Serial filers work from automated scans of the same high-traffic flows — home page,
                 product pages, cart, checkout. A professional{" "}
-                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessibility audit
                 </Link>{" "}
                 covering those flows with manual and screen-reader testing removes the easy targets.
@@ -380,7 +380,7 @@ export default function CaliforniaCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Budget realistically.</strong>{" "}
                 Between statutory damages, fee-shifting, and defense costs, litigating usually
                 costs multiples of proactive remediation — our{" "}
-                <Link href="/guides/ada-website-lawsuit-cost" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/ada-website-lawsuit-cost" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   lawsuit cost guide
                 </Link>{" "}
                 breaks down the numbers.

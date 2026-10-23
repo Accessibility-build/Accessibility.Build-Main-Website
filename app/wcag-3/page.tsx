@@ -580,7 +580,7 @@ export default function WCAG3HubPage() {
             <div className="text-center mt-8">
               <Link
                 href="/wcag-3/concepts"
-                className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
               >
                 Learn more about each concept <ArrowRight className="h-4 w-4" />
               </Link>

@@ -388,14 +388,14 @@ export default function WCAG211Page() {
               path, a keyboard alternative is expected — see{" "}
               <Link
                 href="/wcag/2-5-7"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.5.7 Dragging Movements
               </Link>
               . The stricter Level AAA sibling,{" "}
               <Link
                 href="/wcag/2-1-3"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.1.3 Keyboard (No Exception)
               </Link>
@@ -692,28 +692,28 @@ function handleReorder(e) {
               While you are keyboard testing, keep an eye on the companion criteria:{" "}
               <Link
                 href="/wcag/2-1-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.1.2 No Keyboard Trap
               </Link>
               ,{" "}
               <Link
                 href="/wcag/2-4-3"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.3 Focus Order
               </Link>
               , and{" "}
               <Link
                 href="/wcag/2-4-7"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.7 Focus Visible
               </Link>
               . For a full pass, work through the{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

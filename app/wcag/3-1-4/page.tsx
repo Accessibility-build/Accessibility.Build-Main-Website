@@ -472,7 +472,7 @@ export default function WCAG314Page() {
               Guideline 3.1 Readable builds up from{" "}
               <Link
                 href="/wcag/3-1-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.1.1 Language of Page
               </Link>{" "}
@@ -480,7 +480,7 @@ export default function WCAG314Page() {
               to a trio of AAA comprehension criteria.{" "}
               <Link
                 href="/wcag/3-1-3"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.1.3 Unusual Words
               </Link>{" "}

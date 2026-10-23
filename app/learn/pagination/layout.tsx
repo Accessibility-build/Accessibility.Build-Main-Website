@@ -110,7 +110,7 @@ export default function PaginationLayout({ children }: { children: React.ReactNo
         <ExplainerProse>
           <p>
             The{" "}
-            <Link href="/guides/accessible-pagination" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <Link href="/guides/accessible-pagination" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
               accessible pagination guide
             </Link>{" "}
             covers the choice between links and buttons, URL and title updates

@@ -291,7 +291,7 @@ export default function GovernmentIndustryPage() {
             accessible technology, every RFP that takes accessibility seriously pushes the entire vendor ecosystem —
             the same platforms that private-sector sites then reuse. Public-sector compliance work, tracked alongside
             private litigation in our{" "}
-            <Link href="/research/accessibility-lawsuits" className="text-primary hover:underline">
+            <Link href="/research/accessibility-lawsuits" className="text-primary underline underline-offset-2 hover:decoration-2">
               lawsuit and enforcement research
             </Link>
             , is where accessibility standards become industry norms.
@@ -304,8 +304,8 @@ export default function GovernmentIndustryPage() {
         <h2 className="text-3xl font-bold mb-2 text-center">The legal framework for public sector digital services</h2>
         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
           Which rules bind you depends on your level of government. Full statutory detail lives in our{" "}
-          <Link href="/compliance/section-508" className="text-primary hover:underline">Section 508 guide</Link> and{" "}
-          <Link href="/compliance/ada" className="text-primary hover:underline">ADA compliance guide</Link>.
+          <Link href="/compliance/section-508" className="text-primary underline underline-offset-2 hover:decoration-2">Section 508 guide</Link> and{" "}
+          <Link href="/compliance/ada" className="text-primary underline underline-offset-2 hover:decoration-2">ADA compliance guide</Link>.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {legalExposure.map((item, i) => {
@@ -325,7 +325,7 @@ export default function GovernmentIndustryPage() {
         </div>
         <p className="text-sm text-muted-foreground text-center mt-6 max-w-2xl mx-auto">
           Deep dive: our analysis of the{" "}
-          <Link href="/guides/doj-title-ii-deadline-extension" className="text-primary hover:underline">
+          <Link href="/guides/doj-title-ii-deadline-extension" className="text-primary underline underline-offset-2 hover:decoration-2">
             DOJ Title II deadline extension
           </Link>{" "}
           and what it does — and does not — change.
@@ -355,7 +355,7 @@ export default function GovernmentIndustryPage() {
                         <Link
                           key={criterion.href}
                           href={criterion.href}
-                          className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+                          className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-blue-700 dark:text-primary hover:bg-primary/20 transition-colors"
                         >
                           {criterion.label}
                         </Link>

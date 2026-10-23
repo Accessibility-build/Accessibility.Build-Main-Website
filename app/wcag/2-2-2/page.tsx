@@ -376,11 +376,11 @@ export default function WCAG222Page() {
               paused it, or an animation whose whole point is to demonstrate motion. The
               bar is deliberately high: looking lively, matching a brand, or holding
               attention are never essential. This is distinct from{" "}
-              <Link href="/wcag/2-3-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/2-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 2.3.1 Three Flashes
               </Link>
               , which handles the seizure risk from rapid flashing, and from{" "}
-              <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.4.2 Audio Control
               </Link>
               , the audio analogue of this criterion.
@@ -667,7 +667,7 @@ export default function WCAG222Page() {
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

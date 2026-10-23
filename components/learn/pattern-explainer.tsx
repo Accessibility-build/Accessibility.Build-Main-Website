@@ -69,7 +69,7 @@ export function CriteriaTable({ items }: { items: CriterionRow[] }) {
             return (
               <tr key={item.number} className="border-t border-border align-top">
                 <td className="p-3 whitespace-nowrap">
-                  <Link href={wcagPath(item.number)} className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                  <Link href={wcagPath(item.number)} className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                     {item.number} {criterion?.title ?? ""}
                   </Link>
                 </td>

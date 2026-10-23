@@ -31,8 +31,16 @@ export function subscribeToConsent(callback: () => void) {
 
 /** The current choice, or null when the visitor has not decided yet. */
 export function getConsentSnapshot(): ConsentState {
-  const stored = window.localStorage.getItem(ANALYTICS_CONSENT_STORAGE_KEY)
-  return stored === "accepted" || stored === "rejected" ? stored : null
+  // Reading localStorage throws where the browser blocks storage: all cookies
+  // blocked for the site, or a third-party iframe (the /embed/ widgets) with
+  // third-party cookies blocked. This runs during render, so an uncaught throw
+  // would replace the whole page with the error boundary.
+  try {
+    const stored = window.localStorage.getItem(ANALYTICS_CONSENT_STORAGE_KEY)
+    return stored === "accepted" || stored === "rejected" ? stored : null
+  } catch {
+    return null
+  }
 }
 
 /** During SSR there is no stored choice; report "unresolved" so nothing loads. */

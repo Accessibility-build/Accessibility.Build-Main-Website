@@ -303,7 +303,7 @@ export default function CognitiveAccessibilityGuidePage() {
                   of the standard, see the{" "}
                   <Link
                     href="/guides/wcag-2-2-aa-requirements"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     WCAG 2.2 Level AA requirements
                   </Link>
@@ -349,7 +349,7 @@ export default function CognitiveAccessibilityGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-2-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-2-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.2.6 Consistent Help
                         </Link>
                       </th>
@@ -358,7 +358,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.7 Redundant Entry
                         </Link>
                       </th>
@@ -367,7 +367,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.8 Accessible Authentication
                         </Link>
                       </th>
@@ -376,7 +376,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.2 Labels or Instructions
                         </Link>
                       </th>
@@ -385,7 +385,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.6 Headings and Labels
                         </Link>
                       </th>
@@ -394,7 +394,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-2-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-2-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.2.3 Consistent Navigation
                         </Link>
                       </th>
@@ -403,7 +403,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-2-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-2-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.2.4 Consistent Identification
                         </Link>
                       </th>
@@ -412,7 +412,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.2.1 Timing Adjustable
                         </Link>
                       </th>
@@ -421,7 +421,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-1-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-1-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.1.5 Reading Level
                         </Link>
                       </th>
@@ -430,7 +430,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.8 Visual Presentation
                         </Link>
                       </th>
@@ -439,7 +439,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.5 Help
                         </Link>
                       </th>
@@ -448,7 +448,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.1.3 / 3.1.4 Unusual Words &amp; Abbreviations
                         </Link>
                       </th>
@@ -462,14 +462,14 @@ export default function CognitiveAccessibilityGuidePage() {
                 For the wording of every criterion, browse the{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 reference
                 </Link>{" "}
                 and the interactive{" "}
                 <Link
                   href="/checklists/wcag-2-2"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 checklist
                 </Link>
@@ -564,7 +564,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     lower secondary reading level
                   </strong>{" "}
                   (roughly eighth to ninth grade), which is what{" "}
-                  <Link href="/wcag/3-1-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-1-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.1.5 Reading Level
                   </Link>{" "}
                   points at. A Flesch Reading Ease score around 60 or higher is a
@@ -576,7 +576,7 @@ export default function CognitiveAccessibilityGuidePage() {
                   truly needs advanced reading ability, 3.1.5 asks for a simpler
                   alternative (a summary, a glossary, an explainer), not a dumbed-down
                   original. The{" "}
-                  <Link href="/guides/accessible-typography-wcag" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-typography-wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible typography guide
                   </Link>{" "}
                   covers Flesch-Kincaid scoring and dyslexia-friendly type in depth.
@@ -609,15 +609,15 @@ export default function CognitiveAccessibilityGuidePage() {
                     </strong>{" "}
                     Headings are the table of contents everyone uses to scan.
                     Describe the section (
-                    <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.4.6
                     </Link>
                     ), keep them in a logical nesting (
-                    <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.3.1
                     </Link>
                     ), and check the outline with the{" "}
-                    <Link href="/tools/heading-analyzer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/tools/heading-analyzer" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       heading analyzer
                     </Link>
                     .
@@ -627,12 +627,12 @@ export default function CognitiveAccessibilityGuidePage() {
                       Consistent navigation and identification.
                     </strong>{" "}
                     Keep the primary navigation in the same order on every page (
-                    <Link href="/wcag/3-2-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/3-2-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       3.2.3
                     </Link>
                     ), and give a component that does the same job the same name
                     and icon everywhere (
-                    <Link href="/wcag/3-2-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/3-2-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       3.2.4
                     </Link>
                     ). A &ldquo;Search&rdquo; that becomes &ldquo;Find&rdquo; on the
@@ -651,7 +651,7 @@ export default function CognitiveAccessibilityGuidePage() {
                       More than one way to find things.
                     </strong>{" "}
                     Offer navigation, search, and a site map or index (
-                    <Link href="/wcag/2-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.4.5 Multiple Ways
                     </Link>
                     ) so people are not forced through a single mental model of your
@@ -664,7 +664,7 @@ export default function CognitiveAccessibilityGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   When someone gets stuck, they should not also have to hunt for
                   help.{" "}
-                  <Link href="/wcag/3-2-6" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-2-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.2.6 Consistent Help
                   </Link>{" "}
                   says that if a help mechanism (a phone number, a contact link, a
@@ -710,7 +710,7 @@ export default function CognitiveAccessibilityGuidePage() {
                   Redundant Entry (3.3.7): stop asking twice
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.7 Redundant Entry
                   </Link>{" "}
                   requires that information the user already entered in the same
@@ -734,7 +734,7 @@ export default function CognitiveAccessibilityGuidePage() {
                   Accessible Authentication (3.3.8): logging in without a memory test
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-3-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.3.8 Accessible Authentication
                   </Link>{" "}
                   prohibits a{" "}
@@ -763,7 +763,7 @@ export default function CognitiveAccessibilityGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Puzzle and transcription CAPTCHAs are a direct violation when they
                   are the only path through. The{" "}
-                  <Link href="/guides/accessible-form-validation" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-form-validation" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible form validation guide
                   </Link>{" "}
                   works through 3.3.7 and 3.3.8 alongside the rest of the WCAG 3.3
@@ -807,7 +807,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     Tell people what a field needs{" "}
                     <em>before</em> they fill it, including format, with a real
                     label, not a placeholder that vanishes on focus (
-                    <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/3-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       3.3.2
                     </Link>
                     ).
@@ -834,7 +834,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     </strong>{" "}
                     For anything hard to undo (deleting, paying, submitting), give a
                     review-and-confirm step so a slip does not become a disaster (
-                    <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/3-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       3.3.4 Error Prevention
                     </Link>
                     ).
@@ -855,18 +855,18 @@ export default function CognitiveAccessibilityGuidePage() {
                   Reading, deciding, and typing all take longer for many users, so a
                   silent session timeout is a cognitive barrier as much as a
                   security setting.{" "}
-                  <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.2.1 Timing Adjustable
                   </Link>{" "}
                   requires that time limits can be turned off, adjusted, or extended.
                   Warn before a timeout, offer a one-click extension, and preserve
                   what the person entered so a re-login never means starting over.
                   The full timing-first approach to validation lives in the{" "}
-                  <Link href="/guides/accessible-form-validation" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-form-validation" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     form validation guide
                   </Link>
                   , and the fundamentals in the{" "}
-                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible forms guide
                   </Link>
                   .
@@ -896,7 +896,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     Carousels that rotate on their own, animated ads, and marquee
                     text pull focus away from the task and can be impossible to read
                     (
-                    <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.2.2 Pause, Stop, Hide
                     </Link>
                     ). If content moves, give a control to stop it, and honor{" "}
@@ -925,11 +925,11 @@ export default function CognitiveAccessibilityGuidePage() {
                     Nothing should change context just because a control received
                     focus or a field changed value; a menu that navigates on focus,
                     or a select that submits the page on change, is disorienting (
-                    <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/3-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       3.2.1
                     </Link>
                     ,{" "}
-                    <Link href="/wcag/3-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/3-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       3.2.2
                     </Link>
                     ).
@@ -961,11 +961,11 @@ export default function CognitiveAccessibilityGuidePage() {
                   How text sits on the page changes how much effort it takes to
                   read. These are visual choices with a cognitive payoff, and
                   several are encoded in{" "}
-                  <Link href="/wcag/1-4-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.8 Visual Presentation
                   </Link>{" "}
                   and{" "}
-                  <Link href="/wcag/1-4-12" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-12" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.12 Text Spacing
                   </Link>
                   .
@@ -1031,7 +1031,7 @@ p { margin-bottom: 2em !important; }`}</code></pre>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   For type scales, dyslexia-friendly fonts, and the research behind
                   these numbers, see the{" "}
-                  <Link href="/guides/accessible-typography-wcag" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-typography-wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible typography guide
                   </Link>
                   .
@@ -1099,15 +1099,15 @@ p { margin-bottom: 2em !important; }`}</code></pre>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Cognitive accessibility sits alongside the rest of your testing,
                   not instead of it. Combine it with a{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader pass
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     keyboard testing
                   </Link>
                   , and fold it into your overall{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessibility audit
                   </Link>
                   .
@@ -1213,7 +1213,7 @@ p { margin-bottom: 2em !important; }`}</code></pre>
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Then verify against the{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 and, above all, watch real people with cognitive disabilities use

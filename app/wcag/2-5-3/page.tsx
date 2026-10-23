@@ -373,7 +373,7 @@ export default function WCAG253Page() {
                   accessible name under{" "}
                   <Link
                     href="/wcag/4-1-2"
-                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
                   >
                     4.1.2 Name, Role, Value
                   </Link>
@@ -460,7 +460,7 @@ export default function WCAG253Page() {
                   from the name — a double failure with{" "}
                   <Link
                     href="/wcag/1-1-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     1.1.1 Non-text Content
                   </Link>
@@ -625,14 +625,14 @@ function ArticleCard({ title, href }) {
               Then work through the rest of the{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>{" "}
               — 2.5.3 pairs naturally with{" "}
               <Link
                 href="/wcag/2-4-6"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.6 Headings and Labels
               </Link>

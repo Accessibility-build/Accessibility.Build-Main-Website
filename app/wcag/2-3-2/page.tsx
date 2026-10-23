@@ -157,7 +157,7 @@ export default function WCAG232Page() {
             </blockquote>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-4 text-sm">
               Compare{" "}
-              <Link href="/wcag/2-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/2-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 2.3.1 Three Flashes or Below Threshold
               </Link>{" "}
               (Level A), which adds &ldquo;…or the flash is below the general flash
@@ -249,11 +249,11 @@ export default function WCAG232Page() {
               The practical consequence for teams: at AAA there is nothing to
               calculate. If it flashes more than three times in any one second, it
               fails — so design it out entirely. Related but distinct:{" "}
-              <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/2-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 2.2.2 Pause, Stop, Hide
               </Link>{" "}
               (A) covers slower blinking and moving content, and{" "}
-              <Link href="/wcag/2-3-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag/2-3-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 2.3.3 Animation from Interactions
               </Link>{" "}
               (AAA) covers non-flashing motion effects.
@@ -401,7 +401,7 @@ export default function WCAG232Page() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
               Never test suspected strobe content by staring at it — capture it and
               analyze the recording. Continue with the full{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 WCAG 2.2 checklist
               </Link>
               .

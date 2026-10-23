@@ -212,11 +212,11 @@ export default function NewYorkCompliancePage() {
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               For where New York fits in the broader federal picture — including the circuit split
               and the DOJ&apos;s Title II web rule — see our{" "}
-              <Link href="/compliance/ada" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/ada" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 ADA website compliance guide
               </Link>
               . Year-by-year and state-by-state data lives in the{" "}
-              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility lawsuit tracker
               </Link>
               .
@@ -261,7 +261,7 @@ export default function NewYorkCompliancePage() {
               accessibility standards — so public-sector sites in New York face both the DOJ Title
               II web rule and state policy. How New York&apos;s requirements compare with other
               jurisdictions is mapped in our{" "}
-              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility laws tracker
               </Link>
               .
@@ -295,7 +295,7 @@ export default function NewYorkCompliancePage() {
               plaintiff cannot plausibly allege an intent to return to the site, and scrutiny of
               boilerplate pleading — but no development to date has meaningfully slowed the volume.
               Settlement economics and defense costs are detailed in our{" "}
-              <Link href="/guides/ada-website-lawsuit-cost" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/guides/ada-website-lawsuit-cost" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 lawsuit cost guide
               </Link>
               .
@@ -333,7 +333,7 @@ export default function NewYorkCompliancePage() {
               where one inaccessible component — an unlabeled icon button, a keyboard-trapped
               carousel — repeats across thousands of pages and shows up instantly in a scan. Gauge
               your own site&apos;s red flags with the{" "}
-              <Link href="/tools/ada-compliance-risks" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/tools/ada-compliance-risks" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 ADA compliance risk checker
               </Link>
               .
@@ -350,7 +350,7 @@ export default function NewYorkCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Assume New York reach.</strong>{" "}
                 If your site sells or serves nationally, plaintiffs can and will pick New York as
                 the forum. Plan to the standard its courts apply: WCAG 2.1/2.2 Level AA — see our{" "}
-                <Link href="/wcag" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG guide
                 </Link>
                 .
@@ -359,7 +359,7 @@ export default function NewYorkCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Audit the flows plaintiffs test.</strong>{" "}
                 Home page, search, product pages, cart, checkout, and account signup — with a
                 screen reader and keyboard only. A professional{" "}
-                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessibility audit
                 </Link>{" "}
                 should cover exactly these paths first.
@@ -368,7 +368,7 @@ export default function NewYorkCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Work the checklist.</strong>{" "}
                 The failures in New York complaints are predictable: missing alt text, unlabeled
                 controls, inaccessible menus, missing focus indicators, keyboard traps. Our{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 covers each with testing guidance.

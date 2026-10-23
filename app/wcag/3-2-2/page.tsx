@@ -263,7 +263,7 @@ export default function WCAG322Page() {
               The through-line with{" "}
               <Link
                 href="/wcag/3-2-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.2.1 On Focus
               </Link>{" "}
@@ -602,7 +602,7 @@ function PlanPicker() {
               Run this together with{" "}
               <Link
                 href="/wcag/3-2-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.2.1 On Focus
               </Link>{" "}
@@ -610,7 +610,7 @@ function PlanPicker() {
               everything (3.2.2). The full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>{" "}

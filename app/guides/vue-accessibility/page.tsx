@@ -287,21 +287,21 @@ export default function VueAccessibilityGuidePage() {
                   principles map cleanly onto our{" "}
                   <Link
                     href="/guides/react-accessibility"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     React accessibility guide
                   </Link>{" "}
                   and{" "}
                   <Link
                     href="/guides/angular-accessibility"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     Angular accessibility guide
                   </Link>{" "}
                   and{" "}
                   <Link
                     href="/guides/svelte-accessibility"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     Svelte accessibility guide
                   </Link>
@@ -340,7 +340,7 @@ export default function VueAccessibilityGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -349,7 +349,7 @@ export default function VueAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -358,7 +358,7 @@ export default function VueAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.2 No Keyboard Trap
                         </Link>
                       </th>
@@ -367,7 +367,7 @@ export default function VueAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -376,7 +376,7 @@ export default function VueAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -385,7 +385,7 @@ export default function VueAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.3.1 Error Identification
                         </Link>
                       </th>
@@ -394,7 +394,7 @@ export default function VueAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -403,7 +403,7 @@ export default function VueAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.3 Status Messages
                         </Link>
                       </th>
@@ -417,14 +417,14 @@ export default function VueAccessibilityGuidePage() {
                 For the full list, see the{" "}
                 <Link
                   href="/guides/wcag-2-2-aa-requirements"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and the interactive{" "}
                 <Link
                   href="/checklists/wcag-2-2"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 checklist
                 </Link>
@@ -516,7 +516,7 @@ export default function VueAccessibilityGuidePage() {
                 <code>aria-current</code>, bind the token (<code>&apos;page&apos;</code>)
                 rather than a boolean so screen readers announce the right thing.
                 Every role and state is documented in our{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -567,7 +567,7 @@ const model = defineModel<string>()
                 reusable component wraps a native control in extra markup, this
                 pattern is what keeps its accessible name and state intact
                 (WCAG{" "}
-                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.2 Name, Role, Value
                 </Link>
                 ).
@@ -621,16 +621,16 @@ export default router`}</code></pre>
                 adding it to the Tab order. Prefer focusing a container or the
                 new <code>&lt;h1&gt;</code> over announcing the whole page. This
                 satisfies{" "}
-                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.3 Focus Order
                 </Link>{" "}
                 and depends on a working{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   skip link
                 </Link>
                 . For the full picture of programmatic focus, traps, and
                 restoration, see the{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management guide
                 </Link>
                 .
@@ -704,14 +704,14 @@ watch(open, async (isOpen) => {
                   href="https://headlessui.com/v1/vue/dialog"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   Headless UI Vue
                 </a>{" "}
                 and Reka UI ship a <code>Dialog</code> that handles the Teleport,
                 focus trap, focus restoration, and <code>aria-modal</code> for
                 you — so you rarely need to hand-roll one. See the{" "}
-                <Link href="/learn/modals" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/learn/modals" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible modal pattern
                 </Link>{" "}
                 for the full interaction spec.
@@ -763,7 +763,7 @@ export function useAnnouncer() {
                 <code>aria-live=&quot;assertive&quot;</code> for urgent,
                 interrupting messages such as a session-timeout warning. This
                 satisfies{" "}
-                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   4.1.3 Status Messages
                 </Link>
                 .
@@ -874,11 +874,11 @@ const emailInvalid = computed(
                 exists; it is only <em>live regions</em> that must stay mounted.
                 For labels, grouping with <code>&lt;fieldset&gt;</code>,
                 validation, and error summaries, see the{" "}
-                <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessible forms guide
                 </Link>{" "}
                 and{" "}
-                <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/3-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   3.3.1 Error Identification
                 </Link>
                 .
@@ -902,12 +902,12 @@ const emailInvalid = computed(
                       <li>Interactive = real <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code>, never a <code>@click</code> div.</li>
                       <li>Move focus on router navigation and on overlay open/close.</li>
                       <li>Trap focus in dialogs (<code>useFocusTrap</code>); restore it on close.</li>
-                      <li>Keep a visible focus outline (<Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.7</Link>).</li>
+                      <li>Keep a visible focus outline (<Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.7</Link>).</li>
                       <li>Roving <code>tabindex</code> for arrow-key widgets (tabs, menus, listboxes).</li>
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       See the{" "}
-                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         keyboard accessibility guide
                       </Link>
                       .
@@ -931,7 +931,7 @@ const emailInvalid = computed(
                     </ul>
                     <p className="text-sm text-muted-foreground mt-3">
                       Test with real AT — the{" "}
-                      <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         screen reader testing guide
                       </Link>
                       .
@@ -991,7 +991,7 @@ test("home page is accessible", async ({ page }) => {
                 surfaces missing names and broken <code>$attrs</code> forwarding
                 early. Finish every feature with a manual keyboard pass and a
                 screen reader pass. Read our comparison of{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 to see where each fits.
@@ -1084,11 +1084,11 @@ test("home page is accessible", async ({ page }) => {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Scan the deployed build with our{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>{" "}
                 and work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .

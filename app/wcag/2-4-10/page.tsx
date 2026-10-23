@@ -152,7 +152,7 @@ export default function WCAG2410Page() {
               labeling UI components is handled by{" "}
               <Link
                 href="/wcag/4-1-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
               >
                 4.1.2 Name, Role, Value
               </Link>
@@ -322,7 +322,7 @@ export default function WCAG2410Page() {
                 <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
                   <Link
                     href="/wcag/1-3-1"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     1.3.1 Info and Relationships
                   </Link>{" "}
@@ -338,7 +338,7 @@ export default function WCAG2410Page() {
                 <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
                   <Link
                     href="/wcag/2-4-6"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     2.4.6 Headings and Labels
                   </Link>{" "}
@@ -367,7 +367,7 @@ export default function WCAG2410Page() {
               their titles are worth reading (2.4.6).{" "}
               <Link
                 href="/wcag/2-4-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.1 Bypass Blocks
               </Link>{" "}
@@ -553,7 +553,7 @@ export default function WCAG2410Page() {
               The{" "}
               <Link
                 href="/tools/heading-analyzer"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Heading Analyzer
               </Link>{" "}
@@ -561,7 +561,7 @@ export default function WCAG2410Page() {
               the{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>{" "}

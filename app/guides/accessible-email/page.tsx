@@ -247,7 +247,7 @@ export default function AccessibleEmailGuidePage() {
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   That creates a direct collision with web accessibility.{" "}
-                  <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     Tables on the web are for data
                   </Link>
                   , and using them purely for layout is a long-standing
@@ -304,7 +304,7 @@ export default function AccessibleEmailGuidePage() {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 The highlighted row,{" "}
-                <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.1.1 Non-text Content
                 </Link>
                 , is the criterion email fails most often, because clients block
@@ -336,7 +336,7 @@ export default function AccessibleEmailGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.1.1 Non-text Content
                         </Link>
                       </th>
@@ -345,7 +345,7 @@ export default function AccessibleEmailGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -354,7 +354,7 @@ export default function AccessibleEmailGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.2 Meaningful Sequence
                         </Link>
                       </th>
@@ -363,7 +363,7 @@ export default function AccessibleEmailGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/3-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/3-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           3.1.1 Language of Page
                         </Link>
                       </th>
@@ -372,7 +372,7 @@ export default function AccessibleEmailGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.4 Link Purpose (In Context)
                         </Link>
                       </th>
@@ -381,7 +381,7 @@ export default function AccessibleEmailGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -390,7 +390,7 @@ export default function AccessibleEmailGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.3 Contrast (Minimum)
                         </Link>
                       </th>
@@ -399,7 +399,7 @@ export default function AccessibleEmailGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.10 Reflow
                         </Link>
                       </th>
@@ -408,7 +408,7 @@ export default function AccessibleEmailGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -423,7 +423,7 @@ export default function AccessibleEmailGuidePage() {
                 The complete{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 criteria
                 </Link>{" "}
@@ -518,7 +518,7 @@ export default function AccessibleEmailGuidePage() {
                     between rows and columns, or just positioning things? Data
                     keeps its semantics; positioning gets{" "}
                     <code>presentation</code>. The{" "}
-                    <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/accessible-data-tables" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       accessible data tables guide
                     </Link>{" "}
                     covers how to build that data table correctly.
@@ -540,7 +540,7 @@ export default function AccessibleEmailGuidePage() {
                   content inside those cells still has to be real, meaningful HTML,
                   because that is what a screen reader reads once the grid is out of
                   the way. This is where most emails quietly fail{" "}
-                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.1 Info and Relationships
                   </Link>
                   : the design has a clear visual hierarchy, but it is built from
@@ -600,7 +600,7 @@ export default function AccessibleEmailGuidePage() {
                     Go from <code>&lt;h1&gt;</code> to <code>&lt;h2&gt;</code> in
                     order so the outline holds together, the same discipline
                     covered in the{" "}
-                    <Link href="/guides/skip-links" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/guides/skip-links" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       headings and bypass-blocks guide
                     </Link>
                     .
@@ -631,7 +631,7 @@ export default function AccessibleEmailGuidePage() {
                   screen reader reads the whole message in its default voice, using
                   the wrong pronunciation rules, which is genuinely hard to follow.
                   Setting the language is a one-attribute fix for{" "}
-                  <Link href="/wcag/3-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/3-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     3.1.1 Language of Page
                   </Link>
                   :
@@ -700,7 +700,7 @@ export default function AccessibleEmailGuidePage() {
                   reader chooses to load it. So the alt text is not just for screen
                   reader users; it is frequently the only thing{" "}
                   <em>anyone</em> sees. That reframes{" "}
-                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.1.1 Non-text Content
                   </Link>{" "}
                   from a checkbox into a core content decision.
@@ -714,7 +714,7 @@ export default function AccessibleEmailGuidePage() {
                     with all the text baked into it and no live HTML. In an
                     images-off inbox it renders as a blank rectangle, a screen
                     reader finds nothing to read, and the text inside it also fails{" "}
-                    <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.5 Images of Text
                     </Link>{" "}
                     and cannot reflow or resize. Build the message from live text.
@@ -850,7 +850,7 @@ export default function AccessibleEmailGuidePage() {
                     <code>Confirm your order</code> or{" "}
                     <code>Download your invoice</code> tells a screen reader user
                     exactly where the link goes.{" "}
-                    <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.4.4 Link Purpose
                     </Link>{" "}
                     is failed by a page or email full of{" "}
@@ -861,7 +861,7 @@ export default function AccessibleEmailGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   For text links in body copy, do not rely on color alone to mark
                   them, which fails{" "}
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1 Use of Color
                   </Link>
                   . Underline them, so a reader who does not perceive the link
@@ -888,7 +888,7 @@ export default function AccessibleEmailGuidePage() {
                   a single column on a phone. If you use table cells to place
                   something visually before content that comes earlier in the
                   source, the read order and the visual order diverge, which fails{" "}
-                  <Link href="/wcag/1-3-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-3-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.3.2 Meaningful Sequence
                   </Link>
                   . The rule is simple:{" "}
@@ -900,7 +900,7 @@ export default function AccessibleEmailGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   The other half of this section is reflow. An email that forces
                   horizontal scrolling or pinch-zoom on a phone fails{" "}
-                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.10 Reflow
                   </Link>{" "}
                   and is miserable for everyone. The practical constraints:
@@ -954,7 +954,7 @@ export default function AccessibleEmailGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Email leans heavily on colored backgrounds, tinted bands, and
                   filled buttons, so contrast needs deliberate attention.{" "}
-                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.3 Contrast (Minimum)
                   </Link>{" "}
                   asks for 4.5:1 for normal text and 3:1 for large text, measured
@@ -1004,7 +1004,7 @@ export default function AccessibleEmailGuidePage() {
                     </strong>{" "}
                     Inversion can swap the very colors you used to mean something,
                     so follow{" "}
-                    <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.1
                     </Link>{" "}
                     and back color up with text, an underline, or an icon.
@@ -1124,15 +1124,15 @@ export default function AccessibleEmailGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   This is the test that proves the linear read works. Open the
                   delivered email and listen to it with a screen reader:{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>{" "}
                   in Apple Mail on macOS or iOS,{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   reading the email in Outlook or a browser view, or{" "}
-                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     TalkBack
                   </Link>{" "}
                   in Gmail on Android. Confirm it reads straight down the content
@@ -1149,11 +1149,11 @@ export default function AccessibleEmailGuidePage() {
                   email once in a force-inverting dark-mode client to confirm
                   contrast survives. For where this fits in a wider process, see
                   the{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessibility audit guide
                   </Link>{" "}
                   and the{" "}
-                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     automated versus manual testing guide
                   </Link>
                   , which explains why the manual pass is the one that catches what

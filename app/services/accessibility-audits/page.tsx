@@ -197,7 +197,7 @@ export default function AccessibilityAuditsPage() {
                       href="https://www.who.int/news-room/fact-sheets/detail/disability-and-health"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:underline"
+                      className="text-primary underline underline-offset-2 hover:decoration-2"
                     >
                       WHO fact sheet
                     </a>

@@ -283,12 +283,12 @@ export default function VpatAcrGuidePage() {
             </div>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               US federal buyers want the 508 edition, because{" "}
-              <Link href="/compliance/section-508" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/section-508" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 Section 508
               </Link>{" "}
               is the standard their procurement rules reference. European buyers increasingly
               want the EU edition mapping{" "}
-              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EN 301 549
               </Link>
               . Commercial buyers with no statutory hook often accept a WCAG edition. If you sell
@@ -344,7 +344,7 @@ export default function VpatAcrGuidePage() {
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               If accessibility documentation is becoming part of your purchasing process more
               broadly, our{" "}
-              <Link href="/procurement" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/procurement" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessible procurement guide
               </Link>{" "}
               covers how to build these checks into RFPs and vendor reviews.
@@ -369,12 +369,12 @@ export default function VpatAcrGuidePage() {
                 by construction. Our{" "}
                 <Link
                   href="/guides/how-to-audit-website-accessibility"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   how-to-audit guide
                 </Link>{" "}
                 walks through the methodology, and the{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 covers the criteria themselves.
@@ -413,7 +413,7 @@ export default function VpatAcrGuidePage() {
               One more credibility lever: who did the testing. Third-party-produced ACRs carry
               more weight with buyers than self-reported ones, because the incentives are
               cleaner. Our{" "}
-              <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility audit service
               </Link>{" "}
               produces exactly the automated, manual, and assistive technology testing an ACR
@@ -429,7 +429,7 @@ export default function VpatAcrGuidePage() {
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               The VPAT conversation is often framed as a purely American, Section 508 story. That
               framing is out of date. The VPAT EU edition maps{" "}
-              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EN 301 549
               </Link>
               , the European accessibility standard, and European public procurement references
@@ -478,7 +478,7 @@ export default function VpatAcrGuidePage() {
               need both; our{" "}
               <Link
                 href="/guides/how-to-write-an-accessibility-statement"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
               >
                 accessibility statement guide
               </Link>{" "}

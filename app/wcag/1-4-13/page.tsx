@@ -563,7 +563,7 @@ wrapper.addEventListener("focusout", () =>
               see the{" "}
               <Link
                 href="/guides/accessible-tooltip"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 accessible tooltips and toggletips guide
               </Link>
@@ -660,14 +660,14 @@ wrapper.addEventListener("focusout", () =>
               and magnification walkthrough with the{" "}
               <Link
                 href="/guides/keyboard-accessibility"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Keyboard Accessibility Guide
               </Link>{" "}
               and scan a live page with the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>

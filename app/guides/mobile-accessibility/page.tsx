@@ -261,7 +261,7 @@ export default function MobileAccessibilityGuidePage() {
                   <li>
                     <strong className="text-slate-900 dark:text-white">Touch targets</strong>{" "}
                     too small to hit reliably (
-                    <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.5.8
                     </Link>
                     ).
@@ -270,11 +270,11 @@ export default function MobileAccessibilityGuidePage() {
                     <strong className="text-slate-900 dark:text-white">Gestures</strong>{" "}
                     &mdash; swipe, pinch, drag &mdash; that a screen reader user
                     or a one-handed user cannot perform (
-                    <Link href="/wcag/2-5-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-5-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.5.1
                     </Link>
                     ,{" "}
-                    <Link href="/wcag/2-5-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/2-5-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       2.5.2
                     </Link>
                     ).
@@ -283,7 +283,7 @@ export default function MobileAccessibilityGuidePage() {
                     <strong className="text-slate-900 dark:text-white">Orientation</strong>{" "}
                     locked to portrait, breaking anyone whose phone is mounted in
                     landscape (
-                    <Link href="/wcag/1-3-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.3.4
                     </Link>
                     ).
@@ -291,11 +291,11 @@ export default function MobileAccessibilityGuidePage() {
                   <li>
                     <strong className="text-slate-900 dark:text-white">Text scaling</strong>{" "}
                     that ignores Dynamic Type or the Android font-size setting (
-                    <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.4
                     </Link>
                     ), and layouts that will not reflow (
-                    <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       1.4.10
                     </Link>
                     ).
@@ -310,11 +310,11 @@ export default function MobileAccessibilityGuidePage() {
                   for non-web software &mdash; you substitute &ldquo;software&rdquo;
                   for &ldquo;web page&rdquo; and the criteria still apply. The ADA,
                   the{" "}
-                  <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     European Accessibility Act
                   </Link>
                   , and{" "}
-                  <Link href="/compliance/section-508" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/compliance/section-508" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     Section 508
                   </Link>{" "}
                   all reach mobile apps, and WCAG 2.2 AA is the standard they are
@@ -356,7 +356,7 @@ export default function MobileAccessibilityGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.1 Pointer Gestures
                         </Link>
                       </th>
@@ -365,7 +365,7 @@ export default function MobileAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.2 Pointer Cancellation
                         </Link>
                       </th>
@@ -374,7 +374,7 @@ export default function MobileAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.4 Motion Actuation
                         </Link>
                       </th>
@@ -383,7 +383,7 @@ export default function MobileAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.4 Orientation
                         </Link>
                       </th>
@@ -392,7 +392,7 @@ export default function MobileAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.4 Resize Text
                         </Link>
                       </th>
@@ -401,7 +401,7 @@ export default function MobileAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.10 Reflow
                         </Link>
                       </th>
@@ -410,7 +410,7 @@ export default function MobileAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.8 Target Size (Minimum)
                         </Link>
                       </th>
@@ -419,7 +419,7 @@ export default function MobileAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-12" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-12" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.12 Text Spacing
                         </Link>
                       </th>
@@ -428,7 +428,7 @@ export default function MobileAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -437,7 +437,7 @@ export default function MobileAccessibilityGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -451,14 +451,14 @@ export default function MobileAccessibilityGuidePage() {
                 For the full list, see the{" "}
                 <Link
                   href="/guides/wcag-2-2-aa-requirements"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 Level AA requirements
                 </Link>{" "}
                 and the interactive{" "}
                 <Link
                   href="/checklists/wcag-2-2"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 checklist
                 </Link>
@@ -583,19 +583,19 @@ export default function MobileAccessibilityGuidePage() {
                   thing, and let users turn the motion trigger off. Someone whose
                   phone is mounted to a wheelchair cannot shake it, and involuntary
                   movement can fire it by accident. See{" "}
-                  <Link href="/wcag/2-5-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.4 Motion Actuation
                   </Link>{" "}
                   for the full requirement.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   For drag operations specifically, WCAG 2.2 added{" "}
-                  <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.7 Dragging Movements
                   </Link>{" "}
                   (AA): anything you accomplish by dragging must also be doable
                   with single taps. Our{" "}
-                  <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible slider guide
                   </Link>{" "}
                   works through a canonical drag control end to end.
@@ -851,17 +851,17 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
                   On mobile web the accessibility tree is built for you: write
                   semantic HTML &mdash; real <code>&lt;button&gt;</code> and{" "}
                   <code>&lt;a href&gt;</code>, labeled inputs, headings, and{" "}
-                  <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     ARIA
                   </Link>{" "}
                   only where HTML falls short &mdash; and Safari with VoiceOver or
                   Chrome with TalkBack turns it into something a screen reader can
                   navigate. Everything in our{" "}
-                  <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     keyboard accessibility
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-forms" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessible forms
                   </Link>{" "}
                   guides applies. The mobile-web-specific work is smaller and
@@ -901,7 +901,7 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
                   &mdash; there is no hover on touch, so tooltips and menus that
                   only appear on <code>:hover</code> are unreachable. Make them
                   open on tap/focus and stay dismissible, per{" "}
-                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-13" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.13 Content on Hover or Focus
                   </Link>
                   . React Native and Flutter each have their own accessibility
@@ -957,7 +957,7 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
                       or triple-click the side button. Swipe to move, double-tap
                       to activate, use the Rotor (two-finger rotate) to change
                       navigation mode. Our{" "}
-                      <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         VoiceOver testing guide
                       </Link>{" "}
                       has the full gesture set for iOS and macOS.
@@ -972,7 +972,7 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
                       or hold both volume keys. Swipe to move, double-tap to
                       activate, swipe up-then-down (or a three-finger swipe) to
                       change reading controls. Our{" "}
-                      <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/talkback-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         TalkBack testing guide
                       </Link>{" "}
                       covers the gestures and the mobile-only criteria it exposes.
@@ -1016,7 +1016,7 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
                     <strong className="text-slate-900 dark:text-white">Mobile web:</strong>{" "}
                     axe DevTools and Lighthouse against a mobile viewport &mdash;
                     or scan a live URL with our{" "}
-                    <Link href="/tools/mobile-accessibility-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <Link href="/tools/mobile-accessibility-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                       mobile accessibility checker
                     </Link>
                     .
@@ -1160,11 +1160,11 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Scan a live mobile page with our{" "}
-                <Link href="/tools/mobile-accessibility-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/mobile-accessibility-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   mobile accessibility checker
                 </Link>{" "}
                 and work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>
                 .

@@ -504,7 +504,7 @@ export default function WCAG1411Page() {
               satisfy{" "}
               <Link
                 href="/wcag/1-4-1"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.4.1 Use of Color
               </Link>
@@ -600,7 +600,7 @@ export default function WCAG1411Page() {
               button still needs an accessible name for screen readers (
               <Link
                 href="/wcag/4-1-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 4.1.2 Name, Role, Value
               </Link>
@@ -708,21 +708,21 @@ export default function WCAG1411Page() {
               reliably. Build accessible color pairs up front with the{" "}
               <Link
                 href="/tools/accessible-palette-studio"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Accessible Palette Studio
               </Link>
               , verify text and UI pairs in the{" "}
               <Link
                 href="/tools/contrast-checker"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 Color Contrast Checker
               </Link>
               , and scan a live page with the{" "}
               <Link
                 href="/tools/url-accessibility-auditor"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 URL Accessibility Auditor
               </Link>

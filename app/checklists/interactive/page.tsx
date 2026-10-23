@@ -71,7 +71,7 @@ export default function InteractiveChecklistPage() {
               criterion links to its own page with the requirement, common
               failures, and testing steps. Ticks are saved in this browser and
               shared with the{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 full WCAG 2.2 checklist
               </Link>
               , which adds notes, filtering by level, and Excel and PDF export
@@ -97,11 +97,11 @@ export default function InteractiveChecklistPage() {
                 needs a defined scope, a page sample, manual testing with a
                 keyboard and a screen reader alongside automated scans, and a
                 record of what failed. The{" "}
-                <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   audit guide
                 </Link>{" "}
                 walks through that process, and the{" "}
-                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   statement generator
                 </Link>{" "}
                 helps you publish the result with honest partial-conformance
@@ -137,7 +137,7 @@ export default function InteractiveChecklistPage() {
             <ul className="space-y-2 text-sm">
               {groups.map((group) => (
                 <li key={group.principle}>
-                  <a href={`#principle-${group.principle.charAt(0)}`} className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <a href={`#principle-${group.principle.charAt(0)}`} className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     {group.principle}
                   </a>
                   <span className="text-slate-500 dark:text-slate-400"> ({stats.byPrinciple[group.principle]})</span>
@@ -150,14 +150,14 @@ export default function InteractiveChecklistPage() {
             <p>
               Need the same list as a spreadsheet, or want to add notes per
               criterion? Use the{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 full WCAG 2.2 checklist
               </Link>
               .
             </p>
             <p>
               Auditing against the European standard? See the{" "}
-              <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EN 301 549 checklist
               </Link>
               .

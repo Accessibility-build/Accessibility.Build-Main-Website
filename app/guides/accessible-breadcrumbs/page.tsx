@@ -303,7 +303,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 The highlighted row,{" "}
-                <Link href="/wcag/2-4-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.8 Location
                 </Link>
                 , is the criterion breadcrumbs were invented to satisfy: helping a
@@ -335,7 +335,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr className="bg-blue-50/60 dark:bg-blue-950/20">
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.8 Location
                         </Link>
                       </th>
@@ -344,7 +344,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info and Relationships
                         </Link>
                       </th>
@@ -353,7 +353,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -362,7 +362,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.4 Link Purpose (In Context)
                         </Link>
                       </th>
@@ -371,7 +371,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.5 Multiple Ways
                         </Link>
                       </th>
@@ -380,7 +380,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -389,7 +389,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -404,7 +404,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                 complete{" "}
                 <Link
                   href="/wcag"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                 >
                   WCAG 2.2 criteria
                 </Link>{" "}
@@ -448,7 +448,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   Each decision is doing real work. The{" "}
                   <code>&lt;nav aria-label=&quot;Breadcrumb&quot;&gt;</code> exposes
                   a{" "}
-                  <Link href="/guides/landmarks-page-structure" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/landmarks-page-structure" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     navigation landmark
                   </Link>{" "}
                   with a distinct name, so a screen reader user can find and skip to
@@ -553,7 +553,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   separator <em>inside</em> the link, or it becomes part of the link
                   text and, worse, part of the clickable target. And remember the
                   separators fall under{" "}
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1 Use of Color
                   </Link>{" "}
                   only in the sense that they must never be the <em>only</em> thing
@@ -603,7 +603,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                       <tr>
                         <th scope="row" className="px-4 py-3 font-medium text-slate-900 dark:text-white align-top"><code>page</code></th>
                         <td className="px-4 py-3 align-top">The current page within a set of pages. This is the breadcrumb value, and also how a{" "}
-                          <Link href="/guides/accessible-pagination" className="text-blue-600 dark:text-blue-400 hover:underline">
+                          <Link href="/guides/accessible-pagination" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                             pagination control
                           </Link>{" "}
                           and the active link in a site menu mark the current page.</td>
@@ -633,7 +633,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   The current crumb can be a link to the current page or plain text,
                   and both are accepted. The{" "}
-                  <Link href="/guides/using-aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/using-aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     WAI-ARIA Authoring Practices
                   </Link>{" "}
                   example renders it as a link carrying{" "}
@@ -655,7 +655,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   One caution that ties back to{" "}
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1 Use of Color
                   </Link>
                   : do not let bold text or a color be the <em>only</em> signal that
@@ -823,7 +823,7 @@ const crumbs = [
                   ellipsis. It carries <code>aria-expanded</code> so its state is
                   announced, and activating it reveals the hidden crumbs. That
                   behavior is a small disclosure widget; the{" "}
-                  <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accordion and disclosure guide
                   </Link>{" "}
                   covers the pattern in depth. A simpler alternative that avoids the
@@ -834,7 +834,7 @@ const crumbs = [
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Whatever the approach, the breadcrumb must not force the page to
                   scroll horizontally at 320 pixels wide, which would fail{" "}
-                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-10" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.10 Reflow
                   </Link>
                   , which keeps content usable when zoomed. Wrapping and a self-scrolling
@@ -859,7 +859,7 @@ const crumbs = [
                   navigation landmark, it shows up in the landmarks list as
                   &ldquo;Breadcrumb navigation,&rdquo; and the user can jump straight
                   to it, exactly as covered in the{" "}
-                  <Link href="/guides/landmarks-page-structure" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/landmarks-page-structure" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     landmarks and page structure guide
                   </Link>
                   .
@@ -879,16 +879,16 @@ const crumbs = [
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   The commands differ by screen reader:{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/jaws-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     JAWS
                   </Link>{" "}
                   reach the breadcrumb through the landmark and list navigation keys,
                   while{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>{" "}
                   uses the rotor. In every case the experience depends on the same few
@@ -946,7 +946,7 @@ const crumbs = [
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Automated checkers such as{" "}
-                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/axe-vs-wave" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     axe and WAVE
                   </Link>{" "}
                   will flag a navigation landmark with no accessible name and other
@@ -956,12 +956,12 @@ const crumbs = [
                   current page is the one actually marked, whether the separators are
                   meaningfully hidden, or whether the visible trail and the JSON-LD
                   agree. As the{" "}
-                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     automated versus manual testing guide
                   </Link>{" "}
                   puts it, the machine gets you to valid markup and a person decides
                   whether it is correct. For where this fits in a full review, see the{" "}
-                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/how-to-audit-website-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     accessibility audit guide
                   </Link>
                   .

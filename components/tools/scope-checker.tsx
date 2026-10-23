@@ -391,7 +391,7 @@ export default function ScopeChecker() {
                             href={entry.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm text-primary hover:underline break-all inline-flex items-center gap-1"
+                            className="text-sm text-primary underline underline-offset-2 hover:decoration-2 break-all inline-flex items-center gap-1"
                           >
                             {entry.url}
                             <ExternalLink className="h-3.5 w-3.5" />
@@ -435,7 +435,7 @@ export default function ScopeChecker() {
                             href={page.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm text-primary hover:underline break-all inline-flex items-center gap-1"
+                            className="text-sm text-primary underline underline-offset-2 hover:decoration-2 break-all inline-flex items-center gap-1"
                           >
                             {page.url}
                             <ExternalLink className="h-3.5 w-3.5" />
@@ -471,7 +471,7 @@ export default function ScopeChecker() {
                             href={document.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm text-primary hover:underline break-all inline-flex items-center gap-1"
+                            className="text-sm text-primary underline underline-offset-2 hover:decoration-2 break-all inline-flex items-center gap-1"
                           >
                             {document.url}
                             <ExternalLink className="h-3.5 w-3.5" />
@@ -509,7 +509,7 @@ export default function ScopeChecker() {
                             href={external.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm text-primary hover:underline break-all inline-flex items-center gap-1"
+                            className="text-sm text-primary underline underline-offset-2 hover:decoration-2 break-all inline-flex items-center gap-1"
                           >
                             {external.url}
                             <ExternalLink className="h-3.5 w-3.5" />

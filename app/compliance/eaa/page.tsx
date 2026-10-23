@@ -305,7 +305,7 @@ export default function EAACompliancePage() {
               <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-5">
                 <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">Technical standard</p>
                 <p className="font-semibold text-slate-900 dark:text-white">
-                  <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     EN 301 549
                   </Link>
                   , incorporating WCAG 2.1 AA for web
@@ -534,7 +534,7 @@ export default function EAACompliancePage() {
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-3">
               Indicative examples from national implementing laws; exact
               amounts and mechanisms vary and change. See our{" "}
-              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 global accessibility laws tracker
               </Link>{" "}
               for jurisdiction-by-jurisdiction detail.
@@ -636,37 +636,37 @@ export default function EAACompliancePage() {
             </h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <li>
-                <Link href="/compliance" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   All compliance guides by jurisdiction
                 </Link>
               </li>
               <li>
-                <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EN 301 549: the EAA&apos;s technical standard
                 </Link>
               </li>
               <li>
-                <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Global accessibility laws tracker
                 </Link>
               </li>
               <li>
-                <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Accessibility lawsuit tracker
                 </Link>
               </li>
               <li>
-                <Link href="/checklists/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EAA readiness checklist with Excel export
                 </Link>
               </li>
               <li>
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 compliance checklist
                 </Link>
               </li>
               <li>
-                <Link href="/wcag" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG success criteria explained
                 </Link>
               </li>

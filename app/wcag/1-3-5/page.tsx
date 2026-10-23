@@ -357,14 +357,14 @@ export default function WCAG135Page() {
               <em>purpose</em> — the human-readable label is still governed by{" "}
               <Link
                 href="/wcag/3-3-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 3.3.2 Labels or Instructions
               </Link>{" "}
               and{" "}
               <Link
                 href="/wcag/2-4-6"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 2.4.6 Headings and Labels
               </Link>
@@ -592,7 +592,7 @@ export default function WCAG135Page() {
               the{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

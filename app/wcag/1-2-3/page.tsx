@@ -280,7 +280,7 @@ export default function WCAG123Page() {
               1.2.3 applies to <strong>prerecorded synchronized media</strong> — video
               that has a soundtrack. It is concerned only with the information carried by
               the picture, because the audio track is already handled by captions under{" "}
-              <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.2 Captions
               </Link>
               . You can meet it in one of two ways:
@@ -360,7 +360,7 @@ export default function WCAG123Page() {
               else, if there are no natural pauses long enough for description, provide the
               full text media alternative; pausing the video for longer descriptions is
               the AAA-level{" "}
-              <Link href="/wcag/1-2-7" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.7 Extended Audio Description
               </Link>
               , not a requirement here.
@@ -600,7 +600,7 @@ Close-up of her hands typing; the screen shows code with ARIA labels.`}</code>
               audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

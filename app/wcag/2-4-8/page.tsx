@@ -447,16 +447,16 @@ export default function WCAG248Page() {
             </ol>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
               Related criteria to verify together:{" "}
-              <Link href="/wcag/2-4-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/2-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 2.4.2 Page Titled
               </Link>{" "}
               (titles carry the location into tabs and history) and{" "}
-              <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/2-4-6" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 2.4.6 Headings and Labels
               </Link>{" "}
               (the h1 should confirm where the user landed). Then continue with the
               full{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 WCAG 2.2 checklist
               </Link>
               .

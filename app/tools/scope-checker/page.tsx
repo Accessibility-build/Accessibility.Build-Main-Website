@@ -223,7 +223,7 @@ export default function ScopeCheckerPage() {
               </p>
               <ul className="text-muted-foreground leading-relaxed list-disc pl-6 space-y-2">
                 <li>
-                  <Link href="/wcag/2-4-2" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.2 Page Titled</Link>{" "}
+                  <Link href="/wcag/2-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.2 Page Titled</Link>{" "}
                   (Level A): if a page&apos;s title in the results is its own
                   URL, the page has no <code>&lt;title&gt;</code>, no social
                   title, and no <code>&lt;h1&gt;</code>. Identical titles across
@@ -231,14 +231,14 @@ export default function ScopeCheckerPage() {
                   for titles that describe the page.
                 </li>
                 <li>
-                  <Link href="/wcag/3-2-3" className="text-blue-600 dark:text-blue-400 hover:underline">3.2.3 Consistent Navigation</Link>{" "}
+                  <Link href="/wcag/3-2-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.2.3 Consistent Navigation</Link>{" "}
                   and{" "}
-                  <Link href="/wcag/3-2-4" className="text-blue-600 dark:text-blue-400 hover:underline">3.2.4 Consistent Identification</Link>{" "}
+                  <Link href="/wcag/3-2-4" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">3.2.4 Consistent Identification</Link>{" "}
                   (Level AA) can only be judged across a set of pages, so your
                   sample needs pages from different templates and depths.
                 </li>
                 <li>
-                  <Link href="/wcag/2-4-5" className="text-blue-600 dark:text-blue-400 hover:underline">2.4.5 Multiple Ways</Link>{" "}
+                  <Link href="/wcag/2-4-5" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">2.4.5 Multiple Ways</Link>{" "}
                   (Level AA): whether a sitemap was found, and how much of the
                   crawl came from it versus from links, tells you something about
                   the routes users have to reach content.

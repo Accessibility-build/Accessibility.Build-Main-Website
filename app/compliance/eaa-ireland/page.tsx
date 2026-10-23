@@ -197,11 +197,11 @@ export default function EAAIrelandCompliancePage() {
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               This page covers the Irish specifics: who enforces the Regulations, why the penalty
               model stands out, and what to do about it. For the EU-wide picture, start with our{" "}
-              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 European Accessibility Act guide
               </Link>{" "}
               and the deeper{" "}
-              <Link href="/research/european-accessibility-act" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/european-accessibility-act" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EAA research hub
               </Link>
               .
@@ -280,11 +280,11 @@ export default function EAAIrelandCompliancePage() {
               e-commerce checkout is squarely its territory. A bank&apos;s consumer services sit
               with the Central Bank of Ireland instead, and a business operating across sectors can
               be answerable to more than one regulator. We cover the sector-specific stakes in our{" "}
-              <Link href="/industries/ecommerce" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/industries/ecommerce" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 e-commerce accessibility guide
               </Link>{" "}
               and{" "}
-              <Link href="/industries/finance" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/industries/finance" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 finance accessibility guide
               </Link>
               .
@@ -355,7 +355,7 @@ export default function EAAIrelandCompliancePage() {
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               If you are unsure where you land, our{" "}
-              <Link href="/tools/eaa-scope-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/tools/eaa-scope-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EAA scope checker
               </Link>{" "}
               walks through the sector, establishment and microenterprise questions in a few
@@ -371,7 +371,7 @@ export default function EAAIrelandCompliancePage() {
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               The Regulations state requirements as outcomes, not techniques. The practical route
               to meeting them is{" "}
-              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 EN 301 549
               </Link>
               , the European ICT accessibility standard. Once a version of it is cited in the
@@ -389,11 +389,11 @@ export default function EAAIrelandCompliancePage() {
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Our{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG 2.2 checklist
               </Link>{" "}
               covers every success criterion, and the{" "}
-              <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/guides/wcag-2-2-aa-requirements" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG 2.2 AA requirements guide
               </Link>{" "}
               explains what each one demands in practice.
@@ -468,12 +468,12 @@ export default function EAAIrelandCompliancePage() {
               Ireland has its own reason not to wait for a first fine elsewhere: its criminal
               penalty model means the first Irish enforcement action would look very different from
               an administrative fine. Track how the EAA compares with other regimes in our{" "}
-              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility laws tracker
               </Link>
               , and if you also sell into Great Britain, note that the UK sits outside the EAA and
               runs its own regime, covered in our{" "}
-              <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/uk" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 UK accessibility law guide
               </Link>
               .
@@ -489,12 +489,12 @@ export default function EAAIrelandCompliancePage() {
               <li>
                 <strong className="text-slate-900 dark:text-white">Confirm whether you are in scope.</strong>{" "}
                 Run your business through the{" "}
-                <Link href="/tools/eaa-scope-checker" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/eaa-scope-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EAA scope checker
                 </Link>
                 . If you plan to rely on the microenterprise exemption or a disproportionate burden
                 claim, put the supporting evidence in writing now. The{" "}
-                <Link href="/checklists/eaa" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/eaa" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   EAA readiness checklist
                 </Link>{" "}
                 lists every obligation in the Act with the evidence to keep for each.
@@ -502,11 +502,11 @@ export default function EAAIrelandCompliancePage() {
               <li>
                 <strong className="text-slate-900 dark:text-white">Audit against WCAG 2.2 AA.</strong>{" "}
                 An audit tells you the gap between where you are and what EN 301 549 expects. Our{" "}
-                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   fixed-price WCAG 2.2 AA audits
                 </Link>{" "}
                 start at $950, and you can see exactly what you get in the{" "}
-                <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/sample-audit-report" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   sample audit report
                 </Link>
                 .
@@ -515,7 +515,7 @@ export default function EAAIrelandCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Fix the consumer journeys first.</strong>{" "}
                 Prioritise the flows a regulator or a blocked customer meets first: product pages,
                 cart, checkout, account creation, and support. For online retail, our{" "}
-                <Link href="/industries/ecommerce" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/industries/ecommerce" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   e-commerce guide
                 </Link>{" "}
                 maps the highest-risk patterns.
@@ -524,11 +524,11 @@ export default function EAAIrelandCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Publish accessibility information.</strong>{" "}
                 Telling customers how your service meets the requirements, and where it falls
                 short, is part of operating in good faith. Our{" "}
-                <Link href="/guides/how-to-write-an-accessibility-statement" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/how-to-write-an-accessibility-statement" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessibility statement guide
                 </Link>{" "}
                 explains what to say, and the{" "}
-                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/accessibility-statement-generator" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   statement generator
                 </Link>{" "}
                 gives you a starting draft.

@@ -300,7 +300,7 @@ export default function WCAG3PreparationPage() {
                       {area.link && (
                         <Link
                           href={area.link.href}
-                          className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                         >
                           {area.link.label} <ArrowRight className="h-4 w-4" />
                         </Link>

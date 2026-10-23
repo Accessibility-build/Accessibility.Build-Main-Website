@@ -187,11 +187,11 @@ export default function WCAG147Page() {
             </div>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               This is the AAA companion to{" "}
-              <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-4-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.4.2 Audio Control
               </Link>{" "}
               (Level A), which handles auto-playing audio, and to{" "}
-              <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+              <Link href="/wcag/1-2-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium">
                 1.2.1
               </Link>
               , which requires a transcript for the same content. The transcript is the

@@ -89,7 +89,7 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
           <p className="mt-1 text-sm text-muted-foreground">
             {issues.length} {issues.length === 1 ? 'issue' : 'issues'} ·{' '}
             {new Date(report.createdAt).toLocaleDateString()} · shared from the{' '}
-            <Link href="/desktop" className="font-medium text-primary hover:underline">
+            <Link href="/desktop" className="font-medium text-primary underline underline-offset-2 hover:decoration-2">
               Accessibility.build app
             </Link>
           </p>

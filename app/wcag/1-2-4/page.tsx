@@ -326,7 +326,7 @@ export default function WCAG124Page() {
               event is published, it is prerecorded media —{" "}
               <Link
                 href="/wcag/1-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 1.2.2 Captions (Prerecorded)
               </Link>{" "}
@@ -539,7 +539,7 @@ hls.on(Hls.Events.SUBTITLE_TRACKS_UPDATED, (_evt, data) => {
               the rest of the time-based media criteria in the{" "}
               <Link
                 href="/checklists/wcag-2-2"
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 WCAG 2.2 checklist
               </Link>

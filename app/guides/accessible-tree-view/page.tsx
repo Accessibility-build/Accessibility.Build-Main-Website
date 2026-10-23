@@ -376,7 +376,7 @@ export default function AccessibleTreeViewGuidePage() {
                     href="https://www.w3.org/WAI/ARIA/apg/patterns/treeview/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2"
                   >
                     the WAI-ARIA Authoring Practices Tree View pattern
                   </a>{" "}
@@ -391,11 +391,11 @@ export default function AccessibleTreeViewGuidePage() {
                   <code>aria-level</code>, <code>aria-setsize</code> and{" "}
                   <code>aria-posinset</code> to say where in the hierarchy each
                   node sits. Unlike a{" "}
-                  <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     slider
                   </Link>{" "}
                   or a{" "}
-                  <Link href="/guides/accessible-switch" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/accessible-switch" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     switch
                   </Link>
                   , there is no native HTML element that gives you a tree — you
@@ -464,7 +464,7 @@ export default function AccessibleTreeViewGuidePage() {
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-muted-foreground">
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.3.1 Info &amp; Relationships
                         </Link>
                       </th>
@@ -473,7 +473,7 @@ export default function AccessibleTreeViewGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.1 Keyboard
                         </Link>
                       </th>
@@ -482,7 +482,7 @@ export default function AccessibleTreeViewGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.1.2 No Keyboard Trap
                         </Link>
                       </th>
@@ -491,7 +491,7 @@ export default function AccessibleTreeViewGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.3 Focus Order
                         </Link>
                       </th>
@@ -500,7 +500,7 @@ export default function AccessibleTreeViewGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.1 Use of Color
                         </Link>
                       </th>
@@ -509,7 +509,7 @@ export default function AccessibleTreeViewGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-4-7" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.4.7 Focus Visible
                         </Link>
                       </th>
@@ -518,7 +518,7 @@ export default function AccessibleTreeViewGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           1.4.11 Non-text Contrast
                         </Link>
                       </th>
@@ -527,7 +527,7 @@ export default function AccessibleTreeViewGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           2.5.8 Target Size (Minimum)
                         </Link>
                       </th>
@@ -536,7 +536,7 @@ export default function AccessibleTreeViewGuidePage() {
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 font-medium">
-                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                           4.1.2 Name, Role, Value
                         </Link>
                       </th>
@@ -548,14 +548,14 @@ export default function AccessibleTreeViewGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 The criterion trees fail most often is{" "}
-                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.1.1 Keyboard
                 </Link>
                 , because the Right and Left arrow behaviour that expands,
                 collapses, and steps between parent and child is genuinely fiddly
                 and easy to skip — leaving branches that a mouse can open but a
                 keyboard cannot. The second is{" "}
-                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.3 Focus Order
                 </Link>
                 , when a collapsing branch strands focus on a node that has just
@@ -606,7 +606,7 @@ export default function AccessibleTreeViewGuidePage() {
                       to pages — docs sidebars, category menus. A nested{" "}
                       <code>&lt;ul&gt;</code> of <code>&lt;a&gt;</code> in a{" "}
                       <code>&lt;nav&gt;</code>, with{" "}
-                      <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         disclosure buttons
                       </Link>{" "}
                       for collapsible sections.
@@ -622,7 +622,7 @@ export default function AccessibleTreeViewGuidePage() {
                       A flat set of{" "}
                       <strong className="text-slate-900 dark:text-white">show/hide sections</strong>{" "}
                       with no real hierarchy — FAQs, panels. The{" "}
-                      <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      <Link href="/guides/accessible-accordion" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                         accordion &amp; disclosure pattern
                       </Link>{" "}
                       with <code>aria-expanded</code>, no roving tabindex needed.
@@ -693,7 +693,7 @@ export default function AccessibleTreeViewGuidePage() {
                 <code>aria-label</code> or{" "}
                 <code>aria-labelledby</code> pointing at that label. For how each
                 role and property surfaces to assistive technology, see the{" "}
-                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/reference/aria" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   ARIA roles &amp; attributes reference
                 </Link>
                 .
@@ -817,11 +817,11 @@ export default function AccessibleTreeViewGuidePage() {
                 hidden children to the next sibling. For the wider contract every
                 custom widget owes, and the roving-tabindex technique the next
                 section builds on, see the{" "}
-                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/keyboard-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   keyboard accessibility guide
                 </Link>{" "}
                 and the{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management guide
                 </Link>
                 .
@@ -886,7 +886,7 @@ function focusNode(target) {
                 of a visible &ldquo;active&rdquo; style entirely on your CSS.
                 Roving tabindex is the more common choice and the one the rest of
                 this guide uses. See{" "}
-                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/focus-management" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   focus management
                 </Link>{" "}
                 for both models side by side.
@@ -985,17 +985,17 @@ function setExpanded(node, open) {
                 <code>e.preventDefault()</code> stops the arrow keys from
                 scrolling the page instead of moving through the tree, the same
                 trap custom{" "}
-                <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-slider" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   sliders
                 </Link>{" "}
                 and{" "}
-                <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/accessible-menu" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   menus
                 </Link>{" "}
                 fall into. And when you collapse a branch whose child holds focus,
                 move focus to the parent first — never leave it on a node you are
                 about to hide, which would break{" "}
-                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   2.4.3 Focus Order
                 </Link>
                 .
@@ -1188,15 +1188,15 @@ function setExpanded(node, open) {
                 roving focus, the Right/Left logic, type-ahead, and selection with
                 the edge cases already handled. The same principles carry to other
                 frameworks — see the{" "}
-                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/react-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   React
                 </Link>
                 ,{" "}
-                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/vue-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Vue
                 </Link>
                 , and{" "}
-                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/angular-accessibility" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Angular
                 </Link>{" "}
                 guides. Whatever you ship, verify it against the workflow below
@@ -1240,15 +1240,15 @@ function setExpanded(node, open) {
                   level, its position (&ldquo;3 of 7&rdquo;), and — for parents —
                   expanded or collapsed, and — in a selection tree — selected or
                   not. The{" "}
-                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
                   </Link>{" "}
                   has the commands for{" "}
-                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/nvda-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     NVDA
                   </Link>{" "}
                   and{" "}
-                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/guides/voiceover-screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     VoiceOver
                   </Link>
                   .
@@ -1263,15 +1263,15 @@ function setExpanded(node, open) {
                   <strong className="text-slate-900 dark:text-white">Measure the visuals.</strong>{" "}
                   The twisty icon, the focus ring, and the selection indicator each
                   reach 3:1 (
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ); the clickable row or twisty is at least 24&nbsp;&times;&nbsp;24 px (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ); selection is not colour alone (
-                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.1
                   </Link>
                   ).
@@ -1279,11 +1279,11 @@ function setExpanded(node, open) {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Layer automated checks on top with <code>axe-core</code>, and see{" "}
-                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
                 </Link>{" "}
                 for where each fits. Scan the live page with the{" "}
-                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/tools/url-accessibility-auditor" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   URL accessibility auditor
                 </Link>{" "}
                 to catch a missing name, role, or state before it ships.
@@ -1349,7 +1349,7 @@ function setExpanded(node, open) {
                   <strong className="text-slate-900 dark:text-white">State.</strong>{" "}
                   <code>aria-expanded</code> on parents only (never on leaves);{" "}
                   <code>aria-selected</code> for the chosen node(s) (
-                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     4.1.2
                   </Link>
                   ).
@@ -1365,7 +1365,7 @@ function setExpanded(node, open) {
                   Roving tabindex: exactly one node at{" "}
                   <code>tabindex=&quot;0&quot;</code>, the rest at{" "}
                   <code>-1</code> (
-                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.4.3
                   </Link>
                   ).
@@ -1374,7 +1374,7 @@ function setExpanded(node, open) {
                   <strong className="text-slate-900 dark:text-white">Full keyboard.</strong>{" "}
                   Up/Down, the Right/Left expand-collapse-and-move logic, Home,
                   End, type-ahead, Enter, and Space all work, with no page scroll (
-                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.1.1
                   </Link>
                   ).
@@ -1387,11 +1387,11 @@ function setExpanded(node, open) {
                 <li>
                   <strong className="text-slate-900 dark:text-white">Visible and reachable.</strong>{" "}
                   Twisty, focus ring, and selection each reach 3:1 (
-                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/1-4-11" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     1.4.11
                   </Link>
                   ); the target is at least 24&nbsp;&times;&nbsp;24 px (
-                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <Link href="/wcag/2-5-8" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     2.5.8
                   </Link>
                   ); selection is not colour alone.
@@ -1399,7 +1399,7 @@ function setExpanded(node, open) {
               </ol>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Work through the full{" "}
-                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   WCAG 2.2 checklist
                 </Link>{" "}
                 to see the tree in the context of every other requirement.

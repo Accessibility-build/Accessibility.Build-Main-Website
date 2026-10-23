@@ -232,7 +232,7 @@ export default function AdaCompliancePage() {
               retailer&apos;s website has thousands of court decisions and settlements pointing at
               the same technical standard. Either way, the work converges on WCAG conformance. For
               a global view of how other jurisdictions regulate this, see our{" "}
-              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility laws tracker
               </Link>
               .
@@ -258,7 +258,7 @@ export default function AdaCompliancePage() {
               Interim Final Rule extending each deadline by one year — to April 26, 2027 and
               April 26, 2028 respectively — without changing the standard, the scope, or the
               exceptions. Our{" "}
-              <Link href="/guides/doj-title-ii-deadline-extension" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/guides/doj-title-ii-deadline-extension" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 Title II deadline extension guide
               </Link>{" "}
               covers exactly what moved and what did not.
@@ -273,7 +273,7 @@ export default function AdaCompliancePage() {
                 <strong>not extended</strong>. Its May 2026 compliance date has already arrived for
                 most covered entities. Where an organization is covered by both rules, the earlier
                 deadline controls. See our{" "}
-                <Link href="/guides/section-504-web-accessibility-deadline" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/guides/section-504-web-accessibility-deadline" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Section 504 deadline guide
                 </Link>
                 .
@@ -324,11 +324,11 @@ export default function AdaCompliancePage() {
               businesses get sued: plaintiffs simply choose plaintiff-friendly venues (New York
               federal courts, California state courts). Any business selling nationally should
               assume it can be reached in a favorable forum. See our state-specific guides for{" "}
-              <Link href="/compliance/new-york" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/new-york" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 New York
               </Link>{" "}
               and{" "}
-              <Link href="/compliance/california" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/compliance/california" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 California
               </Link>
               .
@@ -347,7 +347,7 @@ export default function AdaCompliancePage() {
               on pace to set another record. E-commerce and retail account for roughly 70% of
               filings, and a large share of cases come from repeat plaintiffs represented by a
               small group of law firms. Our{" "}
-              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/research/accessibility-lawsuits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 accessibility lawsuit tracker
               </Link>{" "}
               maintains the full dataset by year, state, and industry.
@@ -363,11 +363,11 @@ export default function AdaCompliancePage() {
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Defense costs, settlement ranges, and total exposure are covered in detail in our{" "}
-              <Link href="/guides/ada-website-lawsuit-cost" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/guides/ada-website-lawsuit-cost" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 ADA website lawsuit cost guide
               </Link>
               . To gauge your own exposure, try our free{" "}
-              <Link href="/tools/ada-compliance-risks" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/tools/ada-compliance-risks" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 ADA compliance risk checker
               </Link>
               .
@@ -389,11 +389,11 @@ export default function AdaCompliancePage() {
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               For teams starting out: learn the framework in our{" "}
-              <Link href="/wcag" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/wcag" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG guide
               </Link>{" "}
               and work through the{" "}
-              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link href="/checklists/wcag-2-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 WCAG 2.2 checklist
               </Link>
               . Targeting 2.2 AA satisfies every 2.1 AA obligation while covering the current
@@ -411,7 +411,7 @@ export default function AdaCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Audit against WCAG 2.1/2.2 AA.</strong>{" "}
                 Combine automated scanning with manual and assistive-technology testing — automated
                 tools alone catch only a fraction of issues. A professional{" "}
-                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/services/accessibility-audits" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   accessibility audit
                 </Link>{" "}
                 gives you a defensible baseline.
