@@ -2,6 +2,7 @@ import { siteRoutes, type SiteRoute } from "@/lib/site-routes"
 import { servicePricing, serviceStartingPrices } from "@/lib/service-pricing"
 import { company, founderCertifications, registeredBusinessLocation, businessLocation } from "@/lib/company"
 import { getBlogPosts } from "@/lib/sanity"
+import { linkDescriptionFor } from "@/lib/internal-linking"
 
 // Serves /llms.txt — a curated Markdown guide to the site's most useful content
 // for large language models and AI answer engines (see llmstxt.org). Generated
@@ -25,7 +26,7 @@ const sections: Array<{ group: string; heading: string; blurb: string; minPriori
     blurb:
       `Founder-led services with published fixed prices, delivered by an IAAP CPACC-certified auditor. Fixed-price WCAG 2.2 AA audits start at $${serviceStartingPrices.audits.toLocaleString("en-US")} (Essential), $${servicePricing.audits.tiers[1].price.toLocaleString("en-US")} (Product Audit), and $${servicePricing.audits.tiers[2].price.toLocaleString("en-US")} (Complex Product Audit). For market-wide audit costs with sources, see [Web Accessibility Audit Cost (UK & Ireland)](${baseUrl}/guides/accessibility-audit-cost). Note that ${baseUrl}/pricing prices credits for the self-serve tools, not audit services.`,
   },
-  { group: "Tools", heading: "Free accessibility tools", blurb: "Interactive testing and generation tools. All run in the browser; some AI-assisted features use credits." },
+  { group: "Tools", heading: "Free accessibility tools", blurb: "Interactive testing and generation tools. Some run entirely in the browser, so files and text never leave the device; the URL tools load the page in a headless browser on our server. Some AI-assisted features use credits." },
   { group: "WCAG", heading: "WCAG 2.2 success criteria", blurb: "In-depth guide for every one of the 86 WCAG 2.2 success criteria (Level A, AA, AAA), each with requirements, examples, and testing methods." },
   { group: "Guides", heading: "Guides", blurb: "How-to and explainer articles.", minPriority: 0.88 },
   { group: "Compliance", heading: "Accessibility law & compliance", blurb: "Jurisdiction guides: ADA, EAA, Section 508, EN 301 549, UK, Ireland, and US states. Educational, not legal advice." },
@@ -39,8 +40,12 @@ const sections: Array<{ group: string; heading: string; blurb: string; minPriori
   { group: "Legal", heading: "Policies and statements", blurb: "The site's own accessibility statement, privacy, cookies, terms, refunds, editorial and corrections policies." },
 ]
 
+// "- [title](url): description", the llms.txt convention, so a model can tell what a page answers
+// before fetching it. Descriptions come from lib/internal-linking.ts, the same text RelatedContent
+// shows; routes without one are listed by title alone.
 function line(r: SiteRoute): string {
-  return `- [${r.label}](${baseUrl}${r.route || "/"})`
+  const description = linkDescriptionFor(r.route || "/")
+  return `- [${r.label}](${baseUrl}${r.route || "/"})${description ? `: ${description.replace(/\s+/g, " ").trim()}` : ""}`
 }
 
 export async function GET(): Promise<Response> {

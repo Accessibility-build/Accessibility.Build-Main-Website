@@ -707,7 +707,15 @@ export default function WCAG247Page() {
               >
                 URL Accessibility Auditor
               </Link>
-              .
+              . The{" "}
+              <Link
+                href="/tools/focus-order-checker"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Keyboard Focus Order Checker
+              </Link>{" "}
+              tabs through a live page and flags any stop with no visible focus
+              indicator.
             </p>
           </section>
 

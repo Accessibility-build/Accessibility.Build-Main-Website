@@ -65,11 +65,14 @@ const LEAD_NOTES: Record<LeadState, string> = {
 export function buildSystemPrompt({
   hits,
   page,
+  pageSections = [],
   leadState = "none",
   today,
 }: {
   hits: SearchHit[]
   page: PageContext | null
+  /** Sections of the current page that match the question, from the site index. */
+  pageSections?: SearchHit[]
   leadState?: LeadState
   today: string
 }): string {
@@ -81,6 +84,11 @@ export function buildSystemPrompt({
           `Title: ${page.title}`,
           page.description ? `Summary: ${page.description}` : "",
           page.content ? `Visible text (may be cut short):\n"""\n${page.content}\n"""` : "The page text was not shared.",
+          pageSections.length
+            ? `Sections of this page that match the question, from anywhere on the page:\n${pageSections
+                .map((section) => `> ${section.heading}\n${section.text}`)
+                .join("\n\n")}`
+            : "",
         ]
           .filter(Boolean)
           .join("\n"),

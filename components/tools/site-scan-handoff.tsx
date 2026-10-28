@@ -17,6 +17,8 @@ interface SiteScanHandoffProps {
   /** Heading level, so the block fits the outline of the page it is placed in. */
   headingLevel?: "h2" | "h3"
   className?: string
+  /** Prefills the field, for tools that already know which page the visitor is working on. */
+  defaultValue?: string
 }
 
 /**
@@ -31,11 +33,19 @@ export function SiteScanHandoff({
   body,
   headingLevel = "h2",
   className = "",
+  defaultValue = "",
 }: SiteScanHandoffProps) {
   const router = useRouter()
   const inputId = useId()
   const errorId = useId()
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState(defaultValue)
+  // A tool that checks a new address passes it again; follow it (state adjusted during render,
+  // React's pattern for resetting state when a prop changes).
+  const [seenDefault, setSeenDefault] = useState(defaultValue)
+  if (defaultValue !== seenDefault) {
+    setSeenDefault(defaultValue)
+    setValue(defaultValue)
+  }
   const [error, setError] = useState<string | null>(null)
   const Heading = headingLevel
 

@@ -58,6 +58,10 @@ import {
   Milestone,
   GalleryHorizontalEnd,
   MessageSquareText,
+  ImageIcon,
+  Eye,
+  Gauge,
+  Presentation,
   BellRing,
   Calculator,
   FileSignature,
@@ -712,6 +716,72 @@ const guides = [
     gradient: "from-rose-600 to-pink-600",
   },
   {
+    title: "Accessible Word Documents",
+    description:
+      "Make a Word document accessible step by step: title, language, heading styles, real lists, alt text, tables with header rows, link text, contrast and tagged PDF export, with a printable checklist.",
+    icon: FileText,
+    difficulty: "Beginner",
+    readingTime: "20 min",
+    topics: ["Heading styles", "Alt text", "Tables", "PDF export"],
+    href: "/guides/accessible-word-documents",
+    gradient: "from-blue-600 to-indigo-600",
+  },
+  {
+    title: "Accessible PowerPoint Presentations",
+    description:
+      "Make PowerPoint accessible: unique slide titles, reading order, alt text for pictures and charts, tables, contrast, captions and PDF export, plus presenting with live subtitles and a checklist.",
+    icon: Presentation,
+    difficulty: "Beginner",
+    readingTime: "22 min",
+    topics: ["Slide titles", "Reading order", "Alt text", "Captions"],
+    href: "/guides/accessible-powerpoint-presentations",
+    gradient: "from-orange-600 to-red-600",
+  },
+  {
+    title: "How to Write Alt Text",
+    description:
+      "Write alt text by what each image does: a decision process, good and bad examples for product photos, logos, icon buttons, charts, tables and art, the markup, and alt text on social media.",
+    icon: ImageIcon,
+    difficulty: "Beginner",
+    readingTime: "12 min",
+    topics: ["Alt text", "WCAG 1.1.1", "Decorative images", "Social media alt text"],
+    href: "/guides/how-to-write-alt-text",
+    gradient: "from-emerald-600 to-teal-600",
+  },
+  {
+    title: "Text Over Images",
+    description:
+      "Make text over photos, gradients and hero images pass WCAG contrast: measure the worst point, then fix it with overlays, solid panels, halos or a better crop, with copy-ready CSS.",
+    icon: Layers,
+    difficulty: "Intermediate",
+    readingTime: "13 min",
+    topics: ["Contrast 1.4.3", "Overlays and scrims", "Hero images", "Forced colours"],
+    href: "/guides/text-over-images",
+    gradient: "from-amber-600 to-orange-600",
+  },
+  {
+    title: "Colour Blind Friendly Design",
+    description:
+      "Design for colour vision deficiency: never rely on colour alone, underline links, make errors and status clear without colour, choose palettes that hold up, and test them.",
+    icon: Eye,
+    difficulty: "Intermediate",
+    readingTime: "15 min",
+    topics: ["WCAG 1.4.1", "Colour blindness", "Okabe-Ito palette", "Vision simulation"],
+    href: "/guides/color-blind-friendly-design",
+    gradient: "from-sky-600 to-blue-600",
+  },
+  {
+    title: "W3C Accessibility Maturity Model",
+    description:
+      "The W3C model's seven dimensions and four levels from Inactive to Optimize, how to run an assessment with evidence, and how to turn the results into a roadmap.",
+    icon: Gauge,
+    difficulty: "Intermediate",
+    readingTime: "14 min",
+    topics: ["W3C maturity model", "Maturity levels", "Proof points", "Procurement"],
+    href: "/guides/accessibility-maturity-model",
+    gradient: "from-indigo-600 to-violet-600",
+  },
+  {
     title: "Automated vs Manual Accessibility Testing",
     description:
       "What automated scanners actually catch, what only manual testing finds, and how to combine both into a workflow that holds up in an audit.",
@@ -749,6 +819,7 @@ const categories = [
       "/guides/wcag-2-2-aa-requirements",
       "/guides/wcag-2-1-vs-2-2",
       "/guides/vpat-accessibility-conformance-report",
+      "/guides/accessibility-maturity-model",
     ],
   },
   {
@@ -840,15 +911,20 @@ const categories = [
     icon: Palette,
     hrefs: [
       "/guides/accessible-color-palettes",
+      "/guides/color-blind-friendly-design",
+      "/guides/text-over-images",
       "/guides/oklch-apca-color-systems",
       "/guides/accessible-typography-wcag",
       "/guides/cognitive-accessibility",
+      "/guides/how-to-write-alt-text",
       "/guides/accessible-charts",
       "/guides/accessible-data-tables",
       "/guides/accessible-email",
       "/guides/accessible-maps",
       "/guides/accessible-video-player",
       "/guides/pdf-accessibility",
+      "/guides/accessible-word-documents",
+      "/guides/accessible-powerpoint-presentations",
     ],
   },
   {
@@ -1022,7 +1098,7 @@ export default function GuidesPage() {
                       className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-sm font-medium text-slate-700 backdrop-blur transition-colors hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-emerald-700 dark:hover:bg-emerald-900/40 dark:hover:text-emerald-300"
                     >
                       {category.label}
-                      <span className="text-xs text-slate-400 dark:text-slate-500">
+                      <span className="text-xs text-slate-500 dark:text-slate-400">
                         {category.hrefs.length}
                       </span>
                     </a>
@@ -1054,7 +1130,7 @@ export default function GuidesPage() {
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl">
                     {category.label}
                   </h2>
-                  <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-sm font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                  <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-sm font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300">
                     {items.length}
                   </span>
                 </div>

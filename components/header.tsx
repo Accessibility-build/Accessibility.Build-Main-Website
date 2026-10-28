@@ -383,7 +383,7 @@ export function Header() {
                         className={cn(
                           "flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors 2xl:px-4",
                           pathname.startsWith(item.href)
-                            ? "text-primary bg-primary/10 font-semibold"
+                            ? "text-blue-700 dark:text-primary bg-primary/10 font-semibold"
                             : "text-foreground/70 hover:text-primary hover:bg-primary/5"
                         )}
                       >
@@ -454,7 +454,7 @@ export function Header() {
                     className={cn(
                       "whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors 2xl:px-4",
                       pathname === item.href
-                        ? "text-primary bg-primary/10 font-semibold"
+                        ? "text-blue-700 dark:text-primary bg-primary/10 font-semibold"
                         : "text-foreground/70 hover:text-primary hover:bg-primary/5"
                     )}
                   >

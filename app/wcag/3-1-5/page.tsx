@@ -511,7 +511,15 @@ Section 4.2 explains what we check."`}</code>
               </Link>{" "}
               includes a readability analyzer that computes Flesch-Kincaid and related
               metrics as you paste in text — useful for checking a page against the
-              lower-secondary threshold while you also tune its typography. Then work
+              lower-secondary threshold while you also tune its typography. The{" "}
+              <Link
+                href="/tools/readability-checker"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Readability Checker
+              </Link>{" "}
+              scores pasted text or a web page on six formulas and highlights the
+              hardest sentences. Then work
               through the rest of the{" "}
               <Link
                 href="/checklists/wcag-2-2"

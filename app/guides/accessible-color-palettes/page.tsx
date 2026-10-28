@@ -279,6 +279,14 @@ export default function AccessibleColorPalettesGuidePage() {
                   >
                     accessible charts &amp; data visualization guide
                   </Link>
+                  . For colour pairs to avoid and a palette that works with colour
+                  vision deficiency, see the{" "}
+                  <Link
+                    href="/guides/color-blind-friendly-design"
+                    className="font-medium text-primary underline underline-offset-4"
+                  >
+                    colour blind friendly design guide
+                  </Link>
                   .
                 </p>
               </section>

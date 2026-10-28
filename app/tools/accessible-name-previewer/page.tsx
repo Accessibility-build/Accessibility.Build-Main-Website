@@ -42,6 +42,12 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: clampDescription(pageDescription),
+    images: [`/api/og?title=${encodeURIComponent("Accessible Name Previewer")}&section=Free tool`],
+  },
 }
 
 const breadcrumbs = [

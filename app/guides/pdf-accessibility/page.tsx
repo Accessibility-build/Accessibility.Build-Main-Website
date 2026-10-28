@@ -334,7 +334,20 @@ export default function PdfAccessibilityGuidePage() {
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-2">Re-export from Source</h3>
-                  <p className="text-sm text-muted-foreground">If you have the original Word/InDesign file, fix the accessibility issues in the source document and re-export. This is often faster and produces better results than remediating the PDF directly.</p>
+                  <p className="text-sm text-muted-foreground">If you have the original Word/InDesign file, fix the accessibility issues in the source document and re-export. This is often faster and produces better results than remediating the PDF directly. For a Word or PowerPoint source, the{" "}
+                    <Link href="/tools/word-powerpoint-accessibility-checker" className="text-primary underline underline-offset-4">
+                      Word and PowerPoint Accessibility Checker
+                    </Link>{" "}
+                    lists the issues to fix before you export. Our guides on{" "}
+                    <Link href="/guides/accessible-word-documents" className="text-primary underline underline-offset-4">
+                      how to make a Word document accessible
+                    </Link>{" "}
+                    and{" "}
+                    <Link href="/guides/accessible-powerpoint-presentations" className="text-primary underline underline-offset-4">
+                      how to make PowerPoint presentations accessible
+                    </Link>{" "}
+                    show how to fix each issue in the source.
+                  </p>
                 </CardContent>
               </Card>
               <Card>

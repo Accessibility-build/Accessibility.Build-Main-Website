@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import type React from "react"
+import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -882,7 +883,12 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
               <p className="text-slate-600 dark:text-slate-400">
                 Follow these six scenarios to systematically test the most critical accessibility
                 concerns with a screen reader. Each scenario describes what to test, the expected
-                behavior, and the most common failures.
+                behavior, and the most common failures. For a quick first pass, the{" "}
+                <Link href="/tools/screen-reader-simulator" className="text-blue-600 dark:text-blue-400 underline hover:no-underline">
+                  Screen Reader Simulator
+                </Link>{" "}
+                lists a page&apos;s headings, landmarks, links and controls, but it does not replace
+                testing with a real screen reader.
               </p>
 
               <div className="grid md:grid-cols-2 gap-6">

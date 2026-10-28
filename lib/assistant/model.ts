@@ -1,20 +1,25 @@
 import "server-only"
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
 
-// One OpenRouter client for everything Curb calls: the answer and the intent classifier.
 // The generic OpenAI-compatible provider, not @ai-sdk/openai: that one treats any model id it
 // does not recognise as an OpenAI reasoning model, which drops temperature and sends the system
-// prompt as a "developer" message. includeUsage makes streams report token counts.
-export const openrouter = createOpenAICompatible({
-  name: "openrouter",
-  baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.OPENROUTER_API_KEY,
-  headers: {
-    "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL || "https://accessibility.build",
-    "X-Title": "Accessibility.build Curb assistant",
-  },
-  includeUsage: true,
-})
+// prompt as a "developer" message. includeUsage makes streams report token counts. The title
+// is what OpenRouter's usage page groups spend by, so each feature passes its own.
+export function openrouterFor(title: string) {
+  return createOpenAICompatible({
+    name: "openrouter",
+    baseURL: "https://openrouter.ai/api/v1",
+    apiKey: process.env.OPENROUTER_API_KEY,
+    headers: {
+      "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL || "https://accessibility.build",
+      "X-Title": title,
+    },
+    includeUsage: true,
+  })
+}
+
+// One OpenRouter client for everything Curb calls: the answer and the intent classifier.
+export const openrouter = openrouterFor("Accessibility.build Curb assistant")
 
 // Haiku through OpenRouter: the key is already configured for the site's other AI tools.
 export const ASSISTANT_MODEL = process.env.ASSISTANT_MODEL || "anthropic/claude-haiku-5.5"

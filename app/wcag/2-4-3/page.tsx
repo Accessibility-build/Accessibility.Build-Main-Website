@@ -610,6 +610,15 @@ export default function WCAG243Page() {
               ))}
             </ol>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
+              The{" "}
+              <Link
+                href="/tools/focus-order-checker"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Keyboard Focus Order Checker
+              </Link>{" "}
+              tabs through a live page and numbers every stop, so you can compare
+              the order with the visual layout.
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"

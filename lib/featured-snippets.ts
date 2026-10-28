@@ -45,7 +45,7 @@ const ACCESSIBILITY_QUESTIONS: FeaturedSnippetStructure[] = [
   },
   {
     question: "How do I write good alt text for images?",
-    answer: "Write descriptive alt text that conveys the purpose and content of images. Keep it concise (125 characters or less), avoid 'image of' or 'picture of', describe the function for interactive elements, and leave decorative images empty (alt='').",
+    answer: "Write descriptive alt text that conveys the purpose and content of images. Keep it as short as its purpose allows (there is no fixed character limit), avoid 'image of' or 'picture of', describe the function for interactive elements, and leave decorative images empty (alt='').",
     type: 'paragraph',
     keywords: ['alt text', 'image accessibility', 'screen readers', 'alternative text'],
     priority: 9

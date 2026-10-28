@@ -23,6 +23,8 @@ const TRIAL_LIMITS = {
   // the one tool that produces a domain plus real findings.
   perTool: {
     url_accessibility_auditor: 1,
+    // The alt text checker's AI review sends up to eight images to a vision model.
+    alt_text_checker: 2,
   } as Record<string, number>,
 }
 
