@@ -204,7 +204,7 @@ export default function KeyboardTrapDemo() {
             <Button
               ref={accessibleTriggerRef}
               onClick={openAccessible}
-              className="bg-green-600 hover:bg-green-700 text-white"
+              className="bg-green-700 hover:bg-green-800 text-white"
             >
               Open accessible modal
             </Button>
@@ -241,7 +241,7 @@ export default function KeyboardTrapDemo() {
                 <Button
                   onClick={release}
                   size="sm"
-                  className="bg-green-600 hover:bg-green-700 text-white"
+                  className="bg-green-700 hover:bg-green-800 text-white"
                 >
                   Save
                 </Button>

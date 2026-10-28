@@ -478,7 +478,7 @@ export default function WCAG212Page() {
               <em>within</em> the dialog while a Close button provides an obvious way
               out.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Trap: Escape is blocked, Tab is preventDefaulted, no way out -->
 <div class="modal" role="dialog">
   <input type="text" placeholder="You're stuck here" />
@@ -508,7 +508,7 @@ export default function WCAG212Page() {
               intercepts Escape, and it restores focus to the element that opened the
               dialog when it closes.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function trapFocus(container, onClose) {
   const previouslyFocused = document.activeElement
   const focusables = container.querySelectorAll(
@@ -546,7 +546,7 @@ export default function WCAG212Page() {
               long as you tell the user how to get out, both visibly and to assistive
               technology.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<div role="group" aria-labelledby="editor-label"
      aria-describedby="editor-exit">
   <span id="editor-label">Code editor</span>

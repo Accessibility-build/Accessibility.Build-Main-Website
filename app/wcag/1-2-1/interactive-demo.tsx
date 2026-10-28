@@ -72,7 +72,7 @@ export default function AudioAltDemo() {
             </div>
             <Button
               size="sm"
-              className="bg-green-600 hover:bg-green-700 text-white"
+              className="bg-green-700 hover:bg-green-800 text-white"
               onClick={() =>
                 playAudio(
                   "Host: Welcome to Web Accessibility Today. I'm Sarah Johnson. Guest: And I'm Mike Chen from the A11y Initiative. Host: Today we're discussing WCAG requirements for media content.",

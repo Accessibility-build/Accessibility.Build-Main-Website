@@ -425,7 +425,7 @@ export default function WCAG142Page() {
               </code>{" "}
               element gives the user play, pause, and volume out of the box.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Auto-plays with no way to stop it -->
 <audio src="background-music.mp3" autoplay loop></audio>
 
@@ -444,7 +444,7 @@ export default function WCAG142Page() {
               control at the very top of the page so it is the first thing an
               assistive-technology user reaches.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Auto-plays; the only "fix" is the OS volume -->
 <audio id="bg" src="ambient.mp3" autoplay loop></audio>
 
@@ -463,7 +463,7 @@ export default function WCAG142Page() {
               audio, leaving the system volume — and the user&apos;s screen reader —
               untouched.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<audio id="track" src="ambient.mp3" autoplay loop></audio>
 
 <label for="vol">Background audio volume</label>

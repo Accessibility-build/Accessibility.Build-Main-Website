@@ -53,8 +53,9 @@ interface CriterionRow {
  * lib/wcag-data so the numbers here can never drift from the canonical list.
  */
 export function CriteriaTable({ items }: { items: CriterionRow[] }) {
+  // Focusable and named, so the table can be scrolled sideways from the keyboard on small screens.
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label="WCAG success criteria for this pattern" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
         <thead className="bg-muted">
           <tr>
@@ -91,7 +92,7 @@ interface KeyboardRow {
 
 export function KeyboardTable({ rows, caption }: { rows: KeyboardRow[]; caption: string }) {
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label={caption} className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
         <caption className="sr-only">{caption}</caption>
         <thead className="bg-muted">
