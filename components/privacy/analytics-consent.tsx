@@ -22,11 +22,14 @@ export function AnalyticsConsent() {
   // While the fixed banner is open the page gains bottom room of the banner's
   // height, so the last links on the page can still scroll up clear of it.
   // components/a11y/focus-not-obscured.tsx does the scrolling (WCAG 2.4.11).
+  // --consent-banner-height lifts the Curb assistant above the banner.
   useEffect(() => {
     const banner = bannerRef.current
     if (!banner) return
+    const root = document.documentElement
     const reserve = () => {
       document.body.style.paddingBottom = `${banner.offsetHeight}px`
+      root.style.setProperty("--consent-banner-height", `${banner.offsetHeight}px`)
     }
     reserve()
     const observer = new ResizeObserver(reserve)
@@ -34,6 +37,7 @@ export function AnalyticsConsent() {
     return () => {
       observer.disconnect()
       document.body.style.paddingBottom = ""
+      root.style.removeProperty("--consent-banner-height")
     }
   }, [choice])
 
@@ -71,9 +75,6 @@ export function AnalyticsConsent() {
           aria-describedby="analytics-consent-description"
           className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-300 bg-white px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 dark:border-slate-700 dark:bg-slate-950 sm:px-6"
         >
-          {/* The SAIRO chat button (root layout) floats bottom right, on top of
-              this banner's buttons, so it stays hidden until a choice is made. */}
-          <style>{"[data-sairo]{display:none!important}"}</style>
           <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
             <div className="max-w-3xl">
               <h2 id="analytics-consent-title" className="sr-only">

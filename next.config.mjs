@@ -25,6 +25,11 @@ const nextConfig = {
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     },
     serverExternalPackages: ['razorpay', 'puppeteer-core', '@sparticuz/chromium-min', 'puppeteer', 'axe-core', 'pdfjs-dist'],
+    // The assistant reads its search index from disk at runtime; make sure the file ships
+    // with that function.
+    outputFileTracingIncludes: {
+        '/api/assistant': ['./lib/assistant/site-index.json'],
+    },
     compress: true,
     poweredByHeader: false,
     // Required so the PostHog reverse proxy under /ingest/ receives trailing-slash

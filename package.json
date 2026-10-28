@@ -11,6 +11,7 @@
         "a11y:smoke": "node scripts/a11y-smoke.mjs",
         "seo:audit-jsonld": "node scripts/audit-jsonld.mjs",
         "seo:indexnow": "node scripts/seo/indexnow.mjs",
+        "assistant:index": "node scripts/assistant/build-index.mjs",
         "db:migrate": "drizzle-kit migrate",
         "clerk:test-session-token": "node scripts/create-clerk-session-token.mjs",
         "billing:test-e2e": "node scripts/test-razorpay-credit-flow.mjs",
@@ -22,6 +23,7 @@
     "dependencies": {
         "@ai-sdk/anthropic": "^2.0.9",
         "@ai-sdk/openai": "^2.0.80",
+        "@ai-sdk/openai-compatible": "^1.0.27",
         "@ai-sdk/xai": "latest",
         "@axe-core/puppeteer": "^4.10.2",
         "@clerk/nextjs": "^6.39.1",

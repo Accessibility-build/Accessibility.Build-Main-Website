@@ -42,7 +42,7 @@ const core: SiteRoute[] = [
   { route: "/authors/khushwant-parihar", label: "Khushwant Parihar", group: "Core", lastModified: "2026-07-28", priority: 0.82 },
   { route: "/sample-audit-report", label: "Sample Accessibility Audit Report", group: "Core", lastModified: "2026-09-02", priority: 0.86 },
   { route: "/procurement", label: "Procurement Centre", group: "Core", lastModified: "2026-07-12", priority: 0.76 },
-  { route: "/subprocessors", label: "Subprocessor Register", group: "Core", lastModified: "2026-09-02", priority: 0.55 },
+  { route: "/subprocessors", label: "Subprocessor Register", group: "Core", lastModified: "2026-10-28", priority: 0.55 },
   { route: "/resources", label: "Resources", group: "Core", lastModified: "2026-08-13", priority: 0.85, changeFrequency: "weekly" },
   { route: "/desktop", label: "Desktop App", group: "Core", lastModified: "2026-07-06", priority: 0.7 },
   { route: "/docs", label: "Developer Resources", group: "Core", lastModified: "2026-07-13", priority: 0.7 },
@@ -239,7 +239,7 @@ const services: SiteRoute[] = [
 
 const legal: SiteRoute[] = [
   { route: "/accessibility", label: "Accessibility Statement", group: "Legal", lastModified: "2026-09-02", priority: 0.7, changeFrequency: "yearly" },
-  { route: "/privacy", label: "Privacy Policy", group: "Legal", lastModified: "2026-09-02", priority: 0.4, changeFrequency: "yearly" },
+  { route: "/privacy", label: "Privacy Policy", group: "Legal", lastModified: "2026-10-28", priority: 0.4, changeFrequency: "yearly" },
   { route: "/terms", label: "Terms of Service", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
   { route: "/cookies", label: "Cookie Policy", group: "Legal", lastModified: "2026-07-30", priority: 0.4, changeFrequency: "yearly" },
   { route: "/refund", label: "Refund Policy", group: "Legal", lastModified: "2026-09-02", priority: 0.4, changeFrequency: "yearly" },

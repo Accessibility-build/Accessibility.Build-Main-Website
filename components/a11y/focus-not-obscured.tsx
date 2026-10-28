@@ -24,20 +24,19 @@ function findBars(): Bar[] {
     bars.push({ rect, el })
   }
   document.querySelectorAll('header, nav, [class*="sticky"], [class*="fixed"]').forEach(consider)
-  // SAIRO's chat button lives in an open shadow root and is not bar-shaped, but
-  // it covers whatever scrolls under the bottom-right corner.
-  const sairo = document.querySelector("[data-sairo]")
-  sairo?.shadowRoot?.querySelectorAll("*").forEach((el) => {
-    if (getComputedStyle(el).position !== "fixed") return
+  // Floating controls such as the "Ask Curb" button are not bar-shaped, but they
+  // cover whatever scrolls under the bottom-right corner. The open assistant
+  // panel is too tall to scroll clear of; Escape closes it from anywhere instead.
+  document.querySelectorAll("[data-floating-control]").forEach((el) => {
     const rect = el.getBoundingClientRect()
-    if (rect.width && rect.height) bars.push({ rect, el: sairo })
+    if (rect.width && rect.height && rect.height <= window.innerHeight / 3) bars.push({ rect, el })
   })
   return bars
 }
 
 /**
  * WCAG 2.4.11 Focus Not Obscured. The sticky header, the tools bar, research
- * section navs, the consent banner and the SAIRO chat button all sit on top of
+ * section navs, the consent banner and the "Ask Curb" button all sit on top of
  * the page, and the browser happily scrolls a newly focused element in behind
  * them (tabbing backwards put links entirely under the header). After each
  * keyboard focus this nudges the page just far enough to clear them.

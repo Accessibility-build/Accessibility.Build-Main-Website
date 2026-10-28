@@ -15,6 +15,8 @@ import { AdminLayoutWrapper } from "@/components/admin/admin-layout-wrapper"
 import { BrowserSafetyProvider } from "@/components/browser-safety-provider"
 import { clerkThemeAppearance } from "@/lib/clerk-auth-appearance"
 import { AnalyticsConsent } from "@/components/privacy/analytics-consent"
+import { CurbAssistant } from "@/components/assistant/curb-assistant"
+import { CurbSkipLink } from "@/components/assistant/curb-skip-link"
 import { PostHogProvider } from "@/components/analytics/posthog-provider"
 import { company, founderCredentialSchema } from "@/lib/company"
 
@@ -362,9 +364,6 @@ export default function RootLayout({
           <link rel="alternate" type="application/atom+xml" title="Accessibility.build Blog Atom Feed" href="/atom.xml" />
           <link rel="alternate" type="text/plain" title="Accessibility.build LLMs.txt" href="/llms.txt" />
 
-          {/* SAIRO indexing verification widget */}
-          <script src="https://sairo.app/widget.js" data-site="sk_3bnin7qkjqj7f4zq2z8qfgxh" async></script>
-
           {/* Critical inline CSS for above-the-fold content */}
           <style dangerouslySetInnerHTML={{
             __html: `
@@ -384,12 +383,14 @@ export default function RootLayout({
             {/* Loads PostHog (and identifies the user) only after consent. */}
             <PostHogProvider />
             <SkipLink />
+            <CurbSkipLink />
             <FocusNotObscured />
             <AdminLayoutWrapper>
               {children}
             </AdminLayoutWrapper>
             <Toaster />
             <AnalyticsConsent />
+            <CurbAssistant />
             <Analytics />
             <SpeedInsights />
           </ThemeProvider>
