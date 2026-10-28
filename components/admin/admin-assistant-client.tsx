@@ -1,6 +1,6 @@
 "use client"
 
-import { useId, useMemo, useState, type ReactNode } from "react"
+import { useEffect, useId, useMemo, useState, type ReactNode } from "react"
 import Link from "next/link"
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import {
@@ -17,11 +17,14 @@ import {
   Users,
   CheckCircle2,
   ChevronDown,
+  Handshake,
+  Target,
   X,
 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card"
 import { AssistantMarkdown } from "@/components/assistant/assistant-markdown"
 import { MODEL_PRICING_NOTE } from "@/lib/assistant/pricing"
+import { INTENT_LABELS, SERVICE_LABELS, TRIGGER_LABELS, type ServiceKey } from "@/lib/assistant/services"
 import type { AssistantLogEntry, AssistantStats, PeriodTotals } from "@/lib/assistant/admin-stats"
 import { cn } from "@/lib/utils"
 
@@ -57,10 +60,14 @@ const STATUS_CLASS: Record<string, string> = {
   unavailable: "border-red-300 bg-red-50 text-red-900 dark:border-red-800 dark:bg-red-950/50 dark:text-red-200",
 }
 
-type Filter = "all" | "unhelpful" | "helpful" | "failed" | "stopped" | "rate_limited" | "no_match" | "about_page"
+type Filter = "all" | "service" | "lead_offered" | "unhelpful" | "helpful" | "failed" | "stopped" | "rate_limited" | "no_match" | "about_page"
+
+const serviceLabel = (key: string) => SERVICE_LABELS[key as ServiceKey] ?? key
 
 const FILTERS: { value: Filter; label: string; test: (e: AssistantLogEntry) => boolean }[] = [
   { value: "all", label: "All", test: () => true },
+  { value: "service", label: "Service interest", test: (e) => e.intent === "hire" || e.intent === "evaluate" },
+  { value: "lead_offered", label: "Contact form shown", test: (e) => e.leadOffered },
   { value: "unhelpful", label: "Not helpful", test: (e) => e.feedback === "unhelpful" },
   { value: "helpful", label: "Helpful", test: (e) => e.feedback === "helpful" },
   { value: "no_match", label: "Not covered by the site", test: (e) => e.status === "answered" && e.searchHits === 0 },
@@ -214,18 +221,21 @@ export function AdminAssistantClient({
   rangeLabel,
   timeZone,
   timeZoneLabel,
+  initialConversation = null,
 }: {
   stats: Stats
   rangeLabel: string
   timeZone: string
   timeZoneLabel: string
+  /** From ?conversation=, the link in a lead notification email. */
+  initialConversation?: string | null
 }) {
   const { current: c, previous: p } = stats
   const searchId = useId()
   const [filter, setFilter] = useState<Filter>("all")
   const [query, setQuery] = useState("")
   const [pageFilter, setPageFilter] = useState<string | null>(null)
-  const [conversationFilter, setConversationFilter] = useState<string | null>(null)
+  const [conversationFilter, setConversationFilter] = useState<string | null>(initialConversation)
   const [visible, setVisible] = useState(50)
 
   const dateTime = useMemo(
@@ -246,6 +256,11 @@ export function AdminAssistantClient({
       .sort((a, b) => (conversationFilter ? a.turn - b.turn : b.createdAt.localeCompare(a.createdAt)))
   }, [stats.log, filter, query, pageFilter, conversationFilter])
 
+  // Arriving from a lead email (?conversation=...): take the reader straight to that conversation.
+  useEffect(() => {
+    if (initialConversation) document.getElementById("conversation-log")?.focus()
+  }, [initialConversation])
+
   const counts = useMemo(
     () => Object.fromEntries(FILTERS.map((f) => [f.value, stats.log.filter(f.test).length])) as Record<Filter, number>,
     [stats.log],
@@ -259,17 +274,18 @@ export function AdminAssistantClient({
     requestAnimationFrame(() => document.getElementById("conversation-log")?.focus())
   }
 
-  const linkClicks = c.sourceClicks + c.answerLinkClicks
   const questionsPerConversation = c.conversations ? (c.questions / c.conversations).toFixed(1) : "n/a"
   const projectedMonthly = stats.range ? (c.costUsd / stats.range) * 30 : 0
   const maxHour = Math.max(...stats.hours.map((h) => h.questions), 0)
   const busiest = maxHour ? stats.hours.filter((h) => h.questions === maxHour).map((h) => `${String(h.hour).padStart(2, "0")}:00`) : []
 
+  const formsShown = c.leadOffers + c.leadFormsOpened
   const funnel = [
     { label: "Visitors who opened Curb", value: c.openVisitors },
     { label: "Visitors who asked a question", value: c.askVisitors },
-    { label: "Answers rated", value: c.helpful + c.unhelpful },
-    { label: "Clicks on site links in answers", value: linkClicks },
+    { label: "Conversations with service interest", value: c.serviceConversations },
+    { label: "Contact forms shown", value: formsShown },
+    { label: "Leads sent to the team", value: c.leads },
   ]
   const funnelMax = Math.max(...funnel.map((f) => f.value), 1)
 
@@ -305,9 +321,128 @@ export function AdminAssistantClient({
           <Kpi label="Answered successfully" value={pct(c.answered, c.questions)} detail={`${fmt(c.answered)} of ${fmt(c.questions)}; ${fmt(c.failed)} failed, ${fmt(c.stopped)} stopped`} icon={CheckCircle2} current={c.answered} previous={p.answered} rangeLabel={rangeLabel} />
           <Kpi label="Rated helpful" value={pct(c.helpful, c.helpful + c.unhelpful)} detail={ratedSummary(c)} icon={ThumbsUp} current={c.helpful} previous={p.helpful} rangeLabel={rangeLabel} />
           <Kpi label="Median answer time" value={secs(c.p50LatencyMs)} detail={`First words after ${secs(c.p50FirstTokenMs)}; slowest 10% over ${secs(c.p90LatencyMs)}`} icon={Clock} rangeLabel={rangeLabel} />
+          <Kpi label="Service interest" value={fmt(c.serviceConversations)} detail={`conversations; ${fmt(c.hireIntent)} questions from people wanting to hire`} icon={Target} current={c.serviceConversations} previous={p.serviceConversations} rangeLabel={rangeLabel} />
+          <Kpi label="Leads captured" value={fmt(c.leads)} detail={`${pct(c.leads, formsShown)} of ${fmt(formsShown)} forms shown; ${fmt(c.manualLeads)} via "Talk to a person"`} icon={Handshake} current={c.leads} previous={p.leads} rangeLabel={rangeLabel} />
           <Kpi label="Model cost" value={usd(c.costUsd)} detail={`${usd(c.questions ? c.costUsd / c.questions : 0)} per question; about ${usd(projectedMonthly)} a month at this rate`} icon={DollarSign} current={c.costUsd} previous={p.costUsd} rangeLabel={rangeLabel} />
         </div>
       </section>
+
+      <Section
+        title="Leads from Curb"
+        description="Contact requests sent through Curb's form, newest first. Each is also in Prospects under the Inbound tier, and was emailed to you."
+      >
+        {stats.leads.length ? (
+          <ol className="divide-y divide-slate-200 rounded-lg border border-slate-200 dark:divide-slate-800 dark:border-slate-800">
+            {stats.leads.map((lead) => (
+              <li key={lead.id}>
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none flex-col gap-1.5 px-4 py-3 hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-teal-700 dark:hover:bg-slate-900 sm:flex-row sm:items-start sm:gap-4 [&::-webkit-details-marker]:hidden">
+                    <span className="w-28 shrink-0 text-xs tabular-nums text-slate-600 dark:text-slate-400">{dateTime.format(new Date(lead.createdAt))}</span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm font-semibold text-slate-950 dark:text-white">
+                        {lead.name}
+                        {lead.organisation ? `, ${lead.organisation}` : ""}
+                      </span>
+                      <span className="mt-0.5 block truncate text-xs text-slate-600 dark:text-slate-400">
+                        {lead.services.length ? lead.services.map(serviceLabel).join(", ") : "Services not identified"}
+                        {lead.trigger && lead.trigger !== "unknown" ? `. ${TRIGGER_LABELS[lead.trigger] ?? lead.trigger}` : ""}
+                      </span>
+                    </span>
+                    <span className="flex shrink-0 items-center gap-2">
+                      <ChevronDown aria-hidden="true" className="h-4 w-4 text-slate-500 transition-transform group-open:rotate-180" />
+                      {lead.urgency === "urgent" && (
+                        <span className="rounded-full border border-red-300 bg-red-50 px-2 py-0.5 text-xs font-medium text-red-900 dark:border-red-800 dark:bg-red-950/50 dark:text-red-200">Urgent</span>
+                      )}
+                      <span className="rounded-full border border-teal-300 bg-teal-50 px-2 py-0.5 text-xs font-semibold tabular-nums text-teal-900 dark:border-teal-800 dark:bg-teal-950/50 dark:text-teal-200">
+                        Score {lead.score}
+                      </span>
+                    </span>
+                  </summary>
+                  <div className="space-y-4 border-t border-slate-200 bg-slate-50/60 px-4 py-4 text-sm dark:border-slate-800 dark:bg-slate-900/40">
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400">Their message</h3>
+                      <p className="mt-1 whitespace-pre-wrap text-slate-950 dark:text-white">{lead.message}</p>
+                    </div>
+                    {lead.aiSummary && (
+                      <div>
+                        <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400">Curb&apos;s read of the conversation</h3>
+                        <p className="mt-1 text-slate-800 dark:text-slate-200">{lead.aiSummary}</p>
+                      </div>
+                    )}
+                    <dl className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs sm:grid-cols-4">
+                      {[
+                        ["Email", lead.email],
+                        ["Website", lead.website ?? "Not given"],
+                        ["Urgency", lead.urgency ?? "Unknown"],
+                        ["Asked on", lead.pagePath ?? "Unknown"],
+                        ["Form", lead.source === "manual" ? "Opened by the visitor" : "Offered by Curb"],
+                        ["Country", lead.country ?? "Unknown"],
+                        ["Notification email", lead.notified ? "Sent" : "Not sent"],
+                      ].map(([term, value]) => (
+                        <div key={term} className="min-w-0">
+                          <dt className="text-slate-600 dark:text-slate-400">{term}</dt>
+                          <dd className="truncate text-slate-950 dark:text-white">{value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <div className="flex flex-wrap gap-2">
+                      <a href={`mailto:${lead.email}`} className="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-700 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">
+                        Email {lead.name}
+                      </a>
+                      <button type="button" onClick={() => showLog({ conversation: lead.conversationId, filter: "all", page: "" })} className="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-700 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">
+                        Read the conversation
+                      </button>
+                      {lead.prospectId && (
+                        <Link href={`/admin/prospects/${lead.prospectId}`} className="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-700 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">
+                          Open in Prospects
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </details>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <Empty>No leads in this period yet.</Empty>
+        )}
+      </Section>
+
+      <div className="grid gap-8 lg:grid-cols-3">
+        <Section title="What visitors want" description="Every question, as judged by Curb's intent classifier from the conversation, not from keywords.">
+          {stats.intents.length ? (
+            <div className="space-y-3">
+              {stats.intents.map((i) => (
+                <MeterRow key={i.intent} label={INTENT_LABELS[i.intent] ?? i.intent} value={i.count} max={stats.intents[0].count} />
+              ))}
+            </div>
+          ) : (
+            <Empty>No questions in this period.</Empty>
+          )}
+        </Section>
+        <Section title="Services in demand" description="Services named or implied by visitors who want to hire or are weighing it up.">
+          {stats.services.length ? (
+            <div className="space-y-3">
+              {stats.services.map((sv) => (
+                <MeterRow key={sv.service} label={serviceLabel(sv.service)} value={sv.count} max={stats.services[0].count} />
+              ))}
+            </div>
+          ) : (
+            <Empty>No service interest in this period.</Empty>
+          )}
+        </Section>
+        <Section title="What is driving it" description="The reason behind service interest, when the visitor said or clearly implied it.">
+          {stats.triggers.length ? (
+            <div className="space-y-3">
+              {stats.triggers.map((t) => (
+                <MeterRow key={t.trigger} label={TRIGGER_LABELS[t.trigger] ?? t.trigger} value={t.count} max={stats.triggers[0].count} />
+              ))}
+            </div>
+          ) : (
+            <Empty>No stated reasons in this period.</Empty>
+          )}
+        </Section>
+      </div>
 
       <Section title="Activity by day" description={`Questions asked and times Curb was opened, per day in ${timeZoneLabel}.`}>
         <ChartFigure
@@ -612,6 +747,11 @@ export function AdminAssistantClient({
                             </span>
                           )}
                           <ChevronDown aria-hidden="true" className="h-4 w-4 text-slate-500 transition-transform group-open:rotate-180" />
+                          {(entry.intent === "hire" || entry.intent === "evaluate") && (
+                            <span className="rounded-full border border-blue-300 bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-900 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-200">
+                              {INTENT_LABELS[entry.intent]}
+                            </span>
+                          )}
                           {entry.status === "answered" && entry.searchHits === 0 && (
                             <span className="rounded-full border border-slate-300 px-2 py-0.5 text-xs text-slate-700 dark:border-slate-700 dark:text-slate-300">No site match</span>
                           )}
@@ -632,6 +772,12 @@ export function AdminAssistantClient({
                           </div>
                           {entry.errorMessage && <p className="mt-2 font-mono text-xs text-red-800 dark:text-red-300">{entry.errorMessage}</p>}
                         </div>
+                        {entry.intentSummary && (
+                          <div>
+                            <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400">Intent read</h3>
+                            <p className="mt-1 text-sm text-slate-800 dark:text-slate-200">{entry.intentSummary}</p>
+                          </div>
+                        )}
                         {entry.sources.length > 0 && (
                           <div>
                             <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400">Related links shown</h3>
@@ -654,6 +800,8 @@ export function AdminAssistantClient({
                             ["Page text sent", entry.pageContextSent ? "Yes" : "No"],
                             ["Device and country", `${entry.device ?? "unknown"}, ${entry.country ?? "unknown"}`],
                             ["Signed in", entry.signedIn ? "Yes" : "No"],
+                            ["Intent", entry.intent ? `${INTENT_LABELS[entry.intent] ?? entry.intent}${entry.leadScore ? `, lead score ${entry.leadScore}` : ""}` : "Not classified"],
+                            ["Contact form", entry.leadOffered ? "Shown under this answer" : "Not shown"],
                           ].map(([term, value]) => (
                             <div key={term} className="min-w-0">
                               <dt className="text-slate-600 dark:text-slate-400">{term}</dt>

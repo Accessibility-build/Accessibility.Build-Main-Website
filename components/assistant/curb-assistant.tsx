@@ -4,8 +4,9 @@ import { useCallback, useEffect, useId, useRef, useState, type FormEvent, type K
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import posthog from "posthog-js"
-import { ArrowUp, MessageCircle, RotateCcw, Square, ThumbsDown, ThumbsUp, X } from "lucide-react"
+import { ArrowUp, MessageCircle, RotateCcw, Square, ThumbsDown, ThumbsUp, UserRound, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { company } from "@/lib/company"
 import { Logo } from "@/components/logo"
 import {
   ASSISTANT_ENDPOINT,
@@ -17,11 +18,15 @@ import {
   ASSISTANT_OPEN_EVENT,
   HIDDEN_ROUTE_PREFIXES,
   PRIVATE_ROUTE_PREFIXES,
+  META_SEPARATOR,
   matchesPrefix,
   splitLanguageMarker,
   type AssistantSource,
+  type LeadOffer,
+  type LeadState,
 } from "@/lib/assistant/config"
 import { AssistantMarkdown, markdownToPlainText } from "./assistant-markdown"
+import { CurbLeadForm, CurbLeadSent } from "./curb-lead-form"
 
 interface ChatMessage {
   id: string
@@ -32,6 +37,15 @@ interface ChatMessage {
   /** BCP 47 language of the text, from the reply's language marker (WCAG 3.1.2). */
   lang?: string
   sources?: AssistantSource[]
+  /** Added by the widget itself (the "Talk to a person" prompt); never sent to the model. */
+  local?: boolean
+  /** The contact form shown under this message, and what became of it. */
+  lead?: {
+    offer: LeadOffer | null
+    source: "ai_offer" | "manual"
+    status: "open" | "sent" | "dismissed"
+    sentTo?: { name: string; email: string }
+  }
   error?: boolean
   stopped?: boolean
   feedback?: "helpful" | "unhelpful"
@@ -48,7 +62,15 @@ function newConversationId() {
 }
 
 interface AssistantEvent {
-  type: "opened" | "suggestion_clicked" | "source_clicked" | "answer_link_clicked" | "new_chat"
+  type:
+    | "opened"
+    | "suggestion_clicked"
+    | "source_clicked"
+    | "answer_link_clicked"
+    | "new_chat"
+    | "lead_form_shown"
+    | "lead_form_opened"
+    | "lead_dismissed"
   conversationId?: string
   messageId?: string
   path?: string
@@ -112,6 +134,7 @@ function currentPage() {
 interface StoredChat {
   conversationId: string
   messages: ChatMessage[]
+  leadState: LeadState
 }
 
 function readStored(): StoredChat {
@@ -122,12 +145,13 @@ function readStored(): StoredChat {
       return {
         conversationId: parsed.conversationId,
         messages: parsed.messages.filter((m) => m && typeof m.content === "string"),
+        leadState: parsed.leadState ?? "none",
       }
     }
   } catch {
     // Unreadable or blocked storage starts a fresh chat.
   }
-  return { conversationId: newConversationId(), messages: [] }
+  return { conversationId: newConversationId(), messages: [], leadState: "none" }
 }
 
 function writeStored(chat: StoredChat) {
@@ -146,6 +170,9 @@ export function CurbAssistant() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [conversationId, setConversationId] = useState("")
+  const [leadState, setLeadState] = useState<LeadState>("none")
+  // The confirmation takes focus only right after sending, not when a stored chat is restored.
+  const [justSentId, setJustSentId] = useState<string | null>(null)
   const [input, setInput] = useState("")
   const [streaming, setStreaming] = useState(false)
   // What the polite status region says. The body carries its own language so a reply in
@@ -170,12 +197,13 @@ export function CurbAssistant() {
     const stored = readStored()
     setConversationId(stored.conversationId)
     setMessages(stored.messages)
+    setLeadState(stored.leadState)
     hydratedRef.current = true
   }, [])
 
   useEffect(() => {
-    if (hydratedRef.current && !streaming && conversationId) writeStored({ conversationId, messages })
-  }, [messages, streaming, conversationId])
+    if (hydratedRef.current && !streaming && conversationId) writeStored({ conversationId, messages, leadState })
+  }, [messages, streaming, conversationId, leadState])
 
   // Clicks on links in answers and in "Related on this site", including keyboard activation,
   // which also fires click. Listened for natively so the conversation region stays a plain region.
@@ -269,7 +297,7 @@ export function CurbAssistant() {
 
     const userMessage: ChatMessage = { id: newId(), role: "user", content: question }
     const history = [...messages, userMessage]
-      .filter((m) => !m.error && m.content.trim())
+      .filter((m) => !m.error && !m.local && m.content.trim())
       .slice(-ASSISTANT_LIMITS.maxHistoryMessages)
       .map(({ role, content }) => ({ role, content }))
     const answerId = newId()
@@ -282,50 +310,90 @@ export function CurbAssistant() {
     const controller = new AbortController()
     abortRef.current = controller
     let answer = ""
-    try {
-      const response = await fetch(ASSISTANT_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: history, conversationId, page: currentPage() }),
-        signal: controller.signal,
-      })
-      if (!response.ok || !response.body) {
-        const data = (await response.json().catch(() => null)) as { error?: string; message?: string } | null
-        throw new Error(data?.message || data?.error || "Something went wrong. Please try again.")
-      }
-      const serverId = response.headers.get("X-Assistant-Message-Id") ?? undefined
-      if (serverId) update(answerId, { serverId })
-      let sources: AssistantSource[] = []
+    // The answer text, then META_SEPARATOR and the server's verdict on the contact form.
+    const visible = () => {
+      const cut = answer.indexOf(META_SEPARATOR)
+      return cut === -1 ? answer : answer.slice(0, cut)
+    }
+    const offerOf = (): LeadOffer | null => {
+      const cut = answer.indexOf(META_SEPARATOR)
+      if (cut === -1) return null
       try {
-        sources = JSON.parse(decodeURIComponent(response.headers.get("X-Assistant-Sources") ?? "")) as AssistantSource[]
+        return (JSON.parse(answer.slice(cut + 1)) as { lead?: LeadOffer | null }).lead ?? null
       } catch {
-        sources = []
+        return null
+      }
+    }
+    let serverId: string | undefined
+    let sources: AssistantSource[] = []
+    let offer: LeadOffer | null = null
+
+    try {
+      // A model occasionally returns an empty answer; ask once more before giving up.
+      for (let attempt = 0; attempt < 2; attempt++) {
+        answer = ""
+        const response = await fetch(ASSISTANT_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages: history, conversationId, leadState, page: currentPage() }),
+          signal: controller.signal,
+        })
+        if (!response.ok || !response.body) {
+          const data = (await response.json().catch(() => null)) as { error?: string; message?: string } | null
+          throw new Error(data?.message || data?.error || "Something went wrong. Please try again.")
+        }
+        serverId = response.headers.get("X-Assistant-Message-Id") ?? undefined
+        if (serverId) update(answerId, { serverId })
+        try {
+          sources = JSON.parse(decodeURIComponent(response.headers.get("X-Assistant-Sources") ?? "")) as AssistantSource[]
+        } catch {
+          sources = []
+        }
+        const reader = response.body.getReader()
+        const decoder = new TextDecoder()
+        for (;;) {
+          const { done, value } = await reader.read()
+          if (done) break
+          answer += decoder.decode(value, { stream: true })
+          const part = splitLanguageMarker(visible())
+          update(answerId, { content: part.text, lang: part.lang ?? undefined })
+        }
+        answer += decoder.decode()
+        offer = offerOf() ?? offer
+        if (splitLanguageMarker(visible()).text.trim()) break
       }
 
-      const reader = response.body.getReader()
-      const decoder = new TextDecoder()
-      for (;;) {
-        const { done, value } = await reader.read()
-        if (done) break
-        answer += decoder.decode(value, { stream: true })
-        const part = splitLanguageMarker(answer)
-        update(answerId, { content: part.text, lang: part.lang ?? undefined })
-      }
-      answer += decoder.decode()
-      const { text: finalText, lang } = splitLanguageMarker(answer)
+      const { text: finalText, lang } = splitLanguageMarker(visible())
       if (!finalText.trim()) throw new Error("No answer came back. Please try again.")
-      update(answerId, { content: finalText, lang: lang ?? undefined, sources })
+      // One open form at a time: a fresh offer replaces one still open further up.
+      setMessages((current) =>
+        current.map((m) => {
+          if (m.id === answerId) return { ...m, content: finalText, lang: lang ?? undefined, sources, ...(offer ? { lead: { offer, source: "ai_offer" as const, status: "open" as const } } : {}) }
+          if (offer && m.lead?.status === "open") return { ...m, lead: undefined }
+          return m
+        }),
+      )
       // The question was written in the language the reply came back in.
       if (lang) update(userMessage.id, { lang })
-      setAnnouncement({ prefix: `${ASSISTANT_NAME} replied:`, body: markdownToPlainText(finalText), lang: lang ?? undefined })
+      if (offer) {
+        setLeadState((state) => (state === "submitted" ? state : "offered"))
+        track({ type: "lead_form_shown", conversationId, messageId: serverId, path: pathname })
+      }
+      setAnnouncement({
+        prefix: `${ASSISTANT_NAME} replied:`,
+        body: `${markdownToPlainText(finalText)}${offer ? " A short form to contact the team follows the answer." : ""}`,
+        lang: lang ?? undefined,
+      })
     } catch (error) {
       if (controller.signal.aborted) {
-        update(answerId, { content: splitLanguageMarker(answer).text, stopped: true })
+        update(answerId, { content: splitLanguageMarker(visible()).text, stopped: true })
         setAnnouncement({ body: "Answer stopped." })
       } else {
         const message = error instanceof Error ? error.message : "Something went wrong. Please try again."
-        update(answerId, { content: message, error: true })
-        setAnnouncement({ body: message })
+        // A failed answer still carries the contact form if the visitor clearly wants help.
+        update(answerId, { content: message, error: true, ...(offer ? { lead: { offer, source: "ai_offer" as const, status: "open" as const } } : {}) })
+        if (offer) setLeadState((state) => (state === "submitted" ? state : "offered"))
+        setAnnouncement({ body: `${message}${offer ? " You can still contact the team with the form below." : ""}` })
       }
     } finally {
       abortRef.current = null
@@ -350,8 +418,43 @@ export function CurbAssistant() {
     track({ type: "new_chat", conversationId, path: pathname })
     setConversationId(newConversationId())
     setMessages([])
+    setLeadState("none")
     setAnnouncement({ body: "Started a new chat." })
     inputRef.current?.focus()
+  }
+
+  const leadSent = (message: ChatMessage, sentTo: { name: string; email: string }) => {
+    update(message.id, { lead: { ...(message.lead ?? { offer: null, source: "manual" }), status: "sent", sentTo } })
+    setLeadState("submitted")
+    setJustSentId(message.id)
+    posthog.capture("assistant_lead_submitted", { path: pathname, source: message.lead?.source })
+  }
+
+  const leadDismissed = (message: ChatMessage) => {
+    update(message.id, { lead: { ...(message.lead ?? { offer: null, source: "manual" }), status: "dismissed" } })
+    setLeadState((state) => (state === "submitted" ? state : "dismissed"))
+    track({ type: "lead_dismissed", conversationId, messageId: message.serverId, path: pathname, detail: message.lead?.source })
+    inputRef.current?.focus()
+  }
+
+  // "Talk to a person": the visitor asks for the form themselves, whatever the AI judged.
+  const talkToPerson = () => {
+    const openForm = messages.find((m) => m.lead?.status === "open")
+    if (openForm) {
+      document.getElementById(`${openForm.id}-lead-name`)?.focus()
+      return
+    }
+    setMessages((current) => [
+      ...current,
+      {
+        id: newId(),
+        role: "assistant",
+        local: true,
+        content: `Happy to put you in touch. Leave your details below and ${company.legalOperator} will reply by email within two business days.`,
+        lead: { offer: null, source: "manual", status: "open" },
+      },
+    ])
+    track({ type: "lead_form_opened", conversationId, path: pathname })
   }
 
   const rate = (message: ChatMessage, feedback: ChatMessage["feedback"]) => {
@@ -406,7 +509,8 @@ export function CurbAssistant() {
         </button>
       )}
 
-      {open && (
+      {/* Hidden rather than unmounted when closed, so a half-filled contact form survives. */}
+      <div hidden={!open}>
         <div
           ref={panelRef}
           id={panelId}
@@ -540,7 +644,7 @@ export function CurbAssistant() {
                           </ul>
                         </div>
                       )}
-                      {!pending && !message.error && message.content && (
+                      {!pending && !message.error && !message.local && message.content && (
                         <div className="mt-2 flex items-center gap-1" role="group" aria-label="Was this answer helpful?">
                           {(
                             [
@@ -563,6 +667,30 @@ export function CurbAssistant() {
                             </button>
                           ))}
                         </div>
+                      )}
+                      {message.lead?.status === "open" && (
+                        <CurbLeadForm
+                          idPrefix={`${message.id}-lead`}
+                          offer={message.lead.offer}
+                          source={message.lead.source}
+                          conversationId={conversationId}
+                          messageId={message.serverId}
+                          autoFocus={message.lead.source === "manual"}
+                          onSent={(sentTo) => leadSent(message, sentTo)}
+                          onDismiss={() => leadDismissed(message)}
+                        />
+                      )}
+                      {message.lead?.status === "sent" && message.lead.sentTo && (
+                        <CurbLeadSent {...message.lead.sentTo} autoFocus={justSentId === message.id} />
+                      )}
+                      {message.lead?.status === "dismissed" && (
+                        <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                          No problem. You can reach the team any time from the{" "}
+                          <Link href="/contact" className="underline underline-offset-2 hover:text-foreground">
+                            Contact page
+                          </Link>
+                          .
+                        </p>
                       )}
                     </li>
                   )
@@ -608,6 +736,16 @@ export function CurbAssistant() {
                 </button>
               )}
             </div>
+            <div className="mt-2">
+              <button
+                type="button"
+                onClick={talkToPerson}
+                className="inline-flex min-h-8 items-center gap-1.5 rounded-full border border-border px-3 text-xs font-medium text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <UserRound aria-hidden="true" className="h-3.5 w-3.5" />
+                Talk to a person
+              </button>
+            </div>
             <p id={hintId} className="mt-2 text-xs leading-5 text-muted-foreground">
               {remaining < 150 ? `${remaining} characters left. ` : "Enter to send, Shift and Enter for a new line. "}
               Answers draw on this site and general accessibility knowledge, can be wrong, and are not legal advice.
@@ -618,7 +756,7 @@ export function CurbAssistant() {
             </p>
           </form>
         </div>
-      )}
+      </div>
     </div>
   )
 }

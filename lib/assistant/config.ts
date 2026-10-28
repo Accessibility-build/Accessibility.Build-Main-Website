@@ -9,6 +9,21 @@ export const ASSISTANT_TAGLINE = "Accessibility assistant"
 export const ASSISTANT_ENDPOINT = "/api/assistant"
 export const ASSISTANT_FEEDBACK_ENDPOINT = "/api/assistant/feedback"
 export const ASSISTANT_EVENTS_ENDPOINT = "/api/assistant/events"
+/** Where the visitor is with the contact form in this chat. Sent with each question. */
+export type LeadState = "none" | "offered" | "submitted" | "dismissed"
+export const ASSISTANT_LEAD_ENDPOINT = "/api/assistant/lead"
+
+/**
+ * Separates the answer text from the metadata the server appends once the answer is complete
+ * (whether to show the contact form, and what to prefill it with). The model never writes it.
+ */
+export const META_SEPARATOR = "\u001e"
+
+export interface LeadOffer {
+  services: string[]
+  prefill: { name: string; email: string; organisation: string; website: string; message: string }
+}
+
 /** Window event the "Ask Curb" skip link dispatches to open the panel. */
 export const ASSISTANT_OPEN_EVENT = "curb-assistant:open"
 
