@@ -334,7 +334,7 @@ export function CurbAssistant() {
         const response = await fetch(ASSISTANT_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: history, conversationId, leadState, page: currentPage() }),
+          body: JSON.stringify({ messages: history, conversationId, leadState, meta: 1, page: currentPage() }),
           signal: controller.signal,
         })
         if (!response.ok || !response.body) {
