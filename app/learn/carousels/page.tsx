@@ -86,8 +86,8 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
     return (
         <div className="space-y-4">
             <div className="flex items-center gap-2 p-1 bg-muted rounded-full w-fit">
-                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
-                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
+                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-700 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
+                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-700 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
             </div>
             <AnimatePresence mode="wait">
                 <motion.div key={showGood ? 'good' : 'bad'} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
@@ -107,7 +107,7 @@ function KeyPoint({ icon: Icon, title, children }: { icon: React.ElementType; ti
     return (
         <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm">
             <div className="p-2 bg-rose-100 rounded-lg h-fit"><Icon className="w-5 h-5 text-rose-600" /></div>
-            <div><h4 className="font-semibold text-foreground mb-1">{title}</h4><p className="text-sm text-muted-foreground">{children}</p></div>
+            <div><h3 className="font-semibold text-foreground mb-1">{title}</h3><p className="text-sm text-muted-foreground">{children}</p></div>
         </div>
     );
 }
@@ -123,7 +123,7 @@ function CodeBlock({ code, title }: { code: string; title?: string }) {
     return (
         <div className="rounded-xl overflow-hidden border border-border shadow-sm">
             {title && <div className="px-4 py-2 bg-muted border-b border-border text-sm font-medium text-foreground/90 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
-            <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm"><code>{code}</code></pre>
+            <pre tabIndex={0} className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{code}</code></pre>
         </div>
     );
 }
@@ -261,7 +261,7 @@ function ControlsSection() {
                     <Button variant="outline" className="gap-2"><Play className="w-4 h-4" /> <span className="sr-only">Start auto-play</span></Button>
                     <Button variant="outline" className="gap-2"><span className="sr-only">Next slide</span><ChevronRight className="w-4 h-4" /></Button>
                 </div>
-                <p className="text-sm text-violet-600 mt-4">⬆️ These buttons have <code>sr-only</code> text inside for screen readers</p>
+                <p className="text-sm text-violet-700 mt-4">⬆️ These buttons have <code>sr-only</code> text inside for screen readers</p>
             </div>
 
             <CodeBlock title="Accessible Controls" code={`<!-- Previous/Next -->
@@ -432,8 +432,8 @@ function CommonIssuesSection() {
                         <div className="flex items-start gap-4">
                             <div className={cn("p-2 rounded-lg flex-shrink-0", issue.severity === 'critical' ? 'bg-red-100 text-red-600' : issue.severity === 'high' ? 'bg-orange-100 text-orange-600' : 'bg-yellow-100 text-yellow-600')}><XCircle className="w-5 h-5" /></div>
                             <div className="flex-1 min-w-0">
-                                <Badge variant="outline" className={cn("mb-2", issue.severity === 'critical' ? 'border-red-300 text-red-600' : issue.severity === 'high' ? 'border-orange-300 text-orange-600' : 'border-yellow-300 text-yellow-600')}>{issue.severity}</Badge>
-                                <div className="text-red-600 line-through opacity-75 mb-1 text-sm">{issue.bad}</div>
+                                <Badge variant="outline" className={cn("mb-2", issue.severity === 'critical' ? 'border-red-300 text-red-700' : issue.severity === 'high' ? 'border-orange-300 text-orange-700' : 'border-yellow-300 text-yellow-700 dark:text-yellow-300')}>{issue.severity}</Badge>
+                                <div className="text-red-700 line-through mb-1 text-sm">{issue.bad}</div>
                                 <div className="text-green-700 flex items-center gap-2 mb-2"><CheckCircle2 className="w-4 h-4 flex-shrink-0" /><span className="font-medium">{issue.fix}</span></div>
                                 <p className="text-sm text-muted-foreground">{issue.why}</p>
                             </div>

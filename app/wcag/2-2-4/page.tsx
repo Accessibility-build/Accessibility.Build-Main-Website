@@ -308,7 +308,7 @@ export default function WCAG224Page() {
               Buffer incoming items and surface a polite, non-focus-stealing control.
               The user decides the moment of interruption.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<div aria-live="polite">
   <button id="show-new" hidden>Show 12 new stories</button>
 </div>
@@ -337,7 +337,7 @@ export default function WCAG224Page() {
               Suppression must be per-category, persistent, and reachable before the
               first interruption does damage.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<fieldset>
   <legend>Notifications</legend>
   <label>
@@ -371,7 +371,7 @@ export default function WCAG224Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Announce without stealing focus
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ role="alert" + focus() for a routine update: maximal interruption -->
 <div role="alert" tabindex="-1" id="promo">Check out our new plans!</div>
 <script>promo.focus()</script>

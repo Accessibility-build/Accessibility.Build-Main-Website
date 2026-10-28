@@ -400,7 +400,7 @@ export default function WCAG316Page() {
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">&lt;rp&gt;</code>{" "}
               supplies parentheses for browsers that cannot render ruby.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- Japanese furigana: 東京 read as とうきょう -->
 <p>
   <ruby>東京<rp>（</rp><rt>とうきょう</rt><rp>）</rp></ruby>
@@ -422,7 +422,7 @@ export default function WCAG316Page() {
               immediately after the ambiguous word. It works everywhere, needs no
               special support, and benefits every reader.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<p>
   The fishing report covers striped bass
   <span class="pronunciation">(pronounced "bass" as in "class")</span>,
@@ -439,7 +439,7 @@ export default function WCAG316Page() {
               shows the phonetic form and offers a sound file. Remember a text
               alternative for the audio itself.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<p>
   Sailors salute from the
   <a href="/glossary#bow-ship">bow</a> of the ship.

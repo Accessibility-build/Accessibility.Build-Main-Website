@@ -505,7 +505,7 @@ export default function WCAG331Page() {
               </code>
               .
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<label for="email">Email address</label>
 <input
   type="email"
@@ -529,7 +529,7 @@ export default function WCAG331Page() {
               On submit, render this above the form and move focus to it so the
               user lands on the list of problems. Each link jumps to the field.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<div role="alert" tabindex="-1" id="error-summary" class="error-summary">
   <h2>There is a problem</h2>
   <ul>
@@ -552,7 +552,7 @@ export default function WCAG331Page() {
               the DOM <em>before</em> the text is injected gets announced
               reliably.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- Render this empty container up front -->
 <p id="status" aria-live="assertive" class="sr-only"></p>
 
@@ -574,7 +574,7 @@ export default function WCAG331Page() {
               and only describes the field with the error id when an error is
               present.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function Field({ id, label, error, ...props }) {
   const errorId = \`\${id}-error\`
   return (

@@ -461,7 +461,7 @@ export default function WCAG324Page() {
               three identities. Pin one label and one icon for the function
               site-wide.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Same function, three different identities -->
 <!-- home template -->
 <button><svg aria-hidden="true">…magnifier…</svg> Search</button>
@@ -485,7 +485,7 @@ export default function WCAG324Page() {
               identification screen reader users rely on. Name the function, and
               keep the name stable.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ The same print control drifts between pages -->
 <input type="image" src="/icons/print.svg" alt="Print" />      <!-- page A -->
 <input type="image" src="/icons/print.svg" alt="Printer" />    <!-- page B -->
@@ -502,7 +502,7 @@ export default function WCAG324Page() {
               The structural fix: define each repeated function as one component
               with its label and icon baked in, so templates cannot improvise.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// download-button.tsx — the single source of identity
 export function DownloadButton({ href }: { href: string }) {
   return (

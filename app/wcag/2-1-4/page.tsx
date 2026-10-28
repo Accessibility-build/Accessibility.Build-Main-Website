@@ -466,7 +466,7 @@ export default function WCAG214Page() {
               with no off switch, no remap, and no focus check is the classic 2.1.4
               violation.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// ✗ Fires on every bare keystroke, everywhere, always
 document.addEventListener('keydown', (e) => {
   switch (e.key) {
@@ -486,7 +486,7 @@ document.addEventListener('keydown', (e) => {
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">Ctrl+S</code>{" "}
               can pass through untouched. Also ignore keystrokes aimed at text fields.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// ✓ Respects a "shortcuts off" preference and modifier remaps
 let shortcutsEnabled = loadUserPref('charKeyShortcuts', true)
 
@@ -509,7 +509,7 @@ document.addEventListener('keydown', (e) => {
               Bind the shortcut to the component itself rather than the document, so it
               can only fire while that component holds focus.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ "k" toggles play only while the player is focused -->
 <div class="video-player" tabindex="0">
   <!-- controls … -->

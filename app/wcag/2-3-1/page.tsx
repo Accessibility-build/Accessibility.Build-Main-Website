@@ -481,7 +481,7 @@ export default function WCAG231Page() {
               tint at 2 Hz and respects the user&rsquo;s reduced-motion
               preference.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Fails: 10 flashes/second, large area, high contrast */
 .alert-banner {
   animation: strobe 0.1s infinite alternate;
@@ -515,7 +515,7 @@ export default function WCAG231Page() {
               duration, and always render a stop control (which also helps you
               meet 2.2.2 Pause, Stop, Hide).
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// ✗ Fails: 5 flashes per second, no way to stop it
 setInterval(() => el.classList.toggle("flash"), 200);
 
@@ -546,7 +546,7 @@ document.getElementById("stop-btn").addEventListener("click", stopBlink);`}</cod
               unavoidable and below the thresholds, still warn users and keep
               it behind an explicit play action.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Fails: autoplaying video with unscreened strobe effects -->
 <video src="/promo-strobe.mp4" autoplay loop muted></video>
 

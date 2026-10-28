@@ -395,7 +395,7 @@ export default function WCAG336Page() {
               Report errors in an announced summary that links to each field, keep the
               user&rsquo;s input intact, and identify errors in text (per 3.3.1).
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<div role="alert" tabindex="-1" id="error-summary" hidden>
   <h2>There are 2 problems with your submission</h2>
   <ul>
@@ -415,7 +415,7 @@ export default function WCAG336Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Confirmed: a review step before finalizing
             </h3>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<h1>Check your answers before submitting</h1>
 <dl>
   <div>
@@ -442,7 +442,7 @@ export default function WCAG336Page() {
               Announce the undo, give it generous time, and expose a persistent
               recovery route (a trash folder) for users who miss the toast.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<div role="status" class="toast">
   Item moved to trash.
   <button type="button" onclick="undoDelete('item-42')">Undo</button>

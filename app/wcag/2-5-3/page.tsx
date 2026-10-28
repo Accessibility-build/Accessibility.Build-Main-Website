@@ -486,7 +486,7 @@ export default function WCAG253Page() {
               If you add an aria-label to a control that already shows text, start it
               with the visible words — or better, do not add one at all.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Fails: name "Submit message" does not contain visible "Send" -->
 <button aria-label="Submit message">Send</button>
 
@@ -504,7 +504,7 @@ export default function WCAG253Page() {
               The common pattern of disambiguating &ldquo;Read more&rdquo; links is
               fine — as long as the visible text stays at the start of the name.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// ✗ Fails: visible "Read more" is missing from the name
 function ArticleCard({ title, href }) {
   return <a href={href} aria-label={"Full article: " + title}>Read more</a>
@@ -528,7 +528,7 @@ function ArticleCard({ title, href }) {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Form fields: keep label, name, and instructions aligned
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Fails: visible label says "Work email", name says "E-mail address" -->
 <label for="em">Work email</label>
 <input id="em" type="email" aria-label="E-mail address" />

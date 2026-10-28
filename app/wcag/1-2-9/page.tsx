@@ -282,7 +282,7 @@ export default function WCAG129Page() {
               Keep the region polite so it does not interrupt screen reader users
               mid-sentence, and let users pause the visual scroll.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<h2>Quarterly briefing — live</h2>
 
 <audio controls src="https://stream.example.com/briefing"></audio>
@@ -310,7 +310,7 @@ export default function WCAG129Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               2. Scripted broadcast: publish the script with the stream
             </h3>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<audio controls src="https://stream.example.com/statement"></audio>
 
 <p>
@@ -332,7 +332,7 @@ export default function WCAG129Page() {
               </Link>
               ).
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`.caption-pane {
   max-height: 14rem;
   overflow-y: auto;

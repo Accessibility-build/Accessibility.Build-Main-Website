@@ -292,7 +292,7 @@ export default function WCAG147Page() {
               Export two masters from the same session — full mix and narration only —
               and let the listener choose.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<h2>Episode 42: Designing for everyone</h2>
 
 <audio controls src="/audio/ep42-full-mix.mp3"></audio>
@@ -312,7 +312,7 @@ export default function WCAG147Page() {
               If you ship speech and background as separate tracks, the
               &ldquo;off&rdquo; switch can live in the player itself.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<audio id="speech" src="/audio/ep42-voice.mp3" controls></audio>
 <audio id="bed" src="/audio/ep42-music.mp3" muted></audio>
 <label>

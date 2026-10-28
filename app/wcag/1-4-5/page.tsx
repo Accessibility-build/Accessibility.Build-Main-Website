@@ -404,7 +404,7 @@ export default function WCAG145Page() {
               The classic failure is a designed headline exported as an image.
               The same visual can nearly always be built with markup and CSS.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Failing: the headline is pixels, not text -->
 <img src="/img/summer-sale-hero.jpg"
      alt="Summer sale — 50% off everything. Ends Sunday." />
@@ -428,7 +428,7 @@ export default function WCAG145Page() {
               plus modern CSS delivers both while the text stays selectable,
               scalable, and restylable.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`@font-face {
   font-family: "Brand Display";
   src: url("/fonts/brand-display.woff2") format("woff2");
@@ -453,7 +453,7 @@ export default function WCAG145Page() {
               A logo may be an image, but do not smuggle content into it. Keep
               the wordmark as the image and everything around it as text.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Passing: logotype is essential; tagline is real text -->
 <a href="/" class="brand">
   <img src="/img/acme-logo.svg" alt="Acme Corporation" />

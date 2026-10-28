@@ -288,7 +288,7 @@ export default function WCAG148Page() {
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">ch</code>{" "}
               unit measures width in characters directly.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`.prose {
   max-width: 70ch;        /* ≤ 80 characters per line (40 for CJK) */
   text-align: left;       /* never justify blocks of text */
@@ -314,7 +314,7 @@ export default function WCAG148Page() {
               Condition 5 fails when layouts fix their widths in pixels. Size in relative
               units and let text wrap.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✓ Fluid column: zooming to 200% reflows, never side-scrolls */
 main {
   width: min(70ch, 100% - 2rem);
@@ -339,7 +339,7 @@ html {
               Real text plus theme tokens means browser overrides, forced-colors mode,
               and your own theme picker all work.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`:root { --fg: #1f2937; --bg: #ffffff; }
 [data-theme="dark"]  { --fg: #e2e8f0; --bg: #0f172a; }
 [data-theme="sepia"] { --fg: #433422; --bg: #f4ecd8; }

@@ -431,7 +431,7 @@ export default function WCAG135Page() {
               </code>{" "}
               token is what makes the purpose programmatic.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Failing: purposes on the list, none programmatically identified -->
 <label for="n">Full name</label>
 <input id="n" type="text" />
@@ -458,7 +458,7 @@ export default function WCAG135Page() {
               Modifier prefixes tell software <em>which</em> address each field
               belongs to; the cc-* family covers the payment card.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<fieldset>
   <legend>Shipping address</legend>
   <input autocomplete="shipping street-address" ... />
@@ -490,7 +490,7 @@ export default function WCAG135Page() {
               once, name each block so autofill does not smear one
               person&rsquo;s data across both.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<h2>Your details</h2>
 <input autocomplete="section-primary name" ... />
 <input autocomplete="section-primary email" ... />

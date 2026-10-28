@@ -535,7 +535,7 @@ export default function WCAG257Page() {
               move controls that produce the identical result and announce the
               change to assistive technology.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function ReorderableList({ items, setItems }) {
   const [status, setStatus] = useState("")
 
@@ -591,7 +591,7 @@ export default function WCAG257Page() {
               set the value, and expose stepper buttons for precision. A native
               range input is still the better default.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function Slider({ value, min, max, onChange }) {
   function handleTrackClick(e) {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -648,7 +648,7 @@ export default function WCAG257Page() {
               </Link>
               .
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<label for="volume">Volume</label>
 <input
   type="range"

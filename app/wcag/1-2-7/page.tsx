@@ -294,7 +294,7 @@ export default function WCAG127Page() {
               narration) and offer it alongside the original. This is the most robust
               approach because it works in every player.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<video controls src="/media/dashboard-tour.mp4">
   <track kind="captions" src="/media/dashboard-tour.vtt"
          srclang="en" label="English" default />
@@ -321,7 +321,7 @@ export default function WCAG127Page() {
               </Link>
               .
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`const cues = [
   { at: 42.0,  clip: "/media/desc/settings-menu.mp3" },
   { at: 95.5,  clip: "/media/desc/import-dialog.mp3" },
@@ -356,7 +356,7 @@ video.addEventListener("seeked", () => {
               However it is delivered, users must be able to find and enable it — a
               labelled control near the player, not a buried settings page.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<button type="button" id="ext-ad-toggle" aria-pressed="false">
   Enable extended audio description
   <span class="hint">(video pauses for longer descriptions)</span>

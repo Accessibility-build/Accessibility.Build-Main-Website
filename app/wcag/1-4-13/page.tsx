@@ -464,7 +464,7 @@ export default function WCAG1413Page() {
               , and wrap both in a container so the pointer can travel from one to
               the other without leaving the hover zone.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<span class="tooltip-wrapper">
   <button
     type="button"
@@ -491,7 +491,7 @@ export default function WCAG1413Page() {
               move onto the tooltip without it closing, and it stays visible for
               as long as the user keeps hovering.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`.tooltip {
   position: absolute;
   /* small overlap so there is no dead gap to cross */
@@ -527,7 +527,7 @@ export default function WCAG1413Page() {
               </code>{" "}
               flag that your CSS respects.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`const wrapper = document.querySelector(".tooltip-wrapper");
 
 // Dismissible: Escape hides the popup without moving
@@ -546,7 +546,7 @@ wrapper.addEventListener("focusout", () =>
   wrapper.removeAttribute("data-dismissed"),
 );`}</code>
             </pre>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* Respect the dismissed state */
 .tooltip-wrapper[data-dismissed="true"] .tooltip {
   display: none;

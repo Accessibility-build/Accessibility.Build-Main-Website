@@ -468,7 +468,7 @@ export default function WCAG258Page() {
               The most reliable fix is to set a minimum size on the control and let
               padding center a small icon inside it.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* Any clickable control: never smaller than 24x24 CSS px */
 .icon-button {
   display: inline-flex;
@@ -498,7 +498,7 @@ export default function WCAG258Page() {
               overlay expands the clickable region without affecting the visual
               size.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`.compact-link {
   position: relative;
 }
@@ -521,7 +521,7 @@ export default function WCAG258Page() {
               A real button element, an accessible name for screen readers, a
               guaranteed minimum size, and a visible focus indicator — all in one.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function CloseButton({ onClick }: { onClick: () => void }) {
   return (
     <button
@@ -549,7 +549,7 @@ export default function WCAG258Page() {
               If you genuinely need 16 px icons, give them enough gap that a 24 px
               circle around each center never overlaps its neighbor.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* 16px targets pass under the Spacing exception when
    centers are >= 24px apart. With 16px icons, an 8px gap
    puts centers 24px apart (16 + 8). */

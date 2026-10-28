@@ -558,7 +558,7 @@ export default function WCAG1411Page() {
               faint. Pick a border color that reaches 3:1 against the field
               background — and never identify a field by placeholder text alone.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* #767676 on white is ~4.5:1 — comfortably past the
    3:1 floor for a UI boundary. #d1d5db (~1.5:1) would fail. */
 .field {
@@ -581,7 +581,7 @@ export default function WCAG1411Page() {
               Off and on must differ by at least 3:1, and the difference should
               not be carried by color alone — here the knob also moves position.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* Off: light track. On: a track color that is >= 3:1
    different from the off state AND >= 3:1 vs the page. */
 .toggle            { background: #6b7280; }  /* off  */
@@ -606,7 +606,7 @@ export default function WCAG1411Page() {
               </Link>
               ).
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<button type="button" aria-label="Search" class="icon-btn">
   <svg aria-hidden="true" focusable="false" width="20" height="20">
     <!-- stroke/fill must be >= 3:1 against the button bg -->

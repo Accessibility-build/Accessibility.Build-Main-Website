@@ -430,7 +430,7 @@ export default function WCAG111Page() {
               Alt text should convey the information the image carries in its context —
               not label the image as an image.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Missing, redundant, or meaningless alternatives -->
 <img src="q4-sales.png">
 <img src="q4-sales.png" alt="chart">
@@ -450,7 +450,7 @@ export default function WCAG111Page() {
               so screen readers skip them. Functional images are named for what they{" "}
               <em>do</em>.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Decorative image announced as noise; icon button unnamed -->
 <img src="divider-swirl.png" alt="decorative blue swirl divider">
 <button><img src="magnifier.svg"></button>
@@ -475,7 +475,7 @@ export default function WCAG111Page() {
               A chart cannot be equivalently described in one attribute. Identify it
               briefly, then provide the data as real, visible content.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<figure>
   <img src="traffic-trend.png"
        alt="Line graph of website traffic over 12 months,

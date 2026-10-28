@@ -481,7 +481,7 @@ export default function WCAG221Page() {
               to extend. The dialog is announced through a live region so screen reader
               users hear it in time to act.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Silent, fixed timeout — no warning, no control -->
 <div class="notice">Your session will expire in 5 minutes.</div>
 
@@ -503,7 +503,7 @@ export default function WCAG221Page() {
               Show the warning before expiry, give the user at least 20 seconds to respond,
               and permit the extension at least ten times.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`const LIMIT = 15 * 60;   // 15-minute session, in seconds
 const WARN_AT = 60;      // warn 60s before expiry (> 20s minimum)
 const EXTEND_BY = 15 * 60;
@@ -541,7 +541,7 @@ document.addEventListener('keydown', (e) => {
               &ldquo;Turn off&rdquo; and &ldquo;Adjust&rdquo; options — the adjustable range
               must reach at least ten times the default.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<fieldset>
   <legend>Session timeout</legend>
   <label>

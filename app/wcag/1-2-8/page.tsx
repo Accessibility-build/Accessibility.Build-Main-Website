@@ -263,7 +263,7 @@ export default function WCAG128Page() {
               Keep the transcript in the DOM near the player, behind a native disclosure
               so it does not overwhelm the page.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<figure>
   <video controls src="/media/release-tour.mp4">
     <track kind="captions" src="/media/release-tour.vtt"
@@ -298,7 +298,7 @@ export default function WCAG128Page() {
               1.2.8 explicitly covers video with no audio track at all. A numbered
               walkthrough of the on-screen actions is the natural alternative.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<video controls muted src="/media/setup-silent.mp4"
        aria-describedby="setup-alt"></video>
 
@@ -317,7 +317,7 @@ export default function WCAG128Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               3. Link to a transcript on its own page
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<p class="media-alternatives">
   <a href="/media/release-tour-transcript">
     Read the descriptive transcript of this video

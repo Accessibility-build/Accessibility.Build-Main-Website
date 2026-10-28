@@ -461,7 +461,7 @@ export default function WCAG254Page() {
               The motion listener drives the same function as a visible button, and a
               user preference gates the listener entirely.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ The function is always available as a plain control -->
 <button type="button" id="undo">Undo</button>
 
@@ -494,7 +494,7 @@ export default function WCAG254Page() {
               listener is the cleanest form of &ldquo;disabled&rdquo; — accidental
               motion can no longer actuate anything.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function useShake(onShake, enabled) {
   useEffect(() => {
     if (!enabled) return // ✓ motion fully off when disabled
@@ -531,7 +531,7 @@ function Editor() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Tilt-driven 360° viewer with button fallback
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Rotation works by buttons; tilt is an optional extra -->
 <div role="group" aria-label="Rotate product view">
   <button type="button" onclick="rotateView(-15)">Rotate left</button>

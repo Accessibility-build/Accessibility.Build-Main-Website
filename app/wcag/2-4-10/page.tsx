@@ -392,7 +392,7 @@ export default function WCAG2410Page() {
               The core fix: where the writing has parts, each part starts with
               a heading element — not a styled paragraph.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ A wall of text; 'headings' are just bold paragraphs -->
 <article>
   <p><strong>Shipping</strong></p>
@@ -418,7 +418,7 @@ export default function WCAG2410Page() {
               Heading levels communicate nesting. Choose the level by the
               document outline, never by font size — restyle with CSS instead.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Levels chosen for their default size -->
 <h1>Setup guide</h1>
 <h4>Install the CLI</h4>   <!-- skipped to h4 for smaller text -->
@@ -449,7 +449,7 @@ export default function WCAG2410Page() {
               work together: headings give jump targets, legends bind the group
               semantics to the fields.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Sections of a long checkout form -->
 <h2>Shipping address</h2>
 <fieldset>

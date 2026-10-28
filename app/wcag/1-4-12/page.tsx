@@ -467,7 +467,7 @@ export default function WCAG1412Page() {
               values expressed relative to the font size. Your page must remain fully
               readable and operable with these applied.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* What a text-spacing reader tool applies to your page */
 * {
   line-height: 1.5 !important;
@@ -488,7 +488,7 @@ p {
               hidden overflow mean taller text is simply cut off. This is the classic
               1.4.12 failure.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Fails Text Spacing */
 .button {
   height: 40px;            /* cannot grow when line height increases */
@@ -513,7 +513,7 @@ p {
               , let text wrap, and remove clipping. The box now expands when spacing
               increases, so no content is lost.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✓ Passes Text Spacing */
 .button {
   min-height: 40px;        /* grows to fit taller text */
@@ -540,7 +540,7 @@ p {
               . If you hard-lock line height the same way, you can defeat their
               adjustment entirely — set spacing normally so it can be overridden.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Fights the user's stylesheet */
 body { line-height: 1.2 !important; }
 

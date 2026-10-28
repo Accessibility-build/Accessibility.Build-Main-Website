@@ -418,7 +418,7 @@ export default function WCAG2413Page() {
               test, and a dark ring on light backgrounds (or vice versa)
               satisfies the change contrast.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Common failures */
 :focus { outline: none; }              /* fails 2.4.7 outright   */
 :focus { outline: 1px dotted #ccc; }   /* too thin, too faint    */
@@ -439,7 +439,7 @@ export default function WCAG2413Page() {
               a contrasting box-shadow halo, so the state change stays ≥3:1
               wherever the component sits.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✓ Dark ring + light halo: visible change on light and dark */
 :focus-visible {
   outline: 2px solid #0b3d91;            /* inner, dark ring  */
@@ -457,7 +457,7 @@ export default function WCAG2413Page() {
               barely change. Measure the before/after ratio, or just use a
               ring.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ #f8f9fa → #e9ecef is ≈1.1:1 — imperceptible state change */
 .button:focus-visible { background: #e9ecef; }
 

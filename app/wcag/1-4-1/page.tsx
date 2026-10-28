@@ -425,7 +425,7 @@ export default function WCAG141Page() {
               the underline, the link needs a 3:1 contrast against the surrounding text
               and a non-color cue on hover <em>and</em> focus.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Distinguished from body text by color alone -->
 <p>Read our <a href="/refunds" style="color:#2563eb;
    text-decoration:none">refund policy</a> before buying.</p>
@@ -447,7 +447,7 @@ a.inline:focus { text-decoration: underline; }`}</code>
               Pair the red styling with an icon and a real text message, and mark
               required fields with more than color.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Error and required state signalled by color only -->
 <label style="color:#dc2626">Email</label>
 <input class="border-red" value="invalid-email">
@@ -472,7 +472,7 @@ a.inline:focus { text-decoration: underline; }`}</code>
               Give each series a second channel — a pattern, a shape, or a direct label
               — and describe status in text, not just a colored dot.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Status conveyed only by the color of a dot -->
 <span class="dot" style="background:#16a34a"></span>
 

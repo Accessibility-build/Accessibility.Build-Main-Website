@@ -294,7 +294,7 @@ export default function WCAG126Page() {
               the interpreter composited into the image, and link it next to the
               original.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<video controls poster="/media/orientation-poster.jpg">
   <source src="/media/orientation.mp4" type="video/mp4" />
   <track kind="captions" src="/media/orientation.vtt"
@@ -316,7 +316,7 @@ export default function WCAG126Page() {
               everyone else. Play a second, muted interpreter video in sync with the
               main one and let the user show or hide it.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<div class="player">
   <video id="main" controls src="/media/keynote.mp4"></video>
   <video id="signer" muted hidden
@@ -357,7 +357,7 @@ export default function WCAG126Page() {
               keep it large — W3C techniques suggest the signer occupy a meaningful share
               of the frame, not a thumbnail.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* Corner inset that stays legible at typical sizes */
 .signer-inset {
   position: absolute;

@@ -480,7 +480,7 @@ export default function WCAG243Page() {
               When CSS reorders elements visually, focus still follows the source and the
               two diverge. Order the DOM the way the page reads.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{domOrderHtml}</code>
             </pre>
 
@@ -492,7 +492,7 @@ export default function WCAG243Page() {
               values override natural order and scramble the sequence. Let the DOM drive
               the order instead.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{tabindexHtml}</code>
             </pre>
 
@@ -503,7 +503,7 @@ export default function WCAG243Page() {
               Widgets that show and hide content must move focus deliberately: into the
               dialog on open, trapped while open, and back to the trigger on close.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{modalJs}</code>
             </pre>
           </section>

@@ -90,8 +90,8 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 p-1 bg-muted rounded-full w-fit">
-        <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
-        <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
+        <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-700 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
+        <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-700 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
       </div>
       <AnimatePresence mode="wait">
         <motion.div key={showGood ? 'good' : 'bad'} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
@@ -116,7 +116,7 @@ function KeyPoint({ icon: Icon, title, children }: { icon: any; title: string; c
   return (
     <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm">
       <div className="p-2 bg-violet-100 rounded-lg h-fit"><Icon className="w-5 h-5 text-violet-600" /></div>
-      <div><h4 className="font-semibold text-foreground mb-1">{title}</h4><p className="text-sm text-muted-foreground">{children}</p></div>
+      <div><h3 className="font-semibold text-foreground mb-1">{title}</h3><p className="text-sm text-muted-foreground">{children}</p></div>
     </div>
   );
 }
@@ -137,7 +137,7 @@ function CodeBlock({ code, title }: { code: string; title?: string }) {
   return (
     <div className="rounded-xl overflow-hidden border border-border shadow-sm">
       {title && <div className="px-4 py-2 bg-muted border-b border-border text-sm font-medium text-foreground/90 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
-      <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm"><code>{code}</code></pre>
+      <pre tabIndex={0} className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{code}</code></pre>
     </div>
   );
 }
@@ -189,18 +189,18 @@ function BasicPaginationSection() {
         <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-violet-500" /> Try It Yourself</h3>
         <InteractiveDemo
           bad={<div className="space-y-4">
-            <div className="flex items-center gap-2 text-red-600 text-sm mb-4"><AlertTriangle className="w-4 h-4" /> <strong>Problem:</strong> No landmark, no list structure, no aria-current!</div>
+            <div className="flex items-center gap-2 text-red-700 text-sm mb-4"><AlertTriangle className="w-4 h-4" /> <strong>Problem:</strong> No landmark, no list structure, no aria-current!</div>
             <div className="flex items-center justify-center gap-1 bg-card rounded-xl p-4 border border-border">
               <div className="w-10 h-10 flex items-center justify-center rounded-lg cursor-pointer hover:bg-muted text-muted-foreground"><ChevronLeft className="w-5 h-5" /></div>
-              {[1, 2, 3].map((p) => (<div key={p} className={cn("w-10 h-10 flex items-center justify-center rounded-lg cursor-pointer text-sm", p === 1 ? "bg-violet-500 text-white" : "hover:bg-muted text-foreground/90")}>{p}</div>))}
+              {[1, 2, 3].map((p) => (<div key={p} className={cn("w-10 h-10 flex items-center justify-center rounded-lg cursor-pointer text-sm", p === 1 ? "bg-violet-700 text-white" : "hover:bg-muted text-foreground/90")}>{p}</div>))}
               <div className="px-2 text-muted-foreground/80">...</div>
               <div className="w-10 h-10 flex items-center justify-center rounded-lg cursor-pointer hover:bg-muted text-foreground/90">10</div>
               <div className="w-10 h-10 flex items-center justify-center rounded-lg cursor-pointer hover:bg-muted text-muted-foreground"><ChevronRight className="w-5 h-5" /></div>
             </div>
-            <p className="text-sm text-red-600 mt-3">❌ VoiceOver: "1, 2, 3, 10" — no context that these are page numbers!</p>
+            <p className="text-sm text-red-700 mt-3">❌ VoiceOver: "1, 2, 3, 10" — no context that these are page numbers!</p>
           </div>}
           good={<div className="space-y-4">
-            <div className="flex items-center gap-2 text-green-600 text-sm mb-4"><CheckCircle2 className="w-4 h-4" /> <strong>Solution:</strong> Proper nav, list, and aria-current!</div>
+            <div className="flex items-center gap-2 text-green-700 text-sm mb-4"><CheckCircle2 className="w-4 h-4" /> <strong>Solution:</strong> Proper nav, list, and aria-current!</div>
             
             {/* Live region for page change announcements */}
             <div role="status" aria-live="polite" className="sr-only">{announcement}</div>
@@ -222,7 +222,7 @@ function BasicPaginationSection() {
                       onClick={() => goToPage(page)} 
                       aria-current={currentPage === page ? "page" : undefined} 
                       aria-label={`Go to page ${page}${currentPage === page ? ', current page' : ''}`}
-                      className={cn("h-10 w-10", currentPage === page && "bg-violet-500 hover:bg-violet-600 shadow-md")}
+                      className={cn("h-10 w-10", currentPage === page && "bg-violet-700 text-white hover:bg-violet-800 shadow-md")}
                     >
                       {page}
                     </Button>
@@ -235,14 +235,14 @@ function BasicPaginationSection() {
                 </li>
               </ul>
             </nav>
-            <p className="text-sm text-green-600 text-center mt-3">✅ VoiceOver: "Pagination, navigation. List 7 items. Go to page 1, current page, button."</p>
+            <p className="text-sm text-green-700 text-center mt-3">✅ VoiceOver: "Pagination, navigation. List 7 items. Go to page 1, current page, button."</p>
           </div>}
         />
       </div>
 
       {/* Code Examples */}
       <div className="grid lg:grid-cols-2 gap-6">
-        <div className="p-6 rounded-2xl bg-red-50 border border-red-200">
+        <div className="min-w-0 p-6 rounded-2xl bg-red-50 border border-red-200">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-red-700"><XCircle className="w-5 h-5" /> Don't: Divs with Click Handlers</h3>
           <CodeBlock code={`<!-- ❌ INACCESSIBLE -->
 <div class="pagination">
@@ -259,7 +259,7 @@ function BasicPaginationSection() {
 - No indication of current page
 - Screen reader can't understand structure -->`} />
         </div>
-        <div className="p-6 rounded-2xl bg-green-50 border border-green-200">
+        <div className="min-w-0 p-6 rounded-2xl bg-green-50 border border-green-200">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-green-700"><CheckCircle2 className="w-5 h-5" /> Do: Semantic Navigation</h3>
           <CodeBlock code={`<!-- ✅ ACCESSIBLE -->
 <nav aria-label="Pagination">
@@ -345,20 +345,20 @@ function InfiniteScrollSection() {
 
       {/* Live Demo */}
       <div className="grid lg:grid-cols-5 gap-6">
-        <div className="lg:col-span-3 p-6 rounded-2xl bg-blue-50 border border-blue-200">
+        <div className="min-w-0 lg:col-span-3 p-6 rounded-2xl bg-blue-50 border border-blue-200">
           <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-blue-500" /> Interactive Demo</h3>
           <p className="text-muted-foreground mb-4">Scroll down in this container to load more articles. Watch the status announcements below.</p>
           
           {/* Live region for screen reader announcements */}
           <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">{statusMessage}</div>
           
-          <div className="max-h-[400px] overflow-y-auto rounded-xl bg-card border border-border p-4 space-y-3">
+          <div tabIndex={0} role="region" aria-label="Article feed" className="max-h-[400px] overflow-y-auto rounded-xl bg-card border border-border p-4 space-y-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             {items.map((item, idx) => (
               <motion.article key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: Math.min(idx * 0.03, 0.3) }}
                 className="p-4 rounded-xl border border-border hover:border-blue-300 transition-all cursor-pointer group bg-muted/40">
                 <h4 className="font-bold text-foreground group-hover:text-blue-600 transition-colors mb-1">{item.title}</h4>
                 <p className="text-sm text-muted-foreground line-clamp-2 mb-2">{item.excerpt}</p>
-                <span className="text-xs text-muted-foreground/80">{item.date}</span>
+                <span className="text-xs text-muted-foreground">{item.date}</span>
               </motion.article>
             ))}
             {hasMore && (
@@ -380,7 +380,7 @@ function InfiniteScrollSection() {
           </div>
         </div>
 
-        <div className="lg:col-span-2 space-y-4">
+        <div className="min-w-0 lg:col-span-2 space-y-4">
           <TipBox title="Critical: Announce Loading States" variant="warning">
             Screen reader users have no idea new content is loading unless you tell them. Use an aria-live region:
             <code className="block mt-2 bg-amber-100 p-2 rounded text-xs">
@@ -458,7 +458,7 @@ function LoadMoreSection() {
 
       {/* Live Demo */}
       <div className="grid lg:grid-cols-5 gap-6">
-        <div className="lg:col-span-3 p-6 rounded-2xl bg-green-50 border border-green-200">
+        <div className="min-w-0 lg:col-span-3 p-6 rounded-2xl bg-green-50 border border-green-200">
           <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-green-500" /> Interactive Demo</h3>
           <p className="text-muted-foreground mb-4">Click "Load More" and notice how <strong>focus moves to the first new article</strong>. This is critical for accessibility!</p>
           
@@ -483,7 +483,7 @@ function LoadMoreSection() {
                 >
                   <h4 className="font-bold text-foreground mb-1">{item.title}</h4>
                   <p className="text-sm text-muted-foreground mb-2">{item.excerpt}</p>
-                  <span className="text-xs text-muted-foreground/80">{item.date}</span>
+                  <span className="text-xs text-muted-foreground">{item.date}</span>
                 </motion.article>
               );
             })}
@@ -491,7 +491,7 @@ function LoadMoreSection() {
           
           {hasMore ? (
             <div className="flex justify-center mt-6">
-              <Button onClick={handleLoadMore} disabled={loading} size="lg" className="gap-2 bg-green-500 hover:bg-green-600">
+              <Button onClick={handleLoadMore} disabled={loading} size="lg" className="gap-2 bg-green-700 text-white hover:bg-green-800">
                 {loading ? <><Loader2 className="w-5 h-5 animate-spin" /> Loading...</> : <><Plus className="w-5 h-5" /> Load More Articles</>}
               </Button>
             </div>
@@ -500,7 +500,7 @@ function LoadMoreSection() {
           )}
         </div>
 
-        <div className="lg:col-span-2 space-y-4">
+        <div className="min-w-0 lg:col-span-2 space-y-4">
           <TipBox title="Focus Management is Critical" variant="success">
             The key to making "Load More" accessible: after new content loads, move focus to the first new item. The item needs <code>tabIndex="-1"</code> to be focusable.
           </TipBox>
@@ -555,7 +555,7 @@ function CursorPaginationSection() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6">
-        <div className="p-6 rounded-2xl bg-orange-50 border border-orange-200">
+        <div className="min-w-0 p-6 rounded-2xl bg-orange-50 border border-orange-200">
           <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Database className="w-5 h-5 text-orange-500" /> How It Works</h3>
           <p className="text-muted-foreground mb-4">The API response includes a cursor token pointing to the next batch of results.</p>
           <CodeBlock title="API Response" code={`// First request
@@ -575,7 +575,7 @@ GET /api/articles?limit=10&cursor=eyJpZCI6MTAsIn...
 // Server uses it to fetch the next batch efficiently`} />
         </div>
 
-        <div className="p-6 rounded-2xl bg-card border border-border">
+        <div className="min-w-0 p-6 rounded-2xl bg-card border border-border">
           <h3 className="text-xl font-semibold text-foreground mb-4">Frontend Accessibility</h3>
           <p className="text-muted-foreground mb-4">The backend pagination method doesn't change your accessibility requirements:</p>
           <div className="space-y-3">
@@ -664,15 +664,15 @@ function CommonIssuesSection() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-2">
                   <Badge variant="outline" className={cn(
-                    issue.severity === 'critical' ? 'border-red-300 text-red-600' : 
-                    issue.severity === 'high' ? 'border-orange-300 text-orange-600' : 
-                    issue.severity === 'medium' ? 'border-yellow-300 text-yellow-600' :
+                    issue.severity === 'critical' ? 'border-red-300 text-red-700' : 
+                    issue.severity === 'high' ? 'border-orange-300 text-orange-700' : 
+                    issue.severity === 'medium' ? 'border-yellow-300 text-yellow-700 dark:text-yellow-300' :
                     'border-border/80 text-muted-foreground'
                   )}>
                     {issue.severity}
                   </Badge>
                 </div>
-                <div className="text-red-600 line-through opacity-75 mb-1 text-sm">{issue.bad}</div>
+                <div className="text-red-700 line-through mb-1 text-sm">{issue.bad}</div>
                 <div className="text-green-700 flex items-center gap-2 mb-2">
                   <CheckCircle2 className="w-4 h-4 flex-shrink-0" /> 
                   <span className="font-medium">{issue.fix}</span>

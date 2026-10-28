@@ -90,8 +90,8 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
     return (
         <div className="space-y-4">
             <div className="flex items-center gap-2 p-1 bg-muted rounded-full w-fit">
-                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
-                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
+                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-700 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
+                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-700 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
             </div>
             <AnimatePresence mode="wait">
                 <motion.div key={showGood ? 'good' : 'bad'} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
@@ -111,7 +111,7 @@ function KeyPoint({ icon: Icon, title, children }: { icon: React.ElementType; ti
     return (
         <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm">
             <div className="p-2 bg-indigo-100 rounded-lg h-fit"><Icon className="w-5 h-5 text-indigo-600" /></div>
-            <div><h4 className="font-semibold text-foreground mb-1">{title}</h4><p className="text-sm text-muted-foreground">{children}</p></div>
+            <div><h3 className="font-semibold text-foreground mb-1">{title}</h3><p className="text-sm text-muted-foreground">{children}</p></div>
         </div>
     );
 }
@@ -127,7 +127,7 @@ function CodeBlock({ code, title }: { code: string; title?: string }) {
     return (
         <div className="rounded-xl overflow-hidden border border-border shadow-sm">
             {title && <div className="px-4 py-2 bg-muted border-b border-border text-sm font-medium text-foreground/90 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
-            <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm"><code>{code}</code></pre>
+            <pre tabIndex={0} className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{code}</code></pre>
         </div>
     );
 }
@@ -210,7 +210,7 @@ function AccessibleAutocomplete() {
                     onChange={(e) => setQuery(e.target.value)}
                     onKeyDown={handleKeyDown}
                     onFocus={() => query && filteredResults.length > 0 && setIsOpen(true)}
-                    className="w-full pl-10 pr-10 py-3 border border-border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-foreground"
+                    className="w-full pl-10 pr-10 py-3 border border-border rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all bg-background text-foreground placeholder:text-muted-foreground"
                 />
                 {query && (
                     <button onClick={() => { setQuery(''); inputRef.current?.focus(); }} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-muted rounded-full" aria-label="Clear search">
@@ -440,7 +440,7 @@ function LoadingEmptySection() {
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground/80" />
                         <input type="text" placeholder="Search..." value={demoState === 'empty' || demoState === 'results' ? "example query" : ""} readOnly
-                            className="w-full pl-10 pr-10 py-3 border border-border rounded-xl text-foreground" />
+                            className="w-full pl-10 pr-10 py-3 border border-border rounded-xl bg-background text-foreground placeholder:text-muted-foreground" />
                         {demoState === 'loading' && (
                             <div className="absolute right-3 top-1/2 -translate-y-1/2"><Loader2 className="w-5 h-5 text-indigo-500 animate-spin" /></div>
                         )}
@@ -516,8 +516,8 @@ function CommonIssuesSection() {
                         <div className="flex items-start gap-4">
                             <div className={cn("p-2 rounded-lg flex-shrink-0", issue.severity === 'high' ? 'bg-orange-100 text-orange-600' : 'bg-yellow-100 text-yellow-600')}><XCircle className="w-5 h-5" /></div>
                             <div className="flex-1 min-w-0">
-                                <Badge variant="outline" className={cn("mb-2", issue.severity === 'high' ? 'border-orange-300 text-orange-600' : 'border-yellow-300 text-yellow-600')}>{issue.severity}</Badge>
-                                <div className="text-red-600 line-through opacity-75 mb-1 text-sm">{issue.bad}</div>
+                                <Badge variant="outline" className={cn("mb-2", issue.severity === 'high' ? 'border-orange-300 text-orange-700' : 'border-yellow-300 text-yellow-700 dark:text-yellow-300')}>{issue.severity}</Badge>
+                                <div className="text-red-700 line-through mb-1 text-sm">{issue.bad}</div>
                                 <div className="text-green-700 flex items-center gap-2 mb-2"><CheckCircle2 className="w-4 h-4 flex-shrink-0" /><span className="font-medium">{issue.fix}</span></div>
                                 <p className="text-sm text-muted-foreground">{issue.why}</p>
                             </div>

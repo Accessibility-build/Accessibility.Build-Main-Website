@@ -451,7 +451,7 @@ export default function WCAG252Page() {
               , which the browser only fires when press and release happen on the same
               element — cancellation built in.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// ✗ Fails: the down-event executes the function
 deleteButton.addEventListener("mousedown", () => deleteItem(id));
 deleteButton.addEventListener("touchstart", () => deleteItem(id));
@@ -468,7 +468,7 @@ deleteButton.addEventListener("click", () => deleteItem(id));`}</code>
               action only on <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">pointerup</code>{" "}
               and only when the pointer is still over the target.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`let pressedElement = null;
 
 control.addEventListener("pointerdown", (e) => {
@@ -498,7 +498,7 @@ control.addEventListener("pointercancel", () => {
               The down-event may begin a drag, because beginning is not completing.
               Provide an Escape abort during the drag and an undo after the drop.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function Board() {
   const [dragging, setDragging] = useState(null)
   const [lastMove, setLastMove] = useState(null)

@@ -283,7 +283,7 @@ export default function WCAG233Page() {
               than deleting feedback entirely. A robust site-wide baseline plus
               targeted overrides:
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* Motion is the default experience… */
 .card { transition: transform 300ms ease; }
 .card:hover { transform: translateY(-8px); }
@@ -314,7 +314,7 @@ export default function WCAG233Page() {
               JS-driven parallax, GSAP/ScrollTrigger scenes, and smooth-scroll
               libraries bypass CSS — gate them explicitly and react to live changes:
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function setupEffects() {
@@ -336,7 +336,7 @@ motionQuery.addEventListener("change", setupEffects);`}</code>
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               A site-level toggle for users who don&rsquo;t know the OS setting
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<button type="button" id="motion-toggle" aria-pressed="false">
   Reduce motion
 </button>

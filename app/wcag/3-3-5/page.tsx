@@ -391,7 +391,7 @@ export default function WCAG335Page() {
               so screen readers announce it when the field gets focus. Visible,
               persistent text beats any disclosure widget.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<label for="policy">Policy number</label>
 <input id="policy" type="text" inputmode="numeric"
        aria-describedby="policy-help" autocomplete="off" />
@@ -409,7 +409,7 @@ export default function WCAG335Page() {
               disclosure region — never a hover-only tooltip. This stays operable by
               keyboard, touch, and voice control.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<label for="utr">Unique Taxpayer Reference (UTR)</label>
 <input id="utr" type="text" aria-describedby="utr-help" />
 <button type="button" aria-expanded="false" aria-controls="utr-help"
@@ -427,7 +427,7 @@ export default function WCAG335Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               A form-level help link, placed consistently
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<form aria-labelledby="claim-heading">
   <h2 id="claim-heading">Submit an expense claim</h2>
   <p>

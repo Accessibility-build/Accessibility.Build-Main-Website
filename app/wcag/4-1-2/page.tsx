@@ -493,7 +493,7 @@ export default function WCAG412Page() {
               <code className="text-sm">&lt;button&gt;</code> supplies all of them
               for free.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- FAILS 4.1.2: no role, no name, not focusable, no keyboard -->
 <div class="btn" onclick="save()">
   <svg aria-hidden="true">...</svg>
@@ -519,7 +519,7 @@ export default function WCAG412Page() {
               <code className="text-sm">&lt;label&gt;</code> so the field has an
               accessible name that persists once the user starts typing.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- FAILS 4.1.2: placeholder is not an accessible name -->
 <input type="email" placeholder="Email address" />
 
@@ -538,7 +538,7 @@ export default function WCAG412Page() {
               <code className="text-sm">&lt;button&gt;</code> with{" "}
               <code className="text-sm">aria-pressed</code> is the robust pattern.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function MuteToggle() {
   const [muted, setMuted] = useState(false)
   return (
@@ -563,7 +563,7 @@ export default function WCAG412Page() {
               state; <code className="text-sm">aria-controls</code> exposes the
               relationship to the region it shows and hides.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<button
   type="button"
   aria-expanded="false"   // state: collapsed -> updates to "true" on open
