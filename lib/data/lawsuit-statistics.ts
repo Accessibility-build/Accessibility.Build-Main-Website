@@ -72,8 +72,12 @@ export const lawsuitsByYear: LawsuitYearData[] = [
 // 2025 total of 4,928. NFB moved for summary judgment September 28, 2026; no ruling. Merrell v.
 // Ralph Lauren: jury trial set for July 12, 2027 (Dkt 159); second amended complaint allowed
 // October 7, 2026 (Dkt 167). FTC accessiBe entry re-dated to the April 22, 2025 final order.
+// Re-verified October 28, 2026: still no Seyfarth post after September 9 and no UsableNet count
+// after September. NFB v. DOJ has no ruling (latest docket entry is the September 28 motion), and
+// Fashion Nova has been under submission since March 30. Merrell v. Ralph Lauren: amended complaints
+// filed October 7 and October 16 (Dkt 168, 169), answered October 21 (Dkt 171).
 export const may2026RegulatorySnapshot = {
-  asOfDate: "2026-10-14",
+  asOfDate: "2026-10-28",
   items: [
     {
       label: "HHS Section 504 deadline extended to May 11, 2027",
@@ -84,7 +88,7 @@ export const may2026RegulatorySnapshot = {
     {
       label: "DOJ Title II compliance — EXTENDED to 2027/2028",
       detail:
-        "On April 20, 2026 the DOJ issued an Interim Final Rule pushing Phase 1 (entities ≥50,000 pop.) from April 24, 2026 to April 26, 2027, and Phase 2 (smaller entities, special districts) to April 26, 2028. WCAG 2.1 Level AA remains the standard. The public comment window closed June 22, 2026; as of October 14, 2026 no final rule has issued and the extension does not pause private Title III litigation.",
+        "On April 20, 2026 the DOJ issued an Interim Final Rule pushing Phase 1 (entities ≥50,000 pop.) from April 24, 2026 to April 26, 2027, and Phase 2 (smaller entities, special districts) to April 26, 2028. WCAG 2.1 Level AA remains the standard. The public comment window closed June 22, 2026; as of October 28, 2026 no final rule has issued and the extension does not pause private Title III litigation.",
       tone: "warning" as const,
     },
     {
@@ -141,7 +145,7 @@ export const keyRulings: KeyRuling[] = [
     date: "2026-07-09",
     caseName: "Merrell v. Ralph Lauren: Nationwide ADA Injunctive Class Certified",
     court: "U.S. District Court, N.D. Cal. (No. 4:23-cv-06669)",
-    summary: "Judge Haywood S. Gilliam, Jr. granted class certification in part, certifying a nationwide Rule 23(b)(2) injunctive class of legally blind people who tried to use ralphlauren.com with screen-reading software, reasoning that a single injunction ordering the site into ADA compliance would provide relief to every class member. A California Unruh Act damages class was denied. Per the docket, the parties stipulated to private ADR in August 2026. An amended scheduling order (Dkt 159, August 14, 2026) sets a seven-day jury trial for July 12, 2027, and on October 7, 2026 the court granted leave to file a second amended complaint (Dkt 167).",
+    summary: "Judge Haywood S. Gilliam, Jr. granted class certification in part, certifying a nationwide Rule 23(b)(2) injunctive class of legally blind people who tried to use ralphlauren.com with screen-reading software, reasoning that a single injunction ordering the site into ADA compliance would provide relief to every class member. A California Unruh Act damages class was denied. Per the docket, the parties stipulated to private ADR in August 2026. An amended scheduling order (Dkt 159, August 14, 2026) sets a seven-day jury trial for July 12, 2027, On October 7, 2026 the court granted leave to file a second amended complaint (Dkt 167); amended complaints followed on October 7 and October 16 (Dkt 168, 169), and Ralph Lauren answered on October 21, 2026 (Dkt 171).",
     significance: "One of the first nationwide injunctive classes certified in a website accessibility case. Class treatment raises the stakes well beyond the single-plaintiff, quick-settlement pattern that dominates these filings.",
     outcome: "plaintiff",
     type: "Court decision",
@@ -151,7 +155,7 @@ export const keyRulings: KeyRuling[] = [
     date: "2026-05-21",
     caseName: "NFB challenges DOJ and HHS deadline extensions",
     court: "U.S. District Court for the District of Maryland",
-    summary: "The National Federation of the Blind filed suit challenging the interim final rules that extended the first DOJ Title II and HHS Section 504 web-accessibility deadlines by one year. The complaint asks the court to set the extensions aside under the Administrative Procedure Act. The case is No. 1:26-cv-02007 before Judge Richard D. Bennett. The NFB moved for summary judgment on September 28, 2026; as of October 14, 2026 there is no ruling.",
+    summary: "The National Federation of the Blind filed suit challenging the interim final rules that extended the first DOJ Title II and HHS Section 504 web-accessibility deadlines by one year. The complaint asks the court to set the extensions aside under the Administrative Procedure Act. The case is No. 1:26-cv-02007 before Judge Richard D. Bennett. The NFB moved for summary judgment on September 28, 2026; as of October 28, 2026 there is no ruling.",
     significance: "The operative dates are extended, but the litigation means covered organizations should monitor the case and continue remediation rather than treating the delay as a permanent change.",
     outcome: "plaintiff",
     type: "Litigation",
@@ -161,7 +165,7 @@ export const keyRulings: KeyRuling[] = [
     date: "2025-07-11",
     caseName: "Alcazar v. Fashion Nova — $5.15M Proposed Class Settlement",
     court: "U.S. District Court, N.D. Cal. (No. 4:20-cv-01434)",
-    summary: "Fashion Nova agreed to a proposed $5.15 million class settlement concerning claims that its website was inaccessible to blind shoppers using screen readers. The proposal includes injunctive relief and potential payments of up to $4,000 for eligible California class members. Fashion Nova denies wrongdoing, and the agreement is not an admission of liability. The DOJ filed a statement of interest opposing the deal in February 2026, and after a March 30, 2026 evidentiary hearing the matter remains under review, with no final approval reported as of October 14, 2026.",
+    summary: "Fashion Nova agreed to a proposed $5.15 million class settlement concerning claims that its website was inaccessible to blind shoppers using screen readers. The proposal includes injunctive relief and potential payments of up to $4,000 for eligible California class members. Fashion Nova denies wrongdoing, and the agreement is not an admission of liability. The DOJ filed a statement of interest opposing the deal in February 2026, and after a March 30, 2026 evidentiary hearing the matter remains under review, with no final approval reported as of October 28, 2026.",
     significance: "The proposed amount is one of the largest publicly reported resolutions involving website accessibility. Because court approval has been contested, it should be described as a proposed settlement rather than a final judgment or paid award.",
     outcome: "settled",
     type: "Settlement",

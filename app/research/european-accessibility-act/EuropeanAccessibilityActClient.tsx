@@ -56,6 +56,7 @@ interface EaaData {
     totalMeasures: number;
     deadline: string;
     caveat: string;
+    latestChange?: string;
     measures: MeasureRow[];
   };
   enforcementDataStatus: { officialDatasetExists: boolean; explanation: string };
@@ -354,6 +355,12 @@ export function EuropeanAccessibilityActClient({
           <div className="mb-4 rounded-md border border-slate-200 bg-slate-50 p-3 text-sm leading-6 text-slate-700 dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300">
             <strong className="font-semibold">A count is not a score.</strong>{" "}
             {data.transposition.caveat}
+            {data.transposition.latestChange && (
+              <p className="mt-2">
+                <strong className="font-semibold">Latest change.</strong>{" "}
+                {data.transposition.latestChange}
+              </p>
+            )}
           </div>
 
           <div

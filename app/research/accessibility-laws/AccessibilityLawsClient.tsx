@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, type ReactNode } from "react"
+import Link from "next/link"
 import {
   BarChart,
   Bar,
@@ -28,7 +29,6 @@ import {
   ChevronDown,
   Clock,
   ExternalLink,
-  TrendingUp,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { StatCard } from "@/components/research/stat-card"
@@ -40,21 +40,17 @@ import {
   enforcementTrends,
   upcomingDeadlines,
   lawsSummary,
-  stateFilingData,
   penaltyComparisonData,
   wcagVersionGroups,
 } from "@/lib/data/accessibility-laws"
 import type { AccessibilityLaw } from "@/lib/data/accessibility-laws"
+import { topStates } from "@/lib/data/lawsuit-statistics"
 import jsPDF from "jspdf"
 import autoTable from "jspdf-autotable"
 
 // ---- Jurisdiction table sort types ----
 type LawSortField = "lawName" | "wcagVersion" | "penalties" | "yearEnacted" | "status"
 type LawSortDirection = "asc" | "desc"
-
-// ---- State filing table sort types ----
-type StateSortField = "rank" | "state" | "filings2025" | "primaryLaw"
-type StateSortDirection = "asc" | "desc"
 
 const REGION_TABS = [
   { value: "us-federal", label: "US Federal" },
@@ -72,6 +68,42 @@ function getRegionLaws(tabValue: string): AccessibilityLaw[] {
     return accessibilityLaws.filter((l) => l.region === "asia-pacific" || l.region === "other")
   }
   return accessibilityLaws.filter((l) => l.region === tabValue)
+}
+
+function SortHeader({
+  label,
+  sort,
+  onSort,
+  indicator,
+  align = "left",
+}: {
+  label: string
+  sort: "ascending" | "descending" | "none"
+  onSort: () => void
+  indicator: ReactNode
+  align?: "left" | "right"
+}) {
+  return (
+    <th
+      scope="col"
+      aria-sort={sort}
+      className={cn(
+        "p-0 font-semibold text-slate-600 dark:text-slate-300",
+        align === "right" ? "text-right" : "text-left"
+      )}
+    >
+      <button
+        type="button"
+        onClick={onSort}
+        className={cn(
+          "inline-flex w-full items-center gap-1 px-3 py-3 transition-colors hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:text-blue-400",
+          align === "right" && "justify-end"
+        )}
+      >
+        {label} {indicator}
+      </button>
+    </th>
+  )
 }
 
 function formatDate(dateStr: string): string {
@@ -98,10 +130,6 @@ export function AccessibilityLawsClient() {
   // Jurisdiction table sort state
   const [lawSortField, setLawSortField] = useState<LawSortField>("yearEnacted")
   const [lawSortDirection, setLawSortDirection] = useState<LawSortDirection>("desc")
-
-  // State filing table sort state
-  const [stateSortField, setStateSortField] = useState<StateSortField>("rank")
-  const [stateSortDirection, setStateSortDirection] = useState<StateSortDirection>("asc")
 
   // ---- Jurisdiction table sorting ----
   function sortLaws(laws: AccessibilityLaw[]): AccessibilityLaw[] {
@@ -156,69 +184,16 @@ export function AccessibilityLawsClient() {
     }
   }
 
+  function lawAriaSort(field: LawSortField): "ascending" | "descending" | "none" {
+    if (lawSortField !== field) return "none"
+    return lawSortDirection === "asc" ? "ascending" : "descending"
+  }
+
   function renderLawSortIndicator(field: LawSortField) {
     if (lawSortField !== field) {
       return <ChevronDown className="h-3 w-3 opacity-30" />
     }
     return lawSortDirection === "asc" ? (
-      <ChevronUp className="h-3 w-3" />
-    ) : (
-      <ChevronDown className="h-3 w-3" />
-    )
-  }
-
-  // ---- State filing table sorting ----
-  const sortedStateFilings = useMemo(() => {
-    return [...stateFilingData].sort((a, b) => {
-      let aVal: number | string
-      let bVal: number | string
-
-      switch (stateSortField) {
-        case "rank":
-          aVal = a.rank
-          bVal = b.rank
-          break
-        case "state":
-          aVal = a.state
-          bVal = b.state
-          return stateSortDirection === "asc"
-            ? (aVal as string).localeCompare(bVal as string)
-            : (bVal as string).localeCompare(aVal as string)
-        case "filings2025":
-          aVal = a.filings2025
-          bVal = b.filings2025
-          break
-        case "primaryLaw":
-          aVal = a.primaryLaw
-          bVal = b.primaryLaw
-          return stateSortDirection === "asc"
-            ? (aVal as string).localeCompare(bVal as string)
-            : (bVal as string).localeCompare(aVal as string)
-        default:
-          aVal = a.rank
-          bVal = b.rank
-      }
-
-      return stateSortDirection === "asc"
-        ? (aVal as number) - (bVal as number)
-        : (bVal as number) - (aVal as number)
-    })
-  }, [stateSortField, stateSortDirection])
-
-  function handleStateSort(field: StateSortField) {
-    if (stateSortField === field) {
-      setStateSortDirection(stateSortDirection === "asc" ? "desc" : "asc")
-    } else {
-      setStateSortField(field)
-      setStateSortDirection("desc")
-    }
-  }
-
-  function renderStateSortIndicator(field: StateSortField) {
-    if (stateSortField !== field) {
-      return <ChevronDown className="h-3 w-3 opacity-30" />
-    }
-    return stateSortDirection === "asc" ? (
       <ChevronUp className="h-3 w-3" />
     ) : (
       <ChevronDown className="h-3 w-3" />
@@ -247,7 +222,7 @@ export function AccessibilityLawsClient() {
     doc.setFontSize(10)
     doc.setTextColor(100)
     doc.text("Comprehensive legal landscape analysis | accessibility.build", 14, 30)
-    doc.text("Last Updated: October 14, 2026", 14, 36)
+    doc.text("Last Updated: October 28, 2026", 14, 36)
 
     // Table 1: Federal Laws
     doc.setTextColor(0)
@@ -357,13 +332,13 @@ export function AccessibilityLawsClient() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
-            value="50+ Laws Tracked"
+            value={`${lawsSummary.totalLawsTracked} Laws Tracked`}
             label="Across federal, state, and international jurisdictions"
             icon={Globe}
             source="Compiled from government sources"
           />
           <StatCard
-            value="35+ Jurisdictions"
+            value={`${lawsSummary.totalJurisdictions} Jurisdictions`}
             label="Countries, states, and regions with accessibility laws"
             icon={MapPin}
             source="Global coverage"
@@ -375,10 +350,10 @@ export function AccessibilityLawsClient() {
             source="DOJ Interim Final Rule (April 2026)"
           />
           <StatCard
-            value="$150K"
-            label="Max Federal Penalty"
+            value={lawsSummary.maxAdaCivilPenalty}
+            label="Max ADA Title III civil penalty (repeat violation)"
             icon={Scale}
-            source="ADA Title II civil penalties"
+            source="28 CFR 85.5, inflation-adjusted"
           />
         </div>
       </section>
@@ -419,82 +394,43 @@ export function AccessibilityLawsClient() {
                       <table className="w-full text-sm" role="table">
                         <thead>
                           <tr className="border-b border-slate-200 dark:border-slate-700">
-                            <th
-                              className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                              onClick={() => handleLawSort("lawName")}
-                              scope="col"
-                              aria-sort={
-                                lawSortField === "lawName"
-                                  ? lawSortDirection === "asc"
-                                    ? "ascending"
-                                    : "descending"
-                                  : "none"
-                              }
-                            >
-                              <span className="flex items-center gap-1">
-                                Law Name {renderLawSortIndicator("lawName")}
-                              </span>
-                            </th>
-                            <th
-                              className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                              onClick={() => handleLawSort("wcagVersion")}
-                              scope="col"
-                              aria-sort={
-                                lawSortField === "wcagVersion"
-                                  ? lawSortDirection === "asc"
-                                    ? "ascending"
-                                    : "descending"
-                                  : "none"
-                              }
-                            >
-                              <span className="flex items-center gap-1">
-                                WCAG Version {renderLawSortIndicator("wcagVersion")}
-                              </span>
-                            </th>
+                            <SortHeader
+                              label="Law Name"
+                              sort={lawAriaSort("lawName")}
+                              onSort={() => handleLawSort("lawName")}
+                              indicator={renderLawSortIndicator("lawName")}
+                            />
+                            <SortHeader
+                              label="WCAG Version"
+                              sort={lawAriaSort("wcagVersion")}
+                              onSort={() => handleLawSort("wcagVersion")}
+                              indicator={renderLawSortIndicator("wcagVersion")}
+                            />
                             <th
                               className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300"
                               scope="col"
                             >
                               Applies To
                             </th>
-                            <th
-                              className="text-right py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                              onClick={() => handleLawSort("penalties")}
-                              scope="col"
-                              aria-sort={
-                                lawSortField === "penalties"
-                                  ? lawSortDirection === "asc"
-                                    ? "ascending"
-                                    : "descending"
-                                  : "none"
-                              }
-                            >
-                              <span className="flex items-center justify-end gap-1">
-                                Max Penalty {renderLawSortIndicator("penalties")}
-                              </span>
-                            </th>
+                            <SortHeader
+                              label="Max Penalty"
+                              sort={lawAriaSort("penalties")}
+                              onSort={() => handleLawSort("penalties")}
+                              indicator={renderLawSortIndicator("penalties")}
+                              align="right"
+                            />
                             <th
                               className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300"
                               scope="col"
                             >
                               Enforcement
                             </th>
-                            <th
-                              className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                              onClick={() => handleLawSort("status")}
-                              scope="col"
-                              aria-sort={
-                                lawSortField === "status"
-                                  ? lawSortDirection === "asc"
-                                    ? "ascending"
-                                    : "descending"
-                                  : "none"
-                              }
-                            >
-                              <span className="flex items-center gap-1">
-                                Status {renderLawSortIndicator("status")}
-                              </span>
-                            </th>
+                            <SortHeader
+                              label="Status"
+                              sort={lawAriaSort("status")}
+                              onSort={() => handleLawSort("status")}
+                              indicator={renderLawSortIndicator("status")}
+                            />
                           </tr>
                         </thead>
                         <tbody>
@@ -725,8 +661,8 @@ export function AccessibilityLawsClient() {
       <section aria-labelledby="penalty-heading">
         <ChartSection
           title="Maximum Penalty Comparison (USD)"
-          description="Statutory maximum penalties by jurisdiction, converted to USD for comparison"
-          source="Government legal records"
+          description="Statutory maximum fines or civil penalties per violation, converted to USD at approximate rates. The UK Equality Act and Australia's DDA set no fixed maximum, and ADA Title II has no civil-penalty provision, so they are not shown."
+          source="28 CFR 85.5, 47 CFR 1.80, BFSG section 37, national statutes"
           downloadData={{
             filename: "accessibility-penalty-comparison",
             data: penaltyComparisonData.map((d) => ({
@@ -739,7 +675,9 @@ export function AccessibilityLawsClient() {
           <div
             className="h-[400px] md:h-[480px]"
             role="img"
-            aria-label="Horizontal bar chart comparing maximum accessibility penalties across jurisdictions."
+            aria-label={`Horizontal bar chart of maximum accessibility penalties: ${penaltyComparisonData
+              .map((d) => `${d.jurisdiction} ${d.label}`)
+              .join("; ")}.`}
           >
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
@@ -805,158 +743,71 @@ export function AccessibilityLawsClient() {
       </section>
 
       {/* Section 6: State Filings Table */}
+      {/* Same Seyfarth federal series as the lawsuit tracker, so the two pages cannot disagree. */}
       <section aria-labelledby="state-filings-heading">
         <Card>
           <CardHeader>
             <div className="flex items-center gap-3 mb-1">
               <div className="p-2 bg-violet-100 dark:bg-violet-900/50 rounded-lg">
-                <MapPin className="h-5 w-5 text-violet-600 dark:text-violet-400" />
+                <MapPin aria-hidden="true" className="h-5 w-5 text-violet-600 dark:text-violet-400" />
               </div>
               <div>
                 <CardTitle id="state-filings-heading" className="text-xl md:text-2xl">
-                  State Accessibility Filings (2025)
+                  2025 federal website lawsuits by state
                 </CardTitle>
                 <CardDescription className="mt-1">
-                  Top 10 US states by accessibility lawsuit filings. Click column headers to sort.
+                  Seyfarth Shaw&apos;s federal-court count, the same series as the{" "}
+                  <Link
+                    href="/research/accessibility-lawsuits#states"
+                    className="underline underline-offset-2 text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                  >
+                    lawsuit tracker
+                  </Link>
+                  . State-court cases are not counted, so California, where website claims are
+                  usually brought in state court, shows only a handful of federal filings.
                 </CardDescription>
               </div>
             </div>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm" role="table">
+              <table className="w-full text-sm">
+                <caption className="sr-only">
+                  Federal website-accessibility lawsuit filings by state in 2025, from Seyfarth Shaw.
+                </caption>
                 <thead>
                   <tr className="border-b border-slate-200 dark:border-slate-700">
-                    <th
-                      className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                      onClick={() => handleStateSort("rank")}
-                      scope="col"
-                      aria-sort={
-                        stateSortField === "rank"
-                          ? stateSortDirection === "asc"
-                            ? "ascending"
-                            : "descending"
-                          : "none"
-                      }
-                    >
-                      <span className="flex items-center gap-1">
-                        Rank {renderStateSortIndicator("rank")}
-                      </span>
+                    <th scope="col" className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300">
+                      State
                     </th>
-                    <th
-                      className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                      onClick={() => handleStateSort("state")}
-                      scope="col"
-                      aria-sort={
-                        stateSortField === "state"
-                          ? stateSortDirection === "asc"
-                            ? "ascending"
-                            : "descending"
-                          : "none"
-                      }
-                    >
-                      <span className="flex items-center gap-1">
-                        State {renderStateSortIndicator("state")}
-                      </span>
+                    <th scope="col" className="text-right py-3 px-3 font-semibold text-slate-600 dark:text-slate-300">
+                      Federal filings
                     </th>
-                    <th
-                      className="text-right py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                      onClick={() => handleStateSort("filings2025")}
-                      scope="col"
-                      aria-sort={
-                        stateSortField === "filings2025"
-                          ? stateSortDirection === "asc"
-                            ? "ascending"
-                            : "descending"
-                          : "none"
-                      }
-                    >
-                      <span className="flex items-center justify-end gap-1">
-                        2025 Filings {renderStateSortIndicator("filings2025")}
-                      </span>
-                    </th>
-                    <th
-                      className="text-left py-3 px-3 font-semibold text-slate-600 dark:text-slate-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors select-none"
-                      onClick={() => handleStateSort("primaryLaw")}
-                      scope="col"
-                      aria-sort={
-                        stateSortField === "primaryLaw"
-                          ? stateSortDirection === "asc"
-                            ? "ascending"
-                            : "descending"
-                          : "none"
-                      }
-                    >
-                      <span className="flex items-center gap-1">
-                        Primary Law {renderStateSortIndicator("primaryLaw")}
-                      </span>
-                    </th>
-                    <th
-                      className="text-center py-3 px-3 font-semibold text-slate-600 dark:text-slate-300"
-                      scope="col"
-                    >
-                      Trend
+                    <th scope="col" className="text-right py-3 px-3 font-semibold text-slate-600 dark:text-slate-300">
+                      Per 100K residents
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {sortedStateFilings.map((entry, index) => {
-                    const barWidth = (entry.filings2025 / stateFilingData[0].filings2025) * 100
-
-                    return (
-                      <tr
-                        key={entry.abbreviation}
-                        className={cn(
-                          "border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors",
-                          index === 0 && "bg-blue-50/50 dark:bg-blue-950/10"
-                        )}
-                      >
-                        <td className="py-3 px-3 text-slate-500 dark:text-slate-400 font-mono">
-                          {entry.rank}
-                        </td>
-                        <td className="py-3 px-3">
-                          <div className="flex items-center gap-2">
-                            <Badge
-                              variant="outline"
-                              className="font-mono text-xs w-8 justify-center"
-                            >
-                              {entry.abbreviation}
-                            </Badge>
-                            <span className="font-medium text-slate-900 dark:text-white">
-                              {entry.state}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="py-3 px-3 text-right">
-                          <div className="flex items-center justify-end gap-3">
-                            <div className="hidden sm:block w-24 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                              <div
-                                className="h-full bg-blue-500 dark:bg-blue-400 rounded-full transition-all duration-500"
-                                style={{ width: `${barWidth}%` }}
-                              />
-                            </div>
-                            <span className="font-semibold text-slate-900 dark:text-white tabular-nums">
-                              {entry.filings2025.toLocaleString()}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="py-3 px-3 text-slate-600 dark:text-slate-400 text-xs">
-                          {entry.primaryLaw}
-                        </td>
-                        <td className="py-3 px-3 text-center">
-                          {entry.trend === "up" && (
-                            <TrendingUp className="h-4 w-4 text-red-500 mx-auto" />
-                          )}
-                          {entry.trend === "down" && (
-                            <ChevronDown className="h-4 w-4 text-green-500 mx-auto" />
-                          )}
-                          {entry.trend === "stable" && (
-                            <span className="text-slate-400 text-xs">--</span>
-                          )}
-                        </td>
-                      </tr>
-                    )
-                  })}
+                  {topStates.map((entry) => (
+                    <tr
+                      key={entry.abbreviation}
+                      className="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                    >
+                      <th scope="row" className="py-3 px-3 text-left font-medium text-slate-900 dark:text-white">
+                        <Badge variant="outline" className="mr-2 font-mono text-xs">
+                          {entry.abbreviation}
+                        </Badge>
+                        {entry.state}
+                      </th>
+                      <td className="py-3 px-3 text-right font-semibold tabular-nums text-slate-900 dark:text-white">
+                        {entry.count.toLocaleString()}
+                      </td>
+                      <td className="py-3 px-3 text-right tabular-nums text-slate-700 dark:text-slate-300">
+                        {entry.perCapita.toFixed(2)}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -1079,15 +930,15 @@ export function AccessibilityLawsClient() {
                 "Official state legislature databases for tracking state-level accessibility legislation and amendments.",
             },
           ]}
-          sampleSize="50+ laws across 35+ jurisdictions"
+          sampleSize={`${lawsSummary.totalLawsTracked} laws across ${lawsSummary.totalJurisdictions} jurisdictions`}
           dateRange="1959 - October 2026"
           limitations={[
-            "Laws change frequently \u2014 verify current requirements with legal counsel",
-            "Penalties shown are statutory maximums; actual fines may differ",
+            "Laws change frequently, so verify current requirements with legal counsel",
+            "Penalties shown are statutory maximums; actual fines may differ. Laws with no fixed maximum are left out of the penalty chart",
             "Pending legislation may not pass as proposed",
             "International penalty amounts are converted to USD at approximate rates",
           ]}
-          lastUpdated="October 14, 2026"
+          lastUpdated="October 28, 2026"
         />
       </section>
 
@@ -1106,8 +957,8 @@ export function AccessibilityLawsClient() {
           brandedAttribution
           autoResize
           stat={{
-            value: "50+",
-            label: "Laws Tracked Across 35+ Jurisdictions",
+            value: String(lawsSummary.totalLawsTracked),
+            label: `Laws Tracked Across ${lawsSummary.totalJurisdictions} Jurisdictions`,
           }}
         />
       </section>

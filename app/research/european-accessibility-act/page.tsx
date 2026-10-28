@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     url: reportUrl,
     type: "article",
     publishedTime: "2026-08-03T00:00:00Z",
-    modifiedTime: "2026-10-14T00:00:00Z",
+    modifiedTime: "2026-10-28T00:00:00Z",
     authors: ["https://accessibility.build"],
     images: [
       {
@@ -133,7 +133,7 @@ export default function EuropeanAccessibilityActPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified={getRouteDate("/research/european-accessibility-act") ?? "2026-10-14"}
+        dateModified={getRouteDate("/research/european-accessibility-act") ?? "2026-10-28"}
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1800}
@@ -155,7 +155,7 @@ export default function EuropeanAccessibilityActPage() {
             "Research report",
             "Directive (EU) 2019/882",
             `${transposition.memberStatesReporting} Member States`,
-            "Reviewed: Oct 14, 2026",
+            "Reviewed: Oct 28, 2026",
           ]}
           headline={`All ${transposition.memberStatesReporting} Member States have communicated transposition measures, ${transposition.totalMeasures} instruments in total. But there is no EU-wide compliance or enforcement dataset, and under Article 33 the first Commission report is not due until 28 June 2030.`}
           sourceName="EUR-Lex, Directive (EU) 2019/882"
@@ -310,7 +310,7 @@ export default function EuropeanAccessibilityActPage() {
               description="Key dates, transposition status across the 27 member states and transitional rules of Directive (EU) 2019/882."
               pageUrl="https://accessibility.build/research/european-accessibility-act"
               datePublished="2026-08-27"
-              dateModified="2026-10-14"
+              dateModified={getRouteDate("/research/european-accessibility-act") ?? "2026-10-28"}
               temporalCoverage="2019/2030"
               attribution="Directive (EU) 2019/882; European Commission transposition register"
               withSchema={false}

@@ -91,7 +91,7 @@ const tools: SiteRoute[] = [
 const research: SiteRoute[] = [
   { route: "/research", label: "Research Hub", group: "Research", lastModified: "2026-08-27", priority: 0.92, changeFrequency: "weekly" },
   { route: "/research/state-of-accessibility", label: "State of Accessibility Report", group: "Research", lastModified: "2026-08-27", priority: 0.95 },
-  { route: "/research/web-accessibility-statistics", label: "Web Accessibility Statistics 2026", group: "Research", lastModified: "2026-10-14", priority: 0.96, changeFrequency: "monthly" },
+  { route: "/research/web-accessibility-statistics", label: "Web Accessibility Statistics 2026", group: "Research", lastModified: "2026-10-28", priority: 0.96, changeFrequency: "monthly" },
   { route: "/research/screen-reader-survey-2026", label: "Screen Reader Survey 2026", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
   { route: "/research/accessibility-testing-tools-benchmark", label: "Accessibility Testing Tools Benchmark 2026", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
   { route: "/research/ai-agent-readiness", label: "AI Agent Readiness Study 2026", group: "Research", lastModified: "2026-10-22", priority: 0.96 },
@@ -100,16 +100,16 @@ const research: SiteRoute[] = [
   { route: "/research/accessibility-by-industry", label: "Web Accessibility by Industry", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
   { route: "/research/section-508-assessment", label: "Section 508 Federal Agency Assessment", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
   { route: "/research/disability-statistics", label: "US Disability Prevalence", group: "Research", lastModified: "2026-08-27", priority: 0.95 },
-  { route: "/research/accessibility-salary", label: "Digital Accessibility Salary Report", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
-  { route: "/research/european-accessibility-act", label: "European Accessibility Act Tracker", group: "Research", lastModified: "2026-10-14", priority: 0.94 },
-  { route: "/research/accessibility-laws", label: "Accessibility Laws by Jurisdiction", group: "Research", lastModified: "2026-10-14", priority: 0.94 },
-  { route: "/research/accessibility-lawsuits", label: "Accessibility Lawsuit Tracker", group: "Research", lastModified: "2026-10-14", priority: 0.93 },
+  { route: "/research/accessibility-salary", label: "Digital Accessibility Salary Report", group: "Research", lastModified: "2026-10-28", priority: 0.94 },
+  { route: "/research/european-accessibility-act", label: "European Accessibility Act Tracker", group: "Research", lastModified: "2026-10-28", priority: 0.94 },
+  { route: "/research/accessibility-laws", label: "Accessibility Laws by Jurisdiction", group: "Research", lastModified: "2026-10-28", priority: 0.94 },
+  { route: "/research/accessibility-lawsuits", label: "Accessibility Lawsuit Tracker", group: "Research", lastModified: "2026-10-28", priority: 0.93 },
 ]
 
 const compliance: SiteRoute[] = [
   { route: "/compliance", label: "Compliance & Laws Hub", group: "Compliance", lastModified: "2026-10-19", priority: 0.9 },
   { route: "/compliance/ada", label: "ADA Website Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.93 },
-  { route: "/compliance/eaa", label: "European Accessibility Act (EAA)", group: "Compliance", lastModified: "2026-10-14", priority: 0.93 },
+  { route: "/compliance/eaa", label: "European Accessibility Act (EAA)", group: "Compliance", lastModified: "2026-10-28", priority: 0.93 },
   { route: "/compliance/section-508", label: "Section 508 Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.91 },
   { route: "/compliance/en-301-549", label: "EN 301 549 Standard", group: "Compliance", lastModified: "2026-10-19", priority: 0.9 },
   { route: "/compliance/en-301-549-v4", label: "EN 301 549 V4.1.1 Clause by Clause", group: "Compliance", lastModified: "2026-10-19", priority: 0.92 },
