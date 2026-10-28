@@ -99,6 +99,16 @@ export default function PrivacyPage() {
           <p>
             AI output can be incomplete or incorrect and should be reviewed by a qualified person. We do not use a tool result as a certification of accessibility or legal compliance.
           </p>
+          <h3>The Curb assistant</h3>
+          <p>
+            When you send a question to Curb, the assistant button on every page, we send your question, the earlier messages in the same chat, and the visible text of the page you are on to OpenRouter, which passes them to an Anthropic Claude model to write the answer. Page text is not sent from account, dashboard, billing, or report pages.
+          </p>
+          <p>
+            To improve Curb, we store each question and its answer for 90 days, with email addresses, phone numbers, and card-like numbers masked before saving. Alongside them we store the page address and title, the time, how long the answer took and how many tokens it used, which related pages were shown and which links you clicked, any helpful or not helpful rating, your device type (mobile, tablet, or desktop), the country our hosting provider derives from your IP address, your account ID if you are signed in, and a one-way hash of your IP address that lets us count visitors without storing the address itself. We also record when Curb is opened and when a starter suggestion is used. Only site administrators can see these records, and they are deleted automatically after 90 days. To have a conversation deleted sooner, email <a href={`mailto:${company.privacyEmail}`}>{company.privacyEmail}</a>.
+          </p>
+          <p>
+            The chat also stays in your browser&apos;s session storage until you close the tab or start a new chat. Your IP address is held briefly in server memory to limit how many questions can be sent. If you allow analytics, PostHog separately records when Curb is opened or a question is sent, the question&apos;s length, the page, and any rating, but not the text. Do not share personal or confidential information with Curb.
+          </p>
           <h3>Free scans on the URL Accessibility Auditor</h3>
           <p>
             When you run the free scan without an account, we store the address you scanned, the scan results, your IP address, and your browser user agent. We use the IP address to limit free scans to one a day, and the stored result so that the remaining findings can be shown to you later. If you enter an email address to see every finding, we keep it with the scanned address and results, {company.legalOperator} is notified, and he may email you about that scan. We do not add that address to a newsletter. To have a scan record or your address deleted, email <a href={`mailto:${company.privacyEmail}`}>{company.privacyEmail}</a>.

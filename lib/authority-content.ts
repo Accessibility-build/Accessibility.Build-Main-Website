@@ -64,11 +64,11 @@ export const subprocessors = [
     policy: "https://www.anthropic.com/legal/privacy",
   },
   {
-    provider: "OpenRouter (routing to Google, Meta, DeepSeek, and Mistral models)",
-    purpose: "Model routing for the audit helper when a user with unlimited access selects a non-OpenAI model. The selected model's provider receives the prompt",
-    data: "Feature input such as prompts, code, or issue descriptions",
+    provider: "OpenRouter (routing to Anthropic, Google, Meta, DeepSeek, and Mistral models)",
+    purpose: "Model routing for the Curb site assistant, which answers with an Anthropic Claude model, and for the audit helper when a user with unlimited access selects a non-OpenAI model. The selected model's provider receives the prompt",
+    data: "Questions sent to Curb with earlier messages in the same chat and the visible text of the page they were asked on; for the audit helper, feature input such as prompts, code, or issue descriptions",
     location: "Provider-controlled global infrastructure; DeepSeek is operated from China",
-    conditional: "Used only when one of those models is explicitly selected",
+    conditional: "Used for Curb whenever a visitor sends a question, and for the audit helper only when one of those models is explicitly selected",
     policy: "https://openrouter.ai/privacy",
   },
   {

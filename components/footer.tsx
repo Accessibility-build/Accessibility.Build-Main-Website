@@ -258,9 +258,9 @@ export function Footer() {
           ))}
         </div>
 
-        {/* pb-24, not py-7's bottom: the SAIRO chat button floats over the bottom
-            76px of the viewport, and at the end of the page nothing can scroll
-            this row's links (Back to top sat entirely under it, WCAG 2.4.11). */}
+        {/* pb-24, not py-7's bottom: the "Ask Curb" button floats over the bottom
+            of the viewport, and at the end of the page nothing can scroll this
+            row's links (Back to top sat entirely under it, WCAG 2.4.11). */}
         <div className="grid gap-6 border-t border-slate-800 pb-24 pt-7 text-xs leading-5 text-slate-400 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
           <div className="min-w-0 border-l-2 border-teal-400 pl-4">
             <p className="font-semibold text-white">&copy; {currentYear} Accessibility.build. All rights reserved.</p>

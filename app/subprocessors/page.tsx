@@ -1,6 +1,6 @@
 import { ExternalLink, ServerCog } from "lucide-react"
 import { subprocessors } from "@/lib/authority-content"
-import { company, legalLastUpdated } from "@/lib/company"
+import { company, subprocessorsLastUpdated } from "@/lib/company"
 import { createMetadata } from "@/lib/metadata"
 
 export const metadata = createMetadata({
@@ -23,7 +23,7 @@ export default function SubprocessorsPage() {
           <p className="mt-4 max-w-4xl text-lg leading-7 text-muted-foreground">
             Providers are listed by function. A provider receives data only when the relevant website, account, payment, communication, or AI feature is used.
           </p>
-          <p className="mt-4 text-sm text-muted-foreground">Last reviewed: {legalLastUpdated}</p>
+          <p className="mt-4 text-sm text-muted-foreground">Last reviewed: {subprocessorsLastUpdated}</p>
         </header>
 
         <div className="mt-10 overflow-x-auto border">

@@ -7,6 +7,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useUser } from "@clerk/nextjs"
 import {
+  Bot,
   Activity,
   ArrowUpRight,
   ChevronRight,
@@ -66,6 +67,7 @@ const adminNavGroups: AdminNavGroup[] = [
     label: "Operations",
     items: [
       { name: "Tool analytics", description: "Usage and reliability", href: "/admin/tools", icon: Wrench },
+      { name: "Curb assistant", description: "Questions, quality and cost", href: "/admin/assistant", icon: Bot },
       { name: "Marketing", description: "Audience and campaigns", href: "/admin/marketing", icon: MailPlus },
       { name: "Prospects", description: "Outreach leads and emails", href: "/admin/prospects", icon: Target },
       { name: "Comments", description: "Moderate case study discussion", href: "/admin/comments", icon: MessagesSquare },

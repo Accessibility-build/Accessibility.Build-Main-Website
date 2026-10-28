@@ -87,6 +87,7 @@ npm run lint             # ESLint
 npm run type-check       # TypeScript check (tsc --noEmit)
 npm run db:migrate       # Run Drizzle database migrations
 npm run a11y:smoke       # Accessibility smoke tests
+npm run assistant:index  # Rebuild the Curb assistant's search index (after npm run build)
 npm run test:e2e:clerk   # Playwright E2E tests for auth
 npm run test:clerk       # Full Clerk test suite (API + webhooks + E2E)
 ```
@@ -172,6 +173,7 @@ export async function POST(request: NextRequest) {
 - **Anthropic Claude:** Via `@ai-sdk/anthropic` for advanced analysis
 - **Streaming:** Some routes use Web Streams API (`ReadableStream`) for streaming AI responses
 - **Rate limiting:** Applied to AI-powered endpoints to prevent abuse
+- **Curb assistant:** the site-wide chat widget (`components/assistant/curb-assistant.tsx`, mounted in `app/layout.tsx`) posts to `app/api/assistant/route.ts`, which searches `lib/assistant/site-index.json` and streams an answer from `anthropic/claude-haiku-5.5` via OpenRouter (`ASSISTANT_MODEL` overrides). The index is built from prerendered HTML: run `npm run build && npm run assistant:index` after content changes and commit the JSON. Name, limits and private routes live in `lib/assistant/config.ts`.
 
 ## Important Rules
 
