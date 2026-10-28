@@ -97,10 +97,10 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 p-1 bg-muted rounded-full w-fit">
-        <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}>
+        <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-700 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}>
           <EyeOff className="w-4 h-4" /> Inaccessible
         </button>
-        <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}>
+        <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-700 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}>
           <Eye className="w-4 h-4" /> Accessible
         </button>
       </div>
@@ -127,7 +127,7 @@ function KeyPoint({ icon: Icon, title, children }: { icon: any; title: string; c
   return (
     <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm">
       <div className="p-2 bg-blue-100 rounded-lg h-fit"><Icon className="w-5 h-5 text-blue-600" /></div>
-      <div><h4 className="font-semibold text-foreground mb-1">{title}</h4><p className="text-sm text-muted-foreground">{children}</p></div>
+      <div><h3 className="font-semibold text-foreground mb-1">{title}</h3><p className="text-sm text-muted-foreground">{children}</p></div>
     </div>
   );
 }
@@ -152,7 +152,7 @@ function CodeBlock({ code, title }: { code: string; title?: string }) {
   return (
     <div className="rounded-xl overflow-hidden border border-border shadow-sm">
       {title && <div className="px-4 py-2 bg-muted border-b border-border text-sm font-medium text-foreground/90 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
-      <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm"><code>{code}</code></pre>
+      <pre tabIndex={0} className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{code}</code></pre>
     </div>
   );
 }
@@ -185,7 +185,7 @@ function BasicTableSection() {
         <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-blue-500" /> Try It Yourself</h3>
         <InteractiveDemo
           bad={<div className="space-y-4">
-            <div className="flex items-center gap-2 text-red-600 text-sm mb-4"><AlertTriangle className="w-4 h-4" /> <strong>Problem:</strong> Screen readers see this as random text, not a table structure!</div>
+            <div className="flex items-center gap-2 text-red-700 dark:text-red-400 text-sm mb-4"><AlertTriangle className="w-4 h-4" /> <strong>Problem:</strong> Screen readers see this as random text, not a table structure!</div>
             <div className="border border-border/80 rounded-lg overflow-hidden bg-card">
               <div className="flex bg-muted font-semibold text-sm text-foreground/90"><div className="flex-1 p-3">Name</div><div className="flex-1 p-3">Role</div><div className="flex-1 p-3">Department</div></div>
               {sampleData.slice(0, 3).map((emp) => (<div key={emp.id} className="flex border-t border-border text-sm text-muted-foreground"><div className="flex-1 p-3">{emp.name}</div><div className="flex-1 p-3">{emp.role}</div><div className="flex-1 p-3">{emp.department}</div></div>))}
@@ -193,7 +193,7 @@ function BasicTableSection() {
             <p className="text-sm text-red-700 mt-3">❌ VoiceOver reads: "Alice Johnson, Frontend Developer, Engineering" — no context about columns!</p>
           </div>}
           good={<div className="space-y-4">
-            <div className="flex items-center gap-2 text-green-600 text-sm mb-4"><CheckCircle2 className="w-4 h-4" /> <strong>Solution:</strong> Screen readers can navigate by row and column!</div>
+            <div className="flex items-center gap-2 text-green-700 dark:text-green-400 text-sm mb-4"><CheckCircle2 className="w-4 h-4" /> <strong>Solution:</strong> Screen readers can navigate by row and column!</div>
             <table className="w-full border border-border/80 rounded-lg overflow-hidden bg-card text-sm">
               <caption className="sr-only">Employee Directory - Team Members</caption>
               <thead className="bg-muted"><tr>
@@ -210,7 +210,7 @@ function BasicTableSection() {
 
       {/* Code Examples */}
       <div className="grid lg:grid-cols-2 gap-6">
-        <div className="p-6 rounded-2xl bg-red-50 border border-red-200">
+        <div className="min-w-0 p-6 rounded-2xl bg-red-50 border border-red-200">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-red-700"><XCircle className="w-5 h-5" /> Don't: "Div Soup" Tables</h3>
           <CodeBlock code={`<!-- ❌ INACCESSIBLE -->
 <div class="table">
@@ -226,7 +226,7 @@ function BasicTableSection() {
 
 <!-- Screen reader has NO idea this is tabular data -->`} />
         </div>
-        <div className="p-6 rounded-2xl bg-green-50 border border-green-200">
+        <div className="min-w-0 p-6 rounded-2xl bg-green-50 border border-green-200">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-green-700"><CheckCircle2 className="w-5 h-5" /> Do: Semantic HTML</h3>
           <CodeBlock code={`<!-- ✅ ACCESSIBLE -->
 <table>
@@ -250,18 +250,18 @@ function BasicTableSection() {
       {/* Key Elements */}
       <div>
         <h3 className="text-xl font-semibold text-foreground mb-4">Essential Table Elements</h3>
-        <div className="overflow-x-auto">
+        <div tabIndex={0} role="region" aria-label="Essential table elements" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
           <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
             <thead className="bg-muted">
               <tr><th scope="col" className="p-4 text-left font-semibold">Element</th><th scope="col" className="p-4 text-left font-semibold">Purpose</th><th scope="col" className="p-4 text-left font-semibold">Screen Reader Benefit</th></tr>
             </thead>
             <tbody>
-              <tr className="border-t"><td className="p-4 font-mono text-blue-600">&lt;table&gt;</td><td className="p-4">Container for tabular data</td><td className="p-4">Announces "Table with X rows, Y columns"</td></tr>
-              <tr className="border-t bg-muted/40"><td className="p-4 font-mono text-blue-600">&lt;caption&gt;</td><td className="p-4">Title/description of the table</td><td className="p-4">Read first, gives users context before navigating</td></tr>
-              <tr className="border-t"><td className="p-4 font-mono text-blue-600">&lt;thead&gt;</td><td className="p-4">Groups header rows</td><td className="p-4">Distinguishes headers from data rows</td></tr>
-              <tr className="border-t bg-muted/40"><td className="p-4 font-mono text-blue-600">&lt;th scope="col"&gt;</td><td className="p-4">Column header cell</td><td className="p-4">Read with each cell in that column</td></tr>
-              <tr className="border-t"><td className="p-4 font-mono text-blue-600">&lt;th scope="row"&gt;</td><td className="p-4">Row header cell</td><td className="p-4">Read with each cell in that row</td></tr>
-              <tr className="border-t bg-muted/40"><td className="p-4 font-mono text-blue-600">&lt;tbody&gt;</td><td className="p-4">Groups data rows</td><td className="p-4">Separates data from headers and footers</td></tr>
+              <tr className="border-t"><td className="p-4 font-mono text-blue-700 dark:text-blue-400">&lt;table&gt;</td><td className="p-4">Container for tabular data</td><td className="p-4">Announces "Table with X rows, Y columns"</td></tr>
+              <tr className="border-t bg-muted/40"><td className="p-4 font-mono text-blue-700 dark:text-blue-400">&lt;caption&gt;</td><td className="p-4">Title/description of the table</td><td className="p-4">Read first, gives users context before navigating</td></tr>
+              <tr className="border-t"><td className="p-4 font-mono text-blue-700 dark:text-blue-400">&lt;thead&gt;</td><td className="p-4">Groups header rows</td><td className="p-4">Distinguishes headers from data rows</td></tr>
+              <tr className="border-t bg-muted/40"><td className="p-4 font-mono text-blue-700 dark:text-blue-400">&lt;th scope="col"&gt;</td><td className="p-4">Column header cell</td><td className="p-4">Read with each cell in that column</td></tr>
+              <tr className="border-t"><td className="p-4 font-mono text-blue-700 dark:text-blue-400">&lt;th scope="row"&gt;</td><td className="p-4">Row header cell</td><td className="p-4">Read with each cell in that row</td></tr>
+              <tr className="border-t bg-muted/40"><td className="p-4 font-mono text-blue-700 dark:text-blue-400">&lt;tbody&gt;</td><td className="p-4">Groups data rows</td><td className="p-4">Separates data from headers and footers</td></tr>
             </tbody>
           </table>
         </div>
@@ -488,7 +488,7 @@ function ResponsiveTableSection() {
                     <dl className="grid grid-cols-2 gap-3 text-sm">
                       <div><dt className="text-muted-foreground font-medium">Role</dt><dd className="text-foreground/90">{emp.role}</dd></div>
                       <div><dt className="text-muted-foreground font-medium">Department</dt><dd className="text-foreground/90">{emp.department}</dd></div>
-                      <div><dt className="text-muted-foreground font-medium">Salary</dt><dd className="text-green-600 font-semibold">${emp.salary.toLocaleString()}</dd></div>
+                      <div><dt className="text-muted-foreground font-medium">Salary</dt><dd className="text-green-700 dark:text-green-400 font-semibold">${emp.salary.toLocaleString()}</dd></div>
                     </dl>
                   </motion.article>
                 ))}

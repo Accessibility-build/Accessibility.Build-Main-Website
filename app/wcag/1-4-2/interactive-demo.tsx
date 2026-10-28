@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Slider } from "@/components/ui/slider"
+import { LabeledSlider } from "@/components/tools/labeled-slider"
 import {
   Play,
   Pause,
@@ -135,13 +135,14 @@ export default function AudioControlDemo() {
             Volume
           </label>
           <div className="flex-1 max-w-xs">
-            <Slider
+            {/* The thumb is the focusable slider, so it carries the name. */}
+            <LabeledSlider
               id="demo-volume"
               value={volume}
               onValueChange={setVolume}
               max={100}
               step={1}
-              aria-label="Audio volume"
+              label="Audio volume"
             />
           </div>
           <span className="text-sm text-slate-600 dark:text-slate-400 w-12 tabular-nums">

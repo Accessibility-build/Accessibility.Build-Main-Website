@@ -60,7 +60,7 @@ function CodeBlock({
       <div className="flex items-center justify-between px-4 py-2 bg-slate-800">
         <div className="flex items-center gap-2">
           {variant === "good" && (
-            <Badge className="bg-green-600 text-white text-xs">
+            <Badge className="bg-green-700 text-white text-xs hover:bg-green-700">
               &#10003; Accessible
             </Badge>
           )}
@@ -85,7 +85,7 @@ function CodeBlock({
           <span className="ml-1 text-xs">{copied ? "Copied" : "Copy"}</span>
         </Button>
       </div>
-      <pre className="p-4 bg-slate-900 text-slate-100 overflow-x-auto text-sm leading-relaxed">
+      <pre tabIndex={0} className="p-4 bg-slate-900 text-slate-100 overflow-x-auto text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <code>{code}</code>
       </pre>
     </div>
@@ -426,7 +426,7 @@ export default function KeyboardGuideClient() {
           {/* ---------------------------------------------------------------- */}
           {/* TOC Sidebar                                                       */}
           {/* ---------------------------------------------------------------- */}
-          <nav className="hidden lg:block w-64 flex-shrink-0">
+          <nav aria-label="On this page" className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-24">
               <h2 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 px-3">
                 On This Page
@@ -562,7 +562,7 @@ export default function KeyboardGuideClient() {
                 </Card>
                 <Card className="border-slate-200 dark:border-slate-700">
                   <CardContent className="pt-4 pb-4 text-center">
-                    <Badge className="bg-yellow-600 text-white text-xs mb-2">
+                    <Badge className="bg-yellow-700 text-white text-xs mb-2 hover:bg-yellow-700">
                       Level AA
                     </Badge>
                     <p className="text-sm font-semibold text-slate-900 dark:text-white">
@@ -808,7 +808,7 @@ export default function KeyboardGuideClient() {
                       <span className="font-semibold text-sm text-slate-700 dark:text-slate-300">
                         Logo
                       </span>
-                      <nav className="flex gap-2">
+                      <nav aria-label="Demo site" className="flex gap-2">
                         {["Home", "About", "Contact", "Blog"].map((label) => (
                           <a
                             key={label}
@@ -1113,13 +1113,13 @@ function DynamicList() {
                   </div>
                   <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
                     <span>
-                      <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded font-mono text-xs">
+                      <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded font-mono text-xs">
                         Tab
                       </kbd>{" "}
                       enter/exit
                     </span>
                     <span>
-                      <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded font-mono text-xs">
+                      <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded font-mono text-xs">
                         Arrow keys
                       </kbd>{" "}
                       move between buttons
@@ -1257,9 +1257,9 @@ function Toolbar() {
                       )}
                     >
                       <div className="flex items-center justify-between mb-3">
-                        <h4 className="font-semibold text-sm text-slate-900 dark:text-white">
+                        <h3 className="font-semibold text-sm text-slate-900 dark:text-white">
                           Custom Widget (Trap Demo)
-                        </h4>
+                        </h3>
                         {trapActive && (
                           <Badge className="bg-red-600 text-white text-xs animate-pulse">
                             Trapped!
@@ -1290,7 +1290,7 @@ function Toolbar() {
                             <Button
                               size="sm"
                               onClick={() => setTrapActive(false)}
-                              className="bg-green-600 hover:bg-green-700 text-white"
+                              className="bg-green-700 hover:bg-green-800 text-white"
                             >
                               Press Escape to Exit
                             </Button>
@@ -1302,9 +1302,9 @@ function Toolbar() {
 
                   <TabsContent value="good">
                     <div className="p-4 rounded-lg border-2 border-green-300 dark:border-green-700 bg-green-50 dark:bg-green-950/20">
-                      <h4 className="font-semibold text-sm text-slate-900 dark:text-white mb-3">
+                      <h3 className="font-semibold text-sm text-slate-900 dark:text-white mb-3">
                         Custom Widget (No Trap)
-                      </h4>
+                      </h3>
                       <p className="text-xs text-slate-600 dark:text-slate-400 mb-3">
                         This widget correctly allows keyboard navigation in and
                         out. Tab moves through elements normally.
@@ -1663,10 +1663,10 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                         Button
                       </td>
                       <td className="px-4 py-3 border border-slate-200 dark:border-slate-700">
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Enter
                         </kbd>{" "}
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Space
                         </kbd>
                       </td>
@@ -1679,7 +1679,7 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                         Link
                       </td>
                       <td className="px-4 py-3 border border-slate-200 dark:border-slate-700">
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Enter
                         </kbd>
                       </td>
@@ -1692,7 +1692,7 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                         Checkbox
                       </td>
                       <td className="px-4 py-3 border border-slate-200 dark:border-slate-700">
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Space
                         </kbd>
                       </td>
@@ -1705,7 +1705,7 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                         Radio Group
                       </td>
                       <td className="px-4 py-3 border border-slate-200 dark:border-slate-700">
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Arrow keys
                         </kbd>
                       </td>
@@ -1718,7 +1718,7 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                         Tab Panel
                       </td>
                       <td className="px-4 py-3 border border-slate-200 dark:border-slate-700">
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Arrow keys
                         </kbd>
                       </td>
@@ -1731,13 +1731,13 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                         Menu
                       </td>
                       <td className="px-4 py-3 border border-slate-200 dark:border-slate-700">
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Arrow keys
                         </kbd>{" "}
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Enter
                         </kbd>{" "}
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Escape
                         </kbd>
                       </td>
@@ -1750,10 +1750,10 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                         Dialog
                       </td>
                       <td className="px-4 py-3 border border-slate-200 dark:border-slate-700">
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Tab
                         </kbd>{" "}
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Escape
                         </kbd>
                       </td>
@@ -1766,13 +1766,13 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                         Combobox
                       </td>
                       <td className="px-4 py-3 border border-slate-200 dark:border-slate-700">
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Arrow keys
                         </kbd>{" "}
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Enter
                         </kbd>{" "}
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Escape
                         </kbd>
                       </td>
@@ -1785,7 +1785,7 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                         Slider
                       </td>
                       <td className="px-4 py-3 border border-slate-200 dark:border-slate-700">
-                        <kbd className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-xs font-mono">
+                        <kbd className="px-1.5 py-0.5 bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100 rounded text-xs font-mono">
                           Arrow keys
                         </kbd>
                       </td>

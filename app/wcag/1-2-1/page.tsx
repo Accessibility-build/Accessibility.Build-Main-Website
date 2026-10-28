@@ -416,7 +416,7 @@ export default function WCAG121Page() {
               element on its own carries nothing for a deaf user. Pair it with a
               transcript that is visible or clearly linked on the page.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Audio-only content with no alternative -->
 <audio controls src="episode-5.mp3"></audio>
 
@@ -440,7 +440,7 @@ export default function WCAG121Page() {
               Silent video needs either a text alternative describing the visuals or an
               audio track that narrates them. A vague caption is not enough.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Silent video with a vague, non-equivalent blurb -->
 <video src="keyboard-demo.mp4" muted controls></video>
 <p>Video shows keyboard navigation.</p>
@@ -467,7 +467,7 @@ export default function WCAG121Page() {
               As an alternative to text, you can supply a narrated audio track for the
               silent video so the visuals are described as it plays.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Silent video with a descriptive audio track -->
 <video controls>
   <source src="timelapse.mp4" type="video/mp4">
