@@ -54,6 +54,13 @@ const config: Config = {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
+        // shadcn's destructive Button, Badge and Alert variants and form error messages use these.
+        // Without them the classes generated no CSS: destructive buttons had no background and
+        // error text was not red.
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",

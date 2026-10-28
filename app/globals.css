@@ -22,8 +22,10 @@
     --muted-foreground: 215.4 16.3% 42%;
     --accent: 210 40% 96%;
     --accent-foreground: 222.2 84% 4.9%;
-    --destructive: 0 84.2% 60.2%;
+    /* red-700: 6.5:1 as text on white, 6.2:1 behind the foreground. red-500 was 3.8:1 and 3.6:1. */
+    --destructive: 0 73.7% 41.8%;
     --destructive-foreground: 210 40% 98%;
+    --destructive-hover: 0 70% 35.3%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
@@ -57,8 +59,11 @@
     --muted-foreground: 215 20.2% 65.1%;
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    /* red-400 with dark text, like primary in dark mode: 7.2:1 both as text on the page and on
+       buttons. The old dark red was 2:1 as error text on the dark background. */
+    --destructive: 0 90.6% 70.8%;
+    --destructive-foreground: 222.2 84% 4.9%;
+    --destructive-hover: 0 93.5% 81.8%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 94.1%;
@@ -447,4 +452,11 @@ html {
    components/ui stays as generated. */
 .bg-primary.hover\:bg-primary\/90:hover {
   background-color: hsl(var(--primary-hover));
+}
+
+/* The same for destructive buttons (/90) and badges (/80): a see-through red over white fell
+   below 4.5:1 with the foreground. */
+.bg-destructive.hover\:bg-destructive\/90:hover,
+.bg-destructive.hover\:bg-destructive\/80:hover {
+  background-color: hsl(var(--destructive-hover));
 }
