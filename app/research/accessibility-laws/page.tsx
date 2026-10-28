@@ -9,10 +9,12 @@ import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
 import { DatasetDownloads } from "@/components/research/dataset-downloads"
 
+const lawCounts = `${lawsSummary.totalLawsTracked} accessibility laws across ${lawsSummary.totalJurisdictions} jurisdictions`
+
 export const metadata: Metadata = {
   title: "Accessibility Laws by Jurisdiction: Global Tracker",
   description:
-    clampDescription("Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed October 14, 2026."),
+    clampDescription(`Track ${lawCounts} worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed October 28, 2026.`),
   keywords: [
     "accessibility laws",
     "ada compliance",
@@ -35,7 +37,7 @@ export const metadata: Metadata = {
     images: [{ url: "/api/og?title=Accessibility%20Laws%20by%20Jurisdiction&section=Research", width: 1200, height: 630, alt: "Accessibility Laws by Jurisdiction" }],
     title: "Accessibility Laws by Jurisdiction: Global Tracker",
     description:
-      "Track 50+ accessibility laws across 35+ jurisdictions worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed October 14, 2026.",
+      `Track ${lawCounts} worldwide. Compare WCAG requirements, penalties, and enforcement timelines. Covers the extended ADA Title II deadlines, European Accessibility Act, Section 508, and more. Reviewed October 28, 2026.`,
     url: "https://accessibility.build/research/accessibility-laws",
     type: "article",
   },
@@ -44,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Accessibility Laws by Jurisdiction | Global Legal Tracker 2026",
     description:
-      "Track 50+ accessibility laws across 35+ jurisdictions. Compare WCAG requirements, penalties, and enforcement. ADA Title II deadline now April 2027.",
+      `Track ${lawCounts}. Compare WCAG requirements, penalties, and enforcement. ADA Title II deadline now April 2027.`,
   },
 }
 
@@ -64,7 +66,7 @@ export default function AccessibilityLawsPage() {
 
       <ArticleStructuredData
         headline="Accessibility Laws by Jurisdiction | Global Legal Tracker 2026"
-        description="Comprehensive database of 50+ accessibility laws across 35+ jurisdictions worldwide. Track WCAG requirements, penalties, enforcement timelines, and compliance deadlines."
+        description={`Database of ${lawCounts} worldwide. Track WCAG requirements, penalties, enforcement timelines, and compliance deadlines.`}
         author={{ name: "Accessibility.build", url: "https://accessibility.build" }}
         authorType="Organization"
         publisher={{
@@ -72,7 +74,7 @@ export default function AccessibilityLawsPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-03-15"
-        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-10-14"}
+        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-10-28"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/research/accessibility-laws"
         wordCount={4000}
@@ -88,10 +90,10 @@ export default function AccessibilityLawsPage() {
 
       <DatasetStructuredData
         name="Global Accessibility Laws Dataset 2026"
-        description="Structured dataset of 50+ accessibility laws and regulations across 35+ jurisdictions worldwide, including WCAG requirements, penalties, enforcement mechanisms, and compliance deadlines."
+        description={`Structured dataset of ${lawCounts} worldwide, including WCAG requirements, penalties, enforcement mechanisms, and compliance deadlines.`}
         url="https://accessibility.build/research/accessibility-laws"
         datePublished="2026-03-15"
-        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-10-14"}
+        dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-10-28"}
         creator={{ name: "Accessibility.build", url: "https://accessibility.build" }}
         temporalCoverage="1959/2026"
         keywords={[
@@ -132,7 +134,7 @@ export default function AccessibilityLawsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-4xl">
             <p className="text-blue-300 font-semibold text-sm tracking-wider uppercase mb-4">
-              Research Report &bull; Updated October 14, 2026 &bull; 35+ Jurisdictions
+              Research Report &bull; Updated October 28, 2026 &bull; {lawsSummary.totalJurisdictions} Jurisdictions
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               Accessibility Laws{" "}
@@ -152,13 +154,13 @@ export default function AccessibilityLawsPage() {
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
               <p className="text-slate-400 text-sm font-medium mb-1">Laws Tracked</p>
               <p className="text-3xl md:text-4xl font-bold text-white">
-                {lawsSummary.totalLawsTracked}+
+                {lawsSummary.totalLawsTracked}
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
               <p className="text-slate-400 text-sm font-medium mb-1">Jurisdictions</p>
               <p className="text-3xl md:text-4xl font-bold text-white">
-                {lawsSummary.totalJurisdictions}+
+                {lawsSummary.totalJurisdictions}
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
@@ -168,9 +170,9 @@ export default function AccessibilityLawsPage() {
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-              <p className="text-slate-400 text-sm font-medium mb-1">Max Federal Penalty</p>
+              <p className="text-slate-400 text-sm font-medium mb-1">Max ADA Civil Penalty</p>
               <p className="text-3xl md:text-4xl font-bold text-white">
-                {lawsSummary.maxFederalPenalty}
+                {lawsSummary.maxAdaCivilPenalty}
               </p>
             </div>
           </div>
@@ -183,7 +185,7 @@ export default function AccessibilityLawsPage() {
               people was extended from April 24, 2026 to April 26, 2027 by a DOJ Interim Final
               Rule issued April 20, 2026. The National Federation of the Blind is challenging the
               extension in federal court and moved for summary judgment on September 28, 2026; there
-              is no ruling yet, so remediation should continue. Checked October 14, 2026.
+              is no ruling yet, so remediation should continue. Checked October 28, 2026.
             </p>
           </div>
         </div>
@@ -258,11 +260,12 @@ export default function AccessibilityLawsPage() {
             </h3>
             <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
-                Penalties vary significantly by jurisdiction. Under US federal law, first-time ADA
-                violations can result in civil penalties up to $75,000, with subsequent violations
-                reaching $150,000. Private lawsuits can add attorney fees and damages. In the EU,
+                Penalties vary significantly by jurisdiction. Under ADA Title III, courts in Justice
+                Department suits can impose civil penalties of up to $118,225 for a first violation
+                and $236,451 for a subsequent one, the current inflation-adjusted amounts. Private
+                lawsuits can add attorney fees and, under some state laws, damages. In the EU,
                 member states set their own penalties for EAA non-compliance, so maximum fines range
-                widely from one country to the next. As of October 14, 2026 no regulator has
+                widely from one country to the next. As of October 28, 2026 no regulator has
                 publicly confirmed an EAA fine.
               </p>
             </div>
@@ -387,7 +390,7 @@ export default function AccessibilityLawsPage() {
               description="Digital accessibility statutes, the WCAG version each names, who they apply to, enforcement routes, penalties and key dates, across US federal, US state, EU, UK, Canadian and Asia-Pacific jurisdictions."
               pageUrl="https://accessibility.build/research/accessibility-laws"
               datePublished="2026-08-27"
-              dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-10-14"}
+              dateModified={getRouteDate("/research/accessibility-laws") ?? "2026-10-28"}
               temporalCoverage="1990/2028"
               attribution="primary legislation and regulators"
               withSchema={false}

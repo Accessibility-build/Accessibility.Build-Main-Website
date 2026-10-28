@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     url: reportUrl,
     type: "article",
     publishedTime: "2026-08-03T00:00:00Z",
-    modifiedTime: "2026-08-27T00:00:00Z",
+    modifiedTime: "2026-10-28T00:00:00Z",
     authors: ["https://accessibility.build"],
     images: [
       {
@@ -95,6 +95,11 @@ const faqs = [
     answer:
       "Treat it as directional rather than precise. WebAIM states plainly that the sample was not controlled and may not represent everyone in the field. There were 300 responses across 23 countries, so once you slice by country the cells get thin quickly, and only locations with more than ten respondents are reported at all. Salaries were converted at January 2026 exchange rates, so cross-country comparisons move with currency as well as with pay. It is the best public data available on this question, which is not the same as being authoritative.",
   },
+  {
+    question: "When is the next accessibility salary survey?",
+    answer:
+      "WebAIM's third Global Digital Accessibility Salary Survey, run with the GAAD Foundation, is open until December 31, 2026, and WebAIM says results will be published in February 2027. Until then, the survey #2 figures on this page are the most recent. Anyone whose job mainly involves making digital products accessible can take part.",
+  },
 ];
 
 const reportLinks = [
@@ -132,7 +137,7 @@ export default function AccessibilitySalaryPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified={getRouteDate("/research/accessibility-salary") ?? "2026-08-27"}
+        dateModified={getRouteDate("/research/accessibility-salary") ?? "2026-10-28"}
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1700}
@@ -154,7 +159,7 @@ export default function AccessibilitySalaryPage() {
             "Research report",
             `Survey ${salaryData.surveyPeriod}`,
             `${salaryData.responses} responses`,
-            "Reviewed: Oct 14, 2026",
+            "Reviewed: Oct 28, 2026",
           ]}
           headline={`Full-time digital accessibility professionals averaged $${overall.averageSalaryUsd.toLocaleString()}, but experience is what separates the field: past ten years the average jumps to $${(byExperience[1].averageUsd ?? 0).toLocaleString()}, a ${salaryData.experienceGapPercent}% premium.`}
           sourceName={salaryData.source.name}
@@ -214,6 +219,18 @@ export default function AccessibilitySalaryPage() {
                   {overall.percentReportingDisability}% of respondents reported
                   having a disability, more than double the prevalence among US
                   adults generally.
+                </p>
+                <p className="mt-4 max-w-[68ch] rounded-md border border-teal-200 bg-teal-50 p-3 text-sm leading-6 text-slate-700 dark:border-teal-900 dark:bg-teal-950/30 dark:text-slate-300">
+                  <strong className="font-semibold text-slate-900 dark:text-white">Next edition.</strong>{" "}
+                  WebAIM&apos;s{" "}
+                  <a
+                    href="https://webaim.org/projects/salary3/"
+                    className="font-medium text-teal-800 underline underline-offset-2 hover:text-teal-900 dark:text-teal-300 dark:hover:text-teal-200"
+                  >
+                    Salary Survey #3
+                  </a>{" "}
+                  is open until December 31, 2026, with results due in February
+                  2027. This report will move to that data when it is published.
                 </p>
               </div>
 
@@ -310,7 +327,7 @@ export default function AccessibilitySalaryPage() {
               description="Salaries of digital accessibility professionals by location, experience, work arrangement, organisation size and disability status, from WebAIM's second global salary survey."
               pageUrl="https://accessibility.build/research/accessibility-salary"
               datePublished="2026-08-27"
-              dateModified="2026-08-27"
+              dateModified={salaryData.lastUpdated}
               temporalCoverage="2025/2026"
               attribution="WebAIM Global Digital Accessibility Salary Survey #2"
               withSchema={false}

@@ -9,6 +9,7 @@ import { BarChart3, Scale, ArrowRight, TrendingUp, CalendarDays, BookOpen, Globe
 import { createMetadata } from "@/lib/metadata"
 import agentReadiness from "@/lib/data/agent-readiness-2026.json"
 import statementsStudy from "@/lib/data/accessibility-statements-2026.json"
+import { lawsSummary } from "@/lib/data/accessibility-laws"
 
 export const metadata: Metadata = {
   ...createMetadata({
@@ -188,13 +189,13 @@ const researchReports = [
   {
     title: "Accessibility Laws by Jurisdiction",
     description:
-      "Global tracker of web accessibility laws, regulations, and standards. Compare WCAG requirements, penalties, enforcement mechanisms, and upcoming compliance deadlines across 35+ jurisdictions worldwide.",
+      `Global tracker of web accessibility laws, regulations, and standards. Compare WCAG requirements, penalties, enforcement mechanisms, and upcoming compliance deadlines across ${lawsSummary.totalJurisdictions} jurisdictions worldwide.`,
     icon: Globe,
     badge: "New 2026",
     badgeColor:
       "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800",
     href: "/research/accessibility-laws",
-    stat: { label: "Laws Tracked", value: "50+" },
+    stat: { label: "Laws Tracked", value: String(lawsSummary.totalLawsTracked) },
     gradient: "from-green-600 to-emerald-600",
   },
 ]

@@ -338,7 +338,7 @@ export default function ComplianceHubPage() {
 
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               For the raw data behind these guides (statutes, penalties, and
-              deadlines across 35+ jurisdictions, plus US litigation trends),
+              deadlines across 21 jurisdictions, plus US litigation trends),
               see the{" "}
               <Link href="/research/accessibility-laws" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 global accessibility laws tracker

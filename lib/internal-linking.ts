@@ -279,7 +279,7 @@ const INTERNAL_LINKS: InternalLink[] = [
   {
     url: '/research/accessibility-laws',
     title: 'Accessibility Laws by Jurisdiction',
-    description: 'Global tracker of accessibility laws comparing WCAG requirements, penalties, and enforcement across 35+ jurisdictions',
+    description: 'Global tracker of accessibility laws comparing WCAG requirements, penalties, and enforcement across 21 jurisdictions',
     type: 'resource',
     keywords: ['accessibility laws', 'ada title ii', 'european accessibility act', 'eaa', 'section 508', 'wcag legal', 'accessibility regulations', 'web accessibility laws', 'accessibility compliance', 'ada deadline', 'unruh act', 'aoda'],
     priority: 10

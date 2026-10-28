@@ -10,6 +10,7 @@ import { getRouteDate } from "@/lib/site-routes"
 import { PageByline } from "@/components/seo/page-byline"
 import { clampDescription } from "@/lib/metadata"
 import { KeyFacts } from "@/components/research/key-facts"
+import eaaData from "@/lib/data/european-accessibility-act.json"
 
 const pageTitle = "European Accessibility Act (EAA): Compliance Guide"
 
@@ -264,9 +265,9 @@ export default function EAACompliancePage() {
             title="The EAA, the numbers"
             facts={[
               { value: "28 Jun 2025", label: "Date the obligations began to apply to in-scope products and services", source: "Directive (EU) 2019/882, Article 31(2)", sourceHref: "/research/european-accessibility-act", asOf: "2025-06-28" },
-              { value: "27 of 27", label: "member states that have notified transposing measures, 379 national instruments in total", source: "European Commission transposition register", sourceHref: "/research/european-accessibility-act", asOf: "2026-10-14" },
+              { value: "27 of 27", label: `member states that have notified transposing measures, ${eaaData.transposition.totalMeasures} national instruments in total`, source: "European Commission transposition register", sourceHref: "/research/european-accessibility-act", asOf: eaaData.transposition.asOf },
               { value: "WCAG 2.1 AA", label: "The web standard incorporated by EN 301 549 v3.2.1, the edition cited today for the Web Accessibility Directive and the working benchmark for the EAA", source: "ETSI EN 301 549 v3.2.1", sourceHref: "/compliance/en-301-549", asOf: "2021-03-01" },
-              { value: "v4.1.1", label: "The EN 301 549 revision that moves the baseline to WCAG 2.2, published 2 September 2026 and expected to be cited in the Official Journal, the first edition cited under the EAA, in December 2026", source: "ETSI", sourceHref: "/compliance/en-301-549", asOf: "2026-10-14" },
+              { value: "v4.1.1", label: "The EN 301 549 revision that moves the baseline to WCAG 2.2, published 2 September 2026 and expected to be cited in the Official Journal, the first edition cited under the EAA, in December 2026", source: "ETSI", sourceHref: "/compliance/en-301-549", asOf: "2026-10-28" },
               { value: "28 Jun 2030", label: "End of the transitional period for service contracts agreed before the application date", source: "Directive (EU) 2019/882, Article 32", sourceHref: "/research/european-accessibility-act", asOf: "2025-06-28" },
               { value: "EUR 60,000", label: "Maximum fine on indictment in Ireland, with up to 18 months' imprisonment; penalties are set by each member state", source: "Irish transposing legislation", sourceHref: "/compliance/eaa-ireland", asOf: "2026-08-27" },
             ]}

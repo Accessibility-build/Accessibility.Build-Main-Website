@@ -8,6 +8,7 @@ import { PreferredSource } from "@/components/seo/preferred-source"
 import { KeyFacts } from "@/components/research/key-facts"
 import { clampDescription } from "@/lib/metadata"
 import eaaData from "@/lib/data/european-accessibility-act.json"
+import { getRouteDate } from "@/lib/site-routes"
 
 // One page, one number per passage.
 //
@@ -18,10 +19,10 @@ import eaaData from "@/lib/data/european-accessibility-act.json"
 // here is estimated; where a figure is a projection or a survey, it says so.
 
 const ROUTE = "/research/web-accessibility-statistics"
-const UPDATED = "2026-09-03"
+const UPDATED = getRouteDate(ROUTE) ?? "2026-10-28"
 const pageTitle = "Web Accessibility Statistics 2026"
 const pageDescription =
-  "Sourced web accessibility statistics for 2026: disability prevalence, WebAIM Million failure rates, screen reader usage, lawsuit counts, public sector compliance, audit costs and salaries. Each figure dated and linked to its source."
+  "Sourced web accessibility statistics for 2026: disability prevalence, WebAIM Million failure rates, screen reader usage, PDF tagging, lawsuit counts, public sector compliance, procurement, audit costs and salaries. Each figure dated and linked to its source."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -129,6 +130,15 @@ const SECTIONS: Section[] = [
     ],
   },
   {
+    id: "documents",
+    title: "PDF documents",
+    lede: "Dual Lab, the main developers of the open-source veraPDF validator, analysed the 20,578,394 PDFs in the June 2026 Common Crawl, dating each file by its modification date. A tag tree is a precondition for an accessible PDF, not proof of one.",
+    stats: [
+      { value: "50%", claim: "More than half of web PDFs dated from July 2025 onward contain a structure tag tree, and the tagged share is rising by about 1.5 percentage points a year.", note: "At that rate Dual Lab expects it to take more than ten years before 70% of PDFs are tagged. About 2% of files have a tag tree that is empty.", source: "Dual Lab, PDF Trends 2026: structure, tagging and conformance", sourceHref: "https://groups.google.com/g/duallab/c/GPU8n67GkF4", date: "2026-10-05", more: "/guides/pdf-accessibility" },
+      { value: "Under 1%", claim: "Fewer than 1% of web PDFs claim PDF/UA conformance, against roughly half that are tagged; of the PDF/UA files found, 99.3% declare PDF/UA-1 and 0.3% PDF/UA-2.", note: "A conformance claim is metadata the author sets. It says what the file asserts, not what a validator found.", source: "Dual Lab, PDF Trends 2026: structure, tagging and conformance", sourceHref: "https://groups.google.com/g/duallab/c/GPU8n67GkF4", date: "2026-10-05", more: "/guides/pdf-accessibility" },
+    ],
+  },
+  {
     id: "lawsuits",
     title: "Lawsuits",
     lede: "Two series are commonly mixed. Seyfarth Shaw counts federal-court website cases by manual review; UsableNet counts federal and state filings together and runs much higher. Both are given here, labelled.",
@@ -157,6 +167,15 @@ const SECTIONS: Section[] = [
       { value: "60", claim: "The Section 508 assessment covers 60 US federal agencies for fiscal year 2025, rating each on conformance and implementation maturity.", source: "GSA and OMB, Section 508 assessment", sourceHref: "https://www.section508.gov/manage/section-508-assessment/", date: "2026-08-27", more: "/research/section-508-assessment" },
       { value: "0", claim: "There is still no federal technical accessibility regulation for private business websites under ADA Title III; the 2024 rule that adopted WCAG 2.1 AA binds state and local government only.", source: "US Department of Justice, Title II rule", sourceHref: "https://www.ada.gov/resources/2024-03-08-web-rule/", date: "2024-04-24", more: "/compliance/ada" },
       { value: "28 Aug 2026", claim: "Missouri's SB 907 safe harbour, operative 28 August 2026, creates a rebuttable presumption against abusive litigation where a defendant takes substantial good-faith steps to fix a noticed violation within 90 days; it does not change the federal duty.", source: "Missouri Senate Bill 907", sourceHref: "https://www.senate.mo.gov/26info/pdf-bill/tat/SB907.pdf", date: "2026-08-28", more: "/blog/missouri-sb-907-accessibility-litigation-safe-harbor" },
+    ],
+  },
+  {
+    id: "organisations",
+    title: "Inside organisations",
+    lede: "Self-reported survey figures from accessibility and technology professionals. They describe what practitioners say about their organisations, not measured outcomes, and the sample leans to large companies.",
+    stats: [
+      { value: "83%", claim: "83% of organisations require documented proof of accessibility before buying digital products, up from 75% a year earlier, and 42% require it every time.", note: "Sapio Research surveyed 2,530 professionals in June and July 2026; 97% work at organisations with 1,000 or more employees, 52% are in the US and 43% in the UK and Europe.", source: "Level Access with IAAP and G3ict, Eighth Annual State of Digital Accessibility Report", sourceHref: "https://www.levelaccess.com/news/press-releases-news/level-access-research-finds-broad-ai-adoption-isnt-closing-the-accessibility-gap/", date: "2026-09-16", more: "/guides/vpat-accessibility-conformance-report" },
+      { value: "80%", claim: "80% of professionals use AI for digital accessibility work, but no single use case was adopted by more than 31% of respondents; the most common was developers finding and fixing issues in their code editor.", note: "35% of organisations now address accessibility at the planning stage, up from 28% in 2025.", source: "Level Access with IAAP and G3ict, Eighth Annual State of Digital Accessibility Report", sourceHref: "https://www.levelaccess.com/news/press-releases-news/level-access-research-finds-broad-ai-adoption-isnt-closing-the-accessibility-gap/", date: "2026-09-16" },
     ],
   },
   {
@@ -192,7 +211,7 @@ const FAQS = [
   },
   {
     question: "How many accessibility lawsuits were filed in 2025?",
-    answer: "3,117 website accessibility lawsuits were filed in US federal courts in 2025 according to Seyfarth Shaw's manually reviewed series, up 27% on 2024. Counts that include state courts run higher: UsableNet reported about 5,000 for 2025 and projects about 6,176 for 2026. The two series should not be mixed.",
+    answer: "3,117 website accessibility lawsuits were filed in US federal courts in 2025 according to Seyfarth Shaw's manually reviewed series, up 27% on 2024. Counts that include state courts run higher: UsableNet counted 4,928 for 2025 and projects about 6,176 for 2026. The two series should not be mixed.",
   },
   {
     question: "What is the most common web accessibility failure?",

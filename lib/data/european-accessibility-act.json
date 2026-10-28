@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-14",
+  "lastUpdated": "2026-10-28",
   "directive": {
     "title": "Directive (EU) 2019/882 of the European Parliament and of the Council of 17 April 2019 on the accessibility requirements for products and services",
     "shortName": "European Accessibility Act",
@@ -61,11 +61,12 @@
     }
   ],
   "transposition": {
-    "asOf": "2026-10-14",
+    "asOf": "2026-10-28",
     "memberStatesReporting": 27,
-    "totalMeasures": 379,
+    "totalMeasures": 380,
     "deadline": "2022-06-28",
     "caveat": "These counts are the number of national instruments each Member State has communicated to the Commission, not a measure of implementation quality or completeness. A state with one consolidated act is not behind a state with fifty amendments; it reflects legislative drafting style. EUR-Lex states that Member States bear sole responsibility for this information and that it does not prejudge Commission verification of completeness and correctness.",
+    "latestChange": "Since the previous count on 14 October 2026, France notified Décret n° 2026-883 of 23 September 2026 (Journal officiel, 24 September 2026). It adds the directive's definitions of economic operators to the Consumer Code and requires market surveillance authorities to give consumers, on request and in an accessible format, the conformity information supplied by manufacturers, importers and distributors.",
     "measures": [
       { "country": "Germany", "code": "DEU", "measures": 59 },
       { "country": "Hungary", "code": "HUN", "measures": 37 },
@@ -75,7 +76,7 @@
       { "country": "Finland", "code": "FIN", "measures": 22 },
       { "country": "Slovakia", "code": "SVK", "measures": 22 },
       { "country": "Belgium", "code": "BEL", "measures": 21 },
-      { "country": "France", "code": "FRA", "measures": 21 },
+      { "country": "France", "code": "FRA", "measures": 22 },
       { "country": "Slovenia", "code": "SVN", "measures": 17 },
       { "country": "Netherlands", "code": "NLD", "measures": 11 },
       { "country": "Croatia", "code": "HRV", "measures": 10 },
