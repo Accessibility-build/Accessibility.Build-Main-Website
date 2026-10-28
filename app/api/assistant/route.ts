@@ -78,6 +78,9 @@ const BodySchema = z.object({
   messages: z.array(MessageSchema).min(1).max(40),
   conversationId: z.string().trim().min(1).max(64).optional(),
   leadState: z.enum(["none", "offered", "submitted", "dismissed"]).optional().default("none"),
+  // Set by widgets that understand the metadata appended after the answer. A tab still running
+  // an older build of the widget would otherwise show it as text, so it only gets plain text.
+  meta: z.literal(1).optional(),
   page: z
     .object({
       path: z.string().max(500),
@@ -162,7 +165,8 @@ export async function POST(request: NextRequest) {
   // and "how do I test for this?" says nothing about its topic until the page title is added.
   const earlierQuestions = history.filter((m) => m.role === "user").slice(-2, -1).map((m) => m.content)
   const query = [question.content, question.content, ...earlierQuestions, refersToPage ? page?.title ?? "" : ""]
-  const hits = searchSite(query.join(" "), { limit: 6 })
+  // Author profiles are about named people, and Curb never names individuals.
+  const hits = searchSite(query.join(" "), { limit: 8 }).filter((hit) => !hit.path.startsWith("/authors")).slice(0, 6)
 
   // What the visitor wants, judged by a second model call on the conversation. It runs while the
   // answer streams; its verdict is appended after the answer text and logged with the question.
@@ -266,6 +270,7 @@ export async function POST(request: NextRequest) {
     async start(controller) {
       try {
         for await (const delta of result.textStream) controller.enqueue(encoder.encode(delta))
+        if (body.meta !== 1) return
         const intent = await within(intentPromise, 3_000)
         const lead: LeadOffer | null =
           intent && shouldOfferContact(intent, body.leadState)

@@ -1,5 +1,6 @@
 import "server-only"
 import { siteRoutes } from "@/lib/site-routes"
+import { company } from "@/lib/company"
 import { ASSISTANT_NAME, type LeadState } from "./config"
 import type { SearchHit } from "./search"
 
@@ -16,7 +17,8 @@ export interface PageContext {
 function siteMap(): string {
   const groups = new Map<string, string[]>()
   for (const { route, label, group } of siteRoutes) {
-    if (group === "WCAG") continue
+    // Author profiles name people, and Curb never names individuals.
+    if (group === "WCAG" || route.startsWith("/authors")) continue
     const list = groups.get(group) ?? []
     list.push(`${label} (${route || "/"})`)
     groups.set(group, list)
@@ -25,15 +27,31 @@ function siteMap(): string {
   lines.push(
     "WCAG criteria: every WCAG 2.2 success criterion has a page at /wcag/ plus its number with hyphens, for example /wcag/1-4-3 for 1.4.3 and /wcag/2-4-11 for 2.4.11. 4.1.1 Parsing is obsolete in WCAG 2.2 and has no page.",
   )
-  return lines.join("\n")
+  return withoutNames(lines.join("\n"))
 }
 
 let cachedSiteMap: string | null = null
 
+// Curb speaks for "our team" and never names a person behind the site. Instructions alone did
+// not hold when a page in the context named the founder (asked "who is your founder?", Curb
+// quoted the About page), so names are taken out of everything the model reads.
+const NAME_PARTS = company.legalOperator.split(/\s+/).filter((part) => part.length > 2)
+// Longest forms first: "First Last", "first-last" (author URLs), "firstlast" (personal domain),
+// then each part alone.
+const PERSON_NAMES = [company.legalOperator, NAME_PARTS.join("-"), NAME_PARTS.join(""), ...NAME_PARTS]
+const PERSON_PATTERN = new RegExp(
+  `(?:${PERSON_NAMES.map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`,
+  "gi",
+)
+
+function withoutNames(text: string): string {
+  return text.replace(PERSON_PATTERN, "the Accessibility.build team").replace(/(the Accessibility\.build team)(\s+\1)+/g, "$1")
+}
+
 function formatHits(hits: SearchHit[]): string {
   if (!hits.length) return "No matching pages were found on the site for this question."
   return hits
-    .map((hit, i) => `[${i + 1}] ${hit.title} > ${hit.heading} (${hit.path})\n${hit.text}`)
+    .map((hit, i) => withoutNames(`[${i + 1}] ${hit.title} > ${hit.heading} (${hit.path})\n${hit.text}`))
     .join("\n\n")
 }
 
@@ -57,14 +75,16 @@ export function buildSystemPrompt({
 }): string {
   cachedSiteMap ??= siteMap()
   const pageBlock = page
-    ? [
-        `Path: ${page.path}`,
-        `Title: ${page.title}`,
-        page.description ? `Summary: ${page.description}` : "",
-        page.content ? `Visible text (may be cut short):\n"""\n${page.content}\n"""` : "The page text was not shared.",
-      ]
-        .filter(Boolean)
-        .join("\n")
+    ? withoutNames(
+        [
+          `Path: ${page.path}`,
+          `Title: ${page.title}`,
+          page.description ? `Summary: ${page.description}` : "",
+          page.content ? `Visible text (may be cut short):\n"""\n${page.content}\n"""` : "The page text was not shared.",
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      )
     : "Unknown."
 
   return `You are ${ASSISTANT_NAME}, the accessibility assistant on Accessibility.build, a site of WCAG guidance, accessibility testing tools, research and audit services. You are named after the curb cut: a change made for disabled people that turned out to help everyone.
@@ -82,7 +102,7 @@ HOW TO ANSWER
 - When you mention a WCAG success criterion, give its number, name and level, for example 1.4.3 Contrast (Minimum), Level AA, and link its page on this site.
 - Legal and compliance questions get general information, not legal advice. Deadlines and enforcement change, so rely on SITE CONTEXT for the current position and suggest a qualified lawyer for decisions.
 - If someone wants an audit, remediation, a VPAT or other help from the team, answer what the site says about that service (what it includes, prices where published, process, timelines) and link its page. Do not ask for their name, email or other contact details, and do not mention or promise a contact form: when one fits, the site adds it under your answer by itself. Our team replies to enquiries within two business days.
-- Refer to the people behind Accessibility.build as "our team". Do not name individuals, even if a page does.
+- Refer to the people behind Accessibility.build as "our team". Never name any person connected to the site (founder, owner, staff, reviewers or authors), even when asked directly. If asked who founded, owns, runs, writes for or reviews Accessibility.build, say our team of accessibility specialists does, and point to the [About page](/about). Answer naturally: do not say that you cannot or will not share names.
 - Code examples must themselves be accessible, use semantic HTML before ARIA, and stay short.
 
 STYLE
