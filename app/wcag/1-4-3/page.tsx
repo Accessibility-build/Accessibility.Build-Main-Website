@@ -508,6 +508,14 @@ export default function WCAG143Page() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
               A photo's brightness varies pixel to pixel, so a fixed text color can pass
               in one spot and fail in another. Add a scrim so the ratio holds everywhere.
+              The{" "}
+              <Link
+                href="/guides/text-over-images"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                text over images guide
+              </Link>{" "}
+              covers scrims, solid panels, text shadows and responsive crops in more depth.
             </p>
             <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
               <code>{`<!-- ✗ White text straight over a photo: ratio varies, often fails -->
@@ -638,6 +646,14 @@ export default function WCAG143Page() {
               ))}
             </ol>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
+              Text over a photo or gradient must pass at every point, and the{" "}
+              <Link
+                href="/tools/text-over-image-contrast-checker"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Text Over Image Contrast Checker
+              </Link>{" "}
+              measures every background pixel to find the worst point.
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"

@@ -597,6 +597,22 @@ a.inline:focus { text-decoration: underline; }`}</code>
               ))}
             </ol>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
+              To find information carried by colour alone, view the page through
+              colour vision deficiency filters in the{" "}
+              <Link
+                href="/tools/website-vision-simulator"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Website Vision Simulator
+              </Link>
+              . The{" "}
+              <Link
+                href="/guides/color-blind-friendly-design"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                colour blind friendly design guide
+              </Link>{" "}
+              shows how to fix what you find, from links and form errors to charts.
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"

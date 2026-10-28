@@ -604,7 +604,14 @@ export default function WCAG246Page() {
               >
                 WCAG 2.2 checklist
               </Link>
-              .
+              . The{" "}
+              <Link
+                href="/tools/screen-reader-simulator"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Screen Reader Simulator
+              </Link>{" "}
+              also shows a page&apos;s heading outline and flags skipped levels.
             </p>
           </section>
 

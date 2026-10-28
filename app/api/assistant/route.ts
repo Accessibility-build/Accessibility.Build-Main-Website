@@ -14,7 +14,7 @@ import {
   type AssistantSource,
   type LeadOffer,
 } from "@/lib/assistant/config"
-import { findPage, searchSite } from "@/lib/assistant/search"
+import { findPage, searchPage, searchSite, type SearchHit } from "@/lib/assistant/search"
 import { buildSystemPrompt, type PageContext } from "@/lib/assistant/prompt"
 import { isSameOriginRequest, recordAssistantMessage, requestFacts } from "@/lib/assistant/analytics"
 import { classifyIntent, leadScore, shouldOfferContact, type IntentResult } from "@/lib/assistant/intent"
@@ -165,8 +165,16 @@ export async function POST(request: NextRequest) {
   // and "how do I test for this?" says nothing about its topic until the page title is added.
   const earlierQuestions = history.filter((m) => m.role === "user").slice(-2, -1).map((m) => m.content)
   const query = [question.content, question.content, ...earlierQuestions, refersToPage ? page?.title ?? "" : ""]
+  // The sections of the page the visitor is on that answer the question, wherever they sit on the
+  // page: the widget only sends the start of the visible text. Not for private pages, whose text
+  // is never read, or for author profiles.
+  const pageSections =
+    page && page.content !== "" && !page.path.startsWith("/authors") ? searchPage(page.path, query.join(" "), { limit: 4 }) : []
+  const inPageSections = (hit: SearchHit) => pageSections.some((section) => section.path === hit.path && section.heading === hit.heading && section.text === hit.text)
   // Author profiles are about named people, and Curb never names individuals.
-  const hits = searchSite(query.join(" "), { limit: 8 }).filter((hit) => !hit.path.startsWith("/authors")).slice(0, 6)
+  const hits = searchSite(query.join(" "), { limit: 8 })
+    .filter((hit) => !hit.path.startsWith("/authors") && !inPageSections(hit))
+    .slice(0, 6)
 
   // What the visitor wants, judged by a second model call on the conversation. It runs while the
   // answer streams; its verdict is appended after the answer text and logged with the question.
@@ -212,7 +220,7 @@ export async function POST(request: NextRequest) {
     const intent = await within(intentPromise, 15_000)
     await recordAssistantMessage({
       ...baseRow,
-      searchHits: hits.length,
+      searchHits: hits.length + pageSections.length,
       topScore: hits[0]?.score ?? null,
       sources,
       firstTokenMs: firstTokenAt ? firstTokenAt - startedAt : null,
@@ -230,7 +238,7 @@ export async function POST(request: NextRequest) {
 
   const result = streamText({
     model: openrouter.chatModel(MODEL),
-    system: buildSystemPrompt({ hits, page, leadState: body.leadState, today: new Date().toISOString().slice(0, 10) }),
+    system: buildSystemPrompt({ hits, page, pageSections, leadState: body.leadState, today: new Date().toISOString().slice(0, 10) }),
     messages: history.map((m) => ({
       role: m.role,
       content: m.role === "assistant" ? m.content.slice(0, 4000) : m.content,

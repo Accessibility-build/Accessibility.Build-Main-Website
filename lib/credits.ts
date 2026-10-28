@@ -17,6 +17,7 @@ export const TOOL_CREDITS = {
   json_formatter: 0, // Free tool
   pdf_accessibility_checker: 2,
   overlay_detector: 0, // Free tool
+  alt_text_checker: 2, // AI review of up to 8 images; the rule checks alone are free
 } as const
 
 export type ToolType = keyof typeof TOOL_CREDITS

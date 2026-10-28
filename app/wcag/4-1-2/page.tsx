@@ -679,7 +679,15 @@ export default function WCAG412Page() {
               >
                 Screen Reader Testing guide
               </Link>
-              .
+              . The{" "}
+              <Link
+                href="/tools/screen-reader-simulator"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Screen Reader Simulator
+              </Link>{" "}
+              lists every control on a page with its role and name from
+              Chrome&apos;s accessibility tree.
             </p>
           </section>
 

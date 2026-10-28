@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import AltTextGenerator from "@/components/tools/alt-text-generator"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -243,13 +244,22 @@ export default function AltTextGeneratorPage() {
                     Alt Text Best Practices
                   </CardTitle>
                   <CardDescription className="text-lg">
-                    Follow these guidelines to create the most effective alt text
+                    Follow these guidelines to create the most effective alt text. To audit the alt text
+                    already on a whole page, use the{" "}
+                    <Link href="/tools/alt-text-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+                      Alt Text Checker
+                    </Link>
+                    . For examples covering every kind of image, read our{" "}
+                    <Link href="/guides/how-to-write-alt-text" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+                      How to Write Alt Text
+                    </Link>{" "}
+                    guide.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {[
-                      "Keep descriptions concise but descriptive (ideally under 125 characters)",
+                      "Keep descriptions as short as the purpose allows; there is no fixed character limit",
                       "Focus on the image's purpose and context within your content",
                       "Include important text that appears in the image",
                       "Avoid starting with 'Image of' or 'Picture of'",

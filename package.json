@@ -79,6 +79,7 @@
         "dotenv": "^16.6.0",
         "drizzle-orm": "^0.44.2",
         "embla-carousel-react": "8.5.1",
+        "fflate": "^0.8.2",
         "framer-motion": "^11.0.0",
         "gray-matter": "latest",
         "helmet": "^8.1.0",

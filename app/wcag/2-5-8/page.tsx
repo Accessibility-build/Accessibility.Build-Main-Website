@@ -660,7 +660,15 @@ export default function WCAG258Page() {
               >
                 URL Accessibility Auditor
               </Link>
-              .
+              . The{" "}
+              <Link
+                href="/tools/target-size-checker"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Target Size Checker
+              </Link>{" "}
+              measures every target on a live page against 24 by 24 pixels, on a
+              phone or desktop screen, and applies the spacing exception.
             </p>
           </section>
 

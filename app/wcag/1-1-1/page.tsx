@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     q: "How long should alt text be?",
-    a: "There is no normative character limit, but a widely used guideline is to keep alt text concise — usually under about 125 characters — and focused on conveying the same information as the image in its context. Do not start with 'Image of' or 'Picture of'; screen readers already announce the element as an image. When an image is too complex to summarize briefly (charts, diagrams, infographics), give it short alt text that identifies it and provide the full detail in nearby text, a data table, or a linked long description.",
+    a: "There is no character limit in WCAG. Keep alt text as short as its purpose allows and focused on conveying the same information as the image in its context. The often-quoted 125 characters comes from how an old screen reader handled long alt text, not from any rule. Do not start with 'Image of' or 'Picture of'; screen readers already announce the element as an image. When an image is too complex to summarize briefly (charts, diagrams, infographics), give it short alt text that identifies it and provide the full detail in nearby text, a data table, or a linked long description.",
   },
   {
     q: "What alt text does a functional image (like an icon button) need?",
@@ -603,6 +603,30 @@ export default function WCAG111Page() {
               ))}
             </ol>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
+              The{" "}
+              <Link
+                href="/tools/alt-text-checker"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Alt Text Checker
+              </Link>{" "}
+              checks every image on a live page and can use AI to compare each
+              image with its alt text. Our guide on{" "}
+              <Link
+                href="/guides/how-to-write-alt-text"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                how to write alt text
+              </Link>{" "}
+              has examples for every kind of image. For images in Word and PowerPoint files,
+              use the{" "}
+              <Link
+                href="/tools/word-powerpoint-accessibility-checker"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Word and PowerPoint Accessibility Checker
+              </Link>
+              .
               For a structured audit, work through the full{" "}
               <Link
                 href="/checklists/wcag-2-2"

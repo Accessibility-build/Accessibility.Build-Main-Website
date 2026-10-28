@@ -461,6 +461,15 @@ export default function WCAG146Page() {
                 Color Contrast Checker
               </Link>
               , which reports both the AA and AAA verdicts for normal and large text.
+              For hero text over an image, the{" "}
+              <Link
+                href="/tools/text-over-image-contrast-checker"
+                className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
+              >
+                Text Over Image Contrast Checker
+              </Link>{" "}
+              measures every background pixel so you can confirm 7:1 at the worst
+              point.
             </p>
           </section>
 

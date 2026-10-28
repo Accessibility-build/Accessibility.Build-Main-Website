@@ -123,15 +123,8 @@ function load(): Prepared {
   return prepared
 }
 
-/**
- * Best-matching sections for a query, at most `perPage` from any one page so a single long
- * page cannot fill every slot. Scores are relative; anything under `minRelative` of the top
- * score is dropped as noise.
- */
-export function searchSite(
-  query: string,
-  { limit = 6, perPage = 2, minRelative = 0.35 }: { limit?: number; perPage?: number; minRelative?: number } = {},
-): SearchHit[] {
+/** BM25 scores for the chunks that match the query, best first; `only` restricts it to some chunks. */
+function rank(query: string, only?: (chunk: IndexChunk) => boolean): { i: number; score: number }[] {
   const terms = [...new Set(tokenize(query))]
   if (!terms.length) return []
   const { index, termFreqs, lengths, avgLength, docFreq } = load()
@@ -146,6 +139,7 @@ export function searchSite(
 
   const scored: { i: number; score: number }[] = []
   for (let i = 0; i < total; i++) {
+    if (only && !only(index.chunks[i])) continue
     const tf = termFreqs[i]
     let score = 0
     for (const [term, weight] of idf) {
@@ -155,22 +149,55 @@ export function searchSite(
     }
     if (score > 0) scored.push({ i, score })
   }
-  scored.sort((a, b) => b.score - a.score)
-  if (!scored.length) return []
+  return scored.sort((a, b) => b.score - a.score)
+}
 
+function toHit(i: number, score: number): SearchHit {
+  const { index } = load()
+  const chunk = index.chunks[i]
+  const page = index.pages[chunk.page]
+  return { path: page.path, title: page.title, heading: chunk.heading, text: chunk.text, score }
+}
+
+/**
+ * Best-matching sections for a query, at most `perPage` from any one page so a single long
+ * page cannot fill every slot. Scores are relative; anything under `minRelative` of the top
+ * score is dropped as noise.
+ */
+export function searchSite(
+  query: string,
+  { limit = 6, perPage = 2, minRelative = 0.35 }: { limit?: number; perPage?: number; minRelative?: number } = {},
+): SearchHit[] {
+  const scored = rank(query)
+  if (!scored.length) return []
+  const { index } = load()
   const floor = scored[0].score * minRelative
   const perPageCount = new Map<number, number>()
   const hits: SearchHit[] = []
   for (const { i, score } of scored) {
     if (score < floor || hits.length >= limit) break
-    const chunk = index.chunks[i]
-    const used = perPageCount.get(chunk.page) ?? 0
+    const page = index.chunks[i].page
+    const used = perPageCount.get(page) ?? 0
     if (used >= perPage) continue
-    perPageCount.set(chunk.page, used + 1)
-    const page = index.pages[chunk.page]
-    hits.push({ path: page.path, title: page.title, heading: chunk.heading, text: chunk.text, score })
+    perPageCount.set(page, used + 1)
+    hits.push(toHit(i, score))
   }
   return hits
+}
+
+/**
+ * The sections of one page that best match the question. The widget only sends the first part
+ * of a page's visible text, and a long guide runs to five or six times that, so a question about
+ * a later section of the page the visitor is reading needs that section found in the index.
+ */
+export function searchPage(path: string, query: string, { limit = 4, minRelative = 0.25 }: { limit?: number; minRelative?: number } = {}): SearchHit[] {
+  const { index } = load()
+  const pageNumber = index.pages.findIndex((page) => page.path === path)
+  if (pageNumber === -1) return []
+  const scored = rank(query, (chunk) => chunk.page === pageNumber)
+  if (!scored.length) return []
+  const floor = scored[0].score * minRelative
+  return scored.filter(({ score }) => score >= floor).slice(0, limit).map(({ i, score }) => toHit(i, score))
 }
 
 /** Title and description of an indexed page, for labelling the page a visitor is on. */

@@ -20,7 +20,8 @@ export const toolTypeEnum = pgEnum('tool_type', [
   'image_color_picker',
   'url_encoder_decoder',
   'pdf_accessibility_checker',
-  'overlay_detector'
+  'overlay_detector',
+  'alt_text_checker'
 ])
 export const auditStatusEnum = pgEnum('audit_status', ['pending', 'processing', 'completed', 'failed'])
 export const severityEnum = pgEnum('severity', ['critical', 'serious', 'moderate', 'minor'])

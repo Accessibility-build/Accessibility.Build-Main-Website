@@ -1062,7 +1062,12 @@ p { margin-bottom: 2em !important; }`}</code></pre>
                     </strong>{" "}
                     Run your real copy through a Flesch-Kincaid or similar score to
                     flag long sentences and dense vocabulary. Treat it as a smoke
-                    alarm, not proof of clarity.
+                    alarm, not proof of clarity. The{" "}
+                    <Link href="/tools/readability-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+                      Readability Checker
+                    </Link>{" "}
+                    scores pasted text or a web page on six formulas and highlights
+                    the hardest sentences.
                   </li>
                   <li>
                     <strong className="text-slate-900 dark:text-white">

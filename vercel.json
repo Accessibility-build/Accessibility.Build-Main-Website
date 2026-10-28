@@ -16,6 +16,22 @@
         },
         "app/api/health/route.ts": {
             "maxDuration": 10
+        },
+        "app/api/tools/website-vision-simulator/route.ts": {
+            "maxDuration": 60,
+            "memory": 1024
+        },
+        "app/api/tools/screen-reader-simulator/route.ts": {
+            "maxDuration": 60,
+            "memory": 1024
+        },
+        "app/api/tools/alt-text-checker/route.ts": {
+            "maxDuration": 60,
+            "memory": 1024
+        },
+        "app/api/tools/focus-order-checker/route.ts": {
+            "maxDuration": 60,
+            "memory": 1024
         }
     }
 }

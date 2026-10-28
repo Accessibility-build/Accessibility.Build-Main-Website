@@ -302,7 +302,12 @@ export default function PDFAccessibilityCheckerPage() {
                     How To Create Accessible PDFs
                   </CardTitle>
                   <CardDescription className="text-lg">
-                    Follow these guidelines to ensure your PDFs are accessible from the start
+                    Follow these guidelines to ensure your PDFs are accessible from the start. If the PDF
+                    comes from Word or PowerPoint, check the source file first with the{" "}
+                    <Link href="/tools/word-powerpoint-accessibility-checker" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+                      Word and PowerPoint Accessibility Checker
+                    </Link>
+                    .
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

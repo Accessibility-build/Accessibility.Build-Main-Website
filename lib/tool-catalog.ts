@@ -28,6 +28,15 @@ export type ToolIconName =
   | "link"
   | "lock"
   | "braces"
+  | "book"
+  | "layers"
+  | "eye"
+  | "speech"
+  | "office"
+  | "altText"
+  | "keyboard"
+  | "gauge"
+  | "pointer"
 
 export interface ToolCatalogItem {
   slug: string
@@ -110,6 +119,39 @@ export const toolCatalog: ToolCatalogItem[] = [
     popular: true,
   },
   {
+    slug: "screen-reader-simulator",
+    title: "Screen Reader Simulator",
+    shortTitle: "Screen Reader Preview",
+    description: "Enter a page address and read what a screen reader would come across, line by line, with headings, landmarks, links and controls listed and problems flagged.",
+    category: "Audit and testing",
+    icon: "speech",
+    features: ["Browse-mode transcript", "Headings, landmarks and links", "Optional speech playback"],
+    keywords: ["screen reader simulator", "screen reader", "accessibility tree", "headings", "landmarks", "link text", "4.1.2", "2.4.4"],
+    credits: 0,
+  },
+  {
+    slug: "focus-order-checker",
+    title: "Keyboard Focus Order Checker",
+    shortTitle: "Focus Order",
+    description: "Tab through a live page and see every focus stop numbered, with invisible focus, hidden focus, traps and undersized targets flagged.",
+    category: "Audit and testing",
+    icon: "keyboard",
+    features: ["Real Tab presses", "Visible-focus check", "Target size mode"],
+    keywords: ["focus order", "tab order", "keyboard accessibility", "focus visible", "keyboard trap", "target size", "2.4.7", "2.5.8"],
+    credits: 0,
+  },
+  {
+    slug: "target-size-checker",
+    title: "Target Size Checker",
+    shortTitle: "Target Size",
+    description: "Measure every link, button and control on a live page against the WCAG 2.5.8 minimum of 24 by 24 pixels, on a phone or desktop screen.",
+    category: "Audit and testing",
+    icon: "pointer",
+    features: ["Phone and desktop viewports", "Spacing exception measured", "Failures name the target too close"],
+    keywords: ["target size", "touch target", "tap target", "2.5.8", "mobile", "button size"],
+    credits: 0,
+  },
+  {
     slug: "contrast-checker",
     title: "Color Contrast Checker",
     shortTitle: "Contrast Checker",
@@ -122,6 +164,28 @@ export const toolCatalog: ToolCatalogItem[] = [
     popular: true,
   },
   {
+    slug: "text-over-image-contrast-checker",
+    title: "Text Over Image Contrast Checker",
+    shortTitle: "Text Over Image",
+    description: "Mark text on a screenshot or hero image and measure its contrast against every background pixel, with a heatmap and the overlay that fixes it.",
+    category: "Audit and testing",
+    icon: "layers",
+    features: ["Worst-point WCAG ratio", "Failing-pixel heatmap", "Overlay opacity and CSS"],
+    keywords: ["contrast", "text over image", "background image", "hero", "overlay", "gradient", "1.4.3"],
+    credits: 0,
+  },
+  {
+    slug: "website-vision-simulator",
+    title: "Website Vision Simulator",
+    shortTitle: "Vision Simulator",
+    description: "See any page or screenshot with simulated colour vision deficiency, blurred vision or low contrast sensitivity, next to the original.",
+    category: "Audit and testing",
+    icon: "eye",
+    features: ["Colour vision deficiency with severity", "Blur and low contrast", "Split and side-by-side views"],
+    keywords: ["colour blindness", "color blind simulator", "low vision", "deuteranopia", "use of colour", "1.4.1"],
+    credits: 0,
+  },
+  {
     slug: "pdf-accessibility-checker",
     title: "PDF Accessibility Checker",
     shortTitle: "PDF Checker",
@@ -131,6 +195,17 @@ export const toolCatalog: ToolCatalogItem[] = [
     features: ["Structure checks", "PDF/UA context", "Fix guidance"],
     keywords: ["pdf", "document", "tags", "pdfua", "forms"],
     credits: 2,
+  },
+  {
+    slug: "word-powerpoint-accessibility-checker",
+    title: "Word and PowerPoint Accessibility Checker",
+    shortTitle: "Office Checker",
+    description: "Check a .docx or .pptx file for alt text, headings, slide titles, table headers, link text and language. The file never leaves your browser.",
+    category: "Content and documents",
+    icon: "office",
+    features: ["Word and PowerPoint checks", "Microsoft 365 fix steps", "CSV and Excel export"],
+    keywords: ["word", "powerpoint", "docx", "pptx", "office", "document", "slides", "alt text"],
+    credits: 0,
   },
   {
     slug: "overlay-detector",
@@ -165,6 +240,28 @@ export const toolCatalog: ToolCatalogItem[] = [
     keywords: ["alt text", "image", "description", "content", "ai"],
     credits: 1,
     popular: true,
+  },
+  {
+    slug: "alt-text-checker",
+    title: "Alt Text Checker",
+    shortTitle: "Alt Checker",
+    description: "Check the alt text of every image on a page, with an optional AI review that compares each image with its alt and suggests better text.",
+    category: "Audit and testing",
+    icon: "altText",
+    features: ["Every image on a page", "Linked image and icon names", "Optional AI review"],
+    keywords: ["alt text checker", "alt tag checker", "missing alt", "image", "decorative", "1.1.1"],
+    credits: 0,
+  },
+  {
+    slug: "readability-checker",
+    title: "Readability Checker",
+    shortTitle: "Readability",
+    description: "Score text or a web page on six readability formulas and see long sentences, passive voice, wordy phrases and abbreviations highlighted.",
+    category: "Content and documents",
+    icon: "book",
+    features: ["Six readability formulas", "Plain-language highlights", "Text or URL"],
+    keywords: ["readability", "reading level", "plain language", "flesch", "grade level", "3.1.5"],
+    credits: 0,
   },
   {
     slug: "accessibility-code-generator",
@@ -277,6 +374,17 @@ export const toolCatalog: ToolCatalogItem[] = [
     keywords: ["eaa", "european accessibility act", "scope", "applicability", "microenterprise"],
     credits: 0,
     popular: true,
+  },
+  {
+    slug: "accessibility-maturity-assessment",
+    title: "Accessibility Maturity Assessment",
+    shortTitle: "Maturity",
+    description: "Rate your organisation against the W3C Accessibility Maturity Model and get a level per dimension, next steps and an Excel or PDF export.",
+    category: "Business planning",
+    icon: "gauge",
+    features: ["Seven W3C dimensions", "Level per dimension", "Excel and PDF export"],
+    keywords: ["maturity model", "w3c", "programme", "governance", "procurement", "self-assessment"],
+    credits: 0,
   },
   {
     slug: "accessibility-roi-calculator",

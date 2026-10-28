@@ -69,6 +69,78 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['accessible name', 'aria-label', 'screen reader', 'button', 'link', 'label', 'agent', 'name role value'],
     priority: 9
   },
+  {
+    url: '/tools/readability-checker',
+    title: 'Readability Checker',
+    description: 'Check reading level and plain language in text or a web page',
+    type: 'tool',
+    keywords: ['readability', 'reading level', 'plain language', 'flesch', 'wcag 3.1.5', 'passive voice', 'abbreviations', 'content'],
+    priority: 8
+  },
+  {
+    url: '/tools/text-over-image-contrast-checker',
+    title: 'Text Over Image Contrast Checker',
+    description: 'Measure text contrast against every pixel of a photo or gradient background',
+    type: 'tool',
+    keywords: ['text over image', 'background image', 'hero image', 'overlay', 'gradient', 'contrast', '1.4.3'],
+    priority: 8
+  },
+  {
+    url: '/tools/website-vision-simulator',
+    title: 'Website Vision Simulator',
+    description: 'See a page with simulated colour blindness, blur and low contrast sensitivity',
+    type: 'tool',
+    keywords: ['colour blindness', 'color blindness', 'simulator', 'low vision', 'use of colour', 'deuteranopia', '1.4.1'],
+    priority: 8
+  },
+  {
+    url: '/tools/screen-reader-simulator',
+    title: 'Screen Reader Simulator',
+    description: 'Read what a screen reader would announce on any page, with headings, landmarks, links and controls checked',
+    type: 'tool',
+    keywords: ['screen reader', 'screen reader simulator', 'accessibility tree', 'headings', 'landmarks', 'link text', 'nvda', 'voiceover', 'browse mode'],
+    priority: 9
+  },
+  {
+    url: '/tools/word-powerpoint-accessibility-checker',
+    title: 'Word and PowerPoint Accessibility Checker',
+    description: 'Check Word and PowerPoint files for alt text, headings, slide titles, tables, links and language, in your browser',
+    type: 'tool',
+    keywords: ['word accessibility', 'powerpoint accessibility', 'docx', 'pptx', 'office documents', 'slide titles', 'alt text', 'accessible documents'],
+    priority: 9
+  },
+  {
+    url: '/tools/alt-text-checker',
+    title: 'Alt Text Checker',
+    description: 'Check the alt text of every image on a page, with an optional AI review',
+    type: 'tool',
+    keywords: ['alt text checker', 'alt tag checker', 'missing alt text', 'image accessibility', 'decorative images', 'wcag 1.1.1'],
+    priority: 8
+  },
+  {
+    url: '/tools/focus-order-checker',
+    title: 'Keyboard Focus Order Checker',
+    description: 'Tab through a page to find invisible focus, hidden focus, keyboard traps and small targets',
+    type: 'tool',
+    keywords: ['focus order', 'tab order', 'keyboard', 'focus visible', 'keyboard trap', 'focus not obscured', 'sticky header', '2.4.7', '2.4.11'],
+    priority: 8
+  },
+  {
+    url: '/tools/target-size-checker',
+    title: 'Target Size Checker',
+    description: 'Measure every link and button on a page against the WCAG 2.5.8 minimum, on a phone or desktop screen',
+    type: 'tool',
+    keywords: ['target size', 'touch target', 'tap target', '2.5.8', '2.5.5', 'mobile', 'button size', 'spacing'],
+    priority: 8
+  },
+  {
+    url: '/tools/accessibility-maturity-assessment',
+    title: 'Accessibility Maturity Assessment',
+    description: 'Rate your organisation against the W3C Accessibility Maturity Model',
+    type: 'tool',
+    keywords: ['maturity', 'programme', 'governance', 'procurement', 'training', 'policy', 'organisation', 'w3c'],
+    priority: 8
+  },
   // Tools
   {
     url: '/tools/accessibility-audit-helper',
@@ -572,6 +644,12 @@ const MORE_LINKS: InternalLink[] = [
   { url: "/guides/svelte-accessibility", title: "Svelte Accessibility Guide", description: "Semantic markup, the Svelte compiler's built-in a11y warnings, reactive ARIA with runes, focus traps packaged as use: actions, SvelteKit route announcements and focus management, live regions that announce, accessible forms with bind:value, and testing with svelte-check and vitest-axe", type: "guide", keywords: ["svelte accessibility", "sveltekit accessibility", "svelte a11y", "svelte 5 accessibility", "accessible svelte components", "svelte aria", "svelte compiler a11y warnings", "svelte focus management", "sveltekit router focus", "sveltekit route announcements", "svelte use action focus trap", "svelte live region", "svelte accessible forms", "eslint-plugin-svelte", "svelte-check", "wcag svelte"], priority: 9 },
   { url: "/guides/mobile-accessibility", title: "Mobile Accessibility Guide", description: "Touch target sizing, pointer gestures and cancellation, orientation and text scaling, native iOS accessibility (UIKit and SwiftUI), native Android accessibility (View and Jetpack Compose), mobile web, and VoiceOver and TalkBack testing, mapped to WCAG 2.2 AA and WCAG2ICT", type: "guide", keywords: ["mobile accessibility", "mobile app accessibility", "ios accessibility", "android accessibility", "accessible mobile app", "swiftui accessibility", "uikit accessibility", "jetpack compose accessibility", "touch target size", "mobile wcag", "wcag2ict", "voiceover accessibility", "talkback accessibility", "dynamic type", "pointer gestures", "mobile web accessibility", "accessible touch targets", "wcag mobile"], priority: 9 },
   { url: "/guides/accessible-ai-chat", title: "Accessible AI Chat Interfaces Guide", description: "Build accessible AI chat and chatbot interfaces: announce streaming responses without flooding the screen reader, structure the message log with role=log, keep focus in the composer, make Send, Stop, and per-message actions keyboard-operable, and render AI output as semantic HTML, mapped to WCAG 2.2 with React", type: "guide", keywords: ["accessible ai chat", "accessible chatbot", "conversational ui accessibility", "ai chat accessibility", "chatbot accessibility", "streaming response accessibility", "aria-live chat", "role log chat", "accessible chat interface", "screen reader chatbot", "accessible ai assistant", "ai chat wcag", "live region streaming", "accessible llm interface", "chat focus management", "accessible conversational ai", "wcag 4.1.3", "status messages"], priority: 9 },
+  { url: "/guides/how-to-write-alt-text", title: "How to Write Alt Text: Examples and Best Practices", description: "Write alt text by what each image does: a decision process based on the W3C tree, good and bad examples for product photos, logos, icon buttons, charts, tables, people, art, screenshots and decorative images, the 125-character myth, common mistakes, the markup, and alt text on Instagram, X, LinkedIn and Facebook", type: "guide", keywords: ["how to write alt text", "how to write alt text for images", "alt text examples", "alt text examples for images", "alt text for a logo", "alt text for graphs", "alt text for tables", "alt text for art", "decorative images alt text", "alt text best practices", "alt text length", "alt text for instagram", "empty alt attribute", "image alt text", "alt text for icons", "wcag 1.1.1"], priority: 9 },
+  { url: "/guides/text-over-images", title: "Text Over Image Accessibility: Contrast and Overlays", description: "Make text over photos, gradients and hero images pass WCAG 1.4.3: why the worst point decides it, how to measure it, overlay opacity that passes over any image, solid panels, text-shadow halos, repositioning, background colour fallbacks, forced colours, responsive crops and carousels, with copy-ready CSS", type: "guide", keywords: ["text over image accessibility", "text on background image accessibility", "text on image contrast", "hero image text contrast", "overlay for text on image", "text shadow accessibility", "image overlay opacity", "scrim text on image", "gradient overlay text", "background image contrast wcag", "wcag 1.4.3 background image"], priority: 9 },
+  { url: "/guides/color-blind-friendly-design", title: "Colour Blind Friendly Design Guide", description: "Make a website colour blind friendly: colour vision deficiency types and prevalence, WCAG 1.4.1, 1.4.3 and 1.4.11, never using colour alone for links, form errors, status and charts, colour pairs to avoid and why lightness beats hue, the Okabe and Ito palette, and how to test with a vision simulator and greyscale", type: "guide", keywords: ["color blind friendly website", "colour blind friendly design", "is my website color blind friendly", "designing for color blindness", "what colors are colorblind friendly", "color blindness guidelines", "color blind accessibility", "colorblind friendly palette", "okabe ito palette", "wcag 1.4.1 use of color", "color blind safe colors", "color blind friendly charts", "deuteranopia"], priority: 8 },
+  { url: "/guides/accessibility-maturity-model", title: "W3C Accessibility Maturity Model Guide", description: "The W3C Accessibility Maturity Model explained: its status as a Group Note, the seven dimensions with example proof points, the four levels from Inactive to Optimize, how to run an assessment with evidence, turning results into a roadmap, how it compares with other maturity models, and how it relates to the EAA, procurement and ISO/IEC 30071-1", type: "guide", keywords: ["accessibility maturity model", "w3c accessibility maturity model", "accessibility maturity model w3c", "accessibility maturity assessment", "digital accessibility maturity model", "accessibility maturity levels", "inactive launch integrate optimize", "accessibility proof points", "accessibility programme maturity", "accessibility governance", "accessibility roadmap", "iso 30071-1"], priority: 8 },
+  { url: "/guides/accessible-word-documents", title: "How to Make a Word Document Accessible", description: "Step-by-step Word accessibility in Microsoft 365: document title and language, heading styles, real lists, alt text and decorative images, tables with header rows, link text, contrast, text boxes, templates, what Check Accessibility misses, and tagged PDF export, with a checklist", type: "guide", keywords: ["how to make a word document accessible", "accessible word document", "word accessibility checklist", "word accessibility checker", "heading styles word accessibility", "alt text in word", "accessible tables in word", "check accessibility word", "accessibility assistant", "mark as decorative", "repeat header rows", "accessible pdf from word", "document accessibility", "docx accessibility"], priority: 9 },
+  { url: "/guides/accessible-powerpoint-presentations", title: "How to Make PowerPoint Presentations Accessible", description: "PowerPoint accessibility in Microsoft 365: unique and hidden slide titles, layouts and placeholders, reading order and the reversed Selection Pane, alt text for charts and SmartArt, tables, link text, contrast, font size, motion, captions, Check Accessibility, PDF export and presenting with live subtitles, with a checklist", type: "guide", keywords: ["how to make powerpoint accessible", "powerpoint accessibility", "powerpoint accessibility checklist", "powerpoint reading order", "accessible powerpoint slides", "alt text powerpoint", "slide titles accessibility", "hidden slide title", "selection pane reading order", "reading order pane", "powerpoint captions", "powerpoint live subtitles", "pptx accessibility", "accessible presentations"], priority: 9 },
   { url: "/guides/cognitive-accessibility", title: "Cognitive Accessibility & Plain Language Guide", description: "Design for cognitive accessibility: plain language and reading level, scannable structure, consistent navigation and help, reduced memory load, and forgiving forms, mapped to the WCAG 2.2 cognitive criteria (3.2.6 Consistent Help, 3.3.7 Redundant Entry, 3.3.8 Accessible Authentication) and the W3C COGA guidance", type: "guide", keywords: ["cognitive accessibility", "plain language", "cognitive disability accessibility", "accessible content", "wcag cognitive", "coga", "making content usable", "readability accessibility", "reading level", "memory load accessibility", "accessible authentication", "redundant entry", "consistent help", "neurodiversity web accessibility", "low literacy accessibility", "dyslexia web content", "attention accessibility", "plain language guidelines", "wcag 3.3.8", "wcag 3.3.7"], priority: 9 },
   { url: "/guides/using-aria", title: "How to Use ARIA: Roles, States & Properties", description: "The cornerstone guide to using ARIA correctly: the five rules of ARIA, when native HTML wins, roles vs states vs properties, accessible names (aria-label vs aria-labelledby vs aria-describedby), landmark roles, the aria-hidden traps that break keyboard users, live regions, and the most common ARIA mistakes, mapped to WCAG 2.2", type: "guide", keywords: ["how to use aria", "using aria", "wai-aria", "aria roles states and properties", "aria roles", "five rules of aria", "rules of aria", "when not to use aria", "no aria is better than bad aria", "aria-label vs aria-labelledby", "aria-labelledby", "aria-describedby", "aria-hidden", "aria landmark roles", "aria live regions", "accessible name computation", "aria best practices", "wai-aria guide", "aria accessibility", "aria attributes"], priority: 9 },
   { url: "/guides/focus-management", title: "Focus Management Guide", description: "tabindex, :focus-visible, focus traps, restoration, roving tabindex, skip links, and route-change focus, mapped to WCAG 2.2", type: "guide", keywords: ["focus management", "tabindex", "focus-visible", "focus trap", "focus order", "roving tabindex", "skip link", "programmatic focus", "focus restoration", "wcag 2.4.3", "wcag 2.4.7", "focus not obscured"], priority: 9 },
@@ -660,6 +738,13 @@ function tokenize(text: string): string[] {
     .split(/\s+/)
     .map((t) => t.replace(/^[.-]+|[.-]+$/g, ""))
     .filter((t) => t.length >= 3 && !STOPWORDS.has(t))
+}
+
+const descriptionsByUrl = new Map(ALL_LINKS.map((link) => [link.url, link.description]))
+
+/** The one-line description of a page, for indexes such as /llms.txt. */
+export function linkDescriptionFor(url: string): string | undefined {
+  return descriptionsByUrl.get(url)
 }
 
 /**
