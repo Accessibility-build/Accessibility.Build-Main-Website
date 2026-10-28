@@ -363,6 +363,83 @@ function escapeHtml(value: string): string {
  * it goes to LEAD_NOTIFICATION_EMAIL (or the public contact address) and sets
  * the visitor as reply-to so answering the email answers the lead. Never throws.
  */
+export async function sendAssistantLeadNotification(data: {
+  leadId: string
+  to: string
+  name: string
+  email: string
+  organisation: string
+  website: string | null
+  message: string
+  summary: string | null
+  services: string[]
+  urgency: string | null
+  trigger: string | null
+  score: number
+  pagePath: string | null
+  conversationUrl: string
+  source: 'ai_offer' | 'manual'
+}): Promise<EmailSendResult> {
+  if (!isEmailServiceEnabled()) {
+    return { success: false, error: 'Email sending is not configured.' }
+  }
+
+  const who = data.organisation ? `${data.name} (${data.organisation})` : data.name
+  const urgent = data.urgency === 'urgent' ? 'Urgent ' : ''
+  const subject = `${urgent}Curb lead: ${who}, score ${data.score}`
+  const details: [string, string][] = [
+    ['Name', data.name],
+    ['Email', data.email],
+    ['Organisation', data.organisation || 'Not given'],
+    ['Website', data.website || 'Not given'],
+    ['Services', data.services.length ? data.services.join(', ') : 'Not identified'],
+    ['Urgency', data.urgency ?? 'Unknown'],
+    ['What is driving it', data.trigger ?? 'Unknown'],
+    ['Lead score', `${data.score}/100`],
+    ['Asked on', data.pagePath ?? 'Unknown page'],
+    ['How the form appeared', data.source === 'manual' ? 'Visitor opened it themselves' : 'Curb offered it after judging the conversation'],
+  ]
+
+  const text = [
+    `${who} asked for help through the Curb assistant.`,
+    '',
+    'Their message:',
+    data.message,
+    '',
+    ...(data.summary ? ["Curb's read of the conversation:", data.summary, ''] : []),
+    ...details.map(([label, value]) => `${label}: ${value}`),
+    '',
+    `Full conversation: ${data.conversationUrl}`,
+    'The lead is also in the admin prospects list under the Inbound tier. Reply to this email to answer them directly.',
+  ].join('\n')
+
+  const html = `
+    <div style="font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;line-height:1.6;color:#0f172a">
+      <p><strong>${escapeHtml(who)}</strong> asked for help through the Curb assistant.</p>
+      <p style="margin-bottom:4px">Their message:</p>
+      <blockquote style="margin:0 0 16px;padding-left:12px;border-left:3px solid #2563eb;white-space:pre-wrap">${escapeHtml(data.message)}</blockquote>
+      ${data.summary ? `<p><strong>Curb&#39;s read of the conversation:</strong> ${escapeHtml(data.summary)}</p>` : ''}
+      <table style="border-collapse:collapse">${details
+        .map(([label, value]) => `<tr><th scope="row" style="text-align:left;padding:2px 12px 2px 0;vertical-align:top">${escapeHtml(label)}</th><td style="padding:2px 0">${escapeHtml(value)}</td></tr>`)
+        .join('')}</table>
+      <p><a href="${escapeHtml(data.conversationUrl)}">Read the full conversation</a>. The lead is also in the admin prospects list under the Inbound tier. Reply to this email to answer them directly.</p>
+    </div>`
+
+  try {
+    return await sendEmailViaResend({
+      to: data.to,
+      subject,
+      html,
+      text,
+      replyTo: data.email,
+      idempotencyKey: `assistant_lead_${data.leadId}`,
+      emailType: 'assistant_lead',
+    })
+  } catch (error) {
+    return { success: false, error: error instanceof Error ? error.message : String(error) }
+  }
+}
+
 export async function sendInboundScanLeadNotification(data: {
   scanId: string
   to: string

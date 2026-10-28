@@ -19,9 +19,14 @@ export const dynamic = "force-dynamic"
 
 const RANGE_LABELS: Record<RangeDays, string> = { 1: "24 hours", 7: "7 days", 30: "30 days", 90: "90 days" }
 
-export default async function AdminAssistantPage({ searchParams }: { searchParams: Promise<{ range?: string }> }) {
+export default async function AdminAssistantPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ range?: string; conversation?: string }>
+}) {
   await requireAdmin("/admin/assistant")
-  const requested = Number((await searchParams).range)
+  const params = await searchParams
+  const requested = Number(params.range)
   const range: RangeDays = (RANGE_OPTIONS as readonly number[]).includes(requested) ? (requested as RangeDays) : 7
 
   // Retention is enforced here as well as on write, so expired rows never show.
@@ -34,7 +39,7 @@ export default async function AdminAssistantPage({ searchParams }: { searchParam
         <AdminPageHeader
           eyebrow="Operations"
           title={`${ASSISTANT_NAME} analytics`}
-          description={`What visitors ask the ${ASSISTANT_NAME} assistant, where they ask it, how well it answers, and what it costs. Days and hours are in ${REPORT_TIME_ZONE_LABEL}. Conversations are kept for ${ASSISTANT_RETENTION_DAYS} days.`}
+          description={`What visitors ask the ${ASSISTANT_NAME} assistant, who wants to hire, the leads it captures, how well it answers, and what it costs. Days and hours are in ${REPORT_TIME_ZONE_LABEL}. Conversations are kept for ${ASSISTANT_RETENTION_DAYS} days.`}
           actions={
             <>
               <nav aria-label="Time range" className="flex flex-wrap gap-1 rounded-lg border border-slate-200 p-1 dark:border-slate-800">
@@ -76,6 +81,7 @@ export default async function AdminAssistantPage({ searchParams }: { searchParam
             rangeLabel={RANGE_LABELS[range]}
             timeZone={REPORT_TIME_ZONE}
             timeZoneLabel={REPORT_TIME_ZONE_LABEL}
+            initialConversation={params.conversation?.slice(0, 64) || null}
           />
         )}
       </div>

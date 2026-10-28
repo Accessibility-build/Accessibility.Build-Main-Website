@@ -2,14 +2,23 @@ import { randomUUID } from "node:crypto"
 import { NextRequest, NextResponse, after } from "next/server"
 import { auth } from "@clerk/nextjs/server"
 import { streamText } from "ai"
-import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
 import { z } from "zod"
 import { isOpenRouterConfigured } from "@/lib/openrouter"
 import { createRateLimit } from "@/lib/rate-limit"
-import { ASSISTANT_LIMITS, PRIVATE_ROUTE_PREFIXES, matchesPrefix, splitLanguageMarker, type AssistantSource } from "@/lib/assistant/config"
+import {
+  ASSISTANT_LIMITS,
+  META_SEPARATOR,
+  PRIVATE_ROUTE_PREFIXES,
+  matchesPrefix,
+  splitLanguageMarker,
+  type AssistantSource,
+  type LeadOffer,
+} from "@/lib/assistant/config"
 import { findPage, searchSite } from "@/lib/assistant/search"
 import { buildSystemPrompt, type PageContext } from "@/lib/assistant/prompt"
 import { isSameOriginRequest, recordAssistantMessage, requestFacts } from "@/lib/assistant/analytics"
+import { classifyIntent, leadScore, shouldOfferContact, type IntentResult } from "@/lib/assistant/intent"
+import { ASSISTANT_MODEL, NO_REASONING, openrouter } from "@/lib/assistant/model"
 import type { NewAssistantMessage } from "@/lib/db/schema"
 
 // Curb, the site's accessibility assistant. Free and anonymous, so it is rate limited per
@@ -20,22 +29,18 @@ import type { NewAssistantMessage } from "@/lib/db/schema"
 export const runtime = "nodejs"
 export const maxDuration = 60
 
-// Haiku through OpenRouter: the key is already configured for the site's other AI tools.
-const MODEL = process.env.ASSISTANT_MODEL || "anthropic/claude-haiku-5.5"
+const MODEL = ASSISTANT_MODEL
 
-// The generic OpenAI-compatible provider, not @ai-sdk/openai: that one treats any model id it
-// does not recognise as an OpenAI reasoning model, which drops temperature and sends the system
-// prompt as a "developer" message. includeUsage makes the stream report token counts.
-const openrouter = createOpenAICompatible({
-  name: "openrouter",
-  baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.OPENROUTER_API_KEY,
-  headers: {
-    "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL || "https://accessibility.build",
-    "X-Title": "Accessibility.build Curb assistant",
-  },
-  includeUsage: true,
-})
+/** Resolves to null if the promise takes longer than `ms`. */
+function within<T>(promise: Promise<T>, ms: number): Promise<T | null> {
+  let timer: ReturnType<typeof setTimeout> | undefined
+  return Promise.race([
+    promise.finally(() => clearTimeout(timer)),
+    new Promise<null>((resolve) => {
+      timer = setTimeout(() => resolve(null), ms)
+    }),
+  ])
+}
 
 const HUB_PAGES = new Set([
   "/",
@@ -72,6 +77,7 @@ const MessageSchema = z.object({
 const BodySchema = z.object({
   messages: z.array(MessageSchema).min(1).max(40),
   conversationId: z.string().trim().min(1).max(64).optional(),
+  leadState: z.enum(["none", "offered", "submitted", "dismissed"]).optional().default("none"),
   page: z
     .object({
       path: z.string().max(500),
@@ -158,6 +164,15 @@ export async function POST(request: NextRequest) {
   const query = [question.content, question.content, ...earlierQuestions, refersToPage ? page?.title ?? "" : ""]
   const hits = searchSite(query.join(" "), { limit: 6 })
 
+  // What the visitor wants, judged by a second model call on the conversation. It runs while the
+  // answer streams; its verdict is appended after the answer text and logged with the question.
+  const intentPromise: Promise<IntentResult | null> = classifyIntent({
+    history,
+    page: page ? { path: page.path, title: page.title } : null,
+    leadState: body.leadState,
+    signal: request.signal,
+  })
+
   // Section index pages still inform the answer, but a link to one is rarely the useful next step.
   const sources: AssistantSource[] = []
   for (const hit of hits) {
@@ -190,25 +205,35 @@ export async function POST(request: NextRequest) {
     ])
     clearTimeout(timer)
     request.signal.removeEventListener("abort", stopped)
+    const intent = await within(intentPromise, 15_000)
     await recordAssistantMessage({
       ...baseRow,
       searchHits: hits.length,
       topScore: hits[0]?.score ?? null,
       sources,
       firstTokenMs: firstTokenAt ? firstTokenAt - startedAt : null,
+      intent: intent?.intent ?? null,
+      intentConfidence: intent?.confidence ?? null,
+      intentServices: intent?.services ?? null,
+      intentUrgency: intent?.urgency ?? null,
+      intentTrigger: intent?.trigger ?? null,
+      intentSummary: intent?.summary ?? null,
+      leadScore: intent ? leadScore(intent) : null,
+      leadOffered: patch.status === "answered" && shouldOfferContact(intent, body.leadState),
       ...patch,
     })
   })
 
   const result = streamText({
     model: openrouter.chatModel(MODEL),
-    system: buildSystemPrompt({ hits, page, today: new Date().toISOString().slice(0, 10) }),
+    system: buildSystemPrompt({ hits, page, leadState: body.leadState, today: new Date().toISOString().slice(0, 10) }),
     messages: history.map((m) => ({
       role: m.role,
       content: m.role === "assistant" ? m.content.slice(0, 4000) : m.content,
     })),
-    maxOutputTokens: 1200,
+    maxOutputTokens: 1500,
     temperature: 0.3,
+    providerOptions: NO_REASONING,
     abortSignal: request.signal,
     onChunk: ({ chunk }) => {
       if (chunk.type !== "text-delta") return
@@ -233,8 +258,44 @@ export async function POST(request: NextRequest) {
     onAbort: stopped,
   })
 
-  return result.toTextStreamResponse({
+  // The answer text, then META_SEPARATOR and a JSON object saying whether to show the contact
+  // form. The classifier has usually finished long before the answer; if not, the form is
+  // skipped rather than holding the stream open.
+  const encoder = new TextEncoder()
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      try {
+        for await (const delta of result.textStream) controller.enqueue(encoder.encode(delta))
+        const intent = await within(intentPromise, 3_000)
+        const lead: LeadOffer | null =
+          intent && shouldOfferContact(intent, body.leadState)
+            ? {
+                services: intent.services,
+                prefill: {
+                  name: intent.name ?? "",
+                  email: intent.email ?? "",
+                  organisation: intent.organisation ?? "",
+                  website: intent.website ?? "",
+                  message: intent.requestDraft,
+                },
+              }
+            : null
+        controller.enqueue(encoder.encode(`${META_SEPARATOR}${JSON.stringify({ lead })}`))
+      } catch {
+        // The visitor stopped the answer or left; the outcome is recorded by the abort handler.
+      } finally {
+        try {
+          controller.close()
+        } catch {
+          // Already closed by a cancelled request.
+        }
+      }
+    },
+  })
+
+  return new Response(stream, {
     headers: {
+      "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "no-store",
       "X-Assistant-Message-Id": messageId,
       "X-Assistant-Sources": encodeURIComponent(JSON.stringify(sources)),

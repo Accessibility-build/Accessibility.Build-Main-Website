@@ -17,6 +17,10 @@ export const ASSISTANT_EVENT_TYPES = [
   "source_clicked",
   "answer_link_clicked",
   "new_chat",
+  "lead_form_shown",
+  "lead_form_opened",
+  "lead_dismissed",
+  "lead_submitted",
 ] as const
 export type AssistantEventType = (typeof ASSISTANT_EVENT_TYPES)[number]
 

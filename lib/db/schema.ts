@@ -630,9 +630,20 @@ export const assistantMessages = pgTable('assistant_messages', {
   feedbackAt: timestamp('feedback_at'),
   device: text('device'), // mobile | tablet | desktop
   country: text('country'), // ISO code from the hosting provider's IP lookup
+  // What the visitor wants, judged by a separate model call on the conversation
+  // (lib/assistant/intent.ts), not by keywords. Null when the classifier did not answer.
+  intent: text('intent'), // hire | evaluate | learn | support | other
+  intentConfidence: real('intent_confidence'),
+  intentServices: jsonb('intent_services').$type<string[]>(),
+  intentUrgency: text('intent_urgency'), // none | soon | urgent
+  intentTrigger: text('intent_trigger'), // legal_threat | procurement | regulatory_deadline | redesign_or_launch | proactive | unknown
+  intentSummary: text('intent_summary'), // One line for the sales side
+  leadScore: integer('lead_score'),
+  leadOffered: boolean('lead_offered').notNull().default(false), // Contact form shown under this answer
   createdAt: timestamp('created_at').defaultNow().notNull(),
 }, (t) => ({
   createdIdx: index('assistant_messages_created_idx').on(t.createdAt),
+  intentIdx: index('assistant_messages_intent_idx').on(t.intent),
   conversationIdx: index('assistant_messages_conversation_idx').on(t.conversationId),
   pageIdx: index('assistant_messages_page_idx').on(t.pagePath),
   statusIdx: index('assistant_messages_status_idx').on(t.status),
@@ -656,6 +667,36 @@ export const assistantEvents = pgTable('assistant_events', {
   typeIdx: index('assistant_events_type_idx').on(t.type),
 }))
 
+// Contact requests sent from Curb's lead form. Business correspondence, so these are not
+// part of the 90-day purge. Each one is also upserted into `prospects` (tier "inbound").
+export const assistantLeads = pgTable('assistant_leads', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  conversationId: text('conversation_id').notNull(),
+  messageId: uuid('message_id'), // The answer the form was offered under, when there was one
+  source: text('source').notNull(), // ai_offer | manual
+  name: text('name').notNull(),
+  email: text('email').notNull(),
+  organisation: text('organisation'),
+  website: text('website'),
+  message: text('message').notNull(),
+  services: jsonb('services').$type<string[]>(),
+  urgency: text('urgency'),
+  trigger: text('trigger'),
+  aiSummary: text('ai_summary'),
+  score: integer('score').notNull().default(0),
+  pagePath: text('page_path'),
+  prospectId: uuid('prospect_id'),
+  visitorHash: text('visitor_hash'),
+  country: text('country'),
+  device: text('device'),
+  notified: boolean('notified').notNull().default(false), // Notification email accepted by Resend
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (t) => ({
+  createdIdx: index('assistant_leads_created_idx').on(t.createdAt),
+  emailIdx: index('assistant_leads_email_idx').on(t.email),
+}))
+
+export type AssistantLead = typeof assistantLeads.$inferSelect
 export type AssistantMessage = typeof assistantMessages.$inferSelect
 export type NewAssistantMessage = typeof assistantMessages.$inferInsert
 export type NewAssistantEvent = typeof assistantEvents.$inferInsert

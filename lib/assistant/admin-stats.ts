@@ -45,6 +45,14 @@ export interface PeriodTotals {
   sourceClicks: number
   answerLinkClicks: number
   newChats: number
+  serviceInterest: number
+  serviceConversations: number
+  hireIntent: number
+  leadOffers: number
+  leads: number
+  manualLeads: number
+  leadFormsOpened: number
+  leadDismissals: number
 }
 
 export interface DailyPoint {
@@ -80,6 +88,31 @@ export interface AssistantLogEntry {
   signedIn: boolean
   refersToPage: boolean
   pageContextSent: boolean
+  intent: string | null
+  intentSummary: string | null
+  leadScore: number | null
+  leadOffered: boolean
+}
+
+export interface LeadEntry {
+  id: string
+  createdAt: string
+  conversationId: string
+  source: string
+  name: string
+  email: string
+  organisation: string | null
+  website: string | null
+  message: string
+  services: string[]
+  urgency: string | null
+  trigger: string | null
+  aiSummary: string | null
+  score: number
+  pagePath: string | null
+  prospectId: string | null
+  notified: boolean
+  country: string | null
 }
 
 export type AssistantStats =
@@ -102,6 +135,10 @@ export type AssistantStats =
       devices: { label: string; conversations: number }[]
       countries: { label: string; conversations: number }[]
       models: { model: string; questions: number; inputTokens: number; outputTokens: number; costUsd: number }[]
+      intents: { intent: string; count: number }[]
+      services: { service: string; count: number }[]
+      triggers: { trigger: string; count: number }[]
+      leads: LeadEntry[]
       log: AssistantLogEntry[]
     }
 
@@ -144,8 +181,16 @@ async function periodTotals(from: Date, to: Date): Promise<PeriodTotals> {
       count(*) filter (where ${ASKED} and refers_to_page) as about_page,
       percentile_cont(0.5) within group (order by latency_ms) filter (where status = 'answered') as p50_latency,
       percentile_cont(0.9) within group (order by latency_ms) filter (where status = 'answered') as p90_latency,
-      percentile_cont(0.5) within group (order by first_token_ms) filter (where status = 'answered') as p50_first_token
+      percentile_cont(0.5) within group (order by first_token_ms) filter (where status = 'answered') as p50_first_token,
+      count(*) filter (where intent in ('hire', 'evaluate')) as service_interest,
+      count(distinct conversation_id) filter (where intent in ('hire', 'evaluate')) as service_conversations,
+      count(*) filter (where intent = 'hire') as hire,
+      count(*) filter (where lead_offered) as lead_offers
     from assistant_messages where ${inRange(from, to)}
+  `)
+  const [leadTotals] = await rows(sql`
+    select count(*) as n, count(*) filter (where source = 'manual') as manual
+    from assistant_leads where ${inRange(from, to)}
   `)
   const models = await rows(sql`
     select model, coalesce(sum(input_tokens), 0) as input_tokens, coalesce(sum(output_tokens), 0) as output_tokens
@@ -187,6 +232,14 @@ async function periodTotals(from: Date, to: Date): Promise<PeriodTotals> {
     sourceClicks: num(event("source_clicked")?.n),
     answerLinkClicks: num(event("answer_link_clicked")?.n),
     newChats: num(event("new_chat")?.n),
+    serviceInterest: num(m?.service_interest),
+    serviceConversations: num(m?.service_conversations),
+    hireIntent: num(m?.hire),
+    leadOffers: num(m?.lead_offers),
+    leads: num(leadTotals?.n),
+    manualLeads: num(leadTotals?.manual),
+    leadFormsOpened: num(event("lead_form_opened")?.n),
+    leadDismissals: num(event("lead_dismissed")?.n),
   }
 }
 
@@ -208,6 +261,25 @@ export async function getAssistantStats(range: RangeDays): Promise<AssistantStat
 
   try {
     const [current, previous] = await Promise.all([periodTotals(from, to), periodTotals(previousFrom, from)])
+
+    const [intentRows, serviceRows, triggerRows, leadRows] = await Promise.all([
+      rows(sql`
+        select coalesce(intent, 'unclassified') as intent, count(*) as n
+        from assistant_messages where ${ASKED} and ${inRange(from, to)} group by 1 order by 2 desc
+      `),
+      rows(sql`
+        select service, count(*) as n
+        from assistant_messages, jsonb_array_elements_text(coalesce(intent_services, '[]'::jsonb)) as service
+        where intent in ('hire', 'evaluate') and ${inRange(from, to)}
+        group by 1 order by 2 desc
+      `),
+      rows(sql`
+        select intent_trigger as trigger, count(*) as n from assistant_messages
+        where intent in ('hire', 'evaluate') and intent_trigger is not null and intent_trigger <> 'unknown' and ${inRange(from, to)}
+        group by 1 order by 2 desc
+      `),
+      rows(sql`select * from assistant_leads where ${inRange(from, to)} order by created_at desc limit 200`),
+    ])
 
     const [dailyRows, dailyOpens, hourRows, pageRows, repeatedRows, linkRows, suggestionRows, deviceRows, countryRows, modelRows, logRows, totalsRows] =
       await Promise.all([
@@ -311,6 +383,30 @@ export async function getAssistantStats(range: RangeDays): Promise<AssistantStat
       signedIn: r.user_id != null,
       refersToPage: Boolean(r.refers_to_page),
       pageContextSent: Boolean(r.page_context_sent),
+      intent: (r.intent as string | null) ?? null,
+      intentSummary: (r.intent_summary as string | null) ?? null,
+      leadScore: numOrNull(r.lead_score),
+      leadOffered: Boolean(r.lead_offered),
+    }))
+    const leads: LeadEntry[] = leadRows.map((r) => ({
+      id: String(r.id),
+      createdAt: r.created_at instanceof Date ? r.created_at.toISOString() : iso(r.created_at),
+      conversationId: String(r.conversation_id),
+      source: String(r.source),
+      name: String(r.name),
+      email: String(r.email),
+      organisation: (r.organisation as string | null) ?? null,
+      website: (r.website as string | null) ?? null,
+      message: String(r.message),
+      services: Array.isArray(r.services) ? (r.services as string[]) : [],
+      urgency: (r.urgency as string | null) ?? null,
+      trigger: (r.trigger as string | null) ?? null,
+      aiSummary: (r.ai_summary as string | null) ?? null,
+      score: num(r.score),
+      pagePath: (r.page_path as string | null) ?? null,
+      prospectId: (r.prospect_id as string | null) ?? null,
+      notified: Boolean(r.notified),
+      country: (r.country as string | null) ?? null,
     }))
 
     const since = totalsRows[0]?.since
@@ -349,6 +445,10 @@ export async function getAssistantStats(range: RangeDays): Promise<AssistantStat
         outputTokens: num(r.output_tokens),
         costUsd: costOf(String(r.model), num(r.input_tokens), num(r.output_tokens)),
       })),
+      intents: intentRows.map((r) => ({ intent: String(r.intent), count: num(r.n) })),
+      services: serviceRows.map((r) => ({ service: String(r.service), count: num(r.n) })),
+      triggers: triggerRows.map((r) => ({ trigger: String(r.trigger), count: num(r.n) })),
+      leads,
       log,
     }
   } catch (error) {
