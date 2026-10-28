@@ -486,12 +486,22 @@ export default function UrlAccessibilityAuditor() {
                       
                       <div className="flex items-center gap-2">
                         {currentAudit.status === 'completed' && (
-                          <Button variant="outline" size="sm" onClick={() => copyToClipboard(currentAudit.url, "URL")}>
-                            {copied === "URL" ? <CheckCircle className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => copyToClipboard(currentAudit.url, "URL")}
+                            aria-label={copied === "URL" ? "Page address copied" : "Copy page address"}
+                          >
+                            {copied === "URL" ? <CheckCircle className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
                           </Button>
                         )}
-                        <Button variant="outline" size="sm" onClick={deleteAudit}>
-                          <Trash2 className="h-4 w-4" />
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={deleteAudit}
+                          aria-label={isSignedIn ? "Delete this audit" : "Clear this result"}
+                        >
+                          <Trash2 className="h-4 w-4" aria-hidden="true" />
                         </Button>
                       </div>
                     </div>
@@ -511,6 +521,7 @@ export default function UrlAccessibilityAuditor() {
                           <Progress 
                             value={currentAudit.status === 'processing' ? 75 : 25} 
                             className="h-3"
+                            aria-label="Audit progress"
                           />
                         </div>
 
@@ -595,6 +606,7 @@ export default function UrlAccessibilityAuditor() {
                           <Progress 
                             value={currentAudit.overallScore} 
                             className="h-2 mt-4"
+                            aria-label={`Accessibility score, ${currentAudit.overallScore} out of 100`}
                           />
                         </div>
                         
@@ -692,6 +704,7 @@ export default function UrlAccessibilityAuditor() {
                           <Progress 
                             value={currentAudit.overallScore} 
                             className="h-3"
+                            aria-label={`Accessibility score, ${currentAudit.overallScore} out of 100`}
                           />
                           
                           <div className="grid grid-cols-2 gap-3 mt-6">

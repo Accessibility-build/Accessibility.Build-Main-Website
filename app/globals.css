@@ -12,6 +12,8 @@
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 221.2 83.2% 53.3%;
     --primary-foreground: 210 40% 98%;
+    /* Solid hover for primary buttons: blue-700, 6.4:1 with the foreground. */
+    --primary-hover: 224.3 76.3% 48%;
     --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96%;
@@ -47,6 +49,8 @@
     --popover-foreground: 210 40% 98%;
     --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 84% 4.9%;
+    /* Dark mode text on primary is dark, so hover lightens: blue-400, 7.9:1. */
+    --primary-hover: 213.1 93.9% 67.8%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
@@ -435,4 +439,12 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* shadcn's default Button hovers to bg-primary/90, which lets the page show through the blue:
+   white text drops from 4.9:1 to 4.1:1 in light mode and fails WCAG 1.4.3 while hovered. Hover
+   to a solid colour instead. Two classes plus :hover outrank the single utility, so
+   components/ui stays as generated. */
+.bg-primary.hover\:bg-primary\/90:hover {
+  background-color: hsl(var(--primary-hover));
 }
