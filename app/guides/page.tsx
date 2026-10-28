@@ -113,7 +113,7 @@ const guides = [
   {
     title: "Fashion Nova's $5.15M Accessibility Settlement",
     description:
-      "A case study of Alcazar v. Fashion Nova — the second-largest web accessibility settlement on record. The ADA and California Unruh Act claims, the class structure, WCAG 2.1 remediation terms, and what every online retailer should learn from it.",
+      "A case study of Alcazar v. Fashion Nova, the second-largest web accessibility settlement on record. The ADA and California Unruh Act claims, the class structure, WCAG 2.1 remediation terms, and what every online retailer should learn from it.",
     icon: Gavel,
     difficulty: "Beginner",
     readingTime: "10 min",
@@ -124,7 +124,7 @@ const guides = [
   {
     title: "How Much Does an ADA Website Lawsuit Cost?",
     description:
-      "A data-backed breakdown of what a web accessibility lawsuit really costs in 2026 — from $1K demand letters to a $5.15M class action — what drives the number up or down, and why proactive remediation is almost always the cheaper path.",
+      "A data-backed breakdown of what a web accessibility lawsuit really costs in 2026 (from $1K demand letters to a $5.15M class action), what drives the number up or down, and why proactive remediation is almost always the cheaper path.",
     icon: DollarSign,
     difficulty: "Beginner",
     readingTime: "10 min",
@@ -201,7 +201,7 @@ const guides = [
   {
     title: "Section 504 Web Accessibility Deadline",
     description:
-      "The HHS Section 504 web rule took effect May 11, 2026 — and was not extended. Who's covered, what WCAG 2.1 AA requires for healthcare entities, and a six-step recovery plan if you missed the deadline.",
+      "The HHS Section 504 web rule took effect May 11, 2026, and was not extended. Who's covered, what WCAG 2.1 AA requires for healthcare entities, and a six-step recovery plan if you missed the deadline.",
     icon: HeartPulse,
     difficulty: "Intermediate",
     readingTime: "13 min",
@@ -278,7 +278,7 @@ const guides = [
   {
     title: "Accessible Charts & Data Visualization",
     description:
-      "A chart is a picture of data — the accessible version is the data itself, as text. Learn the data table that is the real text alternative, choosing SVG vs canvas vs images, labelling an SVG with role=img and aria-labelledby, never coding a series by color alone, keeping axis labels as scalable text, keyboard-navigable interactive charts and hover-or-focus tooltips, and what charting libraries actually give you.",
+      "A chart is a picture of data. The accessible version is the data itself, as text. Learn the data table that is the real text alternative, choosing SVG vs canvas vs images, labelling an SVG with role=img and aria-labelledby, never coding a series by color alone, keeping axis labels as scalable text, keyboard-navigable interactive charts and hover-or-focus tooltips, and what charting libraries actually give you.",
     icon: BarChart3,
     difficulty: "Intermediate",
     readingTime: "22 min",
@@ -289,7 +289,7 @@ const guides = [
   {
     title: "Accessible Data Tables",
     description:
-      "A data table is accessible when the markup says which cell is a header for which data. Learn the semantic table, caption, and th scope structure, when to use scope vs the headers and id method for complex tables, responsive tables that survive 320px, sortable tables with aria-sort and named row controls, and when a plain table beats an ARIA grid — with copy-ready HTML mapped to WCAG 2.2.",
+      "A data table is accessible when the markup says which cell is a header for which data. Learn the semantic table, caption, and th scope structure, when to use scope vs the headers and id method for complex tables, responsive tables that survive 320px, sortable tables with aria-sort and named row controls, and when a plain table beats an ARIA grid. Includes copy-ready HTML mapped to WCAG 2.2.",
     icon: Table,
     difficulty: "Intermediate",
     readingTime: "22 min",
@@ -355,7 +355,7 @@ const guides = [
   {
     title: "React Accessibility Guide",
     description:
-      "Build accessible React apps: semantic JSX, focus management on route changes, accessible modals, ARIA in JSX, live-region announcements, forms with useId, and a testing workflow with eslint-plugin-jsx-a11y, jest-axe, and Playwright — mapped to WCAG 2.2 AA.",
+      "Build accessible React apps: semantic JSX, focus management on route changes, accessible modals, ARIA in JSX, live-region announcements, forms with useId, and a testing workflow with eslint-plugin-jsx-a11y, jest-axe, and Playwright. Mapped to WCAG 2.2 AA.",
     icon: Code2,
     difficulty: "Intermediate",
     readingTime: "20 min",
@@ -366,7 +366,7 @@ const guides = [
   {
     title: "Angular Accessibility Guide",
     description:
-      "Build accessible Angular apps: semantic templates, ARIA binding with [attr.aria-*], focus management on router navigation, dialogs with cdkTrapFocus, LiveAnnouncer for dynamic updates, accessible reactive forms, and testing with @angular-eslint, jasmine-axe, and Playwright — mapped to WCAG 2.2 AA.",
+      "Build accessible Angular apps: semantic templates, ARIA binding with [attr.aria-*], focus management on router navigation, dialogs with cdkTrapFocus, LiveAnnouncer for dynamic updates, accessible reactive forms, and testing with @angular-eslint, jasmine-axe, and Playwright. Mapped to WCAG 2.2 AA.",
     icon: Braces,
     difficulty: "Intermediate",
     readingTime: "20 min",
@@ -377,7 +377,7 @@ const guides = [
   {
     title: "Vue Accessibility Guide",
     description:
-      "Build accessible Vue 3 apps: semantic templates, reactive :aria-* binding, focus on Vue Router navigation, dialogs with Teleport, live regions that actually announce, the $attrs fallthrough fix, accessible forms, and testing with eslint-plugin-vuejs-accessibility and vitest-axe — mapped to WCAG 2.2 AA.",
+      "Build accessible Vue 3 apps: semantic templates, reactive :aria-* binding, focus on Vue Router navigation, dialogs with Teleport, live regions that actually announce, the $attrs fallthrough fix, accessible forms, and testing with eslint-plugin-vuejs-accessibility and vitest-axe. Mapped to WCAG 2.2 AA.",
     icon: Component,
     difficulty: "Intermediate",
     readingTime: "20 min",
@@ -388,7 +388,7 @@ const guides = [
   {
     title: "Svelte Accessibility Guide",
     description:
-      "Build accessible Svelte 5 and SvelteKit apps: the compiler's built-in a11y warnings, reactive ARIA with runes, focus traps packaged as use: actions, SvelteKit route announcements and focus, live regions that announce, accessible forms, and testing with svelte-check and vitest-axe — mapped to WCAG 2.2 AA.",
+      "Build accessible Svelte 5 and SvelteKit apps: the compiler's built-in a11y warnings, reactive ARIA with runes, focus traps packaged as use: actions, SvelteKit route announcements and focus, live regions that announce, accessible forms, and testing with svelte-check and vitest-axe. Mapped to WCAG 2.2 AA.",
     icon: Flame,
     difficulty: "Intermediate",
     readingTime: "22 min",
@@ -399,7 +399,7 @@ const guides = [
   {
     title: "Mobile Accessibility Guide",
     description:
-      "Build accessible mobile apps and mobile web: touch target sizing, pointer gestures and cancellation, orientation and text scaling, native iOS (UIKit & SwiftUI), native Android (View & Jetpack Compose), mobile web, and VoiceOver + TalkBack testing — mapped to WCAG 2.2 AA and WCAG2ICT.",
+      "Build accessible mobile apps and mobile web: touch target sizing, pointer gestures and cancellation, orientation and text scaling, native iOS (UIKit & SwiftUI), native Android (View & Jetpack Compose), mobile web, and VoiceOver + TalkBack testing. Mapped to WCAG 2.2 AA and WCAG2ICT.",
     icon: TabletSmartphone,
     difficulty: "Intermediate",
     readingTime: "24 min",
@@ -410,7 +410,7 @@ const guides = [
   {
     title: "Accessible Forms Guide",
     description:
-      "Build forms everyone can complete. Labels, required fields, inline validation, accessible error messages tied with aria-describedby, fieldset grouping, autocomplete, and multi-step patterns — mapped to WCAG 2.2 AA with copy-ready code.",
+      "Build forms everyone can complete. Labels, required fields, inline validation, accessible error messages tied with aria-describedby, fieldset grouping, autocomplete, and multi-step patterns. Mapped to WCAG 2.2 AA, with copy-ready code.",
     icon: FormInput,
     difficulty: "Intermediate",
     readingTime: "22 min",
@@ -421,7 +421,7 @@ const guides = [
   {
     title: "Accessible Form Validation & Error Handling",
     description:
-      "Error handling is where forms fail. Learn when to validate (submit vs blur vs keystroke), tying an error to its field with aria-invalid and aria-describedby, the error-summary pattern with focus management, announcing errors through live regions without double-speaking, error suggestion and prevention, and WCAG 2.2's Redundant Entry and Accessible Authentication — mapped to WCAG 3.3.1 through 3.3.9.",
+      "Error handling is where forms fail. Learn when to validate (submit vs blur vs keystroke), tying an error to its field with aria-invalid and aria-describedby, the error-summary pattern with focus management, announcing errors through live regions without double-speaking, error suggestion and prevention, and WCAG 2.2's Redundant Entry and Accessible Authentication. Mapped to WCAG 3.3.1 through 3.3.9.",
     icon: ShieldAlert,
     difficulty: "Intermediate",
     readingTime: "24 min",
@@ -443,7 +443,7 @@ const guides = [
   {
     title: "Focus Management Guide",
     description:
-      "The complete guide to managing keyboard focus: tabindex, :focus-visible, moving focus programmatically, focus traps, restoration, roving tabindex, skip links, and route-change focus — mapped to WCAG 2.2 (2.4.3, 2.4.7, 2.4.11) with copy-ready code.",
+      "The complete guide to managing keyboard focus: tabindex, :focus-visible, moving focus programmatically, focus traps, restoration, roving tabindex, skip links, and route-change focus. Mapped to WCAG 2.2 (2.4.3, 2.4.7, 2.4.11), with copy-ready code.",
     icon: Focus,
     difficulty: "Intermediate",
     readingTime: "24 min",
@@ -498,7 +498,7 @@ const guides = [
   {
     title: "Accessible Tabs Guide",
     description:
-      "Build tabs the right way with the WAI-ARIA Tabs pattern: the tablist, tab, and tabpanel roles, aria-selected and aria-controls, roving tabindex, arrow-key navigation, automatic vs manual activation, and vertical tabs — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
+      "Build tabs the right way with the WAI-ARIA Tabs pattern: the tablist, tab, and tabpanel roles, aria-selected and aria-controls, roving tabindex, arrow-key navigation, automatic vs manual activation, and vertical tabs. Includes copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
     icon: AppWindow,
     difficulty: "Intermediate",
     readingTime: "18 min",
@@ -509,7 +509,7 @@ const guides = [
   {
     title: "Accessible Accordion & Disclosure Guide",
     description:
-      "Build accordions and disclosure widgets the right way: the aria-expanded state, the button-in-heading structure, aria-controls, the native details and summary element, single vs multi-expand, and the keyboard model — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
+      "Build accordions and disclosure widgets the right way: the aria-expanded state, the button-in-heading structure, aria-controls, the native details and summary element, single vs multi-expand, and the keyboard model. Includes copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
     icon: ListCollapse,
     difficulty: "Intermediate",
     readingTime: "16 min",
@@ -520,7 +520,7 @@ const guides = [
   {
     title: "Accessible Combobox & Autocomplete Guide",
     description:
-      "Build autocomplete the right way with the WAI-ARIA Combobox pattern: role=combobox on the input, aria-expanded, aria-autocomplete, and the aria-activedescendant focus model that keeps focus in the field while arrow keys move a virtual highlight — with copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
+      "Build autocomplete the right way with the WAI-ARIA Combobox pattern: role=combobox on the input, aria-expanded, aria-autocomplete, and the aria-activedescendant focus model that keeps focus in the field while arrow keys move a virtual highlight. Includes copy-ready HTML, JavaScript, and React mapped to WCAG 2.2.",
     icon: TextSearch,
     difficulty: "Advanced",
     readingTime: "20 min",
@@ -586,7 +586,7 @@ const guides = [
   {
     title: "Accessible Data Grid Guide",
     description:
-      "A data grid is a table the user operates, not one they read. Learn the role=grid / row / gridcell structure built on a real <table>, two-dimensional arrow-key navigation, roving tabindex, the two focus modes (Enter to enter a cell, Escape to leave), editable cells, selection, and aria-rowcount / rowindex / colindex for virtualized grids — plus when a plain semantic table is the better choice.",
+      "A data grid is a table the user operates, not one they read. Learn the role=grid / row / gridcell structure built on a real <table>, two-dimensional arrow-key navigation, roving tabindex, the two focus modes (Enter to enter a cell, Escape to leave), editable cells, selection, and aria-rowcount / rowindex / colindex for virtualized grids, plus when a plain semantic table is the better choice.",
     icon: Grid3x3,
     difficulty: "Advanced",
     readingTime: "24 min",
@@ -597,7 +597,7 @@ const guides = [
   {
     title: "Accessible Listbox Guide",
     description:
-      "A listbox lets a user pick from a set of choices — one, or several. Learn the role=listbox / option / group structure, single-select where selection follows focus, multi-select with aria-multiselectable and Space to toggle, aria-selected, the roving-tabindex vs aria-activedescendant focus choice, grouped and disabled options, type-ahead — and when a group of checkboxes or a native select is the better choice.",
+      "A listbox lets a user pick one or several choices from a set. Learn the role=listbox / option / group structure, single-select where selection follows focus, multi-select with aria-multiselectable and Space to toggle, aria-selected, the roving-tabindex vs aria-activedescendant focus choice, grouped and disabled options, type-ahead, and when a group of checkboxes or a native select is the better choice.",
     icon: List,
     difficulty: "Advanced",
     readingTime: "20 min",
@@ -641,7 +641,7 @@ const guides = [
   {
     title: "NVDA Screen Reader Testing Guide",
     description:
-      "The complete guide to testing with NVDA, the free Windows screen reader: install and configure it, master browse vs focus mode, use the NVDA modifier key and Elements List, and run a repeatable testing workflow with a full keyboard command cheat sheet — mapped to WCAG 2.2 AA.",
+      "The complete guide to testing with NVDA, the free Windows screen reader: install and configure it, master browse vs focus mode, use the NVDA modifier key and Elements List, and run a repeatable testing workflow with a full keyboard command cheat sheet. Mapped to WCAG 2.2 AA.",
     icon: Ear,
     difficulty: "Intermediate",
     readingTime: "18 min",
@@ -652,7 +652,7 @@ const guides = [
   {
     title: "VoiceOver Screen Reader Testing Guide",
     description:
-      "The complete guide to testing with VoiceOver, Apple's built-in screen reader on macOS and iOS: turn it on, master the VO keys and the Rotor, use iPhone gestures, and run a repeatable testing workflow with full macOS and iOS command cheat sheets — mapped to WCAG 2.2 AA.",
+      "The complete guide to testing with VoiceOver, Apple's built-in screen reader on macOS and iOS: turn it on, master the VO keys and the Rotor, use iPhone gestures, and run a repeatable testing workflow with full macOS and iOS command cheat sheets. Mapped to WCAG 2.2 AA.",
     icon: Signal,
     difficulty: "Intermediate",
     readingTime: "18 min",
@@ -663,7 +663,7 @@ const guides = [
   {
     title: "JAWS Screen Reader Testing Guide",
     description:
-      "The complete guide to testing with JAWS, the most widely used Windows screen reader: install it in demo mode, master the JAWS key, the Virtual Cursor and Forms Mode, quick navigation keys, and run a repeatable testing workflow with a full command cheat sheet — mapped to WCAG 2.2 AA.",
+      "The complete guide to testing with JAWS, the most widely used Windows screen reader: install it in demo mode, master the JAWS key, the Virtual Cursor and Forms Mode, quick navigation keys, and run a repeatable testing workflow with a full command cheat sheet. Mapped to WCAG 2.2 AA.",
     icon: AudioLines,
     difficulty: "Intermediate",
     readingTime: "18 min",
@@ -674,7 +674,7 @@ const guides = [
   {
     title: "TalkBack Screen Reader Testing Guide",
     description:
-      "The complete guide to testing with TalkBack, Android's built-in screen reader: turn it on, master explore by touch, swipe navigation, reading controls, and multi-finger gestures, and run a repeatable mobile testing workflow — mapped to WCAG 2.2 AA including Target Size and Pointer Gestures.",
+      "The complete guide to testing with TalkBack, Android's built-in screen reader: turn it on, master explore by touch, swipe navigation, reading controls, and multi-finger gestures, and run a repeatable mobile testing workflow. Mapped to WCAG 2.2 AA, including Target Size and Pointer Gestures.",
     icon: Smartphone,
     difficulty: "Intermediate",
     readingTime: "18 min",
@@ -685,7 +685,7 @@ const guides = [
   {
     title: "Accessibility Overlays: Why They Fail",
     description:
-      "An evidence-based look at accessibility overlay widgets — what they can and cannot fix, the lawsuit data on overlay-equipped sites, and what to do instead.",
+      "An evidence-based look at accessibility overlay widgets: what they can and cannot fix, the lawsuit data on overlay-equipped sites, and what to do instead.",
     icon: Layers,
     difficulty: "Beginner",
     readingTime: "20 min",
@@ -696,7 +696,7 @@ const guides = [
   {
     title: "Accessibility Overlay Alternatives",
     description:
-      "Real alternatives to overlay widgets ranked by effort and impact — remediation, automated testing in CI, professional audits, and training, with a cost comparison.",
+      "Real alternatives to overlay widgets ranked by effort and impact: remediation, automated testing in CI, professional audits, and training, with a cost comparison.",
     icon: GitCompareArrows,
     difficulty: "Beginner",
     readingTime: "20 min",
@@ -707,7 +707,7 @@ const guides = [
   {
     title: "How to Make PDFs Accessible",
     description:
-      "Complete guide to accessible PDFs — tags, headings, reading order, alt text, and PDF/UA conformance, plus how to test documents before you publish them.",
+      "Complete guide to accessible PDFs: tags, headings, reading order, alt text, and PDF/UA conformance, plus how to test documents before you publish them.",
     icon: FileText,
     difficulty: "Intermediate",
     readingTime: "25 min",
@@ -795,7 +795,7 @@ const guides = [
   {
     title: "axe vs WAVE: Testing Tools Compared",
     description:
-      "A factual comparison of the two most popular accessibility testing tools — strengths, workflows, pricing, and when to use each (or both).",
+      "A factual comparison of the two most popular accessibility testing tools: strengths, workflows, pricing, and when to use each (or both).",
     icon: Search,
     difficulty: "Beginner",
     readingTime: "15 min",
@@ -839,7 +839,7 @@ const categories = [
     slug: "screen-readers",
     label: "Screen Reader Testing",
     blurb:
-      "Test with the screen readers real users run — NVDA, JAWS, VoiceOver, and TalkBack.",
+      "Test with the screen readers real users run: NVDA, JAWS, VoiceOver, and TalkBack.",
     icon: AudioLines,
     hrefs: [
       "/guides/screen-reader-testing",
@@ -1056,7 +1056,7 @@ export default function GuidesPage() {
               Accessibility Guides
             </h1>
             <p className="mx-auto mb-8 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-400 md:text-xl">
-              In-depth, practical guides that go beyond theory — real code, live
+              In-depth, practical guides that go beyond theory: real code, live
               patterns, and testing workflows you can apply immediately, every
               one mapped to WCAG 2.2 AA.
             </p>
