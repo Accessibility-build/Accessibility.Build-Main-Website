@@ -46,7 +46,7 @@ export type IntentResult = z.infer<typeof IntentSchema>
 
 const SYSTEM = `You read conversations between visitors and Curb, the assistant on Accessibility.build, and judge what the visitor wants. Judge from meaning and context, not keywords, and use the whole conversation: a follow-up such as "ok, can you do that for us?" inherits the topic before it.
 
-Accessibility.build is run by Khushwant Parihar, a CPACC-certified accessibility specialist. It sells: accessibility audits (/services/accessibility-audits), remediation support (/services/remediation-support), PDF remediation (/services/pdf-remediation), compliance documentation such as VPATs, ACRs and accessibility statements (/services/compliance-documentation), accessibility training (/services/accessibility-training), design reviews (/services/design-reviews) and user testing with disabled people (/services/user-testing). It also offers free tools and guides, which are not sales.
+Accessibility.build is an accessibility consultancy. It sells: accessibility audits (/services/accessibility-audits), remediation support (/services/remediation-support), PDF remediation (/services/pdf-remediation), compliance documentation such as VPATs, ACRs and accessibility statements (/services/compliance-documentation), accessibility training (/services/accessibility-training), design reviews (/services/design-reviews) and user testing with disabled people (/services/user-testing). It also offers free tools and guides, which are not sales.
 
 Lead state tells you what already happened in this chat:
 - "submitted": the visitor already sent their details. Set offerContact to false.

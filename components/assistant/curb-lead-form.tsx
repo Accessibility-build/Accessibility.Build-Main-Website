@@ -8,8 +8,7 @@ import { company } from "@/lib/company"
 import { ASSISTANT_LEAD_ENDPOINT, type LeadOffer } from "@/lib/assistant/config"
 
 // The contact form Curb shows under an answer when it judges the visitor wants help from the
-// team, or when the visitor asks for a person. Prefilled from the conversation; nothing is sent
-// until the visitor presses Send.
+// team. Prefilled from the conversation; nothing is sent until the visitor presses Send.
 
 type Field = "name" | "email" | "organisation" | "website" | "message"
 type Values = Record<Field, string>
@@ -136,7 +135,7 @@ export function CurbLeadForm({
         Get help from the team
       </h4>
       <p className="mt-1 text-sm leading-6 text-muted-foreground">
-        Leave your details and {company.legalOperator} will reply by email within two business days. Nothing is sent until you
+        Leave your details and our team will reply by email within two business days. Nothing is sent until you
         press Send.
       </p>
       <form noValidate onSubmit={submit} className="mt-3 space-y-3">
@@ -229,7 +228,7 @@ export function CurbLeadSent({ name, email, autoFocus }: { name: string; email: 
     >
       <CheckCircle2 aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
       <p>
-        <strong className="font-semibold">Thanks, {name}.</strong> Your request is with {company.legalOperator}, who will reply to{" "}
+        <strong className="font-semibold">Thanks, {name}.</strong> Your request is with our team, and we will reply to{" "}
         {email} within two business days.
       </p>
     </div>
