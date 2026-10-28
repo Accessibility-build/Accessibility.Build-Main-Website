@@ -276,7 +276,7 @@ export default function WCAG248Page() {
               on the final crumb, and decorative separators kept out of the
               accessibility tree.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<nav aria-label="Breadcrumb">
   <ol class="breadcrumb">
     <li><a href="/">Home</a></li>
@@ -305,7 +305,7 @@ export default function WCAG248Page() {
               is announced by screen readers (&ldquo;current page&rdquo;); pair it
               with a visual treatment that does not rely on color alone.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<nav aria-label="Main">
   <ul>
     <li><a href="/products">Products</a></li>
@@ -339,7 +339,7 @@ export default function WCAG248Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Breadcrumb structured data (bonus for search)
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<script type="application/ld+json">
 {
   "@context": "https://schema.org",

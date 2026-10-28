@@ -24,7 +24,7 @@ export default function ModalsPatternPage() {
 
             <div className="pt-8 pb-6 px-4 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
                 <div className="max-w-6xl mx-auto">
-                    <Link href="/learn" className="inline-flex items-center gap-2 text-muted-foreground hover:text-sky-600 transition-colors mb-4 group text-sm">
+                    <Link href="/learn" className="inline-flex items-center gap-2 text-muted-foreground hover:text-sky-700 dark:hover:text-sky-400 transition-colors mb-4 group text-sm">
                         <ChevronRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" /> Back to Learn Hub
                     </Link>
                     <div className="flex items-center gap-4">
@@ -79,8 +79,8 @@ function InteractiveDemo({ bad, good }: { bad: React.ReactNode; good: React.Reac
     return (
         <div className="space-y-4">
             <div className="flex items-center gap-2 p-1 bg-muted rounded-full w-fit">
-                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
-                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-500 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
+                <button onClick={() => setShowGood(false)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", !showGood ? "bg-red-700 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><EyeOff className="w-4 h-4" /> Inaccessible</button>
+                <button onClick={() => setShowGood(true)} className={cn("flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all", showGood ? "bg-green-700 text-white shadow-md" : "text-muted-foreground hover:text-foreground")}><Eye className="w-4 h-4" /> Accessible</button>
             </div>
             <AnimatePresence mode="wait">
                 <motion.div key={showGood ? 'good' : 'bad'} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
@@ -100,7 +100,7 @@ function KeyPoint({ icon: Icon, title, children }: { icon: React.ElementType; ti
     return (
         <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm">
             <div className="p-2 bg-sky-100 rounded-lg h-fit"><Icon className="w-5 h-5 text-sky-600" /></div>
-            <div><h4 className="font-semibold text-foreground mb-1">{title}</h4><p className="text-sm text-muted-foreground">{children}</p></div>
+            <div><h3 className="font-semibold text-foreground mb-1">{title}</h3><p className="text-sm text-muted-foreground">{children}</p></div>
         </div>
     );
 }
@@ -116,7 +116,7 @@ function CodeBlock({ code, title }: { code: string; title?: string }) {
     return (
         <div className="rounded-xl overflow-hidden border border-border shadow-sm">
             {title && <div className="px-4 py-2 bg-muted border-b border-border text-sm font-medium text-foreground/90 flex items-center gap-2"><Code2 className="w-4 h-4" /> {title}</div>}
-            <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm"><code>{code}</code></pre>
+            <pre tabIndex={0} className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{code}</code></pre>
         </div>
     );
 }
@@ -179,7 +179,7 @@ function DialogBasicsSection() {
             <div className="p-6 rounded-2xl bg-sky-50 border border-sky-200">
                 <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-sky-500" /> Interactive Demo</h3>
                 <p className="text-muted-foreground mb-4">Click the button to open an accessible modal. Try pressing Escape, clicking outside, or using Tab.</p>
-                <Button onClick={() => setModalOpen(true)} className="bg-sky-500 hover:bg-sky-600"><ExternalLink className="w-4 h-4 mr-2" /> Open Accessible Modal</Button>
+                <Button onClick={() => setModalOpen(true)} className="bg-sky-700 text-white hover:bg-sky-800"><ExternalLink className="w-4 h-4 mr-2" /> Open Accessible Modal</Button>
                 <AccessibleModal isOpen={modalOpen} onClose={() => setModalOpen(false)} title="Example Dialog">
                     <p className="text-muted-foreground mb-4">This modal demonstrates proper accessibility patterns:</p>
                     <ul className="text-sm text-muted-foreground space-y-2 mb-6">
@@ -195,7 +195,7 @@ function DialogBasicsSection() {
                 </AccessibleModal>
             </div>
             <div className="grid lg:grid-cols-2 gap-6">
-                <div className="p-6 rounded-2xl bg-red-50 border border-red-200">
+                <div className="min-w-0 p-6 rounded-2xl bg-red-50 border border-red-200">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-red-700"><XCircle className="w-5 h-5" /> Don't: Generic Div</h3>
                     <CodeBlock code={`<!-- ❌ INACCESSIBLE -->
 <div class="modal">
@@ -205,7 +205,7 @@ function DialogBasicsSection() {
   </div>
 </div>`} />
                 </div>
-                <div className="p-6 rounded-2xl bg-green-50 border border-green-200">
+                <div className="min-w-0 p-6 rounded-2xl bg-green-50 border border-green-200">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-green-700"><CheckCircle2 className="w-5 h-5" /> Do: Semantic Dialog</h3>
                     <CodeBlock code={`<!-- ✅ ACCESSIBLE -->
 <div role="dialog" 
@@ -234,7 +234,7 @@ function FocusManagementSection() {
             <div className="p-6 rounded-2xl bg-violet-50 border border-violet-200">
                 <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-violet-500" /> Focus Flow Demo</h3>
                 <p className="text-muted-foreground mb-4">Open the modal and press Tab repeatedly. Notice how focus stays trapped inside.</p>
-                <Button onClick={() => setModalOpen(true)} className="bg-violet-500 hover:bg-violet-600"><ExternalLink className="w-4 h-4 mr-2" /> Test Focus Trap</Button>
+                <Button onClick={() => setModalOpen(true)} className="bg-violet-700 text-white hover:bg-violet-800"><ExternalLink className="w-4 h-4 mr-2" /> Test Focus Trap</Button>
                 <AccessibleModal isOpen={modalOpen} onClose={() => setModalOpen(false)} title="Focus Trap Demo">
                     <p className="text-muted-foreground mb-4">Press Tab to cycle through these buttons:</p>
                     <div className="space-y-3">
@@ -307,7 +307,7 @@ function BackdropScrollSection() {
             </div>
             <InteractiveDemo
                 bad={<div className="space-y-4">
-                    <div className="flex items-center gap-2 text-red-600 text-sm mb-4"><AlertTriangle className="w-4 h-4" /> Page scrolls behind modal, background is interactive!</div>
+                    <div className="flex items-center gap-2 text-red-700 text-sm mb-4"><AlertTriangle className="w-4 h-4" /> Page scrolls behind modal, background is interactive!</div>
                     <div className="relative p-4 border border-border rounded-lg bg-card">
                         <div className="absolute inset-0 bg-black/20 rounded-lg" />
                         <div className="relative bg-card p-4 rounded-lg shadow-lg max-w-xs mx-auto z-10 border">
@@ -318,13 +318,13 @@ function BackdropScrollSection() {
                     </div>
                 </div>}
                 good={<div className="space-y-4">
-                    <div className="flex items-center gap-2 text-green-600 text-sm mb-4"><CheckCircle2 className="w-4 h-4" /> Background is locked and dimmed!</div>
+                    <div className="flex items-center gap-2 text-green-700 text-sm mb-4"><CheckCircle2 className="w-4 h-4" /> Background is locked and dimmed!</div>
                     <div className="relative p-4 border border-border rounded-lg bg-card">
                         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm rounded-lg" aria-hidden="true" />
                         <div className="relative bg-card p-4 rounded-lg shadow-2xl max-w-xs mx-auto z-10 border-2 border-sky-200">
                             <h3 className="font-bold mb-2 text-foreground">Good Modal</h3>
                             <p className="text-sm text-muted-foreground mb-3">Background is locked and blurred.</p>
-                            <button className="px-4 py-2 bg-sky-500 text-white rounded">Close</button>
+                            <button className="px-4 py-2 bg-sky-700 text-white rounded">Close</button>
                         </div>
                     </div>
                 </div>}
@@ -361,8 +361,8 @@ function CommonIssuesSection() {
                         <div className="flex items-start gap-4">
                             <div className={cn("p-2 rounded-lg flex-shrink-0", issue.severity === 'critical' ? 'bg-red-100 text-red-600' : 'bg-orange-100 text-orange-600')}><XCircle className="w-5 h-5" /></div>
                             <div className="flex-1 min-w-0">
-                                <Badge variant="outline" className={cn("mb-2", issue.severity === 'critical' ? 'border-red-300 text-red-600' : 'border-orange-300 text-orange-600')}>{issue.severity}</Badge>
-                                <div className="text-red-600 line-through opacity-75 mb-1 text-sm">{issue.bad}</div>
+                                <Badge variant="outline" className={cn("mb-2", issue.severity === 'critical' ? 'border-red-300 text-red-700' : 'border-orange-300 text-orange-700')}>{issue.severity}</Badge>
+                                <div className="text-red-700 line-through mb-1 text-sm">{issue.bad}</div>
                                 <div className="text-green-700 flex items-center gap-2 mb-2"><CheckCircle2 className="w-4 h-4 flex-shrink-0" /><span className="font-medium">{issue.fix}</span></div>
                                 <p className="text-sm text-muted-foreground">{issue.why}</p>
                             </div>

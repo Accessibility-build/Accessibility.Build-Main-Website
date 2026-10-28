@@ -425,7 +425,7 @@ export default function WCAG133Page() {
               Replace the sensory description with the control&rsquo;s visible label. The color and
               icon can stay — they just can&rsquo;t be the only identifier.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Instruction relies on color / shape alone -->
 <p>To continue, click the green button.</p>
 <p>Select the round option to subscribe.</p>
@@ -444,7 +444,7 @@ export default function WCAG133Page() {
               Position changes when a layout reflows and means nothing in a screen reader&rsquo;s
               linear order. Point to a named landmark or control instead.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Instruction relies on visual location -->
 <p>Use the menu on the right to navigate.</p>
 <p>Read the notes in the left-hand column.</p>
@@ -466,7 +466,7 @@ export default function WCAG133Page() {
               An audible signal alone excludes deaf users. Pair it with visible text and announce it
               to assistive technology with a live region.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ The only completion cue is a beep -->
 <p>Listen for the beep when your upload finishes.</p>
 <audio src="beep.mp3" autoplay></audio>

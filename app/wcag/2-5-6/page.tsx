@@ -323,7 +323,7 @@ export default function WCAG256Page() {
               voice control alike. Pointer events unify all pointing devices
               when you need lower-level control.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// ✗ Touch-only: mouse, keyboard, and voice get nothing
 el.addEventListener("touchstart", activate);
 
@@ -352,7 +352,7 @@ canvas.addEventListener("pointerup", endStroke);`}</code>
               may be used to <em>enhance</em> for the current input — but the
               interaction must keep working when the user switches.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Assumes coarse pointer means 'no keyboard exists' */
 // if (isMobileUA) removeKeyboardHandlers();  // never do this
 
@@ -376,7 +376,7 @@ canvas.addEventListener("pointerup", endStroke);`}</code>
               path — the same requirement 2.1.1 and 2.5.7 impose, kept
               switchable at any moment.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Slider operable by any modality, at any moment -->
 <div role="slider" tabindex="0"
      aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"

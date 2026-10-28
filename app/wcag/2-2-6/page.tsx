@@ -317,7 +317,7 @@ export default function WCAG226Page() {
               Put the disclosure in the natural reading order at the top of the task,
               not in a tooltip or footer.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<form aria-describedby="timeout-note">
   <h2>Apply for a parking permit</h2>
   <p id="timeout-note" class="notice">
@@ -337,7 +337,7 @@ export default function WCAG226Page() {
               Persist continuously with a retention comfortably past 20 hours; the
               security session can stay short.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// Client: debounce-save every change
 form.addEventListener("input", debounce(async () => {
   await fetch("/api/drafts/permit-application", {
@@ -360,7 +360,7 @@ await db.drafts.upsert({
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Companion countdown warning (supports 2.2.1 as well)
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- Announced immediately: imminent data loss is emergency-grade -->
 <div role="alertdialog" aria-labelledby="to-title" aria-describedby="to-desc">
   <h2 id="to-title">Still there?</h2>

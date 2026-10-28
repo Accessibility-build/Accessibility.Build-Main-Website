@@ -520,7 +520,7 @@ export default function WCAG332Page() {
               </code>{" "}
               pairing works in every layout and makes the label clickable.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- Explicit association: label[for] -> input[id] -->
 <label for="email">Email address</label>
 <input type="email" id="email" name="email" autocomplete="email" />
@@ -539,7 +539,7 @@ export default function WCAG332Page() {
               Format hints, required status, and constraints belong in a hint
               element that is announced together with the field.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<label for="pwd">Password (required)</label>
 <input
   type="password"
@@ -558,7 +558,7 @@ export default function WCAG332Page() {
               A set of radio buttons or checkboxes needs a group label as well as a
               label on each option.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<fieldset>
   <legend>Shipping method</legend>
 
@@ -581,7 +581,7 @@ export default function WCAG332Page() {
               A reusable field that always renders a visible label, wires up the
               hint, and exposes required state to assistive technology.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function Field({ id, label, hint, required, ...props }) {
   const hintId = hint ? \`\${id}-hint\` : undefined
   return (
@@ -613,7 +613,7 @@ export default function WCAG332Page() {
               </code>
               .
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<input
   type="search"
   name="q"

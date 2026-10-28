@@ -521,7 +521,7 @@ export default function WCAG247Page() {
               gives the ring breathing room so it stays visible against the
               control.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* A visible, on-brand indicator for keyboard users */
 :focus-visible {
   outline: 3px solid #1d4ed8;   /* >= 3:1 against the background */
@@ -549,7 +549,7 @@ export default function WCAG247Page() {
               outline so the indicator still shows in Windows High Contrast Mode,
               where box-shadows are dropped.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`.button:focus-visible {
   /* Visible ring that follows rounded corners */
   box-shadow: 0 0 0 3px #fff, 0 0 0 6px #1d4ed8;
@@ -566,7 +566,7 @@ export default function WCAG247Page() {
               If you use a utility framework, set one consistent keyboard focus
               ring across the whole app rather than removing focus per component.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- Per element: a visible ring only for keyboard focus -->
 <button
   class="rounded-md bg-blue-700 px-4 py-2 text-white
@@ -597,7 +597,7 @@ export default function WCAG247Page() {
               </code>{" "}
               colour so the focus ring honours the user&apos;s theme.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`@media (forced-colors: active) {
   :focus-visible {
     outline: 3px solid Highlight;

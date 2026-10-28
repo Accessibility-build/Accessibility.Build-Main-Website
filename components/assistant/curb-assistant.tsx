@@ -531,13 +531,16 @@ export function CurbAssistant() {
             </button>
           </div>
 
+          {/* relative: the sr-only message headings are absolutely positioned. Without a positioned
+              ancestor here they escaped this scroller and stretched the panel, so a long answer made the
+              whole panel scroll and left the composer stranded mid-panel. */}
           <div
             ref={scrollRef}
             role="region"
             aria-label="Conversation"
             aria-busy={streaming}
             tabIndex={0}
-            className="min-h-[12rem] flex-1 overflow-y-auto px-4 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+            className="relative min-h-[12rem] flex-1 overflow-y-auto px-4 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
           >
             {messages.length === 0 ? (
               <div className="space-y-4 text-sm leading-6 text-foreground">

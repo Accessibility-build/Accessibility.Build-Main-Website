@@ -485,7 +485,7 @@ export default function WCAG241Page() {
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">tabindex=&quot;-1&quot;</code>{" "}
               so the browser can move focus to it.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{skipLinkHtml}</code>
             </pre>
 
@@ -499,7 +499,7 @@ export default function WCAG241Page() {
               or <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">visibility:hidden</code>{" "}
               removes it from the tab order entirely.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{skipLinkCss}</code>
             </pre>
 
@@ -511,7 +511,7 @@ export default function WCAG241Page() {
               users their own bypass routes. Label repeated regions so they are
               distinguishable.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{landmarksHtml}</code>
             </pre>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-6">

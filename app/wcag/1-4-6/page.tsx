@@ -329,7 +329,7 @@ export default function WCAG146Page() {
               The reliable route to AAA is a palette whose text tokens are measured once
               and reused everywhere — not per-page color choices.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`:root {
   --bg: #ffffff;
   --text-body: #1f2937;      /* 14.7:1 on --bg → AAA normal text */
@@ -357,7 +357,7 @@ export default function WCAG146Page() {
               enhanced-contrast presentation. Honoring the OS-level preference costs a
               few lines.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* Respect the user's OS contrast preference */
 @media (prefers-contrast: more) {
   :root {
@@ -383,7 +383,7 @@ export default function WCAG146Page() {
               The ratio must hold against the <em>actual</em> pixels behind each letter.
               A scrim guarantees a measurable background.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`.hero {
   position: relative;
   background: url("/hero.jpg") center / cover;

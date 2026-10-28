@@ -543,7 +543,7 @@ export default function WCAG244Page() {
               name with text only assistive technology reads. This is the most
               robust fix because the full name works even in a links list.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- BAD: meaningless in a links list -->
 <a href="/guides/eaa">Read more</a>
 
@@ -552,7 +552,7 @@ export default function WCAG244Page() {
   Read more<span class="sr-only"> about the European Accessibility Act</span>
 </a>`}</code>
             </pre>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* The standard visually-hidden / "sr-only" utility:
    removed from view but kept in the accessibility tree. */
 .sr-only {
@@ -573,7 +573,7 @@ export default function WCAG244Page() {
               The link needs an accessible name; the decorative glyph is hidden
               so it is not announced as part of the name.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<a href="/settings" aria-label="Settings">
   <svg aria-hidden="true" focusable="false" width="20" height="20">
     <use href="#icon-cog" />
@@ -588,7 +588,7 @@ export default function WCAG244Page() {
               Each &quot;Edit&quot; link gets a unique accessible name by naming
               the row it acts on, so the links list stays meaningful.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<td>
   <a href="/invoices/1043/edit">
     Edit<span class="sr-only"> invoice #1043</span>

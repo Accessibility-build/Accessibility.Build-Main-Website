@@ -441,7 +441,7 @@ export default function WCAG123Page() {
               A plain video with no description track and no linked alternative leaves all
               of its visual meaning inaccessible.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Visual content is never described or offered as text -->
 <video controls width="600">
   <source src="tutorial.mp4" type="video/mp4">
@@ -457,7 +457,7 @@ export default function WCAG123Page() {
               pointing at a WebVTT file whose cues describe the visuals in the pauses. (Player
               support varies, so many teams also offer a separately described video source.)
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Description track added alongside captions -->
 <video controls width="600">
   <source src="tutorial.mp4" type="video/mp4">
@@ -482,7 +482,7 @@ Close-up of her hands typing; the screen shows code with ARIA labels.`}</code>
               Alternatively, link a complete text document that covers both what is seen
               and what is heard — a valid way to meet 1.2.3 at Level A.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Full media alternative describing visuals + audio -->
 <video controls width="600">
   <source src="tutorial.mp4" type="video/mp4">

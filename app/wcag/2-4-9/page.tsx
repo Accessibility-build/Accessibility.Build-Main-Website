@@ -397,7 +397,7 @@ export default function WCAG249Page() {
               The strongest technique needs no ARIA at all: link the words that
               describe the destination instead of a filler phrase.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ The sentence carries the meaning; the link does not -->
 <p>
   Our 2026 lawsuit report is now available.
@@ -420,7 +420,7 @@ export default function WCAG249Page() {
               name with a visually hidden span so each link is unique and
               self-describing out of context.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Three indistinguishable links in the links list -->
 <a href="/blog/alt-text">Read more</a>
 <a href="/blog/focus-styles">Read more</a>
@@ -446,7 +446,7 @@ export default function WCAG249Page() {
               users working (2.5.3 Label in Name), the label must contain the
               text users can see.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Visible text 'More' is not in the accessible name -->
 <a href="/pricing" aria-label="Pricing details">More</a>
 

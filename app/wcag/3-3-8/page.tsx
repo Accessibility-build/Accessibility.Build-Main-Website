@@ -532,7 +532,7 @@ export default function WCAG338Page() {
               tokens let password managers and browsers fill both fields, and
               nothing blocks paste — so the mechanism exception is satisfied.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<label for="email">Email</label>
 <input id="email" name="email" type="email"
        autocomplete="username" />
@@ -555,7 +555,7 @@ export default function WCAG338Page() {
               means users can copy it straight from their messages instead of
               transcribing it.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<label for="otp">Enter the 6-digit code we sent you</label>
 <input id="otp" name="otp" type="text"
        inputmode="numeric" autocomplete="one-time-code"
@@ -573,7 +573,7 @@ export default function WCAG338Page() {
               <em>alternative</em> exception for any flow that still contains a
               cognitive step.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<button type="button" id="passkey-signin">
   Sign in with a passkey
 </button>
@@ -600,7 +600,7 @@ export default function WCAG338Page() {
               mechanism that lets a password manager or the clipboard do the
               cognitive work, forcing manual transcription.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- DON'T: this fails WCAG 3.3.8 -->
 <input id="password" type="password"
        onpaste="return false"

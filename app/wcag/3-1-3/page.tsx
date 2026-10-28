@@ -316,7 +316,7 @@ export default function WCAG313Page() {
               </code>
               .
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Jargon dropped on the reader with no way out -->
 <p>Our API endpoints are idempotent, so retries are safe.</p>
 
@@ -340,7 +340,7 @@ export default function WCAG313Page() {
               exactly how the WCAG specification itself handles its defined
               terms.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ In the document -->
 <p>
   Levels are cumulative: claiming
@@ -371,7 +371,7 @@ export default function WCAG313Page() {
               </code>{" "}
               attribute.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Hover-only: invisible to keyboard and touch -->
 <span title="Money paid regularly at a rate">annuity</span>
 

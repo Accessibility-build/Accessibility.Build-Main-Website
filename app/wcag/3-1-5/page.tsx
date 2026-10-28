@@ -399,7 +399,7 @@ export default function WCAG315Page() {
               one idea per sentence, concrete examples, and generous structure —
               headings, lists, and summaries. Watch the transformation:
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`✗ Grade ~16 (fails the threshold, needs a supplement):
 "Remuneration disbursements shall be effectuated subsequent to
 the finalization of the verification procedures referenced in
@@ -413,7 +413,7 @@ Section 4.2 explains what we check."`}</code>
               When the original must stay complex, add a labelled plain-language
               summary and link the two versions both ways:
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<article>
   <h1>Data Processing Agreement</h1>
 
@@ -438,7 +438,7 @@ Section 4.2 explains what we check."`}</code>
               rewritten paragraph — pair it with a text alternative so it stays
               accessible:
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<figure>
   <img src="/img/claims-process.svg"
        alt="How a claim works: 1. You send the form.

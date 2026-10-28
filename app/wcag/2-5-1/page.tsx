@@ -441,7 +441,7 @@ export default function WCAG251Page() {
               The failing version wires up touch events and nothing else. The passing
               version keeps the swipe but drives the same function from real buttons.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Fails: swiping is the only way to change slides -->
 <div id="carousel">
   <ul class="slides">…</ul>
@@ -473,7 +473,7 @@ export default function WCAG251Page() {
               If your component interprets multi-touch to zoom, add zoom buttons that
               change the same state. One state, two input methods.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function ZoomableImage({ src, alt }) {
   const [scale, setScale] = useState(1)
 
@@ -504,7 +504,7 @@ export default function WCAG251Page() {
               List items that reveal actions on swipe should expose the same actions
               through a tappable control on each row.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Every swipe action is also a plain button -->
 <li class="message-row">
   <span class="subject">Quarterly report</span>

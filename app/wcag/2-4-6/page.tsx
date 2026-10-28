@@ -443,7 +443,7 @@ export default function WCAG246Page() {
               has to stand on its own. &ldquo;Overview&rdquo; and &ldquo;Details&rdquo;
               repeated three times down a page describe nothing.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Vague: identical, non-descriptive headings -->
 <h2>Overview</h2>
 <h2>Overview</h2>
@@ -466,7 +466,7 @@ export default function WCAG246Page() {
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">id</code>
               , and make the text say exactly what belongs in the field.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Non-descriptive, and placeholder used as the label -->
 <input type="text" placeholder="Enter value" />
 <label for="f2">Field</label>
@@ -491,7 +491,7 @@ export default function WCAG246Page() {
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">aria-label</code>{" "}
               works too.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Ambiguous: three identical link names -->
 <a href="/pricing">Read more</a>
 <a href="/security">Read more</a>

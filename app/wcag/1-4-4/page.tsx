@@ -398,7 +398,7 @@ export default function WCAG144Page() {
               blocks pinch-zoom on mobile, so no user-agent mechanism can enlarge
               the text.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Failing: zoom disabled, text can never reach 200% on mobile -->
 <meta name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
@@ -421,7 +421,7 @@ export default function WCAG144Page() {
               </code>{" "}
               so boxes expand when the text does.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Failing: enlarged text is clipped at 200% */
 .banner {
   height: 60px;
@@ -453,7 +453,7 @@ export default function WCAG144Page() {
               </code>
               .
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Failing: pure vw text ignores the user's text-size preference */
 h1 {
   font-size: 4vw;

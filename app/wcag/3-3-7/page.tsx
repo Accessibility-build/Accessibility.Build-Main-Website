@@ -531,7 +531,7 @@ export default function WCAG337Page() {
               than re-typing it. The checkbox has a real label, and toggling it
               fills (and disables editing of) the billing fields.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<fieldset>
   <legend>Billing address</legend>
 
@@ -569,7 +569,7 @@ export default function WCAG337Page() {
               from state you already hold. The field stays editable, but the user
               is not forced to reproduce it from memory.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// React: pre-fill step 3 from data collected in step 1
 function ContactStep({ formData, onChange }) {
   return (
@@ -597,7 +597,7 @@ function ContactStep({ formData, onChange }) {
               place — never present empty fields that ask them to type it all over
               again.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<h2>Review your details</h2>
 <!-- Values are auto-populated from earlier steps -->
 <dl>
@@ -615,7 +615,7 @@ function ContactStep({ formData, onChange }) {
               This is the classic 3.3.7 failure — a later step that ignores what
               the user already provided and forces them to key it again.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- DON'T: user already entered this on step 1 -->
 <h2>Almost done — re-enter your address to confirm</h2>
 <label for="addr">Street address</label>

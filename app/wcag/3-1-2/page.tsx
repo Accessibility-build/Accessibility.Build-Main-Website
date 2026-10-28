@@ -471,7 +471,7 @@ export default function WCAG312Page() {
               or <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">&lt;p&gt;</code>{" "}
               for a block. Use valid BCP 47 codes.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Language changes with no markup: read with English rules -->
 <p>As the proverb goes, Übung macht den Meister.</p>
 <blockquote>
@@ -502,7 +502,7 @@ export default function WCAG312Page() {
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">lang</code>{" "}
               affects how the link text itself is pronounced.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ 'Deutsch' and 'Français' read with English phonetics -->
 <nav aria-label="Language">
   <a href="/de/">Deutsch</a>
@@ -527,7 +527,7 @@ export default function WCAG312Page() {
               a descendant overrides it. That makes mixed-language structures
               straightforward.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<html lang="en">
   <body>
     <p>The review of the German edition was glowing:</p>

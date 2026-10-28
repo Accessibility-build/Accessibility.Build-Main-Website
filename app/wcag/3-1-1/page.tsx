@@ -451,7 +451,7 @@ export default function WCAG311Page() {
               attribute on the root <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">&lt;html&gt;</code>{" "}
               element. That single declaration covers the whole document.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ No language declared — screen reader guesses -->
 <html>
   <head> ... </head>
@@ -474,7 +474,7 @@ export default function WCAG311Page() {
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">en</code>{" "}
               and reused for translated pages.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Page content is German, but lang says English -->
 <html lang="en">
   <body>
@@ -499,7 +499,7 @@ export default function WCAG311Page() {
               with the <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">dir</code>{" "}
               attribute so the layout direction is correct too.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Language and direction both declared -->
 <html lang="ar" dir="rtl">
   <body> ... </body>
@@ -521,7 +521,7 @@ export default function WCAG311Page() {
               often lives in one shared file rather than every page. A few common
               patterns:
             </p>
-            <pre className="mb-4 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-4 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// Next.js — app/layout.tsx (App Router)
 export default function RootLayout({ children }) {
   return (

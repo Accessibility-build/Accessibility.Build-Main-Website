@@ -432,7 +432,7 @@ export default function WCAG132Page() {
               (or Flexbox) place regions visually with named areas — the DOM order stays
               correct no matter where the boxes land on screen.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Source order scrambled to match a visual mock-up -->
 <div class="page">
   <div class="footer">Read more &raquo;</div>
@@ -473,7 +473,7 @@ export default function WCAG132Page() {
               readers and Tab focus ignore it. Never use it to fix the reading order —
               fix the source.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Visual order says 1,2,3 but the DOM (and screen reader) says 3,1,2 -->
 <ol class="steps">
   <li style="order: 2">Step 2: Enter payment details</li>
@@ -497,7 +497,7 @@ export default function WCAG132Page() {
               whitespace is read straight through. Both mangle the sequence — use CSS
               columns from a linear source instead.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Layout table: read "Intro ... Sidebar ..." across the row,
      even though the intended reading is the whole article first -->
 <table role="presentation">

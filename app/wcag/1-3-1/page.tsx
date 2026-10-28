@@ -420,7 +420,7 @@ export default function WCAG131Page() {
               to look like a heading fools the eye but not the accessibility tree. Use a
               real heading element so the outline is programmatic.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Looks like a heading, announced as plain text -->
 <div class="text-2xl font-bold">Billing history</div>
 <p>…</p>
@@ -439,7 +439,7 @@ export default function WCAG131Page() {
               to the input with matching <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">for</code> and{" "}
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">id</code>.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Loose text + placeholder: field announces only "edit text" -->
 <div>Email address</div>
 <input type="email" placeholder="Email address">
@@ -464,7 +464,7 @@ export default function WCAG131Page() {
               table with <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">&lt;th scope&gt;</code>{" "}
               lets a screen reader announce &ldquo;Revenue, February: $18,000.&rdquo;
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Visual-only table: no header relationships -->
 <div class="grid">
   <div class="cell head">Month</div>

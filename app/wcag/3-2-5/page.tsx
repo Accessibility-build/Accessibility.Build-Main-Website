@@ -393,7 +393,7 @@ export default function WCAG325Page() {
               Keyboard users who arrow through options in an onchange-submitting
               select are ripped away on the very first arrow press.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Navigates the moment an option is chosen -->
 <select onchange="location = this.value">
   <option value="/en">English</option>
@@ -414,7 +414,7 @@ export default function WCAG325Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Redirects: do them server-side, or hand the user a link
             </h3>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Timed client-side redirect: a context change on a timer -->
 <meta http-equiv="refresh" content="5;url=https://example.com/new-home">
 
@@ -438,7 +438,7 @@ async redirects() {
               When automatic updating is the feature, the pause mechanism is what
               earns conformance — make it visible, keyboard-operable, and honest.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<button type="button" aria-pressed="false" id="pause-updates">
   Pause automatic updates
 </button>

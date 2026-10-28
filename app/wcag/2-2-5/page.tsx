@@ -312,7 +312,7 @@ export default function WCAG225Page() {
               Intercept the 401, hold the payload, re-authenticate in a dialog, and
               replay — the page, and the user&rsquo;s work, never unloads.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`async function submitWithReauth(url, payload) {
   let res = await fetch(url, {
     method: "POST",
@@ -341,7 +341,7 @@ export default function WCAG225Page() {
               accidental tabs closed) a non-event. Tell the user when a draft is
               restored.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`const form = document.querySelector("#application-form");
 const DRAFT_KEY = \`draft:\${form.dataset.formId}\`;
 
@@ -371,7 +371,7 @@ if (draft) {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Server-side: park the payload through the login round-trip
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// Express-style sketch of W3C technique G105
 app.post("/applications", (req, res) => {
   if (!req.session.user) {

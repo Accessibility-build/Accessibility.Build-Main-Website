@@ -395,7 +395,7 @@ export default function WCAG134Page() {
               media feature is your friend when used to <em>rearrange</em>{" "}
               content, and a failure when used to hide it.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Failing: portrait users get a wall instead of the app */
 @media (orientation: portrait) {
   .app        { display: none; }
@@ -421,7 +421,7 @@ export default function WCAG134Page() {
               Search your codebase for these — they are the programmatic
               versions of the rotate-your-device wall.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// ✗ Failing: hard-locks a general-purpose app to portrait
 await screen.orientation.lock("portrait");
 
@@ -448,7 +448,7 @@ await screen.orientation.lock("portrait");
               landscape is ~400px tall, and fixed headers plus non-scrolling
               containers swallow the content. Test with height, not only width.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✓ Keep tall fixed chrome from eating short landscape viewports */
 @media (orientation: landscape) and (max-height: 500px) {
   .site-header { position: static; }   /* stop pinning the header */

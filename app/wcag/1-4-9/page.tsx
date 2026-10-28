@@ -411,7 +411,7 @@ export default function WCAG149Page() {
               reproduced with a web font and CSS — including gradient fills that once
               required Photoshop.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Text frozen into pixels -->
 <img src="/img/headline-summer-sale.png" alt="Summer sale — up to 40% off" />
 
@@ -445,7 +445,7 @@ export default function WCAG149Page() {
               keeps the characters real and readable by assistive technology while
               giving you full geometric control.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Selectable, scalable, announced by screen readers -->
 <svg viewBox="0 0 600 120" role="img" aria-labelledby="badge-title">
   <title id="badge-title">Certified accessible — 2026 audit</title>
@@ -461,7 +461,7 @@ export default function WCAG149Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               The two legitimate image cases, marked up correctly
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Essential: a logotype (still needs a text alternative per 1.1.1) -->
 <a href="/">
   <img src="/img/acme-logo.svg" alt="Acme Corporation home" />

@@ -434,7 +434,7 @@ export default function WCAG322Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               The jump-menu fix: add a real submit action
             </h3>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Fails: changing the selection navigates immediately -->
 <select onchange="location.href = this.value">
   <option value="/docs">Documentation</option>
@@ -461,7 +461,7 @@ export default function WCAG322Page() {
               An onChange handler may update state that re-renders content after the
               control. It must not navigate, submit, or move focus.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// ✗ Fails: selecting a plan navigates automatically
 function PlanPicker() {
   const router = useRouter()
@@ -499,7 +499,7 @@ function PlanPicker() {
               If a context change on input is genuinely necessary, the warning must
               come first — visible, and programmatically associated.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Conforms via the exception: user is advised before using the control -->
 <p id="country-note">
   Selecting a country reloads this page to show local pricing and tax.

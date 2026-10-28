@@ -529,7 +529,7 @@ export default function WCAG334Page() {
               actual data before the final action — not just interposing a
               second button.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ The first click is the final, charging action -->
 <form action="/api/checkout" method="post">
   …payment fields…
@@ -564,7 +564,7 @@ export default function WCAG334Page() {
               For data operations, reversibility is often the cleanest option: a
               trash stage plus an immediate, focusable undo.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Instant, permanent, and vague -->
 <button onclick="if(confirm('Are you sure?')) destroyForever(id)">
   Delete
@@ -590,7 +590,7 @@ export default function WCAG334Page() {
               accessible error message and returns control to the user instead
               of finalizing.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<form action="/api/transfer" method="post" novalidate>
   <label for="iban">Recipient IBAN</label>
   <input id="iban" name="iban" inputmode="text"

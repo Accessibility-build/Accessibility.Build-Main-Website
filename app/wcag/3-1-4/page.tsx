@@ -317,7 +317,7 @@ export default function WCAG314Page() {
               The belt-and-braces pattern: visible expansion once, semantic
               markup afterwards so the expansion stays attached everywhere.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Shorthand with no way in -->
 <p>Your SLA guarantees 99.9% uptime. SLA credits apply below that.</p>
 
@@ -338,7 +338,7 @@ export default function WCAG314Page() {
               linked abbreviation list is reachable from any entry point, not
               just the first paragraph.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ In the running text -->
 <p>
   Public-sector sites must meet
@@ -366,7 +366,7 @@ export default function WCAG314Page() {
               truncations and lexicalized forms, the meaning is the useful
               thing — or skip the abbreviation entirely.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ Meaning, not the unhelpful Latin expansion -->
 <p>Bring photo ID (<abbr title="for example">e.g.</abbr>,
    a passport or driving licence).</p>

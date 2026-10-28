@@ -280,7 +280,7 @@ export default function WCAG136Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               1. Regions: landmark every area of the page
             </h3>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<header>                        <!-- role: banner -->
   <nav aria-label="Primary">    <!-- role: navigation -->
     …
@@ -301,7 +301,7 @@ export default function WCAG136Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               2. Components and icons: purpose in the accessible name
             </h3>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Icon-only, purpose locked in the pixels -->
 <button><svg viewBox="0 0 24 24">…</svg></button>
 
@@ -327,7 +327,7 @@ export default function WCAG136Page() {
               swap in each person&rsquo;s own vocabulary. Support is experimental — treat
               it as progressive enhancement on top of the semantics above.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- Draft WAI-Adapt syntax: standardized purpose + symbol code -->
 <button type="submit" adapt-purpose="send">Send message</button>
 

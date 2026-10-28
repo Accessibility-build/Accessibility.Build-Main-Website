@@ -540,7 +540,7 @@ export default function WCAG2411Page() {
               will stop scrolling short of that region, so a focused element
               never lands underneath it.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* Sticky header is 5rem tall */
 header.site-nav {
   position: sticky;
@@ -563,7 +563,7 @@ header.site-nav {
               of the page. <code>scroll-padding-bottom</code> handles it the same
               way.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`:root {
   /* Header 5rem + footer toolbar 4rem */
   scroll-padding-top: 5rem;
@@ -580,7 +580,7 @@ header.site-nav {
               This is also handy for individual anchor targets like section
               headings.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* Keep focusable controls clear of the sticky header */
 a, button, input, select, textarea, [tabindex] {
   scroll-margin-top: 5rem;
@@ -595,7 +595,7 @@ a, button, input, select, textarea, [tabindex] {
               breakpoint), drive <code>scroll-padding-top</code> from a custom
               property you update in one place.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`:root {
   --sticky-header-height: 5rem;
   scroll-padding-top: var(--sticky-header-height);

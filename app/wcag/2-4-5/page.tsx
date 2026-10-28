@@ -518,7 +518,7 @@ export default function WCAG245Page() {
               is adding a second mechanism. Here a header that offers only menus
               gains an accessible site search.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ The menu hierarchy is the only way to reach any page -->
 <header>
   <nav aria-label="Main">
@@ -558,7 +558,7 @@ export default function WCAG245Page() {
               mirror the site structure, and linked from every page (typically
               the footer).
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- /sitemap — linked from the site-wide footer -->
 <main>
   <h1>Site map</h1>
@@ -587,7 +587,7 @@ export default function WCAG245Page() {
               one of the two mechanisms — provided the links genuinely connect
               the whole set of pages, not just a favored few.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<aside aria-labelledby="related-heading">
   <h2 id="related-heading">Related articles</h2>
   <ul>

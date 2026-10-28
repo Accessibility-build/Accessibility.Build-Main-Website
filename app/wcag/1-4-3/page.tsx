@@ -458,7 +458,7 @@ export default function WCAG143Page() {
               The pale grays that look elegant in a mockup are usually the first thing to
               fail. Darken text until it reaches 4.5:1 against its actual background.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Fails: light gray on white is about 2.3:1 */
 .body-text {
   color: #aaaaaa;
@@ -485,7 +485,7 @@ export default function WCAG143Page() {
               Only text at 24px regular or 18.66px bold qualifies. A color that fails for
               body copy can pass for a large heading.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✓ Large heading: #949494 on white is 3.1:1 — passes 3:1 */
 .hero-heading {
   font-size: 24px;        /* ≈ 18pt regular = large text */
@@ -517,7 +517,7 @@ export default function WCAG143Page() {
               </Link>{" "}
               covers scrims, solid panels, text shadows and responsive crops in more depth.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ White text straight over a photo: ratio varies, often fails -->
 <section class="hero" style="background-image: url(beach.jpg)">
   <h2 style="color:#fff">Summer sale</h2>

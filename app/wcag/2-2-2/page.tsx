@@ -467,7 +467,7 @@ export default function WCAG222Page() {
               The control must be a genuine, focusable button — not a hover-only
               behaviour — and its label should reflect its current state.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Auto-rotates with no way to stop it -->
 <div class="carousel" data-autoplay>
   <div class="slide">…</div>
@@ -497,7 +497,7 @@ export default function WCAG222Page() {
               <em>or</em> by letting the user control how often it refreshes — including
               turning it off entirely.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<div class="ticker">
   <div class="ticker-controls">
     <button type="button" onclick="pauseTicker()">Pause updates</button>
@@ -525,7 +525,7 @@ export default function WCAG222Page() {
               so motion starts paused for users who asked for less of it — then still
               expose a visible control for everyone else.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function AutoCarousel({ slides }) {
   const [playing, setPlaying] = useState(true)
   const [index, setIndex] = useState(0)

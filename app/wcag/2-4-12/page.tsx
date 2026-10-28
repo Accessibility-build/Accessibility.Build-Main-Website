@@ -381,7 +381,7 @@ export default function WCAG2412Page() {
               consume. Focus-driven scrolling then stops short of them, keeping
               the focused element fully clear.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Nothing reserved: focused elements scroll under the bars */
 .site-header { position: sticky; top: 0; height: 64px; }
 .action-bar  { position: fixed; bottom: 0; height: 72px; }
@@ -404,7 +404,7 @@ html {
               </code>{" "}
               on the elements themselves achieves the same clearance.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✓ Every focusable element keeps clear of the sticky bars */
 a, button, input, select, textarea, [tabindex] {
   scroll-margin-top: 64px;
@@ -420,7 +420,7 @@ a, button, input, select, textarea, [tabindex] {
               floating widgets, the sturdier answer is layout: let them occupy
               reserved space instead of hovering over content.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Banner floats over the page, covering focusable rows -->
 <div class="cookie-banner" style="position: fixed; bottom: 0">…</div>
 

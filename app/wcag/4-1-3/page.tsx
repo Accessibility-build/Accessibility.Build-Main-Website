@@ -554,7 +554,7 @@ export default function WCAG413Page() {
               text changes. A visually-hidden region works perfectly when the
               status is also shown elsewhere on screen.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- Rendered EMPTY on page load -->
 <div role="status" class="sr-only" id="save-status"></div>
 
@@ -571,7 +571,7 @@ export default function WCAG413Page() {
               On submit, if you are not moving focus, an alert region announces
               the error immediately without disturbing the user&apos;s position.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- Persistent container, empty until an error occurs -->
 <div role="alert" id="form-errors"></div>
 
@@ -590,7 +590,7 @@ export default function WCAG413Page() {
               into it. Clearing and re-setting the text forces screen readers to
               re-announce an identical message.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function Announcer({ message, assertive = false }) {
   return (
     <div
@@ -616,7 +616,7 @@ export default function WCAG413Page() {
               accessibility tree &mdash; never <code>display:none</code>, which
               removes it from live-region processing.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`.sr-only {
   position: absolute;
   width: 1px; height: 1px;

@@ -424,7 +424,7 @@ export default function WCAG321Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Never open windows or navigate from a focus handler
             </h3>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Fails: receiving focus opens a new window -->
 <a href="/offer" onfocus="window.open('/promo', '_blank')">Special offer</a>
 
@@ -446,7 +446,7 @@ export default function WCAG321Page() {
               </code>
               .
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function PasswordField() {
   const [showHint, setShowHint] = useState(false)
 
@@ -473,7 +473,7 @@ export default function WCAG321Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Open dialogs from activation events, not focus events
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// ✗ Fails: tabbing onto the button opens the dialog and moves focus
 helpButton.addEventListener("focus", () => {
   helpDialog.showModal() // focus jumps into the dialog uninvited

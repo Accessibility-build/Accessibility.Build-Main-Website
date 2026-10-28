@@ -391,7 +391,7 @@ export default function WCAG255Page() {
               so content can grow the control but never shrink it below the
               target size.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Icon button sized to its 20px glyph */
 .icon-button { width: 20px; height: 20px; }
 
@@ -413,7 +413,7 @@ export default function WCAG255Page() {
               Where layout is tight, an invisible pseudo-element enlarges the
               clickable region while the visual footprint stays small.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✓ 24px visual chip, 44px effective target */
 .tag-remove {
   position: relative;
@@ -438,7 +438,7 @@ export default function WCAG255Page() {
               </code>{" "}
               looks identical but is not clickable.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ 16px-tall link floating in a tall row */
 .nav li { padding: 14px 16px; }
 .nav a  { /* target = text height only */ }

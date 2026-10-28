@@ -497,7 +497,7 @@ export default function WCAG323Page() {
               navigation from a single shared template or component, so it{" "}
               <em>cannot</em> drift between pages.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Each page hand-codes its own header — order drifts -->
 <!-- home.html -->
 <header>
@@ -534,7 +534,7 @@ export default function RootLayout({ children }) {
               filter items out, but never re-sort them — filtering preserves
               relative order; sorting destroys it.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// nav-items.ts — one canonical order for the whole site
 export const NAV_ITEMS = [
   { href: "/", label: "Home" },
@@ -562,7 +562,7 @@ const broken = [...NAV_ITEMS].sort((a, b) =>
               Offering the user an explicit control that reorders navigation is
               fine — the exception in the normative text covers exactly this.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✓ The user chooses the order; the site persists their choice -->
 <nav aria-label="Your workspaces">
   <label for="nav-sort">Sort workspaces</label>

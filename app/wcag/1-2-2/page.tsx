@@ -444,7 +444,7 @@ export default function WCAG122Page() {
               (captions for the deaf), not{" "}
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">kind=&quot;subtitles&quot;</code>.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Prerecorded video with audio and no captions -->
 <video src="workshop.mp4" controls></video>
 
@@ -467,7 +467,7 @@ export default function WCAG122Page() {
               label and the bracketed non-speech sounds — these are what make it a{" "}
               <em>caption</em> track rather than a subtitle track.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`WEBVTT
 
 00:00:00.000 --> 00:00:03.000
@@ -492,7 +492,7 @@ Captions help deaf and hard-of-hearing viewers.
               <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">default</code>{" "}
               and let the player expose the rest through its captions menu.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<video src="workshop.mp4" controls>
   <track kind="captions" srclang="en" label="English"
          src="workshop.en.vtt" default>

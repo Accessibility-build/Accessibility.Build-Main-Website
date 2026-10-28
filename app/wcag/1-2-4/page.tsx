@@ -393,7 +393,7 @@ export default function WCAG124Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Declare the caption track in your HLS playlist
             </h3>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`# ✗ Failing: video/audio renditions only — no caption track anywhere
 #EXTM3U
 #EXT-X-STREAM-INF:BANDWIDTH=2500000,RESOLUTION=1280x720
@@ -416,7 +416,7 @@ video_720p.m3u8`}</code>
               verify the CC button exists and works on the live stream, not just
               on VOD.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// Example: hls.js — confirm subtitle tracks are found and enabled
 const hls = new Hls({ enableWebVTT: true, enableCEA708Captions: true });
 hls.loadSource("https://cdn.example.com/live/master.m3u8");
@@ -436,7 +436,7 @@ hls.on(Hls.Events.SUBTITLE_TRACKS_UPDATED, (_evt, data) => {
               render a live text stream alongside the video, keep it in reading
               order near the player and clearly labeled.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- Live CART feed rendered next to the stream -->
 <div class="stream-layout">
   <video id="live-player" controls></video>

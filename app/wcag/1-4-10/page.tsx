@@ -463,7 +463,7 @@ export default function WCAG1410Page() {
               <code>auto-fit</code> and <code>minmax()</code> reflows to a single
               column automatically — no media query needed.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`.cards {
   display: grid;
   /* Columns are at least 16rem; when the viewport is too
@@ -490,7 +490,7 @@ export default function WCAG1410Page() {
               <code>user-scalable=no</code> — they block the very magnification
               Reflow exists to support (and also fail 1.4.4 Resize Text).
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- Correct: allows the user to zoom -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -507,7 +507,7 @@ export default function WCAG1410Page() {
               table scrolls horizontally — the page around it still reflows. Make the
               wrapper keyboard-focusable and label it so scroll users can reach it.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<div
   class="table-scroll"
   role="region"
@@ -530,7 +530,7 @@ export default function WCAG1410Page() {
               rather than <code>px</code> means a user&apos;s zoom or larger default
               font reflows the layout instead of clipping it.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* Breakpoints in em respond to zoom and font-size, not just
    device width — helping the layout reflow under zoom. */
 @media (max-width: 40em) {

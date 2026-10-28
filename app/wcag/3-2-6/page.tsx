@@ -513,7 +513,7 @@ export default function WCAG326Page() {
               page uses guarantees it keeps the same relative order automatically —
               you cannot forget it on one page or move it on another.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// Header.tsx — used by every page in the set
 export function Header() {
   return (
@@ -539,7 +539,7 @@ export function Header() {
               not per page — keeps it in the same relative position across the whole
               set. Give it an accessible name so screen reader users can find it too.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`// app/layout.tsx (Next.js) — one mount, every page
 export default function RootLayout({ children }) {
   return (
@@ -569,7 +569,7 @@ export default function RootLayout({ children }) {
               footer, satisfy both the &quot;same relative order&quot; requirement
               and good structure for assistive technology.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<footer>
   <h2>Need help?</h2>
   <address>
@@ -587,7 +587,7 @@ export default function RootLayout({ children }) {
               here it is first in the nav on one page and dropped to the footer on
               another, which fails 3.2.6.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- home.html: help is first in the header nav -->
 <nav><a href="/help">Help</a> <a href="/">Home</a> ...</nav>
 

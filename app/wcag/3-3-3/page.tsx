@@ -504,7 +504,7 @@ export default function WCAG333Page() {
               </code>
               .
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<label for="dob">Date of birth</label>
 <input
   type="text"
@@ -532,7 +532,7 @@ export default function WCAG333Page() {
               reveals which accounts exist — meeting 3.3.1 without suggesting a
               specific fix.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<div role="alert" id="signin-error" class="error-summary">
   <p>Email or password is incorrect. Check both and try again.</p>
 </div>
@@ -553,7 +553,7 @@ export default function WCAG333Page() {
               Derive the suggestion from the same rule that detected the error,
               so the message always tells the user how to satisfy it.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function suggestForAmount(value, { min, max }) {
   const n = Number(value)
   if (value.trim() === "") return \`Enter an amount between £\${min} and £\${max}.\`
@@ -572,7 +572,7 @@ export default function WCAG333Page() {
               message containing the suggested correction, and only describes the
               field with the error id when an error is present.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`function Field({ id, label, hint, error, ...props }) {
   const hintId = hint ? \`\${id}-hint\` : undefined
   const errorId = error ? \`\${id}-error\` : undefined

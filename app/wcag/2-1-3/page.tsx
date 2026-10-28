@@ -318,7 +318,7 @@ export default function WCAG213Page() {
               keys move it, Space drops it, Escape cancels. Announce each move to a
               live region so screen reader users hear the result.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<ul role="listbox" aria-label="Task order">
   <li role="option" tabindex="0" aria-describedby="reorder-hint">
     Write launch email
@@ -363,7 +363,7 @@ export default function WCAG213Page() {
               Keep the canvas for pointer users; make the keyboard route a first-class
               equal, not a degraded fallback.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<fieldset>
   <legend>Sign this document</legend>
 
@@ -385,7 +385,7 @@ export default function WCAG213Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Never rely on hover or pointer events alone
             </h3>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`/* ✗ Reveal only on hover — keyboard users never see it */
 .card .actions { display: none; }
 .card:hover .actions { display: flex; }

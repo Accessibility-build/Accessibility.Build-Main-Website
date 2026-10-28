@@ -387,7 +387,7 @@ export default function WCAG125Page() {
               user pick. Make the described option a first-class, clearly
               labeled link — not a footnote.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<!-- ✗ Failing: one version, visual steps never spoken aloud -->
 <video controls src="/media/product-demo.mp4"></video>
 
@@ -408,7 +408,7 @@ export default function WCAG125Page() {
               rendition, exactly like a dubbed language, so one video element
               serves both audiences.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`# HLS multivariant playlist with a described audio rendition
 #EXTM3U
 #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="aud",NAME="English",\\
@@ -432,7 +432,7 @@ video_720p.m3u8`}</code>
               browser support is inconsistent — ship it as an extra, never as
               your only mechanism.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<video controls>
   <source src="/media/product-demo-described.mp4" type="video/mp4" />
   <track kind="captions" src="/media/demo.en.vtt" srclang="en"

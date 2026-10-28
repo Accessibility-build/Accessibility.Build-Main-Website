@@ -427,7 +427,7 @@ export default function WCAG339Page() {
               the passkey button provides the <em>alternative</em> for everything
               else in the flow.
             </p>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<form action="/login" method="post">
   <label for="user">Email address</label>
   <input id="user" name="user" type="email"
@@ -450,7 +450,7 @@ export default function WCAG339Page() {
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               A passkey request with WebAuthn
             </h3>
-            <pre className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="mb-6 overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`document.getElementById("passkey-btn")
   .addEventListener("click", async () => {
     const options = await fetch("/webauthn/options").then(r => r.json())
@@ -475,7 +475,7 @@ export default function WCAG339Page() {
               lets mobile platforms offer the received code, and paste must keep
               working.
             </p>
-            <pre className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed">
+            <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <code>{`<label for="otp">6-digit code from your authenticator app</label>
 <input id="otp" name="otp" inputmode="numeric" pattern="[0-9]{6}"
        autocomplete="one-time-code" />
