@@ -279,7 +279,7 @@ export function AdminAssistantClient({
   const maxHour = Math.max(...stats.hours.map((h) => h.questions), 0)
   const busiest = maxHour ? stats.hours.filter((h) => h.questions === maxHour).map((h) => `${String(h.hour).padStart(2, "0")}:00`) : []
 
-  const formsShown = c.leadOffers + c.leadFormsOpened
+  const formsShown = c.leadOffers
   const funnel = [
     { label: "Visitors who opened Curb", value: c.openVisitors },
     { label: "Visitors who asked a question", value: c.askVisitors },
@@ -322,7 +322,7 @@ export function AdminAssistantClient({
           <Kpi label="Rated helpful" value={pct(c.helpful, c.helpful + c.unhelpful)} detail={ratedSummary(c)} icon={ThumbsUp} current={c.helpful} previous={p.helpful} rangeLabel={rangeLabel} />
           <Kpi label="Median answer time" value={secs(c.p50LatencyMs)} detail={`First words after ${secs(c.p50FirstTokenMs)}; slowest 10% over ${secs(c.p90LatencyMs)}`} icon={Clock} rangeLabel={rangeLabel} />
           <Kpi label="Service interest" value={fmt(c.serviceConversations)} detail={`conversations; ${fmt(c.hireIntent)} questions from people wanting to hire`} icon={Target} current={c.serviceConversations} previous={p.serviceConversations} rangeLabel={rangeLabel} />
-          <Kpi label="Leads captured" value={fmt(c.leads)} detail={`${pct(c.leads, formsShown)} of ${fmt(formsShown)} forms shown; ${fmt(c.manualLeads)} via "Talk to a person"`} icon={Handshake} current={c.leads} previous={p.leads} rangeLabel={rangeLabel} />
+          <Kpi label="Leads captured" value={fmt(c.leads)} detail={`${pct(c.leads, formsShown)} of the ${fmt(formsShown)} contact forms Curb offered`} icon={Handshake} current={c.leads} previous={p.leads} rangeLabel={rangeLabel} />
           <Kpi label="Model cost" value={usd(c.costUsd)} detail={`${usd(c.questions ? c.costUsd / c.questions : 0)} per question; about ${usd(projectedMonthly)} a month at this rate`} icon={DollarSign} current={c.costUsd} previous={p.costUsd} rangeLabel={rangeLabel} />
         </div>
       </section>

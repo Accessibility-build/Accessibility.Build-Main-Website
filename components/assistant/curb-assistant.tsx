@@ -4,9 +4,8 @@ import { useCallback, useEffect, useId, useRef, useState, type FormEvent, type K
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import posthog from "posthog-js"
-import { ArrowUp, MessageCircle, RotateCcw, Square, ThumbsDown, ThumbsUp, UserRound, X } from "lucide-react"
+import { ArrowUp, MessageCircle, RotateCcw, Square, ThumbsDown, ThumbsUp, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { company } from "@/lib/company"
 import { Logo } from "@/components/logo"
 import {
   ASSISTANT_ENDPOINT,
@@ -37,7 +36,7 @@ interface ChatMessage {
   /** BCP 47 language of the text, from the reply's language marker (WCAG 3.1.2). */
   lang?: string
   sources?: AssistantSource[]
-  /** Added by the widget itself (the "Talk to a person" prompt); never sent to the model. */
+  /** Added by the widget itself rather than the model; never sent back as history. */
   local?: boolean
   /** The contact form shown under this message, and what became of it. */
   lead?: {
@@ -437,26 +436,6 @@ export function CurbAssistant() {
     inputRef.current?.focus()
   }
 
-  // "Talk to a person": the visitor asks for the form themselves, whatever the AI judged.
-  const talkToPerson = () => {
-    const openForm = messages.find((m) => m.lead?.status === "open")
-    if (openForm) {
-      document.getElementById(`${openForm.id}-lead-name`)?.focus()
-      return
-    }
-    setMessages((current) => [
-      ...current,
-      {
-        id: newId(),
-        role: "assistant",
-        local: true,
-        content: `Happy to put you in touch. Leave your details below and ${company.legalOperator} will reply by email within two business days.`,
-        lead: { offer: null, source: "manual", status: "open" },
-      },
-    ])
-    track({ type: "lead_form_opened", conversationId, path: pathname })
-  }
-
   const rate = (message: ChatMessage, feedback: ChatMessage["feedback"]) => {
     setMessages((current) => current.map((m) => (m.id === message.id ? { ...m, feedback } : m)))
     posthog.capture("assistant_feedback", { path: pathname, feedback })
@@ -735,16 +714,6 @@ export function CurbAssistant() {
                   <span className="sr-only">Send</span>
                 </button>
               )}
-            </div>
-            <div className="mt-2">
-              <button
-                type="button"
-                onClick={talkToPerson}
-                className="inline-flex min-h-8 items-center gap-1.5 rounded-full border border-border px-3 text-xs font-medium text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <UserRound aria-hidden="true" className="h-3.5 w-3.5" />
-                Talk to a person
-              </button>
             </div>
             <p id={hintId} className="mt-2 text-xs leading-5 text-muted-foreground">
               {remaining < 150 ? `${remaining} characters left. ` : "Enter to send, Shift and Enter for a new line. "}
