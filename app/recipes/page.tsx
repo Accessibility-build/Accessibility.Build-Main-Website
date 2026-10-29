@@ -3,6 +3,7 @@ import Link from "next/link"
 import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { clampDescription } from "@/lib/metadata"
 import { recipeRoute, recipes } from "@/lib/recipes"
+import { RecipeArt } from "@/components/recipes/recipe-art"
 
 const pageTitle = "Accessibility Recipes: Small Techniques, Live Demos"
 const pageDescription =
@@ -107,15 +108,7 @@ export default function RecipesIndex() {
                   key={recipe.slug}
                   className="relative flex flex-col overflow-hidden rounded-3xl border-2 border-slate-900 bg-white transition-shadow hover:shadow-[8px_8px_0_0_#0f172a] dark:border-white dark:bg-slate-950 dark:hover:shadow-[8px_8px_0_0_#ffffff]"
                 >
-                  <div
-                    aria-hidden="true"
-                    className="flex h-44 items-center justify-center border-b-2 border-slate-900 dark:border-white"
-                    style={{ background: `linear-gradient(105deg, ${recipe.art[0]} 0 50%, ${recipe.art[1]} 50% 100%)` }}
-                  >
-                    <span className="rounded-full bg-[#767676] px-6 py-3 font-bold text-white outline outline-2 outline-white [box-shadow:0_0_0_4px_#000]">
-                      Focus
-                    </span>
-                  </div>
+                  <RecipeArt recipe={recipe} className="h-44 border-b-2 border-slate-900 dark:border-white" />
                   <div className="flex flex-1 flex-col p-6">
                     <p className="font-mono text-sm font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400">
                       No. {String(i + 1).padStart(2, "0")}

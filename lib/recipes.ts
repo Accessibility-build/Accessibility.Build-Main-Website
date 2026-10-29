@@ -39,6 +39,21 @@ export const recipes: Recipe[] = [
     ],
     art: ["#ffffff", "#000000"],
   },
+  {
+    slug: "invisible-hit-area",
+    title: "The Invisible Hit Area",
+    dek: "A 24px target without changing how the button looks.",
+    description:
+      "Small icon buttons fail WCAG 2.5.8 Target Size. One transparent pseudo-element grows the area that takes the tap while the icon stays the same size. Inspect hit areas, run a tap test, check the spacing exception, and see where the trick backfires.",
+    publishedAt: "2026-10-29",
+    serves: "Icon buttons, chips and close buttons",
+    prep: "One pseudo-element",
+    criteria: [
+      { id: "2.5.8", name: "Target Size (Minimum)", level: "AA" },
+      { id: "2.5.5", name: "Target Size (Enhanced)", level: "AAA" },
+    ],
+    art: ["#0b2545", "#fcd34d"],
+  },
 ]
 
 export const recipeRoute = (slug: string) => `/recipes/${slug}`

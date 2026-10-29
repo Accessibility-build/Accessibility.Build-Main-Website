@@ -300,6 +300,14 @@ export default function TargetSizeCheckerPage() {
                   </Link>{" "}
                   uses the same engine to tab through the page and check focus.
                 </p>
+                <p>
+                  To grow a small icon button without changing its look, see the{" "}
+                  <Link href="/recipes/invisible-hit-area" className={linkClass}>
+                    invisible hit area recipe
+                  </Link>
+                  . This checker measures each element&apos;s own box, so a hit area added with a pseudo-element still shows as
+                  undersized here: confirm those by hand.
+                </p>
               </div>
             </section>
 
