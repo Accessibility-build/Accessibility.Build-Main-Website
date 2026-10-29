@@ -74,15 +74,19 @@ export default function UseOfColorDemo() {
                 <X className="h-4 w-4" /> Color only
               </p>
               <div>
-                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
+                <label
+                  htmlFor="color-only-email"
+                  className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300"
+                >
                   Email
                 </label>
                 <input
+                  id="color-only-email"
                   readOnly
                   value="invalid-email"
                   className="w-full p-2 rounded border-2 border-red-500 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200"
                 />
-                <p className="text-sm mt-1 text-red-600">
+                <p className="text-sm mt-1 text-red-700 dark:text-red-400">
                   Please enter a valid email address
                 </p>
               </div>
@@ -92,16 +96,24 @@ export default function UseOfColorDemo() {
                 <Check className="h-4 w-4" /> Color + icon + text
               </p>
               <div>
-                <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
+                <label
+                  htmlFor="color-icon-email"
+                  className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300"
+                >
                   Email
                 </label>
                 <input
+                  id="color-icon-email"
                   readOnly
                   value="invalid-email"
                   aria-invalid="true"
+                  aria-describedby="color-icon-email-error"
                   className="w-full p-2 rounded border-2 border-red-500 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200"
                 />
-                <p className="text-sm mt-1 flex items-center gap-1.5 text-red-600">
+                <p
+                  id="color-icon-email-error"
+                  className="text-sm mt-1 flex items-center gap-1.5 text-red-700 dark:text-red-400"
+                >
                   <X className="h-4 w-4 flex-shrink-0" />
                   Error: Please enter a valid email address
                 </p>
@@ -120,10 +132,10 @@ export default function UseOfColorDemo() {
               <p className="text-xs font-semibold text-rose-800 dark:text-rose-300 mb-2 flex items-center gap-1.5">
                 <X className="h-4 w-4" /> Color only
               </p>
-              <label className="block text-sm font-medium text-red-600">
+              <label className="block text-sm font-medium text-red-700 dark:text-red-400">
                 Full name
               </label>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
                 Required fields are shown in red.
               </p>
             </div>
@@ -133,7 +145,7 @@ export default function UseOfColorDemo() {
               </p>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Full name{" "}
-                <span className="text-red-600" aria-hidden="true">
+                <span className="text-red-700 dark:text-red-400" aria-hidden="true">
                   *
                 </span>{" "}
                 <span className="text-xs font-normal text-slate-500 dark:text-slate-400">

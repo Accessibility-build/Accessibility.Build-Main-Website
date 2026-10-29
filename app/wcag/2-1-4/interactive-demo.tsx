@@ -143,7 +143,7 @@ export default function ShortcutDemo() {
           <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">
             Times the Star shortcut fired
           </p>
-          <p className="text-4xl font-bold text-amber-500">⭐ {stars}</p>
+          <p className="text-4xl font-bold text-amber-700 dark:text-amber-400">⭐ {stars}</p>
         </div>
 
         <div
@@ -204,7 +204,7 @@ export default function ShortcutDemo() {
           className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-3 min-h-[7rem] space-y-1"
         >
           {log.length === 0 ? (
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-500 dark:text-slate-400">
               Press &ldquo;s&rdquo; anywhere to see what happens…
             </p>
           ) : (
@@ -213,7 +213,7 @@ export default function ShortcutDemo() {
                 key={entry.id}
                 className={`text-sm font-mono ${
                   entry.kind === "fired"
-                    ? "text-green-600 dark:text-green-400"
+                    ? "text-green-700 dark:text-green-400"
                     : "text-slate-500 dark:text-slate-400"
                 }`}
               >

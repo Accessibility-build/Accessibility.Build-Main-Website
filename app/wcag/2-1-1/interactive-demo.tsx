@@ -160,10 +160,10 @@ export default function KeyboardDemo() {
         {/* BAD: mouse-only div — not focusable, no key handler */}
         <div
           onClick={() => setActivated("Delete (mouse only)")}
-          className="inline-flex items-center px-4 py-2 rounded-lg bg-rose-600 text-white font-medium cursor-pointer hover:bg-rose-700 opacity-90"
+          className="inline-flex items-center px-4 py-2 rounded-lg bg-rose-700 text-white font-medium cursor-pointer hover:bg-rose-800"
         >
           Delete
-          <span className="ml-2 text-[10px] uppercase tracking-wide bg-white/20 px-1.5 py-0.5 rounded">
+          <span className="ml-2 text-[10px] uppercase tracking-wide bg-black/25 px-1.5 py-0.5 rounded">
             mouse only
           </span>
         </div>
