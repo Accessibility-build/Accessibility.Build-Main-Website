@@ -67,7 +67,7 @@ export default function MediaAltDemo() {
           </div>
 
           {audioDescriptionOn && currentDescription && (
-            <div className="absolute top-4 left-4 right-4 bg-emerald-600/90 text-white p-3 rounded">
+            <div className="absolute top-4 left-4 right-4 bg-emerald-700/90 text-white p-3 rounded">
               <div className="flex items-center gap-2 mb-1">
                 <AudioWaveform className="h-4 w-4" aria-hidden="true" />
                 <span className="text-xs font-medium uppercase tracking-wide">

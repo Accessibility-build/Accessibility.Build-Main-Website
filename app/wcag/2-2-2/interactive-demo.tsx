@@ -126,7 +126,7 @@ export default function MotionDemo() {
         {/* Carousel */}
         <div className="rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden">
           <div className="relative h-36 bg-slate-100 dark:bg-slate-900 p-5 flex flex-col justify-center">
-            <span className="text-xs uppercase tracking-wide text-slate-400 mb-1">
+            <span className="text-xs uppercase tracking-wide text-slate-600 dark:text-slate-400 mb-1">
               News carousel
             </span>
             <h4 className="font-semibold text-lg text-slate-900 dark:text-white">
@@ -152,7 +152,7 @@ export default function MotionDemo() {
         {/* Ticker */}
         <div className="rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden">
           <div className="h-36 bg-slate-900 text-green-400 font-mono p-5 flex flex-col justify-center">
-            <span className="text-xs uppercase tracking-wide text-slate-500 mb-2">
+            <span className="text-xs uppercase tracking-wide text-slate-400 mb-2">
               Stock ticker
             </span>
             {playing ? (
@@ -160,7 +160,7 @@ export default function MotionDemo() {
                 {ticker[tick]}
               </div>
             ) : (
-              <div className="text-slate-500">Updates paused</div>
+              <div className="text-slate-400">Updates paused</div>
             )}
           </div>
           <div className="py-3 px-4 bg-slate-50 dark:bg-slate-800/50 text-xs text-slate-500 dark:text-slate-400">

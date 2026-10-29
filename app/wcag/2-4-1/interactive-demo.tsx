@@ -84,8 +84,14 @@ export default function BypassBlocksDemo() {
 
   return (
     <div className="space-y-6">
-      {/* Live skip link */}
-      <div className="relative rounded-xl border border-slate-200 dark:border-slate-800 p-6">
+      {/* Live skip link. overflow-hidden clips the parked links (-top-12): without it they sat
+          on top of the text above this box. tabIndex -1 makes a click in the box focus the box
+          rather than the page's <main tabindex="-1">, so the next Tab reaches the skip links as
+          the instructions say, not the top of the page. */}
+      <div
+        tabIndex={-1}
+        className="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 p-6 outline-none"
+      >
         <a
           href="#demo-main-content"
           className={`absolute left-4 z-50 rounded-md bg-slate-900 px-4 py-2 font-medium text-white transition-all duration-300 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 ${
@@ -144,21 +150,24 @@ export default function BypassBlocksDemo() {
             </div>
           </nav>
 
-          <main
+          {/* A labelled section, not <main>: the page already has one, and a second main
+              landmark inside it would be a real failure on this page. */}
+          <section
             ref={mainContentRef}
             id="demo-main-content"
             tabIndex={-1}
+            aria-labelledby="demo-main-heading"
             className="rounded-lg bg-green-50 dark:bg-green-950/20 p-4 focus:outline focus:outline-2 focus:outline-green-600"
             onFocus={() => trackFocus("Main content")}
           >
-            <h4 className="font-semibold text-green-800 dark:text-green-300 mb-2 text-sm">
-              Main content landmark
+            <h4 id="demo-main-heading" className="font-semibold text-green-800 dark:text-green-300 mb-2 text-sm">
+              Main content
             </h4>
             <p className="text-sm text-green-800/90 dark:text-green-300/90">
               A skip link sends keyboard and screen reader users straight here, bypassing
               the navigation they have already heard on every other page.
             </p>
-          </main>
+          </section>
         </div>
       </div>
 
@@ -181,14 +190,18 @@ export default function BypassBlocksDemo() {
             type="button"
             onClick={simulateWithSkip}
             disabled={isNavigating}
-            className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700 disabled:bg-slate-400"
+            className="inline-flex items-center gap-2 rounded-lg bg-green-700 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-800 disabled:bg-slate-400"
           >
             <SkipForward className="h-4 w-4" />
             With skip link
           </button>
         </div>
+        {/* Focusable because the nine-stop run overflows it: keyboard users need to scroll it too. */}
         <div
-          className="h-56 overflow-y-auto rounded-lg bg-slate-50 dark:bg-slate-900/40 p-4"
+          role="log"
+          aria-label="Tab stops"
+          tabIndex={0}
+          className="h-56 overflow-y-auto rounded-lg bg-slate-50 dark:bg-slate-900/40 p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           aria-live="polite"
         >
           {focusHistory.length === 0 ? (

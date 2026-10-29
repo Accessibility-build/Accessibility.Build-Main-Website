@@ -60,23 +60,25 @@ export default function SensoryCharacteristicsDemo() {
       {selected === "color" && (
         <div className="grid md:grid-cols-2 gap-4">
           <div className="rounded-xl border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/20 p-5">
-            <h4 className="flex items-center gap-2 font-semibold text-rose-800 dark:text-rose-300 mb-3">
+            <h3 className="flex items-center gap-2 font-semibold text-rose-800 dark:text-rose-300 mb-3">
               <XCircle className="h-5 w-5" /> Relies on color only
-            </h4>
+            </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
               &ldquo;To save, click the green button. To cancel, click the red button.&rdquo;
             </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <button
-                className={`px-6 py-2 rounded text-white font-medium ${
-                  colorBlindMode ? "bg-slate-500" : "bg-green-600"
-                }`}
-              />
-              <button
-                className={`px-6 py-2 rounded text-white font-medium ${
-                  colorBlindMode ? "bg-slate-600" : "bg-red-600"
-                }`}
-              />
+            {/* A picture of the unlabelled buttons, not real ones: real empty buttons would be
+                unnamed controls on this page. */}
+            <div
+              role="img"
+              aria-label={
+                colorBlindMode
+                  ? "Two unlabelled grey buttons that look the same"
+                  : "Two unlabelled buttons, one green and one red"
+              }
+              className="flex flex-wrap gap-3 justify-center"
+            >
+              <span className={`h-10 w-24 rounded ${colorBlindMode ? "bg-slate-500" : "bg-green-700"}`} />
+              <span className={`h-10 w-24 rounded ${colorBlindMode ? "bg-slate-600" : "bg-red-600"}`} />
             </div>
             {colorBlindMode && (
               <p className="mt-3 text-sm text-rose-700 dark:text-rose-300">
@@ -85,9 +87,9 @@ export default function SensoryCharacteristicsDemo() {
             )}
           </div>
           <div className="rounded-xl border border-green-200 dark:border-green-900/40 bg-green-50 dark:bg-green-950/20 p-5">
-            <h4 className="flex items-center gap-2 font-semibold text-green-800 dark:text-green-300 mb-3">
+            <h3 className="flex items-center gap-2 font-semibold text-green-800 dark:text-green-300 mb-3">
               <CheckCircle className="h-5 w-5" /> Names the control
-            </h4>
+            </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
               &ldquo;To save, click the <strong>Save</strong> button. To cancel, click the{" "}
               <strong>Cancel</strong> button.&rdquo;
@@ -95,7 +97,7 @@ export default function SensoryCharacteristicsDemo() {
             <div className="flex flex-wrap gap-3 justify-center">
               <button
                 className={`px-6 py-2 rounded text-white font-medium ${
-                  colorBlindMode ? "bg-slate-500" : "bg-green-600"
+                  colorBlindMode ? "bg-slate-500" : "bg-green-700"
                 }`}
               >
                 Save
@@ -119,31 +121,35 @@ export default function SensoryCharacteristicsDemo() {
       {selected === "shape" && (
         <div className="grid md:grid-cols-2 gap-4">
           <div className="rounded-xl border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/20 p-5">
-            <h4 className="flex items-center gap-2 font-semibold text-rose-800 dark:text-rose-300 mb-3">
+            <h3 className="flex items-center gap-2 font-semibold text-rose-800 dark:text-rose-300 mb-3">
               <XCircle className="h-5 w-5" /> Relies on shape only
-            </h4>
+            </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
               &ldquo;Press the round button to play, the square button to stop.&rdquo;
             </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <button className="p-3 bg-blue-600 rounded-full">
+            <div
+              role="img"
+              aria-label="Three unlabelled buttons: round, square and triangular"
+              className="flex flex-wrap gap-3 justify-center"
+            >
+              <span className="p-3 bg-blue-600 rounded-full">
                 <Circle className="h-5 w-5 text-white fill-current" />
-              </button>
-              <button className="p-3 bg-blue-600 rounded">
+              </span>
+              <span className="p-3 bg-blue-600 rounded">
                 <Square className="h-5 w-5 text-white fill-current" />
-              </button>
-              <button className="p-3 bg-blue-600 rounded">
+              </span>
+              <span className="p-3 bg-blue-600 rounded">
                 <Triangle className="h-5 w-5 text-white fill-current" />
-              </button>
+              </span>
             </div>
             <p className="mt-3 text-sm text-rose-700 dark:text-rose-300">
               Screen-reader users perceive no shape, and the icons carry no name.
             </p>
           </div>
           <div className="rounded-xl border border-green-200 dark:border-green-900/40 bg-green-50 dark:bg-green-950/20 p-5">
-            <h4 className="flex items-center gap-2 font-semibold text-green-800 dark:text-green-300 mb-3">
+            <h3 className="flex items-center gap-2 font-semibold text-green-800 dark:text-green-300 mb-3">
               <CheckCircle className="h-5 w-5" /> Names the control
-            </h4>
+            </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
               &ldquo;Press <strong>Play</strong> to start, <strong>Stop</strong> to end.&rdquo;
             </p>
@@ -168,9 +174,9 @@ export default function SensoryCharacteristicsDemo() {
       {selected === "position" && (
         <div className="grid md:grid-cols-2 gap-4">
           <div className="rounded-xl border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/20 p-5">
-            <h4 className="flex items-center gap-2 font-semibold text-rose-800 dark:text-rose-300 mb-3">
+            <h3 className="flex items-center gap-2 font-semibold text-rose-800 dark:text-rose-300 mb-3">
               <XCircle className="h-5 w-5" /> Relies on location only
-            </h4>
+            </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
               &ldquo;Use the menu on the right. Click the button at the bottom to submit.&rdquo;
             </p>
@@ -187,9 +193,9 @@ export default function SensoryCharacteristicsDemo() {
             </p>
           </div>
           <div className="rounded-xl border border-green-200 dark:border-green-900/40 bg-green-50 dark:bg-green-950/20 p-5">
-            <h4 className="flex items-center gap-2 font-semibold text-green-800 dark:text-green-300 mb-3">
+            <h3 className="flex items-center gap-2 font-semibold text-green-800 dark:text-green-300 mb-3">
               <CheckCircle className="h-5 w-5" /> Names the control
-            </h4>
+            </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
               &ldquo;Use the <strong>Navigation</strong> menu. Click <strong>Submit Form</strong> when
               ready.&rdquo;
@@ -215,25 +221,25 @@ export default function SensoryCharacteristicsDemo() {
       {selected === "sound" && (
         <div className="grid md:grid-cols-2 gap-4">
           <div className="rounded-xl border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/20 p-5">
-            <h4 className="flex items-center gap-2 font-semibold text-rose-800 dark:text-rose-300 mb-3">
+            <h3 className="flex items-center gap-2 font-semibold text-rose-800 dark:text-rose-300 mb-3">
               <XCircle className="h-5 w-5" /> Relies on sound only
-            </h4>
+            </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
               &ldquo;Listen for the beep to know the upload finished.&rdquo;
             </p>
             <div className="bg-slate-100 dark:bg-slate-800 p-4 rounded text-center">
               <Volume1 className="h-7 w-7 text-slate-500 mx-auto mb-2" />
               <p className="text-sm text-slate-600 dark:text-slate-400">Uploading…</p>
-              <p className="text-xs text-slate-500 mt-1">(audible beep is the only cue)</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">(audible beep is the only cue)</p>
             </div>
             <p className="mt-3 text-sm text-rose-700 dark:text-rose-300">
               Deaf and hard-of-hearing users never receive the completion signal.
             </p>
           </div>
           <div className="rounded-xl border border-green-200 dark:border-green-900/40 bg-green-50 dark:bg-green-950/20 p-5">
-            <h4 className="flex items-center gap-2 font-semibold text-green-800 dark:text-green-300 mb-3">
+            <h3 className="flex items-center gap-2 font-semibold text-green-800 dark:text-green-300 mb-3">
               <CheckCircle className="h-5 w-5" /> Provides a visible cue
-            </h4>
+            </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
               &ldquo;A confirmation message appears when your upload is complete.&rdquo;
             </p>
