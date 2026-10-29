@@ -605,6 +605,13 @@ a, button, input, select, textarea, [tabindex] {
   :root { --sticky-header-height: 6.5rem; }
 }`}</code>
             </pre>
+            <p className="mt-6 rounded-xl border border-slate-300 dark:border-slate-700 p-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+              <strong className="text-slate-900 dark:text-white">See it happen:</strong> failure 01 in the{" "}
+              <Link href="/recipes/two-tone-focus-ring" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+                two-tone focus ring recipe
+              </Link>{" "}
+              puts a broken and a fixed list under a sticky header for you to try with the keyboard.
+            </p>
           </section>
 
           {/* Common mistakes */}

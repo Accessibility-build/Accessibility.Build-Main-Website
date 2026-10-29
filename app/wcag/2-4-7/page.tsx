@@ -605,6 +605,13 @@ export default function WCAG247Page() {
   }
 }`}</code>
             </pre>
+            <p className="mt-6 rounded-xl border border-slate-300 dark:border-slate-700 p-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+              <strong className="text-slate-900 dark:text-white">Try it live:</strong> the{" "}
+              <Link href="/recipes/two-tone-focus-ring" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+                two-tone focus ring recipe
+              </Link>{" "}
+              tests a two-band focus style on any background you choose and shows five places focus still disappears.
+            </p>
           </section>
 
           {/* Common mistakes */}

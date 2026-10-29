@@ -19,6 +19,7 @@ const groupOrder = [
   "Guides",
   "Checklists",
   "Learn",
+  "Recipes",
   "Reference",
   "Research",
   "Compliance",

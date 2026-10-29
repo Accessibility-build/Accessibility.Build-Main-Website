@@ -27,6 +27,7 @@ import {
   Palette,
   Smartphone,
   BookOpenCheck,
+  ChefHat,
   Table2,
   ListOrdered,
   Keyboard,
@@ -149,6 +150,12 @@ const navItems: NavItem[] = [
         description: "In-depth guides to all 86 WCAG 2.2 criteria",
         popular: true,
         icon: BookOpenCheck,
+      },
+      {
+        name: "Accessibility Recipes",
+        href: "/recipes",
+        description: "Small techniques with live demos",
+        icon: ChefHat,
       },
       {
         name: "Table Pattern",

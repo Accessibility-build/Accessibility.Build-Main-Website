@@ -1,5 +1,6 @@
 import { wcagCriteria } from "./wcag-data"
 import { wcagSlug } from "./wcag-pages"
+import { recipeRoute, recipes } from "./recipes"
 
 // Single source of truth for the site's public, indexable routes.
 // Consumed by app/sitemap.ts (XML sitemap) and app/sitemap-page (HTML sitemap).
@@ -217,6 +218,12 @@ const checklists: SiteRoute[] = [
   { route: "/checklists/interactive", label: "Interactive Checklist", group: "Checklists", lastModified: "2026-09-02", priority: 0.85 },
 ]
 
+// Accessibility Recipes: the index plus one route per entry in lib/recipes.ts.
+const recipeRoutes: SiteRoute[] = [
+  { route: "/recipes", label: "Accessibility Recipes", group: "Recipes", lastModified: "2026-10-29", priority: 0.85, changeFrequency: "monthly" },
+  ...recipes.map((r) => ({ route: recipeRoute(r.slug), label: r.title, group: "Recipes", lastModified: r.publishedAt, priority: 0.88 })),
+]
+
 const learn: SiteRoute[] = [
   { route: "/learn", label: "Component Patterns Hub", group: "Learn", lastModified: "2026-09-02", priority: 0.85 },
   { route: "/learn/carousels", label: "Accessible Carousels", group: "Learn", lastModified: "2026-09-02", priority: 0.8 },
@@ -372,6 +379,7 @@ export const siteRoutes: SiteRoute[] = [
   ...guides,
   ...checklists,
   ...learn,
+  ...recipeRoutes,
   ...wcag3,
   ...wcagPages,
   ...blog,

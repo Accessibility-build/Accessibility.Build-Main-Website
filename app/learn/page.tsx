@@ -74,6 +74,13 @@ function PatternOverview() {
             against the criteria; do not assume that copying a demo settles
             the question.
           </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For single techniques rather than whole components, see{" "}
+            <Link href="/recipes" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+              Accessibility Recipes
+            </Link>
+            : one barrier, the smallest change that removes it, and a live demo you can try to break.
+          </p>
         </div>
 
         <div className="overflow-x-auto">
