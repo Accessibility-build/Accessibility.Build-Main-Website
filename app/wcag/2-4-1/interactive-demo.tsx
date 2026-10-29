@@ -85,9 +85,9 @@ export default function BypassBlocksDemo() {
   return (
     <div className="space-y-6">
       {/* Live skip link. overflow-hidden clips the parked links (-top-12): without it they sat
-          on top of the text above this box. tabIndex -1 makes a click in the box focus the box
-          rather than the page's <main tabindex="-1">, so the next Tab reaches the skip links as
-          the instructions say, not the top of the page. */}
+          on top of the text above this box. tabIndex -1 makes a click anywhere in the box focus
+          the box, so the next Tab starts at its first control (the skip links) as the
+          instructions say, not at whatever follows the clicked text. */}
       <div
         tabIndex={-1}
         className="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 p-6 outline-none"
