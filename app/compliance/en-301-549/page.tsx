@@ -276,7 +276,7 @@ export default function EN301549Page() {
               When the European Commission cites a version of the standard in
               the Official Journal of the EU as a harmonized standard for a
               given law, conforming to it creates a{" "}
-              <strong>presumption of conformity</strong> with that law&apos;s
+              <strong>presumption of conformity</strong>{" "}with that law&apos;s
               accessibility requirements. That makes EN 301 549 the safe,
               well-lit path to compliance with:
             </p>
@@ -304,7 +304,7 @@ export default function EN301549Page() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
               How the standard is structured
             </h2>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="How the standard is structured" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <thead className="bg-slate-100 dark:bg-slate-800">
                   <tr>
@@ -347,7 +347,7 @@ export default function EN301549Page() {
               For web content, EN 301 549 does not reinvent anything:{" "}
               <strong>chapter 9 incorporates the WCAG 2.1 Level A and AA
               success criteria</strong>. A website that conforms to{" "}
-              <Link href="/wcag">WCAG 2.1 AA</Link> satisfies the web chapter
+              <Link href="/wcag">WCAG 2.1 AA</Link>{" "}satisfies the web chapter
               outright. The standard&apos;s real added value is everywhere
               WCAG stops:
             </p>
@@ -387,7 +387,7 @@ export default function EN301549Page() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
               Versions of EN 301 549
             </h2>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="Versions of EN 301 549" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <thead className="bg-slate-100 dark:bg-slate-800">
                   <tr>
@@ -426,7 +426,7 @@ export default function EN301549Page() {
             </h2>
             <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-xl p-5 mb-6">
               <p className="text-sm text-blue-900 dark:text-blue-200 leading-relaxed">
-                <strong>Status as of 14 October 2026:</strong> ETSI published EN 301 549
+                <strong>Status as of 14 October 2026:</strong>{" "}ETSI published EN 301 549
                 V4.1.1 (2026-09) on 2 September 2026, after the national vote on the V4.1.0
                 final draft. It has NOT yet been cited in the Official Journal; Ireland&apos;s
                 National Disability Authority expects that on 16 December 2026. Until then,

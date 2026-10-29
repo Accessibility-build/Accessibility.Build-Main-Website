@@ -89,7 +89,7 @@ const usd = (value: number) => `$${value.toLocaleString()}`;
 
 function LocationTable({ rows }: { rows: LocationRow[] }) {
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label="Average and median full-time digital accessibility salary by location, shown in local currency and converted to US..." className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[600px] border-collapse text-sm">
         <caption className="sr-only">
           Average and median full-time digital accessibility salary by location,
@@ -501,7 +501,7 @@ export function AccessibilitySalaryClient({
           source={data.source.name}
           sourceUrl={data.source.url}
           dataTable={
-            <div className="overflow-x-auto">
+            <div tabIndex={0} role="region" aria-label="Average full-time digital accessibility salary in US dollars by experience band, work location, and organisation size" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full min-w-[520px] border-collapse text-sm">
                 <caption className="sr-only">
                   Average full-time digital accessibility salary in US dollars by

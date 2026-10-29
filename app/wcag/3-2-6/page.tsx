@@ -330,7 +330,7 @@ export default function WCAG326Page() {
               People look for help precisely when they are already stuck. A user
               who cannot complete a form, understand a fee, or find a product is at
               the edge of giving up — and in that moment, the last thing they can
-              afford is a second puzzle: <em>where did the help go?</em> When the
+              afford is a second puzzle: <em>where did the help go?</em>{" "}When the
               route to assistance jumps around from page to page — top-right here,
               buried in the footer there, gone entirely on the checkout screen —
               finding help becomes its own task, layered on top of the problem the

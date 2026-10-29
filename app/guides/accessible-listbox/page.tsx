@@ -440,7 +440,7 @@ export default function AccessibleListboxGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria a Listbox Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that a correctly built listbox satisfies and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that a correctly built listbox
@@ -672,14 +672,14 @@ export default function AccessibleListboxGuidePage() {
                 2. Anatomy: Roles, States, and Properties
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                A listbox is a small pattern with a strict rule at its centre: a
+                A listbox is a small pattern with a strict rule at its centre: a{" "}
                 <code>role=&quot;listbox&quot;</code> may contain only{" "}
                 <code>role=&quot;option&quot;</code> children, or{" "}
                 <code>role=&quot;group&quot;</code> wrappers that themselves contain
                 options — nothing else. Here is the full set of roles and
                 attributes and what each part is for.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="The elements and attributes in an accessible listbox and what each is for" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The elements and attributes in an accessible listbox and what
@@ -737,7 +737,7 @@ export default function AccessibleListboxGuidePage() {
                 model. The listbox has an accessible name, exactly one option
                 starts selected and in the Tab order, and the roles do the rest.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<label id="size-label">T-shirt size</label>
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<label id="size-label">T-shirt size</label>
 <ul
   role="listbox"
   aria-labelledby="size-label"
@@ -795,7 +795,7 @@ export default function AccessibleListboxGuidePage() {
                 custom one. A list that responds only to Tab and a click is not a
                 listbox; it is a set of clickable divs.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Keyboard commands a conformant listbox must support" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Keyboard commands a conformant listbox must support
@@ -849,11 +849,11 @@ export default function AccessibleListboxGuidePage() {
                 : as the user arrows from option to option, the newly focused
                 option immediately becomes the selected one — <code>aria-selected</code>{" "}
                 moves with the focus. It is the way a native{" "}
-                <code>&lt;select&gt;</code> behaves while its list is open, and it
+                <code>&lt;select&gt;</code>{" "}behaves while its list is open, and it
                 is what a screen reader user expects from a &ldquo;choose one&rdquo;
                 list.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`const listbox = document.querySelector('[role="listbox"]')
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const listbox = document.querySelector('[role="listbox"]')
 const options = [...listbox.querySelectorAll('[role="option"]')]
 let activeIndex = options.findIndex((o) => o.getAttribute("aria-selected") === "true")
 
@@ -937,13 +937,13 @@ listbox.addEventListener("keydown", (e) => {
                 <code>true</code> or <code>false</code> so a screen reader can
                 announce the state of each as the user moves through.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<ul role="listbox" aria-label="Toppings" aria-multiselectable="true">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<ul role="listbox" aria-label="Toppings" aria-multiselectable="true">
   <li role="option" tabindex="0"  aria-selected="true">Mushrooms</li>
   <li role="option" tabindex="-1" aria-selected="false">Olives</li>
   <li role="option" tabindex="-1" aria-selected="true">Peppers</li>
   <li role="option" tabindex="-1" aria-selected="false">Onions</li>
 </ul>`}</code></pre>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4"><code>{`listbox.addEventListener("keydown", (e) => {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`listbox.addEventListener("keydown", (e) => {
   const option = options[activeIndex]
   switch (e.key) {
     // Plain arrows move FOCUS only — the selection does not change.
@@ -1049,7 +1049,7 @@ function toggle(option) {
                   </CardContent>
                 </Card>
               </div>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- The aria-activedescendant model: focus stays on the <ul>. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- The aria-activedescendant model: focus stays on the <ul>. -->
 <ul
   role="listbox"
   aria-label="Country"
@@ -1102,7 +1102,7 @@ function toggle(option) {
                 which group an option belongs to. The group label itself is not an
                 option — the user never lands on it, and it can never be selected.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<ul role="listbox" aria-label="Choose an ingredient">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<ul role="listbox" aria-label="Choose an ingredient">
   <li role="group" aria-labelledby="grp-fruit">
     <span id="grp-fruit">Fruit</span>
     <ul>
@@ -1121,7 +1121,7 @@ function toggle(option) {
               <p className="text-muted-foreground leading-relaxed mt-6">
                 For a{" "}
                 <strong className="text-slate-900 dark:text-white">disabled option</strong>
-                , set <code>aria-disabled=&quot;true&quot;</code> and skip it when
+                , set <code>aria-disabled=&quot;true&quot;</code>{" "}and skip it when
                 the user tries to select — but keep it in the arrow-key order. That
                 last point is deliberate: if you remove a disabled option from the
                 keyboard path entirely, a screen reader user never learns it exists,
@@ -1161,7 +1161,7 @@ function toggle(option) {
                 yours to get right. Here is a single-select listbox where selection
                 follows focus.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`function Listbox({ label, options }) {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function Listbox({ label, options }) {
   const [active, setActive] = useState(0)   // index of the focused/selected option
   const refs = useRef([])
 
@@ -1316,7 +1316,7 @@ function toggle(option) {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Listbox Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible listbox anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible listbox anti-patterns, why they fail, and the

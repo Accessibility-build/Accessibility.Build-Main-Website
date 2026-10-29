@@ -389,7 +389,7 @@ export default function AccessibleDialogGuidePage() {
                       </strong>{" "}
                       Left to its own devices, the browser focuses the first
                       focusable element in the dialog — which is almost always
-                      the <span aria-hidden="true">✕</span> close button in the
+                      the <span aria-hidden="true">✕</span>{" "}close button in the
                       corner. Your user hears &ldquo;Close, button&rdquo; and
                       learns nothing. Set <code>autofocus</code> deliberately.
                     </span>
@@ -406,7 +406,7 @@ export default function AccessibleDialogGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria a Dialog Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that a correctly built modal dialog satisfies and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that a correctly built modal
@@ -607,7 +607,7 @@ export default function AccessibleDialogGuidePage() {
                 single most common native-dialog bug, because all three look
                 identical on screen once you have styled them.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6">
+              <div tabIndex={0} role="region" aria-label="The three ways to open a dialog element and what each does" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The three ways to open a dialog element and what each does
@@ -660,7 +660,7 @@ export default function AccessibleDialogGuidePage() {
                 Here is a complete, conformant modal. Every accessibility-relevant
                 decision in it is commented.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<button type="button" id="edit-trigger">Edit profile</button>
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<button type="button" id="edit-trigger">Edit profile</button>
 
 <!-- No role="dialog" and no aria-modal: the element and showModal() handle both. -->
 <dialog id="edit-dialog" aria-labelledby="edit-dialog-title">
@@ -681,7 +681,7 @@ export default function AccessibleDialogGuidePage() {
     </div>
   </form>
 </dialog>`}</code></pre>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4"><code>{`const trigger = document.getElementById("edit-trigger")
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const trigger = document.getElementById("edit-trigger")
 const dialog = document.getElementById("edit-dialog")
 const saveButton = document.getElementById("save-button")
 
@@ -724,7 +724,7 @@ dialog.addEventListener("cancel", (event) => {
                     </strong>{" "}
                     A submit button inside such a form closes the dialog without
                     submitting anything to a server, saves the state of the form
-                    controls, and sets <code>returnValue</code> to the button
+                    controls, and sets <code>returnValue</code>{" "}to the button
                     &apos;s <code>value</code> — so a Cancel button needs no
                     JavaScript at all, and you can tell afterwards how the
                     dialog was dismissed.
@@ -752,7 +752,7 @@ dialog.addEventListener("cancel", (event) => {
                 </strong>
                 .
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="The elements in an accessible dialog and the roles and attributes each needs" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The elements in an accessible dialog and the roles and
@@ -803,7 +803,7 @@ dialog.addEventListener("cancel", (event) => {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 When a dialog is shown, the browser runs the specification&apos;s
                 dialog focusing steps: it looks for a descendant carrying the{" "}
-                <code>autofocus</code> attribute and focuses that; failing that
+                <code>autofocus</code>{" "}attribute and focuses that; failing that
                 it focuses the dialog&apos;s focus delegate, which in practice
                 is the first focusable descendant; and if the dialog contains
                 nothing focusable at all, focus lands on the{" "}
@@ -870,7 +870,7 @@ dialog.addEventListener("cancel", (event) => {
                   </CardContent>
                 </Card>
               </div>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- Reading-heavy dialog: land on the heading so nothing scrolls past. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Reading-heavy dialog: land on the heading so nothing scrolls past. -->
 <dialog id="terms" aria-labelledby="terms-title">
   <h2 id="terms-title" tabindex="-1" autofocus>Updated terms of service</h2>
   <div class="dialog-body">
@@ -948,7 +948,7 @@ dialog.addEventListener("cancel", (event) => {
                   </span>
                 </p>
               </div>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`// Deleting the element that opened the dialog: choose the next
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// Deleting the element that opened the dialog: choose the next
 // focus target yourself, because the browser has nothing to restore to.
 dialog.addEventListener("close", () => {
   if (dialog.returnValue !== "delete") return
@@ -991,7 +991,7 @@ dialog.addEventListener("close", () => {
                 Escape gets you out. Everything else belongs to the controls
                 inside.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Keyboard commands a conformant modal dialog must support" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Keyboard commands a conformant modal dialog must support
@@ -1073,7 +1073,7 @@ dialog.addEventListener("close", () => {
                   refocus it on close.
                 </li>
               </ol>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`const FOCUSABLE = [
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const FOCUSABLE = [
   "a[href]", "button:not([disabled])", "input:not([disabled])",
   "select:not([disabled])", "textarea:not([disabled])",
   '[tabindex]:not([tabindex="-1"])',
@@ -1124,7 +1124,7 @@ function closeDialog(dialog) {
   previouslyFocused?.focus() // The step people forget.
 }`}</code></pre>
               <p className="text-muted-foreground leading-relaxed mt-6">
-                Compare that to <code>dialog.showModal()</code> and the argument
+                Compare that to <code>dialog.showModal()</code>{" "}and the argument
                 makes itself. Note too that the fallback&apos;s selector list is
                 a permanent maintenance liability: it does not know about shadow
                 DOM, about <code>contenteditable</code>, or about whatever
@@ -1149,7 +1149,7 @@ function closeDialog(dialog) {
                 during 2025, which makes them a realistic progressive
                 enhancement today rather than a future note.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- Opens the dialog modally. No script involved. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Opens the dialog modally. No script involved. -->
 <button type="button" command="show-modal" commandfor="prefs">
   Preferences
 </button>
@@ -1191,7 +1191,7 @@ function closeDialog(dialog) {
                 people with low vision, and none of them are handled by the
                 element for you.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`/* The backdrop only exists for dialogs opened with showModal(). */
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`/* The backdrop only exists for dialogs opened with showModal(). */
 dialog::backdrop {
   background: rgb(15 23 42 / 0.6);
 }
@@ -1331,12 +1331,12 @@ dialog {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 React&apos;s instinct is to render the dialog conditionally and
                 let state drive everything. That fights the native element,
-                because <code>showModal()</code> is an imperative call, not a
+                because <code>showModal()</code>{" "}is an imperative call, not a
                 prop. Keep the element mounted and drive it through a ref in an
                 effect — this way the browser&apos;s focus and inertness
                 machinery still runs.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`import { useEffect, useId, useRef } from "react"
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`import { useEffect, useId, useRef } from "react"
 
 function ConfirmDialog({ open, onClose, onConfirm, count }) {
   const ref = useRef(null)
@@ -1510,7 +1510,7 @@ function ConfirmDialog({ open, onClose, onConfirm, count }) {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Dialog Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible-dialog anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible-dialog anti-patterns, why they fail, and

@@ -48,7 +48,7 @@ export default function BlogClientPage({
   const blogPosts = posts;
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
       {/* Hero Section */}
       <section className="py-16 sm:py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
@@ -85,7 +85,7 @@ export default function BlogClientPage({
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 

@@ -107,7 +107,7 @@ export function TargetSizeDemo() {
             <div className="space-y-4">
               <div>
                 <h3 className="text-sm font-medium mb-2">Small Target Size (Fails WCAG 2.2)</h3>
-                <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+                <pre tabIndex={0} className="bg-muted p-4 rounded-md overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   {`// Poor implementation - targets too small
 <button 
   className="w-4 h-4 bg-red-500 rounded-full" 
@@ -121,7 +121,7 @@ export function TargetSizeDemo() {
 
               <div>
                 <h3 className="text-sm font-medium mb-2">Adequate Target Size (Passes WCAG 2.2)</h3>
-                <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+                <pre tabIndex={0} className="bg-muted p-4 rounded-md overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   {`// Good implementation - adequately sized targets
 <button 
   className="w-10 h-10 flex items-center justify-center bg-red-500 rounded-full" 

@@ -75,7 +75,7 @@ const LEVEL_FILL: Record<string, string> = {
 
 function FactorTable({ factors, levels }: { factors: Factor[]; levels: string[] }) {
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label="Number of federal agencies at each maturity level for every Section 508 assessment factor, from the FY2025..." className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[680px] border-collapse text-sm">
         <caption className="sr-only">
           Number of federal agencies at each maturity level for every Section
@@ -137,7 +137,7 @@ function FactorTable({ factors, levels }: { factors: Factor[]; levels: string[] 
 
 function AgencyTable({ agencies }: { agencies: Agency[] }) {
   return (
-    <div className="max-h-[520px] overflow-auto">
+    <div tabIndex={0} role="region" aria-label="All federal agencies in the FY2025 assessment with their Accessibility Conformance Index and Accessibility..." className="max-h-[520px] overflow-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[620px] border-collapse text-sm">
         <caption className="sr-only">
           All {agencies.length} federal agencies in the FY2025 assessment with

@@ -375,7 +375,7 @@ export default function AccessiblePowerPointGuidePage() {
                 <ul className={listClass}>
                   <li>
                     <strong className={strongClass}>From the layout:</strong> select the slide, choose{" "}
-                    <MenuPath steps={["Home", "Layout"]} /> and pick a layout with a title, such as Title and Content,
+                    <MenuPath steps={["Home", "Layout"]} />{" "}and pick a layout with a title, such as Title and Content,
                     then type in the &ldquo;Click to add title&rdquo; box. In PowerPoint for the web the choices open
                     in a Slide Layout dialog.
                   </li>
@@ -474,7 +474,7 @@ export default function AccessiblePowerPointGuidePage() {
                     text boxes on top.
                   </li>
                   <li>
-                    If a slide has drifted, <MenuPath steps={["Home", "Reset"]} /> restores its placeholders to the
+                    If a slide has drifted, <MenuPath steps={["Home", "Reset"]} />{" "}restores its placeholders to the
                     layout&apos;s positions and formatting.
                   </li>
                   <li>
@@ -483,7 +483,7 @@ export default function AccessiblePowerPointGuidePage() {
                   </li>
                   <li>
                     Pick a theme from the Design tab and check its colours (see contrast below). Microsoft&apos;s
-                    accessible templates are a good starting point: select <MenuPath steps={["File", "New"]} /> and
+                    accessible templates are a good starting point: select <MenuPath steps={["File", "New"]} />{" "}and
                     search the online templates for &ldquo;accessible&rdquo;.
                   </li>
                 </ul>
@@ -585,7 +585,7 @@ Chart                  3. Chart 3             Title 1      <- read first`}
                     Text on the Format tab.
                   </li>
                   <li>
-                    <strong className={strongClass}>Decorative:</strong> tick Mark as decorative in the Alt Text pane
+                    <strong className={strongClass}>Decorative:</strong>{" "}tick Mark as decorative in the Alt Text pane
                     for backgrounds, borders, accent shapes and stock images that only set a mood. In the Windows
                     Reading Order pane, clearing an object&apos;s checkbox does the same.
                   </li>
@@ -679,7 +679,7 @@ Chart                  3. Chart 3             Title 1      <- read first`}
                 <ul className={listClass}>
                   <li>
                     Right-click the link and choose Edit Link, or select it and press <Kbd>Ctrl+K</Kbd> (
-                    <Kbd>Cmd+K</Kbd> on a Mac). Change Text to display to the destination&apos;s name, such as
+                    <Kbd>Cmd+K</Kbd>{" "}on a Mac). Change Text to display to the destination&apos;s name, such as
                     &ldquo;2026 conference programme&rdquo;.
                   </li>
                   <li>
@@ -737,7 +737,7 @@ Chart                  3. Chart 3             Title 1      <- read first`}
                     <Wcag id="1.4.1" name="Use of Color" />). Add labels, icons or patterns.
                   </li>
                   <li>
-                    <strong className={strongClass}>Check in greyscale.</strong> On Windows, Microsoft suggests turning
+                    <strong className={strongClass}>Check in greyscale.</strong>{" "}On Windows, Microsoft suggests turning
                     on the Grayscale colour filter (Settings &gt; Accessibility &gt; Color filters) and looking through
                     the deck: anything that stops making sense depends on colour.
                   </li>
@@ -966,7 +966,7 @@ Chart                  3. Chart 3             Title 1      <- read first`}
                     only if you mean to include them. Select OK, then Publish.
                   </li>
                   <li>
-                    <strong className={strongClass}>Mac:</strong> choose <MenuPath steps={["File", "Save As"]} /> (or
+                    <strong className={strongClass}>Mac:</strong> choose <MenuPath steps={["File", "Save As"]} />{" "}(or
                     Export), set the File Format to PDF and select Best for electronic distribution and accessibility
                     (uses Microsoft online service), which Microsoft says produces a tagged PDF and keeps links on
                     objects. Microsoft&apos;s Mac instructions also say notes and hidden slides cannot be included in a
@@ -1012,17 +1012,17 @@ Chart                  3. Chart 3             Title 1      <- read first`}
                     show live captions or translated subtitles as you speak. Set them up in{" "}
                     <MenuPath steps={["Slide Show", "Subtitle Settings"]} /> (spoken language, subtitle language and
                     position) and select Always Use Subtitles to start them with every show. During a show, the Toggle
-                    Subtitles button turns them on and off, and on Windows and the web the <Kbd>J</Kbd> key does too.
+                    Subtitles button turns them on and off, and on Windows and the web the <Kbd>J</Kbd>{" "}key does too.
                     They need a good internet connection, and Microsoft&apos;s Speech Services receive your audio to
                     produce them.
                   </li>
                   <li>
-                    <strong className={strongClass}>In a Teams meeting,</strong> attendees can turn on live captions
+                    <strong className={strongClass}>In a Teams meeting,</strong>{" "}attendees can turn on live captions
                     from the meeting&apos;s More actions menu (Captions). Remind people at the start that
                     they are available.
                   </li>
                   <li>
-                    <strong className={strongClass}>Describe what is on screen.</strong> Read out the slide title as you
+                    <strong className={strongClass}>Describe what is on screen.</strong>{" "}Read out the slide title as you
                     move on, and say what charts and pictures show: &ldquo;Sales doubled between May and June&rdquo;,
                     not &ldquo;as you can see here&rdquo;. Read out any quote or key number on the slide.
                   </li>
@@ -1117,7 +1117,7 @@ Chart                  3. Chart 3             Title 1      <- read first`}
               <div className="prose prose-slate dark:prose-invert max-w-none">
                 <ol className={olClass}>
                   <li>
-                    <strong className={strongClass}>Save a .pptx copy.</strong> The checker reads .pptx files. Convert
+                    <strong className={strongClass}>Save a .pptx copy.</strong>{" "}The checker reads .pptx files. Convert
                     an old .ppt with File &gt; Save As &gt; PowerPoint Presentation (.pptx), and remove any password
                     from a copy first. For Google Slides, choose File &gt; Download &gt; Microsoft PowerPoint (.pptx).
                   </li>
@@ -1129,7 +1129,7 @@ Chart                  3. Chart 3             Title 1      <- read first`}
                     . Errors are clear failures, warnings need a judgement, and tips are good practice.
                   </li>
                   <li>
-                    <strong className={strongClass}>Fix in PowerPoint, then run Check Accessibility.</strong> The free
+                    <strong className={strongClass}>Fix in PowerPoint, then run Check Accessibility.</strong>{" "}The free
                     checker does not measure contrast in PowerPoint, so Microsoft&apos;s checker and your own eyes
                     cover that.
                   </li>

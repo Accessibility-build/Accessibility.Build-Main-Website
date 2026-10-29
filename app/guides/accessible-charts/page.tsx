@@ -311,7 +311,7 @@ export default function AccessibleChartsGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria Your Charts Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that accessible charts and data visualizations must satisfy and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that accessible charts and data
@@ -446,7 +446,7 @@ export default function AccessibleChartsGuidePage() {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 Before any ARIA, decide what the text alternative <em>is</em>.
-                The mistake is to reach for a single <code>alt</code> attribute
+                The mistake is to reach for a single <code>alt</code>{" "}attribute
                 and try to cram a chart into it. A chart is not one image with
                 one meaning — it is a structure of many values, and the right
                 alternative depends on how much of that structure a user needs.
@@ -543,7 +543,7 @@ export default function AccessibleChartsGuidePage() {
                 different places, and the difference is entirely about whether
                 the marks exist in the DOM.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6">
+              <div tabIndex={0} role="region" aria-label="How chart rendering technologies compare for accessibility" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     How chart rendering technologies compare for accessibility
@@ -591,7 +591,7 @@ export default function AccessibleChartsGuidePage() {
                 know about the chart has to be provided <em>separately</em>,
                 because the canvas itself is a black box.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- Canvas exposes nothing it draws. Provide fallback + a real table. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Canvas exposes nothing it draws. Provide fallback + a real table. -->
 <figure>
   <canvas role="img" aria-label="Support tickets by month: a rise from 40 in January to 210 in June.">
     <!-- Fallback content for anything that cannot use the canvas: -->
@@ -616,7 +616,7 @@ export default function AccessibleChartsGuidePage() {
                 <code>&lt;svg&gt;</code>, an accessible name, and an accessible
                 description.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<svg
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<svg
   role="img"
   aria-labelledby="rev-title rev-desc"
   viewBox="0 0 640 360"
@@ -668,11 +668,11 @@ export default function AccessibleChartsGuidePage() {
                 flourish, a sparkline that repeats a nearby figure — hide it from
                 assistive technology <em>and</em> keep its inner shapes out of
                 the tab order. In some browsers, SVG elements (and the root{" "}
-                <code>&lt;svg&gt;</code> in legacy engines) can become keyboard
+                <code>&lt;svg&gt;</code>{" "}in legacy engines) can become keyboard
                 tab stops, so a decorative graphic can quietly add empty stops to
                 every keyboard user&apos;s journey.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<svg aria-hidden="true" focusable="false" viewBox="0 0 100 24">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<svg aria-hidden="true" focusable="false" viewBox="0 0 100 24">
   <!-- ornamental sparkline; the real number is in the text beside it -->
 </svg>`}</code></pre>
               <p className="text-muted-foreground leading-relaxed mt-4">
@@ -700,7 +700,7 @@ export default function AccessibleChartsGuidePage() {
                 read a column header. Wrap the chart and its caption in a{" "}
                 <code>&lt;figure&gt;</code>, and offer the table right there.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<figure>
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<figure>
   <svg role="img" aria-labelledby="tickets-title" ...>
     <title id="tickets-title">Support tickets by month, 2026</title>
     <!-- bars... -->
@@ -731,7 +731,7 @@ export default function AccessibleChartsGuidePage() {
               <p className="text-muted-foreground leading-relaxed mt-4 mb-4">
                 A few details make the table pull its weight. Use{" "}
                 <code>&lt;th scope=&quot;col&quot;&gt;</code> for column headers
-                and <code>&lt;th scope=&quot;row&quot;&gt;</code> for the row
+                and <code>&lt;th scope=&quot;row&quot;&gt;</code>{" "}for the row
                 label, so a screen reader announces &ldquo;January, 40&rdquo;
                 rather than an unanchored &ldquo;40&rdquo; — that programmatic
                 header-to-cell relationship is{" "}
@@ -1010,7 +1010,7 @@ export default function AccessibleChartsGuidePage() {
                 hands you — and what it leaves you owning — is the difference
                 between a quick configuration and a surprise rebuild.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6">
+              <div tabIndex={0} role="region" aria-label="Accessibility support across common charting libraries" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Accessibility support across common charting libraries
@@ -1087,7 +1087,7 @@ export default function AccessibleChartsGuidePage() {
                 drift. Use <code>useId</code> to tie the label and table together
                 without hard-coded ids.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`function TicketsChart({ data }) {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function TicketsChart({ data }) {
   const id = useId()
   const titleId = id + "-title"
   const tableId = id + "-table"
@@ -1132,7 +1132,7 @@ export default function AccessibleChartsGuidePage() {
   )
 }`}</code></pre>
               <p className="text-muted-foreground leading-relaxed mt-6">
-                The table is generated from the same <code>data</code> the chart
+                The table is generated from the same <code>data</code>{" "}the chart
                 consumes, so it is always in sync — the single most important
                 property of a chart&apos;s data-table alternative. A library will
                 render the marks and often a hover tooltip, but it will not write
@@ -1270,7 +1270,7 @@ export default function AccessibleChartsGuidePage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Chart Accessibility Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common chart accessibility anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common chart accessibility anti-patterns, why they fail, and

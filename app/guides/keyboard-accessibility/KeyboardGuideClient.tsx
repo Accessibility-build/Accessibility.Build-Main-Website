@@ -1633,7 +1633,7 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                 </p>
               </div>
 
-              <div className="overflow-x-auto my-6">
+              <div tabIndex={0} role="region" aria-label="Custom Widgets" className="overflow-x-auto my-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm border-collapse">
                   <thead>
                     <tr className="bg-slate-100 dark:bg-slate-800">

@@ -119,7 +119,7 @@ export function TypographyExportsPanel({ name, tokens }: ExportsProps) {
               </button>
             </div>
           </div>
-          <pre className="max-h-[520px] overflow-auto p-3 font-mono text-[11px] leading-relaxed">
+          <pre tabIndex={0} className="max-h-[520px] overflow-auto p-3 font-mono text-[11px] leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             <code>{file.content}</code>
           </pre>
         </div>

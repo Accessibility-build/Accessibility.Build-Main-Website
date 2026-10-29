@@ -403,7 +403,7 @@ export default async function BlogPostPage({
                         )}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <div className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+                        <div className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400">
                           Written by
                         </div>
                         {authorUrl ? (

@@ -315,7 +315,7 @@ export default function Wcag21Vs22Page() {
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
               WCAG 2.1 vs 2.2 side by side
             </h2>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="Comparison of WCAG 2.1 and WCAG 2.2" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm text-left">
                 <caption className="sr-only">
                   Comparison of WCAG 2.1 and WCAG 2.2
@@ -323,7 +323,7 @@ export default function Wcag21Vs22Page() {
                 <thead className="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
                   <tr>
                     <th scope="col" className="px-4 py-3 font-semibold">
-                      &nbsp;
+                      <span className="sr-only">Aspect</span>
                     </th>
                     <th scope="col" className="px-4 py-3 font-semibold">
                       WCAG 2.1

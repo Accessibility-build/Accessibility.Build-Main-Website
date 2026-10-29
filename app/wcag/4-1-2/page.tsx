@@ -331,7 +331,7 @@ export default function WCAG412Page() {
               reads as &ldquo;search&rdquo;, a pill that looks pushed-in reads as
               &ldquo;on&rdquo;, an underlined word reads as &ldquo;a link&rdquo;.
               A screen reader user gets none of that visual styling. They rely
-              entirely on the <strong>accessibility tree</strong> — a parallel
+              entirely on the <strong>accessibility tree</strong>{" "}— a parallel
               structure the browser builds from your HTML and ARIA, exposing each
               control&apos;s name, role, state, and value to assistive technology.
               WCAG 4.1.2 is the requirement that this tree is complete and
@@ -532,7 +532,7 @@ export default function WCAG412Page() {
               Custom toggle button that announces its state
             </h3>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
-              A toggle needs a role, a name, and a <em>state</em> that updates so
+              A toggle needs a role, a name, and a <em>state</em>{" "}that updates so
               the screen reader announces &ldquo;pressed&rdquo; or &ldquo;not
               pressed&rdquo;. Using a native{" "}
               <code className="text-sm">&lt;button&gt;</code> with{" "}

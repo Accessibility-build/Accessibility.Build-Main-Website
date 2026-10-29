@@ -214,7 +214,7 @@ export default function WCAG242Page() {
             </blockquote>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-4 text-sm">
               Two requirements hide in one sentence: a title must <em>exist</em>, and it
-              must <em>describe</em> the page. An empty or missing title fails outright; a
+              must <em>describe</em>{" "}the page. An empty or missing title fails outright; a
               present-but-generic title like &ldquo;Untitled Document&rdquo; or
               &ldquo;Home&rdquo; on every page fails the descriptive half.
             </p>

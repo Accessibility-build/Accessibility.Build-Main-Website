@@ -1268,7 +1268,7 @@ export default function AccessibilityAuditHelper() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <pre className="bg-slate-900 dark:bg-slate-800 text-green-400 p-4 rounded-lg overflow-x-auto text-sm border border-green-200 dark:border-green-700">
+                        <pre tabIndex={0} className="bg-slate-900 dark:bg-slate-800 text-green-400 p-4 rounded-lg overflow-x-auto text-sm border border-green-200 dark:border-green-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                           <code>{partialResult.codeExample}</code>
                         </pre>
                       </CardContent>
@@ -1432,7 +1432,7 @@ export default function AccessibilityAuditHelper() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <pre className="bg-slate-900 dark:bg-slate-800 text-green-400 p-6 rounded-lg overflow-x-auto text-sm border">
+                    <pre tabIndex={0} className="bg-slate-900 dark:bg-slate-800 text-green-400 p-6 rounded-lg overflow-x-auto text-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                       <code>{result.codeExample}</code>
                     </pre>
                   </CardContent>

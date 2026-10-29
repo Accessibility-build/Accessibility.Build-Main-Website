@@ -449,7 +449,7 @@ export default function NvdaScreenReaderTestingGuidePage() {
                 <code>K</code> only work in browse mode. These twenty commands
                 cover almost everything you need to test a web page.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Essential NVDA keyboard commands and what each one does" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Essential NVDA keyboard commands and what each one does
@@ -559,7 +559,7 @@ export default function NvdaScreenReaderTestingGuidePage() {
                 </li>
                 <li>
                   <strong className="text-slate-900 dark:text-white">Read it all.</strong>{" "}
-                  Press <code>NVDA+↓</code> to have NVDA read from the top. Note
+                  Press <code>NVDA+↓</code>{" "}to have NVDA read from the top. Note
                   anything that sounds wrong — an image reading its file name, a
                   button that says only &ldquo;button,&rdquo; text in the wrong
                   order.
@@ -609,7 +609,7 @@ export default function NvdaScreenReaderTestingGuidePage() {
                 real WCAG failure that automated tools frequently miss or can
                 only partially detect.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common problems found when testing with NVDA, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common problems found when testing with NVDA, why they fail,
@@ -657,7 +657,7 @@ export default function NvdaScreenReaderTestingGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 What NVDA Testing Verifies in WCAG 2.2
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria you can verify by testing with NVDA" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria you can verify by testing with NVDA

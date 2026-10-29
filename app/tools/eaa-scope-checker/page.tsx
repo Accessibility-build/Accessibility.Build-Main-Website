@@ -159,7 +159,7 @@ export default function EaaScopeCheckerPage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-3xl mx-auto space-y-14">
           <EaaScopeChecker />
 
@@ -280,7 +280,7 @@ export default function EaaScopeCheckerPage() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">

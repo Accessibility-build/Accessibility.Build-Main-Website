@@ -315,7 +315,7 @@ export default function LandmarksPageStructureGuidePage() {
                 way, from the bypass that landmarks enable to the accessible names
                 that keep two regions of the same type apart.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that apply to landmarks, headings, and page structure, their conformance level, and how..." className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that apply to landmarks, headings,
@@ -437,7 +437,7 @@ export default function LandmarksPageStructureGuidePage() {
                   and a <code>&lt;div role=&quot;main&quot;&gt;</code> is a worse
                   version of <code>&lt;main&gt;</code>.
                 </p>
-                <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-6">
+                <div tabIndex={0} role="region" aria-label="The eight ARIA landmark roles, the native HTML element that provides each one, and what the region is for" className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full text-sm text-left">
                     <caption className="sr-only">
                       The eight ARIA landmark roles, the native HTML element that
@@ -498,7 +498,7 @@ export default function LandmarksPageStructureGuidePage() {
                   Put the common ones together and a well-structured page has a
                   clean skeleton that reads as a map before you add any content:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<body>
   <header>                        <!-- banner -->
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -595,7 +595,7 @@ export default function LandmarksPageStructureGuidePage() {
                   landmarks are always exposed and which depend on where they sit
                   or whether they are named.
                 </p>
-                <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-4">
+                <div tabIndex={0} role="region" aria-label="Which HTML elements always expose a landmark role and which depend on their position in the document or on having an..." className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full text-sm text-left">
                     <caption className="sr-only">
                       Which HTML elements always expose a landmark role and which
@@ -679,13 +679,13 @@ export default function LandmarksPageStructureGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   When a page has more than one landmark of the same type, each one
                   needs a distinct accessible name, or the user cannot tell them
-                  apart. Two <code>&lt;nav&gt;</code> regions both announce as
+                  apart. Two <code>&lt;nav&gt;</code>{" "}regions both announce as
                   &ldquo;navigation&rdquo;, so a user browsing the landmarks list
                   hears &ldquo;navigation, navigation&rdquo; with no way to choose.
                   Give each a name with <code>aria-label</code> or{" "}
                   <code>aria-labelledby</code>:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<nav aria-label="Primary">        <!-- announced: "Primary navigation" -->
   <ul> ... </ul>
 </nav>
@@ -701,14 +701,14 @@ export default function LandmarksPageStructureGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Two rules keep those names clean. First, do not put the role word
                   in the name. The role already contributes &ldquo;navigation&rdquo;,
-                  so <code>aria-label=&quot;Primary navigation&quot;</code> is read
+                  so <code>aria-label=&quot;Primary navigation&quot;</code>{" "}is read
                   as &ldquo;Primary navigation, navigation&rdquo;; write{" "}
                   <code>Primary</code>. Second, when there is a visible heading that
                   already names the region, point at it with{" "}
                   <code>aria-labelledby</code> instead of retyping the text, so the
                   name stays in sync:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<aside aria-labelledby="related-heading">
   <h2 id="related-heading">Related articles</h2>
   <ul> ... </ul>
@@ -758,7 +758,7 @@ export default function LandmarksPageStructureGuidePage() {
                   To turn a section into a region landmark, name it, usually by
                   pointing <code>aria-labelledby</code> at its heading:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Not a landmark: unnamed section, exposed as a generic container -->
 <section>
   <h2>Pricing</h2>
@@ -850,7 +850,7 @@ export default function LandmarksPageStructureGuidePage() {
                   level because you want bigger or smaller text. Mark up the real
                   level and use CSS for the appearance.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<h1>Accessible page structure</h1>
   <h2>Landmarks</h2>
     <h3>The eight roles</h3>
@@ -982,7 +982,7 @@ export default function LandmarksPageStructureGuidePage() {
                   heading outline does not read from the top; they jump. Knowing
                   these commands also makes your own testing far faster.
                 </p>
-                <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-6">
+                <div tabIndex={0} role="region" aria-label="How the major screen readers navigate between landmarks and headings, and how to list all of them" className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full text-sm text-left">
                     <caption className="sr-only">
                       How the major screen readers navigate between landmarks and
@@ -1116,7 +1116,7 @@ export default function LandmarksPageStructureGuidePage() {
                 when a semantic element exists, and assuming an element becomes a
                 landmark without checking the scoping and naming rules.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common page structure anti-patterns, why each one fails, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common page structure anti-patterns, why each one fails, and the
@@ -1161,7 +1161,7 @@ export default function LandmarksPageStructureGuidePage() {
                 </li>
                 <li>
                   <strong className="text-slate-900 dark:text-white">Exactly one main.</strong>{" "}
-                  There is a single <code>&lt;main&gt;</code> holding the page&rsquo;s
+                  There is a single <code>&lt;main&gt;</code>{" "}holding the page&rsquo;s
                   unique content, and client-side routing swaps its contents rather than mounting a second one.
                 </li>
                 <li>

@@ -165,10 +165,10 @@ export function Footer() {
               </Button>
             </div>
 
-            <div className="mt-8 grid max-w-3xl gap-3 text-sm text-slate-400 sm:grid-cols-3">
+            <div className="mt-8 grid max-w-3xl gap-3 text-sm text-slate-400 sm:grid-cols-[auto_auto_auto] sm:justify-start sm:gap-x-8">
               <a href={`mailto:${company.email}`} className="inline-flex min-h-10 min-w-0 items-center gap-2 border-t border-slate-800 pt-3 text-slate-200 hover:text-white sm:border-t-0 sm:pt-0">
                 <Mail className="h-4 w-4 shrink-0 text-teal-300" aria-hidden="true" />
-                <span className="min-w-0 break-all">{company.email}</span>
+                <span className="min-w-0 [overflow-wrap:anywhere]">{company.email}</span>
               </a>
               <span className="inline-flex min-h-10 items-center gap-2 border-t border-slate-800 pt-3 sm:border-t-0 sm:pt-0">
                 <Clock3 className="h-4 w-4 shrink-0 text-teal-300" aria-hidden="true" /> {company.responseTime}

@@ -51,7 +51,7 @@ export default function CarouselsLayout({ children }: { children: React.ReactNod
             widget is a landmark region with{" "}
             <code>aria-roledescription=&quot;carousel&quot;</code> and a name.
             Each slide is a group with{" "}
-            <code>aria-roledescription=&quot;slide&quot;</code> and a
+            <code>aria-roledescription=&quot;slide&quot;</code>{" "}and a
             &quot;2 of 4&quot; label, and slides that are off screen carry{" "}
             <code>aria-hidden=&quot;true&quot;</code>. Previous, Next, and
             Play/Pause are buttons with names that change with their state, the

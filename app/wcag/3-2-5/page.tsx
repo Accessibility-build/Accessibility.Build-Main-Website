@@ -294,7 +294,7 @@ export default function WCAG325Page() {
               ))}
             </div>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              A <em>user request</em> is an explicit, intentional action whose purpose
+              A <em>user request</em>{" "}is an explicit, intentional action whose purpose
               is that change: activating a link or button, submitting a form via its
               submit control, choosing &ldquo;open in new tab.&rdquo; Merely focusing
               an element, typing into a field, or selecting an option in a dropdown is
@@ -574,7 +574,7 @@ async redirects() {
               </Link>{" "}
               (A) forbids them when a setting is changed — unless the user was advised
               of the behavior beforehand. 3.2.5 (AAA) closes every remaining gap: it
-              covers changes triggered by <em>anything</em> — timers, page load,
+              covers changes triggered by <em>anything</em>{" "}— timers, page load,
               background events — and drops 3.2.2&rsquo;s advance-warning loophole. A
               flow that passes 3.2.5 automatically passes both Level A siblings.
             </p>

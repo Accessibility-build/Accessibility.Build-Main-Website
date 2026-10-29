@@ -442,7 +442,7 @@ export function LawsuitTrackerClient() {
               ))}
             </div>
 
-            <div className="hidden overflow-x-auto md:block">
+            <div tabIndex={0} role="region" aria-label="Federal website-accessibility lawsuit filings by state in 2025. Use the column buttons to sort the table." className="hidden overflow-x-auto md:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <caption className="sr-only">Federal website-accessibility lawsuit filings by state in 2025. Use the column buttons to sort the table.</caption>
                 <thead>

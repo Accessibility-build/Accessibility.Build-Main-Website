@@ -333,7 +333,7 @@ export default function MobileAccessibilityGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria Mobile Breaks Most
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria most commonly failed on mobile apps and mobile web, their conformance level, and what each..." className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria most commonly failed on mobile
@@ -504,7 +504,7 @@ export default function MobileAccessibilityGuidePage() {
                   you can keep a 16px icon and still meet the target by extending
                   the hit region with padding.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`/* Mobile web: small icon, real hit area */
 .icon-button {
   min-width: 44px;
@@ -520,7 +520,7 @@ export default function MobileAccessibilityGuidePage() {
                   <code>android:minWidth</code>/<code>minHeight</code> to{" "}
                   <code>48dp</code>. In SwiftUI, standard controls already claim
                   a minimum hit region; for custom shapes add{" "}
-                  <code>.contentShape(Rectangle())</code> and adequate padding.
+                  <code>.contentShape(Rectangle())</code>{" "}and adequate padding.
                   When two targets sit close together, the spacing exception in
                   2.5.8 only helps if the gap keeps their 24px hit circles from
                   overlapping &mdash; crowded toolbars are the usual offender.
@@ -672,7 +672,7 @@ export default function MobileAccessibilityGuidePage() {
               <div className="prose prose-slate dark:prose-invert max-w-none">
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   iOS exposes your UI to VoiceOver, Voice Control, and Switch
-                  Control through the <code>UIAccessibility</code> API. The four
+                  Control through the <code>UIAccessibility</code>{" "}API. The four
                   properties that map onto WCAG&apos;s Name, Role, Value are{" "}
                   <code>accessibilityLabel</code> (name),{" "}
                   <code>accessibilityTraits</code> (role),{" "}
@@ -683,7 +683,7 @@ export default function MobileAccessibilityGuidePage() {
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">
                   UIKit
                 </h3>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`// An icon-only button with no visible text
 let favoriteButton = UIButton(type: .system)
 favoriteButton.setImage(UIImage(named: "heart"), for: .normal)
@@ -715,7 +715,7 @@ titleLabel.adjustsFontForContentSizeCategory = true`}</code></pre>
                   stop, and hide decoration. System text styles scale with Dynamic
                   Type automatically.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`Button(action: toggleFavorite) {
     Image(systemName: "heart")            // decorative glyph inside the button
 }
@@ -740,7 +740,7 @@ Text("Order summary").font(.headline)`}</code></pre>
                   Add a role trait when a custom view acts like a control:{" "}
                   <code>.accessibilityAddTraits(.isButton)</code>,{" "}
                   <code>.isHeader</code>, or <code>.isSelected</code>. For values
-                  that change, keep <code>accessibilityValue</code> in sync so a
+                  that change, keep <code>accessibilityValue</code>{" "}in sync so a
                   slider announces &ldquo;50 percent,&rdquo; not just its label.
                   When you scale custom dimensions with the font size, use{" "}
                   <code>@ScaledMetric</code> so padding and icons grow alongside
@@ -766,7 +766,7 @@ Text("Order summary").font(.headline)`}</code></pre>
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">
                   View system
                 </h3>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Icon-only control: give it a name and a 48dp target -->
 <ImageButton
     android:id="@+id/favorite"
@@ -789,7 +789,7 @@ Text("Order summary").font(.headline)`}</code></pre>
     android:src="@drawable/pattern"
     android:importantForAccessibility="no" />`}</code></pre>
                 </div>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`// Announce an async change to TalkBack
 favoriteButton.announceForAccessibility(
     getString(R.string.added_to_favorites)
@@ -798,7 +798,7 @@ favoriteButton.announceForAccessibility(
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">
                   Jetpack Compose
                 </h3>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`// Icon-only button: label it; Material enforces a 48dp touch target
 IconButton(onClick = ::toggleFavorite) {
     Icon(
@@ -830,7 +830,7 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
                   <code>role = Role.Button</code>,{" "}
                   <code>stateDescription</code>, <code>selected</code>,{" "}
                   <code>toggleableState</code> &mdash; and use{" "}
-                  <code>Modifier.clearAndSetSemantics</code> when you need to
+                  <code>Modifier.clearAndSetSemantics</code>{" "}when you need to
                   replace a subtree&apos;s auto-generated description with a single
                   clean one. TalkBack, like VoiceOver, moves focus by swipe, so
                   reading order follows the semantics tree; check it matches the
@@ -875,7 +875,7 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
                   is an accessibility failure &mdash; low-vision users rely on
                   pinch-zoom.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Correct: users can pinch-zoom -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -890,7 +890,7 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
                   <code>:focus-visible</code> so keyboard and switch users get a
                   clear indicator without it flashing on every tap.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`.icon-button:focus-visible {
   outline: 3px solid #2563eb;
   outline-offset: 2px;
@@ -1009,7 +1009,7 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
                   <li>
                     <strong className="text-slate-900 dark:text-white">Android:</strong>{" "}
                     the <strong className="text-slate-900 dark:text-white">Accessibility Scanner</strong>{" "}
-                    app and the Espresso <code>AccessibilityChecks</code>
+                    app and the Espresso <code>AccessibilityChecks</code>{" "}
                     integration in instrumented tests.
                   </li>
                   <li>
@@ -1064,7 +1064,7 @@ Text("Order summary", fontSize = 16.sp)`}</code></pre>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Mobile Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common mobile accessibility anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common mobile accessibility anti-patterns, why they fail, and

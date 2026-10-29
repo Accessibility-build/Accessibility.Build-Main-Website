@@ -250,7 +250,7 @@ export default function ToolsBenchmarkPage() {
               <h2 id="tools-heading" className="font-serif text-2xl font-semibold text-slate-900 dark:text-white sm:text-3xl">
                 The tools
               </h2>
-              <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="Tools tested, versions, and totals found, missed and flagged for review" className="relative mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full border-collapse text-sm">
                   <caption className="sr-only">Tools tested, versions, and totals found, missed and flagged for review</caption>
                   <thead>
@@ -287,7 +287,7 @@ export default function ToolsBenchmarkPage() {
                 Each result is a word, not a colour: Found, Missed, Review (reported only as needing
                 human review) or Wrong (reported on the right element for the wrong reason).
               </p>
-              <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="Thirty seeded defects with the criterion each fails and the result from each of the four tools" className="relative mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full border-collapse text-sm">
                   <caption className="sr-only">Thirty seeded defects with the criterion each fails and the result from each of the four tools</caption>
                   <thead>

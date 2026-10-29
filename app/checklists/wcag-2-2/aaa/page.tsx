@@ -168,10 +168,10 @@ export default function WCAGAAAChecklistPage() {
               {/* Info Card */}
               <div className="max-w-3xl mx-auto mb-12">
                 <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm p-6 rounded-xl border border-purple-200 dark:border-purple-700">
-                  <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-3 flex items-center">
+                  <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-3 flex items-center">
                     <Sparkles className="w-5 h-5 text-purple-600 mr-2" />
                     About Level AAA
-                  </h3>
+                  </h2>
                   <p className="text-slate-600 dark:text-slate-300 mb-4">
                     Level AAA is the highest level of WCAG conformance. While not required for entire websites, 
                     achieving AAA for specific content demonstrates exceptional commitment to accessibility.

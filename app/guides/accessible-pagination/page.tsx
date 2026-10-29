@@ -313,7 +313,7 @@ export default function AccessiblePaginationGuidePage() {
                 rest of the table covers the structure, the keyboard, the current
                 state, and, for single-page apps, the announcement.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that apply to pagination, their conformance level, and how each one applies" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that apply to pagination, their
@@ -439,7 +439,7 @@ export default function AccessiblePaginationGuidePage() {
                   <code>aria-current=&quot;page&quot;</code>. Here is the whole
                   pattern:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<nav aria-label="Pagination">
   <ul>
     <li>
@@ -501,7 +501,7 @@ export default function AccessiblePaginationGuidePage() {
               <div className="prose prose-slate dark:prose-invert max-w-none">
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   The signature pagination bug is the bare number. A control whose only
-                  text is <code>3</code> is announced as &ldquo;3, link&rdquo; or
+                  text is <code>3</code>{" "}is announced as &ldquo;3, link&rdquo; or
                   &ldquo;3, button,&rdquo; which tells a screen reader user nothing
                   about what it does. Out of the visual context of a row of page
                   numbers, a lone digit has no meaning, and that is exactly the case{" "}
@@ -520,11 +520,11 @@ export default function AccessiblePaginationGuidePage() {
                   number. The visible &ldquo;3&rdquo; is what a sighted user reads; the
                   label is what a screen reader announces:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<a href="?page=3" aria-label="Go to page 3">3</a>`}</code></pre>
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  One caution: an <code>aria-label</code> completely overrides the
+                  One caution: an <code>aria-label</code>{" "}completely overrides the
                   visible text for the accessible name, so make sure the label still
                   contains the visible word or number. Because a sighted speech-input
                   user says what they see, an accessible name that starts with the
@@ -544,7 +544,7 @@ export default function AccessiblePaginationGuidePage() {
                   its full name to a screen reader while the eye sees only the number.
                   This avoids overriding the visible text at all:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<a href="?page=3">
   <span class="sr-only">Go to page </span>3
 </a>
@@ -592,7 +592,7 @@ export default function AccessiblePaginationGuidePage() {
                   A pager without a current-page marker leaves a screen reader user
                   unable to tell which page they are on, and it is the single most
                   common thing missing after descriptive names.{" "}
-                  <code>aria-current</code> is the state that fixes it: it marks the one
+                  <code>aria-current</code>{" "}is the state that fixes it: it marks the one
                   control in the set that represents the user&rsquo;s current position.
                   In a pager it belongs on exactly one control, the number of the page
                   you are viewing, and a screen reader announces that control as
@@ -602,7 +602,7 @@ export default function AccessiblePaginationGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Use the value <code>page</code>, not the generic <code>true</code>.
                   Both are valid, but <code>aria-current</code> has several token
-                  values for different kinds of set, and <code>page</code> is the one
+                  values for different kinds of set, and <code>page</code>{" "}is the one
                   that means &ldquo;the current page in a set of pages,&rdquo; which is
                   precisely a pager. It is the same value a breadcrumb and a site menu
                   use to mark the current page; the{" "}
@@ -626,7 +626,7 @@ export default function AccessiblePaginationGuidePage() {
                   things that are not fine are leaving the current page unmarked, and
                   marking it only with a colored background:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- As a link -->
 <li><a href="?page=2" aria-current="page" aria-label="Page 2, current page">2</a></li>
 
@@ -644,7 +644,7 @@ export default function AccessiblePaginationGuidePage() {
                   drive that styling from the attribute itself so the visual and
                   programmatic states can never disagree:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`/* Style the current page from the attribute, so the visual
    cue and the announced state are always in sync. */
 [aria-current="page"] {
@@ -719,7 +719,7 @@ export default function AccessiblePaginationGuidePage() {
                   at the ends of the range. A disabled button is removed from the tab
                   order and announced as dimmed, with no extra code:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- On page 1: Previous is a disabled button, cleanly unavailable -->
 <button type="button" disabled aria-label="Previous page">
   <span aria-hidden="true">&lsaquo;</span>
@@ -734,7 +734,7 @@ export default function AccessiblePaginationGuidePage() {
                   <code>aria-disabled=&quot;true&quot;</code> and prevent the
                   navigation, remembering the rule in the callout above:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Present but unavailable. The handler must block activation,
      because aria-disabled alone does not. -->
 <a href="?page=1"
@@ -775,7 +775,7 @@ export default function AccessiblePaginationGuidePage() {
                   <code>aria-hidden=&quot;true&quot;</code>. Because it is not a
                   control, it is not focusable and should never be a link or a button:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<nav aria-label="Pagination">
   <ul>
     <li><a href="?page=1" aria-label="Go to page 1">1</a></li>
@@ -812,7 +812,7 @@ export default function AccessiblePaginationGuidePage() {
                     1.4.10 Reflow
                   </Link>
                   . On a narrow screen, a compact window such as{" "}
-                  <em>Previous, 42, Next</em> with a &ldquo;page 42 of 100&rdquo; label
+                  <em>Previous, 42, Next</em>{" "}with a &ldquo;page 42 of 100&rdquo; label
                   is often clearer than a long strip of numbers, and it keeps the pager
                   inside the viewport.
                 </p>
@@ -847,7 +847,7 @@ export default function AccessiblePaginationGuidePage() {
                   change. It must be present before the update, not created at the
                   moment of the change, or the first announcement is missed:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`// React: an always-present polite live region announces each page.
 function Pager({ page, totalPages, onGoTo }) {
   return (
@@ -903,7 +903,7 @@ function Pager({ page, totalPages, onGoTo }) {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Whichever you choose, add a plain status that tells everyone where
                   they are in the whole set, not just the page number. A short{" "}
-                  <code>role=&quot;status&quot;</code> region reading &ldquo;Showing 21
+                  <code>role=&quot;status&quot;</code>{" "}region reading &ldquo;Showing 21
                   to 40 of 200 results&rdquo; is useful to sighted users as ordinary
                   text and is announced to screen reader users as a status message, so
                   the same element serves both. Place it near the results, update it
@@ -943,7 +943,7 @@ function Pager({ page, totalPages, onGoTo }) {
                   <code>tabindex=&quot;-1&quot;</code> so it can receive programmatic
                   focus:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`// After appending, move focus to the first new item.
 async function handleLoadMore() {
   const firstNewIndex = items.length
@@ -1096,7 +1096,7 @@ async function handleLoadMore() {
                 elements, and labelling them with a number or an arrow instead of a
                 name that says what they do.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common pagination anti-patterns, why each one fails, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common pagination anti-patterns, why each one fails, and the fix

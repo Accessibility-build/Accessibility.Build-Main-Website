@@ -290,7 +290,7 @@ export default function WCAG339Page() {
               rule applies to <em>every step</em> of the process — login, two-factor,
               bot checks, and recovery included. Side-by-side, the exception lists:
             </p>
-            <div className="overflow-x-auto mb-4">
+            <div tabIndex={0} role="region" aria-label="Exceptions allowed in 3.3.8 versus 3.3.9" className="overflow-x-auto mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm border-collapse">
                 <caption className="sr-only">
                   Exceptions allowed in 3.3.8 versus 3.3.9

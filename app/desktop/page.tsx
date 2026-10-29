@@ -61,7 +61,7 @@ const faqs = [
 
 export default function DesktopPage() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16">
+    <div className="mx-auto max-w-5xl px-6 py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -141,6 +141,6 @@ export default function DesktopPage() {
         </Link>{" "}
         — contrast checker, alt-text review and more.
       </section>
-    </main>
+    </div>
   );
 }

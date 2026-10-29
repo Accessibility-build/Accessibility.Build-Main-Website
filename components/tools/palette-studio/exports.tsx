@@ -200,8 +200,8 @@ export function ExportsPanel({ name, scales, tokens, tokensActive }: ExportsPane
               </button>
             </div>
           </div>
-          <pre
-            className="max-h-[480px] overflow-auto p-3 font-mono text-[11px] leading-relaxed"
+          <pre tabIndex={0}
+            className="max-h-[480px] overflow-auto p-3 font-mono text-[11px] leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             style={{ color: tokensActive.foreground }}
           >
             <code>{current.content}</code>

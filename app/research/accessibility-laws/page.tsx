@@ -192,9 +192,9 @@ export default function AccessibilityLawsPage() {
       </header>
 
       {/* Interactive Client Component */}
-      <main>
+      <div>
         <AccessibilityLawsClient />
-      </main>
+      </div>
 
       {/* FAQ Section with Schema.org Microdata for SEO */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">

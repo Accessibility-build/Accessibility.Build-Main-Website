@@ -311,7 +311,7 @@ export default function AccessibleTabsGuidePage() {
                   <p className="text-sm text-slate-800 dark:text-amber-100 leading-relaxed flex gap-3">
                     <AlertTriangle className="h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
                     <span>
-                      <strong>Use tabs only for same-page panels.</strong> If your
+                      <strong>Use tabs only for same-page panels.</strong>{" "}If your
                       &ldquo;tabs&rdquo; navigate to different URLs, they are
                       navigation — use a <code>&lt;nav&gt;</code> with real{" "}
                       <code>&lt;a href&gt;</code> links, not{" "}
@@ -339,7 +339,7 @@ export default function AccessibleTabsGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria Accessible Tabs Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that a correctly built tab set satisfies and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that a correctly built tab set
@@ -442,10 +442,10 @@ export default function AccessibleTabsGuidePage() {
                 and relationships that connect them. Get this table right and the
                 rest is keyboard behavior. Each tab points at the panel it controls
                 with <code>aria-controls</code>; each panel points back at its tab
-                with <code>aria-labelledby</code> so the panel inherits the tab&apos;s
+                with <code>aria-labelledby</code>{" "}so the panel inherits the tab&apos;s
                 label.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="The three roles in the tabs pattern and the ARIA attributes each element needs" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The three roles in the tabs pattern and the ARIA attributes each
@@ -498,7 +498,7 @@ export default function AccessibleTabsGuidePage() {
                 <code>hidden</code> attribute on inactive panels, and the paired{" "}
                 <code>aria-controls</code> / <code>aria-labelledby</code> ids.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Name the whole set for screen readers -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Name the whole set for screen readers -->
 <div class="tabs">
   <div role="tablist" aria-label="Account settings">
     <button role="tab" id="tab-profile"
@@ -537,7 +537,7 @@ export default function AccessibleTabsGuidePage() {
 </div>`}</code></pre>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 Two details do a lot of work here. First,{" "}
-                <code>aria-label</code> on the <code>tablist</code> names the set so
+                <code>aria-label</code> on the <code>tablist</code>{" "}names the set so
                 a screen reader can say &ldquo;Account settings, tab list.&rdquo;
                 Second, the <code>hidden</code> attribute — not just CSS opacity —
                 removes inactive panels from the accessibility tree so users never
@@ -567,7 +567,7 @@ export default function AccessibleTabsGuidePage() {
                 <code>tabindex=&quot;0&quot;</code> and the rest are{" "}
                 <code>tabindex=&quot;-1&quot;</code>.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Keyboard keys and the action each performs in the tabs pattern" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Keyboard keys and the action each performs in the tabs pattern
@@ -686,7 +686,7 @@ export default function AccessibleTabsGuidePage() {
                 only moving focus on Arrow keys and selecting on{" "}
                 <code>Enter</code>/<code>Space</code>.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`const tablist = document.querySelector('[role="tablist"]')
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const tablist = document.querySelector('[role="tablist"]')
 const tabs = [...tablist.querySelectorAll('[role="tab"]')]
 
 function selectTab(newTab) {
@@ -745,7 +745,7 @@ tabs.forEach((tab) =>
                 <code>tablist</code> and switch your key handler to{" "}
                 <code>ArrowUp</code> / <code>ArrowDown</code>.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<div role="tablist"
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<div role="tablist"
      aria-label="Documentation sections"
      aria-orientation="vertical">
   <button role="tab" aria-selected="true"  tabindex="0"  ...>Getting started</button>
@@ -779,7 +779,7 @@ case "ArrowUp":   next = (current - 1 + tabs.length) % tabs.length; break`}</cod
                 <code>aria-controls</code> / <code>aria-labelledby</code> ids, and
                 refs to move focus on Arrow keys.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`function Tabs({ tabs }) {
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function Tabs({ tabs }) {
   const [active, setActive] = React.useState(0)
   const uid = React.useId()
   const refs = React.useRef([])
@@ -919,7 +919,7 @@ case "ArrowUp":   next = (current - 1 + tabs.length) % tabs.length; break`}</cod
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Tab Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible-tabs anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible-tabs anti-patterns, why they fail, and the fix

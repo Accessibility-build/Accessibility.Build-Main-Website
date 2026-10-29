@@ -128,7 +128,7 @@ export default function WCAG213Page() {
             <PageByline route="/wcag/2-1-3" source={{ label: "W3C: Understanding 2.1.3", href: "https://www.w3.org/WAI/WCAG22/Understanding/keyboard-no-exception.html" }} className="mb-5" />
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               The Level A keyboard rule, 2.1.1, has exactly one escape hatch:
-              functionality that depends on the <em>path</em> of the user&rsquo;s
+              functionality that depends on the <em>path</em>{" "}of the user&rsquo;s
               movement — freehand drawing, for instance — may be pointer-only. This
               criterion closes that hatch.{" "}
               <strong className="text-slate-900 dark:text-white">
@@ -159,7 +159,7 @@ export default function WCAG213Page() {
               <Link href="/wcag/2-1-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                 2.1.1 Keyboard
               </Link>{" "}
-              (Level A): the wording is identical <em>except</em> that 2.1.1 ends with
+              (Level A): the wording is identical <em>except</em>{" "}that 2.1.1 ends with
               &ldquo;…except where the underlying function requires input that depends
               on the path of the user&rsquo;s movement and not just the
               endpoints.&rdquo; 2.1.3 deletes that clause. That deletion is the entire

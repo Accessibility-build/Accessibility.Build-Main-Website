@@ -490,7 +490,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                 enabled it. These commands cover almost everything you need to
                 test a web page on the Mac.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Essential VoiceOver keyboard commands on macOS and what each one does" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Essential VoiceOver keyboard commands on macOS and what each
@@ -535,7 +535,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                 touch gestures. These are the ones you need to test a web page in
                 Safari on a phone or tablet.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Essential VoiceOver touch gestures on iOS and what each one does" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Essential VoiceOver touch gestures on iOS and what each one
@@ -646,7 +646,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                 </li>
                 <li>
                   <strong className="text-slate-900 dark:text-white">Read it all.</strong>{" "}
-                  Use <code>VO+A</code> (two-finger swipe up on iOS) to read from
+                  Use <code>VO+A</code>{" "}(two-finger swipe up on iOS) to read from
                   the top. Note anything that sounds wrong — an image reading its
                   file name, a button that says only &ldquo;button,&rdquo; text in
                   the wrong order.
@@ -698,7 +698,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                 a real WCAG failure that automated tools frequently miss or can
                 only partially detect.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common problems found when testing with VoiceOver, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common problems found when testing with VoiceOver, why they
@@ -746,7 +746,7 @@ export default function VoiceOverScreenReaderTestingGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 What VoiceOver Testing Verifies in WCAG 2.2
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria you can verify by testing with VoiceOver" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria you can verify by testing with

@@ -146,7 +146,7 @@ function CodeDisplay({ code, title, variant, id, copiedId, onCopy }: {
           {copiedId === id ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
         </button>
       </div>
-      <pre className="font-mono text-sm bg-slate-950 text-slate-100 dark:bg-slate-900 p-4 overflow-x-auto"><code>{code}</code></pre>
+      <pre tabIndex={0} className="font-mono text-sm bg-slate-950 text-slate-100 dark:bg-slate-900 p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{code}</code></pre>
     </div>
   )
 }
@@ -278,15 +278,23 @@ export function AriaReferenceClient() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Comparison 1: aria-label vs aria-labelledby vs aria-describedby */}
           <Card className="border-violet-200 dark:border-violet-800/50">
-            <CardHeader className="cursor-pointer" onClick={() => setExpandedComparison(expandedComparison === 0 ? null : 0)}>
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-sm font-semibold">aria-label vs aria-labelledby vs aria-describedby</CardTitle>
-                {expandedComparison === 0 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-              </div>
+            <CardHeader>
+              {/* A real button, so the comparison opens from the keyboard and reports its state. */}
+              <CardTitle className="text-sm font-semibold">
+                <button
+                  type="button"
+                  aria-expanded={expandedComparison === 0}
+                  onClick={() => setExpandedComparison(expandedComparison === 0 ? null : 0)}
+                  className="flex w-full items-center justify-between gap-2 text-left"
+                >
+                  aria-label vs aria-labelledby vs aria-describedby
+                  {expandedComparison === 0 ? <ChevronUp aria-hidden="true" className="w-4 h-4 shrink-0" /> : <ChevronDown aria-hidden="true" className="w-4 h-4 shrink-0" />}
+                </button>
+              </CardTitle>
             </CardHeader>
             {expandedComparison === 0 && (
               <CardContent>
-                <div className="overflow-x-auto text-sm">
+                <div tabIndex={0} role="region" aria-label="aria-label vs aria-labelledby vs aria-describedby" className="overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full">
                     <thead><tr className="bg-muted"><th className="px-2 py-1.5 text-left">Attribute</th><th className="px-2 py-1.5 text-left">Purpose</th><th className="px-2 py-1.5 text-left">When to Use</th><th className="px-2 py-1.5 text-left">Screen Reader</th></tr></thead>
                     <tbody>
@@ -302,11 +310,19 @@ export function AriaReferenceClient() {
 
           {/* Comparison 2: role="button" vs <button> */}
           <Card className="border-violet-200 dark:border-violet-800/50">
-            <CardHeader className="cursor-pointer" onClick={() => setExpandedComparison(expandedComparison === 1 ? null : 1)}>
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-sm font-semibold">role=&quot;button&quot; vs &lt;button&gt;</CardTitle>
-                {expandedComparison === 1 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-              </div>
+            <CardHeader>
+              {/* A real button, so the comparison opens from the keyboard and reports its state. */}
+              <CardTitle className="text-sm font-semibold">
+                <button
+                  type="button"
+                  aria-expanded={expandedComparison === 1}
+                  onClick={() => setExpandedComparison(expandedComparison === 1 ? null : 1)}
+                  className="flex w-full items-center justify-between gap-2 text-left"
+                >
+                  role=&quot;button&quot; vs &lt;button&gt;
+                  {expandedComparison === 1 ? <ChevronUp aria-hidden="true" className="w-4 h-4 shrink-0" /> : <ChevronDown aria-hidden="true" className="w-4 h-4 shrink-0" />}
+                </button>
+              </CardTitle>
             </CardHeader>
             {expandedComparison === 1 && (
               <CardContent className="space-y-3 text-sm">
@@ -330,15 +346,23 @@ export function AriaReferenceClient() {
 
           {/* Comparison 3: aria-hidden vs display:none vs visibility:hidden */}
           <Card className="border-violet-200 dark:border-violet-800/50">
-            <CardHeader className="cursor-pointer" onClick={() => setExpandedComparison(expandedComparison === 2 ? null : 2)}>
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-sm font-semibold">aria-hidden vs display:none vs visibility:hidden</CardTitle>
-                {expandedComparison === 2 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-              </div>
+            <CardHeader>
+              {/* A real button, so the comparison opens from the keyboard and reports its state. */}
+              <CardTitle className="text-sm font-semibold">
+                <button
+                  type="button"
+                  aria-expanded={expandedComparison === 2}
+                  onClick={() => setExpandedComparison(expandedComparison === 2 ? null : 2)}
+                  className="flex w-full items-center justify-between gap-2 text-left"
+                >
+                  aria-hidden vs display:none vs visibility:hidden
+                  {expandedComparison === 2 ? <ChevronUp aria-hidden="true" className="w-4 h-4 shrink-0" /> : <ChevronDown aria-hidden="true" className="w-4 h-4 shrink-0" />}
+                </button>
+              </CardTitle>
             </CardHeader>
             {expandedComparison === 2 && (
               <CardContent>
-                <div className="overflow-x-auto text-sm">
+                <div tabIndex={0} role="region" aria-label="aria-hidden vs display:none vs visibility:hidden" className="overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full">
                     <thead><tr className="bg-muted"><th className="px-2 py-1.5 text-left">Method</th><th className="px-2 py-1.5 text-left">Visible</th><th className="px-2 py-1.5 text-left">In A11y Tree</th><th className="px-2 py-1.5 text-left">Focusable</th><th className="px-2 py-1.5 text-left">Use When</th></tr></thead>
                     <tbody>
@@ -681,7 +705,7 @@ export function AriaReferenceClient() {
         </h2>
         <Card>
           <CardContent className="pt-6">
-            <div className="overflow-x-auto">
+            <div tabIndex={0} role="region" aria-label="ARIA vs Native HTML" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-muted">
@@ -726,15 +750,23 @@ export function AriaReferenceClient() {
             const isOpen = expandedMistake === mistake.id
             return (
               <Card key={mistake.id} className="border-amber-100 dark:border-amber-900/30">
-                <CardHeader className="cursor-pointer" onClick={() => setExpandedMistake(isOpen ? null : mistake.id)}>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0" />
-                      <CardTitle className="text-base">{mistake.title}</CardTitle>
-                      <Badge variant="outline" className="text-xs">{mistake.impact}</Badge>
-                    </div>
-                    {isOpen ? <ChevronUp className="w-5 h-5 shrink-0" /> : <ChevronDown className="w-5 h-5 shrink-0" />}
-                  </div>
+                <CardHeader>
+                  <CardTitle className="text-base">
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      onClick={() => setExpandedMistake(isOpen ? null : mistake.id)}
+                      className="flex w-full items-center justify-between gap-3 text-left"
+                    >
+                      <span className="flex items-center gap-3">
+                        <AlertTriangle aria-hidden="true" className="w-5 h-5 text-amber-500 shrink-0" />
+                        {mistake.title}
+                        {/* A span, not Badge (a div), because it sits inside the button. */}
+                        <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold text-foreground">{mistake.impact}</span>
+                      </span>
+                      {isOpen ? <ChevronUp aria-hidden="true" className="w-5 h-5 shrink-0" /> : <ChevronDown aria-hidden="true" className="w-5 h-5 shrink-0" />}
+                    </button>
+                  </CardTitle>
                 </CardHeader>
                 {isOpen && (
                   <CardContent className="space-y-4 border-t pt-4">

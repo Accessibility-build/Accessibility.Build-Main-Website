@@ -31,7 +31,7 @@ function CodeBlock({ value }: { value: { code?: string; language?: string; filen
           {copied ? 'Copied' : 'Copy'}
         </button>
       </div>
-      <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
+      <pre tabIndex={0} className="overflow-x-auto p-4 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <code className="font-mono text-slate-100">{value.code}</code>
       </pre>
     </figure>

@@ -299,7 +299,7 @@ export function EuropeanAccessibilityActClient({
           source="EUR-Lex national transposition measures"
           sourceUrl={data.directive.transpositionTrackerUrl}
           dataTable={
-            <div className="overflow-x-auto">
+            <div tabIndex={0} role="region" aria-label="Number of national transposition measures communicated to the European Commission by each Member State for Directive..." className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full min-w-[440px] border-collapse text-sm">
                 <caption className="sr-only">
                   Number of national transposition measures communicated to the

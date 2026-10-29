@@ -277,7 +277,7 @@ export default function EAACompliancePage() {
             role="note"
           >
             <p className="text-sm text-amber-900 dark:text-amber-200 leading-relaxed">
-              <strong>Not legal advice.</strong> This guide is educational
+              <strong>Not legal advice.</strong>{" "}This guide is educational
               information about the European Accessibility Act, not legal
               advice. EAA obligations depend on each member state&apos;s
               national implementing law and your specific products and
@@ -357,7 +357,7 @@ export default function EAACompliancePage() {
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
               Covered services
             </h3>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="Covered services" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <thead className="bg-slate-100 dark:bg-slate-800">
                   <tr>
@@ -469,7 +469,7 @@ export default function EAACompliancePage() {
             <p>
               Because WCAG 2.2 added criteria on top of 2.1 (published October
               2023), auditing against{" "}
-              <Link href="/checklists/wcag-2-2">WCAG 2.2 AA</Link> is a
+              <Link href="/checklists/wcag-2-2">WCAG 2.2 AA</Link>{" "}is a
               sensible way to meet today&apos;s baseline with headroom as
               standards and national guidance evolve.
             </p>
@@ -497,7 +497,7 @@ export default function EAACompliancePage() {
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
               Penalties: set nationally, and they vary
             </h3>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="Penalties: set nationally, and they vary" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <thead className="bg-slate-100 dark:bg-slate-800">
                   <tr>

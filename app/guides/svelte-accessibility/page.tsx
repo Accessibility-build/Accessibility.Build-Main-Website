@@ -277,7 +277,7 @@ export default function SvelteAccessibilityGuidePage() {
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Get the compiler warnings, reactive ARIA, focus with{" "}
-                  <code>use:</code> actions, and SvelteKit&apos;s navigation
+                  <code>use:</code>{" "}actions, and SvelteKit&apos;s navigation
                   behavior right and most of Svelte accessibility falls into
                   place. If you also work in another framework, the same
                   principles map cleanly onto our{" "}
@@ -314,7 +314,7 @@ export default function SvelteAccessibilityGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria Svelte Apps Break Most
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria most commonly failed by Svelte and SvelteKit applications and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria most commonly failed by Svelte and
@@ -445,7 +445,7 @@ export default function SvelteAccessibilityGuidePage() {
                 keyboard handlers by hand — and Svelte will warn you about every
                 one of those omissions as you go.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Inaccessible: not focusable, no keyboard, no role.
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Inaccessible: not focusable, no keyboard, no role.
      Svelte warns: a11y_no_static_element_interactions
                    a11y_click_events_have_key_events -->
 <div class="btn" on:click={save}>Save</div>
@@ -492,7 +492,7 @@ export default function SvelteAccessibilityGuidePage() {
                 component, not after an audit. No other mainstream framework
                 checks accessibility at compile time.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-4">
+              <div tabIndex={0} role="region" aria-label="A selection of Svelte compiler accessibility warnings, what each one flags, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     A selection of Svelte compiler accessibility warnings, what
@@ -546,7 +546,7 @@ export default function SvelteAccessibilityGuidePage() {
                 but that comment is a promise that you have checked the case and
                 it is genuinely a false positive:
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Only after you have verified this specific case is safe.
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Only after you have verified this specific case is safe.
      A suppressed warning is an accessibility defect you keep on purpose. -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div role="presentation" on:click={dismiss}>...</div>`}</code></pre>
@@ -582,7 +582,7 @@ export default function SvelteAccessibilityGuidePage() {
                 <code>null</code> or <code>undefined</code>, Svelte omits the
                 attribute entirely. In Svelte 5 you drive these from runes.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<script lang="ts">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<script lang="ts">
   let isOpen = $state(false)
   let email = $state("")
   // $derived recomputes whenever email changes
@@ -634,7 +634,7 @@ export default function SvelteAccessibilityGuidePage() {
                 click-outside-to-close, or moving focus on open. You write the
                 logic once and reuse it with a single attribute.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// actions/trapFocus.ts — a reusable focus trap
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// actions/trapFocus.ts — a reusable focus trap
 export function trapFocus(node: HTMLElement) {
   const previouslyFocused = document.activeElement as HTMLElement | null
 
@@ -670,7 +670,7 @@ export function trapFocus(node: HTMLElement) {
     },
   }
 }`}</code></pre>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3"><code>{`<script lang="ts">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<script lang="ts">
   import { trapFocus } from "./actions/trapFocus"
   let open = $state(false)
 </script>
@@ -752,7 +752,7 @@ export function trapFocus(node: HTMLElement) {
                 . A blank or duplicated title makes the announcement useless.
                 Set it per page with <code>&lt;svelte:head&gt;</code>:
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- src/routes/pricing/+page.svelte -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- src/routes/pricing/+page.svelte -->
 <svelte:head>
   <title>Pricing — Acme</title>
   <meta name="description" content="Simple, transparent pricing." />
@@ -765,7 +765,7 @@ export function trapFocus(node: HTMLElement) {
                 <code>afterNavigate</code> from <code>$app/navigation</code> in
                 your root layout, and pair it with a skip link:
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- src/routes/+layout.svelte -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- src/routes/+layout.svelte -->
 <script lang="ts">
   import { afterNavigate } from "$app/navigation"
 
@@ -816,7 +816,7 @@ export function trapFocus(node: HTMLElement) {
                 changed. Mount that region with <code>&#123;#if&#125;</code> at
                 the moment the message appears and nothing is announced.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Broken: the region is created at the same moment as its text,
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Broken: the region is created at the same moment as its text,
      so the browser treats it as initial content, not an update -->
 {#if message}
   <p aria-live="polite">{message}</p>
@@ -824,7 +824,7 @@ export function trapFocus(node: HTMLElement) {
 
 <!-- Correct: the region is always in the DOM; only its text changes -->
 <p aria-live="polite" class="sr-only">{message}</p>`}</code></pre>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3"><code>{`// lib/announcer.svelte.ts — one persistent region for the whole app
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// lib/announcer.svelte.ts — one persistent region for the whole app
 export const announcer = $state({ message: "" })
 
 export function announce(text: string) {
@@ -914,7 +914,7 @@ export function announce(text: string) {
                 <code>aria-invalid</code> — binding <code>undefined</code> so the
                 attributes disappear when the field is valid.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<script lang="ts">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<script lang="ts">
   let email = $state("")
   let touched = $state(false)
   let invalid = $derived(touched && !/^[^@]+@[^@]+\\.[^@]+$/.test(email))
@@ -1029,12 +1029,12 @@ export function announce(text: string) {
                 Svelte gives you an extra automated layer for free in the
                 compiler; layer these into your workflow:
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`# 1. The compiler + svelte-check — a11y warnings fail the build
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`# 1. The compiler + svelte-check — a11y warnings fail the build
 svelte-check --fail-on-warnings
 
 # 2. Lint on top of the compiler — eslint-plugin-svelte
 #    In eslint.config.js, extend the svelte recommended config.`}</code></pre>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3"><code>{`// 3. Component tests: @testing-library/svelte + vitest-axe
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// 3. Component tests: @testing-library/svelte + vitest-axe
 import { render } from "@testing-library/svelte"
 import { axe } from "vitest-axe"
 import TextField from "./TextField.svelte"
@@ -1072,7 +1072,7 @@ test("home page is accessible", async ({ page }) => {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Svelte Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common Svelte accessibility anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common Svelte accessibility anti-patterns, why they fail, and

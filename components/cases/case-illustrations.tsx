@@ -42,7 +42,7 @@ export function CourtPathDiagram({
       <figcaption className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
         The route the case took
       </figcaption>
-      <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/40 sm:p-6">
+      <div tabIndex={0} role="region" aria-label="The route the case took" className="overflow-x-auto rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/40 sm:p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <svg viewBox="0 0 760 150" className="w-full min-w-[560px]" role="img" aria-hidden="true">
           <line
             x1={40}

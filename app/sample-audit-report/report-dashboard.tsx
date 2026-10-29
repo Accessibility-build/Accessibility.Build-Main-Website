@@ -93,7 +93,7 @@ function CriteriaLinks({ finding }: { finding: Finding }) {
           >
             <span className="font-semibold">{c.id}</span>
             <span className="text-slate-600 dark:text-slate-400">{c.name}</span>
-            <span className="text-slate-400 dark:text-slate-500">({c.level})</span>
+            <span className="text-slate-600 dark:text-slate-400">({c.level})</span>
           </Link>
         </li>
       ))}
@@ -186,7 +186,7 @@ function FindingDetail({ finding }: { finding: Finding }) {
               <p className="mb-1 text-xs font-semibold text-red-700 dark:text-red-300">
                 Current
               </p>
-              <pre className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs leading-relaxed text-slate-100">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs leading-relaxed text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <code>{finding.codeExample.bad}</code>
               </pre>
             </div>
@@ -194,7 +194,7 @@ function FindingDetail({ finding }: { finding: Finding }) {
               <p className="mb-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
                 Suggested
               </p>
-              <pre className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs leading-relaxed text-slate-100">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs leading-relaxed text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <code>{finding.codeExample.good}</code>
               </pre>
             </div>
@@ -412,19 +412,17 @@ export function ReportDashboard() {
           </div>
           <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {stats.bySeverity.map((s) => (
-              <div key={s.severity} className="flex items-start gap-2.5">
-                <span
-                  className={cn("mt-1 h-3 w-3 shrink-0 rounded-sm", severityBar[s.severity])}
-                  aria-hidden="true"
-                />
-                <div>
-                  <dt className="text-sm font-semibold text-slate-900 dark:text-white">
-                    {s.count} {s.severity}
-                  </dt>
-                  <dd className="text-xs leading-snug text-slate-600 dark:text-slate-400">
-                    {severityMeta[s.severity].blurb}
-                  </dd>
-                </div>
+              <div key={s.severity}>
+                <dt className="flex items-start gap-2.5 text-sm font-semibold text-slate-900 dark:text-white">
+                  <span
+                    className={cn("mt-1 h-3 w-3 shrink-0 rounded-sm", severityBar[s.severity])}
+                    aria-hidden="true"
+                  />
+                  {s.count} {s.severity}
+                </dt>
+                <dd className="pl-[1.375rem] text-xs leading-snug text-slate-600 dark:text-slate-400">
+                  {severityMeta[s.severity].blurb}
+                </dd>
               </div>
             ))}
           </dl>
@@ -609,7 +607,7 @@ export function ReportDashboard() {
           </div>
         ) : view === "table" ? (
           /* ---------- Table view ---------- */
-          <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+          <div tabIndex={0} role="region" aria-label={`Accessibility findings for ${sampleAuditReport.product}`} className="overflow-x-auto rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             <table className="w-full min-w-[64rem] text-left text-sm">
               <caption className="sr-only">
                 Accessibility findings for {sampleAuditReport.product}. Each row

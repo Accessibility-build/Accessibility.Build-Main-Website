@@ -452,7 +452,7 @@ export default function WCAG337Page() {
             </div>
             <div className="mt-6 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50 dark:bg-amber-950/20 p-5">
               <p className="text-amber-900 dark:text-amber-200 leading-relaxed">
-                <strong>Watch the &quot;confirm&quot; habit:</strong> a
+                <strong>Watch the &quot;confirm&quot; habit:</strong>{" "}a
                 confirm-email or confirm-password field is only exempt when it
                 genuinely rests on the security or essential exception. Many teams
                 add them out of habit. Where a &quot;show password&quot; toggle or

@@ -2,7 +2,7 @@ import Link from "next/link"
 import { createMetadata } from "@/lib/metadata"
 import { wcagCriteria, type SuccessCriterion } from "@/lib/wcag-data"
 import { wcagPath } from "@/lib/wcag-pages"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -208,10 +208,10 @@ export default function WCAGIndexPage() {
         {/* Introduction */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <h2 className="flex items-center gap-2 text-2xl font-semibold leading-none tracking-tight">
               <BookOpen className="h-6 w-6 text-blue-600" />
               About These Guides
-            </CardTitle>
+            </h2>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -232,7 +232,7 @@ export default function WCAGIndexPage() {
                 <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-medium text-green-800 dark:text-green-200">Testing Methods</p>
-                  <p className="text-sm text-green-600 dark:text-green-300">Manual and automated testing approaches</p>
+                  <p className="text-sm text-green-700 dark:text-green-300">Manual and automated testing approaches</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg">

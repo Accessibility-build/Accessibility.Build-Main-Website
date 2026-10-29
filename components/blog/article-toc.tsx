@@ -62,7 +62,7 @@ export function ArticleToc({ containerId = 'article-body' }: { containerId?: str
 
   return (
     <nav aria-label="Table of contents" className="font-sans text-sm">
-      <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+      <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
         On this page
       </div>
       <ul className="space-y-1 border-l border-slate-200 dark:border-slate-800">

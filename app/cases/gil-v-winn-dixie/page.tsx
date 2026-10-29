@@ -656,7 +656,7 @@ export default async function GilWinnDixieCasePage() {
                   <p>
                     The majority expressly declined to adopt the nexus test, and it distinguished the
                     Ninth Circuit&apos;s decision in{" "}
-                    <Link href="/cases/robles-v-dominos">Robles v. Domino&apos;s</Link> on the facts:
+                    <Link href="/cases/robles-v-dominos">Robles v. Domino&apos;s</Link>{" "}on the facts:
                     Domino&apos;s sold pizza through its site and app, and Winn-Dixie sold nothing
                     through its site. A footnote recorded that Gil&apos;s counsel had conceded at
                     argument that Winn-Dixie was not required to have a website at all and could
@@ -1125,7 +1125,7 @@ export default async function GilWinnDixieCasePage() {
                   </h3>
                   <ul>
                     <li>
-                      <strong>Vacated means gone.</strong> Anyone citing the Eleventh Circuit&apos;s
+                      <strong>Vacated means gone.</strong>{" "}Anyone citing the Eleventh Circuit&apos;s
                       Winn-Dixie opinion as law, in a brief or a sales deck, is citing an opinion the
                       court itself withdrew. The question is open in three states.
                     </li>
@@ -1311,13 +1311,11 @@ export default async function GilWinnDixieCasePage() {
                 </CaseProse>
               </CaseSection>
 
-              <section id="discussion" aria-labelledby="discussion-heading" className="scroll-mt-28">
-                <CaseComments
-                  caseSlug={CASE_SLUG}
-                  caseTitle="Gil v. Winn-Dixie Stores"
-                  initialComments={comments}
-                />
-              </section>
+              <CaseComments
+                caseSlug={CASE_SLUG}
+                caseTitle="Gil v. Winn-Dixie Stores"
+                initialComments={comments}
+              />
 
               <RelatedContent
                 content="ADA website accessibility lawsuit Eleventh Circuit public accommodation nexus WCAG injunction"

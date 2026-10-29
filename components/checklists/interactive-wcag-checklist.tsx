@@ -628,14 +628,14 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
       {/* Enhanced Progress Overview */}
       <Card className="bg-white dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 shadow-xl overflow-hidden">
         <CardHeader className="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-900/30 dark:via-indigo-900/30 dark:to-purple-900/30 border-b border-slate-200 dark:border-slate-700/50">
-          <CardTitle className="flex items-center gap-3 text-2xl">
+          <h2 className="flex items-center gap-3 text-2xl font-semibold tracking-tight">
             <div className="p-2.5 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg">
               <BarChart3 className="w-6 h-6 text-white" />
             </div>
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent font-bold">
               Progress Overview
             </span>
-          </CardTitle>
+          </h2>
         </CardHeader>
         <CardContent className="p-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-8">
@@ -882,7 +882,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="font-mono text-xs font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700">
+                      <span className="font-mono text-xs font-bold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700">
                         {criterion.number}
                       </span>
                       {getLevelBadge(criterion.level)}
@@ -942,7 +942,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
 
                   {availableGuides.has(criterion.number) && (
                     <Button asChild variant="ghost" size="sm" className="h-8 w-8 p-0 text-blue-600 dark:text-blue-400">
-                      <Link href={`/wcag/${criterion.number.replace(/\./g, '-')}`}>
+                      <Link href={`/wcag/${criterion.number.replace(/\./g, '-')}`} aria-label={`Open the guide for ${criterion.number} ${criterion.title}`}>
                         <Eye className="w-4 h-4" />
                       </Link>
                     </Button>
@@ -1013,7 +1013,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
       {/* Enhanced Checklist Table (Desktop) */}
       <Card className="hidden sm:block bg-white dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 shadow-xl overflow-hidden">
         <CardContent className="p-0">
-          <div className="overflow-x-auto">
+          <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria checklist" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             <table className="w-full">
               <thead>
                 <tr className="bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100 dark:from-slate-700/80 dark:via-slate-800/80 dark:to-slate-700/80 border-b border-slate-200 dark:border-slate-600">
@@ -1070,7 +1070,7 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                           <div className="flex items-center gap-2">
                             <Dialog>
                               <DialogTrigger asChild>
-                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-blue-100 dark:hover:bg-blue-900/40 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                                <Button variant="ghost" size="sm" aria-label={`${hasNote ? "Edit" : "Add"} note for ${criterion.number} ${criterion.title}`} className="h-8 w-8 p-0 hover:bg-blue-100 dark:hover:bg-blue-900/40 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
                                   <MessageSquare className="w-4 h-4" />
                                 </Button>
                               </DialogTrigger>
@@ -1101,6 +1101,8 @@ const InteractiveWCAGChecklist = ({ initialLevelFilter }: InteractiveWCAGCheckli
                               variant="ghost"
                               size="sm"
                               onClick={() => toggleExpanded(criterion.number)}
+                              aria-expanded={isExpanded}
+                              aria-label={`${isExpanded ? "Hide" : "Show"} details for ${criterion.number} ${criterion.title}`}
                               className="h-8 w-8 p-0 hover:bg-purple-100 dark:hover:bg-purple-900/40 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
                             >
                               {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}

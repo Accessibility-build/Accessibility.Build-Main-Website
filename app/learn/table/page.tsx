@@ -327,7 +327,7 @@ function SortableTableSection() {
         {/* Live region for announcements */}
         <div role="status" aria-live="polite" className="sr-only">{announcement}</div>
         
-        <div className="overflow-x-auto bg-card rounded-xl border border-border shadow-sm">
+        <div tabIndex={0} role="region" aria-label="Employee directory, sortable by clicking column headers" className="overflow-x-auto bg-card rounded-xl border border-border shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
           <table className="w-full text-sm">
             <caption className="sr-only">Employee directory, sortable by clicking column headers</caption>
             <thead>
@@ -563,7 +563,7 @@ function SelectableTableSection() {
         <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"><Play className="w-5 h-5 text-green-500" /> Interactive Demo</h3>
         <p className="text-muted-foreground mb-4">Select individual rows or use the header checkbox to select all. Notice how the header checkbox shows a dash (—) when partially selected.</p>
 
-        <div className="overflow-x-auto bg-card rounded-xl border border-border shadow-sm">
+        <div tabIndex={0} role="region" aria-label="Selectable employee list" className="overflow-x-auto bg-card rounded-xl border border-border shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
           <table className="w-full text-sm">
             <caption className="sr-only">Selectable employee list</caption>
             <thead className="bg-muted/40">
@@ -698,7 +698,7 @@ function EditableTableSection() {
 
         <div id="edit-instructions" className="sr-only">Press Enter to save changes, or Escape to cancel</div>
 
-        <div className="overflow-x-auto bg-card rounded-xl border border-border shadow-sm">
+        <div tabIndex={0} role="region" aria-label="Editable employee directory" className="overflow-x-auto bg-card rounded-xl border border-border shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
           <table className="w-full text-sm">
             <caption className="sr-only">Editable employee directory</caption>
             <thead className="bg-muted/40">

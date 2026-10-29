@@ -325,7 +325,7 @@ export default function AccessibleDataTablesGuidePage() {
                 rest of the table covers the criteria a data table brushes up
                 against, from naming the table to keeping it usable at 320 pixels.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that apply to data tables, their conformance level, and how each one applies" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that apply to data tables, their
@@ -453,7 +453,7 @@ export default function AccessibleDataTablesGuidePage() {
                   header cell, and <code>&lt;td&gt;</code> is a data cell. Here is
                   a complete, correct table with a header row:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<table>
   <caption>Q2 2026 sales by region</caption>
   <thead>
@@ -489,7 +489,7 @@ export default function AccessibleDataTablesGuidePage() {
                 <ul className="text-muted-foreground leading-relaxed mb-4 list-disc pl-6 space-y-2">
                   <li>
                     <strong className="text-slate-900 dark:text-white">
-                      The <code>&lt;caption&gt;</code> is the table&rsquo;s name.
+                      The <code>&lt;caption&gt;</code>{" "}is the table&rsquo;s name.
                     </strong>{" "}
                     It must be the first child of <code>&lt;table&gt;</code>. A
                     screen reader announces it on entry and lists it in the
@@ -545,7 +545,7 @@ export default function AccessibleDataTablesGuidePage() {
                   header cell applies. It takes four values, and two of them cover
                   almost every table:
                 </p>
-                <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-4">
+                <div tabIndex={0} role="region" aria-label="The four values of the scope attribute and when to use each" className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full text-sm text-left">
                     <caption className="sr-only">
                       The four values of the scope attribute and when to use each
@@ -595,10 +595,10 @@ export default function AccessibleDataTablesGuidePage() {
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   When a header spans multiple columns, <code>colspan</code> paired
-                  with <code>scope=&quot;colgroup&quot;</code> handles the common
+                  with <code>scope=&quot;colgroup&quot;</code>{" "}handles the common
                   case. Here a &ldquo;Contact&rdquo; header sits above two columns:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<table>
   <caption>Team directory</caption>
   <thead>
@@ -649,7 +649,7 @@ export default function AccessibleDataTablesGuidePage() {
                   header that applies in a space-separated{" "}
                   <code>headers</code> attribute:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<table>
   <caption>Shipping cost by weight and zone</caption>
   <thead>
@@ -674,7 +674,7 @@ export default function AccessibleDataTablesGuidePage() {
 </table>`}</code></pre>
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Now the <code>$14</code> cell announces &ldquo;1 to 5 kg, Zone
+                  Now the <code>$14</code>{" "}cell announces &ldquo;1 to 5 kg, Zone
                   B, 14 dollars&rdquo; because its <code>headers</code> attribute
                   names both the row header and the column header explicitly. The
                   method is exhaustive and unambiguous. It is also verbose and
@@ -701,7 +701,7 @@ export default function AccessibleDataTablesGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Between the two extremes,{" "}
                   <code>scope=&quot;colgroup&quot;</code> and{" "}
-                  <code>scope=&quot;rowgroup&quot;</code> cover many
+                  <code>scope=&quot;rowgroup&quot;</code>{" "}cover many
                   &ldquo;grouped header&rdquo; tables without the id bookkeeping,
                   so try those before the full headers and id approach.
                 </p>
@@ -728,7 +728,7 @@ export default function AccessibleDataTablesGuidePage() {
                   prose near the table, or associate a paragraph with{" "}
                   <code>aria-describedby</code>:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<p id="table-note">
   Figures are in thousands and exclude refunds.
 </p>
@@ -751,7 +751,7 @@ export default function AccessibleDataTablesGuidePage() {
                   Empty cells
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  An empty <code>&lt;td&gt;</code> is announced as an empty cell,
+                  An empty <code>&lt;td&gt;</code>{" "}is announced as an empty cell,
                   which is fine when the value is genuinely absent, but ambiguous
                   when it means something specific like &ldquo;none&rdquo; or
                   &ldquo;not applicable&rdquo;. If the blank carries meaning, put
@@ -795,7 +795,7 @@ export default function AccessibleDataTablesGuidePage() {
                   <code>overflow-x: auto</code> div cannot be scrolled by keyboard;
                   adding <code>tabindex=&quot;0&quot;</code> and a label fixes that:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<div
   role="region"
   aria-label="Quarterly revenue, scrollable"
@@ -846,7 +846,7 @@ export default function AccessibleDataTablesGuidePage() {
                     <code>role=&quot;columnheader&quot;</code> or{" "}
                     <code>role=&quot;rowheader&quot;</code> to headers, so the
                     display change does not strip them; or make sure the visible{" "}
-                    <code>data-label</code> text carries each value&rsquo;s meaning
+                    <code>data-label</code>{" "}text carries each value&rsquo;s meaning
                     so the card reads correctly even without table semantics. Test
                     the result with a screen reader at mobile width, because the
                     breakage is completely invisible on screen.
@@ -899,7 +899,7 @@ export default function AccessibleDataTablesGuidePage() {
                   the values are <code>ascending</code>, <code>descending</code>,{" "}
                   <code>none</code>, and <code>other</code>:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<th scope="col" aria-sort="ascending">
   <button type="button">
     Revenue
@@ -917,7 +917,7 @@ export default function AccessibleDataTablesGuidePage() {
                   The arrow glyph is decorative, so hide it from assistive
                   technology with <code>aria-hidden</code>: the sort state is
                   already conveyed by <code>aria-sort</code>, and doubling it up in
-                  the button text would be noise. Some screen readers announce the
+                  the button text would be noise. Some screen readers announce the{" "}
                   <code>aria-sort</code> change on their own; if you want to
                   guarantee feedback, mirror it in a{" "}
                   <Link href="/wcag/4-1-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
@@ -937,7 +937,7 @@ export default function AccessibleDataTablesGuidePage() {
                   from the row&rsquo;s header text with{" "}
                   <code>aria-label</code> or a visually hidden span:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<td>
   <button type="button" aria-label="Delete invoice INV-2041">
     <TrashIcon aria-hidden="true" />
@@ -1016,7 +1016,7 @@ export default function AccessibleDataTablesGuidePage() {
                     Because a virtualised table has only some rows in the DOM, you
                     must add <code>aria-rowcount</code> and{" "}
                     <code>aria-colcount</code> on the table and{" "}
-                    <code>aria-rowindex</code> and <code>aria-colindex</code> on the
+                    <code>aria-rowindex</code> and <code>aria-colindex</code>{" "}on the
                     rows and cells, so the user hears &ldquo;row 40 of
                     10,000&rdquo; instead of &ldquo;row 40 of 20&rdquo;.
                   </li>
@@ -1126,7 +1126,7 @@ export default function AccessibleDataTablesGuidePage() {
                 Each one is a small markup decision with an outsized effect on
                 whether the table reads at all.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common data table anti-patterns, why each one fails, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common data table anti-patterns, why each one fails, and the fix

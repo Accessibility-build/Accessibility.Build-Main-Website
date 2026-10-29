@@ -290,7 +290,7 @@ export default function AdaWebsiteCaseLawPage() {
                 Only five of these thirteen entries are binding appellate authority, and none of the
                 five was about a website when it was decided.
               </p>
-              <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="Federal decisions on whether the ADA reaches websites, with court, date, holding and current status" className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full border-collapse text-sm">
                   <caption className="sr-only">
                     Federal decisions on whether the ADA reaches websites, with court, date, holding and current status

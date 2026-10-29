@@ -193,7 +193,7 @@ export default function WordPowerPointAccessibilityCheckerPage() {
                 pages, but the W3C&apos;s guidance on applying it to documents (WCAG2ICT) treats a Word or
                 PowerPoint file as a page, and so do procurement rules such as EN 301 549 and Section 508.
               </p>
-              <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="The checks run on Word documents and PowerPoint presentations, and the WCAG criteria they relate to" className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full border-collapse text-sm">
                   <caption className="sr-only">The checks run on Word documents and PowerPoint presentations, and the WCAG criteria they relate to</caption>
                   <thead>

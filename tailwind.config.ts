@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import defaultTheme from "tailwindcss/defaultTheme"
 
 const config: Config = {
   darkMode: ["class"],
@@ -32,6 +33,11 @@ const config: Config = {
       },
     },
     extend: {
+      // Mona Sans from next/font (the --font-sans variable on <body>). Without this, font-sans was
+      // Tailwind's system stack and the font only came from an inline style in app/layout.tsx.
+      fontFamily: {
+        sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

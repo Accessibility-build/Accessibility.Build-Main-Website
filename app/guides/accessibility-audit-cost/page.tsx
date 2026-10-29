@@ -178,7 +178,7 @@ export default function AccessibilityAuditCostPage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="max-w-3xl mx-auto space-y-16">
           {/* Honest answer */}
           <section aria-labelledby="honest-heading">
@@ -218,7 +218,7 @@ export default function AccessibilityAuditCostPage() {
                 page.
               </li>
             </ul>
-            <div className="mt-8 mb-8 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="Published audit prices, checked 3 September 2026. Only providers that print a price are listed; a blank in this..." className="mt-8 mb-8 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full border-collapse text-sm">
                 <caption className="px-4 py-3 text-left text-sm text-slate-600 dark:text-slate-400">
                   Published audit prices, checked 3 September 2026. Only providers that print a price
@@ -526,7 +526,7 @@ export default function AccessibilityAuditCostPage() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">

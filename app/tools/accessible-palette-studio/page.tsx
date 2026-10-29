@@ -155,7 +155,7 @@ export default function AccessiblePaletteStudioPage() {
                   <Layers className="h-4 w-4 text-blue-600" /> 11-stop OKLCH
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <FileCheck className="h-4 w-4 text-green-600" /> WCAG&nbsp;2.2 + APCA
+                  <FileCheck className="h-4 w-4 text-green-600" />{" "}WCAG&nbsp;2.2 + APCA
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Eye className="h-4 w-4 text-purple-600" /> CVD simulation

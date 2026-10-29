@@ -199,7 +199,7 @@ export default function ScreenReaderSimulatorPage() {
               <h2 id="checks-heading" className="font-serif text-2xl font-semibold text-slate-900 dark:text-white sm:text-3xl">
                 What gets flagged
               </h2>
-              <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="The checks run on each list, and the WCAG criteria they relate to" className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full border-collapse text-sm">
                   <caption className="sr-only">The checks run on each list, and the WCAG criteria they relate to</caption>
                   <thead>
@@ -237,7 +237,7 @@ export default function ScreenReaderSimulatorPage() {
                 <Link href="/wcag/2-4-4" className={linkClass}>2.4.4 Link Purpose (In Context)</Link>,{" "}
                 <Link href="/wcag/2-4-6" className={linkClass}>2.4.6 Headings and Labels</Link> and{" "}
                 <Link href="/wcag/4-1-2" className={linkClass}>4.1.2 Name, Role, Value</Link>, with{" "}
-                <Link href="/wcag/1-1-1" className={linkClass}>1.1.1 Non-text Content</Link> for images. A flag is a
+                <Link href="/wcag/1-1-1" className={linkClass}>1.1.1 Non-text Content</Link>{" "}for images. A flag is a
                 lead to check, not a verdict: whether a heading describes its section, or a link&apos;s context makes
                 its purpose clear, still needs a person.
               </p>

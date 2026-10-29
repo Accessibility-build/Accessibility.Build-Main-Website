@@ -291,7 +291,7 @@ export default function IndiaCompliancePage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <KeyFacts
           title="India digital accessibility, the numbers"
           facts={[
@@ -489,7 +489,7 @@ export default function IndiaCompliancePage() {
               Every one of them is counted from the date the final rules are published, so none
               has started.
             </p>
-            <div className="overflow-x-auto mb-6">
+            <div tabIndex={0} role="region" aria-label="Compliance timelines in the draft Rights of Persons with Disabilities (Amendment) Rules, 2026, all counted from..." className="overflow-x-auto mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-left text-sm border-collapse">
                 <caption className="sr-only">
                   Compliance timelines in the draft Rights of Persons with Disabilities (Amendment)
@@ -655,7 +655,7 @@ export default function IndiaCompliancePage() {
               </Link>{" "}
               incorporates WCAG 2.1 Level AA, so does IS 17802.
             </p>
-            <div className="overflow-x-auto mb-6">
+            <div tabIndex={0} role="region" aria-label="Clauses of IS 17802 (Part 1): 2021 mapped to EN 301 549 V3.2.1 and WCAG 2.1" className="overflow-x-auto mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-left text-sm border-collapse">
                 <caption className="sr-only">
                   Clauses of IS 17802 (Part 1): 2021 mapped to EN 301 549 V3.2.1 and WCAG 2.1
@@ -811,7 +811,7 @@ export default function IndiaCompliancePage() {
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               Complaints follow a fixed ladder under clause (H), with the clock at each rung:
             </p>
-            <div className="overflow-x-auto mb-6">
+            <div tabIndex={0} role="region" aria-label="Grievance escalation ladder in the draft rules" className="overflow-x-auto mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-left text-sm border-collapse">
                 <caption className="sr-only">Grievance escalation ladder in the draft rules</caption>
                 <thead>
@@ -1012,7 +1012,7 @@ export default function IndiaCompliancePage() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">

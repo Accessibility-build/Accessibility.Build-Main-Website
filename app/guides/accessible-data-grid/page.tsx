@@ -460,7 +460,7 @@ export default function AccessibleDataGridGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria a Data Grid Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that a correctly built data grid satisfies and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that a correctly built data grid
@@ -682,7 +682,7 @@ export default function AccessibleDataGridGuidePage() {
                 add the interaction attributes. Here is the full set and what each
                 part is for.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="The elements and attributes in an accessible data grid and what each is for" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The elements and attributes in an accessible data grid and
@@ -742,7 +742,7 @@ export default function AccessibleDataGridGuidePage() {
                 <code>tabindex=&quot;0&quot;</code>; every other operable cell is{" "}
                 <code>tabindex=&quot;-1&quot;</code>.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<table role="grid" aria-label="Team members" aria-readonly="true">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<table role="grid" aria-label="Team members" aria-readonly="true">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -808,7 +808,7 @@ export default function AccessibleDataGridGuidePage() {
                 yours to wire up. A grid that responds only to Tab is not a grid;
                 it is a table with the reading commands switched off.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Keyboard commands a conformant data grid must support" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Keyboard commands a conformant data grid must support
@@ -867,7 +867,7 @@ export default function AccessibleDataGridGuidePage() {
                 only difference from a one-dimensional widget is that you track a
                 row and a column, not a single index.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`const grid = document.querySelector('[role="grid"]')
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const grid = document.querySelector('[role="grid"]')
 const rows = [...grid.querySelectorAll('tr')]
 
 // The current cell, as [rowIndex, colIndex].
@@ -925,7 +925,7 @@ grid.addEventListener("keydown", (e) => {
                 </strong>
                 : DOM focus stays on the <code>role=&quot;grid&quot;</code>{" "}
                 container and an <code>aria-activedescendant</code> attribute on it
-                points at the <code>id</code> of the active cell, which you move as
+                points at the <code>id</code>{" "}of the active cell, which you move as
                 the user arrows. It can be simpler with virtualised data, but it
                 puts the burden of a visible &ldquo;active cell&rdquo; style
                 entirely on your CSS. Roving tabindex is the more common choice for
@@ -994,7 +994,7 @@ grid.addEventListener("keydown", (e) => {
                 mode so the user can reach each control without the arrows being
                 hijacked.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`let mode = "navigation"
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`let mode = "navigation"
 
 grid.addEventListener("keydown", (e) => {
   const cell = e.target.closest("th, td")
@@ -1076,7 +1076,7 @@ grid.addEventListener("keydown", (e) => {
                 committing the edit (often Enter again) returns to navigation mode
                 and moves focus on.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`// An editable cell in navigation mode.
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// An editable cell in navigation mode.
 <td tabindex="0" aria-readonly="false">$95,000</td>
 
 // Enter / F2 swaps the text for an input, focus moves into it.
@@ -1094,7 +1094,7 @@ grid.addEventListener("keydown", (e) => {
                 Two details matter for a screen reader user. First, the editor
                 needs its own accessible name — the column header alone is not
                 enough once the cell text has been replaced by a bare input, so
-                give it an <code>aria-label</code> that identifies both the field
+                give it an <code>aria-label</code>{" "}that identifies both the field
                 and the row (&ldquo;Salary, Alice Johnson&rdquo;). Second, if the
                 edit can fail validation, surface the error with{" "}
                 <code>aria-invalid</code> and an{" "}
@@ -1133,7 +1133,7 @@ grid.addEventListener("keydown", (e) => {
                 <code>aria-selected</code> on the <code>gridcell</code> for cell
                 selection, or on the <code>row</code> for whole-row selection.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- Multi-select rows: aria-multiselectable on the grid, an explicit
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Multi-select rows: aria-multiselectable on the grid, an explicit
      aria-selected on every row, and a real checkbox as the non-colour cue. -->
 <table role="grid" aria-label="Invoices" aria-multiselectable="true">
   <tbody>
@@ -1230,7 +1230,7 @@ grid.addEventListener("keydown", (e) => {
                   columns.
                 </li>
               </ul>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- A virtualized grid: 10,000 rows total, only a window rendered. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- A virtualized grid: 10,000 rows total, only a window rendered. -->
 <table role="grid" aria-label="Transactions"
        aria-rowcount="10000" aria-colcount="4">
   <tbody>
@@ -1247,7 +1247,7 @@ grid.addEventListener("keydown", (e) => {
                 When the whole grid is in the DOM, the browser computes counts and
                 positions for you and you can skip these. But once you virtualise,
                 only your <code>aria-rowcount</code> and{" "}
-                <code>aria-rowindex</code> can tell the user &ldquo;row 4,500 of
+                <code>aria-rowindex</code>{" "}can tell the user &ldquo;row 4,500 of
                 10,000&rdquo;. They are the grid&apos;s version of the{" "}
                 <Link href="/guides/accessible-tree-view" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   tree&apos;s
@@ -1282,7 +1282,7 @@ grid.addEventListener("keydown", (e) => {
                 collapses it — the same context-sensitive arrow behaviour the tree
                 guide covers in depth.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<table role="treegrid" aria-label="Threaded messages">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<table role="treegrid" aria-label="Threaded messages">
   <tbody>
     <tr aria-level="1" aria-expanded="true" aria-posinset="1" aria-setsize="2">
       <td tabindex="0">Re: Launch plan</td>
@@ -1325,7 +1325,7 @@ grid.addEventListener("keydown", (e) => {
                 two focus modes, and the count and index properties are all still
                 yours to get right.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`function DataGrid({ columns, rows }) {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function DataGrid({ columns, rows }) {
   // Track the active cell as [rowIndex, colIndex] for roving tabindex.
   const [active, setActive] = useState([0, 0])
 
@@ -1483,7 +1483,7 @@ grid.addEventListener("keydown", (e) => {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Data Grid Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible data grid anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible data grid anti-patterns, why they fail, and

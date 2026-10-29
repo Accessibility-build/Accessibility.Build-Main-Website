@@ -879,7 +879,7 @@ function SegmentedToggle({
   options: { value: string; label: string }[]
 }) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex flex-wrap items-center gap-2">
       <span className="flex items-center gap-1 text-xs font-medium text-muted-foreground">
         <Icon className="h-3.5 w-3.5" />
         {label}

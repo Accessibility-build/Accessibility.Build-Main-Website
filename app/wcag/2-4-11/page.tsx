@@ -390,7 +390,7 @@ export default function WCAG2411Page() {
                 <strong>The rule of thumb:</strong> if you have anything pinned
                 over the page with <code>position: sticky</code> or{" "}
                 <code>position: fixed</code>, you almost certainly need{" "}
-                <code>scroll-padding</code> on the scroll container equal to its
+                <code>scroll-padding</code>{" "}on the scroll container equal to its
                 size &mdash; <code>scroll-padding-top</code> for a sticky header,{" "}
                 <code>scroll-padding-bottom</code> for a sticky footer.
               </p>
@@ -444,7 +444,7 @@ export default function WCAG2411Page() {
             <div className="mt-6 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50 dark:bg-amber-950/20 p-5">
               <p className="text-amber-900 dark:text-amber-200 leading-relaxed">
                 <strong>Watch the partial case too:</strong> 2.4.11 only fails
-                when the element is <em>entirely</em> hidden, but an element that
+                when the element is <em>entirely</em>{" "}hidden, but an element that
                 is mostly covered &mdash; with just a sliver showing &mdash; is a
                 poor experience and may fail the AAA criterion 2.4.12. Aim to
                 keep the whole focused element, not just a corner of it, visible.

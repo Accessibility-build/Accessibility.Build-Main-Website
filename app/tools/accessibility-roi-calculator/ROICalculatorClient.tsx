@@ -921,7 +921,7 @@ function ROICalculatorInner() {
                         <h4 className="font-semibold text-slate-900 dark:text-white mb-1">Data Sources</h4>
                         <ul className="list-disc pl-5 space-y-1">
                           <li>
-                            <strong>Audience share:</strong> The default 15% is an editable planning assumption,
+                            <strong>Audience share:</strong>{" "}The default 15% is an editable planning assumption,
                             not a claim that the same share of every site&apos;s users is blocked.
                           </li>
                           <li>
@@ -929,7 +929,7 @@ function ROICalculatorInner() {
                             but the displayed rate is a scenario input rather than a lawsuit probability.
                           </li>
                           <li>
-                            <strong>Incident cost:</strong> The default $75,000 is editable and should be replaced
+                            <strong>Incident cost:</strong>{" "}The default $75,000 is editable and should be replaced
                             with an organization&apos;s own legal, operational, and remediation assumptions.
                           </li>
                           <li>

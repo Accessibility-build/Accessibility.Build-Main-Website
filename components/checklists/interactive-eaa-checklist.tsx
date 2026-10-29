@@ -451,7 +451,7 @@ export default function InteractiveEAAChecklist() {
                     className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:border-blue-300 hover:text-blue-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-700 dark:hover:text-blue-300"
                   >
                     {s.title}
-                    <span className="text-slate-400 dark:text-slate-500">
+                    <span className="text-slate-600 dark:text-slate-400">
                       {sp.done}/{sp.applicable}
                     </span>
                   </a>
@@ -522,7 +522,7 @@ export default function InteractiveEAAChecklist() {
                         >
                           {r.obligation}
                         </p>
-                        <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-500">
+                        <p className="mt-1.5 text-xs text-slate-600 dark:text-slate-400">
                           Applies to: {r.appliesTo}
                         </p>
                         <details open={expandAll} className="mt-2 group">

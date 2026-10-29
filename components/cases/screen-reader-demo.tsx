@@ -134,7 +134,7 @@ export function ScreenReaderDemo() {
       {/* Two columns on wide screens, stacked on narrow. Presented as a table so
           the pairing between the visual and the announcement is programmatic,
           not just spatial. */}
-      <div className="overflow-x-auto">
+      <div tabIndex={0} role="region" aria-label="Each element of the order form, what a sighted user sees, and what a screen reader announces with accessible names" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <table className="w-full border-collapse text-sm">
           <caption className="sr-only">
             Each element of the order form, what a sighted user sees, and what a screen reader

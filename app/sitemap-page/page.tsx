@@ -2,7 +2,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { getBlogPosts } from "@/lib/sanity"
 import { siteRoutes, type SiteRoute } from "@/lib/site-routes"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
 export const metadata: Metadata = {
   title: "Sitemap | Accessibility.build",
@@ -22,6 +22,7 @@ const groupOrder = [
   "Recipes",
   "Reference",
   "Research",
+  "Cases",
   "Compliance",
   "Industries",
   "WCAG 3.0",
@@ -67,7 +68,8 @@ export default async function SitemapPage() {
           return (
             <Card key={group}>
               <CardHeader>
-                <CardTitle className="text-xl">{group}</CardTitle>
+                {/* An h2, not CardTitle (an h3): each group sits directly under the page h1. */}
+                <h2 className="text-xl font-semibold leading-none tracking-tight">{group}</h2>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">

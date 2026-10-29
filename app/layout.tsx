@@ -364,18 +364,10 @@ export default function RootLayout({
           <link rel="alternate" type="application/atom+xml" title="Accessibility.build Blog Atom Feed" href="/atom.xml" />
           <link rel="alternate" type="text/plain" title="Accessibility.build LLMs.txt" href="/llms.txt" />
 
-          {/* Critical inline CSS for above-the-fold content */}
-          <style dangerouslySetInnerHTML={{
-            __html: `
-              .min-h-screen{min-height:100vh}
-              .flex{display:flex}
-              .flex-col{flex-direction:column}
-              .flex-1{flex:1 1 0%}
-              .antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-              .font-sans{font-family:var(--font-sans),ui-sans-serif,system-ui,sans-serif}
-              .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
-            `
-          }} />
+          {/* No inline "critical" utility CSS here. A copy of .flex-col, .flex, .sr-only and friends
+              loaded after Tailwind's stylesheet and beat every responsive variant at equal
+              specificity, so flex-col sm:flex-row layouts never became rows. The stylesheet is
+              render-blocking, so the copy bought nothing. */}
         </head>
         <body className={cn("min-h-screen font-sans antialiased", fontSans.variable)}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

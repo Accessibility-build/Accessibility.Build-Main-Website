@@ -48,7 +48,7 @@ export default function PaginationLayout({ children }: { children: React.ReactNo
           </p>
           <p>
             The demo above builds numbered pagination as a{" "}
-            <code>&lt;nav&gt;</code> landmark named &quot;Pagination&quot;
+            <code>&lt;nav&gt;</code>{" "}landmark named &quot;Pagination&quot;
             containing a list of buttons, marks the current page with{" "}
             <code>aria-current=&quot;page&quot;</code>, gives every control a
             full name such as &quot;Go to page 3&quot;, hides the decorative

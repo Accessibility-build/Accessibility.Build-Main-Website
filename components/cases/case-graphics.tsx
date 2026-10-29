@@ -208,7 +208,7 @@ export function DefenceScorecard() {
         One argument succeeded, once, and was reversed. Two were never tested at all, including the
         one about cost.
       </p>
-      <div className="mt-5 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+      <div tabIndex={0} role="region" aria-label="Each argument Domino's made, and its outcome at the district court in 2017, the Ninth Circuit in 2019, and finally" className="mt-5 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <table className="w-full border-collapse text-sm">
           <caption className="sr-only">
             Each argument Domino&apos;s made, and its outcome at the district court in 2017, the

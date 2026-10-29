@@ -219,9 +219,9 @@ export default function AriaReferencePage() {
         </section>
 
         {/* Interactive Client Component */}
-        <main>
+        <div>
           <AriaReferenceClient />
-        </main>
+        </div>
 
         {/* Related Content */}
         <section className="pb-12 px-4 sm:px-6">

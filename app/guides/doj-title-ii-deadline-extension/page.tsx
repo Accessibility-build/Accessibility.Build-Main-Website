@@ -244,7 +244,7 @@ export default function TitleIIExtensionPage() {
                     <th scope="row" className="text-left p-4 font-medium">
                       Public entities, total population ≥ 50,000
                     </th>
-                    <td className="p-4 text-slate-500 line-through">
+                    <td className="p-4 text-slate-500 dark:text-slate-400 line-through">
                       April 24, 2026
                     </td>
                     <td className="p-4 font-semibold text-amber-700 dark:text-amber-300">
@@ -255,7 +255,7 @@ export default function TitleIIExtensionPage() {
                     <th scope="row" className="text-left p-4 font-medium">
                       Smaller public entities & special districts
                     </th>
-                    <td className="p-4 text-slate-500 line-through">
+                    <td className="p-4 text-slate-500 dark:text-slate-400 line-through">
                       April 26, 2027
                     </td>
                     <td className="p-4 font-semibold text-amber-700 dark:text-amber-300">
@@ -335,7 +335,7 @@ export default function TitleIIExtensionPage() {
             </p>
             <ol>
               <li>
-                <strong>State laws are unmoved.</strong> A California county
+                <strong>State laws are unmoved.</strong>{" "}A California county
                 that misses accessibility obligations is still exposed under
                 the Unruh Civil Rights Act. A New York City agency is still
                 exposed under the city&apos;s Human Rights Law. The federal
@@ -349,7 +349,7 @@ export default function TitleIIExtensionPage() {
                 enforcement timing.
               </li>
               <li>
-                <strong>The work is the same either way.</strong> WCAG 2.1
+                <strong>The work is the same either way.</strong>{" "}WCAG 2.1
                 AA hasn&apos;t changed. The audit you scoped in 2025 still
                 produces the same findings. Pausing now means doing the same
                 work in 2027 at higher cost (developers leave, vendors raise

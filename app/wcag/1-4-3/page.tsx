@@ -294,7 +294,7 @@ export default function WCAG143Page() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Contrast ratio is a single number from 1:1 to 21:1, derived from the{" "}
-              <em>relative luminance</em> of the foreground and background colors. Pure
+              <em>relative luminance</em>{" "}of the foreground and background colors. Pure
               black on pure white is the maximum, 21:1; two identical colors are 1:1.
               The formula linearizes each color channel and weights green most heavily,
               which is why two colors that look equally &ldquo;dark&rdquo; can measure

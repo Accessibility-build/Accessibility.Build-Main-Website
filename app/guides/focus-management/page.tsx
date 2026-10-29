@@ -264,7 +264,7 @@ export default function FocusManagementGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria Focus Management Covers
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that depend on correct focus management and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that depend on correct focus
@@ -381,7 +381,7 @@ export default function FocusManagementGuidePage() {
                 failure. The <code>tabindex</code> attribute has exactly three
                 meaningful uses:
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- tabindex="0": add a CUSTOM element to the natural Tab order -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- tabindex="0": add a CUSTOM element to the natural Tab order -->
 <div role="button" tabindex="0" onkeydown="/* handle Enter/Space */">
   Custom control
 </div>
@@ -421,7 +421,7 @@ export default function FocusManagementGuidePage() {
                 browser applies only when a visible indicator is warranted —
                 effectively keyboard focus, not a plain mouse click.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`/* Never do this — hides focus from keyboard users everywhere */
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`/* Never do this — hides focus from keyboard users everywhere */
 :focus { outline: none; }
 
 /* Do this — a strong ring for keyboard users, quiet on mouse click */
@@ -472,7 +472,7 @@ export default function FocusManagementGuidePage() {
                 <code>preventScroll</code> to avoid a jarring jump when the target
                 is already on screen.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// Move focus to a heading or region after inserting content.
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// Move focus to a heading or region after inserting content.
 // The target needs tabindex="-1" so it can receive programmatic focus.
 function focusTarget(el) {
   if (!el) return
@@ -523,7 +523,7 @@ focusTarget(heading)`}</code></pre>
                 covers that element in full, including where initial focus
                 belongs and what to do when the trigger no longer exists.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<dialog id="confirm" aria-labelledby="confirm-title">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<dialog id="confirm" aria-labelledby="confirm-title">
   <h2 id="confirm-title">Delete this project?</h2>
   <p>This action cannot be undone.</p>
   <button value="cancel">Cancel</button>
@@ -570,7 +570,7 @@ focusTarget(heading)`}</code></pre>
                 list row, dismissing a card), move focus to a neighbor{" "}
                 <em>before</em> the element leaves the DOM.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// Pattern A: remember the opener, restore on close
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// Pattern A: remember the opener, restore on close
 let opener = null
 function openMenu(trigger) {
   opener = trigger              // the button that opened the menu
@@ -632,7 +632,7 @@ function removeRow(row) {
                 item is <code>tabindex=&quot;0&quot;</code> at a time and the rest
                 are <code>tabindex=&quot;-1&quot;</code>.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// Toolbar with roving tabindex: only the active button is tabbable.
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// Toolbar with roving tabindex: only the active button is tabbable.
 const buttons = [...toolbar.querySelectorAll("button")]
 let active = 0
 buttons.forEach((b, i) => (b.tabIndex = i === 0 ? 0 : -1))
@@ -687,7 +687,7 @@ toolbar.addEventListener("keydown", (e) => {
                 need to move focus on route change, because swapping content
                 client-side does not reset focus the way a full page load does.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Skip link: first in the DOM, revealed on focus -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Skip link: first in the DOM, revealed on focus -->
 <a href="#main" class="skip-link">Skip to main content</a>
 ...
 <main id="main" tabindex="-1">…</main>
@@ -739,7 +739,7 @@ toolbar.addEventListener("keydown", (e) => {
                 cannot see what you are typing into. Reserve space with{" "}
                 <code>scroll-margin-top</code>.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`/* Sticky header 64px tall */
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`/* Sticky header 64px tall */
 header { position: sticky; top: 0; height: 64px; }
 
 /* When any element is scrolled to on focus, leave room for the header
@@ -860,7 +860,7 @@ a, button, input, select, textarea {
                 Layer in automated help: <code>axe-core</code> flags missing focus
                 indicators and positive <code>tabindex</code>, and you can assert
                 focus in end-to-end tests (
-                <code>expect(page.locator(&quot;:focus&quot;)).toHaveText(...)</code>
+                <code className="[overflow-wrap:anywhere]">expect(page.locator(&quot;:focus&quot;)).toHaveText(...)</code>
                 ). See{" "}
                 <Link href="/guides/automated-vs-manual-accessibility-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   automated vs manual testing
@@ -880,7 +880,7 @@ a, button, input, select, textarea {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Focus Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common focus management anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common focus management anti-patterns, why they fail, and the

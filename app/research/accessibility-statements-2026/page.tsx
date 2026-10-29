@@ -122,7 +122,7 @@ const FAQS = [
 
 function Failures({ g }: { g: Group }) {
   return (
-    <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+    <div tabIndex={0} role="region" aria-label={`${g.label}: mandatory elements missing`} className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full border-collapse text-sm">
         <caption className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
           {g.label}: mandatory elements missing, across the {g.statementFound} statements found
@@ -162,7 +162,7 @@ function Summary({ g }: { g: Group }) {
     ["Median score (mandatory elements present)", g.medianPercent === null ? "n/a" : `${g.medianPercent}%`],
   ]
   return (
-    <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+    <div tabIndex={0} role="region" aria-label={`${g.label}, scored against the ${g.regime === "uk-psbar" ? "UK public sector regulations" : "European Accessibility Act"}`} className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full border-collapse text-sm">
         <caption className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
           {g.label}, scored against the {g.regime === "uk-psbar" ? "UK public sector regulations" : "European Accessibility Act"}
@@ -186,7 +186,7 @@ function Sites({ g }: { g: Group }) {
       <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-slate-900 dark:text-white">
         Every statement found in {g.label} ({g.sites.length}), lowest score first
       </summary>
-      <div className="overflow-x-auto">
+      <div tabIndex={0} role="region" aria-label="Per-site statement scores for" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <table className="w-full border-collapse text-sm">
           <caption className="sr-only">Per-site statement scores for {g.label}</caption>
           <thead>

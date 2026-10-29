@@ -114,7 +114,7 @@ export default function PasswordGeneratorPage() {
 
             <h3>Password Security Best Practices</h3>
             <p>
-              <strong>Use unique passwords</strong> for every account, enable <strong>two-factor authentication</strong>
+              <strong>Use unique passwords</strong> for every account, enable <strong>two-factor authentication</strong>{" "}
               where possible, and consider using a <strong>password manager</strong> to store your generated passwords securely.
             </p>
 

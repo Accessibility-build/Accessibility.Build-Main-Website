@@ -87,6 +87,11 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* Inline code such as accessibilityRole or role="switch" has no break points, so on a phone it
+     pushed the page wider than the screen. Code blocks keep scrolling instead (pre is excluded). */
+  :not(pre) > code {
+    overflow-wrap: anywhere;
+  }
 }
 
 /* Blog Content Styling - Clean Serif Typography */

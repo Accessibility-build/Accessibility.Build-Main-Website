@@ -246,7 +246,7 @@ export default function AccessibilityReportGeneratorPage() {
                 easy they are to fix, which floats cosmetic items to the top and
                 buries the blockers. Rank by what it costs the user instead:
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Severity levels for accessibility findings and what each one means for the user" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Severity levels for accessibility findings and what each one

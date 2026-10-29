@@ -502,7 +502,7 @@ export default function WCAG338Page() {
             </div>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-5">
               The most robust and future-proof choice is a bot-detection method
-              that presents <em>no puzzle at all</em> — a privacy-preserving
+              that presents <em>no puzzle at all</em>{" "}— a privacy-preserving
               attestation token, a risk score, or an invisible challenge that
               only escalates for suspicious traffic. That approach sidesteps the
               cognitive test entirely and avoids the object-recognition

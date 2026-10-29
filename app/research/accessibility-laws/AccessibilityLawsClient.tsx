@@ -390,7 +390,7 @@ export function AccessibilityLawsClient() {
                 const regionLaws = sortLaws(getRegionLaws(tab.value))
                 return (
                   <TabsContent key={tab.value} value={tab.value}>
-                    <div className="overflow-x-auto">
+                    <div tabIndex={0} role="region" aria-label={`Accessibility laws: ${tab.label}`} className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                       <table className="w-full text-sm" role="table">
                         <thead>
                           <tr className="border-b border-slate-200 dark:border-slate-700">
@@ -770,7 +770,7 @@ export function AccessibilityLawsClient() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="overflow-x-auto">
+            <div tabIndex={0} role="region" aria-label="Federal website-accessibility lawsuit filings by state in 2025, from Seyfarth Shaw." className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <caption className="sr-only">
                   Federal website-accessibility lawsuit filings by state in 2025, from Seyfarth Shaw.

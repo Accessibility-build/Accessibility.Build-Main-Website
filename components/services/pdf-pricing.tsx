@@ -67,12 +67,12 @@ export function PdfPricing({ pricing }: PdfPricingProps) {
                 <dt className="font-semibold">Best for</dt>
                 <dd className="mt-1 text-muted-foreground">{tier.bestFor}</dd>
               </div>
-              <div className="flex items-start gap-2">
-                <CalendarDays className="mt-0.5 h-4 w-4 flex-none text-primary" aria-hidden="true" />
-                <div>
-                  <dt className="font-semibold">Typical turnaround</dt>
-                  <dd className="mt-1 text-muted-foreground">{tier.turnaround}</dd>
-                </div>
+              <div>
+                <dt className="flex items-start gap-2 font-semibold">
+                  <CalendarDays className="mt-0.5 h-4 w-4 flex-none text-primary" aria-hidden="true" />
+                  Typical turnaround
+                </dt>
+                <dd className="mt-1 pl-6 text-muted-foreground">{tier.turnaround}</dd>
               </div>
             </dl>
 
@@ -128,7 +128,7 @@ export function PdfPricing({ pricing }: PdfPricingProps) {
             Published unit prices for the extras document sets most often need.
           </p>
         </div>
-        <div className="overflow-x-auto rounded-lg border">
+        <div tabIndex={0} role="region" aria-label="Optional additions and prices for" className="overflow-x-auto rounded-lg border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
           <table className="w-full min-w-[680px] border-collapse text-left text-sm">
             <caption className="sr-only">Optional additions and prices for {pricing.service}</caption>
             <thead className="bg-muted/50">

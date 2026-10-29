@@ -60,7 +60,7 @@ export function MaturityResults({ state, summary, headingRef, onEdit, onStartOve
       </h2>
       <p className="mt-2 max-w-[68ch] text-sm leading-6 text-slate-600 dark:text-slate-400">
         {summary.answered} of {summary.total} proof points answered
-        {state.organisation ? ` for ${state.organisation}` : ""}. {SUMMARY_RULE} &ldquo;Provisional&rdquo; means
+        {state.organisation ? ` for ${state.organisation}` : ""}. {SUMMARY_RULE}{" "}&ldquo;Provisional&rdquo; means
         fewer than half of a dimension&apos;s proof points have a level.
       </p>
 
@@ -114,7 +114,7 @@ export function MaturityResults({ state, summary, headingRef, onEdit, onStartOve
             </p>
           </figure>
 
-          <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+          <div tabIndex={0} role="region" aria-label="Our summary level for each dimension and how many proof points you rated at each level" className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             <table className="w-full border-collapse text-sm">
               <caption className="sr-only">Our summary level for each dimension and how many proof points you rated at each level</caption>
               <thead>

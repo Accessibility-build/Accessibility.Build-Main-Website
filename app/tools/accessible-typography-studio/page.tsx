@@ -170,7 +170,7 @@ export default function AccessibleTypographyStudioPage() {
                   <BookOpen className="h-4 w-4 text-purple-600" /> Flesch-Kincaid analyzer
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <Eye className="h-4 w-4 text-amber-600" /> Dyslexia &amp; cognitive presets
+                  <Eye className="h-4 w-4 text-amber-600" />{" "}Dyslexia &amp; cognitive presets
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Code2 className="h-4 w-4 text-orange-600" /> Tailwind · Figma · iOS · Android

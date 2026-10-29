@@ -137,7 +137,7 @@ export default function MethodologyPage() {
             {deliverables.map((item) => <li key={item}>{item}</li>)}
           </ul>
         </div>
-        <aside className="border bg-slate-50 p-8 dark:bg-slate-950">
+        <div className="border bg-slate-50 p-8 dark:bg-slate-950">
           <h2 className="text-2xl font-semibold">Standards and test coverage</h2>
           <p className="mt-4 leading-7 text-muted-foreground">
             WCAG 2.2 Level A and AA are the common technical baseline. Section 508, EN 301 549, and jurisdiction-specific expectations may be mapped when included in scope. Screen-reader and browser combinations are selected for the audience and product rather than promising every possible combination.
@@ -153,7 +153,7 @@ export default function MethodologyPage() {
               <Link href="/contact">Discuss scope</Link>
             </Button>
           </div>
-        </aside>
+        </div>
       </section>
     </div>
   )

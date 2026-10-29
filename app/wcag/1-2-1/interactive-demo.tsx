@@ -93,15 +93,15 @@ export default function AudioAltDemo() {
               </h4>
               <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
                 <p>
-                  <strong>[Host]:</strong> Welcome to Web Accessibility Today. I&apos;m
+                  <strong>[Host]:</strong>{" "}Welcome to Web Accessibility Today. I&apos;m
                   Sarah Johnson.
                 </p>
                 <p>
-                  <strong>[Guest]:</strong> And I&apos;m Mike Chen from the A11y
+                  <strong>[Guest]:</strong>{" "}And I&apos;m Mike Chen from the A11y
                   Initiative.
                 </p>
                 <p>
-                  <strong>[Host]:</strong> Today we&apos;re discussing WCAG requirements
+                  <strong>[Host]:</strong>{" "}Today we&apos;re discussing WCAG requirements
                   for media content.
                 </p>
                 <p>
@@ -218,7 +218,7 @@ export default function AudioAltDemo() {
                   About, Services, Contact.
                 </p>
                 <p>
-                  <strong>Step 4:</strong> Enter is pressed on &quot;Services&quot;,
+                  <strong>Step 4:</strong>{" "}Enter is pressed on &quot;Services&quot;,
                   opening a submenu.
                 </p>
               </div>

@@ -424,7 +424,7 @@ function TargetResults({ result }: { result: TargetsResult }) {
         <Stat label="Browser default" value={totals.userAgent} tone="note" />
       </dl>
       <p className="text-sm text-slate-700 dark:text-slate-300">
-        {targetsHeadline(result)} Inline links and controls left at the browser&apos;s default size are exempt. A target can also pass
+        {targetsHeadline(result)}{" "}Inline links and controls left at the browser&apos;s default size are exempt. A target can also pass
         if another control on the page does the same thing at full size, or if its size is essential; we cannot detect those,
         so review the failures with that in mind.
         {result.listTruncated && ` The list shows the first ${result.targets.length} undersized targets.`}

@@ -165,7 +165,7 @@ export function TwoClocks({
         {title}
       </figcaption>
       <p className="mb-5 max-w-[62ch] text-sm leading-6 text-slate-600 dark:text-slate-400">{lede}</p>
-      <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/40 sm:p-6">
+      <div tabIndex={0} role="region" aria-label={title} className="overflow-x-auto rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/40 sm:p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <svg viewBox="0 0 760 236" className="w-full min-w-[560px]" aria-hidden="true">
           {yearTicks.map((t) => (
             <g key={t}>
@@ -308,7 +308,7 @@ export function CaptureSeries({
         {title}
       </figcaption>
       <p className="mb-5 max-w-[62ch] text-sm leading-6 text-slate-600 dark:text-slate-400">{lede}</p>
-      <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900/40">
+      <div tabIndex={0} role="region" aria-label="Accessibility markers measured in archived captures of the home page" className="overflow-x-auto rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <table className="w-full border-collapse text-sm">
           <caption className="sr-only">
             Accessibility markers measured in archived captures of the {site} home page

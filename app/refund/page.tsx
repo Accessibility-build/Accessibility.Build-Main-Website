@@ -72,6 +72,7 @@ export default function RefundPage() {
         </Alert>
 
         {/* Key Highlights */}
+        <h2 className="sr-only">Refund policy at a glance</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <Card>
             <CardHeader className="text-center">
@@ -299,12 +300,12 @@ export default function RefundPage() {
             <p>For partially used credit packs, refunds are calculated as follows:</p>
             
             <div className="not-prose bg-muted/50 p-6 rounded-lg border mb-4">
-              <h4 className="font-semibold mb-3">Refund Calculation Formula:</h4>
+              <h3 className="font-semibold mb-3">Refund Calculation Formula:</h3>
               <code className="block bg-background p-4 rounded border">
                 Refund Amount = (Purchase Price × Unused Credits) ÷ Total Credits Purchased
               </code>
               
-              <h4 className="font-semibold mt-6 mb-3">Example:</h4>
+              <h3 className="font-semibold mt-6 mb-3">Example:</h3>
               <ul className="space-y-2 text-sm">
                 <li>• <strong>Credit Pack Purchased:</strong> 500 credits for $29.99</li>
                 <li>• <strong>Credits Used:</strong> 100 credits</li>
@@ -456,10 +457,10 @@ export default function RefundPage() {
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold mb-3 flex items-center gap-2">
                       <Mail className="h-4 w-4" />
                       Refund Requests
-                    </h4>
+                    </h3>
                     <p className="text-sm text-muted-foreground mb-2">
                       For refund and cancellation requests:
                     </p>
@@ -469,10 +470,10 @@ export default function RefundPage() {
                   </div>
                   
                   <div>
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold mb-3 flex items-center gap-2">
                       <FileText className="h-4 w-4" />
                       General Support
-                    </h4>
+                    </h3>
                     <p className="text-sm text-muted-foreground mb-2">
                       For other queries and support:
                     </p>
@@ -482,7 +483,7 @@ export default function RefundPage() {
                   </div>
 
                   <div className="md:col-span-2">
-                    <h4 className="font-semibold mb-3">Business Information</h4>
+                    <h3 className="font-semibold mb-3">Business Information</h3>
                     <p className="text-sm text-muted-foreground">
                       {company.brandName}<br />
                       Legal name: {company.legalName}<br />

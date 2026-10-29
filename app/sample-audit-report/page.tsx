@@ -77,7 +77,7 @@ export default function SampleAuditReportPage() {
               </p>
             </div>
 
-            <dl className="grid shrink-0 grid-cols-2 gap-x-8 gap-y-3 text-sm">
+            <dl className="grid min-w-0 grid-cols-2 gap-x-8 gap-y-3 text-sm">
               <div>
                 <dt className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Version

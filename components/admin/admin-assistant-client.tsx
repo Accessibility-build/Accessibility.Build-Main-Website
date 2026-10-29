@@ -148,7 +148,7 @@ function MeterRow({ label, value, max, display }: { label: string; value: number
 
 function DataTable({ caption, head, rows }: { caption: string; head: string[]; rows: (string | number)[][] }) {
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label={caption} className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full text-sm">
         <caption className="sr-only">{caption}</caption>
         <thead>
@@ -514,7 +514,7 @@ export function AdminAssistantClient({
 
       <Section title="Where people ask" description="Pages visitors were on when they asked. Use a page's button to read its questions.">
         {stats.pages.length ? (
-          <div className="overflow-x-auto">
+          <div tabIndex={0} role="region" aria-label="Questions by page" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             <table className="w-full text-sm">
               <caption className="sr-only">Questions by page</caption>
               <thead>

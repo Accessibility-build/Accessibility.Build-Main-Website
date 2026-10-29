@@ -379,7 +379,7 @@ export default function AccessibleSwitchGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria a Switch Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that a correctly built toggle switch satisfies and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that a correctly built toggle
@@ -594,14 +594,14 @@ export default function AccessibleSwitchGuidePage() {
                 <code>aria-checked</code> for you — so there is no state to
                 synchronise and nothing to keep from drifting.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- The whole switch is one real checkbox and one real label. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- The whole switch is one real checkbox and one real label. -->
 <label class="switch">
   <input type="checkbox" role="switch" checked>
   <!-- The visible track + thumb are decorative, drawn with CSS. -->
   <span class="switch__track" aria-hidden="true"></span>
   <span class="switch__label">Dark mode</span>
 </label>`}</code></pre>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4"><code>{`.switch {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`.switch {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -664,7 +664,7 @@ export default function AccessibleSwitchGuidePage() {
                     Space, <code>:checked</code> drives the visual state, and the
                     browser maps <code>checked</code> to <code>aria-checked</code>.
                     Your script only has to <em>react</em> to the{" "}
-                    <code>change</code> event to apply the setting — it never has
+                    <code>change</code>{" "}event to apply the setting — it never has
                     to manage the control&apos;s semantics.
                   </span>
                 </p>
@@ -697,7 +697,7 @@ export default function AccessibleSwitchGuidePage() {
                 Everything visual is decoration that assistive technology should
                 never see as a separate control.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="The elements in an accessible switch and the roles and attributes each needs" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The elements in an accessible switch and the roles and
@@ -757,7 +757,7 @@ export default function AccessibleSwitchGuidePage() {
                 <strong className="text-slate-900 dark:text-white">name</strong>{" "}
                 says <em>what the switch controls</em> and never changes. The{" "}
                 <strong className="text-slate-900 dark:text-white">value</strong>{" "}
-                (<code>aria-checked</code>) says <em>on or off</em> and is the
+                (<code>aria-checked</code>) says <em>on or off</em>{" "}and is the
                 only part that moves. A screen reader combines them for you:
                 &ldquo;Dark mode, switch, on&rdquo;.
               </p>
@@ -770,7 +770,7 @@ export default function AccessibleSwitchGuidePage() {
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Toggle the label text between &ldquo;On&rdquo; and
                       &ldquo;Off&rdquo;, or bake the state into{" "}
-                      <code>aria-label</code> (&ldquo;Notifications on&rdquo;).
+                      <code>aria-label</code>{" "}(&ldquo;Notifications on&rdquo;).
                       The state ends up in the name and speech-input users lose a
                       stable command.
                     </p>
@@ -783,7 +783,7 @@ export default function AccessibleSwitchGuidePage() {
                   <CardContent>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Keep the name fixed (&ldquo;Notifications&rdquo;) and let{" "}
-                      <code>aria-checked</code> carry on/off. If you show a visual
+                      <code>aria-checked</code>{" "}carry on/off. If you show a visual
                       &ldquo;On/Off&rdquo; word, mark it{" "}
                       <code>aria-hidden=&quot;true&quot;</code> so it is not read
                       as part of the name.
@@ -821,11 +821,11 @@ export default function AccessibleSwitchGuidePage() {
                 it already gives you Enter and Space activation, focus, and
                 disabled handling; you add the role and take over the value.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- The button carries the role; the name is the visible text. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- The button carries the role; the name is the visible text. -->
 <button type="button" role="switch" aria-checked="false" id="grid-switch">
   Snap to grid
 </button>`}</code></pre>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4"><code>{`const sw = document.getElementById("grid-switch")
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const sw = document.getElementById("grid-switch")
 
 sw.addEventListener("click", () => {
   // The button has no "checked" property, so YOU own the value.
@@ -870,7 +870,7 @@ sw.addEventListener("click", () => {
                 shortest of any component in this series. There is one job —
                 toggle — and one key that does it everywhere.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Keyboard commands a conformant toggle switch must support" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Keyboard commands a conformant toggle switch must support
@@ -1074,7 +1074,7 @@ sw.addEventListener("click", () => {
                 DOM <code>checked</code> in sync, so <code>aria-checked</code>{" "}
                 stays correct automatically — you never write it.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`import { useId, useState } from "react"
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`import { useId, useState } from "react"
 
 function DarkModeSwitch() {
   const [on, setOn] = useState(false)
@@ -1209,7 +1209,7 @@ function DarkModeSwitch() {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Switch Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible-switch anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible-switch anti-patterns, why they fail, and

@@ -307,7 +307,7 @@ export default function WCAG324Page() {
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Screen reader users are hit hardest, because the accessible name{" "}
-              <em>is</em> the component to them. Searching a page for the
+              <em>is</em>{" "}the component to them. Searching a page for the
               &ldquo;Save&rdquo; button fails when this template calls it
               &ldquo;Store&rdquo;. Users with cognitive limitations — including
               people who memorize one term per function, users of symbol-based
@@ -319,7 +319,7 @@ export default function WCAG324Page() {
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               There is a corollary the Understanding document calls out: things
-              that <em>do different jobs</em> must <em>not</em> share a name.
+              that <em>do different jobs</em> must <em>not</em>{" "}share a name.
               If a checkmark icon means &ldquo;approved&rdquo; in one view and
               &ldquo;task complete&rdquo; in another, its text alternative must
               differ to match the function. Consistency binds name to function

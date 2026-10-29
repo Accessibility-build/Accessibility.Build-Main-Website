@@ -105,7 +105,7 @@ function SegmentTable({
   withGuides?: boolean;
 }) {
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label="Compared with the million-page average of detected errors per home page." className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[640px] border-collapse text-sm">
         <caption className="sr-only">
           {caption} Compared with the million-page average of {baseline}{" "}

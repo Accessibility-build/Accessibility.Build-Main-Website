@@ -450,7 +450,7 @@ export default function AccessibleWordDocumentsGuidePage() {
                     explains the change.
                   </li>
                   <li>
-                    <strong className={strongClass}>UK public sector.</strong> Under the public sector accessibility
+                    <strong className={strongClass}>UK public sector.</strong>{" "}Under the public sector accessibility
                     regulations, documents on public sector websites must be accessible. GOV.UK&apos;s{" "}
                     <Ext href="https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps">
                       accessibility requirements guidance
@@ -607,7 +607,7 @@ Normal, bold          Our services         <- not a heading`}
                 <h3 className={h3Class}>4. Use real lists</h3>
                 <p className={pClass}>
                   A list made with <MenuPath steps={["Home", "Bullets"]} /> or{" "}
-                  <MenuPath steps={["Home", "Numbering"]} /> is announced as a list with a number of items, so a
+                  <MenuPath steps={["Home", "Numbering"]} />{" "}is announced as a list with a number of items, so a
                   listener knows how much is coming and when it ends. Typing a hyphen, an asterisk or &ldquo;1.&rdquo;
                   at the start of each line produces ordinary paragraphs that only look like a list (
                   <Wcag id="1.3.1" name="Info and Relationships" />). Word often converts typed bullets automatically;
@@ -689,7 +689,7 @@ Normal, bold          Our services         <- not a heading`}
                   <strong className={strongClass}>Generated alt text needs a person.</strong> Recent Microsoft 365
                   builds write a description with AI when you ask for one in the Alt Text pane, and Copilot+ PCs can
                   do it automatically when you insert a picture. On Windows the setting is under{" "}
-                  <MenuPath steps={["File", "Options", "Accessibility"]} /> (Enable the option to generate alt text
+                  <MenuPath steps={["File", "Options", "Accessibility"]} />{" "}(Enable the option to generate alt text
                   using AI). Older builds added captions ending &ldquo;Description automatically
                   generated&rdquo; when a picture was inserted. Either way, read and rewrite the text before you share
                   the file: a description of what is in a photo is not the same as what the photo is there to say.
@@ -716,7 +716,7 @@ Normal, bold          Our services         <- not a heading`}
                     page. The row must be the first row of the table.
                   </li>
                   <li>
-                    Keep <MenuPath steps={["Table Design", "Header Row"]} /> ticked in the Table Style Options group
+                    Keep <MenuPath steps={["Table Design", "Header Row"]} />{" "}ticked in the Table Style Options group
                     too. Microsoft&apos;s accessibility instructions use this option, but Word ticks it on every new
                     table and it mainly controls formatting. Repeat Header Rows is what marks the row as a header in
                     the file, which is why the free checker on this site looks for it. Setting both covers each way
@@ -865,11 +865,11 @@ Normal, bold          Our services         <- not a heading`}
                 <h3 className={h3Class}>11. Check the file before you share it</h3>
                 <ul className={listClass}>
                   <li>
-                    <strong className={strongClass}>Properties:</strong> confirm the Title in File &gt; Info (step 1),
+                    <strong className={strongClass}>Properties:</strong>{" "}confirm the Title in File &gt; Info (step 1),
                     and that the Author and other fields say what you want them to say.
                   </li>
                   <li>
-                    <strong className={strongClass}>Restricted access:</strong> Microsoft&apos;s checker treats
+                    <strong className={strongClass}>Restricted access:</strong>{" "}Microsoft&apos;s checker treats
                     restricted access (Information Rights Management) as an error, because it can stop screen readers
                     reading the file. Use permissions on the storage location rather than in the file where you can.
                   </li>
@@ -883,7 +883,7 @@ Normal, bold          Our services         <- not a heading`}
                     checker on this site cannot read .doc files.
                   </li>
                   <li>
-                    <strong className={strongClass}>Forms:</strong> if the document uses content controls for people
+                    <strong className={strongClass}>Forms:</strong>{" "}if the document uses content controls for people
                     to fill in, give each control a title in its Properties; Microsoft&apos;s checker flags controls
                     without one.
                   </li>
@@ -904,12 +904,12 @@ Normal, bold          Our services         <- not a heading`}
                 <ul className={listClass}>
                   <li>
                     <strong className={strongClass}>Microsoft&apos;s templates:</strong> select{" "}
-                    <MenuPath steps={["File", "New"]} /> and search the online templates for
+                    <MenuPath steps={["File", "New"]} />{" "}and search the online templates for
                     &ldquo;accessible&rdquo;. Microsoft publishes a set designed with accessibility in mind. Still run
                     the checks in this guide on them, because your content can undo their good structure.
                   </li>
                   <li>
-                    <strong className={strongClass}>Your own house template:</strong> set the Normal style&apos;s
+                    <strong className={strongClass}>Your own house template:</strong>{" "}set the Normal style&apos;s
                     font, size and spacing; style Heading 1 to 3 in your brand fonts; choose theme colours whose text
                     combinations pass 4.5:1; create a table style with a distinct header row; set the default language.
                     Then select <MenuPath steps={["File", "Save As"]} /> and choose Word Template (.dotx).
@@ -1170,7 +1170,7 @@ Normal, bold          Our services         <- not a heading`}
               <div className="prose prose-slate dark:prose-invert max-w-none">
                 <ol className={olClass}>
                   <li>
-                    <strong className={strongClass}>Save a .docx copy.</strong> The checker reads .docx files, the
+                    <strong className={strongClass}>Save a .docx copy.</strong>{" "}The checker reads .docx files, the
                     format Word has used since 2007. If you have an old .doc file, use File &gt; Save As and choose
                     Word Document (.docx). Remove any password from a copy first, since encrypted files cannot be
                     read. For a Google Doc, choose File &gt; Download &gt; Microsoft Word (.docx).

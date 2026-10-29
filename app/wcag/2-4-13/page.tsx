@@ -156,9 +156,9 @@ export default function WCAG2413Page() {
               author.
             </blockquote>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-4 text-sm">
-              Two tests, both required: a <strong>size</strong> floor (the area
+              Two tests, both required: a <strong>size</strong>{" "}floor (the area
               of a 2px band around the component&rsquo;s border) and a{" "}
-              <strong>change-contrast</strong> floor (the indicator pixels must
+              <strong>change-contrast</strong>{" "}floor (the indicator pixels must
               differ by 3:1 between states). The exceptions only apply while
               you leave the browser&rsquo;s default focus rendering — and its
               background — completely untouched.

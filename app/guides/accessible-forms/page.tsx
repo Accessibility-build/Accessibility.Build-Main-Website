@@ -266,7 +266,7 @@ export default function AccessibleFormsGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria That Govern Forms
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that apply to forms, with what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that apply to forms, with what each
@@ -412,12 +412,12 @@ export default function AccessibleFormsGuidePage() {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Every input, select, and textarea needs a programmatically
                 associated label. The most robust method is an explicit{" "}
-                <code>&lt;label&gt;</code> whose <code>for</code> attribute
+                <code>&lt;label&gt;</code> whose <code>for</code>{" "}attribute
                 matches the input&apos;s <code>id</code>. This gives the field an
                 accessible name <em>and</em> makes the label a click target that
                 focuses the input.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Explicit label: preferred -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Explicit label: preferred -->
 <label for="email">Email address</label>
 <input type="email" id="email" name="email"
        autocomplete="email" required />
@@ -458,7 +458,7 @@ export default function AccessibleFormsGuidePage() {
                 </Link>
                 ).
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<label for="name">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<label for="name">
   Full name <span aria-hidden="true">*</span>
   <span class="sr-only">(required)</span>
 </label>
@@ -468,7 +468,7 @@ export default function AccessibleFormsGuidePage() {
 <!-- Explain the asterisk once, at the top of the form -->
 <p>Fields marked * are required.</p>`}</code></pre>
               <p className="text-muted-foreground leading-relaxed mt-4">
-                The native <code>required</code> attribute makes screen readers
+                The native <code>required</code>{" "}attribute makes screen readers
                 announce &ldquo;required,&rdquo; and the visible text (or a
                 clearly explained asterisk) covers sighted users who do not use
                 assistive tech. Do not signal required state with color alone —
@@ -495,7 +495,7 @@ export default function AccessibleFormsGuidePage() {
                 problem in specific text, tie the message to its field, and mark
                 the field invalid.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<label for="email">Email address</label>
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<label for="email">Email address</label>
 <input
   type="email"
   id="email"
@@ -523,7 +523,7 @@ export default function AccessibleFormsGuidePage() {
                 at the top of the form, move focus to it (or to the first
                 invalid field), and let each summary item link to its field.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<div role="alert" tabindex="-1" id="error-summary">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<div role="alert" tabindex="-1" id="error-summary">
   <h2>There are 2 problems with your submission</h2>
   <ul>
     <li><a href="#email">Enter a valid email address</a></li>
@@ -546,7 +546,7 @@ export default function AccessibleFormsGuidePage() {
                   3.3.3
                 </Link>
                 . Error handling has more depth than one section can hold — for
-                the full lifecycle, including <em>when</em> to validate, the
+                the full lifecycle, including <em>when</em>{" "}to validate, the
                 error-summary focus move, avoiding double-announced errors, and
                 WCAG&nbsp;2.2&apos;s Redundant Entry and Accessible
                 Authentication, see the{" "}
@@ -574,7 +574,7 @@ export default function AccessibleFormsGuidePage() {
                 user navigates option by option. Use{" "}
                 <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code>.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<fieldset>
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<fieldset>
   <legend>Shipping method</legend>
 
   <input type="radio" id="ship-standard" name="ship" value="standard" />
@@ -628,7 +628,7 @@ export default function AccessibleFormsGuidePage() {
                 <code>type</code>/<code>inputmode</code> so mobile keyboards
                 match the data.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<input autocomplete="given-name"   name="fname" ... />
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<input autocomplete="given-name"   name="fname" ... />
 <input autocomplete="family-name"  name="lname" ... />
 <input autocomplete="email"        type="email"  inputmode="email" ... />
 <input autocomplete="tel"          type="tel"    inputmode="tel" ... />
@@ -751,7 +751,7 @@ export default function AccessibleFormsGuidePage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common form accessibility anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common form accessibility anti-patterns, why they fail, and

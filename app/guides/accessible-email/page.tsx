@@ -313,7 +313,7 @@ export default function AccessibleEmailGuidePage() {
                 satisfy, from declaring its language to holding contrast when a
                 client force-inverts to dark mode.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that apply to HTML email, their conformance level, and how each one applies to building an..." className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that apply to HTML email, their
@@ -458,7 +458,7 @@ export default function AccessibleEmailGuidePage() {
                   navigate cell by cell. Mark the table presentational and all of
                   that vanishes; the logo and headline are simply read in order.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- A layout table: role="presentation" removes it from the a11y tree -->
 <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
@@ -549,7 +549,7 @@ export default function AccessibleEmailGuidePage() {
                   <code>&lt;br&gt;</code> line breaks, so none of that hierarchy
                   exists in the markup.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<td>
   <!-- Real heading, not a big bold span -->
   <h1 style="margin:0 0 12px;font-size:24px;line-height:1.3;">
@@ -636,7 +636,7 @@ export default function AccessibleEmailGuidePage() {
                   </Link>
                   :
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!DOCTYPE html>
 <html lang="en" xmlns:v="urn:schemas-microsoft-com:vml">
   <head>
@@ -727,7 +727,7 @@ export default function AccessibleEmailGuidePage() {
                   so that, when the image is blocked, the fallback still looks
                   intentional.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Meaningful image: alt carries the message -->
 <img src="hero.png" alt="Summer sale, up to 40% off shoes"
      width="600" style="display:block;font-size:16px;color:#1f2937;">
@@ -794,14 +794,14 @@ export default function AccessibleEmailGuidePage() {
                   <strong className="text-slate-900 dark:text-white">
                     bulletproof button
                   </strong>
-                  : a real <code>&lt;a&gt;</code> element styled with padding and a
+                  : a real <code>&lt;a&gt;</code>{" "}element styled with padding and a
                   background color, so it is a genuine link with a name and a role,
                   it is reachable and operable, and it renders as a styled button
                   even when images are off. For Outlook on Windows you wrap the
                   same link in a VML roundrect so the shape and fill render in
                   Word&rsquo;s engine too.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Bulletproof button: a real link, styled, with a VML fallback for Outlook -->
 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
   <tr>
@@ -854,7 +854,7 @@ export default function AccessibleEmailGuidePage() {
                       2.4.4 Link Purpose
                     </Link>{" "}
                     is failed by a page or email full of{" "}
-                    <code>Click here</code> and <code>Read more</code> links that
+                    <code>Click here</code> and <code>Read more</code>{" "}links that
                     are meaningless in the screen reader&rsquo;s list of links.
                   </li>
                 </ul>
@@ -1038,7 +1038,7 @@ export default function AccessibleEmailGuidePage() {
                   of the message, it should be a real, useful summary, not an
                   afterthought.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<body>
   <!-- Preheader: shown in the inbox preview, read first by a screen reader -->
   <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">
@@ -1067,7 +1067,7 @@ export default function AccessibleEmailGuidePage() {
                   </strong>
                   . A well-formed email is sent as{" "}
                   <code>multipart/alternative</code>, with an HTML part and a real{" "}
-                  <code>text/plain</code> part. That plain-text version is a
+                  <code>text/plain</code>{" "}part. That plain-text version is a
                   deliverability signal, but it is also an accessibility and
                   robustness feature: it is what some setups, minimal clients, and
                   users who prefer plain text actually read. Make it mirror the
@@ -1174,7 +1174,7 @@ export default function AccessibleEmailGuidePage() {
                 one is a small decision with an outsized effect on whether the
                 message reaches everyone who receives it.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common email accessibility anti-patterns, why each one fails, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common email accessibility anti-patterns, why each one fails,

@@ -183,7 +183,7 @@ export default function WCAG135Page() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-4 text-sm">
               Both conditions gate the requirement. The field must (a) collect
               information <em>about the user</em> and (b) match one of the{" "}
-              <strong>53 input purposes</strong> WCAG enumerates — the same
+              <strong>53 input purposes</strong>{" "}WCAG enumerates — the same
               vocabulary as HTML&rsquo;s autofill tokens. HTML supports
               identifying input meaning via{" "}
               <code className="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">
@@ -295,7 +295,7 @@ export default function WCAG135Page() {
               <strong className="text-slate-900 dark:text-white">
                 about the user
               </strong>{" "}
-              filling in the form <em>and</em> its purpose appears in
+              filling in the form <em>and</em>{" "}its purpose appears in
               WCAG&rsquo;s fixed list of 53 input purposes. The most common
               tokens by group:
             </p>
@@ -333,7 +333,7 @@ export default function WCAG135Page() {
             </div>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Out of scope, and therefore requiring no token: fields about{" "}
-              <em>other people</em> (a gift recipient&rsquo;s address, an
+              <em>other people</em>{" "}(a gift recipient&rsquo;s address, an
               emergency contact), and fields whose purpose is not on the list
               (search queries, comments, quantities, coupon codes). The list is
               closed — you cannot invent tokens, and you should not force a

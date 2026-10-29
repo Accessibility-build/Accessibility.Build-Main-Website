@@ -110,7 +110,7 @@ export function CodeExample({
       </div>
 
       {/* Code block */}
-      <div className="overflow-x-auto bg-slate-50 dark:bg-slate-900/50">
+      <div tabIndex={0} className="overflow-x-auto bg-slate-50 dark:bg-slate-900/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <pre className="p-4 text-sm leading-relaxed">
           <code className="font-mono text-slate-800 dark:text-slate-200 whitespace-pre">
             {code}

@@ -313,7 +313,7 @@ export default function AccessibleTooltipGuidePage() {
                 the reader. The rest of the table covers the name and role, the
                 keyboard, reflow, and, for a toggletip, the announcement.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that apply to tooltips and toggletips, their conformance level, and how each one applies" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that apply to tooltips and toggletips,
@@ -430,7 +430,7 @@ export default function AccessibleTooltipGuidePage() {
                   the pointer can travel from the control onto the tooltip without
                   crossing a dead gap that would close it. Here is the whole pattern:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<span class="tooltip-wrapper">
   <button type="button" aria-describedby="save-tip">
     Save
@@ -444,7 +444,7 @@ export default function AccessibleTooltipGuidePage() {
 </span>`}</code></pre>
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  The <code>aria-describedby</code> is doing the load-bearing work.
+                  The <code>aria-describedby</code>{" "}is doing the load-bearing work.
                   Because the button already has the visible name Save, the tooltip is
                   extra detail, and a screen reader announces it as a description after
                   the name and role: &ldquo;Save, button, saves to your account,
@@ -463,7 +463,7 @@ export default function AccessibleTooltipGuidePage() {
                   which in CSS means pairing a focus rule with the hover rule and
                   covering both the trigger and the popup:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`.tooltip {
   position: absolute;
   display: none;
@@ -514,7 +514,7 @@ export default function AccessibleTooltipGuidePage() {
                   <code>title</code> attribute fails almost everyone who is not using a
                   mouse, and it cannot be made to meet 1.4.13.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Do NOT rely on this as a tooltip -->
 <button type="button" title="Saves to your account">Save</button>`}</code></pre>
                 </div>
@@ -616,7 +616,7 @@ export default function AccessibleTooltipGuidePage() {
                   placed inside a live region, so that when it appears a screen reader
                   announces it, since focus does not move into it.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<span class="toggletip-wrapper">
   <button type="button"
           class="toggletip-trigger"
@@ -639,7 +639,7 @@ export default function AccessibleTooltipGuidePage() {
                   the live region genuinely changes and re-announces even if the user
                   opens the same toggletip twice:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`const wrapper = document.querySelector(".toggletip-wrapper");
 const trigger = wrapper.querySelector(".toggletip-trigger");
 const bubble = wrapper.querySelector(".toggletip-bubble");
@@ -714,11 +714,11 @@ document.addEventListener("click", (event) => {
                   There are two clean ways to do it. Give the button a real name with{" "}
                   <code>aria-label</code>, and let a separate tooltip be the
                   visible-on-hover copy of that same name. Or point the button&rsquo;s{" "}
-                  <code>aria-labelledby</code> at the tooltip element, so the tooltip
+                  <code>aria-labelledby</code>{" "}at the tooltip element, so the tooltip
                   text becomes the button&rsquo;s name and its visible presentation at
                   once:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Option A: aria-label names the button; the tooltip
      repeats it visually on hover and focus. -->
 <span class="tooltip-wrapper">
@@ -901,7 +901,7 @@ document.addEventListener("click", (event) => {
                 to do a job it cannot do (hold a control, carry essential text, or name
                 an unlabeled button).
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common tooltip and toggletip anti-patterns, why each one fails, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common tooltip and toggletip anti-patterns, why each one fails, and

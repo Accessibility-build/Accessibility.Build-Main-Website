@@ -341,7 +341,7 @@ export default function AccessibleNotificationsGuidePage() {
                 rest of the table covers the controls inside a toast, keyboard
                 access, color, contrast, reflow, and not obscuring what has focus.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that apply to notifications and toasts, their conformance level, and how each one applies" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that apply to notifications and toasts,
@@ -475,7 +475,7 @@ export default function AccessibleNotificationsGuidePage() {
                   is what has to pre-exist; the message is the change the screen reader
                   reacts to.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- In the initial HTML: present and EMPTY on load.
      This one region is the announcement layer for every toast.
      aria-atomic="false" so only the newly added toast is read,
@@ -487,7 +487,7 @@ export default function AccessibleNotificationsGuidePage() {
   class="toast-region"
 ></div>`}</code></pre>
                 </div>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`const region = document.getElementById("toast-region")
 
 function showToast(message) {
@@ -535,7 +535,7 @@ showToast("Draft saved.")`}</code></pre>
                   most, plus a third for history, and each is a shorthand for an{" "}
                   <code>aria-live</code> value you could also set by hand.
                 </p>
-                <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-6 not-prose">
+                <div tabIndex={0} role="region" aria-label="Live region roles, the politeness each one implies, and when to use it for a notification" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-6 not-prose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full text-sm text-left">
                     <caption className="sr-only">
                       Live region roles, the politeness each one implies, and when to
@@ -579,7 +579,7 @@ showToast("Draft saved.")`}</code></pre>
                   in the DOM at all times, one polite and one assertive, and route each
                   message to the right one.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Polite: waits its turn. Most toasts live here. -->
 <div role="status" class="sr-only" id="polite-region"></div>
 
@@ -597,7 +597,7 @@ showToast("Draft saved.")`}</code></pre>
                   region and then set the text again as a separate change, with a beat
                   in between so the browser registers two distinct updates.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`// Clear, then set on the next frame, so an identical message
 // is seen as a change and re-announced.
 function announce(region, message) {
@@ -646,7 +646,7 @@ announce(politeRegion, "Copied to clipboard.")`}</code></pre>
                   focus is inside it, so a returning user is not fighting the clock,
                   and always provide a manual close.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`// A confirmation toast may auto-dismiss, but pause the timer on
 // hover AND on keyboard focus, so it never vanishes while someone
 // is reading it or reaching into it.
@@ -727,7 +727,7 @@ function autoDismiss(toast, ms) {
                   content already says what the message is, name the button by its
                   action and hide the decorative glyph.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<div class="toast" role="status">
   <p class="toast-message">Draft saved.</p>
 
@@ -798,7 +798,7 @@ function autoDismiss(toast, ms) {
                   each has a control. Show a small number, queue the rest, and let them
                   advance as earlier ones dismiss. If toasts persist long enough to be
                   a group, give the stack a role such as{" "}
-                  <code>region</code> with an accessible name like &ldquo;Notifications&rdquo;
+                  <code>region</code>{" "}with an accessible name like &ldquo;Notifications&rdquo;
                   so a screen reader user can find and review them, rather than relying
                   on the single spoken announcement.
                 </p>
@@ -851,7 +851,7 @@ function autoDismiss(toast, ms) {
                   status, mark the icon <code>aria-hidden=&quot;true&quot;</code> so it
                   is not read twice.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- The word "Error" carries the meaning; the color and icon
      only reinforce it. Nothing depends on red alone. -->
 <div class="toast toast-error" role="alert">
@@ -890,7 +890,7 @@ function autoDismiss(toast, ms) {
                   root, whose live region is always in the tree; individual toasts are
                   appended into it as state changes.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`// Mounted ONCE at the app root. The live regions are always in
 // the tree, so appended toasts are announced in place.
 function ToastProvider({ children }) {
@@ -932,7 +932,7 @@ function ToastProvider({ children }) {
 }`}</code></pre>
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Each <code>Toast</code> renders its message with a leading Success or
+                  Each <code>Toast</code>{" "}renders its message with a leading Success or
                   Error label, a real dismiss button named &ldquo;Dismiss
                   notification&rdquo;, and, for confirmations only, a timer that pauses
                   on <code>mouseenter</code> and <code>focusin</code>. Route errors to
@@ -1034,7 +1034,7 @@ function ToastProvider({ children }) {
                 keyboard user needs the message to survive long enough to hear and
                 reach.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common notification and toast anti-patterns, why each one fails, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common notification and toast anti-patterns, why each one fails,

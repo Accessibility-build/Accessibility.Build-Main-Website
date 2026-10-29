@@ -362,7 +362,7 @@ function Results({ report, source, enabled, setEnabled, headingRef }: ResultsPro
         </ul>
       )}
 
-      <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+      <div tabIndex={0} role="region" aria-label="Readability scores for the checked text" className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <table className="w-full border-collapse text-sm">
           <caption className="sr-only">Readability scores for the checked text</caption>
           <thead>

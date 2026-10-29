@@ -316,7 +316,7 @@ export default function AccessibleSliderGuidePage() {
                 <code>role=&quot;slider&quot;</code>, keyboard operation, and a
                 click-to-set drag alternative for free; the full arrow / Home /
                 End / Page keyboard contract; the{" "}
-                <code>aria-valuetext</code> property that turns &ldquo;2&rdquo;
+                <code>aria-valuetext</code>{" "}property that turns &ldquo;2&rdquo;
                 into &ldquo;Medium&rdquo;; the 2.5.7 dragging requirement; and
                 dual-thumb range sliders — with copy-ready code mapped to WCAG
                 2.2.
@@ -412,7 +412,7 @@ export default function AccessibleSliderGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria a Slider Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that a correctly built slider satisfies and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that a correctly built slider
@@ -542,7 +542,7 @@ export default function AccessibleSliderGuidePage() {
                 <em>approximate</em> value along a continuous or stepped range
                 where the exact number is not critical — volume, brightness, a
                 zoom level, a price band. It is a poor control when the user
-                needs to enter a <em>precise</em> value, because hitting exactly
+                needs to enter a <em>precise</em>{" "}value, because hitting exactly
                 &ldquo;$1,437&rdquo; by sliding is painful for everyone and
                 nearly impossible for someone with a motor impairment. Choose the
                 control that matches the task before you style anything.
@@ -635,7 +635,7 @@ export default function AccessibleSliderGuidePage() {
                 under the user-agent exception — the click-to-set behaviour is
                 the browser&apos;s, not yours to re-earn.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- A real label, and min/max/step/value on the input. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- A real label, and min/max/step/value on the input. -->
 <label for="volume">Volume</label>
 <input
   type="range"
@@ -649,7 +649,7 @@ export default function AccessibleSliderGuidePage() {
      Do NOT put this in an aria-live region - the slider role already
      announces the value on focus. -->
 <output for="volume" id="volume-output">50</output>`}</code></pre>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4"><code>{`/* Give the thumb a real presence: >= 24x24 for target size (2.5.8),
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`/* Give the thumb a real presence: >= 24x24 for target size (2.5.8),
    and >= 3:1 contrast against the track for non-text contrast (1.4.11). */
 input[type="range"] {
   inline-size: 100%;
@@ -676,7 +676,7 @@ input[type="range"]:focus-visible {
                     The label names it, the browser gives it the slider role,
                     every keyboard command, click-to-set, and the value mapping.
                     Your script only <em>reacts</em> to the <code>input</code>{" "}
-                    event to update the visible <code>&lt;output&gt;</code> and
+                    event to update the visible <code>&lt;output&gt;</code>{" "}and
                     apply the setting — it never manages the control&apos;s
                     semantics. Styling range inputs used to be the reason people
                     rebuilt them; modern <code>::-webkit-slider-thumb</code> and{" "}
@@ -712,7 +712,7 @@ input[type="range"]:focus-visible {
                 self-explanatory, and you always supply a{" "}
                 <strong className="text-slate-900 dark:text-white">name</strong>.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="The elements and attributes in an accessible slider and what each is for" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The elements and attributes in an accessible slider and what
@@ -766,13 +766,13 @@ input[type="range"]:focus-visible {
                 automated scan from one a blind user can actually use. When a
                 slider&apos;s position maps to something other than a plain
                 number, a screen reader reading the raw{" "}
-                <code>aria-valuenow</code> announces gibberish: it says
+                <code>aria-valuenow</code>{" "}announces gibberish: it says
                 &ldquo;2&rdquo; for a rating that means &ldquo;Fair&rdquo;, or
                 &ldquo;1500&rdquo; for a price that means &ldquo;$1,500&rdquo;.{" "}
                 <code>aria-valuetext</code> supplies the human string, and the
                 screen reader announces it <em>instead of</em> the number.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- A quality rating: the numbers 1-4 mean nothing spoken aloud. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- A quality rating: the numbers 1-4 mean nothing spoken aloud. -->
 <label id="quality-label">Quality</label>
 <div
   role="slider"
@@ -783,7 +783,7 @@ input[type="range"]:focus-visible {
   aria-valuenow="2"
   aria-valuetext="Fair"     <!-- announced INSTEAD of "2" -->
 ></div>`}</code></pre>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4"><code>{`// Keep aria-valuetext in step with aria-valuenow whenever the value moves.
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// Keep aria-valuetext in step with aria-valuenow whenever the value moves.
 const LABELS = ["Poor", "Fair", "Good", "Excellent"]
 
 function setQuality(el, n) {
@@ -832,7 +832,7 @@ function setQuality(el, n) {
                 or Page support, is incomplete and slow to operate across a wide
                 range.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Keyboard commands a conformant slider must support" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Keyboard commands a conformant slider must support
@@ -887,7 +887,7 @@ function setQuality(el, n) {
                 whole keyboard model, and the single-pointer alternative. Here is
                 the shape of a conformant single-thumb build.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<label id="zoom-label">Zoom</label>
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<label id="zoom-label">Zoom</label>
 <div class="slider" id="track">
   <div
     class="slider__thumb"
@@ -899,7 +899,7 @@ function setQuality(el, n) {
     aria-valuenow="40"
   ></div>
 </div>`}</code></pre>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4"><code>{`const track = document.getElementById("track")
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const track = document.getElementById("track")
 const thumb = track.querySelector('[role="slider"]')
 const MIN = 0, MAX = 100, STEP = 1, PAGE = 10
 
@@ -1038,7 +1038,7 @@ track.addEventListener("pointerdown", (e) => {
                 , each its own focusable <code>role=&quot;slider&quot;</code>{" "}
                 with its own value and its own name.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<div class="range" id="price">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<div class="range" id="price">
   <!-- Minimum thumb: its max is capped at the maximum thumb's value. -->
   <div
     role="slider"
@@ -1072,8 +1072,8 @@ track.addEventListener("pointerdown", (e) => {
                   dynamic bounds
                 </strong>
                 : every time either thumb moves, set the minimum thumb&apos;s{" "}
-                <code>aria-valuemax</code> to the maximum thumb&apos;s current
-                value, and the maximum thumb&apos;s <code>aria-valuemin</code> to
+                <code>aria-valuemax</code>{" "}to the maximum thumb&apos;s current
+                value, and the maximum thumb&apos;s <code>aria-valuemin</code>{" "}to
                 the minimum thumb&apos;s current value. Each thumb is its own Tab
                 stop, so the user tabs to one, adjusts it with the arrows, tabs
                 to the other, and adjusts that.
@@ -1182,7 +1182,7 @@ track.addEventListener("pointerdown", (e) => {
                 correct automatically — you only add{" "}
                 <code>aria-valuetext</code> when the number is not the value.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`import { useId, useState } from "react"
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`import { useId, useState } from "react"
 
 const LABELS = ["Poor", "Fair", "Good", "Excellent"]
 
@@ -1213,7 +1213,7 @@ function QualitySlider() {
                 For a two-handle range, non-linear scales, or fully custom
                 visuals, do not hand-roll the <code>role=&quot;slider&quot;</code>{" "}
                 logic — reach for a headless library that has solved the edge
-                cases: Radix UI&apos;s <code>Slider</code> (supports multiple
+                cases: Radix UI&apos;s <code>Slider</code>{" "}(supports multiple
                 thumbs), React Aria&apos;s <code>useSlider</code> /{" "}
                 <code>useSliderThumb</code>, or Headless UI. The same principles
                 travel to other frameworks — see the{" "}
@@ -1259,7 +1259,7 @@ function QualitySlider() {
                   <strong className="text-slate-900 dark:text-white">Listen with a screen reader.</strong>{" "}
                   You should hear the name, the word &ldquo;slider&rdquo;, and the
                   current value — and where the raw number is not meaningful, the{" "}
-                  <code>aria-valuetext</code> string (&ldquo;Fair&rdquo;,
+                  <code>aria-valuetext</code>{" "}string (&ldquo;Fair&rdquo;,
                   &ldquo;$200&rdquo;) instead. The{" "}
                   <Link href="/guides/screen-reader-testing" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     screen reader testing guide
@@ -1319,7 +1319,7 @@ function QualitySlider() {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Slider Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible-slider anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible-slider anti-patterns, why they fail, and
@@ -1379,7 +1379,7 @@ function QualitySlider() {
                 </li>
                 <li>
                   <strong className="text-slate-900 dark:text-white">Readable value.</strong>{" "}
-                  <code>aria-valuetext</code> wherever the raw number is not the
+                  <code>aria-valuetext</code>{" "}wherever the raw number is not the
                   value (&ldquo;Medium&rdquo;, &ldquo;$50&rdquo;).
                 </li>
                 <li>

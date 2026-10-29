@@ -46,14 +46,14 @@ export default function WCAGBreadcrumb({ items, current }: BreadcrumbProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <nav aria-label="Breadcrumb" className="mb-8">
-        <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-600 xs3:flex-nowrap xs3:text-sm">
+        <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-600 dark:text-slate-400 xs3:flex-nowrap xs3:text-sm">
           {allItems.map((item, index) => (
             <li key={index} className="flex items-center">
               {index === 0 && <Home className="w-4 h-4 mr-1 xs3:mr-1" />}
               {item.href ? (
                 <Link
                   href={item.href}
-                  className="hover:text-blue-600 transition-colors"
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -61,13 +61,13 @@ export default function WCAGBreadcrumb({ items, current }: BreadcrumbProps) {
                 <span>{item.label}</span>
               )}
               {index < allItems.length - 1 && (
-                <ChevronRight className="w-4 h-4 mx-1 text-gray-400 xs3:mx-2" />
+                <ChevronRight className="w-4 h-4 mx-1 text-gray-400 dark:text-slate-500 xs3:mx-2" />
               )}
             </li>
           ))}
           <li className="flex items-center">
-            <ChevronRight className="w-4 h-4 mx-1 text-gray-400 xs3:mx-2" />
-            <span className="text-gray-900 font-medium">{current}</span>
+            <ChevronRight className="w-4 h-4 mx-1 text-gray-400 dark:text-slate-500 xs3:mx-2" />
+            <span aria-current="page" className="text-gray-900 dark:text-white font-medium">{current}</span>
           </li>
         </ol>
       </nav>

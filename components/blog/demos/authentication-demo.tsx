@@ -126,7 +126,7 @@ export function AuthenticationDemo() {
             <div className="space-y-4">
               <div>
                 <h3 className="text-sm font-medium mb-2">Inaccessible Implementation (Fails WCAG 2.2)</h3>
-                <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+                <pre tabIndex={0} className="bg-muted p-4 rounded-md overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   {`// Inaccessible authentication form
 function InaccessibleAuth() {
   return (
@@ -160,7 +160,7 @@ function InaccessibleAuth() {
 
               <div>
                 <h3 className="text-sm font-medium mb-2">Accessible Implementation (Passes WCAG 2.2)</h3>
-                <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+                <pre tabIndex={0} className="bg-muted p-4 rounded-md overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   {`// Accessible authentication form
 function AccessibleAuth() {
   return (

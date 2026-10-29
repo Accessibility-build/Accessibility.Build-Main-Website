@@ -435,7 +435,7 @@ export default function InteractiveEN301549Checklist({ initialVersion = "v3" }: 
                   {active && <span className="sr-only"> (selected)</span>}
                 </span>
                 <span className="mt-0.5 block text-xs text-slate-600 dark:text-slate-300">{d.status}</span>
-                <span className="mt-1 block text-xs text-slate-500 dark:text-slate-400">
+                <span className="mt-1 block text-xs text-slate-600 dark:text-slate-400">
                   WCAG {d.wcagVersion} in clauses 9 to 11 &middot;{" "}
                   {d.rows.filter((r) => r.kind === "requirement").length} requirements
                 </span>
@@ -727,7 +727,7 @@ export default function InteractiveEN301549Checklist({ initialVersion = "v3" }: 
                         <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                           {r.summary}
                         </p>
-                        <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-500">
+                        <p className="mt-1.5 text-xs text-slate-600 dark:text-slate-400">
                           Applies to: {r.appliesTo}
                         </p>
                         {r.changeNote && (

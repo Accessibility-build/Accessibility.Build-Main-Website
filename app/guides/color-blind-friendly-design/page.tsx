@@ -592,7 +592,7 @@ export default function ColorBlindFriendlyDesignGuidePage() {
                   Understanding document for 1.4.1 accepts a lightness difference
                   of at least 3:1 as a cue that does not depend on seeing colour.
                   It is also why passing 1.4.3 is not enough on its own. Red{" "}
-                  <code>#D32F2F</code> and green <code>#2E7D32</code> each have
+                  <code>#D32F2F</code> and green <code>#2E7D32</code>{" "}each have
                   about 5:1 against white, so both are fine as text, yet the
                   contrast between them is only about 1.03:1. Used as the only
                   difference between &ldquo;failed&rdquo; and

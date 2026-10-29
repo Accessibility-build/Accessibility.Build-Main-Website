@@ -152,7 +152,7 @@ export default async function AdminDashboardPage() {
               <p className="mt-1 text-sm text-slate-500">Usage, completion rate, and processing time from recorded executions.</p>
             </div>
             {toolMetrics.length > 0 ? (
-              <div className="overflow-x-auto">
+              <div tabIndex={0} role="region" aria-label="Tool health, last seven days" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full min-w-[680px] text-left text-sm">
                   <thead className="bg-slate-50 text-xs uppercase text-slate-500 dark:bg-slate-950/60">
                     <tr>
