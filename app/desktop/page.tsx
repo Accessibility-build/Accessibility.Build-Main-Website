@@ -154,7 +154,8 @@ function ReleasedPage({ release }: { release: DesktopRelease }) {
             no account, no analytics and no tracking. The only network requests
             are the update check, which fetches a small file from
             accessibility.build, and the update download from GitHub when you
-            choose to install one. The app runs in Apple&apos;s App Sandbox.
+            choose to install one. The app runs in Apple&apos;s App Sandbox.{" "}
+            <Link href="/desktop/privacy" className={linkClass}>Read the app&apos;s privacy policy</Link>.
           </p>
         </div>
         <div aria-labelledby="a11y-heading">
@@ -309,7 +310,8 @@ function InDevelopmentPage() {
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
           The app is being designed to work without an account. Screen pixels
           are processed on your Mac and never uploaded. The only network
-          request it will make is the check for updates.
+          request it will make is the check for updates.{" "}
+          <Link href="/desktop/privacy" className={linkClass}>Read the app&apos;s privacy policy</Link>.
         </p>
       </section>
 
