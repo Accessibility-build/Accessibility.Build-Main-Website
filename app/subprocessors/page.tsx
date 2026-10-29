@@ -26,7 +26,7 @@ export default function SubprocessorsPage() {
           <p className="mt-4 text-sm text-muted-foreground">Last reviewed: {subprocessorsLastUpdated}</p>
         </header>
 
-        <div className="mt-10 overflow-x-auto border">
+        <div tabIndex={0} role="region" aria-label="Accessibility.build service providers and their processing functions" className="mt-10 overflow-x-auto border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
           <table className="w-full min-w-[900px] border-collapse text-left text-sm">
             <caption className="sr-only">Accessibility.build service providers and their processing functions</caption>
             <thead className="bg-muted/60">

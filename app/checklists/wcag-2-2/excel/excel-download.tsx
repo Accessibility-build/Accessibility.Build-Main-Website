@@ -702,10 +702,10 @@ export default function WCAGExcelDownload() {
             <CardContent className="p-8 space-y-8">
               {/* What's Included Banner */}
               <div className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-200 dark:border-blue-700/50">
-                <h3 className="text-sm font-bold text-blue-800 dark:text-blue-200 mb-4 uppercase tracking-wide flex items-center gap-2">
+                <h2 className="text-sm font-bold text-blue-800 dark:text-blue-200 mb-4 uppercase tracking-wide flex items-center gap-2">
                   <BarChart3 className="w-4 h-4" />
                   Professional Excel Features
-                </h3>
+                </h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[
                     { name: 'Auto-filters', icon: Filter, color: 'text-blue-600 dark:text-blue-400' },

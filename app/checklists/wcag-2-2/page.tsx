@@ -112,21 +112,21 @@ export default function WcagChecklistPage() {
               </h2>
               <div className="grid sm:grid-cols-3 gap-3">
                 <div className="flex items-start gap-3 p-4 bg-white dark:bg-slate-800/60 rounded-xl border border-emerald-200 dark:border-emerald-800/50">
-                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sm font-bold bg-emerald-500 text-white flex-shrink-0">A</span>
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sm font-bold bg-emerald-700 text-white flex-shrink-0">A</span>
                   <div>
                     <p className="font-semibold text-slate-900 dark:text-white text-sm">Minimum</p>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Essential baseline accessibility requirements</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-4 bg-white dark:bg-slate-800/60 rounded-xl border border-blue-200 dark:border-blue-800/50">
-                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sm font-bold bg-blue-500 text-white flex-shrink-0">AA</span>
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sm font-bold bg-blue-700 text-white flex-shrink-0">AA</span>
                   <div>
                     <p className="font-semibold text-slate-900 dark:text-white text-sm">Standard</p>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Required for ADA &amp; Section 508 compliance</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-4 bg-white dark:bg-slate-800/60 rounded-xl border border-purple-200 dark:border-purple-800/50">
-                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sm font-bold bg-purple-500 text-white flex-shrink-0">AAA</span>
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sm font-bold bg-purple-700 text-white flex-shrink-0">AAA</span>
                   <div>
                     <p className="font-semibold text-slate-900 dark:text-white text-sm">Enhanced</p>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Gold standard accessibility</p>

@@ -181,7 +181,7 @@ export default function AdaCompliancePage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
 
         <KeyFacts
           title="ADA web accessibility, the numbers"
@@ -354,7 +354,7 @@ export default function AdaCompliancePage() {
             </p>
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               Formal lawsuits are only part of the picture. Thousands of{" "}
-              <strong>demand letters</strong> are sent each year that never appear in court
+              <strong>demand letters</strong>{" "}are sent each year that never appear in court
               statistics: a letter asserts your site violates the ADA (often attaching an automated
               scan), demands a settlement payment and remediation, and threatens suit. Because ADA
               Title III offers prevailing plaintiffs attorney&apos;s fees — and state laws like
@@ -478,7 +478,7 @@ export default function AdaCompliancePage() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">

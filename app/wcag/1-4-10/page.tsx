@@ -527,7 +527,7 @@ export default function WCAG1410Page() {
             </h3>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
               Sizing text, padding, and breakpoints in <code>rem</code>/<code>em</code>{" "}
-              rather than <code>px</code> means a user&apos;s zoom or larger default
+              rather than <code>px</code>{" "}means a user&apos;s zoom or larger default
               font reflows the layout instead of clipping it.
             </p>
             <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 text-slate-100 p-5 text-sm leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">

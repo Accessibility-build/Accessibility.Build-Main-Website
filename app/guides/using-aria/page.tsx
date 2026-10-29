@@ -327,7 +327,7 @@ export default function UsingAriaGuidePage() {
                 </Link>{" "}
                 remains a separate obligation you meet in JavaScript.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that ARIA helps you meet, their conformance level, and the ARIA that applies" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that ARIA helps you meet, their
@@ -608,7 +608,7 @@ export default function UsingAriaGuidePage() {
                   demands. The visual change and the ARIA change happen together, in
                   one place:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<button type="button" aria-expanded="false" aria-controls="panel">
   Details
 </button>
@@ -655,7 +655,7 @@ export default function UsingAriaGuidePage() {
                     <code>aria-label</code> (a string you write in the attribute)
                   </li>
                   <li>
-                    The native label: a <code>&lt;label&gt;</code> element, the
+                    The native label: a <code>&lt;label&gt;</code>{" "}element, the
                     element&rsquo;s own text content, or an <code>alt</code>{" "}
                     attribute
                   </li>
@@ -698,7 +698,7 @@ export default function UsingAriaGuidePage() {
                     identifying the control.
                   </li>
                 </ul>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Best: name from visible text, via aria-labelledby -->
 <h2 id="billing">Billing address</h2>
 <section role="group" aria-labelledby="billing"> ... </section>
@@ -766,7 +766,7 @@ export default function UsingAriaGuidePage() {
                   gives you the important landmark roles automatically, so in most
                   cases you should not write the role at all:
                 </p>
-                <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-4">
+                <div tabIndex={0} role="region" aria-label="HTML5 elements and the ARIA landmark role each one exposes automatically" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full text-sm text-left">
                     <caption className="sr-only">
                       HTML5 elements and the ARIA landmark role each one exposes
@@ -846,7 +846,7 @@ export default function UsingAriaGuidePage() {
                     announced twice.
                   </li>
                 </ul>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<header>            <!-- banner -->
   <a href="/">Acme</a>
   <nav aria-label="Primary"> ... </nav>
@@ -898,7 +898,7 @@ export default function UsingAriaGuidePage() {
                   </strong>
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  So if you place <code>aria-hidden=&quot;true&quot;</code> on a link,
+                  So if you place <code>aria-hidden=&quot;true&quot;</code>{" "}on a link,
                   a button, or any container that holds focusable controls, a
                   keyboard user can still Tab onto those controls, but the screen
                   reader stays completely silent. A blind keyboard user lands on
@@ -912,7 +912,7 @@ export default function UsingAriaGuidePage() {
                   technique does to the three planes at once, sight, the
                   accessibility tree, and focus:
                 </p>
-                <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-4">
+                <div tabIndex={0} role="region" aria-label="How each hiding technique affects visibility, the accessibility tree, and keyboard focus" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full text-sm text-left">
                     <caption className="sr-only">
                       How each hiding technique affects visibility, the
@@ -966,14 +966,14 @@ export default function UsingAriaGuidePage() {
                   <code>inert</code> to keep content visible but non-interactive and
                   unread, which is exactly what you want for the background behind a
                   modal. Reserve <code>aria-hidden=&quot;true&quot;</code> for content
-                  that is visible and <em>not</em> focusable, and that would be
+                  that is visible and <em>not</em>{" "}focusable, and that would be
                   redundant or noisy to a screen reader, such as a decorative icon
                   sitting beside visible text, or the &ldquo;/&rdquo; separators in a
                   breadcrumb. Use <code>.sr-only</code> for the opposite case: text
                   you want a screen reader to read but not display, like the hidden
                   label on a skip link.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Correct: decorative icon, not focusable, hidden from the screen reader -->
 <button type="button">
   <svg aria-hidden="true" focusable="false"> ... </svg>
@@ -1055,7 +1055,7 @@ export default function UsingAriaGuidePage() {
                   screen readers treat it as initial content and stay silent. Render
                   an empty region on load, then write into it.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Mounted empty on load; you set textContent later -->
 <div id="status" role="status" aria-live="polite" class="sr-only"></div>
 
@@ -1236,7 +1236,7 @@ export default function UsingAriaGuidePage() {
                 audits and in the WebAIM Million data. Each one comes from a good
                 intention applied without the rule behind it.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common ARIA anti-patterns, why each one fails, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common ARIA anti-patterns, why each one fails, and the fix

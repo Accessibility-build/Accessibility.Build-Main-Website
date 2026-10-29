@@ -298,7 +298,7 @@ export default function ComplianceHubPage() {
               puts you at or ahead of the technical baseline in every
               jurisdiction on this page.
             </p>
-            <div className="mt-8 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="The seven regimes side by side, as of 19 October 2026. Each links to its full guide." className="mt-8 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full border-collapse text-sm">
                 <caption className="px-4 py-3 text-left text-sm text-slate-600 dark:text-slate-400">
                   The seven regimes side by side, as of 19 October 2026. Each links to its full guide.

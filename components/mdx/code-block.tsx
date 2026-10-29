@@ -31,7 +31,7 @@ export function CodeBlock({ children, language, className }: CodeBlockProps) {
           {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
         </button>
       </div>
-      <pre className="overflow-x-auto p-4 text-sm">
+      <pre tabIndex={0} className="overflow-x-auto p-4 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <code>{children}</code>
       </pre>
     </div>

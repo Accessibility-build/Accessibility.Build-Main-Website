@@ -147,7 +147,7 @@ function GroupSummary({ g }: { g: Group }) {
   const roles = Object.entries(g.byRole).sort((a, b) => b[1].unnamed - a[1].unnamed)
   return (
     <div className="mt-6 grid gap-6 lg:grid-cols-2">
-      <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+      <div tabIndex={0} role="region" aria-label={`${g.label}: home pages measured`} className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <table className="w-full border-collapse text-sm">
           <caption className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
             {g.label}: {g.measured} home pages measured ({g.excluded} of {g.sampled} excluded)
@@ -175,7 +175,7 @@ function GroupSummary({ g }: { g: Group }) {
           </tbody>
         </table>
       </div>
-      <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+      <div tabIndex={0} role="region" aria-label={`${g.label}: nameless controls by role`} className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <table className="w-full border-collapse text-sm">
           <caption className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
             {g.label}: nameless controls by role
@@ -214,7 +214,7 @@ function SiteTable({ g, id }: { g: Group; id: string }) {
       <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-slate-900 dark:text-white">
         Every measured site in {g.label} ({g.sites.length}), worst first
       </summary>
-      <div className="overflow-x-auto">
+      <div tabIndex={0} role="region" aria-label="Per-site measurements for" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <table className="w-full border-collapse text-sm" id={id}>
           <caption className="sr-only">Per-site measurements for {g.label}</caption>
           <thead>

@@ -390,9 +390,9 @@ export default function WCAG413Page() {
             </div>
             <div className="mt-6 rounded-xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50 dark:bg-emerald-950/20 p-5">
               <p className="text-emerald-900 dark:text-emerald-200 leading-relaxed">
-                <strong>The rule of thumb:</strong> if a sighted user would
+                <strong>The rule of thumb:</strong>{" "}if a sighted user would
                 notice a change because new text appeared &mdash; and you are{" "}
-                <em>not</em> moving focus to it &mdash; that text almost
+                <em>not</em>{" "}moving focus to it &mdash; that text almost
                 certainly belongs in a live region. Render the live-region
                 container empty on load, then update its contents when the status
                 changes.
@@ -447,7 +447,7 @@ export default function WCAG413Page() {
             </div>
             <div className="mt-6 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50 dark:bg-amber-950/20 p-5">
               <p className="text-amber-900 dark:text-amber-200 leading-relaxed">
-                <strong>What is NOT a 4.1.3 status message:</strong> changes that
+                <strong>What is NOT a 4.1.3 status message:</strong>{" "}changes that
                 already move focus (a dialog that opens and is focused), content
                 the user is directly editing and reading back, or a full
                 navigation to a new page. And do not turn everything into a live

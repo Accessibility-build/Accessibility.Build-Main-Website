@@ -367,7 +367,7 @@ const tdNum = "px-3 py-3 text-right tabular-nums";
 function ComparisonTable({ question }: { question: SurveyQuestion }) {
   const rows = question.comparison ?? [];
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label={`${question.title}: Survey #10 and #11 compared`} className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[520px] border-collapse text-sm">
         <caption className="pb-2 text-left text-sm text-slate-600 dark:text-slate-400">
           {question.title}: &ldquo;{question.questionText}&rdquo; Percent of
@@ -432,7 +432,7 @@ function SingleSurveyTable({ question }: { question: SurveyQuestion }) {
       : "Survey #10 (2024)";
   const hasCounts = rows.some((r) => r.respondents != null);
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label={`${question.title}: ${label} only`} className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[420px] border-collapse text-sm">
         <caption className="pb-2 text-left text-sm text-slate-600 dark:text-slate-400">
           {question.title}: &ldquo;{question.questionText}&rdquo; Asked in{" "}
@@ -481,7 +481,7 @@ function SingleSurveyTable({ question }: { question: SurveyQuestion }) {
 
 function RegionTable({ rows }: { rows: RegionRow[] }) {
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label="Percent of respondents in each region whose primary desktop screen reader is JAWS or NVDA, Survey #10 (2024) and..." className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[600px] border-collapse text-sm">
         <caption className="pb-2 text-left text-sm text-slate-600 dark:text-slate-400">
           Percent of respondents in each region whose primary desktop screen
@@ -952,7 +952,7 @@ export function ScreenReaderSurveyClient({
         </ChartSection>
         <p className="mt-6 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-400">
           {prose("Heading levels")?.text}{" "}
-          {prose("Headings by proficiency")?.text} {skipProse?.text} If you want
+          {prose("Headings by proficiency")?.text} {skipProse?.text}{" "}If you want
           to check a page&rsquo;s outline the way these users meet it, run it
           through the{" "}
           <NextLink href="/tools/heading-analyzer" className={linkClass}>
@@ -1063,7 +1063,7 @@ export function ScreenReaderSurveyClient({
           />
         </ChartSection>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div className="rounded-lg border border-slate-200 p-5 dark:border-slate-800">
             <h3 className="font-semibold text-slate-950 dark:text-white">
               PDF documents
@@ -1109,7 +1109,7 @@ export function ScreenReaderSurveyClient({
             What Survey #11 did not ask
           </h2>
           <p className="mt-3 leading-7 text-slate-600 dark:text-slate-400">
-            {data.survey10OnlyProblematicItems.note} Anyone quoting
+            {data.survey10OnlyProblematicItems.note}{" "}Anyone quoting
             &ldquo;CAPTCHA is the top problem in 2026&rdquo; is quoting the 2024
             survey. The Survey #10 order, most problematic first:
           </p>
@@ -1141,7 +1141,7 @@ export function ScreenReaderSurveyClient({
             Every question, both surveys
           </h2>
           <p className="mt-3 leading-7 text-slate-600 dark:text-slate-400">
-            {both.length} questions appear in both surveys. Each table shows
+            {both.length}{" "}questions appear in both surveys. Each table shows
             WebAIM&rsquo;s published percentage for 2024 and 2026 and the change
             in percentage points; nothing else is calculated. &ldquo;Not
             listed&rdquo; means the answer did not appear in that year&rsquo;s

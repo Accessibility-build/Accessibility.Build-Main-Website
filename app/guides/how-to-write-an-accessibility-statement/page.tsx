@@ -179,7 +179,7 @@ export default function HowToWriteAccessibilityStatementPage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="max-w-3xl mx-auto space-y-16">
           {/* What it is and which law requires one */}
           <section aria-labelledby="which-law-heading">
@@ -442,7 +442,7 @@ export default function HowToWriteAccessibilityStatementPage() {
                 not precede it.
               </li>
               <li>
-                <strong className="text-slate-900 dark:text-white">Vagueness.</strong> A page of
+                <strong className="text-slate-900 dark:text-white">Vagueness.</strong>{" "}A page of
                 &ldquo;we care about accessibility&rdquo; sentiment with no conformance status,
                 no contact route, and no date commits you to nothing and helps no one. It reads
                 as decoration because it is.
@@ -453,7 +453,7 @@ export default function HowToWriteAccessibilityStatementPage() {
                 that nothing behind it is being maintained either.
               </li>
               <li>
-                <strong className="text-slate-900 dark:text-white">No contact route.</strong> The
+                <strong className="text-slate-900 dark:text-white">No contact route.</strong>{" "}The
                 contact channel is the most practically valuable part of the whole document: it
                 lets a blocked user reach you instead of an enforcement body or a law firm.
                 Omitting it wastes the statement&apos;s best feature.
@@ -556,7 +556,7 @@ export default function HowToWriteAccessibilityStatementPage() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">

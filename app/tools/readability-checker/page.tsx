@@ -187,7 +187,7 @@ export default function ReadabilityCheckerPage() {
               <h2 id="flags-heading" className="font-serif text-2xl font-semibold text-slate-900 dark:text-white sm:text-3xl">
                 What the checker flags
               </h2>
-              <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="Each plain-language finding and when the checker raises it" className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full border-collapse text-sm">
                   <caption className="sr-only">Each plain-language finding and when the checker raises it</caption>
                   <thead>

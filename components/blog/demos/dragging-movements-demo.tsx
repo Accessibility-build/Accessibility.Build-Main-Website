@@ -104,7 +104,7 @@ export function DraggingMovementsDemo() {
             <div className="space-y-4">
               <div>
                 <h3 className="text-sm font-medium mb-2">Inaccessible Implementation (Fails WCAG 2.2)</h3>
-                <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+                <pre tabIndex={0} className="bg-muted p-4 rounded-md overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   {`// Only supports dragging
 function InaccessibleSlider() {
   const [value, setValue] = useState(50);
@@ -127,7 +127,7 @@ function InaccessibleSlider() {
 
               <div>
                 <h3 className="text-sm font-medium mb-2">Accessible Implementation (Passes WCAG 2.2)</h3>
-                <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+                <pre tabIndex={0} className="bg-muted p-4 rounded-md overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   {`// Supports both dragging and button interactions
 function AccessibleSlider() {
   const [value, setValue] = useState(50);

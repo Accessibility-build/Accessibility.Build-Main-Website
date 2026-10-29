@@ -210,7 +210,7 @@ export default function FashionNovaSettlementPage() {
               Those are textbook{" "}
               <Link href="/wcag/1-1-1">WCAG 1.1.1 (Non-text Content)</Link>,{" "}
               <Link href="/wcag/4-1-2">4.1.2 (Name, Role, Value)</Link>, and{" "}
-              <Link href="/wcag/2-1-1">2.1.1 (Keyboard)</Link> failures. The
+              <Link href="/wcag/2-1-1">2.1.1 (Keyboard)</Link>{" "}failures. The
               legal theory was equally standard: under Title III of the ADA, a
               retailer&apos;s website is an extension of a place of public
               accommodation and must be accessible. Because Alcazar is a
@@ -236,7 +236,7 @@ export default function FashionNovaSettlementPage() {
                 <strong>A California damages subclass</strong> — legally blind
                 California residents who tried to use the site with a screen
                 reader between February 26, 2018 and 2025 could file a claim for
-                up to <strong>$4,000</strong> each, reflecting the Unruh
+                up to <strong>$4,000</strong>{" "}each, reflecting the Unruh
                 Act&apos;s statutory damages. The exact per-person payout
                 depended on how many valid claims were filed against the net
                 fund. The claim deadline was October 20, 2025.
@@ -333,7 +333,7 @@ export default function FashionNovaSettlementPage() {
             <ol>
               <li>
                 <strong>Test your checkout and product pages with a screen
-                reader.</strong> Those are the flows plaintiffs target first,
+                reader.</strong>{" "}Those are the flows plaintiffs target first,
                 because a broken checkout is the clearest &ldquo;denial of
                 goods and services.&rdquo; See our{" "}
                 <Link href="/guides/screen-reader-testing">

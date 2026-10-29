@@ -157,7 +157,7 @@ export default function WCAG146Page() {
             >
               The thresholds: AAA vs AA at a glance
             </h2>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 mb-6">
+            <div tabIndex={0} role="region" aria-label="Contrast ratio requirements compared between Level AA and Level AAA" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-left text-sm">
                 <caption className="sr-only">
                   Contrast ratio requirements compared between Level AA and Level AAA

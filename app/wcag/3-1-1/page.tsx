@@ -371,7 +371,7 @@ export default function WCAG311Page() {
               region or script subtag. You do not need to memorise the registry —
               a handful of patterns cover almost every page.
             </p>
-            <div className="overflow-x-auto mb-4">
+            <div tabIndex={0} role="region" aria-label="Common BCP 47 language tags and when to use them" className="overflow-x-auto mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-left border-collapse">
                 <caption className="sr-only">
                   Common BCP 47 language tags and when to use them

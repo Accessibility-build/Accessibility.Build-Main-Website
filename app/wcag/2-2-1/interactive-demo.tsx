@@ -197,7 +197,7 @@ export default function TimingDemo() {
 
       <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
         The adjustable version warns you {WARNING_AT} seconds before expiry and lets you
-        extend by {EXTEND_BY} seconds with one click, up to {MAX_EXTENSIONS} times — meeting
+        extend by {EXTEND_BY} seconds with one click, up to {MAX_EXTENSIONS}{" "}times — meeting
         the &ldquo;warn and extend&rdquo; remedy. The silent version simply logs you out.
       </p>
     </div>

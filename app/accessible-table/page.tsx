@@ -418,7 +418,7 @@ export default function AccessibleTablePage() {
               <p className="text-gray-900 dark:text-gray-100 mb-4">
                 Two pieces of state control the sorting behavior:
               </p>
-              <div className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4">
+              <div tabIndex={0} className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <pre className="text-sm">
                   <code>{`// Track which column is currently sorted
 const [sortColumn, setSortColumn] = useState<SortableColumn | null>(null);
@@ -441,7 +441,7 @@ const [sortDirection, setSortDirection] = useState<SortDirection>('none');`}</co
               <p className="text-gray-900 dark:text-gray-100 mb-4">
                 This function is called when a column header is clicked. It cycles through three states:
               </p>
-              <div className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4">
+              <div tabIndex={0} className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <pre className="text-sm">
                   <code>{`const handleSort = (column: SortableColumn) => {
   if (sortColumn === column) {
@@ -479,7 +479,7 @@ const [sortDirection, setSortDirection] = useState<SortDirection>('none');`}</co
               <p className="text-gray-900 dark:text-gray-100 mb-4">
                 useMemo ensures sorting only happens when sortColumn or sortDirection changes:
               </p>
-              <div className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4">
+              <div tabIndex={0} className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <pre className="text-sm">
                   <code>{`const sortedData = useMemo(() => {
   // If no column selected or direction is 'none', return original data
@@ -526,7 +526,7 @@ const [sortDirection, setSortDirection] = useState<SortDirection>('none');`}</co
               <p className="text-gray-900 dark:text-gray-100 mb-4">
                 Returns the correct aria-sort value for screen readers:
               </p>
-              <div className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4">
+              <div tabIndex={0} className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <pre className="text-sm">
                   <code>{`const getAriaSort = (column: SortableColumn): 
   'ascending' | 'descending' | 'none' | undefined => {
@@ -550,7 +550,7 @@ const [sortDirection, setSortDirection] = useState<SortDirection>('none');`}</co
               <p className="text-gray-900 dark:text-gray-100 mb-4">
                 Displays the appropriate icon based on sort state:
               </p>
-              <div className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4">
+              <div tabIndex={0} className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <pre className="text-sm">
                   <code>{`const getSortIcon = (column: SortableColumn) => {
   if (sortColumn !== column) {
@@ -567,7 +567,7 @@ const [sortDirection, setSortDirection] = useState<SortDirection>('none');`}</co
                 </pre>
               </div>
               <p className="text-gray-900 dark:text-gray-100">
-                Icons have <code className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">aria-hidden="true"</code> 
+                Icons have <code className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">aria-hidden="true"</code>{" "}
                 so screen readers ignore them. The aria-label on the button provides context.
               </p>
             </div>
@@ -624,7 +624,7 @@ const [sortDirection, setSortDirection] = useState<SortDirection>('none');`}</co
               <p className="text-gray-900 dark:text-gray-100 mb-4">
                 Type safety ensures correct usage throughout:
               </p>
-              <div className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto">
+              <div tabIndex={0} className="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <pre className="text-sm">
                   <code>{`// Employee data structure
 interface Employee {
@@ -692,7 +692,7 @@ const [sortDirection, setSortDirection] =
             <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
               Complete Component Structure
             </h3>
-            <div className="bg-gray-900 text-gray-100 rounded-lg p-6 overflow-x-auto">
+            <div tabIndex={0} className="bg-gray-900 text-gray-100 rounded-lg p-6 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <pre className="text-sm">
                 <code>{`// Table structure with ARIA roles
 <div role="table" aria-label="Employee directory table">

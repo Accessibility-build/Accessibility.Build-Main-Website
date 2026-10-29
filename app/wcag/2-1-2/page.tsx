@@ -194,7 +194,7 @@ export default function WCAG212Page() {
             </blockquote>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-4 text-sm">
               The rule has two halves. First, focus that can go <em>in</em> must be able
-              to come <em>out</em> using only the keyboard. Second, if the exit needs
+              to come <em>out</em>{" "}using only the keyboard. Second, if the exit needs
               anything beyond the standard Tab, Shift+Tab, arrow keys, or Escape, the
               user must be told how — the &ldquo;advisory&rdquo; clause. The easiest way
               to comply is to support the standard exits so no special instruction is

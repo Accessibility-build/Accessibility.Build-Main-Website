@@ -318,7 +318,7 @@ export default function VueAccessibilityGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria Vue Apps Break Most
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria most commonly failed by Vue applications and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria most commonly failed by Vue
@@ -448,7 +448,7 @@ export default function VueAccessibilityGuidePage() {
                 role, <code>tabindex</code>, and keyboard handlers by hand — and
                 get all three exactly right.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Inaccessible: not focusable, no keyboard, no role -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Inaccessible: not focusable, no keyboard, no role -->
 <div class="btn" @click="save">Save</div>
 
 <!-- Accessible: keyboard + role + focus for free -->
@@ -494,7 +494,7 @@ export default function VueAccessibilityGuidePage() {
                 attribute entirely. That is exactly what you want for conditional
                 states.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Boolean state: renders aria-expanded="true" / "false" -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Boolean state: renders aria-expanded="true" / "false" -->
 <button :aria-expanded="isOpen" :aria-controls="panelId">Menu</button>
 
 <!-- Conditional attribute: present only when there is an error,
@@ -534,14 +534,14 @@ export default function VueAccessibilityGuidePage() {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 This is the Vue-specific bug that quietly breaks accessible
                 names. When a parent passes <code>aria-label</code>,{" "}
-                <code>id</code>, or <code>aria-describedby</code> to your custom
+                <code>id</code>, or <code>aria-describedby</code>{" "}to your custom
                 component, Vue applies those attributes to the component&apos;s
                 single root element by default. If your component wraps an{" "}
                 <code>&lt;input&gt;</code> inside a <code>&lt;div&gt;</code>, the{" "}
                 <code>aria-label</code> lands on the wrapper — where it does
                 nothing — and the input stays unlabeled.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- TextField.vue -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- TextField.vue -->
 <script setup lang="ts">
 // Stop attributes from landing on the root <div>...
 defineOptions({ inheritAttrs: false })
@@ -590,7 +590,7 @@ const model = defineModel<string>()
                 <code>router.afterEach()</code> — after a <code>nextTick()</code>{" "}
                 so the new component has actually rendered.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// router/index.ts
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// router/index.ts
 import { createRouter, createWebHistory } from "vue-router"
 import { nextTick } from "vue"
 
@@ -606,7 +606,7 @@ router.afterEach(async () => {
 })
 
 export default router`}</code></pre>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3"><code>{`<!-- App.vue -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- App.vue -->
 <template>
   <a class="skip-link" href="#main">Skip to main content</a>
   <nav aria-label="Primary"><!-- ... --></nav>
@@ -643,7 +643,7 @@ export default router`}</code></pre>
             <div className="container mx-auto max-w-4xl">
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                 <Focus className="h-7 w-7 text-blue-600 dark:text-blue-400" />
-                5. Accessible Dialogs with <code>&lt;Teleport&gt;</code> &amp; Focus Trapping
+                5. Accessible Dialogs with <code>&lt;Teleport&gt;</code>{" "}&amp; Focus Trapping
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 A dialog is the classic Vue focus challenge. When it opens, focus
@@ -654,7 +654,7 @@ export default router`}</code></pre>
                 or stacking context, and a focus-trap library keeps keyboard focus
                 inside while it is open.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<script setup lang="ts">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<script setup lang="ts">
 import { ref, watch, nextTick } from "vue"
 import { useFocusTrap } from "@vueuse/integrations/useFocusTrap"
 
@@ -736,13 +736,13 @@ watch(open, async (isOpen) => {
                 with <code>v-if</code> at the moment the message appears and
                 nothing is announced.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Broken: the region is created at the same moment as its text,
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Broken: the region is created at the same moment as its text,
      so the browser treats it as initial content, not an update -->
 <p v-if="message" aria-live="polite">{{ message }}</p>
 
 <!-- Correct: the region is always in the DOM; only its text changes -->
 <p aria-live="polite" class="sr-only">{{ message }}</p>`}</code></pre>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3"><code>{`// A reusable announcer composable — one persistent region for the app
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// A reusable announcer composable — one persistent region for the app
 // composables/useAnnouncer.ts
 import { ref } from "vue"
 
@@ -835,7 +835,7 @@ export function useAnnouncer() {
                 <code>:aria-invalid</code> — binding <code>null</code> so the
                 attributes disappear when the field is valid.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<script setup lang="ts">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<script setup lang="ts">
 import { ref, computed } from "vue"
 
 const email = ref("")
@@ -955,7 +955,7 @@ const emailInvalid = computed(
                 problems, so they supplement rather than replace manual testing.
                 Layer three tools into your Vue workflow:
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// 1. Lint templates — eslint-plugin-vuejs-accessibility
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// 1. Lint templates — eslint-plugin-vuejs-accessibility
 //    In eslint.config.js, extend "plugin:vuejs-accessibility/recommended".
 //    Key rules:
 //    "vuejs-accessibility/click-events-have-key-events"
@@ -1005,7 +1005,7 @@ test("home page is accessible", async ({ page }) => {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Vue Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common Vue accessibility anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common Vue accessibility anti-patterns, why they fail, and

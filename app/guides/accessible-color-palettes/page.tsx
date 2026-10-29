@@ -159,7 +159,7 @@ export default function AccessibleColorPalettesGuidePage() {
 
       <FAQStructuredData faqs={faqItems} />
 
-      <main className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background">
         <section className="border-b bg-gradient-to-br from-slate-50 via-white to-emerald-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
           <div className="container-wide py-16 md:py-24">
             <div className="max-w-4xl">
@@ -196,7 +196,7 @@ export default function AccessibleColorPalettesGuidePage() {
 
         <section className="container-wide py-14 md:py-20">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-            <aside className="space-y-4">
+            <div className="space-y-4">
               <div className="rounded-lg border bg-card p-5">
                 <Palette className="h-6 w-6 text-primary" aria-hidden="true" />
                 <h2 className="mt-3 text-xl font-semibold">Quick checklist</h2>
@@ -231,7 +231,7 @@ export default function AccessibleColorPalettesGuidePage() {
                   separation from the page background.
                 </p>
               </div>
-            </aside>
+            </div>
 
             <article className="space-y-12">
               <section>
@@ -353,7 +353,7 @@ export default function AccessibleColorPalettesGuidePage() {
             </article>
           </div>
         </section>
-      </main>
+      </div>
     </>
   )
 }

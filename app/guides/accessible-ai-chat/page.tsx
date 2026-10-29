@@ -318,7 +318,7 @@ export default function AccessibleAiChatGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria AI Chat Breaks Most
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria most commonly failed by AI chat and chatbot interfaces, their conformance level, and what..." className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria most commonly failed by AI chat and
@@ -516,7 +516,7 @@ export default function AccessibleAiChatGuidePage() {
                   <p className="text-sm font-semibold text-red-800 dark:text-red-300 mb-2">
                     Do not do this
                   </p>
-                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto">
+                  <div tabIndex={0} className="rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                     <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Every token mutates a live region: the screen reader stutters -->
 <div aria-live="assertive">
   The quick bro
@@ -554,7 +554,7 @@ export default function AccessibleAiChatGuidePage() {
                     complete&rdquo; and let the user navigate the log to read it.
                   </li>
                 </ul>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Visible transcript: updates silently as tokens stream in -->
 <div class="assistant-message">The quick brown fox...</div>
 
@@ -667,7 +667,7 @@ export default function AccessibleAiChatGuidePage() {
                   heading, which would bloat the page&rsquo;s heading outline and
                   make heading navigation useless.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<ol class="transcript" aria-label="Conversation">
   <li>
     <span class="sr-only">You said:</span>
@@ -680,7 +680,7 @@ export default function AccessibleAiChatGuidePage() {
 </ol>`}</code></pre>
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  The <code>sr-only</code> label reads &ldquo;You said&rdquo; or
+                  The <code>sr-only</code>{" "}label reads &ldquo;You said&rdquo; or
                   &ldquo;Assistant said&rdquo; before each turn so the conversation
                   makes sense linearly. If you make each message an{" "}
                   <code>&lt;article&gt;</code> with an accessible name instead, the
@@ -719,7 +719,7 @@ export default function AccessibleAiChatGuidePage() {
                     status region tells the user it arrived; that is enough.
                   </li>
                   <li>
-                    Give users who <em>do</em> want to read the reply immediately an
+                    Give users who <em>do</em>{" "}want to read the reply immediately an
                     explicit way to get there, such as a &ldquo;Go to latest
                     response&rdquo; button that moves focus to the newest message,
                     or a skip link into the transcript. Because they triggered it,
@@ -781,7 +781,7 @@ export default function AccessibleAiChatGuidePage() {
                   need a control they can find and activate. Do not make a hidden
                   Enter handler the only way to send.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<form>
   <label for="composer" class="sr-only">Message the assistant</label>
   <textarea id="composer" rows="1"
@@ -855,7 +855,7 @@ export default function AccessibleAiChatGuidePage() {
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   If you show an animated indicator, respect{" "}
-                  <code>prefers-reduced-motion</code> and provide a non-animated
+                  <code>prefers-reduced-motion</code>{" "}and provide a non-animated
                   fallback, and make sure the indicator&rsquo;s text (if any) meets{" "}
                   <Link href="/wcag/1-4-3" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                     contrast
@@ -864,7 +864,7 @@ export default function AccessibleAiChatGuidePage() {
                   point is that state changes are perceivable in more than one way:
                   something visible <em>and</em> something announced.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`/* Honor reduced-motion for the typing indicator */
 @media (prefers-reduced-motion: reduce) {
   .typing-indicator .dot {
@@ -1002,7 +1002,7 @@ export default function AccessibleAiChatGuidePage() {
                   the response completes. It uses the announce-on-complete pattern
                   so the screen reader never hears a token flood.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`function Chat() {
   const [messages, setMessages] = useState([])
   const [status, setStatus] = useState("")   // drives the polite region
@@ -1097,7 +1097,7 @@ export default function AccessibleAiChatGuidePage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common AI Chat Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common AI chat and chatbot accessibility anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common AI chat and chatbot accessibility anti-patterns, why they

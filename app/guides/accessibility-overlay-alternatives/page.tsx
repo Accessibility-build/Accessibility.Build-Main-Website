@@ -452,7 +452,7 @@ export default function OverlayAlternativesGuidePage() {
                 not price — it is whether the approach removes barriers from
                 your code.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="Comparison of accessibility overlay, DIY remediation, and professional audit plus remediation by cost, coverage, and..." className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Comparison of accessibility overlay, DIY remediation, and

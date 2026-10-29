@@ -442,7 +442,7 @@ export default function AccessibleTreeViewGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria a Tree View Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that a correctly built tree view satisfies and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that a correctly built tree view
@@ -657,7 +657,7 @@ export default function AccessibleTreeViewGuidePage() {
                 it is open, and whether it is selected. Here is the full set and
                 what each part is for.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="The elements and attributes in an accessible tree view and what each is for" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The elements and attributes in an accessible tree view and
@@ -687,7 +687,7 @@ export default function AccessibleTreeViewGuidePage() {
                 A subtlety worth calling out: a parent node&apos;s accessible name
                 should be just its own label, not the text of everything beneath
                 it. Keep each node&apos;s label in a single element (a{" "}
-                <code>&lt;span&gt;</code> in the examples below) so it reads as
+                <code>&lt;span&gt;</code>{" "}in the examples below) so it reads as
                 &ldquo;Documents&rdquo;, and if your assistive technology reads the
                 descendants too, give the parent an explicit{" "}
                 <code>aria-label</code> or{" "}
@@ -718,7 +718,7 @@ export default function AccessibleTreeViewGuidePage() {
                 <code>aria-expanded</code>; leaf nodes do not. Exactly one node —
                 here the first — starts at <code>tabindex=&quot;0&quot;</code>.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<ul role="tree" aria-label="File system">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<ul role="tree" aria-label="File system">
   <!-- A parent node: has aria-expanded and a role="group" of children. -->
   <li
     role="treeitem"
@@ -764,7 +764,7 @@ export default function AccessibleTreeViewGuidePage() {
               </div>
               <p className="text-muted-foreground leading-relaxed">
                 When a branch is collapsed, hide its <code>role=&quot;group&quot;</code>{" "}
-                with <code>hidden</code> or <code>display:none</code> so its nodes
+                with <code>hidden</code> or <code>display:none</code>{" "}so its nodes
                 leave the accessibility tree entirely — a collapsed branch&apos;s
                 children must not be reachable by the arrow keys or a screen
                 reader&apos;s virtual cursor. Set{" "}
@@ -787,7 +787,7 @@ export default function AccessibleTreeViewGuidePage() {
                 here is yours to wire up. A tree that responds only to Up and Down
                 is not a tree; it is an inaccessible list with extra roles.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Keyboard commands a conformant tree view must support" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Keyboard commands a conformant tree view must support
@@ -846,7 +846,7 @@ export default function AccessibleTreeViewGuidePage() {
                 which keeps it focusable by script but out of the Tab order. When
                 the user arrows to a new node, you move the <code>0</code>.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`const tree = document.querySelector('[role="tree"]')
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const tree = document.querySelector('[role="tree"]')
 
 // Move focus from the current node to a target node.
 function focusNode(target) {
@@ -939,7 +939,7 @@ function focusNode(target) {
                   </CardContent>
                 </Card>
               </div>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`tree.addEventListener("keydown", (e) => {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`tree.addEventListener("keydown", (e) => {
   const node = e.target.closest('[role="treeitem"]')
   if (!node) return
 
@@ -1020,7 +1020,7 @@ function setExpanded(node, open) {
                 attribute on the container plus how many nodes can be{" "}
                 <code>true</code> at once.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- Single-select: one node is aria-selected="true", Enter selects. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Single-select: one node is aria-selected="true", Enter selects. -->
 <ul role="tree" aria-label="Categories">
   <li role="treeitem" aria-selected="true"  aria-level="1" tabindex="0">Design</li>
   <li role="treeitem" aria-selected="false" aria-level="1" tabindex="-1">Engineering</li>
@@ -1122,7 +1122,7 @@ function setExpanded(node, open) {
                 </strong>{" "}
                 nodes: once the DOM no longer contains every sibling, the browser
                 has nothing to count, and only your <code>aria-setsize</code> and{" "}
-                <code>aria-posinset</code> can tell the user &ldquo;3 of
+                <code>aria-posinset</code>{" "}can tell the user &ldquo;3 of
                 7,000&rdquo;. Treat them as part of building a tree, not as
                 polish.
               </p>
@@ -1145,7 +1145,7 @@ function setExpanded(node, open) {
                 all still yours to get right. A recursive component maps cleanly
                 onto the recursive structure.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`function TreeNode({ node, level, posInSet, setSize, state }) {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function TreeNode({ node, level, posInSet, setSize, state }) {
   const isParent = node.children?.length > 0
   const isOpen = state.expanded.has(node.id)
   const isCurrent = state.tabbable === node.id
@@ -1297,7 +1297,7 @@ function setExpanded(node, open) {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Tree View Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible tree view anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible tree view anti-patterns, why they fail, and

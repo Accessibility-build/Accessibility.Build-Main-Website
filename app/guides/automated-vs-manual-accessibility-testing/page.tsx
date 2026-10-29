@@ -396,7 +396,7 @@ export default function AutomatedVsManualTestingGuidePage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Side-by-Side Comparison
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="Comparison of automated and manual accessibility testing across speed, cost, coverage, and consistency" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Comparison of automated and manual accessibility testing
@@ -731,7 +731,7 @@ export default function AutomatedVsManualTestingGuidePage() {
           {/* Related Content */}
           <section className="pb-12 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl">
-            <aside className="mt-12 rounded-lg border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/50">
+            <div className="mt-12 rounded-lg border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/50">
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">Measured, not asserted</p>
               <p className="mt-2 leading-7 text-slate-700 dark:text-slate-300">
                 We ran axe-core, Lighthouse, HTML_CodeSniffer and IBM Equal Access against one page with thirty seeded defects. Which tool found what, and the five defects none of them can find, are in the{" "}
@@ -740,7 +740,7 @@ export default function AutomatedVsManualTestingGuidePage() {
                 </Link>
                 .
               </p>
-            </aside>
+            </div>
 
               <RelatedContent
                 content="automated manual accessibility testing audit screen reader keyboard wcag tools"

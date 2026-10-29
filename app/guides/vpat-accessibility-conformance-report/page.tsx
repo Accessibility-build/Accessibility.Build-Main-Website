@@ -181,7 +181,7 @@ export default function VpatAcrGuidePage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="max-w-3xl mx-auto space-y-16">
           {/* VPAT vs ACR */}
           <section aria-labelledby="vpat-vs-acr-heading">
@@ -231,7 +231,7 @@ export default function VpatAcrGuidePage() {
               accessibility standard. Choosing the right one is not a technical decision so much
               as a market decision: the edition you need is determined by who is asking.
             </p>
-            <div className="overflow-x-auto mb-4">
+            <div tabIndex={0} role="region" aria-label="The four VPAT editions, the standard each covers, and who typically asks for it" className="overflow-x-auto mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-left text-sm border border-slate-200 dark:border-slate-700 rounded-lg">
                 <caption className="sr-only">
                   The four VPAT editions, the standard each covers, and who typically asks for it
@@ -519,7 +519,7 @@ export default function VpatAcrGuidePage() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">

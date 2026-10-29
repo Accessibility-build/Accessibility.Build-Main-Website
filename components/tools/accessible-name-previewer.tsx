@@ -266,9 +266,9 @@ export default function AccessibleNamePreviewer() {
               {copied ? "Copied" : "Copy"}
             </button>
           </div>
-          <pre
+          <pre tabIndex={0}
             aria-label="Accessibility tree as an agent or screen reader receives it"
-            className="mt-2 min-h-[12rem] overflow-x-auto rounded-md border border-slate-200 bg-slate-950 p-4 font-mono text-sm leading-6 text-slate-100 dark:border-slate-800"
+            className="mt-2 min-h-[12rem] overflow-x-auto rounded-md border border-slate-200 bg-slate-950 p-4 font-mono text-sm leading-6 text-slate-100 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             {agentView || "(run to see the tree)"}
           </pre>
@@ -298,7 +298,7 @@ export default function AccessibleNamePreviewer() {
         <p>{status}</p>
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+      <div tabIndex={0} role="region" aria-label="Each element with a role: its role, accessible name, where the name came from, and the markup" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <table id={resultsId} className="w-full border-collapse text-sm">
           <caption className="sr-only">Each element with a role: its role, accessible name, where the name came from, and the markup</caption>
           <thead>

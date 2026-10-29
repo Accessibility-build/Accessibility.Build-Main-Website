@@ -175,7 +175,7 @@ export default function OverlaysEuUkLawPage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="max-w-3xl mx-auto space-y-16">
           {/* The short answer */}
           <section aria-labelledby="short-answer-heading">
@@ -262,7 +262,7 @@ export default function OverlaysEuUkLawPage() {
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               EDF has also reported the European Commission&apos;s position that overlay tools may
-              make a website <em>less</em> accessible. That is consistent with what disabled users
+              make a website <em>less</em>{" "}accessible. That is consistent with what disabled users
               have said for years: overlay widgets can interfere with the screen readers, magnifiers,
               and custom settings people already have configured, overriding working assistive
               technology with the vendor&apos;s inferior version. A tool the Commission views as a
@@ -348,7 +348,7 @@ export default function OverlaysEuUkLawPage() {
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               The vendors&apos; own compliance claims have also drawn regulatory fire. In January
               2025, the US Federal Trade Commission ordered overlay vendor accessiBe to pay{" "}
-              <strong>$1 million</strong> over claims it misrepresented what its AI-powered product
+              <strong>$1 million</strong>{" "}over claims it misrepresented what its AI-powered product
               could do for compliance. A regulator formally acting against the flagship vendor&apos;s
               compliance marketing is about as direct a warning as buyers will get.
             </p>
@@ -431,7 +431,7 @@ export default function OverlaysEuUkLawPage() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">

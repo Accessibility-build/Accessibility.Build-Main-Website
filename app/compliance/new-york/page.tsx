@@ -174,7 +174,7 @@ export default function NewYorkCompliancePage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="max-w-3xl mx-auto space-y-16">
           {/* Why NY is the top venue */}
           <section aria-labelledby="venue-heading">
@@ -426,7 +426,7 @@ export default function NewYorkCompliancePage() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">

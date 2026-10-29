@@ -220,7 +220,7 @@ export default function TargetSizeCheckerPage() {
                 </p>
                 <ul className="list-disc space-y-2 pl-6">
                   <li>
-                    <strong className="font-semibold text-slate-900 dark:text-white">Spacing (measured):</strong> a 24 pixel circle
+                    <strong className="font-semibold text-slate-900 dark:text-white">Spacing (measured):</strong>{" "}a 24 pixel circle
                     centred on the small target does not touch any other target, or another small target&apos;s circle.
                   </li>
                   <li>

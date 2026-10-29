@@ -327,7 +327,7 @@ export default function EN301549V4Page() {
             <h2 id="numbers-heading" className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
               V3.2.1 and V4.1.1 by the numbers
             </h2>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="Comparison of the V3.2.1 and V4.1.1 datasets behind the interactive checklist" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <caption className="sr-only">Comparison of the V3.2.1 and V4.1.1 datasets behind the interactive checklist</caption>
                 <thead className="bg-slate-100 dark:bg-slate-800">
@@ -387,7 +387,7 @@ export default function EN301549V4Page() {
                 problems it prevented &ldquo;either no longer exist or are addressed by other criteria&rdquo;.
               </p>
             </div>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria added in EN 301 549 V4.1.1 and their clause numbers" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <caption className="sr-only">WCAG 2.2 success criteria added in EN 301 549 V4.1.1 and their clause numbers</caption>
                 <thead className="bg-slate-100 dark:bg-slate-800">
@@ -450,18 +450,18 @@ export default function EN301549V4Page() {
               </p>
               <ul>
                 <li>
-                  <strong>9.7 User preferences for web pages</strong> (new): a web page must not block the browser&apos;s modes
+                  <strong>9.7 User preferences for web pages</strong>{" "}(new): a web page must not block the browser&apos;s modes
                   of operation that present the page according to user preference settings, and must not explicitly
                   override user preferences for documented platform accessibility features, unless that is essential to
                   the page. The note names the CSS <code>forced-color-adjust</code> property as the kind of override the
                   clause limits to essential cases.
                 </li>
                 <li>
-                  <strong>10.7 User preferences for non-web documents</strong> (new): the same duty for documents, aimed at
+                  <strong>10.7 User preferences for non-web documents</strong>{" "}(new): the same duty for documents, aimed at
                   files that lock out the viewer&apos;s reflow, colour or text-size modes.
                 </li>
                 <li>
-                  <strong>11.7 User preferences</strong> (rewritten): software that is not designed to be isolated from its
+                  <strong>11.7 User preferences</strong>{" "}(rewritten): software that is not designed to be isolated from its
                   platform must follow the values of the user&apos;s preference settings for documented platform
                   accessibility features unless not doing so is essential to the software&apos;s function. The notes list
                   colour filters, contrast, text size, pointer size and text cursor as the kinds of feature meant, and
@@ -488,7 +488,7 @@ export default function EN301549V4Page() {
             <div className="prose prose-slate dark:prose-invert max-w-none">
               <p>
                 V3.2.1&apos;s clause 6 was titled &ldquo;ICT with two-way voice communication&rdquo; and held{" "}
-                {v3Rows.filter((r) => r.chapter === "6" && r.kind === "requirement").length} requirements. V4.1.1&apos;s is
+                {v3Rows.filter((r) => r.chapter === "6" && r.kind === "requirement").length}{" "}requirements. V4.1.1&apos;s is
                 &ldquo;ICT supporting real-time bidirectional communication&rdquo; with {clause6Rows}, {clause6New} of them
                 new. The standard now describes a communication system end to end: clients, systems, interconnection,
                 roaming, and emergency communications, each with a set of requirements that must hold in every scenario.
@@ -569,7 +569,7 @@ export default function EN301549V4Page() {
                 <li><strong>Clause A.2</strong> is the working route. Its clause A.2.0 says, in a paragraph headed &ldquo;Important&rdquo;, that each of A.2.1 to A.2.5 is to be considered in order, that every requirement in a table whose condition applies must be assessed, and that Table A.5 applies to all ICT. The note in ZB.0 adds that a product can fall into several rows of several ZB tables, which &ldquo;makes the tables in Annex ZB impractical for use in assessing whether a specific ICT product or service meets all the applicable requirements&rdquo;, and sends assessors to A.2.</li>
               </ul>
             </div>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 mt-6">
+            <div tabIndex={0} role="region" aria-label="The five conformance tables in clause A.2 of EN 301 549 V4.1.1 and the number of clauses in each" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 mt-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <caption className="sr-only">The five conformance tables in clause A.2 of EN 301 549 V4.1.1 and the number of clauses in each</caption>
                 <thead className="bg-slate-100 dark:bg-slate-800">
@@ -756,7 +756,7 @@ export default function EN301549V4Page() {
                   been cited under the European Accessibility Act.
                 </p>
                 <p>
-                  <strong>No edition of EN 301 549 is cited under the European Accessibility Act today.</strong> That means
+                  <strong>No edition of EN 301 549 is cited under the European Accessibility Act today.</strong>{" "}That means
                   conforming to V3.2.1, or to V4.1.1, gives you no presumption of conformity with the Act. It is still the
                   right technical benchmark, and market-surveillance authorities use it, but a statement that your
                   service &ldquo;complies with the EAA because it conforms to EN 301 549&rdquo; is not true in law yet.

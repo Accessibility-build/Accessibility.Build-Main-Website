@@ -294,7 +294,7 @@ function KeyboardNavSection() {
         <div className="space-y-10">
             <SectionHeader title="Keyboard Navigation" description="Users should be able to navigate slides using arrow keys and Tab through controls without getting trapped." />
 
-            <div className="overflow-x-auto">
+            <div tabIndex={0} role="region" aria-label="Carousel keyboard controls" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
                     <thead className="bg-muted"><tr><th scope="col" className="p-4 text-left font-semibold">Key</th><th scope="col" className="p-4 text-left font-semibold">Action</th><th scope="col" className="p-4 text-left font-semibold">Notes</th></tr></thead>
                     <tbody>

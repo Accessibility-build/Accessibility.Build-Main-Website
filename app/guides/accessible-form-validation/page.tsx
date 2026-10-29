@@ -298,7 +298,7 @@ export default function AccessibleFormValidationGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria Your Validation Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that accessible form validation and error handling must satisfy and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that accessible form validation and
@@ -485,7 +485,7 @@ export default function AccessibleFormValidationGuidePage() {
                 stale error. This is sometimes called{" "}
                 <em>reward early, punish late</em>.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`const form = document.querySelector("form")
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const form = document.querySelector("form")
 let hasSubmitted = false
 
 form.addEventListener("submit", (event) => {
@@ -546,7 +546,7 @@ form.addEventListener("input", (event) => {
                 so a screen reader reads the message when focus reaches the
                 field.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<label for="email">Email address</label>
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<label for="email">Email address</label>
 
 <!-- A hint stated up front prevents errors (3.3.2). -->
 <p id="email-hint" class="hint">We'll email your receipt here.</p>
@@ -583,7 +583,7 @@ form.addEventListener("input", (event) => {
                 Use the native <code>required</code> attribute on real form
                 controls — it sets the invalid state for free and is exposed to
                 assistive technology without any ARIA. Reserve{" "}
-                <code>aria-required=&quot;true&quot;</code> for custom widgets
+                <code>aria-required=&quot;true&quot;</code>{" "}for custom widgets
                 that cannot take the native attribute. The browser&apos;s own
                 constraint validation (<code>required</code>,{" "}
                 <code>type=&quot;email&quot;</code>, <code>pattern</code>) is an
@@ -593,7 +593,7 @@ form.addEventListener("input", (event) => {
                 <code>novalidate</code> to the <code>&lt;form&gt;</code>, and take
                 over the messaging yourself using the same validity state:
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<form novalidate>  <!-- keep the attributes, control the messages -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<form novalidate>  <!-- keep the attributes, control the messages -->
   ...
 </form>
 
@@ -652,7 +652,7 @@ if (!emailInput.validity.valid) {
                 popularised, and it is the most reliable way to satisfy the
                 on-submit half of 3.3.1.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- Rendered at the top of the form only after a failed submit. -->
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Rendered at the top of the form only after a failed submit. -->
 <div class="error-summary" id="error-summary" tabindex="-1">
   <h2 class="error-summary__title">There is a problem</h2>
   <ul>
@@ -660,7 +660,7 @@ if (!emailInput.validity.valid) {
     <li><a href="#password">Password must be at least 12 characters</a></li>
   </ul>
 </div>`}</code></pre>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4"><code>{`function focusSummary() {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function focusSummary() {
   const summary = document.getElementById("error-summary")
   summary.focus()   // tabindex="-1" makes the container programmatically focusable
 }
@@ -722,7 +722,7 @@ summary.addEventListener("click", (event) => {
                 </Link>{" "}
                 requires.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<!-- One shared, always-present region. It must exist in the DOM BEFORE
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- One shared, always-present region. It must exist in the DOM BEFORE
      you write to it, or the first message is missed. -->
 <div id="form-status" aria-live="polite" class="sr-only"></div>
 
@@ -1005,7 +1005,7 @@ document.getElementById("form-status").textContent =
                 Use <code>useId</code> to generate the paired ids so a component
                 can appear more than once on a page without collisions.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`function EmailField({ value, onChange, error }) {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function EmailField({ value, onChange, error }) {
   const id = useId()
   const hintId = id + "-hint"
   const errorId = id + "-error"
@@ -1154,7 +1154,7 @@ document.getElementById("form-status").textContent =
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Validation Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible form validation anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible form validation anti-patterns, why they

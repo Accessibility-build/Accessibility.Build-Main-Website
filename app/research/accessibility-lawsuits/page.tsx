@@ -226,7 +226,7 @@ export default function AccessibilityLawsuitsPage() {
             <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <p className="text-slate-600 dark:text-slate-400" itemProp="text">
                 In 2025, plaintiffs filed <strong>3,117 website accessibility lawsuits in U.S.
-                federal court</strong> &mdash; a 27% jump over 2024&apos;s 2,452 cases (Seyfarth
+                federal court</strong>{" "}&mdash; a 27% jump over 2024&apos;s 2,452 cases (Seyfarth
                 Shaw / adatitleiii.com). Federal volume in that source series ranged from 2,256 to
                 3,255 filings per year between 2018 and 2025. State-court cases and private demand
                 letters are additional activity, but their totals should be cited from the relevant

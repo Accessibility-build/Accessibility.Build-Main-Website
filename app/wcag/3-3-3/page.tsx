@@ -317,7 +317,7 @@ export default function WCAG333Page() {
             </h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
               Knowing <em>that</em> a field is wrong is only half the battle.
-              The user still has to work out <em>how</em> to fix it — and if your
+              The user still has to work out <em>how</em>{" "}to fix it — and if your
               message stops at &quot;invalid&quot;, they are left guessing. Did
               the date need slashes or dashes? Is the phone number too long or
               too short? Should the amount include the currency symbol? Each

@@ -73,7 +73,7 @@ export async function MorePosts({ currentSlug, categorySlug, categoryTitle }: Mo
                 {post.excerpt ? (
                   <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-400">{post.excerpt}</p>
                 ) : null}
-                <p className="mt-auto pt-4 text-xs text-slate-500 dark:text-slate-500">
+                <p className="mt-auto pt-4 text-xs text-slate-500 dark:text-slate-400">
                   {dateLabel}
                   {post.estimatedReadingTime ? ` · ${post.estimatedReadingTime} min read` : ""}
                 </p>

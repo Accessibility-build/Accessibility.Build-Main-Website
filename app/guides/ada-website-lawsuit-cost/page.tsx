@@ -176,7 +176,7 @@ export default function ADALawsuitCostPage() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
               Cost by resolution type (2026)
             </h2>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="Cost by resolution type (2026)" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <thead className="bg-slate-100 dark:bg-slate-800">
                   <tr>
@@ -217,19 +217,19 @@ export default function ADALawsuitCostPage() {
             <p>
               Here is what surprises most business owners. Under federal ADA
               Title III, a private plaintiff <strong>cannot win money
-              damages</strong> — the statute only lets a court order you to fix
+              damages</strong>{" "}— the statute only lets a court order you to fix
               the website and pay the plaintiff&apos;s attorney&apos;s fees. So
               where does the money in a &ldquo;settlement&rdquo; come from? Two
               places:
             </p>
             <ol>
               <li>
-                <strong>Attorney&apos;s fees.</strong> The plaintiff&apos;s
+                <strong>Attorney&apos;s fees.</strong>{" "}The plaintiff&apos;s
                 lawyer is entitled to reasonable fees, and a negotiated payment
                 to resolve those fees is the bulk of most settlements.
               </li>
               <li>
-                <strong>State statutory damages.</strong> This is the real
+                <strong>State statutory damages.</strong>{" "}This is the real
                 multiplier. California&apos;s Unruh Civil Rights Act treats an
                 ADA violation as an automatic state violation carrying{" "}
                 <strong>$4,000 minimum per violation</strong>, with no need to
@@ -264,7 +264,7 @@ export default function ADALawsuitCostPage() {
                 because they can — and because they are more visible targets.
               </li>
               <li>
-                <strong>A prior lawsuit on record.</strong> Repeat defendants
+                <strong>A prior lawsuit on record.</strong>{" "}Repeat defendants
                 made up 46% of 2025&apos;s federal cases. Being sued once marks
                 you as a proven, un-remediated target.
               </li>

@@ -92,7 +92,7 @@ export default function SensoryCharacteristicsDemo() {
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
               &ldquo;To save, click the <strong>Save</strong> button. To cancel, click the{" "}
-              <strong>Cancel</strong> button.&rdquo;
+              <strong>Cancel</strong>{" "}button.&rdquo;
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <button
@@ -151,7 +151,7 @@ export default function SensoryCharacteristicsDemo() {
               <CheckCircle className="h-5 w-5" /> Names the control
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
-              &ldquo;Press <strong>Play</strong> to start, <strong>Stop</strong> to end.&rdquo;
+              &ldquo;Press <strong>Play</strong> to start, <strong>Stop</strong>{" "}to end.&rdquo;
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <button className="flex flex-col items-center gap-1 p-3 bg-blue-600 rounded">
@@ -197,7 +197,7 @@ export default function SensoryCharacteristicsDemo() {
               <CheckCircle className="h-5 w-5" /> Names the control
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
-              &ldquo;Use the <strong>Navigation</strong> menu. Click <strong>Submit Form</strong> when
+              &ldquo;Use the <strong>Navigation</strong> menu. Click <strong>Submit Form</strong>{" "}when
               ready.&rdquo;
             </p>
             <div className="space-y-3">

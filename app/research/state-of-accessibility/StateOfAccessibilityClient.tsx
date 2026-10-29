@@ -348,7 +348,7 @@ export function StateOfAccessibilityClient({
   };
 
   const violationsTable = (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label="Six most common automatically detected WCAG failures in the WebAIM Million 2026 study, with the change in percentage..." className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[620px] border-collapse text-sm">
         <caption className="sr-only">
           Six most common automatically detected WCAG failures in the WebAIM
@@ -413,7 +413,7 @@ export function StateOfAccessibilityClient({
   );
 
   const trendsTable = (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label="WebAIM Million year-over-year detectable failure and average error data, 2019 to 2026" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[560px] border-collapse text-sm">
         <caption className="sr-only">
           WebAIM Million year-over-year detectable failure and average error
@@ -818,7 +818,7 @@ export function StateOfAccessibilityClient({
             <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
               The HTTP Archive Web Almanac reported a median Lighthouse
               accessibility score above{" "}
-              {data.contextFindings.medianLighthouseScore} in 2025, improving 1%
+              {data.contextFindings.medianLighthouseScore}{" "}in 2025, improving 1%
               year over year even as WebAIM&apos;s error counts rose. Lighthouse
               tests only part of WCAG, so even a perfect automated score cannot
               establish accessibility.
@@ -859,7 +859,7 @@ export function StateOfAccessibilityClient({
           </p>
         </div>
 
-        <div className="mt-7 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+        <div tabIndex={0} role="region" aria-label="Structural accessibility measures across one million homepages in February 2026, and why each one matters" className="mt-7 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
           <table className="w-full min-w-[560px] border-collapse text-sm">
             <caption className="sr-only">
               Structural accessibility measures across one million homepages in

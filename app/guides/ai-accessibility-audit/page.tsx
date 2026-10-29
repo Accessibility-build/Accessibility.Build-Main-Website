@@ -296,7 +296,7 @@ export default function AIAccessibilityAuditPage() {
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white text-center mb-12">
               AI-assisted audit vs traditional audit
             </h2>
-            <div className="overflow-x-auto">
+            <div tabIndex={0} role="region" aria-label="Comparison of AI-assisted accessibility audits, automated scanners, and traditional consulting audits" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full border-collapse">
                 <caption className="sr-only">
                   Comparison of AI-assisted accessibility audits, automated

@@ -166,7 +166,7 @@ export default function WCAG253Page() {
             </blockquote>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-4 text-sm">
               The W3C adds a note: a best practice is to have the text of the label at
-              the <em>start</em> of the name. &ldquo;Name&rdquo; here means the
+              the <em>start</em>{" "}of the name. &ldquo;Name&rdquo; here means the
               accessible name — the string assistive technologies compute for the
               component — and &ldquo;label&rdquo; means the text (or image of text)
               presented visually to identify it.

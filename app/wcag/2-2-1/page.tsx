@@ -191,7 +191,7 @@ export default function WCAG221Page() {
               limit before encountering it; or <strong>Adjust:</strong> The user is allowed
               to adjust the time limit before encountering it over a wide range that is at
               least ten times the length of the default setting; or{" "}
-              <strong>Extend:</strong> The user is warned before time expires and given at
+              <strong>Extend:</strong>{" "}The user is warned before time expires and given at
               least 20 seconds to extend the time limit with a simple action (for example,
               &ldquo;press the space bar&rdquo;), and the user is allowed to extend the time
               limit at least ten times; or <strong>Real-time Exception:</strong> The time

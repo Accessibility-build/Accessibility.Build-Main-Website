@@ -20,7 +20,7 @@ import {
 
 function CommandTable({ commands }: { commands: { action: string; shortcut: string }[] }) {
   return (
-    <div className="overflow-x-auto my-4">
+    <div tabIndex={0} className="overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full border-collapse text-sm">
         <thead>
           <tr className="bg-slate-100 dark:bg-slate-800">
@@ -53,7 +53,7 @@ function ScreenReaderCard({ name, platform, cost, icon, downloadUrl, children }:
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{name}</h3>
             <div className="flex gap-2 mt-1">
               <Badge variant="outline">{platform}</Badge>
-              <Badge variant="outline" className={cost === "Free" || cost.startsWith("Free") ? "text-green-600 border-green-300" : "text-amber-600 border-amber-300"}>{cost}</Badge>
+              <Badge variant="outline" className={cost === "Free" || cost.startsWith("Free") ? "text-green-700 dark:text-green-300 border-green-300" : "text-amber-700 dark:text-amber-300 border-amber-300"}>{cost}</Badge>
             </div>
           </div>
         </div>
@@ -310,7 +310,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
           {/* Sticky TOC Sidebar - hidden on mobile, visible on lg+ */}
           <aside className="hidden lg:block w-64 shrink-0">
             <nav className="sticky top-24 space-y-1" aria-label="Table of contents">
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3 px-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-3 px-3">
                 On this page
               </p>
               {sections.map((section) => (
@@ -331,7 +331,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
           </aside>
 
           {/* Main content area */}
-          <main className="flex-1 min-w-0 space-y-16">
+          <div className="flex-1 min-w-0 space-y-16">
 
             {/* ================================================================ */}
             {/* SECTION 1: INTRODUCTION                                          */}
@@ -366,7 +366,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
                   Screen Reader Market Share
                 </h3>
-                <div className="overflow-x-auto">
+                <div tabIndex={0} role="region" aria-label="Screen Reader Market Share" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full border-collapse text-sm">
                     <thead>
                       <tr className="bg-slate-100 dark:bg-slate-800">
@@ -410,7 +410,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-slate-500 dark:text-slate-500 mt-2">
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
                   Source: WebAIM Screen Reader User Survey (approximate figures based on primary screen reader usage)
                 </p>
               </div>
@@ -473,7 +473,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       <strong className="text-slate-900 dark:text-white">Install:</strong> Run the installer. You can choose to install NVDA on your system or create a portable copy on a USB drive for use on machines where you cannot install software.
                     </li>
                     <li>
-                      <strong className="text-slate-900 dark:text-white">Configure:</strong> On first launch, a Welcome Dialog appears. Check &quot;Use Caps Lock as an NVDA modifier key&quot; if you are on a laptop without an Insert key. Select your preferred keyboard layout (Desktop or Laptop).
+                      <strong className="text-slate-900 dark:text-white">Configure:</strong>{" "}On first launch, a Welcome Dialog appears. Check &quot;Use Caps Lock as an NVDA modifier key&quot; if you are on a laptop without an Insert key. Select your preferred keyboard layout (Desktop or Laptop).
                     </li>
                     <li>
                       <strong className="text-slate-900 dark:text-white">Launch:</strong> NVDA runs in the system tray. Right-click the tray icon or press <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-xs font-mono border border-slate-300 dark:border-slate-600">NVDA + N</kbd> to open the NVDA menu for preferences, tools, and help.
@@ -902,7 +902,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <h5 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h5>
+                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Navigate by headings (H key) and verify a logical hierarchy: one H1, then H2s, H3s, with no skipped levels</li>
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Check landmarks using the elements list or Rotor (main, nav, banner, contentinfo)</li>
@@ -910,7 +910,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h5>
+                      <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Headings reflect the visual structure and hierarchy of the page</li>
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>At least main, navigation, and banner landmarks are present</li>
@@ -918,7 +918,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h5>
+                      <h4 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>Skipped heading levels (H1 followed by H4)</li>
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>No landmarks defined, so the elements list is empty</li>
@@ -938,7 +938,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <h5 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h5>
+                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Tab through all navigation items and verify they are links or buttons</li>
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Open dropdown submenus and verify the toggle announces expanded/collapsed</li>
@@ -946,7 +946,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h5>
+                      <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Navigation is inside a &lt;nav&gt; element announced as &quot;navigation&quot;</li>
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Submenu buttons announce aria-expanded state (&quot;expanded&quot; / &quot;collapsed&quot;)</li>
@@ -954,7 +954,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h5>
+                      <h4 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>Nav items are divs with click handlers instead of proper links</li>
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>Dropdown toggle lacks aria-expanded, so state is invisible</li>
@@ -974,7 +974,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <h5 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h5>
+                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Tab to each form field and verify the label is announced</li>
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Check that required fields announce &quot;required&quot;</li>
@@ -982,7 +982,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h5>
+                      <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Each field announces: label, type (text, email, etc.), and required state</li>
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Error messages are linked via aria-describedby and read when the field is focused</li>
@@ -990,7 +990,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h5>
+                      <h4 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>Placeholder text used as the only label (disappears on input)</li>
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>Required state communicated only by a visual red asterisk</li>
@@ -1010,7 +1010,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <h5 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h5>
+                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Navigate to each image and listen for the alt text description</li>
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Verify decorative images are not announced at all</li>
@@ -1018,7 +1018,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h5>
+                      <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Informative images announce concise, meaningful descriptions</li>
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Decorative images with alt=&quot;&quot; are completely skipped by the screen reader</li>
@@ -1026,7 +1026,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h5>
+                      <h4 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>Alt text is a filename like &quot;IMG_3842.jpg&quot; or &quot;banner-final-v2.png&quot;</li>
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>Missing alt attribute causes screen reader to announce the full file URL</li>
@@ -1046,7 +1046,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <h5 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h5>
+                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Trigger notifications and toast messages to verify they are announced automatically</li>
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Test loading states (spinners, skeleton screens) for screen reader announcements</li>
@@ -1054,7 +1054,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h5>
+                      <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Notifications use aria-live=&quot;polite&quot; or role=&quot;status&quot; and are announced without focus moving</li>
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Loading states announce &quot;Loading&quot; and completion via live regions</li>
@@ -1062,7 +1062,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h5>
+                      <h4 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>Content updates silently with no aria-live region</li>
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>Loading spinners are purely visual with no text alternative</li>
@@ -1082,7 +1082,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <h5 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h5>
+                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">What to Test</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Navigate to a data table (T key in NVDA) and verify it is announced as a table with row and column count</li>
                         <li className="flex items-start gap-2"><span className="text-blue-500 shrink-0">-</span>Use Ctrl + Alt + Arrow keys to move between cells and verify headers are announced</li>
@@ -1090,7 +1090,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h5>
+                      <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">Expected Behavior</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Column headers (&lt;th scope=&quot;col&quot;&gt;) are read aloud when moving to a cell in that column</li>
                         <li className="flex items-start gap-2"><span className="text-green-500 shrink-0">-</span>Row headers (&lt;th scope=&quot;row&quot;&gt;) are read when moving to a cell in that row</li>
@@ -1098,7 +1098,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                       </ul>
                     </div>
                     <div>
-                      <h5 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h5>
+                      <h4 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Common Failures</h4>
                       <ul className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>All cells use &lt;td&gt; with no &lt;th&gt; elements, so headers are never announced</li>
                         <li className="flex items-start gap-2"><span className="text-red-500 shrink-0">-</span>No scope attribute on header cells, breaking header-cell association</li>
@@ -1142,9 +1142,9 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
                   return (
                     <div key={group.title} className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-semibold text-slate-900 dark:text-white">
+                        <h3 className="font-semibold text-slate-900 dark:text-white">
                           {group.title}
-                        </h4>
+                        </h3>
                         <Badge
                           variant="outline"
                           className={cn(
@@ -1187,7 +1187,7 @@ export default function ScreenReaderGuideClient({ byline }: { byline?: React.Rea
               </div>
             </section>
 
-          </main>
+          </div>
         </div>
       </div>
     </>

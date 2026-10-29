@@ -199,7 +199,7 @@ export function FilingsChart() {
         </div>
 
         {showTable ? (
-          <div className="mt-4 overflow-x-auto">
+          <div tabIndex={0} role="region" aria-label="Federal website accessibility filings by year, 2017 to 2025" className="mt-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             <table className="w-full border-collapse text-sm">
               <caption className="sr-only">
                 Federal website accessibility filings by year, 2017 to 2025

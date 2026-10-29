@@ -173,7 +173,7 @@ export default function EAAIrelandCompliancePage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="max-w-3xl mx-auto space-y-16">
           {/* What S.I. 636/2023 does */}
           <section aria-labelledby="si636-heading">
@@ -218,7 +218,7 @@ export default function EAAIrelandCompliancePage() {
               across six existing sector regulators. Which one you answer to depends on what you
               sell:
             </p>
-            <div className="overflow-x-auto mb-6">
+            <div tabIndex={0} role="region" aria-label="Irish regulators responsible for enforcing the European Accessibility Act, by sector" className="overflow-x-auto mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-left text-sm border-collapse">
                 <caption className="sr-only">
                   Irish regulators responsible for enforcing the European Accessibility Act, by
@@ -581,7 +581,7 @@ export default function EAAIrelandCompliancePage() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">

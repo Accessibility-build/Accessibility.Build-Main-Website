@@ -161,7 +161,7 @@ export default function AltTextCheckerPage() {
                 The same photo can need a full sentence on one page and nothing at all on another. Before
                 writing alt text, decide what the image does there.
               </p>
-              <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="Kinds of image, what their alt text should say, and an example" className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full border-collapse text-sm">
                   <caption className="sr-only">Kinds of image, what their alt text should say, and an example</caption>
                   <thead>
@@ -217,7 +217,7 @@ export default function AltTextCheckerPage() {
               </h2>
               <div className="mt-4 space-y-4 leading-7 text-slate-700 dark:text-slate-300">
                 <p>
-                  <strong className="text-slate-900 dark:text-white">Failures</strong> are problems a rule can
+                  <strong className="text-slate-900 dark:text-white">Failures</strong>{" "}are problems a rule can
                   be sure of: no alt attribute, a link or button whose only content is an image with no text
                   alternative (including an icon hidden with aria-hidden), a file name such as IMG_2041.jpg
                   used as alt, placeholder text such as &ldquo;image&rdquo; or &ldquo;logo&rdquo; on its own,
@@ -228,14 +228,14 @@ export default function AltTextCheckerPage() {
                   <Link href="/wcag/4-1-2" className={linkClass}>4.1.2 Name, Role, Value</Link> as well.
                 </p>
                 <p>
-                  <strong className="text-slate-900 dark:text-white">Needs review</strong> covers things that
+                  <strong className="text-slate-900 dark:text-white">Needs review</strong>{" "}covers things that
                   are usually wrong but need a person to confirm: alt over 150 characters, alt that repeats
                   the caption or the link&apos;s own text, the same alt on images of different files,
                   &ldquo;click here&rdquo; or &ldquo;link to&rdquo; in alt, an SVG with no name that is not
                   hidden, and an image named only by its title attribute.
                 </p>
                 <p>
-                  <strong className="text-slate-900 dark:text-white">Decorative and fine</strong> means
+                  <strong className="text-slate-900 dark:text-white">Decorative and fine</strong>{" "}means
                   alt=&quot;&quot; (or an equivalent) on an image that is not the only content of a link or
                   button. The rules accept it; whether the image really is decorative is a judgement, which
                   is one thing the AI review looks at.

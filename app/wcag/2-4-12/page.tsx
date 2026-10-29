@@ -158,7 +158,7 @@ export default function WCAG2412Page() {
               >
                 2.4.11
               </Link>
-              : &ldquo;…the component is not <em>entirely</em> hidden.&rdquo;
+              : &ldquo;…the component is not <em>entirely</em>{" "}hidden.&rdquo;
               The Enhanced criterion deletes the tolerance for partial
               covering. &ldquo;Author-created content&rdquo; scopes it to
               things you put in the page — sticky bars, banners, widgets — not
@@ -238,7 +238,7 @@ export default function WCAG2412Page() {
               will do.
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              The Enhanced criterion matters because <em>partial</em> visibility
+              The Enhanced criterion matters because <em>partial</em>{" "}visibility
               is often not enough in practice. If a form field&rsquo;s label
               and error message are under the sticky footer and only its top
               border peeks out, a user with low vision or a cognitive

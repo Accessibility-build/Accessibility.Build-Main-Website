@@ -379,7 +379,7 @@ export default function WCAG312Page() {
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mt-6">
               The practical test: has the word or phrase become part of the
               surrounding language, or is the author deliberately switching
-              languages? &ldquo;She said <em>c&rsquo;est la vie</em> and moved
+              languages? &ldquo;She said <em>c&rsquo;est la vie</em>{" "}and moved
               on&rdquo; is borderline vernacular; a full French sentence quoted
               in an article is unambiguously a language change and must be
               marked.

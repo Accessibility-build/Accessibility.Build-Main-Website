@@ -455,19 +455,19 @@ export default function HowToWriteAltTextGuidePage() {
               </div>
               <ol className="mt-2 space-y-4 text-muted-foreground leading-relaxed list-decimal pl-6">
                 <li>
-                  <strong className="text-slate-900 dark:text-white">Does the image contain text?</strong> If the same
+                  <strong className="text-slate-900 dark:text-white">Does the image contain text?</strong>{" "}If the same
                   words appear as real text next to it, or the lettering is only there for visual effect, use
                   alt=&quot;&quot;. If the text has a function, as on an icon, say what the function is. Otherwise put
                   the words from the image in the alt, and consider replacing the image with real text (
                   <Link href="/wcag/1-4-5" className={linkClass}>1.4.5</Link>).
                 </li>
                 <li>
-                  <strong className="text-slate-900 dark:text-white">Is it in a link or a button?</strong> If the
+                  <strong className="text-slate-900 dark:text-white">Is it in a link or a button?</strong>{" "}If the
                   control&apos;s purpose would be unclear without it, the alt says where the link goes or what the
                   button does, not what the picture shows.
                 </li>
                 <li>
-                  <strong className="text-slate-900 dark:text-white">Does it add meaning to the page?</strong> If it is
+                  <strong className="text-slate-900 dark:text-white">Does it add meaning to the page?</strong>{" "}If it is
                   a simple photo or illustration, write a short alt that carries that meaning. If it is a chart,
                   diagram or map, write a short alt and give the full information in text elsewhere on the page. If it
                   only repeats nearby text, use alt=&quot;&quot;.
@@ -641,7 +641,7 @@ export default function HowToWriteAltTextGuidePage() {
                     key information first.
                   </li>
                   <li>
-                    <strong className="text-slate-900 dark:text-white">Say it once.</strong> No &ldquo;image
+                    <strong className="text-slate-900 dark:text-white">Say it once.</strong>{" "}No &ldquo;image
                     of&rdquo;, no repeating the caption or the heading above, no list of keywords.
                   </li>
                   <li>
@@ -784,7 +784,7 @@ export default function HowToWriteAltTextGuidePage() {
                   figure and figcaption
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  A <code>figcaption</code> is visible to everyone and labels the figure, but it does not replace the
+                  A <code>figcaption</code>{" "}is visible to everyone and labels the figure, but it does not replace the
                   image&apos;s alt. Let the two divide the work: the alt says what the picture shows, the caption adds
                   the context, credit or date.
                 </p>
@@ -1052,7 +1052,7 @@ export default function HowToWriteAltTextGuidePage() {
                   A short alt plus the full information in visible text or a table.
                 </li>
                 <li>
-                  <strong className="text-slate-900 dark:text-white">Key information first.</strong> Concise, no
+                  <strong className="text-slate-900 dark:text-white">Key information first.</strong>{" "}Concise, no
                   &ldquo;image of&rdquo;, no file names, no keyword lists.
                 </li>
                 <li>

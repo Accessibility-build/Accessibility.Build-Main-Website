@@ -312,7 +312,7 @@ export default function AngularAccessibilityGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria Angular Apps Break Most
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria most commonly failed by Angular applications and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria most commonly failed by Angular
@@ -442,7 +442,7 @@ export default function AngularAccessibilityGuidePage() {
                 does none of that until you add a role, <code>tabindex</code>, and
                 keyboard handlers by hand — and get all three exactly right.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Inaccessible: not focusable, no keyboard, no role -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Inaccessible: not focusable, no keyboard, no role -->
 <div class="btn" (click)="save()">Save</div>
 
 <!-- Accessible: keyboard + role + focus for free -->
@@ -488,7 +488,7 @@ export default function AngularAccessibilityGuidePage() {
                 Angular removes the attribute entirely, which is exactly what you
                 want for conditional states.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Wrong: aria-label is not a DOM property -> template error -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Wrong: aria-label is not a DOM property -> template error -->
 <button [aria-label]="label">…</button>
 
 <!-- Right: attribute binding -->
@@ -503,7 +503,7 @@ export default function AngularAccessibilityGuidePage() {
                 Static ARIA values that never change can stay as plain attributes
                 (<code>aria-label="Close"</code>); only reach for{" "}
                 <code>[attr.aria-*]</code> when the value is dynamic. Returning{" "}
-                <code>null</code> rather than <code>'false'</code> for the
+                <code>null</code> rather than <code>'false'</code>{" "}for the
                 &ldquo;off&rdquo; case avoids shipping{" "}
                 <code>aria-invalid="false"</code> or{" "}
                 <code>aria-hidden="false"</code> across your app, which can
@@ -531,7 +531,7 @@ export default function AngularAccessibilityGuidePage() {
                 <code>NavigationEnd</code> event and move focus to the top of the
                 new view.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`import { Component, ElementRef, ViewChild, inject } from "@angular/core";
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`import { Component, ElementRef, ViewChild, inject } from "@angular/core";
 import { Router, NavigationEnd, RouterOutlet, RouterLink } from "@angular/router";
 import { filter } from "rxjs";
 
@@ -596,7 +596,7 @@ export class AppComponent {
                 init and restores it to the previously focused element when the
                 trap is destroyed.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`import { Component } from "@angular/core";
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`import { Component } from "@angular/core";
 import { A11yModule } from "@angular/cdk/a11y";
 
 @Component({
@@ -659,7 +659,7 @@ export class ConfirmDialogComponent {
                 <code>LiveAnnouncer</code> manages that region for you: inject it
                 and call <code>announce()</code>.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`import { Component, inject } from "@angular/core";
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`import { Component, inject } from "@angular/core";
 import { LiveAnnouncer } from "@angular/cdk/a11y";
 
 @Component({ /* … */ })
@@ -751,7 +751,7 @@ export class SearchComponent {
                 <code>[attr.aria-invalid]</code> — using <code>null</code> so the
                 attributes disappear when the field is valid.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<form [formGroup]="form" (ngSubmit)="submit()">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<form [formGroup]="form" (ngSubmit)="submit()">
   <label for="email">Email</label>
   <input
     id="email"
@@ -766,7 +766,7 @@ export class SearchComponent {
 
   <button type="submit">Create account</button>
 </form>`}</code></pre>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3"><code>{`get emailInvalid(): boolean {
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`get emailInvalid(): boolean {
   const c = this.form.controls.email;
   // Only surface the error after the user has interacted with the field
   return c.invalid && (c.touched || c.dirty);
@@ -814,7 +814,7 @@ export class SearchComponent {
                 </a>{" "}
                 exactly and mirror the ARIA state in your component state.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`import { Component, Input } from "@angular/core";
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-disclosure",
@@ -928,7 +928,7 @@ export class DisclosureComponent {
                 problems, so they supplement rather than replace manual testing.
                 Layer three tools into your Angular workflow:
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// 1. Lint templates — @angular-eslint accessibility rules
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// 1. Lint templates — @angular-eslint accessibility rules
 //    Enable in your ESLint config for *.html templates:
 //    "@angular-eslint/template/click-events-have-key-events"
 //    "@angular-eslint/template/label-has-associated-control"
@@ -975,7 +975,7 @@ test("home page is accessible", async ({ page }) => {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Angular Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common Angular accessibility anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common Angular accessibility anti-patterns, why they fail, and

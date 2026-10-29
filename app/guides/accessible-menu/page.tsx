@@ -403,7 +403,7 @@ export default function AccessibleMenuGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria a Menu Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that a correctly built menu or menu button satisfies and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that a correctly built menu or menu
@@ -586,7 +586,7 @@ export default function AccessibleMenuGuidePage() {
                 groups, and separators. Any other content you put inside is not
                 reliably reachable.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="The elements in an ARIA menu button and the roles and attributes each needs" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The elements in an ARIA menu button and the roles and
@@ -713,7 +713,7 @@ export default function AccessibleMenuGuidePage() {
                 screen reader announces &ldquo;Actions menu&rdquo; rather than an
                 anonymous list.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<button
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<button
   id="actions-button"
   aria-haspopup="menu"
   aria-expanded="true"
@@ -750,7 +750,7 @@ export default function AccessibleMenuGuidePage() {
                   Both work, and the APG uses both. The reason to prefer a
                   non-interactive element carrying the role is that{" "}
                   <code>role=&quot;menuitem&quot;</code> on a{" "}
-                  <code>&lt;button&gt;</code> replaces the button role anyway, so
+                  <code>&lt;button&gt;</code>{" "}replaces the button role anyway, so
                   you gain nothing but keep the browser&apos;s default button
                   behaviors to fight. What you must not lose is the keyboard
                   handling: with a plain <code>&lt;li&gt;</code> you own Enter and
@@ -778,7 +778,7 @@ export default function AccessibleMenuGuidePage() {
                 recognise the pattern from operating-system menus and will expect
                 every row of this table.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Keyboard commands a conformant menu button and menu must support" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Keyboard commands a conformant menu button and menu must
@@ -832,7 +832,7 @@ export default function AccessibleMenuGuidePage() {
                 <code>aria-expanded</code>, the <code>hidden</code> attribute,
                 and focus can never disagree.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`const button = document.querySelector("#actions-button")
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const button = document.querySelector("#actions-button")
 const menu = document.querySelector("#actions-menu")
 const items = Array.from(menu.querySelectorAll('[role="menuitem"]'))
 
@@ -936,7 +936,7 @@ document.addEventListener("pointerdown", (event) => {
                 distinction is the same as between an HTML checkbox and a radio
                 group.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<ul id="view-menu" role="menu" aria-labelledby="view-button">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<ul id="view-menu" role="menu" aria-labelledby="view-button">
   <!-- Independent toggles: any combination may be checked. -->
   <li role="menuitemcheckbox" aria-checked="true" tabindex="0">
     Show archived
@@ -984,7 +984,7 @@ document.addEventListener("pointerdown", (event) => {
                 above. Use a disclosure button and leave the links as links —
                 it is less code, and it is more accessible.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<nav aria-label="Main">
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<nav aria-label="Main">
   <ul>
     <li><a href="/pricing">Pricing</a></li>
     <li>
@@ -1048,7 +1048,7 @@ document.addEventListener("pointerdown", (event) => {
                 positioned so it never opens off screen. Here is the shape of a
                 hand-rolled version:
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`function ActionsMenu({ items }) {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function ActionsMenu({ items }) {
   const [open, setOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const buttonRef = useRef(null)
@@ -1261,7 +1261,7 @@ document.addEventListener("pointerdown", (event) => {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Menu Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible-menu anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible-menu anti-patterns, why they fail, and the

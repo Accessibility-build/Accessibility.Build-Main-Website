@@ -48,7 +48,7 @@ export function CasePhoto({
       </div>
       <figcaption className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
         {caption}{" "}
-        <span className="text-slate-500 dark:text-slate-500">
+        <span className="text-slate-600 dark:text-slate-400">
           <a
             href={creditHref}
             target="_blank"

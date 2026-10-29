@@ -373,7 +373,7 @@ export default function AccessibleComboboxGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria a Combobox Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that a correctly built combobox or autocomplete satisfies and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that a correctly built combobox or
@@ -480,7 +480,7 @@ export default function AccessibleComboboxGuidePage() {
                 simple &ldquo;suggest from a list of plain strings&rdquo; cases,
                 start here.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- Native autocomplete: zero JavaScript, zero ARIA -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Native autocomplete: zero JavaScript, zero ARIA -->
 <label for="country">Country</label>
 <input id="country" name="country" list="country-options" />
 
@@ -523,7 +523,7 @@ export default function AccessibleComboboxGuidePage() {
                 <strong className="text-slate-900 dark:text-white">on the
                 input itself</strong>, not on a wrapper.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="The elements in an ARIA combobox and the roles and attributes each needs" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The elements in an ARIA combobox and the roles and attributes
@@ -605,7 +605,7 @@ export default function AccessibleComboboxGuidePage() {
                   <CardContent>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Real focus stays on the input.{" "}
-                      <code>aria-activedescendant</code> points at the active
+                      <code>aria-activedescendant</code>{" "}points at the active
                       option&apos;s id, and a CSS class shows the highlight. The
                       screen reader announces that option; the caret never
                       leaves the field.
@@ -641,7 +641,7 @@ export default function AccessibleComboboxGuidePage() {
                 <code>aria-controls</code> / <code>id</code>, and the separate{" "}
                 <code>aria-live</code> region that is not inside the listbox.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<label id="fruit-label" for="fruit">Choose a fruit</label>
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<label id="fruit-label" for="fruit">Choose a fruit</label>
 
 <input
   id="fruit"
@@ -667,7 +667,7 @@ export default function AccessibleComboboxGuidePage() {
                 When the popup is closed, set{" "}
                 <code>aria-expanded=&quot;false&quot;</code>, remove{" "}
                 <code>aria-activedescendant</code>, and hide (or remove) the
-                listbox. Setting <code>autocomplete=&quot;off&quot;</code> on the
+                listbox. Setting <code>autocomplete=&quot;off&quot;</code>{" "}on the
                 input stops the browser&apos;s own autofill dropdown from
                 colliding with yours.
               </p>
@@ -686,7 +686,7 @@ export default function AccessibleComboboxGuidePage() {
                 caret keys, and text selection must all keep working. The combobox
                 keys layer on top of that — they never take over the input.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Keyboard keys and the action each performs in the combobox pattern" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Keyboard keys and the action each performs in the combobox
@@ -735,7 +735,7 @@ export default function AccessibleComboboxGuidePage() {
                 <code>Enter</code>, and announce the count. It is deliberately
                 minimal so the moving parts are visible.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`const input = document.getElementById("fruit")
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const input = document.getElementById("fruit")
 const listbox = document.getElementById("fruit-listbox")
 const status = document.querySelector("[aria-live]")
 const ALL = ["Apricot", "Avocado", "Banana", "Cherry", "Date"]
@@ -826,7 +826,7 @@ input.addEventListener("keydown", (e) => {
                 Prefer a headless one so you keep full control of the markup and
                 styling while inheriting correct semantics and keyboard handling.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// React Aria (Adobe) — correct ARIA combobox, your own styling
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// React Aria (Adobe) — correct ARIA combobox, your own styling
 import { useComboBoxState } from "react-stately"
 import { useComboBox, useFilter } from "react-aria"
 
@@ -940,7 +940,7 @@ function FruitCombobox(props) {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Combobox Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible-combobox anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible-combobox anti-patterns, why they fail, and

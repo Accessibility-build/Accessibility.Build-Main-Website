@@ -252,7 +252,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   It is worth being precise about what a breadcrumb is, because the
                   name invites a misreading. A breadcrumb is a <em>location</em>{" "}
-                  trail, not a <em>history</em> trail. It reflects the page&rsquo;s
+                  trail, not a <em>history</em>{" "}trail. It reflects the page&rsquo;s
                   fixed position in the site structure, the same on every visit, not
                   the sequence of pages this particular user happened to click
                   through to get here. The browser back button already handles
@@ -313,7 +313,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                 criteria that apply to any piece of navigation, from correct
                 structure to a visible focus ring.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that apply to breadcrumb navigation, their conformance level, and how each one applies" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that apply to breadcrumb navigation,
@@ -430,7 +430,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   <code>aria-current=&quot;page&quot;</code>. Here is the whole
                   pattern:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<nav aria-label="Breadcrumb">
   <ol>
     <li><a href="/">Home</a></li>
@@ -459,7 +459,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   label is announced as &ldquo;Breadcrumb navigation, navigation.&rdquo;
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  The <code>&lt;ol&gt;</code> is deliberate. A breadcrumb is an
+                  The <code>&lt;ol&gt;</code>{" "}is deliberate. A breadcrumb is an
                   ordered sequence, home first and current page last, and the ordered
                   list is what carries that meaning to assistive technology. It also
                   gives the user an item count, so a screen reader can announce
@@ -509,7 +509,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   is not exposed to assistive technology, so there is nothing for a
                   screen reader to read:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<nav aria-label="Breadcrumb">
   <ol class="breadcrumb">
     <li><a href="/">Home</a></li>
@@ -539,7 +539,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   add <code>focusable=&quot;false&quot;</code>, because in some
                   browsers an SVG can otherwise become a stray tab stop:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<ol class="breadcrumb">
   <li><a href="/">Home</a></li>
   <li aria-hidden="true">
@@ -573,7 +573,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
               </h2>
               <div className="prose prose-slate dark:prose-invert max-w-none">
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  <code>aria-current</code> is a state that marks the single item in
+                  <code>aria-current</code>{" "}is a state that marks the single item in
                   a set that represents the user&rsquo;s current position. In a
                   breadcrumb it belongs on exactly one crumb, the last one, the page
                   you are on. A screen reader announces that crumb as &ldquo;current
@@ -585,10 +585,10 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   Use the value <code>page</code>, not the generic{" "}
                   <code>true</code>. Both are valid, but <code>aria-current</code>{" "}
                   has several token values for different kinds of set, and{" "}
-                  <code>page</code> is the one that means &ldquo;the current page in
+                  <code>page</code>{" "}is the one that means &ldquo;the current page in
                   a set of pages,&rdquo; which is precisely a breadcrumb:
                 </p>
-                <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-6">
+                <div tabIndex={0} role="region" aria-label="The token values of aria-current and what each one is for" className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full text-sm text-left">
                     <caption className="sr-only">
                       The token values of aria-current and what each one is for
@@ -646,7 +646,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   unmarked, and making it a link to some <em>other</em> page. What
                   matters is the state, not the element.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- As a link (APG example) -->
 <li><a href="/shoes/running/" aria-current="page">Running</a></li>
 
@@ -688,7 +688,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   The recommended format is JSON-LD, a script block that describes
                   the trail as data, kept separate from the visible HTML:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -733,7 +733,7 @@ export default function AccessibleBreadcrumbsGuidePage() {
                   of crumbs that feeds both the rendered list and the JSON-LD, so
                   they cannot disagree by construction:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`// One array of crumbs is the single source of truth.
 const crumbs = [
   { name: "Home",    url: "/" },
@@ -796,7 +796,7 @@ const crumbs = [
                   the middle of the hierarchy. Instead, hide the middle crumbs with
                   CSS and expose them behind a control:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<nav aria-label="Breadcrumb">
   <ol>
     <li><a href="/">Home</a></li>
@@ -935,7 +935,7 @@ const crumbs = [
                   Structured data
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Validate the <code>BreadcrumbList</code> JSON-LD with Google&rsquo;s
+                  Validate the <code>BreadcrumbList</code>{" "}JSON-LD with Google&rsquo;s
                   Rich Results Test or the Schema.org validator, and then do the check
                   no tool performs for you: read the structured data next to the
                   visible trail and confirm they list the same pages, in the same
@@ -982,7 +982,7 @@ const crumbs = [
                 instead of decoration, and letting the visible trail, the ARIA, and
                 the structured data fall out of sync.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common breadcrumb anti-patterns, why each one fails, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common breadcrumb anti-patterns, why each one fails, and the fix

@@ -336,7 +336,7 @@ export default function WCAG258Page() {
               cause accidental purchases, or force frustrating re-attempts.
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-              Larger targets reduce error rates for <em>everyone</em> — a classic
+              Larger targets reduce error rates for <em>everyone</em>{" "}— a classic
               illustration of Fitts&apos;s Law, which predicts that the time to
               acquire a target shrinks as the target grows and as the distance to
               it falls. WCAG 2.5.8 sets a pragmatic floor of 24×24 CSS pixels for
@@ -494,7 +494,7 @@ export default function WCAG258Page() {
               When you cannot change layout dimensions, an invisible
               <code className="px-1.5 py-0.5 mx-1 rounded bg-slate-100 dark:bg-slate-800 font-mono text-sm">
                 ::before
-              </code>
+              </code>{" "}
               overlay expands the clickable region without affecting the visual
               size.
             </p>

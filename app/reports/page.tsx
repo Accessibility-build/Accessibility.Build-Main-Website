@@ -32,7 +32,7 @@ export default async function MyReportsPage() {
     .orderBy(desc(publishedReports.createdAt))
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-12">
+    <div className="mx-auto max-w-3xl px-6 py-12">
       <h1 className="text-2xl font-bold tracking-tight">My shared reports</h1>
       <p className="mt-1 text-sm text-muted-foreground">
         Reports you&apos;ve published from the desktop app. Anyone with a link can view a report;
@@ -75,6 +75,6 @@ export default async function MyReportsPage() {
           })}
         </ul>
       )}
-    </main>
+    </div>
   )
 }

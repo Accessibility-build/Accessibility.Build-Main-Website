@@ -304,7 +304,7 @@ export default function AccessibleMapsGuidePage() {
                 from keyboard operation to a single-pointer alternative for
                 dragging.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that apply to interactive maps, their conformance level, and how each one applies to..." className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that apply to interactive maps,
@@ -518,7 +518,7 @@ export default function AccessibleMapsGuidePage() {
                   </strong>{" "}
                   with the same actions.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- The accessible source of truth: a labeled search, a live count, and a real list -->
 <form role="search" aria-label="Find a store">
   <label for="near">Search near</label>
@@ -618,7 +618,7 @@ export default function AccessibleMapsGuidePage() {
                   information without a widget to operate, a script to load, or a
                   keyboard trap to escape.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- A static map: the location lives in the alt text AND in real HTML beside it -->
 <figure>
   <img
@@ -654,7 +654,7 @@ export default function AccessibleMapsGuidePage() {
                       Always pair it with the address as live text.
                     </strong>{" "}
                     Put the address in real HTML, ideally in an{" "}
-                    <code>&lt;address&gt;</code> element, plus a Get directions
+                    <code>&lt;address&gt;</code>{" "}element, plus a Get directions
                     link that hands off to the user&rsquo;s maps app. Do not let
                     the only copy of the address be baked into the image, which
                     also fails{" "}
@@ -700,7 +700,7 @@ export default function AccessibleMapsGuidePage() {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   An embedded map is an <code>&lt;iframe&gt;</code>, and every
-                  iframe needs a <code>title</code> so a screen reader announces
+                  iframe needs a <code>title</code>{" "}so a screen reader announces
                   what the frame contains instead of just &ldquo;frame.&rdquo; The
                   title satisfies{" "}
                   <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
@@ -709,7 +709,7 @@ export default function AccessibleMapsGuidePage() {
                   for the frame, but it does not make the map&rsquo;s contents
                   operable, so the list still carries the task.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- An embedded map needs a descriptive title; the list still does the real work -->
 <iframe
   title="Map of Acme Coffee store locations in Springfield"
@@ -728,7 +728,7 @@ export default function AccessibleMapsGuidePage() {
                     <strong className="text-slate-900 dark:text-white">
                       Name the map container.
                     </strong>{" "}
-                    Give the map element an <code>aria-label</code> such as
+                    Give the map element an <code>aria-label</code>{" "}such as
                     &ldquo;Map of store locations&rdquo; so it is announced as a
                     meaningful region rather than an anonymous block.
                   </li>
@@ -799,7 +799,7 @@ export default function AccessibleMapsGuidePage() {
                   reach and no screen reader can find. The accessible name must{" "}
                   <em>identify the place</em>, not describe the graphic.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- A marker is a real, named button, not a div with an onclick -->
 <button type="button" class="marker" data-store="acme-central"
         aria-label="Acme Coffee, 5th and Main. Show details.">
@@ -942,7 +942,7 @@ export default function AccessibleMapsGuidePage() {
                   the underlying data as a table, region by value, plus a short
                   text summary of the takeaway.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- A choropleth needs its data as a table and a plain-language summary -->
 <figure>
   <div role="img" aria-label="Choropleth of 2026 sales by US region">
@@ -1065,7 +1065,7 @@ export default function AccessibleMapsGuidePage() {
                 experience, instead of an enhancement on top of an experience that
                 already works without it.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common map accessibility anti-patterns, why each one fails, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common map accessibility anti-patterns, why each one fails, and

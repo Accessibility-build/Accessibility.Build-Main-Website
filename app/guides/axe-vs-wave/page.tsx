@@ -283,7 +283,7 @@ export default function AxeVsWaveGuidePage() {
                   .
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  The <strong>axe DevTools browser extension</strong> (Chrome,
+                  The <strong>axe DevTools browser extension</strong>{" "}(Chrome,
                   Firefox, Edge) adds a panel to the browser inspector: run a
                   scan and each violation lists the failing element, the rule
                   and WCAG criterion involved, severity, and remediation
@@ -358,7 +358,7 @@ export default function AxeVsWaveGuidePage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Feature-by-Feature Comparison
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="Feature comparison of axe and WAVE accessibility testing tools" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Feature comparison of axe and WAVE accessibility testing
@@ -669,7 +669,7 @@ export default function AxeVsWaveGuidePage() {
           {/* Related Content */}
           <section className="pb-12 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl">
-            <aside className="mt-12 rounded-lg border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/50">
+            <div className="mt-12 rounded-lg border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/50">
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">Measured, not asserted</p>
               <p className="mt-2 leading-7 text-slate-700 dark:text-slate-300">
                 We ran axe-core, Lighthouse, HTML_CodeSniffer and IBM Equal Access against one page with thirty seeded defects. Which tool found what, and the five defects none of them can find, are in the{" "}
@@ -678,7 +678,7 @@ export default function AxeVsWaveGuidePage() {
                 </Link>
                 .
               </p>
-            </aside>
+            </div>
 
               <RelatedContent
                 content="axe wave accessibility testing tools audit wcag automated checker"

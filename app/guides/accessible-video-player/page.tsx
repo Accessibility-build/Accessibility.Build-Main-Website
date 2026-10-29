@@ -314,7 +314,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria Your Media Must Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that accessible video and audio media must satisfy and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that accessible video and audio
@@ -510,7 +510,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                 Run those two questions against what kind of media you have, and
                 the requirements are mechanical:
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6">
+              <div tabIndex={0} role="region" aria-label="Which accessibility alternatives each type of media owes at WCAG level A and AA" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Which accessibility alternatives each type of media owes at
@@ -560,7 +560,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                   <AlertTriangle className="h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
                   <span>
                     <strong>The audio-description escape hatch — use it honestly.</strong>{" "}
-                    If a video carries <em>no</em> essential information visually
+                    If a video carries <em>no</em>{" "}essential information visually
                     that is not already in the soundtrack — a talking head who
                     says everything they show — then no audio description is
                     needed, and you have satisfied 1.2.3 and 1.2.5 with nothing to
@@ -648,7 +648,7 @@ export default function AccessibleVideoPlayerGuidePage() {
                 hand-editable, which is exactly how you fix an auto-generated
                 draft.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`WEBVTT
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`WEBVTT
 
 00:00:01.000 --> 00:00:04.000
 [upbeat music]
@@ -888,7 +888,7 @@ right under the field.</v>`}</code></pre>
               <ul className="space-y-3 text-muted-foreground leading-relaxed list-disc pl-6 mb-4">
                 <li>
                   <strong className="text-slate-900 dark:text-white">Real buttons with accessible names.</strong>{" "}
-                  Every control is a <code>&lt;button&gt;</code> with a text name —
+                  Every control is a <code>&lt;button&gt;</code>{" "}with a text name —
                   an icon alone is not a name. &ldquo;Play&rdquo;, &ldquo;Mute&rdquo;,
                   &ldquo;Captions&rdquo;, &ldquo;Fullscreen&rdquo; (
                   <Link href="/wcag/4-1-2" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
@@ -988,7 +988,7 @@ right under the field.</v>`}</code></pre>
                 and let the user press play. If a decorative background video must
                 autoplay, mute it and give it a visible, keyboard-reachable pause
                 control. Respect{" "}
-                <code>prefers-reduced-motion</code> and don&apos;t autoplay for
+                <code>prefers-reduced-motion</code>{" "}and don&apos;t autoplay for
                 users who have asked the system to reduce motion.
               </p>
             </div>
@@ -1006,7 +1006,7 @@ right under the field.</v>`}</code></pre>
                 controls, a caption track, a descriptions track, no autoplay, and
                 a transcript one click away.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<figure>
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<figure>
   <video
     controls
     preload="metadata"
@@ -1061,7 +1061,7 @@ right under the field.</v>`}</code></pre>
               <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-8 mb-3">
                 The <code>&lt;track&gt;</code> kinds
               </h3>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6">
+              <div tabIndex={0} role="region" aria-label="The kind values of the HTML track element and what each is for" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The kind values of the HTML track element and what each is for
@@ -1105,7 +1105,7 @@ right under the field.</v>`}</code></pre>
               <p className="text-muted-foreground leading-relaxed">
                 Get the <code>kind</code> right — <code>captions</code>, not{" "}
                 <code>subtitles</code>, for same-language text that includes the
-                sounds — and set <code>label</code> and <code>srclang</code> so the
+                sounds — and set <code>label</code> and <code>srclang</code>{" "}so the
                 player&apos;s menu names each track. The <code>default</code>{" "}
                 attribute turns a track on by default; use it thoughtfully.
               </p>
@@ -1132,7 +1132,7 @@ right under the field.</v>`}</code></pre>
                 <li>
                   <strong className="text-slate-900 dark:text-white">Title the iframe.</strong>{" "}
                   Give the embedding <code>&lt;iframe&gt;</code> a descriptive{" "}
-                  <code>title</code> — &ldquo;Video: fixing the checkout error
+                  <code>title</code>{" "}— &ldquo;Video: fixing the checkout error
                   flow&rdquo; — so a screen reader user hears what the frame
                   contains instead of &ldquo;video player, frame&rdquo;.
                 </li>
@@ -1150,7 +1150,7 @@ right under the field.</v>`}</code></pre>
                   descriptive transcript near the embed.
                 </li>
               </ol>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`<iframe
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<iframe
   src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
   title="Video: fixing the checkout error flow"
   allow="fullscreen"
@@ -1182,7 +1182,7 @@ right under the field.</v>`}</code></pre>
                 than rebuilding the player. Use <code>useId</code> to tie the
                 figure and its transcript together without hard-coded ids.
               </p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100"><code>{`function AccessibleVideo({ sources, captionsSrc, poster, caption, transcript }) {
+              <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-slate-900 dark:bg-slate-950 border border-slate-800 p-4 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function AccessibleVideo({ sources, captionsSrc, poster, caption, transcript }) {
   const id = useId()
   const transcriptId = id + "-transcript"
 
@@ -1351,7 +1351,7 @@ right under the field.</v>`}</code></pre>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Media Accessibility Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common video and audio accessibility anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common video and audio accessibility anti-patterns, why they

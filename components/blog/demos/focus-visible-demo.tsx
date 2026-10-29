@@ -86,7 +86,7 @@ export function FocusVisibleDemo() {
             <div className="space-y-4">
               <div>
                 <h3 className="text-sm font-medium mb-2">Poor Focus Indicator (Fails WCAG 2.2)</h3>
-                <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+                <pre tabIndex={0} className="bg-muted p-4 rounded-md overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   {`.button-poor:focus {
   outline: 1px dotted gray; /* Low contrast, thin outline */
 }`}
@@ -95,7 +95,7 @@ export function FocusVisibleDemo() {
 
               <div>
                 <h3 className="text-sm font-medium mb-2">Good Focus Indicator (Passes WCAG 2.2)</h3>
-                <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
+                <pre tabIndex={0} className="bg-muted p-4 rounded-md overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   {`.button-good:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px white, 0 0 0 4px #3b82f6; /* High contrast, thick outline */

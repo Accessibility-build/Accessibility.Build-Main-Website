@@ -164,7 +164,7 @@ export default function WCAG321Page() {
               One sentence, no exceptions. &ldquo;Change of context&rdquo; is a defined
               term covering four kinds of major change: user agent, viewport, focus,
               and content that changes the meaning of the page. Content changes that
-              do <em>not</em> alter the page&rsquo;s meaning — a tooltip, an outline,
+              do <em>not</em>{" "}alter the page&rsquo;s meaning — a tooltip, an outline,
               revealed hint text — are allowed on focus.
             </p>
           </section>

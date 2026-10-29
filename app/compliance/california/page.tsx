@@ -174,7 +174,7 @@ export default function CaliforniaCompliancePage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="max-w-3xl mx-auto space-y-16">
           {/* Unruh Act */}
           <section aria-labelledby="unruh-heading">
@@ -199,7 +199,7 @@ export default function CaliforniaCompliancePage() {
                 <strong className="text-slate-900 dark:text-white">Statutory damages.</strong>{" "}
                 While the ADA offers only injunctive relief and attorney&apos;s fees, Unruh
                 authorizes actual damages and a statutory minimum of{" "}
-                <strong>$4,000 per violation</strong> (Cal. Civ. Code &sect; 52), with no proof of
+                <strong>$4,000 per violation</strong>{" "}(Cal. Civ. Code &sect; 52), with no proof of
                 monetary harm required. Because each blocked encounter with a barrier can count as
                 a violation, demands routinely stack multiples of $4,000.
               </li>
@@ -227,7 +227,7 @@ export default function CaliforniaCompliancePage() {
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed list-disc pl-5 mb-4">
               <li>
-                <strong>Damages change the math.</strong> An ADA-only case is worth an injunction
+                <strong>Damages change the math.</strong>{" "}An ADA-only case is worth an injunction
                 and fees; an ADA-plus-Unruh case starts at $4,000 per violation before fees. That
                 supports both higher settlements and a professionalized plaintiffs&apos; bar.
               </li>
@@ -245,7 +245,7 @@ export default function CaliforniaCompliancePage() {
             </ul>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               The venue, however, has shifted dramatically. After California appellate courts held
-              in <em>Martinez v. Cot&apos;n Wash</em> (2022) that an online-only business is not a
+              in <em>Martinez v. Cot&apos;n Wash</em>{" "}(2022) that an online-only business is not a
               &ldquo;place of public accommodation&rdquo; under ADA Title III, the federal pipeline
               dried up: California recorded just <strong>4 federal website accessibility filings
               in 2025</strong>, down from over a thousand in peak years. The claims did not go away
@@ -309,7 +309,7 @@ export default function CaliforniaCompliancePage() {
                 often framed around a business&apos;s failure to act after notice of barriers.
               </li>
               <li>
-                <strong>Demand letters that never become lawsuits.</strong> Because SB 1186&apos;s
+                <strong>Demand letters that never become lawsuits.</strong>{" "}Because SB 1186&apos;s
                 demand-letter restrictions do not clearly cover web claims, monetary demands remain
                 common, and many resolve quietly for a payment plus a remediation promise.
               </li>
@@ -421,7 +421,7 @@ export default function CaliforniaCompliancePage() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
 
       {/* Related Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">

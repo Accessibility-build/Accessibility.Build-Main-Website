@@ -189,7 +189,7 @@ export default function AccessibleNamePreviewerPage() {
               <h2 id="fix-heading" className="font-serif text-2xl font-semibold text-slate-900 dark:text-white sm:text-3xl">
                 How to give a control a name
               </h2>
-              <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="Common controls, the failure, and the fix that gives them a name" className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full border-collapse text-sm">
                   <caption className="sr-only">Common controls, the failure, and the fix that gives them a name</caption>
                   <thead>

@@ -315,7 +315,7 @@ function KeyboardControlsSection() {
         <div className="space-y-10">
             <SectionHeader title="Keyboard Controls" description="Users must be able to navigate search results and select items using only the keyboard. Arrow keys navigate, Enter selects, Escape closes." />
 
-            <div className="overflow-x-auto">
+            <div tabIndex={0} role="region" aria-label="Search keyboard controls" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
                     <thead className="bg-muted"><tr><th scope="col" className="p-4 text-left font-semibold">Key</th><th scope="col" className="p-4 text-left font-semibold">Action</th><th scope="col" className="p-4 text-left font-semibold">Notes</th></tr></thead>
                     <tbody>

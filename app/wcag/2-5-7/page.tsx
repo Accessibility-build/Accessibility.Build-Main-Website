@@ -398,7 +398,7 @@ export default function WCAG257Page() {
             </ul>
             <div className="rounded-xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50 dark:bg-emerald-950/20 p-5">
               <p className="text-emerald-900 dark:text-emerald-200 leading-relaxed">
-                <strong>Rule of thumb:</strong> for every place a user can
+                <strong>Rule of thumb:</strong>{" "}for every place a user can
                 drag something, ask &ldquo;can I reach the exact same result
                 with a single tap or click?&rdquo; If the answer is no, you owe
                 that feature a non-drag alternative.

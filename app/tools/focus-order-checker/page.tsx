@@ -203,7 +203,7 @@ export default function FocusOrderCheckerPage() {
               <h2 id="checks-heading" className="font-serif text-2xl font-semibold text-slate-900 dark:text-white sm:text-3xl">
                 What it checks
               </h2>
-              <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="WCAG success criteria and what the checker does for each" className="mt-6 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full border-collapse text-sm">
                   <caption className="sr-only">WCAG success criteria and what the checker does for each</caption>
                   <thead>
@@ -316,7 +316,7 @@ export default function FocusOrderCheckerPage() {
                 </p>
                 <ul className="list-disc space-y-2 pl-6">
                   <li>
-                    <strong className="font-semibold text-slate-900 dark:text-white">Spacing:</strong> a 24 pixel circle centred on
+                    <strong className="font-semibold text-slate-900 dark:text-white">Spacing:</strong>{" "}a 24 pixel circle centred on
                     the small target must not touch any other target, or another small target&apos;s circle. Measured.
                   </li>
                   <li>
@@ -364,7 +364,7 @@ export default function FocusOrderCheckerPage() {
                   </li>
                   <li>
                     <strong className="font-semibold text-slate-900 dark:text-white">Hidden behind a sticky header:</strong> set{" "}
-                    <code className="font-mono text-sm">scroll-padding-top</code> on the page to the header&apos;s height, so the
+                    <code className="font-mono text-sm">scroll-padding-top</code>{" "}on the page to the header&apos;s height, so the
                     browser scrolls focused elements clear of it. Cookie banners that cover content need the same space at the bottom,
                     or should not cover content at all.
                   </li>
@@ -387,7 +387,7 @@ export default function FocusOrderCheckerPage() {
                     of 24 pixels to icon buttons, or space them apart.
                   </li>
                 </ul>
-                <pre className="overflow-x-auto rounded-lg border border-slate-200 bg-slate-950 p-4 font-mono text-sm leading-6 text-slate-100 dark:border-slate-800">
+                <pre tabIndex={0} className="overflow-x-auto rounded-lg border border-slate-200 bg-slate-950 p-4 font-mono text-sm leading-6 text-slate-100 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <code>{`:focus-visible {
   outline: 3px solid #0f766e;
   outline-offset: 2px;

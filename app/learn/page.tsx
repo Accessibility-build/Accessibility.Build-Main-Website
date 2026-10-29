@@ -83,7 +83,7 @@ function PatternOverview() {
           </p>
         </div>
 
-        <div className="overflow-x-auto">
+        <div tabIndex={0} role="region" aria-label="Patterns covered, the WCAG 2.2 success criteria each one exercises, and the in-depth guide for each" className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
           <table className="w-full text-sm border border-border rounded-xl overflow-hidden">
             <caption className="sr-only">
               Patterns covered, the WCAG 2.2 success criteria each one exercises, and the in-depth guide for each

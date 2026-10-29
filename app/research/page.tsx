@@ -256,7 +256,8 @@ export default function ResearchPage() {
       </section>
 
       {/* Research Cards */}
-      <section className="container-wide py-16 md:py-20">
+      <section className="container-wide py-16 md:py-20" aria-labelledby="research-reports-heading">
+        <h2 id="research-reports-heading" className="sr-only">Research reports</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {researchReports.map((report) => {
             const Icon = report.icon

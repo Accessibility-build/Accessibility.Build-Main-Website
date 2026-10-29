@@ -451,8 +451,8 @@ export default function WCAG3GuidelinesPage() {
                       <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                         {category.description}
                       </p>
-                      <p className="text-xs font-medium text-slate-500 dark:text-slate-500 border-t border-slate-100 dark:border-slate-700 pt-3">
-                        <span className="text-slate-400 dark:text-slate-600">Maps to: </span>
+                      <p className="text-xs font-medium text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-700 pt-3">
+                        <span className="text-slate-600 dark:text-slate-400">Maps to: </span>
                         {category.mapsTo}
                       </p>
                     </CardContent>

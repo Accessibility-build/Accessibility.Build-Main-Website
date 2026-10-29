@@ -296,7 +296,7 @@ export default function ReactAccessibilityGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria React Apps Break Most
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria most commonly failed by React applications and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria most commonly failed by React
@@ -426,7 +426,7 @@ export default function ReactAccessibilityGuidePage() {
                 role, <code>tabIndex</code>, and keyboard handlers by hand — and
                 get all three exactly right.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// Inaccessible: not focusable, no keyboard, no role
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// Inaccessible: not focusable, no keyboard, no role
 <div className="btn" onClick={handleSave}>Save</div>
 
 // Accessible: keyboard + role + focus for free
@@ -466,7 +466,7 @@ export default function ReactAccessibilityGuidePage() {
                 content that no longer exists. Move focus to the top of the new
                 view — usually its heading.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// A route-aware heading that receives focus after navigation
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// A route-aware heading that receives focus after navigation
 import { useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 
@@ -518,7 +518,7 @@ export function PageHeading({ children }) {
                 of this, and its <code>showModal()</code> method traps focus and
                 supports Escape for you.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`import { useEffect, useRef } from "react"
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`import { useEffect, useRef } from "react"
 
 export function ConfirmDialog({ open, onClose, children }) {
   const dialogRef = useRef(null)
@@ -573,7 +573,7 @@ export function ConfirmDialog({ open, onClose, children }) {
                 an <code>aria-live</code> region. Render a persistent live region
                 and update its text.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`function SearchResults({ status, results }) {
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function SearchResults({ status, results }) {
   return (
     <div>
       {/* Polite: announced when the user is idle, never interrupts */}
@@ -614,14 +614,14 @@ export function ConfirmDialog({ open, onClose, children }) {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 In a reusable input component you cannot hardcode an{" "}
-                <code>id</code> — render it twice and the ids collide, breaking
+                <code>id</code>{" "}— render it twice and the ids collide, breaking
                 every label and error association. React&apos;s{" "}
                 <code>useId</code> hook generates a stable, hydration-safe id.
                 Derive the field and error ids from it and wire them with{" "}
                 <code>htmlFor</code>, <code>aria-describedby</code>, and{" "}
                 <code>aria-invalid</code>.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`import { useId } from "react"
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`import { useId } from "react"
 
 export function TextField({ label, error, ...props }) {
   const id = useId()
@@ -682,7 +682,7 @@ export function TextField({ label, error, ...props }) {
                 </a>{" "}
                 exactly, and mirror the ARIA state in your React state.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`function Disclosure({ label, children }) {
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function Disclosure({ label, children }) {
   const [open, setOpen] = useState(false)
   const panelId = useId()
 
@@ -786,7 +786,7 @@ export function TextField({ label, error, ...props }) {
                 problems, so they supplement rather than replace manual testing.
                 Layer three tools into your workflow:
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`// 1. Lint as you type — jsx-a11y ships with Next.js's ESLint config
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`// 1. Lint as you type — jsx-a11y ships with Next.js's ESLint config
 //    Flags <img> without alt, onClick on non-interactive elements, etc.
 
 // 2. Component tests: React Testing Library + jest-axe
@@ -828,7 +828,7 @@ test("home page is accessible", async ({ page }) => {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common React Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common React accessibility anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common React accessibility anti-patterns, why they fail, and

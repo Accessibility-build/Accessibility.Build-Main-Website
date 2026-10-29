@@ -331,7 +331,7 @@ export default function Section508CompliancePage() {
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
               Section 508 vs. the ADA
             </h3>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="Section 508 vs. the ADA" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <thead className="bg-slate-100 dark:bg-slate-800">
                   <tr>
@@ -399,7 +399,7 @@ export default function Section508CompliancePage() {
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
               The four VPAT editions
             </h3>
-            <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div tabIndex={0} role="region" aria-label="The four VPAT editions" className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full text-sm">
                 <thead className="bg-slate-100 dark:bg-slate-800">
                   <tr>

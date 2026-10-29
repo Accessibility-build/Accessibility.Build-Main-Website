@@ -327,7 +327,7 @@ export default function CognitiveAccessibilityGuidePage() {
                 2.2 added specifically to reduce cognitive load, and they are the
                 most commonly overlooked.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that support cognitive accessibility, their conformance level, and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that support cognitive
@@ -543,7 +543,7 @@ export default function CognitiveAccessibilityGuidePage() {
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-6 mb-3">
                   Before and after
                 </h3>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Before: 41 words, one sentence, passive, bureaucratic -->
 <p>In the event that the aforementioned documentation is not
    submitted prior to the stipulated deadline, the processing
@@ -676,7 +676,7 @@ export default function CognitiveAccessibilityGuidePage() {
                   each time. Put it in a stable place, such as the end of the header
                   or the start of the footer, and keep it there.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Same header help link, same relative position, on every page -->
 <header>
   <a class="logo" href="/">Acme</a>
@@ -719,7 +719,7 @@ export default function CognitiveAccessibilityGuidePage() {
                   security-sensitive, or the earlier value is no longer valid. The
                   classic case is a shipping and billing address:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Let people reuse what they already typed -->
 <label>
   <input type="checkbox" name="same-as-shipping" checked>
@@ -750,7 +750,7 @@ export default function CognitiveAccessibilityGuidePage() {
                   recall, such as passkeys, an email link, or an OTP the user can
                   paste.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<!-- Password managers can fill it; nothing blocks paste -->
 <input type="password" name="password" autocomplete="current-password">
 
@@ -935,7 +935,7 @@ export default function CognitiveAccessibilityGuidePage() {
                     ).
                   </li>
                 </ul>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`/* Respect the OS "reduce motion" setting for anything that animates */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1019,7 +1019,7 @@ export default function CognitiveAccessibilityGuidePage() {
                   overlaps, or gets cut off. Layouts that only work at their
                   designed spacing break the moment a reader applies their own.
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`/* WCAG 1.4.12 text-spacing test: paste as a user style, expect no clipping */
 * {
   line-height: 1.5 !important;
@@ -1127,7 +1127,7 @@ p { margin-bottom: 2em !important; }`}</code></pre>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Cognitive Accessibility Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common cognitive accessibility anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common cognitive accessibility anti-patterns, why they fail, and

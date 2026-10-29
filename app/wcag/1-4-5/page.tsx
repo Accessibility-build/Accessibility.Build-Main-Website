@@ -172,7 +172,7 @@ export default function WCAG145Page() {
               If the technologies being used can achieve the visual
               presentation, text is used to convey information rather than
               images of text except for the following:{" "}
-              <strong>Customizable:</strong> The image of text can be visually
+              <strong>Customizable:</strong>{" "}The image of text can be visually
               customized to the user&rsquo;s requirements;{" "}
               <strong>Essential:</strong> A particular presentation of text is
               essential to the information being conveyed.

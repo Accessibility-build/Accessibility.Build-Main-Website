@@ -325,7 +325,7 @@ export default function SkipLinksGuidePage() {
                 also satisfy, from moving focus in a logical order to keeping the
                 target visible under a sticky header.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that apply to skip links and bypass blocks, their conformance level, and how each one applies" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that apply to skip links and bypass
@@ -454,7 +454,7 @@ export default function SkipLinksGuidePage() {
                   start of the main content, and a CSS rule that reveals the link
                   on focus. Here is the whole thing:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<body>
   <!-- The very first focusable element on the page -->
   <a class="skip-link" href="#main-content">
@@ -529,7 +529,7 @@ export default function SkipLinksGuidePage() {
                   skip mechanism silently does nothing. Position it off-screen
                   instead:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`.skip-link {
   position: absolute;
   left: 0;
@@ -622,7 +622,7 @@ export default function SkipLinksGuidePage() {
                   <code>tabindex=&quot;-1&quot;</code> on a container is safe: it
                   does not make the element a Tab stop, it only makes it a valid
                   focus target. You may see a focus outline flash briefly on the{" "}
-                  <code>&lt;main&gt;</code> when the skip fires; that is expected
+                  <code>&lt;main&gt;</code>{" "}when the skip fires; that is expected
                   and acceptable, and you can style the container&rsquo;s{" "}
                   <code>:focus</code> to suit. Do not, however, set{" "}
                   <code>outline: none</code> on it with nothing in its place, or
@@ -643,7 +643,7 @@ export default function SkipLinksGuidePage() {
                   <code>scroll-margin-top</code> on the target so it stops below
                   the fixed header:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`#main-content {
   /* Match this to the height of your sticky header */
   scroll-margin-top: 5rem;
@@ -679,7 +679,7 @@ export default function SkipLinksGuidePage() {
                   which means you often get this for free by using the right
                   elements:
                 </p>
-                <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-4">
+                <div tabIndex={0} role="region" aria-label="HTML5 sectioning elements and the ARIA landmark roles they map to" className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <table className="w-full text-sm text-left">
                     <caption className="sr-only">
                       HTML5 sectioning elements and the ARIA landmark roles they
@@ -736,7 +736,7 @@ export default function SkipLinksGuidePage() {
                     <strong className="text-slate-900 dark:text-white">
                       Name repeated landmarks.
                     </strong>{" "}
-                    Two <code>&lt;nav&gt;</code> regions both announce as
+                    Two <code>&lt;nav&gt;</code>{" "}regions both announce as
                     &ldquo;navigation&rdquo; unless you distinguish them with{" "}
                     <code>aria-label</code>, for example{" "}
                     <code>aria-label=&quot;Primary&quot;</code> and{" "}
@@ -752,7 +752,7 @@ export default function SkipLinksGuidePage() {
                       label.
                     </strong>{" "}
                     The role already says it, so{" "}
-                    <code>aria-label=&quot;Primary navigation&quot;</code> is
+                    <code>aria-label=&quot;Primary navigation&quot;</code>{" "}is
                     announced as &ldquo;Primary navigation, navigation&rdquo;. Name
                     it <code>Primary</code>.
                   </li>
@@ -792,7 +792,7 @@ export default function SkipLinksGuidePage() {
                   by heading constantly, jumping from one to the next to survey a
                   page and move quickly to the part they want. A page with a single{" "}
                   <code>&lt;h1&gt;</code> naming the page, and nested{" "}
-                  <code>&lt;h2&gt;</code> and <code>&lt;h3&gt;</code> headings that
+                  <code>&lt;h2&gt;</code> and <code>&lt;h3&gt;</code>{" "}headings that
                   follow the content&rsquo;s outline, lets them skip straight past
                   repeated chrome to the first real heading of the content.
                 </p>
@@ -845,7 +845,7 @@ export default function SkipLinksGuidePage() {
                   have several distinct repeated blocks worth bypassing
                   separately, and there it is reasonable to offer more than one:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`<a class="skip-link" href="#main-content">Skip to main content</a>
 <a class="skip-link" href="#primary-nav">Skip to navigation</a>
 <a class="skip-link" href="#site-search">Skip to search</a>`}</code></pre>
@@ -858,7 +858,7 @@ export default function SkipLinksGuidePage() {
                   skip links becomes its own block of repeated content to tab past.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  The same idea works <em>inside</em> content, not just at the top
+                  The same idea works <em>inside</em>{" "}content, not just at the top
                   of the page. If a page contains a very long data table, a large
                   interactive widget, or an extended list of links that a keyboard
                   user would otherwise have to tab all the way through, a short
@@ -892,7 +892,7 @@ export default function SkipLinksGuidePage() {
                   effect that moves focus to the main region whenever the route
                   changes:
                 </p>
-                <div className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4">
+                <div tabIndex={0} className="not-prose rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-x-auto my-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                   <pre className="p-4 text-sm text-slate-100"><code>{`function SkipLink() {
   return (
     <a className="skip-link" href="#main-content">
@@ -1034,7 +1034,7 @@ function Layout({ children }) {
                 audits. Every one is a small decision with an outsized effect on
                 whether keyboard users can actually get past your navigation.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common skip link and bypass-block anti-patterns, why each one fails, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common skip link and bypass-block anti-patterns, why each one

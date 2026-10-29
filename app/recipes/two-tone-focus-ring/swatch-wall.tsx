@@ -35,8 +35,6 @@ export function SwatchWall() {
     <div>
       <fieldset className="mb-6 rounded-2xl border border-slate-300 p-4 dark:border-slate-700">
         <legend className="px-2 text-sm font-semibold text-slate-900 dark:text-white">Focus style on the wall</legend>
-        {/* Grid, not flex-col sm:flex-row: the root layout's inline critical CSS redefines .flex-col
-            after Tailwind's stylesheet, which overrides every responsive flex-row. */}
         <div className="grid gap-3 sm:grid-flow-col sm:justify-start sm:gap-8">
           {(
             [

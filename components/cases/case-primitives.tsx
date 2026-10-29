@@ -229,7 +229,7 @@ export function CaseTable({ caption, children }: { caption?: string; children: R
           {caption}
         </p>
       ) : null}
-      <div className="overflow-x-auto border border-slate-200 dark:border-slate-800">
+      <div tabIndex={0} role="region" aria-label={caption ?? "Case data"} className="overflow-x-auto border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <table className="w-full border-collapse text-sm">{children}</table>
       </div>
     </div>

@@ -318,7 +318,7 @@ export default function WCAG149Page() {
               </li>
             </ul>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-              Note what is <em>not</em> on that list: &ldquo;the designer preferred
+              Note what is <em>not</em>{" "}on that list: &ldquo;the designer preferred
               this font,&rdquo; &ldquo;the CMS made it easy,&rdquo; and &ldquo;the
               image is customizable&rdquo; — that last one is the AA-level allowance in
               1.4.5 that this criterion deliberately removes. Essential means the

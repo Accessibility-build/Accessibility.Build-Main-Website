@@ -819,7 +819,7 @@ export default function GlossaryPage() {
         </nav>
 
         {/* Glossary sections */}
-        <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {LETTERS.filter((letter) => groupedTerms.has(letter)).map((letter) => (
             <section
               key={letter}
@@ -885,7 +885,7 @@ export default function GlossaryPage() {
               , or test your site with our free accessibility tools.
             </p>
           </section>
-        </main>
+        </div>
       </div>
     </>
   )

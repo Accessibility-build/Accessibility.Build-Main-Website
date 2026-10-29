@@ -377,7 +377,7 @@ export default function WCAG211Page() {
             </h3>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               The criterion carves out functionality whose input depends on the{" "}
-              <em>path</em> of the user&rsquo;s movement rather than just its start
+              <em>path</em>{" "}of the user&rsquo;s movement rather than just its start
               and end points — freehand drawing, watercolor-style painting, and
               some continuous drag gestures where the exact route is the content. A
               keyboard cannot reproduce an arbitrary continuous stroke, so that

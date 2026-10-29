@@ -303,7 +303,7 @@ export default async function NfbTargetCasePage() {
                     2010 the NFB certified Target.com at its highest level. In 2016 Target became the
                     first company in the NFB&apos;s strategic partnership programme. In 2021, on a
                     broadcast about the{" "}
-                    <Link href="/cases/gil-v-winn-dixie">Winn-Dixie</Link> reversal, the NFB&apos;s
+                    <Link href="/cases/gil-v-winn-dixie">Winn-Dixie</Link>{" "}reversal, the NFB&apos;s
                     president went out of his way to say that Target had flipped the script.
                   </p>
                 </CaseProse>
@@ -528,7 +528,7 @@ export default async function NfbTargetCasePage() {
                   </h3>
                   <ul>
                     <li>
-                      <strong>A website is not a place.</strong> The ADA&apos;s twelve categories of
+                      <strong>A website is not a place.</strong>{" "}The ADA&apos;s twelve categories of
                       public accommodation are physical, and the Ninth Circuit had held in Weyer that
                       a place of public accommodation is an actual, physical place. The court agreed
                       with the premise and rejected the conclusion: the statute covers the services of
@@ -635,7 +635,7 @@ export default async function NfbTargetCasePage() {
                     life as a limitation on a plaintiff&apos;s claim, and it has stayed one: it is
                     the reason a purely online business is treated differently from one with stores
                     in most of the country. Second, the same order is the reason the{" "}
-                    <Link href="/cases/robles-v-dominos">Ninth Circuit</Link> could find Domino&apos;s
+                    <Link href="/cases/robles-v-dominos">Ninth Circuit</Link>{" "}could find Domino&apos;s
                     covered in 2019 without deciding whether websites are places, and the reason the{" "}
                     <Link href="/cases/gil-v-winn-dixie">Eleventh Circuit</Link> majority in 2021
                     thought it could reach the opposite result for a site that sold nothing. Third,
@@ -993,17 +993,17 @@ export default async function NfbTargetCasePage() {
                     <li>
                       <strong>State law is where the money is.</strong> The $6 million, the $4,000 in{" "}
                       <Link href="/cases/robles-v-dominos">Domino&apos;s</Link> and the zero in{" "}
-                      <Link href="/cases/gil-v-winn-dixie">Winn-Dixie</Link> are all explained by
+                      <Link href="/cases/gil-v-winn-dixie">Winn-Dixie</Link>{" "}are all explained by
                       one fact: Title III of the ADA has no damages remedy, and California&apos;s
                       Unruh Act does.
                     </li>
                     <li>
-                      <strong>Fixing while fighting shortens the fight.</strong> Target&apos;s case
+                      <strong>Fixing while fighting shortens the fight.</strong>{" "}Target&apos;s case
                       ran three and a half years to the fee order; the two defendants who fixed
                       nothing until ordered to ran nearly six.
                     </li>
                     <li>
-                      <strong>Your platform vendor is not your defence.</strong> Target fixed
+                      <strong>Your platform vendor is not your defence.</strong>{" "}Target fixed
                       Amazon&apos;s markup. A court will treat the site as yours because it is.
                     </li>
                     <li>
@@ -1146,13 +1146,11 @@ export default async function NfbTargetCasePage() {
                 </CaseProse>
               </CaseSection>
 
-              <section id="discussion" aria-labelledby="discussion-heading" className="scroll-mt-28">
-                <CaseComments
-                  caseSlug={CASE_SLUG}
-                  caseTitle="National Federation of the Blind v. Target"
-                  initialComments={comments}
-                />
-              </section>
+              <CaseComments
+                caseSlug={CASE_SLUG}
+                caseTitle="National Federation of the Blind v. Target"
+                initialComments={comments}
+              />
 
               <RelatedContent
                 content="ADA website accessibility lawsuit class action Unruh Act nexus screen reader retail settlement"

@@ -76,7 +76,7 @@ function TypesTable({
   dataYear: number;
 }) {
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label={`Disability prevalence among US adults in ${dataYear}, by type`} className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[640px] border-collapse text-sm">
         <caption className="sr-only">
           Age-adjusted prevalence of disability among United States adults in{" "}
@@ -130,7 +130,7 @@ function TypesTable({
 
 function TrendTable({ trend }: { trend: TrendRow[] }) {
   return (
-    <div className="overflow-x-auto">
+    <div tabIndex={0} role="region" aria-label="Age-adjusted prevalence of disability among United States adults by year and disability type, 2016 to 2022. The 2020..." className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       <table className="w-full min-w-[700px] border-collapse text-sm">
         <caption className="sr-only">
           Age-adjusted prevalence of disability among United States adults by

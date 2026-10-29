@@ -359,7 +359,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                     <ul className="list-disc pl-5 space-y-2">
                       <li>
                         Go to <strong>Settings &rarr; Accessibility &rarr;
-                        TalkBack</strong> and turn it on. Exact wording varies by
+                        TalkBack</strong>{" "}and turn it on. Exact wording varies by
                         manufacturer; some nest it under an
                         &ldquo;Installed apps&rdquo; or &ldquo;Vision&rdquo;
                         submenu.
@@ -515,7 +515,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 they are unavailable, the older two-part swipes listed at the
                 bottom do the same jobs.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Essential TalkBack gestures for testing a web page on Android and what each one does" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Essential TalkBack gestures for testing a web page on Android
@@ -563,7 +563,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 <strong>swipe up-then-down</strong> on devices without multi-finger
                 gestures), then swipe up or down to move by that unit.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-4">
+              <div tabIndex={0} role="region" aria-label="TalkBack reading control options and what each is useful for when testing" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     TalkBack reading control options and what each is useful for
@@ -596,7 +596,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 <Link href="/wcag/1-3-1" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   1.3.1 Info and Relationships
                 </Link>{" "}
-                failure. Then switch to <strong>Links</strong> and do the same:
+                failure. Then switch to <strong>Links</strong>{" "}and do the same:
                 every link, heard out of context, should still make sense — a
                 stream of &ldquo;read more&rdquo; is the most damning thing a links
                 pass can produce.
@@ -775,7 +775,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 WCAG failure that automated tools frequently miss or can only
                 partially detect.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common problems found when testing with TalkBack, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common problems found when testing with TalkBack, why they
@@ -822,7 +822,7 @@ export default function TalkBackScreenReaderTestingGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 What TalkBack Testing Verifies in WCAG 2.2
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria you can verify by testing with TalkBack on a real Android device" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria you can verify by testing with

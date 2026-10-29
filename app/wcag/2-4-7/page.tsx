@@ -370,7 +370,7 @@ export default function WCAG247Page() {
             </div>
             <div className="mt-6 rounded-xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50 dark:bg-emerald-950/20 p-5">
               <p className="text-emerald-900 dark:text-emerald-200 leading-relaxed">
-                <strong>Note:</strong> The phrase &quot;a mode of operation&quot;
+                <strong>Note:</strong>{" "}The phrase &quot;a mode of operation&quot;
                 means the indicator does not have to be visible during a mouse
                 click — it must be visible when the user is operating the
                 interface by keyboard. That is exactly what{" "}

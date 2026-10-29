@@ -769,7 +769,7 @@ export default function AccessibilityStatementGenerator() {
                   <TabsTrigger value="text">Plain Text</TabsTrigger>
                 </TabsList>
                 <TabsContent value={previewFormat} className="mt-4">
-                  <div className="max-h-96 overflow-auto rounded-lg border bg-muted/30 p-4">
+                  <div tabIndex={0} className="max-h-96 overflow-auto rounded-lg border bg-muted/30 p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                     {previewFormat === 'html' ? (
                       <iframe
                         srcDoc={generatePreview()}

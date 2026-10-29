@@ -410,7 +410,7 @@ export default function WCAG252Page() {
                   Fail: delete on pointer-down
                 </h3>
                 <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
-                  A file manager binds row deletion to <code>mousedown</code> to feel
+                  A file manager binds row deletion to <code>mousedown</code>{" "}to feel
                   &ldquo;snappy&rdquo;. The instant a user with a tremor brushes the
                   wrong row&rsquo;s delete icon, the file is gone — no abort, no undo.
                 </p>

@@ -339,7 +339,7 @@ export default function WCAG133Page() {
             </h3>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               You do not have to strip out sensory cues — you have to make sure they are never the{" "}
-              <em>only</em> cue. Reference the control by its visible text or accessible name, and
+              <em>only</em>{" "}cue. Reference the control by its visible text or accessible name, and
               the sensory description becomes a helpful extra. &ldquo;Click the green Save
               button&rdquo; passes, because &ldquo;Save&rdquo; identifies the control on its own.
               This criterion is a close companion to{" "}
@@ -376,7 +376,7 @@ export default function WCAG133Page() {
                 <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                   <li>&ldquo;Click the <strong>Save</strong> button to store your work.&rdquo;</li>
                   <li>
-                    &ldquo;Use the <strong>Search</strong> field to find a product&rdquo; — named,
+                    &ldquo;Use the <strong>Search</strong>{" "}field to find a product&rdquo; — named,
                     not &ldquo;the box at the top&rdquo;.
                   </li>
                   <li>
@@ -384,7 +384,7 @@ export default function WCAG133Page() {
                     Required&rdquo; — text, not color alone.
                   </li>
                   <li>
-                    &ldquo;Click the green <strong>Save</strong> button&rdquo; — color is fine because
+                    &ldquo;Click the green <strong>Save</strong>{" "}button&rdquo; — color is fine because
                     &ldquo;Save&rdquo; identifies it.
                   </li>
                   <li>

@@ -36,7 +36,7 @@ export default function Error({
           </Button>
         </div>
         {process.env.NODE_ENV === "development" && (
-          <div className="mt-8 text-left p-4 bg-muted rounded-md overflow-auto max-h-[300px]">
+          <div tabIndex={0} className="mt-8 text-left p-4 bg-muted rounded-md overflow-auto max-h-[300px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             <p className="font-mono text-sm text-muted-foreground mb-2">Error details (only visible in development):</p>
             <pre className="font-mono text-xs whitespace-pre-wrap break-words">{error.message}</pre>
             {error.stack && (

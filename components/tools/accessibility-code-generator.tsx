@@ -729,7 +729,7 @@ export default function AccessibilityCodeGenerator() {
                   {generationPhase || "Generating..."}
                 </span>
               </div>
-              <pre className="text-xs overflow-x-auto max-h-[200px] overflow-y-auto">
+              <pre tabIndex={0} className="text-xs overflow-x-auto max-h-[200px] overflow-y-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <code>{streamedContent.slice(-500)}</code>
               </pre>
             </div>
@@ -853,7 +853,7 @@ export default function AccessibilityCodeGenerator() {
                     </div>
                   </div>
 
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm">
+                  <pre tabIndex={0} className="bg-muted p-4 rounded-lg overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                     <code>{generatedCode.code}</code>
                   </pre>
                 </TabsContent>
@@ -962,7 +962,7 @@ export default function AccessibilityCodeGenerator() {
                       {copiedTab === "basic" ? "Copied!" : "Copy"}
                     </Button>
                   </div>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm">
+                  <pre tabIndex={0} className="bg-muted p-4 rounded-lg overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                     <code>{generatedCode.examples.basic_usage}</code>
                   </pre>
                 </TabsContent>
@@ -988,7 +988,7 @@ export default function AccessibilityCodeGenerator() {
                       {copiedTab === "advanced" ? "Copied!" : "Copy"}
                     </Button>
                   </div>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm">
+                  <pre tabIndex={0} className="bg-muted p-4 rounded-lg overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                     <code>{generatedCode.examples.advanced_usage}</code>
                   </pre>
                 </TabsContent>
@@ -1014,7 +1014,7 @@ export default function AccessibilityCodeGenerator() {
                       {copiedTab === "integration" ? "Copied!" : "Copy"}
                     </Button>
                   </div>
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm">
+                  <pre tabIndex={0} className="bg-muted p-4 rounded-lg overflow-x-auto text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                     <code>{generatedCode.examples.full_integration}</code>
                   </pre>
                 </TabsContent>

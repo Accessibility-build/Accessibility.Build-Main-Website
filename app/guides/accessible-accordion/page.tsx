@@ -338,7 +338,7 @@ export default function AccessibleAccordionGuidePage() {
                 <ShieldCheck className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 The WCAG 2.2 Criteria Accordions Satisfy
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="WCAG 2.2 success criteria that a correctly built accordion or disclosure satisfies and what each requires" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     WCAG 2.2 success criteria that a correctly built accordion or
@@ -512,7 +512,7 @@ export default function AccessibleAccordionGuidePage() {
                 support works out of the box. No <code>aria-expanded</code>, no
                 click handler, no state to keep in sync.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<!-- A complete, accessible disclosure — zero JavaScript -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- A complete, accessible disclosure — zero JavaScript -->
 <details>
   <summary>Shipping &amp; returns</summary>
   <p>
@@ -532,7 +532,7 @@ export default function AccessibleAccordionGuidePage() {
                 <code>name</code> attribute and opening one closes the others —
                 no JavaScript required.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-4"><code>{`<!-- Shared name = only one open at a time (Chrome/Edge/Safari/Firefox 2024+) -->
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<!-- Shared name = only one open at a time (Chrome/Edge/Safari/Firefox 2024+) -->
 <details name="faq"><summary>How do refunds work?</summary><p>...</p></details>
 <details name="faq"><summary>Where do you ship?</summary><p>...</p></details>
 <details name="faq"><summary>Can I change my order?</summary><p>...</p></details>`}</code></pre>
@@ -570,7 +570,7 @@ export default function AccessibleAccordionGuidePage() {
                 the region with the <code>hidden</code> attribute so it leaves
                 the accessibility tree entirely.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<button aria-expanded="false" aria-controls="more-details">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<button aria-expanded="false" aria-controls="more-details">
   More product details
 </button>
 <div id="more-details" hidden>
@@ -602,7 +602,7 @@ export default function AccessibleAccordionGuidePage() {
                 the page&apos;s heading list and jump straight to any section —
                 the single most useful way to navigate a long accordion.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6">
+              <div tabIndex={0} role="region" aria-label="The elements in an accordion and the ARIA attributes each needs" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     The elements in an accordion and the ARIA attributes each
@@ -634,7 +634,7 @@ export default function AccessibleAccordionGuidePage() {
                 <code>aria-controls</code> / <code>aria-labelledby</code> ids,
                 and the <code>hidden</code> attribute on collapsed panels.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`<div class="accordion">
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`<div class="accordion">
   <h3>
     <button id="acc-ship" aria-expanded="true"
             aria-controls="panel-ship">
@@ -700,7 +700,7 @@ export default function AccessibleAccordionGuidePage() {
                 roving tabindex</strong> here, unlike the tabs pattern. Arrow-key
                 navigation between headers is an optional convenience.
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Keyboard keys and the action each performs in the accordion pattern" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Keyboard keys and the action each performs in the accordion
@@ -759,7 +759,7 @@ export default function AccessibleAccordionGuidePage() {
                 <code>hidden</code> attribute together — the single source of
                 truth that keeps state and visibility in sync.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`const accordion = document.querySelector(".accordion")
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`const accordion = document.querySelector(".accordion")
 const headers = [...accordion.querySelectorAll("button[aria-controls]")]
 
 function toggle(button) {
@@ -789,7 +789,7 @@ accordion.addEventListener("keydown", (e) => {
 })`}</code></pre>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 For an exclusive (single-expand) accordion, collapse the others
-                inside <code>toggle()</code> before opening the new one — and
+                inside <code>toggle()</code>{" "}before opening the new one — and
                 never disable the open header&apos;s button, so the user can
                 always collapse the current section.
               </p>
@@ -809,7 +809,7 @@ accordion.addEventListener("keydown", (e) => {
                 multiple can expand), generate stable ids with{" "}
                 <code>useId</code>, and render the heading wrapper explicitly.
               </p>
-              <pre className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto"><code>{`function Accordion({ items }) {
+              <pre tabIndex={0} className="rounded-lg bg-slate-900 text-slate-100 text-sm p-4 overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"><code>{`function Accordion({ items }) {
   const [open, setOpen] = React.useState(() => new Set([0]))
   const uid = React.useId()
 
@@ -1010,7 +1010,7 @@ accordion.addEventListener("keydown", (e) => {
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Common Accordion Mistakes &amp; How to Fix Them
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div tabIndex={0} role="region" aria-label="Common accessible-accordion anti-patterns, why they fail, and the fix" className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <table className="w-full text-sm text-left">
                   <caption className="sr-only">
                     Common accessible-accordion anti-patterns, why they fail, and
