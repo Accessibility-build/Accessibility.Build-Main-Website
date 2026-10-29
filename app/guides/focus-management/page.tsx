@@ -447,6 +447,13 @@ export default function FocusManagementGuidePage() {
                 </Link>
                 .
               </p>
+              <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+                For one focus style that keeps 3:1 on any solid background, try the{" "}
+                <Link href="/recipes/two-tone-focus-ring" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+                  two-tone focus ring recipe
+                </Link>
+                , with a live lab and five places focus still fails.
+              </p>
             </div>
           </section>
 

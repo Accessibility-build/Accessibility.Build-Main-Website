@@ -36,6 +36,7 @@ const sections: Array<{ group: string; heading: string; blurb: string; minPriori
   { group: "Checklists", heading: "Checklists", blurb: "WCAG and EN 301 549 conformance checklists." },
   { group: "Reference", heading: "Reference", blurb: "Glossary and ARIA reference." },
   { group: "Learn", heading: "Component patterns", blurb: "Accessible UI pattern demos with keyboard interaction tables." },
+  { group: "Recipes", heading: "Accessibility recipes", blurb: "Small, tested techniques, each with a live demo, copy-ready code, the WCAG criteria it serves, and the cases it does not cover." },
   { group: "WCAG 3.0", heading: "WCAG 3.0", blurb: "Guides to the next-generation accessibility guidelines." },
   { group: "Legal", heading: "Policies and statements", blurb: "The site's own accessibility statement, privacy, cookies, terms, refunds, editorial and corrections policies." },
 ]

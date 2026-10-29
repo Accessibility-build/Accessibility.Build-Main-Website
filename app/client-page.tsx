@@ -21,8 +21,18 @@ import { getBlogPosts } from "@/lib/sanity"
 import { serviceStartingPrices } from "@/lib/service-pricing"
 import { getStaticBlogIndexPosts, type BlogIndexPost } from "@/lib/static-blog-posts"
 import { cn } from "@/lib/utils"
+import { recipeRoute, recipes } from "@/lib/recipes"
 
 const portrait = "/images/authors/khushwant-parihar.jpeg"
+
+const recipeSteps = ["The problem", "The technique", "A demo to break", "The code", "Where it fails"]
+
+// The latest two recipes, newest first, numbered by their place in lib/recipes.ts.
+const featuredRecipes = recipes.map((recipe, i) => ({ ...recipe, number: i + 1 })).slice(-2).reverse()
+
+// The two-tone focus ring from recipe No. 01, used on this section's links.
+const twoToneRing =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:shadow-[0_0_0_4px_#000]"
 
 const services = [
   {
@@ -345,6 +355,65 @@ export default async function HomeClientPage() {
               <Button asChild variant="outline" className="mt-7"><Link href="/tools">Explore free tools</Link></Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="container-wide py-16 lg:py-24" aria-labelledby="recipes-heading">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16">
+          <div>
+            <p className="text-sm font-semibold uppercase text-primary">Accessibility Recipes</p>
+            <h2 id="recipes-heading" className="mt-3 text-4xl font-semibold">Small techniques you can try to break</h2>
+            <p className="mt-5 max-w-xl leading-7 text-muted-foreground">
+              Each recipe takes one barrier and the smallest change that removes it, with a live demo, copy-ready code, and an honest list of where it stops working.
+            </p>
+            <ol className="mt-7 grid max-w-xl grid-cols-2 gap-x-6 gap-y-3 text-sm sm:grid-cols-3">
+              {recipeSteps.map((step, i) => (
+                <li key={step} className="flex items-baseline gap-2">
+                  <span className="font-mono text-xs font-semibold text-muted-foreground" aria-hidden="true">0{i + 1}</span>
+                  <span className="font-medium">{step}</span>
+                </li>
+              ))}
+            </ol>
+            <Button asChild variant="outline" className="mt-8">
+              <Link href="/recipes">Browse all recipes <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </div>
+
+          <ul className="grid gap-6">
+            {featuredRecipes.map((recipe) => (
+              <li
+                key={recipe.slug}
+                className="relative grid overflow-hidden rounded-3xl border-2 border-foreground bg-background transition-shadow duration-300 hover:shadow-[8px_8px_0_0_hsl(var(--foreground))] focus-within:shadow-[8px_8px_0_0_hsl(var(--foreground))] sm:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]"
+              >
+                <div
+                  className="flex min-h-44 items-center justify-center border-b-2 border-foreground sm:border-b-0 sm:border-r-2"
+                  style={{ background: `linear-gradient(105deg, ${recipe.art[0]} 0 50%, ${recipe.art[1]} 50% 100%)` }}
+                  aria-hidden="true"
+                >
+                  <span className="rounded-full bg-[#767676] px-6 py-3 font-bold text-white outline outline-2 outline-white [box-shadow:0_0_0_4px_#000]">
+                    Focus
+                  </span>
+                </div>
+                <div className="flex flex-col p-6">
+                  <p className="font-mono text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    Recipe No. {String(recipe.number).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-2 text-2xl font-semibold">
+                    <Link href={recipeRoute(recipe.slug)} className={cn("after:absolute after:inset-0 after:content-[''] hover:underline hover:underline-offset-4", twoToneRing)}>
+                      {recipe.title}
+                    </Link>
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{recipe.dek}</p>
+                  <dl className="mt-5 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+                    <dt className="font-mono text-xs font-semibold uppercase leading-5 text-muted-foreground">Serves</dt>
+                    <dd>{recipe.serves}</dd>
+                    <dt className="font-mono text-xs font-semibold uppercase leading-5 text-muted-foreground">WCAG</dt>
+                    <dd>{recipe.criteria.map((c) => c.id).join(", ")}</dd>
+                  </dl>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

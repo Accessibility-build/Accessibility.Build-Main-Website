@@ -447,6 +447,13 @@ export default function WCAG2413Page() {
               0 0 0 7px #0b3d91;         /* outer, dark ring  */
 }`}</code>
             </pre>
+            <p className="mb-6 rounded-xl border border-slate-300 dark:border-slate-700 p-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+              <strong className="text-slate-900 dark:text-white">Try it live:</strong> the{" "}
+              <Link href="/recipes/two-tone-focus-ring" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+                two-tone focus ring recipe
+              </Link>{" "}
+              applies W3C's 9:1 rule: two colours at least 9:1 apart guarantee one band reaches 3:1 on any solid background.
+            </p>
 
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
               Why background-only changes often fail
