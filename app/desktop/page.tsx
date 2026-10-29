@@ -2,144 +2,104 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { clampDescription } from "@/lib/metadata"
 
+// The app is not released yet. This page used to advertise a version and a
+// download that had never been published (the button ended in a 404), so it
+// now says plainly what is coming and points to tools that work today. When
+// lib/desktop-release.ts gets its first entry, this page is rewritten around
+// the shipped build.
 export const metadata: Metadata = {
-  title: "macOS Accessibility App — Contrast, Capture, Colorblind Lens",
-  description:
-    clampDescription("A free menu-bar app for designers and developers: pick any two colors on screen for WCAG + APCA contrast verdicts, capture and annotate issues mapped to WCAG criteria, and view your screen through color-blindness simulation. Everything runs locally."),
+  title: "Accessibility Build for Mac (in development)",
+  description: clampDescription(
+    "A free macOS menu-bar app for checking color contrast and color-vision accessibility anywhere on screen is in development. Use the free web tools today."
+  ),
   alternates: { canonical: "https://accessibility.build/desktop" },
 };
 
-const DMG_URL = "/api/desktop/download";
-const VERSION = "1.7.2";
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Accessibility.build",
-  operatingSystem: "macOS 12+",
-  applicationCategory: "DeveloperApplication",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  downloadUrl: "https://accessibility.build/api/desktop/download",
-  softwareVersion: VERSION,
-};
-
-const tools = [
+const plannedTools = [
   {
     name: "Contrast picker",
-    hotkey: "⌥⌘P",
     description:
-      "Freeze the screen, pick text and background with a magnified pixel loupe, and get WCAG AA/AAA and APCA verdicts instantly. Drag across gradients to find the worst-case pixel, get one-click passing color fixes, and see how the pair holds up under four kinds of color-vision deficiency.",
+      "Pick text and background colors from anything on your screen with a magnified pixel loupe, then see the WCAG 2.2 contrast ratio, APCA Lc, and the nearest colors that pass.",
   },
   {
-    name: "Capture & annotate",
-    hotkey: "⌥⌘S",
+    name: "Color-vision lens",
     description:
-      "Grab a region, drop numbered issue badges mapped to WCAG success criteria with severity levels, measure touch targets against the 24×24px minimum, redact anything sensitive, then export a GitHub- or Jira-ready issue list in one click.",
+      "A floating lens that shows whatever is beneath it as people with protanopia, deuteranopia, tritanopia or achromatopsia may see it, with blur and low-contrast filters for low vision.",
   },
   {
-    name: "Colorblind lens",
-    hotkey: "⌥⌘L",
+    name: "Quick capture",
     description:
-      "A floating lens that shows whatever is behind it through protanopia, deuteranopia, tritanopia or achromatopsia simulation — with a severity slider, low-vision blur and low-contrast filters, and a split before/after view for screenshots.",
-  },
-];
-
-const faqs = [
-  {
-    q: "Is it really free?",
-    a: "Yes. The three tools are free with no account. A paid tier with full-page WCAG scans and PDF audit reports is planned.",
-  },
-  {
-    q: "Why does it need Screen Recording permission?",
-    a: "The color picker, captures and lens all read pixels from your screen. Everything is processed locally on your Mac — nothing is uploaded, ever.",
-  },
-  {
-    q: "What does it run on?",
-    a: "macOS 12 or later on Apple Silicon. A Windows version is on the roadmap.",
+      "Capture a region, a window or a whole display, with an optional three-second delay so hover states, menus and tooltips stay open.",
   },
 ];
 
 export default function DesktopPage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <section className="text-center">
         <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
-          Free macOS app
+          In development
         </p>
         <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-          Accessibility checks, anywhere on your screen
+          Accessibility Build for Mac
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-          A menu-bar toolkit for designers, developers and auditors: WCAG + APCA
-          contrast picking, annotated issue captures, and live color-blindness
-          simulation. 100% local — your screen never leaves your Mac.
+          A free menu-bar app for checking color contrast and color-vision
+          accessibility anywhere on your screen. It is not available to
+          download yet. We will publish it on this page once the first signed
+          and notarized release has passed testing.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href={DMG_URL}
+          <Link
+            href="/tools/contrast-checker"
             className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <path d="m7 10 5 5 5-5" />
-              <path d="M12 15V3" />
-            </svg>
-            Download for macOS
-          </a>
-          <span className="text-sm text-muted-foreground">
-            v{VERSION} · Apple Silicon · macOS 12+
-          </span>
+            Check contrast in your browser
+          </Link>
+          <Link
+            href="/tools"
+            className="inline-flex items-center gap-2 rounded-lg border px-6 py-3 text-sm font-semibold transition-colors hover:bg-muted"
+          >
+            See all free tools
+          </Link>
         </div>
       </section>
 
-      <section className="mt-20 grid gap-6 md:grid-cols-3">
-        {tools.map((tool) => (
-          <div key={tool.name} className="rounded-xl border bg-card p-6 text-left shadow-sm">
-            <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-base font-semibold">{tool.name}</h2>
-              <kbd className="rounded border bg-muted px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
-                {tool.hotkey}
-              </kbd>
-            </div>
-            <p className="text-sm leading-relaxed text-muted-foreground">{tool.description}</p>
-          </div>
-        ))}
-      </section>
-
-      <section className="mt-20 rounded-2xl border bg-card p-8">
-        <h2 className="text-xl font-semibold">Built for real audit work</h2>
-        <ul className="mt-4 grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
-          <li>Delayed capture (3s) for hover states, menus and tooltips</li>
-          <li>Session log — every check compiled into an exportable Markdown summary</li>
-          <li>Issue types mapped to WCAG 2.2 success criteria with severity levels</li>
-          <li>Fully customizable global shortcuts</li>
-          <li>Multi-monitor support</li>
-          <li>Auto-updates, ~5MB download, native performance</li>
-        </ul>
-      </section>
-
-      <section className="mt-20">
-        <h2 className="text-xl font-semibold">Questions</h2>
-        <dl className="mt-6 space-y-6">
-          {faqs.map((faq) => (
-            <div key={faq.q}>
-              <dt className="font-medium">{faq.q}</dt>
-              <dd className="mt-1 text-sm text-muted-foreground">{faq.a}</dd>
+      <section className="mt-20" aria-labelledby="planned-heading">
+        <h2 id="planned-heading" className="text-xl font-semibold">
+          What the first release will include
+        </h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {plannedTools.map((tool) => (
+            <div key={tool.name} className="rounded-xl border bg-card p-6 text-left shadow-sm">
+              <h3 className="mb-3 text-base font-semibold">{tool.name}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">{tool.description}</p>
             </div>
           ))}
-        </dl>
+        </div>
+      </section>
+
+      <section className="mt-20 rounded-2xl border bg-card p-8" aria-labelledby="privacy-heading">
+        <h2 id="privacy-heading" className="text-xl font-semibold">
+          Built to stay on your Mac
+        </h2>
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          The app is being designed to work without an account. Screen pixels
+          are processed on your Mac and never uploaded. The only network
+          request it will make is the check for updates.
+        </p>
       </section>
 
       <section className="mt-16 border-t pt-8 text-center text-sm text-muted-foreground">
-        Prefer the browser? Try our{" "}
+        Until then, the{" "}
+        <Link href="/tools/contrast-checker" className="font-medium text-primary underline underline-offset-2 hover:decoration-2">
+          contrast checker
+        </Link>{" "}
+        and the other{" "}
         <Link href="/tools" className="font-medium text-primary underline underline-offset-2 hover:decoration-2">
           free web tools
         </Link>{" "}
-        — contrast checker, alt-text review and more.
+        run in your browser.
       </section>
     </div>
   );

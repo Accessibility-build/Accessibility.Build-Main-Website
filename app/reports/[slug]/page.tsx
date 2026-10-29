@@ -36,7 +36,7 @@ export async function generateMetadata({
   const count = report.issues.length
   const description =
     report.description ||
-    `${count} accessibility ${count === 1 ? 'issue' : 'issues'} found — shared from the Accessibility.build desktop app.`
+    `${count} accessibility ${count === 1 ? 'issue' : 'issues'} found, shared from the Accessibility.build desktop app.`
   return {
     title: `${report.title} — Accessibility.build`,
     description,
@@ -150,13 +150,13 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
       <section className="mt-12 rounded-xl border bg-card p-6 text-center">
         <h2 className="text-lg font-semibold">Run your own accessibility checks</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Pick colors, capture and annotate issues, and simulate color blindness — free on macOS.
+          Check color contrast, review alt text and more with the free web tools.
         </p>
         <Link
-          href="/desktop"
+          href="/tools"
           className="mt-4 inline-flex rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
         >
-          Get the desktop app
+          Open the free tools
         </Link>
       </section>
     </div>
