@@ -28,7 +28,7 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
   // site chrome. The main landmark stays so the skip link still has a target.
   if (pathname?.startsWith('/embed/')) {
     return (
-      <main id="main-content" tabIndex={-1} className="outline-none">
+      <main id="main-content" className="outline-none">
         {children}
       </main>
     )
@@ -49,7 +49,7 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
   return (
     <div className="relative flex min-h-screen flex-col">
       <Header />
-      <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
+      <main id="main-content" className="flex-1 outline-none">
         {children}
       </main>
       <Footer />

@@ -28,6 +28,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { SkipLink } from "@/components/skip-link"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Logo } from "@/components/logo"
 import { cn } from "@/lib/utils"
@@ -175,9 +176,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
   return (
     <div className="min-h-screen bg-slate-100/70 text-slate-950 dark:bg-slate-950 dark:text-white">
-      <a href="#admin-main-content" className="sr-only z-[70] rounded-md bg-white px-4 py-3 font-semibold text-slate-950 shadow focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
+      <SkipLink
+        targetId="admin-main-content"
+        className="sr-only z-[70] rounded-md bg-white px-4 py-3 font-semibold text-slate-950 shadow focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
         Skip to admin content
-      </a>
+      </SkipLink>
 
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-72 border-r border-slate-200 md:block dark:border-slate-800" aria-label="Admin sidebar">
         <AdminSidebarContent pathname={pathname} />
@@ -218,7 +222,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           </div>
         </header>
 
-        <main id="admin-main-content" tabIndex={-1} className="min-w-0 p-4 outline-none sm:p-6 lg:p-8">
+        <main id="admin-main-content" className="min-w-0 p-4 outline-none sm:p-6 lg:p-8">
           <div className="mx-auto w-full max-w-[1600px]">{children}</div>
         </main>
       </div>
