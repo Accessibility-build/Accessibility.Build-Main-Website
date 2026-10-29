@@ -45,7 +45,7 @@ const core: SiteRoute[] = [
   { route: "/procurement", label: "Procurement Centre", group: "Core", lastModified: "2026-07-12", priority: 0.76 },
   { route: "/subprocessors", label: "Subprocessor Register", group: "Core", lastModified: "2026-10-28", priority: 0.55 },
   { route: "/resources", label: "Resources", group: "Core", lastModified: "2026-08-13", priority: 0.85, changeFrequency: "weekly" },
-  { route: "/desktop", label: "Desktop App", group: "Core", lastModified: "2026-07-06", priority: 0.7 },
+  { route: "/desktop", label: "Desktop App", group: "Core", lastModified: "2026-10-29", priority: 0.7 },
   { route: "/docs", label: "Developer Resources", group: "Core", lastModified: "2026-07-13", priority: 0.7 },
   { route: "/help", label: "Help Center", group: "Core", lastModified: "2026-07-13", priority: 0.7 },
   { route: "/sitemap-page", label: "Sitemap", group: "Core", lastModified: "2026-07-09", priority: 0.3 },

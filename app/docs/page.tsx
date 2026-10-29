@@ -57,11 +57,11 @@ const resources = [
     action: "Open the checklist",
   },
   {
-    title: "macOS desktop toolkit",
-    description: "Run contrast checks, annotate issue captures, and simulate color-vision conditions locally on your Mac.",
+    title: "macOS app (in development)",
+    description: "A free, local-only Mac app for contrast checks and color-vision simulation. Not available to download yet.",
     href: "/desktop",
     icon: Laptop,
-    action: "View the desktop app",
+    action: "See its status",
   },
 ]
 
