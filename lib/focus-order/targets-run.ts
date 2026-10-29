@@ -32,8 +32,22 @@ export async function runTargetSize(page: Page): Promise<TargetsRun> {
   )
   const screenshot = await captureScreenshot(page, { maxHeight: 5000, quality: 60 })
 
+  // WCAG does not count overlapping area toward a target's size. A hit area that a ::before or
+  // ::after extends over another target is not trusted, and the element's own box is measured
+  // instead: two overlapping 44 px hit areas fail, two that only touch pass.
+  const overlap = (a: MeasuredTarget["box"], b: MeasuredTarget["box"]) =>
+    Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x) > 0.5 && Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y) > 0.5
+  const nested = (i: number, j: number) => measured[i].ancestors.includes(j) || measured[j].ancestors.includes(i)
+  const overlapping = new Set<number>()
+  measured.forEach((target, i) => {
+    if (!target.expanded) return
+    if (measured.some((other, j) => j !== i && !nested(i, j) && other.pinned === target.pinned && overlap(target.box, other.box))) overlapping.add(i)
+  })
+  const effective = measured.map((target, i) => (overlapping.has(i) ? { ...target, box: target.ownBox } : target))
+  const pseudoHitAreas = effective.filter((target, i) => target.expanded && !overlapping.has(i) && isUndersized(target.ownBox) && !isUndersized(target.box)).length
+
   const conflicts = spacingConflicts(
-    measured.map((target) => ({
+    effective.map((target) => ({
       box: target.box,
       needsSpacing: isUndersized(target.box) && !target.exempt,
       ancestors: target.ancestors,
@@ -41,17 +55,17 @@ export async function runTargetSize(page: Page): Promise<TargetsRun> {
     })),
   )
 
-  const undersized: { target: MeasuredTarget; status: TargetStatus; conflicts: number[] }[] = []
-  measured.forEach((target, i) => {
+  const undersized: { target: MeasuredTarget; status: TargetStatus; conflicts: number[]; overlaps: boolean }[] = []
+  effective.forEach((target, i) => {
     if (!isUndersized(target.box)) return
     const clash = conflicts.get(i) ?? []
     const status: TargetStatus = target.exempt ?? (clash.length > 0 ? "fail" : "spacing")
-    undersized.push({ target, status, conflicts: clash })
+    undersized.push({ target, status, conflicts: clash, overlaps: overlapping.has(i) })
   })
   undersized.sort((a, b) => STATUS_ORDER[a.status] - STATUS_ORDER[b.status] || a.target.box.y - b.target.box.y || a.target.box.x - b.target.box.x)
 
   const label = (target: MeasuredTarget) => target.name || target.selector || target.tag
-  const targets: TargetItem[] = undersized.slice(0, MAX_LISTED).map(({ target, status, conflicts: clash }, i) => ({
+  const targets: TargetItem[] = undersized.slice(0, MAX_LISTED).map(({ target, status, conflicts: clash, overlaps }, i) => ({
     index: i + 1,
     selector: target.selector,
     tag: target.tag,
@@ -60,6 +74,7 @@ export async function runTargetSize(page: Page): Promise<TargetsRun> {
     box: roundBox(target.box),
     status,
     conflicts: clash.slice(0, 3).map((j) => label(measured[j])),
+    ...(overlaps ? { hitArea: "overlaps" as const } : {}),
   }))
 
   const count = (status: TargetStatus) => undersized.filter((entry) => entry.status === status).length
@@ -76,6 +91,7 @@ export async function runTargetSize(page: Page): Promise<TargetsRun> {
       passBySpacing: count("spacing"),
       inline: count("inline"),
       userAgent: count("user-agent"),
+      pseudoHitAreas,
     },
   }
 }

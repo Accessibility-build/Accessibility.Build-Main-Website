@@ -88,7 +88,7 @@ const FAQS = [
   {
     question: "Does the checker count the clickable area or the visible size?",
     answer:
-      "The clickable area: the element's box as the browser lays it out, including padding. An icon that looks 16 pixels wide inside a button with 4 pixels of padding on each side is a 24 pixel target, and passes. A pseudo-element that extends the hit area beyond the box is not counted, so a target that relies on one may be reported as smaller than it is.",
+      "The clickable area: the element's box as the browser lays it out, including padding. An icon that looks 16 pixels wide inside a button with 4 pixels of padding on each side is a 24 pixel target, and passes. A transparent ::before or ::after that extends the hit area past the box counts too, unless it overlaps another target (overlapping area does not count) or a container clips it.",
   },
   {
     question: "What can it not check?",
@@ -305,8 +305,8 @@ export default function TargetSizeCheckerPage() {
                   <Link href="/recipes/invisible-hit-area" className={linkClass}>
                     invisible hit area recipe
                   </Link>
-                  . This checker measures each element&apos;s own box, so a hit area added with a pseudo-element still shows as
-                  undersized here: confirm those by hand.
+                  . This checker counts a hit area added with an absolutely positioned ::before or ::after, so a 16 pixel
+                  icon with a 24 pixel hit area passes here, unless the hit area overlaps a neighbour or a container clips it.
                 </p>
               </div>
             </section>
