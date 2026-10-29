@@ -161,12 +161,13 @@ export function Backfires() {
 
       <Case
         number="04"
-        title="Automated checkers cannot see it"
+        title="Most automated checkers cannot see it"
         why={
           <p>
-            axe, and most target size checkers including ours, measure the element&apos;s own box and do not add its{" "}
+            axe, and most target size checkers, measure the element&apos;s own box and do not add its{" "}
             <code className={code}>::before</code>. A button that really takes taps across 24px is reported as 16px, so expect a
-            flag and verify by hand. If the report has to come back clean, use padding with{" "}
+            flag and verify by hand. Our target size checker does count the pseudo-element, unless it overlaps a neighbour or a
+            container clips it. If every tool&apos;s report has to come back clean, use padding with{" "}
             <code className={code}>min-width</code> and <code className={code}>min-height</code> instead (W3C technique C42).
             Tools can measure that, but unlike the pseudo-element it takes up space in the layout.
           </p>
@@ -178,7 +179,7 @@ export function Backfires() {
               <X aria-hidden="true" className="h-3 w-3" />
             </button>
           </div>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Real target 24px. A checker sees a 16px box.</p>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Real target 24px. axe sees a 16px box; our checker sees 24px.</p>
         </Pane>
         <Pane kind="Fixed">
           <div className="flex h-32 items-center justify-center gap-2 rounded-xl bg-slate-50 dark:bg-slate-900 [&>*]:scale-[2.5]">
@@ -192,7 +193,7 @@ export function Backfires() {
               </span>
             </button>
           </div>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">The same look, padded to a 24px box that tools can measure.</p>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">The same look, padded to a 24px box that every tool can measure.</p>
         </Pane>
       </Case>
 

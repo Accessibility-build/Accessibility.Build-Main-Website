@@ -35,7 +35,10 @@ export function targetsHeadline(result: TargetsResult): string {
   if (totals.targets === 0) return "No visible pointer targets were found on this page."
   const parts = [`${plural(totals.targets, "target")} measured`, `${totals.undersized} under 24 by 24 pixels`]
   parts.push(totals.failing === 0 ? "none of them fail 2.5.8" : `${totals.failing} fail 2.5.8`)
-  return `${parts.join(", ")}.`
+  const extended = totals.pseudoHitAreas
+    ? ` ${plural(totals.pseudoHitAreas, "target reaches", "targets reach")} 24 pixels only through a ::before or ::after hit area, which counts.`
+    : ""
+  return `${parts.join(", ")}.${extended}`
 }
 
 export function focusAltText(result: FocusResult): string {

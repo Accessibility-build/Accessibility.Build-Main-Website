@@ -97,7 +97,7 @@ const faqs: FaqItem[] = [
   {
     question: "Why does my accessibility checker still flag the button?",
     answer:
-      "Most automated checkers, axe included, measure the element's own box and do not add its pseudo-elements. Verify the real target by hand, or use padding with min-width and min-height (W3C technique C42), which tools can measure but which takes space in the layout.",
+      "Most automated checkers, axe included, measure the element's own box and do not add its pseudo-elements. Our target size checker does count an absolutely positioned ::before or ::after, unless it overlaps another target or a container clips it. Elsewhere, verify the real target by hand, or use padding with min-width and min-height (W3C technique C42), which every tool can measure but which takes space in the layout.",
   },
 ]
 
@@ -288,7 +288,7 @@ export default function InvisibleHitAreaRecipe() {
                       </li>
                       <li>
                         The pseudo-element takes no space in the layout, so the design does not move. That is the whole point, and
-                        also why automated checkers miss it.
+                        also why most automated checkers miss it.
                       </li>
                       <li>
                         Keyboard users never hit targets; they need a visible focus ring. See{" "}
@@ -316,7 +316,7 @@ export default function InvisibleHitAreaRecipe() {
               <ol className="grid gap-4 md:grid-cols-2">
                 {[
                   "Turn on a temporary outline for ::before in DevTools and look at every icon button: the painted box is the target.",
-                  "Run the target size checker at phone width. Expect flags on pseudo-element hit areas and confirm those by hand.",
+                  "Run the target size checker at phone width. It counts pseudo-element hit areas; axe does not, so confirm its flags by hand.",
                   "Where icons sit close together, check that hit areas meet but never overlap.",
                   "Tap through on a real phone, including the corners of cards and the edges of dialogs.",
                   "Tab through with the keyboard: every icon button still needs a visible focus ring.",

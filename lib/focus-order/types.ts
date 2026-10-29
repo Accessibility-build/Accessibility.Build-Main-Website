@@ -131,6 +131,9 @@ export interface TargetItem {
   status: TargetStatus
   /** For failures: names of the nearby targets the 24 px circle touches. */
   conflicts: string[]
+  /** It has a ::before or ::after hit area, but that area overlaps another target, so only the
+   * element's own box was measured. */
+  hitArea?: "overlaps"
 }
 
 export interface TargetTotals {
@@ -141,6 +144,9 @@ export interface TargetTotals {
   passBySpacing: number
   inline: number
   userAgent: number
+  /** Targets that reach 24 by 24 pixels only through a ::before or ::after hit area. Absent in
+   * results from before hit areas were measured. */
+  pseudoHitAreas?: number
 }
 
 /** Target size can be measured at a desktop or a phone viewport; focus order always runs on desktop. */

@@ -175,6 +175,15 @@ export function TargetList({ targets, activeIndex, onHover, onShow }: { targets:
                       }}
                     />
                   )}
+                  {target.hitArea === "overlaps" && (
+                    <ProblemLine
+                      problem={{
+                        severity: "info",
+                        criterion: "2.5.8",
+                        message: "Its ::before or ::after hit area overlaps another target. Overlapping area does not count, so only the element's own box was measured.",
+                      }}
+                    />
+                  )}
                 </ul>
                 <ShowButton index={target.index} noun="target" onShow={onShow} />
               </div>

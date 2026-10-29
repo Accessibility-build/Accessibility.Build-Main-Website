@@ -55,6 +55,10 @@ export interface MeasuredTarget {
   ancestors: number[]
   /** Inside a fixed or sticky container (a header, a cookie banner): a separate layer over the page. */
   pinned: boolean
+  /** `box` includes a ::before or ::after hit area that reaches past the element. */
+  expanded: boolean
+  /** The element's own box, without any pseudo-element hit area. */
+  ownBox: Box
 }
 
 export interface PageHelpers {
@@ -612,6 +616,59 @@ export function installHelpers(key: string): void {
       const nativeControl = (el: Element) =>
         el instanceof HTMLInputElement || el instanceof HTMLSelectElement || el instanceof HTMLButtonElement || el instanceof HTMLTextAreaElement
 
+      // A transparent ::before or ::after that reaches past its element takes the pointer too, and
+      // WCAG measures the region that accepts the pointer. Only an absolutely positioned
+      // pseudo-element on a positioned element counts: its containing block is then the element, so
+      // its offsets can be resolved. The element's own overflow and every clipping ancestor cut it.
+      const px = (value: string) => parseFloat(value) || 0
+      const pseudoHitAreas = (el: Element, style: CSSStyleDeclaration, own: DOMRect) => {
+        const areas: { left: number; top: number; right: number; bottom: number }[] = []
+        if (style.display === "inline" || style.position === "static") return areas
+        const html = el as HTMLElement
+        // Offsets resolve before any transform; the element's rect is after it.
+        const scaleX = html.offsetWidth ? own.width / html.offsetWidth : 1
+        const scaleY = html.offsetHeight ? own.height / html.offsetHeight : 1
+        for (const which of ["::before", "::after"]) {
+          const pseudo = getComputedStyle(el, which)
+          if (pseudo.content === "none" || pseudo.content === "normal" || pseudo.display === "none") continue
+          if (pseudo.position !== "absolute" || pseudo.visibility === "hidden" || pseudo.pointerEvents === "none") continue
+          const offsetLeft = parseFloat(pseudo.left)
+          const offsetTop = parseFloat(pseudo.top)
+          let width = parseFloat(pseudo.width)
+          let height = parseFloat(pseudo.height)
+          if (![offsetLeft, offsetTop, width, height].every(Number.isFinite)) continue
+          if (pseudo.boxSizing !== "border-box") {
+            width += px(pseudo.paddingLeft) + px(pseudo.paddingRight) + px(pseudo.borderLeftWidth) + px(pseudo.borderRightWidth)
+            height += px(pseudo.paddingTop) + px(pseudo.paddingBottom) + px(pseudo.borderTopWidth) + px(pseudo.borderBottomWidth)
+          }
+          // Offsets are measured from the element's padding box.
+          let left = own.left + (px(style.borderLeftWidth) + offsetLeft) * scaleX
+          let top = own.top + (px(style.borderTopWidth) + offsetTop) * scaleY
+          let right = left + width * scaleX
+          let bottom = top + height * scaleY
+          for (let node: Element | null = el; node && node !== document.body && node !== document.documentElement; node = parentOf(node)) {
+            const clip = getComputedStyle(node)
+            const clipX = clip.overflowX !== "visible"
+            const clipY = clip.overflowY !== "visible"
+            if (clipX || clipY) {
+              // Overflow clips at the padding box, inside the border.
+              const bounds = node.getBoundingClientRect()
+              if (clipX) {
+                left = Math.max(left, bounds.left + px(clip.borderLeftWidth))
+                right = Math.min(right, bounds.right - px(clip.borderRightWidth))
+              }
+              if (clipY) {
+                top = Math.max(top, bounds.top + px(clip.borderTopWidth))
+                bottom = Math.min(bottom, bounds.bottom - px(clip.borderBottomWidth))
+              }
+            }
+            if (clip.position === "fixed") break
+          }
+          if (right - left >= 1 && bottom - top >= 1) areas.push({ left, top, right, bottom })
+        }
+        return areas
+      }
+
       const results = elements.map((el): MeasuredTarget => {
         const style = getComputedStyle(el)
         const own = el.getBoundingClientRect()
@@ -632,13 +689,23 @@ export function installHelpers(key: string): void {
             bottom = Math.max(bottom, rect.bottom)
           }
         }
-        const box = { x: left + window.scrollX, y: top + window.scrollY, width: right - left, height: bottom - top }
+        const ownBox = { x: left + window.scrollX, y: top + window.scrollY, width: right - left, height: bottom - top }
+        let expanded = false
+        for (const area of pseudoHitAreas(el, style, own)) {
+          if (area.left < left - 0.5 || area.top < top - 0.5 || area.right > right + 0.5 || area.bottom > bottom + 0.5) expanded = true
+          left = Math.min(left, area.left)
+          top = Math.min(top, area.top)
+          right = Math.max(right, area.right)
+          bottom = Math.max(bottom, area.bottom)
+        }
+        const box = expanded ? { x: left + window.scrollX, y: top + window.scrollY, width: right - left, height: bottom - top } : ownBox
         const ancestors: number[] = []
         for (let node = parentOf(el); node; node = parentOf(node)) {
           const index = indexOf.get(node)
           if (index !== undefined) ancestors.push(index)
         }
-        const small = box.width < minSize || box.height < minSize
+        // The own box matters too: the overlap rule in targets-run can fall back to it.
+        const small = box.width < minSize || box.height < minSize || (expanded && (ownBox.width < minSize || ownBox.height < minSize))
         let exempt: MeasuredTarget["exempt"] = null
         if (small) {
           if (style.display === "inline" && inSentence(el)) exempt = "inline"
@@ -656,6 +723,8 @@ export function installHelpers(key: string): void {
           exempt,
           ancestors,
           pinned: pinnedLayer(el),
+          expanded,
+          ownBox,
         }
       })
       ;(frame as HTMLIFrameElement | null)?.remove()
