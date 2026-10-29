@@ -696,7 +696,9 @@ export function CurbAssistant() {
                 onKeyDown={onInputKeyDown}
                 aria-describedby={hintId}
                 placeholder="Ask about accessibility or this page"
-                className="max-h-40 min-h-6 flex-1 resize-none bg-transparent text-sm leading-6 text-foreground placeholder:text-muted-foreground focus:outline-none"
+                // py-1.5 makes one line 36px, the send button's height, so the text sits level
+                // with the button's centre; the row is items-end, so longer drafts grow upwards.
+                className="max-h-40 min-h-9 flex-1 resize-none bg-transparent py-1.5 text-sm leading-6 text-foreground placeholder:text-muted-foreground focus:outline-none"
               />
               {streaming ? (
                 <button
