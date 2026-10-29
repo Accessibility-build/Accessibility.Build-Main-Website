@@ -450,6 +450,13 @@ export default function WCAG255Page() {
   padding: 14px 16px;   /* 16px text + 28px padding ≥ 44px */
 }`}</code>
             </pre>
+            <p className="mt-6 rounded-xl border border-slate-300 dark:border-slate-700 p-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+              <strong className="text-slate-900 dark:text-white">Try it live:</strong> the{" "}
+              <Link href="/recipes/invisible-hit-area" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+                invisible hit area recipe
+              </Link>{" "}
+              shows the 44px version, and why overlapping hit areas make AAA so hard in dense toolbars.
+            </p>
           </section>
 
           {/* Common failures */}

@@ -22,6 +22,7 @@ import { serviceStartingPrices } from "@/lib/service-pricing"
 import { getStaticBlogIndexPosts, type BlogIndexPost } from "@/lib/static-blog-posts"
 import { cn } from "@/lib/utils"
 import { recipeRoute, recipes } from "@/lib/recipes"
+import { RecipeArt } from "@/components/recipes/recipe-art"
 
 const portrait = "/images/authors/khushwant-parihar.jpeg"
 
@@ -385,15 +386,7 @@ export default async function HomeClientPage() {
                 key={recipe.slug}
                 className="relative grid overflow-hidden rounded-3xl border-2 border-foreground bg-background transition-shadow duration-300 hover:shadow-[8px_8px_0_0_hsl(var(--foreground))] focus-within:shadow-[8px_8px_0_0_hsl(var(--foreground))] sm:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]"
               >
-                <div
-                  className="flex min-h-44 items-center justify-center border-b-2 border-foreground sm:border-b-0 sm:border-r-2"
-                  style={{ background: `linear-gradient(105deg, ${recipe.art[0]} 0 50%, ${recipe.art[1]} 50% 100%)` }}
-                  aria-hidden="true"
-                >
-                  <span className="rounded-full bg-[#767676] px-6 py-3 font-bold text-white outline outline-2 outline-white [box-shadow:0_0_0_4px_#000]">
-                    Focus
-                  </span>
-                </div>
+                <RecipeArt recipe={recipe} className="min-h-44 border-b-2 border-foreground sm:border-b-0 sm:border-r-2" />
                 <div className="flex flex-col p-6">
                   <p className="font-mono text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                     Recipe No. {String(recipe.number).padStart(2, "0")}

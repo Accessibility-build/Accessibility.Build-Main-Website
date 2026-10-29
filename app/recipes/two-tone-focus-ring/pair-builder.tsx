@@ -2,7 +2,7 @@
 
 import { useId, useState, type CSSProperties } from "react"
 import { cn } from "@/lib/utils"
-import { CodeSample } from "./code-sample"
+import { CodeSample } from "@/components/recipes/code-sample"
 import { PAIR_MIN, formatRatio, normaliseHex, pairGuarantee, readableOn } from "./ring-math"
 import styles from "./rings.module.css"
 

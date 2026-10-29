@@ -1,0 +1,44 @@
+/*
+ * The invisible hit area recipe. Order matters: the page-wide focus ring comes first so the demo
+ * classes below can override it at the same specificity.
+ */
+
+/* Everything on this page uses recipe No. 01's two-tone focus ring. */
+.page :focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px #000;
+}
+
+/* The recipe: the button is the containing block, and a transparent ::before reaches past it on
+   every side. --hit-inset is negative: (target size - visible size) / 2. */
+.hit {
+  position: relative;
+}
+.hit::before {
+  content: "";
+  position: absolute;
+  inset: var(--hit-inset, -4px);
+  border-radius: inherit;
+}
+
+/* "Show hit areas": paint the invisible part so you can see it. */
+.reveal .hit::before {
+  background: rgb(251 191 36 / 0.3);
+  outline: 1px dashed #b45309;
+}
+:global(.dark) .reveal .hit::before {
+  background: rgb(251 191 36 / 0.25);
+  outline-color: #fcd34d;
+}
+
+/* Failure 04, fixed: draw the focus ring around the hit area rather than the icon. */
+.ringOnHit:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+.ringOnHit:focus-visible::before {
+  outline: 2px solid #fff;
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px #000;
+}
