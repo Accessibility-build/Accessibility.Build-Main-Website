@@ -36,7 +36,7 @@ export const config = {
     // Clerk's SameSite=Lax cookies are never sent or set, so its handshake
     // redirect (every first visit on a dev instance, reason dev-browser-missing)
     // loops and the iframe shows a browser error page. The widgets need no auth.
-    '/((?!_next|embed/|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    '/((?!_next|embed/|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest|mp4|vtt)).*)',
     // Always run for API routes
     '/(api|trpc)(.*)',
   ],

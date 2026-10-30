@@ -47,6 +47,7 @@ const core: SiteRoute[] = [
   { route: "/resources", label: "Resources", group: "Core", lastModified: "2026-08-13", priority: 0.85, changeFrequency: "weekly" },
   { route: "/desktop", label: "Desktop App", group: "Core", lastModified: "2026-10-29", priority: 0.7 },
   { route: "/desktop/privacy", label: "Mac App Privacy Policy", group: "Core", lastModified: "2026-10-29", priority: 0.3 },
+  { route: "/android/review", label: "Android App Walkthrough", group: "Core", lastModified: "2026-10-31", priority: 0.4 },
   { route: "/docs", label: "Developer Resources", group: "Core", lastModified: "2026-07-13", priority: 0.7 },
   { route: "/help", label: "Help Center", group: "Core", lastModified: "2026-07-13", priority: 0.7 },
   { route: "/sitemap-page", label: "Sitemap", group: "Core", lastModified: "2026-07-09", priority: 0.3 },

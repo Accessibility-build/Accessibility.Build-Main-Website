@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:08.000
+Build with Accessibility: opening the signed Android 1.0.0 release.
+
+2
+00:00:08.000 --> 00:00:22.000
+The full disclosure explains screen content, screenshots, local storage, and auditing. Continue is disabled until consent.
+
+3
+00:00:22.000 --> 00:00:27.000
+Choose Not now. The auditor opens with screen access disabled.
+
+4
+00:00:27.000 --> 00:00:32.000
+Open Accessibility settings returns to the disclosure. Consent is still unchecked.
+
+5
+00:00:32.000 --> 00:00:54.000
+Agree to screen access, then open Android Accessibility settings and select Build with Accessibility.
+
+6
+00:00:54.000 --> 00:01:01.000
+Android asks for confirmation before enabling the accessibility service.
+
+7
+00:01:01.000 --> 00:01:14.000
+Choose the optional floating capture control, then open a synthetic test screen and trigger a capture.
+
+8
+00:01:14.000 --> 00:01:21.000
+The service captures screen evidence and runs accessibility checks locally.
+
+9
+00:01:21.000 --> 00:01:29.000
+The predicted reading order is approximate. Actual TalkBack testing remains necessary.
+
+10
+00:01:29.000 --> 00:01:37.000
+Review captured conditions and findings with confidence, severity, and fix guidance.
+
+11
+00:01:37.000 --> 00:01:44.000
+Finding details identify the affected control in the captured screen.
+
+12
+00:01:44.000 --> 00:01:50.000
+Use the manual checklist for tests that automation cannot complete.
+
+13
+00:01:50.000 --> 00:01:54.000
+Saved sessions keep audit captures and results together.
+
+14
+00:01:54.000 --> 00:01:59.200
+Keyboard focus is visibly outlined. Audits stay on the device until the user exports them.
