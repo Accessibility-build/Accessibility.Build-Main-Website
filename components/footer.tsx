@@ -104,6 +104,7 @@ const companyLinks: FooterLink[] = [
 const legalLinks: FooterLink[] = [
   { href: "/accessibility", label: "Accessibility Statement", icon: Accessibility },
   { href: "/privacy", label: "Privacy Policy", icon: LockKeyhole },
+  { href: "/android/privacy", label: "Android App Privacy", icon: LockKeyhole },
   { href: "/cookies", label: "Cookie Policy", icon: Cookie },
   { href: "/terms", label: "Terms of Service", icon: ScrollText },
   { href: "/refund", label: "Refund Policy", icon: ReceiptText },

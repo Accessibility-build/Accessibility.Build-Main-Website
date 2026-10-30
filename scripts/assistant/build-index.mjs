@@ -12,8 +12,9 @@
 // because the widget sends that page's text with each question.
 import fs from "node:fs"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..")
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..")
 const BUILD_DIR = path.join(ROOT, ".next/server/app")
 const OUT_FILE = path.join(ROOT, "lib/assistant/site-index.json")
 
@@ -124,7 +125,7 @@ function splitLong(text) {
 function routeFor(file, html) {
   const canonical = html.match(/<link rel="canonical" href="https:\/\/accessibility\.build([^"]*)"/i)
   if (canonical) return canonical[1].replace(/\/$/, "") || "/"
-  const rel = path.relative(BUILD_DIR, file).replace(/\.html$/, "")
+  const rel = path.relative(BUILD_DIR, file).split(path.sep).join("/").replace(/\.html$/, "")
   return rel === "index" ? "/" : `/${rel}`
 }
 

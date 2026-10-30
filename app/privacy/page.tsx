@@ -43,6 +43,13 @@ export default function PrivacyPage() {
             This policy explains what Accessibility.build processes, why it is needed, which providers may receive it, and how to contact the responsible business owner.
           </p>
           <p className="mt-4 text-sm text-muted-foreground">Last updated: {privacyLastUpdated}</p>
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">
+            Using Build with Accessibility for Android? Read the{" "}
+            <Link href="/android/privacy" className="font-medium text-primary underline underline-offset-2 hover:decoration-2">
+              Android app privacy policy
+            </Link>{" "}
+            for its offline screen access, local storage, and export practices.
+          </p>
         </header>
 
         <section className="grid gap-6 border-b py-10 md:grid-cols-3" aria-label="Privacy summary">

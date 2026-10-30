@@ -263,6 +263,7 @@ const services: SiteRoute[] = [
 const legal: SiteRoute[] = [
   { route: "/accessibility", label: "Accessibility Statement", group: "Legal", lastModified: "2026-09-02", priority: 0.7, changeFrequency: "yearly" },
   { route: "/privacy", label: "Privacy Policy", group: "Legal", lastModified: "2026-10-28", priority: 0.4, changeFrequency: "yearly" },
+  { route: "/android/privacy", label: "Android App Privacy Policy", group: "Legal", lastModified: "2026-10-31", priority: 0.3, changeFrequency: "yearly" },
   { route: "/terms", label: "Terms of Service", group: "Legal", lastModified: "2026-07-12", priority: 0.4, changeFrequency: "yearly" },
   { route: "/cookies", label: "Cookie Policy", group: "Legal", lastModified: "2026-07-30", priority: 0.4, changeFrequency: "yearly" },
   { route: "/refund", label: "Refund Policy", group: "Legal", lastModified: "2026-09-02", priority: 0.4, changeFrequency: "yearly" },
