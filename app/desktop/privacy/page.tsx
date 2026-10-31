@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { createMetadata } from "@/lib/metadata"
 import { company } from "@/lib/company"
@@ -20,6 +21,8 @@ const linkClass = "font-medium text-primary underline underline-offset-2 hover:d
 
 export default function DesktopPrivacyPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Desktop App", url: "https://accessibility.build/desktop" }, { name: "Mac App Privacy Policy", url: "https://accessibility.build/desktop/privacy" }]} />
     <div className="container-wide py-12 lg:py-16">
       <article className="mx-auto max-w-3xl">
         <header className="border-b pb-8">
@@ -100,5 +103,6 @@ export default function DesktopPrivacyPage() {
         </div>
       </article>
     </div>
+    </>
   )
 }

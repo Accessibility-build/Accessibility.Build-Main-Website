@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { Cookie, ShieldCheck } from "lucide-react"
 import { CookieSettingsButton } from "@/components/privacy/analytics-consent"
@@ -14,6 +15,8 @@ export const metadata = createMetadata({
 
 export default function CookiesPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Cookie Policy", url: "https://accessibility.build/cookies" }]} />
     <div className="container-wide py-12 lg:py-16">
       <article className="mx-auto max-w-3xl">
         <header className="border-b pb-8">
@@ -103,5 +106,6 @@ export default function CookiesPage() {
         </div>
       </article>
     </div>
+    </>
   )
 }

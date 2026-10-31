@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { BookCheck, Bot, FileSearch, Scale } from "lucide-react"
 import { company, legalLastUpdated } from "@/lib/company"
@@ -21,6 +22,8 @@ const commitments = [
 
 export default function EditorialPolicyPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Editorial Policy", url: "https://accessibility.build/editorial-policy" }]} />
     <div className="container-wide py-12 lg:py-16">
       <article className="mx-auto max-w-4xl">
         <header className="border-b pb-8">
@@ -80,5 +83,6 @@ export default function EditorialPolicyPage() {
         </div>
       </article>
     </div>
+    </>
   )
 }

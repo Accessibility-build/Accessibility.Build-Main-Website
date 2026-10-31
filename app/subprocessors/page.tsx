@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { ExternalLink, ServerCog } from "lucide-react"
 import { subprocessors } from "@/lib/authority-content"
 import { company, subprocessorsLastUpdated } from "@/lib/company"
@@ -14,6 +15,8 @@ export const metadata = createMetadata({
 
 export default function SubprocessorsPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Subprocessor Register", url: "https://accessibility.build/subprocessors" }]} />
     <div className="container-wide py-12 lg:py-16">
       <div className="mx-auto max-w-6xl">
         <header className="border-b pb-8">
@@ -72,5 +75,6 @@ export default function SubprocessorsPage() {
         </section>
       </div>
     </div>
+    </>
   )
 }

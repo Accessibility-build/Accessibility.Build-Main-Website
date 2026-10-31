@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import type { Metadata } from "next";
 import Link from "next/link";
 import { clampDescription } from "@/lib/metadata"
@@ -259,6 +260,8 @@ const plannedTools = [
 
 function InDevelopmentPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Desktop App", url: "https://accessibility.build/desktop" }]} />
     <div className="mx-auto max-w-5xl px-6 py-16">
       <section className="text-center">
         <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
@@ -327,5 +330,6 @@ function InDevelopmentPage() {
         run in your browser.
       </section>
     </div>
+    </>
   );
 }

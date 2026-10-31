@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { Database, Eye, LockKeyhole, ShieldCheck } from "lucide-react"
 import { createMetadata } from "@/lib/metadata"
@@ -31,6 +32,8 @@ const summaries = [
 
 export default function PrivacyPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Privacy Policy", url: "https://accessibility.build/privacy" }]} />
     <div className="container-wide py-12 lg:py-16">
       <article className="mx-auto max-w-4xl">
         <header className="border-b pb-8">
@@ -203,5 +206,6 @@ export default function PrivacyPage() {
         </div>
       </article>
     </div>
+    </>
   )
 }

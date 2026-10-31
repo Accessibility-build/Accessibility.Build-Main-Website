@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -75,7 +76,7 @@ export default function AboutPage() {
       url: `${company.website}/authors/khushwant-parihar`,
       image: `${company.website}/images/authors/khushwant-parihar.jpeg`,
       jobTitle: "Founder and Accessibility Consultant",
-      sameAs: [company.founderWebsite, company.founderLinkedin],
+      sameAs: [company.founderWebsite, company.founderLinkedin, company.founderGithub],
       worksFor: { "@id": "https://accessibility.build/#organization" },
       knowsAbout: [
         "WCAG 2.2",
@@ -89,6 +90,8 @@ export default function AboutPage() {
   }
 
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "About Accessibility.build", url: "https://accessibility.build/about" }]} />
     <div className="bg-background">
       <script
         type="application/ld+json"
@@ -234,5 +237,6 @@ export default function AboutPage() {
         </aside>
       </section>
     </div>
+    </>
   )
 }

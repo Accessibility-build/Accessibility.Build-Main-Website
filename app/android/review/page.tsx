@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { createMetadata } from "@/lib/metadata"
 
@@ -29,6 +30,8 @@ const transcript = [
 
 export default function AndroidReviewPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Build with Accessibility for Android: Release walkthrough", url: "https://accessibility.build/android/review" }]} />
     <div className="container-wide py-12 lg:py-16">
       <article className="mx-auto max-w-3xl">
         <header className="border-b pb-8">
@@ -42,6 +45,22 @@ export default function AndroidReviewPage() {
             Android 11 and later · 2 minutes · Recorded <time dateTime="2026-10-31">31 October 2026</time>
           </p>
         </header>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "VideoObject",
+              name: "Build with Accessibility for Android: Release walkthrough",
+              description: "How version 1.0.0 explains screen access, respects consent choices, and captures evidence for an accessibility audit.",
+              thumbnailUrl: `https://accessibility.build${mediaPath}/poster-1.0.0.png`,
+              contentUrl: `https://accessibility.build${mediaPath}/walkthrough-1.0.0.mp4`,
+              uploadDate: "2026-10-31",
+              duration: "PT1M59S",
+            }),
+          }}
+        />
 
         <section className="mt-8" aria-labelledby="video-heading">
           <h2 id="video-heading" className="text-2xl font-semibold">Watch the app in use</h2>
@@ -94,5 +113,6 @@ export default function AndroidReviewPage() {
         </aside>
       </article>
     </div>
+    </>
   )
 }

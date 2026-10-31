@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import { ArrowRight, Coins, Crown, HelpCircle, Shield, Users } from "lucide-react"
@@ -146,6 +147,8 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
   const checkoutPacks = catalog.filter((pack) => pack.checkoutEnabled)
 
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Pricing", url: "https://accessibility.build/pricing" }]} />
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
@@ -406,5 +409,6 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
         </div>
       </div>
     </div>
+    </>
   )
 }

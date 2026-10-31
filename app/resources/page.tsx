@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -421,6 +422,8 @@ const getPopularityBadge = (popularity?: string) => {
 
 export default function ResourcesPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Resources", url: "https://accessibility.build/resources" }]} />
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/10">
       <div className="container-wide py-12 md:py-16">
         {/* Header Section */}
@@ -647,5 +650,6 @@ export default function ResourcesPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }

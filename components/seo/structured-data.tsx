@@ -469,7 +469,10 @@ export function ArticleStructuredData({
     "dateModified": dateModified,
     "image": {
       "@type": "ImageObject",
-      "url": image,
+      // The shared default looks the same on every page, so use the generated card instead.
+      "url": !image || image.endsWith("/og-image.png")
+        ? `https://accessibility.build/api/og?title=${encodeURIComponent(headline)}`
+        : image,
       "width": 1200,
       "height": 630
     },

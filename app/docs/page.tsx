@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import type { Metadata } from "next"
 import Link from "next/link"
 import {
@@ -67,6 +68,8 @@ const resources = [
 
 export default function DeveloperResourcesPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Developer Resources", url: "https://accessibility.build/docs" }]} />
     <div className="bg-background">
       <header className="border-b bg-slate-950 text-white">
         <div className="container-wide py-16 lg:py-20">
@@ -143,5 +146,6 @@ export default function DeveloperResourcesPage() {
         </section>
       </div>
     </div>
+    </>
   )
 }

@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import type { Metadata } from "next"
 import { RefreshCcw, Shield, Clock, CheckCircle, AlertCircle, Mail, FileText, CreditCard } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -44,6 +45,8 @@ export const metadata: Metadata = {
 
 export default function RefundPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Refund Policy", url: "https://accessibility.build/refund" }]} />
     <div className="container-wide py-12">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
@@ -531,5 +534,6 @@ export default function RefundPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }

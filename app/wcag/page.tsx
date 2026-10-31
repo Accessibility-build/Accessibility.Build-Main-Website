@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { createMetadata } from "@/lib/metadata"
 import { wcagCriteria, type SuccessCriterion } from "@/lib/wcag-data"
@@ -138,6 +139,8 @@ export default function WCAGIndexPage() {
   const levelAAACount = wcagCriteria.filter((sc) => sc.level === "AAA").length
 
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "WCAG Success Criteria Hub", url: "https://accessibility.build/wcag" }]} />
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-950">
       <div className="container-wide py-12">
         {/* Back Navigation */}
@@ -288,5 +291,6 @@ export default function WCAGIndexPage() {
         </Card>
       </div>
     </div>
+    </>
   )
 }

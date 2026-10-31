@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Image from "next/image"
 import Link from "next/link"
 import { Award, ArrowRight, ExternalLink, MapPin, ScanSearch, Wrench } from "lucide-react"
@@ -61,7 +62,7 @@ export default function KhushwantPariharAuthorPage() {
         "@type": "Place",
         name: businessLocation,
       },
-      sameAs: [company.founderWebsite, company.founderLinkedin],
+      sameAs: [company.founderWebsite, company.founderLinkedin, company.founderGithub],
       worksFor: { "@id": `${company.website}/#organization` },
       knowsAbout: [
         "WCAG 2.2",
@@ -77,6 +78,8 @@ export default function KhushwantPariharAuthorPage() {
   }
 
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Khushwant Parihar", url: "https://accessibility.build/authors/khushwant-parihar" }]} />
     <div className="bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
 
@@ -255,5 +258,6 @@ export default function KhushwantPariharAuthorPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }
