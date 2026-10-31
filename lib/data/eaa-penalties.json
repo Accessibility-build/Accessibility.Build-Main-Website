@@ -1,0 +1,1031 @@
+{
+  "checkedOn": "2026-10-31",
+  "states": [
+    {
+      "code": "AT",
+      "name": "Austria",
+      "law": "Barrierefreiheitsgesetz (BaFG), BGBl. I Nr. 76/2023",
+      "lawUrl": "https://ris.bka.gv.at/eli/bgbl/i/2023/76/P36/NOR40254396",
+      "authorities": "Sozialministeriumservice (s.36 BaFG)",
+      "authoritySource": "https://ogd.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40254396/NOR40254396.xml",
+      "routes": [
+        {
+          "scope": "Placing non-compliant products on the market, or offering or providing a non-compliant service (s.36(1))",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 80,000; EUR 50,000 for micro, small and medium enterprises",
+          "provision": "s.36(1) BaFG",
+          "quote": "Eine Verwaltungsübertretung begeht und ist vom Sozialministeriumservice mit einer Geldstrafe bis zu 80 000 € zu bestrafen",
+          "translation": "An administrative offence is committed by, and the Sozialministeriumservice shall punish with a fine of up to EUR 80,000",
+          "sourceUrl": "https://ogd.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40254396/NOR40254396.xml",
+          "crossReference": null,
+          "status": "verified",
+          "note": "Read via the RIS open data server because the main RIS site showed a security check."
+        },
+        {
+          "scope": "Conformity assessment, information, identification, instructions and corrective measure breaches (s.36(2))",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 40,000; EUR 25,000 for micro, small and medium enterprises",
+          "provision": "s.36(2) BaFG",
+          "quote": "mit einer Geldstrafe bis zu 40 000 € zu bestrafen",
+          "translation": "to be punished with a fine of up to EUR 40,000",
+          "sourceUrl": "https://ogd.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40254396/NOR40254396.xml",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "Record keeping, notification and cooperation breaches (s.36(3))",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 16,000; EUR 10,000 for micro, small and medium enterprises",
+          "provision": "s.36(3) BaFG",
+          "quote": "mit einer Geldstrafe bis zu 16 000 € zu bestrafen",
+          "translation": "to be punished with a fine of up to EUR 16,000",
+          "sourceUrl": "https://ogd.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40254396/NOR40254396.xml",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        }
+      ]
+    },
+    {
+      "code": "BE",
+      "name": "Belgium",
+      "law": "Loi du 5 novembre 2023 modifiant plusieurs livres du Code de droit economique (Moniteur belge 28 November 2023, numac 2023046827), inserting arts XV.99/1 and XV.101/1 CDE",
+      "lawUrl": "https://etaamb.openjustice.be/fr/loi-du-05-novembre-2023_n2023046827.html",
+      "authorities": "Not verified in full. FPS Economy agents under arts XV.2 and XV.60/4 CDE are named in the law text read; other sector bodies not checked",
+      "authoritySource": "https://etaamb.openjustice.be/fr/loi-du-05-novembre-2023_n2023046827.html",
+      "routes": [
+        {
+          "scope": "Service providers: breach of arts VIII.59 to VIII.62 CDE. Sanction level 2, or level 3 in bad faith",
+          "penaltyType": "criminal fine",
+          "maximum": "FPS Economy states up to EUR 200,000 or 6% of annual turnover for the gravest breaches. The statutory level amounts in art. XV.70 CDE were not read",
+          "provision": "art. XV.101/1 CDE, level amounts in art. XV.70 CDE",
+          "quote": "Sont punis d'une sanction de niveau 3, ceux qui, de mauvaise foi, commettent une infraction aux articles VIII.59 à VIII.62.",
+          "translation": "Those who in bad faith commit an offence against articles VIII.59 to VIII.62 are punished with a level 3 sanction.",
+          "sourceUrl": "https://etaamb.openjustice.be/fr/loi-du-05-novembre-2023_n2023046827.html",
+          "crossReference": "art. XV.70 CDE at Justel https://www.ejustice.just.fgov.be/eli/loi/2013/02/28/2013A11134/justel could not be read; FPS release https://news.economie.fgov.be/251714-directive-sur-l-accessibilite-un-pas-en-avant-pour-une-societe-plus-inclusive/",
+          "status": "partial",
+          "note": "Law text read only on etaamb, a private mirror of the Moniteur. ejustice returned a JavaScript challenge page  and an empty page in the browser. The figure is the regulator summary, not the Code. The summary says administrative sanctions while art. XV.70 levels are penal, and whether surcharges (decimes additionnels) explain EUR 200,000 was not checked. Art. XV.62/7 allows administrative fines for these offences."
+        },
+        {
+          "scope": "Products: breach of royal decrees made under art. VIII.57 CDE. Sanction level 2, or level 3 in bad faith",
+          "penaltyType": "criminal fine",
+          "maximum": null,
+          "provision": "art. XV.99/1 CDE",
+          "quote": "Sont punis d'une sanction de niveau 2, ceux qui commettent une infraction aux arrêtés pris en exécution de l'article VIII.57.",
+          "translation": "Those who commit an offence against decrees made under article VIII.57 are punished with a level 2 sanction.",
+          "sourceUrl": "https://etaamb.openjustice.be/fr/loi-du-05-novembre-2023_n2023046827.html",
+          "crossReference": "art. XV.70 CDE not read",
+          "status": "partial",
+          "note": "Level amounts not read at an official source. Financial services changes under the law of 2 August 2002 not reviewed."
+        }
+      ]
+    },
+    {
+      "code": "BG",
+      "name": "Bulgaria",
+      "law": "Zakon za iziskvaniyata za dostapnost na produkti i uslugi, State Gazette no. 31 of 11 April 2025",
+      "lawUrl": "https://kzp.bg/upload/52521/ZAKON_za_iziskvaniqta_za_dostypnost_na_produkti_i_uslugi.pdf",
+      "authorities": "State Agency for Metrological and Technical Surveillance (products, art. 90). Services: bodies listed in art. 54, including the Communications Regulation Commission, Council for Electronic Media and transport bodies",
+      "authoritySource": "https://kzp.bg/upload/52521/ZAKON_za_iziskvaniqta_za_dostypnost_na_produkti_i_uslugi.pdf",
+      "routes": [
+        {
+          "scope": "Services: breach of a Chapter Three duty with no other penalty (art. 89)",
+          "penaltyType": "administrative fine",
+          "maximum": "Property sanction BGN 20,000, repeat BGN 40,000; fine on natural persons BGN 10,000, repeat BGN 20,000",
+          "provision": "art. 89",
+          "quote": "се налага глоба от 1500 до 10 000 лв. или имуществена санкция от 3000 до 20 000 лв.",
+          "translation": "a fine of BGN 1,500 to 10,000 or a property sanction of BGN 3,000 to 20,000 is imposed",
+          "sourceUrl": "https://kzp.bg/upload/52521/ZAKON_za_iziskvaniqta_za_dostypnost_na_produkti_i_uslugi.pdf",
+          "crossReference": null,
+          "status": "partial",
+          "note": "Text read is in leva as published in 2025. Bulgaria moved to the euro on 1 January 2026; no consolidated euro version of this act was read, so check the current wording before publishing. Copy hosted by the Consumer Protection Commission, not the State Gazette. Art. 86 (breach of art. 3 by a service provider) is lower: property sanction BGN 5,000, repeat BGN 10,000."
+        },
+        {
+          "scope": "Products: manufacturer or importer placing a non-compliant product on the market (art. 73)",
+          "penaltyType": "administrative fine",
+          "maximum": "Property sanction BGN 25,000, repeat BGN 50,000; fine on natural persons BGN 5,000, repeat BGN 10,000",
+          "provision": "art. 73",
+          "quote": "имуществена санкция от 5000 до 25 000 лв.",
+          "translation": "a property sanction of BGN 5,000 to 25,000",
+          "sourceUrl": "https://kzp.bg/upload/52521/ZAKON_za_iziskvaniqta_za_dostypnost_na_produkti_i_uslugi.pdf",
+          "crossReference": null,
+          "status": "partial",
+          "note": "Text read is in leva as published in 2025. Bulgaria moved to the euro on 1 January 2026; no consolidated euro version of this act was read, so check the current wording before publishing. Copy hosted by the Consumer Protection Commission, not the State Gazette."
+        }
+      ]
+    },
+    {
+      "code": "HR",
+      "name": "Croatia",
+      "law": "Zakon o zahtjevima za pristupacnost proizvoda i usluga, NN 89/2025",
+      "lawUrl": "https://narodne-novine.nn.hr/clanci/sluzbeni/2025_06_89_1231.html",
+      "authorities": "Products: HAKOM electronic communications inspectors for radio equipment, State Inspectorate market inspectors otherwise (art. 22). Services: sector bodies in art. 25, including HAKOM, Agency for Electronic Media, Croatian Civil Aviation Agency, Croatian National Bank and HANFA",
+      "authoritySource": "https://narodne-novine.nn.hr/clanci/sluzbeni/2025_06_89_1231.html",
+      "routes": [
+        {
+          "scope": "Service providers that are legal persons (art. 36); manufacturers and authorised representatives that are legal persons (arts 32, 33)",
+          "penaltyType": "other",
+          "maximum": "EUR 132,720 (misdemeanour fine); responsible person or sole trader EUR 6,630",
+          "provision": "arts 32, 33, 36",
+          "quote": "Novčanom kaznom od 6630,00 do 132.720,00 eura kaznit će se za prekršaj pružatelj usluge koji je pravna osoba",
+          "translation": "A service provider that is a legal person shall be punished for a misdemeanour with a fine of EUR 6,630 to 132,720",
+          "sourceUrl": "https://narodne-novine.nn.hr/clanci/sluzbeni/2025_06_89_1231.html",
+          "crossReference": null,
+          "status": "verified",
+          "note": "Misdemeanour (prekrsaj) fine. As published in the gazette; later amendments not searched."
+        },
+        {
+          "scope": "Importers that are legal persons (art. 34)",
+          "penaltyType": "other",
+          "maximum": "EUR 66,360 (misdemeanour fine)",
+          "provision": "art. 34",
+          "quote": "Novčanom kaznom od 3310,00 do 66.360,00 eura kaznit će se za prekršaj uvoznik koji je pravna osoba",
+          "translation": "An importer that is a legal person shall be punished for a misdemeanour with a fine of EUR 3,310 to 66,360",
+          "sourceUrl": "https://narodne-novine.nn.hr/clanci/sluzbeni/2025_06_89_1231.html",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "Distributors that are legal persons (art. 35)",
+          "penaltyType": "other",
+          "maximum": "EUR 13,270 (misdemeanour fine)",
+          "provision": "art. 35",
+          "quote": "Novčanom kaznom od 1990,00 do 13.270,00 eura kaznit će se za prekršaj distributer koji je pravna osoba",
+          "translation": "A distributor that is a legal person shall be punished for a misdemeanour with a fine of EUR 1,990 to 13,270",
+          "sourceUrl": "https://narodne-novine.nn.hr/clanci/sluzbeni/2025_06_89_1231.html",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        }
+      ]
+    },
+    {
+      "code": "CY",
+      "name": "Cyprus",
+      "law": "O peri tis Prosvasimotitas Proionton kai Ypiresion Nomos tou 2024, 57(I)/2024",
+      "lawUrl": "https://cylaw.org/nomoi/enop/non-ind/2024_1_57/full.html",
+      "authorities": "Deputy Minister of Social Welfare as competent authority, plus accessibility surveillance authorities designated under art. 3(3)",
+      "authoritySource": "https://cylaw.org/nomoi/enop/non-ind/2024_1_57/full.html",
+      "routes": [
+        {
+          "scope": "Administrative route: infringements listed in art. 35, including making available a non-compliant product or service",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 10,000; later infringement EUR 20,000; continuing infringement EUR 500 per day",
+          "provision": "arts 35, 36",
+          "quote": "διοικητικό πρόστιμο το οποίο δεν υπερβαίνει τις δέκα χιλιάδες ευρώ (€10.000)",
+          "translation": "an administrative fine not exceeding ten thousand euro (EUR 10,000)",
+          "sourceUrl": "https://cylaw.org/nomoi/enop/non-ind/2024_1_57/full.html",
+          "crossReference": null,
+          "status": "partial",
+          "note": "Read on CyLaw, run by the Cyprus Bar Association, not the official gazette. No official copy was opened."
+        },
+        {
+          "scope": "Criminal route: art. 38 offences, including making available a non-compliant product or service",
+          "penaltyType": "criminal fine",
+          "maximum": "EUR 20,000 on first conviction, EUR 30,000 on later conviction; imprisonment up to 2 or 3 years also possible",
+          "provision": "art. 38",
+          "quote": "σε χρηματική ποινή που δεν υπερβαίνει τις είκοσι χιλιάδες ευρώ (€20.000)",
+          "translation": "to a fine not exceeding twenty thousand euro (EUR 20,000)",
+          "sourceUrl": "https://cylaw.org/nomoi/enop/non-ind/2024_1_57/full.html",
+          "crossReference": null,
+          "status": "partial",
+          "note": "Read on CyLaw, run by the Cyprus Bar Association, not the official gazette. No official copy was opened."
+        }
+      ]
+    },
+    {
+      "code": "CZ",
+      "name": "Czechia",
+      "law": "Zakon c. 424/2023 Sb. o pozadavcich na pristupnost nekterych vyrobku a sluzeb",
+      "lawUrl": "https://e-sbirka.gov.cz/sb/2023/424",
+      "authorities": "Czech Trade Inspection (products and most services); Czech Telecommunication Office, Council for Radio and Television Broadcasting, regional authorities, Rail Authority, Civil Aviation Authority, State Navigation Administration and municipal bodies for their sectors (s.19)",
+      "authoritySource": "https://www.zakonyprolidi.cz/cs/2023-424",
+      "routes": [
+        {
+          "scope": "Service provider: service not meeting requirements, no corrective measure, ignoring a s.24 measure (s.25(7)(a), (b), (l)); product top tier offences",
+          "penaltyType": "other",
+          "maximum": "CZK 10,000,000; lower tiers CZK 5,000,000, 2,000,000 and 1,000,000 by offence",
+          "provision": "s.25(8)",
+          "quote": "10 000 000 Kč, jde-li o přestupek podle odstavce 2 písm. a) nebo g)",
+          "translation": "CZK 10,000,000, if it is an offence under paragraph 2(a) or (g)",
+          "sourceUrl": "https://e-sbirka.gov.cz/sb/2023/424",
+          "crossReference": null,
+          "status": "verified",
+          "note": "Administrative offence (prestupek). Read in the browser on e-Sbirka, version 1 July 2025; the quoted line also covers s.25(7)(a), (b) and (l). Authority list (s.19) was read on a private publisher copy."
+        }
+      ]
+    },
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "law": "Lov nr 801 af 07/06/2022 om tilgaengelighedskrav for produkter og tjenester",
+      "lawUrl": "https://www.retsinformation.dk/eli/lta/2022/801",
+      "authorities": "Sikkerhedsstyrelsen (products and services in s.1(2) nos 2, 4 to 6), Energistyrelsen (electronic communications), Trafikstyrelsen and Sofartsstyrelsen (passenger transport) (s.45)",
+      "authoritySource": "https://www.retsinformation.dk/eli/lta/2022/801",
+      "routes": [
+        {
+          "scope": "Breach of product and service duties, including ss.34 to 37 for service providers; companies liable under the Criminal Code",
+          "penaltyType": "criminal fine",
+          "maximum": "No amount or maximum stated in the act: \"boede\" (fine) set under general criminal law",
+          "provision": "s.57",
+          "quote": "Medmindre højere straf er forskyldt efter anden lovgivning, straffes med bøde den, der",
+          "translation": "Unless a higher penalty is due under other legislation, a fine is imposed on anyone who",
+          "sourceUrl": "https://www.retsinformation.dk/eli/lta/2022/801",
+          "crossReference": null,
+          "status": "verified",
+          "note": "Read in the browser. The site lists a later change (Lov nr 637 of 11/06/2024, s.4), which was not opened."
+        }
+      ]
+    },
+    {
+      "code": "EE",
+      "name": "Estonia",
+      "law": "Toote ja teenuse ligipaasetavuse seadus (title per a community list; official text not opened)",
+      "lawUrl": "https://www.riigiteataja.ee/en/tolge/pdf/524082022008",
+      "authorities": "Not verified",
+      "authoritySource": null,
+      "routes": [
+        {
+          "scope": "All routes",
+          "penaltyType": "other",
+          "maximum": null,
+          "provision": null,
+          "quote": null,
+          "translation": null,
+          "sourceUrl": null,
+          "crossReference": null,
+          "status": "not_verified",
+          "note": "Riigi Teataja blocked automated access, so the text was not read. Riigikogu downloads also returned 403. A community list points to s.20 of the act with amounts unknown."
+        }
+      ]
+    },
+    {
+      "code": "FI",
+      "name": "Finland",
+      "law": "Laki digitaalisten palvelujen tarjoamisesta 306/2019 as amended by 104/2023 and 606/2024 (services); Laki eraiden tuotteiden esteettomyysvaatimuksista 102/2023 (products)",
+      "lawUrl": "https://www.finlex.fi/fi/lainsaadanto/2019/306",
+      "authorities": "Liikenne- ja viestintavirasto (Traficom) for digital services under chapters 3 and 3 a (s.12)",
+      "authoritySource": "https://www.finlex.fi/fi/lainsaadanto/2019/306",
+      "routes": [
+        {
+          "scope": "Digital services: order to comply, supported by a conditional fine (uhkasakko)",
+          "penaltyType": "coercive penalty",
+          "maximum": "No amount or maximum stated in s.14; amount set case by case under the Uhkasakkolaki",
+          "provision": "s.14 Act 306/2019",
+          "quote": "Valvontaviranomainen voi asettaa uhkasakon",
+          "translation": "The supervisory authority may impose a conditional fine",
+          "sourceUrl": "https://www.finlex.fi/fi/lainsaadanto/2019/306",
+          "crossReference": "Uhkasakkolaki 1113/1990 s.6 https://www.finlex.fi/fi/lainsaadanto/1990/1113",
+          "status": "partial",
+          "note": "Only s.6 of the Uhkasakkolaki was read in full, so absence of any cap in that act is not confirmed. Sector law for other services, such as electronic communications, not checked. Read in the browser."
+        },
+        {
+          "scope": "Products: measures under the Market Surveillance Act, and CE marking offence",
+          "penaltyType": "other",
+          "maximum": "No amount stated: conditional fine under Act 1137/2016; \"sakko\" (criminal fine) under Act 187/2010",
+          "provision": "s.18 Act 102/2023",
+          "quote": "Markkinavalvontalain mukaisista toimenpiteistä säädetään mainitun lain 3 luvussa.",
+          "translation": "Measures under the Market Surveillance Act are laid down in chapter 3 of that act.",
+          "sourceUrl": "https://opendata.finlex.fi/finlex/avoindata/v1/akn/fi/act/statute-consolidated/2023/102/fin@",
+          "crossReference": "Act 1137/2016 https://opendata.finlex.fi/finlex/avoindata/v1/akn/fi/act/statute-consolidated/2016/1137/fin@ ; Act 187/2010 s.3 https://opendata.finlex.fi/finlex/avoindata/v1/akn/fi/act/statute-consolidated/2010/187/fin@",
+          "status": "partial",
+          "note": "Finlex open data was read but may not be the latest consolidation (the Act 306/2019 copy there was an old version). Check on the Finlex page."
+        }
+      ]
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "law": "Code de la consommation art. L.412-13 (duty) and art. R.451-4 (penalty)",
+      "lawUrl": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048180406/",
+      "authorities": "Not verified. The penalty articles read do not name the authority",
+      "authoritySource": null,
+      "routes": [
+        {
+          "scope": "Companies (legal persons): breach of the product and service duties listed in R.451-4, including services under D.412-57 (R.451-4 I 10)",
+          "penaltyType": "criminal fine",
+          "maximum": "EUR 7,500 per offence; EUR 15,000 on repeat",
+          "provision": "art. R.451-4 I and II",
+          "quote": "Est puni de l'amende prévue pour les contraventions de la 5e classe le fait",
+          "translation": "The following is punished with the fine provided for 5th class contraventions",
+          "sourceUrl": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048180406/",
+          "crossReference": "Code penal 131-13 5°: EUR 1,500; 131-41: five times for legal persons; 132-15: ten times on repeat. Legifrance ids LEGIARTI000006417259, LEGIARTI000006417342, LEGIARTI000006417377",
+          "status": "verified",
+          "note": "The EUR 7,500 and EUR 15,000 are our arithmetic from the articles; no text states them as figures. Read from the official DILA LEGI open data (global archive of 13 July 2025) because Legifrance showed a Cloudflare check. Daily update archives of January to October 2026 show no change to R.451-4 or 131-41; those of July to December 2025 were not checked. Fine is per contravention, and cumulation rules were not reviewed. Separate from court orders, astreintes and art. 47 of the 2005 law."
+        },
+        {
+          "scope": "Natural persons: same offences",
+          "penaltyType": "criminal fine",
+          "maximum": "EUR 1,500 per offence; EUR 3,000 on repeat",
+          "provision": "art. R.451-4; Code penal 131-13 5°, 132-11",
+          "quote": "1 500 euros au plus pour les contraventions de la 5e classe, montant qui peut être porté à 3 000 euros",
+          "translation": "at most EUR 1,500 for 5th class contraventions, an amount which may be raised to EUR 3,000",
+          "sourceUrl": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006417259",
+          "crossReference": "Code penal 132-11, LEGIARTI000006417370",
+          "status": "verified",
+          "note": "Read from the official DILA LEGI open data, including the August 2026 update of art. 131-13."
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "law": "Barrierefreiheitsstaerkungsgesetz (BFSG), s.37",
+      "lawUrl": "https://www.gesetze-im-internet.de/bfsg/__37.html",
+      "authorities": "Marktueberwachungsbehoerde der Laender (MLBF), Magdeburg, per Saxony-Anhalt ministry release 082/2026",
+      "authoritySource": "https://presse.sachsen-anhalt.de/ministerium-fur-arbeit-soziales-gesundheit-und-gleichstellung/2026/06/01/zugang-zu-modernen-produkten-und-dienstleistungen-fuer-alle-neue-marktueberwachungsbehoerde-in-magdeburg-formiert-sich",
+      "routes": [
+        {
+          "scope": "Placing or supplying non-compliant products, offering or providing a non-compliant service, CE marking breaches (s.37(1) nos 1, 7, 8, 9, 10)",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 100,000",
+          "provision": "s.37(2)",
+          "quote": "mit einer Geldbuße bis zu hunderttausend Euro",
+          "translation": "with a fine of up to one hundred thousand euro",
+          "sourceUrl": "https://www.gesetze-im-internet.de/bfsg/__37.html",
+          "crossReference": null,
+          "status": "verified",
+          "note": "Audiovisual access services have separate rules, not reviewed here."
+        },
+        {
+          "scope": "All other s.37(1) offences, such as information, identification, instructions, documents",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 10,000",
+          "provision": "s.37(2)",
+          "quote": "in den übrigen Fällen mit einer Geldbuße bis zu zehntausend Euro",
+          "translation": "in the other cases with a fine of up to ten thousand euro",
+          "sourceUrl": "https://www.gesetze-im-internet.de/bfsg/__37.html",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        }
+      ]
+    },
+    {
+      "code": "GR",
+      "name": "Greece",
+      "law": "Law 4994/2022 (A 215/18.11.2022), arts 26 and 27",
+      "lawUrl": "https://api.et.gr/apiLAW/1/2022/4994/pdf",
+      "authorities": "EETT for electronic communications and NCRTV (ESR) for media service providers (art. 26(4), (5)); Accessibility market surveillance authority per arts 19 and 27; others not verified",
+      "authoritySource": "https://api.et.gr/apiLAW/1/2022/4994/pdf",
+      "routes": [
+        {
+          "scope": "Products: fine amounts to be set by presidential decree",
+          "penaltyType": "administrative fine",
+          "maximum": null,
+          "provision": "arts 26(1), 27(2)",
+          "quote": "διοικητικές κυρώσεις, με βάση την αρχή της αναλογικότητας",
+          "translation": "administrative sanctions, on the basis of the principle of proportionality",
+          "sourceUrl": "https://api.et.gr/apiLAW/1/2022/4994/pdf",
+          "crossReference": "Presidential decree under art. 27(2) not found",
+          "status": "partial",
+          "note": "Art. 26 itself sets no amount. Art. 27(2) leaves the amount of fines for products to a presidential decree; a search found none. A legal blog figure of EUR 100,000 has no support in the text of art. 26 as read."
+        },
+        {
+          "scope": "Media service providers: NCRTV applies sanctions by cross-reference",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 500,000 under art. 36(3) Law 4779/2021; Law 2328/1995 art. 4 not read",
+          "provision": "art. 26(5)",
+          "quote": "το Εθνικό Συμβούλιο Ραδιοτηλεόρασης",
+          "translation": "the National Council for Radio and Television",
+          "sourceUrl": "https://api.et.gr/apiLAW/1/2022/4994/pdf",
+          "crossReference": "Law 4779/2021 art. 36(3) https://api.et.gr/apiLAW/1/2021/4779/pdf ; Law 2328/1995 art. 4 https://api.et.gr/apiLAW/1/1995/2328/pdf (scan, no text layer)",
+          "status": "partial",
+          "note": "Art. 36(3) by its own words addresses video sharing platforms. Law 2328/1995 is an image scan that we did not read. Later amendments to these acts not checked."
+        },
+        {
+          "scope": "Electronic communications services: EETT competent",
+          "penaltyType": "administrative fine",
+          "maximum": null,
+          "provision": "art. 26(4)",
+          "quote": "αρμόδια αρχή είναι η Εθνική Επιτροπή Τηλεπικοινωνιών και Ταχυδρομείων",
+          "translation": "the competent authority is the National Telecommunications and Post Commission",
+          "sourceUrl": "https://api.et.gr/apiLAW/1/2022/4994/pdf",
+          "crossReference": "Law 4727/2020 art. 113 (powers) and art. 137 https://api.et.gr/apiLAW/1/2020/4727/pdf",
+          "status": "partial",
+          "note": "Art. 137 Law 4727/2020 allows fines up to EUR 3,000,000 for breaches of that law, but art. 26(4) refers only to art. 113 and does not cite art. 137, so we do not state it as the EAA maximum."
+        },
+        {
+          "scope": "Other services (banking, e-commerce, e-books, transport)",
+          "penaltyType": "other",
+          "maximum": null,
+          "provision": null,
+          "quote": null,
+          "translation": null,
+          "sourceUrl": null,
+          "crossReference": null,
+          "status": "not_verified",
+          "note": "No amount in art. 26, and art. 27(2) covers products only. No separate sanction provision located."
+        }
+      ]
+    },
+    {
+      "code": "HU",
+      "name": "Hungary",
+      "law": "Act XVII of 2022 and Government Decree 605/2022 (XII. 28.)",
+      "lawUrl": "https://njt.jog.gov.hu/jogszabaly/2022-17-00-00",
+      "authorities": "NMHH (telecoms, media and some products), consumer protection authority, transport authorities, Budapest Capital Government Office for 112 (Decree s.1)",
+      "authoritySource": "https://njt.jog.gov.hu/jogszabaly/2022-605-20-22",
+      "routes": [
+        {
+          "scope": "Non-SME operators with net annual turnover above HUF 100 million",
+          "penaltyType": "administrative fine",
+          "maximum": "5% of annual net turnover, capped at HUF 500 million",
+          "provision": "Decree s.9(1)(a); Act s.8(4)",
+          "quote": "éves nettó árbevételének 5%-áig, de legfeljebb 500 millió forintig",
+          "translation": "up to 5% of its annual net turnover, but at most 500 million forint",
+          "sourceUrl": "https://njt.jog.gov.hu/jogszabaly/2022-605-20-22",
+          "crossReference": "Act XVII of 2022 s.8(3), (4) https://njt.jog.gov.hu/jogszabaly/2022-17-00-00",
+          "status": "verified",
+          "note": "Fine follows a warning and a failure to cooperate or remedy (Act s.8(3), (4))."
+        },
+        {
+          "scope": "Other operators with net turnover",
+          "penaltyType": "administrative fine",
+          "maximum": "HUF 500,000; 5% of annual net turnover where widespread harm to physical safety or health, or significant financial harm, with no HUF cap stated",
+          "provision": "Decree s.9(1)(b)",
+          "quote": "a gazdasági szereplő éves nettó árbevételének 5%-áig",
+          "translation": "up to 5% of the annual net turnover of the economic operator",
+          "sourceUrl": "https://njt.jog.gov.hu/jogszabaly/2022-605-20-22",
+          "crossReference": "Act XVII of 2022 s.8(4) https://njt.jog.gov.hu/jogszabaly/2022-17-00-00",
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "Operators with no net turnover",
+          "penaltyType": "administrative fine",
+          "maximum": "HUF 500,000",
+          "provision": "Decree s.9(4)",
+          "quote": "Nettó árbevétel hiányában a közigazgatási bírság összege 15 ezer forinttól 500 ezer forintig terjedhet.",
+          "translation": "Where there is no net turnover, the administrative fine may range from 15 thousand to 500 thousand forint.",
+          "sourceUrl": "https://njt.jog.gov.hu/jogszabaly/2022-605-20-22",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        }
+      ]
+    },
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "law": "European Union (Accessibility Requirements of Products and Services) Regulations 2023, S.I. No. 636 of 2023",
+      "lawUrl": "https://www.irishstatutebook.ie/eli/2023/si/636/made/en/print",
+      "authorities": "Market surveillance and compliance authorities named in the Regulations, including CCPC and ComReg",
+      "authoritySource": "https://www.irishstatutebook.ie/eli/2023/si/636/made/en/print",
+      "routes": [
+        {
+          "scope": "Offence on summary conviction",
+          "penaltyType": "criminal fine",
+          "maximum": "Class A fine, EUR 5,000, and/or 6 months imprisonment",
+          "provision": "reg. 32(6)(a)",
+          "quote": "on summary conviction to a class A fine or to imprisonment for a term not exceeding 6 months or to both",
+          "translation": null,
+          "sourceUrl": "https://www.irishstatutebook.ie/eli/2023/si/636/made/en/print",
+          "crossReference": "Fines Act 2010 s.3: class A fine means a fine not exceeding EUR 5,000 https://www.irishstatutebook.ie/eli/2010/act/8/enacted/en/print",
+          "status": "verified",
+          "note": "English original, no translation needed."
+        },
+        {
+          "scope": "Offence on indictment",
+          "penaltyType": "criminal fine",
+          "maximum": "EUR 60,000 and/or 18 months imprisonment",
+          "provision": "reg. 32(6)(b)",
+          "quote": "on conviction on indictment to a fine not exceeding €60,000 or to imprisonment for a term not exceeding 18 months or to both",
+          "translation": null,
+          "sourceUrl": "https://www.irishstatutebook.ie/eli/2023/si/636/made/en/print",
+          "crossReference": null,
+          "status": "verified",
+          "note": "English original, no translation needed."
+        }
+      ]
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "law": "Decreto legislativo 27 maggio 2022, n. 82, art. 24",
+      "lawUrl": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2022-05-27;82~art24",
+      "authorities": "AgID for services and large private entities; product authorities not verified",
+      "authoritySource": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2004-01-09;4~art9",
+      "routes": [
+        {
+          "scope": "Economic operators breaching the listed articles",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 40,000",
+          "provision": "art. 24(1)",
+          "quote": "punito con la sanzione amministrativa pecuniaria da 5.000 euro a 40.000 euro",
+          "translation": "punished with an administrative pecuniary sanction from EUR 5,000 to EUR 40,000",
+          "sourceUrl": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2022-05-27;82~art24",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "Not obeying the supervisory authority, or not cooperating",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 30,000",
+          "provision": "art. 24(2), (3)",
+          "quote": "punito con la sanzione amministrativa pecuniaria da 2.500 euro a 30.000 euro",
+          "translation": "punished with an administrative pecuniary sanction from EUR 2,500 to EUR 30,000",
+          "sourceUrl": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2022-05-27;82~art24",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "Private entities offering services through websites or apps with average turnover above EUR 500 million (Law 4/2004 art. 3(1-bis))",
+          "penaltyType": "administrative fine",
+          "maximum": "Up to 5% of turnover, after an AgID order is ignored",
+          "provision": "art. 24(1) last sentence; Law 4/2004 art. 9(1-bis)",
+          "quote": "l'AgID applica la sanzione amministrativa pecuniaria fino al 5 per cento del fatturato",
+          "translation": "AgID applies an administrative pecuniary sanction of up to 5 per cent of turnover",
+          "sourceUrl": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2004-01-09;4~art9",
+          "crossReference": "Law 4/2004 art. 9(1-bis) https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2004-01-09;4~art9",
+          "status": "verified",
+          "note": null
+        }
+      ]
+    },
+    {
+      "code": "LV",
+      "name": "Latvia",
+      "law": "Precu un pakalpojumu piekluestamibas likums, adopted 16 March 2023",
+      "lawUrl": "https://www.vestnesis.lv/ta/id/340554",
+      "authorities": "Services: Public Utilities Commission, National Electronic Mass Media Council, Civil Aviation Agency and others in art. 22. Products: not verified",
+      "authoritySource": "https://www.vestnesis.lv/ta/id/340554",
+      "routes": [
+        {
+          "scope": "Services: order to remedy under art. 23(3), enforced by a compulsory payment (piespiedu nauda) under general administrative law",
+          "penaltyType": "coercive penalty",
+          "maximum": null,
+          "provision": "art. 23(3); Administrative Procedure Law s.370",
+          "quote": "kompetentā iestāde ir tiesīga pieņemt lēmumu",
+          "translation": "the competent authority is entitled to take a decision",
+          "sourceUrl": "https://www.vestnesis.lv/ta/id/340554",
+          "crossReference": "Administrative Procedure Law s.370 https://www.vestnesis.lv/ta/id/55567 (original wording only)",
+          "status": "partial",
+          "note": "The act itself sets no fine. The link to compulsory payment is our inference from art. 23(4) and general law plus a community list. The only s.370 text we could open is the old wording in lats, so the current amount was not read. likumi.lv was unreachable  and refused in the browser. A 2026 draft may move financial services oversight."
+        },
+        {
+          "scope": "Products",
+          "penaltyType": "other",
+          "maximum": null,
+          "provision": null,
+          "quote": null,
+          "translation": null,
+          "sourceUrl": null,
+          "crossReference": null,
+          "status": "not_verified",
+          "note": "Penalty for products not located in the vestnesis copy; likumi.lv unreachable."
+        }
+      ]
+    },
+    {
+      "code": "LT",
+      "name": "Lithuania",
+      "law": "Gaminiu ir paslaugu prieinamumo reikalavimu istatymas XIV-1633 (title per a community list; text not opened)",
+      "lawUrl": "https://e-seimas.lrs.lt/portal/legalAct/lt/TAD/41fe50327d1e11edbdcebd68a7a0df7e",
+      "authorities": "Not verified",
+      "authoritySource": null,
+      "routes": [
+        {
+          "scope": "All routes",
+          "penaltyType": "other",
+          "maximum": null,
+          "provision": null,
+          "quote": null,
+          "translation": null,
+          "sourceUrl": null,
+          "crossReference": null,
+          "status": "not_verified",
+          "note": "e-seimas, e-tar, lrv.lt and vvtat.lrv.lt blocked automated access, so the text was not read. A press piece mentions EUR 500 to 2,500, unconfirmed and not used."
+        }
+      ]
+    },
+    {
+      "code": "LU",
+      "name": "Luxembourg",
+      "law": "Loi du 8 mars 2023 relative aux exigences en matiere d accessibilite applicables aux produits et services",
+      "lawUrl": "https://accessibilite-produits-services.public.lu/dam-assets/lgislation/loi-du-8-mars-2023.pdf",
+      "authorities": "OSAPS (art. 32)",
+      "authoritySource": "https://accessibilite-produits-services.public.lu/dam-assets/lgislation/loi-du-8-mars-2023.pdf",
+      "routes": [
+        {
+          "scope": "Refusing information, obstructing surveillance, or not following OSAPS decisions",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 15,000",
+          "provision": "art. 32(1), (2)",
+          "quote": "L’OSAPS peut infliger une amende de 250 euros à 15 000 euros",
+          "translation": "OSAPS may impose a fine of EUR 250 to EUR 15,000",
+          "sourceUrl": "https://accessibilite-produits-services.public.lu/dam-assets/lgislation/loi-du-8-mars-2023.pdf",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "Economic operator breaching the listed accessibility duties",
+          "penaltyType": "criminal fine",
+          "maximum": "EUR 500,000; repeat offence EUR 1,000,000",
+          "provision": "art. 33(1), (2)",
+          "quote": "à une amende de 500 euros à 1 000 000 euros à titre de récidive",
+          "translation": "to a fine of EUR 500 to EUR 1,000,000 as a repeat offence",
+          "sourceUrl": "https://accessibilite-produits-services.public.lu/dam-assets/lgislation/loi-du-8-mars-2023.pdf",
+          "crossReference": null,
+          "status": "verified",
+          "note": "First offence range is EUR 251 to 500,000."
+        }
+      ]
+    },
+    {
+      "code": "MT",
+      "name": "Malta",
+      "law": "Accessibility Measures (European Accessibility Act) Regulations, S.L. 627.03",
+      "lawUrl": "https://legislation.mt/eli/sl/627.3/eng/pdf",
+      "authorities": "Commission for the Rights of Persons with Disability as market surveillance authority",
+      "authoritySource": "https://legislation.mt/eli/sl/627.3/eng/pdf",
+      "routes": [
+        {
+          "scope": "Infringements of the Regulations, via Cap. 413",
+          "penaltyType": "administrative fine",
+          "maximum": null,
+          "provision": "reg. 27; Cap. 413 arts 32, 32C",
+          "quote": "of these regulations, to be enforced by the market surveillance authority,",
+          "translation": "of these regulations, to be enforced by the market surveillance authority,",
+          "sourceUrl": "https://legislation.mt/eli/sl/627.3/eng/pdf",
+          "crossReference": "Cap. 413 https://legislation.mt/eli/cap/413/eng/pdf : art. 32C leaves fines to ministerial regulations",
+          "status": "partial",
+          "note": "Cap. 413 art. 32 allows an administrative fine but sets no amount, and art. 32C leaves it to regulations. We checked S.L. 413.01 to .03 and tried .04 to .07 without finding such regulations. No amount read."
+        }
+      ]
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "law": "Implementatiewet toegankelijkheidsvoorschriften producten en diensten, Stb. 2024, 87",
+      "lawUrl": "https://wetten.overheid.nl/BWBR0049571/",
+      "authorities": "Minister via Warenwet (products); ACM (e-commerce, electronic communications); AFM (financial e-commerce, banking); Commissariaat voor de Media; Minister of Infrastructure, ILT (transport)",
+      "authoritySource": "https://zoek.officielebekendmakingen.nl/stb-2024-87.html",
+      "routes": [
+        {
+          "scope": "Products (Warenwet)",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 110,000 (fifth category)",
+          "provision": "Warenwet art. 35e(2)",
+          "quote": "ten hoogste het bedrag dat is vastgesteld voor de vijfde categorie",
+          "translation": "at most the amount set for the fifth category",
+          "sourceUrl": "https://wetten.overheid.nl/BWBR0001969/",
+          "crossReference": "Art. 23(4) Wetboek van Strafrecht as amended from 1 January 2026, fifth category EUR 110,000: https://zoek.officielebekendmakingen.nl/stb-2025-401.pdf",
+          "status": "verified",
+          "note": "Last onder bestuursdwang also available (art. 35d)."
+        },
+        {
+          "scope": "E-books and access to audiovisual media services, Commissariaat voor de Media",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 110,000 (fifth category); last onder dwangsom also available",
+          "provision": "Whc art. 8a.2(3)",
+          "quote": "bedraagt ten hoogste het bedrag van de vijfde categorie geldboete",
+          "translation": "amounts to at most the fifth category fine",
+          "sourceUrl": "https://zoek.officielebekendmakingen.nl/stb-2024-87.html",
+          "crossReference": "Art. 23(4) Wetboek van Strafrecht as amended from 1 January 2026, fifth category EUR 110,000: https://zoek.officielebekendmakingen.nl/stb-2025-401.pdf",
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "Passenger transport, Minister of Infrastructure and Water Management, ILT",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 110,000 (fifth category); last onder dwangsom also available",
+          "provision": "Whc art. 8a.3(3)",
+          "quote": "bedraagt ten hoogste het bedrag van de vijfde categorie geldboete",
+          "translation": "amounts to at most the fifth category fine",
+          "sourceUrl": "https://zoek.officielebekendmakingen.nl/stb-2024-87.html",
+          "crossReference": "Art. 23(4) Wetboek van Strafrecht as amended from 1 January 2026, fifth category EUR 110,000: https://zoek.officielebekendmakingen.nl/stb-2025-401.pdf",
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "E-commerce services, ACM",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 900,000 or, if higher, 1% of turnover",
+          "provision": "Whc arts 8.15, 2.2, 2.9, 2.15(1), Annex part a",
+          "quote": "bedraagt ten hoogste € 900.000 of, indien dat meer is, 1% van de omzet van de overtreder",
+          "translation": "amounts to at most EUR 900,000 or, if higher, 1% of the offender turnover",
+          "sourceUrl": "https://wetten.overheid.nl/BWBR0020586/",
+          "crossReference": "Annex part a lists arts 8.15, 8a.0 and 8a.1: https://wetten.overheid.nl/BWBR0020586/",
+          "status": "partial",
+          "note": "This is a legal reading of the statute. ACM publishes no figure, and we did not find ACM stating it. Confirm with ACM or a Dutch lawyer before stating it as settled. Doubled on repeat within five years (art. 2.15(4)). A last onder dwangsom is also available. \"Inbreuk\" requires harm or possible harm to collective consumer interests."
+        },
+        {
+          "scope": "E-commerce services that are a financial service or activity, AFM",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 900,000 or, if higher, 1% of turnover",
+          "provision": "Whc arts 3.1(1), 3.2(5), 2.15",
+          "quote": "is artikel 2.15 van toepassing",
+          "translation": "article 2.15 applies",
+          "sourceUrl": "https://wetten.overheid.nl/BWBR0020586/",
+          "crossReference": "Whc art. 2.15 https://wetten.overheid.nl/BWBR0020586/",
+          "status": "partial",
+          "note": "Same legal reading as the ACM route. AFM publishes no figure that we found."
+        },
+        {
+          "scope": "Electronic communications services, ACM",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 900,000 or, if higher, 1% of turnover",
+          "provision": "Telecommunicatiewet arts 7a.2, 15.1(3), 15.4(2)",
+          "quote": "een bestuurlijke boete opleggen van ten hoogste € 900.000, of, indien dat meer is, 1% van de omzet van de onderneming",
+          "translation": "impose an administrative fine of at most EUR 900,000 or, if higher, 1% of the undertaking turnover",
+          "sourceUrl": "https://wetten.overheid.nl/BWBR0009950/",
+          "crossReference": null,
+          "status": "partial",
+          "note": "Legal reading: art. 15.1(3) gives ACM residual supervision over \"other provisions\", which appears to include chapter 7a. No ACM statement found. Art. 15.4(5) doubles on repeat."
+        },
+        {
+          "scope": "Consumer banking services, AFM or DNB under the Wft",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 1,000,000 (category 2)",
+          "provision": "Wft arts 4:22.0a, 1:80, 1:81(2); Besluit bestuurlijke boetes financiele sector art. 10 table",
+          "quote": "4:22.0a, eerste en vijfde lid",
+          "translation": "art. 4:22.0a, first and fifth paragraphs",
+          "sourceUrl": "https://wetten.overheid.nl/BWBR0026204/",
+          "crossReference": "Wft art. 1:81(2) category 2 maximum EUR 1,000,000: https://wetten.overheid.nl/BWBR0020368/",
+          "status": "partial",
+          "note": "The decree lists \"first and fifth paragraphs\" while the Wft annex to art. 1:80 lists \"first and second paragraphs\", so the mapping is not clean. Art. 1:81 has higher amounts in special cases we did not map."
+        }
+      ]
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "law": "Ustawa z dnia 26 kwietnia 2024 r. o zapewnianiu spelniania wymagan dostepnosci niektorych produktow i uslug przez podmioty gospodarcze, Dz.U. 2024 poz. 731",
+      "lawUrl": "https://eli.gov.pl/eli/DU/2024/731/ogl",
+      "authorities": "President of PFRON, or the competent market surveillance authority in art. 38(3), for example President of UKE and the minister for digital affairs for e-commerce",
+      "authoritySource": "https://api.sejm.gov.pl/eli/acts/DU/2024/731/text.html",
+      "routes": [
+        {
+          "scope": "Producers, service providers, importers and distributors for the offences listed",
+          "penaltyType": "administrative fine",
+          "maximum": "10 times the average monthly national wage for the prior year, but not above 10% of prior year turnover. No fixed amount in the act",
+          "provision": "art. 73(1), (2), (3)",
+          "quote": "w wysokości do dziesięciokrotności przeciętnego wynagrodzenia miesięcznego w gospodarce narodowej za rok poprzedzający",
+          "translation": "of up to ten times the average monthly wage in the national economy for the previous year",
+          "sourceUrl": "https://api.sejm.gov.pl/eli/acts/DU/2024/731/text.html",
+          "crossReference": null,
+          "status": "verified",
+          "note": "Both limits apply. The wage figure itself was not looked up and no currency conversion is made."
+        }
+      ]
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "law": "Decreto-Lei n.o 82/2022, de 6 de dezembro",
+      "lawUrl": "https://files.diariodarepublica.pt/1s/2022/12/23400/0010900132.pdf",
+      "authorities": "ANACOM, ERC, AMT, ANAC, IMT, Banco de Portugal, CMVM, ASAE, municipalities, IGAC (art. 28)",
+      "authoritySource": "https://files.diariodarepublica.pt/1s/2022/12/23400/0010900132.pdf",
+      "routes": [
+        {
+          "scope": "Companies: very serious offences, including making non-compliant products or services available (art. 29(1)(a), (4)(a))",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 44,891.81",
+          "provision": "art. 29(2)(b)(ii); DL 433/82 art. 17(2)",
+          "quote": "Tratando-se de pessoa coletiva, de € 24 000 até ao limiar máximo previsto no Decreto-Lei",
+          "translation": "For a legal person, from EUR 24,000 up to the maximum threshold set in the Decree-Law",
+          "sourceUrl": "https://files.diariodarepublica.pt/1s/2022/12/23400/0010900132.pdf",
+          "crossReference": "DL 433/82 art. 17(2), EUR 44,891.81: https://www.pgdlisboa.pt/leis/lei_mostra_articulado.php?nid=166&tabela=leis",
+          "status": "verified",
+          "note": "Attempt or negligence halves the limits (art. 29(6)). Art. 29(9) requires publication of the decision at the offender expense. DL 433/82 read on the Lisbon Public Prosecutor site, because Diario da Republica needs JavaScript."
+        },
+        {
+          "scope": "Companies: serious offences",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 24,000",
+          "provision": "art. 29(2)(a)(ii)",
+          "quote": "Tratando-se de pessoa coletiva, de € 12 000 a € 24 000",
+          "translation": "For a legal person, from EUR 12,000 to EUR 24,000",
+          "sourceUrl": "https://files.diariodarepublica.pt/1s/2022/12/23400/0010900132.pdf",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "Natural persons: very serious offences",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 3,740.98",
+          "provision": "art. 29(2)(b)(i); DL 433/82 art. 17(1)",
+          "quote": "Tratando-se de pessoa singular, de € 2000 até ao limiar máximo previsto no Decreto-Lei",
+          "translation": "For a natural person, from EUR 2,000 up to the maximum threshold set in the Decree-Law",
+          "sourceUrl": "https://files.diariodarepublica.pt/1s/2022/12/23400/0010900132.pdf",
+          "crossReference": "DL 433/82 art. 17(1): https://www.pgdlisboa.pt/leis/lei_mostra_articulado.php?nid=166&tabela=leis",
+          "status": "verified",
+          "note": "Attempt or negligence halves the limits (art. 29(6)). Art. 29(9) requires publication of the decision at the offender expense. DL 433/82 read on the Lisbon Public Prosecutor site, because Diario da Republica needs JavaScript."
+        }
+      ]
+    },
+    {
+      "code": "RO",
+      "name": "Romania",
+      "law": "Legea nr. 232/2022 (title per search result; text not opened)",
+      "lawUrl": "https://legislatie.just.ro/Public/DetaliiDocument/257778",
+      "authorities": "Not verified",
+      "authoritySource": null,
+      "routes": [
+        {
+          "scope": "All routes",
+          "penaltyType": "other",
+          "maximum": null,
+          "provision": null,
+          "quote": null,
+          "translation": null,
+          "sourceUrl": null,
+          "crossReference": null,
+          "status": "not_verified",
+          "note": "legislatie.just.ro and cdep.ro did not connect  and the browser refused the navigation. Search snippets and a community list mention RON amounts up to 15,000, not treated as read."
+        }
+      ]
+    },
+    {
+      "code": "SK",
+      "name": "Slovakia",
+      "law": "Zakon c. 351/2022 Z. z. (services); products through Zakon c. 56/2018 Z. z.",
+      "lawUrl": "https://static.slov-lex.sk/static/SK/ZZ/2022/351/20260530.print.html",
+      "authorities": "Slovak Trade Inspection for services under the act and for products (ss.8, 9); sector bodies by special laws",
+      "authoritySource": "https://static.slov-lex.sk/static/SK/ZZ/2022/351/20260530.print.html",
+      "routes": [
+        {
+          "scope": "Services in Act 351/2022: failure to meet accessibility requirements or publish information (s.10(1)(a), (b))",
+          "penaltyType": "administrative fine",
+          "maximum": "From EUR 200 to 3% of prior period turnover, at most EUR 6,000",
+          "provision": "s.10(2)(a)",
+          "quote": "Orgán dohľadu môže uložiť pokutu od 200 eur do 3 % obratu za predchádzajúce účtovné obdobie",
+          "translation": "The supervisory body may impose a fine from EUR 200 to 3% of turnover for the previous accounting period",
+          "sourceUrl": "https://static.slov-lex.sk/static/SK/ZZ/2022/351/20260530.print.html",
+          "crossReference": null,
+          "status": "verified",
+          "note": "The fine must be waived for (a) and (c) if corrective measures are taken or s.7(1) is shown (s.10(3))."
+        },
+        {
+          "scope": "Services: procedures, notification, corrective measures (s.10(1)(c) to (e)); information and cooperation (s.10(1)(f))",
+          "penaltyType": "administrative fine",
+          "maximum": "From EUR 200 to 3% of turnover, at most EUR 20,000; for (f) at most EUR 30,000",
+          "provision": "s.10(2)(b), (c)",
+          "quote": "výšky 30 000 eur, za správny delikt podľa odseku 1 písm. f).",
+          "translation": "EUR 30,000, for an administrative offence under paragraph 1(f).",
+          "sourceUrl": "https://static.slov-lex.sk/static/SK/ZZ/2022/351/20260530.print.html",
+          "crossReference": null,
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "Products: placing on the market without conformity, including not meeting essential requirements",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 200,000; doubled on repeat within one year",
+          "provision": "Act 56/2018 s.28(2), (10)",
+          "quote": "Orgán dohľadu nad určenými výrobkami uloží pokutu od 200 eur do 200 000 eur",
+          "translation": "The product supervisory body shall impose a fine from EUR 200 to EUR 200,000",
+          "sourceUrl": "https://static.slov-lex.sk/static/SK/ZZ/2018/56/20250628.print.html",
+          "crossReference": "Act 351/2022 s.9 and footnote 22 points to Act 56/2018",
+          "status": "partial",
+          "note": "General conformity act, linked by s.9 of Act 351/2022. Version 28 June 2025; the product technical regulation was not opened, and a later version not checked."
+        },
+        {
+          "scope": "Electronic communications services",
+          "penaltyType": "administrative fine",
+          "maximum": null,
+          "provision": "Act 452/2021 ss.83a, 124",
+          "quote": null,
+          "translation": null,
+          "sourceUrl": "https://static.slov-lex.sk/static/SK/ZZ/2021/452/20250628.print.html",
+          "crossReference": null,
+          "status": "partial",
+          "note": "S.83a sets the duties, but we did not find s.83a in the lists of s.124 in the 28 June 2025 version, so no maximum is stated. Audiovisual route (Act 264/2022) not read."
+        }
+      ]
+    },
+    {
+      "code": "SI",
+      "name": "Slovenia",
+      "law": "Zakon o dostopnosti do proizvodov in storitev za invalide (ZDPSI), Uradni list RS 14/23, amended by ZDPSI-A (2026)",
+      "lawUrl": "https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-0238",
+      "authorities": "Supervisory bodies in arts 26 and 30, including AKOS for e-books (ZDPSI-A)",
+      "authoritySource": "https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2026-01-0563",
+      "routes": [
+        {
+          "scope": "Products: manufacturer, importer, authorised representative that is a legal person",
+          "penaltyType": "other",
+          "maximum": "EUR 40,000 (misdemeanour fine)",
+          "provision": "art. 34(1)",
+          "quote": "Z globo od 3.000 do 40.000 eurov se za prekršek kaznuje pravna oseba",
+          "translation": "A legal person is punished for the offence with a fine of EUR 3,000 to 40,000",
+          "sourceUrl": "https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-0238",
+          "crossReference": null,
+          "status": "verified",
+          "note": "ZDPSI-A (2026) read; it does not change this fine."
+        },
+        {
+          "scope": "E-commerce, consumer banking, electronic communications, access to audiovisual media: medium or large companies",
+          "penaltyType": "other",
+          "maximum": "EUR 10,000 (misdemeanour fine); other legal persons EUR 5,000",
+          "provision": "arts 35, 36, 39, 40",
+          "quote": "z globo od 1.000 do 10.000 eurov pa pravna oseba",
+          "translation": "and with a fine of EUR 1,000 to 10,000 a legal person",
+          "sourceUrl": "https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-0238",
+          "crossReference": null,
+          "status": "verified",
+          "note": "ZDPSI-A (2026) read; it does not change this fine."
+        },
+        {
+          "scope": "E-books: medium or large companies",
+          "penaltyType": "other",
+          "maximum": "EUR 4,000 (misdemeanour fine); other legal persons EUR 2,000",
+          "provision": "art. 37(1)",
+          "quote": "z globo od 800 do 4.000 eurov pa pravna oseba",
+          "translation": "and with a fine of EUR 800 to 4,000 a legal person",
+          "sourceUrl": "https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-0238",
+          "crossReference": null,
+          "status": "verified",
+          "note": "ZDPSI-A (2026) read; it does not change this fine."
+        },
+        {
+          "scope": "Air, bus and rail passenger transport",
+          "penaltyType": "other",
+          "maximum": null,
+          "provision": null,
+          "quote": null,
+          "translation": null,
+          "sourceUrl": null,
+          "crossReference": null,
+          "status": "not_verified",
+          "note": "Art. 38 refers to separate decrees (Uradni list RS 106/10, 15/13, 67/11), which were not opened."
+        }
+      ]
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "law": "Ley 11/2023, de 8 de mayo, title III, art. 30",
+      "lawUrl": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-11022",
+      "authorities": "Authorities designated by the autonomous communities and Ceuta and Melilla (art. 27(3))",
+      "authoritySource": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-11022",
+      "routes": [
+        {
+          "scope": "Fallback where sector law has no provision",
+          "penaltyType": "administrative fine",
+          "maximum": "EUR 1,000,000; minor up to EUR 30,000; serious up to EUR 90,000",
+          "provision": "Ley 11/2023 art. 30(1); RDLeg 1/2013 art. 83",
+          "quote": "se aplicará de manera supletoria el título III",
+          "translation": "title III shall apply on a supplementary basis",
+          "sourceUrl": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-11022",
+          "crossReference": "RDLeg 1/2013 art. 83(1): \"un máximo de 1.000.000 de euros\" https://www.boe.es/buscar/act.php?id=BOE-A-2013-12632",
+          "status": "verified",
+          "note": null
+        },
+        {
+          "scope": "Sector law, which applies first (art. 30(1))",
+          "penaltyType": "other",
+          "maximum": null,
+          "provision": null,
+          "quote": null,
+          "translation": null,
+          "sourceUrl": null,
+          "crossReference": null,
+          "status": "not_verified",
+          "note": "Art. 30 points to each sector regime. The sector acts were not opened."
+        }
+      ]
+    },
+    {
+      "code": "SE",
+      "name": "Sweden",
+      "law": "Lag (2023:254) om vissa produkters och tjansters tillganglighet",
+      "lawUrl": "https://data.riksdagen.se/dokument/sfs-2023-254.text",
+      "authorities": "Market surveillance and supervisory authorities set by government ordinance; PTS per its own pages, ordinance not read",
+      "authoritySource": null,
+      "routes": [
+        {
+          "scope": "Penalty fee for breach of the listed duties",
+          "penaltyType": "administrative fine",
+          "maximum": "SEK 10,000,000",
+          "provision": "s.39",
+          "quote": "Sanktionsavgiften ska bestämmas till lägst 10 000 kronor och högst 10 000 000 kronor.",
+          "translation": "The penalty fee shall be set at no less than SEK 10,000 and no more than SEK 10,000,000.",
+          "sourceUrl": "https://data.riksdagen.se/dokument/sfs-2023-254.text",
+          "crossReference": null,
+          "status": "verified",
+          "note": "Not in minor cases (s.37). Text consolidated through SFS 2026:1026."
+        },
+        {
+          "scope": "Orders under ss.32 to 34",
+          "penaltyType": "coercive penalty",
+          "maximum": "No amount stated: conditional fine (vite)",
+          "provision": "s.35",
+          "quote": "får förenas med vite",
+          "translation": "may be combined with a conditional fine",
+          "sourceUrl": "https://data.riksdagen.se/dokument/sfs-2023-254.text",
+          "crossReference": null,
+          "status": "verified",
+          "note": "No penalty fee where the same breach is the basis for a claim to enforce the vite (s.38)."
+        }
+      ]
+    }
+  ]
+}

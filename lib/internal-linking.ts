@@ -347,6 +347,14 @@ const INTERNAL_LINKS: InternalLink[] = [
     keywords: ['aria', 'aria roles', 'aria attributes', 'aria-label', 'aria-labelledby', 'wai-aria', 'cheat sheet', 'reference', 'playground', 'screen reader', 'aria-hidden', 'aria-expanded', 'accessibility tree'],
     priority: 10
   },
+  {
+    url: '/research/eaa-penalties',
+    title: 'EAA Fines and Penalties by Country',
+    description: 'Maximum penalties under each EU state\'s European Accessibility Act law, by enforcement route, with the provision quoted and verification status shown',
+    type: 'resource',
+    keywords: ['eaa fines', 'eaa penalties', 'eaa fines by country', 'european accessibility act fines', 'eaa enforcement', 'bfsg bussgeld'],
+    priority: 9
+  },
   // Accessibility Laws by Jurisdiction
   {
     url: '/research/accessibility-laws',

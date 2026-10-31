@@ -12,6 +12,7 @@ import { getRouteDate } from "@/lib/site-routes"
 import snapshot from "@/lib/data/accessibility-snapshot.json"
 import disability from "@/lib/data/disability-statistics.json"
 import eaa from "@/lib/data/european-accessibility-act.json"
+import eaaPenalties from "@/lib/data/eaa-penalties.json"
 import section508 from "@/lib/data/section-508-assessment.json"
 import salary from "@/lib/data/accessibility-salary.json"
 import byIndustry from "@/lib/data/accessibility-by-industry.json"
@@ -119,6 +120,23 @@ function build(): Record<string, Dataset> {
         otherTransitionalRules: eaa.otherTransitionalRules,
         enforcementDataStatus: eaa.enforcementDataStatus,
       },
+    },
+    "eaa-penalties": {
+      name: "EAA penalties by Member State",
+      page: "https://accessibility.build/research/eaa-penalties",
+      lastUpdated: eaaPenalties.checkedOn,
+      tables: {
+        routes: (eaaPenalties.states as unknown as { code: string; name: string; law: string; lawUrl: string; routes: Row[] }[]).flatMap((state) =>
+          state.routes.map((route) => ({
+            code: state.code,
+            country: state.name,
+            law: state.law,
+            lawUrl: state.lawUrl,
+            ...route,
+          })),
+        ) as Row[],
+      },
+      extra: { notLegalAdvice: true },
     },
     "section-508": {
       name: "Section 508 federal agency assessment",

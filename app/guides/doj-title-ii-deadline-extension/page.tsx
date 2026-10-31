@@ -307,6 +307,16 @@ export default function TitleIIExtensionPage() {
                 2025 — a 27% year-over-year increase — and they cite WCAG 2.1
                 AA regardless of what the DOJ is doing on Title II.
               </li>
+              <li>
+                <strong>A further rule change is possible.</strong> DOJ&apos;s{" "}
+                <a href="https://www.reginfo.gov/public/do/eAgendaViewRule?pubId=202510&amp;RIN=1190-AA82">
+                  Unified Agenda entry
+                </a>{" "}
+                says it plans a proposed rule to reconsider whether parts of
+                the 2024 rule could be less burdensome. The date is listed as
+                to be determined, and nothing has been proposed as of October
+                31, 2026, as far as we could find.
+              </li>
             </ul>
 
             <h2>The honest case for the extension</h2>

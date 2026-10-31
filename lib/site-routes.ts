@@ -114,8 +114,9 @@ const research: SiteRoute[] = [
   { route: "/research/section-508-assessment", label: "Section 508 Federal Agency Assessment", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
   { route: "/research/disability-statistics", label: "US Disability Prevalence", group: "Research", lastModified: "2026-08-27", priority: 0.95 },
   { route: "/research/accessibility-salary", label: "Digital Accessibility Salary Report", group: "Research", lastModified: "2026-10-28", priority: 0.94 },
-  { route: "/research/european-accessibility-act", label: "European Accessibility Act Tracker", group: "Research", lastModified: "2026-10-28", priority: 0.94 },
-  { route: "/research/accessibility-laws", label: "Accessibility Laws by Jurisdiction", group: "Research", lastModified: "2026-10-28", priority: 0.94 },
+  { route: "/research/european-accessibility-act", label: "European Accessibility Act Tracker", group: "Research", lastModified: "2026-10-31", priority: 0.94 },
+  { route: "/research/eaa-penalties", label: "EAA Fines and Penalties by Country", group: "Research", lastModified: "2026-11-01", priority: 0.94 },
+  { route: "/research/accessibility-laws", label: "Accessibility Laws by Jurisdiction", group: "Research", lastModified: "2026-10-31", priority: 0.94 },
   { route: "/research/accessibility-lawsuits", label: "Accessibility Lawsuit Tracker", group: "Research", lastModified: "2026-10-28", priority: 0.93 },
 ]
 
@@ -129,7 +130,7 @@ const compliance: SiteRoute[] = [
   { route: "/compliance/california", label: "California & the Unruh Act", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/new-york", label: "New York Accessibility Laws", group: "Compliance", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/compliance/uk", label: "UK Website Accessibility Law", group: "Compliance", lastModified: "2026-08-27", priority: 0.94 },
-  { route: "/compliance/eaa-ireland", label: "EAA Compliance in Ireland", group: "Compliance", lastModified: "2026-10-14", priority: 0.94 },
+  { route: "/compliance/eaa-ireland", label: "EAA Compliance in Ireland", group: "Compliance", lastModified: "2026-10-31", priority: 0.94 },
   { route: "/compliance/india", label: "India Web Accessibility Law (RPwD Act & IS 17802)", group: "Compliance", lastModified: "2026-10-19", priority: 0.94 },
 ]
 
@@ -197,7 +198,7 @@ const guides: SiteRoute[] = [
   { route: "/guides/accessibility-audit-cost", label: "Accessibility Audit Cost (UK & Ireland)", group: "Guides", lastModified: "2026-08-27", priority: 0.93 },
   { route: "/guides/how-to-write-an-accessibility-statement", label: "How to Write an Accessibility Statement", group: "Guides", lastModified: "2026-08-28", priority: 0.93 },
   { route: "/guides/vpat-accessibility-conformance-report", label: "VPAT & Accessibility Conformance Reports", group: "Guides", lastModified: "2026-08-27", priority: 0.92 },
-  { route: "/guides/accessibility-overlays-eu-uk-law", label: "Overlays and EU/UK Law", group: "Guides", lastModified: "2026-10-14", priority: 0.92 },
+  { route: "/guides/accessibility-overlays-eu-uk-law", label: "Overlays and EU/UK Law", group: "Guides", lastModified: "2026-10-31", priority: 0.92 },
   { route: "/guides/accessibility-overlays", label: "Accessibility Overlays", group: "Guides", lastModified: "2026-03-30", priority: 0.91 },
   { route: "/guides/accessibility-overlay-alternatives", label: "Overlay Alternatives", group: "Guides", lastModified: "2026-07-09", priority: 0.9 },
   { route: "/guides/automated-vs-manual-accessibility-testing", label: "Automated vs Manual Testing", group: "Guides", lastModified: "2026-07-09", priority: 0.9 },
