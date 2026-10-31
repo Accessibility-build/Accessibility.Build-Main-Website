@@ -104,13 +104,13 @@ export default function AndroidReviewPage() {
           </ol>
         </section>
 
-        <aside className="mt-12 border-t pt-6 leading-7">
+        <div className="mt-12 border-t pt-6 leading-7">
           <p>Automated findings and reading-order predictions support manual testing; they do not certify accessibility conformance.</p>
           <p className="mt-3">
             Read the <Link href="/android/privacy" className={linkClass}>Android app privacy policy</Link>{" "}
             or <Link href="/contact" className={linkClass}>contact Accessibility.build</Link>.
           </p>
-        </aside>
+        </div>
       </article>
     </div>
     </>
