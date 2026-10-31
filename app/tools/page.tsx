@@ -108,6 +108,10 @@ export default function ToolsPage() {
               </p>
               <dl className="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed">
                 <div>
+                  <dt className="font-semibold text-slate-950 dark:text-white">WordPress site owners</dt>
+                  <dd className="mt-1">The completely free <Link href="/wordpress-plugin" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">Build with Accessibility plugin</Link> helps you monitor detectable changes, review native content repairs, and record manual testing. Repeat scans can help catch regressions on an already accessible site; they cannot guarantee continued accessibility or replace manual evaluation.</dd>
+                </div>
+                <div>
                   <dt className="font-semibold text-slate-950 dark:text-white">
                     Developers shipping a fix
                   </dt>
