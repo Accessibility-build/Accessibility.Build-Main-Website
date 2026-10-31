@@ -14,8 +14,8 @@ const pageDescription =
 export const metadata: Metadata = {
   title: pageTitle,
   description: clampDescription(pageDescription),
-  authors: [{ name: "The Accessibility.build team", url: "https://accessibility.build/about" }],
-  creator: "The Accessibility.build team",
+  authors: [{ name: "Khushwant Parihar", url: "https://accessibility.build/authors/khushwant-parihar" }],
+  creator: "Khushwant Parihar",
   publisher: "Accessibility.build",
   keywords: [
     "accessibility case studies",
@@ -110,10 +110,7 @@ export default function CaseStudiesIndexPage() {
               record does and does not say, and the points where each dispute could have ended sooner.
             </p>
             <div className="mt-6">
-              <PageByline
-                route="/cases"
-                reviewer={{ name: "The Accessibility.build team", href: "/about", credential: "" }}
-              />
+              <PageByline route="/cases" />
             </div>
           </div>
         </header>

@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     url: reportUrl,
     type: "article",
     publishedTime: "2026-02-15T00:00:00Z",
-    modifiedTime: "2026-08-27T00:00:00Z",
+    modifiedTime: "2026-10-14T00:00:00Z",
     authors: ["https://accessibility.build"],
     images: [
       {
@@ -135,10 +135,10 @@ export default function StateOfAccessibilityPage() {
         headline="State of Web Accessibility 2026"
         description="An independently reviewed synthesis of WebAIM Million 2026 and HTTP Archive accessibility research."
         author={{
-          name: "Accessibility.build",
-          url: "https://accessibility.build",
+          name: "Khushwant Parihar",
+          url: "https://accessibility.build/authors/khushwant-parihar",
         }}
-        authorType="Organization"
+        authorType="Person"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",
@@ -441,7 +441,7 @@ export default function StateOfAccessibilityPage() {
               description="Detectable WCAG failure rates and error counts across the home pages of the top one million websites, 2019 to 2026, with the most common failure types."
               pageUrl="https://accessibility.build/research/state-of-accessibility"
               datePublished="2026-08-27"
-              dateModified="2026-08-27"
+              dateModified="2026-10-14"
               temporalCoverage="2019/2026"
               attribution="WebAIM Million; HTTP Archive Web Almanac"
               withSchema={true}

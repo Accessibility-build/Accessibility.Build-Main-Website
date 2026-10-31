@@ -103,7 +103,7 @@ export default function OverlayDetectorPage() {
         name="Accessibility Overlay Detector"
         description="Free tool to detect if a website uses an accessibility overlay widget. Identifies the vendor and runs a real WCAG accessibility audit to show issues the overlay fails to fix."
         url="https://accessibility.build/tools/overlay-detector"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{ price: "0", priceCurrency: "USD" }}
         accessibilityFeatures={[

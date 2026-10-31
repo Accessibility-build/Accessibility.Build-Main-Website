@@ -73,9 +73,9 @@ export function AnalyticsConsent() {
           ref={bannerRef}
           aria-labelledby="analytics-consent-title"
           aria-describedby="analytics-consent-description"
-          className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-300 bg-white px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 dark:border-slate-700 dark:bg-slate-950 sm:px-6"
+          className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-300 bg-white px-4 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 dark:border-slate-700 dark:bg-slate-950 sm:px-6"
         >
-          <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
+          <div className="mx-auto grid max-w-6xl gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
             <div className="max-w-3xl">
               <h2 id="analytics-consent-title" className="sr-only">
                 Optional analytics
@@ -87,8 +87,11 @@ export function AnalyticsConsent() {
                 <strong className="font-semibold text-slate-950 dark:text-white">
                   Optional analytics.{" "}
                 </strong>
-                Google Analytics and PostHog load only if you allow them. Essential account and
-                security storage still works if you decline. Read our{" "}
+                Google Analytics and PostHog load only if you allow them.{" "}
+                <span className="hidden sm:inline">
+                  Essential account and security storage still works if you decline.{" "}
+                </span>
+                Read our{" "}
                 <Link href="/cookies" className="font-medium underline underline-offset-4">
                   cookie policy
                 </Link>

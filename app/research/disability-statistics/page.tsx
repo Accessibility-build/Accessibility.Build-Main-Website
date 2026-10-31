@@ -127,10 +127,10 @@ export default function DisabilityStatisticsPage() {
         headline="US Disability Prevalence"
         description="Age-adjusted prevalence of disability among United States adults by type, with the 2016 to 2022 trend, from CDC Disability and Health Data System BRFSS data."
         author={{
-          name: "Accessibility.build",
-          url: "https://accessibility.build",
+          name: "Khushwant Parihar",
+          url: "https://accessibility.build/authors/khushwant-parihar",
         }}
-        authorType="Organization"
+        authorType="Person"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

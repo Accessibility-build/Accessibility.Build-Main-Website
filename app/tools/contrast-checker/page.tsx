@@ -87,7 +87,7 @@ export default function ContrastCheckerPage() {
         name="WCAG Color Contrast Checker"
         description="WCAG color contrast checker that takes two hex codes and reports the contrast ratio with AA and AAA results, live previews, accessible suggestions, and an experimental APCA estimate"
         url="https://accessibility.build/tools/contrast-checker"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",

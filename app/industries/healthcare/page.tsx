@@ -72,7 +72,7 @@ const legalExposure = [
     icon: Gavel,
     title: "The HHS Section 504 web rule and the extended deadline",
     description:
-      "In May 2024, HHS finalized a rule under Section 504 of the Rehabilitation Act requiring recipients of HHS funding, including hospitals that bill Medicare or Medicaid, clinics, state health agencies, health plans, and grantees, to make websites, patient portals, kiosks, and mobile apps conform to WCAG 2.1 Level AA. The first compliance date was May 11, 2026, but in May 2026 HHS issued an interim final rule extending it by one year: recipients with 15 or more employees now have until May 11, 2027, and smaller recipients until May 10, 2028. The National Federation of the Blind is challenging that extension in court, so covered organizations should keep remediating rather than banking on the new date. See our Section 504 deadline guide for who is covered and how to plan.",
+      "In May 2024, HHS finalized a rule under Section 504 of the Rehabilitation Act requiring recipients of HHS funding, including hospitals that bill Medicare or Medicaid, clinics, state health agencies, health plans, and grantees, to make websites, patient portals, and mobile apps conform to WCAG 2.1 Level AA, and to make kiosks accessible. The first compliance date was May 11, 2026, but in May 2026 HHS issued an interim final rule extending it by one year: recipients with 15 or more employees now have until May 11, 2027, and smaller recipients until May 10, 2028. The National Federation of the Blind is challenging that extension in court, so covered organizations should keep remediating rather than banking on the new date. See our Section 504 deadline guide for who is covered and how to plan.",
   },
   {
     icon: Scale,
@@ -84,7 +84,7 @@ const legalExposure = [
     icon: HeartPulse,
     title: "ADA Title II and Title III",
     description:
-      "Private hospitals, physician practices, dental offices, pharmacies, and health insurers are places of public accommodation under ADA Title III; public hospitals and county health systems fall under Title II. Courts have applied both to digital services, and DOJ has repeatedly taken the position that the ADA covers web content. Private plaintiffs have sued health systems over inaccessible appointment scheduling, portals, and vaccine-booking sites — pandemic-era vaccine registration lawsuits were an early warning of how quickly digital health barriers become litigation. A public hospital covered by both Title II and Section 504 must meet the earlier, stricter Section 504 deadline.",
+      "Private hospitals, physician practices, dental offices, pharmacies, and health insurers are places of public accommodation under ADA Title III; public hospitals and county health systems fall under Title II. Courts have applied both to digital services, and DOJ has repeatedly taken the position that the ADA covers web content. Private plaintiffs have sued health systems over inaccessible appointment scheduling, portals, and vaccine-booking sites — pandemic-era vaccine registration lawsuits were an early warning of how quickly digital health barriers become litigation. A public hospital covered by both Title II and Section 504 should plan for the earlier applicable date, which for a Title II entity serving 50,000 or more people is April 26, 2027.",
   },
   {
     icon: CalendarClock,
@@ -180,7 +180,7 @@ const faqs = [
   {
     question: "Which accessibility laws apply to a private medical practice?",
     answer:
-      "At minimum, ADA Title III applies to private practices as places of public accommodation, covering websites, portals, and apps under prevailing DOJ and court interpretations. If the practice bills Medicare or Medicaid or receives any other HHS funding — which nearly all do — the HHS Section 504 web rule also applies, imposing WCAG 2.1 AA on web content, mobile apps, and kiosks, and Section 1557 of the ACA adds effective-communication and telehealth accessibility obligations. State civil rights laws such as California's Unruh Act can add statutory damages on top.",
+      "At minimum, ADA Title III applies to private practices as places of public accommodation, covering websites, portals, and apps under prevailing DOJ and court interpretations. If the practice bills Medicare or Medicaid or receives any other HHS funding — which nearly all do — the HHS Section 504 web rule also applies, imposing WCAG 2.1 AA on web content and mobile apps and requiring accessible kiosks, and Section 1557 of the ACA adds effective-communication and telehealth accessibility obligations. State civil rights laws such as California's Unruh Act can add statutory damages on top.",
   },
   {
     question: "What is the Section 504 web accessibility deadline, and what if we missed it?",
@@ -205,7 +205,7 @@ const faqs = [
   {
     question: "Does healthcare face accessibility lawsuits, or just regulators?",
     answer:
-      "Both. Healthcare's share of private accessibility litigation is smaller than retail's but rising, with suits over appointment scheduling, portals, and pharmacy sites — and the Section 504 rule taking effect in May 2026 gives plaintiffs and regulators an explicit technical standard to measure against. Section 504 also carries a private right of action, so missing the WCAG 2.1 AA requirement creates exposure on two fronts at once. Our lawsuit tracker follows the trend.",
+      "Both. Healthcare's share of private accessibility litigation is smaller than retail's but rising, with suits over appointment scheduling, portals, and pharmacy sites — and the Section 504 rule, now due in May 2027, gives plaintiffs and regulators an explicit technical standard to measure against. Section 504 also carries a private right of action, so missing the WCAG 2.1 AA requirement after the compliance date creates exposure on two fronts at once. Our lawsuit tracker follows the trend.",
   },
 ]
 

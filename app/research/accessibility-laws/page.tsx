@@ -67,8 +67,11 @@ export default function AccessibilityLawsPage() {
       <ArticleStructuredData
         headline="Accessibility Laws by Jurisdiction | Global Legal Tracker 2026"
         description={`Database of ${lawCounts} worldwide. Track WCAG requirements, penalties, enforcement timelines, and compliance deadlines.`}
-        author={{ name: "Accessibility.build", url: "https://accessibility.build" }}
-        authorType="Organization"
+        author={{
+          name: "Khushwant Parihar",
+          url: "https://accessibility.build/authors/khushwant-parihar",
+        }}
+        authorType="Person"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

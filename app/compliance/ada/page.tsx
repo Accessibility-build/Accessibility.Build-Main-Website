@@ -93,7 +93,7 @@ const faqs = [
   {
     question: "Has the ADA Title II web deadline changed?",
     answer:
-      "Yes. The original 2024 rule set compliance dates of April 2026 for public entities serving populations of 50,000 or more and April 2027 for smaller entities. In April 2026, the DOJ issued an Interim Final Rule extending each deadline by one year — to April 26, 2027 and April 26, 2028 respectively. The WCAG 2.1 AA standard, the rule's scope, and its exceptions are unchanged; only the dates moved. The separate HHS Section 504 web rule for healthcare entities was not extended.",
+      "Yes. The original 2024 rule set compliance dates of April 2026 for public entities serving populations of 50,000 or more and April 2027 for smaller entities. In April 2026, the DOJ issued an Interim Final Rule extending each deadline by one year — to April 26, 2027 and April 26, 2028 respectively. The WCAG 2.1 AA standard, the rule's scope, and its exceptions are unchanged; only the dates moved. HHS separately extended its Section 504 web rule to May 11, 2027 and May 10, 2028.",
   },
 ]
 
@@ -265,14 +265,14 @@ export default function AdaCompliancePage() {
             </p>
             <div className="bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 rounded-xl p-6 my-6">
               <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                Healthcare entities: a separate, earlier deadline
+                Healthcare entities: a separate deadline
               </h3>
               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                 The HHS Section 504 web accessibility rule — covering hospitals, providers, and
-                other recipients of HHS funding — also requires WCAG 2.1 AA, and it was{" "}
-                <strong>not extended</strong>. Its May 2026 compliance date has already arrived for
-                most covered entities. Where an organization is covered by both rules, the earlier
-                deadline controls. See our{" "}
+                other recipients of HHS funding — also requires WCAG 2.1 AA. HHS extended it by one year, to{" "}
+                <strong>May 11, 2027</strong> for recipients with 15 or more employees and May 10, 2028
+                for smaller recipients. Where an organization is covered by both rules, plan for the
+                earlier applicable date. See our{" "}
                 <Link href="/guides/section-504-web-accessibility-deadline" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
                   Section 504 deadline guide
                 </Link>

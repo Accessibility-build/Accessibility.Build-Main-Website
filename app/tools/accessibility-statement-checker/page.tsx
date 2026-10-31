@@ -93,7 +93,7 @@ export default function Page() {
         name="Accessibility Statement Checker"
         description="Checks whether a published accessibility statement contains the information required by UK PSBAR, the EU Web Accessibility Directive, or the European Accessibility Act."
         url="https://accessibility.build/tools/accessibility-statement-checker"
-        applicationCategory="WebApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Any"
         offers={{ price: "0", priceCurrency: "USD" }}
       />

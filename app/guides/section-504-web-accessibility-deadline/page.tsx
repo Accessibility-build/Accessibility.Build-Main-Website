@@ -10,17 +10,27 @@ import { getRouteDate } from "@/lib/site-routes"
 import { PageByline } from "@/components/seo/page-byline"
 import { clampDescription } from "@/lib/metadata"
 
+const changes = [
+  "Corrected the compliance dates. An earlier version said HHS had not extended the deadline. HHS extended it by interim final rule to May 11, 2027 and May 10, 2028.",
+  "Removed the editorial argument that HHS was right not to extend the deadline, including an unsourced claim about deaths, because it depended on the wrong date.",
+  "Added what still applies during the extension and the lawsuit challenging it.",
+  "Corrected the kiosk requirement. The rule does not set WCAG as the technical standard for kiosks.",
+  "Stopped listing an accessibility statement and a complaint process as rule requirements. We still recommend both.",
+  "Replaced the missed-deadline recovery plan with steps for using the extra time.",
+  "Removed the health insurance exchange row from the coverage table.",
+]
+
 export const metadata: Metadata = {
-  title:
-    "HHS Section 504 Web Accessibility Deadline (May 2026)",
-  description:
-    clampDescription("The HHS Section 504 web accessibility rule took effect May 11, 2026 — and unlike the DOJ Title II deadline, it was not extended. Here's exactly who's covered, what WCAG 2.1 AA requires, what to do if you missed the deadline, and why HHS holding firm was the right call."),
+  title: "HHS Section 504 Web Accessibility Deadline: May 2027",
+  description: clampDescription(
+    "HHS extended the Section 504 web accessibility deadline to May 11, 2027, or May 10, 2028 for recipients with under 15 employees. Who is covered and what to do now."
+  ),
   keywords: [
     "Section 504 deadline",
     "HHS Section 504 web rule",
-    "Section 504 web accessibility deadline 2026",
+    "Section 504 web accessibility deadline 2027",
     "504 healthcare web compliance",
-    "Section 504 May 11 2026",
+    "Section 504 May 11 2027",
     "Rehabilitation Act web accessibility",
     "HHS web accessibility rule",
     "healthcare accessibility deadline",
@@ -34,10 +44,9 @@ export const metadata: Metadata = {
       "https://accessibility.build/guides/section-504-web-accessibility-deadline",
   },
   openGraph: {
-    title:
-      "HHS Section 504 Web Accessibility Deadline (May 11, 2026): The Rule That Wasn't Extended",
+    title: "HHS Section 504 Web Accessibility Deadline: May 11, 2027",
     description:
-      "The HHS Section 504 web accessibility rule took effect May 11, 2026 — and unlike Title II, it was not extended. Editorial analysis: HHS made the right call.",
+      "HHS extended the Section 504 web deadlines by one year. The WCAG 2.1 AA standard did not change, and a federal lawsuit challenges the extension.",
     url: "https://accessibility.build/guides/section-504-web-accessibility-deadline",
     type: "article",
     siteName: "Accessibility.build",
@@ -46,16 +55,15 @@ export const metadata: Metadata = {
         url: "https://accessibility.build/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Section 504 Web Accessibility Deadline — May 11, 2026",
+        alt: "Section 504 Web Accessibility Deadline: May 11, 2027",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "HHS Section 504 Web Accessibility Deadline (May 11, 2026)",
+    title: "HHS Section 504 Web Accessibility Deadline: May 11, 2027",
     description:
-      "The Section 504 web rule took effect May 11, 2026 and was not extended. Here's who's covered and what to do.",
+      "HHS extended the Section 504 web deadlines by one year. Who is covered and what to do now.",
   },
 }
 
@@ -63,48 +71,52 @@ const faqs = [
   {
     question: "What is the HHS Section 504 web accessibility rule?",
     answer:
-      "It's a final rule published by the U.S. Department of Health and Human Services under Section 504 of the Rehabilitation Act of 1973. The rule requires recipients of HHS federal financial assistance to make their web content, mobile applications, and kiosks conform to WCAG 2.1 Level AA. It is the first federal rule to set a specific technical standard for web accessibility on healthcare-adjacent entities, and it carries the full force of Section 504 — meaning loss of federal funding is on the table for non-compliance.",
+      "It is a May 2024 final rule from the U.S. Department of Health and Human Services under Section 504 of the Rehabilitation Act of 1973. It requires recipients of HHS federal financial assistance to make web content and mobile apps conform to WCAG 2.1 Level AA, with limited exceptions. It also requires kiosks to be accessible, though it does not set WCAG as a technical standard for them.",
   },
   {
-    question: "When did the Section 504 web rule take effect?",
+    question: "What is the Section 504 web accessibility deadline now?",
     answer:
-      "The compliance date for most covered entities was May 11, 2026. Smaller entities and certain narrow categories have phased timelines that extend further out, but the May 11, 2026 date applies to the majority of recipients — including most hospitals, state Medicaid agencies, large clinics, and HHS grantees. Unlike the DOJ's parallel Title II rule for state and local governments, the Section 504 deadline was not extended by HHS.",
+      "May 11, 2027 for recipients with 15 or more employees, and May 10, 2028 for recipients with fewer than 15. An HHS interim final rule published May 11, 2026 moved both dates back one year from May 11, 2026 and May 10, 2027.",
   },
   {
-    question: "Who is actually covered by the rule?",
+    question: "Was the Section 504 deadline extended like the DOJ Title II deadline?",
     answer:
-      "Any entity that receives federal financial assistance from HHS is covered. That includes: state Medicaid agencies and their contracted plans, hospitals participating in Medicare and Medicaid (which is effectively every hospital), community health centers (FQHCs), state and local public health departments funded by CDC or HRSA, university hospitals and academic medical centers, federally funded research institutions, social services agencies receiving HHS grants, and most nursing homes and home-health providers. The trigger is HHS funding, not entity type — a private hospital that bills Medicare is covered the same as a public one.",
+      "Yes. The DOJ extended its Title II web rule by interim final rule on April 20, 2026, and HHS followed with its own interim final rule, effective May 7, 2026, citing consistency between the two rules among its reasons. Only the compliance dates changed. WCAG 2.1 AA remains the standard.",
   },
   {
-    question:
-      "Was the Section 504 deadline extended like the DOJ Title II deadline?",
+    question: "Could the new date change?",
     answer:
-      "No. The DOJ extended its Title II web rule by one year on April 20, 2026 — pushing those deadlines to April 2027 and 2028. HHS did not follow suit. The Section 504 web accessibility deadline of May 11, 2026 stood. In our editorial view, HHS made the right call. Healthcare access is not a matter of administrative convenience — patients with disabilities have been excluded from telehealth, patient portals, appointment scheduling, and insurance enrollment for years. Extending the deadline would have prolonged real harm.",
+      "It could. The National Federation of the Blind sued in May 2026 to set aside the DOJ and HHS extensions (No. 1:26-cv-02007). The plaintiffs moved for summary judgment on September 28, 2026, and there was no ruling as of October 28, 2026. Treat the 2027 date as the latest safe target, not a guaranteed one.",
+  },
+  {
+    question: "Does the extension mean there are no obligations until 2027?",
+    answer:
+      "No. HHS states that the delay does not relieve recipients of other Section 504 obligations. They must still make reasonable modifications to avoid disability discrimination, subject to the undue burden and fundamental alteration limits, and must keep their programs and activities accessible. Section 504 is also enforceable through private lawsuits.",
+  },
+  {
+    question: "Who is covered by the rule?",
+    answer:
+      "Any entity that receives federal financial assistance from HHS. That commonly includes state Medicaid agencies, hospitals that take Medicare or Medicaid, community health centers, state and local public health departments, academic medical centers, HHS-funded research institutions, social services agencies with HHS grants, and many nursing homes. The trigger is the funding, not the type of organization, so check with counsel if your funding is unusual.",
   },
   {
     question: "What technical standard does Section 504 require?",
     answer:
-      "WCAG 2.1 Level AA, the same standard as the DOJ Title II rule. Conformance is required for web content, mobile applications, and self-service kiosks made available to the public, to beneficiaries of HHS-funded programs, or to employees of covered entities. The rule does not yet require WCAG 2.2, but the gap between the regulatory floor (2.1) and the industry standard (2.2) is widening — auditing against 2.2 is the prudent move.",
+      "WCAG 2.1 Level AA for web content and mobile apps. The rule does not require WCAG 2.2, though auditing against 2.2 covers 2.1 AA as well, apart from the removed 4.1.1 Parsing criterion, and prepares you for later updates.",
   },
   {
-    question: "What if my organization missed the May 11, 2026 deadline?",
+    question: "What are the consequences of non-compliance?",
     answer:
-      "First, do not panic and do not stop. Section 504 enforcement typically begins with an HHS Office for Civil Rights complaint, an OCR-led investigation, and an opportunity for voluntary resolution before any funding action. The standard remedy is a corrective action plan with milestones — not immediate defunding. What OCR looks for is good-faith effort, documented progress, and a credible remediation roadmap. Run a complete audit immediately, prioritize the highest-impact patient-facing properties (patient portal, appointment scheduling, telehealth, eligibility and enrollment), publish an honest accessibility statement, and assign owners with deadlines for every open finding.",
-  },
-  {
-    question: "What are the penalties for non-compliance?",
-    answer:
-      "Section 504 is enforced through HHS funding — the ultimate sanction is suspension or termination of federal financial assistance, which for most hospitals and Medicaid agencies would be existential. In practice, OCR pursues voluntary compliance through resolution agreements with documented corrective action plans before invoking funding penalties. Private plaintiffs can also bring Section 504 actions in federal court seeking injunctive relief and damages. Parallel ADA Title III lawsuits — which are filed at a rate exceeding 3,000 per year in federal court alone — can also reach the same web properties under separate authority.",
+      "Section 504 is enforced through HHS funding, so the ultimate sanction is suspension or termination of federal financial assistance. People can also file complaints with the HHS Office for Civil Rights or bring private lawsuits. ADA Title II or Title III may also apply to the same web properties under separate authority.",
   },
   {
     question: "How is Section 504 different from ADA Title II and Title III?",
     answer:
-      "Section 504 covers entities receiving federal financial assistance — primarily healthcare. ADA Title II covers state and local government services regardless of funding source. ADA Title III covers private businesses considered places of public accommodation. A given organization can be covered by more than one: a public hospital is typically covered by both Title II (because it's a state entity) and Section 504 (because it bills Medicare). When that happens, the strictest and earliest deadline controls — which, after the April 2026 Title II extension, is Section 504.",
+      "Section 504 covers recipients of federal financial assistance. ADA Title II covers state and local governments regardless of funding. ADA Title III covers private businesses that are places of public accommodation. One organization can fall under more than one. A public hospital is typically covered by both Title II and Section 504, and the earlier applicable date is the safer plan: April 26, 2027 for a Title II entity serving 50,000 or more people.",
   },
   {
-    question: "What should healthcare organizations do this month?",
+    question: "What should healthcare organizations do now?",
     answer:
-      "Six concrete actions: (1) Audit your patient portal, telehealth platform, appointment scheduling, and online bill-pay against WCAG 2.1 AA — these are the most-complained-about properties. (2) Verify that PDF clinical documents (after-visit summaries, consent forms, lab results) are tagged and screen-reader accessible. (3) Confirm mobile apps for patient access conform to WCAG 2.1 AA on iOS and Android. (4) Publish an updated accessibility statement that honestly describes your conformance status and remediation roadmap. (5) Document training for clinical and IT staff on accessibility obligations. (6) Establish a process to receive and respond to accessibility complaints from patients — OCR specifically looks for this.",
+      "Audit patient-facing systems against WCAG 2.1 AA, starting with the portal, scheduling, telehealth, bill-pay and enrollment. Check PDFs and other documents in those journeys. Test mobile apps on iOS and Android. Ask vendors for current conformance reports. Keep a dated remediation plan with owners, and give patients a clear way to report barriers.",
   },
 ]
 
@@ -122,8 +134,8 @@ export default function Section504DeadlinePage() {
     <>
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
       <ArticleStructuredData
-        headline="HHS Section 504 Web Accessibility Deadline (May 11, 2026): The Rule That Wasn't Extended"
-        description="The HHS Section 504 web accessibility rule took effect May 11, 2026 — and unlike the DOJ Title II deadline, it was not extended. Editorial analysis of who's covered, what WCAG 2.1 AA requires, what to do if you missed the deadline, and why HHS holding firm was the right call."
+        headline="HHS Section 504 Web Accessibility Deadline: May 11, 2027"
+        description="HHS extended the Section 504 web accessibility deadlines by one year, to May 11, 2027 and May 10, 2028. Who is covered, what WCAG 2.1 AA requires, and how to use the time."
         author={{
           name: "Accessibility.build Editorial",
           url: "https://accessibility.build/about",
@@ -136,11 +148,11 @@ export default function Section504DeadlinePage() {
         dateModified={getRouteDate("/guides/section-504-web-accessibility-deadline") ?? "2026-05-18"}
         image="https://accessibility.build/og-image.png"
         url="https://accessibility.build/guides/section-504-web-accessibility-deadline"
-        wordCount={2300}
+        wordCount={1400}
         keywords={[
           "Section 504 deadline",
           "HHS Section 504 web rule",
-          "Section 504 May 11 2026",
+          "Section 504 May 11 2027",
           "healthcare web accessibility",
         ]}
       />
@@ -177,298 +189,210 @@ export default function Section504DeadlinePage() {
           <header className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-200 text-xs font-semibold uppercase tracking-wide mb-5">
               <span aria-hidden="true">●</span>
-              Editorial · Updated May 18, 2026
+              Guide · Corrected October 31, 2026
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
-              Section 504 Took Effect May 11. HHS Was Right Not to Extend It.
+              The Section 504 Web Deadline Moved to May 2027
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
-              One week ago, on May 11, 2026, the HHS Section 504 web
-              accessibility rule took effect for most healthcare entities
-              receiving federal funding. Three weeks before that, the
-              Department of Justice quietly extended its parallel Title II
-              deadline by a year. HHS did not follow suit. In our view, that
-              was the correct call — and the contrast tells you everything
-              about which agency is treating accessibility as a civil right
-              and which is treating it as a policy timeline to manage.
+              HHS extended the Section 504 web and mobile accessibility
+              deadlines by one year. Recipients with 15 or more employees now
+              have until May 11, 2027, and smaller recipients until May 10,
+              2028. The standard is still WCAG 2.1 Level AA, and a federal
+              lawsuit is challenging the extension.
             </p>
             <PageByline route="/guides/section-504-web-accessibility-deadline" variant="hero" />
+            <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
+              Corrected October 31, 2026: an earlier version said HHS had not
+              extended this deadline.{" "}
+              <a href="#changes" className="underline underline-offset-2">
+                See what changed
+              </a>
+              .
+            </p>
           </header>
 
-          <section className="mb-10 rounded-xl border-2 border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30 p-6">
-            <p className="text-sm font-bold uppercase tracking-wide text-emerald-800 dark:text-emerald-200 mb-3">
-              Our editorial position
-            </p>
-            <p className="text-lg text-slate-900 dark:text-white leading-relaxed mb-3">
-              Healthcare access is not a matter of administrative convenience.
-              Patients with disabilities have been locked out of patient
-              portals, telehealth visits, appointment scheduling, and
-              insurance enrollment for the entire two decades that those
-              systems have existed. Extending the Section 504 deadline would
-              have prolonged that exclusion for one more year — long enough,
-              given U.S. patient demographics, that tens of thousands of
-              people would have died before getting access to their own
-              medical records.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-              HHS did not extend the rule. They were right not to. And if
-              your hospital, health system, or Medicaid agency missed the
-              deadline, you do not get to argue the rule was unreasonable —
-              you get to file an OCR resolution plan and start the work you
-              should have started in 2024.
-            </p>
-          </section>
-
-          <section className="prose prose-slate dark:prose-invert max-w-none mb-12">
-            <h2>The two-rule landscape, in one paragraph</h2>
+<section className="prose prose-slate dark:prose-invert max-w-none mb-12">
+            <h2>The dates at a glance</h2>
+            <div className="not-prose rounded-xl border border-slate-200 dark:border-slate-800 overflow-x-auto my-6" role="region" aria-label="Section 504 compliance dates" tabIndex={0}>
+              <table className="w-full text-sm">
+                <thead className="bg-slate-100 dark:bg-slate-800">
+                  <tr>
+                    <th scope="col" className="text-left p-4 font-semibold">Recipient size</th>
+                    <th scope="col" className="text-left p-4 font-semibold">Original date</th>
+                    <th scope="col" className="text-left p-4 font-semibold">Current date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t border-slate-200 dark:border-slate-800">
+                    <th scope="row" className="text-left p-4 font-medium">15 or more employees</th>
+                    <td className="p-4">May 11, 2026</td>
+                    <td className="p-4">May 11, 2027</td>
+                  </tr>
+                  <tr className="border-t border-slate-200 dark:border-slate-800">
+                    <th scope="row" className="text-left p-4 font-medium">Fewer than 15 employees</th>
+                    <td className="p-4">May 10, 2027</td>
+                    <td className="p-4">May 10, 2028</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <p>
-              There are two federal web accessibility rules currently in
-              force in the United States. The{" "}
+              The change comes from an{" "}
+              <a href="https://www.federalregister.gov/documents/2026/05/11/2026-09266/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web">
+                HHS interim final rule
+              </a>{" "}
+              published May 11, 2026 and effective May 7, 2026. It changes only
+              these two dates. HHS cited recipients&apos; resource and staffing
+              limits, litigation risk, and consistency with the{" "}
               <Link href="/guides/doj-title-ii-deadline-extension">
-                DOJ Title II rule
-              </Link>{" "}
-              covers state and local government services; its deadlines were
-              pushed to April 2027 and April 2028 by an Interim Final Rule on
-              April 20, 2026. The <strong>HHS Section 504 rule</strong>{" "}
-              covers entities receiving HHS funding; its compliance date was
-              May 11, 2026, and HHS did not extend it. Both rules require
-              WCAG 2.1 Level AA. Entities subject to both — most notably
-              public hospitals and state university medical centers — must
-              meet the earlier of the two, which is now Section 504.
+                DOJ Title II extension
+              </Link>
+              . Public comments closed July 6, 2026.
+            </p>
+
+            <h2>Why the date is not settled</h2>
+            <p>
+              The National Federation of the Blind sued in May 2026 to set
+              aside both the DOJ and HHS extensions (No. 1:26-cv-02007). The
+              plaintiffs moved for summary judgment on September 28, 2026, and
+              there was no ruling as of October 28, 2026. Our{" "}
+              <Link href="/research/accessibility-lawsuits">lawsuit tracker</Link>{" "}
+              follows the case. Plan to finish early rather than on the last
+              permitted day.
+            </p>
+
+            <h2>What still applies today</h2>
+            <p>
+              The extension does not pause Section 504. HHS says recipients
+              must still make reasonable modifications to avoid disability
+              discrimination, and have an ongoing obligation to keep their
+              programs and activities accessible. A patient who cannot use a
+              portal can still ask for access or complain, and Section 504 is
+              enforceable through private lawsuits. This is general information,
+              not legal advice.
             </p>
 
             <h2>Who is covered</h2>
             <p>
-              The Section 504 rule is broader than most healthcare leaders
-              realize. The trigger is receipt of federal financial assistance
-              from HHS — not a particular corporate form, not a particular
-              size, not a particular line of business. In practice:
+              The trigger is receipt of federal financial assistance from HHS,
+              not a particular corporate form or line of business. These are
+              common patterns, so confirm your own position with counsel.
             </p>
 
-            <div className="not-prose rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden my-6">
+            <div className="not-prose rounded-xl border border-slate-200 dark:border-slate-800 overflow-x-auto my-6" role="region" aria-label="Who Section 504 commonly covers" tabIndex={0}>
               <table className="w-full text-sm">
                 <thead className="bg-slate-100 dark:bg-slate-800">
                   <tr>
-                    <th scope="col" className="text-left p-4 font-semibold">
-                      Entity type
-                    </th>
-                    <th scope="col" className="text-left p-4 font-semibold">
-                      Covered?
-                    </th>
-                    <th scope="col" className="text-left p-4 font-semibold">
-                      Why
-                    </th>
+                    <th scope="col" className="text-left p-4 font-semibold">Entity type</th>
+                    <th scope="col" className="text-left p-4 font-semibold">Usually covered?</th>
+                    <th scope="col" className="text-left p-4 font-semibold">Why</th>
                   </tr>
                 </thead>
                 <tbody>
                   {[
-                    [
-                      "Hospital billing Medicare/Medicaid",
-                      "Yes",
-                      "Medicare/Medicaid reimbursement is federal financial assistance",
-                    ],
-                    [
-                      "State Medicaid agency",
-                      "Yes",
-                      "Direct HHS funding recipient",
-                    ],
-                    [
-                      "FQHC / community health center",
-                      "Yes",
-                      "HRSA grants are HHS financial assistance",
-                    ],
-                    [
-                      "Public university medical center",
-                      "Yes (Title II + 504)",
-                      "Covered under both rules; earlier deadline controls",
-                    ],
-                    [
-                      "Nursing home receiving Medicaid",
-                      "Yes",
-                      "Medicaid reimbursement triggers coverage",
-                    ],
-                    [
-                      "Private cash-pay specialty clinic",
-                      "Likely no",
-                      "Only if it receives HHS grants or federal funding",
-                    ],
-                    [
-                      "Health insurance issuer on a federal exchange",
-                      "Yes",
-                      "ACA marketplace participation involves federal assistance",
-                    ],
-                    [
-                      "Pharma manufacturer (no HHS grants)",
-                      "Generally no",
-                      "Section 504 doesn't reach unfunded private entities",
-                    ],
+                    ["Hospital taking Medicare or Medicaid", "Yes", "These payments are generally treated as federal financial assistance"],
+                    ["State Medicaid agency", "Yes", "Direct HHS funding recipient"],
+                    ["FQHC or community health center", "Yes", "HRSA grants are HHS financial assistance"],
+                    ["Public university medical center", "Yes, plus Title II", "Covered under both rules, so plan for the earlier date"],
+                    ["Nursing home receiving Medicaid", "Yes", "Medicaid reimbursement triggers coverage"],
+                    ["Private cash-pay specialty clinic", "Likely no", "Only if it receives HHS grants or other HHS funding"],
+                    ["Pharma manufacturer with no HHS grants", "Generally no", "Section 504 does not reach entities without federal financial assistance"],
                   ].map((row) => (
                     <tr key={row[0]} className="border-t border-slate-200 dark:border-slate-800">
-                      <th scope="row" className="text-left p-4 font-medium">
-                        {row[0]}
-                      </th>
+                      <th scope="row" className="text-left p-4 font-medium">{row[0]}</th>
                       <td className="p-4">{row[1]}</td>
-                      <td className="p-4 text-slate-600 dark:text-slate-400">
-                        {row[2]}
-                      </td>
+                      <td className="p-4 text-slate-600 dark:text-slate-400">{row[2]}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
 
-            <h2>What the rule actually requires</h2>
+            <h2>What the rule requires</h2>
             <ul>
               <li>
-                <strong>WCAG 2.1 Level AA conformance</strong> on all web
-                content and mobile applications made available to the public,
-                to program beneficiaries, or to employees.
+                <strong>WCAG 2.1 Level AA</strong> for web content and mobile
+                apps a recipient provides or makes available, directly or
+                through contractual, licensing, or other arrangements.
               </li>
               <li>
-                <strong>Accessible self-service kiosks</strong> — registration
-                kiosks, payment kiosks, lobby check-in tablets, telehealth
-                kiosks.
+                <strong>Accessible kiosks.</strong> The rule covers kiosks
+                separately and does not set WCAG as their technical standard.
+                WCAG can still be useful guidance for kiosk software.
               </li>
               <li>
-                <strong>Accessible electronic documents</strong> — after-visit
-                summaries, consent forms, billing statements, lab results, and
-                clinical patient education materials distributed
-                electronically.
-              </li>
-              <li>
-                <strong>Accessible third-party tools</strong> used by the
-                covered entity. Using an inaccessible vendor product does not
-                shift liability away from the funded recipient — you are
-                responsible for what you procure.
-              </li>
-              <li>
-                <strong>An accessibility statement and a complaint
-                process</strong> that allows patients to report barriers and
-                receive timely response.
+                <strong>Limited exceptions</strong>, including certain archived
+                web content, preexisting conventional electronic documents,
+                content posted by independent third parties, some
+                password-protected individualized documents, and social media
+                posts made before the compliance date. Read each exception
+                closely before relying on it.
               </li>
             </ul>
-
-            <h2>Why we&apos;re calling HHS holding firm the right move</h2>
             <p>
-              Three reasons, in plain language:
+              An accessibility statement and a barrier-reporting route are not
+              listed above as rule requirements, but we recommend both because
+              they show good faith and surface problems early.
             </p>
-            <ol>
-              <li>
-                <strong>The harm is concrete and immediate.</strong> When a
-                patient portal is inaccessible, a blind patient cannot view
-                their own lab results without asking a sighted person to read
-                them aloud. When telehealth is inaccessible, deaf patients
-                cannot use it at all. When online appointment scheduling is
-                inaccessible, motor-impaired patients call a phone line that
-                is understaffed and routes to voicemail. These are not
-                abstract failures of compliance. They are daily exclusions
-                from healthcare.
-              </li>
-              <li>
-                <strong>The rule was published in May 2024.</strong> Covered
-                entities had a full two years of notice. Major healthcare
-                vendor platforms — Epic, Cerner, the patient portal layers,
-                the telehealth providers — published WCAG 2.1 AA roadmaps in
-                2024 and 2025. Any health system that did not start the work
-                in that window made a choice. The deadline was not a
-                surprise.
-              </li>
-              <li>
-                <strong>Federal funding is the right enforcement tool for
-                this category of entity.</strong> Section 504 enforcement is
-                slower and more deliberate than Title III litigation —
-                exactly because it can reach the funding stream. Extending
-                the deadline would have signaled that HHS is not willing to
-                use that tool. Holding firm signals the opposite.
-              </li>
-            </ol>
 
-            <h2>If you missed the deadline: a six-step recovery plan</h2>
+            <h2>How to use the extra time</h2>
             <ol>
               <li>
-                <strong>Stop guessing about conformance.</strong> Run a real
-                WCAG 2.1 AA audit on your patient portal, scheduling platform,
-                telehealth, online bill-pay, and insurance enrollment. Use
-                our{" "}
+                <strong>Audit what patients use.</strong> Test the patient
+                portal, scheduling, telehealth, online bill-pay, and insurance
+                enrollment against WCAG 2.1 AA. Our{" "}
                 <Link href="/guides/how-to-audit-website-accessibility">
                   step-by-step audit guide
                 </Link>{" "}
-                or paste findings into the{" "}
-                <Link href="/tools/accessibility-audit-helper">
-                  AI Audit Helper
-                </Link>{" "}
-                to map them to specific success criteria.
+                explains the method.
               </li>
               <li>
-                <strong>Triage by patient impact.</strong> Fix critical and
-                high-severity issues on patient-facing systems first.
-                Administrative back-end tools can wait.
+                <strong>Triage by patient impact.</strong> Fix critical barriers
+                on patient-facing systems first.
               </li>
               <li>
-                <strong>Document the corrective action plan.</strong> Put
-                every open finding into a tracked backlog with owner,
-                severity, deadline, and status. This is what OCR will ask for
-                if a complaint is filed.
+                <strong>Keep a dated remediation plan.</strong> Track every open
+                finding with an owner, severity, deadline, and status.
               </li>
               <li>
                 <strong>Publish an honest accessibility statement.</strong>{" "}
-                Document current conformance level, known gaps, and target
-                resolution dates. Provide a clearly-labeled contact for
-                accessibility complaints. Use our{" "}
+                Describe known gaps, target dates, and a contact for reporting
+                barriers. Our{" "}
                 <Link href="/tools/accessibility-statement-generator">
                   statement generator
-                </Link>
-                .
+                </Link>{" "}
+                can start the draft.
               </li>
               <li>
-                <strong>Press your vendors.</strong> If your patient portal
-                vendor cannot provide a current ACR / VPAT or a credible
-                WCAG 2.1 AA conformance roadmap, escalate to your contract
-                manager. Vendor non-conformance does not insulate you from
-                Section 504 liability.
+                <strong>Press your vendors.</strong> Ask for a current ACR or
+                VPAT and a credible roadmap. Content provided through a vendor
+                arrangement can still be your responsibility.
               </li>
               <li>
-                <strong>Train the team that ships the website.</strong>{" "}
-                Section 504 violations are usually shipped, not designed.
-                Developers and content authors need to understand the basics
-                of semantic HTML, ARIA, keyboard interaction, and accessible
-                document authoring.
+                <strong>Train the people who ship content.</strong> Developers
+                and authors need the basics of semantic HTML, keyboard
+                interaction, ARIA, and accessible documents.
               </li>
             </ol>
 
-            <h2>Where we stand</h2>
+            <h2>Our view</h2>
             <p>
-              The contrast between the DOJ Title II extension and HHS holding
-              the Section 504 line is the most consequential accessibility
-              policy moment of 2026. One agency decided that institutional
-              pushback was sufficient reason to defer civil rights
-              enforcement by a year. The other agency decided that patients
-              with disabilities cannot wait another year for access to their
-              own healthcare. We are unambiguously on HHS&apos;s side of that
-              contrast, and we will say so in every audit we publish, every
-              report we deliver, and every statement we draft.
-            </p>
-            <p>
-              If you are running a covered healthcare entity and you did the
-              work on time: thank you. Your patients noticed, even if the
-              policy headlines did not.
-            </p>
-            <p>
-              If you did not: file the OCR resolution paperwork honestly,
-              start the audit this week, and treat the next ninety days as
-              the most important accessibility sprint your organization will
-              run this decade.
+              The extension gives organizations time, not permission to wait.
+              Patients who meet inaccessible portals and telehealth today carry
+              the cost of each delay, and the deadline could still change in
+              court. Start now, and fix the journeys people depend on first.
             </p>
           </section>
 
           <section className="mb-16">
             <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-8">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
-                Start your Section 504 recovery audit
+                Start your Section 504 audit
               </h2>
               <p className="text-slate-600 dark:text-slate-300 mb-6">
-                The deadline already passed. The standard is WCAG 2.1 AA.
-                Run the audit and document the plan.
+                The first deadline is May 11, 2027, and the standard is WCAG 2.1
+                AA. Run the audit and document the plan.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -521,6 +445,18 @@ export default function Section504DeadlinePage() {
                 </details>
               ))}
             </div>
+          </section>
+
+          <section id="changes" aria-labelledby="changes-heading" className="scroll-mt-24 border-t border-slate-200 pt-8 dark:border-slate-800">
+            <h2 id="changes-heading" className="text-xl font-semibold text-slate-900 dark:text-white">
+              Changes to this guide
+            </h2>
+            <h3 className="mt-4 text-sm font-semibold text-slate-900 dark:text-white">October 31, 2026</h3>
+            <ul className="mt-2 list-disc space-y-2 pl-5 text-sm text-slate-600 dark:text-slate-400">
+              {changes.map((change) => (
+                <li key={change}>{change}</li>
+              ))}
+            </ul>
           </section>
         </article>
 

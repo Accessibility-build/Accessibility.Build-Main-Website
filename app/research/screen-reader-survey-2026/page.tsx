@@ -196,10 +196,10 @@ export default function ScreenReaderSurvey2026Page() {
         headline="Screen Reader Survey 2026: WebAIM Survey #11 Compared with #10"
         description="Every question asked in both WebAIM Screen Reader User Survey #11 (2026) and #10 (2024), side by side: primary screen reader, JAWS vs NVDA by region, navigation, perceived progress, plus the new AI and document questions."
         author={{
-          name: "Accessibility.build",
-          url: "https://accessibility.build",
+          name: "Khushwant Parihar",
+          url: "https://accessibility.build/authors/khushwant-parihar",
         }}
-        authorType="Organization"
+        authorType="Person"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

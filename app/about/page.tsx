@@ -67,7 +67,7 @@ const principles = [
 export default function AboutPage() {
   const profileSchema = {
     "@context": "https://schema.org",
-    "@type": "ProfilePage",
+    "@type": "AboutPage",
     mainEntity: {
       "@type": "Person",
       "@id": "https://accessibility.build/#founder",

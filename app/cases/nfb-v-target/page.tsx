@@ -63,8 +63,8 @@ const primarySources = {
 export const metadata: Metadata = {
   title: pageTitle,
   description: clampDescription(pageDescription),
-  authors: [{ name: "The Accessibility.build team", url: "https://accessibility.build/about" }],
-  creator: "The Accessibility.build team",
+  authors: [{ name: "Khushwant Parihar", url: "https://accessibility.build/authors/khushwant-parihar" }],
+  creator: "Khushwant Parihar",
   publisher: "Accessibility.build",
   keywords: [
     "NFB v Target",
@@ -159,11 +159,6 @@ export default async function NfbTargetCasePage() {
         description={pageDescription}
         datePublished={study.datePublished}
         section="Case study"
-        author={{
-          name: "The Accessibility.build team",
-          url: "https://accessibility.build/about",
-          type: "Organization",
-        }}
       />
 
       <article className="bg-white pb-20 dark:bg-slate-950">
@@ -207,10 +202,7 @@ export default async function NfbTargetCasePage() {
             </p>
 
             <div className="mt-7">
-              <PageByline
-                route={`/cases/${CASE_SLUG}`}
-                reviewer={{ name: "The Accessibility.build team", href: "/about", credential: "" }}
-              />
+              <PageByline route={`/cases/${CASE_SLUG}`} />
             </div>
 
             <CaseFacts facts={study.facts} />

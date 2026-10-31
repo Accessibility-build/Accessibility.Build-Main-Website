@@ -194,7 +194,7 @@ export default function WcagChecklistPage() {
         name="WCAG 2.2 Checklist Excel Export"
         description="Export your WCAG 2.2 accessibility checklist to Excel format with progress tracking, notes, and professional formatting"
         url="https://accessibility.build/checklists/wcag-2-2"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",

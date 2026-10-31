@@ -79,7 +79,7 @@ const faqs = [
     question:
       "Does the extension apply to entities that receive federal HHS funding?",
     answer:
-      "No. Healthcare providers, state Medicaid agencies, public hospitals, and other entities receiving funding from the U.S. Department of Health and Human Services are covered by a separate rule — the HHS Section 504 web accessibility final rule. That rule was not extended. Its compliance deadline was May 11, 2026, which has now passed for most covered entities. If a public hospital is covered by both Title II and Section 504, the earlier Section 504 deadline controls. See our guide on the Section 504 deadline for details.",
+      "No. Healthcare providers, state Medicaid agencies, public hospitals, and other entities receiving funding from the U.S. Department of Health and Human Services are covered by a separate rule — the HHS Section 504 web accessibility final rule. HHS extended that rule separately, to May 11, 2027 for recipients with 15 or more employees and May 10, 2028 for smaller recipients. If a public hospital is covered by both rules, plan for the earlier applicable date, which for a large Title II entity is April 26, 2027. See our guide on the Section 504 deadline for details.",
   },
   {
     question: "Why did the DOJ extend the deadline?",
@@ -287,9 +287,9 @@ export default function TitleIIExtensionPage() {
                 narrow carve-outs.
               </li>
               <li>
-                <strong>Section 504 was not extended.</strong> Entities that
-                receive HHS funding are covered by a separate rule that took
-                effect May 11, 2026.{" "}
+                <strong>Section 504 has its own dates.</strong> Entities that
+                receive HHS funding are covered by a separate rule, which HHS
+                extended to May 11, 2027 and May 10, 2028.{" "}
                 <Link href="/guides/section-504-web-accessibility-deadline">
                   See our Section 504 guide.
                 </Link>

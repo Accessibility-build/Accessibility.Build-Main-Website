@@ -1,4 +1,5 @@
 import { Download, FileJson, Table2 } from "lucide-react"
+import { WEBAIM_LICENCE } from "@/lib/data/webaim-licence"
 import { DatasetStructuredData } from "@/components/seo/structured-data"
 
 // The "get the data" block for a research page: CSV and JSON links to the
@@ -61,7 +62,13 @@ export function DatasetDownloads({
         temporalCoverage={temporalCoverage}
         keywords={keywords}
         license={licence?.url}
-        creator={{ name: "Accessibility.build", url: "https://accessibility.build" }}
+        creator={
+          licence?.url === WEBAIM_LICENCE.url
+            ? { name: "WebAIM", url: "https://webaim.org" }
+            : { name: "Accessibility.build", url: "https://accessibility.build" }
+        }
+        isBasedOn={licence?.url === WEBAIM_LICENCE.url ? "https://webaim.org" : undefined}
+        downloadUrl={`https://accessibility.build/api/research/${dataset}`}
       />
       ) : null}
       <div className="flex flex-wrap items-start justify-between gap-4">

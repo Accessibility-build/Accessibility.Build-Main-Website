@@ -128,10 +128,10 @@ export default function AccessibilitySalaryPage() {
         headline="Digital Accessibility Salary Report 2026"
         description="What digital accessibility professionals earn by country, experience, work location, organisation size, and role, from the WebAIM Global Digital Accessibility Salary Survey."
         author={{
-          name: "Accessibility.build",
-          url: "https://accessibility.build",
+          name: "Khushwant Parihar",
+          url: "https://accessibility.build/authors/khushwant-parihar",
         }}
-        authorType="Organization"
+        authorType="Person"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

@@ -91,7 +91,7 @@ export default function ADAComplianceRisksPage() {
         name="ADA Compliance Risk Assessment"
         description="Planning tool for comparing accessibility risk factors, documenting assumptions, and creating a prioritized remediation roadmap."
         url="https://accessibility.build/tools/ada-compliance-risks"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",

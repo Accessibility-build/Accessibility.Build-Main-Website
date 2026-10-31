@@ -325,7 +325,7 @@ export default function EAAChecklistPage() {
         name="EAA Readiness Checklist"
         description={`Interactive European Accessibility Act checklist: ${ROW_COUNT} obligations from Directive (EU) 2019/882 cited to their article or annex, with sector filters, status tracking, evidence to keep, notes and Excel export. Dataset verified against the Directive text on ${dateModified}.`}
         url="https://accessibility.build/checklists/eaa"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{ price: "0", priceCurrency: "USD" }}
         featureList={[

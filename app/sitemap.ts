@@ -16,11 +16,9 @@ const baseUrl = "https://accessibility.build"
 export const revalidate = 3600
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticEntries = siteRoutes.map(({ route, lastModified, priority, changeFrequency }) => ({
+  const staticEntries = siteRoutes.map(({ route, lastModified }) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(lastModified),
-    changeFrequency: changeFrequency ?? ("monthly" as const),
-    priority,
   }))
 
   // Sanity CMS blog posts (the only dynamic blog source — see app/blog/[slug]/page.tsx)
@@ -36,8 +34,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .map((post: any) => ({
       url: `${baseUrl}/blog/${post.slug.current}`,
       lastModified: new Date(post._updatedAt || post.publishedAt),
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
     }))
 
   // The CMS can return the same slug twice (e.g. drafts/translations); every URL must appear exactly once.

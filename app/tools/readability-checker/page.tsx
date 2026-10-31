@@ -101,7 +101,7 @@ export default function ReadabilityCheckerPage() {
         name="Readability Checker"
         description={pageDescription}
         url={`https://accessibility.build${ROUTE}`}
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Any"
         featureList={[
           "Flesch Reading Ease, Flesch-Kincaid, Gunning Fog, SMOG, Coleman-Liau and ARI scores",

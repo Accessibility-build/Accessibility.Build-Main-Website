@@ -8,7 +8,7 @@ import { KeyFacts } from "@/components/research/key-facts"
 
 const pageTitle = "India Web Accessibility Law: RPwD Act, IS 17802, ACRs"
 const pageDescription =
-  "India's web accessibility law: RPwD Act 2016, the 2024 Supreme Court ruling, draft 2026 rules mandating IS 17802 (WCAG 2.1 AA), public ACRs, deadlines and fines."
+  "India's web accessibility law: RPwD Act 2016, the 2024 Supreme Court ruling, draft 2026 rules mandating IS 17802 (WCAG 2.1 AA), public ACRs, deadlines, fines."
 const ogTitle = encodeURIComponent(pageTitle)
 
 // Dates the page is pinned to. Restamp both when the final rules are notified.

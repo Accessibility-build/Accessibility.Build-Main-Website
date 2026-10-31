@@ -481,10 +481,10 @@ export function CurbAssistant() {
             track({ type: "opened", conversationId, path: pathname })
           }}
           style={{ bottom: `calc(1rem + ${offset})` }}
-          className="fixed right-4 z-40 inline-flex min-h-11 items-center gap-2 rounded-full border border-transparent bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-colors hover:bg-blue-700 dark:hover:bg-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="fixed right-4 z-40 inline-flex min-h-11 items-center gap-2 rounded-full border border-transparent bg-primary px-3 py-2.5 text-sm font-semibold sm:px-4 text-primary-foreground shadow-lg shadow-primary/25 transition-colors hover:bg-blue-700 dark:hover:bg-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
-          <MessageCircle aria-hidden="true" className="h-4 w-4" />
-          Ask {ASSISTANT_NAME}
+          <MessageCircle aria-hidden="true" className="h-5 w-5 sm:h-4 sm:w-4" />
+          <span className="sr-only sm:not-sr-only">Ask {ASSISTANT_NAME}</span>
         </button>
       )}
 

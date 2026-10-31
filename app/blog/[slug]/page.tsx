@@ -34,6 +34,12 @@ type PortableTextBlock = {
 }
 
 // Revalidate individual posts hourly so edits in Sanity reflect promptly.
+// A scheduled post's CMS edit time can sit just before its publish time.
+function latestDate(published: string, updated?: string) {
+  if (!updated) return published
+  return new Date(updated) > new Date(published) ? updated : published
+}
+
 export const revalidate = 3600;
 
 // Generate static params for all blog posts
@@ -137,7 +143,7 @@ export async function generateMetadata({
         type: "article",
         url: currentUrl,
         publishedTime: post.publishedAt,
-        modifiedTime: post._updatedAt || post.publishedAt,
+        modifiedTime: latestDate(post.publishedAt, post._updatedAt),
         authors: [post.author?.name || "Khushwant Parihar"],
         ...(categories[0] && { section: categories[0] }),
         ...(categories.length && { tags: categories }),
@@ -256,7 +262,7 @@ export default async function BlogPostPage({
             logo: "https://accessibility.build/android-chrome-512x512.png",
           }}
           datePublished={post.publishedAt}
-          dateModified={post._updatedAt || post.publishedAt}
+          dateModified={latestDate(post.publishedAt, post._updatedAt)}
           image={
             post.mainImage
               ? urlFor(post.mainImage).width(1200).height(630).url()

@@ -182,7 +182,7 @@ export default function AccessibilityAuditsPage() {
             </div>
           </div>
           <div className="bg-muted/30 p-8 rounded-2xl border border-border">
-            <h3 className="text-2xl font-bold mb-4">Benefits of Our Accessibility Audits</h3>
+            <h3 className="text-2xl font-bold mb-4">Benefits of an Accessibility Audit</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <div className="bg-primary/10 p-2 rounded-full mr-4 mt-1">
@@ -212,9 +212,9 @@ export default function AccessibilityAuditsPage() {
                 <div>
                   <h4 className="font-semibold">Regulatory Context</h4>
                   <p className="text-muted-foreground">
-                    Findings are mapped to WCAG 2.2 AA, the standard referenced by regulations such as the ADA and
-                    Section 508, giving you documented evidence toward conformance. This is regulatory context, not
-                    legal advice.
+                    Findings are mapped to WCAG 2.2 AA, which goes beyond the WCAG 2.1 AA in the ADA Title II rule and
+                    the WCAG 2.0 AA in Section 508, giving you documented evidence toward conformance. This is
+                    regulatory context, not legal advice.
                   </p>
                 </div>
               </li>

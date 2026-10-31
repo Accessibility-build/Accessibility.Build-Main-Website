@@ -138,10 +138,10 @@ export default function AccessibilityByIndustryPage() {
         headline="Web Accessibility by Industry 2026"
         description="Average detected accessibility errors per home page across 29 industry sectors and 17 languages, from the WebAIM Million 2026 dataset."
         author={{
-          name: "Accessibility.build",
-          url: "https://accessibility.build",
+          name: "Khushwant Parihar",
+          url: "https://accessibility.build/authors/khushwant-parihar",
         }}
-        authorType="Organization"
+        authorType="Person"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

@@ -60,6 +60,7 @@ interface FooterLink {
 }
 
 const toolLinks: FooterLink[] = [
+  { href: "/wordpress-plugin", label: "Free WordPress Plugin", icon: Accessibility },
   { href: "/tools/accessibility-audit-helper", label: "Accessibility Auditor", icon: ScanSearch },
   { href: "/tools/alt-text-generator", label: "AI Alt Text Generator", icon: ImageIcon },
   { href: "/tools/contrast-checker", label: "Contrast Checker", icon: Contrast },
@@ -111,6 +112,7 @@ const legalLinks: FooterLink[] = [
   { href: "/editorial-policy", label: "Editorial Policy", icon: PenLine },
   { href: "/corrections-policy", label: "Corrections Policy", icon: CircleCheck },
   { href: "/subprocessors", label: "Subprocessors", icon: Network },
+  { href: "/sitemap-page", label: "Site Map", icon: Network },
 ]
 
 const trustSignals = [

@@ -135,10 +135,10 @@ export default function Section508AssessmentPage() {
         headline="Section 508 Assessment FY2025: How Federal Agencies Scored"
         description="Analysis of the FY2025 governmentwide Section 508 assessment covering 60 United States federal agencies, with factor-level maturity scores computed from the published agency response data."
         author={{
-          name: "Accessibility.build",
-          url: "https://accessibility.build",
+          name: "Khushwant Parihar",
+          url: "https://accessibility.build/authors/khushwant-parihar",
         }}
-        authorType="Organization"
+        authorType="Person"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

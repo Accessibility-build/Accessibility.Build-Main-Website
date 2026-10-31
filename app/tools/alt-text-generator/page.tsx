@@ -61,7 +61,7 @@ export default function AltTextGeneratorPage() {
         name="AI Alt Text Generator"
         description="Generate context-aware alt text drafts with controls for purpose, detail, language, and tone"
         url="https://accessibility.build/tools/alt-text-generator"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",
