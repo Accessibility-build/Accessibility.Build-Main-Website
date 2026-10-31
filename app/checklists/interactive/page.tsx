@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
@@ -38,6 +39,8 @@ const groups = groupByPrinciple(wcagCriteria)
 
 export default function InteractiveChecklistPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Checklists Hub", url: "https://accessibility.build/checklists" }, { name: "Interactive Checklist", url: "https://accessibility.build/checklists/interactive" }]} />
     <div className="container-wide py-12">
       <div className="mb-10">
         <Button asChild variant="ghost" className="mb-4">
@@ -166,5 +169,6 @@ export default function InteractiveChecklistPage() {
         </aside>
       </div>
     </div>
+    </>
   )
 }

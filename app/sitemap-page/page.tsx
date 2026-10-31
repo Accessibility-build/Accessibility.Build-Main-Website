@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { getBlogPosts } from "@/lib/sanity"
@@ -54,6 +55,8 @@ export default async function SitemapPage() {
     }))
 
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Sitemap", url: "https://accessibility.build/sitemap-page" }]} />
     <div className="container-wide py-12">
       <h1 className="text-4xl font-bold mb-4">Sitemap</h1>
       <p className="text-xl text-muted-foreground mb-10 max-w-2xl">
@@ -97,5 +100,6 @@ export default async function SitemapPage() {
         })}
       </div>
     </div>
+    </>
   )
 }

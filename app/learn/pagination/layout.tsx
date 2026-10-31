@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import type { Metadata } from "next"
 import Link from "next/link"
 import {
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
 export default function PaginationLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Component Patterns Hub", url: "https://accessibility.build/learn" }, { name: "Accessible Pagination", url: "https://accessibility.build/learn/pagination" }]} />
       {children}
       <PatternExplainer id="pagination-explainer" title="Understanding the Pagination Pattern">
         <ExplainerProse>

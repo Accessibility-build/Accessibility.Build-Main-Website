@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { ArrowRight, FileCheck2, Info, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -27,6 +28,8 @@ const report = sampleAuditReport
 
 export default function SampleAuditReportPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Sample Accessibility Audit Report", url: "https://accessibility.build/sample-audit-report" }]} />
     <div className="min-h-screen bg-slate-50 pt-12 dark:bg-slate-950">
       <div className="mx-auto max-w-[1800px] px-4 pb-20 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
@@ -221,5 +224,6 @@ export default function SampleAuditReportPage() {
         </section>
       </div>
     </div>
+    </>
   )
 }

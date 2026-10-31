@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { createMetadata } from "@/lib/metadata"
 import InteractiveEN301549Checklist from "@/components/checklists/interactive-en301549-checklist"
@@ -76,6 +77,8 @@ const faqs = [
 
 export default function EN301549ChecklistPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Checklists Hub", url: "https://accessibility.build/checklists" }, { name: "EN 301 549 Interactive Checklist", url: "https://accessibility.build/checklists/en-301-549" }]} />
     <div className="min-h-screen pt-12 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-[#0a0f1a] dark:via-[#0d1321] dark:to-[#0a0f1a]">
       {/* Compact header */}
       <div className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
@@ -294,5 +297,6 @@ export default function EN301549ChecklistPage() {
         accessibilityFeatures={["keyboardNavigation", "screenReaderSupport", "highContrastDisplay"]}
       />
     </div>
+    </>
   )
 }

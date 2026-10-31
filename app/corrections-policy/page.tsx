@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { CheckCircle2, Clock3, Mail, SearchCheck } from "lucide-react"
 import { company, legalLastUpdated } from "@/lib/company"
@@ -21,6 +22,8 @@ const steps = [
 
 export default function CorrectionsPolicyPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Corrections Policy", url: "https://accessibility.build/corrections-policy" }]} />
     <div className="container-wide py-12 lg:py-16">
       <article className="mx-auto max-w-4xl">
         <header className="border-b pb-8">
@@ -75,5 +78,6 @@ export default function CorrectionsPolicyPage() {
         </div>
       </article>
     </div>
+    </>
   )
 }

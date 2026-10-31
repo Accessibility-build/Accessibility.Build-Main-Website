@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import {
   Bot,
@@ -71,6 +72,8 @@ const deliverables = [
 
 export default function MethodologyPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Audit Methodology", url: "https://accessibility.build/methodology" }]} />
     <div className="bg-background">
       <section className="border-b bg-slate-950 text-white">
         <div className="container-wide py-16 lg:py-24">
@@ -156,5 +159,6 @@ export default function MethodologyPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

@@ -291,44 +291,6 @@ const structuredData = {
         "@type": "Audience",
         audienceType: "Developers, designers, accessibility specialists, and compliance teams"
       },
-      hasPart: [
-        {
-          "@type": "CollectionPage",
-          "@id": "https://accessibility.build/tools#collection",
-          name: "Accessibility Tools",
-          url: "https://accessibility.build/tools"
-        },
-        {
-          "@type": "CollectionPage",
-          "@id": "https://accessibility.build/wcag#collection",
-          name: "WCAG Success Criteria Guides",
-          url: "https://accessibility.build/wcag"
-        },
-        {
-          "@type": "CollectionPage",
-          "@id": "https://accessibility.build/guides#collection",
-          name: "Accessibility Guides",
-          url: "https://accessibility.build/guides"
-        },
-        {
-          "@type": "CollectionPage",
-          "@id": "https://accessibility.build/compliance#collection",
-          name: "Accessibility Compliance",
-          url: "https://accessibility.build/compliance"
-        },
-        {
-          "@type": "CollectionPage",
-          "@id": "https://accessibility.build/research#collection",
-          name: "Accessibility Research",
-          url: "https://accessibility.build/research"
-        },
-        {
-          "@type": "Blog",
-          "@id": "https://accessibility.build/blog#blog",
-          name: "Accessibility Blog",
-          url: "https://accessibility.build/blog"
-        }
-      ]
     },
   ]
 }

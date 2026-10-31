@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { Mail, ShieldCheck, Clock, UserRound, Accessibility } from "lucide-react"
 import { ContactForm } from "@/components/contact/contact-form"
@@ -30,6 +31,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const requestedTopic = Array.isArray(params.topic) ? params.topic[0] : params.topic
 
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Contact", url: "https://accessibility.build/contact" }]} />
     <div className="bg-background">
       <ContactPageStructuredData
         name="Contact Accessibility.build"
@@ -153,5 +156,6 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         </div>
       </div>
     </div>
+    </>
   )
 }

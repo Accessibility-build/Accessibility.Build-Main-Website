@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { LearnHub } from "@/components/learn/learn-hub"
 import { getCriterion, wcagPath } from "@/lib/wcag-pages"
@@ -168,5 +169,10 @@ function PatternOverview() {
 }
 
 export default function LearnPage() {
-  return <LearnHub afterPatterns={<PatternOverview />} />
+  return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Component Patterns Hub", url: "https://accessibility.build/learn" }]} />
+      <LearnHub afterPatterns={<PatternOverview />} />
+    </>
+  )
 }

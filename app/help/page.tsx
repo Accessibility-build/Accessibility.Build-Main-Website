@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import type { Metadata } from "next"
 import { HelpCenterClient } from "@/components/help/help-center-client"
 
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 }
 
 export default function HelpPage() {
-  return <HelpCenterClient />
+  return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Help Center", url: "https://accessibility.build/help" }]} />
+      <HelpCenterClient />
+    </>
+  )
 }

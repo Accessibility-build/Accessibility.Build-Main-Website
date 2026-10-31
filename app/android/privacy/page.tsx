@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import { createMetadata } from "@/lib/metadata"
 import { company } from "@/lib/company"
@@ -54,6 +55,8 @@ const linkClass = "font-medium text-primary underline underline-offset-2 hover:d
 
 export default function AndroidPrivacyPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Android App Privacy Policy", url: "https://accessibility.build/android/privacy" }]} />
     <div className="container-wide py-12 lg:py-16">
       <article className="mx-auto max-w-3xl">
         <header className="border-b pb-8">
@@ -93,5 +96,6 @@ export default function AndroidPrivacyPage() {
         </div>
       </article>
     </div>
+    </>
   )
 }

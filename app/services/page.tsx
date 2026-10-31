@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { Check, ArrowRight, FileText, Users, Code, Palette, TestTube, ClipboardCheck, FileStack } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -175,6 +176,8 @@ const services = [
 
 export default function ServicesPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Services Hub", url: "https://accessibility.build/services" }]} />
     <div className="container-wide py-12 px-4 sm:px-6">
       <ServiceStructuredData
         name="Accessibility Services"
@@ -334,5 +337,6 @@ export default function ServicesPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }

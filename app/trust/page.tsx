@@ -1,3 +1,4 @@
+import { BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import Link from "next/link"
 import {
   Accessibility,
@@ -76,6 +77,8 @@ const providers = [
 
 export default function TrustPage() {
   return (
+    <>
+      <BreadcrumbStructuredData breadcrumbs={[{ name: "Home", url: "https://accessibility.build" }, { name: "Trust Centre", url: "https://accessibility.build/trust" }]} />
     <div className="bg-background">
       <section className="border-b bg-slate-950 text-white">
         <div className="container-wide py-16 lg:py-24">
@@ -222,5 +225,6 @@ export default function TrustPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }
