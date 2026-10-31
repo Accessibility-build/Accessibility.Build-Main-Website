@@ -230,8 +230,8 @@ export default function WCAGSEOEnhancements({
     // news-article feature, and the selectors it named did not exist).
     "lastReviewed": modifiedDate,
     "reviewedBy": {
-      "@type": "Organization",
-      "@id": "https://accessibility.build/#organization"
+      "@type": "Person",
+      "@id": "https://accessibility.build/#founder"
     },
     "specialty": "Web Accessibility",
     "significantLink": [

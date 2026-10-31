@@ -33,6 +33,7 @@ export interface SiteRoute {
 }
 
 const core: SiteRoute[] = [
+  { route: "/wordpress-plugin", label: "Free WordPress Accessibility Plugin", group: "Core", lastModified: "2026-10-30", priority: 0.8 },
   { route: "", label: "Home", group: "Core", lastModified: "2026-09-02", priority: 1.0, changeFrequency: "weekly" },
   { route: "/pricing", label: "Pricing", group: "Core", lastModified: "2026-09-01", priority: 0.9 },
   { route: "/faq", label: "FAQ", group: "Core", lastModified: "2026-09-02", priority: 0.91, changeFrequency: "weekly" },
@@ -54,7 +55,7 @@ const core: SiteRoute[] = [
 ]
 
 const cases: SiteRoute[] = [
-  { route: "/cases", label: "Accessibility Case Studies", group: "Cases", lastModified: "2026-09-02", priority: 0.9, changeFrequency: "monthly" },
+  { route: "/cases", label: "Accessibility Case Studies", group: "Cases", lastModified: "2026-10-31", priority: 0.9, changeFrequency: "monthly" },
   { route: "/cases/robles-v-dominos", label: "Robles v. Domino's Pizza", group: "Cases", lastModified: "2026-09-02", priority: 0.92 },
   { route: "/cases/gil-v-winn-dixie", label: "Gil v. Winn-Dixie Stores", group: "Cases", lastModified: "2026-09-02", priority: 0.92 },
   { route: "/cases/nfb-v-target", label: "National Federation of the Blind v. Target", group: "Cases", lastModified: "2026-09-02", priority: 0.92 },
@@ -67,10 +68,10 @@ const reference: SiteRoute[] = [
 ]
 
 const tools: SiteRoute[] = [
-  { route: "/tools", label: "Tools Hub", group: "Tools", lastModified: "2026-09-02", priority: 0.98, changeFrequency: "weekly" },
+  { route: "/tools", label: "Tools Hub", group: "Tools", lastModified: "2026-10-30", priority: 0.98, changeFrequency: "weekly" },
   { route: "/tools/accessibility-statement-checker", label: "Accessibility Statement Checker", group: "Tools", lastModified: "2026-08-28", priority: 0.97 },
   { route: "/tools/heading-analyzer", label: "Heading Structure Analyzer", group: "Tools", lastModified: "2025-11-25", priority: 0.97 },
-  { route: "/tools/accessible-name-previewer", label: "Accessible Name Previewer", group: "Tools", lastModified: "2026-09-03", priority: 0.97 },
+  { route: "/tools/accessible-name-previewer", label: "Accessible Name Previewer", group: "Tools", lastModified: "2026-10-31", priority: 0.97 },
   { route: "/tools/readability-checker", label: "Readability Checker", group: "Tools", lastModified: "2026-10-28", priority: 0.96 },
   { route: "/tools/text-over-image-contrast-checker", label: "Text Over Image Contrast Checker", group: "Tools", lastModified: "2026-10-28", priority: 0.95 },
   { route: "/tools/website-vision-simulator", label: "Website Vision Simulator", group: "Tools", lastModified: "2026-10-28", priority: 0.95 },
@@ -102,7 +103,7 @@ const tools: SiteRoute[] = [
 
 const research: SiteRoute[] = [
   { route: "/research", label: "Research Hub", group: "Research", lastModified: "2026-08-27", priority: 0.92, changeFrequency: "weekly" },
-  { route: "/research/state-of-accessibility", label: "State of Accessibility Report", group: "Research", lastModified: "2026-08-27", priority: 0.95 },
+  { route: "/research/state-of-accessibility", label: "State of Accessibility Report", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
   { route: "/research/web-accessibility-statistics", label: "Web Accessibility Statistics 2026", group: "Research", lastModified: "2026-10-28", priority: 0.96, changeFrequency: "monthly" },
   { route: "/research/screen-reader-survey-2026", label: "Screen Reader Survey 2026", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
   { route: "/research/accessibility-testing-tools-benchmark", label: "Accessibility Testing Tools Benchmark 2026", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
@@ -120,7 +121,7 @@ const research: SiteRoute[] = [
 
 const compliance: SiteRoute[] = [
   { route: "/compliance", label: "Compliance & Laws Hub", group: "Compliance", lastModified: "2026-10-19", priority: 0.9 },
-  { route: "/compliance/ada", label: "ADA Website Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.93 },
+  { route: "/compliance/ada", label: "ADA Website Compliance", group: "Compliance", lastModified: "2026-10-31", priority: 0.93 },
   { route: "/compliance/eaa", label: "European Accessibility Act (EAA)", group: "Compliance", lastModified: "2026-10-28", priority: 0.93 },
   { route: "/compliance/section-508", label: "Section 508 Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.91 },
   { route: "/compliance/en-301-549", label: "EN 301 549 Standard", group: "Compliance", lastModified: "2026-10-19", priority: 0.9 },
@@ -135,14 +136,14 @@ const compliance: SiteRoute[] = [
 const industries: SiteRoute[] = [
   { route: "/industries", label: "Accessibility by Industry", group: "Industries", lastModified: "2026-08-27", priority: 0.85 },
   { route: "/industries/ecommerce", label: "E-commerce Accessibility", group: "Industries", lastModified: "2026-10-14", priority: 0.89 },
-  { route: "/industries/healthcare", label: "Healthcare Accessibility", group: "Industries", lastModified: "2026-08-27", priority: 0.88 },
+  { route: "/industries/healthcare", label: "Healthcare Accessibility", group: "Industries", lastModified: "2026-10-31", priority: 0.88 },
   { route: "/industries/education", label: "Education Accessibility", group: "Industries", lastModified: "2026-07-09", priority: 0.88 },
   { route: "/industries/government", label: "Government Accessibility", group: "Industries", lastModified: "2026-07-09", priority: 0.88 },
   { route: "/industries/finance", label: "Banking & Financial Services Accessibility", group: "Industries", lastModified: "2026-08-27", priority: 0.9 },
 ]
 
 const guides: SiteRoute[] = [
-  { route: "/guides", label: "Guides Hub", group: "Guides", lastModified: "2026-08-27", priority: 0.91, changeFrequency: "weekly" },
+  { route: "/guides", label: "Guides Hub", group: "Guides", lastModified: "2026-10-31", priority: 0.91, changeFrequency: "weekly" },
   { route: "/guides/wcag-2-1-vs-2-2", label: "WCAG 2.1 vs 2.2", group: "Guides", lastModified: "2026-07-09", priority: 0.94 },
   { route: "/guides/wcag-2-2-aa-requirements", label: "WCAG 2.2 AA Requirements", group: "Guides", lastModified: "2026-07-09", priority: 0.94 },
   { route: "/guides/oklch-apca-color-systems", label: "OKLCH & APCA Color Systems", group: "Guides", lastModified: "2026-05-23", priority: 0.95 },
@@ -192,7 +193,7 @@ const guides: SiteRoute[] = [
   { route: "/guides/voiceover-screen-reader-testing", label: "VoiceOver Screen Reader Testing Guide", group: "Guides", lastModified: "2026-08-05", priority: 0.94 },
   { route: "/guides/jaws-screen-reader-testing", label: "JAWS Screen Reader Testing Guide", group: "Guides", lastModified: "2026-07-17", priority: 0.94 },
   { route: "/guides/talkback-screen-reader-testing", label: "TalkBack Screen Reader Testing Guide", group: "Guides", lastModified: "2026-08-05", priority: 0.94 },
-  { route: "/guides/ada-website-lawsuit-cost", label: "ADA Website Lawsuit Cost", group: "Guides", lastModified: "2026-07-09", priority: 0.91 },
+  { route: "/guides/ada-website-lawsuit-cost", label: "ADA Website Lawsuit Cost", group: "Guides", lastModified: "2026-10-31", priority: 0.91 },
   { route: "/guides/accessibility-audit-cost", label: "Accessibility Audit Cost (UK & Ireland)", group: "Guides", lastModified: "2026-08-27", priority: 0.93 },
   { route: "/guides/how-to-write-an-accessibility-statement", label: "How to Write an Accessibility Statement", group: "Guides", lastModified: "2026-08-28", priority: 0.93 },
   { route: "/guides/vpat-accessibility-conformance-report", label: "VPAT & Accessibility Conformance Reports", group: "Guides", lastModified: "2026-08-27", priority: 0.92 },
@@ -206,8 +207,8 @@ const guides: SiteRoute[] = [
   { route: "/guides/ai-accessibility-audit", label: "AI Accessibility Audit", group: "Guides", lastModified: "2026-05-18", priority: 0.9 },
   { route: "/guides/ai-accessibility-lawsuits", label: "AI Accessibility Lawsuits", group: "Guides", lastModified: "2026-10-14", priority: 0.9 },
   { route: "/guides/fashion-nova-accessibility-settlement", label: "Fashion Nova Settlement", group: "Guides", lastModified: "2026-10-14", priority: 0.9 },
-  { route: "/guides/doj-title-ii-deadline-extension", label: "DOJ Title II Deadline", group: "Guides", lastModified: "2026-05-18", priority: 0.89 },
-  { route: "/guides/section-504-web-accessibility-deadline", label: "Section 504 Deadline", group: "Guides", lastModified: "2026-05-18", priority: 0.89 },
+  { route: "/guides/doj-title-ii-deadline-extension", label: "DOJ Title II Deadline", group: "Guides", lastModified: "2026-10-31", priority: 0.89 },
+  { route: "/guides/section-504-web-accessibility-deadline", label: "Section 504 Deadline", group: "Guides", lastModified: "2026-10-31", priority: 0.89 },
 ]
 
 const checklists: SiteRoute[] = [
@@ -252,7 +253,7 @@ const blog: SiteRoute[] = [
 
 const services: SiteRoute[] = [
   { route: "/services", label: "Services Hub", group: "Services", lastModified: "2026-09-02", priority: 0.93 },
-  { route: "/services/accessibility-audits", label: "Accessibility Audits", group: "Services", lastModified: "2026-09-02", priority: 0.88 },
+  { route: "/services/accessibility-audits", label: "Accessibility Audits", group: "Services", lastModified: "2026-10-31", priority: 0.88 },
   { route: "/services/accessibility-training", label: "Accessibility Training", group: "Services", lastModified: "2026-09-02", priority: 0.86 },
   { route: "/services/compliance-documentation", label: "Compliance Documentation", group: "Services", lastModified: "2026-09-02", priority: 0.84 },
   { route: "/services/pdf-remediation", label: "PDF Accessibility Remediation (from $3 per page)", group: "Services", lastModified: "2026-09-02", priority: 0.87 },

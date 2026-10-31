@@ -881,7 +881,7 @@ export default function ADAComplianceRisks() {
                   <div key={factor} className="text-center p-2 bg-white dark:bg-slate-800 rounded-lg">
                     <div className="text-lg font-bold text-blue-700 dark:text-blue-300">{weight}%</div>
                     <div className="text-xs text-muted-foreground capitalize">
-                      {factor.replace(/([A-Z])/g, ' $1').trim()}
+                      {factor.replace(/([A-Z])/g, ' $1').trim().toLowerCase()}
                     </div>
                   </div>
                 ))}

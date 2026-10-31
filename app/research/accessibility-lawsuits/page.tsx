@@ -72,10 +72,10 @@ export default function AccessibilityLawsuitsPage() {
         headline="Web Accessibility Lawsuits 2026: ADA Lawsuit Tracker"
         description="Comprehensive data on web accessibility lawsuits in the United States. Track trends by year, industry, state, and settlement costs."
         author={{
-          name: "Accessibility.build",
-          url: "https://accessibility.build",
+          name: "Khushwant Parihar",
+          url: "https://accessibility.build/authors/khushwant-parihar",
         }}
-        authorType="Organization"
+        authorType="Person"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

@@ -103,7 +103,7 @@ export default function PDFAccessibilityCheckerPage() {
         name="PDF Accessibility Checker"
         description="Inspect detectable PDF structure, metadata, text, image, and navigation signals. Manual PDF/UA review remains required."
         url="https://accessibility.build/tools/pdf-accessibility-checker"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{ price: "0", priceCurrency: "USD" }}
         accessibilityFeatures={[

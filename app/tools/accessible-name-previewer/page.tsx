@@ -7,7 +7,7 @@ import { RelatedContent } from "@/components/seo/related-content"
 import { clampDescription } from "@/lib/metadata"
 
 const ROUTE = "/tools/accessible-name-previewer"
-const pageTitle = "Accessible Name Previewer: What Screen Readers and AI Agents Announce"
+const pageTitle = "Accessible Name Previewer for Screen Readers & AI Agents"
 const pageDescription =
   "Paste HTML and see the accessible name, role and description every control exposes, the way a screen reader or a browser-use AI agent receives them. Finds unnamed buttons, links and fields before they fail WCAG 4.1.2 or an agent."
 

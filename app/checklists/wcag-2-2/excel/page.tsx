@@ -90,7 +90,7 @@ export default function WCAGExcelPage() {
         name="WCAG 2.2 Checklist Excel Template"
         description="Download free WCAG 2.2 checklist Excel template with all 86 success criteria, progress tracking, and professional formatting for accessibility audits"
         url="https://accessibility.build/checklists/wcag-2-2/excel"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Any"
         offers={{
           price: "0",

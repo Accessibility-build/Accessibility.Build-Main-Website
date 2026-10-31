@@ -162,7 +162,7 @@ export default function ToolsClientPage() {
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
         <header className="border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
           <div className="container-wide py-10 sm:py-14">
-            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,460px)] lg:items-end">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,460px)] lg:items-start">
               <div>
                 <p className="text-sm font-semibold text-teal-700 dark:text-teal-300">Accessibility.build utilities</p>
                 <h1 className="mt-2 text-4xl font-semibold text-slate-950 sm:text-5xl dark:text-white">Accessibility tools for developers, designers, and QA teams</h1>

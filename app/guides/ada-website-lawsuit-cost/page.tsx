@@ -14,7 +14,7 @@ import { clampDescription } from "@/lib/metadata"
 export const metadata: Metadata = {
   title: "How Much Does an ADA Website Lawsuit Cost? (2026 Data)",
   description:
-    clampDescription("A data-backed breakdown of what a web accessibility lawsuit actually costs in 2026 — demand-letter settlements ($1K–$25K), out-of-court settlements (~$30K), court judgments (~$85K), class actions (up to $5.15M), and legal-defense fees. Plus how to cut your risk for a fraction of the price."),
+    clampDescription("A data-backed breakdown of what a web accessibility lawsuit actually costs in 2026 — demand-letter settlements ($1K–$25K), out-of-court settlements (~$30K), court judgments (~$85K), class actions (into the millions), and legal-defense fees. Plus how to cut your risk for a fraction of the price."),
   keywords: [
     "ADA website lawsuit cost",
     "accessibility lawsuit settlement amount",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "How Much Does an ADA Website Lawsuit Cost? (2026 Data)",
     description:
-      "From $1K demand letters to a $5.15M class action — the real cost of a web accessibility lawsuit, and how to spend far less avoiding one.",
+      "From $1K demand letters to multimillion-dollar class actions — the real cost of a web accessibility lawsuit, and how to spend far less avoiding one.",
   },
 }
 
@@ -162,9 +162,10 @@ export default function ADALawsuitCostPage() {
               How Much Does an ADA Website Lawsuit Actually Cost?
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
-              The honest answer: anywhere from a $1,000 demand letter to a $5.15
-              million class-action settlement — with most single-plaintiff cases
-              landing around $30,000 once legal fees are counted. Below is the
+              The honest answer: anywhere from a $1,000 demand letter to a
+              multimillion-dollar class-action settlement, such as Fashion
+              Nova&apos;s $5.15 million. Most single-plaintiff cases land around
+              $30,000 once legal fees are counted. Below is the
               full range by resolution type, what actually drives the number up
               or down, and why the cheapest option is almost always to fix the
               site first.

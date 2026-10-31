@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   title: "Page not found",
   description: "The page you requested does not exist on Accessibility.build.",
   robots: { index: false, follow: true },
+  openGraph: {
+    title: "Page not found",
+    description: "The page you requested does not exist on Accessibility.build.",
+  },
+  twitter: {
+    title: "Page not found",
+    description: "The page you requested does not exist on Accessibility.build.",
+  },
 }
 
 const startingPoints = [

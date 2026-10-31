@@ -113,7 +113,7 @@ export default function AccessibilityReportGeneratorPage() {
         name="Accessibility Report Generator"
         description="Generate professional accessibility audit reports in PDF, Excel, HTML, or Markdown format. Import violation data or create reports manually."
         url="https://accessibility.build/tools/accessibility-report-generator"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",

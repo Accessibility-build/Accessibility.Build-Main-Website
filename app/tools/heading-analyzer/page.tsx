@@ -92,7 +92,7 @@ export default function Page() {
         name="Heading Structure Analyzer"
         description="Tool for reviewing H1-H6 hierarchy, skipped levels, empty headings, and duplicate labels"
         url="https://accessibility.build/tools/heading-analyzer"
-        applicationCategory="WebApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Any"
         offers={{
           price: "0",

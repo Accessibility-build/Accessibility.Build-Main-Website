@@ -201,7 +201,7 @@ const guides = [
   {
     title: "Section 504 Web Accessibility Deadline",
     description:
-      "The HHS Section 504 web rule took effect May 11, 2026, and was not extended. Who's covered, what WCAG 2.1 AA requires for healthcare entities, and a six-step recovery plan if you missed the deadline.",
+      "HHS moved the Section 504 web deadlines to May 11, 2027 and May 10, 2028. Who's covered, what WCAG 2.1 AA requires, what still applies today, and how to use the extra time.",
     icon: HeartPulse,
     difficulty: "Intermediate",
     readingTime: "13 min",

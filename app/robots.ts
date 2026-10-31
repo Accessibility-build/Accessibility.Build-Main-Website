@@ -15,6 +15,26 @@ import type { MetadataRoute } from "next"
  *   - Block private routes (api, admin, dashboard, auth) for everyone.
  */
 
+// Named groups replace "*" for that crawler rather than adding to it, so each
+// one has to repeat these. "/_next/" is left out on purpose: crawlers that render
+// pages need /_next/static/ for CSS and JS.
+const NAMED_GROUP_DISALLOW = [
+  "/api/",
+  "/admin/",
+  "/private/",
+  "/ingest/",
+  "/dashboard*",
+  "/profile*",
+  "/sign-in*",
+  "/sign-up*",
+  "/*?preview=",
+  "/*?draft=",
+]
+
+// Open dataset API, built for machine access. Everything else under /api/ stays
+// disallowed; these Allow rules are more specific, so they win.
+const PUBLIC_API_PATHS = ["/api/og", "/api/research/"]
+
 const PRIVATE_PATHS = [
   "/api/",
   "/admin/",
@@ -47,6 +67,7 @@ const AI_AGENTS = [
   "anthropic-ai",
   "Claude-Web",
   "Claude-SearchBot",
+  "Claude-User",
   // Google
   "Google-Extended",
   // Apple
@@ -107,14 +128,14 @@ export default function robots(): MetadataRoute.Robots {
       // feeds Microsoft Copilot), Applebot, DuckDuckBot, and the rest.
       {
         userAgent: "*",
-        allow: ["/", "/api/og", "/_next/static/"],
+        allow: ["/", ...PUBLIC_API_PATHS, "/_next/static/"],
         disallow: PRIVATE_PATHS,
       },
       // Per-engine refinements
       {
         userAgent: "Googlebot",
-        allow: ["/", "/tools/", "/guides/", "/blog/", "/api/og"],
-        disallow: ["/api/", "/admin/", "/dashboard*", "/profile*", "/sign-in*", "/sign-up*"],
+        allow: ["/", "/tools/", "/guides/", "/blog/", ...PUBLIC_API_PATHS],
+        disallow: NAMED_GROUP_DISALLOW,
       },
       // Social previews
       ...["facebookexternalhit", "Twitterbot", "LinkedInBot", "Slackbot", "Discordbot"].map(
@@ -127,8 +148,8 @@ export default function robots(): MetadataRoute.Robots {
       // AI / LLM crawlers — explicit allow with minimal restrictions
       ...AI_AGENTS.map((ua) => ({
         userAgent: ua,
-        allow: ["/", "/tools/", "/guides/", "/blog/", "/api/og"],
-        disallow: ["/api/", "/admin/", "/dashboard*", "/profile*", "/sign-in*", "/sign-up*"],
+        allow: ["/", "/tools/", "/guides/", "/blog/", ...PUBLIC_API_PATHS],
+        disallow: NAMED_GROUP_DISALLOW,
       })),
       // Aggressive SEO scrapers — disallow everything
       ...SEO_SCRAPERS.map((ua) => ({
@@ -137,6 +158,5 @@ export default function robots(): MetadataRoute.Robots {
       })),
     ],
     sitemap: [`${baseUrl}/sitemap.xml`, `${baseUrl}/feed.xml`],
-    host: baseUrl,
   }
 }

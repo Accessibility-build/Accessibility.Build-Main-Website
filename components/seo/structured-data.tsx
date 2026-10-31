@@ -115,6 +115,8 @@ interface ServiceStructuredDataProps {
     description?: string
     price: string | number
     priceCurrency: string
+    priceFrom?: boolean
+    unitText?: string
     availability: string
   }>
   /**
@@ -561,8 +563,17 @@ export function ServiceStructuredData({
           "@type": "Offer",
           "name": offer.name,
           ...(offer.description && { "description": offer.description }),
-          "price": offer.price,
-          "priceCurrency": offer.priceCurrency,
+          // A "from" price is a minimum, not what every buyer pays.
+          ...(offer.priceFrom
+            ? {
+                "priceSpecification": {
+                  "@type": offer.unitText ? "UnitPriceSpecification" : "PriceSpecification",
+                  "minPrice": offer.price,
+                  "priceCurrency": offer.priceCurrency,
+                  ...(offer.unitText && { "unitText": offer.unitText })
+                }
+              }
+            : { "price": offer.price, "priceCurrency": offer.priceCurrency }),
           "availability": offer.availability,
           "url": `${url}#service-pricing-heading`
         }))
@@ -646,7 +657,7 @@ export function AccessibilityToolStructuredData({
   name,
   description,
   url,
-  applicationCategory = "AccessibilityApplication",
+  applicationCategory = "DeveloperApplication",
   operatingSystem = "Any",
   offers,
   accessibilityFeatures,
@@ -713,6 +724,10 @@ interface DatasetStructuredDataProps {
   license?: string
   temporalCoverage?: string
   keywords?: string[]
+  /** Source the figures come from, when another organisation collected them. */
+  isBasedOn?: string
+  /** Real, working download location. Omit when none exists. */
+  downloadUrl?: string
 }
 
 export function DatasetStructuredData({
@@ -724,7 +739,9 @@ export function DatasetStructuredData({
   creator,
   license = "https://creativecommons.org/licenses/by/4.0/",
   temporalCoverage,
-  keywords
+  keywords,
+  isBasedOn,
+  downloadUrl
 }: DatasetStructuredDataProps) {
   const datasetSchema = {
     "@context": "https://schema.org",
@@ -740,6 +757,15 @@ export function DatasetStructuredData({
       "url": creator.url
     },
     "license": license,
+    "isAccessibleForFree": true,
+    ...(isBasedOn && { "isBasedOn": isBasedOn }),
+    ...(downloadUrl && {
+      "distribution": {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": downloadUrl
+      }
+    }),
     ...(temporalCoverage && { "temporalCoverage": temporalCoverage }),
     ...(keywords && { "keywords": keywords }),
     "publisher": {

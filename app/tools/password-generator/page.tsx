@@ -60,7 +60,7 @@ export default function PasswordGeneratorPage() {
         name="Password Generator"
         description="Generate strong, secure, and random passwords with customizable options. Create unbreakable passwords with strength analysis."
         url="https://accessibility.build/tools/password-generator"
-        applicationCategory="UtilityApplication"
+        applicationCategory="UtilitiesApplication"
         operatingSystem="Any"
         offers={{
           price: "0",

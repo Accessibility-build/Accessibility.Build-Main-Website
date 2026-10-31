@@ -131,6 +131,30 @@ const nextConfig = {
                     // Must match the `referrer` value in app/layout.tsx metadata.
                     key: 'Referrer-Policy',
                     value: 'strict-origin-when-cross-origin'
+                },
+                {
+                    // allow-popups keeps Clerk and payment popups working.
+                    key: 'Cross-Origin-Opener-Policy',
+                    value: 'same-origin-allow-popups'
+                },
+                {
+                    // Report-only: logs what an enforced policy would block and
+                    // blocks nothing. Enforce after reviewing real-browser reports.
+                    key: 'Content-Security-Policy-Report-Only',
+                    value: [
+                        "default-src 'self'",
+                        "script-src 'self' 'unsafe-inline' https://*.clerk.accounts.dev https://clerk.accessibility.build https://docaccessible.com https://va.vercel-scripts.com https://www.googletagmanager.com https://checkout.razorpay.com https://js.stripe.com",
+                        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+                        "img-src 'self' data: blob: https:",
+                        "font-src 'self' data: https://fonts.gstatic.com",
+                        "media-src 'self' https:",
+                        "connect-src 'self' https: wss:",
+                        "frame-src 'self' https://js.stripe.com https://*.stripe.com https://api.razorpay.com https://checkout.razorpay.com https://*.clerk.accounts.dev https://clerk.accessibility.build https://challenges.cloudflare.com",
+                        "worker-src 'self' blob:",
+                        "object-src 'none'",
+                        "base-uri 'self'",
+                        "form-action 'self' https:"
+                    ].join('; ')
                 }
             ]
         }, {

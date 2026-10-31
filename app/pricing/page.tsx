@@ -129,7 +129,7 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
         name: pack.name,
         description: pack.description,
         features: pack.features,
-        cta: isEnterprise ? "Contact Sales" : pack.ctaLabel,
+        cta: isEnterprise ? "Get in touch" : pack.ctaLabel,
         link: isEnterprise ? "/contact?plan=enterprise" : "/pricing",
         catalogKey: isEnterprise ? undefined : (pack.key as CheckoutCatalogKey),
         popular: pack.isPopular,
@@ -397,7 +397,7 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
                     </Link>
                   </Button>
                   <Button variant="outline" size="lg" asChild className="rounded-full px-8">
-                    <Link href="/contact">Contact Sales</Link>
+                    <Link href="/contact">Get in touch</Link>
                   </Button>
                 </div>
               </div>

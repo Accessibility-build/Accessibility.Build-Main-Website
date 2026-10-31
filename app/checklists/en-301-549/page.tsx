@@ -288,7 +288,7 @@ export default function EN301549ChecklistPage() {
         name="EN 301 549 Interactive Checklist"
         description={`Interactive checklist covering every requirement of EN 301 549 v3.2.1 (${v3Requirements} requirements) and v4.1.1 (${v4Requirements} requirements, WCAG 2.2) with plain-language summaries, WCAG mapping, change tracking, progress tracking, notes, and Excel export`}
         url="https://accessibility.build/checklists/en-301-549"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{ price: "0", priceCurrency: "USD" }}
         accessibilityFeatures={["keyboardNavigation", "screenReaderSupport", "highContrastDisplay"]}

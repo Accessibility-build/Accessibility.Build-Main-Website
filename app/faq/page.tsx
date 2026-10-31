@@ -13,7 +13,6 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { FAQStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
-import { generateFAQSchema } from "@/lib/featured-snippets"
 import { RelatedContent } from "@/components/seo/related-content"
 import { pdfPricing, servicePricing } from "@/lib/service-pricing"
 
@@ -284,20 +283,6 @@ export default function FAQPage() {
             </Accordion>
           </div>
         </div>
-
-        {/* Enhanced FAQ Schema Markup for Featured Snippets */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: generateFAQSchema(faqData.map(faq => ({
-              question: faq.question,
-              answer: faq.answer,
-              type: 'paragraph' as const,
-              keywords: [],
-              priority: 8
-            })))
-          }}
-        />
 
         {/* Smart Related Content Section */}
         <div className="mt-20">

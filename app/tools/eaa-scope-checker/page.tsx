@@ -105,7 +105,7 @@ export default function EaaScopeCheckerPage() {
         name="EAA Scope Checker"
         description="Interactive checker that indicates whether the European Accessibility Act likely applies to a business, based on EU consumer nexus, covered categories, and the microenterprise exemption."
         url="https://accessibility.build/tools/eaa-scope-checker"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{ price: "0", priceCurrency: "USD" }}
         accessibilityFeatures={["keyboardNavigation", "screenReaderSupport", "highContrastDisplay"]}

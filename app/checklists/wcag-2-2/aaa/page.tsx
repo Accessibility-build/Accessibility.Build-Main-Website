@@ -92,7 +92,7 @@ export default function WCAGAAAChecklistPage() {
         name="WCAG 2.2 Level AAA Checklist"
         description="Complete WCAG 2.2 Level AAA checklist with all enhanced accessibility criteria. Track progress and export to Excel or PDF."
         url="https://accessibility.build/checklists/wcag-2-2/aaa"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",

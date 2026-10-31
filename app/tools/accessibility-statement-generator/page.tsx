@@ -113,7 +113,7 @@ export default function AccessibilityStatementGeneratorPage() {
         name="Accessibility Statement Generator"
         description="Generate professional accessibility statements from your scan results or manual inputs. Create HTML, Markdown, PDF, or plain text statements."
         url="https://accessibility.build/tools/accessibility-statement-generator"
-        applicationCategory="AccessibilityApplication"
+        applicationCategory="DeveloperApplication"
         operatingSystem="Web Browser"
         offers={{
           price: "0",

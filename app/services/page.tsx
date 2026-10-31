@@ -196,6 +196,8 @@ export default function ServicesPage() {
             ? `${service.description}. Priced ${service.priceSuffix}, from $${service.startingPrice} ${service.priceSuffix}.`
             : service.description,
           price: service.startingPrice,
+          priceFrom: true,
+          ...(service.priceSuffix ? { unitText: service.priceSuffix.replace(/^per\s+/, "") } : {}),
           priceCurrency: "USD",
           availability: "https://schema.org/InStock",
         }))}
@@ -207,6 +209,14 @@ export default function ServicesPage() {
         <p className="text-xl text-muted-foreground">
           Fixed-scope services with published prices, delivery windows, and concrete deliverables for every engagement.
         </p>
+        <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+          <Button asChild size="lg" className="rounded-full">
+            <Link href="/contact">Scope a project</Link>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="rounded-full">
+            <Link href="/services/accessibility-audits">See audit packages</Link>
+          </Button>
+        </div>
       </div>
 
       <section className="mb-16 grid gap-6 border-y py-8 md:grid-cols-4" aria-label="Service evidence">
@@ -316,7 +326,7 @@ export default function ServicesPage() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild size="lg" variant="default" className="rounded-full">
-            <Link href="/contact">Contact Us</Link>
+            <Link href="/contact">Get in touch</Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-full">
             <Link href="/about">Learn About Our Approach</Link>

@@ -124,10 +124,10 @@ export default function EuropeanAccessibilityActPage() {
         headline="European Accessibility Act Tracker 2026"
         description="Statutory dates quoted from Directive (EU) 2019/882, national transposition measures for all 27 EU Member States, and the status of EAA enforcement data."
         author={{
-          name: "Accessibility.build",
-          url: "https://accessibility.build",
+          name: "Khushwant Parihar",
+          url: "https://accessibility.build/authors/khushwant-parihar",
         }}
-        authorType="Organization"
+        authorType="Person"
         publisher={{
           name: "Accessibility.build",
           logo: "https://accessibility.build/android-chrome-512x512.png",

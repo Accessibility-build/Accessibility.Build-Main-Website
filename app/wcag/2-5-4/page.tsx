@@ -97,22 +97,6 @@ export default function WCAG254Page() {
         faqs={faqs}
       />
 
-      {/* FAQ structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqs.map((f) => ({
-              "@type": "Question",
-              name: f.q,
-              acceptedAnswer: { "@type": "Answer", text: f.a },
-            })),
-          }),
-        }}
-      />
-
       <div className="min-h-screen pt-12 bg-white dark:bg-slate-950">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <WCAGBreadcrumb items={[]} current="2.5.4 Motion Actuation" />
