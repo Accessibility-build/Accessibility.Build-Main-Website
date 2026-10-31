@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     url: reportUrl,
     type: "article",
     publishedTime: "2026-08-03T00:00:00Z",
-    modifiedTime: "2026-10-28T00:00:00Z",
+    modifiedTime: "2026-10-31T00:00:00Z",
     authors: ["https://accessibility.build"],
     images: [
       {
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: pageTitle,
     description:
-      "EAA dates from the Directive itself, transposition by Member State, and why no enforcement data exists yet.",
+      "EAA dates from the Directive itself, transposition by Member State, and why no EU-wide enforcement dataset exists yet.",
   },
 };
 
@@ -74,7 +74,7 @@ const faqs = [
   {
     question: "Have all EU Member States transposed the EAA?",
     answer:
-      `All 27 Member States have communicated national transposition measures to the European Commission, ${eaaData.transposition.totalMeasures} instruments in total as recorded by EUR-Lex. That confirms each country has notified something, but it is not evidence that transposition is complete or correct. EUR-Lex states explicitly that Member States bear sole responsibility for this information and that it does not prejudge the Commission's verification of completeness and correctness.`,
+      `All 27 Member States have communicated national transposition measures to the European Commission, ${eaaData.transposition.totalMeasures} instruments in total as recorded by EUR-Lex. That confirms each country has notified something, but it is not evidence that transposition is complete or correct. On 11 March 2026 the Commission sent additional reasoned opinions to Germany and Croatia because transposition gaps remain. EUR-Lex states explicitly that Member States bear sole responsibility for this information and that it does not prejudge the Commission's verification of completeness and correctness.`,
   },
   {
     question: "Which country has done the most to implement the EAA?",
@@ -84,7 +84,7 @@ const faqs = [
   {
     question: "How many companies are complying with the EAA?",
     answer:
-      "Nobody knows, and no official source can tell you. There is no EU-wide compliance or enforcement dataset for the European Accessibility Act. Article 33(1) requires the Commission to report on the application of the Directive by 28 June 2030 and every five years after that, so the first authoritative picture is four years away. Most claims about enforcement activity circulate from companies selling remediation services, but two developments do trace to primary sources as of our 14 October 2026 review: a June 2026 ruling of the Tribunal judiciaire de Caen ordering Carrefour to make its site and app fully accessible, and a March 2026 report by the Dutch regulator ACM finding 61% of the largest Dutch webshops inaccessible. Neither is a fine, and no monetary penalty under an EAA transposition law has been confirmed.",
+      "Nobody knows, and no official source can tell you. There is no EU-wide compliance or enforcement dataset for the European Accessibility Act. Article 33(1) requires the Commission to report on the application of the Directive by 28 June 2030 and every five years after that, so the first authoritative picture is about four years away. National figures exist for individual countries, and these developments trace to primary sources as of our 31 October 2026 review: an interim June 2026 order of the Tribunal judiciaire de Caen against Carrefour France, with a conditional daily penalty, 10,000 euros in provisional damages and 3,000 euros in costs payable to the two associations that sued; and a March 2026 report by the Dutch regulator ACM finding 61% of the largest Dutch online stores not digitally accessible. We found no fine issued by a national regulator under an EAA transposition law, which means none was found, not that none exists.",
   },
   {
     question: "What are the remaining EAA deadlines?",
@@ -133,7 +133,7 @@ export default function EuropeanAccessibilityActPage() {
           logo: "https://accessibility.build/android-chrome-512x512.png",
         }}
         datePublished="2026-08-03"
-        dateModified={getRouteDate("/research/european-accessibility-act") ?? "2026-10-28"}
+        dateModified={getRouteDate("/research/european-accessibility-act") ?? "2026-10-31"}
         image="https://accessibility.build/og-image.png"
         url={reportUrl}
         wordCount={1800}
@@ -155,7 +155,7 @@ export default function EuropeanAccessibilityActPage() {
             "Research report",
             "Directive (EU) 2019/882",
             `${transposition.memberStatesReporting} Member States`,
-            "Reviewed: Oct 28, 2026",
+            "Reviewed: Oct 31, 2026",
           ]}
           headline={`All ${transposition.memberStatesReporting} Member States have communicated transposition measures, ${transposition.totalMeasures} instruments in total. But there is no EU-wide compliance or enforcement dataset, and under Article 33 the first Commission report is not due until 28 June 2030.`}
           sourceName="EUR-Lex, Directive (EU) 2019/882"
@@ -310,7 +310,7 @@ export default function EuropeanAccessibilityActPage() {
               description="Key dates, transposition status across the 27 member states and transitional rules of Directive (EU) 2019/882."
               pageUrl="https://accessibility.build/research/european-accessibility-act"
               datePublished="2026-08-27"
-              dateModified={getRouteDate("/research/european-accessibility-act") ?? "2026-10-28"}
+              dateModified={getRouteDate("/research/european-accessibility-act") ?? "2026-10-31"}
               temporalCoverage="2019/2030"
               attribution="Directive (EU) 2019/882; European Commission transposition register"
               withSchema={false}

@@ -452,10 +452,11 @@ export default function EAAIrelandCompliancePage() {
             <ul className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed list-disc pl-5 mb-4">
               <li>
                 <strong className="text-slate-900 dark:text-white">The Carrefour ruling in France.</strong>{" "}
-                On 4 June 2026 the Tribunal judiciaire de Caen ordered Carrefour to make its
-                website and app accessible within six months, under a penalty of EUR 500 per day,
-                treating accessibility as an obligation of result rather than an obligation of
-                effort.
+                On 4 June 2026 the Tribunal judiciaire de Caen, in an interim first-instance
+                order, told Carrefour France to comply, under a penalty of EUR 500 per day starting
+                six months after the order. It said the site cannot be only slightly accessible,
+                and it awarded the two associations that sued EUR 10,000 in provisional damages
+                and EUR 3,000 in costs.
               </li>
               <li>
                 <strong className="text-slate-900 dark:text-white">The Dutch regulator&apos;s findings.</strong>{" "}

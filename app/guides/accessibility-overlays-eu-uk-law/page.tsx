@@ -276,26 +276,26 @@ export default function OverlaysEuUkLawPage() {
               The Obligation of Result: What Caen Signals
             </h2>
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
-              In June 2026 the Tribunal judiciaire de Caen ordered Carrefour to make its e-commerce
-              site and app accessible. Two features of the ruling matter far beyond France. First,
-              the court treated accessibility as an <strong>obligation of result</strong>: the duty
-              is discharged by achieving an accessible service, not by making efforts toward one.
-              Second, the court rejected a partial conformance rate as insufficient; being mostly
-              accessible was not accessible.
+              In June 2026 the Tribunal judiciaire de Caen, in an interim first-instance order, told
+              Carrefour France to bring its e-commerce services into line with the accessibility
+              rules. Two features of the order matter beyond France. First, the court said the site
+              cannot be only slightly accessible; it must be <strong>totally accessible</strong>.
+              Second, a partial conformance rate was not enough; being mostly accessible was not
+              accessible.
             </p>
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
               To be clear, the Carrefour case did not involve an overlay, and we are not suggesting
-              it did. Its relevance is the principle. An obligation of result is measured by actual
-              outcomes for users: can a blind customer find the product, add it to the basket, and
+              it did. Its relevance is the principle, as we read it. A standard of total accessibility
+              points to actual outcomes for users: can a blind customer find the product, add it to the basket, and
               pay? That is precisely the measure on which overlays fail. If courts in EAA member
               states follow Caen&apos;s framing, the question in every case becomes &ldquo;does the
               service work for disabled users?&rdquo;, and installing a widget is not an answer to
               that question.
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              An outcome-based standard also cuts off the most common overlay defence, good-faith
-              effort. Under an obligation of result, having bought a tool that promised accessibility
-              is not the same as having delivered it.
+              On that reading, the most common overlay defence, good-faith effort, also gets weaker.
+              Having bought a tool that promised accessibility is not the same as having delivered
+              it. This is our interpretation of one interim order, not a settled rule.
             </p>
           </section>
 
@@ -370,7 +370,7 @@ export default function OverlaysEuUkLawPage() {
               What satisfies both the EAA and the Equality Act is the unglamorous thing: remediation
               of the underlying code to WCAG 2.2 AA and EN 301 549, verified by testing. That is the
               standard the law presumes conformity against, the thing market surveillance measures,
-              and the outcome an obligation of result demands.
+              and the outcome the Caen order points to.
             </p>
             <ol className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed list-decimal pl-5">
               <li>

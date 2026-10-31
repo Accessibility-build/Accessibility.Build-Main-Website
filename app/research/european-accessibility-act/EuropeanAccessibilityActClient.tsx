@@ -268,17 +268,25 @@ export function EuropeanAccessibilityActClient({
                 id="enforcement-heading"
                 className="text-lg font-semibold text-slate-950 dark:text-white"
               >
-                There is no EAA enforcement data, and there will not be until
-                2030
+                There is no EU-wide EAA enforcement dataset, and there will not
+                be one until 2030
               </h2>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-700 dark:text-slate-300">
                 {data.enforcementDataStatus.explanation}
               </p>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-700 dark:text-slate-300">
-                We looked for this data and did not find it. Rather than fill
-                the gap with vendor claims, we are telling you the gap exists.
-                If you need enforcement intelligence for a specific market, go
-                to that country&apos;s named market surveillance authority.
+                We looked for an EU-wide dataset and did not find one. Rather
+                than fill the gap with vendor claims, we are telling you the gap
+                exists. If you need enforcement intelligence for a specific
+                market, go to that country&apos;s named market surveillance
+                authority. For penalties and the actions we traced, see{" "}
+                <a
+                  href="/research/eaa-penalties"
+                  className="underline underline-offset-2 hover:no-underline"
+                >
+                  EAA fines and penalties by country
+                </a>
+                .
               </p>
             </div>
           </div>
@@ -465,7 +473,7 @@ export function EuropeanAccessibilityActClient({
           "EUR-Lex states that Member States bear sole responsibility for this information and that it does not prejudge the Commission's verification of the completeness and correctness of transposition.",
           "A Member State that transposed through one consolidated act will show a low count next to one that amended many existing laws. The counts are not comparable as effort or compliance.",
           "No official EU-wide compliance or enforcement dataset exists. Article 33(1) sets the first Commission report on application of the Directive at 28 June 2030.",
-          "Claims about national enforcement activity circulating in vendor content could not be verified against primary regulatory sources and are deliberately excluded from this page.",
+          "National enforcement claims appear on this page only where we traced them to a court, regulator or official release, or where the source is named as press. Untraced vendor claims are excluded.",
           "This tracker covers the Directive itself. Individual Member State implementing laws may impose additional or earlier obligations that are not reflected in these counts.",
         ]}
         lastUpdated={data.lastUpdated}

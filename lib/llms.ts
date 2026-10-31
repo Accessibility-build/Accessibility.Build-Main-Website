@@ -20,6 +20,7 @@ const RESEARCH_DATASETS: Array<{ slug: string; name: string }> = [
   { slug: "state-of-accessibility", name: "State of web accessibility (WebAIM Million synthesis)" },
   { slug: "disability-statistics", name: "US disability prevalence (CDC BRFSS)" },
   { slug: "european-accessibility-act", name: "European Accessibility Act tracker" },
+  { slug: "eaa-penalties", name: "EAA penalties by Member State" },
   { slug: "section-508", name: "Section 508 federal agency assessment" },
   { slug: "salary", name: "Digital accessibility salary survey" },
   { slug: "by-industry", name: "Accessibility errors by industry (WebAIM Million)" },

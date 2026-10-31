@@ -151,6 +151,18 @@ const researchReports = [
     gradient: "from-indigo-600 to-violet-600",
   },
   {
+    title: "EAA Fines and Penalties by Country",
+    description:
+      "What each EU state's law says about penalties under the European Accessibility Act, split by enforcement route, with the provision quoted and a plain label showing how far we verified it.",
+    icon: FileCheck2,
+    badge: "New 2026",
+    badgeColor:
+      "bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-900/20 dark:text-indigo-400 dark:border-indigo-800",
+    href: "/research/eaa-penalties",
+    stat: { label: "States fully verified", value: "13 of 27" },
+    gradient: "from-indigo-600 to-violet-600",
+  },
+  {
     title: "Accessibility by Technology Stack",
     description:
       "Which CMS, JavaScript framework, and platform ships the fewest accessibility errors? WordPress, Drupal, React, Vue, Shopify, Bootstrap and 40 more, ranked against the million-page average. The finding that matters: almost every popular widget library correlates with more errors, not fewer.",
