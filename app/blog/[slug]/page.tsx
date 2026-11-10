@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { client } from "@/lib/sanity"
 import { urlFor } from "@/lib/sanity"
 import PortableTextRenderer from "@/components/sanity/portable-text"
+import { AuthorAvatar } from "@/components/blog/author-avatar"
 import { ArticleToc } from "@/components/blog/article-toc"
 import { ReadingProgress } from "@/components/blog/reading-progress"
 import { BackToTop } from "@/components/blog/back-to-top"
@@ -220,16 +221,6 @@ export default async function BlogPostPage({
       : undefined
     const heroImage = post.mainImage ? urlFor(post.mainImage).width(1400).height(700).url() : null
     const primaryCategory: string | undefined = post.categories?.[0]?.title
-    // Brand monogram (initials) used when an author has no photo — replaces the
-    // old cartoon avatar with something on-brand and professional.
-    const authorInitials =
-      authorName
-        .split(/\s+/)
-        .filter((w: string) => !['the', 'a', 'an', 'of', 'and', '&'].includes(w.toLowerCase()))
-        .slice(0, 2)
-        .map((w: string) => w[0])
-        .join('')
-        .toUpperCase() || 'A'
 
     const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -326,13 +317,7 @@ export default async function BlogPostPage({
                     <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-slate-100 py-4 dark:border-slate-800">
                       <div className="flex items-center gap-3">
                         <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-slate-200 dark:ring-slate-700">
-                          {authorImage ? (
-                            <Image src={authorImage} alt={authorName} fill className="object-cover" />
-                          ) : (
-                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-600 font-sans text-sm font-semibold text-white">
-                              {authorInitials}
-                            </div>
-                          )}
+                          <AuthorAvatar name={authorName} image={authorImage} sizes="40px" textClassName="text-sm" />
                         </div>
                         <div className="font-sans">
                           {authorUrl ? (
@@ -400,13 +385,7 @@ export default async function BlogPostPage({
                     {/* Author card */}
                     <div className="flex items-start gap-4 rounded-2xl border border-slate-100 bg-slate-50/60 p-6 dark:border-slate-800 dark:bg-slate-900/40">
                       <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-slate-200 dark:ring-slate-700">
-                        {authorImage ? (
-                          <Image src={authorImage} alt={authorName} fill className="object-cover" />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-600 font-semibold text-white">
-                            {authorInitials}
-                          </div>
-                        )}
+                        <AuthorAvatar name={authorName} image={authorImage} sizes="56px" />
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400">

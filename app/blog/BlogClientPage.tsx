@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
+import { AuthorAvatar } from "@/components/blog/author-avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { NewsletterSignup } from "@/components/newsletter-signup"
@@ -232,31 +232,11 @@ function AuthorInfo({ author, image, size = "base" }: { author: string; image?: 
   const avatarSize = size === "sm" ? "h-8 w-8" : "h-10 w-10"
   const textSize = size === "sm" ? "text-sm" : "text-base"
 
-  const initials =
-    author
-      .split(/\s+/)
-      .filter((w) => !['the', 'a', 'an', 'of', 'and', '&'].includes(w.toLowerCase()))
-      .slice(0, 2)
-      .map((w) => w[0])
-      .join('')
-      .toUpperCase() || 'A'
 
   return (
     <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-      <div className={`${avatarSize} rounded-full overflow-hidden flex-shrink-0 ring-2 ring-slate-100 dark:ring-slate-700`}>
-        {image ? (
-          <Image
-            src={image}
-            alt={author}
-            width={40}
-            height={40}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className={`w-full h-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-semibold ${size === "sm" ? "text-xs" : "text-sm"}`}>
-            {initials}
-          </div>
-        )}
+      <div className={`relative ${avatarSize} rounded-full overflow-hidden flex-shrink-0 ring-2 ring-slate-100 dark:ring-slate-700`}>
+        <AuthorAvatar name={author} image={image} sizes="40px" textClassName={size === "sm" ? "text-xs" : "text-sm"} />
       </div>
       <div className="min-w-0">
         <div className={`font-medium text-slate-900 dark:text-white ${textSize} truncate`}>{author}</div>
