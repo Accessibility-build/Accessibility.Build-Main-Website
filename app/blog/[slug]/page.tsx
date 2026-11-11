@@ -229,7 +229,7 @@ export default async function BlogPostPage({
     })
 
     return (
-      <div className="min-h-screen bg-white font-serif dark:bg-slate-950">
+      <div className="min-h-screen bg-white dark:bg-slate-950">
         <ReadingProgress />
 
         {/* Schema Markup */}
