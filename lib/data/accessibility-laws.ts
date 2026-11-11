@@ -25,6 +25,12 @@
 // violation or day (47 CFR 1.80); Germany's BFSG caps fines at EUR 100,000 (section 37(2)); the
 // Australian DDA sets no statutory fine. Removed an unsourced state filings table that contradicted
 // the lawsuit tracker, and the summary counts are now derived from this file.
+// Re-reviewed November 11, 2026 against primary sources (Justice Laws, Canada Gazette SOR/2025-255,
+// ontario.ca, e-Laws, leg.colorado.gov, Irish Statute Book): Canada ACA effective date corrected to
+// July 11, 2019 and its update and penalty text rewritten (SOR/2025-255 ICT duties are all "minor"
+// violations); Ontario reporting row no longer says the public sector is due in 2026; AODA penalty
+// text separates administrative penalties from offence fines; Colorado HB21-1110 covers public
+// entities only; Hawaii comment period has closed with no final rule; deadlines sorted by date.
 
 import { lawsuitsByYear } from "./lawsuit-statistics"
 
@@ -225,7 +231,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     citation: "C.R.S. \u00A7 24-85-101 et seq.",
     yearEnacted: 2021,
     effectiveDate: "2024-07-01",
-    appliesTo: ["government", "private"],
+    appliesTo: ["government"],
     wcagVersion: "2.1 AA",
     enforcement: ["private-lawsuit", "government"],
     penalties: {
@@ -235,7 +241,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "First comprehensive state digital accessibility law. Grace period for good-faith remediation ended July 2025.",
+    recentUpdate: "Covers the services, programs and activities of public entities and state agencies; it does not apply to private businesses. Grace period for good-faith remediation ended July 2025.",
     sourceUrl: "https://leg.colorado.gov/bills/hb21-1110",
   },
   {
@@ -397,8 +403,8 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     },
     status: "pending",
     keyDate: "2026-10-30",
-    keyDateLabel: "Public comment closes on the HCRC proposed digital accessibility rules",
-    recentUpdate: "Signed July 14, 2026, Act 257 makes it a discriminatory practice for a place of public accommodation to require technology that is not accessible, and directs the Hawaii Civil Rights Commission to adopt rules consistent with the DOJ Title II web rule. The HCRC posted proposed rules on September 18, 2026: WCAG 2.1 Level A and AA for web content and mobile apps, 24 months after the final rule for businesses with 100 or more employees and 36 months for everyone else. Comments close October 30, 2026 and the size threshold is still open for comment, so dates and tiers may change.",
+    keyDateLabel: "Public comment closed on the HCRC proposed rules; no final rule adopted as of November 11, 2026, so no compliance date yet",
+    recentUpdate: "Signed July 14, 2026, Act 257 makes it a discriminatory practice for a place of public accommodation to require technology that is not accessible, and directs the Hawaii Civil Rights Commission to adopt rules consistent with the DOJ Title II web rule. The HCRC posted proposed rules on September 18, 2026: WCAG 2.1 Level A and AA for web content and mobile apps, 24 months after the final rule for businesses with 100 or more employees and 36 months for everyone else. Comments closed October 30, 2026. No adopted rule was found as of November 11, 2026, so there is no compliance date yet, and the dates, tiers and size threshold may change in the final rule.",
     sourceUrl: "https://labor.hawaii.gov/hcrc/notice-seeking-public-comment-on-proposed-admin-rules-on-digital-accessibility/",
   },
   // ========== INTERNATIONAL ==========
@@ -422,7 +428,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     status: "active",
     keyDate: "2025-06-28",
     keyDateLabel: "EAA enforcement began across all EU member states",
-    recentUpdate: "Enforceable since June 28, 2025. Covers e-commerce, banking, transport, telecoms. First court order to comply: on June 4, 2026 the Tribunal judiciaire de Caen, in an interim first-instance order, told Carrefour France to comply, under a 500 euro daily penalty starting six months later, and awarded the associations that sued 10,000 euros in provisional damages and 3,000 euros in costs. The Dutch regulator ACM reported in March 2026 that 61% of the largest Dutch webshops fail accessibility requirements; NOS reported in June 2026 that it had visited ten large webshops and planned a new test after three months, with fines possible. In France the Lille court refused interim relief in a similar case against Auchan E-Commerce France in May 2026, without ruling on the merits, and the associations say they will appeal. ETSI published EN 301 549 v4.1.1, which incorporates WCAG 2.2 and maps to the EAA, on September 2, 2026. No edition is yet cited in the Official Journal under the EAA (v3.2.1, WCAG 2.1 AA, is cited only for the Web Accessibility Directive and is the working benchmark), so the EAA's presumption of conformity becomes available when v4.1.1 is cited, expected December 2026. We found no EAA fine publicly confirmed by a member-state regulator as of October 31, 2026.",
+    recentUpdate: "Enforceable since June 28, 2025. Covers e-commerce, banking, transport, telecoms. First court order to comply: on June 4, 2026 the Tribunal judiciaire de Caen, in an interim first-instance order, told Carrefour France to comply, under a 500 euro daily penalty starting six months later, and awarded the associations that sued 10,000 euros in provisional damages and 3,000 euros in costs. The Dutch regulator ACM reported in March 2026 that 61% of the largest Dutch webshops fail accessibility requirements; NOS reported in June 2026 that it had visited ten large webshops and planned a new test after three months, with fines possible. In France the Lille court refused interim relief in a similar case against Auchan E-Commerce France in May 2026, without ruling on the merits, and the associations say they will appeal. ETSI published EN 301 549 v4.1.1, which incorporates WCAG 2.2 and maps to the EAA, on September 2, 2026. No edition is yet cited in the Official Journal under the EAA (v3.2.1, WCAG 2.1 AA, is cited only for the Web Accessibility Directive and is the working benchmark), so the EAA's presumption of conformity becomes available when v4.1.1 is cited; it was not yet cited as of November 11, 2026, and Ireland's National Disability Authority expects December 16, 2026. We found no EAA fine publicly confirmed by a member-state regulator as of October 31, 2026.",
     sourceUrl: "https://ec.europa.eu/social/main.jsp?catId=1202",
   },
   {
@@ -453,18 +459,18 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     lawName: "Accessible Canada Act (ACA)",
     citation: "S.C. 2019, c. 10",
     yearEnacted: 2019,
-    effectiveDate: "2024-05-01",
+    effectiveDate: "2019-07-11",
     appliesTo: ["government", "private"],
     wcagVersion: "2.1 AA (via EN 301 549/ICT standard)",
     enforcement: ["regulatory", "complaints"],
     penalties: {
-      description: "Administrative monetary penalties up to $250,000 CAD. Compliance orders from Accessibility Commissioner.",
-      maxFine: "$250,000 CAD",
+      description: "The Act caps an administrative monetary penalty at $250,000 CAD per violation (s. 91(2)), and a violation that continues for more than one day is a separate violation each day (s. 88). Every ICT obligation added by SOR/2025-255 is classed as a minor violation: for regulated entities other than small businesses, $1,000 to $10,000 for a first violation, rising to $50,000 to $75,000 for a fourth or later. The Accessibility Commissioner can also issue compliance orders and publish the names of violators.",
+      maxFine: "$250,000 CAD cap per violation (ICT violations: $1,000 to $75,000)",
       maxFineNumeric: 185000,
       currency: "CAD",
     },
     status: "active",
-    recentUpdate: "Amending regulations registered December 5, 2025 (SOR/2025-255) add ICT requirements incorporating the CAN/ASC EN 301 549 standard, Federal public sector web pages must conform from December 5, 2027; large and medium-sized federally regulated businesses follow on December 5, 2028 for web pages (and, for large businesses, mobile apps and digital documents). Employee training is due December 5, 2027. Penalties up to $250K CAD.",
+    recentUpdate: "Amending regulations SOR/2025-255, registered December 5, 2025 and published December 17, 2025, add ICT requirements based on the CAN/ASC - EN 301 549 standard (WCAG 2.1 AA); none was in force as of November 11, 2026. From December 5, 2027, federal public sector web pages created or updated on or after that date must conform to the extent feasible, federal entities publish accessibility statements, and the public sector and federally regulated businesses with 100 or more employees must train staff who develop, maintain or procure ICT. From December 5, 2028, businesses with 100 or more employees must make new or updated web pages conform. Large businesses (500 or more) and the federal public sector also take on new mobile apps, downloadable documents, an assessment of existing apps and conformity checks when procuring ICT, and large businesses publish accessibility statements. Existing content does not have to be fixed unless it is updated. Broadcasting, telecommunications and transportation providers are excluded from the public-facing web, app and document duties. Every ICT obligation is classed as a minor violation.",
     sourceUrl: "https://laws-lois.justice.gc.ca/eng/acts/A-0.6/",
   },
   {
@@ -479,15 +485,15 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     wcagVersion: "2.0 AA",
     enforcement: ["regulatory", "complaints"],
     penalties: {
-      description: "Up to $100,000 CAD per day for corporations. Individual directors can be fined $50,000/day.",
-      maxFine: "$100,000 CAD/day",
+      description: "Administrative penalties for corporations run from $500 to $15,000 (O. Reg. 191/11, Schedule 3). Only where both the impact and the history of a contravention are major can a director treat the penalty as daily, up to $100,000 per day for a corporation. Convictions for offences under AODA s. 37 (false or misleading information in a report, failing to comply with an order, or reprisal) carry fines of up to $100,000 per day for a corporation and $50,000 per day for anyone else.",
+      maxFine: "$100,000 CAD/day (offence fines and the most serious penalties)",
       maxFineNumeric: 74000,
       currency: "CAD",
     },
     status: "active",
     keyDate: "2026-12-31",
-    keyDateLabel: "Next AODA compliance reporting deadline",
-    recentUpdate: "Still on WCAG 2.0 AA despite federal ACA moving to 2.1. Next reporting deadline December 31, 2026.",
+    keyDateLabel: "AODA compliance reports due from businesses and non-profits with 20 or more employees",
+    recentUpdate: "Still on WCAG 2.0 AA despite federal ACA moving to 2.1. Businesses and non-profits with 20 or more employees report by December 31, 2026; designated public sector organizations report every two years and their last deadline was December 31, 2025.",
     sourceUrl: "https://www.ontario.ca/laws/statute/05a11",
   },
   {
@@ -615,7 +621,7 @@ export const enforcementTrends: EnforcementTrend[] = lawsuitsByYear.map((d) => (
 }))
 
 // ===== UPCOMING DEADLINES =====
-// Reviewed October 28, 2026. The original April 24, 2026 ADA Title II deadline was extended
+// Reviewed November 11, 2026. Keep the list sorted by date. The original April 24, 2026 ADA Title II deadline was extended
 // before it took effect by the DOJ Interim Final Rule of April 20, 2026. That rule took effect
 // on publication and its comment period closed June 22, 2026 (Federal Register 2026-07663); no
 // final rule has issued, so every date below still rests on the interim rule.
@@ -629,7 +635,7 @@ export const upcomingDeadlines: UpcomingDeadline[] = [
   {
     date: "2026-12-31",
     jurisdiction: "Ontario, Canada (AODA)",
-    description: "Accessibility compliance reports due from businesses and non-profits with 20+ employees and designated public-sector organizations. All public-facing websites and web content must meet WCAG 2.0 Level AA.",
+    description: "Accessibility compliance reports due from businesses and non-profits with 20 or more employees in Ontario (three-year cycle). Designated public sector organizations report every two years; their last deadline was December 31, 2025. Separately, the IASR (O. Reg. 191/11, s. 14) already requires designated public sector organizations and organizations with 50 or more employees in Ontario to meet WCAG 2.0 Level AA for internet websites and web content published after January 1, 2012, where practicable, except success criteria 1.2.4 Captions (Live) and 1.2.5 Audio Description (Prerecorded).",
     impact: "medium",
   },
   {
@@ -647,19 +653,13 @@ export const upcomingDeadlines: UpcomingDeadline[] = [
   {
     date: "2027-06-28",
     jurisdiction: "European Union (EAA)",
-    description: "End of the Article 4(8) derogation: the final date by which Member States may begin applying the obligations on answering emergency communications to the single European emergency number 112.",
+    description: "Latest date under Article 31(3) by which Member States must begin applying Article 4(8), the obligations on answering emergency communications to the single European emergency number 112. Some Member States applied it earlier: Ireland did not defer, and S.I. 636/2023 applies it from June 28, 2025.",
     impact: "high",
   },
   {
     date: "2027-12-05",
     jurisdiction: "Canada (Federal ACA)",
-    description: "First wave of the Accessible Canada Regulations ICT requirements (SOR/2025-255, incorporating CAN/ASC EN 301 549): federal public sector web pages, federal accessibility statements, and digital accessibility training for public sector, large and medium-sized employers.",
-    impact: "medium",
-  },
-  {
-    date: "2028-12-05",
-    jurisdiction: "Canada (Federal ACA)",
-    description: "Second wave of SOR/2025-255: large and medium-sized federally regulated businesses must make new and updated web pages conform, large businesses also new mobile apps and digital documents, and large businesses publish their first accessibility statement.",
+    description: "First wave of the Accessible Canada Regulations ICT requirements (SOR/2025-255, incorporating CAN/ASC - EN 301 549): federal public sector web pages created or updated on or after this date, federal accessibility statements, and digital accessibility training for the public sector and for large and medium-sized federally regulated employers.",
     impact: "medium",
   },
   {
@@ -667,6 +667,12 @@ export const upcomingDeadlines: UpcomingDeadline[] = [
     jurisdiction: "US Federal (ADA Title II, Small Entities)",
     description: "Extended deadline: state and local government entities serving fewer than 50,000 people and special district governments must conform to WCAG 2.1 AA.",
     impact: "high",
+  },
+  {
+    date: "2028-12-05",
+    jurisdiction: "Canada (Federal ACA)",
+    description: "Second wave of SOR/2025-255: large and medium-sized federally regulated businesses must make new and updated web pages conform. Large businesses and the federal public sector must also make new mobile apps and downloadable documents conform, assess their existing apps, and obtain conformity assessments when procuring ICT; large businesses publish their first accessibility statement.",
+    impact: "medium",
   },
 ]
 
@@ -679,10 +685,10 @@ export const upcomingDeadlines: UpcomingDeadline[] = [
 export const penaltyComparisonData = [
   { jurisdiction: "EU (Spain)", maxPenaltyUSD: 1100000, label: "\u20AC1,000,000", color: "#3b82f6" },
   { jurisdiction: "US (ADA Title III)", maxPenaltyUSD: 236451, label: "$236,451 repeat violation, DOJ suits", color: "#eab308" },
-  { jurisdiction: "Canada (ACA)", maxPenaltyUSD: 185000, label: "$250K CAD", color: "#ef4444" },
+  { jurisdiction: "Canada (ACA)", maxPenaltyUSD: 185000, label: "$250K CAD cap per violation", color: "#ef4444" },
   { jurisdiction: "US (CVAA)", maxPenaltyUSD: 144329, label: "$144,329 per violation or day", color: "#f97316" },
   { jurisdiction: "EU (Germany)", maxPenaltyUSD: 110000, label: "\u20AC100,000", color: "#6366f1" },
-  { jurisdiction: "Canada (AODA)", maxPenaltyUSD: 74000, label: "$100K CAD/day", color: "#ec4899" },
+  { jurisdiction: "Canada (AODA)", maxPenaltyUSD: 74000, label: "$100K CAD/day (offences, major penalties)", color: "#ec4899" },
   { jurisdiction: "Israel", maxPenaltyUSD: 20000, label: "ILS 75,000", color: "#14b8a6" },
 ]
 

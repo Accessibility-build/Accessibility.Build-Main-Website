@@ -217,6 +217,7 @@ body {
     plainBullet('Sample the colours you see with an eyedropper and check them with a contrast checker. Do not trust values read by scripts.'),
     plainBullet('If something breaks, report it to Apple through Feedback Assistant, and fix it on your side with a proper dark theme.'),
 
+    linkBullet('/tools/dark-mode-contrast-checker', 'l0', 'Test any page in light and dark mode, and see whether Safari will repaint it, with our free ', 'dark mode contrast checker', '.'),
     linkBullet('/tools/contrast-checker', 'l1', 'Check sampled colour pairs with our ', 'contrast checker', '.'),
     linkBullet('/wcag/1-4-11', 'l2', 'Review the 3:1 rule for icons, borders and focus indicators in ', 'WCAG 1.4.11 Non-text Contrast', '.'),
     linkBullet('/recipes/two-tone-focus-ring', 'l3', 'Build a focus indicator that survives any background with the ', 'two-tone focus ring recipe', '.'),

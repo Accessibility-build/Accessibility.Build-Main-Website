@@ -147,8 +147,9 @@ Tiers below are in build order. Within a tier, items are ordered by value.
   source and status):
   - 30 Oct 2026: Hawaii Act 257 proposed-rule comments close (HCRC, WCAG 2.1 AA,
     24 or 36 months after the final rule).
-  - ~30 Nov or 16 Dec 2026: EN 301 549 v4.1.1 Official Journal citation expected
-    (Deque says around 30 Nov; NDA Ireland says 16 Dec). Status: expected.
+  - EN 301 549 v4.1.1 Official Journal citation: not yet cited as of 11 Nov 2026.
+    NDA Ireland expects 16 Dec 2026; Deque now says 22 Jan 2027 (no source given).
+    30 Nov 2026 is ETSI's date of announcement, not a citation date. Status: expected.
   - ~4 Dec 2026: Carrefour France six-month compliance deadline from the Caen order
     of 4 June 2026. Status: court order.
   - 26 Apr 2027 and 26 Apr 2028: ADA Title II web rule (DOJ interim final rule of
@@ -321,8 +322,8 @@ pages for prospects who Google the site, and India is the home market.
 - **Slugs:** `/compliance/en-301-549-v4` (or a long section on
   `/compliance/en-301-549`) and a v4 dataset for `/checklists/en-301-549`.
 - **Why now:** ETSI published v4.1.1 on 2 September 2026 (the three ESOs adopted it
-  24 August 2026). Citation in the Official Journal is expected around 30 November
-  (Deque) or 16 December 2026 (NDA Ireland). The site has a news post
+  24 August 2026). Not yet cited in the Official Journal as of 11 November 2026; NDA
+  Ireland expects 16 December 2026, Deque now says 22 January 2027 without a source. The site has a news post
   (`/blog/en-301-549-v4-1-1-wcag-2-2-eaa`) and a v4 section, but the checklist still
   carries v3.2.1 clauses and the evergreen clause-level explainer does not exist.
   Publishing before the OJ wave is the whole point.
@@ -555,7 +556,7 @@ pages for prospects who Google the site, and India is the home market.
 ## Watch list (write the post when the event lands)
 
 - NFB v. DOJ ruling on the Title II and 504 extensions (D. Md., MSJ filed 28 Sep 2026).
-- EN 301 549 v4.1.1 Official Journal citation (expected 30 Nov to 16 Dec 2026):
+- EN 301 549 v4.1.1 Official Journal citation (not cited as of 11 Nov 2026; NDA expects 16 Dec 2026, Deque says 22 Jan 2027):
   triggers idea 9's citation-day updates.
 - Carrefour's Caen deadline (about 4 Dec 2026) and the Auchan appeal.
 - Hawaii HCRC final rule after the 30 Oct 2026 comment close.

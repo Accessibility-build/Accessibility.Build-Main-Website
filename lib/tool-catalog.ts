@@ -175,6 +175,17 @@ export const toolCatalog: ToolCatalogItem[] = [
     credits: 0,
   },
   {
+    slug: "dark-mode-contrast-checker",
+    title: "Dark Mode Contrast Checker",
+    shortTitle: "Dark Mode Contrast",
+    description: "Test a live page's contrast in light and dark mode, find text that fails or vanishes only in dark, and see whether Safari's Adaptive Dark Mode will repaint it.",
+    category: "Audit and testing",
+    icon: "contrast",
+    features: ["Light and dark rendered side by side", "Dark-only failures and invisible text", "Safari Adaptive Dark Mode verdict"],
+    keywords: ["dark mode", "contrast", "color-scheme", "prefers-color-scheme", "safari adaptive dark mode", "1.4.3"],
+    credits: 0,
+  },
+  {
     slug: "website-vision-simulator",
     title: "Website Vision Simulator",
     shortTitle: "Vision Simulator",

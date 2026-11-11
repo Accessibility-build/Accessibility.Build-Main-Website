@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Shield, Search, Zap, Eye, CheckCircle, AlertTriangle, Star, Globe, ArrowRight } from "lucide-react"
 import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
+import { FaqSection } from "@/components/seo/faq-section"
 import { clampDescription } from "@/lib/metadata"
 
 export const metadata: Metadata = {
@@ -63,7 +64,43 @@ const breadcrumbs = [
   { name: "Overlay Detector", url: "https://accessibility.build/tools/overlay-detector" },
 ]
 
-const faqItems = [
+// Keep in step with OVERLAY_VENDORS in app/api/tools/overlay-detector/route.ts.
+const VENDOR_COUNT = 10
+
+const evidence = [
+  {
+    heading: "Overlays added barriers on state government websites",
+    asOf: "Published 28 October 2026",
+    body: "A guest article on Lainey Feingold's site by Alison Walden and Matt Vitale of Publicis Sapient reports their study of US state government websites. Only seven states were using overlays, from five different companies. When the authors tested the overlay features, several made things worse: a low-vision mode sometimes reduced contrast, enlarged text covered other controls, a \"simplify page\" mode kept link text but stopped the links working, one overlay could not be operated by keyboard, and one \"blind\" profile started reading aloud over the user's own screen reader. When they rechecked in October 2026, five of the seven states were still using overlays.",
+  },
+  {
+    heading: "Sites with widgets are still being sued",
+    asOf: "October 2026 figures",
+    body: "UsableNet's lawsuit tracker counted 431 new ADA web accessibility lawsuits filed in October 2026, across federal courts and New York and California state courts. It reports that 107 defendants were sued despite using a third-party accessibility widget on their site at the time.",
+  },
+  {
+    heading: "The FTC ordered an overlay vendor to pay $1 million",
+    asOf: "Final order 22 April 2025",
+    body: "The US Federal Trade Commission approved a final order requiring accessiBe to pay $1 million. The order bars accessiBe from claiming its automated products can make any website WCAG-compliant, or keep it compliant, without evidence to support the claim, and from presenting reviews or endorsers as independent when they are not.",
+  },
+]
+
+const sources = [
+  {
+    label: "Why Accessibility Overlays Don't Work: Findings from U.S. State Government Websites (Law Office of Lainey Feingold, guest article, 28 October 2026)",
+    href: "https://www.lflegal.com/2026/10/guest-article-overlays/",
+  },
+  {
+    label: "UsableNet ADA website compliance lawsuit tracker (October 2026 figures)",
+    href: "https://info.usablenet.com/ada-website-compliance-lawsuit-tracker",
+  },
+  {
+    label: "FTC approves final order requiring accessiBe to pay $1 million (FTC press release, April 2025)",
+    href: "https://www.ftc.gov/news-events/news/press-releases/2025/04/ftc-approves-final-order-requiring-accessibe-pay-1-million",
+  },
+]
+
+const faqs = [
   {
     question: "What is an accessibility overlay?",
     answer:
@@ -72,12 +109,17 @@ const faqItems = [
   {
     question: "Do accessibility overlays actually work?",
     answer:
-      "Most accessibility experts and disability advocacy organizations agree that overlays do not provide meaningful accessibility improvements. Automated tools can only detect 30-40% of WCAG issues, and overlays can fix even fewer. They often introduce new barriers for assistive technology users.",
+      "Not as a fix for an inaccessible site. Many WCAG success criteria need human judgement, so no automated script can find or repair every issue. When researchers tested overlays on US state government websites, the overlay features added new barriers, such as worse contrast, broken links and controls that could not be used by keyboard. The evidence section above lists the sources.",
   },
   {
     question: "Can an overlay protect me from ADA lawsuits?",
     answer:
-      "An overlay does not by itself establish ADA or WCAG conformance. Legal outcomes depend on jurisdiction and facts, while technical conformance requires evidence that users can complete real tasks. Seek qualified legal advice for a specific claim.",
+      "An overlay does not by itself establish ADA or WCAG conformance, and having one does not stop a lawsuit: UsableNet reports that in October 2026, 107 defendants were sued despite using a third-party accessibility widget on their site. Legal outcomes depend on jurisdiction and facts, while technical conformance requires evidence that users can complete real tasks. This is not legal advice; seek qualified advice for a specific claim.",
+  },
+  {
+    question: "Has any regulator acted against overlay marketing?",
+    answer:
+      "Yes. On 22 April 2025 the US Federal Trade Commission approved a final order requiring accessiBe to pay $1 million. The order bars accessiBe from claiming its automated products can make any website WCAG-compliant, or keep it compliant, without supporting evidence.",
   },
   {
     question: "How does this detector work?",
@@ -92,7 +134,7 @@ const faqItems = [
   {
     question: "Which overlay vendors can you detect?",
     answer:
-      "We detect accessiBe, UserWay, AudioEye, EqualWeb, MaxAccess, TruAbilities, Facil'iti, Recite Me, User1st, and ADA Compliance widgets. We continuously update our detection signatures as new vendors appear.",
+      `We detect ${VENDOR_COUNT} vendors: accessiBe, UserWay, AudioEye, EqualWeb, MaxAccess, TruAbilities, Facil'iti, Recite Me, User1st, and ADA Compliance. Detection relies on known script, DOM and global-variable signatures, so an overlay from another vendor, or one served from the site's own domain, may not be detected.`,
   },
 ]
 
@@ -116,25 +158,6 @@ export default function OverlayDetectorPage() {
       />
       <BreadcrumbStructuredData breadcrumbs={breadcrumbs} />
 
-      {/* FAQ Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqItems.map((item) => ({
-              "@type": "Question",
-              name: item.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: item.answer,
-              },
-            })),
-          }),
-        }}
-      />
-
 
       <div className="min-h-screen bg-gradient-to-br from-amber-50/50 via-background to-red-50/50 dark:from-amber-950/10 dark:via-background dark:to-red-950/10">
         {/* Hero Section */}
@@ -142,7 +165,7 @@ export default function OverlayDetectorPage() {
           <div className="container mx-auto max-w-4xl text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/10 to-red-500/10 border border-amber-200/50 dark:border-amber-800/50 mb-6">
               <Shield className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-              <span className="text-sm font-medium text-amber-700 dark:text-amber-300">Free Tool &bull; 10+ Vendors &bull; No Sign-up Required</span>
+              <span className="text-sm font-medium text-amber-700 dark:text-amber-300">Free Tool &bull; {VENDOR_COUNT} Vendors &bull; No Sign-up Required</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
@@ -157,7 +180,7 @@ export default function OverlayDetectorPage() {
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground mt-6 mb-4">
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-amber-600" />
-                <span>10+ Vendors Detected</span>
+                <span>{VENDOR_COUNT} Vendors Detected</span>
               </div>
               <div className="flex items-center gap-2">
                 <Search className="h-4 w-4 text-red-600" />
@@ -190,13 +213,13 @@ export default function OverlayDetectorPage() {
                     </div>
                     <div>
                       <CardTitle className="text-lg">Multi-Vendor Detection</CardTitle>
-                      <CardDescription>10+ Overlay Vendors</CardDescription>
+                      <CardDescription>{VENDOR_COUNT} Overlay Vendors</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Detects 10+ overlay vendors including accessiBe, UserWay, AudioEye, EqualWeb, Recite Me, and more. Identifies scripts, DOM patterns, and global variables.
+                    Detects {VENDOR_COUNT} overlay vendors including accessiBe, UserWay, AudioEye, EqualWeb, Recite Me, and more. Identifies scripts, DOM patterns, and global variables.
                   </p>
                 </CardContent>
               </Card>
@@ -320,6 +343,42 @@ export default function OverlayDetectorPage() {
           </div>
         </section>
 
+        {/* Evidence */}
+        <section className="py-12 px-4 sm:px-6" aria-labelledby="evidence-heading">
+          <div className="container mx-auto max-w-4xl">
+            <h2 id="evidence-heading" className="text-2xl md:text-3xl font-bold mb-3">
+              What the evidence says about overlays
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Three recent findings, each dated and linked to its source below.
+            </p>
+            <ul className="space-y-4">
+              {evidence.map((item) => (
+                <li key={item.heading} className="rounded-lg border bg-card p-5">
+                  <h3 className="text-lg font-semibold">{item.heading}</h3>
+                  <p className="mt-1 text-sm font-medium text-slate-600 dark:text-slate-400">{item.asOf}</p>
+                  <p className="mt-2 text-muted-foreground leading-relaxed">{item.body}</p>
+                </li>
+              ))}
+            </ul>
+            <h3 className="mt-8 text-lg font-semibold">Sources</h3>
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+              {sources.map((source) => (
+                <li key={source.href}>
+                  <a
+                    href={source.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 hover:text-foreground"
+                  >
+                    {source.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* CTA to Guide */}
         <section className="pb-12 px-4 sm:px-6">
           <div className="container mx-auto max-w-4xl text-center">
@@ -335,31 +394,11 @@ export default function OverlayDetectorPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-12 px-4 sm:px-6">
+        <div className="py-12 px-4 sm:px-6">
           <div className="container mx-auto max-w-4xl">
-            <h2 className="text-2xl font-bold mb-6 text-center">
-              Frequently Asked Questions
-            </h2>
-            <div className="space-y-4">
-              {faqItems.map((item, i) => (
-                <details
-                  key={i}
-                  className="group border rounded-lg p-4 bg-card"
-                >
-                  <summary className="cursor-pointer font-medium list-none flex items-center justify-between">
-                    {item.question}
-                    <span className="ml-2 text-muted-foreground group-open:rotate-180 transition-transform">
-                      &#9662;
-                    </span>
-                  </summary>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                    {item.answer}
-                  </p>
-                </details>
-              ))}
-            </div>
+            <FaqSection faqs={faqs} />
           </div>
-        </section>
+        </div>
 
         {/* Related Content */}
         <section className="pb-12 px-4 sm:px-6">

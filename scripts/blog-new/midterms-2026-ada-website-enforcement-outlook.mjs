@@ -153,6 +153,7 @@ export default {
     plainBullet('Fix how you handle accessibility complaints. A documented, responsive process is your best evidence of good faith, whoever is in charge.'),
     plainBullet('Watch for reintroduced bills in January 2027, and comment on state rulemakings where you operate.'),
 
+    linkBullet('/compliance/deadlines', 'l9', 'Put every upcoming date in your calendar with our ', 'compliance deadlines calendar', '.'),
     linkBullet('/research/accessibility-lawsuits', 'l5', 'See the monthly numbers in our ', 'accessibility lawsuit tracker', '.'),
     linkBullet('/guides/doj-title-ii-deadline-extension', 'l6', 'Get the details of the government deadlines in our ', 'Title II deadline extension guide', '.'),
     linkBullet('/guides/ada-website-lawsuit-cost', 'l7', 'Understand the cost of a demand letter or lawsuit in our ', 'ADA website lawsuit cost guide', '.'),

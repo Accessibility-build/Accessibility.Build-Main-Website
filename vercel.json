@@ -32,6 +32,10 @@
         "app/api/tools/focus-order-checker/route.ts": {
             "maxDuration": 60,
             "memory": 1024
+        },
+        "app/api/tools/dark-mode-contrast-checker/route.ts": {
+            "maxDuration": 60,
+            "memory": 1024
         }
     }
 }
