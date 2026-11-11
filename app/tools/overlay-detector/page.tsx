@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import OverlayDetector from "@/components/tools/overlay-detector"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { Shield, Search, Zap, Eye, CheckCircle, AlertTriangle, Star, Globe, ArrowRight } from "lucide-react"
+import { Shield, Search, Eye, CheckCircle, AlertTriangle, Star, Globe, ArrowRight } from "lucide-react"
 import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { FaqSection } from "@/components/seo/faq-section"
@@ -187,8 +187,8 @@ export default function OverlayDetectorPage() {
                 <span>Real WCAG 2.2 Scan</span>
               </div>
               <div className="flex items-center gap-2">
-                <Zap className="h-4 w-4 text-orange-600" />
-                <span>Results in 30 Seconds</span>
+                <Globe className="h-4 w-4 text-orange-600" />
+                <span>Loads the Live Page</span>
               </div>
               <div className="flex items-center gap-2">
                 <Eye className="h-4 w-4 text-green-600" />
