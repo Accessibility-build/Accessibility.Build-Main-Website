@@ -211,7 +211,7 @@ export default function OverlayDetector() {
             <Loader2 className="mx-auto h-8 w-8 animate-spin text-amber-500 mb-4" />
             <p className="text-lg font-medium">Scanning website...</p>
             <p className="text-sm text-muted-foreground mt-1">
-              Loading page, detecting overlays, and running WCAG audit. This may take 15-30 seconds.
+              Loading page, detecting overlays, and running WCAG audit. This can take up to a minute.
             </p>
           </CardContent>
         </Card>
