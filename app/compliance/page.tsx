@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     "EN 301 549",
     "california accessibility law",
     "new york accessibility law",
+    "canada accessibility law",
+    "ai accessibility law",
+    "accessibility compliance deadlines",
     "WCAG legal requirements",
   ],
   alternates: {
@@ -81,6 +84,15 @@ const breadcrumbs = [
 
 const guides = [
   {
+    href: "/compliance/deadlines",
+    region: "All jurisdictions · Calendar",
+    title: "Compliance Deadlines Calendar",
+    subtitle: "Every dated deadline, 2026 to 2030",
+    description:
+      "Every dated digital accessibility deadline across the US, EU, UK, Ireland and Canada, each with its primary source and status, filterable by region and downloadable as .ics calendar files.",
+    facts: ["Primary source on every row", "Subscribe or download as .ics"],
+  },
+  {
     href: "/compliance/ada",
     region: "United States",
     title: "ADA",
@@ -123,7 +135,7 @@ const guides = [
     subtitle: "The 2026 edition, clause by clause",
     description:
       "What changed from v3.2.1: six WCAG 2.2 criteria, the user-preferences rework, total conversation and real-time text, Annex ZB and the A.2 conformance tables, a migration list, and the legal status until the Official Journal citation.",
-    facts: ["WCAG 2.2 AA in clauses 9 to 11", "Built for the EAA; citation expected Dec 2026"],
+    facts: ["WCAG 2.2 AA in clauses 9 to 11", "Built for the EAA; not yet cited in the Official Journal"],
   },
   {
     href: "/compliance/uk",
@@ -151,6 +163,24 @@ const guides = [
     description:
       "India mandates IS 17802, its adoption of EN 301 549 with WCAG 2.1 AA inside, and draft 2026 rules would add turnover-based deadlines, public machine-readable conformance reports, grievance officers and licence sanctions, reaching businesses abroad that serve Indian users.",
     facts: ["IS 17802 mandatory since May 2023", "Draft 2026 rules: ACRs and deadlines, not yet notified"],
+  },
+  {
+    href: "/compliance/canada",
+    region: "Canada",
+    title: "Canada",
+    subtitle: "Accessible Canada Act & SOR/2025-255",
+    description:
+      "The 2025 digital rules are final law: federally regulated organisations must make new and updated web content meet CAN/ASC-EN 301 549 from 5 December 2027 or 2028, alongside Ontario's AODA, Manitoba and Quebec.",
+    facts: ["Final law, in force from Dec 2027", "WCAG 2.1 AA via CAN/ASC-EN 301 549"],
+  },
+  {
+    href: "/compliance/ai",
+    region: "EU · US · Canada",
+    title: "AI and Accessibility Law",
+    subtitle: "EU AI Act, Colorado & California",
+    description:
+      "EU AI Act Article 50(5) and 16(l), Colorado's WCAG 2.2 draft rule, California ADMT notices and AI hiring accommodation rules in one table, with a checklist for accessible AI notices and chat.",
+    facts: ["Article 50(5) applies since Aug 2026", "Colorado names WCAG 2.2 (draft)"],
   },
   {
     href: "/compliance/california",
@@ -203,7 +233,7 @@ export default function ComplianceHubPage() {
           <header className="max-w-3xl mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950/40 text-blue-800 dark:text-blue-200 text-xs font-semibold uppercase tracking-wide mb-5">
               <span aria-hidden="true">●</span>
-              Compliance Guides · Updated July 2026
+              Compliance Guides · Updated November 2026
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               Accessibility Compliance, Jurisdiction by Jurisdiction
@@ -298,10 +328,10 @@ export default function ComplianceHubPage() {
               puts you at or ahead of the technical baseline in every
               jurisdiction on this page.
             </p>
-            <div tabIndex={0} role="region" aria-label="The seven regimes side by side, as of 19 October 2026. Each links to its full guide." className="mt-8 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+            <div tabIndex={0} role="region" aria-label="The eight regimes side by side, as of 11 November 2026. Each links to its full guide." className="mt-8 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
               <table className="w-full border-collapse text-sm">
                 <caption className="px-4 py-3 text-left text-sm text-slate-600 dark:text-slate-400">
-                  The seven regimes side by side, as of 19 October 2026. Each links to its full guide.
+                  The eight regimes side by side, as of 11 November 2026. Each links to its full guide.
                 </caption>
                 <thead>
                   <tr>
@@ -320,6 +350,7 @@ export default function ComplianceHubPage() {
                     ["/compliance/eaa", "European Accessibility Act (EU)", "In-scope products and services: e-commerce, banking, transport, e-books, telecoms, computers and their operating systems", "EN 301 549, which incorporates WCAG 2.1 AA; v4.1.1 will point at WCAG 2.2", "Applies from 28 June 2025; some existing service contracts run to 2030", "National market surveillance authorities; penalties set by each member state"],
                     ["/compliance/uk", "Public Sector Bodies Accessibility Regulations 2018 (UK)", "Public sector websites and mobile apps", "WCAG 2.2 AA for monitoring, plus a mandatory accessibility statement", "23 September 2020 for websites; 23 June 2021 for apps", "GDS monitoring; enforcement by the Cabinet Office and the Equality and Human Rights Commission"],
                     ["/compliance/uk", "Equality Act 2010 (UK)", "Every service provider, public or private", "None named; the duty is to make reasonable adjustments, and it is anticipatory", "In force since 1 October 2010", "Claims in the county court or sheriff court; damages including injury to feelings"],
+                    ["/compliance/canada", "Accessible Canada Act and SOR/2025-255 (Canada)", "Federally regulated organisations: the federal public sector and federally regulated businesses with 100 or more employees, such as banks; broadcasters, telecoms and transport providers are carved out of the public-facing web duties", "CAN/ASC-EN 301 549, the Canadian adoption of EN 301 549 V3.2.1, so WCAG 2.1 AA for web", "5 December 2027 for the federal public sector; 5 December 2028 for businesses; final law, not yet in force", "Accessibility Commissioner, CRTC and CTA; administrative penalties, with each day a separate violation"],
                     ["/compliance/india", "RPwD Act 2016 and rule 15 (India)", "Every establishment, in India or abroad, that makes websites, apps, software, documents or ICT hardware available to persons in India", "IS 17802 (Parts 1 and 2), the Indian adoption of EN 301 549 V3.2.1, so WCAG 2.1 AA for web", "IS 17802 mandatory since 11 May 2023; draft 2026 rules, not yet notified, add 1 year, 18 month and 2 year deadlines from final publication", "Chief and State Commissioners for Persons with Disabilities; section 89 fines up to ₹5 lakh; the draft adds public ACRs, 90-day remediation orders and licence suspension"],
                   ].map(([href, regime, who, standard, date, enforcement]) => (
                     <tr key={regime} className="align-top">

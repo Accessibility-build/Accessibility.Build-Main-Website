@@ -57,3 +57,7 @@ next-env.d.ts
 *service-account*.json
 *gsc*.json
 gcp-*.json
+
+# Title II readiness study: raw per-entity data (frame, URLs, scan rows).
+# Owner decision: aggregates only are published; per-entity rows stay private.
+/research-data/

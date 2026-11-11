@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "Is WCAG 2.2 AA conformance the same as EAA compliance?",
     answer:
-      "No, but for a website or app it is most of the technical work. Annex I, Section III, point (c) requires websites and mobile apps to be perceivable, operable, understandable and robust, which are the WCAG principles, and the technical route is EN 301 549, whose web chapter incorporates WCAG at Level AA. Article 15 gives a presumption of conformity only for harmonised standards cited in the Official Journal under this Directive, and as of 19 October 2026 no edition of EN 301 549 is cited under the EAA: v3.2.1 is cited under the Web Accessibility Directive only, and ETSI's v4.1.1 (WCAG 2.2) is expected to be cited in late November or December 2026. WCAG also says nothing about the rest of the Act: the published Annex V information, support services, electronic documents such as invoices and e-tickets, the sector requirements, the corrective action and notification duties, and the Article 14 paper trail. This checklist covers those.",
+      "No, but for a website or app it is most of the technical work. Annex I, Section III, point (c) requires websites and mobile apps to be perceivable, operable, understandable and robust, which are the WCAG principles, and the technical route is EN 301 549, whose web chapter incorporates WCAG at Level AA. Article 15 gives a presumption of conformity only for harmonised standards cited in the Official Journal under this Directive, and as of 19 October 2026 no edition of EN 301 549 is cited under the EAA: v3.2.1 is cited under the Web Accessibility Directive only, and ETSI's v4.1.1 (WCAG 2.2) was still not cited on 11 November 2026 (Ireland's National Disability Authority expects the citation on 16 December 2026). WCAG also says nothing about the rest of the Act: the published Annex V information, support services, electronic documents such as invoices and e-tickets, the sector requirements, the corrective action and notification duties, and the Article 14 paper trail. This checklist covers those.",
   },
   {
     question: "Does the transitional period until 2030 mean my website can wait?",
@@ -186,7 +186,8 @@ export default function EAAChecklistPage() {
             <strong>Standards note:</strong> as of {VERIFIED_LABEL} no edition of EN 301 549 is cited in the
             Official Journal under the EAA. v3.2.1 is cited under the Web Accessibility Directive only, so it
             gives no presumption of conformity under this Act. ETSI published v4.1.1, aligned to WCAG 2.2, on
-            2 September 2026; its citation under the EAA is expected in late November or December 2026. Until
+            2 September 2026; it was still not cited when we rechecked on 11 November 2026, and Ireland&apos;s
+            National Disability Authority expects the citation on 16 December 2026. Until
             then, treat WCAG 2.2 AA and{" "}
             <Link href="/compliance/en-301-549" className="underline hover:no-underline">
               EN 301 549

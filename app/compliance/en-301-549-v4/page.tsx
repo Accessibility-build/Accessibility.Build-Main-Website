@@ -134,7 +134,7 @@ const faqs = [
   {
     question: "Is EN 301 549 V4.1.1 in force?",
     answer:
-      "It is published but not yet cited. ETSI, CEN and CENELEC adopted V4.1.1 on 24 August 2026 and published it on 2 September 2026. Legal effect under EU law comes only from citation in the Official Journal of the European Union: until the Commission publishes a decision citing V4.1.1, V3.2.1 remains the edition cited for the Web Accessibility Directive, and no edition of EN 301 549 is cited under the European Accessibility Act at all. The citation is expected between late November and mid-December 2026; ETSI's own date of 30 November 2026 is the deadline for national standards bodies to announce the standard, not an Official Journal date.",
+      "It is published but not yet cited. ETSI, CEN and CENELEC adopted V4.1.1 on 24 August 2026 and published it on 2 September 2026. Legal effect under EU law comes only from citation in the Official Journal of the European Union: until the Commission publishes a decision citing V4.1.1, V3.2.1 remains the edition cited for the Web Accessibility Directive, and no edition of EN 301 549 is cited under the European Accessibility Act at all. It was still not cited when we checked on 11 November 2026. Ireland's National Disability Authority expects the citation on 16 December 2026, and Deque has suggested 22 January 2027 without giving a source. ETSI's own date of 30 November 2026 is the deadline for national standards bodies to announce the standard, not an Official Journal date.",
   },
   {
     question: "Does EN 301 549 V4.1.1 require WCAG 2.2 AA?",
@@ -288,11 +288,12 @@ export default function EN301549V4Page() {
             </h2>
             <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-xl p-5 mb-6">
               <p className="text-sm text-blue-900 dark:text-blue-200 leading-relaxed">
-                <strong>Status on 19 October 2026:</strong> published, not cited. V3.2.1 is the only edition in the
+                <strong>Status on 11 November 2026:</strong> published, not cited. V3.2.1 is the only edition in the
                 Official Journal, and only under the Web Accessibility Directive (Commission Implementing Decision
                 (EU) 2018/2048, as amended by Decision (EU) 2021/1339). No edition of EN 301 549 is cited under the
                 European Accessibility Act, so there is no EAA presumption of conformity through any version until
-                V4.1.1 is cited. Expected citation window: late November to mid-December 2026.
+                V4.1.1 is cited. Ireland&apos;s National Disability Authority expects the citation on 16 December
+                2026; Deque has suggested 22 January 2027 without giving a source.
               </p>
             </div>
             <div className="prose prose-slate dark:prose-invert max-w-none">
@@ -307,7 +308,7 @@ export default function EN301549V4Page() {
               <ul>
                 <li><strong>24 August 2026:</strong> date of adoption by ETSI, CEN and CENELEC, after the national vote on the V4.1.0 final draft (25 June to 24 August 2026).</li>
                 <li><strong>2 September 2026:</strong> publication of V4.1.1 (2026-09).</li>
-                <li><strong>30 November 2026:</strong> latest date for national standards bodies to announce the EN. This is the date behind Deque&apos;s &ldquo;30 November&rdquo; citation estimate; it is an ETSI milestone, not an Official Journal date.</li>
+                <li><strong>30 November 2026:</strong> latest date for national standards bodies to announce the EN. Deque first gave 30 November as its citation estimate and now says 22 January 2027; 30 November is an ETSI milestone, not an Official Journal date.</li>
                 <li><strong>31 May 2027:</strong> latest date for national publication or endorsement.</li>
                 <li><strong>31 May 2028:</strong> withdrawal of any conflicting national standard.</li>
               </ul>

@@ -55,6 +55,12 @@ export interface RenderOptions {
   settleMs?: number
   /** Emulate prefers-reduced-motion: reduce. Stops most carousels and transitions. */
   reducedMotion?: boolean
+  /**
+   * Emulate prefers-color-scheme. Sent in the same call as reducedMotion, because
+   * page.emulateMediaFeatures replaces the whole emulated set: a later call with only the colour
+   * scheme silently drops reduced motion. Use mediaFeatures() when switching after load.
+   */
+  colorScheme?: "light" | "dark"
   /** Total navigation budget. Default 25 s, leaving the rest of a 60 s function for the work. */
   navigationTimeoutMs?: number
 }
@@ -92,7 +98,8 @@ export async function withRenderedPage<T>(url: URL, options: RenderOptions, work
     // esbuild-based runners (tsx, used to test these tools outside Next) wrap functions passed to
     // page.evaluate in __name(); without this no-op they throw inside the page.
     await page.evaluateOnNewDocument("globalThis.__name = globalThis.__name || ((fn) => fn)")
-    if (options.reducedMotion) await page.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }])
+    const features = mediaFeatures(options)
+    if (features.length > 0) await page.emulateMediaFeatures(features)
     page.setDefaultTimeout(15_000)
 
     await page.setRequestInterception(true)
@@ -187,6 +194,17 @@ export async function withRenderedPage<T>(url: URL, options: RenderOptions, work
   }
 }
 
+/**
+ * The emulated media features for a set of render options. page.emulateMediaFeatures replaces
+ * everything set before, so a tool that switches colour scheme after load must pass the full set.
+ */
+export function mediaFeatures(options: Pick<RenderOptions, "reducedMotion" | "colorScheme">): { name: string; value: string }[] {
+  const features: { name: string; value: string }[] = []
+  if (options.reducedMotion) features.push({ name: "prefers-reduced-motion", value: "reduce" })
+  if (options.colorScheme) features.push({ name: "prefers-color-scheme", value: options.colorScheme })
+  return features
+}
+
 /** A sentence for the visitor from Chrome's net error code (ERR_NAME_NOT_RESOLVED and so on). */
 function navigationFailure(url: URL, code: string): PublicUrlError {
   const host = url.hostname
@@ -204,7 +222,7 @@ function navigationFailure(url: URL, code: string): PublicUrlError {
  * Bot-check interstitials often return 200, and a scan of one reads as a clean page. The title and
  * a thin body give them away.
  */
-async function detectBotWall(page: Page): Promise<string | null> {
+export async function detectBotWall(page: Page): Promise<string | null> {
   return page
     .evaluate(() => {
       const title = (document.title || "").toLowerCase()

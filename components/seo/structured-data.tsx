@@ -723,14 +723,33 @@ interface DatasetStructuredDataProps {
   url: string
   datePublished: string
   dateModified: string
-  creator: { name: string; url: string }
+  /** One organisation, or several when the data has more than one author (e.g. W3C plus us). */
+  creator: DatasetCreator | DatasetCreator[]
   license?: string
   temporalCoverage?: string
   keywords?: string[]
   /** Source the figures come from, when another organisation collected them. */
   isBasedOn?: string
-  /** Real, working download location. Omit when none exists. */
+  /** Real, working download location (JSON). Omit when none exists. Ignored when `distribution` is set. */
   downloadUrl?: string
+  /** One DataDownload per real file, for datasets offered in several formats. */
+  distribution?: DatasetDistribution[]
+  version?: string
+  /** Where the underlying data was published, e.g. the source file's URL. */
+  citation?: string
+  /** Column or variable names, from the data itself. */
+  variableMeasured?: string[]
+}
+
+interface DatasetCreator {
+  name: string
+  url: string
+}
+
+interface DatasetDistribution {
+  encodingFormat: string
+  contentUrl: string
+  name?: string
 }
 
 export function DatasetStructuredData({
@@ -744,8 +763,17 @@ export function DatasetStructuredData({
   temporalCoverage,
   keywords,
   isBasedOn,
-  downloadUrl
+  downloadUrl,
+  distribution,
+  version,
+  citation,
+  variableMeasured
 }: DatasetStructuredDataProps) {
+  const creators = (Array.isArray(creator) ? creator : [creator]).map((c) => ({
+    "@type": "Organization",
+    "name": c.name,
+    "url": c.url
+  }))
   const datasetSchema = {
     "@context": "https://schema.org",
     "@type": "Dataset",
@@ -754,21 +782,29 @@ export function DatasetStructuredData({
     "url": url,
     "datePublished": datePublished,
     "dateModified": dateModified,
-    "creator": {
-      "@type": "Organization",
-      "name": creator.name,
-      "url": creator.url
-    },
+    "creator": creators.length === 1 ? creators[0] : creators,
     "license": license,
     "isAccessibleForFree": true,
     ...(isBasedOn && { "isBasedOn": isBasedOn }),
-    ...(downloadUrl && {
-      "distribution": {
-        "@type": "DataDownload",
-        "encodingFormat": "application/json",
-        "contentUrl": downloadUrl
-      }
-    }),
+    ...(citation && { "citation": citation }),
+    ...(version && { "version": version }),
+    ...(variableMeasured && variableMeasured.length > 0 && { "variableMeasured": variableMeasured }),
+    ...(distribution && distribution.length > 0
+      ? {
+          "distribution": distribution.map((d) => ({
+            "@type": "DataDownload",
+            ...(d.name && { "name": d.name }),
+            "encodingFormat": d.encodingFormat,
+            "contentUrl": d.contentUrl
+          }))
+        }
+      : downloadUrl && {
+          "distribution": {
+            "@type": "DataDownload",
+            "encodingFormat": "application/json",
+            "contentUrl": downloadUrl
+          }
+        }),
     ...(temporalCoverage && { "temporalCoverage": temporalCoverage }),
     ...(keywords && { "keywords": keywords }),
     "publisher": {

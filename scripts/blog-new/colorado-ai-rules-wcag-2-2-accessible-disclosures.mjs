@@ -158,6 +158,7 @@ export default {
     plainBullet('Review identity checks and fraud signals in your appeal and rights-request flows so assistive technology use does not trigger a block.'),
     plainBullet('Watch coag.gov for the final rules. Rule numbers and wording may change again before adoption.'),
 
+    linkBullet('/compliance/ai', 'l0', 'Compare Colorado with the EU AI Act, California and other rules on our ', 'AI and accessibility law page', '.'),
     linkBullet('/guides/accessible-ai-chat', 'l1', 'Build chat interfaces that work with assistive technology using our ', 'accessible AI chat guide', '.'),
     linkBullet('/checklists/wcag-2-2', 'l2', 'Work through every A and AA criterion with the ', 'WCAG 2.2 checklist', '.'),
     linkBullet('/wcag/3-3-8', 'l3', 'Understand the authentication rule in ', 'WCAG 3.3.8 Accessible Authentication', '.'),

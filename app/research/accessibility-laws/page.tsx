@@ -244,7 +244,8 @@ export default function AccessibilityLawsPage() {
                 ADA Title II rule explicitly requires WCAG 2.1 AA for state and local government
                 websites. The European Accessibility Act references EN 301 549, which aligns with
                 WCAG 2.1 AA. ETSI published EN 301 549 v4.1.1, which incorporates WCAG 2.2, on
-                September 2, 2026; once it is cited in the EU Official Journal (expected December
+                September 2, 2026; once it is cited in the EU Official Journal (not yet cited as of
+                November 11, 2026; Ireland&apos;s National Disability Authority expects December 16,
                 2026) it becomes the first edition that gives a presumption of conformity under the
                 EAA. The UK already uses WCAG 2.2 AA as its public sector benchmark, while US
                 Section 508 still incorporates WCAG 2.0 AA.

@@ -38,7 +38,7 @@ export const metadata = createMetadata({
 const faqs = [
   {
     question: "Which versions of EN 301 549 does this checklist cover?",
-    answer: `Both current editions, with a switch at the top. Version 3.2.1 (March 2021) is the edition cited in the Official Journal of the EU, and only for the Web Accessibility Directive (Commission Implementing Decision (EU) 2018/2048 as amended by Decision (EU) 2021/1339). Version 4.1.1 was published by ETSI, CEN and CENELEC on 2 September 2026: it aligns clauses 9 to 11 with WCAG 2.2, rewrites the real-time text and total conversation requirements, and adds Annex ZB and the clause A.2 conformance tables for the European Accessibility Act. V4.1.1 is not yet cited in the Official Journal; the citation is expected between late November and mid-December 2026. Each edition keeps its own progress, notes, and Excel export.`,
+    answer: `Both current editions, with a switch at the top. Version 3.2.1 (March 2021) is the edition cited in the Official Journal of the EU, and only for the Web Accessibility Directive (Commission Implementing Decision (EU) 2018/2048 as amended by Decision (EU) 2021/1339). Version 4.1.1 was published by ETSI, CEN and CENELEC on 2 September 2026: it aligns clauses 9 to 11 with WCAG 2.2, rewrites the real-time text and total conversation requirements, and adds Annex ZB and the clause A.2 conformance tables for the European Accessibility Act. V4.1.1 was still not cited in the Official Journal when we checked on 11 November 2026; Ireland's National Disability Authority expects the citation on 16 December 2026. Each edition keeps its own progress, notes, and Excel export.`,
   },
   {
     question: "How many requirements does EN 301 549 contain?",
@@ -140,7 +140,7 @@ export default function EN301549ChecklistPage() {
           <TriangleAlert className="mt-0.5 h-5 w-5 shrink-0 text-amber-700 dark:text-amber-300" aria-hidden="true" />
           <div className="text-sm leading-relaxed text-amber-900 dark:text-amber-200 space-y-2">
             <p>
-              <strong>Legal status (reviewed 19 October 2026):</strong> <strong>v3.2.1</strong> is the only
+              <strong>Legal status (reviewed 11 November 2026):</strong> <strong>v3.2.1</strong> is the only
               edition cited in the Official Journal of the EU, and only under the{" "}
               <strong>Web Accessibility Directive</strong> (Commission Implementing Decision (EU) 2018/2048,
               as amended by Decision (EU) 2021/1339). <strong>No edition of EN 301 549 is cited under the
@@ -149,9 +149,10 @@ export default function EN301549ChecklistPage() {
             </p>
             <p>
               <strong>v4.1.1</strong> was adopted by ETSI, CEN and CENELEC on 24 August 2026 and published on
-              2 September 2026. Its Official Journal citation is expected between{" "}
-              <strong>late November and mid-December 2026</strong>: Deque reports 30 November (also ETSI&apos;s
-              national-announcement date), Ireland&apos;s National Disability Authority expects 16 December.
+              2 September 2026. It was <strong>still not cited in the Official Journal on 11 November
+              2026</strong>. Ireland&apos;s National Disability Authority expects the citation on 16 December
+              2026; Deque has suggested 22 January 2027 without giving a source. ETSI&apos;s 30 November 2026
+              date is the deadline for national standards bodies to announce the standard, not a citation date.
               Until then, cite v3.2.1 for Web Accessibility Directive statements, audit against WCAG 2.2 AA,
               and use the v4.1.1 switch to see what you will be tested against next;{" "}
               <Link href="/compliance/en-301-549-v4" className="underline hover:no-underline">

@@ -58,7 +58,7 @@ const faqs = [
   {
     question: "Will an overlay make my site EAA compliant?",
     answer:
-      "No. The European Accessibility Act requires that in-scope services meet accessibility requirements, and its benchmark is the European standard EN 301 549, which incorporates WCAG at Level AA (conformity is formally presumed once a version is cited in the Official Journal under the Act, expected for V4.1.1 in December 2026). WCAG conformance is evaluated on the content as delivered: if a button is unlabeled in your markup, it remains unlabeled with an overlay widget running on top. No provision of the EAA, EN 301 549, or any national transposition names an overlay as a route to compliance. What satisfies the law is remediating the underlying code and verifying it through testing.",
+      "No. The European Accessibility Act requires that in-scope services meet accessibility requirements, and its benchmark is the European standard EN 301 549, which incorporates WCAG at Level AA (conformity is formally presumed once a version is cited in the Official Journal under the Act; V4.1.1 was not yet cited as of 11 November 2026). WCAG conformance is evaluated on the content as delivered: if a button is unlabeled in your markup, it remains unlabeled with an overlay widget running on top. No provision of the EAA, EN 301 549, or any national transposition names an overlay as a route to compliance. What satisfies the law is remediating the underlying code and verifying it through testing.",
   },
   {
     question: "Can I be sued in Europe if I use an overlay?",
@@ -224,7 +224,8 @@ export default function OverlaysEuUkLawPage() {
               </Link>
               , which incorporates WCAG at Level AA for web content; conformity with it becomes a
               formal presumption of conformity once a version is cited in the Official Journal under
-              the Act, expected for V4.1.1 in December 2026. In practice, meeting the EAA
+              the Act. V4.1.1 was not yet cited as of 11 November 2026; Ireland&apos;s National
+              Disability Authority expects that on 16 December 2026. In practice, meeting the EAA
               means your pages conform to WCAG 2.2 AA.
             </p>
             <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">

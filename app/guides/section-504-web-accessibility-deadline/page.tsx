@@ -11,13 +11,52 @@ import { PageByline } from "@/components/seo/page-byline"
 import { clampDescription } from "@/lib/metadata"
 
 const changes = [
-  "Corrected the compliance dates. An earlier version said HHS had not extended the deadline. HHS extended it by interim final rule to May 11, 2027 and May 10, 2028.",
-  "Removed the editorial argument that HHS was right not to extend the deadline, including an unsourced claim about deaths, because it depended on the wrong date.",
-  "Added what still applies during the extension and the lawsuit challenging it.",
-  "Corrected the kiosk requirement. The rule does not set WCAG as the technical standard for kiosks.",
-  "Stopped listing an accessibility statement and a complaint process as rule requirements. We still recommend both.",
-  "Replaced the missed-deadline recovery plan with steps for using the extra time.",
-  "Removed the health insurance exchange row from the coverage table.",
+  {
+    date: "November 11, 2026",
+    items: [
+      "Added the September 23, 2026 final judgment in Texas v. Kennedy, which vacated the rule's integration provisions but left the web, mobile app and kiosk rules and their dates unchanged.",
+      "Named the court hearing the National Federation of the Blind case and updated its status line.",
+      "Added a sources list.",
+    ],
+  },
+  {
+    date: "October 31, 2026",
+    items: [
+      "Corrected the compliance dates. An earlier version said HHS had not extended the deadline. HHS extended it by interim final rule to May 11, 2027 and May 10, 2028.",
+      "Removed the editorial argument that HHS was right not to extend the deadline, including an unsourced claim about deaths, because it depended on the wrong date.",
+      "Added what still applies during the extension and the lawsuit challenging it.",
+      "Corrected the kiosk requirement. The rule does not set WCAG as the technical standard for kiosks.",
+      "Stopped listing an accessibility statement and a complaint process as rule requirements. We still recommend both.",
+      "Replaced the missed-deadline recovery plan with steps for using the extra time.",
+      "Removed the health insurance exchange row from the coverage table.",
+    ],
+  },
+]
+
+const NFB_STATUS =
+  "As of our last check on November 11, 2026, we had found no reported ruling."
+
+const sources = [
+  {
+    label: "HHS interim final rule extending the Section 504 web compliance dates (Federal Register 2026-09266)",
+    href: "https://www.federalregister.gov/documents/2026/05/11/2026-09266/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web",
+  },
+  {
+    label: "Current text of 45 CFR 84.84, the web and mobile app requirements (eCFR)",
+    href: "https://www.ecfr.gov/current/title-45/section-84.84",
+  },
+  {
+    label: "DOJ interim final rule extending the ADA Title II web compliance dates (Federal Register 2026-07663)",
+    href: "https://www.federalregister.gov/d/2026-07663",
+  },
+  {
+    label: "Texas v. Kennedy, No. 5:24-cv-225-H (N.D. Tex.), Order and Final Judgment of September 23, 2026 (PDF)",
+    href: "https://www.aapd.com/wp-content/uploads/2026/09/125._Order_and_Final_Judgment.pdf",
+  },
+  {
+    label: "National Federation of the Blind v. U.S. Department of Justice, complaint filed in the District of Maryland (PDF)",
+    href: "https://democracyforward.org/wp-content/uploads/2026/06/NFB-vs-DOJ-Complaint.pdf",
+  },
 ]
 
 export const metadata: Metadata = {
@@ -86,7 +125,12 @@ const faqs = [
   {
     question: "Could the new date change?",
     answer:
-      "It could. The National Federation of the Blind sued in May 2026 to set aside the DOJ and HHS extensions (No. 1:26-cv-02007). The plaintiffs moved for summary judgment on September 28, 2026, and there was no ruling as of October 28, 2026. Treat the 2027 date as the latest safe target, not a guaranteed one.",
+      `It could. The National Federation of the Blind sued in the U.S. District Court for the District of Maryland in May 2026 to set aside the DOJ and HHS extensions (No. 1:26-cv-02007). The plaintiffs moved for summary judgment on September 28, 2026. ${NFB_STATUS} Treat the 2027 date as the latest safe target, not a guaranteed one.`,
+  },
+  {
+    question: "Did the Texas v. Kennedy judgment change the Section 504 web rule?",
+    answer:
+      "No. On September 23, 2026 the U.S. District Court for the Northern District of Texas entered a final judgment in Texas v. Kennedy (No. 5:24-cv-225-H) on the parties' joint motion. It vacated the rule's \"most integrated setting\" provisions: the definition in 45 CFR 84.10, the last sentences of 84.22(b) and 84.93(b), 84.43(d), 84.68(d), and all of 84.76. It did not touch subpart I, which holds the web, mobile app and kiosk rules (84.81 to 84.89). The compliance dates in 84.84 are still May 11, 2027 and May 10, 2028, and the standard is still WCAG 2.1 Level AA.",
   },
   {
     question: "Does the extension mean there are no obligations until 2027?",
@@ -189,7 +233,7 @@ export default function Section504DeadlinePage() {
           <header className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-200 text-xs font-semibold uppercase tracking-wide mb-5">
               <span aria-hidden="true">●</span>
-              Guide · Corrected October 31, 2026
+              Guide · Updated November 11, 2026
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               The Section 504 Web Deadline Moved to May 2027
@@ -253,13 +297,45 @@ export default function Section504DeadlinePage() {
 
             <h2>Why the date is not settled</h2>
             <p>
-              The National Federation of the Blind sued in May 2026 to set
-              aside both the DOJ and HHS extensions (No. 1:26-cv-02007). The
-              plaintiffs moved for summary judgment on September 28, 2026, and
-              there was no ruling as of October 28, 2026. Our{" "}
+              The National Federation of the Blind sued in the U.S. District
+              Court for the District of Maryland in May 2026 to set aside both
+              the DOJ and HHS extensions (No. 1:26-cv-02007). The plaintiffs
+              moved for summary judgment on September 28, 2026. {NFB_STATUS}{" "}
+              Our{" "}
               <Link href="/research/accessibility-lawsuits">lawsuit tracker</Link>{" "}
               follows the case. Plan to finish early rather than on the last
               permitted day.
+            </p>
+
+            <h2>The Texas lawsuit did not touch the web rule</h2>
+            <p>
+              A separate case, <em>Texas v. Kennedy</em> (No. 5:24-cv-225-H),
+              challenged parts of the same 2024 Section 504 rule. On September
+              23, 2026 the U.S. District Court for the Northern District of
+              Texas granted the parties&apos; joint motion and entered a{" "}
+              <a href="https://www.aapd.com/wp-content/uploads/2026/09/125._Order_and_Final_Judgment.pdf">
+                final judgment
+              </a>
+              . It vacated only the rule&apos;s &ldquo;most integrated
+              setting&rdquo; provisions:
+            </p>
+            <ul>
+              <li>the definition of &ldquo;most integrated setting&rdquo; in 45 CFR 84.10;</li>
+              <li>the final sentence of 84.22(b);</li>
+              <li>84.43(d), on postsecondary programs;</li>
+              <li>84.68(d);</li>
+              <li>all of 84.76, the integration section;</li>
+              <li>the final sentence of 84.93(b), on medical diagnostic equipment.</li>
+            </ul>
+            <p>
+              The remaining claims were dismissed without prejudice. The
+              judgment does not name subpart I (84.81 to 84.89), which holds
+              the web, mobile app and kiosk requirements. The current{" "}
+              <a href="https://www.ecfr.gov/current/title-45/section-84.84">
+                text of 84.84
+              </a>{" "}
+              still sets May 11, 2027 and May 10, 2028, with WCAG 2.1 Level AA
+              as the standard.
             </p>
 
             <h2>What still applies today</h2>
@@ -447,16 +523,43 @@ export default function Section504DeadlinePage() {
             </div>
           </section>
 
+          <section aria-labelledby="sources-heading" className="mb-12">
+            <h2 id="sources-heading" className="text-xl font-semibold text-slate-900 dark:text-white">
+              Sources
+            </h2>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-600 dark:text-slate-400">
+              {sources.map((source) => (
+                <li key={source.href}>
+                  <a
+                    href={source.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 hover:text-blue-700 dark:hover:text-blue-300"
+                  >
+                    {source.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
+              Educational content, not legal advice.
+            </p>
+          </section>
+
           <section id="changes" aria-labelledby="changes-heading" className="scroll-mt-24 border-t border-slate-200 pt-8 dark:border-slate-800">
             <h2 id="changes-heading" className="text-xl font-semibold text-slate-900 dark:text-white">
               Changes to this guide
             </h2>
-            <h3 className="mt-4 text-sm font-semibold text-slate-900 dark:text-white">October 31, 2026</h3>
-            <ul className="mt-2 list-disc space-y-2 pl-5 text-sm text-slate-600 dark:text-slate-400">
-              {changes.map((change) => (
-                <li key={change}>{change}</li>
-              ))}
-            </ul>
+            {changes.map((group) => (
+              <div key={group.date}>
+                <h3 className="mt-4 text-sm font-semibold text-slate-900 dark:text-white">{group.date}</h3>
+                <ul className="mt-2 list-disc space-y-2 pl-5 text-sm text-slate-600 dark:text-slate-400">
+                  {group.items.map((change) => (
+                    <li key={change}>{change}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </section>
         </article>
 

@@ -5,7 +5,7 @@
   "textUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32019L0882",
   "verified": "2026-10-19",
   "sourceNote": "Every row cites the article, annex, section and point of Directive (EU) 2019/882 it comes from, checked against the EUR-Lex text (CELEX 32019L0882) on 19 October 2026. Obligations are plain-language paraphrases written by accessibility.build, not the normative text. Your duties sit in the national law transposing the Directive, which can add detail and sets the penalties.",
-  "standardsNote": "As of 19 October 2026 no edition of EN 301 549 is cited in the Official Journal of the European Union under this Directive. EN 301 549 v3.2.1 is cited under the Web Accessibility Directive only and gives no presumption of conformity under the EAA. ETSI published v4.1.1, aligned to WCAG 2.2, on 2 September 2026; its citation under the EAA is expected in late November or December 2026.",
+  "standardsNote": "As of 19 October 2026 no edition of EN 301 549 is cited in the Official Journal of the European Union under this Directive. EN 301 549 v3.2.1 is cited under the Web Accessibility Directive only and gives no presumption of conformity under the EAA. ETSI published v4.1.1, aligned to WCAG 2.2, on 2 September 2026; it was still not cited when we rechecked on 11 November 2026, and Ireland's National Disability Authority expects the citation on 16 December 2026.",
   "sections": [
     { "id": "scope", "title": "Scope, dates and exemptions", "source": "Articles 2, 3, 4 and 31", "summary": "Work out whether the Directive applies to you, which category you fall in, and which content and organisations it leaves out." },
     { "id": "general-services", "title": "General requirements for all services", "source": "Annex I, Section III", "summary": "The requirements every in-scope service must meet: accessible websites and apps, accessible information about the service, accessible products used to deliver it, and support services that can talk about accessibility." },
@@ -751,7 +751,7 @@
       "source": "Article 15(1)",
       "appliesTo": "Every economic operator",
       "evidence": "Standards watch entry naming the edition of EN 301 549 relied on, its Official Journal citation status under this Directive, and the date last checked.",
-      "notes": "As of 19 October 2026 no edition of EN 301 549 is cited in the Official Journal under this Directive. EN 301 549 v3.2.1 is cited under the Web Accessibility Directive (Directive (EU) 2016/2102) only and gives no presumption of conformity under the EAA. ETSI published v4.1.1, aligned to WCAG 2.2 and mapped to the EAA requirements, on 2 September 2026; its citation under the EAA is expected in late November or December 2026. Until then conformance with EN 301 549 is strong evidence of meeting Annex I, not a legal presumption."
+      "notes": "As of 19 October 2026 no edition of EN 301 549 is cited in the Official Journal under this Directive. EN 301 549 v3.2.1 is cited under the Web Accessibility Directive (Directive (EU) 2016/2102) only and gives no presumption of conformity under the EAA. ETSI published v4.1.1, aligned to WCAG 2.2 and mapped to the EAA requirements, on 2 September 2026; it was still not cited when we rechecked on 11 November 2026, and Ireland's National Disability Authority expects the citation on 16 December 2026. Until then conformance with EN 301 549 is strong evidence of meeting Annex I, not a legal presumption."
     },
     {
       "id": "st-technical-specifications",

@@ -162,7 +162,7 @@ const versions = [
   },
   {
     version: "v4.1.1 (September 2026)",
-    note: "Published by ETSI on 2 September 2026: aligns web, document, and software chapters with WCAG 2.2, adds Annex ZB mapping requirements to the EAA, and rewrites the real-time text clause. Not yet cited in the Official Journal (expected December 2026)",
+    note: "Published by ETSI on 2 September 2026: aligns web, document, and software chapters with WCAG 2.2, adds Annex ZB mapping requirements to the EAA, and rewrites the real-time text clause. Not yet cited in the Official Journal as of 11 November 2026 (Ireland's National Disability Authority expects 16 December 2026)",
   },
 ]
 
@@ -294,8 +294,8 @@ export default function EN301549Page() {
                 (Directive (EU) 2019/882), which extends accessibility duties
                 to private-sector products and services from June 28, 2025. No
                 edition is cited under the EAA yet; V4.1.1 is expected to be the
-                first, with an Official Journal citation anticipated in December
-                2026.
+                first, and Ireland&apos;s National Disability Authority expects its
+                Official Journal citation on 16 December 2026.
               </li>
             </ul>
           </section>
@@ -426,7 +426,7 @@ export default function EN301549Page() {
             </h2>
             <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-xl p-5 mb-6">
               <p className="text-sm text-blue-900 dark:text-blue-200 leading-relaxed">
-                <strong>Status as of 14 October 2026:</strong>{" "}ETSI published EN 301 549
+                <strong>Status as of 11 November 2026:</strong>{" "}ETSI published EN 301 549
                 V4.1.1 (2026-09) on 2 September 2026, after the national vote on the V4.1.0
                 final draft. It has NOT yet been cited in the Official Journal; Ireland&apos;s
                 National Disability Authority expects that on 16 December 2026. Until then,
