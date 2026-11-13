@@ -226,7 +226,7 @@ export default function ScreenReaderSurvey2026Page() {
             "Research report",
             `Survey #11: ${s11.surveyPeriod}`,
             `${s11.validResponses.toLocaleString()} responses`,
-            "Reviewed: Oct 14, 2026",
+            "Reviewed: Nov 14, 2026",
           ]}
           headline={`JAWS is back on top: ${f(jaws26)} of respondents now use it as their primary desktop screen reader, up ${jawsChange} points from ${f(jaws24)} in 2024, while NVDA fell to ${f(nvda26)} and VoiceOver to ${f(vo26)}.`}
           sourceName="WebAIM Screen Reader User Survey #11"

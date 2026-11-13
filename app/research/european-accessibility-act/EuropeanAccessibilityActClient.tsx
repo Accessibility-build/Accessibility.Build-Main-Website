@@ -59,6 +59,14 @@ interface EaaData {
     latestChange?: string;
     measures: MeasureRow[];
   };
+  pendingLegislation?: {
+    date: string;
+    label: string;
+    reference: string;
+    status: string;
+    summary: string;
+    sourceUrl: string;
+  }[];
   enforcementDataStatus: { officialDatasetExists: boolean; explanation: string };
 }
 
@@ -250,6 +258,36 @@ export function EuropeanAccessibilityActClient({
             ))}
           </ul>
         </div>
+
+        {data.pendingLegislation && data.pendingLegislation.length > 0 && (
+          <div className="mt-6 rounded-lg border border-slate-200 p-5 dark:border-slate-800">
+            <h3 className="flex items-center gap-2 text-base font-semibold text-slate-950 dark:text-white">
+              <CircleDot
+                className="h-4 w-4 text-amber-700 dark:text-amber-300"
+                aria-hidden="true"
+              />
+              Pending changes to the Directive
+            </h3>
+            <ul className="mt-3 space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              {data.pendingLegislation.map((item) => (
+                <li key={item.reference}>
+                  <span className="font-medium text-slate-900 dark:text-slate-200">
+                    {formatDate(item.date)}, {item.label} ({item.reference}).{" "}
+                    {item.status}.
+                  </span>{" "}
+                  {item.summary}{" "}
+                  <a
+                    href={item.sourceUrl}
+                    className="font-medium text-teal-700 underline underline-offset-2 hover:no-underline dark:text-teal-300"
+                  >
+                    Text of the proposal
+                  </a>
+                  .
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
       <section
@@ -302,7 +340,7 @@ export function EuropeanAccessibilityActClient({
           title="National transposition measures by Member State"
           titleId="transposition-heading"
           headingLevel={2}
-          description={`Instruments each Member State has communicated to the Commission, as recorded by EUR-Lex on ${formatDate(data.transposition.asOf)}.`}
+          description={`Instruments each Member State has communicated to the Commission, as recorded in the EUR-Lex national measures data on ${formatDate(data.transposition.asOf)}.`}
           insight={`All ${data.transposition.memberStatesReporting} Member States have now communicated transposition measures, ${data.transposition.totalMeasures} in total. The spread from ${measures[0].measures} to ${measures[measures.length - 1].measures} says almost nothing about effort or quality: it reflects whether a country transposed through one consolidated act or amended dozens of existing laws.`}
           source="EUR-Lex national transposition measures"
           sourceUrl={data.directive.transpositionTrackerUrl}
@@ -463,7 +501,7 @@ export function EuropeanAccessibilityActClient({
             name: "EUR-Lex national transposition measures",
             url: data.directive.transpositionTrackerUrl,
             description:
-              "Counts of national instruments communicated to the Commission by each Member State. EUR-Lex updates this collection as Member States notify measures.",
+              "Counts of national instruments communicated to the Commission by each Member State. EUR-Lex updates this collection as Member States notify measures. EUR-Lex was unreachable on 14 November 2026, so that day's count was read from the EU Publications Office (Cellar) database, which holds the same records EUR-Lex displays.",
           },
         ]}
         sampleSize={`${data.transposition.memberStatesReporting} Member States, ${data.transposition.totalMeasures} communicated measures`}

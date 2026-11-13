@@ -187,7 +187,7 @@ export default function StateOfAccessibilityPage() {
               <Badge variant="secondary">Research report</Badge>
               <Badge variant="secondary">Published 2026</Badge>
               <Badge variant="outline">Primary data: Feb 2026</Badge>
-              <Badge variant="outline">Reviewed: Oct 14, 2026</Badge>
+              <Badge variant="outline">Reviewed: Nov 14, 2026</Badge>
             </div>
 
             <div className="mt-6 max-w-4xl">
@@ -338,7 +338,7 @@ export default function StateOfAccessibilityPage() {
                   [
                     "02",
                     "Complexity is outrunning remediation",
-                    "The average homepage contained 1,437 elements in February 2026, a 22.5% jump in a single year and nearly double the 2019 figure. ARIA attributes grew 27% in the same period.",
+                    "The average homepage contained 1,437 elements in February 2026, a 14.3% jump in a single year and nearly double the 2019 figure. ARIA attributes grew 27% in the same period.",
                   ],
                   [
                     "03",
@@ -441,7 +441,7 @@ export default function StateOfAccessibilityPage() {
               description="Detectable WCAG failure rates and error counts across the home pages of the top one million websites, 2019 to 2026, with the most common failure types."
               pageUrl="https://accessibility.build/research/state-of-accessibility"
               datePublished="2026-08-27"
-              dateModified="2026-10-14"
+              dateModified="2026-11-14"
               temporalCoverage="2019/2026"
               attribution="WebAIM Million; HTTP Archive Web Almanac"
               withSchema={true}

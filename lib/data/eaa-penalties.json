@@ -1,5 +1,5 @@
 {
-  "checkedOn": "2026-10-31",
+  "checkedOn": "2026-11-14",
   "states": [
     {
       "code": "AT",
@@ -133,7 +133,7 @@
           "sourceUrl": "https://narodne-novine.nn.hr/clanci/sluzbeni/2025_06_89_1231.html",
           "crossReference": null,
           "status": "verified",
-          "note": "Misdemeanour (prekrsaj) fine. As published in the gazette; later amendments not searched."
+          "note": "Misdemeanour (prekrsaj) fine. Amended by NN 114/2026 (published 7 October 2026, in force 15 October 2026): the maximum fines are unchanged, new offences were added to arts 32, 34, 35 and 36, and a new art. 36.a excludes public procurement procedures from the misdemeanour provisions of arts 32 to 36. Amendment read at https://narodne-novine.nn.hr/eli/sluzbeni/2026/114/pdf, act no. 1371."
         },
         {
           "scope": "Importers that are legal persons (art. 34)",
@@ -242,22 +242,46 @@
     {
       "code": "EE",
       "name": "Estonia",
-      "law": "Toote ja teenuse ligipaasetavuse seadus (title per a community list; official text not opened)",
-      "lawUrl": "https://www.riigiteataja.ee/en/tolge/pdf/524082022008",
-      "authorities": "Not verified",
-      "authoritySource": null,
+      "law": "Toodete ja teenuste ligipääsetavuse seadus, RT I, 15.06.2022, 1",
+      "lawUrl": "https://www.riigiteataja.ee/akt/115062022001",
+      "authorities": "Consumer Protection and Technical Regulatory Authority (TTJA) as supervisory authority (§§ 16 to 18); TTJA also conducts extra-judicial misdemeanour proceedings (§ 21)",
+      "authoritySource": "https://www.riigiteataja.ee/akt/115062022001",
       "routes": [
         {
-          "scope": "All routes",
+          "scope": "Legal persons: providing a service that does not meet the accessibility requirements (§ 20(2))",
           "penaltyType": "other",
-          "maximum": null,
-          "provision": null,
+          "maximum": "EUR 20,000 (misdemeanour fine)",
+          "provision": "§ 20(2)",
           "quote": null,
           "translation": null,
-          "sourceUrl": null,
-          "crossReference": null,
-          "status": "not_verified",
-          "note": "Riigi Teataja blocked automated access, so the text was not read. Riigikogu downloads also returned 403. A community list points to s.20 of the act with amounts unknown."
+          "sourceUrl": "https://www.riigiteataja.ee/akt/115062022001",
+          "crossReference": "Official English translation: https://www.riigiteataja.ee/en/akt/524082022008",
+          "status": "verified",
+          "note": "Misdemeanour fine; TTJA conducts the extra-judicial proceedings (§ 21). § 20 covers services only: the act has no product-specific misdemeanour, and products are handled through § 18 measures and § 19 penalty payments. Read in the browser on Riigi Teataja, where the original 2022 text is the current wording (in force from 28 June 2022). Wording not quoted here."
+        },
+        {
+          "scope": "Natural persons: same offence (§ 20(1))",
+          "penaltyType": "other",
+          "maximum": "100 fine units (misdemeanour fine)",
+          "provision": "§ 20(1)",
+          "quote": null,
+          "translation": null,
+          "sourceUrl": "https://www.riigiteataja.ee/akt/115062022001",
+          "crossReference": "Official English translation: https://www.riigiteataja.ee/en/akt/524082022008",
+          "status": "verified",
+          "note": "The euro value of a fine unit is set in the Penal Code, which was not checked, so no euro figure is given."
+        },
+        {
+          "scope": "Failure to comply with a precept (order) of the supervisory authority, including for products (§ 19)",
+          "penaltyType": "coercive penalty",
+          "maximum": "EUR 10,000 (penalty payment, sunniraha)",
+          "provision": "§ 19",
+          "quote": null,
+          "translation": null,
+          "sourceUrl": "https://www.riigiteataja.ee/akt/115062022001",
+          "crossReference": "Applied under the Substitutive Enforcement and Penalty Payment Act. Official English translation: https://www.riigiteataja.ee/en/akt/524082022008",
+          "status": "verified",
+          "note": null
         }
       ]
     },

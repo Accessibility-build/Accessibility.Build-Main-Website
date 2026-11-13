@@ -158,7 +158,7 @@ const lawReports: Report[] = [
     description:
       "What each EU state's law says about EAA penalties, split by enforcement route, with the provision quoted and a plain label showing how far we verified it.",
     href: "/research/eaa-penalties",
-    stat: { label: "States fully verified", value: "13 of 27" },
+    stat: { label: "States fully verified", value: "14 of 27" },
   },
 ]
 

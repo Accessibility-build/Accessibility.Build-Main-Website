@@ -31,6 +31,15 @@
 // violations); Ontario reporting row no longer says the public sector is due in 2026; AODA penalty
 // text separates administrative penalties from offence fines; Colorado HB21-1110 covers public
 // entities only; Hawaii comment period has closed with no final rule; deadlines sorted by date.
+// Re-reviewed November 14, 2026: Norway row no longer claims the EAA applies via the EEA (Directive
+// 2019/882 is not yet incorporated into the EEA Agreement); Texas penalty rewritten from Hum. Res.
+// Code 121.004 and 121.0041; Unruh penalty from Civ. Code 52(a); Colorado statutory fine is a fixed
+// $3,500; unsourced Florida, New York and Illinois filing figures replaced with the lawsuit tracker's
+// Seyfarth counts; EAA row penalty text follows the EAA
+// penalties register; placeholder maxFineNumeric values for laws with no fixed maximum set to 0;
+// Japan row notes the April 1, 2024 reasonable accommodation duty for private businesses.
+// Not changed (only secondary or unconfirmed evidence): Israel penalty, Massachusetts remedies,
+// and the 2026 Missouri, Utah and Georgia laws on abusive website suits.
 
 import { lawsuitsByYear } from "./lawsuit-statistics"
 
@@ -93,7 +102,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     status: "active",
     keyDate: "2027-04-26",
     keyDateLabel: "Extended compliance deadline for entities serving 50,000+ people",
-    recentUpdate: "DOJ final rule (April 2024) formally requires WCAG 2.1 AA for state/local government websites. On April 20, 2026 a DOJ Interim Final Rule extended the compliance deadlines by one year: April 26, 2027 for entities serving 50,000+ people and April 26, 2028 for smaller entities and special districts. The National Federation of the Blind is challenging the extension in federal court (D. Md. No. 1:26-cv-02007) and moved for summary judgment on September 28, 2026; no ruling found as of October 31, 2026. DOJ's Unified Agenda also lists a proposed rule to reconsider parts of the 2024 rule, with its date to be determined.",
+    recentUpdate: "DOJ final rule (April 2024) formally requires WCAG 2.1 AA for state/local government websites. On April 20, 2026 a DOJ Interim Final Rule extended the compliance deadlines by one year: April 26, 2027 for entities serving 50,000+ people and April 26, 2028 for smaller entities and special districts. The National Federation of the Blind is challenging the extension in federal court (D. Md. No. 1:26-cv-02007) and moved for summary judgment on September 28, 2026; the government moved for more time to respond on November 12, 2026, and there was no ruling as of November 14, 2026. DOJ's Unified Agenda also lists a proposed rule to reconsider parts of the 2024 rule, with its date to be determined.",
     sourceUrl: "https://www.ada.gov/resources/2024-03-08-web-rule/",
   },
   {
@@ -114,7 +123,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "3,117 federal web accessibility lawsuits filed in 2025, a 27% increase from 2024. No formal web rule issued yet, but courts consistently apply WCAG 2.1 AA as the standard.",
+    recentUpdate: "3,117 federal web accessibility lawsuits filed in 2025, a 27% increase from 2024. There is no Title III web regulation; courts and settlements commonly use WCAG 2.1 AA as the benchmark, but it is not a binding Title III standard.",
     sourceUrl: "https://www.ada.gov/topics/intro-to-ada/",
   },
   {
@@ -187,14 +196,14 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     jurisdiction: "California",
     region: "us-state",
     lawName: "Unruh Civil Rights Act",
-    citation: "Cal. Civ. Code \u00A7 51",
+    citation: "Cal. Civ. Code \u00A7\u00A7 51, 52",
     yearEnacted: 1959,
     effectiveDate: "1959-01-01",
     appliesTo: ["private", "ecommerce", "healthcare", "financial"],
     wcagVersion: "2.1 AA (via ADA incorporation)",
     enforcement: ["private-lawsuit"],
     penalties: {
-      description: "Minimum $4,000 per violation per visit. No cap on damages. Attorney fees recoverable.",
+      description: "Actual damages plus a statutory amount of up to three times actual damages, but never less than $4,000 per violation (Civ. Code 52(a)), plus attorney fees.",
       maxFine: "$4,000+ per violation",
       maxFineNumeric: 4000,
       currency: "USD",
@@ -217,11 +226,11 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     penalties: {
       description: "Compensatory and punitive damages available (unlike federal ADA). No damage cap under NYC law.",
       maxFine: "Uncapped compensatory damages",
-      maxFineNumeric: 50000,
+      maxFineNumeric: 0,
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "637 web accessibility lawsuits in H1 2025. NYC Human Rights Law provides broader protections than federal ADA.",
+    recentUpdate: "New York was the top state for federal website accessibility lawsuits in 2025, with 1,021 of 3,117 (Seyfarth Shaw). The NYC Human Rights Law provides broader protections than the federal ADA, including damages.",
   },
   {
     id: "colorado-hb21-1110",
@@ -235,13 +244,13 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     wcagVersion: "2.1 AA",
     enforcement: ["private-lawsuit", "government"],
     penalties: {
-      description: "Up to $3,500 per violation. Grace period for good-faith efforts ended July 2025.",
+      description: "Court-ordered compliance, actual damages and attorney fees, or a statutory fine of $3,500 payable to each plaintiff for each violation.",
       maxFine: "$3,500 per violation",
       maxFineNumeric: 3500,
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "Covers the services, programs and activities of public entities and state agencies; it does not apply to private businesses. Grace period for good-faith remediation ended July 2025.",
+    recentUpdate: "Covers the services, programs and activities of public entities and state agencies; it does not apply to private businesses. HB24-1454 gave entities that could show good-faith remediation efforts protection until July 1, 2025; that period has ended.",
     sourceUrl: "https://leg.colorado.gov/bills/hb21-1110",
   },
   {
@@ -262,13 +271,13 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "#2 state for accessibility filings with 1,823 cases in 2025.",
+    recentUpdate: "Florida was the second state for federal website accessibility lawsuits in 2025, with 961 of 3,117 (Seyfarth Shaw).",
   },
   {
     id: "illinois",
     jurisdiction: "Illinois",
     region: "us-state",
-    lawName: "Illinois Human Rights Act / ICDPA",
+    lawName: "Illinois Human Rights Act",
     citation: "775 ILCS 5/",
     yearEnacted: 1979,
     effectiveDate: "1980-01-01",
@@ -278,31 +287,31 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     penalties: {
       description: "Compensatory damages, attorney fees, and civil penalties available.",
       maxFine: "Compensatory + civil penalties",
-      maxFineNumeric: 10000,
+      maxFineNumeric: 0,
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "746% year-over-year increase in web accessibility filings. Emerging as a major litigation hotspot.",
+    recentUpdate: "Illinois was the third state for federal website accessibility lawsuits in 2025, with 585 of 3,117 (Seyfarth Shaw).",
   },
   {
     id: "texas",
     jurisdiction: "Texas",
     region: "us-state",
     lawName: "Texas Human Resources Code",
-    citation: "Tex. Hum. Res. Code \u00A7 121.003",
+    citation: "Tex. Hum. Res. Code \u00A7\u00A7 121.003, 121.004, 121.0041",
     yearEnacted: 1985,
     effectiveDate: "1985-01-01",
     appliesTo: ["private", "government"],
     wcagVersion: "Unspecified",
     enforcement: ["private-lawsuit"],
     penalties: {
-      description: "Statutory damages of $100-$300 per violation plus attorney fees.",
-      maxFine: "$300 per violation",
-      maxFineNumeric: 300,
+      description: "A violation is a misdemeanor with a fine of up to $300 plus 30 hours of community service (121.004(a)). In a civil action, damages are conclusively presumed to be at least $300 (121.004(b)), a floor rather than a cap.",
+      maxFine: "Damages presumed at least $300",
+      maxFineNumeric: 0,
       currency: "USD",
     },
     status: "active",
-    recentUpdate: "Growing number of serial ADA filings targeting Texas businesses.",
+    recentUpdate: "Since September 1, 2017 (section 121.0041), a plaintiff suing over technical standards, which the section says include Internet website accessibility guidelines, must give the business 60 days' written notice and a chance to fix the problem before filing.",
   },
   {
     id: "massachusetts",
@@ -318,7 +327,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     penalties: {
       description: "Treble damages available. Attorney fees recoverable.",
       maxFine: "Treble damages",
-      maxFineNumeric: 25000,
+      maxFineNumeric: 0,
       currency: "USD",
     },
     status: "active",
@@ -338,7 +347,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     penalties: {
       description: "Compensatory damages and attorney fees.",
       maxFine: "Compensatory damages",
-      maxFineNumeric: 10000,
+      maxFineNumeric: 0,
       currency: "USD",
     },
     status: "active",
@@ -358,7 +367,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     penalties: {
       description: "Compensatory and punitive damages. No cap. Attorney fees recoverable.",
       maxFine: "Uncapped damages",
-      maxFineNumeric: 50000,
+      maxFineNumeric: 0,
       currency: "USD",
     },
     status: "active",
@@ -378,7 +387,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     penalties: {
       description: "Punitive damages available. Attorney fees and costs recoverable.",
       maxFine: "Punitive damages + fees",
-      maxFineNumeric: 25000,
+      maxFineNumeric: 0,
       currency: "USD",
     },
     status: "active",
@@ -403,8 +412,8 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     },
     status: "pending",
     keyDate: "2026-10-30",
-    keyDateLabel: "Public comment closed on the HCRC proposed rules; no final rule adopted as of November 11, 2026, so no compliance date yet",
-    recentUpdate: "Signed July 14, 2026, Act 257 makes it a discriminatory practice for a place of public accommodation to require technology that is not accessible, and directs the Hawaii Civil Rights Commission to adopt rules consistent with the DOJ Title II web rule. The HCRC posted proposed rules on September 18, 2026: WCAG 2.1 Level A and AA for web content and mobile apps, 24 months after the final rule for businesses with 100 or more employees and 36 months for everyone else. Comments closed October 30, 2026. No adopted rule was found as of November 11, 2026, so there is no compliance date yet, and the dates, tiers and size threshold may change in the final rule.",
+    keyDateLabel: "Public comment closed on the HCRC proposed rules; no final rule adopted as of November 14, 2026, so no compliance date yet",
+    recentUpdate: "Signed July 14, 2026, Act 257 makes it a discriminatory practice for a place of public accommodation to require technology that is not accessible, and directs the Hawaii Civil Rights Commission to adopt rules consistent with the DOJ Title II web rule. The HCRC posted proposed rules on September 18, 2026: WCAG 2.1 Level A and AA for web content and mobile apps, 24 months after the final rule for businesses with 100 or more employees and 36 months for everyone else. Comments closed October 30, 2026. No adopted rule and no scheduled public hearing were found as of November 14, 2026, so there is no compliance date yet, and the dates, tiers and size threshold may change in the final rule.",
     sourceUrl: "https://labor.hawaii.gov/hcrc/notice-seeking-public-comment-on-proposed-admin-rules-on-digital-accessibility/",
   },
   // ========== INTERNATIONAL ==========
@@ -420,15 +429,15 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     wcagVersion: "2.1 AA (via EN 301 549)",
     enforcement: ["regulatory", "complaints", "government"],
     penalties: {
-      description: "Member state penalties vary. Spain: up to \u20AC1M. Germany: up to \u20AC100K (BFSG section 37). France: interim proceedings.",
-      maxFine: "\u20AC1,000,000",
+      description: "Penalties are set by each Member State and vary widely: fixed maximums such as Germany's \u20AC100,000 (BFSG section 37(2)) and France's \u20AC7,500 per offence (\u20AC15,000 on repeat, Consumer Code R.451-4), and turnover-based or higher caps elsewhere. See the EAA penalties register for every verified route.",
+      maxFine: "Varies by Member State",
       maxFineNumeric: 1100000,
       currency: "EUR",
     },
     status: "active",
     keyDate: "2025-06-28",
     keyDateLabel: "EAA enforcement began across all EU member states",
-    recentUpdate: "Enforceable since June 28, 2025. Covers e-commerce, banking, transport, telecoms. First court order to comply: on June 4, 2026 the Tribunal judiciaire de Caen, in an interim first-instance order, told Carrefour France to comply, under a 500 euro daily penalty starting six months later, and awarded the associations that sued 10,000 euros in provisional damages and 3,000 euros in costs. The Dutch regulator ACM reported in March 2026 that 61% of the largest Dutch webshops fail accessibility requirements; NOS reported in June 2026 that it had visited ten large webshops and planned a new test after three months, with fines possible. In France the Lille court refused interim relief in a similar case against Auchan E-Commerce France in May 2026, without ruling on the merits, and the associations say they will appeal. ETSI published EN 301 549 v4.1.1, which incorporates WCAG 2.2 and maps to the EAA, on September 2, 2026. No edition is yet cited in the Official Journal under the EAA (v3.2.1, WCAG 2.1 AA, is cited only for the Web Accessibility Directive and is the working benchmark), so the EAA's presumption of conformity becomes available when v4.1.1 is cited; it was not yet cited as of November 11, 2026, and Ireland's National Disability Authority expects December 16, 2026. We found no EAA fine publicly confirmed by a member-state regulator as of October 31, 2026.",
+    recentUpdate: "Enforceable since June 28, 2025. Covers e-commerce, banking, transport, telecoms. First court order to comply: on June 4, 2026 the Tribunal judiciaire de Caen, in an interim first-instance order, told Carrefour France to comply, under a 500 euro daily penalty starting six months later, and awarded the associations that sued 10,000 euros in provisional damages and 3,000 euros in costs. The Dutch regulator ACM reported in March 2026 that 61% of the largest Dutch webshops fail accessibility requirements; NOS reported in June 2026 that it had visited ten large webshops and planned a new test after three months, with fines possible. In France the Lille court refused interim relief in a similar case against Auchan E-Commerce France in May 2026, without ruling on the merits, and the associations say they will appeal. ETSI published EN 301 549 v4.1.1, which incorporates WCAG 2.2 and maps to the EAA, on September 2, 2026. No edition is yet cited in the Official Journal under the EAA (v3.2.1, WCAG 2.1 AA, is cited only for the Web Accessibility Directive and is the working benchmark), so the EAA's presumption of conformity becomes available when v4.1.1 is cited; it was not yet cited as of November 14, 2026, and Ireland's National Disability Authority expects December 16, 2026. We found no EAA fine on a business publicly confirmed by a member-state regulator as of November 14, 2026. The only EAA fine so far is on a Member State: on March 19, 2026 the Court of Justice ordered Bulgaria to pay a EUR 1,500,000 lump sum for transposing the directive late (Case C-646/24).",
     sourceUrl: "https://ec.europa.eu/social/main.jsp?catId=1202",
   },
   {
@@ -445,7 +454,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     penalties: {
       description: "Compensation for discrimination claims. Public sector bodies must publish accessibility statements. EHRC enforcement.",
       maxFine: "Unlimited (discrimination claims)",
-      maxFineNumeric: 100000,
+      maxFineNumeric: 0,
       currency: "GBP",
     },
     status: "active",
@@ -514,7 +523,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "INR",
     },
     status: "pending",
-    recentUpdate: "IS 17802 (Parts 1 and 2), the Indian adoption of EN 301 549 V3.2.1, has been mandatory for websites, apps and other ICT under rule 15(1)(c)(iii) since May 11, 2023. On November 8, 2024 the Supreme Court (Rajive Raturi v. Union of India, 2024 INSC 858) held rule 15(1) ultra vires for offering guidelines rather than a non-negotiable floor and directed mandatory rules within three months. The draft Rights of Persons with Disabilities (Amendment) Rules, 2026 (S.O. 3962(E), Gazette of India Extraordinary, July 20, 2026) would replace rule 15(1)(c): every establishment, in India or abroad, serving persons in India must meet the Schedule I and II clauses within one year (turnover of ₹500 crore or more) or 18 months (others) and the full standard within two years of final publication, publish human-readable and machine-readable Accessibility Conformance Reports, and name a Grievance Redressal Officer. Comments closed in August 2026; not notified as of October 19, 2026. The Supreme Court listed the matter for January 2027.",
+    recentUpdate: "IS 17802 (Parts 1 and 2), the Indian adoption of EN 301 549 V3.2.1, has been mandatory for websites, apps and other ICT under rule 15(1)(c)(iii) since May 11, 2023. On November 8, 2024 the Supreme Court (Rajive Raturi v. Union of India, 2024 INSC 858) held rule 15(1) ultra vires for offering guidelines rather than a non-negotiable floor and directed mandatory rules within three months. The draft Rights of Persons with Disabilities (Amendment) Rules, 2026 (S.O. 3962(E), Gazette of India Extraordinary, July 20, 2026) would replace rule 15(1)(c): every establishment, in India or abroad, serving persons in India must meet the Schedule I and II clauses within one year (turnover of ₹500 crore or more) or 18 months (others) and the full standard within two years of final publication, publish human-readable and machine-readable Accessibility Conformance Reports, and name a Grievance Redressal Officer. Comments closed in August 2026; not notified as of November 14, 2026. The Supreme Court listed the matter for January 2027.",
     sourceUrl: "https://egazette.gov.in/WriteReadData/2026/274669.pdf",
   },
   {
@@ -536,7 +545,7 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     },
     status: "active",
     recentUpdate: "The DDA applies to goods, services and facilities offered online. The AHRC's World Wide Web Access advisory notes point to WCAG as the benchmark for accessible online services. The DDA itself does not name a WCAG version.",
-    sourceUrl: "https://www.legislation.gov.au/Details/C2022C00367",
+    sourceUrl: "https://www.legislation.gov.au/C2004A04426/latest",
   },
   {
     id: "japan-jis",
@@ -556,7 +565,8 @@ export const accessibilityLaws: AccessibilityLaw[] = [
       currency: "JPY",
     },
     status: "active",
-    recentUpdate: "Mandatory for government procurement. Private sector compliance remains voluntary but growing.",
+    recentUpdate: "JIS X 8341-3 is applied to government websites and procurement; private sector conformance is voluntary. Separately, since April 1, 2024 the amended Act for Eliminating Discrimination against Persons with Disabilities has required private businesses to provide reasonable accommodation, which can include accessible information and communication.",
+    sourceUrl: "https://www8.cao.go.jp/shougai/suishin/sabekai.html",
   },
   {
     id: "israel-is5568",
@@ -590,13 +600,14 @@ export const accessibilityLaws: AccessibilityLaw[] = [
     wcagVersion: "2.0 AA (private) / EN 301 549 (public)",
     enforcement: ["regulatory", "complaints"],
     penalties: {
-      description: "Digdir (regulatory authority) enforces through audits and compliance orders. Coercive fines for non-compliance.",
+      description: "Digdir enforces through audits and compliance orders, and can impose a running daily coercive fine (tvangsmulkt) with no statutory maximum (regulation section 7).",
       maxFine: "Coercive fines (no statutory max)",
-      maxFineNumeric: 50000,
+      maxFineNumeric: 0,
       currency: "NOK",
     },
     status: "active",
-    recentUpdate: "Digdir actively audits both public and private sector websites. Norway also subject to EAA as EEA member.",
+    recentUpdate: "Private-sector websites must meet WCAG 2.0 A and AA except success criteria 1.2.3, 1.2.4 and 1.2.5; public bodies follow EN 301 549 V3.2.1. Digdir audits both sectors. The EAA is EEA-relevant but had not been incorporated into the EEA Agreement as of November 14, 2026, so it does not yet apply in Norway; Norwegian businesses selling into the EU must meet it there.",
+    sourceUrl: "https://lovdata.no/dokument/SF/forskrift/2013-06-21-732",
   },
 ]
 
@@ -621,7 +632,7 @@ export const enforcementTrends: EnforcementTrend[] = lawsuitsByYear.map((d) => (
 }))
 
 // ===== UPCOMING DEADLINES =====
-// Reviewed November 11, 2026. Keep the list sorted by date. The original April 24, 2026 ADA Title II deadline was extended
+// Reviewed November 14, 2026. Keep the list sorted by date. The original April 24, 2026 ADA Title II deadline was extended
 // before it took effect by the DOJ Interim Final Rule of April 20, 2026. That rule took effect
 // on publication and its comment period closed June 22, 2026 (Federal Register 2026-07663); no
 // final rule has issued, so every date below still rests on the interim rule.
@@ -678,10 +689,11 @@ export const upcomingDeadlines: UpcomingDeadline[] = [
 
 // ===== PENALTY COMPARISON (for chart, normalized to USD) =====
 // Statutory maximum fines or civil penalties per violation, at approximate exchange rates
-// (EUR 1 = USD 1.10, CAD 1 = USD 0.74, ILS 1 = USD 0.27). Checked October 28, 2026 against
-// 28 CFR 85.5 (ADA Title III), 47 CFR 1.80 (CVAA, 47 U.S.C. 503(b)(2)(F)) and BFSG section 37(2).
-// Jurisdictions with no fixed maximum (UK Equality Act, Australian DDA) and ADA Title II, which
-// has no civil-penalty provision, are left out rather than given a placeholder figure.
+// (EUR 1 = USD 1.10, CAD 1 = USD 0.74, ILS 1 = USD 0.27). Checked November 14, 2026 against 28 CFR 85.5 (ADA Title
+// III; no 2026 inflation increase, FR 2026-14236), 47 CFR 1.80 (CVAA, 47 U.S.C. 503(b)(2)(F)),
+// BFSG section 37(2) and RDL 1/2013 arts 83 and 96 (Spain, unchanged by Ley 4/2026).
+// Jurisdictions with no fixed maximum (UK Equality Act, Australian DDA) and ADA Title II,
+// which has no civil-penalty provision, are left out rather than given a placeholder figure.
 export const penaltyComparisonData = [
   { jurisdiction: "EU (Spain)", maxPenaltyUSD: 1100000, label: "\u20AC1,000,000", color: "#3b82f6" },
   { jurisdiction: "US (ADA Title III)", maxPenaltyUSD: 236451, label: "$236,451 repeat violation, DOJ suits", color: "#eab308" },

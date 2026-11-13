@@ -68,7 +68,7 @@ const faqs = [
   {
     question: "What percentage of adults have a disability?",
     answer:
-      "28.7% of United States adults aged 18 and over reported a disability in 2022, which is roughly 1 in 4 and an estimated 73.4 million people. That is the age-adjusted prevalence from the CDC Disability and Health Data System, based on the Behavioral Risk Factor Surveillance System survey. The 95% confidence interval is 28.4% to 29.0%.",
+      "28.7% of United States adults aged 18 and over reported a disability in 2022, which is more than 1 in 4 and an estimated 73.4 million people. That is the age-adjusted prevalence from the CDC Disability and Health Data System, based on the Behavioral Risk Factor Surveillance System survey. The 95% confidence interval is 28.4% to 29.0%.",
   },
   {
     question: "What is the most common type of disability?",
@@ -158,7 +158,7 @@ export default function DisabilityStatisticsPage() {
             "Research report",
             `Data year ${disabilityData.dataYear}`,
             "Public domain source",
-            "Reviewed: Oct 14, 2026",
+            "Reviewed: Nov 14, 2026",
           ]}
           headline={`${any?.prevalence}% of United States adults report a disability, about ${((any?.adults ?? 0) / 1_000_000).toFixed(1)} million people. Cognitive disability is now the largest category at ${cognitive?.prevalence}%, having overtaken mobility and grown faster than any other type.`}
           sourceName={disabilityData.source.name}
@@ -218,6 +218,33 @@ export default function DisabilityStatisticsPage() {
                   This is public domain federal data, pulled directly from the
                   CDC data API rather than transcribed from a secondary source.
                 </p>
+                <aside
+                  aria-labelledby="acs-note-heading"
+                  className="mt-6 max-w-[68ch] rounded-md border border-slate-200 p-4 dark:border-slate-800"
+                >
+                  <h3
+                    id="acs-note-heading"
+                    className="text-sm font-semibold text-slate-950 dark:text-white"
+                  >
+                    A separate measure: the Census Bureau&apos;s 13.7%
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                    The US Census Bureau&apos;s{" "}
+                    <a
+                      href="https://data.census.gov/table/ACSST1Y2025.S1810"
+                      className="font-medium text-teal-700 underline underline-offset-2 dark:text-teal-300"
+                    >
+                      American Community Survey 2025 1-year estimates
+                    </a>
+                    , released on 29 October 2026, put disability at 13.7%
+                    (margin of error ±0.1 points) of the civilian
+                    noninstitutionalized population, about 46.3 million people.
+                    It is a different survey with a different design: it covers
+                    all ages, is not age-adjusted and is based on six functional
+                    questions. Do not compare it directly with the CDC figures on
+                    this page or combine the two.
+                  </p>
+                </aside>
               </div>
 
               <div className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800 lg:col-span-7">

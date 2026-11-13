@@ -845,7 +845,7 @@ export function StateOfAccessibilityClient({
           <p className="mt-3 leading-7 text-slate-600 dark:text-slate-400">
             WebAIM attributes the reversal primarily to two things that grew
             faster than remediation did: page complexity and ARIA. Homepages
-            gained 22.5% more elements in a single year and 27% more ARIA
+            gained 14.3% more elements in a single year and 27% more ARIA
             attributes. In WebAIM&apos;s own reading, this likely reflects
             heavier reliance on third-party frameworks and libraries alongside
             automated and AI-assisted coding practices. Their conclusion is that

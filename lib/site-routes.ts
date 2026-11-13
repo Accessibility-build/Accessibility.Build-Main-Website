@@ -110,22 +110,22 @@ const tools: SiteRoute[] = [
 ]
 
 const research: SiteRoute[] = [
-  { route: "/research", label: "Research Hub", group: "Research", lastModified: "2026-11-01", priority: 0.92, changeFrequency: "weekly" },
-  { route: "/research/state-of-accessibility", label: "State of Accessibility Report", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
-  { route: "/research/web-accessibility-statistics", label: "Web Accessibility Statistics 2026", group: "Research", lastModified: "2026-10-28", priority: 0.96, changeFrequency: "monthly" },
+  { route: "/research", label: "Research Hub", group: "Research", lastModified: "2026-11-14", priority: 0.92, changeFrequency: "weekly" },
+  { route: "/research/state-of-accessibility", label: "State of Accessibility Report", group: "Research", lastModified: "2026-11-14", priority: 0.95 },
+  { route: "/research/web-accessibility-statistics", label: "Web Accessibility Statistics 2026", group: "Research", lastModified: "2026-11-14", priority: 0.96, changeFrequency: "monthly" },
   { route: "/research/screen-reader-survey-2026", label: "Screen Reader Survey 2026", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
-  { route: "/research/accessibility-testing-tools-benchmark", label: "Accessibility Testing Tools Benchmark 2026", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
+  { route: "/research/accessibility-testing-tools-benchmark", label: "Accessibility Testing Tools Benchmark 2026", group: "Research", lastModified: "2026-11-14", priority: 0.95 },
   { route: "/research/ai-agent-readiness", label: "AI Agent Readiness Study 2026", group: "Research", lastModified: "2026-10-22", priority: 0.96 },
-  { route: "/research/accessibility-statements-2026", label: "State of Accessibility Statements 2026", group: "Research", lastModified: "2026-09-03", priority: 0.95 },
+  { route: "/research/accessibility-statements-2026", label: "State of Accessibility Statements 2026", group: "Research", lastModified: "2026-11-14", priority: 0.95 },
   { route: "/research/accessibility-by-technology", label: "Web Accessibility by Technology Stack", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
   { route: "/research/accessibility-by-industry", label: "Web Accessibility by Industry", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
   { route: "/research/section-508-assessment", label: "Section 508 Federal Agency Assessment", group: "Research", lastModified: "2026-08-27", priority: 0.94 },
-  { route: "/research/disability-statistics", label: "US Disability Prevalence", group: "Research", lastModified: "2026-08-27", priority: 0.95 },
+  { route: "/research/disability-statistics", label: "US Disability Prevalence", group: "Research", lastModified: "2026-11-14", priority: 0.95 },
   { route: "/research/accessibility-salary", label: "Digital Accessibility Salary Report", group: "Research", lastModified: "2026-10-28", priority: 0.94 },
-  { route: "/research/european-accessibility-act", label: "European Accessibility Act Tracker", group: "Research", lastModified: "2026-10-31", priority: 0.94 },
-  { route: "/research/eaa-penalties", label: "EAA Fines and Penalties by Country", group: "Research", lastModified: "2026-11-01", priority: 0.94 },
-  { route: "/research/accessibility-laws", label: "Accessibility Laws by Jurisdiction", group: "Research", lastModified: "2026-11-11", priority: 0.94 },
-  { route: "/research/accessibility-lawsuits", label: "Accessibility Lawsuit Tracker", group: "Research", lastModified: "2026-10-28", priority: 0.93 },
+  { route: "/research/european-accessibility-act", label: "European Accessibility Act Tracker", group: "Research", lastModified: "2026-11-14", priority: 0.94 },
+  { route: "/research/eaa-penalties", label: "EAA Fines and Penalties by Country", group: "Research", lastModified: "2026-11-14", priority: 0.94 },
+  { route: "/research/accessibility-laws", label: "Accessibility Laws by Jurisdiction", group: "Research", lastModified: "2026-11-14", priority: 0.94 },
+  { route: "/research/accessibility-lawsuits", label: "Accessibility Lawsuit Tracker", group: "Research", lastModified: "2026-11-14", priority: 0.93 },
 ]
 
 const compliance: SiteRoute[] = [

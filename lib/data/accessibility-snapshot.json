@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-27",
+  "lastUpdated": "2026-11-14",
   "reportPeriod": "February 2026",
   "sources": [
     {
@@ -87,7 +87,7 @@
   ],
   "contextFindings": {
     "averageElementsPerPage": 1437,
-    "complexityIncreaseYearOverYear": 22.5,
+    "complexityIncreaseYearOverYear": 14.3,
     "ariaUsage": 82.7,
     "ariaAttributesPerPage": 133,
     "ariaAttributeIncreaseYearOverYear": 27,

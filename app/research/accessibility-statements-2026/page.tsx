@@ -111,7 +111,7 @@ const FAQS = [
   {
     question: "How does this compare with the government's own monitoring?",
     answer:
-      "GDS examined 593 public sector statements between February 2020 and November 2021 and found 39 fully compliant, about 7%, with 83% missing mandatory information. Our sample, method and date differ (councils only, an automated checker, September 2026), so the figures are not a like-for-like trend, but they show the same shape: most statements exist, and most that exist omit something the regulations require.",
+      "GDS tested 593 public sector websites by its simplified method between February 2020 and November 2021. At first test, 39 sites (7%) had a fully compliant accessibility statement, 461 (83%) had a statement with mandatory information missing and 55 (10%) had no statement at all, according to its report of 20 December 2021. Our sample, method and date differ (councils only, an automated checker, September 2026), so the figures are not a like-for-like trend, but they show the same shape: most statements exist, and most that exist omit something the regulations require.",
   },
   {
     question: "How reliable is an automated check of a statement?",
@@ -276,7 +276,7 @@ export default function StatementsStudyPage() {
                 { value: c.mandatoryFailures[0] ? `${c.mandatoryFailures[0].pctOfFound}%` : "n/a", label: `of council statements omit the most-missed element: ${c.mandatoryFailures[0]?.label ?? ""}`, source: "This study", asOf: data.measuredOn },
                 { value: `${f.statementFoundPct}%`, label: `of ${f.checked} FTSE 100 companies have a findable accessibility statement`, source: "This study", asOf: data.measuredOn },
                 { value: `${f.fullyCompliantPctOfFound}%`, label: "of FTSE 100 statements found carry every element the EAA asks for", source: "This study", asOf: data.measuredOn },
-                { value: "39 of 593", label: "statements GDS found fully compliant in its first monitoring round (7%)", source: "Government Digital Service, 2020 to 2021", sourceHref: "https://accessibility.blog.gov.uk/category/accessibility-monitoring/", asOf: "2022-01-01" },
+                { value: "7%", label: "of public sector websites GDS tested in its first monitoring round had a fully compliant statement at first test (39 sites)", source: "Government Digital Service, monitoring report 2020 to 2021", sourceHref: "https://www.gov.uk/government/publications/accessibility-monitoring-of-public-sector-websites-and-mobile-apps-2020-2021", asOf: "2021-12-20" },
               ]}
             />
 

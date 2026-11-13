@@ -15,7 +15,7 @@ import penalties from "@/lib/data/eaa-penalties.json"
 
 const pageUrl = "https://accessibility.build/research/eaa-penalties"
 const pageTitle = "EAA Fines and Penalties by Country"
-const checkedLabel = "31 October 2026"
+const checkedLabel = "14 November 2026"
 
 type Status = "verified" | "partial" | "not_verified"
 
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     url: pageUrl,
     type: "article",
     publishedTime: "2026-11-01T00:00:00Z",
-    modifiedTime: "2026-11-01T00:00:00Z",
+    modifiedTime: "2026-11-14T00:00:00Z",
     images: [
       {
         url: `/api/og?title=${encodeURIComponent(pageTitle)}&section=Research`,
@@ -124,7 +124,7 @@ const faqs = [
   {
     question: "Has anyone been fined under the EAA?",
     answer:
-      "As of 31 October 2026 we found no fine issued by a national regulator under an EAA transposition law. That means none was found, not that none exists. A French court did order Carrefour France to pay two associations EUR 10,000 in provisional damages and EUR 3,000 in costs, but those are not regulatory fines.",
+      "Not a business, as far as we found. As of 14 November 2026 we found no fine issued by a national regulator under an EAA transposition law. That means none was found, not that none exists. The only EAA-related fine we found was imposed on a state: on 19 March 2026 the Court of Justice of the EU ordered Bulgaria to pay a lump sum of EUR 1,500,000 for failing to transpose the Directive on time (Case C-646/24, Commission v Bulgaria). The Member State pays that sum to the European Commission; it is not a fine on a company. A French court did order Carrefour France to pay two associations EUR 10,000 in provisional damages and EUR 3,000 in costs, but those are not regulatory fines.",
   },
   {
     question: "Why do sites give different fine amounts for the same country?",
@@ -158,13 +158,31 @@ const ledger = [
     source: "Text of the order",
   },
   {
+    date: "19 March 2026",
+    place: "Bulgaria",
+    body: "Court of Justice of the EU, Case C-646/24, Commission v Bulgaria",
+    kind: "Court judgment, fine on a state",
+    text: "The Court found that Bulgaria had not transposed the Directive by the deadline in the Commission's reasoned opinion and ordered it to pay a lump sum of EUR 1,500,000, plus costs (ECLI:EU:C:2026:221). The Commission had dropped its request for a daily penalty after Bulgaria's law entered into force on 11 April 2025. This is a sanction on a Member State, paid to the European Commission, not a fine on a company.",
+    href: "https://curia.europa.eu/juris/liste.jsf?num=C-646/24",
+    source: "Court case record",
+  },
+  {
     date: "24 March 2026",
     place: "Netherlands",
     body: "ACM, the consumer and market regulator",
     kind: "Regulator findings, no fine",
-    text: "ACM reported that 61% of the largest Dutch online stores are not digitally accessible, and that companies that do not improve risk enforcement action. Dutch broadcaster NOS later reported that ACM visited ten large webshops and planned a new test after three months.",
+    text: "ACM reported that 61% of the largest Dutch online stores are not digitally accessible, and that companies that do not improve risk enforcement action. Dutch broadcaster NOS reported on 22 June 2026 that ACM had visited ten large webshops and planned a new test about three months later. That window has passed, and no retest result or sanction had been published as of 14 November 2026.",
     href: "https://www.acm.nl/en/publications/acm-majority-large-online-stores-are-not-accessible-customers-disabilities",
     source: "ACM publication",
+  },
+  {
+    date: "30 January 2026",
+    place: "Nine Member States",
+    body: "European Commission",
+    kind: "Infringement step against states",
+    text: "Reasoned opinions sent to Belgium, Czechia, Finland, France and Latvia, and additional reasoned opinions to Cyprus, the Netherlands, Slovenia and Sweden, over gaps in transposition. This concerns the states, not companies.",
+    href: "https://ec.europa.eu/commission/presscorner/api/files/document/print/en/inf_26_115/INF_26_115_EN.pdf",
+    source: "Commission infringement package",
   },
   {
     date: "11 March 2026",
@@ -174,6 +192,15 @@ const ledger = [
     text: "Additional reasoned opinions sent to both countries because transposition gaps remain. This concerns the states, not companies.",
     href: "https://ec.europa.eu/commission/presscorner/api/files/document/print/en/inf_26_431/INF_26_431_EN.pdf",
     source: "Commission infringement package",
+  },
+  {
+    date: "1 October 2026",
+    place: "Lithuania and Slovenia",
+    body: "European Commission",
+    kind: "Infringement cases closed",
+    text: "The cases against Lithuania and Slovenia were closed. As of 14 November 2026, 13 cases remain open: Belgium, Bulgaria, Croatia, Cyprus, Czechia, Finland, France, Germany, Latvia, the Netherlands, Poland, Slovakia and Sweden.",
+    href: "https://ec.europa.eu/implementing-eu-law/search-infringement-decisions/",
+    source: "Commission infringement decisions register",
   },
   {
     date: "4 August 2026",
@@ -207,7 +234,7 @@ const linkClass =
   "font-medium text-teal-800 underline underline-offset-2 hover:no-underline dark:text-teal-300"
 
 export default function EaaPenaltiesPage() {
-  const dateModified = getRouteDate("/research/eaa-penalties") ?? "2026-11-01"
+  const dateModified = getRouteDate("/research/eaa-penalties") ?? "2026-11-14"
 
   return (
     <>
@@ -242,7 +269,7 @@ export default function EaaPenaltiesPage() {
           breadcrumbLabel="EAA penalties"
           title={pageTitle}
           lede="What each EU state's law says about penalties under the European Accessibility Act. Each country is split by enforcement route, with the provision quoted and a plain label showing how far we verified it."
-          badges={["Research register", "Directive (EU) 2019/882", "27 Member States", "Checked: Oct 31, 2026"]}
+          badges={["Research register", "Directive (EU) 2019/882", "27 Member States", "Checked: Nov 14, 2026"]}
           headline={`We read the penalty provisions for ${fullyVerified.length} of 27 states in full. The rest are partly verified or marked as not verified. We found no fine issued by a national regulator under an EAA law as of ${checkedLabel}.`}
           sourceName="National legislation, linked per country"
           sourceUrl="https://eur-lex.europa.eu/legal-content/EN/NIM/?uri=CELEX:32019L0882"
@@ -251,7 +278,7 @@ export default function EaaPenaltiesPage() {
             { label: "States fully verified", value: `${fullyVerified.length} of 27`, icon: Landmark },
             { label: "Routes verified", value: `${verifiedRoutes} of ${routes.length}`, icon: FileCheck2 },
             { label: "States with no text read", value: String(notRead.length), icon: Scale },
-            { label: "Last checked", value: "31 Oct 2026", icon: CalendarClock },
+            { label: "Last checked", value: "14 Nov 2026", icon: CalendarClock },
           ]}
         />
 
@@ -415,7 +442,7 @@ export default function EaaPenaltiesPage() {
             </p>
             <ul className="mt-6 divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800">
               {ledger.map((item) => (
-                <li key={item.body} className="py-5">
+                <li key={`${item.date}-${item.body}`} className="py-5">
                   <p className="text-sm font-semibold text-slate-600 dark:text-slate-400">
                     {item.date} · {item.place} · {item.kind}
                   </p>
@@ -449,7 +476,8 @@ export default function EaaPenaltiesPage() {
             </h2>
             <ul className="mt-4 list-disc space-y-2 pl-5 leading-7 text-slate-700 dark:text-slate-300">
               <li>
-                Figures come from legal texts we downloaded or opened on or around {checkedLabel}. Each
+                Figures come from legal texts we downloaded or opened on or around 31 October 2026.
+                The Croatian amendment and the Estonian act were read on {checkedLabel}. Each
                 quotation was checked word for word against the downloaded text. Vendor pages were
                 never used as evidence.
               </li>

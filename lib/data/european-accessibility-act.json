@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-31",
+  "lastUpdated": "2026-11-14",
   "directive": {
     "title": "Directive (EU) 2019/882 of the European Parliament and of the Council of 17 April 2019 on the accessibility requirements for products and services",
     "shortName": "European Accessibility Act",
@@ -61,12 +61,12 @@
     }
   ],
   "transposition": {
-    "asOf": "2026-10-28",
+    "asOf": "2026-11-14",
     "memberStatesReporting": 27,
-    "totalMeasures": 380,
+    "totalMeasures": 381,
     "deadline": "2022-06-28",
     "caveat": "These counts are the number of national instruments each Member State has communicated to the Commission, not a measure of implementation quality or completeness. A state with one consolidated act is not behind a state with fifty amendments; it reflects legislative drafting style. EUR-Lex states that Member States bear sole responsibility for this information and that it does not prejudge Commission verification of completeness and correctness.",
-    "latestChange": "Since the previous count on 14 October 2026, France notified Décret n° 2026-883 of 23 September 2026 (Journal officiel, 24 September 2026). It adds the directive's definitions of economic operators to the Consumer Code and requires market surveillance authorities to give consumers, on request and in an accessible format, the conformity information supplied by manufacturers, importers and distributors.",
+    "latestChange": "Since the previous count on 28 October 2026, the Brussels-Capital Region notified its Ordinance of 22 October 2026 amending the ordinance of 30 March 2023 on the accessibility of interactive self-service terminals in urban and regional transport (Moniteur belge, 27 October 2026; notified to the Commission on 28 October 2026). That takes Belgium from 21 to 22 measures and the total from 380 to 381.",
     "measures": [
       { "country": "Germany", "code": "DEU", "measures": 59 },
       { "country": "Hungary", "code": "HUN", "measures": 37 },
@@ -76,7 +76,7 @@
       { "country": "Finland", "code": "FIN", "measures": 22 },
       { "country": "Slovakia", "code": "SVK", "measures": 22 },
       { "country": "France", "code": "FRA", "measures": 22 },
-      { "country": "Belgium", "code": "BEL", "measures": 21 },
+      { "country": "Belgium", "code": "BEL", "measures": 22 },
       { "country": "Slovenia", "code": "SVN", "measures": 17 },
       { "country": "Netherlands", "code": "NLD", "measures": 11 },
       { "country": "Croatia", "code": "HRV", "measures": 10 },
@@ -97,8 +97,18 @@
       { "country": "Malta", "code": "MLT", "measures": 1 }
     ]
   },
+  "pendingLegislation": [
+    {
+      "date": "2026-09-09",
+      "label": "Commission proposal for a Public Procurement Act",
+      "reference": "COM(2026) 590, procedure 2026/0265(COD)",
+      "status": "Proposal only",
+      "summary": "The proposal lists Directive (EU) 2019/882 among the acts it would amend. Its Article 147(9) would delete Article 24(1) of the EAA, the rule on accessibility requirements in public procurement, and point references to it to the proposal's own Article 56, headed Accessibility, under which public buyers set technical specifications for products and services covered by Article 2 of the EAA by reference to its Annex I. Nothing changes unless the European Parliament and the Council adopt it, and as proposed the Regulation would apply two years after it enters into force.",
+      "sourceUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52026PC0590"
+    }
+  ],
   "enforcementDataStatus": {
     "officialDatasetExists": false,
-    "explanation": "There is no official EU-wide compliance or enforcement dataset for the European Accessibility Act, and there will not be one before 2030. Article 33(1) sets the first Commission report on the application of the Directive at 28 June 2030. Some national regulators now publish figures, but each covers one country or one sector, and many enforcement claims in vendor content could not be traced to a regulator or court. Anything on this subject should be sourced to a named national regulator or court, one country at a time. Traced to primary sources as of 31 October 2026: on 4 June 2026 the Tribunal judiciaire de Caen, in an interim first-instance order in a case brought by the associations ApiDV and Droit Pluriel, ordered Carrefour France to comply, under a penalty of 500 euros per day that starts six months after the order (about 4 December 2026). It also ordered Carrefour France to pay the associations 10,000 euros in provisional damages and 3,000 euros in costs, and said the site cannot be only slightly accessible. On 5 May 2026 the Tribunal judiciaire de Lille refused interim relief in a similar case against Auchan E-Commerce France; that was not a ruling on the merits, and the associations say they will appeal. On 24 March 2026 the Dutch regulator ACM, which tested about 100 of the largest Dutch online stores plus the largest telecom and energy providers, reported that 61% of the largest online stores are not digitally accessible, and warned that companies that fail to improve risk enforcement action. Dutch broadcaster NOS reported in June 2026 that ACM had visited ten large webshops and planned a new test three months later. On 11 March 2026 the European Commission sent additional reasoned opinions to Germany and Croatia over remaining transposition gaps. We found no monetary fine issued by a national regulator under an EAA transposition law as of 31 October 2026. That means none was found, not that none exists. The Caen payments go to the associations and are not a regulatory fine."
+    "explanation": "There is no official EU-wide compliance or enforcement dataset for the European Accessibility Act, and there will not be one before 2030. Article 33(1) sets the first Commission report on the application of the Directive at 28 June 2030. Some national regulators now publish figures, but each covers one country or one sector, and many enforcement claims in vendor content could not be traced to a regulator or court. Anything on this subject should be sourced to a named national regulator or court, one country at a time. Traced to primary sources as of 14 November 2026: on 4 June 2026 the Tribunal judiciaire de Caen, in an interim first-instance order in a case brought by the associations ApiDV and Droit Pluriel, ordered Carrefour France to comply, under a penalty of 500 euros per day that starts six months after the order (about 4 December 2026). It also ordered Carrefour France to pay the associations 10,000 euros in provisional damages and 3,000 euros in costs, and said the site cannot be only slightly accessible. On 5 May 2026 the Tribunal judiciaire de Lille refused interim relief in a similar case against Auchan E-Commerce France; that was not a ruling on the merits, and the associations say they will appeal. On 24 March 2026 the Dutch regulator ACM, which tested about 100 of the largest Dutch online stores plus the largest telecom and energy providers, reported that 61% of the largest online stores are not digitally accessible, and warned that companies that fail to improve risk enforcement action. Dutch broadcaster NOS reported on 22 June 2026 that ACM had visited ten large webshops and planned a new test about three months later. That window has passed, and no retest result or sanction had been published as of 14 November 2026. At EU level, the only EAA-related financial penalty we found was imposed on a Member State, not a business: on 19 March 2026 the Court of Justice of the EU, in Case C-646/24 Commission v Bulgaria (ECLI:EU:C:2026:221), found that Bulgaria had not transposed the Directive by the deadline set in the Commission's reasoned opinion and ordered it to pay a lump sum of 1,500,000 euros to the European Commission. The Commission had dropped its request for a daily penalty after Bulgaria's law entered into force on 11 April 2025. The Commission's infringement register also shows reasoned opinions sent on 30 January 2026 to Belgium, Czechia, Finland, France and Latvia, with additional reasoned opinions to Cyprus, the Netherlands, Slovenia and Sweden; additional reasoned opinions sent on 11 March 2026 to Germany and Croatia over remaining transposition gaps; and the cases against Lithuania and Slovenia closed on 1 October 2026. As of 14 November 2026, 13 infringement cases remain open: Belgium, Bulgaria, Croatia, Cyprus, Czechia, Finland, France, Germany, Latvia, the Netherlands, Poland, Slovakia and Sweden. We found no monetary fine issued by a national regulator on a business under an EAA transposition law as of 14 November 2026. That means none was found, not that none exists. The Caen payments go to the associations and are not a regulatory fine."
   }
 }

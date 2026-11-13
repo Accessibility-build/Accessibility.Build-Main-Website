@@ -72,7 +72,7 @@ export default {
       children: [
         {
           _type: 'span',
-          text: 'The average home page now contains 1,437 elements, a 22.5% jump in a single year and nearly double the count of seven years ago.',
+          text: 'The average home page now contains 1,437 elements, a 14.3% increase in a single year and nearly double the count of seven years ago.',
         },
       ],
     },
@@ -97,7 +97,7 @@ export default {
       children: [
         {
           _type: 'span',
-          text: 'The 22.5% single-year jump in average page elements, to 1,437 per home page, deserves attention on its own. Element counts have nearly doubled over seven years, which means the surface area for accessibility defects is expanding rapidly. Every additional interactive control, image, and region is another place where a label can be forgotten, a contrast ratio can slip, or an ARIA attribute can be misused. When complexity grows 22.5% in a year and average errors grow about 10% in the same period, it is easy to see how a small annual decline can turn into a reversal of a long-running trend. Accessibility work that is not continuous simply cannot keep pace with pages that heavy.',
+          text: 'The 14.3% single-year rise in average page elements, to 1,437 per home page, deserves attention on its own. Element counts have nearly doubled over seven years, which means the surface area for accessibility defects is expanding rapidly. Every additional interactive control, image, and region is another place where a label can be forgotten, a contrast ratio can slip, or an ARIA attribute can be misused. When complexity grows 14.3% in a year and average errors grow about 10% in the same period, it is easy to see how a small annual decline can turn into a reversal of a long-running trend. Accessibility work that is not continuous simply cannot keep pace with pages that heavy.',
         },
       ],
     },

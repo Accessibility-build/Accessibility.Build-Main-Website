@@ -222,7 +222,7 @@ export function AccessibilityLawsClient() {
     doc.setFontSize(10)
     doc.setTextColor(100)
     doc.text("Comprehensive legal landscape analysis | accessibility.build", 14, 30)
-    doc.text("Last Updated: October 28, 2026", 14, 36)
+    doc.text("Last Updated: November 14, 2026", 14, 36)
 
     // Table 1: Federal Laws
     doc.setTextColor(0)
@@ -931,14 +931,14 @@ export function AccessibilityLawsClient() {
             },
           ]}
           sampleSize={`${lawsSummary.totalLawsTracked} laws across ${lawsSummary.totalJurisdictions} jurisdictions`}
-          dateRange="1959 - October 2026"
+          dateRange="1959 - November 2026"
           limitations={[
             "Laws change frequently, so verify current requirements with legal counsel",
             "Penalties shown are statutory maximums; actual fines may differ. Laws with no fixed maximum are left out of the penalty chart",
             "Pending legislation may not pass as proposed",
             "International penalty amounts are converted to USD at approximate rates",
           ]}
-          lastUpdated="October 28, 2026"
+          lastUpdated="November 14, 2026"
         />
       </section>
 

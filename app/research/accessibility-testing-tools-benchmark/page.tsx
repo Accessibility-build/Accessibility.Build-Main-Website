@@ -221,7 +221,10 @@ export default function ToolsBenchmarkPage() {
                   policy where a tool offers one. On 14 October 2026 we re-ran all four on their
                   current releases (axe-core 4.14.0, Lighthouse 13.5.0, Pa11y 10.0.0 and
                   accessibility-checker 4.0.34) in headless Chrome 155. Every per-defect result was
-                  the same; only the Lighthouse score moved, from 49 to 46.
+                  the same; only the Lighthouse score moved, from 49 to 46. Lighthouse 13.6.0,
+                  released on 27 October 2026 after this run, bundles the same axe-core 4.14.0 and
+                  its release notes list no accessibility audit changes, so these results are
+                  expected to hold.
                 </p>
                 <p>
                   A defect counts as found when the tool reports a violation on the right element for
