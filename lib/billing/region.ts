@@ -46,7 +46,10 @@ export function getCountryCodeFromHeaders(headersList: HeaderReader) {
 
 export function getBillingCurrencyPolicy(countryCode: string | null): BillingCurrencyPolicy {
   const normalizedCountryCode = normalizeCountryCode(countryCode)
-  const allowInr = normalizedCountryCode ? INR_ENABLED_COUNTRIES.has(normalizedCountryCode) : false
+  // Dodo Payments charges the USD product price and can show local currency itself (Adaptive
+  // Currency), so the site's own INR option only applies to the legacy Razorpay provider.
+  const legacyRazorpay = (process.env.BILLING_PROVIDER || '').trim().toLowerCase() === 'razorpay'
+  const allowInr = legacyRazorpay && normalizedCountryCode ? INR_ENABLED_COUNTRIES.has(normalizedCountryCode) : false
 
   return {
     countryCode: normalizedCountryCode,

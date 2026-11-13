@@ -443,3 +443,25 @@ html {
 .bg-destructive.hover\:bg-destructive\/80:hover {
   background-color: hsl(var(--destructive-hover));
 }
+
+/* Course progress bars (native <progress>, styled for WebKit and Firefox).
+   Track has a visible outline so the bar's extent is perceivable (1.4.11). */
+progress.course-progress {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid #64748b;
+  border-radius: 9999px;
+  background-color: #e2e8f0;
+  overflow: hidden;
+  color: #1d4ed8;
+}
+progress.course-progress::-webkit-progress-bar { background-color: #e2e8f0; border-radius: 9999px; }
+progress.course-progress::-webkit-progress-value { background-color: #1d4ed8; border-radius: 9999px; }
+progress.course-progress::-moz-progress-bar { background-color: #1d4ed8; border-radius: 9999px; }
+.dark progress.course-progress { border-color: #94a3b8; background-color: #1e293b; color: #60a5fa; }
+.dark progress.course-progress::-webkit-progress-bar { background-color: #1e293b; }
+.dark progress.course-progress::-webkit-progress-value { background-color: #60a5fa; }
+.dark progress.course-progress::-moz-progress-bar { background-color: #60a5fa; }
+@media (forced-colors: active) {
+  progress.course-progress { border-color: CanvasText; }
+}

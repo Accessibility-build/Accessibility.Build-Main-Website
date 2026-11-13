@@ -206,7 +206,7 @@ export default function AccessibilityPage() {
                   <strong className="text-foreground">Procurement downloads are plain Markdown files.</strong> The sample statement of work, NDA checklist, and data-processing overview open as plain text in the browser, so their headings are not exposed as structural headings (relevant to 1.3.1, Info and Relationships). Ask for an HTML or tagged PDF copy through the feedback route.
                 </li>
                 <li>
-                  <strong className="text-foreground">Third-party interfaces are reviewed, not controlled.</strong> Sign-in and account management (Clerk), checkout (Razorpay and Stripe), and the analytics consent library are supplied by vendors. Barriers found in them are reported to the vendor and, where possible, worked around.
+                  <strong className="text-foreground">Third-party interfaces are reviewed, not controlled.</strong> Sign-in and account management (Clerk), checkout (Dodo Payments), and the analytics consent library are supplied by vendors. Barriers found in them are reported to the vendor and, where possible, worked around.
                 </li>
                 <li>
                   <strong className="text-foreground">Not every page has had a full manual evaluation.</strong> Core journeys and templates are reviewed manually; automated axe checks run across the rest. Until every one of the more than 280 pages has been manually evaluated against all 86 criteria, the site is described as partially compliant rather than fully compliant.

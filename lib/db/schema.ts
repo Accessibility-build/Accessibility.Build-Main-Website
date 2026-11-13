@@ -1,4 +1,4 @@
-import { pgTable, text, integer, timestamp, uuid, boolean, jsonb, pgEnum, index, real } from 'drizzle-orm/pg-core'
+import { pgTable, text, integer, timestamp, uuid, boolean, jsonb, pgEnum, index, real, uniqueIndex, primaryKey, customType } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 
 // Enums
@@ -33,7 +33,7 @@ export const billingOrderStatusEnum = pgEnum('billing_order_status', [
   'partially_refunded',
   'action_required',
 ])
-export const paymentProviderEnum = pgEnum('payment_provider', ['stripe', 'razorpay'])
+export const paymentProviderEnum = pgEnum('payment_provider', ['stripe', 'razorpay', 'dodo'])
 export const billingFunnelEventTypeEnum = pgEnum('billing_funnel_event_type', [
   'checkout_click',
   'checkout_auth_required',
@@ -701,3 +701,110 @@ export type AssistantLead = typeof assistantLeads.$inferSelect
 export type AssistantMessage = typeof assistantMessages.$inferSelect
 export type NewAssistantMessage = typeof assistantMessages.$inferInsert
 export type NewAssistantEvent = typeof assistantEvents.$inferInsert
+
+// ── Paid online courses (migration 0018) ──
+// Course text and questions live only in the database: the repo is public. Loaded by
+// scripts/courses/seed-course.mjs from the owner's private folder.
+export const courseContent = pgTable('course_content', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  courseSlug: text('course_slug').notNull(),
+  kind: text('kind').notNull(), // meta | chapter | question | flashcard
+  key: text('key').notNull(),
+  position: integer('position').notNull().default(0),
+  data: jsonb('data').notNull(),
+  edition: text('edition').notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (t) => ({
+  uniqueIdx: uniqueIndex('course_content_unique_idx').on(t.courseSlug, t.kind, t.key),
+  kindIdx: index('course_content_kind_idx').on(t.courseSlug, t.kind, t.position),
+}))
+
+export const courseLicences = pgTable('course_licences', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  courseSlug: text('course_slug').notNull(),
+  licenceType: text('licence_type').notNull(), // individual | team
+  seats: integer('seats').notNull().default(1),
+  ownerUserId: text('owner_user_id').references(() => users.id, { onDelete: 'set null' }),
+  ownerEmail: text('owner_email').notNull(),
+  billingOrderId: uuid('billing_order_id').unique().references(() => billingOrders.id),
+  source: text('source').notNull(), // purchase | admin
+  grantedBy: text('granted_by'),
+  note: text('note'),
+  revokedAt: timestamp('revoked_at'),
+  revokedReason: text('revoked_reason'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (t) => ({
+  ownerIdx: index('course_licences_owner_idx').on(t.ownerUserId),
+  courseIdx: index('course_licences_course_idx').on(t.courseSlug),
+}))
+
+export const courseSeats = pgTable('course_seats', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  licenceId: uuid('licence_id').notNull().references(() => courseLicences.id, { onDelete: 'cascade' }),
+  email: text('email').notNull(), // lower case
+  userId: text('user_id').references(() => users.id, { onDelete: 'set null' }),
+  claimedAt: timestamp('claimed_at'),
+  invitedAt: timestamp('invited_at'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (t) => ({
+  licenceEmailIdx: uniqueIndex('course_seats_licence_email_idx').on(t.licenceId, t.email),
+  emailIdx: index('course_seats_email_idx').on(t.email),
+  userIdx: index('course_seats_user_idx').on(t.userId),
+}))
+
+export const courseProgress = pgTable('course_progress', {
+  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  courseSlug: text('course_slug').notNull(),
+  data: jsonb('data').notNull().default({}),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (t) => ({
+  pk: primaryKey({ columns: [t.userId, t.courseSlug] }),
+}))
+
+export type CourseLicence = typeof courseLicences.$inferSelect
+export type CourseSeat = typeof courseSeats.$inferSelect
+
+// ── Dodo Payments (migration 0019) ──
+export const dodoWebhookEvents = pgTable('dodo_webhook_events', {
+  eventId: text('event_id').primaryKey(),
+  eventType: text('event_type').notNull(),
+  processedAt: timestamp('processed_at'),
+  processingStatus: text('processing_status').notNull().default('processing'),
+  orderId: uuid('order_id').references(() => billingOrders.id),
+  errorMessage: text('error_message'),
+  payload: jsonb('payload').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
+export const productEntitlements = pgTable('product_entitlements', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: text('user_id').references(() => users.id, { onDelete: 'set null' }),
+  email: text('email').notNull(),
+  productSlug: text('product_slug').notNull(),
+  licence: text('licence').notNull(),
+  billingOrderId: uuid('billing_order_id').unique().references(() => billingOrders.id),
+  source: text('source').notNull(),
+  note: text('note'),
+  revokedAt: timestamp('revoked_at'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (t) => ({
+  userIdx: index('product_entitlements_user_idx').on(t.userId),
+  emailIdx: index('product_entitlements_email_idx').on(t.email),
+}))
+
+const bytea = customType<{ data: Buffer; driverData: Buffer }>({ dataType: () => 'bytea' })
+
+export const productFiles = pgTable('product_files', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  productSlug: text('product_slug').notNull(),
+  filename: text('filename').notNull(),
+  contentType: text('content_type').notNull(),
+  version: text('version').notNull(),
+  sizeBytes: integer('size_bytes').notNull(),
+  sha256: text('sha256').notNull(),
+  data: bytea('data').notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (t) => ({
+  slugFilenameIdx: uniqueIndex('product_files_slug_filename_idx').on(t.productSlug, t.filename),
+}))

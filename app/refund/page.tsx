@@ -334,7 +334,7 @@ export default function RefundPage() {
               <li><strong>Credit/Debit Cards:</strong> Refunded to the original card used for payment</li>
               <li><strong>UPI/Net Banking:</strong> Refunded to the source bank account</li>
               <li><strong>Digital Wallets:</strong> Refunded to the original wallet used</li>
-              <li><strong>Provider-supported methods:</strong> Refunded to the original source when supported by Stripe, Razorpay, or the applicable payment provider</li>
+              <li><strong>Provider-supported methods:</strong> Refunded to the original source through Dodo Payments, our merchant of record, or the provider that processed an earlier payment</li>
             </ul>
 
             <h3 className="text-xl font-semibold mb-3 mt-6">6.2 Currency and Exchange Rates</h3>

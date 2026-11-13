@@ -30,6 +30,7 @@ import {
 } from './stripe'
 import { logBillingFunnelEvent } from './events'
 import { getBillingProvider } from './provider'
+import { createDodoCheckout } from './dodo-service'
 import {
   createRazorpayCheckoutForCatalog,
   createRazorpayPaymentLinkForOrder,
@@ -236,6 +237,15 @@ export async function createProviderCheckoutSessionForCatalog(params: {
 }): Promise<CheckoutSessionResponse> {
   const provider = getBillingProvider()
 
+  if (provider === 'dodo') {
+    return createDodoCheckout({
+      userId: params.userId,
+      email: params.email,
+      fullName: params.fullName,
+      key: params.catalogKey,
+    })
+  }
+
   if (provider === 'razorpay') {
     return createRazorpayCheckoutForCatalog({
       userId: params.userId,
@@ -284,7 +294,7 @@ export async function createManageSessionForUser(params: {
   const appUrl = getPublicAppUrl()
   const returnPath = sanitizeReturnPath(params.returnPath, '/billing/manage')
 
-  if (provider === 'razorpay') {
+  if (provider === 'razorpay' || provider === 'dodo') {
     return {
       url: `${appUrl}${returnPath}`,
     }

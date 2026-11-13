@@ -271,7 +271,7 @@ export default async function BillingPage({ searchParams }: BillingPageProps) {
                 Buy More Credits
               </CardTitle>
               <CardDescription>
-                One-time credit purchases with secure hosted Razorpay checkout.
+                One-time credit purchases with secure checkout by Dodo Payments.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -323,7 +323,7 @@ export default async function BillingPage({ searchParams }: BillingPageProps) {
                 </div>
                 Order History
               </CardTitle>
-              <CardDescription>Razorpay purchase records and fulfillment statuses for your account.</CardDescription>
+              <CardDescription>Purchase records and fulfillment statuses for your account.</CardDescription>
             </CardHeader>
             <CardContent>
               {orders.length === 0 ? (

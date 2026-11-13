@@ -3,16 +3,18 @@ import type { BillingProvider } from './types'
 export function getBillingProvider(): BillingProvider {
   const raw = process.env.BILLING_PROVIDER?.trim().toLowerCase()
 
-  if (raw === 'razorpay' || raw === 'stripe') {
+  if (raw === 'razorpay' || raw === 'stripe' || raw === 'dodo') {
     return raw
   }
 
-  return 'razorpay'
+  // Dodo Payments (merchant of record) is the default provider.
+  return 'dodo'
 }
 
 export function isBillingEnabled() {
   const raw =
     process.env.BILLING_ENABLED ??
+    process.env.DODO_BILLING_ENABLED ??
     process.env.RAZORPAY_BILLING_ENABLED ??
     process.env.STRIPE_BILLING_ENABLED
 

@@ -176,7 +176,7 @@ export default async function DashboardPage() {
                 Need More Credits?
               </CardTitle>
               <CardDescription className="text-slate-600 dark:text-slate-400">
-                One-time credit packs powered by Razorpay checkout.
+                One-time credit packs with secure checkout by Dodo Payments.
               </CardDescription>
             </CardHeader>
             <CardContent>

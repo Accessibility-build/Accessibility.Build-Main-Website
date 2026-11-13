@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Credit Packages - Accessibility.build",
-    description: "One-time credit packs with hosted Razorpay checkout and in-app billing management.",
+    description: "One-time credit packs with secure checkout by Dodo Payments and in-app billing management.",
     type: "website",
     url: "https://accessibility.build/pricing",
     images: [
@@ -169,8 +169,8 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
               </h1>
             </div>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              This page prices credits for the self-serve accessibility testing tools. One-time packs with hosted
-              Razorpay checkout. No recurring subscriptions, no hidden fees, and credits never expire.
+              This page prices credits for the self-serve accessibility testing tools. One-time packs with secure
+              checkout by Dodo Payments. No recurring subscriptions, no hidden fees, and credits never expire.
             </p>
 
             {/*
@@ -346,7 +346,7 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">
                       Yes. Refund requests follow our published refund policy, and approved refunds are processed through
-                      Razorpay to the original payment method.
+                      Dodo Payments, our merchant of record, to the original payment method.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="try-before-buy">
@@ -362,7 +362,7 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
                       Which payment methods are supported?
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">
-                      Razorpay checkout supports cards and region-available payment methods. Payment history, receipts,
+                      Checkout by Dodo Payments supports cards and region-available payment methods, and adds any sales tax or VAT. Payment history, receipts,
                       and billing support actions are available in your Billing Center.
                     </AccordionContent>
                   </AccordionItem>

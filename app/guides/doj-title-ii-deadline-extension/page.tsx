@@ -490,6 +490,17 @@ export default function TitleIIExtensionPage() {
               ))}
             </div>
           </section>
+
+          <section aria-labelledby="kit-heading" className="mt-12 rounded-xl border border-slate-200 dark:border-slate-800 p-6">
+            <h2 id="kit-heading" className="text-xl font-bold text-slate-900 dark:text-white mb-2">Templates for the work ahead</h2>
+            <p className="text-slate-700 dark:text-slate-300">
+              Our{" "}
+              <Link href="/templates/title-ii-compliance-kit" className="text-blue-700 dark:text-blue-300 underline underline-offset-2">
+                ADA Title II Web Accessibility Compliance Kit
+              </Link>{" "}
+              has a policy, accessibility statement, notice and grievance language, procurement clauses, vendor letters and a planning workbook, all written to the current dates.
+            </p>
+          </section>
         </article>
 
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
