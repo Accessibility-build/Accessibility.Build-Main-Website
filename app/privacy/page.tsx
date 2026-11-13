@@ -131,7 +131,7 @@ export default function PrivacyPage() {
           <p>Information may be processed by providers used for the following functions:</p>
           <ul>
             <li><strong>Clerk:</strong> authentication and account management;</li>
-            <li><strong>Stripe and Razorpay:</strong> hosted payment, billing, fraud prevention, and refunds;</li>
+            <li><strong>Dodo Payments:</strong> our merchant of record for purchases: hosted checkout, tax calculation, fraud prevention, and refunds (earlier purchases were processed by Stripe or Razorpay);</li>
             <li><strong>Vercel:</strong> website hosting, performance, and privacy-focused site analytics;</li>
             <li><strong>Google Analytics:</strong> optional usage analytics after consent;</li>
             <li><strong>PostHog:</strong> optional product analytics after consent, without session replay;</li>

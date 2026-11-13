@@ -26,7 +26,7 @@ export interface PurchaseConfirmationEmailData {
   credits: number
   amountFormatted: string
   currency: string
-  paymentProvider: 'stripe' | 'razorpay'
+  paymentProvider: 'stripe' | 'razorpay' | 'dodo'
   newBalance: number
 }
 

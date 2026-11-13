@@ -36,7 +36,7 @@ const BILLING_CATALOG: Record<CatalogKey, CatalogPack> = {
     features: [
       '50 credits (one-time purchase)',
       'All core accessibility tools',
-      'Secure Razorpay checkout',
+      'Secure checkout by Dodo Payments',
       'Billing managed inside Accessibility.build',
     ],
   },

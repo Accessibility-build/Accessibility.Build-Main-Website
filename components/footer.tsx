@@ -46,6 +46,7 @@ import {
   type LucideIcon,
   Coins,
   CircleHelp,
+  GraduationCap,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { NewsletterSignup } from "@/components/newsletter-signup"
@@ -80,6 +81,9 @@ const researchLinks: FooterLink[] = [
 ]
 
 const learningLinks: FooterLink[] = [
+  { href: "/courses", label: "Online Courses", icon: GraduationCap },
+  { href: "/courses/cpacc-crash-course", label: "CPACC Crash Course", icon: GraduationCap },
+  { href: "/courses/was-crash-course", label: "WAS Crash Course", icon: GraduationCap },
   { href: "/wcag", label: "WCAG Success Criteria", icon: BookOpenCheck },
   { href: "/checklists/wcag-2-2", label: "WCAG 2.2 Checklist", icon: ListChecks },
   { href: "/guides", label: "Implementation Guides", icon: BookOpenText },

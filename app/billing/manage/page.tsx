@@ -22,7 +22,7 @@ import { company } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Billing Center',
-  description: 'Manage billing profile, receipts, and Razorpay payment history.',
+  description: 'Manage billing profile, receipts, and payment history.',
   robots: {
     index: false,
     follow: false,
@@ -201,7 +201,7 @@ export default async function BillingManagePage({ searchParams }: BillingManageP
               <div>
                 <h1 className="text-3xl font-bold">Billing Center</h1>
                 <p className="text-muted-foreground mt-1">
-                  Manage your billing profile, Razorpay transactions, support actions, and receipts.
+                  Manage your billing profile, transactions, support actions, and receipts.
                 </p>
               </div>
             </div>
@@ -263,12 +263,6 @@ export default async function BillingManagePage({ searchParams }: BillingManageP
                     <span className="text-sm text-muted-foreground">Email</span>
                     <span className="text-sm font-medium">{user.email}</span>
                   </div>
-                  <div className="flex justify-between items-center py-3">
-                    <span className="text-sm text-muted-foreground">Razorpay Customer</span>
-                    <span className="text-sm font-medium font-mono">
-                      {user.razorpayCustomerId || 'Created on demand'}
-                    </span>
-                  </div>
                 </div>
                 <p className="text-xs text-muted-foreground mt-4">
                   Need profile updates? Contact{' '}
@@ -302,7 +296,7 @@ export default async function BillingManagePage({ searchParams }: BillingManageP
                   <div className="flex items-start gap-3">
                     <CreditCard className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" />
                     <p className="text-sm text-muted-foreground">
-                      Refunds are initiated by support and processed through Razorpay.
+                      Refunds are initiated by support and processed through Dodo Payments, our merchant of record.
                     </p>
                   </div>
                 </div>
@@ -327,7 +321,7 @@ export default async function BillingManagePage({ searchParams }: BillingManageP
                 </div>
                 Transaction Timeline
               </CardTitle>
-              <CardDescription>Most recent Razorpay billing activity first.</CardDescription>
+              <CardDescription>Most recent billing activity first.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               {/* Filters */}

@@ -8,7 +8,7 @@ export type CheckoutCatalogKey =
 
 export type CatalogKey = CheckoutCatalogKey | 'enterprise_contact'
 export type CheckoutCurrency = 'USD' | 'INR'
-export type BillingProvider = 'stripe' | 'razorpay'
+export type BillingProvider = 'stripe' | 'razorpay' | 'dodo'
 
 export type BillingOrderStatus =
   | 'pending'

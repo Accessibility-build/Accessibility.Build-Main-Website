@@ -65,7 +65,7 @@ const trustAreas = [
 
 const providers = [
   ["Clerk", "Authentication and account management"],
-  ["Stripe and Razorpay", "Payment processing, billing, fraud prevention, and refunds"],
+  ["Dodo Payments", "Merchant of record: payment processing, tax, fraud prevention, and refunds"],
   ["Vercel", "Hosting, delivery, performance, and aggregate analytics"],
   ["Google Analytics and PostHog", "Optional analytics after visitor consent"],
   ["OpenAI and Anthropic", "AI-assisted features when selected or configured"],

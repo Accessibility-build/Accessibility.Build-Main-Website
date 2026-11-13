@@ -647,6 +647,12 @@ export default function WcagDataPage() {
                 </Link>
                 : plain-language pages for every success criterion.
               </li>
+              <li>
+                <Link href="/templates/wcag-audit-workbook" className="text-blue-700 dark:text-blue-300 underline underline-offset-2">
+                  WCAG Audit Workbook
+                </Link>
+                : a paid Excel and Google Sheets template with test steps, a results grid, an issue log and draft ACR remarks.
+              </li>
             </ul>
           </section>
 

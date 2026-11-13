@@ -10,6 +10,7 @@ import {
 import { getCatalogPack, isCheckoutCatalogKey, isCheckoutCurrency } from '@/lib/billing/catalog'
 import { sendPurchaseConfirmationEmail, formatAmountForEmail } from '@/lib/email/service'
 import { getBillingProvider } from '@/lib/billing/provider'
+import { settleDodoOrderManually } from '@/lib/billing/dodo-service'
 import {
   createProviderCheckoutSessionForCatalog,
   createProviderPaymentLinkForOrder,
@@ -220,9 +221,9 @@ export async function POST(request: NextRequest) {
 
     const action = parseString((body as Record<string, unknown>).action, 64) as OperationsAction
     const provider = getBillingProvider()
-    if (provider !== 'razorpay') {
+    if (provider !== 'razorpay' && provider !== 'dodo') {
       return NextResponse.json(
-        { error: 'Admin billing operations are currently configured for Razorpay only' },
+        { error: 'Admin billing operations support Dodo Payments and Razorpay only' },
         { status: 409 }
       )
     }
@@ -274,6 +275,26 @@ export async function POST(request: NextRequest) {
         catalogKey,
         currency,
       })
+
+      if (checkout.mode === 'payment_link') {
+        // Dodo: the hosted checkout session URL is the payment link (single use, valid 24 hours).
+        await appendAdminPaymentLinkMetadata({
+          orderId: checkout.orderId,
+          adminId: admin.id,
+          adminEmail,
+          reason,
+          mode: 'new_order',
+          paymentLinkUrl: checkout.url,
+        })
+        await logAdminAction(admin.id, 'billing_admin_payment_link_created', {
+          targetUserId: user.id,
+          orderId: checkout.orderId,
+          catalogKey,
+          paymentLinkUrl: checkout.url,
+          reason,
+        })
+        return NextResponse.json({ success: true, action, orderId: checkout.orderId, paymentLinkUrl: checkout.url })
+      }
 
       if (checkout.mode !== 'razorpay_order') {
         return NextResponse.json(
@@ -355,6 +376,9 @@ export async function POST(request: NextRequest) {
       if (!order) {
         return NextResponse.json({ error: 'Billing order not found' }, { status: 404 })
       }
+      if (order.paymentProvider === 'dodo') {
+        return NextResponse.json({ error: 'Dodo checkout links are single use. Create a new payment link for this user instead.' }, { status: 400 })
+      }
       if (order.paymentProvider !== 'razorpay') {
         return NextResponse.json({ error: 'Order is not a Razorpay order' }, { status: 400 })
       }
@@ -426,6 +450,11 @@ export async function POST(request: NextRequest) {
 
       if (!order) {
         return NextResponse.json({ error: 'Billing order not found' }, { status: 404 })
+      }
+      if (order.paymentProvider === 'dodo') {
+        const settled = await settleDodoOrderManually(orderId, providerPaymentId || undefined)
+        await logAdminAction(admin.id, 'billing_order_manual_paid', { orderId, reason, providerPaymentId: providerPaymentId || null, provider: 'dodo', fulfilled: settled?.kind ?? 'already_settled' })
+        return NextResponse.json({ success: true, action, orderId, fulfilled: settled?.kind ?? null })
       }
       if (order.paymentProvider !== 'razorpay') {
         return NextResponse.json({ error: 'Order is not a Razorpay order' }, { status: 400 })

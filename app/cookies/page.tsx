@@ -53,7 +53,7 @@ export default function CookiesPage() {
           </p>
           <ul>
             <li>Clerk authentication and session security for signed-in accounts;</li>
-            <li>security, fraud-prevention, checkout, and payment continuity from Stripe or Razorpay;</li>
+            <li>security, fraud-prevention, checkout, and payment continuity from Dodo Payments;</li>
             <li>theme, interface, dashboard, and accessibility preferences;</li>
             <li>your saved analytics-consent choice.</li>
           </ul>
@@ -92,7 +92,7 @@ export default function CookiesPage() {
             <li><a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">PostHog privacy information</a></li>
             <li><a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel privacy information</a></li>
             <li><a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Stripe privacy information</a></li>
-            <li><a href="https://razorpay.com/privacy/" target="_blank" rel="noopener noreferrer">Razorpay privacy information</a></li>
+            <li><a href="https://dodopayments.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Dodo Payments privacy information</a></li>
           </ul>
 
           <h2>7. Contact</h2>

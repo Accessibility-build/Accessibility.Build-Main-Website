@@ -54,6 +54,11 @@ const nextConfig = {
     },
     async redirects() {
         return [{
+            // The CPACC course moved out of Templates (2026-11-11).
+            source: '/templates/cpacc-crash-course',
+            destination: '/courses/cpacc-crash-course',
+            permanent: true,
+        }, {
             // Canonical host is the apex, accessibility.build. Search Console
             // (Aug 2026) showed 12 paths indexed on BOTH hosts, splitting ~32k
             // impressions, because www redirected with a 307 TEMPORARY, which

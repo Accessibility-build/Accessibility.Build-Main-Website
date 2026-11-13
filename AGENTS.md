@@ -16,7 +16,7 @@
 | Animation | **Framer Motion 11** |
 | Database | **PostgreSQL** via **Drizzle ORM** |
 | Auth | **Clerk** (`@clerk/nextjs`) |
-| Payments | **Stripe** (international) + **Razorpay** (India) |
+| Payments | **Dodo Payments** (merchant of record; Stripe and Razorpay code kept for past orders only) |
 | AI | **OpenAI** (GPT-4 Vision), **Anthropic Claude**, **OpenRouter** |
 | CMS | **Sanity** (blog content) |
 | A11y Testing | **Axe-core** + **Puppeteer** |
@@ -38,7 +38,9 @@ app/                          # Next.js App Router pages & API routes
   blog/                       # Blog (Sanity CMS powered)
   admin/                      # Admin dashboard (protected)
   dashboard/                  # User dashboard (protected)
-  billing/                    # Pricing & credit management
+  billing/                    # Pricing, credits, payment return page
+  courses/                    # Paid online courses (sales page + /learn buyers' area)
+  account/downloads/          # Purchased template downloads
   sign-in/, sign-up/          # Clerk auth pages
   layout.tsx                  # Root layout (ClerkProvider, ThemeProvider, fonts)
 
@@ -161,11 +163,13 @@ export async function POST(request: NextRequest) {
 
 ## Billing & Credits
 
-- **Dual payment providers:** Stripe (international) + Razorpay (India region)
-- **Credit-based system:** Users purchase credits, AI tool usage deducts credits
-- Core logic in `lib/credits.ts` and `lib/billing/`
-- Webhooks at `/api/webhooks/stripe/route.ts` and `/api/webhooks/razorpay/route.ts`
-- API routes check credit balance before making AI calls
+- **Payment provider: Dodo Payments** (merchant of record, so it handles sales tax and VAT). `BILLING_PROVIDER` defaults to `dodo`; the Stripe and Razorpay code stays only for historical orders and refunds.
+- **One key format for everything sold** (`lib/billing/sellables.ts`), stored in `billing_orders.catalog_key` and as each Dodo product's `metadata.sku`: credit packs (`starter_50`...), course licences (`course:<slug>:<individual|team>`), templates (`template:<slug>:<licence>`).
+- **Checkout:** credit packs via `/api/billing/checkout-session`, courses and templates via `/api/checkout`; both create a pending order and a Dodo hosted checkout session (`lib/billing/dodo-service.ts`). Buyers return to `/billing/return`, which waits for the webhook.
+- **Fulfilment happens only in the webhook** `/api/webhooks/dodo` (signature checked, deduped on `webhook-id` in `dodo_webhook_events`): credits are added, a course licence is granted, or a template entitlement is created. Refunds and lost disputes reverse them, matched by the stored Dodo `payment_id`.
+- **Setup:** Admin → Billing has a Dodo panel that registers the webhook endpoint (and shows its signing secret) and creates or updates the Dodo products. Run it in test mode, then again with live keys.
+- **Courses** live under `/courses/<slug>` (sales page) and `/courses/<slug>/learn` (buyers' area, gated by `lib/courses/access.ts`). Course text and questions are in `course_content`, loaded from the owner's private folder with `scripts/courses/seed-course.mjs`; never commit course content. Template files are in `product_files` (`scripts/billing/load-product-files.mjs`) and download from `/account/downloads`.
+- **Credit-based system:** Users purchase credits, AI tool usage deducts credits. Core logic in `lib/credits.ts` and `lib/billing/`. API routes check credit balance before making AI calls.
 
 ## AI Integrations
 
@@ -215,7 +219,13 @@ STRIPE_SECRET_KEY=
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
 STRIPE_WEBHOOK_SECRET=
 
-# Razorpay
+# Dodo Payments (payment provider)
+DODO_PAYMENTS_API_KEY=          # dodo_test_... or dodo_live_...
+DODO_PAYMENTS_WEBHOOK_KEY=      # whsec_..., from Admin > Billing > Set up webhook
+DODO_PAYMENTS_ENVIRONMENT=      # test_mode | live_mode (optional; inferred from the key)
+BILLING_PROVIDER=dodo
+
+# Razorpay (legacy, past orders only)
 RAZORPAY_KEY_ID=
 RAZORPAY_KEY_SECRET=
 RAZORPAY_WEBHOOK_SECRET=
