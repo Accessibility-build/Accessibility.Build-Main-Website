@@ -32,7 +32,10 @@ const fontSans = FontSans({
   adjustFontFallback: true,
 })
 
-const verificationOther: Record<string, string> = {}
+const verificationOther: Record<string, string> = {
+  // ProdHound site ownership check (public token, safe to commit).
+  "prodhound-verify": "60608256338a5e8349eb0493e07a7e78f46a0abdb42da96a",
+}
 
 if (process.env.BING_SITE_VERIFICATION) {
   verificationOther["msvalidate.01"] = process.env.BING_SITE_VERIFICATION
