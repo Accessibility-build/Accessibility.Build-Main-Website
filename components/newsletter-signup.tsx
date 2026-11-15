@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription } from '@/components/ui/alert'
@@ -28,6 +28,24 @@ export function NewsletterSignup({
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [messageType, setMessageType] = useState<'success' | 'error' | null>(null)
+  const [formToken, setFormToken] = useState('')
+  const [website, setWebsite] = useState('')
+
+  // The API refuses posts without a fresh token from this endpoint, which
+  // stops scripts that post straight to it (see lib/newsletter/guard.ts).
+  const loadFormToken = async () => {
+    try {
+      const response = await fetch('/api/newsletter/subscribe', { cache: 'no-store' })
+      const data = await response.json()
+      if (typeof data.token === 'string') setFormToken(data.token)
+    } catch {
+      // The submit handler surfaces the failure if the token never arrives.
+    }
+  }
+
+  useEffect(() => {
+    loadFormToken()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -48,7 +66,7 @@ export function NewsletterSignup({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, source }),
+        body: JSON.stringify({ email, source, formToken, website }),
       })
 
       const data = await response.json()
@@ -56,10 +74,10 @@ export function NewsletterSignup({
       if (data.success) {
         setMessage(data.message)
         setMessageType('success')
-        if (data.newSubscription) {
-          setEmail('')
-        }
+        setEmail('')
       } else {
+        // A stale or missing token gets a 400; fetch a new one for the retry.
+        loadFormToken()
         setMessage(data.error || 'Failed to subscribe. Please try again.')
         setMessageType('error')
       }
@@ -75,7 +93,20 @@ export function NewsletterSignup({
   if (compact) {
     return (
       <div className={cn("space-y-3", className)}>
-        <form onSubmit={handleSubmit} className="flex gap-2">
+        <form onSubmit={handleSubmit} className="relative flex gap-2">
+          <div aria-hidden="true" className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden">
+            <label>
+              Leave this field empty
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+              />
+            </label>
+          </div>
           <Input
             type="email"
             aria-label={inputLabel}
@@ -133,7 +164,20 @@ export function NewsletterSignup({
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-3">
+      <form onSubmit={handleSubmit} className="relative space-y-3">
+          <div aria-hidden="true" className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden">
+            <label>
+              Leave this field empty
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+              />
+            </label>
+          </div>
         <div className="flex gap-2">
           <Input
             type="email"

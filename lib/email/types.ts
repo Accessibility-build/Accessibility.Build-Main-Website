@@ -2,6 +2,7 @@ export type EmailType =
   | 'welcome'
   | 'services_intro'
   | 'newsletter_welcome'
+  | 'newsletter_confirm'
   | 'marketing_campaign'
   | 'purchase_confirmation'
   | 'refund_notification'
@@ -41,6 +42,14 @@ export interface NewsletterWelcomeEmailData {
   source: 'footer' | 'blog' | 'other'
 }
 
+export interface NewsletterConfirmEmailData {
+  type: 'newsletter_confirm'
+  recipient: EmailRecipient
+  confirmUrl: string
+  /** Changes per request so a resend after the cooldown is not deduplicated. */
+  nonce: string
+}
+
 export interface MarketingCampaignEmailData {
   type: 'marketing_campaign'
   campaignId: string
@@ -68,6 +77,7 @@ export type TransactionalEmailData =
   | WelcomeEmailData
   | ServicesIntroEmailData
   | NewsletterWelcomeEmailData
+  | NewsletterConfirmEmailData
   | MarketingCampaignEmailData
   | PurchaseConfirmationEmailData
   | RefundNotificationEmailData

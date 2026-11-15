@@ -420,6 +420,25 @@ export function renderNewsletterWelcomeEmail(data: {
   }
 }
 
+export function renderNewsletterConfirmEmail(data: {
+  confirmUrl: string
+}): { subject: string; html: string } {
+  const url = escapeHtml(data.confirmUrl)
+
+  return {
+    subject: 'Confirm your Accessibility.build subscription',
+    html: emailLayout({
+      preheader: 'One click to confirm. If you did not ask for this, ignore it.',
+      body: `
+        <h1>Confirm your subscription</h1>
+        <p>Someone, hopefully you, asked to get Accessibility.build email updates at this address.</p>
+        <p><a href="${url}">Confirm my subscription &rarr;</a></p>
+        <p>If you did not ask for this, ignore this email. You will not be added to the list and we will not email you again.</p>
+      `,
+    }),
+  }
+}
+
 export function renderMarketingCampaignEmail(data: {
   subject: string
   firstName?: string | null

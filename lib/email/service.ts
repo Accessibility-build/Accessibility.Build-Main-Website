@@ -8,6 +8,7 @@ import {
   renderWelcomeEmail,
   renderServicesIntroEmail,
   renderNewsletterWelcomeEmail,
+  renderNewsletterConfirmEmail,
   renderMarketingCampaignEmail,
   renderPurchaseConfirmationEmail,
   renderRefundNotificationEmail,
@@ -19,6 +20,7 @@ import type {
   WelcomeEmailData,
   ServicesIntroEmailData,
   NewsletterWelcomeEmailData,
+  NewsletterConfirmEmailData,
   MarketingCampaignEmailData,
   PurchaseConfirmationEmailData,
   RefundNotificationEmailData,
@@ -44,6 +46,8 @@ function buildIdempotencyKey(data: TransactionalEmailData): string {
       return `services_intro_${data.recipient.email}`
     case 'newsletter_welcome':
       return `newsletter_${data.recipient.email}`
+    case 'newsletter_confirm':
+      return `newsletter_confirm_${sanitizeEmailForIdempotency(data.recipient.email)}_${data.nonce}`
     case 'marketing_campaign':
       return `marketing_${data.campaignId}_${sanitizeEmailForIdempotency(data.recipient.email)}`
     case 'purchase_confirmation':
@@ -198,6 +202,31 @@ export function sendNewsletterWelcomeEmail(data: NewsletterWelcomeEmailData): vo
     emailType: 'newsletter_welcome',
   }).catch((err) => {
     console.error(`${LOG_PREFIX} ✗ unhandled_newsletter_welcome`, JSON.stringify({
+      error: err instanceof Error ? err.message : String(err),
+      to: data.recipient.email,
+    }))
+  })
+}
+
+/**
+ * Fire-and-forget: asks a new subscriber to confirm (double opt-in). Never throws.
+ * Gated only on the email service, not marketing email, because nobody can
+ * join the list without it.
+ */
+export function sendNewsletterConfirmEmail(data: NewsletterConfirmEmailData): void {
+  if (!isEmailServiceEnabled()) return
+  if (!data.recipient.email || isSyntheticEmail(data.recipient.email)) return
+
+  const { subject, html } = renderNewsletterConfirmEmail({ confirmUrl: data.confirmUrl })
+
+  sendEmailViaResend({
+    to: data.recipient.email,
+    subject,
+    html,
+    idempotencyKey: buildIdempotencyKey(data),
+    emailType: 'newsletter_confirm',
+  }).catch((err) => {
+    console.error(`${LOG_PREFIX} ✗ unhandled_newsletter_confirm`, JSON.stringify({
       error: err instanceof Error ? err.message : String(err),
       to: data.recipient.email,
     }))
