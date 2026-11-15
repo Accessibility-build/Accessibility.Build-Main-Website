@@ -13,6 +13,7 @@ import { getRouteDate } from "@/lib/site-routes"
 import { createMetadata } from "@/lib/metadata"
 import agentReadiness from "@/lib/data/agent-readiness-2026.json"
 import statementsStudy from "@/lib/data/accessibility-statements-2026.json"
+import fortune100 from "@/lib/data/fortune-100-homepages-2026.json"
 import { lawsSummary } from "@/lib/data/accessibility-laws"
 
 export const metadata: Metadata = {
@@ -62,6 +63,17 @@ const originalReports: (Report & { Illustration: typeof AgentTreeIllustration })
       value: String(statementsStudy.groups.councils.checked + statementsStudy.groups.ftse100.checked),
     },
     Illustration: StatementIllustration,
+  },
+  {
+    title: "How Accessible Are Fortune 100 Homepages?",
+    description:
+      "axe-core 4.10.2 plus keyboard, reflow, structure, alt-text and overlay checks on all 100 Fortune 100 homepages. 46 pass the automated scan; only 18 pass everything.",
+    href: "/research/fortune-100-accessibility-2026",
+    stat: {
+      label: "Pass scan and manual checks",
+      value: `${fortune100.leaders.length} of ${fortune100.homepages}`,
+    },
+    Illustration: BenchmarkGridIllustration,
   },
   {
     title: "Accessibility Testing Tools Benchmark",

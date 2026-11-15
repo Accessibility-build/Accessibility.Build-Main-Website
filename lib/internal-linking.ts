@@ -30,6 +30,14 @@ const INTERNAL_LINKS: InternalLink[] = [
     priority: 9
   },
   {
+    url: '/research/fortune-100-accessibility-2026',
+    title: 'How Accessible Are Fortune 100 Homepages?',
+    description: 'axe-core plus manual checks of all 100 Fortune 100 homepages: keyboard traps, alt text, reflow, overlays',
+    type: 'resource',
+    keywords: ['fortune', 'fortune 100', 'fortune 500', 'corporate', 'homepage', 'study', 'axe', 'overlay', 'keyboard', 'cookie banner'],
+    priority: 9
+  },
+  {
     url: '/research/accessibility-statements-2026',
     title: 'State of Accessibility Statements 2026',
     description: 'How many UK councils and FTSE 100 companies publish a statement, and which mandatory elements are missing',

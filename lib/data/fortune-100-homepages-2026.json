@@ -1,0 +1,437 @@
+{
+  "_note": "Figures from the author's 14 Nov 2026 test run (axe-core 4.10.2 plus scripted and manual checks). The per-company workbook is not published. Named claims re-checked on the live sites on 15 Nov 2026; drift noted in recheck. Scope: DemandSage reproduction of the 2026 Fortune 500, ranks 1 to 100.",
+  "measuredOn": "2026-11-14",
+  "recheckedOn": "2026-11-15",
+  "axeVersion": "4.10.2",
+  "homepages": 100,
+  "automated": {
+    "zeroViolations": 46,
+    "failedOneRule": 14,
+    "failedTwoOrMore": 40,
+    "withCriticalViolation": 28,
+    "medianRulesFailed": 1,
+    "failingElements": 592,
+    "topRulesByHomepage": [
+      {
+        "rule": "color-contrast",
+        "label": "Color contrast",
+        "wcag": "1.4.3",
+        "homepages": 21
+      },
+      {
+        "rule": "target-size",
+        "label": "Target size (minimum)",
+        "wcag": "2.5.8",
+        "homepages": 16
+      },
+      {
+        "rule": "link-name",
+        "label": "Links without an accessible name",
+        "wcag": "2.4.4, 4.1.2",
+        "homepages": 15
+      },
+      {
+        "rule": "image-alt",
+        "label": "Images without alt text",
+        "wcag": "1.1.1",
+        "homepages": 11
+      }
+    ],
+    "targetSizeElements": 138,
+    "heaviest": [
+      {
+        "company": "Nike",
+        "elements": 105,
+        "detail": "74 focusable elements inside aria-hidden regions, plus 12 contrast failures and broken list and ARIA structure."
+      },
+      {
+        "company": "Costco",
+        "elements": 57,
+        "detail": "57 targets smaller than the WCAG 2.2 minimum size."
+      },
+      {
+        "company": "Tesla",
+        "elements": 38,
+        "detail": "11 unnamed buttons and 11 elements missing a required ARIA parent role, both critical, plus 10 nested interactive controls. Its 27 critical elements were the most of any homepage."
+      },
+      {
+        "company": "Home Depot",
+        "elements": 37,
+        "detail": "27 color-contrast failures."
+      },
+      {
+        "company": "AbbVie",
+        "elements": 26,
+        "detail": "25 elements with an invalid lang value (lang=\"none\")."
+      }
+    ]
+  },
+  "manual": {
+    "failedAtLeastOne": 74,
+    "passedAll": 26,
+    "noSkipLink": 27,
+    "brokenSkipTarget": 6,
+    "noMainLandmark": 30,
+    "noH1": 27,
+    "poorAltText": 15,
+    "keyboardFocusVerified": 7,
+    "keyboardFromConsent": 5,
+    "focusVisibilityFlagged": 29,
+    "reflowFail": 15,
+    "zoomDisabled": 1,
+    "overlays": 4
+  },
+  "altExamples": [
+    {
+      "company": "Phillips 66",
+      "examples": [
+        "HumberRefineryP66_00477.webp"
+      ]
+    },
+    {
+      "company": "PepsiCo",
+      "examples": [
+        "HOMEPAGE_BANNER_NEW_LAYS",
+        "FDS REFORMAT",
+        "8"
+      ]
+    },
+    {
+      "company": "Coca-Cola",
+      "examples": [
+        "thumb-0",
+        "thumb-1",
+        "thumb-2"
+      ]
+    },
+    {
+      "company": "UnitedHealth Group",
+      "examples": [
+        "image",
+        "alt text"
+      ]
+    },
+    {
+      "company": "Procter & Gamble",
+      "examples": [
+        "Placeholder"
+      ]
+    },
+    {
+      "company": "Nationwide",
+      "examples": [
+        "/staticassets/p-home-qr-code_tcm108…"
+      ]
+    },
+    {
+      "company": "Eli Lilly",
+      "examples": [
+        "Pause-icon",
+        "arrowIcon-icon"
+      ]
+    },
+    {
+      "company": "Morgan Stanley",
+      "examples": [
+        "s"
+      ]
+    }
+  ],
+  "keyboard": [
+    {
+      "company": "Johnson & Johnson",
+      "issue": "Cookie banner confines Tab to two buttons and the browser chrome until dismissed"
+    },
+    {
+      "company": "Boeing",
+      "issue": "Tab cycles cookie-banner controls and a Feedback button; page content unreachable until dismissed"
+    },
+    {
+      "company": "AbbVie",
+      "issue": "Focused news links sit behind the cookie banner (focus obscured, WCAG 2.4.11)"
+    },
+    {
+      "company": "American Airlines",
+      "issue": "Consent panel takes focus on load and Tab cycles inside it until dismissed"
+    },
+    {
+      "company": "UnitedHealth Group",
+      "issue": "Consent dialog holds focus on load; Tab cycles only through its three buttons"
+    },
+    {
+      "company": "TJX",
+      "issue": "Search field shows no focus indicator beyond the caret"
+    },
+    {
+      "company": "Cardinal Health",
+      "issue": "Focusable promo card shows no visible focus indicator"
+    }
+  ],
+  "overlays": [
+    {
+      "company": "Cardinal Health",
+      "vendor": "UserWay"
+    },
+    {
+      "company": "Energy Transfer",
+      "vendor": "AudioEye"
+    },
+    {
+      "company": "Enterprise Products Partners",
+      "vendor": "accessiBe"
+    },
+    {
+      "company": "Coca-Cola",
+      "vendor": "Recite Me"
+    }
+  ],
+  "industries": [
+    {
+      "industry": "Insurance",
+      "homepages": 12,
+      "zeroAxe": 12,
+      "cleanBoth": 8,
+      "medianPoints": 0
+    },
+    {
+      "industry": "Industrial",
+      "homepages": 1,
+      "zeroAxe": 0,
+      "cleanBoth": 0,
+      "medianPoints": 3
+    },
+    {
+      "industry": "Health care",
+      "homepages": 16,
+      "zeroAxe": 8,
+      "cleanBoth": 2,
+      "medianPoints": 7.5
+    },
+    {
+      "industry": "Technology",
+      "homepages": 15,
+      "zeroAxe": 7,
+      "cleanBoth": 3,
+      "medianPoints": 9
+    },
+    {
+      "industry": "Energy",
+      "homepages": 8,
+      "zeroAxe": 3,
+      "cleanBoth": 1,
+      "medianPoints": 10.5
+    },
+    {
+      "industry": "Financial services",
+      "homepages": 13,
+      "zeroAxe": 5,
+      "cleanBoth": 1,
+      "medianPoints": 12
+    },
+    {
+      "industry": "Consumer goods & food",
+      "homepages": 8,
+      "zeroAxe": 4,
+      "cleanBoth": 1,
+      "medianPoints": 13.5
+    },
+    {
+      "industry": "Telecom & media",
+      "homepages": 5,
+      "zeroAxe": 2,
+      "cleanBoth": 1,
+      "medianPoints": 21
+    },
+    {
+      "industry": "Retail & e-commerce",
+      "homepages": 10,
+      "zeroAxe": 3,
+      "cleanBoth": 1,
+      "medianPoints": 24
+    },
+    {
+      "industry": "Aerospace & defense",
+      "homepages": 4,
+      "zeroAxe": 0,
+      "cleanBoth": 0,
+      "medianPoints": 24
+    },
+    {
+      "industry": "Automotive & transport",
+      "homepages": 8,
+      "zeroAxe": 2,
+      "cleanBoth": 0,
+      "medianPoints": 27
+    }
+  ],
+  "leaders": [
+    "Walmart",
+    "Alphabet",
+    "CVS Health",
+    "McKesson",
+    "Microsoft",
+    "JPMorgan Chase",
+    "State Farm",
+    "Valero Energy",
+    "Progressive",
+    "Archer Daniels Midland",
+    "Allstate",
+    "Charter Communications",
+    "Uber",
+    "USAA",
+    "TIAA",
+    "Liberty Mutual",
+    "Travelers",
+    "MassMutual"
+  ],
+  "top10": [
+    {
+      "rank": 43,
+      "company": "Tesla",
+      "points": 136,
+      "rules": 7,
+      "elements": 38,
+      "critical": 27,
+      "manual": "Repeated vague link text",
+      "manualCount": 1
+    },
+    {
+      "rank": 99,
+      "company": "Nike",
+      "points": 128,
+      "rules": 7,
+      "elements": 105,
+      "critical": 8,
+      "manual": "No h1",
+      "manualCount": 1
+    },
+    {
+      "rank": 25,
+      "company": "Home Depot",
+      "points": 73,
+      "rules": 4,
+      "elements": 37,
+      "critical": 1,
+      "manual": "No skip link, no h1, no main landmark, poor alt text",
+      "manualCount": 4
+    },
+    {
+      "rank": 57,
+      "company": "Albertsons",
+      "points": 72,
+      "rules": 3,
+      "elements": 17,
+      "critical": 12,
+      "manual": "No skip link, no h1, repeated vague link text",
+      "manualCount": 3
+    },
+    {
+      "rank": 98,
+      "company": "Coca-Cola",
+      "points": 70,
+      "rules": 4,
+      "elements": 18,
+      "critical": 1,
+      "manual": "No skip link, no main landmark, poor alt text, vague links, reflow",
+      "manualCount": 5
+    },
+    {
+      "rank": 50,
+      "company": "FedEx",
+      "points": 58,
+      "rules": 3,
+      "elements": 20,
+      "critical": 1,
+      "manual": "Skip link target missing, no main landmark",
+      "manualCount": 2
+    },
+    {
+      "rank": 76,
+      "company": "Galaxy Digital",
+      "points": 55,
+      "rules": 3,
+      "elements": 24,
+      "critical": 1,
+      "manual": "No skip link, repeated vague link text",
+      "manualCount": 2
+    },
+    {
+      "rank": 28,
+      "company": "Verizon",
+      "points": 52,
+      "rules": 3,
+      "elements": 14,
+      "critical": 4,
+      "manual": "No h1, reflow",
+      "manualCount": 2
+    },
+    {
+      "rank": 20,
+      "company": "Bank of America",
+      "points": 51,
+      "rules": 3,
+      "elements": 12,
+      "critical": 9,
+      "manual": "No h1, no main landmark",
+      "manualCount": 2
+    },
+    {
+      "rank": 4,
+      "company": "Apple",
+      "points": 47,
+      "rules": 3,
+      "elements": 15,
+      "critical": 2,
+      "manual": "No skip link",
+      "manualCount": 1
+    }
+  ],
+  "recheck": {
+    "exact": [
+      "Galaxy Digital",
+      "Verizon",
+      "Bank of America",
+      "Apple",
+      "Coca-Cola",
+      "Costco"
+    ],
+    "drift": [
+      {
+        "company": "Tesla",
+        "was": "7 rules, 38 elements",
+        "now": "6 rules, 37 elements"
+      },
+      {
+        "company": "Nike",
+        "was": "105 elements",
+        "now": "109 elements"
+      },
+      {
+        "company": "AbbVie",
+        "was": "25 invalid lang values",
+        "now": "20"
+      },
+      {
+        "company": "Home Depot",
+        "was": "27 contrast failures",
+        "now": "25"
+      },
+      {
+        "company": "Albertsons",
+        "was": "3 rules, 17 elements",
+        "now": "2 rules, 3 elements"
+      },
+      {
+        "company": "FedEx",
+        "was": "3 rules, 20 elements",
+        "now": "6 rules, 26 to 31 elements"
+      }
+    ],
+    "overlaySweepChecked": 97,
+    "overlaySweepUnreachable": [
+      "StoneX",
+      "Eli Lilly",
+      "TIAA"
+    ]
+  }
+}
