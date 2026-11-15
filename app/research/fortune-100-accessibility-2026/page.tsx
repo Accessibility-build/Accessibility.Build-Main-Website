@@ -561,7 +561,7 @@ export default function Fortune100StudyPage() {
               </div>
             </div>
             <div className="lg:pt-12">
-              <div tabIndex={0} role="region" aria-label="How each check was done" className="overflow-x-auto rounded-lg border border-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-slate-800">
+              <div tabIndex={0} role="region" aria-label="How each check was done" className="relative overflow-x-auto rounded-lg border border-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-slate-800">
                 <table className="w-full border-collapse text-sm">
                   <caption className="px-4 py-3 text-left font-semibold text-slate-900 dark:text-white">How each check was done</caption>
                   <thead>

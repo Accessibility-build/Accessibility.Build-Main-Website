@@ -7,6 +7,7 @@ import {
   AgentTreeIllustration,
   BenchmarkGridIllustration,
   HubHeroIllustration,
+  HundredGridIllustration,
   StatementIllustration,
 } from "@/components/research/hub-illustrations"
 import { getRouteDate } from "@/lib/site-routes"
@@ -73,14 +74,14 @@ const originalReports: (Report & { Illustration: typeof AgentTreeIllustration })
       label: "Pass scan and manual checks",
       value: `${fortune100.leaders.length} of ${fortune100.homepages}`,
     },
-    Illustration: BenchmarkGridIllustration,
+    Illustration: HundredGridIllustration,
   },
   {
     title: "Accessibility Testing Tools Benchmark",
     description:
       "axe-core, Lighthouse, HTML_CodeSniffer and IBM Equal Access run against one page seeded with thirty known WCAG defects. Which tool finds what, and which defects nobody finds.",
     href: "/research/accessibility-testing-tools-benchmark",
-    stat: { label: "Seeded defects found by all four", value: "12 of 30" },
+    stat: { label: "Seeded defects found by all four", value: "10 of 30" },
     Illustration: BenchmarkGridIllustration,
   },
 ]

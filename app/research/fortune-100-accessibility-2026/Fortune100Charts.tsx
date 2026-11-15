@@ -105,7 +105,7 @@ export function BarTable({
       tabIndex={0}
       role="region"
       aria-label={caption}
-      className="overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
+      className="relative overflow-x-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
     >
       <table className="w-full border-collapse text-sm">
         <caption className="sr-only">{caption}</caption>

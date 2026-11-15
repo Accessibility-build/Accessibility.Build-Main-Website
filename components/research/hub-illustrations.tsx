@@ -1,6 +1,7 @@
 // Decorative drawings for the /research hub. Each is drawn in code so it stays
 // sharp and follows the theme. They carry no data of their own, except the
-// benchmark grid, which draws the published 12 of 30 result.
+// benchmark grid (10 of 30 found by all four tools) and the Fortune 100 grid
+// (18 of 100 homepages clean on the scan and every manual check).
 
 const hidden = { "aria-hidden": true, focusable: false } as const
 
@@ -100,7 +101,7 @@ export function StatementIllustration({ className }: { className?: string }) {
   )
 }
 
-/** Thirty seeded defects, twelve of them found by all four tools. */
+/** Thirty seeded defects, ten of them found by all four tools. */
 export function BenchmarkGridIllustration({ className }: { className?: string }) {
   const cells = Array.from({ length: 30 }, (_, index) => index)
   return (
@@ -115,8 +116,32 @@ export function BenchmarkGridIllustration({ className }: { className?: string })
             y={y}
             width="21"
             height="32"
-            className={index < 12 ? "fill-primary" : "stroke-muted-foreground"}
+            className={index < 10 ? "fill-primary" : "stroke-muted-foreground"}
             strokeWidth="1.5"
+          />
+        )
+      })}
+    </svg>
+  )
+}
+
+/** One hundred Fortune 100 homepages, eighteen of them clean on the scan and every manual check. */
+export function HundredGridIllustration({ className }: { className?: string }) {
+  const cells = Array.from({ length: 100 }, (_, index) => index)
+  return (
+    <svg viewBox="0 0 320 160" fill="none" className={className} {...hidden}>
+      {cells.map((index) => {
+        const x = 30 + (index % 20) * 13.5
+        const y = 18 + Math.floor(index / 20) * 26
+        return (
+          <rect
+            key={index}
+            x={x}
+            y={y}
+            width="10"
+            height="20"
+            className={index < 18 ? "fill-primary" : "stroke-muted-foreground"}
+            strokeWidth="1.2"
           />
         )
       })}

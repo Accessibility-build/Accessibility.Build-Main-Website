@@ -114,7 +114,7 @@ const research: SiteRoute[] = [
   { route: "/research/state-of-accessibility", label: "State of Accessibility Report", group: "Research", lastModified: "2026-11-14", priority: 0.95 },
   { route: "/research/web-accessibility-statistics", label: "Web Accessibility Statistics 2026", group: "Research", lastModified: "2026-11-14", priority: 0.96, changeFrequency: "monthly" },
   { route: "/research/screen-reader-survey-2026", label: "Screen Reader Survey 2026", group: "Research", lastModified: "2026-10-14", priority: 0.95 },
-  { route: "/research/accessibility-testing-tools-benchmark", label: "Accessibility Testing Tools Benchmark 2026", group: "Research", lastModified: "2026-11-14", priority: 0.95 },
+  { route: "/research/accessibility-testing-tools-benchmark", label: "Accessibility Testing Tools Benchmark 2026", group: "Research", lastModified: "2026-11-16", priority: 0.95 },
   { route: "/research/ai-agent-readiness", label: "AI Agent Readiness Study 2026", group: "Research", lastModified: "2026-10-22", priority: 0.96 },
   { route: "/research/fortune-100-accessibility-2026", label: "Fortune 100 Homepage Accessibility 2026", group: "Research", lastModified: "2026-11-16", priority: 0.96 },
   { route: "/research/accessibility-statements-2026", label: "State of Accessibility Statements 2026", group: "Research", lastModified: "2026-11-14", priority: 0.95 },
