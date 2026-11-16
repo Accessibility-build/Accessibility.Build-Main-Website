@@ -405,6 +405,7 @@ export async function markBillingOrderPaidManually(params: {
     if (!order) {
       throw new Error('BILLING_ORDER_NOT_FOUND')
     }
+    if (!order.userId) throw new Error('Credit settlement requires an account')
 
     const nextProviderOrderId = params.providerOrderId?.trim() || order.providerOrderId
     const nextProviderPaymentId = params.providerPaymentId?.trim() || order.providerPaymentId
@@ -719,6 +720,7 @@ async function grantCreditsForPaidOrder(orderId: string, session: Stripe.Checkou
     if (!order) {
       throw new Error(`Billing order ${orderId} not found`)
     }
+    if (!order.userId) throw new Error('Credit purchases require an account')
 
     if (order.creditTransactionId) {
       return
@@ -861,6 +863,7 @@ async function handleRefundedCharge(charge: Stripe.Charge, eventId: string) {
     if (!currentOrder) {
       throw new Error(`Billing order ${order.id} disappeared during refund handling`)
     }
+    if (!currentOrder.userId) throw new Error('Credit refunds require an account')
 
     const metadata = parseOrderMetadata(currentOrder.metadata)
     const alreadyRefundedCredits = Number(metadata.refundedCredits || 0)
@@ -1050,7 +1053,7 @@ export async function processStripeWebhookEvent(event: Stripe.Event) {
         const session = event.data.object as Stripe.Checkout.Session
         const order = await findOrderBySession(session)
 
-        if (order && session.payment_status === 'paid') {
+        if (order?.userId && session.payment_status === 'paid') {
           await grantCreditsForPaidOrder(order.id, session)
           processedOrderId = order.id
 
@@ -1089,7 +1092,7 @@ export async function processStripeWebhookEvent(event: Stripe.Event) {
               stripeEventType: event.type,
             },
           })
-        } else if (order && session.payment_status !== 'paid') {
+        } else if (order?.userId && session.payment_status !== 'paid') {
           // Keep order pending until payment is confirmed by a paid event.
           await db
             .update(billingOrders)
@@ -1145,7 +1148,7 @@ export async function processStripeWebhookEvent(event: Stripe.Event) {
         if (processedOrderId) {
           try {
             const [refundedOrder] = await db.select().from(billingOrders).where(eq(billingOrders.id, processedOrderId)).limit(1)
-            if (refundedOrder) {
+            if (refundedOrder?.userId) {
               const [refundUser] = await db.select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits }).from(users).where(eq(users.id, refundedOrder.userId)).limit(1)
               if (refundUser?.email) {
                 const refundMeta = parseOrderMetadata(refundedOrder.metadata)

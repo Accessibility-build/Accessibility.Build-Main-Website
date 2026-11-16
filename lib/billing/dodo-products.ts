@@ -14,7 +14,8 @@ export interface DodoSyncRow {
 export async function syncDodoProducts(apply: boolean): Promise<{ environment: string; rows: DodoSyncRow[] }> {
   const dodo = getDodoClient()
   const existing = new Map<string, { id: string; price: number | null; name: string }>()
-  for await (const p of dodo.products.list({ archived: false })) {
+  // Start at the API's first page so existing products are not mistaken for missing ones.
+  for await (const p of dodo.products.list({ archived: false, page_number: 0 })) {
     const sku = (p.metadata as Record<string, string> | undefined)?.sku
     if (sku) existing.set(sku, { id: p.product_id, price: (p as { price?: number | null }).price ?? null, name: p.name ?? "" })
   }

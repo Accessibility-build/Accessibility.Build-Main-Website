@@ -11,6 +11,7 @@ import { logBillingFunnelEvent } from "./events"
 import { getSellable } from "./sellables"
 import { getPublicAppUrl } from "./stripe"
 import type { CheckoutSessionResponse } from "./types"
+import { verifyGuestCheckoutToken } from "./guest-checkout"
 
 type Tx = Parameters<Parameters<typeof db.transaction>[0]>[0]
 type Order = typeof billingOrders.$inferSelect
@@ -22,13 +23,17 @@ type Order = typeof billingOrders.$inferSelect
  * course licence or template). Returns the session URL for a redirect.
  */
 export async function createDodoCheckout(params: {
-  userId: string
+  userId: string | null
   email?: string | null
   fullName?: string | null
   key: string
+  guestTokenHash?: string
 }): Promise<Extract<CheckoutSessionResponse, { mode: "payment_link" }>> {
   const item = getSellable(params.key)
   if (!item) throw new Error("Unknown product")
+  if (!params.userId && (item.kind === "credits" || !params.guestTokenHash || !/^[a-f0-9]{64}$/.test(params.guestTokenHash))) {
+    throw new Error("Guest checkout is only available for courses and templates")
+  }
   const productId = await resolveDodoProductId(item.key)
   const appUrl = getPublicAppUrl()
 
@@ -46,7 +51,10 @@ export async function createDodoCheckout(params: {
       baseAmountUsdCents: item.priceUsdCents,
       amountTotalUsdCents: item.priceUsdCents,
       status: "pending",
-      metadata: { source: "dodo_checkout", kind: item.kind, dodoProductId: productId },
+      metadata: {
+        source: "dodo_checkout", kind: item.kind, dodoProductId: productId,
+        ...(!params.userId ? { guestCheckout: true, guestCheckoutTokenHash: params.guestTokenHash } : {}),
+      },
     })
     .returning({ id: billingOrders.id })
 
@@ -54,7 +62,7 @@ export async function createDodoCheckout(params: {
     const session = await getDodoClient().checkoutSessions.create({
       product_cart: [{ product_id: productId, quantity: 1 }],
       customer: params.email ? { email: params.email, name: params.fullName || params.email } : undefined,
-      metadata: { order_id: order.id, user_id: params.userId, sku: item.key },
+      metadata: { order_id: order.id, sku: item.key, ...(params.userId ? { user_id: params.userId } : {}) },
       return_url: `${appUrl}/billing/return?order=${order.id}`,
       cancel_url: `${appUrl}${item.cancelPath}`,
       feature_flags: { allow_discount_code: true },
@@ -144,6 +152,7 @@ async function fulfilOrder(orderId: string, payment: Record<string, unknown>, ev
     await tx.execute(sql`SELECT id FROM billing_orders WHERE id = ${orderId} FOR UPDATE`)
     const [order] = await tx.select().from(billingOrders).where(eq(billingOrders.id, orderId)).limit(1)
     if (!order) throw new Error(`Order ${orderId} not found`)
+    if (order.paymentProvider !== "dodo") throw new Error("Not a Dodo order")
     if (order.status !== "pending" && order.status !== "failed") return null
     const item = getSellable(order.catalogKey)
     if (!item) throw new Error(`Order ${orderId} has unknown catalog key ${order.catalogKey}`)
@@ -165,6 +174,7 @@ async function fulfilOrder(orderId: string, payment: Record<string, unknown>, ev
     const meta = { ...orderMeta(order), billingProvider: "dodo", providerPaymentId: paymentId, eventId, invoiceUrl: str(payment.invoice_url) }
 
     if (item.kind === "credits") {
+      if (!order.userId) throw new Error("Credit purchases require an account")
       const [u] = await tx
         .update(users)
         .set({
@@ -195,8 +205,14 @@ async function fulfilOrder(orderId: string, payment: Record<string, unknown>, ev
       return { kind: item.kind, order }
     }
 
-    const [buyer] = await tx.select({ email: users.email }).from(users).where(eq(users.id, order.userId)).limit(1)
-    const buyerEmail = normalizeEmail(buyer?.email || str((payment.customer as Record<string, unknown> | undefined)?.email) || "")
+    const [buyer] = order.userId
+      ? await tx.select({ email: users.email }).from(users).where(eq(users.id, order.userId)).limit(1)
+      : []
+    const accountEmail = buyer?.email && !buyer.email.endsWith("@users.accessibility.build") ? buyer.email : undefined
+    const buyerEmail = normalizeEmail(accountEmail || str((payment.customer as Record<string, unknown> | undefined)?.email) || "")
+    if (buyerEmail.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(buyerEmail)) {
+      throw new Error("The confirmed payment is missing a valid buyer email")
+    }
 
     if (item.kind === "course" && item.course) {
       await grantCourseLicence(
@@ -209,7 +225,7 @@ async function fulfilOrder(orderId: string, payment: Record<string, unknown>, ev
         .values({ userId: order.userId, email: buyerEmail, productSlug: item.template.slug, licence: item.template.licence, billingOrderId: order.id, source: "purchase" })
         .onConflictDoNothing()
     }
-    await tx.update(billingOrders).set({ ...paidFields, metadata: meta }).where(eq(billingOrders.id, order.id))
+    await tx.update(billingOrders).set({ ...paidFields, metadata: { ...meta, buyerEmail } }).where(eq(billingOrders.id, order.id))
     return { kind: item.kind, order }
   })
 }
@@ -219,7 +235,7 @@ async function sendFulfilmentEmail(kind: string, orderId: string) {
     if (kind === "course") return void (await sendCoursePurchaseEmail(orderId))
     if (kind === "template") return void (await sendTemplatePurchaseEmail(orderId))
     const [o] = await db.select().from(billingOrders).where(eq(billingOrders.id, orderId)).limit(1)
-    if (!o) return
+    if (!o?.userId) return
     const [u] = await db.select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits }).from(users).where(eq(users.id, o.userId)).limit(1)
     const item = getSellable(o.catalogKey)
     if (!u || !item) return
@@ -265,12 +281,13 @@ async function reverseOrder(order: Order, amountMinor: number, isPartial: boolea
       .where(eq(billingOrders.id, order.id))
     return
   }
+  if (!order.userId) throw new Error("Credit refund requires an account")
 
   let reversedCredits = 0
   await db.transaction(async (tx: Tx) => {
     await tx.execute(sql`SELECT id FROM billing_orders WHERE id = ${order.id} FOR UPDATE`)
     const [o] = await tx.select().from(billingOrders).where(eq(billingOrders.id, order.id)).limit(1)
-    if (!o) return
+    if (!o?.userId) return
     const meta = orderMeta(o)
     const already = Number(meta.refundedCredits || 0)
     const ratio = Math.min(1, amountMinor / Math.max(o.amountTotal, 1))
@@ -404,19 +421,34 @@ export async function processDodoWebhook(eventId: string, event: DodoWebhookEven
 }
 
 /** For the return page: the order's current status, owned by this user. */
-export async function getOrderStatusForUser(orderId: string, userId: string) {
+export async function getOrderStatusForViewer(orderId: string, userId?: string, guestToken?: string) {
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(orderId)) return null
   const [o] = await db
-    .select({ id: billingOrders.id, status: billingOrders.status, catalogKey: billingOrders.catalogKey, userId: billingOrders.userId })
+    .select()
     .from(billingOrders)
     .where(eq(billingOrders.id, orderId))
     .limit(1)
-  if (!o || o.userId !== userId) return null
-  return { id: o.id, status: o.status, item: getSellable(o.catalogKey) }
+  if (!o) return null
+  const ownsOrder = Boolean(userId && o.userId === userId)
+  const item = getSellable(o.catalogKey)
+  const meta = orderMeta(o)
+  const guestCanView = o.paymentProvider === "dodo" && item && item.kind !== "credits" && meta.guestCheckout === true
+    && verifyGuestCheckoutToken(guestToken, meta.guestCheckoutTokenHash)
+  if (!ownsOrder && !guestCanView) return null
+  return { id: o.id, status: o.status, item, requiresSignIn: !ownsOrder }
 }
 
 /** Admin settlement of a Dodo order paid outside the webhook (for example after a webhook outage). */
 export async function settleDodoOrderManually(orderId: string, providerPaymentId?: string) {
-  const result = await fulfilOrder(orderId, providerPaymentId ? { payment_id: providerPaymentId } : {}, `manual:${Date.now()}`)
+  const order = await findOrder({ orderId })
+  let payment: Record<string, unknown> = providerPaymentId ? { payment_id: providerPaymentId } : {}
+  if (order && !order.userId) {
+    if (!providerPaymentId) throw new Error("A confirmed Dodo payment is required to settle a guest order")
+    const confirmed = await getDodoClient().payments.retrieve(providerPaymentId)
+    if (confirmed.status !== "succeeded" || confirmed.metadata?.order_id !== order.id) throw new Error("Payment does not match this guest order")
+    payment = confirmed as unknown as Record<string, unknown>
+  }
+  const result = await fulfilOrder(orderId, payment, `manual:${Date.now()}`)
   if (result) await sendFulfilmentEmail(result.kind, orderId)
   return result
 }

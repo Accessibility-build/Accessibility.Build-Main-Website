@@ -117,7 +117,7 @@ const faqs = [
   {
     question: "How do I access the course?",
     answer:
-      "Everything is on Accessibility.build. Sign in with a free account, buy a licence, and the course opens straight away in your browser on any device. Your progress, mock exam scores and flashcard marks are saved to your account. There is nothing to download or install.",
+      "Everything is on Accessibility.build. Buy a licence without creating an account, then sign in or create a free account with the email you used at checkout to open the course on any device. Your progress, mock exam scores and flashcard marks are saved to your account. There is nothing to download or install.",
   },
   {
     question: "How does the Team licence work?",

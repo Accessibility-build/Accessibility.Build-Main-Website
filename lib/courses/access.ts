@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 import { db } from "@/lib/db"
 import { courseLicences, courseSeats, users } from "@/lib/db/schema"
 import { getOrCreateUserByClerkId } from "@/lib/credits"
+import { claimGuestProductOrders } from "@/lib/billing/claim-guest-orders"
 import { CourseLicenceType, getCourse, normalizeEmail } from "./config"
 
 type Tx = Parameters<Parameters<typeof db.transaction>[0]>[0]
@@ -32,7 +33,9 @@ export async function getCourseViewer(): Promise<CourseViewer | null> {
     .filter((e) => e.verification?.status === "verified")
     .map((e) => normalizeEmail(e.emailAddress))
   const primary = user.emailAddresses.find((e) => e.id === user.primaryEmailAddressId)?.emailAddress
-  const email = normalizeEmail(primary || verified[0] || user.emailAddresses[0]?.emailAddress || "")
+  // An unverified address must not recover another account's database row by email.
+  const normalizedPrimary = normalizeEmail(primary || "")
+  const email = verified.includes(normalizedPrimary) ? normalizedPrimary : verified[0] || ""
   const dbUser = await getOrCreateUserByClerkId({
     userId: user.id,
     email,
@@ -40,6 +43,7 @@ export async function getCourseViewer(): Promise<CourseViewer | null> {
     lastName: user.lastName ?? undefined,
     profileImageUrl: user.imageUrl ?? undefined,
   })
+  await claimGuestProductOrders(dbUser.id, verified)
   return { userId: dbUser.id, clerkUserId: user.id, email, emails: verified, firstName: user.firstName ?? null }
 }
 

@@ -22,10 +22,24 @@ function layout(title: string, preheader: string, body: string) {
 async function send(to: string, subject: string, html: string, key: string) {
   if (!isEmailServiceEnabled() || !to || to.endsWith("@users.accessibility.build")) return
   try {
-    await getResendClient().emails.send({ from: getEmailFromAddress(), to: [to], subject, html, headers: { "X-Entity-Ref-ID": key } })
+    const { error } = await getResendClient().emails.send({ from: getEmailFromAddress(), to: [to], subject, html, headers: { "X-Entity-Ref-ID": key } })
+    if (error) throw new Error(error.message)
   } catch (err) {
     console.error("[email:course] send failed", key, err instanceof Error ? err.message : String(err))
   }
+}
+
+async function purchaseRecipient(order: typeof billingOrders.$inferSelect) {
+  if (order.userId) {
+    const [user] = await db.select({ email: users.email, firstName: users.firstName }).from(users).where(eq(users.id, order.userId)).limit(1)
+    return user
+  }
+  // Written only by fulfilment after the signed Dodo payment confirmation.
+  const meta = order.metadata as Record<string, unknown> | null
+  if (order.status === "paid" && meta?.guestCheckout === true && typeof meta.buyerEmail === "string") {
+    return { email: meta.buyerEmail, firstName: null }
+  }
+  return undefined
 }
 
 /** Receipt and access link after a course purchase. Never throws. */
@@ -35,7 +49,7 @@ export async function sendCoursePurchaseEmail(orderId: string) {
     const parsed = parseCourseCatalogKey(order?.catalogKey)
     if (!order || !parsed) return
     const course = getCourse(parsed.slug)!
-    const [user] = await db.select({ email: users.email, firstName: users.firstName }).from(users).where(eq(users.id, order.userId)).limit(1)
+    const user = await purchaseRecipient(order)
     if (!user) return
     const amount = new Intl.NumberFormat("en-US", { style: "currency", currency: order.currency || "USD" }).format(order.amountTotal / 100)
     const licence = course.licences[parsed.licence]
@@ -83,7 +97,7 @@ export async function sendTemplatePurchaseEmail(orderId: string) {
     if (!order || !parsed) return
     const product = getTemplateProduct(parsed.slug)!
     const licence = product.licences.find((l) => l.id === parsed.licence)
-    const [user] = await db.select({ email: users.email, firstName: users.firstName }).from(users).where(eq(users.id, order.userId)).limit(1)
+    const user = await purchaseRecipient(order)
     if (!user) return
     const amount = new Intl.NumberFormat("en-US", { style: "currency", currency: order.currency || "USD" }).format(order.amountTotal / 100)
     const html = layout(

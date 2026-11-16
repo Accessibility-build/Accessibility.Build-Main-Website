@@ -15,6 +15,7 @@
         "db:migrate": "drizzle-kit migrate",
         "clerk:test-session-token": "node scripts/create-clerk-session-token.mjs",
         "billing:test-e2e": "node scripts/test-razorpay-credit-flow.mjs",
+        "billing:test-guest": "node scripts/billing/test-guest-checkout.mjs",
         "test:clerk:api": "node scripts/test-clerk-api.mjs",
         "test:clerk:webhooks": "node scripts/test-clerk-webhooks.mjs",
         "test:e2e:clerk": "playwright test --config=playwright.config.ts",

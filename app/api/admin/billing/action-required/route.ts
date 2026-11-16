@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
         throw new Error('ACTION_REQUIRED_ORDER_NOT_FOUND')
       }
 
-      if (reactivateUser) {
+      if (reactivateUser && order.userId) {
         await tx
           .update(users)
           .set({
