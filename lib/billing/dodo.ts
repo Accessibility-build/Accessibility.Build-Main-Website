@@ -46,7 +46,8 @@ export async function resolveDodoProductId(sku: string): Promise<string> {
   if (o) return o
   if (!productCache || Date.now() - productCache.at > CACHE_MS) {
     const map = new Map<string, string>()
-    for await (const p of getDodoClient().products.list({ archived: false })) {
+    // The API starts at page 0; the SDK's omitted-page default otherwise skips a page.
+    for await (const p of getDodoClient().products.list({ archived: false, page_number: 0 })) {
       const s = (p.metadata as Record<string, string> | undefined)?.sku
       if (s) map.set(s, p.product_id)
     }

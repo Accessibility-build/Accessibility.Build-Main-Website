@@ -382,6 +382,7 @@ export async function POST(request: NextRequest) {
       if (order.paymentProvider !== 'razorpay') {
         return NextResponse.json({ error: 'Order is not a Razorpay order' }, { status: 400 })
       }
+      if (!order.userId) return NextResponse.json({ error: 'This order requires an account' }, { status: 400 })
       if (order.status === 'paid') {
         return NextResponse.json({ error: 'Order is already paid' }, { status: 409 })
       }
@@ -481,7 +482,7 @@ export async function POST(request: NextRequest) {
       if (result.creditsGranted) {
         try {
           const [settledOrder] = await db.select().from(billingOrders).where(eq(billingOrders.id, orderId)).limit(1)
-          if (settledOrder) {
+          if (settledOrder?.userId) {
             const [orderUser] = await db
               .select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits })
               .from(users)

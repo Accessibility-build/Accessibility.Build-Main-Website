@@ -51,7 +51,7 @@ export function BuyBox({ product, headingId = "buy-heading", deliveryNote }: { p
       </ul>
       <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
         {checkoutOn ? "Secure checkout by Dodo Payments, our merchant of record. Any sales tax or VAT is added at checkout. " : "Prices exclude any sales tax or VAT. "}
-        You need a free Accessibility.build account to buy, so your purchase is linked to it. See our{" "}
+        Buy without an account, then sign in with your checkout email to access your purchase. See our{" "}
         <Link href="/refund" className="underline underline-offset-2 hover:text-blue-700 dark:hover:text-blue-400">refund policy</Link>{" "}
         and{" "}
         <Link href="/terms" className="underline underline-offset-2 hover:text-blue-700 dark:hover:text-blue-400">terms</Link>.

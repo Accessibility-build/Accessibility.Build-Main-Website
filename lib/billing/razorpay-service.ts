@@ -505,6 +505,7 @@ async function grantCreditsForPaidRazorpayOrder(params: {
     if (!order) {
       throw new Error(`Billing order ${params.orderId} not found`)
     }
+    if (!order.userId) throw new Error('Credit purchases require an account')
 
     if (order.creditTransactionId) {
       return
@@ -601,7 +602,7 @@ async function grantCreditsForPaidRazorpayOrder(params: {
       .where(eq(billingOrders.id, params.orderId))
       .limit(1)
 
-    if (paidOrder) {
+    if (paidOrder?.userId) {
       const [paidUser] = await db
         .select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits })
         .from(users)
@@ -686,6 +687,7 @@ async function handleRazorpayRefund(params: {
     if (!currentOrder) {
       throw new Error(`Billing order ${order.id} disappeared during refund handling`)
     }
+    if (!currentOrder.userId) throw new Error('Credit refunds require an account')
 
     const metadata = parseOrderMetadata(currentOrder.metadata)
     const alreadyRefundedCredits = Number(metadata.refundedCredits || 0)
@@ -854,7 +856,7 @@ async function handleRazorpayRefund(params: {
       .where(eq(billingOrders.id, order.id))
       .limit(1)
 
-    if (refundedOrder) {
+    if (refundedOrder?.userId) {
       const [refundUser] = await db
         .select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits })
         .from(users)

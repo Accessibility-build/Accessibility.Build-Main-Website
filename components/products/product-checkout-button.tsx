@@ -15,13 +15,9 @@ export function ProductCheckoutButton({ item, label, ariaLabel }: { item: string
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ item, returnTo: `${window.location.pathname}#buy` }),
+        body: JSON.stringify({ item }),
       })
       const data = await res.json().catch(() => ({}))
-      if (res.status === 401 && data.signInUrl) {
-        window.location.href = data.signInUrl
-        return
-      }
       if (res.status === 409 && data.redirect) {
         window.location.href = data.redirect
         return
@@ -46,6 +42,7 @@ export function ProductCheckoutButton({ item, label, ariaLabel }: { item: string
         {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : null}
         {busy ? "Opening secure checkout..." : label}
       </button>
+      <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Pay without an account. Use your checkout email to sign in and access your purchase after payment.</p>
       {error ? <p role="alert" className="mt-2 text-sm font-medium text-red-800 dark:text-red-300">{error}</p> : null}
     </div>
   )

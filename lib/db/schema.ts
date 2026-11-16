@@ -1,5 +1,5 @@
-import { pgTable, text, integer, timestamp, uuid, boolean, jsonb, pgEnum, index, real, uniqueIndex, primaryKey, customType } from 'drizzle-orm/pg-core'
-import { relations } from 'drizzle-orm'
+import { pgTable, text, integer, timestamp, uuid, boolean, jsonb, pgEnum, index, real, uniqueIndex, primaryKey, customType, check } from 'drizzle-orm/pg-core'
+import { relations, sql } from 'drizzle-orm'
 
 // Enums
 export const transactionTypeEnum = pgEnum('transaction_type', ['purchase', 'bonus', 'usage', 'refund'])
@@ -136,10 +136,10 @@ export const payments = pgTable('payments', {
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 })
 
-// Stripe-backed billing orders for credit purchases
+// Orders across providers. Guest Dodo product orders are claimed after verified-email sign-in.
 export const billingOrders = pgTable('billing_orders', {
   id: uuid('id').defaultRandom().primaryKey(),
-  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  userId: text('user_id').references(() => users.id, { onDelete: 'cascade' }),
   paymentProvider: paymentProviderEnum('payment_provider').notNull().default('stripe'),
   catalogKey: text('catalog_key').notNull(),
   credits: integer('credits').notNull(),
@@ -173,6 +173,7 @@ export const billingOrders = pgTable('billing_orders', {
   paymentProviderIdx: index('billing_orders_payment_provider_idx').on(table.paymentProvider),
   userCreatedAtIdx: index('billing_orders_user_created_at_idx').on(table.userId, table.createdAt),
   statusIdx: index('billing_orders_status_idx').on(table.status),
+  guestProductsOnly: check('billing_orders_guest_products_only', sql`${table.userId} IS NOT NULL OR (${table.paymentProvider} = 'dodo' AND ${table.credits} = 0 AND (${table.catalogKey} LIKE 'course:%' OR ${table.catalogKey} LIKE 'template:%'))`),
 }))
 
 // Stores webhook events for Stripe idempotency and replay safety

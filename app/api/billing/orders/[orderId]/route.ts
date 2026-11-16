@@ -1,20 +1,19 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getClerkApiIdentity } from "@/lib/clerk-auth"
-import { getOrderStatusForUser } from "@/lib/billing/dodo-service"
-import { getOrCreateUserByClerkId } from "@/lib/credits"
+import { getOrderStatusForViewer } from "@/lib/billing/dodo-service"
+import { getCourseViewer } from "@/lib/courses/access"
+import { guestCheckoutCookieName } from "@/lib/billing/guest-checkout"
 
 export const dynamic = "force-dynamic"
 
-/** Order status for the signed-in owner (used by the payment return page to wait for the webhook). */
-export async function GET(_req: NextRequest, { params }: { params: Promise<{ orderId: string }> }) {
+/** A signed-in owner or the checkout browser can wait for confirmation. No buyer details are returned. */
+export async function GET(req: NextRequest, { params }: { params: Promise<{ orderId: string }> }) {
   const { orderId } = await params
-  const identity = await getClerkApiIdentity()
-  if (!identity) return NextResponse.json({ error: "Sign in required" }, { status: 401 })
-  const user = await getOrCreateUserByClerkId({ userId: identity.userId, email: identity.email })
-  const status = await getOrderStatusForUser(orderId, user.id)
+  const viewer = await getCourseViewer()
+  const token = req.cookies.get(guestCheckoutCookieName(orderId))?.value
+  const status = await getOrderStatusForViewer(orderId, viewer?.userId, token)
   if (!status) return NextResponse.json({ error: "Not found" }, { status: 404 })
   return NextResponse.json(
-    { status: status.status, kind: status.item?.kind, successPath: status.item?.successPath, name: status.item?.name },
+    { status: status.status, kind: status.item?.kind, successPath: status.item?.successPath, name: status.item?.name, requiresSignIn: status.requiresSignIn },
     { headers: { "Cache-Control": "no-store" } }
   )
 }
