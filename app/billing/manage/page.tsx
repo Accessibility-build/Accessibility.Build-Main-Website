@@ -433,8 +433,8 @@ export default async function BillingManagePage({ searchParams }: BillingManageP
                         {order.status === 'action_required' && (
                           <div className="text-xs rounded-lg border border-red-200 bg-red-50 text-red-700 p-3 dark:border-red-800 dark:bg-red-900/20 dark:text-red-300">
                             This order requires manual support action. Email{' '}
-                            <Link className="underline" href="mailto:support@accessibility.build">
-                              support@accessibility.build
+                            <Link className="underline" href={`mailto:${company.billingEmail}`}>
+                              {company.billingEmail}
                             </Link>{' '}
                             and include order ID <strong>{order.id}</strong>.
                           </div>
