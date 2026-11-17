@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, BookOpen, CheckCircle2, Circle, ClipboardCheck, Layers, Timer, Users } from "lucide-react"
 import { CourseShell } from "@/components/courses/course-shell"
+import { StudyPlan } from "@/components/courses/study-plan"
 import type { CourseConfig } from "@/lib/courses/config"
 import { buildOutline, formatMinutes, practiceSummary } from "@/lib/courses/outline"
 import type { CourseMeta, CourseProgressData } from "@/lib/courses/types"
@@ -9,12 +10,13 @@ import { cn } from "@/lib/utils"
 const ring = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
 const primaryBtn = cn("inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-blue-700 px-5 py-2.5 font-semibold text-white hover:bg-blue-800", ring)
 
-export function CourseOverview({ course, meta, progress, firstName, teamLicence }: {
+export function CourseOverview({ course, meta, progress, firstName, teamLicence, userId }: {
   course: CourseConfig
   meta: CourseMeta
   progress: CourseProgressData
   firstName: string | null
   teamLicence: { seats: number } | null
+  userId: string
 }) {
   const outline = buildOutline(meta, progress)
   const practice = practiceSummary(progress)
@@ -27,15 +29,15 @@ export function CourseOverview({ course, meta, progress, firstName, teamLicence 
     <CourseShell title={course.title} homeRoute={course.homeRoute} outline={outline} view="overview" hasTeam={Boolean(teamLicence)}>
       <p className="text-sm font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-300">Course overview</p>
       <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl">
-        {firstName ? `Welcome back, ${firstName}` : `Welcome to the ${course.title}`}
+        {firstName ? `${progress.study?.lastLocation || outline.doneCount ? "Welcome back" : "Welcome"}, ${firstName}` : `Welcome to the ${course.title}`}
       </h1>
       <p className="mt-3 max-w-3xl text-lg text-slate-700 dark:text-slate-300">
-        {outline.total} lessons{outline.totalMinutes ? ` (about ${formatMinutes(outline.totalMinutes)} of reading)` : ""}, {meta.questionCount} practice questions, two timed {mockTotal}-question mock exams and {meta.flashcardCount} flashcards. Edition {meta.edition}.
+        {outline.total} lessons{outline.totalMinutes ? ` (about ${formatMinutes(outline.totalMinutes)} of reading)` : ""}, {meta.questionCount} questions including two {mockTotal}-question mock exams, {meta.flashcardCount} flashcards{meta.activityCount ? ` and ${meta.activityCount} guided cases and labs` : ""}. Edition {meta.edition}.
       </p>
 
       <section aria-labelledby="continue-heading" className="mt-8 rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-6 dark:border-blue-900 dark:from-blue-950/70 dark:to-slate-950">
         <h2 id="continue-heading" className="text-sm font-semibold uppercase tracking-wider text-blue-800 dark:text-blue-200">
-          {next ? (outline.doneCount === 0 ? "Start here" : "Continue where you left off") : "All lessons complete"}
+          {next ? (progress.study?.lastLocation ? "Continue where you left off" : "Next unread lesson") : "All lessons read"}
         </h2>
         {next ? (
           <>
@@ -45,9 +47,9 @@ export function CourseOverview({ course, meta, progress, firstName, teamLicence 
               {next.readingMinutes ? ` · about ${formatMinutes(next.readingMinutes)}` : ""}
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <Link href={`${course.homeRoute}/chapters/${next.key}`} className={primaryBtn}>
+              <Link href={`${course.homeRoute}/chapters/${next.key}${progress.study?.lastLocation?.chapterKey === next.key && progress.study.lastLocation.anchor ? `#${encodeURIComponent(progress.study.lastLocation.anchor)}` : ""}`} className={primaryBtn}>
                 <BookOpen aria-hidden="true" className="h-4 w-4" />
-                {outline.doneCount === 0 ? "Start lesson 1" : `Continue with lesson ${next.number}`}
+                {progress.study?.lastLocation ? `Continue lesson ${next.number}` : `Start lesson ${next.number}`}
               </Link>
             </div>
           </>
@@ -69,10 +71,10 @@ export function CourseOverview({ course, meta, progress, firstName, teamLicence 
         <h2 id="glance-heading" className="text-xl font-bold text-slate-900 dark:text-white">Your progress at a glance</h2>
         <dl className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {[
-            { label: "Lessons complete", value: `${outline.doneCount} of ${outline.total}`, note: `${outline.percent}% of the course` },
-            { label: "Best score, Mock Exam A", value: pct(practice.bestMock.A), note: `${mockTotal} questions, timed` },
-            { label: "Best score, Mock Exam B", value: pct(practice.bestMock.B), note: `${mockTotal} questions, timed` },
-            { label: "Flashcards you know", value: `${practice.cardsKnown} of ${meta.flashcardCount}`, note: "Marked “I knew it”" },
+            { label: "Lessons marked read", value: `${outline.doneCount} of ${outline.total}`, note: "Reading progress; practice is tracked separately" },
+            { label: "Best recent practice score, Mock A", value: pct(practice.bestMock.A), note: "From the latest 60 summaries; includes repeats and all timing settings" },
+            { label: "Best recent practice score, Mock B", value: pct(practice.bestMock.B), note: "From the latest 60 summaries; includes repeats and all timing settings" },
+            { label: "Flashcards recalled", value: `${practice.cardsKnown} of ${meta.flashcardCount}`, note: "Keep revisiting cards after a delay" },
           ].map((t) => (
             <div key={t.label} className="rounded-xl border border-slate-200 p-4 dark:border-slate-800">
               <dt className="text-sm font-medium text-slate-700 dark:text-slate-300">{t.label}</dt>
@@ -107,6 +109,9 @@ export function CourseOverview({ course, meta, progress, firstName, teamLicence 
           ))}
         </ul>
       </section>
+
+      {course.slug === "was-crash-course" ? <p className="mt-6 rounded-lg border border-slate-300 p-4 text-sm dark:border-slate-700">WAS requires documented practical accessibility experience. Course activities help you practise; they do not replace IAAP’s eligibility requirements. <a href="https://www.accessibilityassociation.org/was-exam" className="font-medium text-blue-800 underline dark:text-blue-300">Check IAAP’s current eligibility guidance</a>.</p> : null}
+      <StudyPlan key={`${userId}:${course.slug}`} slug={course.slug} userId={userId} meta={meta} progress={progress} />
 
       <section aria-labelledby="curriculum-heading" className="mt-10">
         <h2 id="curriculum-heading" className="text-xl font-bold text-slate-900 dark:text-white">Curriculum</h2>

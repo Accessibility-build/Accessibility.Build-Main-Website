@@ -33,11 +33,11 @@ const CALLOUT: Record<string, { label: string; cls: string; icon: LucideIcon; ic
   today: { label: "Since the Body of Knowledge was written", icon: CalendarClock, cls: "border-purple-300 bg-purple-50 dark:border-purple-800 dark:bg-purple-950/60", iconCls: "text-purple-700 dark:text-purple-300" },
 }
 
-export function ChapterBlocks({ blocks, idPrefix }: { blocks: CourseBlock[]; idPrefix: string }) {
+export function ChapterBlocks({ blocks, idPrefix, startIndex = 0 }: { blocks: CourseBlock[]; idPrefix: string; startIndex?: number }) {
   return (
     <div className="space-y-5 text-[1.0625rem] leading-[1.75] text-slate-800 dark:text-slate-200">
       {blocks.map((b, i) => {
-        const id = `${idPrefix}-${i}`
+        const id = `${idPrefix}-${i + startIndex}`
         switch (b.type) {
           case "p":
             return <p key={i}><Inline text={b.text} /></p>

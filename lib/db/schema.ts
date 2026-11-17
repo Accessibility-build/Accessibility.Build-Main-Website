@@ -766,6 +766,18 @@ export const courseProgress = pgTable('course_progress', {
 export type CourseLicence = typeof courseLicences.$inferSelect
 export type CourseSeat = typeof courseSeats.$inferSelect
 
+// Immutable answer snapshots keep a completed review independent of later course edits.
+export const courseAttempts = pgTable('course_attempts', {
+  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  courseSlug: text('course_slug').notNull(),
+  id: text('id').notNull(),
+  data: jsonb('data').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (t) => ({
+  pk: primaryKey({ columns: [t.userId, t.courseSlug, t.id] }),
+  ownerIdx: index('course_attempts_owner_idx').on(t.userId, t.courseSlug, t.createdAt),
+}))
+
 // ── Dodo Payments (migration 0019) ──
 export const dodoWebhookEvents = pgTable('dodo_webhook_events', {
   eventId: text('event_id').primaryKey(),

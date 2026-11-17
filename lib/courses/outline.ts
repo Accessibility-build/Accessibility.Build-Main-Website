@@ -33,7 +33,7 @@ export function buildOutline(meta: CourseMeta, progress: CourseProgressData): Co
     total,
     doneCount,
     percent: total ? Math.round((doneCount / total) * 100) : 0,
-    next: meta.chapters.find((c) => !done.has(c.key)) ?? null,
+    next: meta.chapters.find((c) => c.key === progress.study?.lastLocation?.chapterKey) ?? meta.chapters.find((c) => !done.has(c.key)) ?? null,
     totalMinutes: meta.chapters.reduce((n, c) => n + (c.readingMinutes ?? 0), 0),
   }
 }
@@ -57,8 +57,8 @@ export function lessonHeadings(blocks: CourseBlock[], idPrefix: string): Array<{
 }
 
 /** Practice sections a lesson maps to, from its outline reference (for example "I.C, I.F" or "I.BC.6"). */
-export function lessonSections(outlineRef: string, meta: CourseMeta): Array<{ ref: string; title: string }> {
-  const refs = outlineRef.match(/\b(?:I{1,3})\.[A-Z]{1,2}(?:\.\d{1,2})?\b/g) ?? []
+export function lessonSections(outlineRef: string | string[], meta: CourseMeta): Array<{ ref: string; title: string }> {
+  const refs = Array.isArray(outlineRef) ? outlineRef : outlineRef.match(/\b(?:I{1,3})\.[A-Z]{1,2}(?:\.\d{1,2})?\b/g) ?? []
   const found = new Map<string, string>()
   for (const r of refs) {
     const match = meta.sections

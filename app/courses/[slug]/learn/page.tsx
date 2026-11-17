@@ -32,5 +32,5 @@ export default async function CourseHomePage({ params }: { params: Promise<{ slu
   }
   const progress = await getCourseProgress(access.viewer.userId, slug)
   const teamLicence = access.ownedLicences.find((l) => l.licenceType === "team")
-  return <CourseOverview course={course} meta={meta} progress={progress} firstName={access.viewer.firstName ?? null} teamLicence={teamLicence ? { seats: teamLicence.seats } : null} />
+  return <CourseOverview course={course} meta={meta} progress={progress} userId={access.viewer.userId} firstName={access.viewer.firstName ?? null} teamLicence={teamLicence ? { seats: teamLicence.seats } : null} />
 }
