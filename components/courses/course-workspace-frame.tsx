@@ -14,7 +14,7 @@ interface WorkspaceFrameProps {
   children: ReactNode
 }
 
-const control = "inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center gap-2 rounded-md px-3 text-sm font-semibold text-slate-700 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-inset dark:text-slate-200 dark:hover:bg-slate-800"
+const control = "inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-500 bg-white px-3 text-sm font-semibold text-slate-700 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300 focus-visible:ring-offset-2 dark:border-slate-500 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950"
 
 /** Interactive frame only; the course outline and lesson content stay server-rendered. */
 export function CourseWorkspaceFrame({ homeRoute, header, sections, outline, mobileOutline, children }: WorkspaceFrameProps) {
@@ -84,7 +84,7 @@ export function CourseWorkspaceFrame({ homeRoute, header, sections, outline, mob
       <SkipLink targetId="course-content">Skip to course content</SkipLink>
       <header className="border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
         {header}
-        <div className="flex min-w-0 flex-wrap items-center gap-x-2 border-t border-slate-100 px-3 dark:border-slate-800 sm:px-4">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2 border-t border-slate-100 px-3 py-2 dark:border-slate-800 sm:px-4">
           <button
             ref={desktopToggle}
             type="button"
@@ -93,7 +93,7 @@ export function CourseWorkspaceFrame({ homeRoute, header, sections, outline, mob
             onClick={() => changeDesktopOutline(!desktopExpanded)}
             className={cn(control, "hidden lg:inline-flex")}
           >
-            {desktopExpanded ? <PanelLeftClose aria-hidden="true" className="h-4 w-4" /> : <PanelLeftOpen aria-hidden="true" className="h-4 w-4" />}
+            {desktopExpanded ? <PanelLeftClose aria-hidden="true" focusable="false" strokeWidth={1.75} className="h-5 w-5" /> : <PanelLeftOpen aria-hidden="true" focusable="false" strokeWidth={1.75} className="h-5 w-5" />}
             {desktopExpanded ? "Hide outline" : "Show outline"}
           </button>
           <button
@@ -104,9 +104,9 @@ export function CourseWorkspaceFrame({ homeRoute, header, sections, outline, mob
             onClick={() => setMobileExpanded((expanded) => !expanded)}
             className={cn(control, "lg:hidden")}
           >
-            <PanelLeftOpen aria-hidden="true" className="h-4 w-4" />
+            {mobileExpanded ? <PanelLeftClose aria-hidden="true" focusable="false" strokeWidth={1.75} className="h-5 w-5" /> : <PanelLeftOpen aria-hidden="true" focusable="false" strokeWidth={1.75} className="h-5 w-5" />}
             Course outline
-            <ChevronDown aria-hidden="true" className={cn("h-4 w-4", mobileExpanded && "rotate-180")} />
+            <ChevronDown aria-hidden="true" focusable="false" strokeWidth={1.75} className={cn("h-4 w-4", mobileExpanded && "rotate-180")} />
           </button>
           {sections}
         </div>
@@ -121,7 +121,7 @@ export function CourseWorkspaceFrame({ homeRoute, header, sections, outline, mob
       >
         <div className="flex justify-end pt-2">
           <button type="button" onClick={closeMobile} className={control}>
-            <X aria-hidden="true" className="h-4 w-4" />Close outline
+            <X aria-hidden="true" focusable="false" strokeWidth={1.75} className="h-4 w-4" />Close outline
           </button>
         </div>
         {mobileOutline}
