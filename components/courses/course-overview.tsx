@@ -31,7 +31,7 @@ export function CourseOverview({ course, meta, progress, firstName, teamLicence,
       <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl">
         {firstName ? `${progress.study?.lastLocation || outline.doneCount ? "Welcome back" : "Welcome"}, ${firstName}` : `Welcome to the ${course.title}`}
       </h1>
-      <p className="mt-3 max-w-3xl text-lg text-slate-700 dark:text-slate-300">
+      <p className="mt-3 text-lg text-slate-700 dark:text-slate-300">
         {outline.total} lessons{outline.totalMinutes ? ` (about ${formatMinutes(outline.totalMinutes)} of reading)` : ""}, {meta.questionCount} questions including two {mockTotal}-question mock exams, {meta.flashcardCount} flashcards{meta.activityCount ? ` and ${meta.activityCount} guided cases and labs` : ""}. Edition {meta.edition}.
       </p>
 
@@ -137,7 +137,7 @@ export function CourseOverview({ course, meta, progress, firstName, teamLicence,
                         {l.done
                           ? <CheckCircle2 aria-hidden="true" className="h-5 w-5 shrink-0 text-emerald-700 dark:text-emerald-400" />
                           : <Circle aria-hidden="true" className="h-5 w-5 shrink-0 text-slate-500 dark:text-slate-400" />}
-                        <span className="flex-1">
+                        <span className="min-w-0 flex-1 break-words">
                           <span className="font-medium">Lesson {l.number}: {l.title}</span>
                           {l.bokPages ? <span className="block text-sm text-slate-600 dark:text-slate-400">Body of Knowledge pages {l.bokPages}</span> : null}
                         </span>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import { CourseOverview } from "@/components/courses/course-overview"
 import { requireCourseAccess } from "@/lib/courses/access"
@@ -22,8 +23,9 @@ export default async function CourseHomePage({ params }: { params: Promise<{ slu
   const meta = await getCourseMeta(slug)
   if (!meta) {
     return (
-      <div className="min-h-screen bg-white pt-12 dark:bg-slate-950">
-        <div className="mx-auto max-w-3xl px-4 py-16">
+      <div className="min-h-dvh w-full bg-white dark:bg-slate-950">
+        <div className="px-4 py-8 sm:px-6">
+          <Link href="/courses" className="mb-6 inline-flex min-h-[44px] items-center rounded px-2 font-medium text-blue-800 underline focus-visible:ring-2 focus-visible:ring-blue-600 dark:text-blue-300">Exit course</Link>
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white">{course.title}</h1>
           <p className="mt-4 text-slate-700 dark:text-slate-300">The course content is being updated. Please try again in a few minutes.</p>
         </div>

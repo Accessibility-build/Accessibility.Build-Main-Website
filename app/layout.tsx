@@ -19,6 +19,8 @@ import { CurbAssistant } from "@/components/assistant/curb-assistant"
 import { CurbSkipLink } from "@/components/assistant/curb-skip-link"
 import { PostHogProvider } from "@/components/analytics/posthog-provider"
 import { company, founderCredentialSchema } from "@/lib/company"
+import { SiteOnly } from "@/components/site-only"
+import { SiteDocumentEnhancements } from "@/components/site-document-enhancements"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -340,14 +342,16 @@ export default function RootLayout({
             {/* Loads PostHog (and identifies the user) only after consent. */}
             <PostHogProvider />
             <SkipLink />
-            <CurbSkipLink />
+            <SiteOnly><CurbSkipLink /></SiteOnly>
             <FocusNotObscured />
             <AdminLayoutWrapper>
               {children}
             </AdminLayoutWrapper>
-            <Toaster />
-            <AnalyticsConsent />
-            <CurbAssistant />
+            <SiteOnly>
+              <Toaster />
+              <AnalyticsConsent />
+              <CurbAssistant />
+            </SiteOnly>
             <Analytics />
             <SpeedInsights />
           </ThemeProvider>
@@ -357,11 +361,7 @@ export default function RootLayout({
               __html: JSON.stringify(structuredData),
             }}
           />
-          <script
-            async
-            src="https://docaccessible.com/site/v1.js"
-            data-site-key="site_pk_peMrEUBgXgeHh-6UXiSc2AQehswRWGUR"
-          />
+          <SiteDocumentEnhancements />
         </body>
       </html>
     </ClerkProvider>

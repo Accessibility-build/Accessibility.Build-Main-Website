@@ -12,11 +12,11 @@ export function StudyPlan({ slug, userId, meta, progress }: { slug: string; user
   const plan = studyRecommendations(meta, { ...progress, study: state.study })
   const route = `/courses/${slug}/learn`
   const change = (patch: Partial<typeof settings>) => state.change({ kind: "settings", value: { ...settings, ...patch } })
-  return <section aria-labelledby="study-plan-heading" className="mt-8 rounded-xl border border-slate-300 p-5 dark:border-slate-700">
+  return <section aria-labelledby="study-plan-heading" className="mt-8 min-w-0 rounded-xl border border-slate-300 p-5 [overflow-wrap:anywhere] dark:border-slate-700">
     <h2 id="study-plan-heading" className="text-xl font-semibold">Your next study session</h2>
     <p className="mt-2 text-slate-700 dark:text-slate-300">Choose a pace you can sustain. Recommendations use your recent practice and saved work; they do not predict an exam result.</p>
     <StudySaveStatus state={state} />
-    <fieldset disabled={state.recovery} className="mt-4 flex flex-wrap gap-4">
+    <fieldset disabled={state.recovery} className="mt-4 flex min-w-0 flex-wrap gap-4 [&_label]:min-w-0 [&_input]:max-w-full [&_select]:max-w-full">
       <legend className="sr-only">Optional study preferences</legend>
       <label className="block text-sm font-medium">Time per day<select value={settings.minutesPerDay} onChange={(e) => change({ minutesPerDay: Number(e.target.value) })} className="mt-1 block min-h-[44px] rounded border border-slate-400 bg-white px-3 dark:bg-slate-950">{[10, 15, 25, 45, 60, 90, 120].map((n) => <option key={n} value={n}>{n} minutes</option>)}</select></label>
       <label className="block text-sm font-medium">Your experience<select value={settings.experience ?? "some"} onChange={(e) => change({ experience: e.target.value as typeof settings.experience })} className="mt-1 block min-h-[44px] rounded border border-slate-400 bg-white px-3 dark:bg-slate-950"><option value="new">New to this material</option><option value="some">Some experience</option><option value="experienced">Experienced; filling gaps</option></select></label>

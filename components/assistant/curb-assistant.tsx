@@ -7,6 +7,7 @@ import posthog from "posthog-js"
 import { ArrowUp, MessageCircle, RotateCcw, Square, ThumbsDown, ThumbsUp, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/logo"
+import { isCourseLearningPath } from "@/lib/courses/routes"
 import {
   ASSISTANT_ENDPOINT,
   ASSISTANT_EVENTS_ENDPOINT,
@@ -190,7 +191,9 @@ export function CurbAssistant() {
   const returnFocusRef = useRef(false)
   const hydratedRef = useRef(false)
 
-  const hidden = matchesPrefix(pathname, HIDDEN_ROUTE_PREFIXES) || /^\/courses\/[^/]+\/learn(?:\/|$)/.test(pathname)
+  const hidden = matchesPrefix(pathname, HIDDEN_ROUTE_PREFIXES) || isCourseLearningPath(pathname)
+
+  useEffect(() => () => { abortRef.current?.abort() }, [])
 
   useEffect(() => {
     const stored = readStored()

@@ -39,7 +39,7 @@ export function CourseLibrary({ slug, meta, progress }: { slug: string; meta: Co
     const url = URL.createObjectURL(new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" }))
     const link = document.createElement("a"); link.href = url; link.download = `${slug}-learning-record.txt`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
-  return <div className="space-y-10">
+  return <div className="min-w-0 w-full space-y-10 [overflow-wrap:anywhere]">
     <section aria-labelledby="course-search-heading">
       <h1 id="course-search-heading" className="text-3xl font-bold">Search and saved work</h1>
       <p className="mt-3 text-slate-700 dark:text-slate-300">Find an explanation, revisit a source, or continue your notes and practical work. Mock exam answers are excluded from search.</p>
@@ -53,7 +53,7 @@ export function CourseLibrary({ slug, meta, progress }: { slug: string; meta: Co
     </section>
     <section aria-labelledby="casebook-heading"><h2 id="casebook-heading" className="text-xl font-semibold">Your accessibility casebook</h2><p className="mt-2 text-slate-700 dark:text-slate-300">Apply the course to a fictional public service. Decisions, reflections and repair evidence build a personal learning portfolio.</p><ul className="mt-4 space-y-3">{activities.map((chapter) => {
       const complete = chapter.activityIds?.filter((id) => progress.study?.activities?.[id]?.completedAt && (!chapter.activityVersions?.[id] || progress.study.activities[id].version === chapter.activityVersions[id])).length ?? 0
-      return <li key={chapter.key}><Link href={`${route}/chapters/${chapter.key}#apply-lesson-heading`} className={cn(studyButton, "justify-between gap-4 w-full text-left")}><span>{chapter.title}</span><span className="shrink-0 text-xs">{complete}/{chapter.activityIds?.length} completed</span></Link></li>
+      return <li key={chapter.key}><Link href={`${route}/chapters/${chapter.key}#apply-lesson-heading`} className={cn(studyButton, "w-full flex-wrap justify-between gap-2 text-left")}><span className="min-w-0">{chapter.title}</span><span className="shrink-0 text-xs">{complete}/{chapter.activityIds?.length} completed</span></Link></li>
     })}</ul></section>
     <section aria-labelledby="objectives-heading"><h2 id="objectives-heading" className="text-xl font-semibold">Find a syllabus objective</h2><p className="mt-2 text-sm text-slate-600 dark:text-slate-400">A reading checkmark is not proof of mastery. Use the linked lessons, practice and activities together.</p><ul className="mt-4 space-y-3">{meta.sections.map((section) => {
       const lessons = meta.chapters.filter((chapter) => lessonSections(chapter.objectiveRefs ?? chapter.outlineRef, meta).some((entry) => entry.ref === section.ref))

@@ -44,7 +44,7 @@ export default async function PracticePage({
       view={view === "flashcards" ? "flashcards" : "practice"}
       hasTeam={access.ownedLicences.some((l) => l.licenceType === "team")}
     >
-      <div className="max-w-4xl">
+      <div className="min-w-0 w-full">
         <PracticeApp
           slug={slug}
           userId={access.viewer.userId}

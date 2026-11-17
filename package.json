@@ -20,7 +20,7 @@
         "test:clerk:webhooks": "node scripts/test-clerk-webhooks.mjs",
         "test:e2e:clerk": "playwright test --config=playwright.config.ts",
         "test:clerk": "npm run test:clerk:api && npm run test:clerk:webhooks && npm run test:e2e:clerk",
-        "test:courses": "node scripts/courses/test-progress.mjs && node scripts/courses/test-study-progress.mjs && node scripts/courses/test-practice.mjs && node scripts/courses/test-activities.mjs && node scripts/courses/test-activity-ui.mjs && node scripts/courses/test-course-api.mjs && node scripts/courses/test-learning-ui.mjs"
+        "test:courses": "node scripts/courses/test-progress.mjs && node scripts/courses/test-study-progress.mjs && node scripts/courses/test-practice.mjs && node scripts/courses/test-activities.mjs && node scripts/courses/test-activity-ui.mjs && node scripts/courses/test-course-api.mjs && node scripts/courses/test-learning-ui.mjs && node scripts/courses/test-course-shell.mjs && node scripts/courses/test-course-chrome.mjs"
     },
     "dependencies": {
         "@ai-sdk/anthropic": "^2.0.9",
