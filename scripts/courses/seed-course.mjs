@@ -8,6 +8,7 @@
 // rows for keys no longer present, inside one transaction.
 import fs from "node:fs"
 import postgres from "postgres"
+import { blockWords, courseManifest, validateCourse } from "./course-content.mjs"
 
 const args = process.argv.slice(2)
 const file = args.find((a) => !a.startsWith("--"))
@@ -17,12 +18,14 @@ if (!file) {
   process.exit(1)
 }
 const course = JSON.parse(fs.readFileSync(file, "utf8"))
+const errors = validateCourse(course)
+if (errors.length) throw new Error(`Course validation failed:\n${errors.join("\n")}`)
 const slug = course.slug
 const edition = String(course.edition)
 const rows = []
 // Reading time for the course outline: about 200 words a minute, at least one minute.
-const words = (v) => (typeof v === "string" ? v.split(/\s+/).filter(Boolean).length : Array.isArray(v) ? v.reduce((n, x) => n + words(x), 0) : v && typeof v === "object" ? Object.values(v).reduce((n, x) => n + words(x), 0) : 0)
-const index = course.chapters.map(({ blocks, ...rest }) => ({ ...rest, readingMinutes: Math.max(1, Math.round(words(blocks) / 200)) }))
+const index = course.chapters.map(({ blocks, activities, ...rest }) => ({ ...rest, readingMinutes: Math.max(1, Math.round(blocks.reduce((count, block) => count + blockWords(block), 0) / 200)), activityIds: (activities ?? []).map((activity) => activity.id), activityVersions: Object.fromEntries((activities ?? []).map((activity) => [activity.id, activity.version])), activityCount: activities?.length ?? 0 }))
+const manifest = courseManifest(course)
 rows.push({
   kind: "meta",
   key: "meta",
@@ -36,11 +39,16 @@ rows.push({
     sections: course.sections,
     questionCount: course.questions.length,
     flashcardCount: course.flashcards.length,
+    drillQuestionIds: course.questions.filter((question) => question.set === "drill").map((question) => question.id),
+    flashcardIds: course.flashcards.map((card) => card.id).filter(Boolean),
+    activityCount: manifest.activityCount,
+    releaseNotes: course.releaseNotes ?? [],
+    manifest,
   },
 })
 course.chapters.forEach((c, i) => rows.push({ kind: "chapter", key: c.key, position: i, data: c }))
 course.questions.forEach((q, i) => rows.push({ kind: "question", key: q.id, position: i, data: q }))
-course.flashcards.forEach((f, i) => rows.push({ kind: "flashcard", key: String(i), position: i, data: f }))
+course.flashcards.forEach((f, i) => rows.push({ kind: "flashcard", key: f.id ?? String(i), position: i, data: f }))
 
 // Sanity checks before touching the database
 const keys = new Set()
@@ -49,11 +57,10 @@ for (const r of rows) {
   if (keys.has(k)) throw new Error(`duplicate ${k}`)
   keys.add(k)
 }
-for (const q of course.questions) {
-  if (!Array.isArray(q.options) || q.options.length !== 4 || q.answer < 0 || q.answer > 3) throw new Error(`bad question ${q.id}`)
-}
 const counts = rows.reduce((m, r) => ((m[r.kind] = (m[r.kind] || 0) + 1), m), {})
 console.log(`course ${slug} edition ${edition}:`, counts)
+const manifestPath = args.find((a) => a.startsWith("--manifest="))?.slice("--manifest=".length)
+if (manifestPath) fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n")
 if (dry) process.exit(0)
 
 const sql = postgres(process.env.DATABASE_URL, { max: 1, ssl: "require" })

@@ -1,3 +1,4 @@
+import type { PracticeStart } from "@/lib/courses/practice-types"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { CourseShell } from "@/components/courses/course-shell"
@@ -20,7 +21,7 @@ export default async function PracticePage({
   searchParams,
 }: {
   params: Promise<{ slug: string }>
-  searchParams: Promise<{ view?: string; topic?: string }>
+  searchParams: Promise<{ view?: string; topic?: string; attempt?: string; session?: string; mock?: string }>
 }) {
   const { slug } = await params
   const sp = await searchParams
@@ -31,7 +32,7 @@ export default async function PracticePage({
   const [meta, bank, progress] = await Promise.all([getCourseMeta(slug), getCourseBank(slug), getCourseProgress(access.viewer.userId, slug)])
   if (!meta) notFound()
 
-  const view = sp.view === "flashcards" ? "flashcards" : sp.view === "topics" ? "topics" : undefined
+  const view: PracticeStart["view"] = sp.view === "flashcards" ? "flashcards" : sp.view === "topics" ? "topics" : sp.view === "review" ? "review" : sp.view === "history" ? "history" : undefined
   const topics = (sp.topic ?? "").split(",").map((t) => t.trim()).filter((t) => meta.sections.some((s) => s.ref === t))
   const outline = buildOutline(meta, progress)
 
@@ -46,13 +47,15 @@ export default async function PracticePage({
       <div className="max-w-4xl">
         <PracticeApp
           slug={slug}
+          userId={access.viewer.userId}
+          edition={meta.edition}
           courseTitle={course.title}
           exam={course.exam}
           sections={meta.sections}
           questions={bank.questions}
           flashcards={bank.flashcards}
           initial={progress}
-          start={{ view, topics }}
+          start={{ view, topics, attempt: sp.attempt, session: sp.session, mock: sp.mock === "A" || sp.mock === "B" ? sp.mock : undefined }}
         />
       </div>
     </CourseShell>

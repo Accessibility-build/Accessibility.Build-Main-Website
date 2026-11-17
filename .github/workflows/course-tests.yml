@@ -1,0 +1,54 @@
+name: Course Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: course-tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PUPPETEER_SKIP_DOWNLOAD: 'true'
+  NEXT_TELEMETRY_DISABLED: '1'
+
+jobs:
+  courses:
+    name: Course structural and type checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies without downloading a browser
+        run: npm ci
+
+      - name: Run course structural and DOM tests
+        run: npm run test:courses
+
+      - name: Check TypeScript
+        run: npm run type-check
+
+      - name: Record coverage scope
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo '## Course checks'
+            echo ''
+            echo 'This job runs course structural, Node/DOM and TypeScript checks with synthetic fixtures and mocked external services.'
+            echo 'It does not use account credentials, connect to a production database, launch a browser, or claim authenticated Clerk end-to-end coverage.'
+            echo 'See the individual steps above for pass/fail results.'
+          } >> "$GITHUB_STEP_SUMMARY"

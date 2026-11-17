@@ -1,23 +1,28 @@
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ClipboardCheck, Clock } from "lucide-react"
-import { ChapterBlocks } from "@/components/courses/chapter-blocks"
+import { LessonReading } from "@/components/courses/lesson-reading"
+import { LessonWorkspace } from "@/components/courses/lesson-workspace"
+import { CourseSources } from "@/components/courses/course-sources"
+import { CourseTutor } from "@/components/courses/course-tutor"
 import { CourseShell } from "@/components/courses/course-shell"
 import { MarkDoneButton } from "@/components/courses/mark-done-button"
 import type { CourseConfig } from "@/lib/courses/config"
 import { buildOutline, formatMinutes, lessonHeadings, lessonSections } from "@/lib/courses/outline"
-import type { CourseChapter, CourseMeta, CourseProgressData } from "@/lib/courses/types"
+import type { CourseChapter, CourseMeta, CourseProgressData, CourseQuestion } from "@/lib/courses/types"
 import { cn } from "@/lib/utils"
 
 const ring = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
 
-export function LessonView({ slug, lessonKey: key, course, meta, chapter, progress, hasTeam }: {
+export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter, progress, hasTeam, questions }: {
   slug: string
+  userId: string
   lessonKey: string
   course: CourseConfig
   meta: CourseMeta
   chapter: CourseChapter
   progress: CourseProgressData
   hasTeam: boolean
+  questions: CourseQuestion[]
 }) {
   const outline = buildOutline(meta, progress)
   const i = meta.chapters.findIndex((c) => c.key === key)
@@ -27,7 +32,7 @@ export function LessonView({ slug, lessonKey: key, course, meta, chapter, progre
   const done = (progress.chaptersDone ?? []).includes(key)
   const idPrefix = `c${chapter.number}`
   const headings = lessonHeadings(chapter.blocks, idPrefix)
-  const sections = chapter.outlineRef ? lessonSections(chapter.outlineRef, meta) : []
+  const sections = lessonSections(chapter.objectiveRefs ?? chapter.outlineRef, meta)
 
   const toc = headings.length > 1 ? (
     <ol className="space-y-1 text-sm" role="list">
@@ -94,9 +99,15 @@ export function LessonView({ slug, lessonKey: key, course, meta, chapter, progre
         </details>
       ) : null}
 
+      {chapter.outcomes?.length ? <section aria-labelledby="lesson-outcomes" className="mt-6 max-w-[72ch] rounded-lg border border-slate-300 p-5 dark:border-slate-700">
+        <h2 id="lesson-outcomes" className="font-semibold">After this lesson, you should be able to</h2>
+        <ul className="mt-2 list-disc space-y-1 pl-5">{chapter.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}</ul>
+      </section> : null}
+
       <div className="mt-8 xl:grid xl:grid-cols-[minmax(0,1fr)_13rem] xl:gap-10">
         <article className="min-w-0 max-w-[72ch]">
-          <ChapterBlocks blocks={chapter.blocks} idPrefix={idPrefix} />
+          <LessonReading key={`${chapter.key}:${meta.edition}`} blocks={chapter.blocks} idPrefix={idPrefix} />
+          <CourseSources sources={chapter.sources} slug={slug} item={chapter.key} />
         </article>
         {toc ? (
           <div className="hidden xl:block">
@@ -134,6 +145,9 @@ export function LessonView({ slug, lessonKey: key, course, meta, chapter, progre
           </ul>
         ) : null}
       </section>
+
+      <LessonWorkspace key={`${userId}:${slug}:${chapter.key}:${meta.edition}`} slug={slug} userId={userId} chapter={chapter} edition={meta.edition} initial={progress.study} questions={questions} />
+      <CourseTutor key={`${slug}:${chapter.key}`} slug={slug} chapterKey={chapter.key} />
 
       <nav aria-label="Lesson navigation" className="mt-8 grid max-w-[72ch] gap-4 sm:grid-cols-2">
         {prev ? (

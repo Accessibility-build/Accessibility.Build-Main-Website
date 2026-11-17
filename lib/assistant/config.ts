@@ -46,6 +46,7 @@ export const HIDDEN_ROUTE_PREFIXES = ["/embed", "/admin"]
  * still works there, but it does not send the page's text with the question.
  */
 export const PRIVATE_ROUTE_PREFIXES = [
+  "/courses",
   "/dashboard",
   "/billing",
   "/account",

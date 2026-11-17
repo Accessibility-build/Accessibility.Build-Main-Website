@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getCourseAccess } from "@/lib/courses/access"
 import { getCourse } from "@/lib/courses/config"
-import { getCourseProgress, savePracticeState, setChapterDone } from "@/lib/courses/progress"
+import { getCourseProgress, savePracticeState, saveStudyState, setChapterDone, ProgressConflictError, ProgressValidationError } from "@/lib/courses/progress"
+import { MAX_PROGRESS_REQUEST_BYTES } from "@/lib/courses/progress-contract"
+import { getCourseMeta } from "@/lib/courses/content"
 
 export const dynamic = "force-dynamic"
 
@@ -24,17 +26,30 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
   const { slug } = await params
   const g = await gate(slug)
   if ("error" in g) return g.error
-  const body = await req.json().catch(() => null)
+  const headers = { "Cache-Control": "no-store" }
   try {
-    if (body?.op === "chapterDone" && typeof body.key === "string") {
-      await setChapterDone(g.userId, slug, body.key, Boolean(body.done))
+    if (Number(req.headers.get("content-length")) > MAX_PROGRESS_REQUEST_BYTES) return NextResponse.json({ error: "Progress is too large to save" }, { status: 413, headers })
+    const raw = await req.text()
+    if (Buffer.byteLength(raw, "utf8") > MAX_PROGRESS_REQUEST_BYTES) return NextResponse.json({ error: "Progress is too large to save" }, { status: 413, headers })
+    let body: Record<string, unknown>
+    try { body = JSON.parse(raw) } catch { return NextResponse.json({ error: "Invalid JSON" }, { status: 400, headers }) }
+    if (!body || typeof body !== "object" || Array.isArray(body)) return NextResponse.json({ error: "Bad request" }, { status: 400, headers })
+    if (body.op === "chapterDone" && typeof body.key === "string" && typeof body.done === "boolean") {
+      const meta = await getCourseMeta(slug)
+      if (!meta?.chapters.some((chapter) => chapter.key === body.key)) return NextResponse.json({ error: "Lesson not found" }, { status: 404, headers })
+      const progress = await setChapterDone(g.userId, slug, body.key, body.done)
+      return NextResponse.json({ ok: true, progress }, { headers })
     } else if (body?.op === "practice" && body.state && typeof body.state === "object") {
-      await savePracticeState(g.userId, slug, body.state)
+      return NextResponse.json(await savePracticeState(g.userId, slug, body.state, body.baseRevision, body.requestId), { headers })
+    } else if (body?.op === "study") {
+      return NextResponse.json(await saveStudyState(g.userId, slug, body.change, body.requestId), { headers })
     } else {
-      return NextResponse.json({ error: "Bad request" }, { status: 400 })
+      return NextResponse.json({ error: "Bad request" }, { status: 400, headers })
     }
   } catch (e) {
-    return NextResponse.json({ error: e instanceof Error ? e.message : "Could not save" }, { status: 400 })
+    if (e instanceof ProgressConflictError) return NextResponse.json({ error: e.message, code: "PROGRESS_CONFLICT", revision: e.revision, progress: e.progress }, { status: 409, headers })
+    if (e instanceof ProgressValidationError) return NextResponse.json({ error: e.message }, { status: 400, headers })
+    console.error("[courses/progress] Could not persist progress", e instanceof Error ? e.name : "UnknownError")
+    return NextResponse.json({ error: "Progress could not be saved. Your work is kept on this device; please try again." }, { status: 500, headers })
   }
-  return NextResponse.json({ ok: true })
 }

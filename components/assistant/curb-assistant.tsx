@@ -190,7 +190,7 @@ export function CurbAssistant() {
   const returnFocusRef = useRef(false)
   const hydratedRef = useRef(false)
 
-  const hidden = matchesPrefix(pathname, HIDDEN_ROUTE_PREFIXES)
+  const hidden = matchesPrefix(pathname, HIDDEN_ROUTE_PREFIXES) || /^\/courses\/[^/]+\/learn(?:\/|$)/.test(pathname)
 
   useEffect(() => {
     const stored = readStored()

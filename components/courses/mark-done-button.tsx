@@ -23,7 +23,7 @@ export function MarkDoneButton({ slug, chapterKey, initialDone }: { slug: string
       })
       if (!res.ok) throw new Error()
       setDone(next)
-      setMsg(next ? "Lesson marked as complete. Your course progress is updated." : "Lesson marked as not complete.")
+      setMsg(next ? "Lesson marked as read. Practice and activity progress are tracked separately." : "Lesson marked as not yet read.")
       // Re-render the server parts (course outline and progress bar) with the new state.
       router.refresh()
     } catch {
@@ -49,7 +49,7 @@ export function MarkDoneButton({ slug, chapterKey, initialDone }: { slug: string
       >
         {done ? <CheckCircle2 className="h-5 w-5" aria-hidden="true" /> : <Circle className="h-5 w-5" aria-hidden="true" />}
         {/* Constant label: the pressed state carries completion (APG toggle button pattern). */}
-        Lesson complete
+        Lesson read
       </button>
       <p role="status" className="text-sm text-slate-600 dark:text-slate-400">{msg}</p>
     </div>

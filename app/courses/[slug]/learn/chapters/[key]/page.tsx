@@ -3,7 +3,8 @@ import { notFound } from "next/navigation"
 import { LessonView } from "@/components/courses/lesson-view"
 import { requireCourseAccess } from "@/lib/courses/access"
 import { getCourse } from "@/lib/courses/config"
-import { getCourseChapter, getCourseMeta } from "@/lib/courses/content"
+import { getCourseChapter, getCourseMeta, getCourseBank } from "@/lib/courses/content"
+import { lessonSections } from "@/lib/courses/outline"
 import { getCourseProgress } from "@/lib/courses/progress"
 
 export const dynamic = "force-dynamic"
@@ -28,6 +29,10 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
   ])
   if (!meta || !chapter) notFound()
 
+  const refs = new Set(lessonSections(chapter.objectiveRefs ?? chapter.outlineRef, meta).map((section) => section.ref))
+  const bank = refs.size ? await getCourseBank(slug) : { questions: [] }
+  const questions = bank.questions.filter((q) => q.set === "drill" && q.lessonKey === key).slice(0, 3)
+
   const hasTeam = access.ownedLicences.some((l) => l.licenceType === "team")
-  return <LessonView slug={slug} lessonKey={key} course={course} meta={meta} chapter={chapter} progress={progress} hasTeam={hasTeam} />
+  return <LessonView slug={slug} userId={access.viewer.userId} lessonKey={key} course={course} meta={meta} chapter={chapter} progress={progress} hasTeam={hasTeam} questions={questions} />
 }

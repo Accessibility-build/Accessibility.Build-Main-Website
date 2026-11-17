@@ -148,6 +148,7 @@ for (const file of walk(BUILD_DIR).sort()) {
   if (/<meta name="robots" content="[^"]*noindex/i.test(html)) continue
   const route = routeFor(file, html)
   if (EXCLUDED_PREFIXES.some((p) => route === p || route.startsWith(`${p}/`))) continue
+  if (/^\/courses\/[^/]+\/learn(?:\/|$)/.test(route)) continue
   if (seenRoutes.has(route)) continue
   seenRoutes.add(route)
 

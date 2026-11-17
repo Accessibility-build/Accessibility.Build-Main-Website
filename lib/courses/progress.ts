@@ -1,10 +1,11 @@
 import "server-only"
-import { and, eq, sql } from "drizzle-orm"
+import { and, eq } from "drizzle-orm"
 import { db } from "@/lib/db"
-import { courseProgress } from "@/lib/db/schema"
-import type { CourseProgressData } from "./types"
+import { courseProgress, courseContent } from "@/lib/db/schema"
+import type { CourseProgressData, CourseQuestion } from "./types"
+import { applyChapterChange, applyPracticeChange, applyStudyChange, publicProgress, validateStudyChange } from "./progress-model"
 
-const MAX_BYTES = 256 * 1024
+export { ProgressConflictError, ProgressValidationError } from "./progress-model"
 
 export async function getCourseProgress(userId: string, slug: string): Promise<CourseProgressData> {
   const [row] = await db
@@ -12,39 +13,53 @@ export async function getCourseProgress(userId: string, slug: string): Promise<C
     .from(courseProgress)
     .where(and(eq(courseProgress.userId, userId), eq(courseProgress.courseSlug, slug)))
     .limit(1)
-  return (row?.data as CourseProgressData) ?? {}
+  return publicProgress((row?.data as CourseProgressData) ?? {})
 }
 
-async function save(userId: string, slug: string, data: CourseProgressData) {
-  const json = JSON.stringify(data)
-  if (json.length > MAX_BYTES) throw new Error("Progress data too large")
-  await db
-    .insert(courseProgress)
-    .values({ userId, courseSlug: slug, data, updatedAt: new Date() })
-    .onConflictDoUpdate({
-      target: [courseProgress.userId, courseProgress.courseSlug],
-      set: { data: sql`excluded.data`, updatedAt: new Date() },
-    })
+/**
+ * Create the row before locking it. Concurrent first writes serialize on the unique
+ * key, and every later read/modify/write takes this same row lock. A chapter, note,
+ * or practice update therefore cannot accidentally replace an unrelated change.
+ */
+async function changeProgress<T>(userId: string, slug: string, change: (data: CourseProgressData) => { data: CourseProgressData; value: T }): Promise<T> {
+  return db.transaction(async (tx) => {
+    await tx.insert(courseProgress).values({ userId, courseSlug: slug, data: {} }).onConflictDoNothing({ target: [courseProgress.userId, courseProgress.courseSlug] })
+    const where = and(eq(courseProgress.userId, userId), eq(courseProgress.courseSlug, slug))
+    const [row] = await tx.select({ data: courseProgress.data }).from(courseProgress).where(where).for("update")
+    const result = change((row?.data as CourseProgressData) ?? {})
+    await tx.update(courseProgress).set({ data: result.data, updatedAt: new Date() }).where(where)
+    return result.value
+  })
 }
 
-/** Mark a chapter as done or not done. */
 export async function setChapterDone(userId: string, slug: string, key: string, done: boolean) {
-  const data = await getCourseProgress(userId, slug)
-  const set = new Set(data.chaptersDone ?? [])
-  if (done) set.add(key)
-  else set.delete(key)
-  await save(userId, slug, { ...data, chaptersDone: [...set] })
+  return changeProgress(userId, slug, (current) => {
+    const data = applyChapterChange(current, key, done)
+    return { data, value: publicProgress(data) }
+  })
 }
 
-/** Replace the practice part of the progress (history, missed, flashcards, open session). */
-export async function savePracticeState(userId: string, slug: string, practice: Pick<CourseProgressData, "history" | "missed" | "cards" | "session">) {
-  const data = await getCourseProgress(userId, slug)
-  const clean: CourseProgressData = {
-    ...data,
-    history: Array.isArray(practice.history) ? practice.history.slice(-60) : data.history,
-    missed: practice.missed && typeof practice.missed === "object" ? practice.missed : data.missed,
-    cards: practice.cards && typeof practice.cards === "object" ? practice.cards : data.cards,
-    session: practice.session ?? null,
+/** Compare-and-swap the practice snapshot; never silently overwrite another device. */
+export async function savePracticeState(userId: string, slug: string, practice: unknown, baseRevision: unknown, requestId: unknown) {
+  return changeProgress(userId, slug, (current) => {
+    const { data, revision } = applyPracticeChange(current, practice, baseRevision, requestId)
+    return { data, value: { ok: true as const, revision, progress: publicProgress(data) } }
+  })
+}
+
+/** Study edits merge one item at a time, independently of practice and other notes. */
+export async function saveStudyState(userId: string, slug: string, change: unknown, requestId: unknown) {
+  const validated = validateStudyChange(change)
+  // Inline checks may use drill questions only. Read one entitled-course row,
+  // never the whole bank or a caller-supplied answer key.
+  let question: CourseQuestion | undefined
+  if (validated.kind === "check") {
+    const [row] = await db.select({ data: courseContent.data }).from(courseContent)
+      .where(and(eq(courseContent.courseSlug, slug), eq(courseContent.kind, "question"), eq(courseContent.key, validated.questionId))).limit(1)
+    question = row?.data as CourseQuestion | undefined
   }
-  await save(userId, slug, clean)
+  return changeProgress(userId, slug, (current) => {
+    const { data, revision } = applyStudyChange(current, validated, requestId, new Date().toISOString(), question)
+    return { data, value: { ok: true as const, revision, progress: publicProgress(data) } }
+  })
 }

@@ -1,4 +1,9 @@
 // Shapes of the course data loaded by scripts/courses/seed-course.mjs.
+import type { CourseActivity, CourseSource } from "./activity-types"
+import type { CourseStudyProgress } from "./progress-contract"
+import type { PracticeHistoryEntry, PracticeSession, ReviewSchedule } from "./practice-types"
+
+export type { CourseSource, CourseActivity } from "./activity-types"
 
 export type CourseBlock =
   | { type: "p" | "h2" | "h3"; text: string }
@@ -17,10 +22,17 @@ export interface CourseChapterIndexEntry {
   bokPages: string
   /** Estimated reading time, set by the seed script. */
   readingMinutes?: number
+  objectiveRefs?: string[]
+  outcomes?: string[]
+  activityCount?: number
+  activityIds?: string[]
+  activityVersions?: Record<string, string>
 }
 
 export interface CourseChapter extends CourseChapterIndexEntry {
   blocks: CourseBlock[]
+  activities?: CourseActivity[]
+  sources?: CourseSource[]
 }
 
 export interface CourseSection {
@@ -38,6 +50,12 @@ export interface CourseMeta {
   sections: CourseSection[]
   questionCount: number
   flashcardCount: number
+  activityCount?: number
+  changeCount?: number
+  codeQuestionCount?: number
+  drillQuestionIds?: string[]
+  flashcardIds?: string[]
+  releaseNotes?: string[]
 }
 
 export interface CourseQuestion {
@@ -54,9 +72,21 @@ export interface CourseQuestion {
   answer: number
   exp: string
   page: string
+  version?: string
+  sourceUrl?: string
+  sources?: CourseSource[]
+  lessonKey?: string
+  objectiveRefs?: string[]
 }
 
 export interface CourseFlashcard {
+  id?: string
+  legacyIndex?: number
+  version?: string
+  sourceUrl?: string
+  sources?: CourseSource[]
+  lessonKey?: string
+  objectiveRefs?: string[]
   f: string
   b: string
   ref: string
@@ -65,8 +95,15 @@ export interface CourseFlashcard {
 
 export interface CourseProgressData {
   chaptersDone?: string[]
-  history?: Array<{ title: string; date: string; correct: number; total: number; dom: Record<string, [number, number]> }>
+  history?: PracticeHistoryEntry[]
   missed?: Record<string, number>
   cards?: Record<string, 0 | 1>
-  session?: unknown
+  session?: PracticeSession | null
+  sessions?: Record<string, PracticeSession>
+  practiceRevision?: number
+  study?: CourseStudyProgress
+  edition?: string
+  exposure?: Record<string, number>
+  cardReview?: Record<string, ReviewSchedule>
+  questionReview?: Record<string, ReviewSchedule>
 }

@@ -5,7 +5,7 @@ import { SkipLink } from "@/components/skip-link"
 import { cn } from "@/lib/utils"
 import { formatMinutes, type CourseOutline } from "@/lib/courses/outline"
 
-export type CourseView = "overview" | "lesson" | "practice" | "flashcards" | "team"
+export type CourseView = "overview" | "lesson" | "practice" | "flashcards" | "team" | "library"
 
 interface ShellProps {
   title: string
@@ -30,6 +30,7 @@ export function CourseShell({ title, homeRoute, outline, view, lessonKey, hasTea
     { view: "overview", label: "Overview", href: homeRoute },
     { view: "practice", label: "Practice and mock exams", href: `${homeRoute}/practice` },
     { view: "flashcards", label: "Flashcards", href: `${homeRoute}/practice?view=flashcards` },
+    { view: "library", label: "Search and saved work", href: `${homeRoute}/library` },
   ]
   if (hasTeam) sections.push({ view: "team", label: "Team", href: `${homeRoute}/team` })
 
@@ -47,7 +48,7 @@ export function CourseShell({ title, homeRoute, outline, view, lessonKey, hasTea
             </p>
             <div className="w-full max-w-xs">
               <p id="course-progress-label" className="text-sm text-slate-700 dark:text-slate-300">
-                <span className="font-semibold">Course progress:</span> {outline.doneCount} of {outline.total} lessons ({outline.percent}%)
+                <span className="font-semibold">Reading progress:</span> {outline.doneCount} of {outline.total} lessons ({outline.percent}%)
               </p>
               <progress
                 aria-labelledby="course-progress-label"
