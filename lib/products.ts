@@ -86,7 +86,7 @@ export const products = {
     slug: "cpacc-crash-course",
     route: "/courses/cpacc-crash-course",
     name: "CPACC Crash Course",
-    inDevelopment: false,
+    inDevelopment: true,
     audience: "For people preparing for the IAAP CPACC exam",
     tagline:
       "An independent online course for the IAAP CPACC exam: chapters mapped to every section of the Body of Knowledge, two timed 100-question mock exams, topic practice, flashcards, and what has changed since the Body of Knowledge was written. Use it on Accessibility.build, on any device.",
@@ -113,7 +113,7 @@ export const products = {
     slug: "was-crash-course",
     route: "/courses/was-crash-course",
     name: "WAS Crash Course",
-    inDevelopment: false,
+    inDevelopment: true,
     audience: "For people preparing for the IAAP WAS exam",
     tagline:
       "An independent online course for the IAAP WAS exam: chapters mapped to every section of the Body of Knowledge with code examples, every WCAG 2.2 success criterion, ARIA patterns, testing with assistive technologies, two timed 75-question mock exams, topic practice and flashcards. Use it on Accessibility.build, on any device.",
