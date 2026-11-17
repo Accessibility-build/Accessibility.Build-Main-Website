@@ -161,6 +161,7 @@ export async function POST(request: NextRequest) {
 - **No middleware.ts** — auth checks are done in individual routes and pages
 - Sign-in/sign-up pages at `/sign-in` and `/sign-up` (Clerk hosted components)
 - Webhooks at `/api/webhooks/clerk/route.ts`
+- **Account UI:** `/dashboard` uses compact account navigation; `/sign-in` and `/sign-up` (including Clerk verification/recovery steps) use a dedicated auth shell. Keep marketing navigation, the global footer, assistant, consent banner and document-viewer overlays out of these routes. Preserve stored consent choices, Clerk's step-specific headings, and safe return destinations through sign-in, sign-up and onboarding. Run `npm run test:account` and `npm run test:courses` after changing shared route/layout behavior.
 
 ## Billing & Credits
 
