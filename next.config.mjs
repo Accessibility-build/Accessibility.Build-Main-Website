@@ -24,11 +24,19 @@ const nextConfig = {
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     },
-    serverExternalPackages: ['razorpay', 'puppeteer-core', '@sparticuz/chromium-min', 'puppeteer', 'axe-core', 'pdfjs-dist'],
-    // The assistant reads its search index from disk at runtime; make sure the file ships
-    // with that function.
+    // @axe-core/puppeteer must stay external too: it finds axe-core at runtime with
+    // require.resolve('axe-core') and reads axe.js from disk. Bundled, that call is
+    // invisible to file tracing, axe-core never ships, and every scan fails in
+    // production with "Cannot find module 'axe-core'" (seen 2026-11-18).
+    serverExternalPackages: ['razorpay', 'puppeteer-core', '@sparticuz/chromium-min', 'puppeteer', 'axe-core', '@axe-core/puppeteer', 'pdfjs-dist'],
     outputFileTracingIncludes: {
+        // The assistant reads its search index from disk at runtime; make sure the file ships
+        // with that function.
         '/api/assistant': ['./lib/assistant/site-index.json'],
+        // Belt and braces for the axe-core source read from disk by @axe-core/puppeteer
+        // (URL auditor and mobile checker server actions, overlay detector route).
+        '/tools/**': ['./node_modules/axe-core/axe.js', './node_modules/axe-core/axe.min.js', './node_modules/axe-core/package.json'],
+        '/api/tools/**': ['./node_modules/axe-core/axe.js', './node_modules/axe-core/axe.min.js', './node_modules/axe-core/package.json'],
     },
     compress: true,
     poweredByHeader: false,
