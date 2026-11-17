@@ -87,6 +87,13 @@ try {
     assert(!button.disabled, `Disabled button: ${text}`)
     button.click()
   }
+  assert.equal(root.querySelectorAll(".card-heading svg").length, 6, "each practice activity has a matching SVG icon")
+  for (const icon of root.querySelectorAll("svg")) {
+    assert.equal(icon.namespaceURI, "http://www.w3.org/2000/svg")
+    assert.equal(icon.getAttribute("aria-hidden"), "true", "decorative icons must not duplicate control names")
+    assert.equal(icon.getAttribute("focusable"), "false")
+    assert.equal(icon.querySelector("title"), null, "button names come from their visible text")
+  }
   engine.suspend()
   assert.equal(lastSave, null, "an unchanged practice overview must not create recovery data or increment its revision")
   click("Choose topics")
@@ -108,6 +115,16 @@ try {
   assert(lastSave.sessions[firstSessionId], "archived session retains original answers")
   const examId = lastSave.session.id
   engine.navigate({ session: examId })
+  const flagButton = [...root.querySelectorAll("button")].find((button) => button.textContent === "Flag for review")
+  flagButton.focus()
+  click("Flag for review")
+  assert.equal(document.activeElement.textContent, "Flag for review", "adding an icon must not break focus restoration after flagging")
+  click("Question list")
+  const flaggedQuestion = root.querySelector('.navlist button[aria-current="true"]')
+  assert.equal(flaggedQuestion.textContent, "1", "a flagged question keeps its visible numeric label without a Unicode icon")
+  assert.equal(flaggedQuestion.getAttribute("aria-label"), "Question 1, not answered, flagged")
+  assert.equal(flaggedQuestion.querySelector('svg[data-practice-icon="flag"]')?.getAttribute("aria-hidden"), "true")
+  flaggedQuestion.click()
   click("Pause timer")
   assert.equal(root.querySelector("[data-practice-main] h1").textContent, "Session paused")
   assert.equal(root.querySelectorAll('input[name="opt"]').length, 0, "paused exam must hide the questions")
@@ -121,6 +138,7 @@ try {
   click("Finish and see results")
   await new Promise((resolve) => setTimeout(resolve, 0))
   assert.equal(attempts.size, 1)
+  assert(root.querySelector('button svg[data-practice-icon="download"]'), "retained review download keeps its visible action and decorative icon")
   assert.equal(attempts.get(examId).timing.paused, true)
   assert.equal(attempts.get(examId).answers["A-0-1"], current.answer)
   engine.suspend()
