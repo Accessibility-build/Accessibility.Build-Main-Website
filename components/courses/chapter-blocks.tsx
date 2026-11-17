@@ -42,9 +42,9 @@ export function ChapterBlocks({ blocks, idPrefix, startIndex = 0 }: { blocks: Co
           case "p":
             return <p key={i}><Inline text={b.text} /></p>
           case "h2":
-            return <h2 key={i} id={id} className="scroll-mt-28 border-t border-slate-200 pt-8 text-2xl font-bold tracking-tight text-slate-900 first:border-t-0 first:pt-0 dark:border-slate-800 dark:text-white"><Inline text={b.text} /></h2>
+            return <h2 key={i} id={id} className="scroll-mt-4 border-t border-slate-200 pt-8 text-2xl font-bold tracking-tight text-slate-900 first:border-t-0 first:pt-0 dark:border-slate-800 dark:text-white"><Inline text={b.text} /></h2>
           case "h3":
-            return <h3 key={i} id={id} className="scroll-mt-28 pt-2 text-xl font-semibold text-slate-900 dark:text-white"><Inline text={b.text} /></h3>
+            return <h3 key={i} id={id} className="scroll-mt-4 pt-2 text-xl font-semibold text-slate-900 dark:text-white"><Inline text={b.text} /></h3>
           case "bullets":
             return <ul key={i} className="list-disc space-y-2 pl-6 marker:text-slate-500 dark:marker:text-slate-400">{b.items.map((t, j) => <li key={j}><Inline text={t} /></li>)}</ul>
           case "numbered":
@@ -72,7 +72,7 @@ export function ChapterBlocks({ blocks, idPrefix, startIndex = 0 }: { blocks: Co
           case "keyterms":
             return (
               <section key={i} aria-labelledby={id} className="border-t border-slate-200 pt-8 dark:border-slate-800">
-                <h2 id={id} className="scroll-mt-28 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Key terms</h2>
+                <h2 id={id} className="scroll-mt-4 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Key terms</h2>
                 <dl className="mt-4 grid gap-3 sm:grid-cols-2">
                   {b.items.map((t, j) => (
                     <div key={j} className="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900">

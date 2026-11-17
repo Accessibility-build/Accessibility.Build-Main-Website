@@ -1,6 +1,7 @@
 "use client"
 
 import { usePathname } from "next/navigation"
+import { isCourseLearningPath } from "@/lib/courses/routes"
 import { ASSISTANT_NAME, ASSISTANT_OPEN_EVENT, HIDDEN_ROUTE_PREFIXES, matchesPrefix } from "@/lib/assistant/config"
 
 // A second skip link, straight after "Skip to main content". The floating "Ask Curb" button
@@ -9,7 +10,7 @@ import { ASSISTANT_NAME, ASSISTANT_OPEN_EVENT, HIDDEN_ROUTE_PREFIXES, matchesPre
 // because it opens a panel rather than going somewhere.
 export function CurbSkipLink() {
   const pathname = usePathname() ?? "/"
-  if (matchesPrefix(pathname, HIDDEN_ROUTE_PREFIXES)) return null
+  if (matchesPrefix(pathname, HIDDEN_ROUTE_PREFIXES) || isCourseLearningPath(pathname)) return null
   return (
     <button type="button" className="skip-link" onClick={() => window.dispatchEvent(new Event(ASSISTANT_OPEN_EVENT))}>
       Ask {ASSISTANT_NAME}, the accessibility assistant

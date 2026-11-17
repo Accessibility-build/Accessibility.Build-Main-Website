@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Suspense } from "react"
+import { isCourseLearningPath } from "@/lib/courses/routes"
 
 interface AdminLayoutWrapperProps {
   children: React.ReactNode
@@ -11,6 +12,10 @@ interface AdminLayoutWrapperProps {
 
 export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
   const pathname = usePathname()
+
+  if (isCourseLearningPath(pathname)) {
+    return <main id="main-content" data-course-workspace className="min-h-dvh w-full min-w-0 bg-white outline-none dark:bg-slate-950">{children}</main>
+  }
 
   // Check if we're on an admin route
   const isAdminRoute = pathname?.startsWith('/admin')

@@ -41,7 +41,7 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
 
   return (
     <CourseShell title={course.title} homeRoute={course.homeRoute} outline={outline} view="team" hasTeam>
-      <div className="max-w-3xl">
+      <div className="min-w-0 w-full">
         <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Your team</h1>
         <p className="mt-3 text-slate-700 dark:text-slate-300">
           Your Team licence covers up to {licences[0].seats} people, including you. Add colleagues by email and each of them can use the full course with their own progress.

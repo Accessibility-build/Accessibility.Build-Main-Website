@@ -75,7 +75,7 @@ export function TeamSeats({ slug, licenceId, seats: initialSeats, limit }: { slu
   }
 
   return (
-    <div className="space-y-8">
+    <div className="min-w-0 w-full space-y-8 break-words">
       <p role="status" className="text-emerald-800 dark:text-emerald-300 font-medium min-h-[1.5rem]">{status}</p>
       <section aria-labelledby={`${fid}-seats`}>
         <h2 id={`${fid}-seats`} className="text-xl font-semibold text-slate-900 dark:text-white">
@@ -84,7 +84,7 @@ export function TeamSeats({ slug, licenceId, seats: initialSeats, limit }: { slu
         <ul className="mt-3 divide-y divide-slate-200 dark:divide-slate-800 border-y border-slate-200 dark:border-slate-800" role="list">
           {seats.map((s) => (
             <li key={s.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
-              <span>
+              <span className="min-w-0">
                 <span className="font-medium text-slate-900 dark:text-white break-all">{s.email}</span>
                 <span className="block text-sm text-slate-600 dark:text-slate-400">
                   {s.isOwner ? "You (licence owner)" : s.claimed ? "Has signed in" : "Invited, not signed in yet"}

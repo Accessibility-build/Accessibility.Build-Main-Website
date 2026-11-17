@@ -99,19 +99,19 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
         </details>
       ) : null}
 
-      {chapter.outcomes?.length ? <section aria-labelledby="lesson-outcomes" className="mt-6 max-w-[72ch] rounded-lg border border-slate-300 p-5 dark:border-slate-700">
+      {chapter.outcomes?.length ? <section aria-labelledby="lesson-outcomes" className="mt-6 min-w-0 rounded-lg border border-slate-300 p-5 dark:border-slate-700">
         <h2 id="lesson-outcomes" className="font-semibold">After this lesson, you should be able to</h2>
         <ul className="mt-2 list-disc space-y-1 pl-5">{chapter.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}</ul>
       </section> : null}
 
-      <div className="mt-8 xl:grid xl:grid-cols-[minmax(0,1fr)_13rem] xl:gap-10">
-        <article className="min-w-0 max-w-[72ch]">
+      <div className={cn("mt-8 min-w-0", toc && "xl:grid xl:grid-cols-[minmax(0,1fr)_13rem] xl:gap-10")}>
+        <article className="min-w-0 w-full">
           <LessonReading key={`${chapter.key}:${meta.edition}`} blocks={chapter.blocks} idPrefix={idPrefix} />
           <CourseSources sources={chapter.sources} slug={slug} item={chapter.key} />
         </article>
         {toc ? (
-          <div className="hidden xl:block">
-            <nav aria-label="On this page" className="sticky top-24">
+          <div className="hidden min-w-0 xl:block">
+            <nav aria-label="On this page" className="sticky top-4 max-h-[calc(100dvh-2rem)] overflow-y-auto">
               <p className="px-2 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">On this page</p>
               <div className="mt-2">{toc}</div>
             </nav>
@@ -119,7 +119,7 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
         ) : null}
       </div>
 
-      <section aria-labelledby="finish-heading" className="mt-14 max-w-[72ch] rounded-2xl border border-slate-300 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-900">
+      <section aria-labelledby="finish-heading" className="mt-14 min-w-0 rounded-2xl border border-slate-300 bg-slate-50 p-5 sm:p-6 dark:border-slate-700 dark:bg-slate-900">
         <h2 id="finish-heading" className="text-xl font-bold text-slate-900 dark:text-white">
           {done ? "You have completed this lesson" : "Finished this lesson?"}
         </h2>
@@ -135,7 +135,7 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
               <li key={s.ref}>
                 <Link
                   href={`${course.homeRoute}/practice?topic=${encodeURIComponent(s.ref)}`}
-                  className={cn("inline-flex min-h-[44px] items-center gap-2 rounded-lg border-2 border-blue-700 bg-white px-4 py-2 font-semibold text-blue-800 hover:bg-blue-50 dark:border-blue-400 dark:bg-slate-950 dark:text-blue-200 dark:hover:bg-slate-900", ring)}
+                  className={cn("inline-flex min-h-[44px] max-w-full items-center gap-2 rounded-lg border-2 border-blue-700 bg-white px-4 py-2 font-semibold text-blue-800 hover:bg-blue-50 dark:border-blue-400 dark:bg-slate-950 dark:text-blue-200 dark:hover:bg-slate-900", ring)}
                 >
                   <ClipboardCheck aria-hidden="true" className="h-4 w-4" />
                   Practice questions: {s.title}
@@ -149,7 +149,7 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
       <LessonWorkspace key={`${userId}:${slug}:${chapter.key}:${meta.edition}`} slug={slug} userId={userId} chapter={chapter} edition={meta.edition} initial={progress.study} questions={questions} />
       <CourseTutor key={`${slug}:${chapter.key}`} slug={slug} chapterKey={chapter.key} />
 
-      <nav aria-label="Lesson navigation" className="mt-8 grid max-w-[72ch] gap-4 sm:grid-cols-2">
+      <nav aria-label="Lesson navigation" className="mt-8 grid min-w-0 gap-4 sm:grid-cols-2">
         {prev ? (
           <Link href={`${course.homeRoute}/chapters/${prev.key}`} className={cn("group rounded-xl border border-slate-300 p-4 hover:border-blue-700 dark:border-slate-700 dark:hover:border-blue-400", ring)}>
             <span className="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400"><ArrowLeft aria-hidden="true" className="h-4 w-4" />Previous lesson</span>
