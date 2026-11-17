@@ -5,6 +5,8 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Suspense } from "react"
 import { isCourseLearningPath } from "@/lib/courses/routes"
+import { isAuthPath, isDashboardPath } from "@/lib/account-routes"
+import { AccountHeader } from "@/components/account/account-header"
 
 interface AdminLayoutWrapperProps {
   children: React.ReactNode
@@ -15,6 +17,19 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
 
   if (isCourseLearningPath(pathname)) {
     return <main id="main-content" data-course-workspace className="min-h-dvh w-full min-w-0 bg-white outline-none dark:bg-slate-950">{children}</main>
+  }
+
+  if (isAuthPath(pathname)) {
+    return <main id="main-content" data-auth-workspace className="min-h-dvh min-w-0 bg-white outline-none dark:bg-slate-950">{children}</main>
+  }
+
+  if (isDashboardPath(pathname)) {
+    return (
+      <div className="min-h-dvh bg-white text-slate-950 dark:bg-slate-950 dark:text-slate-100">
+        <AccountHeader />
+        <main id="main-content" data-account-workspace className="min-w-0 outline-none">{children}</main>
+      </div>
+    )
   }
 
   // Check if we're on an admin route

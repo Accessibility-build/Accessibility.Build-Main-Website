@@ -5,16 +5,20 @@ test('@smoke /sign-in renders with Clerk loaded', async ({ page }) => {
   await page.goto('/sign-in')
   await clerk.loaded({ page })
 
-  await expect(page.getByRole('heading', { name: /Welcome back/i })).toBeVisible()
-  await expect(page.getByText(/Access your accessibility dashboard/i)).toBeVisible()
+  const formRegion = page.getByRole('region', { name: 'Sign in', exact: true })
+  await expect(formRegion).toBeVisible()
+  await expect(formRegion.getByRole('heading').first()).toBeVisible()
+  await expect(page.getByText('Welcome back', { exact: true })).toBeVisible()
 })
 
 test('@smoke /sign-up renders with Clerk loaded', async ({ page }) => {
   await page.goto('/sign-up')
   await clerk.loaded({ page })
 
-  await expect(page.getByRole('heading', { name: /Start building/i })).toBeVisible()
-  await expect(page.getByText(/Get started with 100 free credits/i)).toBeVisible()
+  const formRegion = page.getByRole('region', { name: 'Create an account', exact: true })
+  await expect(formRegion).toBeVisible()
+  await expect(formRegion.getByRole('heading').first()).toBeVisible()
+  await expect(page.getByText(/Welcome credits are included/i)).toBeVisible()
 })
 
 for (const route of ['/billing', '/billing/manage', '/dashboard', '/profile', '/admin']) {
@@ -22,6 +26,6 @@ for (const route of ['/billing', '/billing/manage', '/dashboard', '/profile', '/
     await page.goto(route)
 
     await expect(page).toHaveURL(/\/sign-in(?:\?|$)/)
-    await expect(page.getByRole('heading', { name: /Welcome back/i })).toBeVisible()
+    await expect(page.getByRole('region', { name: 'Sign in', exact: true })).toBeVisible()
   })
 }

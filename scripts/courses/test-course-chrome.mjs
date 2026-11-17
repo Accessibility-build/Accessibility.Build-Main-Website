@@ -53,7 +53,7 @@ const fixtures = {
   "next/font/google": 'export const Mona_Sans = () => ({variable:"synthetic-font"});',
   "next-themes": 'export const useTheme = () => ({theme:"light"});',
   "posthog-js": 'export default {capture(){}};',
-  "@clerk/nextjs": 'export const ClerkProvider = ({children}) => children;',
+  "@clerk/nextjs": 'import {createElement} from "react"; export const ClerkProvider = ({children}) => children; export const UserButton = () => createElement("button", {"aria-label":"Open account menu"}, "Account");',
   "@/components/theme-provider": 'export const ThemeProvider = ({children}) => children;',
   "@vercel/analytics/react": 'export const Analytics = () => null;',
   "@vercel/speed-insights/next": 'export const SpeedInsights = () => null;',
@@ -70,7 +70,9 @@ try {
       import RootLayout from "./app/layout";
       export { default as RootLayout } from "./app/layout";
       export { isCourseLearningPath } from "./lib/courses/routes";
-      export { courseEntryUrl, SiteDocumentEnhancements } from "./components/site-document-enhancements";
+      export { isAuthPath, isDashboardPath, isAccountWorkspacePath } from "./lib/account-routes";
+      export { isFocusedWorkspacePath } from "./lib/site-layout";
+      export { focusedEntryUrl, SiteDocumentEnhancements } from "./components/site-document-enhancements";
       export { CurbSkipLink } from "./components/assistant/curb-skip-link";
       export { ANALYTICS_CONSENT_STORAGE_KEY, ANALYTICS_CONSENT_EVENT } from "./lib/analytics/consent";
       export { ASSISTANT_OPEN_EVENT } from "./lib/assistant/config";
@@ -94,7 +96,7 @@ try {
   const { act, createElement: h } = React
   const { createRoot } = require("react-dom/client")
   const { renderToStaticMarkup } = require("react-dom/server")
-  const { RootLayout, RootBody, isCourseLearningPath, courseEntryUrl, SiteDocumentEnhancements, CurbSkipLink, ANALYTICS_CONSENT_STORAGE_KEY: consentKey, ANALYTICS_CONSENT_EVENT, ASSISTANT_OPEN_EVENT, toast } = require(join(temp, "chrome.cjs"))
+  const { RootLayout, RootBody, isCourseLearningPath, isAuthPath, isDashboardPath, isAccountWorkspacePath, isFocusedWorkspacePath, focusedEntryUrl, SiteDocumentEnhancements, CurbSkipLink, ANALYTICS_CONSENT_STORAGE_KEY: consentKey, ANALYTICS_CONSENT_EVENT, ASSISTANT_OPEN_EVENT, toast } = require(join(temp, "chrome.cjs"))
   const mount = document.getElementById("mount")
   let root = createRoot(mount)
   const pause = (ms = 0) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -123,10 +125,10 @@ try {
     finally { await reset() }
   }
   const button = (label) => [...mount.querySelectorAll("button")].find((element) => element.textContent.trim() === label)
-  const noSiteChrome = () => {
+  const noSiteChrome = (marker = "data-course-workspace") => {
     for (const selector of ["[data-site-header]", "[data-site-footer]", "[data-assistant]", "[data-sonner-toaster]", "#analytics-consent-title"]) assert.equal(mount.querySelector(selector), null, `${selector} must leave the learning workspace`)
     assert.equal(mount.querySelectorAll("main").length, 1)
-    assert(mount.querySelector("main#main-content[data-course-workspace]"))
+    assert(mount.querySelector(`main#main-content[${marker}]`))
     assert.equal([...mount.querySelectorAll("button")].some((el) => el.textContent.includes("Ask Curb")), false)
   }
 
@@ -149,6 +151,56 @@ try {
       assert.equal(parsed.querySelector('script[src*="docaccessible"]'), null, "The third-party script is never server-injected into courses")
       assert.equal(parsed.querySelector("[data-consent-script]"), null)
       serverDom.window.close()
+    }
+  })
+
+  await test("account route families have isolated landmarks without matching lookalike routes", async () => {
+    for (const path of ["/sign-in", "/sign-in/", "/sign-in/factor-one", "/sign-up", "/sign-up/verify-email-address"]) {
+      assert.equal(isAuthPath(path), true, path)
+      assert.equal(isAccountWorkspacePath(path), true, path)
+      assert.equal(isFocusedWorkspacePath(path), true, path)
+    }
+    for (const path of ["/dashboard", "/dashboard/", "/dashboard/history"]) {
+      assert.equal(isDashboardPath(path), true, path)
+      assert.equal(isAccountWorkspacePath(path), true, path)
+    }
+    for (const path of [null, undefined, "", "/", "/sign-in-help", "/sign-updates", "/dashboard-old", "/other/sign-in", "/courses", "/account/downloads"]) {
+      assert.equal(isAccountWorkspacePath(path), false, String(path))
+    }
+    for (const path of ["/sign-in", "/sign-up/verify-email-address", "/dashboard"]) {
+      globalThis.__courseChromePath = path
+      const parsed = new JSDOM(renderToStaticMarkup(h(RootLayout, null, page()))).window.document
+      const marker = isAuthPath(path) ? "data-auth-workspace" : "data-account-workspace"
+      assert.equal(parsed.querySelectorAll("main").length, 1)
+      assert(parsed.querySelector(`main#main-content[${marker}]`))
+      assert.equal(Boolean(parsed.querySelector("[data-account-header]")), isDashboardPath(path))
+      for (const selector of ["[data-site-header]", "[data-site-footer]", "[data-assistant]", "[data-sonner-toaster]", "#analytics-consent-title"]) assert.equal(parsed.querySelector(selector), null, selector)
+      assert(parsed.querySelector('a[href="#main-content"]'))
+      parsed.defaultView.close()
+    }
+  })
+
+  await test("public → auth steps → dashboard → course clears overlays and preserves undecided consent", async () => {
+    await route("/tools")
+    assert.equal(document.body.style.paddingBottom, "84px")
+    for (const path of ["/sign-in", "/sign-in/factor-one", "/sign-up/verify-email-address", "/dashboard", "/courses/example/learn"]) {
+      await route(path)
+      noSiteChrome(isAuthPath(path) ? "data-auth-workspace" : isDashboardPath(path) ? "data-account-workspace" : "data-course-workspace")
+      assert.equal(Boolean(mount.querySelector("[data-account-header]")), isDashboardPath(path))
+      assert.equal(document.body.style.paddingBottom, "")
+      assert.equal(observers.size, 0)
+      assert.equal(localStorage.getItem(consentKey), null)
+      await act(async () => mount.querySelector('a[href="#main-content"]').click())
+      assert.equal(document.activeElement, mount.querySelector("main"))
+    }
+    await route("/courses")
+    assert(mount.querySelector("[data-site-header]"))
+    assert(mount.querySelector("[data-site-footer]"))
+    assert(mount.querySelector("#analytics-consent-title"))
+    assert.equal(localStorage.getItem(consentKey), null)
+    for (const path of ["/sign-in/factor-one", "/dashboard"]) {
+      await route(path, CurbSkipLink, {})
+      assert.equal(mount.innerHTML, "", "Assistant skip controls independently exclude account routes")
     }
   })
 
@@ -199,9 +251,11 @@ try {
       assert.equal(localStorage.getItem(consentKey), choice)
       assert.equal(Boolean(mount.querySelector("[data-consent-script]")), choice === "accepted")
       assert.equal(document.body.style.paddingBottom, "")
-      await route("/courses/example/learn/library")
-      noSiteChrome()
-      assert.equal(localStorage.getItem(consentKey), choice)
+      for (const path of ["/courses/example/learn/library", "/sign-in/factor-one", "/sign-up/verify-email-address", "/dashboard"]) {
+        await route(path)
+        noSiteChrome(isAuthPath(path) ? "data-auth-workspace" : isDashboardPath(path) ? "data-account-workspace" : "data-course-workspace")
+        assert.equal(localStorage.getItem(consentKey), choice)
+      }
       await route("/courses/example")
       assert.equal(localStorage.getItem(consentKey), choice)
       assert.equal(mount.querySelector("#analytics-consent-title"), null)
@@ -257,19 +311,19 @@ try {
       Object.defineProperty(event, "target", { value: child ? span : a })
       return event
     }
-    assert.equal(courseEntryUrl(clickFor(target), publicUrl), `https://example.test${target}`)
-    assert.equal(courseEntryUrl(clickFor(target, {}, { target: "_self" }), publicUrl), `https://example.test${target}`)
-    for (const options of [{ metaKey: true }, { ctrlKey: true }, { shiftKey: true }, { altKey: true }, { button: 1 }, { button: 2 }]) assert.equal(courseEntryUrl(clickFor(target, options), publicUrl), null)
-    for (const attrs of [{ target: "_blank" }, { target: "course-window" }, { download: "" }, { download: "lesson.html" }]) assert.equal(courseEntryUrl(clickFor(target, {}, attrs), publicUrl), null)
-    for (const href of ["https://other.test/courses/example/learn", "https://example.test:444/courses/example/learn", "/courses/example", "/courses/example/learning", "mailto:test@example.test", "javascript:void(0)"]) assert.equal(courseEntryUrl(clickFor(href), publicUrl), null)
-    assert.equal(courseEntryUrl(clickFor(target), "https://example.test/courses/example/learn/chapters/one"), null, "Internal course navigation stays client-side")
-    assert.equal(courseEntryUrl(clickFor(target), "not a URL"), null)
+    assert.equal(focusedEntryUrl(clickFor(target), publicUrl), `https://example.test${target}`)
+    assert.equal(focusedEntryUrl(clickFor(target, {}, { target: "_self" }), publicUrl), `https://example.test${target}`)
+    for (const options of [{ metaKey: true }, { ctrlKey: true }, { shiftKey: true }, { altKey: true }, { button: 1 }, { button: 2 }]) assert.equal(focusedEntryUrl(clickFor(target, options), publicUrl), null)
+    for (const attrs of [{ target: "_blank" }, { target: "course-window" }, { download: "" }, { download: "lesson.html" }]) assert.equal(focusedEntryUrl(clickFor(target, {}, attrs), publicUrl), null)
+    for (const href of ["https://other.test/courses/example/learn", "https://example.test:444/courses/example/learn", "/courses/example", "/courses/example/learning", "mailto:test@example.test", "javascript:void(0)"]) assert.equal(focusedEntryUrl(clickFor(href), publicUrl), null)
+    assert.equal(focusedEntryUrl(clickFor(target), "https://example.test/courses/example/learn/chapters/one"), null, "Internal course navigation stays client-side")
+    assert.equal(focusedEntryUrl(clickFor(target), "not a URL"), null)
     const prevented = clickFor(target); prevented.preventDefault()
-    assert.equal(courseEntryUrl(prevented, publicUrl), null)
+    assert.equal(focusedEntryUrl(prevented, publicUrl), null)
     const noAnchor = new MouseEvent("click", { button: 0 })
     Object.defineProperty(noAnchor, "target", { value: document.createElement("button") })
-    assert.equal(courseEntryUrl(noAnchor, publicUrl), null)
-    assert.equal(courseEntryUrl(new MouseEvent("click"), publicUrl), null)
+    assert.equal(focusedEntryUrl(noAnchor, publicUrl), null)
+    assert.equal(focusedEntryUrl(new MouseEvent("click"), publicUrl), null)
   })
 
   await test("document enhancements stay out of fresh courses and intercept public course entry", async () => {
@@ -301,6 +355,27 @@ try {
     await route("/courses/example/learn", SiteDocumentEnhancements, {})
     assert.equal(document.getElementById("site-document-enhancements"), null)
     assert.equal(navigationIntents.length, 0, "The replacement fresh course document needs no second reload")
+  })
+
+  await test("auth and dashboard entries isolate the document while internal account navigation stays client-side", async () => {
+    for (const path of ["/sign-in?redirect_url=%2Fdashboard#form", "/sign-up/verify-email-address", "/dashboard"]) {
+      await route(path, SiteDocumentEnhancements, {})
+      assert.equal(document.getElementById("site-document-enhancements"), null)
+      assert.equal(navigationIntents.length, 0, "Fresh account routes never inject or reload the document viewer")
+      const anchor = document.createElement("a"); anchor.href = path
+      const event = new MouseEvent("click", { button: 0, cancelable: true })
+      Object.defineProperty(event, "target", { value: anchor })
+      assert.equal(focusedEntryUrl(event, "https://example.test/tools"), `https://example.test${path}`)
+      assert.equal(focusedEntryUrl(event, "https://example.test/sign-in"), null)
+      assert.equal(focusedEntryUrl(event, "https://example.test/dashboard"), null)
+      assert.equal(focusedEntryUrl(event, "https://example.test/courses/example/learn"), null)
+    }
+    await route("/tools", SiteDocumentEnhancements, {})
+    assert(document.getElementById("site-document-enhancements"))
+    await route("/sign-in/factor-one?redirect_url=%2Fdashboard#form", SiteDocumentEnhancements, {})
+    assert.equal(navigationIntents.length, 1, "Programmatic authentication entry discards an already-loaded public observer")
+    assert.equal(window.location.pathname, "/sign-in/factor-one")
+    assert.equal(window.location.hash, "#form")
   })
 
   await act(async () => root.unmount())

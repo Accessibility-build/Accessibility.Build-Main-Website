@@ -4,7 +4,8 @@ export function safeAuthRedirect(value: string | string[] | undefined, fallback:
     return fallback
   }
 
-  if (/[\u0000-\u001f\u007f]/.test(candidate)) {
+  // Browsers normalize backslashes as URL separators, so /\host can leave the site.
+  if (candidate.includes("\\") || /[\u0000-\u001f\u007f]/.test(candidate)) {
     return fallback
   }
 
