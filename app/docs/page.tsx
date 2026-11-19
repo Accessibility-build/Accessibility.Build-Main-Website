@@ -58,11 +58,11 @@ const resources = [
     action: "Open the checklist",
   },
   {
-    title: "macOS app (in development)",
-    description: "A free, local-only Mac app for contrast checks and color-vision simulation. Not available to download yet.",
+    title: "macOS app",
+    description: "A free Mac App Store app for WCAG 2.2 and APCA contrast checks and color-vision simulation anywhere on screen. Runs locally.",
     href: "/desktop",
     icon: Laptop,
-    action: "See its status",
+    action: "Get the Mac app",
   },
 ]
 

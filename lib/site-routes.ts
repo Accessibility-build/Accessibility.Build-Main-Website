@@ -53,7 +53,7 @@ const core: SiteRoute[] = [
   { route: "/courses/cpacc-crash-course", label: "CPACC Crash Course (online course and practice exams)", group: "Courses", lastModified: "2026-11-13", priority: 0.85 },
   { route: "/courses/was-crash-course", label: "WAS Crash Course (online course and practice exams)", group: "Courses", lastModified: "2026-11-13", priority: 0.85 },
   { route: "/resources/wcag-data", label: "WCAG 2.2 Data Download (CSV, Excel, JSON)", group: "Core", lastModified: "2026-11-11", priority: 0.8 },
-  { route: "/desktop", label: "Desktop App", group: "Core", lastModified: "2026-10-29", priority: 0.7 },
+  { route: "/desktop", label: "Mac App", group: "Core", lastModified: "2026-11-20", priority: 0.7 },
   { route: "/desktop/privacy", label: "Mac App Privacy Policy", group: "Core", lastModified: "2026-10-29", priority: 0.3 },
   { route: "/android/review", label: "Android App Walkthrough", group: "Core", lastModified: "2026-10-31", priority: 0.4 },
   { route: "/docs", label: "Developer Resources", group: "Core", lastModified: "2026-07-13", priority: 0.7 },

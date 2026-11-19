@@ -27,6 +27,7 @@ import {
   ImageIcon,
   Info,
   Landmark,
+  Laptop,
   LibraryBig,
   ListChecks,
   Linkedin,
@@ -62,6 +63,7 @@ interface FooterLink {
 
 const toolLinks: FooterLink[] = [
   { href: "/wordpress-plugin", label: "Free WordPress Plugin", icon: Accessibility },
+  { href: "/desktop", label: "Free Mac App", icon: Laptop },
   { href: "/tools/accessibility-audit-helper", label: "Accessibility Auditor", icon: ScanSearch },
   { href: "/tools/alt-text-generator", label: "AI Alt Text Generator", icon: ImageIcon },
   { href: "/tools/contrast-checker", label: "Contrast Checker", icon: Contrast },
@@ -110,6 +112,7 @@ const legalLinks: FooterLink[] = [
   { href: "/accessibility", label: "Accessibility Statement", icon: Accessibility },
   { href: "/privacy", label: "Privacy Policy", icon: LockKeyhole },
   { href: "/android/privacy", label: "Android App Privacy", icon: LockKeyhole },
+  { href: "/desktop/privacy", label: "Mac App Privacy", icon: LockKeyhole },
   { href: "/cookies", label: "Cookie Policy", icon: Cookie },
   { href: "/terms", label: "Terms of Service", icon: ScrollText },
   { href: "/refund", label: "Refund Policy", icon: ReceiptText },

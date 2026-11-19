@@ -1,16 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPostHogClient } from '@/lib/posthog-server'
-import { currentDesktopRelease, desktopDmgUrl } from '@/lib/desktop-release'
+import { currentDesktopRelease, desktopAppStore, desktopDmgUrl } from '@/lib/desktop-release'
 
-// Stable download URL for the macOS app. Redirects to the current DMG on
-// GitHub Releases so marketing links and the /desktop page never hardcode a
-// version. Until a release exists it sends people back to /desktop rather
-// than to a file that is not there (this route used to end in a 404).
+// Stable download URL for the macOS app, so marketing links never hardcode a
+// version or a store. It redirects to the current DMG on GitHub Releases when
+// one is published, and otherwise to the Mac App Store listing, which is how
+// the app is distributed today. (It once pointed at a DMG that had never been
+// uploaded and ended in a 404.)
 export async function GET(req: NextRequest) {
   const release = currentDesktopRelease()
-  if (!release) {
-    return NextResponse.redirect(new URL('/desktop', req.url), { status: 302 })
-  }
+  const destination = release ? desktopDmgUrl(release) : desktopAppStore.url
 
   const posthog = getPostHogClient()
   if (posthog) {
@@ -18,12 +17,13 @@ export async function GET(req: NextRequest) {
       distinctId: 'desktop_download',
       event: 'desktop_app_downloaded',
       properties: {
-        version: release.version,
+        version: release?.version ?? desktopAppStore.version,
+        channel: release ? 'direct' : 'app_store',
         referrer: req.headers.get('referer') ?? undefined,
       },
     })
     await posthog.flush()
   }
 
-  return NextResponse.redirect(desktopDmgUrl(release), { status: 302 })
+  return NextResponse.redirect(destination, { status: 302 })
 }
