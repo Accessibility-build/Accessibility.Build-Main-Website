@@ -7,11 +7,14 @@ import { Shield, FileSpreadsheet, Award, Sparkles } from "lucide-react"
 import { FAQStructuredData, AccessibilityToolStructuredData } from "@/components/seo/structured-data"
 
 export const metadata = createMetadata({
-  title: "WCAG 2.2 Checklist Excel - Free Interactive Download",
+  // Search Console, Nov 2026: "wcag 2.2 checklist" (1,327 impressions) sat at 15 and "wcag
+  // checklist" at 48, while this page and /excel both led with "Excel" and competed for one
+  // query. The Excel page keeps the download intent; this one targets the checklist itself.
+  title: "WCAG 2.2 Checklist: Interactive AA Checklist, PDF & Excel",
   path: "/checklists/wcag-2-2",
   description:
-    "Download WCAG 2.2 checklist Excel template. Interactive checklist with all 86 success criteria. Track progress, add notes, filter criteria, and export to Excel/PDF for professional accessibility audits.",
-  keywords: ["WCAG 2.2 checklist excel", "WCAG 2.2", "accessibility checklist", "success criteria", "compliance", "audit", "interactive", "excel export", "excel template", "WCAG checklist download"]
+    "Free interactive WCAG 2.2 checklist with all 86 success criteria for Level A, AA and AAA. Track progress, add notes, filter by level, and export to PDF or Excel.",
+  keywords: ["WCAG 2.2 checklist", "WCAG 2.2 AA checklist", "WCAG checklist", "WCAG 2.2 checklist excel", "WCAG 2.2", "accessibility checklist", "success criteria", "compliance", "audit", "interactive", "excel export", "excel template", "WCAG checklist download"]
 })
 
 // Rendered visibly further down AND emitted as the page's FAQPage schema, from

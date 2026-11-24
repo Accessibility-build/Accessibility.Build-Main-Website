@@ -223,7 +223,14 @@ export default function ScreenReaderTestingGuidePage() {
                   2026 screen reader survey analysis
                 </Link>{" "}
                 compares every figure with 2024 and breaks JAWS and NVDA down by
-                region.
+                region. Choosing between the two? See{" "}
+                <Link
+                  href="/guides/nvda-vs-jaws"
+                  className="font-medium text-teal-700 underline underline-offset-2 dark:text-teal-300"
+                >
+                  NVDA vs JAWS
+                </Link>
+                .
               </p>
             </div>
           </div>

@@ -89,6 +89,61 @@ export const metadata: Metadata = {
 
 const guides = [
   {
+    title: "aria-label vs aria-labelledby vs aria-describedby",
+    description:
+      "When to use each attribute, how browsers pick an accessible name, the roles where aria-label is ignored, the Label in Name trap, and working examples for HTML, React, Angular and Vue.",
+    icon: Braces,
+    difficulty: "Beginner",
+    readingTime: "12 min",
+    topics: ["aria-label", "aria-labelledby", "aria-describedby", "Accessible Name", "WCAG 4.1.2"],
+    href: "/guides/aria-label",
+    gradient: "from-indigo-600 to-blue-700",
+  },
+  {
+    title: "NVDA vs JAWS: Which Screen Reader to Test With",
+    description:
+      "2026 usage from WebAIM's survey #11, current versions and prices, the browse mode and forms mode differences that change test results, and a test order for your team.",
+    icon: AudioLines,
+    difficulty: "Beginner",
+    readingTime: "9 min",
+    topics: ["NVDA", "JAWS", "Screen Readers", "WebAIM Survey", "Testing"],
+    href: "/guides/nvda-vs-jaws",
+    gradient: "from-slate-700 to-indigo-700",
+  },
+  {
+    title: "Accessibility Testing in CI/CD",
+    description:
+      "Working setups for axe with Playwright and Cypress, jest-axe, Pa11y CI and Lighthouse CI, a GitHub Actions workflow, a rollout plan that does not block every merge, and what automation misses.",
+    icon: TestTubes,
+    difficulty: "Intermediate",
+    readingTime: "14 min",
+    topics: ["CI/CD", "axe-core", "Playwright", "Pa11y", "GitHub Actions"],
+    href: "/guides/accessibility-testing-ci-cd",
+    gradient: "from-emerald-700 to-teal-700",
+  },
+  {
+    title: "Accessibility Testing Tool Pricing (2026)",
+    description:
+      "What testing and monitoring tools cost, taken only from vendors' own pricing pages: free engines, Pope Tech, WAVE API, SortSite, Stark, BrowserStack, the quote-only platforms and overlays.",
+    icon: DollarSign,
+    difficulty: "Beginner",
+    readingTime: "8 min",
+    topics: ["Pricing", "Testing Tools", "Monitoring", "Buyer's Guide"],
+    href: "/guides/accessibility-tool-pricing",
+    gradient: "from-amber-700 to-orange-700",
+  },
+  {
+    title: "APCA vs WCAG 2 Contrast",
+    description:
+      "The WCAG 2.2 contrast formula and APCA Lc levels side by side, real color pairs where they disagree, APCA's actual status in the WCAG 3 draft, and which to follow in 2026.",
+    icon: Palette,
+    difficulty: "Intermediate",
+    readingTime: "10 min",
+    topics: ["APCA", "Contrast Ratio", "WCAG 1.4.3", "WCAG 3", "Dark Mode"],
+    href: "/guides/apca-vs-wcag-contrast",
+    gradient: "from-fuchsia-700 to-purple-700",
+  },
+  {
     title: "How to Use ARIA: Roles, States & Properties",
     description:
       "ARIA changes what a screen reader announces and nothing else, so a wrong attribute makes your interface lie to assistive technology. The cornerstone guide to using ARIA correctly: the five rules of ARIA, when native HTML wins, roles vs states vs properties, accessible names (aria-label vs aria-labelledby vs aria-describedby), landmark roles, the aria-hidden traps that break keyboard users, live regions, and the most common ARIA mistakes. Mapped to WCAG 2.2.",
@@ -833,6 +888,8 @@ const categories = [
       "/guides/ai-accessibility-audit",
       "/guides/automated-vs-manual-accessibility-testing",
       "/guides/axe-vs-wave",
+      "/guides/accessibility-testing-ci-cd",
+      "/guides/accessibility-tool-pricing",
     ],
   },
   {
@@ -843,6 +900,7 @@ const categories = [
     icon: AudioLines,
     hrefs: [
       "/guides/screen-reader-testing",
+      "/guides/nvda-vs-jaws",
       "/guides/nvda-screen-reader-testing",
       "/guides/jaws-screen-reader-testing",
       "/guides/voiceover-screen-reader-testing",
@@ -874,6 +932,7 @@ const categories = [
     icon: Component,
     hrefs: [
       "/guides/using-aria",
+      "/guides/aria-label",
       "/guides/accessible-tabs",
       "/guides/accessible-accordion",
       "/guides/accessible-combobox",
@@ -914,6 +973,7 @@ const categories = [
       "/guides/color-blind-friendly-design",
       "/guides/text-over-images",
       "/guides/oklch-apca-color-systems",
+      "/guides/apca-vs-wcag-contrast",
       "/guides/accessible-typography-wcag",
       "/guides/cognitive-accessibility",
       "/guides/how-to-write-alt-text",

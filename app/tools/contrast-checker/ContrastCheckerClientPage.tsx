@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Copy, Info, Check, RefreshCw, Palette, Eye, Zap } from "lucide-react";
+import { apcaContrast } from "@/lib/color/apca";
 
 
 /**
@@ -60,39 +61,37 @@ export default function ContrastCheckerPage() {
     b: 255,
   });
 
-  // Experimental APCA estimate for comparison with the normative WCAG 2.2 ratio.
-  const calculateAPCA = (fgLuminance: number, bgLuminance: number) => {
-    const Ybg = bgLuminance;
-    const Yfg = fgLuminance;
+  // Shareable links: /tools/contrast-checker?fg=1f2937&bg=ffffff (with or without #).
+  // Search Console shows people pasting colour pairs into the query ("color contrast checker
+  // #3844ba #f4efeb"), so a pair should be linkable and survive a reload.
+  const [urlReady, setUrlReady] = useState(false);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const read = (key: string) => {
+      const raw = params.get(key)?.trim().replace(/^#/, "");
+      return raw && /^([a-f\d]{3}|[a-f\d]{6})$/i.test(raw) ? `#${raw.toUpperCase()}` : null;
+    };
+    const fg = read("fg");
+    const bg = read("bg");
+    if (fg) setForeground(fg);
+    if (bg) setBackground(bg);
+    setUrlReady(true);
+  }, []);
+  useEffect(() => {
+    if (!urlReady) return;
+    if (!/^#([a-f\d]{3}|[a-f\d]{6})$/i.test(foreground) || !/^#([a-f\d]{3}|[a-f\d]{6})$/i.test(background)) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set("fg", foreground.replace("#", "").toLowerCase());
+    url.searchParams.set("bg", background.replace("#", "").toLowerCase());
+    window.history.replaceState(window.history.state, "", url);
+  }, [foreground, background, urlReady]);
 
-    // APCA constants
-    const Ntx = 0.57;
-    const Nrx = 0.62;
-    const Rco = 0.55;
-    const Rtx = 0.1;
-
-    let Yc = Ybg;
-    let Yt = Yfg;
-
-    // Clamp and normalize
-    Yc = Math.max(Yc, 0.022);
-    Yt = Math.max(Yt, 0.022);
-
-    // Calculate contrast
-    let contrast = 0;
-    if (Yc > Yt) {
-      contrast = (Math.pow(Yc, Nrx) - Math.pow(Yt, Ntx)) * 1.414;
-    } else {
-      contrast = (Math.pow(Yc, Nrx) - Math.pow(Yt, Ntx)) * 1.414;
-    }
-
-    // Apply scaling
-    if (Math.abs(contrast) < Rtx) contrast = 0;
-    else if (contrast > 0) contrast = contrast - Rco;
-    else contrast = contrast + Rco;
-
-    return Math.round(contrast * 100);
-  };
+  // APCA Lc from the shared, spec-following implementation in lib/color/apca.ts. Takes hex
+  // colours because APCA uses its own screen-luminance model, not WCAG 2 relative luminance.
+  // The local version this replaced reused WCAG luminance with the wrong exponents and
+  // offsets. Reference values: #000 on #fff = 106.0, #fff on #000 = -107.9.
+  const calculateAPCA = (textHex: string, bgHex: string) =>
+    Math.round(apcaContrast(textHex, bgHex) * 10) / 10;
 
   // Calculate contrast ratio
   useEffect(() => {
@@ -143,7 +142,7 @@ export default function ContrastCheckerPage() {
         }
       } else {
         // APCA is presented as experimental guidance, not a WCAG 3 conformance result.
-        const apcaScore = calculateAPCA(fgLuminance, bgLuminance);
+        const apcaScore = calculateAPCA(foreground, background);
         setContrastRatio(Math.abs(apcaScore));
 
         // Simplified readability targets used only as guidance.
@@ -293,7 +292,7 @@ export default function ContrastCheckerPage() {
           bg: bgColor,
           name: `Exact ${targetRatio.toFixed(1)}:1 dark text`,
           ratio,
-          apca: Math.abs(calculateAPCA(darkLum, bgLum)),
+          apca: Math.abs(calculateAPCA(exactDark, bgColor)),
         });
       }
     }
@@ -310,7 +309,7 @@ export default function ContrastCheckerPage() {
           bg: bgColor,
           name: `Exact ${targetRatio.toFixed(1)}:1 light text`,
           ratio,
-          apca: Math.abs(calculateAPCA(lightLum, bgLum)),
+          apca: Math.abs(calculateAPCA(exactLight, bgColor)),
         });
       }
     }
@@ -326,7 +325,7 @@ export default function ContrastCheckerPage() {
           bg: bgColor,
           name: `AAA compliant text`,
           ratio,
-          apca: Math.abs(calculateAPCA(aaaLum, bgLum)),
+          apca: Math.abs(calculateAPCA(exactAAA, bgColor)),
         });
       }
     }
@@ -346,7 +345,7 @@ export default function ContrastCheckerPage() {
         bg: bgColor,
         name: "Pure black text",
         ratio: blackRatio,
-        apca: Math.abs(calculateAPCA(0, bgLum)),
+        apca: Math.abs(calculateAPCA("#000000", bgColor)),
       });
     }
 
@@ -359,7 +358,7 @@ export default function ContrastCheckerPage() {
         bg: bgColor,
         name: "Pure white text",
         ratio: whiteRatio,
-        apca: Math.abs(calculateAPCA(1, bgLum)),
+        apca: Math.abs(calculateAPCA("#ffffff", bgColor)),
       });
     }
 
@@ -439,7 +438,7 @@ export default function ContrastCheckerPage() {
           bg: exactLight,
           name: `Exact ${targetRatio.toFixed(1)}:1 light background`,
           ratio,
-          apca: Math.abs(calculateAPCA(fgLum, lightLum)),
+          apca: Math.abs(calculateAPCA(fgColor, exactLight)),
         });
       }
     }
@@ -455,7 +454,7 @@ export default function ContrastCheckerPage() {
           bg: exactDark,
           name: `Exact ${targetRatio.toFixed(1)}:1 dark background`,
           ratio,
-          apca: Math.abs(calculateAPCA(fgLum, darkLum)),
+          apca: Math.abs(calculateAPCA(fgColor, exactDark)),
         });
       }
     }
@@ -471,7 +470,7 @@ export default function ContrastCheckerPage() {
           bg: exactAAA,
           name: `AAA compliant background`,
           ratio,
-          apca: Math.abs(calculateAPCA(fgLum, aaaLum)),
+          apca: Math.abs(calculateAPCA(fgColor, exactAAA)),
         });
       }
     }
@@ -491,7 +490,7 @@ export default function ContrastCheckerPage() {
         bg: "#ffffff",
         name: "Pure white background",
         ratio: whiteRatio,
-        apca: Math.abs(calculateAPCA(fgLum, 1)),
+        apca: Math.abs(calculateAPCA(fgColor, "#ffffff")),
       });
     }
 
@@ -504,7 +503,7 @@ export default function ContrastCheckerPage() {
         bg: "#000000",
         name: "Pure black background",
         ratio: blackRatio,
-        apca: Math.abs(calculateAPCA(fgLum, 0)),
+        apca: Math.abs(calculateAPCA(fgColor, "#000000")),
       });
     }
 
@@ -593,7 +592,7 @@ export default function ContrastCheckerPage() {
         const bgLum = getLuminance(bgRgb.r, bgRgb.g, bgRgb.b);
         const ratio =
           (Math.max(fgLum, bgLum) + 0.05) / (Math.min(fgLum, bgLum) + 0.05);
-        const apca = Math.abs(calculateAPCA(fgLum, bgLum));
+        const apca = Math.abs(calculateAPCA(alt.fg, alt.bg));
 
         recommendations.push({
           ...alt,

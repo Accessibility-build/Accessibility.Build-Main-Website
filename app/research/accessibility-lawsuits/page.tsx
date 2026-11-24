@@ -3,7 +3,7 @@ import Link from "next/link"
 import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/seo/structured-data"
 import { RelatedContent } from "@/components/seo/related-content"
 import { PreferredSource } from "@/components/seo/preferred-source"
-import { lawsuitSummary } from "@/lib/data/lawsuit-statistics"
+import { lawsuitSummary, topStates } from "@/lib/data/lawsuit-statistics"
 import { LawsuitTrackerClient } from "./LawsuitTrackerClient"
 import { getRouteDate } from "@/lib/site-routes"
 import { clampDescription } from "@/lib/metadata"
@@ -192,6 +192,71 @@ export default function AccessibilityLawsuitsPage() {
           ))}
         </div>
       </nav>
+
+      {/* Search Console, Nov 2026: question queries ("what states have the most website
+          accessibility lawsuits?", "how many ... last year?") ranked 4 to 6 with no clicks,
+          while the answers sat in collapsed FAQ items at the foot of the page. Answer them
+          in the open, near the top, from the same data file. */}
+      <section aria-labelledby="quick-answers-heading" className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
+        <h2 id="quick-answers-heading" className="text-2xl font-bold text-slate-900 dark:text-white">
+          Quick answers
+        </h2>
+        <dl className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="rounded-lg border border-slate-200 p-5 dark:border-slate-700">
+            <dt className="font-semibold text-slate-900 dark:text-white">
+              Which states have the most website accessibility lawsuits?
+            </dt>
+            <dd className="mt-2 text-slate-700 dark:text-slate-300">
+              New York, Florida and Illinois. In 2025 they had{" "}
+              {topStates.slice(0, 3).map((s, i) => (
+                <span key={s.abbreviation}>
+                  {i > 0 ? (i === 2 ? " and " : ", ") : ""}
+                  {s.count.toLocaleString()} ({s.state})
+                </span>
+              ))}{" "}
+              federal website filings, together {Math.round(
+                (topStates.slice(0, 3).reduce((n, s) => n + s.count, 0) / lawsuitSummary.latestYearTotal) * 100,
+              )}% of the {lawsuitSummary.latestYearTotal.toLocaleString()} total. California had only{" "}
+              {topStates.find((s) => s.abbreviation === "CA")?.count} federal filings because plaintiffs there
+              mostly sue in state court. <a href="#states" className="font-medium text-blue-700 underline underline-offset-4 dark:text-blue-300">See all states</a>
+            </dd>
+          </div>
+          <div className="rounded-lg border border-slate-200 p-5 dark:border-slate-700">
+            <dt className="font-semibold text-slate-900 dark:text-white">
+              How many web accessibility lawsuits were filed last year?
+            </dt>
+            <dd className="mt-2 text-slate-700 dark:text-slate-300">
+              {lawsuitSummary.latestYearTotal.toLocaleString()} in U.S. federal court in 2025, up{" "}
+              {Math.round(lawsuitSummary.yearOverYearChange)}% on 2024 (Seyfarth Shaw). UsableNet, which also
+              counts New York and California state courts, reports{" "}
+              {lawsuitSummary.combinedFederalStateTotal2025.toLocaleString()} for 2025. The two counts use
+              different scopes, so do not add them together.
+            </dd>
+          </div>
+          <div className="rounded-lg border border-slate-200 p-5 dark:border-slate-700">
+            <dt className="font-semibold text-slate-900 dark:text-white">
+              Which industries get sued the most?
+            </dt>
+            <dd className="mt-2 text-slate-700 dark:text-slate-300">
+              {lawsuitSummary.mostTargetedIndustry}, at about {lawsuitSummary.mostTargetedIndustryShare}% of 2025
+              digital accessibility lawsuits, followed by food and beverage at about 21%. Healthcare,
+              entertainment and travel are each in low single digits.{" "}
+              <a href="#industries" className="font-medium text-blue-700 underline underline-offset-4 dark:text-blue-300">Industry breakdown</a>
+            </dd>
+          </div>
+          <div className="rounded-lg border border-slate-200 p-5 dark:border-slate-700">
+            <dt className="font-semibold text-slate-900 dark:text-white">
+              How much does a website accessibility lawsuit cost to settle?
+            </dt>
+            <dd className="mt-2 text-slate-700 dark:text-slate-300">
+              Demand letters often settle for $1,000 to $25,000 and out-of-court settlements average about $
+              {lawsuitSummary.averageSettlement.toLocaleString()}, before your own legal fees and the cost of
+              fixing the site. Class actions can run into millions.{" "}
+              <Link href="/guides/ada-website-lawsuit-cost" className="font-medium text-blue-700 underline underline-offset-4 dark:text-blue-300">Full cost breakdown</Link>
+            </dd>
+          </div>
+        </dl>
+      </section>
 
       <LawsuitTrackerClient />
 

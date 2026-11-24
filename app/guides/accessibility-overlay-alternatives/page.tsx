@@ -24,9 +24,12 @@ import { PageByline } from "@/components/seo/page-byline"
 import { GuideArticleSchema } from "@/components/seo/guide-article-schema"
 import { clampDescription } from "@/lib/metadata"
 
-const pageTitle = "Accessibility Overlay Alternatives That Actually Work"
+// Search Console, Nov 2026: position 6 with a 0.28% click rate, and "can an accessibility
+// overlay pass a wcag audit?" at position 2.6 with no clicks. The title now answers the
+// question people bring, and names the products they are trying to replace.
+const pageTitle = "Accessibility Overlay Alternatives That Pass an Audit"
 const pageDescription =
-  "Overlay widgets don't deliver ADA or WCAG compliance. Compare real alternatives — audits, remediation, CI testing, training — by cost, effort, and legal risk."
+  "No overlay passes a WCAG audit. Compare what replaces accessiBe, UserWay or AudioEye: audits, code fixes, CI testing and training, with costs and legal risk."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -83,6 +86,11 @@ const breadcrumbs = [
 ]
 
 const faqs = [
+  {
+    question: "Can an accessibility overlay pass a WCAG audit?",
+    answer:
+      "No. An audit tests the page as people receive it, with screen readers, keyboard only and zoom, against every WCAG success criterion. Overlays cannot write meaningful alt text for complex images, rebuild custom widgets that trap keyboard focus, fix the reading order of the source, or supply accessible names that match what a control does. Their automated repairs are guesses that auditors routinely find wrong, and the widget's own toolbar often fails criteria such as 2.4.11 Focus Not Obscured. Many auditors also test with the widget switched off, because most disabled people use their own assistive technology and never open it. Expect the same findings with or without the overlay.",
+  },
   {
     question: "Do accessibility overlays make you compliant?",
     answer:
@@ -168,7 +176,7 @@ export default function OverlayAlternativesGuidePage() {
                 Comparison Guide
               </Badge>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-                Accessibility Overlay Alternatives That Actually Work
+                Accessibility Overlay Alternatives That Pass an Audit
               </h1>
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 If you are questioning your overlay subscription, you are in

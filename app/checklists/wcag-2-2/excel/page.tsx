@@ -8,9 +8,10 @@ import { clampDescription } from "@/lib/metadata"
 export const metadata: Metadata = {
   title: "WCAG 2.2 Checklist Excel Template | All 86 Criteria",
   description:
-    clampDescription("Download free WCAG 2.2 checklist Excel template with all 86 success criteria. Includes progress tracking, audit summary, and professional formatting for accessibility audits."),
+    clampDescription("Free WCAG 2.2 checklist Excel template with all 86 success criteria, plus a WCAG 2.1 version (78 criteria, with 4.1.1). Progress tracking and an audit summary sheet."),
   keywords: [
     "wcag 2.2 checklist excel",
+    "wcag 2.1 checklist excel",
     "WCAG checklist download",
     "accessibility checklist excel",
     "WCAG 2.2 excel template",

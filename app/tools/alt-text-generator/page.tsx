@@ -19,9 +19,11 @@ import { AccessibilityToolStructuredData, BreadcrumbStructuredData } from "@/com
 import { RelatedContent } from "@/components/seo/related-content"
 
 export const metadata: Metadata = {
-  title: "AI Alt Text Generator | Image Description Tool",
+  // Search Console, Nov 2026: "alt text generator" 17th, "ai alt text generator" 32nd, but
+  // "alt text generator from url" 4th with an 11% click rate. Lead with both input routes.
+  title: "AI Alt Text Generator: Upload an Image or Paste a URL",
   description:
-    "Generate context-aware alt text drafts for images, then review purpose, accuracy, surrounding content, and whether the image should be marked decorative.",
+    "Upload an image or paste its URL for a context-aware alt text draft, then review its purpose, accuracy and whether it is decorative. New accounts get 100 free credits.",
   keywords: "alt text generator, AI alt text, image description, accessibility, screen reader, WCAG, SEO",
   openGraph: {
     title: "AI Alt Text Generator - Draft and Review Image Descriptions",

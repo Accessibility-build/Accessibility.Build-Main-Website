@@ -1,3 +1,4 @@
+import retiredBlogPosts from "@/lib/retired-blog-posts.json"
 import type { MetadataRoute } from "next"
 import { getBlogPosts } from "@/lib/sanity"
 import { siteRoutes } from "@/lib/site-routes"
@@ -31,6 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogEntries = (sanityPosts || [])
     .filter((post: any) => Boolean(post?.slug?.current && post?.publishedAt))
+    .filter((post: any) => !(post.slug.current in retiredBlogPosts.redirects))
     .map((post: any) => ({
       url: `${baseUrl}/blog/${post.slug.current}`,
       lastModified: new Date(post._updatedAt || post.publishedAt),

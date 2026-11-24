@@ -1,3 +1,4 @@
+import retiredBlogPosts from "@/lib/retired-blog-posts.json"
 import type { Metadata } from "next"
 import { getBlogPosts, getBlogCategories } from "@/lib/sanity"
 import BlogClientPage from "./BlogClientPage"
@@ -56,7 +57,9 @@ export default async function BlogPage() {
 
   // All posts now live in Sanity (the former static posts were migrated in),
   // sorted newest first.
-  const allPosts = [...(posts ?? [])].sort(
+  const allPosts = [...(posts ?? [])]
+    .filter((post: any) => !(post?.slug?.current in retiredBlogPosts.redirects))
+    .sort(
     (a: any, b: any) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   )
