@@ -109,7 +109,7 @@ const faqItems = [
   {
     question: "What is APCA and how does it differ from WCAG 2.2?",
     answer:
-      "APCA (Accessible Perceptual Contrast Algorithm) is the contrast model proposed for WCAG 3. It computes Lc, a signed value typically between −108 and +106, that accounts for font size, font weight, and polarity (dark text on light vs light text on dark). WCAG 2.2 uses a luminance ratio (4.5:1 for body text) that does not distinguish polarity, so combinations that score 4.7:1 can still fail readability in dark mode — a problem APCA explicitly addresses.",
+      "APCA (Accessible Perceptual Contrast Algorithm) is a contrast model that was put forward for WCAG 3. It is not part of any standard: the 10 September 2026 WCAG 3 Working Draft leaves its contrast measure to be determined and does not name APCA. APCA computes Lc, a signed value typically between -108 and +106 that reflects polarity (dark text on light or light text on dark), and its guidance sets different Lc targets by font size and weight. WCAG 2.2 uses a luminance ratio (4.5:1 for body text) that ignores polarity, so pairs that score 4.7:1 can still read poorly in dark mode. That is the problem APCA tries to address. For legal conformance, keep meeting WCAG 2.2.",
   },
   {
     question: "Should I ship APCA today?",

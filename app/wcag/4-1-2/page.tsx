@@ -466,7 +466,7 @@ export default function WCAG412Page() {
               </Link>{" "}
               and our{" "}
               <Link
-                href="/blog/aria-labels-guide"
+                href="/guides/aria-label"
                 className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2 font-medium"
               >
                 guide to ARIA labels

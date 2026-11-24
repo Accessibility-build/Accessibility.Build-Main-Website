@@ -19,7 +19,7 @@ import { clampDescription } from "@/lib/metadata"
 export const metadata: Metadata = {
   title: "Accessible Color Palette Generator | WCAG 2.2",
   description:
-    clampDescription("Generate WCAG-aware color palettes and preview buttons, cards, forms, alerts, links, charts, hover states, disabled states, and focus states in light and dark mode."),
+    clampDescription("Generate WCAG-aware color palettes and preview buttons, cards, forms, alerts, links, charts and focus states in light and dark mode, with a color-blindness preview."),
   keywords: [
     "accessible color palette generator",
     "WCAG color palette generator",
@@ -30,7 +30,8 @@ export const metadata: Metadata = {
     "dark mode accessible colors",
     "button color contrast",
     "focus state color",
-    "accessible design system"
+    "accessible design system",
+    "color blind friendly palette generator"
   ],
   openGraph: {
     title: "Accessible Color Palette Generator with Live UI Preview",
@@ -342,6 +343,9 @@ export default function ColorPaletteGeneratorPage() {
               </Link>
               <Link href="/tools/contrast-checker" className="inline-flex min-h-11 items-center justify-center rounded-md border px-5 py-2 text-sm font-semibold transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
                 Open the WCAG color contrast checker
+              </Link>
+              <Link href="/accessible-color-palettes" className="inline-flex min-h-11 items-center justify-center rounded-md border px-5 py-2 text-sm font-semibold transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                Browse ready-made accessible palettes
               </Link>
             </div>
           </section>

@@ -189,6 +189,11 @@ export default function AccessibleColorPalettesGuidePage() {
                     Check a color pair
                   </Link>
                 </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/accessible-color-palettes">
+                    Browse ready-made palettes
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>

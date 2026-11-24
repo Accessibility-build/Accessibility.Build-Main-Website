@@ -24,9 +24,10 @@ import { getRouteDate } from "@/lib/site-routes"
 export const metadata = createMetadata({
   title: "WCAG 3.0 Guide: W3C Accessibility Guidelines 3.0",
   description:
-    "Comprehensive guide to WCAG 3.0 (W3C Accessibility Guidelines). Learn about the six reporting tiers, the 12 guideline categories, what changed in the September 2026 draft, and how to prepare.",
+    "WCAG 3.0 explained: release date (not before 2028), the six reporting tiers, the 12 guideline categories, what changed in the September 2026 draft, and how to prepare.",
   keywords: [
     "WCAG 3.0",
+    "WCAG 3.0 release date",
     "WCAG 3",
     "W3C Accessibility Guidelines",
     "WCAG 3.0 overview",
@@ -39,15 +40,15 @@ export const metadata = createMetadata({
   ],
   type: "article" as const,
   publishedTime: "2026-03-15T00:00:00Z",
-  modifiedTime: "2026-09-11T00:00:00Z",
+  modifiedTime: "2026-11-24T00:00:00Z",
   path: "/wcag-3",
 })
 
 const faqs = [
   {
-    question: "When will WCAG 3.0 be finalized?",
+    question: "When will WCAG 3.0 be released?",
     answer:
-      "The most recent Working Draft was published on 10 September 2026. The W3C Accessibility Guidelines Working Group states that while the draft has moved closer toward completion, it still has several years of work remaining. There is no firm date for the final Recommendation, but organizations should monitor progress and begin familiarizing themselves with the new framework now.",
+      "Not before 2028 at the earliest. The latest Working Draft is dated 10 September 2026. The working group is aiming for a Candidate Recommendation snapshot for public review around the end of 2027 or January 2028, and its 2025 roadmap put the final W3C Recommendation in 2029. These are targets, not commitments, and laws such as the ADA Title II rule and the harmonised EN 301 549 (V3.2.1) will keep citing WCAG 2.1 or 2.2 for years after that.",
   },
   {
     question: "Does WCAG 3.0 replace WCAG 2.2?",
@@ -454,6 +455,33 @@ export default function WCAG3HubPage() {
           </p>
         </div>
         <EvolutionTimelineSVG />
+      </section>
+
+      {/* Search Console, Nov 2026: "wcag 3.0 release date" (300 impressions) ranked 49th.
+          Sources checked 2026-11-24: TPAC 2025 WCAG3 update slides, AG WG minutes of
+          13 Oct 2026 (draft), proposed AG WG charter of June 2026. */}
+      <section aria-labelledby="release-date-heading" className="container-wide pb-12 md:pb-16">
+        <div className="max-w-3xl mx-auto rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
+          <h2 id="release-date-heading" className="text-2xl font-bold text-slate-900 dark:text-white">
+            When will WCAG 3.0 be released?
+          </h2>
+          <p className="mt-3 text-slate-700 dark:text-slate-300">
+            <strong>Not before 2028.</strong> WCAG 3.0 is still a Working Draft. The W3C plans published so far point to:
+          </p>
+          <ul className="mt-4 space-y-2 text-slate-700 dark:text-slate-300 list-disc pl-5">
+            <li><strong>10 September 2026:</strong> latest Working Draft.</li>
+            <li><strong>Late 2027 to January 2028:</strong> target for a Candidate Recommendation snapshot for wide public review.</li>
+            <li><strong>2029:</strong> final W3C Recommendation, in the working group&apos;s 2025 roadmap.</li>
+            <li><strong>Years later:</strong> adoption into law. The ADA Title II rule and the harmonised EN 301 549 (V3.2.1) cite WCAG 2.1; WCAG 2.2 is the current Recommendation and EN 301 549 V4.1.1 adopts it.</li>
+          </ul>
+          <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
+            These are working group targets, not commitments, and they have slipped before. Sources:{" "}
+            <a href="https://www.w3.org/2025/Talks/TPAC/wcag3-update/" className="underline underline-offset-4 hover:text-slate-900 dark:hover:text-white">WCAG 3 update, TPAC 2025</a>
+            {" "}and{" "}
+            <a href="https://www.w3.org/2026/10/13-ag-minutes.html" className="underline underline-offset-4 hover:text-slate-900 dark:hover:text-white">AG WG minutes, 13 October 2026</a>.
+            Until then, build to <Link href="/checklists/wcag-2-2" className="underline underline-offset-4 hover:text-slate-900 dark:hover:text-white">WCAG 2.2 AA</Link>.
+          </p>
+        </div>
       </section>
 
       {/* What's Different - 3 Cards */}

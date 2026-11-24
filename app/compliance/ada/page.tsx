@@ -11,9 +11,12 @@ const ogTitle = encodeURIComponent("ADA Website Compliance: Requirements & Deadl
 export const metadata: Metadata = {
   title: "ADA Website Compliance: Requirements & Deadlines",
   description:
-    clampDescription("How the ADA applies to websites: Title II vs Title III, the DOJ web rule and WCAG 2.1 AA deadlines, the circuit split, lawsuit trends, and practical compliance steps."),
+    clampDescription("ADA website requirements explained: what WCAG 2.1 AA means in practice, the Title II rule and deadlines, Title III case law, standards compared, and next steps."),
   keywords: [
     "ada website compliance",
+    "ada website requirements",
+    "ada website guidelines",
+    "website accessibility standards",
     "ada title iii website",
     "ada title ii web rule",
     "wcag 2.1 aa legal requirement",
@@ -194,6 +197,72 @@ export default function AdaCompliancePage() {
             { value: "0", label: "appellate decisions in force holding that websites are outside Title III", source: "The Eleventh Circuit vacated its own in December 2021", sourceHref: "/cases/gil-v-winn-dixie", asOf: "2021-12-28" },
           ]}
         />        <div className="max-w-3xl mx-auto space-y-16">
+          {/* Search Console, Nov 2026: "ada website requirements", "ada website guidelines",
+              "website accessibility standards" and "accessibility standards" ranked 80 to 93,
+              and this page never answered the question directly. Sources: 28 CFR 35.200 (Title II
+              rule), DOJ "Guidance on Web Accessibility and the ADA" (March 2022), 36 CFR 1194
+              (Section 508 refresh, effective 18 Jan 2018), EN 301 549 V3.2.1. */}
+          <section aria-labelledby="requirements-heading">
+            <h2 id="requirements-heading" className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+              What Are the ADA Website Requirements?
+            </h2>
+            <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
+              <strong>
+                In practice, an ADA-compliant website is one that meets WCAG 2.1 Level AA.
+              </strong>{" "}
+              For state and local governments that is now a legal requirement under the DOJ&apos;s Title II rule. For
+              private businesses the ADA names no technical standard, and the DOJ&apos;s 2022 guidance lets them choose
+              how to make their sites accessible, but courts, settlements and the DOJ itself all measure accessibility
+              against WCAG. Meeting WCAG 2.1 AA, or the newer WCAG 2.2 AA, is the defensible target for everyone.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
+              WCAG 2.1 AA has 50 success criteria. These are the ones most often failed, and most often named in
+              demand letters:
+            </p>
+            <ul className="space-y-2 text-slate-700 dark:text-slate-300 leading-relaxed list-disc pl-5 mb-6">
+              <li><strong>Text alternatives:</strong> meaningful alt text on informative images; decorative images hidden (<Link href="/wcag/1-1-1" className="text-blue-700 underline underline-offset-4 dark:text-blue-300">1.1.1</Link>).</li>
+              <li><strong>Captions and transcripts</strong> for prerecorded and live video (1.2.2, 1.2.4).</li>
+              <li><strong>Color contrast</strong> of at least 4.5:1 for body text and 3:1 for large text and interface parts (<Link href="/wcag/1-4-3" className="text-blue-700 underline underline-offset-4 dark:text-blue-300">1.4.3</Link>, <Link href="/wcag/1-4-11" className="text-blue-700 underline underline-offset-4 dark:text-blue-300">1.4.11</Link>).</li>
+              <li><strong>Keyboard access</strong> to every link, button, menu and form, with a visible focus indicator and no keyboard traps (2.1.1, 2.1.2, 2.4.7).</li>
+              <li><strong>Form labels and error messages</strong> that are announced and explain how to fix the problem (1.3.1, 3.3.1, 3.3.2).</li>
+              <li><strong>Headings, landmarks and page titles</strong> that describe the structure (1.3.1, 2.4.2, 2.4.6).</li>
+              <li><strong>Zoom and reflow:</strong> content usable at 200% text size and at 320 CSS pixels wide without sideways scrolling (1.4.4, <Link href="/wcag/1-4-10" className="text-blue-700 underline underline-offset-4 dark:text-blue-300">1.4.10</Link>).</li>
+              <li><strong>Named controls:</strong> every button, link and widget exposes a name, role and state to assistive technology (<Link href="/wcag/4-1-2" className="text-blue-700 underline underline-offset-4 dark:text-blue-300">4.1.2</Link>).</li>
+              <li><strong>Documents and apps:</strong> PDFs, mobile apps and checkout flows count too; the Title II rule covers apps explicitly.</li>
+            </ul>
+            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">
+              Website accessibility standards compared
+            </h3>
+            <div role="region" aria-label="Website accessibility standards compared" tabIndex={0} className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 mb-4">
+              <table className="w-full min-w-[34rem] text-left text-sm text-slate-700 dark:text-slate-300">
+                <caption className="sr-only">Which accessibility standard each law points to</caption>
+                <thead className="bg-slate-50 dark:bg-slate-900">
+                  <tr>
+                    <th scope="col" className="px-4 py-3 font-semibold text-slate-900 dark:text-white">Law or rule</th>
+                    <th scope="col" className="px-4 py-3 font-semibold text-slate-900 dark:text-white">Who it covers</th>
+                    <th scope="col" className="px-4 py-3 font-semibold text-slate-900 dark:text-white">Standard</th>
+                  </tr>
+                </thead>
+                <tbody className="[&_td]:border-t [&_td]:border-slate-200 dark:[&_td]:border-slate-700 [&_td]:px-4 [&_td]:py-3 [&_td]:align-top">
+                  <tr><td>ADA Title II rule</td><td>State and local governments</td><td>WCAG 2.1 AA</td></tr>
+                  <tr><td>ADA Title III</td><td>Private businesses open to the public</td><td>None named; WCAG 2.1 or 2.2 AA in practice</td></tr>
+                  <tr><td>Section 504 (HHS rule)</td><td>Recipients of HHS funding</td><td>WCAG 2.1 AA</td></tr>
+                  <tr><td>Section 508</td><td>Federal agencies and their ICT</td><td>WCAG 2.0 AA</td></tr>
+                  <tr><td>EU accessibility laws</td><td>Public sector and, under the EAA, many businesses</td><td>EN 301 549 (V3.2.1 uses WCAG 2.1 AA)</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+              Work through every criterion with our{" "}
+              <Link href="/checklists/wcag-2-2" className="text-blue-700 underline underline-offset-4 dark:text-blue-300">WCAG 2.2 checklist</Link>
+              {" "}(which includes all of 2.1 AA except the obsolete 4.1.1), and see{" "}
+              <Link href="/compliance/section-508" className="text-blue-700 underline underline-offset-4 dark:text-blue-300">Section 508</Link>
+              {" "}and{" "}
+              <Link href="/compliance/eaa" className="text-blue-700 underline underline-offset-4 dark:text-blue-300">European Accessibility Act</Link>
+              {" "}for those rules in depth.
+            </p>
+          </section>
+
           {/* Title II vs Title III */}
           <section aria-labelledby="titles-heading">
             <h2 id="titles-heading" className="text-3xl font-bold text-slate-900 dark:text-white mb-6">

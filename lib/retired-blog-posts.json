@@ -1,0 +1,11 @@
+{
+  "_comment": "Old blog posts that competed in search with a newer, stronger page (Search Console, Nov 2026). Each slug 308-redirects to its target (next.config.mjs) and is left out of the sitemap and blog index. Remove an entry only if the post is rewritten to serve a different intent.",
+  "redirects": {
+    "screen-reader-testing": "/guides/screen-reader-testing",
+    "mastering-screen-reader-testing-beyond-basics-assistive-technology": "/guides/screen-reader-testing",
+    "aria-labels-guide": "/guides/aria-label",
+    "ada-compliance-guide": "/compliance/ada",
+    "website-accessibility-compliance": "/compliance/ada",
+    "inclusive-design-principles-digital-experiences-human-diversity": "/blog/inclusive-design-principles"
+  }
+}

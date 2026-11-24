@@ -1,7 +1,13 @@
 import path from 'path'
+import fs from 'fs'
 import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+// Old blog posts consolidated into stronger pages; also filtered from the sitemap and blog index.
+const retiredBlogPosts = JSON.parse(
+    fs.readFileSync(path.join(__dirname, 'lib/retired-blog-posts.json'), 'utf8'),
+).redirects
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -61,7 +67,11 @@ const nextConfig = {
         ]
     },
     async redirects() {
-        return [{
+        return [...Object.entries(retiredBlogPosts).map(([slug, destination]) => ({
+            source: `/blog/${slug}`,
+            destination,
+            permanent: true,
+        })), {
             // The CPACC course moved out of Templates (2026-11-11).
             source: '/templates/cpacc-crash-course',
             destination: '/courses/cpacc-crash-course',

@@ -11,9 +11,11 @@ export const metadata: Metadata = {
   // while the tool queries it should own ("wcag colour contrast checker",
   // "contrast checker wcag", "hex contrast checker") sat at positions 17 to 37.
   // The title and H1 now name the tool the way those searches do.
-  title: "WCAG Color Contrast Checker: Hex Codes, AA & AAA",
+  // Nov 2026: "apca contrast checker" sat at 18 although the tool has an APCA mode the
+  // metadata never mentioned.
+  title: "WCAG Color Contrast Checker: Hex Codes, AA, AAA & APCA",
   description:
-    clampDescription("Free WCAG color contrast checker. Enter two hex codes to get the contrast ratio and AA and AAA pass or fail for normal and large text, with fix suggestions."),
+    clampDescription("Free WCAG color contrast checker. Enter two hex codes for the contrast ratio, AA and AAA pass or fail, an APCA Lc reading, fix suggestions and a shareable link."),
   keywords: [
     "wcag contrast checker",
     "wcag color contrast checker",
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
     "color contrast checker",
     "WCAG contrast ratio",
     "WCAG 2.2 compliance",
-    "APCA contrast estimate",
+    "APCA contrast checker",
     "accessibility testing",
     "color accessibility",
     "contrast ratio calculator", 
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     "advanced perceptual contrast"
   ],
   openGraph: {
-    title: "WCAG Color Contrast Checker: Hex Codes, AA & AAA",
+    title: "WCAG Color Contrast Checker: Hex Codes, AA, AAA & APCA",
     description: "Enter two hex codes to get the WCAG 2.2 contrast ratio and AA and AAA pass or fail, with live previews and fix suggestions.",
     type: "website",
     url: "https://accessibility.build/tools/contrast-checker",
@@ -53,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WCAG Color Contrast Checker: Hex Codes, AA & AAA",
+    title: "WCAG Color Contrast Checker: Hex Codes, AA, AAA & APCA",
     description: "Enter two hex codes to get the WCAG 2.2 contrast ratio and AA and AAA pass or fail, with live previews and fix suggestions.",
     images: ["https://accessibility.build/images/tools/contrast-checker-twitter.png"]
   },

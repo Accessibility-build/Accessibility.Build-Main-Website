@@ -25,6 +25,8 @@ import {
   Sun
 } from "lucide-react"
 import { SiteScanHandoff } from "@/components/tools/site-scan-handoff"
+import { CVDFilterDefs } from "@/components/tools/palette-studio/cvd-defs"
+import { CVD_LABELS, CVD_TYPES, cvdCssFilter, type CVDType } from "@/lib/color/cvd"
 
 interface ColorData {
   hex: string
@@ -78,6 +80,10 @@ export default function ColorPaletteGenerator() {
   const [palette, setPalette] = useState<ColorPalette | null>(null)
   const [isGenerating, setIsGenerating] = useState(false)
   const [copied, setCopied] = useState<string | null>(null)
+  // Color vision preview: Search Console (Nov 2026) shows "color blind friendly palette
+  // generator" at 11.8 and "color blind palette generator" at 19, and the tool had no way to
+  // see a palette through a color vision deficiency. Uses the Machado 2009 SVG filters.
+  const [cvd, setCvd] = useState<CVDType>("normal")
 
   // Color conversion utilities
   const hexToHsl = (hex: string): { h: number; s: number; l: number } => {
@@ -952,9 +958,31 @@ ${palette.neutral.map((color, i) => `  --neutral-${i * 100}: ${color.hex};`).joi
               <CardDescription>
                 See the palette applied to real interface states before using it in a design system.
               </CardDescription>
+              <div className="mt-3 flex flex-col gap-1 sm:max-w-xs">
+                <label htmlFor="cvd-preview" className="text-sm font-medium">
+                  Preview with color vision
+                </label>
+                <select
+                  id="cvd-preview"
+                  value={cvd}
+                  onChange={(e) => setCvd(e.target.value as CVDType)}
+                  aria-describedby="cvd-preview-hint"
+                  className="h-10 rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  {CVD_TYPES.map((t) => (
+                    <option key={t} value={t}>
+                      {CVD_LABELS[t]}
+                    </option>
+                  ))}
+                </select>
+                <p id="cvd-preview-hint" className="text-xs text-muted-foreground">
+                  Simulates how people with color blindness see the preview. Contrast figures are calculated from the original colors.
+                </p>
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 gap-6">
+              <CVDFilterDefs />
+              <div className="grid grid-cols-1 gap-6" style={{ filter: cvdCssFilter(cvd) ?? undefined }}>
                 {renderLivePreview(getPreviewTokens(palette, "light"))}
                 {renderLivePreview(getPreviewTokens(palette, "dark"))}
               </div>

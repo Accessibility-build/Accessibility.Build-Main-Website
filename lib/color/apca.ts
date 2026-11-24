@@ -1,7 +1,8 @@
 /**
- * APCA (Accessible Perceptual Contrast Algorithm) — the contrast model in the
- * WCAG 3 working draft. Returns Lc (lightness contrast), a signed value typically
- * in the range −108 to +106. Use absolute value for threshold checks.
+ * APCA (Accessible Perceptual Contrast Algorithm). Not part of any WCAG standard: the
+ * 10 Sep 2026 WCAG 3 Working Draft leaves its contrast measure "to be determined" and does
+ * not name APCA. Returns Lc (lightness contrast), a signed value typically in the range
+ * -108 to +106. Use absolute value for threshold checks.
  *
  * Algorithm follows APCA-W3 0.1.9 (https://github.com/Myndex/apca-w3).
  */
