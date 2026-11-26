@@ -15,10 +15,12 @@ interface ScorePanelProps {
   totalViolations: number
   elements: number
   reviewCount: number
+  extras?: AuditExtras
 }
 
-export function ScorePanel({ score, counts, totalViolations, elements, reviewCount }: ScorePanelProps) {
-  const band = totalViolations === 0 ? { ...scoreBand(100), label: "No confirmed failures" } : scoreBand(score)
+export function ScorePanel({ score, counts, totalViolations, elements, reviewCount, extras }: ScorePanelProps) {
+  const clean = totalViolations === 0
+  const band = clean ? { ...scoreBand(100), label: "No confirmed failures" } : scoreBand(score)
   const radius = 52
   const circumference = 2 * Math.PI * radius
   const max = Math.max(1, ...IMPACTS.map((impact) => counts[impact]))
@@ -54,23 +56,54 @@ export function ScorePanel({ score, counts, totalViolations, elements, reviewCou
         <p className={cn("hidden text-lg font-semibold sm:block", band.text)}>{band.label}</p>
         <p className="text-sm leading-6 text-slate-700 dark:text-slate-300">
           <span className="sr-only">Score {score} out of 100. </span>
-          {totalViolations === 0 ? "No confirmed violations" : `${plural(totalViolations, "failing rule")} across ${plural(elements, "element")}`}
-          {reviewCount > 0 ? `, plus ${plural(reviewCount, "item")} to review by hand.` : "."} The score is a triage number for tracking this page over time, not a measure of conformance.
+          {clean
+            ? reviewCount > 0
+              ? `Automated checks found nothing they could confirm as a failure. ${plural(reviewCount, "item needs", "items need")} a person to decide.`
+              : "Automated checks found nothing they could confirm as a failure."
+            : `${plural(totalViolations, "failing rule")} across ${plural(elements, "element")}${reviewCount > 0 ? `, plus ${plural(reviewCount, "item")} to check by hand` : ""}.`}
         </p>
-        <dl className="mt-4 space-y-2">
-          {IMPACTS.map((impact) => (
-            <div key={impact} className="grid grid-cols-[5.5rem_minmax(0,1fr)_2rem] items-center gap-3 text-sm">
-              <dt className="font-medium text-slate-800 dark:text-slate-200">{IMPACT_META[impact].label}</dt>
-              <div className="h-2.5 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800" aria-hidden="true">
-                <div className={cn("h-full rounded-full", IMPACT_META[impact].bar)} style={{ width: `${(counts[impact] / max) * 100}%` }} />
+        {clean ? (
+          <ul className="mt-4 space-y-2 text-sm">
+            {cleanChecks(extras).map((item) => (
+              <li key={item} className="flex gap-2 text-slate-800 dark:text-slate-200">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-400" aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+            {reviewCount > 0 && (
+              <li className="flex gap-2 font-medium text-amber-900 dark:text-amber-200">
+                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-700 dark:text-amber-400" aria-hidden="true" />
+                {plural(reviewCount, "item")} to check by hand
+              </li>
+            )}
+          </ul>
+        ) : (
+          <dl className="mt-4 space-y-2">
+            {IMPACTS.map((impact) => (
+              <div key={impact} className="grid grid-cols-[5.5rem_minmax(0,1fr)_2rem] items-center gap-3 text-sm">
+                <dt className="font-medium text-slate-800 dark:text-slate-200">{IMPACT_META[impact].label}</dt>
+                <div className="h-2.5 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800" aria-hidden="true">
+                  <div className={cn("h-full rounded-full", IMPACT_META[impact].bar)} style={{ width: `${(counts[impact] / max) * 100}%` }} />
+                </div>
+                <dd className="text-right font-semibold tabular-nums text-slate-900 dark:text-white">{counts[impact]}</dd>
               </div>
-              <dd className="text-right font-semibold tabular-nums text-slate-900 dark:text-white">{counts[impact]}</dd>
-            </div>
-          ))}
-        </dl>
+            ))}
+          </dl>
+        )}
+        <p className="mt-4 text-xs leading-5 text-slate-600 dark:text-slate-400">The score counts confirmed failures only. Use it to track this page over time; it is not a measure of conformance.</p>
       </div>
     </div>
   )
+}
+
+/** What the checks confirmed on a page with no failures, from the run's own numbers. */
+function cleanChecks(extras: AuditExtras | undefined): string[] {
+  if (!extras) return ["No axe-core rule failed"]
+  const items = [`${plural(extras.engine.rulesPassed, "axe-core rule")} passed`]
+  if (extras.keyboard.ran && extras.keyboard.stops > 0) items.push(`Focus visible at all ${plural(extras.keyboard.stops, "Tab stop")} checked`)
+  if (extras.layout.reflowChecked) items.push("Fits a 320 pixel wide screen without sideways scrolling")
+  if (extras.layout.textSpacingChecked) items.push("No text cut off with wider text spacing")
+  return items
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -204,7 +237,7 @@ export function parseSummary(raw: string | undefined): AiSummary | null {
   return null
 }
 
-export function AiSummaryPanel({ summary, hasViolations }: { summary: AiSummary; hasViolations: boolean }) {
+export function AiSummaryPanel({ summary }: { summary: AiSummary }) {
   return (
     <div className="rounded-2xl border border-teal-200 bg-gradient-to-br from-teal-50 to-white p-5 dark:border-teal-900 dark:from-teal-950/40 dark:to-slate-900 sm:p-6">
       <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-teal-900 dark:text-teal-200">
@@ -217,7 +250,7 @@ export function AiSummaryPanel({ summary, hasViolations }: { summary: AiSummary;
         <div className="mt-5 grid gap-5 md:grid-cols-2">
           {summary.fixFirst.length > 0 && (
             <div>
-              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">{hasViolations ? "Fix first" : "Check first"}</h3>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Fix first</h3>
               <ol className="mt-2 space-y-2">
                 {summary.fixFirst.map((item, index) => (
                   <li key={item.title} className="flex gap-3 text-sm">
@@ -248,6 +281,56 @@ export function AiSummaryPanel({ summary, hasViolations }: { summary: AiSummary;
         </div>
       )}
       <p className="mt-4 text-xs text-slate-600 dark:text-slate-400">Check it against the findings below before quoting it.</p>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------------------------
+// What a clean result means. Written from the run's facts, never by AI: with nothing confirmed
+// there is nothing for a model to summarise, and wording such as "issues" contradicts the score.
+
+interface CleanResultPanelProps {
+  reviewTitles: string[]
+  reviewCount: number
+  extras?: AuditExtras
+}
+
+export function CleanResultPanel({ reviewTitles, reviewCount, extras }: CleanResultPanelProps) {
+  const automated = extras ? extras.coverage.filter((entry) => entry.status !== "manual").length : null
+  const total = extras?.coverage.length ?? 0
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/60 sm:p-6">
+      <p className="text-xs font-semibold uppercase tracking-wide text-teal-900 dark:text-teal-200">What this result means</p>
+      <p className="mt-2 font-serif text-xl font-semibold leading-snug text-slate-900 dark:text-white">A clean automated result is where manual testing starts.</p>
+      <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-300">
+        {automated !== null
+          ? `Machines could test ${automated} of the ${total} WCAG 2.2 Level A and AA criteria on this page, and confirmed no failures in them. The rest need a person.`
+          : "Machines can test only part of WCAG, and confirmed no failures in that part. The rest needs a person."}
+      </p>
+      <ol className="mt-4 space-y-3 text-sm">
+        {reviewCount > 0 && (
+          <li className="flex gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-700 text-xs font-bold text-white" aria-hidden="true">1</span>
+            <span className="min-w-0">
+              <a href="#audit-findings" className="font-medium text-teal-800 underline underline-offset-2 hover:decoration-2 dark:text-teal-300">
+                Check the {plural(reviewCount, "item")} flagged for review
+              </a>
+              {reviewTitles.length > 0 && <span className="mt-1 block text-slate-700 dark:text-slate-300">{reviewTitles.join("; ")}.</span>}
+            </span>
+          </li>
+        )}
+        {extras && (
+          <li className="flex gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-700 text-xs font-bold text-white" aria-hidden="true">{reviewCount > 0 ? 2 : 1}</span>
+            <span className="min-w-0">
+              <a href="#audit-manual" className="font-medium text-teal-800 underline underline-offset-2 hover:decoration-2 dark:text-teal-300">
+                Work through the manual testing plan
+              </a>
+              <span className="mt-1 block text-slate-700 dark:text-slate-300">{plural(extras.manualChecks.length, "check")} chosen for what this page contains.</span>
+            </span>
+          </li>
+        )}
+      </ol>
     </div>
   )
 }

@@ -22,7 +22,10 @@ export function FindingsExplorer({ findings, scFilter, onClearSc, totals, locked
   const searchId = useId()
   const categoryId = useId()
   const impactId = useId()
-  const [outcome, setOutcome] = useState<Outcome>("violation")
+  // With no violations, open on the items that do need attention.
+  const [outcome, setOutcome] = useState<Outcome>(() =>
+    (totals?.violation ?? findings.filter((f) => f.outcome === "violation").length) === 0 && findings.some((f) => f.outcome === "review") ? "review" : "violation",
+  )
   const [category, setCategory] = useState<FindingCategory | "all">("all")
   const [impact, setImpact] = useState<Impact | "all">("all")
   const [query, setQuery] = useState("")

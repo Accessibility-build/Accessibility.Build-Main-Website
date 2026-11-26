@@ -48,6 +48,8 @@ async function generateAiSummary(input: {
 
   const violations = input.findings.filter((f) => f.outcome === "violation")
   const review = input.findings.filter((f) => f.outcome === "review")
+  // Nothing confirmed means nothing to summarise; the report explains a clean result itself.
+  if (violations.length === 0) return undefined
   const describe = (f: AuditFinding) => ({
     title: f.title,
     impact: f.outcome === "violation" ? f.impact : `${f.impact}, if a person confirms it`,
@@ -73,8 +75,7 @@ Return ONLY a JSON object with this schema:
   "quickWins": ["short imperative actions that take under an hour"]
 }
 
-When violations is not empty: fixFirst has 2 to 4 items drawn from the violations, most severe first. quickWins has 2 to 4 small actions that are NOT already in fixFirst; return an empty array rather than repeat fixFirst.
-When violations is empty: the headline says automated checks found no confirmed failures and how many things there are to check by hand. The summary says what the checks covered and that the review items need a person. fixFirst lists 2 or 3 needsReview items to check first, each title starting with Check, Confirm or Review, and its why says who would be affected if it does fail. quickWins may hold cheap actions such as adding an autocomplete attribute, or be empty.`
+fixFirst has 2 to 4 items drawn from the violations, most severe first. quickWins has 2 to 4 small actions that are NOT already in fixFirst; return an empty array rather than repeat fixFirst.`
 
   const userPrompt = JSON.stringify({
     url: input.url,
@@ -108,22 +109,8 @@ When violations is empty: the headline says automated checks found no confirmed 
     )
     const parsed = JSON.parse(response.choices[0]?.message?.content || "{}") as Partial<AiSummary>
     if (!parsed.headline || !parsed.summary) return undefined
-    let headline = String(parsed.headline).replace(/\s*—\s*/g, ", ")
-    let summaryText = String(parsed.summary).replace(/\s*—\s*/g, ", ")
-    // With no confirmed failures, words like "serious issues" contradict the score. Replace rather than trust the model.
-    if (violations.length === 0) {
-      const alarmingWords = /\b(serious|critical|severe|major|significant|issues?|problems?|failures?|barriers?)\b/i
-      // "no confirmed failures" is the right message; only flag wording that asserts a problem.
-      const alarming = { test: (text: string) => alarmingWords.test(text.replace(/\bno (confirmed |automated )?(failures?|issues?|problems?|barriers?)\b/gi, "")) }
-      const toCheck = `${review.length} ${review.length === 1 ? "thing" : "things"} to check by hand`
-      if (alarming.test(headline)) headline = review.length > 0 ? `Automated checks found no confirmed failures, and ${toCheck}.` : "Automated checks found no confirmed failures on this page."
-      if (alarming.test(summaryText)) {
-        summaryText =
-          "axe-core, the keyboard pass, reflow, text spacing and the page checks found nothing they could confirm as a failure. " +
-          (review.length > 0 ? "The items to review are places where a check could not decide; a person needs to look at each one. " : "") +
-          "Manual testing is still needed for the criteria no machine can judge."
-      }
-    }
+    const headline = String(parsed.headline).replace(/\s*—\s*/g, ", ")
+    const summaryText = String(parsed.summary).replace(/\s*—\s*/g, ", ")
     const summary: AiSummary = {
       headline,
       summary: summaryText,

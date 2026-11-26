@@ -9,7 +9,7 @@ import type { AuditFinding } from "@/lib/url-audit/types"
 import { FreeScanUnlock, AuditNextStep } from "@/components/tools/free-scan-unlock"
 import { CoverageMap } from "./coverage-map"
 import { FindingsExplorer } from "./findings-explorer"
-import { AiSummaryPanel, EngineDetails, ManualChecks, PageStructure, ScorePanel, SignalCards, parseSummary } from "./report-panels"
+import { AiSummaryPanel, CleanResultPanel, EngineDetails, ManualChecks, PageStructure, ScorePanel, SignalCards, parseSummary } from "./report-panels"
 import { exportCsv, exportPdf, exportXlsx } from "./export"
 import { hostOf } from "./meta"
 
@@ -121,9 +121,16 @@ export const AuditReport = forwardRef<HTMLHeadingElement, AuditReportProps>(func
           totalViolations={audit.totalViolations ?? 0}
           elements={elements}
           reviewCount={audit.reviewCount ?? 0}
+          extras={extras}
         />
-        {summary ? (
-          <AiSummaryPanel summary={summary} hasViolations={(audit.totalViolations ?? 0) > 0} />
+        {(audit.totalViolations ?? 0) === 0 ? (
+          <CleanResultPanel
+            reviewCount={audit.reviewCount ?? 0}
+            reviewTitles={findings.filter((f) => f.outcome === "review").slice(0, 3).map((f) => f.title)}
+            extras={extras}
+          />
+        ) : summary ? (
+          <AiSummaryPanel summary={summary} />
         ) : (
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm leading-6 text-slate-700 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300">
             <p className="font-semibold text-slate-900 dark:text-white">How to read this report</p>
