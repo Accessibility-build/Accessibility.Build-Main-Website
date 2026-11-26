@@ -2,11 +2,13 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { CpaccSalesPage, cpaccSalesMetadata } from "@/components/courses/sales/cpacc-sales-page"
 import { WasSalesPage, wasSalesMetadata } from "@/components/courses/sales/was-sales-page"
+import { DesignSalesPage, designSalesMetadata } from "@/components/courses/sales/design-sales-page"
 
 // Public sales page for each course. The buyers' area is /courses/<slug>/learn.
 const SALES: Record<string, { Page: () => React.JSX.Element; metadata: Metadata }> = {
   "cpacc-crash-course": { Page: CpaccSalesPage, metadata: cpaccSalesMetadata },
   "was-crash-course": { Page: WasSalesPage, metadata: wasSalesMetadata },
+  "accessible-design": { Page: DesignSalesPage, metadata: designSalesMetadata },
 }
 
 export function generateStaticParams() {

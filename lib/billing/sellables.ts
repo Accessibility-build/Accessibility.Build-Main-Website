@@ -3,11 +3,12 @@
 //   credit packs:  starter_50, pro_200, ...            -> add credits
 //   courses:       course:<slug>:<individual|team>     -> course licence (online access)
 //   templates:     template:<slug>:<licence id>        -> download entitlement
+//   renewals:      renewal:<course slug>               -> renewal exam attempts (signed-in buyers only)
 import { getCatalogPack, isCheckoutCatalogKey } from "./catalog"
 import { COURSES, courseCatalogKey, getCourse, parseCourseCatalogKey, type CourseLicenceType } from "@/lib/courses/config"
 import { products } from "@/lib/products"
 
-export type SellableKind = "credits" | "course" | "template"
+export type SellableKind = "credits" | "course" | "template" | "renewal"
 export type DodoTaxCategory = "digital_products" | "saas" | "e_book" | "edtech"
 
 export interface Sellable {
@@ -23,6 +24,15 @@ export interface Sellable {
   cancelPath: string
   course?: { slug: string; licence: CourseLicenceType }
   template?: { slug: string; licence: string }
+  renewal?: { slug: string; attempts: number }
+}
+
+const RENEWAL_PREFIX = "renewal:"
+export const renewalKey = (slug: string) => `${RENEWAL_PREFIX}${slug}`
+export function parseRenewalKey(key: string | null | undefined) {
+  if (!key?.startsWith(RENEWAL_PREFIX)) return null
+  const course = getCourse(key.slice(RENEWAL_PREFIX.length))
+  return course?.certificate ? course : null
 }
 
 const TEMPLATE_PREFIX = "template:"
@@ -78,6 +88,22 @@ export function getSellable(key: string): Sellable | null {
       course: c,
     }
   }
+  const r = parseRenewalKey(key)
+  if (r) {
+    const rules = r.certificate!.renewal
+    return {
+      key,
+      kind: "renewal",
+      name: `${r.title}: certificate renewal`,
+      description: `Renewal exam for your ${r.title} certificate: ${rules.attemptsPerPurchase} attempts; passing extends the certificate by ${r.certificate!.validityMonths / 12} years`,
+      priceUsdCents: Math.round(rules.priceUsd * 100),
+      credits: 0,
+      taxCategory: "edtech",
+      successPath: `${r.homeRoute}/certificate`,
+      cancelPath: `${r.homeRoute}/certificate`,
+      renewal: { slug: r.slug, attempts: rules.attemptsPerPurchase },
+    }
+  }
   const t = parseTemplateKey(key)
   if (t) {
     const p = TEMPLATES[t.slug]
@@ -103,5 +129,6 @@ export function listSellableKeys(): string[] {
   const credit = ["starter_50", "pro_200", "business_500", "growth_2500", "team_5000", "team_15000"].filter(isCheckoutCatalogKey)
   const course = Object.keys(COURSES).flatMap((slug) => (["individual", "team"] as CourseLicenceType[]).map((l) => courseCatalogKey(slug, l)))
   const tmpl = Object.entries(TEMPLATES).flatMap(([slug, p]) => p.licences.map((l) => templateKey(slug, l.id)))
-  return [...credit, ...course, ...tmpl]
+  const renewal = Object.values(COURSES).filter((c) => c.certificate).map((c) => renewalKey(c.slug))
+  return [...credit, ...course, ...tmpl, ...renewal]
 }

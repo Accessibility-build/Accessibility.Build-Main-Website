@@ -60,10 +60,16 @@ export function LearningActivity({ activity, initial, onChange }: { activity: Co
   }
 
   return (
-    <section aria-labelledby={`${prefix}-title`} className="my-8 min-w-0 rounded-xl border border-slate-200 bg-white p-4 sm:p-6 dark:border-slate-800 dark:bg-slate-950">
+    <section aria-labelledby={`${prefix}-title`} className="my-8 min-w-0 max-w-[72rem] rounded-xl border border-slate-200 bg-white p-4 sm:p-6 dark:border-slate-800 dark:bg-slate-950">
       <p className="inline-block rounded-md bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-950 dark:text-blue-300">{activity.kind === "lab" ? "Guided lab" : "Decision case"} · About {activity.minutes} minutes</p>
       <h3 ref={headingRef} id={`${prefix}-title`} tabIndex={-1} className="mt-3 flex scroll-mt-4 items-start gap-2.5 rounded text-xl font-semibold tracking-tight text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300 dark:text-white"><ClipboardCheck aria-hidden="true" focusable="false" strokeWidth={1.75} className="mt-1 h-5 w-5 shrink-0 text-blue-700 dark:text-blue-300" />{activity.title}</h3>
-      <p className="mt-3 leading-relaxed text-slate-600 dark:text-slate-400">{activity.brief}</p>
+      <p className="mt-3 max-w-[46rem] leading-relaxed text-slate-600 dark:text-slate-400">{activity.brief}</p>
+      {activity.figure ? (
+        <figure className="mt-4 overflow-hidden rounded-xl border border-slate-300 dark:border-slate-700">
+          <div role="img" aria-label={activity.figure.alt} className="bg-white p-3 [&>svg]:mx-auto [&>svg]:block [&>svg]:h-auto [&>svg]:w-full [&>svg]:max-w-3xl" dangerouslySetInnerHTML={{ __html: activity.figure.svg.trim().replace(/^<svg\b/, '<svg aria-hidden="true" focusable="false"') }} />
+          <figcaption className="border-t border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">{activity.figure.caption}</figcaption>
+        </figure>
+      ) : null}
       <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-600 marker:text-blue-700 dark:text-slate-400 dark:marker:text-blue-300">{activity.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}</ul>
       <p className="sr-only" role="status" aria-live="polite">{announcement}</p>
       {initial && initial.version !== activity.version ? <p className="mt-3 text-sm text-amber-900 dark:text-amber-200">This activity has been revised. Complete the current version to record new practice.</p> : null}

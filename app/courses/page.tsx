@@ -7,7 +7,7 @@ import { clampDescription } from "@/lib/metadata"
 import { courseProductList, formatUsd, lowestPrice } from "@/lib/products"
 
 const pageTitle = "Accessibility Courses"
-const pageDescription = "Online accessibility courses from Accessibility.build: independent crash courses and practice exams for the IAAP CPACC and WAS certifications."
+const pageDescription = "Online accessibility courses from Accessibility.build: accessible design for designers, and independent crash courses and practice exams for the IAAP CPACC and WAS certifications."
 const og = `/api/og?title=${encodeURIComponent(pageTitle)}&section=Courses`
 
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ export default function CoursesPage() {
           ))}
         </ul>
         <p className="mt-10 text-sm text-slate-600 dark:text-slate-400">
-          Independent courses. Not affiliated with, approved by or endorsed by IAAP. CPACC and WAS are certifications of the International Association of Accessibility Professionals. Courses tagged in development are still being finished, so their content may change.
+          The CPACC and WAS crash courses are independent. They are not affiliated with, approved by or endorsed by IAAP. CPACC and WAS are certifications of the International Association of Accessibility Professionals. Courses tagged in development are still being finished, so their content may change.
         </p>
       </div>
     </div>

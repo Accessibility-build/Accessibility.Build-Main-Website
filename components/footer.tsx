@@ -86,6 +86,7 @@ const learningLinks: FooterLink[] = [
   { href: "/courses", label: "Online Courses", icon: GraduationCap },
   { href: "/courses/cpacc-crash-course", label: "CPACC Crash Course", icon: GraduationCap },
   { href: "/courses/was-crash-course", label: "WAS Crash Course", icon: GraduationCap },
+  { href: "/courses/accessible-design", label: "Accessible Design Course", icon: GraduationCap },
   { href: "/wcag", label: "WCAG Success Criteria", icon: BookOpenCheck },
   { href: "/checklists/wcag-2-2", label: "WCAG 2.2 Checklist", icon: ListChecks },
   { href: "/guides", label: "Implementation Guides", icon: BookOpenText },

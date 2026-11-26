@@ -32,7 +32,9 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
   const done = (progress.chaptersDone ?? []).includes(key)
   const idPrefix = `c${chapter.number}`
   const headings = lessonHeadings(chapter.blocks, idPrefix)
-  const sections = lessonSections(chapter.objectiveRefs ?? chapter.outlineRef, meta)
+  const skills = course.kind === "skills"
+  // Skills courses have no practice area: their checks sit in the lesson workspace below.
+  const sections = skills ? [] : lessonSections(chapter.objectiveRefs ?? chapter.outlineRef, meta)
 
   const toc = headings.length > 1 ? (
     <ol className="space-y-1 text-sm" role="list">
@@ -48,6 +50,8 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
 
   return (
     <CourseShell title={course.title} homeRoute={course.homeRoute} outline={outline} view="lesson" lessonKey={key} hasTeam={hasTeam}>
+      {/* Centred as a unit: text keeps its reading width, wide blocks use up to 72rem, with the page contents beside them. */}
+      <div className="mx-auto w-full max-w-[88rem]">
       <nav aria-label="Breadcrumb">
         <ol className="flex flex-wrap items-center gap-x-2 text-sm text-slate-600 dark:text-slate-400" role="list">
           <li><Link href={course.homeRoute} className={cn("rounded underline underline-offset-2 hover:decoration-2", ring)}>Course overview</Link></li>
@@ -76,7 +80,7 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
               Body of Knowledge pages {chapter.bokPages}
             </li>
           ) : null}
-          {chapter.outlineRef ? (
+          {chapter.outlineRef && !skills ? (
             <li className="inline-flex items-center rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
               Content outline {chapter.outlineRef}
             </li>
@@ -100,14 +104,14 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
         </details>
       ) : null}
 
-      {chapter.outcomes?.length ? <section aria-labelledby="lesson-outcomes" className="mt-6 min-w-0 rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/50">
+      {chapter.outcomes?.length ? <section aria-labelledby="lesson-outcomes" className="mt-6 min-w-0 max-w-[46rem] rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/50">
         <h2 id="lesson-outcomes" className="flex items-start gap-2.5 font-semibold text-slate-950 dark:text-white"><Target aria-hidden="true" focusable="false" strokeWidth={1.75} className="mt-0.5 h-5 w-5 shrink-0 text-blue-700 dark:text-blue-300" />After this lesson, you should be able to</h2>
         <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-slate-600 marker:text-blue-700 dark:text-slate-400 dark:marker:text-blue-300">{chapter.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}</ul>
       </section> : null}
 
       <div className={cn("mt-8 min-w-0", toc && "xl:grid xl:grid-cols-[minmax(0,1fr)_13rem] xl:gap-10")}>
         <article className="min-w-0 w-full">
-          <LessonReading key={`${chapter.key}:${meta.edition}`} blocks={chapter.blocks} idPrefix={idPrefix} />
+          <LessonReading key={`${chapter.key}:${meta.edition}`} blocks={chapter.blocks} idPrefix={idPrefix} skills={skills} />
           <CourseSources sources={chapter.sources} slug={slug} item={chapter.key} />
         </article>
         {toc ? (
@@ -125,7 +129,7 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
           {done ? "You have completed this lesson" : "Finished this lesson?"}
         </h2>
         <p className="mt-2 text-slate-600 dark:text-slate-400">
-          Mark it complete to track your progress{sections.length ? ", then test yourself on its section" : ""}.
+          Mark it complete to track your progress{sections.length ? ", then test yourself on its section" : skills ? ". Every lesson and design activity must be complete before the final exam opens" : ""}.
         </p>
         <div className="mt-4">
           <MarkDoneButton slug={slug} chapterKey={key} initialDone={done} />
@@ -147,7 +151,7 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
         ) : null}
       </section>
 
-      <LessonWorkspace key={`${userId}:${slug}:${chapter.key}:${meta.edition}`} slug={slug} userId={userId} chapter={chapter} edition={meta.edition} initial={progress.study} questions={questions} />
+      <LessonWorkspace key={`${userId}:${slug}:${chapter.key}:${meta.edition}`} skills={course.kind === "skills"} slug={slug} userId={userId} chapter={chapter} edition={meta.edition} initial={progress.study} questions={questions} />
       <CourseTutor key={`${slug}:${chapter.key}`} slug={slug} chapterKey={chapter.key} />
 
       <nav aria-label="Lesson navigation" className="mt-8 grid min-w-0 gap-4 sm:grid-cols-2">
@@ -163,12 +167,13 @@ export function LessonView({ slug, userId, lessonKey: key, course, meta, chapter
             <span className="mt-1 block font-semibold text-slate-900 group-hover:text-blue-800 dark:text-white dark:group-hover:text-blue-300">{next.number}. {next.title}</span>
           </Link>
         ) : (
-          <Link href={`${course.homeRoute}/practice`} className={cn("group rounded-xl border border-slate-200 bg-white p-5 text-right hover:border-blue-300 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-blue-700 dark:hover:bg-slate-900", ring)}>
+          <Link href={course.kind === "skills" ? `${course.homeRoute}/certificate` : `${course.homeRoute}/practice`} className={cn("group rounded-xl border border-slate-200 bg-white p-5 text-right hover:border-blue-300 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-blue-700 dark:hover:bg-slate-900", ring)}>
             <span className="flex items-center justify-end gap-1.5 text-sm text-slate-600 dark:text-slate-400">Last lesson done<ArrowRight aria-hidden="true" focusable="false" strokeWidth={1.75} className="h-4 w-4" /></span>
-            <span className="mt-1 block font-semibold text-slate-900 group-hover:text-blue-800 dark:text-white dark:group-hover:text-blue-300">Go to the mock exams</span>
+            <span className="mt-1 block font-semibold text-slate-900 group-hover:text-blue-800 dark:text-white dark:group-hover:text-blue-300">{course.kind === "skills" ? "Go to your certificate" : "Go to the mock exams"}</span>
           </Link>
         )}
       </nav>
+      </div>
     </CourseShell>
   )
 }

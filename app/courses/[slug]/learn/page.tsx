@@ -6,6 +6,7 @@ import { requireCourseAccess } from "@/lib/courses/access"
 import { getCourse } from "@/lib/courses/config"
 import { getCourseMeta } from "@/lib/courses/content"
 import { getCourseProgress } from "@/lib/courses/progress"
+import { hasPassedExam } from "@/lib/courses/exam"
 
 export const dynamic = "force-dynamic"
 
@@ -34,5 +35,6 @@ export default async function CourseHomePage({ params }: { params: Promise<{ slu
   }
   const progress = await getCourseProgress(access.viewer.userId, slug)
   const teamLicence = access.ownedLicences.find((l) => l.licenceType === "team")
-  return <CourseOverview course={course} meta={meta} progress={progress} userId={access.viewer.userId} firstName={access.viewer.firstName ?? null} teamLicence={teamLicence ? { seats: teamLicence.seats } : null} />
+  const examPassed = course.finalExam ? await hasPassedExam(access.viewer.userId, slug) : false
+  return <CourseOverview course={course} meta={meta} progress={progress} userId={access.viewer.userId} firstName={access.viewer.firstName ?? null} teamLicence={teamLicence ? { seats: teamLicence.seats } : null} examPassed={examPassed} managedSeat={access.ownedLicences.length === 0} />
 }

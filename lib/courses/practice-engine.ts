@@ -16,6 +16,8 @@ var WORDS = ["","one","two","three","four","five","six","seven","eight","nine","
 function cap(w){ return w.charAt(0).toUpperCase() + w.slice(1); }
 function num(n){ if (n <= 20) return WORDS[n]; var t = ["","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"][Math.floor(n/10)]; return n % 10 ? t + "-" + WORDS[n%10] : t; }
 var MOCK_N = EX.mock[0] + EX.mock[1] + EX.mock[2];
+var ML = EX.mockLabel || "Mock Exam", SKILLS = !!EX.mockLabel, MOCK_SECS = (EX.mockMinutes || 120) * 60;
+function hm(s){ var m=Math.round(s/60); return m%60 ? (m>=60?Math.floor(m/60)+" h "+(m%60)+" min":m+" minutes") : (m/60)+(m===60?" hour":" hours"); }
 /* Code snippet shown with a question. Focusable so keyboard users can scroll it. */
 function codeEl(q){ return q.code ? el("pre",{"class":"q-code",tabindex:"0",role:"region","aria-label":"Code for this question"},[el("code",{text:q.code})]) : null; }
 var main = root.querySelector("[data-practice-main]"), live = root.querySelector("[data-practice-live]");
@@ -28,7 +30,7 @@ function route(start){ if (!navigating) opts.onRoute?.(start); }
 function examMode(active){ window.dispatchEvent(new CustomEvent("course:practice-mode",{detail:{exam:active}})); }
 function leaveQuestion(){ stopTimer(); if (S && !S.paused) { S.paused=true; if(S.mode==="exam") S.everPaused=true; save(); } examMode(false); }
 function download(value,name){ var url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{type:"application/json"})); el("a",{href:url,download:name}).click(); setTimeout(function(){URL.revokeObjectURL(url);},1000); }
-function sourceLinks(q){ var nodes=[el("p",{"class":"small muted",text:"Body of Knowledge: "+q.ref+", page "+q.page+"."})];
+function sourceLinks(q){ var nodes=[el("p",{"class":"small muted",text:(EX.refLabel||"Body of Knowledge")+": "+q.ref+(q.page?", "+(SKILLS?"":"page ")+q.page:"")+"."})];
  if(q.lessonKey) nodes.push(el("p",{},[el("a",{href:"/courses/"+opts.slug+"/learn/chapters/"+encodeURIComponent(q.lessonKey),text:"Review this concept in the lesson"})]));
  if(q.sources?.length) nodes.push(el("ul",{"class":"small"},q.sources.filter(function(s){return s.url?.startsWith("https://");}).map(function(s){return el("li",{},[el("a",{href:s.url,target:"_blank",rel:"noopener noreferrer",text:s.title}),s.version?" · "+s.version:null]);}))); return nodes; }
 function wrapTable(table){return el("div",{"class":"table-scroll",tabindex:"0",role:"region","aria-label":table.caption?.textContent||"Practice results"},[table]);}
@@ -78,16 +80,16 @@ function dialog(title, bodyNodes, buttons){
 function setIds(name){ return BANK.questions.filter(function(q){ return q.set === name; }).map(function(q){ return q.id; }); }
 function home(){
   leaveQuestion(); route({});
-  var kids=[el("h1",{text:"Practice for the "+EX.name+" exam"}),el("p",{text:"Use topic drills to learn, spaced review to revisit concepts, and reserved mocks to check understanding under your chosen exam conditions."})];
+  var kids=[el("h1",{text:SKILLS?"Practice: "+EX.name:"Practice for the "+EX.name+" exam"}),el("p",{text:SKILLS?"Use topic drills to learn, spaced review to revisit concepts, and the reserved final assessments to check what you can apply.":"Use topic drills to learn, spaced review to revisit concepts, and reserved mocks to check understanding under your chosen exam conditions."})];
   var saved=(store.session?[store.session]:[]).concat(Object.values(store.sessions||{}).filter(function(x){return x.id!==store.session?.id;}));
   if(saved.length) kids.push(el("section",{"aria-label":"Unfinished sessions"},[el("h2",{text:"Continue a saved session"})].concat(saved.map(function(x){return el("div",{"class":"saved-session"},[el("p",{},[el("strong",{text:x.title})," · "+answeredCount(x)+" of "+x.ids.length+" answered"]),el("div",{"class":"row"},[
     el("button",{type:"button","class":"primary",icon:"play",text:"Resume",onclick:function(){resume(x);}}),
     el("button",{type:"button","class":"quiet",text:"Discard",onclick:function(){dialog("Discard this session?",["This removes this unfinished session only. Completed attempts are kept."],[{label:"Keep session"},{label:"Discard session",fn:function(){if(store.session?.id===x.id){store.session=null;S=null;}delete store.sessions[x.id];save();home();}}]);}})])]);}))));
   var cards=el("ul",{"class":"grid"});
-  [["A","Mock Exam A"],["B","Mock Exam B"]].forEach(function(m){var first=store.history.find(function(h){return h.title===m[1];}); var seen=setIds(m[0]).filter(function(id){return store.exposure[id];}).length;
+  [["A",ML+" A"],["B",ML+" B"]].forEach(function(m){var first=store.history.find(function(h){return h.title===m[1];}); var seen=setIds(m[0]).filter(function(id){return store.exposure[id];}).length;
     cards.appendChild(el("li",{"class":"card"},[cardHeading(m[1],"exam"),el("p",{text:MOCK_N+" reserved questions. Explanations appear after submission."}),el("p",{"class":"small",text:first?"Oldest result in recent history: "+pct(first.correct,first.total)+"%. "+(first.timingLabel||"Timing was not recorded."):"No result in recent history."}),el("p",{"class":"small",text:seen?seen+" questions have been seen before.":"No recorded prior exposure. Older activity may not have exposure records."}),el("button",{type:"button","class":"primary",icon:"next",text:"Set up "+m[1],onclick:function(){setupMock(m[0]);}})]));});
   function card(title,body,label,icon,fn){cards.appendChild(el("li",{"class":"card"},[cardHeading(title,icon),el("p",{text:body}),el("button",{type:"button","class":"primary",icon:"next",text:label,onclick:fn})]));}
-  card("Topic practice","Choose sections; mock questions stay reserved by default.","Choose topics","topics",function(){setupTopics();});
+  card("Topic practice",SKILLS?"Choose sections; assessment questions stay reserved by default.":"Choose sections; mock questions stay reserved by default.","Choose topics","topics",function(){setupTopics();});
   card("Quick quiz",(EX.quick[0]+EX.quick[1]+EX.quick[2])+" mixed drill questions, prioritizing those seen least often.","Start quick quiz","quiz",quick);
   var due=BANK.questions.filter(function(q){return q.set==="drill" && store.questionReview[q.id] && isReviewDue(store.questionReview[q.id]);});
   card("Spaced review",due.length+" drill questions are due. Uncertain answers return for another look.","Open review queue","review",reviewSetup);
@@ -103,21 +105,21 @@ function reviewSetup(){ leaveQuestion();route({view:"review"});
  var missed=BANK.questions.filter(function(q){return q.set==="drill" && store.missed[q.id];}).map(function(q){return q.id;});
  show("Review queue",[el("h1",{text:"Review queue"}),el("p",{text:"A confident correct answer returns after a delay. Two spaced, confident successes move a missed concept out of the missed list. Repeating it immediately does not count as delayed recall."}),el("p",{text:due.length+" questions due. "+missed.length+" drill questions still need practice."}),el("div",{"class":"row"},[
  el("button",{type:"button","class":"primary",icon:"review",text:"Review due questions",disabled:!due.length,onclick:function(){start({title:"Spaced review",mode:"study",ids:shuffle(due).slice(0,20)});}}),
- el("button",{type:"button","class":"quiet",text:"Practise missed questions now",disabled:!missed.length,onclick:function(){start({title:"Missed questions",mode:"study",ids:shuffle(missed).slice(0,20)});}}),el("button",{type:"button","class":"quiet",icon:"home",text:"Practice overview",onclick:home})]),el("p",{"class":"small muted",text:"Reserved mock questions stay out of this queue. Review a completed mock through its saved attempt."})]);
+ el("button",{type:"button","class":"quiet",text:"Practise missed questions now",disabled:!missed.length,onclick:function(){start({title:"Missed questions",mode:"study",ids:shuffle(missed).slice(0,20)});}}),el("button",{type:"button","class":"quiet",icon:"home",text:"Practice overview",onclick:home})]),el("p",{"class":"small muted",text:SKILLS?"Reserved assessment questions stay out of this queue. Review a completed assessment through its saved attempt.":"Reserved mock questions stay out of this queue. Review a completed mock through its saved attempt."})]);
 }
 
 /* ---------- setup screens ---------- */
 function setupMock(letter){
   leaveQuestion(); route({mock:letter});
-  var sel = el("select",{id:"timeSel"},[["7200","Standard time: 2 hours"],["10800","Time and a half: 3 hours"],["14400","Double time: 4 hours"],["0","No timer"]].map(function(o){ return el("option",{value:o[0],text:o[1]}); }));
-  show("Mock Exam " + letter, [el("h1",{text:"Mock Exam " + letter}),
-    el("p",{text:"This mock follows the format IAAP publishes for the " + EX.name + " exam: " + MOCK_N + " multiple-choice questions with one best answer each, closed book, 2 hours. " + cap(num(EX.mock[0])) + " questions come from Domain One, " + num(EX.mock[1]) + " from Domain Two and " + num(EX.mock[2]) + " from Domain Three."}),
+  var sel = el("select",{id:"timeSel"},[[String(MOCK_SECS),"Standard time: "+hm(MOCK_SECS)],[String(MOCK_SECS*1.5),"Time and a half: "+hm(MOCK_SECS*1.5)],[String(MOCK_SECS*2),"Double time: "+hm(MOCK_SECS*2)],["0","No timer"]].map(function(o){ return el("option",{value:o[0],text:o[1]}); }));
+  show(ML + " " + letter, [el("h1",{text:ML + " " + letter}),
+    el("p",{text:SKILLS ? (EX.mockIntro || "") + " " + MOCK_N + " questions: " + num(EX.mock[0]) + " from " + DOMAINS[1] + ", " + num(EX.mock[1]) + " from " + DOMAINS[2] + " and " + num(EX.mock[2]) + " from " + DOMAINS[3] + "." : "This mock follows the format IAAP publishes for the " + EX.name + " exam: " + MOCK_N + " multiple-choice questions with one best answer each, closed book, 2 hours. " + cap(num(EX.mock[0])) + " questions come from Domain One, " + num(EX.mock[1]) + " from Domain Two and " + num(EX.mock[2]) + " from Domain Three."}),
     el("ul",{},[el("li",{text:"You see no answers until you finish. You can move back and forth, change answers and flag questions to revisit."}),
-      el("li",{text:"IAAP lets candidates request extra time as an accommodation. Choose the timing you expect to have on the day, or turn the timer off."}),
+      el("li",{text:SKILLS?"Choose a time limit that suits you, or turn the timer off. Extended time options are always available.":"IAAP lets candidates request extra time as an accommodation. Choose the timing you expect to have on the day, or turn the timer off."}),
       el("li",{text:"Pauses and continuing after time runs out are recorded with your result. Questions are hidden while paused. Save and resume your session when needed."})]),
     el("p",{"class":"feedback",text:setIds(letter).filter(function(id){return store.exposure[id];}).length+" questions have recorded prior exposure. Activity before exposure tracking was introduced cannot be reconstructed."}),
     el("p",{},[el("label",{"for":"timeSel",text:"Timing "}), sel]),
-    el("div",{"class":"row"},[el("button",{type:"button","class":"primary",text:"Start Mock Exam " + letter,onclick:function(){ start({title:"Mock Exam " + letter,mode:"exam",ids:setIds(letter),limit:parseInt(sel.value,10)}); }}), el("button",{type:"button","class":"quiet",icon:"previous",text:"Back to home",onclick:home})])]);
+    el("div",{"class":"row"},[el("button",{type:"button","class":"primary",text:"Start " + ML + " " + letter,onclick:function(){ start({title:ML + " " + letter,mode:"exam",ids:setIds(letter),limit:parseInt(sel.value,10)}); }}), el("button",{type:"button","class":"quiet",icon:"previous",text:"Back to home",onclick:home})])]);
 }
 function setupTopics(preselect){
   leaveQuestion(); route({view:"topics",topics:preselect||[]});
@@ -130,7 +132,7 @@ function setupTopics(preselect){
     return f;
   });
   var count = el("select",{id:"cnt"},["10","20","30","50","all"].map(function(v){ return el("option",{value:v,text: v==="all" ? "All questions in the chosen topics" : v + " questions"}); }));
-  var pool = el("select",{id:"pool"},[["drill","Drills only — keep mock questions unseen"],["all","Include reserved mocks (reduces unseen exam questions)"]].map(function(o){ return el("option",{value:o[0],text:o[1]}); }));
+  var pool = el("select",{id:"pool"},[["drill",SKILLS?"Drills only, keep assessment questions unseen":"Drills only — keep mock questions unseen"],["all",SKILLS?"Include reserved assessment questions (they will no longer be unseen)":"Include reserved mocks (reduces unseen exam questions)"]].map(function(o){ return el("option",{value:o[0],text:o[1]}); }));
   var err = el("p",{id:"topicErr",role:"alert","class":"muted"});
   show("Topic practice", [el("h1",{text:"Topic practice"}), el("p",{text:"Choose one or more sections. After each question you see the correct answer, why it is right and why the other options are not."})].concat(fs).concat([
     el("p",{},[el("label",{"for":"cnt",text:"How many "}), count]), el("p",{},[el("label",{"for":"pool",text:"Question pool "}), pool]), err,
@@ -199,7 +201,7 @@ function render(focusHeading){
   if (S.i < n-1) row.appendChild(el("button",{type:"button","class":(exam||done)?"primary":"quiet",icon:"next",text:"Next",onclick:function(){ S.i++; save(); render(true); }}));
   row.appendChild(el("button",{type:"button","class":"quiet","aria-pressed":S.flag[id]?"true":"false",icon:"flag",text:"Flag for review",onclick:function(){ S.flag[id] = !S.flag[id]; save(); render(false); say(S.flag[id]?"Flagged.":"Flag removed."); }}));
   row.appendChild(el("button",{type:"button","class":"quiet",icon:"list",text:"Question list",onclick:navigator_}));
-  row.appendChild(el("button",{type:"button","class":S.i===n-1?"primary":"quiet",icon:"check",text:exam?"Finish exam":"Finish session",onclick:confirmFinish}));
+  row.appendChild(el("button",{type:"button","class":S.i===n-1?"primary":"quiet",icon:"check",text:exam?(SKILLS?"Finish assessment":"Finish exam"):"Finish session",onclick:confirmFinish}));
   row.appendChild(el("button",{type:"button","class":"quiet",icon:"save",text:"Save and leave",onclick:home}));
   kids.push(row);
   var keep = document.activeElement && document.activeElement.textContent;
@@ -229,7 +231,7 @@ function confirmFinish(){
   if (a < n) msg.push((n-a) + " of " + n + " questions are not answered. Unanswered questions count as wrong.");
   if (fl) msg.push(fl + (fl===1?" question is":" questions are") + " still flagged for review.");
   if (!msg.length) msg.push("You answered every question.");
-  dialog(S.mode==="exam"?"Finish the exam?":"Finish this session?", msg, [{label:"Finish and see results",primary:true,fn:finish},{label:"Keep working"}]);
+  dialog(S.mode==="exam"?(SKILLS?"Finish the assessment?":"Finish the exam?"):"Finish this session?", msg, [{label:"Finish and see results",primary:true,fn:finish},{label:"Keep working"}]);
 }
 function finish(){
  if(!S)return;stopTimer();var done=S,attempt=finishSnapshot(done,BANK.questions);

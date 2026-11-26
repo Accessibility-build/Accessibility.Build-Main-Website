@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 
 const studyField = "mt-1 block min-h-[44px] rounded border border-slate-500 bg-white px-3 text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300 dark:border-slate-500 dark:bg-slate-950 dark:text-slate-100 dark:[color-scheme:dark]"
 
-export function StudyPlan({ slug, userId, meta, progress }: { slug: string; userId: string; meta: CourseMeta; progress: CourseProgressData }) {
+export function StudyPlan({ slug, userId, meta, progress, dateLabel }: { slug: string; userId: string; meta: CourseMeta; progress: CourseProgressData; dateLabel?: string }) {
   const state = useStudyProgress(slug, userId, progress.study)
   const settings = state.study.settings ?? { minutesPerDay: 25, experience: "some" as const }
   const plan = studyRecommendations(meta, { ...progress, study: state.study })
@@ -23,7 +23,7 @@ export function StudyPlan({ slug, userId, meta, progress }: { slug: string; user
       <legend className="sr-only">Optional study preferences</legend>
       <label className="block text-sm font-medium">Time per day<select value={settings.minutesPerDay} onChange={(e) => change({ minutesPerDay: Number(e.target.value) })} className={studyField}>{[10, 15, 25, 45, 60, 90, 120].map((n) => <option key={n} value={n}>{n} minutes</option>)}</select></label>
       <label className="block text-sm font-medium">Your experience<select value={settings.experience ?? "some"} onChange={(e) => change({ experience: e.target.value as typeof settings.experience })} className={studyField}><option value="new">New to this material</option><option value="some">Some experience</option><option value="experienced">Experienced; filling gaps</option></select></label>
-      <label className="block text-sm font-medium">Exam date (optional)<input type="date" value={settings.examDate ?? ""} onChange={(e) => change({ examDate: e.target.value })} className={studyField} /></label>
+      <label className="block text-sm font-medium">{dateLabel ?? "Exam date (optional)"}<input type="date" value={settings.examDate ?? ""} onChange={(e) => change({ examDate: e.target.value })} className={studyField} /></label>
     </fieldset>
     {plan.readingExceedsPlan ? <p className="mt-3 text-sm font-medium text-amber-900 dark:text-amber-200">The remaining reading alone exceeds the time available in this plan. Allow additional time for practice and two-hour mocks; adjust your pace or date.</p> : null}
     <ol className="mt-5 list-decimal space-y-4 pl-5">

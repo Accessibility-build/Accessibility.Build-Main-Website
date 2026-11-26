@@ -46,6 +46,8 @@ export interface CourseActivity {
   checks?: LabCheck[]
   manualChecks?: string[]
   hints?: string[]
+  /** Design labs: the flawed design the learner works on. */
+  figure?: { svg: string; alt: string; caption: string }
   transfer: { prompt: string; options: Array<{ text: string; feedback: string }>; answer: number }
 }
 

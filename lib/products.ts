@@ -136,10 +136,37 @@ export const products = {
       },
     ],
   },
+  accessibleDesignCourse: {
+    slug: "accessible-design",
+    route: "/courses/accessible-design",
+    name: "Accessible Design for Designers",
+    inDevelopment: true,
+    audience: "For UI, UX, product and visual designers",
+    tagline:
+      "A practical online course for designers: color and contrast, typography, layout and reflow, focus states, target size, keyboard and navigation, motion, components, forms, mobile apps, cognitive accessibility, media, data visualization and annotating designs for developers. Illustrated do and don't examples, interactive tools to try each rule, videos of assistive technology in use, a design activity in every lesson, a capstone project, a final exam and a certificate of completion, all mapped to WCAG 2.2 Level AA.",
+    format: "Online course on Accessibility.build",
+    version: "1.1",
+    updated: "25 November 2026",
+    updatedIso: "2026-11-25",
+    licences: [
+      {
+        id: "individual",
+        name: "Individual",
+        price: 79,
+        who: "One designer.",
+      },
+      {
+        id: "team",
+        name: "Team",
+        price: 399,
+        who: "Up to 10 people in one organisation, for example a design team or a design system team.",
+      },
+    ],
+  },
 } satisfies Record<string, Product>
 
 export const productList: Product[] = [products.wcagWorkbook, products.titleIiKit]
-export const courseProductList: Product[] = [products.cpaccCrashCourse, products.wasCrashCourse]
+export const courseProductList: Product[] = [products.cpaccCrashCourse, products.wasCrashCourse, products.accessibleDesignCourse]
 
 /** Sellable key used by checkout and the payment webhook for a licence of this product. */
 export function sellableKeyFor(p: Product, licenceId: string) {

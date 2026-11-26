@@ -162,7 +162,7 @@ const nextConfig = {
                         "font-src 'self' data: https://fonts.gstatic.com",
                         "media-src 'self' https:",
                         "connect-src 'self' https: wss:",
-                        "frame-src 'self' https://js.stripe.com https://*.stripe.com https://api.razorpay.com https://checkout.razorpay.com https://*.clerk.accounts.dev https://clerk.accessibility.build https://challenges.cloudflare.com",
+                        "frame-src 'self' https://js.stripe.com https://*.stripe.com https://api.razorpay.com https://checkout.razorpay.com https://*.clerk.accounts.dev https://clerk.accessibility.build https://challenges.cloudflare.com https://www.youtube-nocookie.com",
                         "worker-src 'self' blob:",
                         "object-src 'none'",
                         "base-uri 'self'",

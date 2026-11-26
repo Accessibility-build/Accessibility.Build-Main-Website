@@ -1,11 +1,12 @@
 import Link from "next/link"
 import type { ReactNode } from "react"
-import { ArrowLeft, BookOpen, CheckCircle2, ChevronRight, Circle, CircleDot, ClipboardCheck, GraduationCap, Layers, LayoutDashboard, NotebookTabs, UsersRound, type LucideIcon } from "lucide-react"
+import { ArrowLeft, Award, Download, BookOpen, CheckCircle2, ChevronRight, Circle, CircleDot, ClipboardCheck, GraduationCap, Layers, LayoutDashboard, NotebookTabs, UsersRound, type LucideIcon } from "lucide-react"
 import { CourseWorkspaceFrame } from "@/components/courses/course-workspace-frame"
 import { cn } from "@/lib/utils"
 import { formatMinutes, type CourseOutline } from "@/lib/courses/outline"
+import { COURSES } from "@/lib/courses/config"
 
-export type CourseView = "overview" | "lesson" | "practice" | "flashcards" | "team" | "library"
+export type CourseView = "overview" | "lesson" | "practice" | "flashcards" | "team" | "library" | "certificate" | "exam" | "toolkit"
 
 interface ShellProps {
   title: string
@@ -25,12 +26,22 @@ const ring = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring
  * navigation and server-rendered outline/content to a small interactive frame.
  */
 export function CourseShell({ title, homeRoute, outline, view, lessonKey, hasTeam, children }: ShellProps) {
-  const sections: Array<{ view: CourseView; label: string; href: string; icon: LucideIcon }> = [
-    { view: "overview", label: "Overview", href: homeRoute, icon: LayoutDashboard },
-    { view: "practice", label: "Practice and mock exams", href: `${homeRoute}/practice`, icon: ClipboardCheck },
-    { view: "flashcards", label: "Flashcards", href: `${homeRoute}/practice?view=flashcards`, icon: Layers },
-    { view: "library", label: "Search and saved work", href: `${homeRoute}/library`, icon: NotebookTabs },
-  ]
+  // Skills courses are for learning: no practice exams or flashcards, and a certificate on completion.
+  const skills = COURSES[homeRoute.split("/")[2] ?? ""]?.kind === "skills"
+  const sections: Array<{ view: CourseView; label: string; href: string; icon: LucideIcon }> = skills
+    ? [
+        { view: "overview", label: "Overview", href: homeRoute, icon: LayoutDashboard },
+        { view: "exam", label: "Final exam", href: `${homeRoute}/exam`, icon: ClipboardCheck },
+        { view: "certificate", label: "Your certificate", href: `${homeRoute}/certificate`, icon: Award },
+        { view: "toolkit", label: "Toolkit downloads", href: `${homeRoute}/toolkit`, icon: Download },
+        { view: "library", label: "Search and saved work", href: `${homeRoute}/library`, icon: NotebookTabs },
+      ]
+    : [
+        { view: "overview", label: "Overview", href: homeRoute, icon: LayoutDashboard },
+        { view: "practice", label: "Practice and mock exams", href: `${homeRoute}/practice`, icon: ClipboardCheck },
+        { view: "flashcards", label: "Flashcards", href: `${homeRoute}/practice?view=flashcards`, icon: Layers },
+        { view: "library", label: "Search and saved work", href: `${homeRoute}/library`, icon: NotebookTabs },
+      ]
   if (hasTeam) sections.push({ view: "team", label: "Team", href: `${homeRoute}/team`, icon: UsersRound })
 
   return (

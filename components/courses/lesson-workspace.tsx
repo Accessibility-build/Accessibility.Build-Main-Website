@@ -10,7 +10,7 @@ import { CourseSources } from "./course-sources"
 import { StudySaveStatus, studyButton } from "./study-save-status"
 import { cn } from "@/lib/utils"
 
-export function LessonWorkspace({ slug, userId, chapter, edition, initial, questions }: { slug: string; userId: string; chapter: CourseChapter; edition: string; initial?: CourseStudyProgress; questions: CourseQuestion[] }) {
+export function LessonWorkspace({ skills = false, slug, userId, chapter, edition, initial, questions }: { skills?: boolean; slug: string; userId: string; chapter: CourseChapter; edition: string; initial?: CourseStudyProgress; questions: CourseQuestion[] }) {
   const state = useStudyProgress(slug, userId, initial)
   const change = useRef(state.change)
   useEffect(() => { change.current = state.change }, [state.change])
@@ -44,9 +44,9 @@ export function LessonWorkspace({ slug, userId, chapter, edition, initial, quest
         <p id="lesson-notes-help" className="mt-1 text-sm text-slate-600 dark:text-slate-400">Capture a question, a distinction to remember, or an example from your work. Notes are private to your account and save automatically.</p>
         <textarea id="lesson-notes" aria-describedby="lesson-notes-help" maxLength={12000} rows={4} value={state.study.notes?.[chapter.key] ?? ""} onChange={(e) => state.change({ kind: "note", key: chapter.key, text: e.target.value })} className="mt-3 w-full rounded-lg border border-slate-500 bg-white p-3 leading-relaxed text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300 dark:border-slate-500 dark:bg-slate-950 dark:text-white" />
       </div>
-      {questions.length ? <section aria-labelledby="lesson-checks-heading" className="space-y-5">
+      {questions.length ? <section aria-labelledby="lesson-checks-heading" className="max-w-[52rem] space-y-5">
         <h3 id="lesson-checks-heading" className="flex items-center gap-2.5 text-xl font-semibold tracking-tight text-slate-950 dark:text-white"><ClipboardCheck aria-hidden="true" focusable="false" strokeWidth={1.75} className="h-5 w-5 shrink-0 text-blue-700 dark:text-blue-300" />Check your understanding</h3>
-        <p className="text-sm text-slate-600 dark:text-slate-400">These are learning drills. Reserved mock questions are kept separate. Correct answers here show practice, not long-term mastery.</p>
+        <p className="text-sm text-slate-600 dark:text-slate-400">{skills ? "A few questions to check your understanding. They give feedback only: they are not scored and do not affect your certificate." : "These are learning drills. Questions reserved for the timed sets are kept separate. Correct answers here show practice, not long-term mastery."}</p>
         {questions.map((q, i) => {
           const checked = check.checked.includes(q.id)
           const correct = check.answers[q.id] === String(q.answer)
@@ -65,7 +65,7 @@ export function LessonWorkspace({ slug, userId, chapter, edition, initial, quest
       </section> : null}
       {chapter.activities?.length ? <section aria-labelledby="apply-lesson-heading" className="space-y-6">
         <h3 id="apply-lesson-heading" className="flex items-center gap-2.5 text-xl font-semibold tracking-tight text-slate-950 dark:text-white"><BriefcaseBusiness aria-hidden="true" focusable="false" strokeWidth={1.75} className="h-5 w-5 shrink-0 text-blue-700 dark:text-blue-300" />Apply this lesson</h3>
-        <p className="text-sm text-slate-600 dark:text-slate-400">The recurring case follows a fictional public service. Save your decisions and test evidence as a learning portfolio.</p>
+        <p className="text-sm text-slate-600 dark:text-slate-400">{skills ? "A realistic design situation where you make the decisions and explain them. Your work saves to your account, and every activity must be completed before the final exam opens." : "The recurring case follows a fictional public service. Save your decisions and test evidence as a learning portfolio."}</p>
         {chapter.activities.map((activity) => <LearningActivity key={`${activity.id}:${activity.version}:${state.epoch}`} activity={activity} initial={state.study.activities?.[activity.id]} onChange={(value) => state.change({ kind: "activity", key: activity.id, value })} />)}
       </section> : null}
     </fieldset>

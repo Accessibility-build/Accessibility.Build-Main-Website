@@ -31,7 +31,7 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
 
   const refs = new Set(lessonSections(chapter.objectiveRefs ?? chapter.outlineRef, meta).map((section) => section.ref))
   const bank = refs.size ? await getCourseBank(slug) : { questions: [] }
-  const questions = bank.questions.filter((q) => q.set === "drill" && q.lessonKey === key).slice(0, 3)
+  const questions = bank.questions.filter((q) => q.set === "drill" && q.lessonKey === key && q.use !== "readiness").slice(0, course.kind === "skills" ? 6 : 3)
 
   const hasTeam = access.ownedLicences.some((l) => l.licenceType === "team")
   return <LessonView slug={slug} userId={access.viewer.userId} lessonKey={key} course={course} meta={meta} chapter={chapter} progress={progress} hasTeam={hasTeam} questions={questions} />

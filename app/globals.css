@@ -465,3 +465,7 @@ progress.course-progress::-moz-progress-bar { background-color: #1d4ed8; border-
 @media (forced-colors: active) {
   progress.course-progress { border-color: CanvasText; }
 }
+
+/* Fieldsets default to min-width: min-content, so a long code line or word inside one widens the
+   whole page on phones. Let them shrink like any other block. */
+fieldset { min-width: 0; }

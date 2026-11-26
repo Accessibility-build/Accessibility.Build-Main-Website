@@ -1,3 +1,4 @@
+import { blockPlainText } from "./block-text"
 import type { CourseChapter } from "./types"
 
 export function tutorEvidence(chapter: CourseChapter, question: string) {
@@ -7,7 +8,7 @@ export function tutorEvidence(chapter: CourseChapter, question: string) {
   let current = { title: chapter.title, anchor: "", text: "", score: 0 }
   chapter.blocks.forEach((block, i) => {
     if (block.type === "h2") { if (current.text) sections.push(current); current = { title: block.text, anchor: `c${chapter.number}-${i}`, text: "", score: 0 } }
-    const text = "text" in block ? block.text : block.type === "table" ? [block.caption, ...block.headers, ...block.rows.map((row) => row.join(" | "))].join("\n") : block.type === "keyterms" ? block.items.map((item) => `${item.term}: ${item.def}`).join("\n") : block.items.join("\n")
+    const text = blockPlainText(block, "\n")
     current.text += `${text}\n`
   })
   if (current.text) sections.push(current)
