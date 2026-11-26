@@ -16,6 +16,8 @@ export interface ServicePricingAddOn {
   detail: string
 }
 
+export type ServiceCurrency = "USD" | "INR" | "EUR" | "CAD"
+
 export interface ServicePricingConfig {
   service: string
   contactService: string
@@ -24,6 +26,31 @@ export interface ServicePricingConfig {
   tiers: ServicePricingTier[]
   addOns: ServicePricingAddOn[]
   assumptions: string[]
+  /**
+   * Market packages (SEBI in India, EAA in Europe, AODA in Ontario) are priced
+   * in the buyer's own currency. Omitted means USD, the global default.
+   */
+  currency?: ServiceCurrency
+  /** Replaces the default USD payment and currency terms for a market package. */
+  paymentTerms?: string
+  currencyTerms?: string
+}
+
+const currencyLocales: Record<ServiceCurrency, string> = {
+  USD: "en-US",
+  INR: "en-IN",
+  EUR: "en-IE",
+  // en-US renders CAD as "CA$", so the price is never mistaken for US dollars.
+  CAD: "en-US",
+}
+
+/** Formats a whole-unit price in the package currency, e.g. ₹29,999 or €590. */
+export function formatServicePrice(price: number, currency: ServiceCurrency = "USD") {
+  return new Intl.NumberFormat(currencyLocales[currency], {
+    style: "currency",
+    currency,
+    maximumFractionDigits: 0,
+  }).format(price)
 }
 
 export const servicePricing = {
@@ -458,6 +485,240 @@ export const servicePricing = {
       "Legal review and jurisdiction-specific legal advice are not included.",
     ],
   },
+  /*
+   * Market packages. Each one answers a specific regulatory trigger and is
+   * priced in the buyer's currency, so a broker in Mumbai, a Shopify merchant in
+   * Dublin and an Ontario business each see a price they can approve without a
+   * conversion. They reuse the audit method above; only scope and evidence
+   * differ.
+   */
+  sebiAudit: {
+    service: "SEBI IAAP accessibility audit",
+    contactService: "audit",
+    currency: "INR",
+    intro:
+      "Fixed-price packages for SEBI-regulated entities, sized by how many digital platforms you run. Every package includes usability testing by persons with disabilities, which the SEBI circular requires.",
+    scopeNote:
+      "A platform is one website, one web application or one mobile app (Android and iOS count as two). A template is a distinct page or screen pattern; a task flow is an end-to-end journey such as account opening, login, placing an order or raising a grievance.",
+    paymentTerms: "50% at booking and 50% when the audit report is delivered.",
+    currencyTerms: "prices are in Indian rupees and exclude 18% GST, which is added to the invoice.",
+    tiers: [
+      {
+        name: "SEBI Website Audit",
+        slug: "sebi-website-audit",
+        price: 39999,
+        description: "One website audited and documented for the SEBI filing.",
+        bestFor: "Investment advisers, research analysts, PMS, AIFs and RTAs with one website",
+        timeline: "7-10 business days",
+        scope: ["1 website", "Up to 10 page templates", "2 critical task flows", "Usability testing with 2 participants with disabilities"],
+        deliverables: [
+          "Manual WCAG 2.2 AA audit, mapped to GIGW 3.0 and IS 17802",
+          "Audit report signed by an IAAP-certified auditor, with IAAP ID for your filing",
+          "Usability testing findings from participants with disabilities",
+          "Severity-ranked issue register with fix guidance",
+          "One verification retest after remediation and a closure report",
+        ],
+      },
+      {
+        name: "SEBI Platform Audit",
+        slug: "sebi-platform-audit",
+        price: 124999,
+        description: "Your website and your customer app, the platforms investors actually use.",
+        bestFor: "Stock brokers, depository participants and AMCs",
+        timeline: "2-3 weeks",
+        scope: [
+          "Up to 4 platforms (e.g. website, trading web app, Android app, iOS app)",
+          "Up to 30 templates or screens in total",
+          "4 critical task flows",
+          "Usability testing with 3 participants with disabilities",
+        ],
+        deliverables: [
+          "Everything in the SEBI Website Audit, for each platform",
+          "TalkBack and VoiceOver testing on the mobile apps",
+          "Remediation walkthrough with your development team or vendor",
+          "One verification retest and a closure report per platform",
+        ],
+        popular: true,
+      },
+      {
+        name: "SEBI Annual Programme",
+        slug: "sebi-annual-programme",
+        price: 249999,
+        description: "Audit, remediation support and next year's audit, so the annual requirement is covered.",
+        bestFor: "Entities with a trading platform, several apps or vendor-built systems",
+        timeline: "3-4 weeks for the first audit",
+        scope: [
+          "Up to 6 platforms",
+          "Up to 50 templates or screens in total",
+          "6 critical task flows",
+          "Usability testing with 4 participants with disabilities",
+        ],
+        deliverables: [
+          "Everything in the SEBI Platform Audit",
+          "Two verification retest rounds",
+          "Monthly developer clinic until the closure report",
+          "Next year's annual audit of the same scope included",
+        ],
+      },
+    ],
+    addOns: [
+      { name: "Additional template or screen", price: "₹3,500", detail: "Adds one distinct page or screen pattern." },
+      { name: "Additional task flow", price: "₹7,500", detail: "Adds one end-to-end journey with its relevant states." },
+      { name: "Additional participant with a disability", price: "₹6,000", detail: "Adds one moderated usability session, including honorarium." },
+      { name: "Accessibility statement", price: "₹9,999", detail: "Prepared from the audit evidence for your website and apps." },
+    ],
+    assumptions: [
+      "Where a broker uses an uncustomised vendor platform, the vendor's own IAAP audit report may be relied on for that platform; your website, KYC flow and customised apps still need an audit.",
+      "Filing with SEBI, the exchanges or the depositories is done by the regulated entity; the report gives you the auditor details and findings the forms ask for.",
+      "Regulatory mapping is context, not legal advice.",
+    ],
+  },
+  eaaShopify: {
+    service: "European Accessibility Act audit for Shopify stores",
+    contactService: "audit",
+    currency: "EUR",
+    intro:
+      "Fixed-price audits built around how a Shopify store is made: your theme, the apps you install and your content. Each package ends with the accessibility information the EAA asks you to publish.",
+    scopeNote:
+      "A template is a distinct theme template such as home, collection, product, cart, search, account or a content page. A task flow is an end-to-end journey such as finding a product and reaching payment. Shopify hosts the checkout; issues in it are reported separately from issues you can fix.",
+    paymentTerms: "packages under €1,000 are paid at booking; larger ones are 50% at booking and 50% at delivery.",
+    currencyTerms: "prices are in euros and exclude any applicable VAT or local taxes.",
+    tiers: [
+      {
+        name: "Shopify Store Audit",
+        slug: "shopify-store-audit",
+        price: 590,
+        description: "A manual audit of the templates every customer passes through.",
+        bestFor: "Shopify and Shopify Advanced stores on a standard or lightly edited theme",
+        timeline: "5-7 business days",
+        scope: ["Up to 7 theme templates", "1 purchase flow, browse to payment", "Desktop and mobile"],
+        deliverables: [
+          "Manual WCAG 2.2 AA review against EN 301 549",
+          "Keyboard, screen-reader and zoom checks",
+          "Issues grouped by theme code, installed app and content",
+          "Accessibility statement draft covering the EAA information duty",
+          "One verification retest within 30 days",
+        ],
+      },
+      {
+        name: "Shopify Audit and Fix",
+        slug: "shopify-audit-and-fix",
+        price: 1490,
+        description: "The audit, plus the theme fixes done for you on a duplicate theme.",
+        bestFor: "Stores that want issues fixed, not just listed",
+        timeline: "2-3 weeks",
+        scope: ["Up to 10 theme templates", "3 task flows", "Desktop and mobile", "Theme fixes for up to 15 issues"],
+        deliverables: [
+          "Everything in the Shopify Store Audit",
+          "Fixes in Liquid, CSS and JavaScript on an unpublished copy of your theme",
+          "Review of installed apps, with replacement suggestions where an app blocks access",
+          "Before-and-after evidence for each fix",
+          "Retest of the published theme",
+        ],
+        popular: true,
+      },
+      {
+        name: "Shopify Plus and Headless",
+        slug: "shopify-plus-and-headless",
+        price: 2900,
+        description: "For custom storefronts, checkout extensions and more than one market.",
+        bestFor: "Shopify Plus, Hydrogen and multi-market stores",
+        timeline: "3-4 weeks",
+        scope: ["Up to 15 templates", "5 task flows", "Checkout UI extensions", "Up to 2 languages or markets"],
+        deliverables: [
+          "Everything in the Shopify Store Audit",
+          "Checkout extension and custom app review",
+          "VoiceOver and TalkBack testing on mobile",
+          "Prioritized remediation backlog for your developers",
+          "Accessibility statement for each market",
+        ],
+      },
+    ],
+    addOns: [
+      { name: "Additional template", price: "€120", detail: "Adds one distinct theme template." },
+      { name: "Additional language or market", price: "€250", detail: "Adds a translated storefront and its statement." },
+      { name: "Additional 10 theme fixes", price: "€690", detail: "Added after the audit, once the fixes are scoped." },
+      { name: "Quarterly re-check", price: "€190", detail: "Re-tests your key templates after theme or app updates." },
+    ],
+    assumptions: [
+      "Theme fixes are made on a duplicate theme and published by you or with your approval.",
+      "Issues inside Shopify-hosted checkout or third-party apps are documented with evidence for you to raise with Shopify or the app developer.",
+      "Microenterprise exemptions and legal scope are context, not legal advice.",
+    ],
+  },
+  aoda: {
+    service: "AODA website compliance",
+    contactService: "audit",
+    currency: "CAD",
+    intro:
+      "Fixed-price packages for Ontario organizations, from the WCAG 2.0 AA website audit the AODA requires to the policies and plan behind your compliance report.",
+    scopeNote:
+      "A template is a distinct page or screen pattern. A task flow is an end-to-end journey such as booking, applying, paying or contacting you.",
+    paymentTerms: "packages under CA$1,500 are paid at booking; larger ones are 50% at booking and 50% at delivery.",
+    currencyTerms: "prices are in Canadian dollars and exclude any applicable sales tax.",
+    tiers: [
+      {
+        name: "AODA Website Audit",
+        slug: "aoda-website-audit",
+        price: 1190,
+        description: "The website audit section 14 of the IASR calls for, with evidence you can keep on file.",
+        bestFor: "Ontario businesses and non-profits with 50 or more employees",
+        timeline: "7-10 business days",
+        scope: ["Up to 8 page templates", "2 critical task flows", "Desktop and mobile"],
+        deliverables: [
+          "Manual WCAG 2.0 AA audit, with WCAG 2.1 and 2.2 gaps noted",
+          "Keyboard and screen-reader checks",
+          "Severity-ranked issue register with fix guidance",
+          "Conformance summary to support your compliance report",
+          "One verification retest within 30 days",
+        ],
+      },
+      {
+        name: "AODA Compliance Pack",
+        slug: "aoda-compliance-pack",
+        price: 2900,
+        description: "The audit plus the documents behind your compliance report.",
+        bestFor: "Organizations filing the 31 December 2026 compliance report",
+        timeline: "2-3 weeks",
+        scope: ["Up to 12 page templates", "3 task flows", "Policy and plan documents"],
+        deliverables: [
+          "Everything in the AODA Website Audit",
+          "Accessibility policy and statement of commitment",
+          "Multi-year accessibility plan",
+          "Feedback and accessible-formats procedures",
+          "Compliance report question-by-question evidence notes",
+        ],
+        popular: true,
+      },
+      {
+        name: "Canada Accessibility Programme",
+        slug: "canada-accessibility-programme",
+        price: 5900,
+        description: "For organizations covered by both the AODA and the Accessible Canada Act.",
+        bestFor: "Federally regulated or multi-site organizations",
+        timeline: "4-5 weeks",
+        scope: ["Up to 20 templates", "1 mobile app", "5 task flows", "Policy, plan and report documents"],
+        deliverables: [
+          "Everything in the AODA Compliance Pack",
+          "WCAG 2.1 AA audit mapped to CAN/ASC-EN 301 549:2024",
+          "Accessible Canada Act plan or progress report support",
+          "90-minute team training session",
+          "Prioritized two-year remediation roadmap",
+        ],
+      },
+    ],
+    addOns: [
+      { name: "Additional page template", price: "CA$150", detail: "Adds one distinct page or screen pattern." },
+      { name: "Additional task flow", price: "CA$300", detail: "Adds one end-to-end journey with its relevant states." },
+      { name: "French-language site", price: "CA$450", detail: "Audits the French version of the same templates." },
+      { name: "PDF documents", price: "from CA$4/page", detail: "Remediates forms, reports and other web documents." },
+    ],
+    assumptions: [
+      "The compliance report is filed by your organization through the Ontario government's reporting portal.",
+      "Employee counts and which AODA and Accessible Canada Act duties apply are confirmed by you.",
+      "Regulatory mapping is context, not legal advice.",
+    ],
+  },
 } satisfies Record<string, ServicePricingConfig>
 
 /**
@@ -592,7 +853,7 @@ export function toStructuredOffers(pricing: ServicePricingConfig) {
     name: tier.name,
     description: tier.description,
     price: tier.price,
-    priceCurrency: "USD",
+    priceCurrency: pricing.currency ?? "USD",
     availability: "https://schema.org/InStock",
   }))
 }

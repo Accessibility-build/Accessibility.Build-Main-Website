@@ -2,21 +2,19 @@ import Link from "next/link"
 import { ArrowRight, CalendarDays, Check, CircleDollarSign, Info, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import type { ServicePricingConfig } from "@/lib/service-pricing"
+import { formatServicePrice, type ServicePricingConfig } from "@/lib/service-pricing"
 
 interface ServicePricingProps {
   pricing: ServicePricingConfig
 }
 
-function formatPrice(price: number) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(price)
-}
-
 export function ServicePricing({ pricing }: ServicePricingProps) {
+  const currency = pricing.currency ?? "USD"
+  const paymentTerms =
+    pricing.paymentTerms ??
+    "projects under $1,000 are paid at booking; larger projects are 50% at booking and 50% at delivery."
+  const currencyTerms = pricing.currencyTerms ?? "all published prices are in USD and exclude applicable taxes."
+
   return (
     <section className="py-16" aria-labelledby="service-pricing-heading">
       <div className="mx-auto max-w-4xl text-center">
@@ -47,8 +45,8 @@ export function ServicePricing({ pricing }: ServicePricingProps) {
 
             <div className="mt-5 border-y py-5">
               <div className="flex items-end gap-2">
-                <span className="text-4xl font-bold tracking-normal">{formatPrice(tier.price)}</span>
-                <span className="pb-1 text-sm text-muted-foreground">USD</span>
+                <span className="text-4xl font-bold tracking-normal">{formatServicePrice(tier.price, currency)}</span>
+                <span className="pb-1 text-sm text-muted-foreground">{currency}</span>
               </div>
               <p className="mt-1 text-xs text-muted-foreground">One-time project price</p>
             </div>
@@ -113,7 +111,7 @@ export function ServicePricing({ pricing }: ServicePricingProps) {
           <h3 className="text-2xl font-bold">Common add-ons</h3>
           <p className="mt-2 text-muted-foreground">Use these published unit prices when the standard package needs a little more scope.</p>
         </div>
-        <div tabIndex={0} role="region" aria-label="Optional additions and prices for" className="overflow-x-auto rounded-lg border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+        <div tabIndex={0} role="region" aria-label={`Optional additions and prices for ${pricing.service}`}className="overflow-x-auto rounded-lg border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
           <table className="w-full min-w-[680px] border-collapse text-left text-sm">
             <caption className="sr-only">Optional additions and prices for {pricing.service}</caption>
             <thead className="bg-muted/50">
@@ -147,8 +145,8 @@ export function ServicePricing({ pricing }: ServicePricingProps) {
           </div>
           <div>
             <ul className="space-y-3 text-sm">
-              <li><strong>Payment:</strong> projects under $1,000 are paid at booking; larger projects are 50% at booking and 50% at delivery.</li>
-              <li><strong>Currency:</strong> all published prices are in USD and exclude applicable taxes.</li>
+              <li><strong>Payment:</strong> {paymentTerms}</li>
+              <li><strong>Currency:</strong> {currencyTerms}</li>
               <li><strong>Scope:</strong> the selected package, add-ons, environments, and deliverables are confirmed in writing before kickoff.</li>
               {pricing.assumptions.map((assumption) => (
                 <li key={assumption}>{assumption}</li>

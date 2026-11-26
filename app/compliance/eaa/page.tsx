@@ -589,6 +589,12 @@ export default function EAACompliancePage() {
                   Professional Accessibility Audit
                 </Link>
                 <Link
+                  href="/services/eaa-shopify-audit"
+                  className="inline-flex items-center px-5 py-2.5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                >
+                  Shopify Store Audit
+                </Link>
+                <Link
                   href="/tools/url-accessibility-auditor"
                   className="inline-flex items-center px-5 py-2.5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                 >

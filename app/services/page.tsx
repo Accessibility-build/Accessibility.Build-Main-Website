@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { IconShell } from "@/components/ui/icon-shell"
 import { ServiceStructuredData } from "@/components/seo/structured-data"
-import { pdfPricing, serviceStartingPrices } from "@/lib/service-pricing"
+import { formatServicePrice, pdfPricing, servicePricing, serviceStartingPrices } from "@/lib/service-pricing"
 import { clampDescription } from "@/lib/metadata"
 
 const pageDescription =
@@ -43,6 +43,30 @@ export const metadata = {
     images: ["/api/og?title=Accessibility%20Services&section=Services"],
   },
 }
+
+const regulationPackages = [
+  {
+    market: "India",
+    title: "SEBI IAAP Accessibility Audit",
+    summary: "For brokers, AMCs, RTAs and advisers, with usability testing by persons with disabilities.",
+    href: "/services/sebi-accessibility-audit",
+    pricing: servicePricing.sebiAudit,
+  },
+  {
+    market: "European Union",
+    title: "EAA Audit for Shopify Stores",
+    summary: "Theme, apps and content tested against EN 301 549, with an accessibility statement.",
+    href: "/services/eaa-shopify-audit",
+    pricing: servicePricing.eaaShopify,
+  },
+  {
+    market: "Ontario, Canada",
+    title: "AODA Website Compliance",
+    summary: "WCAG 2.0 AA audit plus the evidence behind your 2026 compliance report.",
+    href: "/services/aoda-compliance",
+    pricing: servicePricing.aoda,
+  },
+]
 
 const services = [
   {
@@ -317,6 +341,31 @@ export default function ServicesPage() {
           )
         })}
       </div>
+
+      <section className="mb-16" aria-labelledby="regulation-packages-heading">
+        <h2 id="regulation-packages-heading" className="text-2xl font-bold mb-2">
+          Packages for a specific regulation
+        </h2>
+        <p className="text-muted-foreground mb-6 max-w-3xl">
+          Audits scoped to what one regulator asks for, priced in that market&apos;s currency.
+        </p>
+        <ul className="grid gap-4 md:grid-cols-3">
+          {regulationPackages.map((item) => (
+            <li key={item.href} className="rounded-lg border bg-background p-6 shadow-sm">
+              <p className="text-sm font-semibold text-primary">{item.market}</p>
+              <h3 className="mt-1 text-lg font-bold">
+                <Link href={item.href} className="hover:underline underline-offset-2">
+                  {item.title}
+                </Link>
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">{item.summary}</p>
+              <p className="mt-4 text-sm">
+                From <strong>{formatServicePrice(item.pricing.tiers[0].price, item.pricing.currency)}</strong>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <div className="mx-auto max-w-4xl rounded-lg border border-primary/20 bg-primary/5 p-8">
         <div className="text-center mb-6">

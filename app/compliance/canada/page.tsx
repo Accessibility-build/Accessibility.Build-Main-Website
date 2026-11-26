@@ -1061,7 +1061,11 @@ export default function CanadaCompliancePage() {
                 <Link href="/compliance/deadlines" className={linkClass}>
                   accessibility deadlines calendar
                 </Link>{" "}
-                for other dates.
+                for other dates, and the{" "}
+                <Link href="/services/aoda-compliance" className={linkClass}>
+                  AODA compliance package
+                </Link>{" "}
+                for a website audit and evidence behind each report answer.
               </li>
             </ol>
           </section>
