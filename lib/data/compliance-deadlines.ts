@@ -126,6 +126,7 @@ const ONTARIO_REPORTING = "https://www.ontario.ca/page/completing-your-accessibi
 const CANADA_SOR_2025_255 = "https://gazette.gc.ca/rp-pr/p2/2025/2025-12-17/html/sor-dors255-eng.html"
 
 const TITLE_II_GUIDE = { href: "/guides/doj-title-ii-deadline-extension", label: "DOJ Title II deadline extension guide" }
+const TITLE_II_HUB = { href: "/compliance/title-ii", label: "ADA Title II hub: deadline checker and PDF check" }
 const SECTION_504_GUIDE = { href: "/guides/section-504-web-accessibility-deadline", label: "Section 504 deadline guide" }
 const EN_V4_PAGE = { href: "/compliance/en-301-549-v4", label: "EN 301 549 V4.1.1 clause by clause" }
 const EAA_PAGE = { href: "/compliance/eaa", label: "European Accessibility Act guide" }
@@ -584,7 +585,7 @@ export const complianceDeadlines: ComplianceDeadline[] = [
       "Large state and local governments must have accessible websites and apps. The date comes from an interim rule the NFB is challenging.",
     sourceLabel: "28 CFR 35.200, as amended by Federal Register 2026-07663",
     sourceUrl: ECFR_TITLE_II,
-    related: TITLE_II_GUIDE,
+    related: TITLE_II_HUB,
   },
   {
     id: "us-hhs-504-large",
@@ -806,7 +807,7 @@ export const complianceDeadlines: ComplianceDeadline[] = [
     description: "Smaller towns, counties, school and transit districts must have accessible websites and apps.",
     sourceLabel: "28 CFR 35.200(b)(2)",
     sourceUrl: ECFR_TITLE_II,
-    related: TITLE_II_GUIDE,
+    related: TITLE_II_HUB,
   },
   {
     id: "us-hhs-504-small",

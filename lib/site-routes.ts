@@ -134,6 +134,7 @@ const research: SiteRoute[] = [
 const compliance: SiteRoute[] = [
   { route: "/compliance", label: "Compliance & Laws Hub", group: "Compliance", lastModified: "2026-10-19", priority: 0.9 },
   { route: "/compliance/ada", label: "ADA Website Compliance", group: "Compliance", lastModified: "2026-11-24", priority: 0.93 },
+  { route: "/compliance/title-ii", label: "ADA Title II Web Accessibility Hub", group: "Compliance", lastModified: "2026-11-27", priority: 0.95, changeFrequency: "weekly" },
   { route: "/compliance/eaa", label: "European Accessibility Act (EAA)", group: "Compliance", lastModified: "2026-11-11", priority: 0.93 },
   { route: "/compliance/section-508", label: "Section 508 Compliance", group: "Compliance", lastModified: "2026-07-09", priority: 0.91 },
   { route: "/compliance/en-301-549", label: "EN 301 549 Standard", group: "Compliance", lastModified: "2026-11-11", priority: 0.9 },

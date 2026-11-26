@@ -210,7 +210,11 @@ export default function AdaCompliancePage() {
               <strong>
                 In practice, an ADA-compliant website is one that meets WCAG 2.1 Level AA.
               </strong>{" "}
-              For state and local governments that is now a legal requirement under the DOJ&apos;s Title II rule. For
+              For state and local governments that is now a legal requirement under the DOJ&apos;s Title II rule (see the{" "}
+              <Link href="/compliance/title-ii" className="font-medium text-blue-700 underline underline-offset-2 dark:text-blue-300">
+                Title II hub
+              </Link>{" "}
+              to find your date). For
               private businesses the ADA names no technical standard, and the DOJ&apos;s 2022 guidance lets them choose
               how to make their sites accessible, but courts, settlements and the DOJ itself all measure accessibility
               against WCAG. Meeting WCAG 2.1 AA, or the newer WCAG 2.2 AA, is the defensible target for everyone.

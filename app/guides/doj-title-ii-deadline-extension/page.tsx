@@ -266,6 +266,10 @@ export default function TitleIIExtensionPage() {
               </table>
             </div>
 
+            <p>
+              To find which date applies to your entity, follow the court challenge, and check documents, use the{" "}
+              <Link href="/compliance/title-ii">ADA Title II hub</Link>.
+            </p>
             <h2>What the extension did not change</h2>
             <ul>
               <li>
