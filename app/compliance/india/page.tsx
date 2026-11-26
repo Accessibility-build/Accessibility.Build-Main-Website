@@ -910,6 +910,16 @@ export default function IndiaCompliancePage() {
                 for full compliance, all from the final notification.
               </li>
               <li>
+                <strong className="text-slate-900 dark:text-white">SEBI-regulated? Book the IAAP audit first.</strong>{" "}
+                SEBI separately requires every regulated entity to appoint an IAAP-certified auditor,
+                audit its websites and apps with usability testing by persons with disabilities, and
+                fix the findings by 31 January 2027. See the{" "}
+                <Link href="/services/sebi-accessibility-audit" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">
+                  SEBI IAAP accessibility audit
+                </Link>{" "}
+                packages.
+              </li>
+              <li>
                 <strong className="text-slate-900 dark:text-white">Audit against clause 9 now, Level A first.</strong>{" "}
                 Use the{" "}
                 <Link href="/checklists/en-301-549" className="text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:decoration-2">

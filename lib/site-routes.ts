@@ -279,6 +279,9 @@ const services: SiteRoute[] = [
   { route: "/services/remediation-support", label: "Remediation Support", group: "Services", lastModified: "2026-09-02", priority: 0.82 },
   { route: "/services/design-reviews", label: "Design Reviews", group: "Services", lastModified: "2026-09-02", priority: 0.8 },
   { route: "/services/user-testing", label: "User Testing", group: "Services", lastModified: "2026-09-02", priority: 0.78 },
+  { route: "/services/sebi-accessibility-audit", label: "SEBI IAAP Accessibility Audit (from ₹39,999)", group: "Services", lastModified: "2026-11-26", priority: 0.86 },
+  { route: "/services/eaa-shopify-audit", label: "EAA Audit for Shopify Stores (from €590)", group: "Services", lastModified: "2026-11-26", priority: 0.86 },
+  { route: "/services/aoda-compliance", label: "AODA Website Compliance (from CA$1,190)", group: "Services", lastModified: "2026-11-26", priority: 0.86 },
 ]
 
 const legal: SiteRoute[] = [

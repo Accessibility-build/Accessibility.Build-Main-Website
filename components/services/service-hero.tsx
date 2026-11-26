@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronLeft } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { formatServicePrice, type ServiceCurrency } from "@/lib/service-pricing"
 
 interface ServiceHeroProps {
   title: string
@@ -20,6 +21,10 @@ interface ServiceHeroProps {
    */
   priceLabel?: string
   priceSuffix?: string
+  /** Market packages are priced in local currency; defaults to USD. */
+  currency?: ServiceCurrency
+  /** Where the "Back to" link points; market pages sit under a compliance hub. */
+  backLink?: { href: string; label: string }
 }
 
 export function ServiceHero({
@@ -34,6 +39,8 @@ export function ServiceHero({
   delivery,
   priceLabel = "Packages from",
   priceSuffix,
+  currency = "USD",
+  backLink = { href: "/services", label: "Back to All Services" },
 }: ServiceHeroProps) {
   return (
     <section className="relative mb-16 overflow-hidden rounded-lg border border-border/50 bg-muted/30">
@@ -49,11 +56,11 @@ export function ServiceHero({
       <div className="relative z-10 px-6 py-16 md:py-24 md:px-12">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           <Link
-            href="/services"
+            href={backLink.href}
             className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors mb-6"
           >
-            <ChevronLeft className="h-4 w-4 mr-1" />
-            Back to All Services
+            <ChevronLeft className="h-4 w-4 mr-1" aria-hidden="true" />
+            {backLink.label}
           </Link>
 
           <div
@@ -72,11 +79,7 @@ export function ServiceHero({
             <div className="border-r px-4 py-4">
               <dt className="text-sm text-muted-foreground">{priceLabel}</dt>
               <dd className="mt-1 text-2xl font-bold">
-                {new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                  maximumFractionDigits: 0,
-                }).format(startingPrice)}
+                {formatServicePrice(startingPrice, currency)}
                 {priceSuffix ? (
                   <span className="ml-1 text-sm font-normal text-muted-foreground">{priceSuffix}</span>
                 ) : null}
