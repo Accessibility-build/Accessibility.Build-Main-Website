@@ -12,6 +12,7 @@ import { getSellable } from "./sellables"
 import { getPublicAppUrl } from "./stripe"
 import type { CheckoutSessionResponse } from "./types"
 import { verifyGuestCheckoutToken } from "./guest-checkout"
+import { grantRenewalAttempts, revokeRenewalAttempts } from "@/lib/courses/exam"
 
 type Tx = Parameters<Parameters<typeof db.transaction>[0]>[0]
 type Order = typeof billingOrders.$inferSelect
@@ -31,7 +32,7 @@ export async function createDodoCheckout(params: {
 }): Promise<Extract<CheckoutSessionResponse, { mode: "payment_link" }>> {
   const item = getSellable(params.key)
   if (!item) throw new Error("Unknown product")
-  if (!params.userId && (item.kind === "credits" || !params.guestTokenHash || !/^[a-f0-9]{64}$/.test(params.guestTokenHash))) {
+  if (!params.userId && (item.kind === "credits" || item.kind === "renewal" || !params.guestTokenHash || !/^[a-f0-9]{64}$/.test(params.guestTokenHash))) {
     throw new Error("Guest checkout is only available for courses and templates")
   }
   const productId = await resolveDodoProductId(item.key)
@@ -205,6 +206,13 @@ async function fulfilOrder(orderId: string, payment: Record<string, unknown>, ev
       return { kind: item.kind, order }
     }
 
+    if (item.kind === "renewal" && item.renewal) {
+      if (!order.userId) throw new Error("Renewal purchases require an account")
+      await grantRenewalAttempts(tx, order.userId, item.renewal.slug, item.renewal.attempts, order.id)
+      await tx.update(billingOrders).set({ ...paidFields, metadata: meta }).where(eq(billingOrders.id, order.id))
+      return { kind: item.kind, order }
+    }
+
     const [buyer] = order.userId
       ? await tx.select({ email: users.email }).from(users).where(eq(users.id, order.userId)).limit(1)
       : []
@@ -234,6 +242,8 @@ async function sendFulfilmentEmail(kind: string, orderId: string) {
   try {
     if (kind === "course") return void (await sendCoursePurchaseEmail(orderId))
     if (kind === "template") return void (await sendTemplatePurchaseEmail(orderId))
+    // Renewals are confirmed on the certificate page; the credit-pack email would mislead.
+    if (kind === "renewal") return
     const [o] = await db.select().from(billingOrders).where(eq(billingOrders.id, orderId)).limit(1)
     if (!o?.userId) return
     const [u] = await db.select({ email: users.email, firstName: users.firstName, lastName: users.lastName, credits: users.credits }).from(users).where(eq(users.id, o.userId)).limit(1)
@@ -269,6 +279,7 @@ async function reverseOrder(order: Order, amountMinor: number, isPartial: boolea
   const full = !isPartial && amountMinor >= order.amountTotal
   if (!item || item.kind !== "credits") {
     if (item?.kind === "course") await revokeCourseLicenceForOrder(order.id, reason)
+    if (item?.kind === "renewal" && item.renewal && order.userId) await revokeRenewalAttempts(order.userId, item.renewal.slug, item.renewal.attempts, order.id, reason)
     if (item?.kind === "template") {
       await db
         .update(productEntitlements)

@@ -15,7 +15,7 @@ export function CourseSources({ sources = [], slug, item }: { sources?: CourseSo
         <p className="mt-1 text-slate-600 dark:text-slate-400">{source.context ? context[source.context] : "Reference"}{source.version ? ` · ${source.version}` : ""}{source.reviewedAt ? ` · Reviewed ${source.reviewedAt}` : ""}</p>
       </li>)}
     </ul>
-    {!safe.length ? <p className="mt-2 text-sm">Use the Body of Knowledge reference shown with this lesson.</p> : null}
+    {!safe.length ? <p className="mt-2 text-sm">Use the reference shown with this lesson.</p> : null}
     <a href={`mailto:${company.email}?subject=${encodeURIComponent(`Course correction: ${slug} / ${item}`)}`} className="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded py-2 text-sm font-medium text-blue-700 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300 dark:text-blue-300"><MessageSquare aria-hidden="true" focusable="false" strokeWidth={1.75} className="h-4 w-4 shrink-0" />Report an issue with this item</a>
   </details>
 }

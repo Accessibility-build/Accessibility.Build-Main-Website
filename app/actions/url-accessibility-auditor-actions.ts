@@ -1,26 +1,24 @@
 "use server"
 
-import { AxePuppeteer } from '@axe-core/puppeteer'
-import chromium from '@sparticuz/chromium-min'
-
-const CHROMIUM_REMOTE_URL =
-  "https://github.com/Sparticuz/chromium/releases/download/v143.0.0/chromium-v143.0.0-pack.x64.tar"
-import puppeteerCore, { Page } from 'puppeteer-core'
 import { currentUser } from "@clerk/nextjs/server"
-import { 
-  creditTransactions, 
-  db, 
-  users, 
-  urlAccessibilityAudits, 
-  auditViolations 
+import {
+  creditTransactions,
+  db,
+  users,
+  urlAccessibilityAudits,
+  auditViolations
 } from "@/lib/db"
 import { and, desc, eq, gte, sql } from "drizzle-orm"
+import OpenAI from "openai"
 import { checkTrialLimit, recordTrialUsage } from "@/lib/trial-usage"
 import { isBlockedHostname, normalizeHostname } from "@/lib/url-safety"
-import { FREE_SCAN_VISIBLE_FINDINGS, sortBySeverity } from "@/lib/free-scan"
+import { PublicUrlError } from "@/lib/public-url"
+import { FREE_SCAN_VISIBLE_FINDINGS } from "@/lib/free-scan"
 import { UrlAuditResult, AuditHistory } from '@/lib/url-accessibility-auditor-types'
+import { runAudit } from "@/lib/url-audit/run"
+import { countViolations, scFromTag, scoreFrom } from "@/lib/url-audit/report"
+import type { AiSummary, AuditExtras, AuditFinding, FindingCategory, Impact } from "@/lib/url-audit/types"
 import { v4 as uuidv4 } from 'uuid'
-import OpenAI from "openai"
 import {
   isOpenRouterConfigured,
   isOpenRouterModel,
@@ -31,147 +29,95 @@ import { getPostHogClient } from "@/lib/posthog-server"
 
 const CREDIT_COST = 5
 const DEFAULT_MODEL = "gpt-4o"
-const MAX_AI_TOKENS = 1000
-const MAX_AI_TEMP = 0.3
+/** The page segment allows 120 s; the browser work must finish by this point to leave room for the summary and the save. */
+const SCAN_BUDGET_MS = 88_000
+const AI_TIMEOUT_MS = 18_000
 
 /**
- * Create and return a Puppeteer Browser instance appropriate for the runtime environment.
- *
- * In production this will launch a serverless-optimized Chromium; in development it attempts to
- * import and launch the locally installed Puppeteer binary.
- *
- * @returns A configured Puppeteer `Browser` instance for the current environment.
- * @throws Error if launching the local Puppeteer fails (for example, when Puppeteer is not installed).
+ * A short plain-language summary of the findings for people who will not read the table. It is
+ * written from the findings only and told not to invent statistics, benchmarks or legal outcomes.
  */
-async function getBrowserInstance(): Promise<any> {
-  const isProduction = process.env.NODE_ENV === 'production'
+async function generateAiSummary(input: {
+  url: string
+  title: string
+  score: number
+  findings: AuditFinding[]
+  extras: AuditExtras
+}): Promise<string | undefined> {
+  if (!process.env.OPENAI_API_KEY && !isOpenRouterConfigured()) return undefined
 
-  if (isProduction) {
-    // In production, we use a lightweight version of Chromium optimized for serverless functions
-    return puppeteerCore.launch({
-      args: chromium.args,
-      defaultViewport: { width: 1920, height: 1080 },
-      executablePath: await chromium.executablePath(CHROMIUM_REMOTE_URL),
-      headless: true,
-      ignoreHTTPSErrors: true,
-    } as any)
-  } else {
-    // In development (local machine), we use the full installed Puppeteer
-    try {
-      const puppeteer = (await import('puppeteer')).default
-      return puppeteer.launch({
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        ignoreHTTPSErrors: true,
-      } as any)
-    } catch (error) {
-      console.error("Local puppeteer error:", error)
-      throw new Error("Could not launch browser. Is puppeteer installed?")
-    }
-  }
+  const violations = input.findings.filter((f) => f.outcome === "violation")
+  const review = input.findings.filter((f) => f.outcome === "review")
+  const describe = (f: AuditFinding) => ({
+    title: f.title,
+    impact: f.impact,
+    wcag: f.wcag.join(", ") || "best practice",
+    elements: f.nodeCount,
+    checkedBy: f.source,
+  })
+
+  const systemPrompt = `You are a senior accessibility auditor writing the summary at the top of an automated audit report.
+Write for a product owner or developer. Plain English, short sentences, no marketing language, no em dashes.
+Use only the facts provided. Never invent statistics, industry averages, benchmarks, legal risk ratings or percentages.
+Do not claim the page is compliant or non-compliant; automated testing cannot establish conformance.
+Return ONLY a JSON object with this schema:
+{
+  "headline": "one sentence, at most 18 words, on the overall state",
+  "summary": "2 to 4 sentences: what works, what blocks people, and who is affected",
+  "fixFirst": [{ "title": "imperative, at most 8 words", "why": "one sentence naming who is blocked and how" }],
+  "quickWins": ["short imperative fixes that take under an hour"]
 }
-
-/**
- * Runs an Axe accessibility scan against the provided Puppeteer page.
- *
- * Executes Axe with a tag set covering WCAG 2.x/2.1/2.2 and best-practice checks and returns the raw scan output.
- *
- * @param page - The Puppeteer `Page` to analyze
- * @returns The AxePuppeteer `analyze()` result containing `violations`, `passes`, `incomplete`, and `inapplicable` sections
- */
-async function performAxeScan(page: Page) {
-  // @ts-ignore
-  const results = await new AxePuppeteer(page)
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'])
-    .analyze()
-
-  return results
-}
-
-/**
- * Produce a business-oriented JSON summary derived from an accessibility audit.
- *
- * Sends audit metadata to an AI service and returns a JSON-formatted summary describing
- * website classification, business impact, industry context, quick wins, and recommendations.
- *
- * @param auditData - Audit context object. Expected properties: `url`, `overallScore`, `totalViolations`, `criticalCount`, and `topViolations`.
- * @returns A JSON string conforming to the schema:
- * {
- *   "websiteClassification": { "type": string, "industry": string, "targetAudience": string, "complianceRequirements": string },
- *   "businessImpact": { "userExperience": string, "reach": string },
- *   "industryContext": { "industryAverage": string, "yourPerformance": string, "complianceRisk": string },
- *   "quickWins": string[],
- *   "businessRecommendations": { "prioritize": string, "improvementPotential": string, "expectedROI": string }
- * }
- * or a JSON error object (e.g., `{"error":"AI Key missing"}` or `{"error":"AI Service Unavailable"}`) when the AI key/service is unavailable.
- */
-async function generateBusinessSummary(auditData: any): Promise<string> {
-  if (!process.env.OPENAI_API_KEY) {
-    return JSON.stringify({ error: "AI Key missing" })
-  }
-
-  const systemPrompt = `
-    You are an expert accessibility auditor. Analyze this audit data.
-    Return ONLY a JSON object with this exact schema:
-    {
-      "websiteClassification": {
-        "type": "E-commerce/Blog/Corporate/etc",
-        "industry": "Industry Name",
-        "targetAudience": "General/Specific",
-        "complianceRequirements": "WCAG 2.1 AA/ADA"
-      },
-      "businessImpact": {
-        "userExperience": "Impact description",
-        "reach": "Impact on market reach"
-      },
-      "industryContext": {
-        "industryAverage": "e.g. 'Below Average (75)'",
-        "yourPerformance": "Above Average/Average/Below Average",
-        "complianceRisk": "LOW/MEDIUM/HIGH"
-      },
-      "quickWins": ["Quick fix 1", "Quick fix 2"],
-      "businessRecommendations": {
-        "prioritize": "Top priority",
-        "improvementPotential": "+10% Score",
-        "expectedROI": "High/Med/Low"
-      }
-    }
-  `
+fixFirst has 2 to 4 items drawn from the violations, most severe first.
+quickWins has 2 to 4 small fixes that are NOT already in fixFirst; prefer moderate or minor violations and needs-review items that are cheap to settle. Return an empty array rather than repeat fixFirst.`
 
   const userPrompt = JSON.stringify({
-    url: auditData.url,
-    score: auditData.overallScore,
-    issues: auditData.totalViolations,
-    critical: auditData.criticalCount,
-    top_issues: auditData.topViolations
+    url: input.url,
+    title: input.title,
+    score: input.score,
+    violations: violations.slice(0, 12).map(describe),
+    needsReview: review.slice(0, 8).map(describe),
+    keyboard: input.extras.keyboard.ran
+      ? { tabStops: input.extras.keyboard.stops, noVisibleFocus: input.extras.keyboard.noIndicator, trapped: input.extras.keyboard.trap }
+      : "not run",
+    reflowAt320px: input.extras.layout.reflowScrollWidth,
+    overlayWidget: input.extras.facts.overlay,
+    accessibilityStatementLink: Boolean(input.extras.facts.statementLink),
   })
 
   try {
-    const client = (isOpenRouterModel(DEFAULT_MODEL) && isOpenRouterConfigured()) 
-      ? openrouter 
-      : new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-    
-    const response = await client.chat.completions.create({
-      model: DEFAULT_MODEL,
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt }
-      ],
-      temperature: MAX_AI_TEMP,
-      max_tokens: MAX_AI_TOKENS,
-      response_format: { type: "json_object" }
-    })
-
-    return response.choices[0]?.message?.content || "{}"
+    const useOpenRouter = isOpenRouterModel(DEFAULT_MODEL) && isOpenRouterConfigured()
+    const client = useOpenRouter ? openrouter : new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+    const response = await client.chat.completions.create(
+      {
+        model: DEFAULT_MODEL,
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt },
+        ],
+        temperature: 0.2,
+        max_tokens: 700,
+        response_format: { type: "json_object" },
+      },
+      { signal: AbortSignal.timeout(AI_TIMEOUT_MS) },
+    )
+    const parsed = JSON.parse(response.choices[0]?.message?.content || "{}") as Partial<AiSummary>
+    if (!parsed.headline || !parsed.summary) return undefined
+    const summary: AiSummary = {
+      headline: String(parsed.headline).replace(/\s*—\s*/g, ", "),
+      summary: String(parsed.summary).replace(/\s*—\s*/g, ", "),
+      fixFirst: Array.isArray(parsed.fixFirst) ? parsed.fixFirst.slice(0, 4).filter((item) => item?.title && item?.why) : [],
+      quickWins: Array.isArray(parsed.quickWins) ? parsed.quickWins.slice(0, 4).map(String) : [],
+    }
+    return JSON.stringify(summary)
   } catch (error) {
-    console.error("AI Error:", error)
-    return JSON.stringify({ error: "AI Service Unavailable" })
+    console.error("URL audit AI summary failed:", error)
+    return undefined
   }
 }
 
-
 /** Chromium's navigation errors are accurate and unreadable; say what happened instead. */
 function friendlyScanError(error: unknown): string {
+  if (error instanceof PublicUrlError) return error.message
   const message = error instanceof Error ? error.message : ""
   if (/ERR_NAME_NOT_RESOLVED/.test(message)) {
     return "That address could not be found. Check the spelling and try again."
@@ -183,21 +129,50 @@ function friendlyScanError(error: unknown): string {
     return "The site's security certificate could not be verified, so the page was not loaded."
   }
   if (/timeout|timed out/i.test(message)) {
-    return "The page took longer than 30 seconds to load, so the scan stopped. Try again, or try a lighter page."
+    return "The page took too long to load and check, so the scan stopped. Try again, or try a lighter page."
   }
-  if (/ERR_(HTTP_RESPONSE_CODE_FAILURE|TOO_MANY_REDIRECTS|BLOCKED_BY)/.test(message)) {
-    return "The site refused the request or redirected in a loop, so the page was not loaded."
+  if (/Target closed|Session closed|Protocol error/i.test(message)) {
+    return "The page closed our browser while it was being checked. Try again in a minute."
   }
-  return message || "Unknown system error"
+  return "The scan could not finish. Try again in a minute."
+}
+
+/** The stored form of a finding: the columns audit_violations already has, plus the rest in tool_specific_data. */
+function findingRow(auditId: string, finding: AuditFinding) {
+  return {
+    auditId,
+    violationId: finding.ruleId,
+    description: finding.description,
+    impact: finding.impact,
+    helpUrl: finding.helpUrl,
+    wcagCriteria: finding.wcag,
+    wcagLevel: finding.wcagLevel,
+    selector: finding.nodes[0]?.selector ?? "",
+    html: finding.nodes[0]?.html ?? "",
+    target: finding.nodes.map((node) => node.selector),
+    detectedBy: [finding.source],
+    confidence: finding.outcome === "violation" ? 100 : 50,
+    fixSuggestion: finding.fix,
+    aiExplanation: "",
+    toolSpecificData: {
+      version: 2,
+      title: finding.title,
+      outcome: finding.outcome,
+      category: finding.category,
+      nodes: finding.nodes,
+      nodeCount: finding.nodeCount,
+    },
+  }
 }
 
 /**
- * Performs a full accessibility audit of the given URL, runs axe-core in a headless browser, computes a weighted accessibility score, obtains an AI-generated business summary, and persists results when a user is signed in.
+ * Audits one public URL: axe-core plus the accessibility.build checks (keyboard pass, reflow, text
+ * spacing, reduced motion and DOM checks), a short AI summary, and, for signed-in users, a saved
+ * record and the credit charge.
  *
- * @param url - The full URL to scan (must include scheme, e.g. `https://example.com`).
- * @param unlimitedAccess - If `true`, skip credit deduction checks for authenticated users; does not grant extra behavior for unauthenticated users.
- * @returns The completed or failed UrlAuditResult containing audit metadata, violation list, computed scores, AI summary, timestamps, and error information when applicable.
- * Refusals (invalid or non-public URL, missing account, too few credits, free-scan limit reached) come back as a result with `status: 'failed'` and the reason in `errorMessage`; nothing is thrown for them.
+ * Refusals (invalid or non-public URL, missing account, too few credits, free-scan limit reached)
+ * come back as a result with `status: 'failed'` and the reason in `errorMessage`; nothing is thrown
+ * for them, because Next.js hides the message of errors thrown from server actions in production.
  */
 export async function runUrlAccessibilityAudit(
   url: string,
@@ -206,10 +181,6 @@ export async function runUrlAccessibilityAudit(
   const auditId = uuidv4()
   const startTime = new Date()
 
-  // Refusals are RETURNED, not thrown. Next.js replaces the message of any error
-  // thrown from a server action with a generic one in production, which would
-  // hide exactly the text the visitor needs: the daily free-scan limit and how
-  // to get more, the credit shortfall, or why a URL was refused.
   const refuse = (message: string): UrlAuditResult => ({
     auditId,
     status: 'failed',
@@ -218,16 +189,12 @@ export async function runUrlAccessibilityAudit(
     errorMessage: message,
   })
 
-  // Step 1: Check if the URL is valid
   let parsedUrl: URL
   try {
     parsedUrl = new URL(url)
   } catch {
     return refuse("Invalid URL. Please enter a full URL (e.g. https://google.com)")
   }
-
-  // The headless browser runs on our infrastructure, so it must never be
-  // pointed at loopback, link-local (cloud metadata) or private-network hosts.
   if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") {
     return refuse("Only http and https URLs can be scanned.")
   }
@@ -235,121 +202,55 @@ export async function runUrlAccessibilityAudit(
     return refuse("Private or local network URLs cannot be scanned. Enter a public website URL.")
   }
 
-  // Step 2: User Authentication & Credit Check
+  // Authentication and credits
   const currentUserObj = await currentUser()
   const hasUnlimitedAccess = await hasServerUnlimitedAccess()
   const effectiveUnlimitedAccess = unlimitedAccess && hasUnlimitedAccess
   let dbUser = null
-  let currentCredits = 0
 
+  if (currentUserObj) {
+    const usersList = await db.select().from(users).where(eq(users.id, currentUserObj.id)).limit(1)
+    dbUser = usersList[0]
+  }
   if (!effectiveUnlimitedAccess) {
     if (currentUserObj) {
-      const usersList = await db.select().from(users).where(eq(users.id, currentUserObj.id)).limit(1)
-      dbUser = usersList[0]
-
       if (!dbUser) return refuse("User account not found.")
-
-      currentCredits = dbUser.credits
-      if (currentCredits < CREDIT_COST) {
-        return refuse(`You need ${CREDIT_COST} credits to run an audit.`)
-      }
+      if (dbUser.credits < CREDIT_COST) return refuse(`You need ${CREDIT_COST} credits to run an audit.`)
     } else {
       const trial = await checkTrialLimit("url_accessibility_auditor")
       if (!trial.allowed) return refuse(trial.message)
     }
-  } else {
-    if (currentUserObj) {
-      const usersList = await db.select().from(users).where(eq(users.id, currentUserObj.id)).limit(1)
-      dbUser = usersList[0]
-    }
   }
 
-  // Step 3: Run the Browser Scan
-  let browser: any = null
   try {
-    browser = await getBrowserInstance()
-    const page = await browser.newPage()
-    
-    // Set a timeout of 60 seconds (1 minute) for loading pages
-    page.setDefaultNavigationTimeout(60000)
-    await page.setViewport({ width: 1920, height: 1080 })
-
-    // Navigate to the URL
-    await page.goto(url, { waitUntil: 'load', timeout: 30000 })
-    const pageTitle = await page.title() || url
     const scanStart = new Date()
+    const run = await runAudit(parsedUrl, { deadline: Date.now() + SCAN_BUDGET_MS })
+    const counts = countViolations(run.findings)
+    const overallScore = scoreFrom(counts)
+    const reviewCount = run.findings.filter((finding) => finding.outcome === "review").length
+    const violationElements = run.findings.filter((finding) => finding.outcome === "violation").reduce((sum, finding) => sum + finding.nodeCount, 0)
 
-    // Execute axe-core
-    const axeResults = await performAxeScan(page)
-
-    // Step 4: Process the Results
-    // Transform the raw axe-core data into our clean "Violation" structure
-    const processedViolations = axeResults.violations.map(v => ({
-      id: uuidv4(),
-      violationId: v.id,
-      description: v.description,
-      impact: (v.impact || 'minor') as 'critical' | 'serious' | 'moderate' | 'minor',
-      helpUrl: v.helpUrl,
-      wcagCriteria: v.tags.filter(t => t.includes('wcag')),
-      wcagLevel: v.tags.some(t => t.includes('wcag2aa') || t.includes('wcag21aa')) ? 'AA' : 'A',
-      selector: v.nodes[0]?.target.join(', ') || '',
-      html: v.nodes[0]?.html || '',
-      target: v.nodes[0]?.target || [],
-      aiExplanation: "",
-      fixSuggestion: v.help,
-    }))
-
-    // Calculate Scores & Counts
-    const totalViolations = processedViolations.length
-    const criticalCount = processedViolations.filter(v => v.impact === 'critical').length
-    const seriousCount = processedViolations.filter(v => v.impact === 'serious').length
-    const moderateCount = processedViolations.filter(v => v.impact === 'moderate').length
-    const minorCount = processedViolations.filter(v => v.impact === 'minor').length
-
-    // Weighted Scoring System:
-    // Instead of a simple percentage (which can vary wildly based on how many 'passes' a page has),
-    // we use a penalty system starting from 100. This ensures high-impact violations always hurt the score.
-    
-    let penaltyScore = 0
-    penaltyScore += criticalCount * 10
-    penaltyScore += seriousCount * 5
-    penaltyScore += moderateCount * 2
-    penaltyScore += minorCount * 1
-
-    const overallScore = Math.max(0, 100 - penaltyScore)
-
-    // Step 5: Get AI Analysis
-    const aiSummary = await generateBusinessSummary({
-      url,
-      title: pageTitle,
-      overallScore,
-      totalViolations,
-      criticalCount,
-      topViolations: processedViolations.slice(0, 3) // Send only top 3 to save tokens
-    })
-
+    const aiSummary = await generateAiSummary({ url, title: run.title, score: overallScore, findings: run.findings, extras: run.extras })
     const scanEnd = new Date()
 
-    // Step 6: Create the Result Object
     const result: UrlAuditResult = {
       auditId,
       status: 'completed',
       url,
-      title: pageTitle,
+      title: run.title,
       createdAt: startTime.toISOString(),
       processingStartedAt: scanStart.toISOString(),
       processingCompletedAt: scanEnd.toISOString(),
-      totalViolations,
-      criticalCount,
-      seriousCount,
-      moderateCount,
-      minorCount,
+      ...counts,
+      reviewCount,
+      violationElements,
       overallScore,
       aiSummary,
-      violations: processedViolations as any 
+      findings: run.findings,
+      extras: run.extras,
+      screenshot: run.screenshot ?? undefined,
     }
 
-    // Step 7: Save to Database (if User is logged in)
     if (currentUserObj && dbUser) {
       let savedAuditId = ''
 
@@ -371,15 +272,12 @@ export async function runUrlAccessibilityAudit(
             throw new Error(`You need ${CREDIT_COST} credits to run an audit.`)
           }
 
-          const newBalance = updatedUser.credits
-          const balanceBefore = newBalance + CREDIT_COST
-
           await tx.insert(creditTransactions).values({
             userId: dbUser.id,
             type: 'usage',
             amount: -CREDIT_COST,
-            balanceBefore,
-            balanceAfter: newBalance,
+            balanceBefore: updatedUser.credits + CREDIT_COST,
+            balanceAfter: updatedUser.credits,
             description: 'URL Accessibility Audit',
             toolUsed: 'url_accessibility_auditor',
           })
@@ -388,85 +286,62 @@ export async function runUrlAccessibilityAudit(
         const [savedAudit] = await tx.insert(urlAccessibilityAudits).values({
           userId: dbUser.id,
           url,
-          title: pageTitle,
+          title: run.title,
           status: 'completed',
           creditsUsed,
-          totalViolations,
-          criticalCount,
-          seriousCount,
-          moderateCount,
-          minorCount,
+          ...counts,
           overallScore,
           aiSummary,
+          toolsUsed: ['axe-core', 'accessibility.build'],
+          axeCoreResults: run.extras,
           processingStartedAt: scanStart,
           processingCompletedAt: scanEnd,
         }).returning({ id: urlAccessibilityAudits.id })
 
         savedAuditId = savedAudit.id
 
-        if (processedViolations.length > 0) {
-          await tx.insert(auditViolations).values(processedViolations.map(v => ({
-             auditId: savedAudit.id,
-             violationId: v.violationId,
-             description: v.description,
-             impact: v.impact,
-             helpUrl: v.helpUrl,
-             wcagCriteria: v.wcagCriteria,
-             wcagLevel: v.wcagLevel,
-             selector: v.selector,
-             html: v.html,
-             target: v.target || [], 
-             detectedBy: ['axe-core'],
-             fixSuggestion: v.fixSuggestion,
-             aiExplanation: v.aiExplanation
-          })))
+        if (run.findings.length > 0) {
+          await tx.insert(auditViolations).values(run.findings.map((finding) => findingRow(savedAudit.id, finding)))
         }
       })
 
-      // Update the result ID to match the real DB ID
       result.auditId = savedAuditId
     } else if (!effectiveUnlimitedAccess) {
       // Anonymous free scan. Keep the complete result on the server and hand
       // back only the most severe findings; /api/tools/url-audit-unlock returns
-      // the rest once the visitor asks for them. Storing the scanned domain is
-      // also what turns an anonymous scan into something we can follow up.
-      const ranked = sortBySeverity(processedViolations)
+      // the rest once the visitor asks for them.
       const scanId = await recordTrialUsage("url_accessibility_auditor", undefined, {
         inputData: { url, domain: normalizeHostname(parsedUrl.hostname) },
         outputData: {
-          title: pageTitle,
+          version: 2,
+          title: run.title,
           overallScore,
-          totalViolations,
-          criticalCount,
-          seriousCount,
-          moderateCount,
-          minorCount,
-          violations: ranked,
+          ...counts,
+          reviewCount,
+          findings: run.findings,
         },
       })
 
-      const lockedCount = Math.max(0, ranked.length - FREE_SCAN_VISIBLE_FINDINGS)
+      const lockedCount = Math.max(0, run.findings.length - FREE_SCAN_VISIBLE_FINDINGS)
       if (scanId && lockedCount > 0) {
-        result.violations = ranked.slice(0, FREE_SCAN_VISIBLE_FINDINGS) as any
+        result.findings = run.findings.slice(0, FREE_SCAN_VISIBLE_FINDINGS)
         result.preview = { scanId, lockedCount }
-      } else {
-        // Nothing worth locking, or the row could not be written: show it all
-        // rather than hide findings nobody can ever unlock.
-        result.violations = ranked as any
       }
     }
 
     const posthog = getPostHogClient()
     if (posthog) {
-      const distinctId = currentUserObj?.id ?? 'anonymous_auditor'
       posthog.capture({
-        distinctId,
+        distinctId: currentUserObj?.id ?? 'anonymous_auditor',
         event: 'url_audit_completed',
         properties: {
           overall_score: overallScore,
-          total_violations: totalViolations,
-          critical_count: criticalCount,
-          serious_count: seriousCount,
+          total_violations: counts.totalViolations,
+          critical_count: counts.criticalCount,
+          serious_count: counts.seriousCount,
+          review_count: reviewCount,
+          keyboard_ran: run.extras.keyboard.ran,
+          duration_ms: run.extras.engine.durationMs,
           is_authenticated: Boolean(currentUserObj),
           used_trial: !currentUserObj && !effectiveUnlimitedAccess,
           credits_used: currentUserObj && !effectiveUnlimitedAccess ? CREDIT_COST : 0,
@@ -476,37 +351,36 @@ export async function runUrlAccessibilityAudit(
     }
 
     return result
-
   } catch (error) {
     console.error("Audit Failed:", error)
-    return {
-      auditId,
-      status: 'failed',
-      url,
-      createdAt: startTime.toISOString(),
-      errorMessage: friendlyScanError(error)
-    }
-  } finally {
-    if (browser) await browser.close()
+    return refuse(friendlyScanError(error))
   }
 }
 
-
-/**
- * Fetches the current user's most recent URL accessibility audits (up to 20).
- *
- * @returns An object with an `audits` array where each entry includes stored audit fields; `title` defaults to the URL when missing, `createdAt` is an ISO string, `overallScore` is included when defined, and `totalViolations` defaults to 0.
- */
+/** The current user's 20 most recent audits. */
 export async function getAuditHistory(): Promise<AuditHistory> {
   const user = await currentUser()
   if (!user) return { audits: [] }
 
-  const records = await db.select().from(urlAccessibilityAudits)
+  const records = await db.select({
+    id: urlAccessibilityAudits.id,
+    url: urlAccessibilityAudits.url,
+    status: urlAccessibilityAudits.status,
+    title: urlAccessibilityAudits.title,
+    createdAt: urlAccessibilityAudits.createdAt,
+    processingCompletedAt: urlAccessibilityAudits.processingCompletedAt,
+    overallScore: urlAccessibilityAudits.overallScore,
+    totalViolations: urlAccessibilityAudits.totalViolations,
+    criticalCount: urlAccessibilityAudits.criticalCount,
+    seriousCount: urlAccessibilityAudits.seriousCount,
+    moderateCount: urlAccessibilityAudits.moderateCount,
+    minorCount: urlAccessibilityAudits.minorCount,
+  }).from(urlAccessibilityAudits)
     .where(eq(urlAccessibilityAudits.userId, user.id))
     .orderBy(desc(urlAccessibilityAudits.createdAt))
     .limit(20)
 
-  return { 
+  return {
     audits: records.map(r => ({
       id: r.id,
       url: r.url,
@@ -520,18 +394,11 @@ export async function getAuditHistory(): Promise<AuditHistory> {
       seriousCount: r.seriousCount ?? 0,
       moderateCount: r.moderateCount ?? 0,
       minorCount: r.minorCount ?? 0,
-      aiSummary: r.aiSummary ?? undefined
     }))
   }
 }
 
-/**
- * Deletes a saved URL accessibility audit belonging to the current user.
- *
- * @param auditId - The ID of the audit to delete.
- * @returns An object with `success: true` when the audit was deleted.
- * @throws Error if there is no authenticated user.
- */
+/** Deletes one of the current user's saved audits. */
 export async function deleteAudit(auditId: string) {
   const user = await currentUser()
   if (!user) throw new Error("Please log in to delete audits.")
@@ -545,19 +412,54 @@ export async function deleteAudit(auditId: string) {
   return { success: true }
 }
 
-/**
- * Retrieves a previously saved URL accessibility audit and its associated violations for the current authenticated user.
- *
- * Fetches the audit by `auditId` and returns a combined result containing audit metadata, counts, overall score, and a list of violations. Returns `null` if no user is signed in or if the requested audit does not exist.
- *
- * @param auditId - The identifier of the audit to retrieve
- * @returns The audit and its violations as a `UrlAuditResult`, or `null` when not found or the user is not authenticated
- */
+type StoredRow = typeof auditViolations.$inferSelect
+
+interface StoredFindingData {
+  version?: number
+  title?: string
+  outcome?: AuditFinding["outcome"]
+  category?: FindingCategory
+  nodes?: AuditFinding["nodes"]
+  nodeCount?: number
+}
+
+/** Rebuilds a finding from its row. Rows saved before November 2026 hold one axe violation and one element. */
+function findingFromRow(row: StoredRow): AuditFinding {
+  const data = (row.toolSpecificData ?? {}) as StoredFindingData
+  const rawCriteria = Array.isArray(row.wcagCriteria) ? (row.wcagCriteria as unknown[]) : []
+  const wcag = Array.from(
+    new Set(
+      rawCriteria
+        .map((entry) => (typeof entry === "string" ? entry : (entry as { criterion?: string })?.criterion ?? ""))
+        .map((entry) => (/^\d\.\d\.\d{1,2}$/.test(entry) ? entry : scFromTag(entry)))
+        .filter((entry): entry is string => !!entry),
+    ),
+  )
+  const sources = Array.isArray(row.detectedBy) ? (row.detectedBy as string[]) : []
+  const level = row.wcagLevel === "A" || row.wcagLevel === "AA" || row.wcagLevel === "AAA" || row.wcagLevel === "Best practice" ? row.wcagLevel : wcag.length ? "A" : "Best practice"
+  return {
+    id: row.id,
+    ruleId: row.violationId,
+    source: sources.includes("accessibility.build") ? "accessibility.build" : "axe-core",
+    outcome: data.outcome ?? "violation",
+    title: data.title || row.fixSuggestion || row.description,
+    description: row.description,
+    impact: row.impact as Impact,
+    category: data.category ?? "structure",
+    wcag,
+    wcagLevel: level,
+    helpUrl: row.helpUrl || "",
+    fix: row.fixSuggestion || "",
+    nodes: data.nodes ?? (row.selector || row.html ? [{ selector: row.selector || "", html: row.html || "" }] : []),
+    nodeCount: data.nodeCount ?? 1,
+  }
+}
+
+/** One of the current user's saved audits with its findings, or null. */
 export async function getAudit(auditId: string): Promise<UrlAuditResult | null> {
   const user = await currentUser()
   if (!user) return null
 
-  // 1. Get the Audit
   const [audit] = await db.select().from(urlAccessibilityAudits).where(
     and(
       eq(urlAccessibilityAudits.id, auditId),
@@ -566,36 +468,30 @@ export async function getAudit(auditId: string): Promise<UrlAuditResult | null> 
   ).limit(1)
   if (!audit) return null
 
-  // 2. Get the Violations
-  const violations = await db.select().from(auditViolations).where(eq(auditViolations.auditId, auditId))
+  const rows = await db.select().from(auditViolations).where(eq(auditViolations.auditId, auditId))
+  const findings = rows.map(findingFromRow)
+  const order: Record<Impact, number> = { critical: 0, serious: 1, moderate: 2, minor: 3 }
+  findings.sort((a, b) => (a.outcome === b.outcome ? 0 : a.outcome === "violation" ? -1 : 1) || order[a.impact] - order[b.impact] || b.nodeCount - a.nodeCount)
+  const extras = (audit.axeCoreResults as AuditExtras | null)?.version === 2 ? (audit.axeCoreResults as AuditExtras) : undefined
 
-  // 3. Combine them
   return {
     auditId: audit.id,
-    status: audit.status as any,
+    status: audit.status as UrlAuditResult["status"],
     url: audit.url,
     title: audit.title || undefined,
     createdAt: audit.createdAt.toISOString(),
+    processingStartedAt: audit.processingStartedAt?.toISOString(),
+    processingCompletedAt: audit.processingCompletedAt?.toISOString(),
     aiSummary: audit.aiSummary || undefined,
-    overallScore: audit.overallScore || 0,
-    totalViolations: audit.totalViolations || 0,
-    criticalCount: audit.criticalCount || 0,
-    seriousCount: audit.seriousCount || 0,
-    moderateCount: audit.moderateCount || 0,
-    minorCount: audit.minorCount || 0,
-    violations: violations.map(v => ({
-      id: v.id,
-      violationId: v.violationId,
-      description: v.description,
-      impact: v.impact as any,
-      helpUrl: v.helpUrl || '',
-      wcagCriteria: v.wcagCriteria as any[],
-      wcagLevel: v.wcagLevel || 'A',
-      selector: v.selector || '',
-      html: v.html || '',
-      target: (v.target as string[]) || [],
-      aiExplanation: v.aiExplanation || '',
-      fixSuggestion: v.fixSuggestion || ''
-    }))
+    overallScore: audit.overallScore ?? 0,
+    totalViolations: audit.totalViolations ?? 0,
+    criticalCount: audit.criticalCount ?? 0,
+    seriousCount: audit.seriousCount ?? 0,
+    moderateCount: audit.moderateCount ?? 0,
+    minorCount: audit.minorCount ?? 0,
+    reviewCount: findings.filter((finding) => finding.outcome === "review").length,
+    violationElements: findings.filter((finding) => finding.outcome === "violation").reduce((sum, finding) => sum + finding.nodeCount, 0),
+    findings,
+    extras,
   }
 }

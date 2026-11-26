@@ -264,3 +264,20 @@ export function applyChapterChange(current: CourseProgressData, chapterKey: unkn
   safeJson(result, MAX_PROGRESS_BYTES)
   return result
 }
+
+/**
+ * After a final-exam round is used up, the learner works through the course again. Lesson completion
+ * and activity completion (decisions, checks, attestations, transfer, confidence) are cleared; the
+ * learner's own notes, bookmarks, written explanations and code are kept. Each activity's revision is
+ * bumped so an open tab cannot silently restore the old completed state.
+ */
+export function applyCompletionReset(current: CourseProgressData): CourseProgressData {
+  const study: CourseStudyProgress = structuredClone(current.study ?? {})
+  const revisions = { ...study.revisions }
+  const activities: NonNullable<CourseStudyProgress["activities"]> = {}
+  for (const [key, state] of Object.entries(study.activities ?? {})) {
+    activities[key] = { version: state.version, answers: {}, checked: [], reflection: state.reflection ?? "", criteria: [], manual: [], ...(state.code !== undefined ? { code: state.code } : {}) }
+    revisions[`activity:${key}`] = (revisions[`activity:${key}`] ?? 0) + 1
+  }
+  return { ...current, chaptersDone: [], study: { ...study, activities, revisions } }
+}

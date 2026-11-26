@@ -778,6 +778,78 @@ export const courseAttempts = pgTable('course_attempts', {
   ownerIdx: index('course_attempts_owner_idx').on(t.userId, t.courseSlug, t.createdAt),
 }))
 
+// Completion certificates for skills courses (migration 0022). The public code verifies a
+// certificate at /certificates/<code>; history records every admin change.
+export const courseCertificates = pgTable('course_certificates', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  code: text('code').notNull().unique(),
+  userId: text('user_id').references(() => users.id, { onDelete: 'set null' }),
+  courseSlug: text('course_slug').notNull(),
+  recipientName: text('recipient_name').notNull(),
+  recipientEmail: text('recipient_email').notNull(),
+  edition: text('edition').notNull(),
+  source: text('source').notNull(), // earned | admin
+  issuedAt: timestamp('issued_at').defaultNow().notNull(),
+  /** Null means the certificate does not expire. Renewal moves it forward. */
+  expiresAt: timestamp('expires_at'),
+  renewalCount: integer('renewal_count').notNull().default(0),
+  revokedAt: timestamp('revoked_at'),
+  revokedReason: text('revoked_reason'),
+  history: jsonb('history').notNull().default([]),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (t) => ({
+  userCourseIdx: uniqueIndex('course_certificates_user_course_idx').on(t.userId, t.courseSlug),
+  courseIdx: index('course_certificates_course_idx').on(t.courseSlug, t.issuedAt),
+}))
+
+export type CourseCertificate = typeof courseCertificates.$inferSelect
+
+// Final exam for skills courses (migration 0022). One status row per learner and course; one row per
+// attempt. The paper (question ids, option order, generated variants) is stored server-side and the
+// answer key never leaves the server.
+export const courseExamStatus = pgTable('course_exam_status', {
+  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  courseSlug: text('course_slug').notNull(),
+  round: integer('round').notNull().default(1),
+  attemptsUsed: integer('attempts_used').notNull().default(0),
+  extraAttempts: integer('extra_attempts').notNull().default(0),
+  /** Renewal exam attempts bought and not yet used. */
+  renewalAttemptsLeft: integer('renewal_attempts_left').notNull().default(0),
+  cooldownUntil: timestamp('cooldown_until'),
+  passedAt: timestamp('passed_at'),
+  passedAttemptId: uuid('passed_attempt_id'),
+  history: jsonb('history').notNull().default([]),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+}, (t) => ({
+  pk: primaryKey({ columns: [t.userId, t.courseSlug] }),
+}))
+
+export const courseExamAttempts = pgTable('course_exam_attempts', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  courseSlug: text('course_slug').notNull(),
+  kind: text('kind').notNull().default('final'), // final | renewal
+  round: integer('round').notNull(),
+  attemptNo: integer('attempt_no').notNull(),
+  edition: text('edition').notNull(),
+  paper: jsonb('paper').notNull(),
+  answers: jsonb('answers').notNull().default({}),
+  timeLimitSeconds: integer('time_limit_seconds').notNull(),
+  startedAt: timestamp('started_at').defaultNow().notNull(),
+  expiresAt: timestamp('expires_at').notNull(),
+  submittedAt: timestamp('submitted_at'),
+  correct: integer('correct'),
+  total: integer('total').notNull(),
+  passed: boolean('passed'),
+  sectionScores: jsonb('section_scores'),
+  endReason: text('end_reason'), // submitted | time_expired
+}, (t) => ({
+  ownerIdx: index('course_exam_attempts_owner_idx').on(t.userId, t.courseSlug, t.startedAt),
+}))
+
+export type CourseExamStatus = typeof courseExamStatus.$inferSelect
+export type CourseExamAttempt = typeof courseExamAttempts.$inferSelect
+
 // ── Dodo Payments (migration 0019) ──
 export const dodoWebhookEvents = pgTable('dodo_webhook_events', {
   eventId: text('event_id').primaryKey(),

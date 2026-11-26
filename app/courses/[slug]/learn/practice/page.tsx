@@ -1,6 +1,6 @@
 import type { PracticeStart } from "@/lib/courses/practice-types"
 import type { Metadata } from "next"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import { CourseShell } from "@/components/courses/course-shell"
 import { PracticeApp } from "@/components/courses/practice-app"
 import { requireCourseAccess } from "@/lib/courses/access"
@@ -27,6 +27,8 @@ export default async function PracticePage({
   const sp = await searchParams
   const course = getCourse(slug)
   if (!course) notFound()
+  // Skills courses have no practice area: lessons carry their own checks.
+  if (course.kind === "skills") redirect(course.homeRoute)
   const query = new URLSearchParams(Object.entries(sp).filter((e): e is [string, string] => typeof e[1] === "string")).toString()
   const access = await requireCourseAccess(slug, `${course.homeRoute}/practice${query ? `?${query}` : ""}`)
   const [meta, bank, progress] = await Promise.all([getCourseMeta(slug), getCourseBank(slug), getCourseProgress(access.viewer.userId, slug)])

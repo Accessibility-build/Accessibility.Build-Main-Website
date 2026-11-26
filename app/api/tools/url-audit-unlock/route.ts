@@ -8,6 +8,7 @@ import { company } from "@/lib/company"
 import { inboundLeadScore } from "@/lib/free-scan"
 import { sendInboundScanLeadNotification } from "@/lib/email/service"
 import { getPostHogClient } from "@/lib/posthog-server"
+import type { AuditFinding } from "@/lib/url-audit/types"
 
 // Releases the findings held back from an anonymous free scan, in exchange for
 // a work email. The scan row id is an unguessable uuid handed only to the
@@ -30,18 +31,46 @@ const unlockRateLimit = createRateLimit({
 })
 
 interface StoredViolation {
+  violationId?: string
   description?: string
   impact?: string
   fixSuggestion?: string
+  helpUrl?: string
+  selector?: string
+  html?: string
 }
 
 interface StoredScan {
+  version?: number
   title?: string
   overallScore?: number
   totalViolations?: number
   criticalCount?: number
   seriousCount?: number
+  /** Scans since November 2026: violations and review items, most severe first. */
+  findings?: AuditFinding[]
+  /** Older scans: axe violations only. */
   violations?: StoredViolation[]
+}
+
+/** A scan stored before the November 2026 auditor, in the shape the results view reads. */
+function legacyFinding(violation: StoredViolation, index: number): AuditFinding {
+  return {
+    id: `legacy-${index}`,
+    ruleId: violation.violationId ?? "unknown",
+    source: "axe-core",
+    outcome: "violation",
+    title: violation.fixSuggestion || violation.description || "Unnamed finding",
+    description: violation.description ?? "",
+    impact: (["critical", "serious", "moderate", "minor"].includes(violation.impact ?? "") ? violation.impact : "moderate") as AuditFinding["impact"],
+    category: "structure",
+    wcag: [],
+    wcagLevel: "Best practice",
+    helpUrl: violation.helpUrl ?? "",
+    fix: violation.fixSuggestion ?? "",
+    nodes: violation.selector || violation.html ? [{ selector: violation.selector ?? "", html: violation.html ?? "" }] : [],
+    nodeCount: 1,
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -77,7 +106,12 @@ export async function POST(request: NextRequest) {
 
     const input = (scan.inputData ?? {}) as { url?: string; domain?: string }
     const output = (scan.outputData ?? {}) as StoredScan
-    const violations = Array.isArray(output.violations) ? output.violations : []
+    const findings: AuditFinding[] = Array.isArray(output.findings)
+      ? output.findings
+      : Array.isArray(output.violations)
+        ? output.violations.map(legacyFinding)
+        : []
+    const violations = findings.filter((finding) => finding.outcome === "violation")
     const domain = input.domain || "unknown"
     const url = input.url || ""
     const criticalCount = output.criticalCount ?? 0
@@ -85,9 +119,9 @@ export async function POST(request: NextRequest) {
     const totalViolations = output.totalViolations ?? violations.length
     const overallScore = output.overallScore ?? 0
 
-    const findings: ProspectFinding[] = violations.slice(0, 5).map((violation, index) => ({
+    const prospectFindings: ProspectFinding[] = violations.slice(0, 5).map((violation, index) => ({
       n: index + 1,
-      text: `[${violation.impact ?? "unknown"}] ${violation.description ?? "Unnamed finding"}`,
+      text: `[${violation.impact}] ${violation.title}${violation.nodeCount > 1 ? ` (${violation.nodeCount} elements)` : ""}`,
     }))
 
     const today = new Date().toISOString().slice(0, 10)
@@ -120,8 +154,8 @@ export async function POST(request: NextRequest) {
         sendability: "Visitor asked for the full scan result and supplied this address themselves",
         emailAddress: email,
         addressSource: "Given by the visitor through the free scan on accessibility.build",
-        findings,
-        evidence: `Automated axe-core scan of ${url}: score ${overallScore}/100, ${totalViolations} findings (${criticalCount} critical, ${seriousCount} serious). Automated results only; verify before quoting them back.`,
+        findings: prospectFindings,
+        evidence: `Automated scan (axe-core plus keyboard, reflow and DOM checks) of ${url}: score ${overallScore}/100, ${totalViolations} findings (${criticalCount} critical, ${seriousCount} serious). Automated results only; verify before quoting them back.`,
         score: inboundLeadScore({ criticalCount, seriousCount }),
         status: "new",
         notes: inboundNote,
@@ -139,7 +173,7 @@ export async function POST(request: NextRequest) {
       totalViolations,
       criticalCount,
       seriousCount,
-      topFindings: findings.map((finding) => finding.text),
+      topFindings: prospectFindings.map((finding) => finding.text),
     })
 
     const posthog = getPostHogClient()
@@ -160,7 +194,7 @@ export async function POST(request: NextRequest) {
       await posthog.flush()
     }
 
-    return NextResponse.json({ violations })
+    return NextResponse.json({ findings })
   } catch (error) {
     console.error("url-audit-unlock failed:", error)
     return NextResponse.json(

@@ -1,12 +1,8 @@
+import { blockPlainText } from "./block-text"
 import type { CourseBlock, CourseChapter } from "./types"
 
 export interface CourseSearchHit { chapterKey: string; title: string; heading: string; anchor: string; excerpt: string }
-function blockText(block: CourseBlock): string {
-  if ("text" in block) return block.text
-  if (block.type === "table") return [block.caption, ...block.headers, ...block.rows.flat()].join(" ")
-  if (block.type === "keyterms") return block.items.map((item) => `${item.term}: ${item.def}`).join(" ")
-  return block.items.join(" ")
-}
+const blockText = (block: CourseBlock) => blockPlainText(block)
 
 /** Search only lesson material. Reserved mock stems and answers are never indexed here. */
 export function searchCourse(chapters: CourseChapter[], rawQuery: string): CourseSearchHit[] {

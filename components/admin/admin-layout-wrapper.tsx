@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Suspense } from "react"
-import { isCourseLearningPath } from "@/lib/courses/routes"
+import { isCertificatePrintPath, isCourseLearningPath } from "@/lib/courses/routes"
 import { isAuthPath, isDashboardPath } from "@/lib/account-routes"
 import { AccountHeader } from "@/components/account/account-header"
 
@@ -17,6 +17,11 @@ export function AdminLayoutWrapper({ children }: AdminLayoutWrapperProps) {
 
   if (isCourseLearningPath(pathname)) {
     return <main id="main-content" data-course-workspace className="min-h-dvh w-full min-w-0 bg-white outline-none dark:bg-slate-950">{children}</main>
+  }
+
+  // A certificate's print view is the certificate alone: no site navigation on the printed page.
+  if (isCertificatePrintPath(pathname)) {
+    return <main id="main-content" data-certificate-print className="min-w-0 outline-none">{children}</main>
   }
 
   if (isAuthPath(pathname)) {

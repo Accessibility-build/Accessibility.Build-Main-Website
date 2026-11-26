@@ -3,7 +3,7 @@ import { and, eq } from "drizzle-orm"
 import { db } from "@/lib/db"
 import { courseProgress, courseContent } from "@/lib/db/schema"
 import type { CourseProgressData, CourseQuestion } from "./types"
-import { applyChapterChange, applyPracticeChange, applyStudyChange, publicProgress, validateStudyChange } from "./progress-model"
+import { applyChapterChange, applyCompletionReset, applyPracticeChange, applyStudyChange, publicProgress, validateStudyChange } from "./progress-model"
 
 export { ProgressConflictError, ProgressValidationError } from "./progress-model"
 
@@ -62,4 +62,9 @@ export async function saveStudyState(userId: string, slug: string, change: unkno
     const { data, revision } = applyStudyChange(current, validated, requestId, new Date().toISOString(), question)
     return { data, value: { ok: true as const, revision, progress: publicProgress(data) } }
   })
+}
+
+/** Clears lesson and activity completion after a failed exam round; keeps notes and written work. */
+export async function resetCourseCompletion(userId: string, slug: string) {
+  return changeProgress(userId, slug, (current) => ({ data: applyCompletionReset(current), value: true }))
 }

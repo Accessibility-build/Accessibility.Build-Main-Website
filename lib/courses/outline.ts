@@ -78,16 +78,16 @@ export interface PracticeSummary {
   cardsKnown: number
 }
 
-export function practiceSummary(progress: CourseProgressData): PracticeSummary {
+export function practiceSummary(progress: CourseProgressData, mockLabel = "Mock Exam"): PracticeSummary {
   const history = progress.history ?? []
   const best = (title: string) => {
     const scores = history.filter((h) => h.title === title && h.total).map((h) => Math.round((100 * h.correct) / h.total))
     return scores.length ? Math.max(...scores) : null
   }
-  const mocks = history.filter((h) => h.title.startsWith("Mock Exam"))
+  const mocks = history.filter((h) => h.title.startsWith(mockLabel))
   return {
     answeredSessions: history.length,
-    bestMock: { A: best("Mock Exam A"), B: best("Mock Exam B") },
+    bestMock: { A: best(`${mockLabel} A`), B: best(`${mockLabel} B`) },
     lastMock: mocks.length ? mocks[mocks.length - 1] : null,
     cardsKnown: Object.values(progress.cards ?? {}).filter((v) => v === 1).length,
   }

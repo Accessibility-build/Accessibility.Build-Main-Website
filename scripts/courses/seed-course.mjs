@@ -8,7 +8,7 @@
 // rows for keys no longer present, inside one transaction.
 import fs from "node:fs"
 import postgres from "postgres"
-import { blockWords, courseManifest, validateCourse } from "./course-content.mjs"
+import { courseManifest, lessonMinutes, validateCourse } from "./course-content.mjs"
 
 const args = process.argv.slice(2)
 const file = args.find((a) => !a.startsWith("--"))
@@ -24,7 +24,7 @@ const slug = course.slug
 const edition = String(course.edition)
 const rows = []
 // Reading time for the course outline: about 200 words a minute, at least one minute.
-const index = course.chapters.map(({ blocks, activities, ...rest }) => ({ ...rest, readingMinutes: Math.max(1, Math.round(blocks.reduce((count, block) => count + blockWords(block), 0) / 200)), activityIds: (activities ?? []).map((activity) => activity.id), activityVersions: Object.fromEntries((activities ?? []).map((activity) => [activity.id, activity.version])), activityCount: activities?.length ?? 0 }))
+const index = course.chapters.map(({ blocks, activities, ...rest }) => ({ ...rest, readingMinutes: lessonMinutes({ blocks }), activityIds: (activities ?? []).map((activity) => activity.id), activityVersions: Object.fromEntries((activities ?? []).map((activity) => [activity.id, activity.version])), activityCount: activities?.length ?? 0 }))
 const manifest = courseManifest(course)
 rows.push({
   kind: "meta",
@@ -39,6 +39,7 @@ rows.push({
     sections: course.sections,
     questionCount: course.questions.length,
     flashcardCount: course.flashcards.length,
+    examQuestionCount: (course.examQuestions ?? []).length,
     drillQuestionIds: course.questions.filter((question) => question.set === "drill").map((question) => question.id),
     flashcardIds: course.flashcards.map((card) => card.id).filter(Boolean),
     activityCount: manifest.activityCount,
@@ -49,6 +50,8 @@ rows.push({
 course.chapters.forEach((c, i) => rows.push({ kind: "chapter", key: c.key, position: i, data: c }))
 course.questions.forEach((q, i) => rows.push({ kind: "question", key: q.id, position: i, data: q }))
 course.flashcards.forEach((f, i) => rows.push({ kind: "flashcard", key: f.id ?? String(i), position: i, data: f }))
+// Final exam bank (skills courses). Read only by the server-side exam; never sent to browsers whole.
+;(course.examQuestions ?? []).forEach((q, i) => rows.push({ kind: "exam", key: q.id, position: i, data: q }))
 
 // Sanity checks before touching the database
 const keys = new Set()

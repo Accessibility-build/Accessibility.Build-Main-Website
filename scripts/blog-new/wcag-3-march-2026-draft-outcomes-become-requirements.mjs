@@ -17,7 +17,7 @@ export default {
   slug: 'wcag-3-march-2026-draft-outcomes-become-requirements',
   title: 'WCAG 3.0’s March 2026 Draft: Outcomes Become “Requirements”',
   excerpt:
-    'The W3C’s March 2026 draft renames "outcomes" to "requirements" and lists 174 of them. Here is what changed — and why WCAG 2.2 AA is still your target.',
+    'The W3C’s March 2026 draft renames "outcomes" to "requirements" and says it describes 174 of them. Here is what changed, and why WCAG 2.2 AA is still your target.',
   publishedAt: '2026-06-02T10:00:00Z',
   categoryTitles: ['WCAG Guidelines', 'Industry News'],
   seo: {
@@ -36,15 +36,21 @@ export default {
   },
   body: [
     p(
+      span('Updated 18 November 2026: ', ['strong']),
       span(
-        'On March 3, 2026, the W3C published a new Working Draft of WCAG 3.0 (the W3C Accessibility Guidelines 3.0). The headline change is terminology: what earlier drafts called "outcomes" are now called "requirements," and the draft describes 174 of them. It is a signal that the standard is maturing — but WCAG 3.0 is still years from being final, and WCAG 2.2 AA remains the standard to build and test against today.'
+        'an earlier version of this article said WCAG 3.0 was moving toward graded conformance. That was wrong. The March draft defined Bronze, Silver and Gold levels built on meeting core requirements, and the September 2026 draft went further, making conformance mean meeting every core requirement. We have corrected the section on how WCAG 3.0 differs from WCAG 2.x. '
+      ),
+    ),
+    p(
+      span(
+        'On March 3, 2026, the W3C published a new Working Draft of WCAG 3.0 (the W3C Accessibility Guidelines 3.0). The headline change is terminology: what earlier drafts called "outcomes" are now called "requirements," and the W3C’s announcement says the draft describes 174 of them. It is a signal that the standard is maturing, but WCAG 3.0 is still years from being final, and WCAG 2.2 AA remains the standard to build and test against today.'
       )
     ),
 
     h2('What changed in the March 2026 draft'),
     term(
       'Outcomes are now "requirements":',
-      ' the rename is the most visible shift, and the draft now describes 174 requirements.'
+      ' the rename is the most visible shift, and the W3C’s announcement puts the count at 174 requirements.'
     ),
     term(
       'A revised Explainer:',
@@ -61,32 +67,32 @@ export default {
     ),
     p(
       span(
-        'The rename from "outcomes" to "requirements" is more than cosmetic. "Outcome" framed each item as a result to aim for; "requirement" frames it as something you must meet. Pairing that language with a stated count — 174 requirements — and with new conformance material in the Explainer suggests the working group is sharpening how the standard will eventually be tested and claimed, even if the specifics are not yet settled.'
+        'The rename from "outcomes" to "requirements" is more than cosmetic. "Outcome" framed each item as a result to aim for; "requirement" frames it as something you must meet. Pairing that language with a stated count of 174 requirements, and with new conformance material in the Explainer suggests the working group is sharpening how the standard will eventually be tested and claimed, even if the specifics are not yet settled.'
       )
     ),
 
     h2('What "Developing" status signals'),
     p(
       span(
-        'Alongside the rename, the March 2026 draft moved a set of guidelines, requirements, and assertions into "Developing" status. That is a maturity stage: it signals these items are becoming more concrete and testable, moving from broad ideas toward language that could eventually support a conformance claim. It is a useful tell for where the working group has the most confidence — and, by contrast, which parts of the standard are still early.'
+        'Alongside the rename, the March 2026 draft moved a set of guidelines, requirements, and assertions into "Developing" status. That is a maturity stage: it signals these items are becoming more concrete and testable, moving from broad ideas toward language that could eventually support a conformance claim. It is a useful tell for where the working group has the most confidence and, by contrast, which parts of the standard are still early.'
       )
     ),
 
     h2('How WCAG 3.0 differs from WCAG 2.x'),
     p(
       span(
-        'WCAG 3.0 is not an incremental update to WCAG 2.x. It introduces a new conformance model, moving beyond WCAG 2.x’s binary pass/fail toward graded outcomes, and it broadens the scope of what the guidelines cover. That is a substantial rethink of how conformance is measured and claimed — which is part of why it is taking time to get right.'
+        'WCAG 3.0 is not an incremental update to WCAG 2.x. It introduces a new conformance model built on core requirements, supplemental requirements and assertions, and it broadens the scope of what the guidelines cover. That is a substantial rethink of how conformance is measured and claimed, which is part of why it is taking time to get right.'
       )
     ),
     p(
       span(
-        'Under WCAG 2.x, a success criterion is met or it is not. A graded model instead recognizes degrees of accessibility, which can better reflect real user experience but also raises hard questions: how scores are calculated, how they are audited, and how a legally meaningful claim is made against them. Those questions are exactly what a Working Draft exists to work through, and they are why the terminology and structure are still in motion.'
+        'In the March draft, each requirement is still met or not met, as a WCAG 2.x success criterion is. What changes is how requirements combine into a claim. The draft defined three conformance levels: Bronze, the minimum, meant meeting every core requirement plus a portion, still to be decided, of the supplemental requirements and assertions, and Silver and Gold required larger portions. Earlier drafts had explored scoring and graded conformance, but that is not the model the March draft describes. How large those portions should be, and how a claim is audited, are exactly what a Working Draft exists to work through, and they are why the terminology and structure are still in motion.'
       )
     ),
 
     h2('The timeline: still years away'),
-    plainBullet('A Candidate Recommendation is anticipated around Q4 2027.'),
-    plainBullet('A final W3C Recommendation is not expected before 2028.'),
+    plainBullet('The working group targets a Candidate Recommendation Snapshot in 2027, and describes that as a plan rather than a promise.'),
+    plainBullet('A final W3C Recommendation comes after Candidate Recommendation, so it is further away still.'),
     p(
       span(
         'A Working Draft is an early, evolving stage. Requirement counts, names, and structure can still change before WCAG 3.0 becomes a Recommendation, so nothing in the March 2026 draft should be treated as a fixed compliance target.'
@@ -96,14 +102,15 @@ export default {
     h2('What this means for you'),
     p(
       span(
-        'Do not wait for WCAG 3.0 — but do track it. WCAG 2.2 AA remains the standard to build and test against today, and current laws reference WCAG 2.1 and 2.2, not 3.0. The practical move is to keep meeting today’s requirements while watching how the "requirements" model matures.'
+        'Do not wait for WCAG 3.0, but do track it. WCAG 2.2 AA remains the standard to build and test against today, and current laws reference WCAG 2.1 and 2.2, not 3.0. The practical move is to keep meeting today’s requirements while watching how the "requirements" model matures.'
       )
     ),
     p(
       span(
-        'There is also a reassuring continuity here. The work you do now to meet WCAG 2.2 AA — meaningful alternative text, robust keyboard operation, sufficient contrast, clear structure — is the same work that will underpin any graded model. WCAG 3.0 is likely to change how conformance is measured and claimed, not to make well-built, genuinely usable pages obsolete. Teams that ship accessible experiences today are building the foundation the next standard will grade, not racing a clock that runs out before 2028.'
+        'There is also a reassuring continuity here. The work you do now to meet WCAG 2.2 AA, such as meaningful alternative text, robust keyboard operation, sufficient contrast and clear structure, is the same work that will underpin WCAG 3.0’s core requirements. WCAG 3.0 is likely to change how conformance is measured and claimed, not to make well-built, genuinely usable pages obsolete. Teams that ship accessible experiences today are building the foundation the next standard will test, not racing a clock.'
       )
     ),
+    linkBullet('/blog/wcag-3-september-2026-working-draft-changes', 'l0', 'For what changed next, read our coverage of the ', 'September 2026 draft', '.'),
     linkBullet('/wcag-3', 'l1', 'Follow the standard as it develops on our ', 'WCAG 3 overview', '.'),
     linkBullet(
       '/wcag-3/comparison',

@@ -24,7 +24,7 @@ import {
   Target,
   TriangleAlert,
   UsersRound,
-  Wrench, GraduationCap } from "lucide-react"
+  Wrench, GraduationCap, Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { SkipLink } from "@/components/skip-link"
@@ -62,6 +62,7 @@ const adminNavGroups: AdminNavGroup[] = [
       { name: "Credits", description: "Balances and grants", href: "/admin/credits", icon: Coins },
       { name: "Billing", description: "Orders and payments", href: "/admin/billing", icon: CircleDollarSign },
       { name: "Courses", description: "Course licences and seats", href: "/admin/courses", icon: GraduationCap },
+      { name: "Certificates", description: "Certificates and final exams", href: "/admin/certificates", icon: Award },
     ],
   },
   {

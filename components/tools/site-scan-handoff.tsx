@@ -109,8 +109,8 @@ export function SiteScanHandoff({
               </p>
             )}
             <p className="mt-3 text-sm text-muted-foreground">
-              One free scan a day, no account. It runs axe-core on the live page and shows your score
-              and the most severe findings.
+              One free scan a day, no account. It runs axe-core plus keyboard, reflow and text-spacing
+              checks on the live page, and shows your score and the most severe findings.
             </p>
           </form>
         </div>
