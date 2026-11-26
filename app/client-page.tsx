@@ -23,6 +23,7 @@ import { getStaticBlogIndexPosts, type BlogIndexPost } from "@/lib/static-blog-p
 import { cn } from "@/lib/utils"
 import { recipeRoute, recipes } from "@/lib/recipes"
 import { RecipeArt } from "@/components/recipes/recipe-art"
+import { AuditorShowcase } from "@/components/home/auditor-showcase"
 
 const portrait = "/images/authors/khushwant-parihar.jpeg"
 
@@ -243,7 +244,11 @@ export default async function HomeClientPage() {
               </div>
 
               <p className="mt-5 text-sm font-medium text-muted-foreground">
-                Fixed-scope audit packages from ${serviceStartingPrices.audits.toLocaleString("en-US")}.
+                Fixed-scope audit packages from ${serviceStartingPrices.audits.toLocaleString("en-US")}.{" "}
+                <Link href="/tools/url-accessibility-auditor" className="font-semibold text-foreground underline decoration-primary decoration-2 underline-offset-4 hover:text-primary">
+                  Or run a free WCAG 2.2 audit of any page
+                </Link>
+                .
               </p>
             </div>
 
@@ -276,6 +281,8 @@ export default async function HomeClientPage() {
           </ol>
         </div>
       </section>
+
+      <AuditorShowcase />
 
       <section className="container-wide py-16 lg:py-24" aria-labelledby="services-heading">
         <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">

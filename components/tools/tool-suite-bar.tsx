@@ -87,7 +87,10 @@ export function ToolSuiteBar() {
 
   return (
     <TooltipProvider>
-      <div className="sticky top-[88px] z-30 border-y border-slate-200 bg-white/95 backdrop-blur dark:border-slate-800 dark:bg-slate-950/95">
+      {/* The floating header pill is translucent and sits above this bar. The ::before fills the
+          strip between the top of the window and the bar, so text scrolling underneath never shows
+          around the pill or in the gap. */}
+      <div className="sticky top-[88px] z-30 border-b border-slate-200 bg-background before:pointer-events-none before:absolute before:inset-x-0 before:bottom-full before:h-[88px] before:bg-background before:content-[''] dark:border-slate-800">
         <div className="container-wide flex min-h-14 items-center gap-2 py-2">
           <Button variant="ghost" size="sm" asChild className="shrink-0">
             <Link href="/tools" aria-label="All tools">

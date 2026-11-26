@@ -8,14 +8,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { company } from "@/lib/company"
-import type { UrlAuditResult } from "@/lib/url-accessibility-auditor-types"
-
-type Violations = NonNullable<UrlAuditResult["violations"]>
+import type { AuditFinding } from "@/lib/url-audit/types"
 
 interface FreeScanUnlockProps {
   scanId: string
   lockedCount: number
-  onUnlocked: (violations: Violations) => void
+  onUnlocked: (findings: AuditFinding[]) => void
 }
 
 /**
@@ -55,12 +53,12 @@ export function FreeScanUnlock({ scanId, lockedCount, onUnlocked }: FreeScanUnlo
       })
       const payload = await response.json().catch(() => ({}))
 
-      if (!response.ok || !Array.isArray(payload.violations)) {
+      if (!response.ok || !Array.isArray(payload.findings)) {
         throw new Error(payload.error || "Could not unlock the result. Please try again.")
       }
 
-      posthog.capture("scan_unlocked", { findings: payload.violations.length })
-      onUnlocked(payload.violations as Violations)
+      posthog.capture("scan_unlocked", { findings: payload.findings.length })
+      onUnlocked(payload.findings as AuditFinding[])
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not unlock the result. Please try again.")
     } finally {
@@ -76,8 +74,9 @@ export function FreeScanUnlock({ scanId, lockedCount, onUnlocked }: FreeScanUnlo
           {lockedCount} more {lockedCount === 1 ? "finding" : "findings"} on this page
         </CardTitle>
         <CardDescription className="text-base text-slate-700 dark:text-slate-200">
-          The free scan shows the three most severe. Enter your work email to see every finding
-          with its selector, WCAG criterion and fix. I read each scan request myself and may reply
+          The free scan shows the three most severe. Enter your work email to see every finding,
+          including the keyboard, layout and needs-review results, with the affected elements,
+          WCAG criteria and fixes. I read each scan request myself and may reply
           once with a short fix plan. No newsletter.
         </CardDescription>
       </CardHeader>
@@ -161,9 +160,9 @@ export function AuditNextStep({ isPreview }: { isPreview: boolean }) {
       <CardHeader>
         <CardTitle className="text-xl">What this scan cannot tell you</CardTitle>
         <CardDescription className="text-base text-slate-700 dark:text-slate-200">
-          axe-core tests the rules that have a clear pass or fail. Keyboard traps, focus order, what
-          a screen reader actually announces, and most of the criteria added in WCAG 2.2 need a
-          person. A manual audit by a CPACC-certified auditor covers those and leaves you with a
+          This scan runs axe-core, presses Tab through the page, narrows it to 320 pixels and checks
+          text spacing, but whether alt text is meaningful, what a screen reader actually announces,
+          and how forms handle errors still need a person. A manual audit by a CPACC-certified auditor covers those and leaves you with a
           prioritised fix list your developers can work through.
         </CardDescription>
       </CardHeader>

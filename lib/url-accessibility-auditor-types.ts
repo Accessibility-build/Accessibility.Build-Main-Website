@@ -1,3 +1,4 @@
+import type { AuditExtras, AuditFinding } from "@/lib/url-audit/types"
 
 export interface UrlAuditResult {
   auditId: string
@@ -8,41 +9,32 @@ export interface UrlAuditResult {
   processingStartedAt?: string
   processingCompletedAt?: string
   errorMessage?: string
-  
-  // Results (when completed)
+
+  // Results (when completed). Counts are confirmed violations, one per failing rule.
   totalViolations?: number
   criticalCount?: number
   seriousCount?: number
   moderateCount?: number
   minorCount?: number
+  /** Findings a person has to judge (axe "needs review" and our heuristics). Not in the score. */
+  reviewCount?: number
+  /** Elements affected by the confirmed violations, counted over every finding even when a free scan shows only some. */
+  violationElements?: number
   overallScore?: number
+  /** JSON string: lib/url-audit/types AiSummary, or the older business-summary shape. */
   aiSummary?: string
-  priorityRecommendations?: Array<{
-    title: string
-    description: string
-    impact: string
-    effort: string
-  }>
-  violations?: Array<{
-    id: string
-    violationId: string
-    description: string
-    impact: 'critical' | 'serious' | 'moderate' | 'minor'
-    helpUrl: string
-    wcagCriteria: any[]
-    wcagLevel: string
-    selector: string
-    html: string
-    target: string[]
-    aiExplanation: string
-    fixSuggestion: string
-    codeExample?: string
-  }>
+
+  /** Violations first, most severe first, then items to review. */
+  findings?: AuditFinding[]
+  /** Coverage map, keyboard pass, page facts and manual checks. Absent on audits saved before November 2026. */
+  extras?: AuditExtras
+  /** data:image/jpeg of the first screen. Only on a fresh result, never stored. */
+  screenshot?: string
 
   /**
-   * Present only on an anonymous free scan. `violations` then holds just the
-   * most severe findings; the rest stay on the server until the visitor
-   * unlocks them with `scanId`.
+   * Present only on an anonymous free scan. `findings` then holds just the
+   * most severe ones; the rest stay on the server until the visitor unlocks
+   * them with `scanId`.
    */
   preview?: {
     scanId: string
@@ -63,7 +55,6 @@ export interface AuditHistory {
     moderateCount?: number
     minorCount?: number
     processingCompletedAt?: string
-    aiSummary?: string
     createdAt: string
   }>
 }
