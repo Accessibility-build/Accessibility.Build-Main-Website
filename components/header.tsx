@@ -348,6 +348,16 @@ export function Header() {
 
   return (
     <>
+      {/* Solid backing behind the floating pill once the page scrolls, so text scrolling underneath
+          never shows above or around it. It ends at 88px, where the tool pages' sticky bar starts,
+          and is fixed, so it takes no space and causes no layout shift. */}
+      <div
+        aria-hidden="true"
+        className={cn(
+          "pointer-events-none fixed inset-x-0 top-0 z-[39] h-[88px] border-b border-border/60 bg-background transition-opacity duration-300 motion-reduce:transition-none",
+          isScrolled ? "opacity-100" : "opacity-0"
+        )}
+      />
       <header
         className={cn(
           "sticky top-4 z-40 mx-auto w-full max-w-7xl px-4 transition-all duration-300 sm:px-6 lg:px-8 2xl:max-w-[90rem]",
