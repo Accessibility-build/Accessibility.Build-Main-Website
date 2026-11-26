@@ -11,7 +11,7 @@ export const metadata = createMetadata({
   title: "Sample Accessibility Audit Report",
   path: "/sample-audit-report",
   description:
-    "An interactive sample WCAG 2.2 audit report. Every finding carries reproduction steps, actual and expected results, WCAG mapping, severity, conformance level, user impact, and a suggested resolution. Switch between table and card views and export to Excel.",
+    "An interactive sample WCAG 2.2 audit report. Every finding carries an annotated screenshot, reproduction steps, actual and expected results, WCAG mapping, severity, user impact, and a suggested resolution with code. Export to Excel.",
   keywords: [
     "sample accessibility audit report",
     "WCAG audit report example",
@@ -74,9 +74,9 @@ export default function SampleAuditReportPage() {
                 is agreed before work begins. {report.product} is a fictional
                 product, so the findings are illustrative. Each finding is
                 written so a developer can reproduce it without asking a
-                follow-up question: what the defect is, exactly how to trigger
-                it, what happens, what should happen instead, who it affects,
-                and what to change.
+                follow-up question: an annotated screenshot of the defect, what
+                it is, exactly how to trigger it, what happens, what should
+                happen instead, who it affects, and what to change.
               </p>
             </div>
 

@@ -46,8 +46,38 @@ export interface Finding {
   suggestedResolution: string
   /** Optional before/after so the fix is unambiguous. */
   codeExample?: { bad: string; good: string }
+  /** Annotated screenshot of the defect. */
+  evidence: Evidence
   status: string
 }
+
+/**
+ * An annotated screenshot. The images are drawn from
+ * scripts/sample-audit-report/screens.html (Northstar is fictional, so there is
+ * no live product to capture) and rendered by capture.mjs in the same folder.
+ * `marks` repeats the numbered notes printed under each image so they are real
+ * text on the page, not only pixels.
+ */
+export interface Evidence {
+  src: string
+  width: number
+  height: number
+  alt: string
+  marks: string[]
+}
+
+const shot = (
+  id: string,
+  height: number,
+  alt: string,
+  marks: string[],
+): Evidence => ({
+  src: `/images/sample-audit-report/${id}.webp`,
+  width: 1600,
+  height,
+  alt,
+  marks,
+})
 
 const criterion = (
   id: string,
@@ -135,6 +165,10 @@ const findings: Finding[] = [
   dialog.addEventListener("close", () => openBtn.focus())
 </script>`,
     },
+    evidence: shot("ns-001", 1033, "Payment step with the Review your order dialog open over a dimmed page. The Place order button inside the dialog is marked 2. The Help link in the site header behind the dimmed overlay shows a focus ring and is marked 1.", [
+      "Focus has left the dialog and landed on the Help link in the page behind it. The overlay hides its focus ring, and the link still works.",
+      "Place order is the last control in the dialog. One more Tab should take focus back to the first control in the dialog.",
+    ]),
     status: "Open",
   },
   {
@@ -180,6 +214,10 @@ const findings: Finding[] = [
 <input type="date" id="delivery" name="delivery"
        min="2026-08-20" max="2026-09-30">`,
     },
+    evidence: shot("ns-002", 1207, "Delivery address form with the preferred delivery date calendar open for August 2026. The grid of days is marked 1. A keyboard test log beside the form, marked 2, records that arrow keys scroll the page, Tab skips the grid and Space selects nothing. A markup panel shows a day cell written as a div with an onclick handler.", [
+      "Every day is a div with a click handler. None can take keyboard focus, and the grid has no role, so a screen reader reads it as loose numbers.",
+      "Results of the keyboard test: the calendar opens, but no key can move between dates or pick one.",
+    ]),
     status: "Open",
   },
   {
@@ -224,13 +262,18 @@ const findings: Finding[] = [
        aria-invalid="true"
        aria-describedby="err-postcode">`,
     },
+    evidence: shot("ns-003", 1065, "Delivery address form after a failed submit. The empty City and Postal code fields have red borders and red error text, marked 1. The Continue to payment button still has the focus ring, marked 2. A screen reader speech log, marked 3, shows the button being announced, then silence after Enter.", [
+      "Red error text appears next to the empty fields but is not connected to them in code (no aria-describedby, no aria-invalid).",
+      "Focus stays on the Continue button after the failed submit. There is no error summary to move it to.",
+      "The screen reader announces nothing after activation, and reading the City field gives only its label.",
+    ]),
     status: "Open",
   },
   {
     id: "NS-004",
     title: "Promotional code helper text falls below minimum contrast",
     description:
-      "The helper text beneath the promotional code field is rendered in a light grey on white. Measured contrast is 2.9:1, below the 4.5:1 required for body text. The same token is used for helper text across the checkout, so the defect repeats.",
+      "The helper text beneath the promotional code field is rendered in a light grey on white. Measured contrast is 2.55:1, below the 4.5:1 required for body text. The same token is used for helper text across the checkout, so the defect repeats.",
     severity: "High",
     conformanceLevel: "AA",
     criteria: [criterion("1.4.3", "Contrast (Minimum)", "AA", "Perceivable")],
@@ -243,9 +286,9 @@ const findings: Finding[] = [
       "Compare the ratio against the 4.5:1 requirement for text below 18.66px bold or 24px regular.",
     ],
     actualResult:
-      "The helper text renders at #9AA3AE on #FFFFFF, a ratio of 2.9:1, against a requirement of 4.5:1. The same muted token is applied to helper text throughout the checkout, so the shortfall is systemic rather than isolated to this field.",
+      "The helper text renders at #9AA3AE on #FFFFFF, a ratio of 2.55:1, against a requirement of 4.5:1. The same muted token is applied to helper text throughout the checkout, so the shortfall is systemic rather than isolated to this field.",
     expectedResult:
-      "Body text meets at least 4.5:1 against its background. Darkening the token to #6B7480 yields 4.6:1 and preserves the visual hierarchy that separates helper text from primary content.",
+      "Body text meets at least 4.5:1 against its background. Darkening the token to #6B7480 yields 4.73:1 and preserves the visual hierarchy that separates helper text from primary content.",
     userImpact:
       "Users with low vision, reduced contrast sensitivity, or age-related sight loss cannot read the instruction, and in this case the instruction explains why a valid code is being rejected. It also disappears in bright ambient light for users with no visual impairment at all.",
     affectedGroups: [
@@ -256,6 +299,10 @@ const findings: Finding[] = [
     ],
     suggestedResolution:
       "Darken the muted text token to at least #6B7480 and verify every place it is consumed, since the same variable drives helper text, timestamps, and placeholder copy. Add a contrast assertion to the design token tests so the value cannot regress silently.",
+    evidence: shot("ns-004", 913, "Promotional code field on the payment step. The pale grey helper text under it, Codes are case sensitive, is marked 1. A contrast check panel, marked 2, shows #9AA3AE on #FFFFFF measuring 2.55:1 against a 4.5:1 requirement, a fail.", [
+      "Helper text in the muted token #9AA3AE. The same token is used for helper text across the checkout.",
+      "Measured contrast is 2.55:1 against the 4.5:1 minimum for text of this size.",
+    ]),
     status: "Open",
   },
   {
@@ -297,6 +344,10 @@ const findings: Finding[] = [
       good: `<input type="radio" name="pay" id="bank">
 <label for="bank">Pay by bank transfer</label>`,
     },
+    evidence: shot("ns-005", 940, "Payment method choices: Pay by card, Pay by bank transfer and Pay later in 3 instalments. The bank transfer option is marked 1. An accessibility tree panel, marked 2, shows the radio's name is Transfer payment method, taken from aria-label. A voice control panel shows the command Click Pay by bank transfer finding no match.", [
+      "The option reads \"Pay by bank transfer\" on screen.",
+      "Its accessible name is \"Transfer payment method\", set by aria-label, so speaking the visible words selects nothing.",
+    ]),
     status: "Open",
   },
   {
@@ -328,6 +379,10 @@ const findings: Finding[] = [
     ],
     suggestedResolution:
       "Remove the fixed minimum width and let the summary stack below a defined breakpoint, pairing each label with its value. If the tabular relationship must be preserved, wrap the table in a container with overflow-x auto, role of region, an accessible name, and tabindex of 0 so it can be scrolled by keyboard, which keeps the page itself from scrolling sideways.",
+    evidence: shot("ns-006", 799, "Order review step at 400 percent zoom, shown as a 320 pixel wide screen marked 1 that fits only the Item and Options columns and has a horizontal scrollbar. A faded area to its right, marked 2, shows the off-screen Qty, Unit price, Delivery and Total columns. Notes give 320 px visible width, a 720 px fixed table width and 400 px off-screen.", [
+      "What fits on screen: item names and options, but no prices. The whole page has a horizontal scrollbar.",
+      "Faded area: the part of the table off-screen. Unit price and Total sit here, so every row means scrolling right and back.",
+    ]),
     status: "Open",
   },
   {
@@ -368,6 +423,10 @@ const findings: Finding[] = [
       good: `<input id="cardNumber" name="cardNumber" inputmode="numeric"
        autocomplete="cc-number">`,
     },
+    evidence: shot("ns-007", 1020, "Card details form with focus in the empty Card number field and no autofill suggestion, marked 1. An elements panel, marked 2, shows the card inputs with id, name and inputmode attributes but no autocomplete attribute.", [
+      "Focus is in Card number and the browser holds a saved card, yet no autofill is offered.",
+      "The markup has no autocomplete tokens (cc-name, cc-number, cc-exp), so nothing identifies what each field is for.",
+    ]),
     status: "Open",
   },
   {
@@ -404,6 +463,10 @@ const findings: Finding[] = [
   Payment <span class="sr-only">(step 3 of 4)</span>
 </li>`,
     },
+    evidence: shot("ns-008", 809, "The four step checkout progress indicator shown twice. In colour, the current step, 2 Payment, is teal while the others are indigo and slate, marked 1. In greyscale, marked 2, all four step circles look the same. An accessibility tree panel lists four list items with no aria-current on Payment.", [
+      "The current step differs from the others only by fill colour: teal against indigo and slate.",
+      "In greyscale all three colours have almost the same lightness, so the current step cannot be picked out. The code has no aria-current either.",
+    ]),
     status: "Open",
   },
 ]

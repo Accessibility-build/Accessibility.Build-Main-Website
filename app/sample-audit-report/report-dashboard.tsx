@@ -12,18 +12,27 @@
  */
 
 import { Fragment, useId, useMemo, useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
 import {
   AlertOctagon,
   AlertTriangle,
+  Camera,
   ChevronDown,
+  ChevronsDownUp,
+  ChevronsUpDown,
   Download,
+  ExternalLink,
   Info,
   LayoutGrid,
   ListChecks,
+  Maximize2,
   Rows3,
   Search,
   Target,
+  Users,
+  X,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -101,125 +110,250 @@ function CriteriaLinks({ finding }: { finding: Finding }) {
   )
 }
 
+const sectionLabel =
+  "mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+
+/**
+ * Annotated screenshot with its numbered notes as real text. The Enlarge
+ * button is the keyboard path to the full-size view; clicking the image does
+ * the same for pointer users.
+ */
+function EvidenceFigure({ finding }: { finding: Finding }) {
+  const [open, setOpen] = useState(false)
+  const ev = finding.evidence
+  return (
+    <figure className="overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-2.5 dark:border-slate-800">
+        <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+          <Camera className="h-3.5 w-3.5" aria-hidden="true" />
+          Evidence
+        </p>
+        <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
+          <DialogPrimitive.Trigger asChild>
+            <button
+              type="button"
+              className="inline-flex min-h-[32px] items-center gap-1.5 rounded-md border border-slate-300 bg-white px-2.5 text-xs font-medium text-slate-800 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+            >
+              <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
+              Enlarge<span className="sr-only"> screenshot for {finding.id}</span>
+            </button>
+          </DialogPrimitive.Trigger>
+          <DialogPrimitive.Portal>
+            <DialogPrimitive.Overlay className="fixed inset-0 z-[80] bg-slate-950/95" />
+            <DialogPrimitive.Content className="fixed inset-0 z-[81] flex flex-col overflow-y-auto p-3 sm:p-6 focus:outline-none">
+              <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-start justify-between gap-3 pb-3">
+                <div className="min-w-0">
+                  <DialogPrimitive.Title className="text-base font-semibold text-white sm:text-lg">
+                    {finding.id} evidence: {finding.title}
+                  </DialogPrimitive.Title>
+                  <DialogPrimitive.Description className="mt-1 text-sm text-slate-300">
+                    {ev.alt}
+                  </DialogPrimitive.Description>
+                </div>
+                <div className="flex shrink-0 gap-2">
+                  <a
+                    href={ev.src}
+                    target="_blank"
+                    rel="noopener"
+                    className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-slate-600 px-3 text-sm font-medium text-white hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  >
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    Full size<span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  <DialogPrimitive.Close className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg bg-white px-3 text-sm font-semibold text-slate-900 hover:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
+                    <X className="h-4 w-4" aria-hidden="true" />
+                    Close
+                  </DialogPrimitive.Close>
+                </div>
+              </div>
+              <div className="mx-auto w-full max-w-[1600px]">
+                <Image
+                  src={ev.src}
+                  width={ev.width}
+                  height={ev.height}
+                  alt=""
+                  sizes="96vw"
+                  className="mx-auto h-auto max-h-[calc(100dvh-9rem)] w-auto max-w-full rounded-lg"
+                />
+              </div>
+            </DialogPrimitive.Content>
+          </DialogPrimitive.Portal>
+        </DialogPrimitive.Root>
+      </div>
+      <div
+        className="cursor-zoom-in bg-slate-100 dark:bg-slate-900"
+        onClick={() => setOpen(true)}
+      >
+        <Image
+          src={ev.src}
+          width={ev.width}
+          height={ev.height}
+          alt={ev.alt}
+          sizes="(min-width: 1280px) 52vw, (min-width: 640px) 90vw, 100vw"
+          className="h-auto w-full"
+        />
+      </div>
+      <figcaption className="space-y-2 border-t border-slate-200 px-4 py-3 dark:border-slate-800">
+        <ol role="list" className="space-y-1.5">
+          {ev.marks.map((mark, i) => (
+            <li key={i} className="flex gap-2.5 text-sm leading-snug text-slate-700 dark:text-slate-300">
+              <span
+                aria-hidden="true"
+                className="mt-px grid h-5 w-5 shrink-0 place-items-center rounded-full bg-rose-600 text-[11px] font-bold text-white"
+              >
+                {i + 1}
+              </span>
+              <span>
+                <span className="sr-only">Mark {i + 1}: </span>
+                {mark}
+              </span>
+            </li>
+          ))}
+        </ol>
+        <p className="text-xs text-slate-500 dark:text-slate-400">
+          Recreated screen. Northstar is fictional, so the state is drawn to match
+          the defect rather than captured from a live product.
+        </p>
+      </figcaption>
+    </figure>
+  )
+}
+
 /** The full body of a finding, shared by both views so they cannot drift. */
 function FindingDetail({ finding }: { finding: Finding }) {
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
-      <section className="space-y-5">
-        <div>
-          <h4 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Description
-          </h4>
-          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-            {finding.description}
-          </p>
-        </div>
+    <div className="space-y-6">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+        <EvidenceFigure finding={finding} />
 
-        <div>
-          <h4 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Steps to reproduce
-          </h4>
-          <ol className="list-decimal space-y-1.5 pl-5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-            {finding.reproSteps.map((step, i) => (
-              <li key={i}>{step}</li>
-            ))}
-          </ol>
-        </div>
+        <div className="space-y-5">
+          <div>
+            <h4 className={sectionLabel}>Description</h4>
+            <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+              {finding.description}
+            </p>
+          </div>
 
-        <div className="rounded-lg border border-red-200 bg-red-50/60 p-4 dark:border-red-900/60 dark:bg-red-950/20">
-          <h4 className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-red-800 dark:text-red-300">
+          <dl className="grid gap-x-4 gap-y-3 rounded-xl border border-slate-200 bg-white p-4 text-sm dark:border-slate-800 dark:bg-slate-950 sm:grid-cols-2">
+            <div className="sm:col-span-2">
+              <dt className={sectionLabel.replace("mb-2", "mb-0.5")}>Location</dt>
+              <dd className="text-slate-800 dark:text-slate-200">{finding.location}</dd>
+            </div>
+            <div className="sm:col-span-2">
+              <dt className={sectionLabel.replace("mb-2", "mb-0.5")}>Component</dt>
+              <dd className="break-words font-mono text-xs text-slate-800 dark:text-slate-200">
+                {finding.component}
+              </dd>
+            </div>
+            <div>
+              <dt className={sectionLabel.replace("mb-2", "mb-0.5")}>Fix by</dt>
+              <dd className="text-slate-800 dark:text-slate-200">
+                {severityMeta[finding.severity].sla}
+              </dd>
+            </div>
+            <div>
+              <dt className={sectionLabel.replace("mb-2", "mb-0.5")}>Status</dt>
+              <dd className="text-slate-800 dark:text-slate-200">{finding.status}</dd>
+            </div>
+          </dl>
+
+          <div>
+            <h4 className={sectionLabel}>Who it affects</h4>
+            <ul className="flex flex-wrap gap-1.5">
+              {finding.affectedGroups.map((group) => (
+                <li
+                  key={group}
+                  className="rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300"
+                >
+                  {group}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
+        <h4 className={sectionLabel}>Steps to reproduce</h4>
+        <ol role="list" className="grid gap-2.5 md:grid-cols-2">
+          {finding.reproSteps.map((step, i) => (
+            <li key={i} className="flex gap-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+              <span
+                aria-hidden="true"
+                className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-slate-900 text-xs font-semibold text-white dark:bg-slate-100 dark:text-slate-900"
+              >
+                {i + 1}
+              </span>
+              <span>
+                <span className="sr-only">Step {i + 1}: </span>
+                {step}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-xl border border-red-200 bg-red-50/70 p-5 dark:border-red-900/60 dark:bg-red-950/20">
+          <h4 className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-red-800 dark:text-red-300">
             <AlertOctagon className="h-3.5 w-3.5" aria-hidden="true" />
             Actual result
           </h4>
-          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+          <p className="text-sm leading-relaxed text-slate-800 dark:text-slate-200">
             {finding.actualResult}
           </p>
         </div>
-
-        <div className="rounded-lg border border-emerald-200 bg-emerald-50/60 p-4 dark:border-emerald-900/60 dark:bg-emerald-950/20">
-          <h4 className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-5 dark:border-emerald-900/60 dark:bg-emerald-950/20">
+          <h4 className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
             <Target className="h-3.5 w-3.5" aria-hidden="true" />
             Expected result
           </h4>
-          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+          <p className="text-sm leading-relaxed text-slate-800 dark:text-slate-200">
             {finding.expectedResult}
           </p>
         </div>
-      </section>
+      </div>
 
-      <section className="space-y-5">
-        <div>
-          <h4 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+      <div className="grid gap-4 lg:grid-cols-2">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
+          <h4 className={cn(sectionLabel, "flex items-center gap-1.5")}>
+            <Users className="h-3.5 w-3.5" aria-hidden="true" />
             User impact
           </h4>
           <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
             {finding.userImpact}
           </p>
-          <ul className="mt-2.5 flex flex-wrap gap-1.5">
-            {finding.affectedGroups.map((group) => (
-              <li
-                key={group}
-                className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300"
-              >
-                {group}
-              </li>
-            ))}
-          </ul>
         </div>
-
-        <div className="rounded-lg border border-blue-200 bg-blue-50/60 p-4 dark:border-blue-900/60 dark:bg-blue-950/20">
-          <h4 className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-blue-900 dark:text-blue-300">
+        <div className="rounded-xl border border-blue-200 bg-blue-50/70 p-5 dark:border-blue-900/60 dark:bg-blue-950/20">
+          <h4 className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-blue-900 dark:text-blue-300">
             <ListChecks className="h-3.5 w-3.5" aria-hidden="true" />
             Suggested resolution
           </h4>
-          <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+          <p className="text-sm leading-relaxed text-slate-800 dark:text-slate-200">
             {finding.suggestedResolution}
           </p>
         </div>
+      </div>
 
-        {finding.codeExample ? (
-          <div className="space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              Code
-            </h4>
-            <div>
-              <p className="mb-1 text-xs font-semibold text-red-700 dark:text-red-300">
-                Current
-              </p>
+      {finding.codeExample ? (
+        <div>
+          <h4 className={sectionLabel}>Code</h4>
+          <div className="grid gap-4 lg:grid-cols-2">
+            <div className="min-w-0">
+              <p className="mb-1 text-xs font-semibold text-red-700 dark:text-red-300">Current</p>
               <pre tabIndex={0} className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs leading-relaxed text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <code>{finding.codeExample.bad}</code>
               </pre>
             </div>
-            <div>
-              <p className="mb-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
-                Suggested
-              </p>
+            <div className="min-w-0">
+              <p className="mb-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">Suggested</p>
               <pre tabIndex={0} className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs leading-relaxed text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 <code>{finding.codeExample.good}</code>
               </pre>
             </div>
           </div>
-        ) : null}
-
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-slate-200 pt-4 text-xs dark:border-slate-800">
-          <div>
-            <dt className="font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              Location
-            </dt>
-            <dd className="mt-0.5 text-slate-700 dark:text-slate-300">
-              {finding.location}
-            </dd>
-          </div>
-          <div>
-            <dt className="font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              Component
-            </dt>
-            <dd className="mt-0.5 break-words font-mono text-slate-700 dark:text-slate-300">
-              {finding.component}
-            </dd>
-          </div>
-        </dl>
-      </section>
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -230,7 +364,9 @@ export function ReportDashboard() {
   const [severity, setSeverity] = useState<Severity | "All">("All")
   const [level, setLevel] = useState<ConformanceLevel | "All">("All")
   const [principle, setPrinciple] = useState<Principle | "All">("All")
-  const [expanded, setExpanded] = useState<string[]>([])
+  // The first finding starts open so the full anatomy of a finding is visible
+  // without a click.
+  const [expanded, setExpanded] = useState<string[]>([findings[0].id])
   const [exporting, setExporting] = useState(false)
 
   const uid = useId()
@@ -264,6 +400,10 @@ export function ReportDashboard() {
     setExpanded((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
     )
+
+  const allOpen = visible.length > 0 && visible.every((f) => expanded.includes(f.id))
+  const toggleAll = () =>
+    setExpanded(allOpen ? [] : visible.map((f) => f.id))
 
   const filtersActive =
     query.trim() !== "" || severity !== "All" || level !== "All" || principle !== "All"
@@ -305,6 +445,10 @@ export function ReportDashboard() {
         "User impact": f.userImpact,
         "Affected groups": f.affectedGroups.join(", "),
         "Suggested resolution": f.suggestedResolution,
+        Screenshot: `https://accessibility.build${f.evidence.src}`,
+        "Screenshot notes": f.evidence.marks
+          .map((m, i) => `${i + 1}. ${m}`)
+          .join("\n"),
         Status: f.status,
       }))
 
@@ -314,7 +458,7 @@ export function ReportDashboard() {
         { wch: 9 }, { wch: 52 }, { wch: 70 }, { wch: 10 }, { wch: 12 },
         { wch: 40 }, { wch: 22 }, { wch: 34 }, { wch: 34 }, { wch: 70 },
         { wch: 70 }, { wch: 70 }, { wch: 70 }, { wch: 34 }, { wch: 70 },
-        { wch: 10 },
+        { wch: 60 }, { wch: 70 }, { wch: 10 },
       ]
 
       const summary = XLSX.utils.json_to_sheet([
@@ -581,6 +725,20 @@ export function ReportDashboard() {
             >
               Showing {visible.length} of {stats.total} findings
             </p>
+            {view === "table" && visible.length > 0 ? (
+              <button
+                type="button"
+                onClick={toggleAll}
+                className="inline-flex items-center gap-1 text-sm font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-blue-300"
+              >
+                {allOpen ? (
+                  <ChevronsDownUp className="h-4 w-4" aria-hidden="true" />
+                ) : (
+                  <ChevronsUpDown className="h-4 w-4" aria-hidden="true" />
+                )}
+                {allOpen ? "Collapse all findings" : "Expand all findings"}
+              </button>
+            ) : null}
             {filtersActive ? (
               <button
                 type="button"
@@ -611,8 +769,8 @@ export function ReportDashboard() {
             <table className="w-full min-w-[64rem] text-left text-sm">
               <caption className="sr-only">
                 Accessibility findings for {sampleAuditReport.product}. Each row
-                can be expanded for reproduction steps, actual and expected
-                results, and the suggested resolution.
+                can be expanded for an annotated screenshot, reproduction steps,
+                actual and expected results, and the suggested resolution.
               </caption>
               <thead className="border-b border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/80">
                 <tr>
@@ -682,6 +840,9 @@ export function ReportDashboard() {
                             colSpan={7}
                             className="border-t border-slate-200 bg-slate-50/70 px-6 py-6 dark:border-slate-800 dark:bg-slate-900/50"
                           >
+                            <h3 className="sr-only">
+                              {f.id}: {f.title}
+                            </h3>
                             <FindingDetail finding={f} />
                           </td>
                         </tr>
@@ -694,7 +855,7 @@ export function ReportDashboard() {
           </div>
         ) : (
           /* ---------- Card view ---------- */
-          <ul className="grid gap-6 2xl:grid-cols-2">
+          <ul className="grid gap-6">
             {visible.map((f) => (
               <li
                 key={f.id}
@@ -727,8 +888,8 @@ export function ReportDashboard() {
         <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
         <span>
           The Excel export contains every column shown here plus the full
-          reproduction steps, actual and expected results, and suggested
-          resolution for each finding, on a Findings sheet with a Summary sheet
+          reproduction steps, actual and expected results, suggested
+          resolution, and a link to the annotated screenshot for each finding, on a Findings sheet with a Summary sheet
           alongside it. It exports whatever your current filters show, so you can
           hand a developer just the Critical rows if that is all they need.
         </span>
