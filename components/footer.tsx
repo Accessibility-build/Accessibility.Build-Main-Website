@@ -229,20 +229,22 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 border-y border-slate-800 sm:grid-cols-4">
+        {/* Term and description pairs, so a description list rather than paragraphs styled as headings. */}
+        <dl className="grid grid-cols-2 border-y border-slate-800 sm:grid-cols-4">
           {trustSignals.map(({ icon: Icon, value, label }, index) => (
             <div
               key={value}
-              className={`flex min-w-0 items-start gap-3 px-4 py-5 sm:px-5 ${index % 2 === 0 ? "border-r border-slate-800" : ""} ${index < 2 ? "border-b border-slate-800 sm:border-b-0" : ""} sm:border-r sm:last:border-r-0`}
+              className={`relative min-w-0 py-5 pl-12 pr-4 sm:pl-[3.25rem] sm:pr-5 ${index % 2 === 0 ? "border-r border-slate-800" : ""} ${index < 2 ? "border-b border-slate-800 sm:border-b-0" : ""} sm:border-r sm:last:border-r-0`}
             >
-              <Icon className="mt-0.5 h-5 w-5 shrink-0 text-teal-300" aria-hidden="true" />
-              <div className="min-w-0">
-                <p className="font-semibold text-white">{value}</p>
-                <p className="mt-1 text-xs leading-5 text-slate-400">{label}</p>
-              </div>
+              {/* dt and dd must be the item's only children, so the icon sits inside the term. */}
+              <dt className="font-semibold text-white">
+                <Icon className="absolute left-4 top-[1.375rem] h-5 w-5 text-teal-300 sm:left-5" aria-hidden="true" />
+                {value}
+              </dt>
+              <dd className="mt-1 text-xs leading-5 text-slate-400">{label}</dd>
             </div>
           ))}
-        </div>
+        </dl>
 
         <div className="grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-10">
           {[
@@ -291,6 +293,7 @@ export function Footer() {
             >
               <Linkedin className="h-4 w-4 text-teal-300" aria-hidden="true" /> LinkedIn
               <ExternalLink className="h-3 w-3" aria-hidden="true" />
+              <span className="sr-only">(opens in a new tab)</span>
             </a>
             <a
               href="https://www.w3.org/WAI/WCAG22/quickref/"
@@ -301,6 +304,7 @@ export function Footer() {
               <BookOpenCheck className="h-4 w-4 text-teal-300" aria-hidden="true" />
               WCAG reference
               <ExternalLink className="h-3 w-3" aria-hidden="true" />
+              <span className="sr-only">(opens in a new tab)</span>
             </a>
             <Button
               variant="ghost"

@@ -50,7 +50,7 @@ async function generateAiSummary(input: {
   const review = input.findings.filter((f) => f.outcome === "review")
   const describe = (f: AuditFinding) => ({
     title: f.title,
-    impact: f.impact,
+    impact: f.outcome === "violation" ? f.impact : `${f.impact}, if a person confirms it`,
     wcag: f.wcag.join(", ") || "best practice",
     elements: f.nodeCount,
     checkedBy: f.source,
@@ -60,15 +60,21 @@ async function generateAiSummary(input: {
 Write for a product owner or developer. Plain English, short sentences, no marketing language, no em dashes.
 Use only the facts provided. Never invent statistics, industry averages, benchmarks, legal risk ratings or percentages.
 Do not claim the page is compliant or non-compliant; automated testing cannot establish conformance.
+
+There are two kinds of result:
+- "violations" are confirmed failures. Only these may be called issues, failures or barriers.
+- "needsReview" items are NOT failures. A check could not decide, or found something a person must judge. Never call them issues, problems or failures, never call the page's state serious because of them, and never tell the reader to "fix" them. Call them things to check.
+
 Return ONLY a JSON object with this schema:
 {
   "headline": "one sentence, at most 18 words, on the overall state",
   "summary": "2 to 4 sentences: what works, what blocks people, and who is affected",
-  "fixFirst": [{ "title": "imperative, at most 8 words", "why": "one sentence naming who is blocked and how" }],
-  "quickWins": ["short imperative fixes that take under an hour"]
+  "fixFirst": [{ "title": "imperative, at most 8 words", "why": "one sentence naming who is affected and how" }],
+  "quickWins": ["short imperative actions that take under an hour"]
 }
-fixFirst has 2 to 4 items drawn from the violations, most severe first.
-quickWins has 2 to 4 small fixes that are NOT already in fixFirst; prefer moderate or minor violations and needs-review items that are cheap to settle. Return an empty array rather than repeat fixFirst.`
+
+When violations is not empty: fixFirst has 2 to 4 items drawn from the violations, most severe first. quickWins has 2 to 4 small actions that are NOT already in fixFirst; return an empty array rather than repeat fixFirst.
+When violations is empty: the headline says automated checks found no confirmed failures and how many things there are to check by hand. The summary says what the checks covered and that the review items need a person. fixFirst lists 2 or 3 needsReview items to check first, each title starting with Check, Confirm or Review, and its why says who would be affected if it does fail. quickWins may hold cheap actions such as adding an autocomplete attribute, or be empty.`
 
   const userPrompt = JSON.stringify({
     url: input.url,
@@ -102,9 +108,25 @@ quickWins has 2 to 4 small fixes that are NOT already in fixFirst; prefer modera
     )
     const parsed = JSON.parse(response.choices[0]?.message?.content || "{}") as Partial<AiSummary>
     if (!parsed.headline || !parsed.summary) return undefined
+    let headline = String(parsed.headline).replace(/\s*—\s*/g, ", ")
+    let summaryText = String(parsed.summary).replace(/\s*—\s*/g, ", ")
+    // With no confirmed failures, words like "serious issues" contradict the score. Replace rather than trust the model.
+    if (violations.length === 0) {
+      const alarmingWords = /\b(serious|critical|severe|major|significant|issues?|problems?|failures?|barriers?)\b/i
+      // "no confirmed failures" is the right message; only flag wording that asserts a problem.
+      const alarming = { test: (text: string) => alarmingWords.test(text.replace(/\bno (confirmed |automated )?(failures?|issues?|problems?|barriers?)\b/gi, "")) }
+      const toCheck = `${review.length} ${review.length === 1 ? "thing" : "things"} to check by hand`
+      if (alarming.test(headline)) headline = review.length > 0 ? `Automated checks found no confirmed failures, and ${toCheck}.` : "Automated checks found no confirmed failures on this page."
+      if (alarming.test(summaryText)) {
+        summaryText =
+          "axe-core, the keyboard pass, reflow, text spacing and the page checks found nothing they could confirm as a failure. " +
+          (review.length > 0 ? "The items to review are places where a check could not decide; a person needs to look at each one. " : "") +
+          "Manual testing is still needed for the criteria no machine can judge."
+      }
+    }
     const summary: AiSummary = {
-      headline: String(parsed.headline).replace(/\s*—\s*/g, ", "),
-      summary: String(parsed.summary).replace(/\s*—\s*/g, ", "),
+      headline,
+      summary: summaryText,
       fixFirst: Array.isArray(parsed.fixFirst) ? parsed.fixFirst.slice(0, 4).filter((item) => item?.title && item?.why) : [],
       quickWins: Array.isArray(parsed.quickWins) ? parsed.quickWins.slice(0, 4).map(String) : [],
     }

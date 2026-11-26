@@ -123,7 +123,7 @@ export const AuditReport = forwardRef<HTMLHeadingElement, AuditReportProps>(func
           reviewCount={audit.reviewCount ?? 0}
         />
         {summary ? (
-          <AiSummaryPanel summary={summary} />
+          <AiSummaryPanel summary={summary} hasViolations={(audit.totalViolations ?? 0) > 0} />
         ) : (
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm leading-6 text-slate-700 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300">
             <p className="font-semibold text-slate-900 dark:text-white">How to read this report</p>

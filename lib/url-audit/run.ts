@@ -72,11 +72,13 @@ export async function runAudit(url: URL, { deadline }: { deadline: number }): Pr
       .analyze()) as AxeResults
     findings.push(...axeFindings(axe))
     const rulesRun = axe.violations.length + axe.passes.length + axe.incomplete.length
+    const confirmed = axe.violations.filter((rule) => !rule.tags.includes("experimental")).length
+    const experimentalFails = axe.violations.length - confirmed
     checks.push({
       id: "axe",
       label: `axe-core ${axe.testEngine?.version ?? ""}`.trim(),
       status: "ok",
-      detail: `${rulesRun} rules applied to this page: ${axe.violations.length} failed, ${axe.incomplete.length} need review, ${axe.passes.length} passed.`,
+      detail: `${rulesRun} rules applied to this page: ${confirmed} failed, ${axe.incomplete.length + experimentalFails} need review${experimentalFails ? ` (including ${experimentalFails} from rules axe marks experimental)` : ""}, ${axe.passes.length} passed.`,
     })
 
     // 2. DOM checks

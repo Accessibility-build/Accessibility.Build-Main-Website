@@ -109,6 +109,7 @@ export function NewsletterSignup({
           </div>
           <Input
             type="email"
+            autoComplete="email"
             aria-label={inputLabel}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -181,6 +182,7 @@ export function NewsletterSignup({
         <div className="flex gap-2">
           <Input
             type="email"
+            autoComplete="email"
             aria-label={inputLabel}
             value={email}
             onChange={(e) => setEmail(e.target.value)}

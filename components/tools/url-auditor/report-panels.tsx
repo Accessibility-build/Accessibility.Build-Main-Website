@@ -18,7 +18,7 @@ interface ScorePanelProps {
 }
 
 export function ScorePanel({ score, counts, totalViolations, elements, reviewCount }: ScorePanelProps) {
-  const band = scoreBand(score)
+  const band = totalViolations === 0 ? { ...scoreBand(100), label: "No confirmed failures" } : scoreBand(score)
   const radius = 52
   const circumference = 2 * Math.PI * radius
   const max = Math.max(1, ...IMPACTS.map((impact) => counts[impact]))
@@ -204,7 +204,7 @@ export function parseSummary(raw: string | undefined): AiSummary | null {
   return null
 }
 
-export function AiSummaryPanel({ summary }: { summary: AiSummary }) {
+export function AiSummaryPanel({ summary, hasViolations }: { summary: AiSummary; hasViolations: boolean }) {
   return (
     <div className="rounded-2xl border border-teal-200 bg-gradient-to-br from-teal-50 to-white p-5 dark:border-teal-900 dark:from-teal-950/40 dark:to-slate-900 sm:p-6">
       <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-teal-900 dark:text-teal-200">
@@ -217,7 +217,7 @@ export function AiSummaryPanel({ summary }: { summary: AiSummary }) {
         <div className="mt-5 grid gap-5 md:grid-cols-2">
           {summary.fixFirst.length > 0 && (
             <div>
-              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Fix first</h3>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">{hasViolations ? "Fix first" : "Check first"}</h3>
               <ol className="mt-2 space-y-2">
                 {summary.fixFirst.map((item, index) => (
                   <li key={item.title} className="flex gap-3 text-sm">

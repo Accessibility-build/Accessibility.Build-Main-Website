@@ -12,6 +12,8 @@ export const MAX_NODES_PER_FINDING = 15
 /** axe rules the auditor turns on although axe ships them as experimental. Their failures are reported for review. */
 export const EXPERIMENTAL_AXE_RULES = ["css-orientation-lock", "label-content-name-mismatch", "p-as-heading", "table-fake-caption", "td-has-header"]
 
+const IMPACT_ORDER: Record<Impact, number> = { critical: 0, serious: 1, moderate: 2, minor: 3 }
+
 const SC_BY_NUMBER = new Map(wcagCriteria.map((criterion) => [criterion.number, criterion]))
 
 /** "wcag1410" -> "1.4.10". Level tags such as "wcag2aa" are not criteria and return null. */
@@ -127,9 +129,26 @@ export function custom(ruleId: string, nodes: RawCheckNode[], count: number, ove
   }
 }
 
-/** Every confirmed axe violation and every axe "needs review" result. */
+/**
+ * Every confirmed axe violation and every axe "needs review" result. An experimental rule's
+ * failures are reported for review, so the same rule can arrive twice as review (failed nodes and
+ * undecided nodes); those are merged into one finding.
+ */
 export function axeFindings(results: AxeResults): AuditFinding[] {
-  return [...results.violations.map((rule) => fromAxe(rule, "violation")), ...results.incomplete.filter((rule) => rule.nodes.length > 0).map((rule) => fromAxe(rule, "review"))]
+  const all = [...results.violations.map((rule) => fromAxe(rule, "violation")), ...results.incomplete.filter((rule) => rule.nodes.length > 0).map((rule) => fromAxe(rule, "review"))]
+  const merged = new Map<string, AuditFinding>()
+  for (const finding of all) {
+    const key = `${finding.ruleId}:${finding.outcome}`
+    const existing = merged.get(key)
+    if (!existing) {
+      merged.set(key, finding)
+      continue
+    }
+    existing.nodes = [...existing.nodes, ...finding.nodes].slice(0, MAX_NODES_PER_FINDING)
+    existing.nodeCount += finding.nodeCount
+    if (IMPACT_ORDER[finding.impact] < IMPACT_ORDER[existing.impact]) existing.impact = finding.impact
+  }
+  return Array.from(merged.values())
 }
 
 export function domFindings(checks: RawCheck[]): AuditFinding[] {
@@ -192,8 +211,6 @@ export function keyboardFindings(run: FocusRun): AuditFinding[] {
 
   return Array.from(groups.entries()).map(([ruleId, group]) => custom(ruleId, group.nodes, group.count))
 }
-
-const IMPACT_ORDER: Record<Impact, number> = { critical: 0, serious: 1, moderate: 2, minor: 3 }
 
 /** Most severe first, violations before review items, then by how many elements are affected. */
 export function sortFindings(findings: AuditFinding[]): AuditFinding[] {
