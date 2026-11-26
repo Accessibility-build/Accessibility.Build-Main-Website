@@ -5,7 +5,7 @@
  *   node scripts/sample-audit-report/capture.mjs
  *
  * Reads screens.html next to this file, captures every <section data-shot> at
- * 2x, and writes public/images/sample-audit-report/<id>.webp (1600 px wide or
+ * 2x, and writes public/images/sample-audit-report/v2/<id>.webp (1600 px wide or
  * the natural width, whichever is smaller). Prints each file's size and
  * dimensions so lib/sample-audit-report.ts can carry the right width/height.
  */
@@ -17,7 +17,8 @@ import sharp from "sharp"
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(here, "../..")
-const outDir = path.join(root, "public/images/sample-audit-report")
+// Bump the folder when the screens change: image CDNs cache by URL.
+const outDir = path.join(root, "public/images/sample-audit-report/v2")
 const MAX_WIDTH = 1600
 
 await mkdir(outDir, { recursive: true })

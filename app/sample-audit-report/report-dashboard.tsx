@@ -11,7 +11,7 @@
  * is a real button with aria-expanded and aria-controls.
  */
 
-import { Fragment, useId, useMemo, useState } from "react"
+import { Fragment, useId, useMemo, useState, type ReactNode } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
@@ -85,7 +85,7 @@ function SeverityBadge({ severity }: { severity: Severity }) {
 
 function LevelBadge({ level }: { level: ConformanceLevel }) {
   return (
-    <span className="inline-flex items-center rounded border border-blue-300 bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-900 dark:border-blue-900 dark:bg-blue-950/50 dark:text-blue-200">
+    <span className="inline-flex items-center whitespace-nowrap rounded border border-blue-300 bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-900 dark:border-blue-900 dark:bg-blue-950/50 dark:text-blue-200">
       Level {level}
     </span>
   )
@@ -102,7 +102,9 @@ function CriteriaLinks({ finding }: { finding: Finding }) {
           >
             <span className="font-semibold">{c.id}</span>
             <span className="text-slate-600 dark:text-slate-400">{c.name}</span>
-            <span className="text-slate-600 dark:text-slate-400">({c.level})</span>
+            <span className="text-slate-600 dark:text-slate-400">
+              ({c.level})
+            </span>
           </Link>
         </li>
       ))}
@@ -114,13 +116,119 @@ const sectionLabel =
   "mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
 
 /**
- * Annotated screenshot with its numbered notes as real text. The Enlarge
- * button is the keyboard path to the full-size view; clicking the image does
- * the same for pointer users.
+ * Full-size view of a finding's screenshot. `trigger` is the control that opens
+ * it; Radix returns focus there on close.
+ */
+function EvidenceLightbox({
+  finding,
+  open,
+  onOpenChange,
+  trigger,
+}: {
+  finding: Finding
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  trigger: ReactNode
+}) {
+  const ev = finding.evidence
+  return (
+    <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
+      <DialogPrimitive.Trigger asChild>{trigger}</DialogPrimitive.Trigger>
+      <DialogPrimitive.Portal>
+        <DialogPrimitive.Overlay className="fixed inset-0 z-[80] bg-slate-950/95" />
+        <DialogPrimitive.Content className="fixed inset-0 z-[81] flex flex-col overflow-y-auto p-3 focus:outline-none sm:p-6">
+          <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-start justify-between gap-3 pb-3">
+            <div className="min-w-0">
+              <DialogPrimitive.Title className="text-base font-semibold text-white sm:text-lg">
+                {finding.id} evidence: {finding.title}
+              </DialogPrimitive.Title>
+              <DialogPrimitive.Description className="mt-1 text-sm text-slate-300">
+                {ev.alt}
+              </DialogPrimitive.Description>
+            </div>
+            <div className="flex shrink-0 gap-2">
+              <a
+                href={ev.src}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-slate-600 px-3 text-sm font-medium text-white hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                Full size
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+              <DialogPrimitive.Close className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg bg-white px-3 text-sm font-semibold text-slate-900 hover:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
+                <X className="h-4 w-4" aria-hidden="true" />
+                Close
+              </DialogPrimitive.Close>
+            </div>
+          </div>
+          <div className="mx-auto w-full max-w-[1600px]">
+            <Image
+              src={ev.src}
+              width={ev.width}
+              height={ev.height}
+              alt=""
+              sizes="96vw"
+              className="mx-auto h-auto max-h-[calc(100dvh-9rem)] w-auto max-w-full rounded-lg"
+            />
+          </div>
+        </DialogPrimitive.Content>
+      </DialogPrimitive.Portal>
+    </DialogPrimitive.Root>
+  )
+}
+
+/**
+ * Small preview in the table row. The button carries the name, so the image
+ * inside it is decorative; the full description is in the expanded row and the
+ * lightbox.
+ */
+function EvidenceThumbnail({ finding }: { finding: Finding }) {
+  const [open, setOpen] = useState(false)
+  const ev = finding.evidence
+  return (
+    <EvidenceLightbox
+      finding={finding}
+      open={open}
+      onOpenChange={setOpen}
+      trigger={
+        <button
+          type="button"
+          className="group relative block h-[72px] w-[120px] overflow-hidden rounded-md border border-slate-200 bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:border-slate-700 dark:bg-slate-800 dark:focus-visible:ring-offset-slate-900"
+        >
+          <Image
+            src={ev.src}
+            width={ev.width}
+            height={ev.height}
+            alt=""
+            sizes="120px"
+            className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute bottom-1 right-1 grid h-5 w-5 place-items-center rounded bg-slate-900/80 text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+          >
+            <Maximize2 className="h-3 w-3" />
+          </span>
+          <span className="sr-only">View screenshot for {finding.id}</span>
+        </button>
+      }
+    />
+  )
+}
+
+/**
+ * Screenshot with the red-box notes as real text. The Enlarge button is the
+ * keyboard path to the full-size view; clicking the image does the same for
+ * pointer users.
  */
 function EvidenceFigure({ finding }: { finding: Finding }) {
   const [open, setOpen] = useState(false)
   const ev = finding.evidence
+  // A phone-width capture (the reflow finding) would fill the column at a
+  // huge size, so it is shown at the width it represents.
+  const portrait = ev.height > ev.width
   return (
     <figure className="overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-4 py-2.5 dark:border-slate-800">
@@ -128,57 +236,21 @@ function EvidenceFigure({ finding }: { finding: Finding }) {
           <Camera className="h-3.5 w-3.5" aria-hidden="true" />
           Evidence
         </p>
-        <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
-          <DialogPrimitive.Trigger asChild>
+        <EvidenceLightbox
+          finding={finding}
+          open={open}
+          onOpenChange={setOpen}
+          trigger={
             <button
               type="button"
               className="inline-flex min-h-[32px] items-center gap-1.5 rounded-md border border-slate-300 bg-white px-2.5 text-xs font-medium text-slate-800 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
             >
               <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
-              Enlarge<span className="sr-only"> screenshot for {finding.id}</span>
+              Enlarge
+              <span className="sr-only"> screenshot for {finding.id}</span>
             </button>
-          </DialogPrimitive.Trigger>
-          <DialogPrimitive.Portal>
-            <DialogPrimitive.Overlay className="fixed inset-0 z-[80] bg-slate-950/95" />
-            <DialogPrimitive.Content className="fixed inset-0 z-[81] flex flex-col overflow-y-auto p-3 sm:p-6 focus:outline-none">
-              <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-start justify-between gap-3 pb-3">
-                <div className="min-w-0">
-                  <DialogPrimitive.Title className="text-base font-semibold text-white sm:text-lg">
-                    {finding.id} evidence: {finding.title}
-                  </DialogPrimitive.Title>
-                  <DialogPrimitive.Description className="mt-1 text-sm text-slate-300">
-                    {ev.alt}
-                  </DialogPrimitive.Description>
-                </div>
-                <div className="flex shrink-0 gap-2">
-                  <a
-                    href={ev.src}
-                    target="_blank"
-                    rel="noopener"
-                    className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-slate-600 px-3 text-sm font-medium text-white hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                  >
-                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                    Full size<span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                  <DialogPrimitive.Close className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg bg-white px-3 text-sm font-semibold text-slate-900 hover:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
-                    <X className="h-4 w-4" aria-hidden="true" />
-                    Close
-                  </DialogPrimitive.Close>
-                </div>
-              </div>
-              <div className="mx-auto w-full max-w-[1600px]">
-                <Image
-                  src={ev.src}
-                  width={ev.width}
-                  height={ev.height}
-                  alt=""
-                  sizes="96vw"
-                  className="mx-auto h-auto max-h-[calc(100dvh-9rem)] w-auto max-w-full rounded-lg"
-                />
-              </div>
-            </DialogPrimitive.Content>
-          </DialogPrimitive.Portal>
-        </DialogPrimitive.Root>
+          }
+        />
       </div>
       <div
         className="cursor-zoom-in bg-slate-100 dark:bg-slate-900"
@@ -189,30 +261,35 @@ function EvidenceFigure({ finding }: { finding: Finding }) {
           width={ev.width}
           height={ev.height}
           alt={ev.alt}
-          sizes="(min-width: 1280px) 52vw, (min-width: 640px) 90vw, 100vw"
-          className="h-auto w-full"
+          sizes={
+            portrait
+              ? "320px"
+              : "(min-width: 1280px) 52vw, (min-width: 640px) 90vw, 100vw"
+          }
+          className={cn("h-auto w-full", portrait && "mx-auto max-w-[320px]")}
         />
       </div>
       <figcaption className="space-y-2 border-t border-slate-200 px-4 py-3 dark:border-slate-800">
-        <ol role="list" className="space-y-1.5">
+        <p className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+          What the red {ev.marks.length === 1 ? "box shows" : "boxes show"}
+        </p>
+        <ul role="list" className="space-y-1.5">
           {ev.marks.map((mark, i) => (
-            <li key={i} className="flex gap-2.5 text-sm leading-snug text-slate-700 dark:text-slate-300">
+            <li
+              key={i}
+              className="flex gap-2.5 text-sm leading-snug text-slate-700 dark:text-slate-300"
+            >
               <span
                 aria-hidden="true"
-                className="mt-px grid h-5 w-5 shrink-0 place-items-center rounded-full bg-rose-600 text-[11px] font-bold text-white"
-              >
-                {i + 1}
-              </span>
-              <span>
-                <span className="sr-only">Mark {i + 1}: </span>
-                {mark}
-              </span>
+                className="mt-[3px] h-3.5 w-3.5 shrink-0 rounded-[3px] border-2 border-rose-600"
+              />
+              <span>{mark}</span>
             </li>
           ))}
-        </ol>
+        </ul>
         <p className="text-xs text-slate-500 dark:text-slate-400">
-          Recreated screen. Northstar is fictional, so the state is drawn to match
-          the defect rather than captured from a live product.
+          Recreated screen. Northstar is fictional, so the state is drawn to
+          match the defect rather than captured from a live product.
         </p>
       </figcaption>
     </figure>
@@ -236,11 +313,17 @@ function FindingDetail({ finding }: { finding: Finding }) {
 
           <dl className="grid gap-x-4 gap-y-3 rounded-xl border border-slate-200 bg-white p-4 text-sm dark:border-slate-800 dark:bg-slate-950 sm:grid-cols-2">
             <div className="sm:col-span-2">
-              <dt className={sectionLabel.replace("mb-2", "mb-0.5")}>Location</dt>
-              <dd className="text-slate-800 dark:text-slate-200">{finding.location}</dd>
+              <dt className={sectionLabel.replace("mb-2", "mb-0.5")}>
+                Location
+              </dt>
+              <dd className="text-slate-800 dark:text-slate-200">
+                {finding.location}
+              </dd>
             </div>
             <div className="sm:col-span-2">
-              <dt className={sectionLabel.replace("mb-2", "mb-0.5")}>Component</dt>
+              <dt className={sectionLabel.replace("mb-2", "mb-0.5")}>
+                Component
+              </dt>
               <dd className="break-words font-mono text-xs text-slate-800 dark:text-slate-200">
                 {finding.component}
               </dd>
@@ -253,7 +336,9 @@ function FindingDetail({ finding }: { finding: Finding }) {
             </div>
             <div>
               <dt className={sectionLabel.replace("mb-2", "mb-0.5")}>Status</dt>
-              <dd className="text-slate-800 dark:text-slate-200">{finding.status}</dd>
+              <dd className="text-slate-800 dark:text-slate-200">
+                {finding.status}
+              </dd>
             </div>
           </dl>
 
@@ -277,7 +362,10 @@ function FindingDetail({ finding }: { finding: Finding }) {
         <h4 className={sectionLabel}>Steps to reproduce</h4>
         <ol role="list" className="grid gap-2.5 md:grid-cols-2">
           {finding.reproSteps.map((step, i) => (
-            <li key={i} className="flex gap-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+            <li
+              key={i}
+              className="flex gap-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300"
+            >
               <span
                 aria-hidden="true"
                 className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-slate-900 text-xs font-semibold text-white dark:bg-slate-100 dark:text-slate-900"
@@ -340,14 +428,24 @@ function FindingDetail({ finding }: { finding: Finding }) {
           <h4 className={sectionLabel}>Code</h4>
           <div className="grid gap-4 lg:grid-cols-2">
             <div className="min-w-0">
-              <p className="mb-1 text-xs font-semibold text-red-700 dark:text-red-300">Current</p>
-              <pre tabIndex={0} className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs leading-relaxed text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+              <p className="mb-1 text-xs font-semibold text-red-700 dark:text-red-300">
+                Current
+              </p>
+              <pre
+                tabIndex={0}
+                className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs leading-relaxed text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              >
                 <code>{finding.codeExample.bad}</code>
               </pre>
             </div>
             <div className="min-w-0">
-              <p className="mb-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">Suggested</p>
-              <pre tabIndex={0} className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs leading-relaxed text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+              <p className="mb-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+                Suggested
+              </p>
+              <pre
+                tabIndex={0}
+                className="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs leading-relaxed text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              >
                 <code>{finding.codeExample.good}</code>
               </pre>
             </div>
@@ -380,7 +478,10 @@ export function ReportDashboard() {
     return findings.filter((f) => {
       if (severity !== "All" && f.severity !== severity) return false
       if (level !== "All" && f.conformanceLevel !== level) return false
-      if (principle !== "All" && !f.criteria.some((c) => c.principle === principle))
+      if (
+        principle !== "All" &&
+        !f.criteria.some((c) => c.principle === principle)
+      )
         return false
       if (!q) return true
       return (
@@ -389,8 +490,7 @@ export function ReportDashboard() {
         f.description.toLowerCase().includes(q) ||
         f.location.toLowerCase().includes(q) ||
         f.criteria.some(
-          (c) =>
-            c.id.includes(q) || c.name.toLowerCase().includes(q),
+          (c) => c.id.includes(q) || c.name.toLowerCase().includes(q),
         )
       )
     })
@@ -401,12 +501,15 @@ export function ReportDashboard() {
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
     )
 
-  const allOpen = visible.length > 0 && visible.every((f) => expanded.includes(f.id))
-  const toggleAll = () =>
-    setExpanded(allOpen ? [] : visible.map((f) => f.id))
+  const allOpen =
+    visible.length > 0 && visible.every((f) => expanded.includes(f.id))
+  const toggleAll = () => setExpanded(allOpen ? [] : visible.map((f) => f.id))
 
   const filtersActive =
-    query.trim() !== "" || severity !== "All" || level !== "All" || principle !== "All"
+    query.trim() !== "" ||
+    severity !== "All" ||
+    level !== "All" ||
+    principle !== "All"
 
   const resetFilters = () => {
     setQuery("")
@@ -455,10 +558,24 @@ export function ReportDashboard() {
       const sheet = XLSX.utils.json_to_sheet(rows)
       // Column widths, or every long field collapses into an unreadable sliver.
       sheet["!cols"] = [
-        { wch: 9 }, { wch: 52 }, { wch: 70 }, { wch: 10 }, { wch: 12 },
-        { wch: 40 }, { wch: 22 }, { wch: 34 }, { wch: 34 }, { wch: 70 },
-        { wch: 70 }, { wch: 70 }, { wch: 70 }, { wch: 34 }, { wch: 70 },
-        { wch: 60 }, { wch: 70 }, { wch: 10 },
+        { wch: 9 },
+        { wch: 52 },
+        { wch: 70 },
+        { wch: 10 },
+        { wch: 12 },
+        { wch: 40 },
+        { wch: 22 },
+        { wch: 34 },
+        { wch: 34 },
+        { wch: 70 },
+        { wch: 70 },
+        { wch: 70 },
+        { wch: 70 },
+        { wch: 34 },
+        { wch: 70 },
+        { wch: 60 },
+        { wch: 70 },
+        { wch: 10 },
       ]
 
       const summary = XLSX.utils.json_to_sheet([
@@ -531,7 +648,6 @@ export function ReportDashboard() {
               Distinct success criteria failed
             </p>
           </div>
-
         </div>
 
         {/* Severity distribution. The bar is decorative; the table below it
@@ -559,7 +675,10 @@ export function ReportDashboard() {
               <div key={s.severity}>
                 <dt className="flex items-start gap-2.5 text-sm font-semibold text-slate-900 dark:text-white">
                   <span
-                    className={cn("mt-1 h-3 w-3 shrink-0 rounded-sm", severityBar[s.severity])}
+                    className={cn(
+                      "mt-1 h-3 w-3 shrink-0 rounded-sm",
+                      severityBar[s.severity],
+                    )}
                     aria-hidden="true"
                   />
                   {s.count} {s.severity}
@@ -617,7 +736,9 @@ export function ReportDashboard() {
               <select
                 id={sevId}
                 value={severity}
-                onChange={(e) => setSeverity(e.target.value as Severity | "All")}
+                onChange={(e) =>
+                  setSeverity(e.target.value as Severity | "All")
+                }
                 className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
               >
                 <option value="All">All severities</option>
@@ -639,7 +760,9 @@ export function ReportDashboard() {
               <select
                 id={levelId}
                 value={level}
-                onChange={(e) => setLevel(e.target.value as ConformanceLevel | "All")}
+                onChange={(e) =>
+                  setLevel(e.target.value as ConformanceLevel | "All")
+                }
                 className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
               >
                 <option value="All">All levels</option>
@@ -658,7 +781,9 @@ export function ReportDashboard() {
               <select
                 id={princId}
                 value={principle}
-                onChange={(e) => setPrinciple(e.target.value as Principle | "All")}
+                onChange={(e) =>
+                  setPrinciple(e.target.value as Principle | "All")
+                }
                 className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
               >
                 <option value="All">All principles</option>
@@ -674,7 +799,7 @@ export function ReportDashboard() {
             <div
               role="group"
               aria-label="Choose how findings are displayed"
-              className="flex overflow-hidden rounded-lg border border-slate-300 dark:border-slate-700"
+              className="hidden overflow-hidden rounded-lg border border-slate-300 dark:border-slate-700 lg:flex"
             >
               <button
                 type="button"
@@ -729,7 +854,7 @@ export function ReportDashboard() {
               <button
                 type="button"
                 onClick={toggleAll}
-                className="inline-flex items-center gap-1 text-sm font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-blue-300"
+                className="hidden items-center gap-1 text-sm font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-blue-300 lg:inline-flex"
               >
                 {allOpen ? (
                   <ChevronsDownUp className="h-4 w-4" aria-hidden="true" />
@@ -763,124 +888,157 @@ export function ReportDashboard() {
               Clear filters
             </Button>
           </div>
-        ) : view === "table" ? (
-          /* ---------- Table view ---------- */
-          <div tabIndex={0} role="region" aria-label={`Accessibility findings for ${sampleAuditReport.product}`} className="overflow-x-auto rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
-            <table className="w-full min-w-[64rem] text-left text-sm">
-              <caption className="sr-only">
-                Accessibility findings for {sampleAuditReport.product}. Each row
-                can be expanded for an annotated screenshot, reproduction steps,
-                actual and expected results, and the suggested resolution.
-              </caption>
-              <thead className="border-b border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/80">
-                <tr>
-                  <th scope="col" className="px-4 py-3 font-semibold">
-                    <span className="sr-only">Expand</span>
-                  </th>
-                  <th scope="col" className="px-4 py-3 font-semibold">ID</th>
-                  <th scope="col" className="px-4 py-3 font-semibold">Issue</th>
-                  <th scope="col" className="px-4 py-3 font-semibold">Severity</th>
-                  <th scope="col" className="px-4 py-3 font-semibold">Level</th>
-                  <th scope="col" className="px-4 py-3 font-semibold">WCAG criteria</th>
-                  <th scope="col" className="px-4 py-3 font-semibold">Location</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
-                {visible.map((f) => {
-                  const isOpen = expanded.includes(f.id)
-                  const panelId = `${uid}-panel-${f.id}`
-                  return (
-                    <Fragment key={f.id}>
-                      <tr className="align-top">
-                        <td className="px-4 py-3">
-                          <button
-                            type="button"
-                            onClick={() => toggleRow(f.id)}
-                            aria-expanded={isOpen}
-                            aria-controls={panelId}
-                            className="rounded p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-slate-800 dark:hover:text-white"
-                          >
-                            <ChevronDown
-                              className={cn(
-                                "h-4 w-4 transition-transform",
-                                isOpen && "rotate-180",
-                              )}
-                              aria-hidden="true"
-                            />
-                            <span className="sr-only">
-                              {isOpen ? "Hide" : "Show"} details for {f.id}, {f.title}
-                            </span>
-                          </button>
-                        </td>
-                        <th
-                          scope="row"
-                          className="whitespace-nowrap px-4 py-3 font-mono text-xs font-semibold text-slate-900 dark:text-white"
-                        >
-                          {f.id}
-                        </th>
-                        <td className="px-4 py-3 font-medium text-slate-900 dark:text-white">
-                          {f.title}
-                        </td>
-                        <td className="px-4 py-3">
-                          <SeverityBadge severity={f.severity} />
-                        </td>
-                        <td className="px-4 py-3">
-                          <LevelBadge level={f.conformanceLevel} />
-                        </td>
-                        <td className="px-4 py-3">
-                          <CriteriaLinks finding={f} />
-                        </td>
-                        <td className="px-4 py-3 text-slate-600 dark:text-slate-400">
-                          {f.location}
-                        </td>
-                      </tr>
-                      {isOpen ? (
-                        <tr id={panelId}>
-                          <td
-                            colSpan={7}
-                            className="border-t border-slate-200 bg-slate-50/70 px-6 py-6 dark:border-slate-800 dark:bg-slate-900/50"
-                          >
-                            <h3 className="sr-only">
-                              {f.id}: {f.title}
-                            </h3>
-                            <FindingDetail finding={f} />
-                          </td>
-                        </tr>
-                      ) : null}
-                    </Fragment>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
         ) : (
-          /* ---------- Card view ---------- */
-          <ul className="grid gap-6">
-            {visible.map((f) => (
-              <li
-                key={f.id}
-                className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900"
-              >
-                <div className="mb-4 flex flex-wrap items-center gap-2">
-                  <span className="font-mono text-xs font-semibold text-slate-500 dark:text-slate-400">
-                    {f.id}
-                  </span>
-                  <SeverityBadge severity={f.severity} />
-                  <LevelBadge level={f.conformanceLevel} />
-                  <span className="ml-auto text-xs text-slate-500 dark:text-slate-400">
-                    {severityMeta[f.severity].sla}
-                  </span>
+          <>
+            {/* The table needs about 64rem, and an expanded row inside it would
+                force sideways scrolling on a phone. Below the lg breakpoint
+                the findings always render as cards, whichever view is chosen. */}
+            {view === "table" ? (
+              <div className="hidden lg:block">
+                {/* ---------- Table view ---------- */}
+                <div
+                  tabIndex={0}
+                  role="region"
+                  aria-label={`Accessibility findings for ${sampleAuditReport.product}`}
+                  className="relative overflow-x-auto rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                >
+                  <table className="w-full min-w-[72rem] text-left text-sm">
+                    <caption className="sr-only">
+                      Accessibility findings for {sampleAuditReport.product}.
+                      Each row can be expanded for an annotated screenshot,
+                      reproduction steps, actual and expected results, and the
+                      suggested resolution.
+                    </caption>
+                    <thead className="border-b border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/80">
+                      <tr>
+                        <th scope="col" className="px-4 py-3 font-semibold">
+                          <span className="sr-only">Expand</span>
+                        </th>
+                        <th scope="col" className="px-4 py-3 font-semibold">
+                          ID
+                        </th>
+                        <th scope="col" className="px-4 py-3 font-semibold">
+                          Screenshot
+                        </th>
+                        <th scope="col" className="px-4 py-3 font-semibold">
+                          Issue
+                        </th>
+                        <th scope="col" className="px-4 py-3 font-semibold">
+                          Severity
+                        </th>
+                        <th scope="col" className="px-4 py-3 font-semibold">
+                          Level
+                        </th>
+                        <th scope="col" className="px-4 py-3 font-semibold">
+                          WCAG criteria
+                        </th>
+                        <th scope="col" className="px-4 py-3 font-semibold">
+                          Location
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
+                      {visible.map((f) => {
+                        const isOpen = expanded.includes(f.id)
+                        const panelId = `${uid}-panel-${f.id}`
+                        return (
+                          <Fragment key={f.id}>
+                            <tr className="align-top">
+                              <td className="px-4 py-3">
+                                <button
+                                  type="button"
+                                  onClick={() => toggleRow(f.id)}
+                                  aria-expanded={isOpen}
+                                  aria-controls={panelId}
+                                  className="rounded p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-slate-800 dark:hover:text-white"
+                                >
+                                  <ChevronDown
+                                    className={cn(
+                                      "h-4 w-4 transition-transform",
+                                      isOpen && "rotate-180",
+                                    )}
+                                    aria-hidden="true"
+                                  />
+                                  <span className="sr-only">
+                                    {isOpen ? "Hide" : "Show"} details for{" "}
+                                    {f.id}, {f.title}
+                                  </span>
+                                </button>
+                              </td>
+                              <th
+                                scope="row"
+                                className="whitespace-nowrap px-4 py-3 font-mono text-xs font-semibold text-slate-900 dark:text-white"
+                              >
+                                {f.id}
+                              </th>
+                              <td className="px-4 py-3">
+                                <EvidenceThumbnail finding={f} />
+                              </td>
+                              <td className="px-4 py-3 font-medium text-slate-900 dark:text-white">
+                                {f.title}
+                              </td>
+                              <td className="px-4 py-3">
+                                <SeverityBadge severity={f.severity} />
+                              </td>
+                              <td className="px-4 py-3">
+                                <LevelBadge level={f.conformanceLevel} />
+                              </td>
+                              <td className="px-4 py-3">
+                                <CriteriaLinks finding={f} />
+                              </td>
+                              <td className="px-4 py-3 text-slate-600 dark:text-slate-400">
+                                {f.location}
+                              </td>
+                            </tr>
+                            {isOpen ? (
+                              <tr id={panelId}>
+                                <td
+                                  colSpan={8}
+                                  className="border-t border-slate-200 bg-slate-50/70 px-6 py-6 dark:border-slate-800 dark:bg-slate-900/50"
+                                >
+                                  <h3 className="sr-only">
+                                    {f.id}: {f.title}
+                                  </h3>
+                                  <FindingDetail finding={f} />
+                                </td>
+                              </tr>
+                            ) : null}
+                          </Fragment>
+                        )
+                      })}
+                    </tbody>
+                  </table>
                 </div>
-                <h3 className="mb-3 text-lg font-semibold text-slate-900 dark:text-white">
-                  {f.title}
-                </h3>
-                <div className="mb-5">
-                  <CriteriaLinks finding={f} />
-                </div>
-                <FindingDetail finding={f} />
-              </li>
-            ))}
-          </ul>
+              </div>
+            ) : null}
+            {/* ---------- Card view ---------- */}
+            <ul className={cn("grid gap-6", view === "table" && "lg:hidden")}>
+              {visible.map((f) => (
+                <li
+                  key={f.id}
+                  className="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 sm:p-6"
+                >
+                  <div className="mb-4 flex flex-wrap items-center gap-2">
+                    <span className="font-mono text-xs font-semibold text-slate-500 dark:text-slate-400">
+                      {f.id}
+                    </span>
+                    <SeverityBadge severity={f.severity} />
+                    <LevelBadge level={f.conformanceLevel} />
+                    <span className="ml-auto text-xs text-slate-500 dark:text-slate-400">
+                      {severityMeta[f.severity].sla}
+                    </span>
+                  </div>
+                  <h3 className="mb-3 text-lg font-semibold text-slate-900 dark:text-white">
+                    {f.title}
+                  </h3>
+                  <div className="mb-5">
+                    <CriteriaLinks finding={f} />
+                  </div>
+                  <FindingDetail finding={f} />
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </section>
 
@@ -888,10 +1046,11 @@ export function ReportDashboard() {
         <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
         <span>
           The Excel export contains every column shown here plus the full
-          reproduction steps, actual and expected results, suggested
-          resolution, and a link to the annotated screenshot for each finding, on a Findings sheet with a Summary sheet
-          alongside it. It exports whatever your current filters show, so you can
-          hand a developer just the Critical rows if that is all they need.
+          reproduction steps, actual and expected results, suggested resolution,
+          and a link to the annotated screenshot for each finding, on a Findings
+          sheet with a Summary sheet alongside it. It exports whatever your
+          current filters show, so you can hand a developer just the Critical
+          rows if that is all they need.
         </span>
       </p>
     </div>

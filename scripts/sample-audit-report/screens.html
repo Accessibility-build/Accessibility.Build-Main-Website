@@ -2,12 +2,13 @@
 <!--
   Evidence screens for /sample-audit-report.
 
-  Northstar Checkout is fictional, so its "screenshots" are drawn here: each
-  <section data-shot> recreates the state a finding describes, with the faulty
-  element marked. scripts/sample-audit-report/capture.mjs renders every section
-  with Puppeteer and writes public/images/sample-audit-report/<id>.webp.
-  Marks are drawn by the script at the bottom from [data-mark] attributes, so
-  they always sit on the element they describe.
+  Northstar Checkout is fictional, so its screenshots are drawn here: each
+  <section data-shot> recreates the state a finding describes. They are plain
+  screens with a red box around the faulty element and nothing else; the
+  explanation lives in the report as text. scripts/sample-audit-report/
+  capture.mjs renders every section and writes
+  public/images/sample-audit-report/v2/<id>.webp. Boxes are drawn by the script at
+  the bottom from [data-mark] attributes, so they always sit on the element.
 -->
 <html lang="en">
 <head>
@@ -16,43 +17,31 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: #e2e8f0; font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #0f172a; padding: 40px; }
-  [data-shot] { position: relative; width: 1200px; margin: 0 auto 60px; background: #f1f5f9; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 0 #cbd5e1; }
+  [data-shot] { position: relative; width: 1000px; margin: 0 auto 60px; background: #fff; overflow: hidden; }
 
-  /* Browser frame */
-  .chrome { display: flex; align-items: center; gap: 14px; height: 44px; padding: 0 16px; background: #e5e7eb; border-bottom: 1px solid #d1d5db; }
-  .dots { display: flex; gap: 7px; }
-  .dots i { width: 12px; height: 12px; border-radius: 50%; background: #f87171; display: block; }
-  .dots i:nth-child(2) { background: #fbbf24; } .dots i:nth-child(3) { background: #34d399; }
-  .url { flex: 1; max-width: 560px; height: 28px; border-radius: 8px; background: #fff; display: flex; align-items: center; padding: 0 12px; font-size: 13px; color: #475569; }
-  .url b { color: #0f172a; font-weight: 500; }
-  .viewport { position: relative; background: #fff; overflow: hidden; }
-
-  /* Northstar site */
-  .site-header { display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 40px; border-bottom: 1px solid #e2e8f0; }
+  .site-header { display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 32px; border-bottom: 1px solid #e2e8f0; }
   .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: #0b1f3a; }
   .logo span { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, #0b1f3a, #0e7c86); display: grid; place-items: center; color: #fff; font-size: 14px; }
-  .site-nav { display: flex; gap: 28px; font-size: 14px; color: #334155; }
+  .site-nav { display: flex; gap: 26px; font-size: 14px; color: #334155; }
   .site-nav a { color: inherit; text-decoration: none; padding: 4px 2px; border-radius: 4px; }
   .focus { outline: 3px solid #2563eb; outline-offset: 3px; }
 
-  .progress { display: flex; gap: 0; list-style: none; padding: 22px 40px 0; }
+  .progress { display: flex; list-style: none; padding: 22px 32px 0; }
   .progress li { flex: 1; display: flex; align-items: center; gap: 10px; font-size: 14px; color: #475569; }
-  .progress li::after { content: ""; flex: 1; height: 2px; background: #e2e8f0; margin: 0 14px; }
+  .progress li::after { content: ""; flex: 1; height: 2px; background: #e2e8f0; margin: 0 12px; }
   .progress li:last-child::after { display: none; }
   .progress .num { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 600; color: #fff; background: #64748b; flex-shrink: 0; }
   .progress .done .num { background: #5b6bd6; }
   .progress .is-current .num { background: #0e7c86; }
 
-  .layout { display: grid; grid-template-columns: 1fr 360px; gap: 40px; padding: 28px 40px 36px; }
+  .layout { display: grid; grid-template-columns: 1fr 300px; gap: 32px; padding: 26px 32px 32px; }
   h1.step { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 18px; }
   .card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; background: #fff; }
-  .card + .card { margin-top: 16px; }
   .card h2 { font-size: 15px; font-weight: 600; margin-bottom: 14px; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .field { margin-bottom: 14px; position: relative; }
   .field label { display: block; font-size: 13px; font-weight: 500; color: #334155; margin-bottom: 6px; }
   .input { height: 42px; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0 12px; display: flex; align-items: center; font-size: 14px; color: #0f172a; background: #fff; }
-  .input.empty { color: #94a3b8; }
   .input.invalid { border-color: #dc2626; }
   .helper-muted { margin-top: 6px; font-size: 12.5px; color: #9aa3ae; }
   .field-error { font-size: 12.5px; color: #dc2626; font-weight: 500; position: absolute; right: 0; top: 0; }
@@ -60,21 +49,19 @@
   .btn-primary { background: #0b1f3a; color: #fff; }
   .btn-ghost { background: #fff; color: #0b1f3a; border: 1px solid #cbd5e1; }
 
-  .summary h2 { font-size: 15px; font-weight: 600; margin-bottom: 14px; }
   .line { display: flex; justify-content: space-between; font-size: 14px; padding: 9px 0; border-bottom: 1px solid #f1f5f9; color: #334155; }
   .line.total { font-weight: 700; color: #0f172a; border-bottom: 0; padding-top: 14px; }
   .thumb { width: 38px; height: 38px; border-radius: 8px; background: #e2e8f0; margin-right: 10px; flex-shrink: 0; }
   .item { display: flex; align-items: center; font-size: 13.5px; padding: 8px 0; color: #334155; }
   .item div { flex: 1; } .item b { font-weight: 600; color: #0f172a; }
 
-  /* Overlays and panels */
   .scrim { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.55); }
-  .modal { position: absolute; left: 50%; top: 110px; transform: translateX(-50%); width: 480px; background: #fff; border-radius: 16px; padding: 26px; box-shadow: 0 25px 60px rgba(0,0,0,.35); }
+  .modal { position: absolute; left: 50%; top: 104px; transform: translateX(-50%); width: 460px; background: #fff; border-radius: 16px; padding: 26px; box-shadow: 0 25px 60px rgba(0,0,0,.35); }
   .modal h2 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
   .modal p { font-size: 13.5px; color: #475569; margin-bottom: 14px; }
   .modal .actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
 
-  .calendar { position: absolute; left: 0; top: 74px; width: 330px; background: #fff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; box-shadow: 0 16px 40px rgba(15,23,42,.18); z-index: 5; }
+  .calendar { position: absolute; left: 0; top: 74px; width: 320px; background: #fff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 14px; box-shadow: 0 16px 40px rgba(15,23,42,.18); z-index: 5; }
   .cal-head { display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; margin-bottom: 10px; }
   .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 12.5px; }
   .cal-grid .dow { color: #64748b; font-weight: 600; font-size: 11px; padding: 4px 0; }
@@ -82,412 +69,211 @@
   .cal-grid .day.off { color: #cbd5e1; }
   .cal-grid .day.sel { background: #0e7c86; color: #fff; font-weight: 600; }
 
-  .tool { background: #0f172a; color: #e2e8f0; border-radius: 12px; padding: 16px 18px; font-size: 13px; line-height: 1.55; box-shadow: 0 16px 40px rgba(15,23,42,.25); }
-  .tool .t-title { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #94a3b8; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-  .tool .t-title i { width: 8px; height: 8px; border-radius: 50%; background: #34d399; display: block; }
-  .tool code, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12.5px; }
-  .tool .k { color: #93c5fd; } .tool .v { color: #fca5a5; } .tool .s { color: #86efac; } .tool .dim { color: #64748b; }
-  .tool .bad { background: rgba(225,29,72,.22); border-radius: 4px; padding: 1px 4px; }
-
-  .keychip { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid #cbd5e1; border-bottom-width: 3px; border-radius: 7px; padding: 3px 9px; font-size: 12.5px; font-weight: 600; color: #0f172a; }
-
   .radio { display: flex; align-items: center; gap: 12px; border: 1px solid #cbd5e1; border-radius: 10px; padding: 14px 16px; font-size: 14px; margin-bottom: 10px; }
   .radio .dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #94a3b8; flex-shrink: 0; }
   .radio.checked { border-color: #0e7c86; background: #f0fdfa; }
   .radio.checked .dot { border: 5px solid #0e7c86; }
   .radio small { margin-left: auto; color: #64748b; font-size: 12.5px; }
 
-  /* Legend under every screen */
-  .legend { background: #0b1220; color: #e2e8f0; padding: 18px 26px 20px; display: grid; gap: 10px; }
-  .legend .head { display: flex; align-items: center; justify-content: space-between; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #94a3b8; font-weight: 600; }
-  .legend .head b { color: #fda4af; font-weight: 700; }
-  .legend ol { list-style: none; display: grid; gap: 8px; }
-  .legend li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.45; }
-  .legend li .n, .mark-badge { width: 26px; height: 26px; border-radius: 50%; background: #e11d48; color: #fff; font-size: 13px; font-weight: 700; display: grid; place-items: center; flex-shrink: 0; }
-
-  /* Marks */
-  .mark-box { position: absolute; border: 3px dashed #e11d48; border-radius: 8px; pointer-events: none; z-index: 50; box-shadow: 0 0 0 3px rgba(255,255,255,.75); }
-  .mark-badge { position: absolute; z-index: 51; box-shadow: 0 0 0 3px #fff; }
-
-  /* Reflow screen */
-  .reflow-wrap { display: flex; gap: 0; padding: 26px 40px 30px; background: #f8fafc; }
-  .phone { width: 320px; flex-shrink: 0; background: #fff; border: 2px solid #0f172a; border-radius: 4px; overflow: hidden; position: relative; }
-  .ghost { width: 420px; flex-shrink: 0; overflow: hidden; position: relative; opacity: .38; border: 2px dashed #94a3b8; border-left: 0; border-radius: 0 4px 4px 0; background: #fff; }
   .order-table { border-collapse: collapse; width: 720px; font-size: 13px; }
   .order-table th, .order-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
   .order-table th { background: #f8fafc; font-weight: 600; font-size: 12px; color: #475569; }
-  .zoom-note { flex: 1; padding-left: 30px; display: flex; flex-direction: column; gap: 14px; justify-content: center; font-size: 14px; color: #334155; }
-  .zoom-note .stat { font-size: 13px; color: #475569; }
-  .zoom-note .stat b { display: block; font-size: 26px; color: #0f172a; letter-spacing: -0.01em; }
-  .hscroll { position: absolute; left: 6px; right: 6px; bottom: 4px; height: 6px; border-radius: 3px; background: #e2e8f0; }
-  .hscroll i { display: block; width: 30%; height: 100%; border-radius: 3px; background: #64748b; }
+  .hscroll { position: absolute; left: 4px; right: 4px; bottom: 4px; height: 6px; border-radius: 3px; background: #e2e8f0; }
+  .hscroll i { display: block; width: 44%; height: 100%; border-radius: 3px; background: #94a3b8; }
 
-  .compare { display: grid; gap: 18px; padding: 30px 40px 34px; background: #fff; }
-  .compare .label { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #64748b; margin-bottom: 4px; }
-  .compare .strip { border: 1px solid #e2e8f0; border-radius: 12px; padding-bottom: 22px; }
-  .grey { filter: grayscale(1); }
+  .mark-box { position: absolute; border: 3px solid #e11d48; border-radius: 8px; pointer-events: none; z-index: 50; }
 </style>
 </head>
 <body>
 
 <!-- NS-001: focus escapes the review dialog -->
-<section data-shot="ns-001">
-  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">checkout.northstar.example/<b>payment</b></div></div>
-  <div class="viewport" style="height: 610px">
-    <header class="site-header">
-      <div class="logo"><span>N</span>Northstar</div>
-      <nav class="site-nav"><a href="#" class="focus" data-mark="1" data-badge="left">Help</a><a href="#">Orders</a><a href="#">Account</a></nav>
-    </header>
-    <ol class="progress"><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
-    <div class="layout">
-      <div>
-        <h1 class="step">Payment</h1>
-        <div class="card"><h2>Card details</h2>
-          <div class="field"><label>Name on card</label><div class="input">Alex Morgan</div></div>
-          <div class="row"><div class="field"><label>Card number</label><div class="input">4242 4242 4242 4242</div></div><div class="field"><label>Expiry</label><div class="input">08 / 29</div></div></div>
-        </div>
+<section data-shot="ns-001" style="height: 560px">
+  <header class="site-header">
+    <div class="logo"><span>N</span>Northstar</div>
+    <nav class="site-nav"><a href="#" class="focus" data-mark>Help</a><a href="#">Orders</a><a href="#">Account</a></nav>
+  </header>
+  <ol class="progress"><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
+  <div class="layout">
+    <div>
+      <h1 class="step">Payment</h1>
+      <div class="card"><h2>Card details</h2>
+        <div class="field"><label>Name on card</label><div class="input">Alex Morgan</div></div>
+        <div class="row"><div class="field"><label>Card number</label><div class="input">4242 4242 4242 4242</div></div><div class="field"><label>Expiry</label><div class="input">08 / 29</div></div></div>
       </div>
-      <aside class="card summary"><h2>Order summary</h2><div class="line"><span>Subtotal</span><span>$184.00</span></div><div class="line"><span>Delivery</span><span>$6.50</span></div><div class="line total"><span>Total</span><span>$190.50</span></div></aside>
     </div>
-    <div class="scrim"></div>
-    <div class="modal" role="presentation">
-      <h2>Review your order</h2>
-      <p>2 items, delivered to 18 Harbour Street. Check the details before placing your order.</p>
-      <div class="item"><span class="thumb"></span><div><b>Trail running jacket</b><br>Size M</div>$148.00</div>
-      <div class="item"><span class="thumb"></span><div><b>Merino socks, 2 pack</b><br>One size</div>$36.00</div>
-      <div class="line total"><span>Total</span><span>$190.50</span></div>
-      <div class="actions"><span class="btn btn-ghost">Edit order</span><span class="btn btn-primary" data-mark="2">Place order</span></div>
-    </div>
-    <div style="position:absolute; right: 40px; top: 96px; display:flex; gap:8px; align-items:center; z-index: 60;"><span class="keychip">Tab</span><span style="color:#fff; font-size:13px; font-weight:600;">pressed once after Place order</span></div>
+    <aside class="card"><h2>Order summary</h2><div class="line"><span>Subtotal</span><span>$184.00</span></div><div class="line"><span>Delivery</span><span>$6.50</span></div><div class="line total"><span>Total</span><span>$190.50</span></div></aside>
   </div>
-  <div class="legend">
-    <div class="head"><span>NS-001 evidence</span><b>Critical · 2.1.2, 2.4.3, 4.1.2</b></div>
-    <ol>
-      <li><span class="n">1</span>Focus has left the dialog and landed on the Help link in the page behind it. The overlay hides its focus ring, and the link still works.</li>
-      <li><span class="n">2</span>Place order is the last control in the dialog. One more Tab should take focus back to the first control in the dialog.</li>
-    </ol>
+  <div class="scrim"></div>
+  <div class="modal">
+    <h2>Review your order</h2>
+    <p>2 items, delivered to 18 Harbour Street. Check the details before placing your order.</p>
+    <div class="item"><span class="thumb"></span><div><b>Trail running jacket</b><br>Size M</div>$148.00</div>
+    <div class="item"><span class="thumb"></span><div><b>Merino socks, 2 pack</b><br>One size</div>$36.00</div>
+    <div class="line total"><span>Total</span><span>$190.50</span></div>
+    <div class="actions"><span class="btn btn-ghost">Edit order</span><span class="btn btn-primary" data-mark>Place order</span></div>
   </div>
 </section>
 
 <!-- NS-002: date picker not keyboard operable -->
-<section data-shot="ns-002">
-  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">checkout.northstar.example/<b>delivery</b></div></div>
-  <div class="viewport" style="height: 740px">
-    <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
-    <ol class="progress"><li class="is-current"><span class="num">1</span>Delivery</li><li><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
-    <div class="layout">
-      <div>
-        <h1 class="step">Delivery address</h1>
-        <div class="card">
-          <div class="row"><div class="field"><label>Full name</label><div class="input">Alex Morgan</div></div><div class="field"><label>Phone</label><div class="input">(555) 014 2290</div></div></div>
-          <div class="field"><label>Address line 1</label><div class="input">18 Harbour Street</div></div>
-          <div class="row">
-            <div class="field" style="position:relative">
-              <label>Preferred delivery date</label>
-              <div class="input focus" style="justify-content:space-between">Choose a date <span style="font-size:16px">&#128197;</span></div>
-              <div class="calendar">
-                <div class="cal-head"><span>&#8249;</span><span>August 2026</span><span>&#8250;</span></div>
-                <div class="cal-grid" data-mark="1">
-                  <span class="dow">Mo</span><span class="dow">Tu</span><span class="dow">We</span><span class="dow">Th</span><span class="dow">Fr</span><span class="dow">Sa</span><span class="dow">Su</span>
-                  <span class="day off">27</span><span class="day off">28</span><span class="day off">29</span><span class="day off">30</span><span class="day off">31</span><span class="day">1</span><span class="day">2</span>
-                  <span class="day">3</span><span class="day">4</span><span class="day">5</span><span class="day">6</span><span class="day">7</span><span class="day">8</span><span class="day">9</span>
-                  <span class="day">10</span><span class="day">11</span><span class="day">12</span><span class="day">13</span><span class="day sel">14</span><span class="day">15</span><span class="day">16</span>
-                  <span class="day">17</span><span class="day">18</span><span class="day">19</span><span class="day">20</span><span class="day">21</span><span class="day">22</span><span class="day">23</span>
-                  <span class="day">24</span><span class="day">25</span><span class="day">26</span><span class="day">27</span><span class="day">28</span><span class="day">29</span><span class="day">30</span>
-                </div>
+<section data-shot="ns-002" style="height: 696px">
+  <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
+  <ol class="progress"><li class="is-current"><span class="num">1</span>Delivery</li><li><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
+  <div class="layout">
+    <div>
+      <h1 class="step">Delivery address</h1>
+      <div class="card">
+        <div class="row"><div class="field"><label>Full name</label><div class="input">Alex Morgan</div></div><div class="field"><label>Phone</label><div class="input">(555) 014 2290</div></div></div>
+        <div class="field"><label>Address line 1</label><div class="input">18 Harbour Street</div></div>
+        <div class="row">
+          <div class="field">
+            <label>Preferred delivery date</label>
+            <div class="input focus" style="justify-content:space-between">Choose a date <span style="font-size:16px">&#128197;</span></div>
+            <div class="calendar">
+              <div class="cal-head"><span>&#8249;</span><span>August 2026</span><span>&#8250;</span></div>
+              <div class="cal-grid" data-mark>
+                <span class="dow">Mo</span><span class="dow">Tu</span><span class="dow">We</span><span class="dow">Th</span><span class="dow">Fr</span><span class="dow">Sa</span><span class="dow">Su</span>
+                <span class="day off">27</span><span class="day off">28</span><span class="day off">29</span><span class="day off">30</span><span class="day off">31</span><span class="day">1</span><span class="day">2</span>
+                <span class="day">3</span><span class="day">4</span><span class="day">5</span><span class="day">6</span><span class="day">7</span><span class="day">8</span><span class="day">9</span>
+                <span class="day">10</span><span class="day">11</span><span class="day">12</span><span class="day">13</span><span class="day sel">14</span><span class="day">15</span><span class="day">16</span>
+                <span class="day">17</span><span class="day">18</span><span class="day">19</span><span class="day">20</span><span class="day">21</span><span class="day">22</span><span class="day">23</span>
+                <span class="day">24</span><span class="day">25</span><span class="day">26</span><span class="day">27</span><span class="day">28</span><span class="day">29</span><span class="day">30</span>
               </div>
             </div>
-            <div class="field"><label>Postal code</label><div class="input">02110</div></div>
           </div>
-          <div style="height: 250px"></div>
+          <div class="field"><label>Postal code</label><div class="input">02110</div></div>
         </div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:16px">
-        <div class="tool" data-mark="2">
-          <div class="t-title"><i></i>Keyboard test log</div>
-          <div><span class="keychip">Enter</span> &nbsp;calendar opens</div>
-          <div style="margin-top:8px"><span class="keychip">&#8594;</span> <span class="keychip">&#8595;</span> &nbsp;page scrolls, no day gets focus</div>
-          <div style="margin-top:8px"><span class="keychip">Tab</span> &nbsp;focus skips the grid to Postal code</div>
-          <div style="margin-top:8px"><span class="keychip">Space</span> &nbsp;nothing selected</div>
-        </div>
-        <div class="tool">
-          <div class="t-title"><i style="background:#f87171"></i>Markup of a day cell</div>
-          <code><span class="dim">&lt;</span><span class="k">div</span> <span class="k">class</span>=<span class="s">"day"</span> <span class="k bad">onclick</span>=<span class="s">"select(14)"</span><span class="dim">&gt;</span>14<span class="dim">&lt;/</span><span class="k">div</span><span class="dim">&gt;</span></code>
-          <div class="dim" style="margin-top:8px">No tabindex, no role, no accessible state.</div>
-        </div>
+        <div style="height: 230px"></div>
       </div>
     </div>
-  </div>
-  <div class="legend">
-    <div class="head"><span>NS-002 evidence</span><b>Critical · 2.1.1, 4.1.2</b></div>
-    <ol>
-      <li><span class="n">1</span>Every day is a div with a click handler. None can take keyboard focus, and the grid has no role, so a screen reader reads it as loose numbers.</li>
-      <li><span class="n">2</span>Results of the keyboard test: the calendar opens, but no key can move between dates or pick one.</li>
-    </ol>
+    <aside class="card" style="align-self:start"><h2>Order summary</h2><div class="line"><span>Subtotal</span><span>$184.00</span></div><div class="line"><span>Delivery</span><span>$6.50</span></div><div class="line total"><span>Total</span><span>$190.50</span></div></aside>
   </div>
 </section>
 
 <!-- NS-003: errors not announced -->
-<section data-shot="ns-003">
-  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">checkout.northstar.example/<b>delivery</b></div></div>
-  <div class="viewport" style="height: 600px">
-    <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
-    <ol class="progress"><li class="is-current"><span class="num">1</span>Delivery</li><li><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
-    <div class="layout">
-      <div>
-        <h1 class="step">Delivery address</h1>
-        <div class="card">
-          <div class="row"><div class="field"><label>Full name</label><div class="input">Alex Morgan</div></div><div class="field"><label>Phone</label><div class="input">(555) 014 2290</div></div></div>
-          <div class="field"><label>Address line 1</label><div class="input">18 Harbour Street</div></div>
-          <div class="row" data-mark="1">
-            <div class="field"><label>City</label><span class="field-error">Enter a city</span><div class="input invalid empty"></div></div>
-            <div class="field"><label>Postal code</label><span class="field-error">Enter a postal code</span><div class="input invalid empty"></div></div>
-          </div>
-          <div style="display:flex; justify-content:flex-end; margin-top: 6px"><span class="btn btn-primary focus" data-mark="2">Continue to payment</span></div>
+<section data-shot="ns-003" style="height: 534px">
+  <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
+  <ol class="progress"><li class="is-current"><span class="num">1</span>Delivery</li><li><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
+  <div class="layout">
+    <div>
+      <h1 class="step">Delivery address</h1>
+      <div class="card">
+        <div class="row"><div class="field"><label>Full name</label><div class="input">Alex Morgan</div></div><div class="field"><label>Phone</label><div class="input">(555) 014 2290</div></div></div>
+        <div class="field"><label>Address line 1</label><div class="input">18 Harbour Street</div></div>
+        <div class="row" data-mark>
+          <div class="field"><label>City</label><span class="field-error">Enter a city</span><div class="input invalid"></div></div>
+          <div class="field"><label>Postal code</label><span class="field-error">Enter a postal code</span><div class="input invalid"></div></div>
         </div>
-      </div>
-      <div class="tool" style="align-self:start" data-mark="3">
-        <div class="t-title"><i></i>Screen reader speech log (NVDA)</div>
-        <div class="mono">"Continue to payment, button"</div>
-        <div class="dim mono" style="margin-top:6px">[Enter pressed]</div>
-        <div class="mono" style="margin-top:6px; color:#fca5a5">(silence)</div>
-        <div class="dim mono" style="margin-top:6px">[Tab to City]</div>
-        <div class="mono">"City, edit, blank"</div>
-        <div class="dim" style="margin-top:12px; font-size:12.5px">The error text is never read. Nothing says the form was rejected.</div>
+        <div style="display:flex; justify-content:flex-end; margin-top: 18px"><span class="btn btn-primary focus" data-mark>Continue to payment</span></div>
       </div>
     </div>
-  </div>
-  <div class="legend">
-    <div class="head"><span>NS-003 evidence</span><b>High · 3.3.1, 4.1.3, 3.3.2</b></div>
-    <ol>
-      <li><span class="n">1</span>Red error text appears next to the empty fields but is not connected to them in code (no aria-describedby, no aria-invalid).</li>
-      <li><span class="n">2</span>Focus stays on the Continue button after the failed submit. There is no error summary to move it to.</li>
-      <li><span class="n">3</span>The screen reader announces nothing after activation, and reading the City field gives only its label.</li>
-    </ol>
+    <aside class="card" style="align-self:start"><h2>Order summary</h2><div class="line"><span>Subtotal</span><span>$184.00</span></div><div class="line"><span>Delivery</span><span>$6.50</span></div><div class="line total"><span>Total</span><span>$190.50</span></div></aside>
   </div>
 </section>
 
 <!-- NS-004: low-contrast helper text -->
-<section data-shot="ns-004">
-  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">checkout.northstar.example/<b>payment</b></div></div>
-  <div class="viewport" style="height: 520px">
-    <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
-    <ol class="progress"><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
-    <div class="layout">
-      <div>
-        <h1 class="step">Payment</h1>
-        <div class="card"><h2>Promotional code</h2>
-          <div class="field" style="max-width: 420px"><label>Code</label>
-            <div style="display:flex; gap:10px"><div class="input" style="flex:1">SUMMER-15</div><span class="btn btn-ghost">Apply</span></div>
-            <p class="helper-muted" data-mark="1">Codes are case sensitive. Check capital letters before applying.</p>
-          </div>
+<section data-shot="ns-004" style="height: 400px">
+  <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
+  <ol class="progress"><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
+  <div class="layout">
+    <div>
+      <h1 class="step">Payment</h1>
+      <div class="card"><h2>Promotional code</h2>
+        <div class="field" style="max-width: 420px; margin-bottom: 0"><label>Code</label>
+          <div style="display:flex; gap:10px"><div class="input" style="flex:1">SUMMER-15</div><span class="btn btn-ghost">Apply</span></div>
+          <p class="helper-muted" data-mark>Codes are case sensitive. Check capital letters before applying.</p>
         </div>
-      </div>
-      <div class="tool" style="align-self:start" data-mark="2">
-        <div class="t-title"><i style="background:#f87171"></i>Contrast check</div>
-        <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px">
-          <span style="width:40px;height:40px;border-radius:8px;background:#9aa3ae;display:block"></span>
-          <div class="mono">Text #9AA3AE<br>on #FFFFFF</div>
-        </div>
-        <div style="font-size:30px; font-weight:700; letter-spacing:-0.01em; color:#fff">2.55:1</div>
-        <div style="margin-top:4px">Needs 4.5:1 for 12.5px text <span style="color:#fca5a5; font-weight:700">· Fails</span></div>
-        <div class="dim" style="margin-top:10px">#6B7480 measures 4.73:1 and passes.</div>
       </div>
     </div>
-  </div>
-  <div class="legend">
-    <div class="head"><span>NS-004 evidence</span><b>High · 1.4.3</b></div>
-    <ol>
-      <li><span class="n">1</span>Helper text in the muted token #9AA3AE. The same token is used for helper text across the checkout.</li>
-      <li><span class="n">2</span>Measured contrast is 2.55:1 against the 4.5:1 minimum for text of this size.</li>
-    </ol>
+    <aside class="card" style="align-self:start"><h2>Order summary</h2><div class="line"><span>Subtotal</span><span>$184.00</span></div><div class="line total"><span>Total</span><span>$190.50</span></div></aside>
   </div>
 </section>
 
 <!-- NS-005: label in name -->
-<section data-shot="ns-005">
-  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">checkout.northstar.example/<b>payment</b></div></div>
-  <div class="viewport" style="height: 540px">
-    <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
-    <ol class="progress"><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
-    <div class="layout">
-      <div>
-        <h1 class="step">Payment</h1>
-        <div class="card"><h2>Payment method</h2>
-          <div class="radio checked"><span class="dot"></span>Pay by card<small>Visa, Mastercard, Amex</small></div>
-          <div class="radio" data-mark="1"><span class="dot"></span>Pay by bank transfer<small>2 to 3 working days</small></div>
-          <div class="radio"><span class="dot"></span>Pay later in 3 instalments<small>No interest</small></div>
-        </div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:16px">
-        <div class="tool" data-mark="2">
-          <div class="t-title"><i></i>Accessibility tree (Chrome DevTools)</div>
-          <div><span class="dim">Role</span> &nbsp;radio</div>
-          <div><span class="dim">Name</span> &nbsp;<span class="bad">"Transfer payment method"</span></div>
-          <div><span class="dim">From</span> &nbsp;aria-label</div>
-          <div><span class="dim">Checked</span> &nbsp;false</div>
-          <div class="dim" style="margin-top:10px">Visible text "Pay by bank transfer" is not in the name.</div>
-        </div>
-        <div class="tool">
-          <div class="t-title"><i style="background:#fbbf24"></i>Voice control</div>
-          <div class="mono">"Click Pay by bank transfer"</div>
-          <div style="margin-top:6px; color:#fca5a5">No match found</div>
-        </div>
+<section data-shot="ns-005" style="height: 470px">
+  <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
+  <ol class="progress"><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
+  <div class="layout">
+    <div>
+      <h1 class="step">Payment</h1>
+      <div class="card"><h2>Payment method</h2>
+        <div class="radio checked"><span class="dot"></span>Pay by card<small>Visa, Mastercard, Amex</small></div>
+        <div class="radio" data-mark><span class="dot"></span>Pay by bank transfer<small>2 to 3 working days</small></div>
+        <div class="radio" style="margin-bottom:0"><span class="dot"></span>Pay later in 3 instalments<small>No interest</small></div>
       </div>
     </div>
-  </div>
-  <div class="legend">
-    <div class="head"><span>NS-005 evidence</span><b>Medium · 2.5.3, 4.1.2</b></div>
-    <ol>
-      <li><span class="n">1</span>The option reads "Pay by bank transfer" on screen.</li>
-      <li><span class="n">2</span>Its accessible name is "Transfer payment method", set by aria-label, so speaking the visible words selects nothing.</li>
-    </ol>
+    <aside class="card" style="align-self:start"><h2>Order summary</h2><div class="line"><span>Subtotal</span><span>$184.00</span></div><div class="line"><span>Delivery</span><span>$6.50</span></div><div class="line total"><span>Total</span><span>$190.50</span></div></aside>
   </div>
 </section>
 
-<!-- NS-006: reflow at 400 percent zoom -->
-<section data-shot="ns-006">
-  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">checkout.northstar.example/<b>review</b> &nbsp;<span style="color:#94a3b8">· zoom 400%</span></div></div>
-  <div class="reflow-wrap">
-    <div class="phone" data-mark="1">
-      <div style="height:77px; padding:14px 14px 0"><div style="font-weight:700; font-size:17px">Review</div><div style="margin-top:4px; font-size:12.5px; color:#475569">Check your items before paying.</div></div>
-      <div style="width:720px">
-        <table class="order-table">
-          <thead><tr><th>Item</th><th>Options</th><th>Qty</th><th>Unit price</th><th>Delivery</th><th>Total</th></tr></thead>
-          <tbody>
-            <tr><td>Trail running jacket</td><td>Size M, Slate</td><td>1</td><td>$148.00</td><td>Standard</td><td>$148.00</td></tr>
-            <tr><td>Merino socks, 2 pack</td><td>One size</td><td>1</td><td>$36.00</td><td>Standard</td><td>$36.00</td></tr>
-            <tr><td>Delivery</td><td></td><td></td><td></td><td></td><td>$6.50</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div style="height:150px"></div>
-      <div class="hscroll"><i></i></div>
-    </div>
-    <div class="ghost">
-      <div style="height: 77px"></div>
-      <div style="margin-left:-320px; width:720px">
-        <table class="order-table">
-          <thead><tr><th>Item</th><th>Options</th><th>Qty</th><th>Unit price</th><th>Delivery</th><th>Total</th></tr></thead>
-          <tbody>
-            <tr><td>Trail running jacket</td><td>Size M, Slate</td><td>1</td><td>$148.00</td><td>Standard</td><td>$148.00</td></tr>
-            <tr><td>Merino socks, 2 pack</td><td>One size</td><td>1</td><td>$36.00</td><td>Standard</td><td>$36.00</td></tr>
-            <tr><td>Delivery</td><td></td><td></td><td></td><td></td><td>$6.50</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div data-mark="2" style="position:absolute; left: 10px; right: 10px; top: 77px; height: 140px"></div>
-    </div>
-    <div class="zoom-note">
-      <div class="stat"><b>320 px</b>visible width at 400% zoom on a 1280 px window</div>
-      <div class="stat"><b>720 px</b>fixed min-width on table.order-summary</div>
-      <div class="stat"><b>400 px</b>of the table sits off-screen, reached only by scrolling sideways</div>
-    </div>
+<!-- NS-006: reflow at 400 percent zoom. A 320 CSS px wide screen, which is
+     what a 1280 px window shows at 400 percent. -->
+<section data-shot="ns-006" style="width: 320px; height: 568px">
+  <header class="site-header" style="padding: 0 14px; height: 54px"><div class="logo" style="font-size:16px"><span>N</span>Northstar</div><span style="font-size:20px; color:#334155">&#9776;</span></header>
+  <div style="padding:16px 14px 10px"><div style="font-weight:700; font-size:20px">Review</div><div style="margin-top:4px; font-size:13px; color:#475569">Check your items before paying.</div></div>
+  <div style="width:720px" data-mark>
+    <table class="order-table">
+      <thead><tr><th>Item</th><th>Options</th><th>Qty</th><th>Unit price</th><th>Delivery</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Trail running jacket</td><td>Size M, Slate</td><td>1</td><td>$148.00</td><td>Standard</td><td>$148.00</td></tr>
+        <tr><td>Merino socks, 2 pack</td><td>One size</td><td>1</td><td>$36.00</td><td>Standard</td><td>$36.00</td></tr>
+        <tr><td>Delivery</td><td></td><td></td><td></td><td></td><td>$6.50</td></tr>
+      </tbody>
+    </table>
   </div>
-  <div class="legend">
-    <div class="head"><span>NS-006 evidence</span><b>Medium · 1.4.10</b></div>
-    <ol>
-      <li><span class="n">1</span>What fits on screen: item names and options, but no prices. The whole page has a horizontal scrollbar.</li>
-      <li><span class="n">2</span>Faded area: the part of the table off-screen. Unit price and Total sit here, so every row means scrolling right and back.</li>
-    </ol>
-  </div>
+  <div style="padding: 18px 14px"><span class="btn btn-primary" style="width: 100%">Place order</span></div>
+  <div class="hscroll" data-mark><i></i></div>
 </section>
 
 <!-- NS-007: autocomplete missing -->
-<section data-shot="ns-007">
-  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">checkout.northstar.example/<b>payment</b></div></div>
-  <div class="viewport" style="height: 600px">
-    <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
-    <ol class="progress"><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
-    <div class="layout">
-      <div>
-        <h1 class="step">Payment</h1>
-        <div class="card"><h2>Card details</h2>
-          <div class="field"><label>Name on card</label><div class="input empty"></div></div>
-          <div class="field" data-mark="1"><label>Card number</label><div class="input focus" style="position:relative"><span style="display:inline-block;width:1.5px;height:18px;background:#0f172a"></span></div>
-            <p style="margin-top:8px; font-size:12.5px; color:#64748b">Browser has a saved card, but no autofill suggestion appears.</p>
-          </div>
-          <div class="row"><div class="field"><label>Expiry (MM / YY)</label><div class="input empty"></div></div><div class="field"><label>Security code</label><div class="input empty"></div></div></div>
-        </div>
-      </div>
-      <div class="tool" style="align-self:start" data-mark="2">
-        <div class="t-title"><i style="background:#f87171"></i>Elements panel</div>
-        <code style="display:block; white-space:pre; line-height:1.7"><span class="dim">&lt;</span><span class="k">fieldset</span><span class="dim">&gt;</span>
-  <span class="dim">&lt;</span><span class="k">input</span> <span class="k">id</span>=<span class="s">"cardName"</span>
-         <span class="k">name</span>=<span class="s">"cardName"</span><span class="dim">&gt;</span>
-  <span class="dim">&lt;</span><span class="k">input</span> <span class="k">id</span>=<span class="s">"cardNumber"</span>
-         <span class="k">name</span>=<span class="s">"cardNumber"</span>
-         <span class="k">inputmode</span>=<span class="s">"numeric"</span><span class="dim">&gt;</span>
-  <span class="dim">&lt;</span><span class="k">input</span> <span class="k">id</span>=<span class="s">"cardExpiry"</span>
-         <span class="k">name</span>=<span class="s">"cardExpiry"</span><span class="dim">&gt;</span>
-<span class="dim">&lt;/</span><span class="k">fieldset</span><span class="dim">&gt;</span></code>
-        <div style="margin-top:10px; color:#fca5a5">No autocomplete attribute on any card field</div>
+<section data-shot="ns-007" style="height: 520px">
+  <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
+  <ol class="progress"><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
+  <div class="layout">
+    <div>
+      <h1 class="step">Payment</h1>
+      <div class="card"><h2>Card details</h2>
+        <div class="field"><label>Name on card</label><div class="input"></div></div>
+        <div class="field" data-mark><label>Card number</label><div class="input focus"><span style="display:inline-block;width:1.5px;height:18px;background:#0f172a"></span></div></div>
+        <div class="row" style="margin-bottom:-14px"><div class="field"><label>Expiry (MM / YY)</label><div class="input"></div></div><div class="field"><label>Security code</label><div class="input"></div></div></div>
       </div>
     </div>
-  </div>
-  <div class="legend">
-    <div class="head"><span>NS-007 evidence</span><b>Medium · 1.3.5, 3.3.7</b></div>
-    <ol>
-      <li><span class="n">1</span>Focus is in Card number and the browser holds a saved card, yet no autofill is offered.</li>
-      <li><span class="n">2</span>The markup has no autocomplete tokens (cc-name, cc-number, cc-exp), so nothing identifies what each field is for.</li>
-    </ol>
+    <aside class="card" style="align-self:start"><h2>Order summary</h2><div class="line"><span>Subtotal</span><span>$184.00</span></div><div class="line"><span>Delivery</span><span>$6.50</span></div><div class="line total"><span>Total</span><span>$190.50</span></div></aside>
   </div>
 </section>
 
 <!-- NS-008: progress by colour alone -->
-<section data-shot="ns-008">
-  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">checkout.northstar.example/<b>payment</b></div></div>
-  <div class="compare">
+<section data-shot="ns-008" style="height: 300px">
+  <header class="site-header"><div class="logo"><span>N</span>Northstar</div><nav class="site-nav"><a>Help</a><a>Orders</a><a>Account</a></nav></header>
+  <ol class="progress" data-mark><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol>
+  <div class="layout">
     <div>
-      <p class="label">As shown</p>
-      <div class="strip"><ol class="progress"><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num" data-mark="1">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol></div>
+      <h1 class="step">Payment</h1>
+      <div class="card" style="height: 120px"><h2>Payment method</h2></div>
     </div>
-    <div>
-      <p class="label">Same component in greyscale</p>
-      <div class="strip grey"><ol class="progress"><li class="done"><span class="num">1</span>Delivery</li><li class="is-current"><span class="num" data-mark="2">2</span>Payment</li><li><span class="num">3</span>Review</li><li><span class="num">4</span>Done</li></ol></div>
-    </div>
-    <div class="tool">
-      <div class="t-title"><i></i>Accessibility tree</div>
-      <div class="mono">list, 4 items</div>
-      <div class="mono" style="padding-left:16px">listitem "1 Delivery"</div>
-      <div class="mono" style="padding-left:16px">listitem "2 Payment" <span class="bad">no aria-current</span></div>
-      <div class="mono" style="padding-left:16px">listitem "3 Review"</div>
-      <div class="mono" style="padding-left:16px">listitem "4 Done"</div>
-    </div>
-  </div>
-  <div class="legend">
-    <div class="head"><span>NS-008 evidence</span><b>Low · 1.4.1, 1.3.1</b></div>
-    <ol>
-      <li><span class="n">1</span>The current step differs from the others only by fill colour: teal against indigo and slate.</li>
-      <li><span class="n">2</span>In greyscale all three colours have almost the same lightness, so the current step cannot be picked out. The code has no aria-current either.</li>
-    </ol>
+    <aside class="card" style="align-self:start"><h2>Order summary</h2><div class="line total"><span>Total</span><span>$190.50</span></div></aside>
   </div>
 </section>
 
 <script>
-  // Draw a dashed box and numbered badge around each [data-mark] element.
+  // Draw a red box around each [data-mark] element.
   for (const shot of document.querySelectorAll("[data-shot]")) {
     const base = shot.getBoundingClientRect()
     for (const el of shot.querySelectorAll("[data-mark]")) {
       const r = el.getBoundingClientRect()
-      const pad = 7
+      const pad = 6
+      const left = Math.max(2, r.left - base.left - pad)
+      const top = Math.max(2, r.top - base.top - pad)
+      const right = Math.min(base.width - 2, r.right - base.left + pad)
+      const bottom = Math.min(base.height - 2, r.bottom - base.top + pad)
       const box = document.createElement("div")
       box.className = "mark-box"
       Object.assign(box.style, {
-        left: `${r.left - base.left - pad}px`,
-        top: `${r.top - base.top - pad}px`,
-        width: `${r.width + pad * 2}px`,
-        height: `${r.height + pad * 2}px`,
+        left: `${left}px`,
+        top: `${top}px`,
+        width: `${right - left}px`,
+        height: `${bottom - top}px`,
       })
-      const badge = document.createElement("span")
-      badge.className = "mark-badge"
-      badge.textContent = el.dataset.mark
-      // data-badge="left" puts the number beside the box, for marks near the top edge.
-      const left = el.dataset.badge === "left"
-      Object.assign(badge.style, left
-        ? { left: `${r.left - base.left - pad - 36}px`, top: `${r.top - base.top + r.height / 2 - 13}px` }
-        : { left: `${Math.max(4, r.left - base.left - pad - 14)}px`, top: `${Math.max(48, r.top - base.top - pad - 14)}px` })
-      shot.append(box, badge)
+      shot.append(box)
     }
   }
 </script>

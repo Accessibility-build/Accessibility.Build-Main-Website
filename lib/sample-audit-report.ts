@@ -55,8 +55,8 @@ export interface Finding {
  * An annotated screenshot. The images are drawn from
  * scripts/sample-audit-report/screens.html (Northstar is fictional, so there is
  * no live product to capture) and rendered by capture.mjs in the same folder.
- * `marks` repeats the numbered notes printed under each image so they are real
- * text on the page, not only pixels.
+ * Each image is a plain screen with red boxes around the faulty elements and
+ * nothing else; `marks` explains each box as text, in reading order.
  */
 export interface Evidence {
   src: string
@@ -71,9 +71,10 @@ const shot = (
   height: number,
   alt: string,
   marks: string[],
+  width = 1600,
 ): Evidence => ({
-  src: `/images/sample-audit-report/${id}.webp`,
-  width: 1600,
+  src: `/images/sample-audit-report/v2/${id}.webp`,
+  width,
   height,
   alt,
   marks,
@@ -165,9 +166,9 @@ const findings: Finding[] = [
   dialog.addEventListener("close", () => openBtn.focus())
 </script>`,
     },
-    evidence: shot("ns-001", 1033, "Payment step with the Review your order dialog open over a dimmed page. The Place order button inside the dialog is marked 2. The Help link in the site header behind the dimmed overlay shows a focus ring and is marked 1.", [
-      "Focus has left the dialog and landed on the Help link in the page behind it. The overlay hides its focus ring, and the link still works.",
-      "Place order is the last control in the dialog. One more Tab should take focus back to the first control in the dialog.",
+    evidence: shot("ns-001", 896, "Payment step with the Review your order dialog open over a dimmed page. Red boxes outline the Place order button inside the dialog and the Help link in the site header behind the overlay, which shows a blue focus ring.", [
+      "Help link, behind the overlay: this is where focus lands after one more Tab from Place order. Its focus ring is dimmed by the overlay, and the link still works.",
+      "Place order button: the last control in the dialog. The next Tab should go back to the first control in the dialog.",
     ]),
     status: "Open",
   },
@@ -214,9 +215,8 @@ const findings: Finding[] = [
 <input type="date" id="delivery" name="delivery"
        min="2026-08-20" max="2026-09-30">`,
     },
-    evidence: shot("ns-002", 1207, "Delivery address form with the preferred delivery date calendar open for August 2026. The grid of days is marked 1. A keyboard test log beside the form, marked 2, records that arrow keys scroll the page, Tab skips the grid and Space selects nothing. A markup panel shows a day cell written as a div with an onclick handler.", [
-      "Every day is a div with a click handler. None can take keyboard focus, and the grid has no role, so a screen reader reads it as loose numbers.",
-      "Results of the keyboard test: the calendar opens, but no key can move between dates or pick one.",
+    evidence: shot("ns-002", 1114, "Delivery address form with the preferred delivery date field focused and a calendar for August 2026 open below it. A red box outlines the grid of days.", [
+      "Calendar grid: every day is a div with a click handler. Arrow keys scroll the page, Tab skips past the grid, and Enter or Space selects nothing.",
     ]),
     status: "Open",
   },
@@ -262,10 +262,9 @@ const findings: Finding[] = [
        aria-invalid="true"
        aria-describedby="err-postcode">`,
     },
-    evidence: shot("ns-003", 1065, "Delivery address form after a failed submit. The empty City and Postal code fields have red borders and red error text, marked 1. The Continue to payment button still has the focus ring, marked 2. A screen reader speech log, marked 3, shows the button being announced, then silence after Enter.", [
-      "Red error text appears next to the empty fields but is not connected to them in code (no aria-describedby, no aria-invalid).",
-      "Focus stays on the Continue button after the failed submit. There is no error summary to move it to.",
-      "The screen reader announces nothing after activation, and reading the City field gives only its label.",
+    evidence: shot("ns-003", 854, "Delivery address form after a failed submit. A red box outlines the empty City and Postal code fields with their red error text. A second red box outlines the Continue to payment button, which still has the focus ring.", [
+      "City and Postal code: the error text is shown visually but is not connected to the fields, and nothing is announced.",
+      "Continue to payment: focus stays on the button after the failed submit, so a screen reader user hears no feedback.",
     ]),
     status: "Open",
   },
@@ -299,9 +298,8 @@ const findings: Finding[] = [
     ],
     suggestedResolution:
       "Darken the muted text token to at least #6B7480 and verify every place it is consumed, since the same variable drives helper text, timestamps, and placeholder copy. Add a contrast assertion to the design token tests so the value cannot regress silently.",
-    evidence: shot("ns-004", 913, "Promotional code field on the payment step. The pale grey helper text under it, Codes are case sensitive, is marked 1. A contrast check panel, marked 2, shows #9AA3AE on #FFFFFF measuring 2.55:1 against a 4.5:1 requirement, a fail.", [
-      "Helper text in the muted token #9AA3AE. The same token is used for helper text across the checkout.",
-      "Measured contrast is 2.55:1 against the 4.5:1 minimum for text of this size.",
+    evidence: shot("ns-004", 640, "Promotional code field on the payment step. A red box outlines the pale grey helper text under it, which reads Codes are case sensitive. Check capital letters before applying.", [
+      "Helper text: #9AA3AE on #FFFFFF measures 2.55:1, against the 4.5:1 minimum for text of this size.",
     ]),
     status: "Open",
   },
@@ -344,9 +342,8 @@ const findings: Finding[] = [
       good: `<input type="radio" name="pay" id="bank">
 <label for="bank">Pay by bank transfer</label>`,
     },
-    evidence: shot("ns-005", 940, "Payment method choices: Pay by card, Pay by bank transfer and Pay later in 3 instalments. The bank transfer option is marked 1. An accessibility tree panel, marked 2, shows the radio's name is Transfer payment method, taken from aria-label. A voice control panel shows the command Click Pay by bank transfer finding no match.", [
-      "The option reads \"Pay by bank transfer\" on screen.",
-      "Its accessible name is \"Transfer payment method\", set by aria-label, so speaking the visible words selects nothing.",
+    evidence: shot("ns-005", 752, "Payment method choices on the payment step: Pay by card, Pay by bank transfer and Pay later in 3 instalments. A red box outlines the Pay by bank transfer option.", [
+      "Pay by bank transfer: its accessible name is Transfer payment method, set by aria-label, so the visible words are not in the name and voice control cannot select it by them.",
     ]),
     status: "Open",
   },
@@ -379,10 +376,10 @@ const findings: Finding[] = [
     ],
     suggestedResolution:
       "Remove the fixed minimum width and let the summary stack below a defined breakpoint, pairing each label with its value. If the tabular relationship must be preserved, wrap the table in a container with overflow-x auto, role of region, an accessible name, and tabindex of 0 so it can be scrolled by keyboard, which keeps the page itself from scrolling sideways.",
-    evidence: shot("ns-006", 799, "Order review step at 400 percent zoom, shown as a 320 pixel wide screen marked 1 that fits only the Item and Options columns and has a horizontal scrollbar. A faded area to its right, marked 2, shows the off-screen Qty, Unit price, Delivery and Total columns. Notes give 320 px visible width, a 720 px fixed table width and 400 px off-screen.", [
-      "What fits on screen: item names and options, but no prices. The whole page has a horizontal scrollbar.",
-      "Faded area: the part of the table off-screen. Unit price and Total sit here, so every row means scrolling right and back.",
-    ]),
+    evidence: shot("ns-006", 1136, "The order review step on a 320 pixel wide screen, which is what a 1280 pixel window shows at 400 percent zoom. A red box outlines the order table, which shows only the Item and Options columns before running off the right edge. A second red box outlines the horizontal scrollbar at the bottom of the page.", [
+      "Order table: only Item and Options fit. Qty, Unit price, Delivery and Total are off-screen to the right.",
+      "Scrollbar: the whole page scrolls sideways, so reading each row means scrolling right to the price and back.",
+    ], 640),
     status: "Open",
   },
   {
@@ -423,9 +420,8 @@ const findings: Finding[] = [
       good: `<input id="cardNumber" name="cardNumber" inputmode="numeric"
        autocomplete="cc-number">`,
     },
-    evidence: shot("ns-007", 1020, "Card details form with focus in the empty Card number field and no autofill suggestion, marked 1. An elements panel, marked 2, shows the card inputs with id, name and inputmode attributes but no autocomplete attribute.", [
-      "Focus is in Card number and the browser holds a saved card, yet no autofill is offered.",
-      "The markup has no autocomplete tokens (cc-name, cc-number, cc-exp), so nothing identifies what each field is for.",
+    evidence: shot("ns-007", 832, "Card details form on the payment step with the cursor in the empty Card number field. A red box outlines the Card number field. No autofill suggestion appears.", [
+      "Card number: the browser holds a saved card but offers no autofill, because the field has no autocomplete attribute. Name on card and Expiry have none either.",
     ]),
     status: "Open",
   },
@@ -463,9 +459,8 @@ const findings: Finding[] = [
   Payment <span class="sr-only">(step 3 of 4)</span>
 </li>`,
     },
-    evidence: shot("ns-008", 809, "The four step checkout progress indicator shown twice. In colour, the current step, 2 Payment, is teal while the others are indigo and slate, marked 1. In greyscale, marked 2, all four step circles look the same. An accessibility tree panel lists four list items with no aria-current on Payment.", [
-      "The current step differs from the others only by fill colour: teal against indigo and slate.",
-      "In greyscale all three colours have almost the same lightness, so the current step cannot be picked out. The code has no aria-current either.",
+    evidence: shot("ns-008", 480, "The checkout header on the payment step. A red box outlines the four step progress indicator: 1 Delivery, 2 Payment, 3 Review, 4 Done. The current step, Payment, differs from the others only in its teal circle.", [
+      "Progress indicator: the current step is marked by colour alone. In greyscale its circle matches the others, and the code has no aria-current.",
     ]),
     status: "Open",
   },
